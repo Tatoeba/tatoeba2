@@ -47,32 +47,12 @@ class TagsSentences extends AppModel
         'Tag',
         );
 
-
-    public function beforeDelete() {
-        $tagId = $this->data['TagsSentences']['tag_id'];
-        $sentenceId = $this->data['TagsSentences']['sentence_id'];
-
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => 'user_id',
-                'conditions' => array(
-                    'sentence_id' => $sentenceId,
-                    'tag_id' => $tagId,
-                ),
-                'contain' => array()
-            )
-        );
-        if (empty($result)) {
-            return false;
+    public function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
         }
-        $taggerId = $result['TagsSentences']['user_id'];
-        if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
-            return true;
-        }
-        return false;
     }
-
 
     public function tagSentence($sentenceId, $tagId, $userId)
     {
@@ -133,7 +113,8 @@ class TagsSentences extends AppModel
             ),
             // we don't want record to be deleted in cascade, as we only want
             // the relation to be broken
-            false 
+            false,
+            true  // yet we want callbacks
         );
     }
 
@@ -201,5 +182,18 @@ class TagsSentences extends AppModel
         );
 
         return !empty($result);
+    }
+
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        $isMVA = true;
+        $attributes[] = 'tags_id';
+        $sentenceId = $this->data['TagsSentences']['sentence_id'];
+        $records = $this->find('all', array(
+            'conditions' => array('sentence_id' => $sentenceId),
+            'fields' => 'tag_id',
+            'recursive' => -1,
+        ));
+        $tagsId = Set::classicExtract($records, '{n}.TagsSentences.tag_id');
+        $values = array($sentenceId => array($tagsId));
     }
 }

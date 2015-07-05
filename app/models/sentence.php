@@ -73,6 +73,8 @@ class Sentence extends AppModel
         'SentenceAnnotation'
     );
 
+    public $hasOne = 'ReindexFlag';
+
     public $belongsTo = array(
         'User',
         'Language' => array(
@@ -169,6 +171,23 @@ class Sentence extends AppModel
     {
         $this->logSentenceEdition($created);
         $this->updateTags($created);
+        if (isset($this->data['Sentence']['modified'])) {
+            $this->needsReindex($this->id);
+        }
+        $transIndexedAttr = array('lang_id', 'user_id', 'hasaudio');
+        $transNeedsReindex = array_intersect_key(
+            $this->data['Sentence'],
+            array_flip($transIndexedAttr)
+        );
+        if ($transNeedsReindex) {
+            $this->flagTranslationsToReindex($this->id);
+        }
+    }
+
+    private function flagTranslationsToReindex($id)
+    {
+        $transIds = $this->Link->findDirectAndIndirectTranslationsIds($id);
+        $this->needsReindex($transIds);
     }
 
     private function logSentenceEdition($created)
@@ -200,6 +219,20 @@ class Sentence extends AppModel
             $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
             $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
         }
+    }
+
+    public function needsReindex($ids)
+    {
+        $sentences = $this->find('all', array(
+            'conditions' => array('id' => $ids),
+            'fields' => array('id as sentence_id', 'lang_id'),
+            'recursive' => -1,
+        ));
+        foreach ($sentences as &$rec) {
+            unset($rec['Sentence']['script']); // TODO get this removed
+            $rec = $rec['Sentence'];
+        }
+        $this->ReindexFlag->saveAll($sentences);
     }
 
     /**
@@ -441,6 +474,7 @@ class Sentence extends AppModel
         
         if ($this->data['Sentence']['hasaudio'] == 'no')
         {
+            $this->flagTranslationsToReindex($id);
             $this->query('DELETE FROM sentences WHERE id='.$id);
             $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
             $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
@@ -915,14 +949,13 @@ class Sentence extends AppModel
         return $this->saveField('correctness', $correctness);
     }
 
-    public function getSentencesLang($sentencesIds, $langId = false) {
-        $field = $langId ? 'lang_id' : 'lang';
+    public function getSentencesLang($sentencesIds) {
         $result = $this->find('all', array(
-            'fields' => array($field, 'id'),
+            'fields' => array('lang', 'id'),
             'conditions' => array('Sentence.id' => $sentencesIds),
             'recursive' => -1
         ));
-        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
+        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.lang');
     }
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
@@ -938,6 +971,11 @@ class Sentence extends AppModel
             $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
         }
+        if (array_key_exists('hasaudio', $this->data['Sentence'])) {
+            $attributes[] = 'has_audio';
+            $sentenceHasAudio = $this->data['Sentence']['hasaudio'] != 'no';
+            $values[$sentenceId][] = $sentenceHasAudio;
+	}
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);
     }

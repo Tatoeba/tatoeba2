@@ -31,10 +31,24 @@ if (isset($this->params['lang'])) {
 ?>
 
 <div class="search_bar">
-
 <?php
+echo $html->div('search-bar-extra');
+echo $html->link(
+    __('Help', true),
+    'http://en.wiki.tatoeba.org/articles/show/text-search',
+    array(
+        'target' => '_blank'
+    )
+);
+echo $html->link(
+    __('Advanced search', true),
+    array(
+        'controller' => 'sentences',
+        'action' => 'search'
+    )
+);
+echo '</div>';
 
-$langs = $languages->getSearchableLanguagesArray();
 
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
@@ -53,7 +67,7 @@ echo $form->create(
 ?>
 <fieldset class="input text">
     <label for="SentenceQuery">
-        <?php __('Example sentences with the words:'); ?>
+        <?php __('Search'); ?>
     </label>
     <?php
     $clearButton = $this->Html->tag('button', '✖', array(
@@ -76,19 +90,15 @@ echo $form->create(
     ?>
 </fieldset>
 
-<fieldset class="select">
-    <label><?php __('From'); ?></label>
+<fieldset class="select from">
     <?php
-    
-    echo $form->select(
+    echo $this->Search->selectLang(
         'from',
-        $langs,
         $selectedLanguageFrom,
         array(
-            'class' => 'language-selector',
-            "empty" => false
-        ),
-        false
+            'div' => false,
+            'label' => __('From', true),
+        )
     );
     ?>
 </fieldset>
@@ -97,30 +107,27 @@ echo $form->create(
     <span id="into"><a id="arrow" style="color:white;">&raquo;</a></span>
 </fieldset>
     
-<fieldset class="select">
-    <label><?php __('To'); ?></label>
+<fieldset class="select to">
     <?php
-    echo $form->select(
+    echo $this->Search->selectLang(
         'to',
-        $langs,
         $selectedLanguageTo,
         array(
-            'class' => 'language-selector',
-            "empty" => false
-        ),
-        false
+            'div' => false,
+            'label' => __('To', true),
+        )
     );
     ?>
 </fieldset>
 
 <fieldset class="submit">
-    <input type="submit" value="<?php echo __('search'); ?>"/>
+    <?php
+    $searchIcon = $images->svgIcon('search', array('width' => 20, 'height' => 20));
+    echo $form->button($searchIcon, array('class' => 'search-submit-button'));
+    ?>
 </fieldset>
 
 <?php
 echo $form->end();
 ?>
-
-
-<div id="tatoeba"><a href="/">TATOEBA.org</a></div>
 </div>

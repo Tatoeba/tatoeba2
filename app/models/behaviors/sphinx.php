@@ -15,7 +15,7 @@ class SphinxBehavior extends ModelBehavior
      * Used for runtime configuration of model
      */
     var $runtime = array();
-    var $_defaults = array('server' => 'localhost', 'port' => 9312);
+    var $_defaults = array('host' => 'localhost', 'port' => 9312);
 
     var $_cached_result = null;
 
@@ -26,15 +26,20 @@ class SphinxBehavior extends ModelBehavior
      */
     var $sphinx = null;
 
-    function setup(&$model, $config = array())
+    function setup(&$model)
     {
-        $settings = array_merge($this->_defaults, (array)$config);
+        $databases = get_class_vars('DATABASE_CONFIG');
+        $config = array_merge(
+            $this->_defaults,
+            $databases['sphinx']
+        );
+        $settings = array_intersect_key($config, $this->_defaults);
 
         $this->settings[$model->alias] = $settings;
 
         App::import('Vendor', 'sphinxapi');
         $this->runtime[$model->alias]['sphinx'] = new SphinxClient();
-        $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['server'],
+        $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['host'],
                                                            $this->settings[$model->alias]['port']);
         $this->runtime[$model->alias]['deletedData'] = array();
     }
@@ -99,6 +104,9 @@ class SphinxBehavior extends ModelBehavior
                     } else {
                         $this->runtime[$model->alias]['sphinx']->SetRankingMode($setting);
                     }
+                    break;
+                case 'select':
+                    $this->runtime[$model->alias]['sphinx']->SetSelect($setting);
                     break;
                 default:
                     break;
@@ -205,7 +213,8 @@ class SphinxBehavior extends ModelBehavior
         $langs = ClassRegistry::init('Sentence')->getSentencesLang(array_keys($values));
         $batchedByLang = array();
         foreach ($values as $sentenceId => $value) {
-            if (is_null($langs[$sentenceId]))
+            if (!array_key_exists($sentenceId, $langs)
+                || is_null($langs[$sentenceId]))
                 continue;
             $lang = $langs[$sentenceId];
             if (!isset($batchedByLang[$lang]))

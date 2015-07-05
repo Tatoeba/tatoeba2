@@ -63,7 +63,12 @@ class SentencesController extends AppController
     );
 
     public $uses = array(
-        'Sentence','SentenceNotTranslatedInto', 'SentencesSentencesLists'
+        'Sentence',
+        'SentenceNotTranslatedInto',
+        'SentencesSentencesLists',
+        'User',
+        'UsersLanguages',
+        'Tag',
     );
 
     /**
@@ -508,18 +513,52 @@ class SentencesController extends AppController
      */
     public function search()
     {
-        $query = $_GET['query'];
+        $criteria = array(
+            'query' => '',
+            'from' => 'und',
+            'to' => 'und',
+            'tags' => '',
+            'user' => '',
+            'orphans' => 'no',
+            'unapproved' => 'no',
+            'native' => '',
+            'has_audio' => '',
+            'trans_to' => 'und',
+            'trans_link' => '',
+            'trans_user' => '',
+            'trans_orphan' => '',
+            'trans_unapproved' => '',
+            'trans_has_audio' => '',
+            'trans_filter' => 'limit',
+            'sort' => 'words',
+            'sort_reverse' => '',
+        );
+        $criteriaVars = array();
+        foreach ($criteria as $name => $default) {
+            $criteriaVars[$name] = $default;
+            if (isset($this->params['url'][$name])) {
+                $criteriaVars[$name] = $this->params['url'][$name];
+            }
+        }
+        extract($criteriaVars);
+        $ignored = array();
 
-        $from = 'und';
-        if (isset($_GET['from'])) {
-            $from = $_GET['from'];
-            $from = Sanitize::paranoid($from);
+        /* Convert simple search to advanced search parameters */
+        if (isset($this->params['url']['to'])
+            && !isset($this->params['url']['trans_to'])) {
+            $trans_to = $to;
         }
 
-        $to = 'und';
-        if (isset($_GET['to'])) {
-            $to = $_GET['to'];
-            $to = Sanitize::paranoid($to);
+        // Disallow this currently impossible combination
+        if (!empty($native) && $from == 'und') {
+            $ignored[] = __(
+                /* @translators: This string will be preceded by “Warning: the
+                   following criteria have been ignored:” */
+                "“owned by a self-identified native”, because “sentence ".
+                "language is set to “any”",
+                true
+            );
+            $native = '';
         }
 
         // Session variables for search bar
@@ -536,28 +575,207 @@ class SentencesController extends AppController
             $query
         );
 
-        $ranking_formula = '(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + (10000/(text_len+1))';
+        $ranking_formula = '-text_len';
+        $sortMode = '@rank';
+        if ($sort == 'random') {
+            $sortMode = '@random';
+        } elseif ($sort == 'created') {
+            $ranking_formula = 'created';
+        } elseif ($sort == 'modified') {
+            $ranking_formula = 'modified';
+        }
+        $sortMode .= empty($sort_reverse) ? ' DESC' : ' ASC';
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
         $sphinx = array(
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
-            'sortMode' => array(SPH_SORT_RELEVANCE => ""),
+            'sortMode' => array(SPH_SORT_EXTENDED => $sortMode),
             'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
         );
         if (empty($query)) {
             // When the query is empty, Sphinx changes matchMode into
             // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
             // sortMode instead.
+            if (!empty($sort_reverse)) {
+                $ranking_formula = "-($ranking_formula)";
+            }
             $sphinx['sortMode'] = array(SPH_SORT_EXPR => $ranking_formula);
         }
+
+        $transFilter = array();
         // if we want to search only on sentences having translations
         // in a specified language
-        if ($to !== 'und') {
+        if ($trans_to !== 'und') {
             $this->loadModel('Language');
-            $toId = $this->Language->getIdFromLang($to);
-            $sphinx['filter'][] = array('trans_id',$toId);
+            $toId = $this->Language->getIdFromLang($trans_to);
+            if ($toId) {
+                $transFilter[] = "t.l=$toId";
+            }
+        }
+        if (!empty($trans_link)) {
+            $link = $trans_link == 'direct' ? 1 : 2;
+            $transFilter[] = "t.d=$link";
+        }
+        if (!empty($trans_user)) {
+            $result = $this->User->findByUsername($trans_user, 'id');
+            if ($result) {
+                $transFilter[] = 't.u='.$result['User']['id'];
+                if ($trans_orphan == 'yes') {
+                    $ignored[] = format(
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
+                        __("“translation is orphan”, because “translation ".
+                           "owner” is set to a username", true)
+                    );
+                    $trans_orphan = '';
+                }
+            } else {
+                $ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been ignored:” */
+                    __("“translation owner”, because “{username}” is not ".
+                       "a valid username", true),
+                    array('username' => $trans_user)
+                );
+                $trans_user = '';
+            }
+        }
+        if (!empty($trans_orphan) && empty($trans_user)) {
+            $op = $trans_orphan == 'yes' ? '=' : '<>';
+            $transFilter[] = "t.u${op}0";
+        }
+        if (!empty($trans_unapproved)) {
+            $correctness = $trans_unapproved == 'yes' ? 0 : 1;
+            $transFilter[] = "t.c=$correctness";
+        }
+        if (!empty($trans_has_audio)) {
+            $audio = $trans_has_audio == 'yes' ? 1 : 0;
+            $transFilter[] = "t.a=$audio";
+        }
+        if ($transFilter || $trans_filter == 'exclude') {
+            if (!$transFilter) {
+                $transFilter = array(1);
+            }
+            $filter = implode(' & ', $transFilter);
+            $sphinx['select'] = "*, ANY($filter FOR t IN trans) as filter";
+            $filtering = $trans_filter == 'limit' ? 1 : 0;
+            $sphinx['filter'][] = array('filter', $filtering);
+        }
+
+        // filter by user
+        $user_id = null;
+        if (!empty($user)) {
+            $result = $this->User->findByUsername($user, 'id');
+            if ($result) {
+                $user_id = $result['User']['id'];
+                $sphinx['filter'][] = array('user_id', $user_id);
+                if ($orphans == 'yes') {
+                    $ignored[] = format(
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
+                        __("“sentence is orphan”, because “sentence ".
+                           "owner” is set to a username", true)
+                    );
+                    $orphans = '';
+                }
+            } else {
+                $ignored[] = format(
+                    /* @translators: This string will be preceded by “Warning:
+                       the following criteria have been ignored:” */
+                    __("“sentence owner”, because “{username}” is not a ".
+                       "valid username", true),
+                    array('username' => $user)
+                );
+                $user = '';
+            }
+        }
+
+        // filter by tags
+        if (!empty($tags)) {
+            $tagsArray = explode(',', $tags);
+            $tagsArray = array_map('trim', $tagsArray);
+            $result = $this->Tag->find('all', array(
+                'conditions' => array('name' => $tagsArray),
+                'contain' => array(),
+                'fields' => array('id', 'name')
+            ));
+            $tagsById = Set::combine($result, '{n}.Tag.id', '{n}.Tag.name');
+            if ($tagsById) {
+                foreach (array_keys($tagsById) as $id)
+                    $sphinx['filter'][] = array('tags_id', $id);
+            }
+
+            // clean provided list
+            $unsetTags = array();
+            foreach ($tagsArray as $i => $name) {
+                if (!in_array($name, $tagsById)) {
+                    $unsetTags[] = $tagsArray[$i];
+                    unset($tagsArray[$i]);
+                }
+            }
+            if ($unsetTags) {
+                foreach ($unsetTags as $tagName) {
+                    $ignored[] = format(
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
+                        __("“tagged as {tagName}”, because it's an invalid ".
+                           "tag name", true),
+                        compact('tagName')
+                    );
+                }
+            }
+            $tags = implode(',', $tagsArray);
+        }
+
+        // filter orphans
+        if (!empty($orphans) && empty($user)) {
+            $exclude_orphans = $orphans == 'no';
+            $sphinx['filter'][] = array('user_id', 0, $exclude_orphans);
+        }
+
+        // filter unapproved
+        if (!empty($unapproved)) {
+            $exclude_unappr = $unapproved == 'no';
+            // See the indexation SQL request for the value 127
+            $sphinx['filter'][] = array('ucorrectness', 127, $exclude_unappr);
+        }
+
+        // filter self-identified natives
+        if (!empty($native)) {
+            $natives = $this->UsersLanguages->findAllByLanguageCode(
+                $from,
+                'of_user_id'
+            );
+            $natives = Set::extract($natives, '{n}.UsersLanguages.of_user_id');
+            if ($natives) {
+                if ($user_id && !in_array($user_id, $natives)) {
+                    $ignored[] = format(
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
+                        __("“owned by a self-identified native”, because the ".
+                           "criterion “owned by: {username}” is set whereas ".
+                           "he or she is not a self-identified native in the ".
+                           "language you're searching into.",
+                           true),
+                        array('username' => $user)
+                    );
+                    $native = '';
+                } else {
+                    $sphinx['filter'][] = array('user_id', $natives);
+                }
+            }
+        }
+
+        // filter audio
+        if (!empty($has_audio)) {
+            $audio = $has_audio == 'yes' ? 1 : 0;
+            $sphinx['filter'][] = array('has_audio', $audio);
         }
 
         $model = 'Sentence';
@@ -580,11 +798,14 @@ class SentencesController extends AppController
             $real_total
         );
 
-        $this->set('query', $query);
-        $this->set('from', $from);
-        $this->set('to', $to);
+        $this->set(compact(array_keys($criteria)));
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
+        $this->set(
+            'is_advanced_search',
+            isset($this->params['url']['trans_to'])
+        );
+        $this->set('ignored', $ignored);
     }
 
     /**

@@ -20,6 +20,7 @@ class LinkTestCase extends CakeTestCase {
 		'app.language',
 		'app.link',
 		'app.sentence_annotation',
+		'app.reindex_flag',
 	);
 
 	function startTest() {
@@ -167,25 +168,19 @@ class LinkTestCase extends CakeTestCase {
 		$this->assertEqual($result, $expectedLinkedSentences);
 	}
 
-	function testAdd_updatesSphinxAttributes() {
-		$engId = 1; $cmnId = 2; $spaId = 3;
-		$fraId = 4; $deuId = 5; $jpnId = 6;
-		$expectedAttributes = array('trans_id');
-		$expectedValues = array(
-			/* #8 is empty since we simulate the link creation */
-			8 => array(array()),
-			2 => array(array($engId, $spaId, $fraId, $deuId, $jpnId)),
-			5 => array(array($engId, $cmnId, $fraId)),
-		);
+	function testAdd_flagSentencesToReindex() {
+		$expected = array(2, 5, 8);
+		$this->Link->add(8, 5);
+		$result = $this->Link->Sentence->ReindexFlag->find('all');
+		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+		$this->assertEqual($expected, $result);
+	}
 
-		$this->Link->data['Link'] = array(
-			'sentence_id' => 8,
-			'translation_id' => 5
-		);
-		$this->Link->sphinxAttributesChanged($attributes, $values, $isMVA);
-
-		$this->assertTrue($isMVA);
-		$this->assertEqual($expectedAttributes, $attributes);
-		$this->assertEqual($expectedValues, $values);
+	function testDelete_flagSentencesToReindex() {
+		$expected = array(1, 2, 3, 4, 5);
+		$this->Link->deletePair(1, 2);
+		$result = $this->Link->Sentence->ReindexFlag->find('all');
+		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+		$this->assertEqual($expected, $result);
 	}
 }

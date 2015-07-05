@@ -25,10 +25,10 @@
  * @link     http://tatoeba.org
  */
 
-$query = Sanitize::html($query);
-
-if (!empty($query)) {
-    $title = format(__('Sentences with: {keywords}', true), array('keywords' => $query));
+if ($is_advanced_search) {
+    $title = __p('title', 'Advanced search', true);
+} else if (!empty($query)) {
+    $title = format(__('Sentences with: {keywords}', true), array('keywords' => Sanitize::html($query)));
 } else {
     if ($from != 'und' && $to != 'und') {
         $title = format(__('Sentences in {language} translated into {translationLanguage}', true),
@@ -45,15 +45,233 @@ if (!empty($query)) {
     }
 }
 $this->set('title_for_layout', $pages->formatTitle($title));
+
+if ($ignored) {
+    $list = $this->Html->nestedList($ignored);
+    $warn = format(
+        __("Warning: the following criteria have been ignored:{list}", true),
+        compact('list')
+    );
+    echo $this->Html->tag('div', $warn, array(
+        'id' => 'searchWarning',
+        'class' => 'message',
+    ));
+}
 ?>
 
 <div id="annexe_content">
+    <div class="module advanced-search">
+    <h2><?php echo __('More search criteria'); ?></h2>
     <?php
-    echo $this->element('search_features');
+        echo $this->Form->create(
+            'AdvancedSearch',
+            array(
+                'url' => array(
+                    'controller' => 'sentences',
+                    'action' => 'search',
+                ),
+                'type' => 'get',
+                'class' => 'form'
+            )
+        );
     ?>
+    <fieldset>
+    <legend><?php __('Sentences'); ?></legend>
+    <?php
+        echo $this->Form->input('query', array(
+            'label' => __('Words:', true),
+            'value' => $query,
+            'lang' => '',
+            'dir' => 'auto',
+        ));
+
+        echo $this->Search->selectLang('from', $from, array(
+            'label' => __('Language:', true),
+        ));
+
+        echo $this->Search->selectLang('to', $to, array(
+            'label' => __('Show translations in:', true),
+            'options' => $this->Languages->languagesArrayForPositiveLists(),
+        ));
+
+        $orphansNote = $this->Html->tag(
+            'div',
+            __('Orphan sentences are likely to be incorrect.', true),
+            array(
+                'class' => 'note',
+            )
+        );
+        echo $this->Form->input('orphans', array(
+            'label' => __('Is orphan:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'after' => $orphansNote,
+            'value' => $orphans,
+        ));
+
+        $unapprNote = $this->Html->tag(
+            'div',
+            __('Unapproved sentences are likely to be incorrect.', true),
+            array(
+                'class' => 'note',
+            )
+        );
+        echo $this->Form->input('unapproved', array(
+            'label' => __('Is unapproved:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'after' => $unapprNote,
+            'value' => $unapproved,
+        ));
+
+        echo $this->Form->input('native', array(
+            'type' => 'checkbox',
+            'hiddenField' => false,
+            'label' => __('Owned by a self-identified native', true),
+            'value' => 'yes',
+            'checked' => $native,
+        ));
+
+        echo $this->Form->input('user', array(
+            'label' => __('Owner:', true),
+            'placeholder' => __('Enter a username', true),
+            'value' => $user,
+        ));
+
+        $tagsNote = $this->Html->tag(
+            'div',
+            __('Separate tags with commas.', true),
+            array(
+                'class' => 'note',
+            )
+        );
+        echo $this->Form->input('tags', array(
+            'label' => __('Tags:', true),
+            'value' => $tags,
+            'after' => $tagsNote,
+        ));
+
+        echo $this->Form->input('has_audio', array(
+            'label' => __('Has audio:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'value' => $has_audio,
+        ));
+    ?>
+    </fieldset>
+
+    <fieldset>
+    <legend><?php __('Translations'); ?></legend>
+    <?php
+        $filterOption = $this->Form->select(
+            'trans_filter',
+            array(
+                /* @translators This is inserted into another sentence
+                                that begins with {action} */
+                'limit' => __('Limit to', true),
+                /* @translators This is inserted into another sentence
+                                that begins with {action} */
+                'exclude' => __('Exclude', true),
+            ),
+            $trans_filter,
+            array('empty' => false)
+        );
+        $label = format(
+            __('{action} sentences having translations that match'
+              .' all the following criteria.', true),
+            array('action' => $filterOption)
+        );
+        echo "<label>$label</label>";
+
+        echo $this->Search->selectLang('trans_to', $trans_to, array(
+            'label' => __('Language:', true),
+            'options' => $this->Languages->getSearchableLanguagesArray(),
+        ));
+        echo $this->Form->input('trans_link', array(
+            'label' => __('Link:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'direct' => __('Direct', true),
+                'indirect' => __('Indirect', true),
+            ),
+            'value' => $trans_link,
+        ));
+        echo $this->Form->input('trans_user', array(
+            'label' => __('Owner:', true),
+            'placeholder' => __('Enter a username', true),
+            'value' => $trans_user,
+        ));
+        echo $this->Form->input('trans_orphan', array(
+            'label' => __('Is orphan:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'value' => $trans_orphan,
+        ));
+        echo $this->Form->input('trans_unapproved', array(
+            'label' => __('Is unapproved:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'value' => $trans_unapproved,
+        ));
+        echo $this->Form->input('trans_has_audio', array(
+            'label' => __('Has audio:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'value' => $trans_has_audio,
+        ));
+    ?>
+    </fieldset>
+
+    <fieldset>
+    <legend><?php __('Sort'); ?></legend>
+    <?php
+        echo $this->Form->input('sort', array(
+            'label' => __('Order:', true),
+            'options' => array(
+                'words' => __('Fewest words first', true),
+                'created' => __('Last created first', true),
+                'modified' => __('Last modified first', true),
+                'random' => __('Random', true),
+            ),
+            'value' => $sort,
+        ));
+        echo $this->Form->input('sort_reverse', array(
+            'type' => 'checkbox',
+            'hiddenField' => false,
+            'label' => __('Reverse order', true),
+            'value' => 'yes',
+            'checked' => $sort_reverse,
+        ));
+    ?>
+    </fieldset>
+
+    <?php
+    echo $this->Form->button(
+        __p('button', 'Advanced search', true),
+        array('class' => 'button submit')
+    );
+    echo $this->Form->end();
+    ?>
+    </div>
 </div>
-
-
 <div id="main_content">
 <?php
 if (!empty($results)) {
@@ -61,10 +279,10 @@ if (!empty($results)) {
     ?>
     <div class="module">
         <?php 
-        $keywords = $this->Languages->tagWithLang(
-            'span', '', $query, array('escape' => false)
-        );
-        if (!empty($query)) {
+        if (!$is_advanced_search && !empty($query)) {
+            $keywords = $this->Languages->tagWithLang(
+                'span', '', $query
+            );
             $title = format(
                 /* @translators: title on the top of a search result page */
                 __('Search: {keywords}', true),

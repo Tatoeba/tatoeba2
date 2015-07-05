@@ -185,7 +185,16 @@ class LanguagesLib
         static $languages;
         static $lastLang;
 
-        $currentLang = Configure::read('Config.language');
+        if (class_exists('Configure')) {
+            $currentLang = Configure::read('Config.language');
+        } else {
+            $currentLang = null;
+        }
+        if (!function_exists('__')) {
+            function __($string) {
+                return $string;
+            }
+        }
         if (!$languages || $currentLang != $lastLang) {
             $lastLang = $currentLang;
             $languages = array(

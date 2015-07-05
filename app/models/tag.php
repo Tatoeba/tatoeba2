@@ -157,9 +157,24 @@ class Tag extends AppModel
     }
 
     public function removeTagFromSentence($tagId, $sentenceId) {
+        if (!$this->canRemoveTagFromSentence($tagId, $sentenceId)) {
+            return false;
+        }
         return $this->TagsSentences->removeTagFromSentence(
             $tagId,
             $sentenceId
+        );
+    }
+
+    private function canRemoveTagFromSentence($tagId, $sentenceId) {
+        $result = $this->TagsSentences->find('first', array(
+            'conditions' => array(
+                'tag_id' => $tagId,
+                'sentence_id' => $sentenceId,
+            ),
+        ));
+        return $result && CurrentUser::canRemoveTagFromSentence(
+            $result['TagsSentences']['user_id']
         );
     }
 

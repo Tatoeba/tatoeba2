@@ -127,5 +127,17 @@ class SentenceFixture extends CakeTestFixture {
 			'hasaudio' => 'no',
 			'lang_id' => NULL
 		),
+		array(
+			'id' => '10',
+			'lang' => 'fra',
+			'text' => 'La cause fondamentale du problème est que dans le monde moderne, les imbéciles sont emplis d\'assurance, alors que les gens intelligents sont emplis de doute.',
+			'correctness' => NULL,
+			'user_id' => '7',
+			'created' => '2015-06-15 00:34:28',
+			'modified' => '2015-06-15 00:34:28',
+			'dico_id' => NULL,
+			'hasaudio' => 'no',
+			'lang_id' => '4'
+		),
 	);
 }

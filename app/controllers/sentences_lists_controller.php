@@ -83,18 +83,18 @@ class SentencesListsController extends AppController
      * 
      * @return void
      */
-    public function index($search = null)
+    public function index($filter = null)
     {
         if (isset($this->params['url']['search'])) {
-            $search = $this->params['url']['search'];
-            $this->redirect(array('action' => 'index', $search));
+            $filter = $this->params['url']['search'];
+            $this->redirect(array('action' => 'index', $filter));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists($search);
+        $this->paginate = $this->SentencesList->getPaginatedLists($filter);
         $allLists = $this->paginate();
 
         $total = $this->params['paging']['SentencesList']['count'];
-        if (empty($search)) {
+        if (empty($filter)) {
             $title = format(
                 __('All lists ({total})', $total, true),
                 array('total' => $total)
@@ -102,30 +102,30 @@ class SentencesListsController extends AppController
         } else {
             $title = format(
                 __('All lists containing "{search}" ({total})', $total, true),
-                array('total' => $total, 'search' => $search)
+                array('total' => $total, 'search' => $filter)
             );
         }
 
         $this->set('allLists', $allLists);
-        $this->set('search', $search);
+        $this->set('filter', $filter);
         $this->set('title', $title);
     }
 
 
-    public function collaborative($search = null)
+    public function collaborative($filter = null)
     {
         if (isset($this->params['url']['search'])) {
-            $search = $this->params['url']['search'];
-            $this->redirect(array('action' => 'collaborative', $search));
+            $filter = $this->params['url']['search'];
+            $this->redirect(array('action' => 'collaborative', $filter));
         }
 
         $this->paginate = $this->SentencesList->getPaginatedLists(
-            $search, null, true
+            $filter, null, true
         );
         $allLists = $this->paginate();
 
         $total = $this->params['paging']['SentencesList']['count'];
-        if (empty($search)) {
+        if (empty($filter)) {
             $title = format(
                 __('Collaborative lists ({total})', $total, true),
                 array('total' => $total)
@@ -133,12 +133,12 @@ class SentencesListsController extends AppController
         } else {
             $title = format(
                 __('Collaborative lists containing "{search}" ({total})', $total, true),
-                array('search' => $search, 'total' => $total)
+                array('search' => $filter, 'total' => $total)
             );
         }
 
         $this->set('allLists', $allLists);
-        $this->set('search', $search);
+        $this->set('filter', $filter);
         $this->set('title', $title);
 
         $this->render('index');
@@ -378,7 +378,7 @@ class SentencesListsController extends AppController
      *
      * @return void
      */
-    public function of_user($username, $search = null)
+    public function of_user($username, $filter = null)
     {
         if (isset($this->params['url']['username'])) {
             $usernameParam = $this->params['url']['username'];
@@ -393,12 +393,12 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists($search, $username);
+        $this->paginate = $this->SentencesList->getPaginatedLists($filter, $username);
         $userLists = $this->paginate('SentencesList');
 
         $this->set('userLists', $userLists);
         $this->set('username', $username);
-        $this->set('search', $search);
+        $this->set('filter', $filter);
     }
 
     /**

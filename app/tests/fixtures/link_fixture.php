@@ -112,5 +112,21 @@ class LinkFixture extends CakeTestFixture {
 			'translation_lang' => NULL,
 			'distance' => '1'
 		),
+		array(
+			'id' => '13',
+			'sentence_id' => '10',
+			'translation_id' => '6',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '14',
+			'sentence_id' => '6',
+			'translation_id' => '10',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
 	);
 }

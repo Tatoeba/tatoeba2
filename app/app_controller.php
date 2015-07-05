@@ -58,8 +58,8 @@ class AppController extends Controller
         'Form',
         'Logs',
         'Javascript',
-        'Languages',
         'Pages',
+        'Search',
         'Session',
         'Images'
     );
