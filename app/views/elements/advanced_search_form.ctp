@@ -25,11 +25,12 @@ echo $this->Form->create(
             'action' => 'search',
         ),
         'type' => 'get',
+        'id' => 'AdvancedSearchSearchForm',
         'class' => 'form'
     )
 );
 ?>
-<fieldset>
+<fieldset id="advsearch-sentences">
 <legend><?php __('Sentences'); ?></legend>
 <?php
     echo $this->Form->input('query', array(
@@ -123,7 +124,7 @@ echo $this->Form->create(
 ?>
 </fieldset>
 
-<fieldset>
+<fieldset id="advsearch-translations">
 <legend><?php __('Translations'); ?></legend>
 <?php
     $filterOption = $this->Form->select(
@@ -194,7 +195,7 @@ echo $this->Form->create(
 ?>
 </fieldset>
 
-<fieldset>
+<fieldset id="advsearch-sort">
 <legend><?php __('Sort'); ?></legend>
 <?php
     echo $this->Form->input('sort', array(

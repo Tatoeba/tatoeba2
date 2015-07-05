@@ -41,10 +41,10 @@ echo $html->link(
     )
 );
 echo $html->link(
-    __('Advanced search', true),
+    __p('title', 'Advanced search', true),
     array(
         'controller' => 'sentences',
-        'action' => 'search'
+        'action' => 'advanced_search'
     )
 );
 echo '</div>';

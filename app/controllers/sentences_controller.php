@@ -106,6 +106,7 @@ class SentencesController extends AppController
             'index',
             'show',
             'search',
+            'advanced_search',
             'of_user',
             'random',
             'go_to_sentence',
@@ -807,6 +808,10 @@ class SentencesController extends AppController
             isset($this->params['url']['trans_to'])
         );
         $this->set('ignored', $ignored);
+    }
+
+    public function advanced_search() {
+        $this->set($this->defaultSearchCriteria);
     }
 
     /**
