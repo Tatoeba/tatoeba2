@@ -35,3 +35,19 @@ fieldset#advsearch-sort {
     clear: both;
     float: right;
 }
+
+#main_content {
+    margin-right: 10%;
+}
+
+#AdvancedSearchSearchForm fieldset {
+    width: 370px;
+}
+
+#AdvancedSearchFrom,
+#AdvancedSearchTo,
+#AdvancedSearchTransTo,
+#AdvancedSearchSort,
+#AdvancedSearchSearchForm input[type="text"] {
+    width: 240px;
+}
