@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-05 15:07+0000\n"
+"POT-Creation-Date: 2015-07-05 20:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,62 +126,62 @@ msgstr ""
 msgid "We could not save your changes."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L275
 msgid "You cannot delete this sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L288
 msgid "The sentence #{id} has been deleted."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L274
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L296
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr ""
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L557
-msgid "“owned by a self-identified native”, because “sentence language is set to “any”"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L559
+msgid "“owned by a self-identified native”, because “sentence language” is set to “any”"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L630
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L632
 msgid "“translation is orphan”, because “translation owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L639
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L641
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L680
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L682
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L689
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L691
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L726
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L728
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L761
-msgid "“owned by a self-identified native”, because the criterion “owned by: {username}” is set whereas he or she is not a self-identified native in the language you're searching into."
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L763
+msgid "“owned by a self-identified native”, because the criterion “owned by: {username}” is set whereas he or she is not a self-identified native in the language you're searching into"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L99
@@ -1315,6 +1315,180 @@ msgstr ""
 msgid "Logs of {user}'s contributions"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L57
+msgid "Sentences"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L37
+msgid "Words:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L60
+msgid "Language:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
+msgid "Show translations in:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L54
+msgid "Orphan sentences are likely to be incorrect."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L169
+msgid "Is orphan:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L171
+msgctxt "orphan"
+msgid "Any"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L190
+msgid "No"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L191
+msgid "Yes"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L72
+msgid "Unapproved sentences are likely to be incorrect."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L178
+msgid "Is unapproved:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L180
+msgctxt "unapproved"
+msgid "Any"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L91
+msgid "Owned by a self-identified native"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L164
+msgid "Owner:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L165
+msgid "Enter a username"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L104
+msgid "Separate tags with commas."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L110
+msgid "Tags:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L187
+msgid "Has audio:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L189
+msgctxt "audio"
+msgid "Any"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L128
+msgid "Translations"
+msgstr ""
+
+#. @translators This is inserted into another sentence
+#. that begins with {action}
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L135
+msgid "Limit to"
+msgstr ""
+
+#. @translators This is inserted into another sentence
+#. that begins with {action}
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L138
+msgid "Exclude"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L144
+msgid "{action} sentences having translations that match all the following criteria."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L155
+msgid "Link:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L157
+msgctxt "link"
+msgid "Any"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L158
+msgid "Direct"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L159
+msgid "Indirect"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L199
+msgid "Sort"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L202
+msgid "Order:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L204
+msgid "Fewest words first"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L205
+msgid "Last created first"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L206
+msgid "Last modified first"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L207
+msgid "Random"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L214
+msgid "Reverse order"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L223
+msgctxt "button"
+msgid "Advanced search"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
 msgstr ""
@@ -1511,6 +1685,9 @@ msgid "Help"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/advanced_search.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
+msgctxt "title"
 msgid "Advanced search"
 msgstr ""
 
@@ -1532,22 +1709,6 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L117
 msgid "To"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L29
-msgid "Search features"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L33
-msgid "The search is powered by <a href=\"{}\">Sphinx</a>."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L43
-msgid "You can find basic instructions for searching <a href=\"{}\">here</a>."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L55
-msgid "You can learn about advanced search features <a href=\"{}\">here</a>."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L35
@@ -1764,13 +1925,6 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L32
 msgid "Tools"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L49
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L57
-msgid "Sentences"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L62
@@ -2450,20 +2604,8 @@ msgstr ""
 msgid "Translation:"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L327
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L196
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L60
-msgid "Language:"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L363
 msgid "Submit translation"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L93
-msgid "Show translations in:"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L173
@@ -3242,11 +3384,6 @@ msgstr ""
 msgid "(total %count%)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
-msgctxt "title"
-msgid "Advanced search"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L31
 msgid "Sentences with: {keywords}"
 msgstr ""
@@ -3275,163 +3412,8 @@ msgstr ""
 msgid "More search criteria"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L82
-msgid "Words:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L99
-msgid "Orphan sentences are likely to be incorrect."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L105
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L214
-msgid "Is orphan:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L107
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L216
-msgctxt "orphan"
-msgid "Any"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L126
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L164
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L217
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L226
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L235
-msgid "No"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L127
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L165
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L218
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L227
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L236
-msgid "Yes"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L117
-msgid "Unapproved sentences are likely to be incorrect."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L223
-msgid "Is unapproved:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L225
-msgctxt "unapproved"
-msgid "Any"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L136
-msgid "Owned by a self-identified native"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L142
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L209
-msgid "Owner:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L143
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L210
-msgid "Enter a username"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L149
-msgid "Separate tags with commas."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L155
-msgid "Tags:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L161
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L232
-msgid "Has audio:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L163
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L234
-msgctxt "audio"
-msgid "Any"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L173
-msgid "Translations"
-msgstr ""
-
-#. @translators This is inserted into another sentence
-#. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L180
-msgid "Limit to"
-msgstr ""
-
-#. @translators This is inserted into another sentence
-#. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L183
-msgid "Exclude"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L189
-msgid "{action} sentences having translations that match all the following criteria."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L200
-msgid "Link:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L202
-msgctxt "link"
-msgid "Any"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L203
-msgid "Direct"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L204
-msgid "Indirect"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L244
-msgid "Sort"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L247
-msgid "Order:"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L249
-msgid "Fewest words first"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L250
-msgid "Last created first"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L251
-msgid "Last modified first"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L252
-msgid "Random"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L259
-msgid "Reverse order"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L268
-msgctxt "button"
-msgid "Advanced search"
-msgstr ""
-
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L81
 msgid "Search: {keywords}"
 msgstr ""
 
