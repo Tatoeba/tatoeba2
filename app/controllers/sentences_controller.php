@@ -71,6 +71,27 @@ class SentencesController extends AppController
         'Tag',
     );
 
+    private $defaultSearchCriteria = array(
+        'query' => '',
+        'from' => 'und',
+        'to' => 'und',
+        'tags' => '',
+        'user' => '',
+        'orphans' => 'no',
+        'unapproved' => 'no',
+        'native' => '',
+        'has_audio' => '',
+        'trans_to' => 'und',
+        'trans_link' => '',
+        'trans_user' => '',
+        'trans_orphan' => '',
+        'trans_unapproved' => '',
+        'trans_has_audio' => '',
+        'trans_filter' => 'limit',
+        'sort' => 'words',
+        'sort_reverse' => '',
+    );
+
     /**
      * Before filter.
      *
@@ -513,28 +534,8 @@ class SentencesController extends AppController
      */
     public function search()
     {
-        $criteria = array(
-            'query' => '',
-            'from' => 'und',
-            'to' => 'und',
-            'tags' => '',
-            'user' => '',
-            'orphans' => 'no',
-            'unapproved' => 'no',
-            'native' => '',
-            'has_audio' => '',
-            'trans_to' => 'und',
-            'trans_link' => '',
-            'trans_user' => '',
-            'trans_orphan' => '',
-            'trans_unapproved' => '',
-            'trans_has_audio' => '',
-            'trans_filter' => 'limit',
-            'sort' => 'words',
-            'sort_reverse' => '',
-        );
         $criteriaVars = array();
-        foreach ($criteria as $name => $default) {
+        foreach ($this->defaultSearchCriteria as $name => $default) {
             $criteriaVars[$name] = $default;
             if (isset($this->params['url'][$name])) {
                 $criteriaVars[$name] = $this->params['url'][$name];
@@ -798,7 +799,7 @@ class SentencesController extends AppController
             $real_total
         );
 
-        $this->set(compact(array_keys($criteria)));
+        $this->set(compact(array_keys($this->defaultSearchCriteria)));
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
         $this->set(
