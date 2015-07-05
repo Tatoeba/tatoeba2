@@ -66,10 +66,14 @@ legend {
     display: inline-block;
 }
 
+#AdvancedSearchSearchForm input {
+    border: 1px solid #DDDDDD;
+}
+
 #AdvancedSearchSearchForm input + label {
     vertical-align: middle;
     display: inline-block;
-    width: 140px;
+    width: 50%;
 }
 
 #AdvancedSearchSearchForm input:first-child {

@@ -25,6 +25,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <div class="module advanced-search">
     <h2><?php echo $title; ?></h2>
     <?php echo $this->element('advanced_search_form'); ?>
-    <div style="clear:both" />
+    <div style="clear:both"></div>
     </div>
 </div>
