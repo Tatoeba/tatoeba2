@@ -555,7 +555,7 @@ class SentencesController extends AppController
                 /* @translators: This string will be preceded by “Warning: the
                    following criteria have been ignored:” */
                 "“owned by a self-identified native”, because “sentence ".
-                "language is set to “any”",
+                "language” is set to “any”",
                 true
             );
             $native = '';
@@ -761,7 +761,7 @@ class SentencesController extends AppController
                         __("“owned by a self-identified native”, because the ".
                            "criterion “owned by: {username}” is set whereas ".
                            "he or she is not a self-identified native in the ".
-                           "language you're searching into.",
+                           "language you're searching into",
                            true),
                         array('username' => $user)
                     );
