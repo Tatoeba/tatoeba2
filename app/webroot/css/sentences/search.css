@@ -62,21 +62,21 @@ legend {
 #AdvancedSearchSearchForm label:first-child {
     padding-right: 5px;
     text-align: right;
-    width: 90px;
+    width: 110px;
     display: inline-block;
 }
 
 #AdvancedSearchSearchForm input + label {
     vertical-align: middle;
     display: inline-block;
-    width: 150px;
+    width: 140px;
 }
 
 #AdvancedSearchSearchForm input:first-child {
-    margin-left: 80px;
+    margin-left: 100px;
 }
 #AdvancedSearchSearchForm div.note {
-    margin-left: 98px;
+    margin-left: 118px;
 }
 
 #AdvancedSearchSearchForm .input {
@@ -101,7 +101,7 @@ legend {
 #AdvancedSearchTransTo,
 #AdvancedSearchSort,
 #AdvancedSearchSearchForm input[type="text"] {
-    width: 150px;
+    width: 140px;
     margin-bottom: 3px;
 }
 
