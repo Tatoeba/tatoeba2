@@ -146,6 +146,8 @@ class SphinxConfShell extends Shell {
         'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
         # CJK
         'U+3000..U+FEFF', 'U+FFF0..U+2FA1F',
+        # Neo-Tifinagh (one of the Berber scripts)
+        'U+2D30..U+2D67', 'U+2D6F',
     );
 
     public $languagesWithoutWordBoundaries = array(
