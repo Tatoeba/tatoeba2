@@ -749,10 +749,13 @@ class SentencesController extends AppController
 
         // filter self-identified natives
         if (!empty($native)) {
-            $natives = $this->UsersLanguages->findAllByLanguageCode(
-                $from,
-                'of_user_id'
-            );
+            $natives = $this->UsersLanguages->find('all', array(
+                'conditions' => array(
+                    'language_code' => $from,
+                    'level' => 5,
+                ),
+                'fields' => array('of_user_id'),
+            ));
             $natives = Set::extract($natives, '{n}.UsersLanguages.of_user_id');
             if ($natives) {
                 if ($user_id && !in_array($user_id, $natives)) {
