@@ -286,15 +286,9 @@ EOT;
                 $conf .= "
         sql_query = \
             select \
-                r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, \
-                r.has_audio, r.tags_id, \
-                CONCAT('[', COALESCE(GROUP_CONCAT(distinct CONCAT('{', \
-                    'l:',r.trans_lang,',', \
-                    'd:',r.trans_link,',', \
-                    'u:',r.trans_user,',', \
-                    'c:',r.trans_correctness,',', \
-                    'a:',r.trans_audio, \
-                '}') ),''), ']') as trans \
+                r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
+                GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
+                CONCAT('[', COALESCE(GROUP_CONCAT(distinct r.trans),''), ']') as trans \
             from ( \
                 select \
                     sent_start.id as id, \
@@ -304,13 +298,14 @@ EOT;
                     sent_start.user_id as user_id, \
                     (sent_start.correctness + 128) as ucorrectness, \
                     (sent_start.hasaudio <> 'no') as has_audio, \
-                    GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                     \
-                    sent_end.lang_id as trans_lang, \
-                    MIN( IF(trans.sentence_id = transtrans.translation_id,1,2) ) as trans_link, \
-                    COALESCE(sent_end.user_id, 0) as trans_user, \
-                    sent_end.correctness + 1 as trans_correctness, \
-                    IF(sent_end.hasaudio = 'no',0,1) as trans_audio \
+                    CONCAT('{', \
+                        'l:',sent_end.lang_id,',', \
+                        'd:',MIN( IF(trans.sentence_id = transtrans.translation_id,1,2) ),',', \
+                        'u:',COALESCE(sent_end.user_id, 0),',', \
+                        'c:',sent_end.correctness + 1,',', \
+                        'a:',IF(sent_end.hasaudio = 'no',0,1), \
+                    '}') as trans \
                 from \
                     sentences sent_start \
                 $delta_join\
@@ -325,12 +320,12 @@ EOT;
                     IF(trans.sentence_id = transtrans.translation_id, \
                        trans.translation_id, \
                        transtrans.translation_id) \
-                left join \
-                    tags_sentences tags on tags.sentence_id = sent_start.id \
                 where \
                     sent_start.lang_id = (select id from languages where code = '$lang') \
                 group by id, sent_end.id \
             ) r \
+            left join \
+                tags_sentences tags on tags.sentence_id = r.id \
             group by id
 
         sql_attr_timestamp = created
