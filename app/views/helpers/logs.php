@@ -265,7 +265,7 @@ class LogsHelper extends AppHelper
         echo '<div class="contribution"><div class="content">';
         // sentence text
         echo $this->Languages->tagWithLang(
-            'span', $sentenceLang, $sentenceText,
+            'div', $sentenceLang, $sentenceText,
             array(), $sentenceScript
         );
         echo '</div></div>';
@@ -431,8 +431,8 @@ class LogsHelper extends AppHelper
 
             // sentence text
             echo $this->Languages->tagWithLang(
-                'span', $sentenceLang, $sentenceText,
-                array(), $sentenceScript
+                'div', $sentenceLang, $sentenceText,
+                array('class' => 'sentence-text'), $sentenceScript
             );
         echo '</div></div>';
     }

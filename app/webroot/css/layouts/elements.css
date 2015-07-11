@@ -158,8 +158,12 @@
     margin-top: -1px;
 }
 
-#logs .contribution {
+#logs .contribution .lang {
+    float: left;
+}
 
+#logs .contribution .sentence-text {
+    padding-left: 30px;
 }
 
 #logs .contribution .content {
