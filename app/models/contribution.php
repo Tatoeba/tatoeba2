@@ -117,7 +117,7 @@ class Contribution extends AppModel
         $limit = Sanitize::paranoid($limit);
         $lang = Sanitize::paranoid($lang);
 
-        if (strlen($lang) != 3 || !is_numeric($limit)) {
+        if (!is_numeric($limit)) {
             return array();
         }
         
