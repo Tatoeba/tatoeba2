@@ -203,7 +203,7 @@ class SentencesHelper extends AppHelper
             }
 
             echo $this->Html->tag('div',
-                    ' ▲ ' . __('Less translations', true),
+                    ' ▲ ' . __('Fewer translations', true),
                     array('class' => 'hideLink')
                 );
             ?>
