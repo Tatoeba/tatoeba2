@@ -30,6 +30,6 @@ $query = Sanitize::html($query);
 
 <div class="module">
     <?php
-    echo $html->tag('h2', __('No results found', true));
+    echo $html->tag('h2', __('No result found', true));
     ?>
 </div>
