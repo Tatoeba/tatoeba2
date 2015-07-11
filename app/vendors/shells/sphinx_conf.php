@@ -82,8 +82,26 @@ class SphinxConfShell extends Shell {
         'U+37a', 'U+386..U+389->U+3ac..U+3af', 'U+38c..U+38e->U+3cc..U+3ce', 'U+390', 'U+391..U+3a1->U+3b1..U+3c1',
         'U+3a3..U+3ab->U+3c3..U+3cb', 'U+3ac..U+3ce', 'U+3d0..U+3d7', 'U+3d8..U+3ef/2', 'U+3f0..U+3f3', 'U+3f4->U+3b8',
         'U+3f5', 'U+3f7..U+3f8/2', 'U+3f9->U+3f2', 'U+3fa..U+3fb/2', 'U+3fc..U+3ff',
-        # Hebrew
-        'U+5d0..U+5ea', 'U+5f0..U+5f2',
+        # Hebrew, Yiddish: alef through yod
+        'U+5D0..U+5D9',
+        # Hebrew, Yiddish: Fold final kaf into (non-final) kaf.
+        'U+5DA->U+5DB', 'U+5DB',
+        # Hebrew, Yiddish: lamed
+        'U+5DC',
+        # Hebrew, Yiddish: Fold final mem into (non-final) mem.
+        'U+5DD->U+5DE', 'U+5DE',
+        # Hebrew, Yiddish: Fold final nun into (non-final) nun.
+        'U+5DF->U+5E0', 'U+5E0',
+        # Hebrew, Yiddish: samekh through ayin
+        'U+5E1..U+5E2',
+        # Hebrew, Yiddish: Fold final pe into (non-final) pe.
+        'U+5E3->U+5E4', 'U+5E4',
+        # Hebrew, Yiddish: Fold final tsadi into (non-final) tsadi.
+        'U+5E5->U+5E6', 'U+5E6',
+        # Hebrew, Yiddish: qof through tav
+        'U+5E7..U+5EA',
+        # Yiddish digraphs
+        'U+5F0..U+5F2',
         # Cyrillic
         'U+410..U+42F->U+430..U+44F', 'U+430..U+44F',
         # Georgian
@@ -216,6 +234,10 @@ class SphinxConfShell extends Shell {
         ignore_chars = U+AD, U+301\n";
     }
 
+    // In the following, the characters U+5B0..U+5C5, U+5C7 within
+    // ignore_chars are Hebrew/Yiddish vowels, which should be ignored in
+    // searches. No other language uses them, so ignoring them for all
+    // languages should be safe.
     private function conf_beginning() {
         $charset_table_opt = implode(", ", $this->charsetTable);
         return <<<EOT
@@ -237,7 +259,7 @@ index common_index
 {
     index_exact_words       = 1
     index_field_lengths     = 1
-    ignore_chars            = U+AD
+    ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7
     charset_table           = $charset_table_opt
     enable_star             = 1
     min_infix_len           = 3
