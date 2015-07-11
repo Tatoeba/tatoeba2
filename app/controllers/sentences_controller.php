@@ -390,7 +390,9 @@ class SentencesController extends AppController
             }
 
             $this->Sentence->id = $realSentenceId;
-            $data['Sentence']['lang'] = $sentenceLang;
+            if (!empty($sentenceLang)) {
+                $data['Sentence']['lang'] = $sentenceLang;
+            }
             $data['Sentence']['text'] = $sentenceText;
             $isSaved = $this->Sentence->save($data);
 
