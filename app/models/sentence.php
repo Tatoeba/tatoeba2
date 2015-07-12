@@ -54,7 +54,8 @@ class Sentence extends AppModel
 
     public $validate = array(
         'lang' => array(
-            'rule' => array()
+            'rule' => array(),
+            'allowEmpty' => true,
             // The rule will be defined in beforeValidate().
         ),
         'text' => array(
