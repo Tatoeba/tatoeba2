@@ -17,7 +17,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Vendor', 'CountriesList');
+App::import('Vendor', array('CountriesList', 'LanguagesLib'));
 
 class CLDRCountriesShell extends Shell {
     private $CLDR_copyright = '
@@ -232,25 +232,23 @@ class CountriesList {
 
     private function die_usage() {
         $this_script = basename(__FILE__, '.php');
-        die("\nThis script generates the country list in English (as PHP code) when given the 'eng' parameter. It also generates its translation into various languages based on data from the CLDR project (as PO file).\n\n".
-"  Usage: $this_script <2-letters-CLDR-code> <3-letters-tatoeba-ui-code>\n".
-"Example: $this_script es spa\n");
+        die("\nThis script generates the country list in English (as PHP code) when given the 'eng' parameter. Given any other language code, it generates its translation into this language based on data from the CLDR project (as PO file).\n\n".
+"  Usage: $this_script <3-letters-tatoeba-ui-code>\n".
+"Example: $this_script spa\n");
     }
 
     public function main() {
-        if (count($this->args) == 0) {
+        if (count($this->args) < 1) {
             $this->die_usage();
-        }
-        $cldr_code = $this->args[0];
-        if ($cldr_code == 'en' || $cldr_code == 'eng') {
-            $this->CLDR_to_PHP_array('en');
-            exit;
         }
 
-        if (count($this->args) < 2) {
-            $this->die_usage();
+        $tatoeba_code = $this->args[0];
+        $cldr_code = LanguagesLib::iso639_3_To_Iso639_1($tatoeba_code);
+
+        if ($cldr_code == 'en') {
+            $this->CLDR_to_PHP_array($cldr_code);
+        } else {
+            $this->CLDR_to_po($cldr_code, $tatoeba_code);
         }
-        $tatoeba_code = $this->args[1];
-        $this->CLDR_to_po($cldr_code, $tatoeba_code);
     }
 }
