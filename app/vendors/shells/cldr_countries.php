@@ -17,7 +17,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Model', 'Country');
+App::import('Vendor', 'CountriesList');
 
 class CLDRCountriesShell extends Shell {
     private $CLDR_copyright = '
@@ -142,10 +142,8 @@ class CountriesList {
     }
 
     private function get_tatoeba_countries() {
-        Configure::write('Config.language', 'eng');
-        $Country = new Country();
-        $result = $Country->find('all');
-        return Set::combine($result, '{n}.Country.id', '{n}.Country.name');
+        $countries_list = new CountriesList();
+        return $countries_list->list;
     }
 
     private function write_po_header($fh) {
