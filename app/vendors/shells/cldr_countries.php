@@ -60,6 +60,14 @@ class CLDRCountriesShell extends Shell {
 # use or other dealings in these Data Files or Software without prior
 # written authorization of the copyright holder.';
 
+    private $use_short_names = array(
+        'BA', /* Bosnia */
+        'HK', /* Hong Kong */
+        'MM', /* Myanmar */
+        'MO', /* Macau */
+        'PS', /* Palestine */
+    );
+
     private function download_ldml($from, $to) {
         echo "Downloading $from... ";
         $ldml = @file_get_contents($from);
@@ -95,7 +103,17 @@ class CLDRCountriesShell extends Shell {
         foreach ($ldml->{'localeDisplayNames'}->{'territories'}->{'territory'}
                  as $country_trans) {
             $translated_into = trim($country_trans->attributes()->{'type'});
-            if (is_numeric($translated_into) || $country_trans->attributes()->{'alt'} || $translated_into == 'ZZ') {
+            if (is_numeric($translated_into) ||
+                $translated_into == 'ZZ' ||
+                (
+                    !in_array($translated_into, $this->use_short_names) &&
+                    $country_trans->attributes()->{'alt'}
+                ) ||
+                (
+                    in_array($translated_into, $this->use_short_names) &&
+                    $country_trans->attributes()->{'alt'} != 'short'
+                )
+               ) {
                 continue;
             }
             $countries_trans["$translated_into"] = "$country_trans";
