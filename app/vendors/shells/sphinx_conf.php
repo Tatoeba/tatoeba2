@@ -106,93 +106,16 @@ class SphinxConfShell extends Shell {
         'U+410..U+42F->U+430..U+44F', 'U+430..U+44F',
         # Cyrillic: io and non-Russian letters
         'U+400..U+40F->U+450..U+45F', 'U+450..U+45F',
-        # Cyrillic: other
-        'U+460->U+461', 'U+461',
-        'U+462->U+463', 'U+463',
-        'U+464->U+465', 'U+465',
-        'U+466->U+467', 'U+467',
-        'U+468->U+469', 'U+469',
-        'U+46A->U+46B', 'U+46B',
-        'U+46C->U+46D', 'U+46D',
-        'U+46E->U+46F', 'U+46F',
-        
-        'U+470->U+471', 'U+471',
-        'U+472->U+473', 'U+473',
-        'U+474->U+475', 'U+475',
-        'U+476->U+477', 'U+477',
-        'U+478->U+479', 'U+479',
-        'U+47A->U+47B', 'U+47B',
-        'U+47C->U+47D', 'U+47D',
-        'U+47E->U+47F', 'U+47F',
-
-        'U+480->U+481', 'U+481',
-        'U+48A->U+48B', 'U+48B',
-        'U+48C->U+48D', 'U+48D',
-        'U+48E->U+48F', 'U+48F',
-        
-        'U+490->U+491', 'U+491',
-        'U+492->U+493', 'U+493',
-        'U+494->U+495', 'U+495',
-        'U+496->U+497', 'U+497',
-        'U+498->U+499', 'U+499',
-        'U+49A->U+49B', 'U+49B',
-        'U+49C->U+49D', 'U+49D',
-        'U+49E->U+49F', 'U+49F',
-        
-        'U+4A0->U+4A1', 'U+4A1',
-        'U+4A2->U+4A3', 'U+4A3',
-        'U+4A4->U+4A5', 'U+4A5',
-        'U+4A6->U+4A7', 'U+4A7',
-        'U+4A8->U+4A9', 'U+4A9',
-        'U+4AA->U+4AB', 'U+4AB',
-        'U+4AC->U+4AD', 'U+4AD',
-        'U+4AE->U+4AF', 'U+4AF',
-
-        'U+4B0->U+4B1', 'U+4B1',
-        'U+4B2->U+4B3', 'U+4B3',
-        'U+4B4->U+4B5', 'U+4B5',
-        'U+4B6->U+4B7', 'U+4B7',
-        'U+4B8->U+4B9', 'U+4B9',
-        'U+4BA->U+4BB', 'U+4BB',
-        'U+4BC->U+4BD', 'U+4BD',
-        'U+4BE->U+4BF', 'U+4BF',
-
+        # Cyrillic: first checkerboard range (alternate capital and small letters)
+        'U+460..U+481/2',
+        # Cyrillic: second checkerboard range
+        'U+48A..U+4BF/2',
+        # Cyrillic: palochka
         'U+4C0->U+4CF', 'U+4CF',
-        'U+4C1->U+4C2', 'U+4C2',
-        'U+4C3->U+4C4', 'U+4C4',
-        'U+4C5->U+4C6', 'U+4C6',
-        'U+4C7->U+4C8', 'U+4C8',
-        'U+4C9->U+4CA', 'U+4CA',
-        'U+4CB->U+4CC', 'U+4CC',
-        'U+4CD->U+4CE', 'U+4CE',
-        
-        'U+4D0->U+4D1', 'U+4D1',
-        'U+4D2->U+4D3', 'U+4D3',
-        'U+4D4->U+4D5', 'U+4D5',
-        'U+4D6->U+4D7', 'U+4D7',
-        'U+4D8->U+4D9', 'U+4D9',
-        'U+4DA->U+4DB', 'U+4DB',
-        'U+4DC->U+4DD', 'U+4DD',
-        'U+4DE->U+4DF', 'U+4DF',
-
-        'U+4E0->U+4E1', 'U+4E1',
-        'U+4E2->U+4E3', 'U+4E3',
-        'U+4E4->U+4E5', 'U+4E5',
-        'U+4E6->U+4E7', 'U+4E7',
-        'U+4E8->U+4E9', 'U+4E9',
-        'U+4EA->U+4EB', 'U+4EB',
-        'U+4EC->U+4ED', 'U+4ED',
-        'U+4EE->U+4EF', 'U+4EF',
-        
-        'U+4F0->U+4F1', 'U+4F1',
-        'U+4F2->U+4F3', 'U+4F3',
-        'U+4F4->U+4F5', 'U+4F5',
-        'U+4F6->U+4F7', 'U+4F7',
-        'U+4F8->U+4F9', 'U+4F9',
-        'U+4FA->U+4FB', 'U+4FB',
-        'U+4FC->U+4FD', 'U+4FD',
-        'U+4FE->U+4FF', 'U+4FF',
-        
+        # Cyrillic: third checkerboard range
+        'U+4C1..U+4CE/2',
+        # Cyrillic: fourth checkerboard range
+        'U+4D0..U+4FF/2',
         # Georgian
         'U+10a0..U+10c5->U+2d00..U+2d25', 'U+10d0..U+10fa', 'U+10fc', 'U+2d00..U+2d25',
         # Bengali
@@ -203,8 +126,6 @@ class SphinxConfShell extends Shell {
         'U+531..U+58A', 'U+FB13..U+FB17',
         # Malayalam
         'U+D00..U+D77',
-        # Various Cyrillic letters; I don't get the logic
-        'U+492', 'U+493', 'U+4E2', 'U+4E3', 'U+49A', 'U+49B', 'U+4EE', 'U+4EF', 'U+4B2', 'U+4B3', 'U+4B6', 'U+4B7',
         # Ethiopic
         'U+1200..U+1248', 'U+124A..U+124D', 'U+1250..U+1256', 'U+1258', 'U+125A..U+125D', 'U+1260..U+1288',
         'U+128A..U+128D', 'U+1290..U+12B0', 'U+12B2..U+12B5', 'U+12B8..U+12BE', 'U+12C0', 'U+12C2..U+12C5',
@@ -216,7 +137,7 @@ class SphinxConfShell extends Shell {
         'U+13A0..U+13F4',
         # Mon (called Myanmar by Unicode)
         'U+1000..U+1049', 'U+104C..U+109F', 'U+AA60..U+AA7F', 'U+A9E0..U+A9FE',
-        # Shinhala
+        # Sinhala
         'U+0D82', 'U+0D83', 'U+0D85..U+0D96', 'U+0D9A..U+0DB1', 'U+0DB3..U+0DBB', 'U+0DBD', 'U+0DC0..U+0DC6',
         'U+0DCA', 'U+0DCF..U+0DD4', 'U+0DD6', 'U+0DD8..U+0DDF', 'U+0DE6..U+0DEF', 'U+0DF2', 'U+0DF3',
         'U+111E1..U+111E9', 'U+111EA..U+111F4',
