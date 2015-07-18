@@ -50,20 +50,17 @@ class MenuHelper extends AppHelper
      * Display button to add a translation.
      *
      * @param int    $sentenceId Id of the original sentence.
-     * @param string $ownerName  Username of the owner of the main sentence.
      * @param bool   $isLogged   True if user is logged in, false otherwise.
      * @param bool   $enabled    True if sentence can be translated .Only sentences
      *                           that are not "unapproved" can be translated.
      *
      * @return void
      */
-    public function translateButton($sentenceId, $ownerName, $isLogged, $enabled)
+    public function translateButton($sentenceId, $isLogged, $enabled)
     {
         $translateButton = $this->Images->svgIcon(
             'translate',
             array(
-                'alt'=>__('Translate', true),
-                'title'=>__('Translate', true),
                 'width' => 16,
                 'height' => 16
             )
@@ -71,7 +68,8 @@ class MenuHelper extends AppHelper
         ?>
 
         <li class="option translateLink"
-            data-sentence-id="<?php echo $sentenceId; ?>">
+            data-sentence-id="<?php echo $sentenceId; ?>"
+            title="<?php __('Translate'); ?>">
 
         <?php
         if (!$enabled) {
@@ -201,8 +199,6 @@ class MenuHelper extends AppHelper
         }
 
         $svgIconOptions = array(
-            'alt'=> $tooltip,
-            'title'=> $tooltip,
             'width' => 26,
             'height' => 16,
             'class' => 'option',
@@ -222,6 +218,7 @@ class MenuHelper extends AppHelper
         echo $this->Html->tag('li', $contents, array(
             'class' => 'adopt'.$action,
             'data-sentence-id' => $sentenceId,
+            'title'=> $tooltip,
         ));
     }
 
@@ -252,8 +249,6 @@ class MenuHelper extends AppHelper
         $favoriteImage = $this->Images->svgIcon(
             $image,
             array(
-                'alt'=> $tooltip,
-                'title'=> $tooltip,
                 'width' => 16,
                 'height' => 16
             )
@@ -261,7 +256,8 @@ class MenuHelper extends AppHelper
         ?>
 
         <li class="option favorite <?php echo $cssClass; ?>"
-            data-sentence-id="<?php echo $sentenceId; ?>">
+            data-sentence-id="<?php echo $sentenceId; ?>"
+            title="<?php echo $tooltip; ?>">
 
         <?php
         if ($isLogged) {
@@ -293,8 +289,6 @@ class MenuHelper extends AppHelper
         $image = $this->Images->svgIcon(
             'link',
             array(
-                'alt'=>__('Link to another sentence', true),
-                'title'=>__('Link to another sentence', true),
                 'width' => 16,
                 'height' => 16
             )
@@ -302,6 +296,7 @@ class MenuHelper extends AppHelper
 
         $linkToSentenceButton = $this->Html->tag('a', $image,
             array(
+                'title' => __('Link to another sentence', true),
                 'class' => 'linkTo',
                 'onClick' => "linkToSentence($sentenceId, $langFilter)",
                 'onDrop' => "linkToSentenceByDrop(event, $sentenceId, $langFilter)",
@@ -352,15 +347,15 @@ class MenuHelper extends AppHelper
         $addToListButton = $this->Images->svgIcon(
             'list',
             array(
-                'alt'=>__('Add to list', true),
-                'title'=>__('Add to list', true),
                 'width' => 20,
                 'height' => 16
             )
         );
         ?>
 
-        <li class="option addToList" data-sentence-id="<?php echo $sentenceId; ?>">
+        <li class="option addToList"
+            data-sentence-id="<?php echo $sentenceId; ?>"
+            title="<?php __('Add to list'); ?>">
 
         <?php
         if ($isLogged) {
@@ -439,89 +434,85 @@ class MenuHelper extends AppHelper
      */
     public function deleteButton($sentenceId, $hasAudio)
     {
-        $title = __('Delete', true);
-        if ($hasAudio) {
-            $title = __('You cannot delete this sentence because it has audio.', true);
-        }
-
         $deleteImage = $this->Images->svgIcon(
             'delete',
             array(
-                'alt'=> __('Delete', true),
-                'title'=> $title,
                 'width' => 20,
                 'height' => 16
             )
         );
 
-        echo '<li class="option delete">';
-
         if ($hasAudio) {
 
-            echo '<a class="disabled">';
-            echo $deleteImage;
-            echo '</a>';
+            $title = __(
+                'You cannot delete this sentence because it has audio.', true
+            );
+            $liContent = $this->Html->tag(
+                'a', $deleteImage, array('class' => 'disabled')
+            );
 
         } else {
 
-            echo $this->Html->link(
+            $title = __('Delete', true);
+            $liContent = $this->Html->link(
                 $deleteImage,
                 array(
                     "controller" => "sentences",
                     "action" => "delete",
                     $sentenceId
                 ),
-                array("escape" => false),
+                array(
+                    "escape" => false,
+                    'alt'=> __('Delete', true),
+                    'title'=> $title,
+                ),
                 __('Are you sure?', true)
             );
 
         }
 
-        echo '</li>';
+        echo $this->Html->tag('li', $liContent,
+            array(
+                'class' => 'option delete',
+                'title'=> $title,
+            )
+        );
     }
 
 
     /**
      * Display button to edit a sentence.
      *
-     * @param int $sentenceId Id of the sentence on which this button
-     *                        is displayed
-     *
      * @param bool $hasAudio true if sentence has associated audio
      *
      * @return void
      */
-    public function editButton($sentenceId, $hasAudio)
+    public function editButton($hasAudio)
     {
-        $title = __('Edit', true);
-        if ($hasAudio) {
-            $title = __('You cannot edit this sentence because it has audio.', true);
-        }
-
         $editImage = $this->Images->svgIcon(
             'edit',
             array(
-                'alt'=> __('Edit', true),
-                'title'=> $title,
                 'width' => 16,
                 'height' => 16
             )
         );
 
-        echo '<li class="option edit">';
-
         if ($hasAudio) {
-            echo '<a class="disabled ">';
-            echo $editImage;
-            echo '</a>';
-
+            $title = __('You cannot edit this sentence because it has audio.', true);
+            $liContent = $this->Html->tag(
+                'a', $editImage, array('class' => 'disabled')
+            );
         } else {
-
-            echo $editImage;
-
+            $title = __('Edit', true);
+            $liContent = $editImage;
         }
 
-        echo '</li>';
+        echo $this->Html->tag('li', $liContent,
+            array(
+                'class' => 'option edit',
+                'title'=> $title,
+            )
+        );
     }
 
 
@@ -531,7 +522,7 @@ class MenuHelper extends AppHelper
      * @param int    $sentenceId The sentence's id.
      * @param string $ownerName  The owner's name.
      *
-     * @return void
+     * @return string
      */
     private function belongsTo($ownerName)
     {
@@ -589,7 +580,7 @@ class MenuHelper extends AppHelper
 
         // Edit
         if (CurrentUser::canEditSentenceOfUser($ownerName)) {
-           $this->editButton($sentenceId, $hasAudio);
+           $this->editButton($hasAudio);
         }
 
         // Favorite
