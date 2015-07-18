@@ -77,23 +77,17 @@ foreach ($stats as $stat) {
         $percent = $total / $maxTotal;
         $width = intval($percent * $maxWidth);
         
-        if ($total > 2000) {
-            $color = 10;
-        } else {
-            $color = intval($total/200);
-        }
-        
         echo '<tr>';
             echo '<td class="date">';
             echo $stat[0]['day'];
             echo '</td>';
             
-            echo '<td class="number color'.$color.'">';
+            echo '<td class="number">';
             echo '<strong>'.$total.'</strong>';
             echo '</td>';
             
             echo '<td class="line">';
-            echo '<div class="logs_stats color'.$color.'" style="width:'.$width.'px">';
+            echo '<div class="logs_stats" style="width:'.$width.'px">';
             echo '</div>';
             echo '</td>';
         echo '</tr>';
