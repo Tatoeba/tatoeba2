@@ -576,7 +576,7 @@ class MenuHelper extends AppHelper
         $this->adoptButton($sentenceId, $ownerName);
 
         // Translate
-        $this->translateButton($sentenceId, $ownerName, $isLogged, $canTranslate);
+        $this->translateButton($sentenceId, $isLogged, $canTranslate);
 
         // Edit
         if (CurrentUser::canEditSentenceOfUser($ownerName)) {
