@@ -39,8 +39,8 @@ $this->Languages->localizedAsort($countries);
 </div>
 
 <div id="main_content">
-    <div class="module">
-    <h2><?php __('Picture'); ?></h2>
+    <div class="module form">
+    <h2><?php __('Edit profile'); ?></h2>
     <div class="currentPicture">
         <div class="title"><?php __('Current picture'); ?></div>
         <?php
@@ -68,14 +68,16 @@ $this->Languages->localizedAsort($countries);
             )
         );
         echo $form->file('image');
-        echo $form->end(__('Upload', true));
+
+        $uploadButton = $form->button(
+            __('Upload', true), array('class' => 'submit button')
+        );
+        echo $html->div('upload-button', $uploadButton);
+
+        echo $form->end();
         ?>
     </div>
-    
-    </div>
-    
-    <div class="module">
-    <h2><?php __('Personal information'); ?></h2>
+
     <?php 
     $dateOptions = array(
         'minYear' => date('Y') - 100,
@@ -127,19 +129,11 @@ $this->Languages->localizedAsort($countries);
             'dir' => 'ltr',
         )
     );
-    echo $form->end(__('Save personal information', true));
-    ?>
-    </div>
-    
-    
-    <div id="description" class="module">
-    <h2><?php __('Description'); ?></h2>
-    <?php
-    echo $form->create(
-        false, 
-        array(
-            'action' => 'save_description'
-        )
+
+    echo $html->tag(
+        'label',
+        __('Description', true),
+        array('for' => 'UserDescription')
     );
     echo $form->textarea(
         'User.description',
@@ -148,7 +142,11 @@ $this->Languages->localizedAsort($countries);
             'dir' => 'auto',
         )
     );
-    echo $form->end(__('Save description', true)); 
+
+    $saveButton = $form->button(__('Save', true), array('class' => 'button submit'));
+    echo $html->div('save-button', $saveButton);
+
+    echo $form->end()
     ?>
     </div>
 </div>

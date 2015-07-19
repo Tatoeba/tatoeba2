@@ -41,6 +41,12 @@
 /*
  * Personal information
  */
+#save_basicForm {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #DDDDDD;
+}
+
 #save_basicForm label {
     font-weight: bold;
     width: 100px;
@@ -48,7 +54,7 @@
 }
 
 #save_basicForm .input {
-    margin: 10px;
+    margin: 10px 0;
 }
 
 .submit input {
@@ -68,4 +74,22 @@
 textarea {
     width: 99%;
     height: 350px;
+}
+
+
+/*
+ * Save
+ */
+
+.upload-button {
+    margin: 10px 0;
+}
+
+.upload-button .submit {
+    margin-left: 0;
+}
+
+.save-button {
+    margin: 10px 5px;
+    text-align: right;
 }

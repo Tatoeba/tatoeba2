@@ -263,35 +263,7 @@ class UserController extends AppController
     }
 
     /**
-     * Save user's description about himself/herself.
-     *
-     * @return void
-     */
-    public function save_description()
-    {
-        $currentUserId = CurrentUser::get('id');
-        if (empty($currentUserId)) {
-            $this->redirect('/');
-        }
-
-        if (!empty($this->data)) {
-            $this->User->id = $currentUserId;
-            $this->User->saveField(
-                'description',
-                $this->data['User']['description']
-            );
-        }
-
-        $this->redirect(
-            array(
-                'action' => 'profile',
-                CurrentUser::get('username')
-            )
-        );
-    }
-
-    /**
-     * Save name, birthday and country
+     * Save profile info.
      *
      * @return void
      */
@@ -321,7 +293,9 @@ class UserController extends AppController
 
         $saved = false;
         if (!empty($this->data)) {
-            $allowedFields = array('name', 'country_id', 'birthday', 'homepage', 'email');
+            $allowedFields = array(
+                'name', 'country_id', 'birthday', 'homepage', 'email', 'description'
+            );
             $basicInfos = $this->filterKeys($this->data['User'], $allowedFields);
             $basicInfos['id'] = $currentUserId;
             $saved = $this->User->save($basicInfos);
