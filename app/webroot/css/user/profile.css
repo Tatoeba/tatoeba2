@@ -16,9 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+.settings {
+    position: relative;
+}
 
 .profileSummary,
-.profileDescription,
 .profileLanguages {
     border: 1px solid #CCC;
     border-radius: 5px;
@@ -40,6 +42,9 @@
 .profileSummary .info {
     display: inline-block;
     vertical-align: top;
+    width: 465px;
+    min-height: 128px;
+    position: relative;
 }
 
 .profileSummary .username {
@@ -53,11 +58,10 @@
 }
 
 .profileSummary .status {
-    position: absolute;
+    font-size: 1.2em;
     bottom: 0;
     right: 0;
-    padding: 5px 10px;
-    font-size: 1.2em;
+    position: absolute;
 }
 
 .profileSummary .contributionsBlocked {
@@ -70,7 +74,9 @@
  * Description
  */
 .profileDescription {
-    padding: 10px;
+    border-top: 1px dotted #CCCCCC;
+    padding: 20px 20px 10px 20px;
+    margin: 10px 0;
 }
 
 .profileDescription .content {
@@ -86,9 +92,10 @@
  * Edit
  */
 .editOption {
-    float: right;
-    padding-top: 3px;
-    margin-bottom: 10px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 2px;
 }
 
 .editOption a{
@@ -98,4 +105,13 @@
     border: 1px solid #6E994E;
     border-radius: 4px;
     font-weight: bold;
+}
+
+
+/*
+ * Languages
+ */
+.profileLanguages .edit {
+    position: relative;
+    height: 20px;
 }

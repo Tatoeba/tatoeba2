@@ -99,7 +99,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
     <?php
     if ($isDisplayed) {
         ?>
-        <div class="module">
+        <div class="module settings">
             <?php
             if ($username == $currentMember) {
                 $members->displayEditButton(
@@ -160,25 +160,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 
 <div id="main_content">
     <div class="module profileSummary">
-        <?php 
-        if ($username == $currentMember) {
-            $members->displayEditButton(
-                array(
-                    'controller' => 'user',
-                    'action' => 'edit_profile'
-                )
-            ); 
-        } else if (CurrentUser::isAdmin()) {
-            $members->displayEditButton(
-                array(
-                    'controller' => 'users',
-                    'action' => 'edit',
-                    $userId
-                )
-            ); 
-        }
-        ?>
-        
         <?php
         echo $html->image(
             IMG_PATH . 'profiles_128/'.$userImage,
@@ -191,6 +172,25 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         ?>
             
         <div class="info">
+            <?php
+            if ($username == $currentMember) {
+                $members->displayEditButton(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'edit_profile'
+                    )
+                );
+            } else if (CurrentUser::isAdmin()) {
+                $members->displayEditButton(
+                    array(
+                        'controller' => 'users',
+                        'action' => 'edit',
+                        $userId
+                    )
+                );
+            }
+            ?>
+
             <?php echo $html->tag('div', $username, array('class' => 'username')); ?>
             
             <?php
@@ -241,26 +241,51 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                 </span>
                 <span class="value"><?php echo $userSince; ?></span>
             </div>
+
+
+            <?php
+            $cssClasses = array('status', $statusClass);
+            $options = null;
+            if ($level == -1) {
+                $cssClasses[] = 'contributionsBlocked';
+                $options = array('title' => __('Contributions blocked', true));
+            }
+            echo $html->div(
+                join($cssClasses, ' '),
+                $userStatus,
+                $options
+            );
+            ?>
         </div>
 
         <?php
-        $cssClasses = array('status', $statusClass);
-        $options = null;
-        if ($level == -1) {
-            $cssClasses[] = 'contributionsBlocked';
-            $options = array('title' => __('Contributions blocked', true));
+        if (!empty($userDescription)) {
+            $descriptionContent = $clickableLinks->clickableURL($userDescription);
+            $descriptionContent = nl2br($descriptionContent);
+        } else {
+            $descriptionContent = '<div class="tip">';
+            $descriptionContent.= __('No description.', true);
+            $descriptionContent.= '</div>';
         }
-        echo $html->div(
-            join($cssClasses, ' '),
-            $userStatus,
-            $options
-        );
+        ?>
+
+        <?php
+        if ($isDisplayed) {
+            echo $languages->tagWithLang(
+                'div', '', $descriptionContent,
+                array(
+                    'class' => 'profileDescription',
+                    'escape' => false
+                )
+            );
+        }
         ?>
     </div>
 
     <div class="module profileLanguages">
         <?php
         if ($username == $currentMember) {
+            echo $html->div('edit');
             $members->displayEditButton(
                 array(
                     'controller' => 'user',
@@ -268,6 +293,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                 ),
                 __('Add a language', true)
             );
+            echo '</div>';
         }
 
         if (empty($userLanguages))
@@ -335,40 +361,4 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         }
         ?>
     </div>
-
-    <?php
-    if (!empty($userDescription)) {
-        $descriptionContent = $clickableLinks->clickableURL($userDescription);
-        $descriptionContent = nl2br($descriptionContent); 
-    } else {
-        $descriptionContent = '<div class="tip">';
-        $descriptionContent.= __('No description.', true);
-        $descriptionContent.= '</div>';
-    }
-    
-    if ($isDisplayed) {
-        ?>
-        <div class="module profileDescription">
-        <?php 
-        if ($username == $currentMember) {
-            $members->displayEditButton(
-                array(
-                    'controller' => 'user',
-                    'action' => 'edit_profile',
-                    '#' => 'description'
-                )
-            ); 
-        }
-        ?>
-        
-        <?php
-        echo $languages->tagWithLang(
-            'div', '', $descriptionContent,
-            array('class' => 'content', 'escape' => false)
-        );
-        ?>
-        </div>
-        <?php
-    }
-    ?>
 </div>
