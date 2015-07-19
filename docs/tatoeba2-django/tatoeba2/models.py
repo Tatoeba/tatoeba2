@@ -222,6 +222,7 @@ class SentencesTranslations(models.Model):
     sentence_lang = models.CharField(max_length=4, blank=True)
     translation_lang = models.CharField(max_length=4, blank=True)
     distance = models.IntegerField()
+    created = ZeroedDateTimeField()
     class Meta:
         db_table = 'sentences_translations'
         unique_together = ('sentence_id', 'translation_id')
@@ -279,7 +280,6 @@ class Users(models.Model):
     last_time_active = models.IntegerField()
     level = models.IntegerField()
     group_id = models.IntegerField()
-    send_notifications = models.IntegerField()
     name = models.CharField(max_length=255)
     birthday = models.DateTimeField(blank=True, null=True)
     description = models.TextField()

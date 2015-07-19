@@ -332,8 +332,8 @@ class Dedup(object):
         if not cls.dry:
             Contributions.objects.bulk_create(logs)
 
-            lnks_fd.update(sentence_id=main_id)
-            lnks_bd.update(translation_id=main_id)
+            lnks_fd.update(sentence_id=main_id, created=now())
+            lnks_bd.update(translation_id=main_id, created=now())
 
     @classmethod
     def log_merge_comments(cls, main_id, ids, cmnts):
@@ -538,7 +538,7 @@ class Command(Dedup, BaseCommand):
                 Dedup.bot = Users.objects.create(
                     username=bot_name, password='', email='bot@example.com',
                     since=now(), last_time_active=now().strftime('%Y%m%d'),
-                    level=1, is_public=1, send_notifications=0, group_id=1
+                    level=1, group_id=1
                     )
 
         pause_for = options.get('pause_for') or 0
