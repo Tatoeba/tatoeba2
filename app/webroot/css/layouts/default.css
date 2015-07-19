@@ -367,10 +367,12 @@ svg {
 }
 
 .search_bar .search-submit-button {
-    background: #f1f1f1;
     color: #aaaaaa;
     padding: 3px 20px;
     cursor: pointer;
+    background: url(/img/search.svg) center no-repeat #f1f1f1;
+    width: 70px;
+    height: 30px;
 }
 
 .search-bar-extra {

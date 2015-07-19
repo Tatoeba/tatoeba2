@@ -122,8 +122,7 @@ echo $form->create(
 
 <fieldset class="submit">
     <?php
-    $searchIcon = $images->svgIcon('search', array('width' => 20, 'height' => 20));
-    echo $form->button($searchIcon, array('class' => 'search-submit-button'));
+    echo $form->button(null, array('class' => 'search-submit-button'));
     ?>
 </fieldset>
 
