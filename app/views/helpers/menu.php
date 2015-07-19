@@ -65,13 +65,13 @@ class MenuHelper extends AppHelper
                 'height' => 16
             )
         );
-        ?>
 
-        <li class="option translateLink"
-            data-sentence-id="<?php echo $sentenceId; ?>"
-            title="<?php __('Translate'); ?>">
+        echo $this->Html->tag('li', null, array(
+            'class' => 'option translateLink',
+            'data-sentence-id' => $sentenceId,
+            'title' => __('Translate', true)
+        ));
 
-        <?php
         if (!$enabled) {
 
             echo '<a class="disabled">';
@@ -109,9 +109,8 @@ class MenuHelper extends AppHelper
                 null
             );
         }
-        ?>
-        </li>
-    <?php
+
+        echo $this->Html->tag('/li');
     }
 
 
@@ -253,13 +252,13 @@ class MenuHelper extends AppHelper
                 'height' => 16
             )
         );
-        ?>
 
-        <li class="option favorite <?php echo $cssClass; ?>"
-            data-sentence-id="<?php echo $sentenceId; ?>"
-            title="<?php echo $tooltip; ?>">
+        echo $this->Html->tag('li', null, array(
+            'class' => 'option favorite' . $cssClass,
+            'data-sentence-id' => $sentenceId,
+            'title' => $tooltip
+        ));
 
-        <?php
         if ($isLogged) {
             $this->Javascript->link('favorites.add.js', false);
             ?>
@@ -279,9 +278,8 @@ class MenuHelper extends AppHelper
                 null
             );
         }
-        ?>
-        </li>
-    <?php
+
+        echo $this->Html->tag('/li');
     }
 
     public function linkToSentenceButton($sentenceId, $langFilter = 'und') {
@@ -351,13 +349,13 @@ class MenuHelper extends AppHelper
                 'height' => 16
             )
         );
-        ?>
 
-        <li class="option addToList"
-            data-sentence-id="<?php echo $sentenceId; ?>"
-            title="<?php __('Add to list'); ?>">
+        echo $this->Html->tag('li', null, array(
+            'class' => 'option addToList',
+            'data-sentence-id' => $sentenceId,
+            'title' => __('Add to list', true)
+        ));
 
-        <?php
         if ($isLogged) {
             ?>
             <a><?php echo $addToListButton; ?></a>
@@ -376,11 +374,9 @@ class MenuHelper extends AppHelper
                 null
             );
         }
-        ?>
 
-        </li>
+        echo $this->Html->tag('/li');
 
-        <?php
         if (!$isLogged) {
             return;
         }
