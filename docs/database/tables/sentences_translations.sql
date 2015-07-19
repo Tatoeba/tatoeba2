@@ -22,6 +22,7 @@ CREATE TABLE `sentences_translations` (
   `sentence_lang` varchar(4) DEFAULT NULL,
   `translation_lang` varchar(4) DEFAULT NULL,
   `distance` smallint(2) NOT NULL DEFAULT '1',
+  `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sentence_id` (`sentence_id`,`translation_id`),
   KEY `translation_id` (`translation_id`),
