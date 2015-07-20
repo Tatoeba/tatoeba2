@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-07-11 16:41+0000\n"
-"PO-Revision-Date: 2015-07-13 20:11+0000\n"
+"PO-Revision-Date: 2015-07-13 21:49+0000\n"
 "Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/p/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1401,7 +1401,7 @@ msgstr "Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L37
 msgid "Words:"
-msgstr ""
+msgstr "Suchbegriffe:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
@@ -1417,18 +1417,18 @@ msgstr "Übersetzungen anzeigen in:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L54
 msgid "Orphan sentences are likely to be incorrect."
-msgstr "Verwaiste Sätze sind wahrscheinlich falsch."
+msgstr "Verwaiste Sätze sind mit einiger Wahrscheinlichkeit falsch."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L169
 msgid "Is orphan:"
-msgstr ""
+msgstr "Verwaist?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L171
 msgctxt "orphan"
 msgid "Any"
-msgstr ""
+msgstr "Irgendeine"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L81
@@ -1450,90 +1450,90 @@ msgstr "Ja"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
-msgstr ""
+msgstr "Nicht angenommene Sätze sind mit einiger Wahrscheinlichkeit falsch."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L178
 msgid "Is unapproved:"
-msgstr ""
+msgstr "Nicht angenommen?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L180
 msgctxt "unapproved"
 msgid "Any"
-msgstr ""
+msgstr "Egal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
-msgstr ""
+msgstr "Muttersprachlersätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L164
 msgid "Owner:"
-msgstr ""
+msgstr "Besitzer:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L165
 msgid "Enter a username"
-msgstr ""
+msgstr "Benutzernamen eingeben"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L104
 msgid "Separate tags with commas."
-msgstr ""
+msgstr "Durch Kommata zu trennen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L110
 msgid "Tags:"
-msgstr ""
+msgstr "Etiketten:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L187
 msgid "Has audio:"
-msgstr ""
+msgstr "Vertont?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L189
 msgctxt "audio"
 msgid "Any"
-msgstr ""
+msgstr "Egal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L128
 msgid "Translations"
-msgstr ""
+msgstr "Übersetzungen"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L135
 msgid "Limit to"
-msgstr ""
+msgstr "Einschränken auf"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L138
 msgid "Exclude"
-msgstr ""
+msgstr "Ohne Rücksicht auf"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L144
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
-msgstr ""
+msgstr "{action} Sätze mit Übersetzungen, welche sämtliche der folgenden Kriterien erfüllen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L155
 msgid "Link:"
-msgstr ""
+msgstr "Verknüpfungsart:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L157
 msgctxt "link"
 msgid "Any"
-msgstr ""
+msgstr "egal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L158
 msgid "Direct"
-msgstr ""
+msgstr "direkt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L159
 msgid "Indirect"
-msgstr ""
+msgstr "indirekt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L199
 msgid "Sort"
@@ -1541,23 +1541,23 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L202
 msgid "Order:"
-msgstr ""
+msgstr "Sortierungsart:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L204
 msgid "Fewest words first"
-msgstr ""
+msgstr "aufsteigend nach Wortanzahl"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L205
 msgid "Last created first"
-msgstr ""
+msgstr "die neuesten Sätze zuerst"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L206
 msgid "Last modified first"
-msgstr ""
+msgstr "zuletzt bearbeitete Sätze zuerst"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L207
 msgid "Random"
-msgstr ""
+msgstr "zufällig"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L214
 msgid "Reverse order"
@@ -3642,7 +3642,7 @@ msgstr "Alle Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L52
 msgid "Warning: the following criteria have been ignored:{list}"
-msgstr ""
+msgstr "Achtung! Folgende Kiterien werden nicht berücksichtigt: {list}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L64
 msgid "More search criteria"
