@@ -3,7 +3,6 @@ from datetime import datetime
 from tatoeba2.management.commands.deduplicate import Dedup
 from django.db import connections
 from django.db.models.loading import get_model
-from pytz import UTC as utc
 import pytest
 import os
 
@@ -14,13 +13,9 @@ def pytest_addoption(parser):
     help='handles mysql-specific resets that even transactions can\'t roll back...(gg mysql, gg)'
     )
 
-@pytest.fixture
-def deftime():
-    return datetime(2014, 1, 1).replace(tzinfo=utc)
-
 
 @pytest.fixture
-def sents(db, request, deftime):
+def sents(db, request):
 
     # no owner, no audio, no correctness 1-4
     Sentences(text='Normal, not duplicated.', lang='eng', modified=datetime(2014, 1, 1)).save()
@@ -50,10 +45,10 @@ def sents(db, request, deftime):
 
     for i in xrange(6, 8+1): SentenceComments(sentence_id=i, text='Comment on '+str(i), user_id=1, created=datetime.now(), hidden=0).save()
 
-    SentencesTranslations(sentence_id=6, translation_id=9, distance=1, created=deftime).save()
-    SentencesTranslations(sentence_id=9, translation_id=6, distance=1, created=deftime).save()
-    SentencesTranslations(sentence_id=7, translation_id=10, distance=1, created=deftime).save()
-    SentencesTranslations(sentence_id=10, translation_id=7, distance=1, created=deftime).save()
+    SentencesTranslations(sentence_id=6, translation_id=9, distance=1).save()
+    SentencesTranslations(sentence_id=9, translation_id=6, distance=1).save()
+    SentencesTranslations(sentence_id=7, translation_id=10, distance=1).save()
+    SentencesTranslations(sentence_id=10, translation_id=7, distance=1).save()
 
     TagsSentences(tag_id=1, sentence_id=6, user_id=1, added_time=datetime.now()).save()
     TagsSentences(tag_id=2, sentence_id=7, user_id=1, added_time=datetime.now()).save()
@@ -111,7 +106,7 @@ def bot(db):
     return Users.objects.create(
                 username='Horus', password='', email='bot@bots.com',
                 since=datetime.now(), last_time_active=datetime.now().strftime('%Y%m%d'),
-                level=1, group_id=1
+                level=1, is_public=1, send_notifications=0, group_id=1
                 )
 
 @pytest.fixture
@@ -128,8 +123,8 @@ def dedup(request, bot):
     return Dedup
 
 def bidirect_link(a, b):
-    SentencesTranslations(sentence_id=a, translation_id=b, distance=1, created=deftime()).save()
-    SentencesTranslations(sentence_id=b, translation_id=a, distance=1, created=deftime()).save()
+    SentencesTranslations(sentence_id=a, translation_id=b, distance=1).save()
+    SentencesTranslations(sentence_id=b, translation_id=a, distance=1).save()
 
 @pytest.fixture
 def linked_dups():

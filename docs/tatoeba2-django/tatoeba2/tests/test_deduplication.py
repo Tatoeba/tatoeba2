@@ -4,8 +4,7 @@ from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.conf import settings
 from hashlib import sha1
-from datetime import timedelta, datetime
-from pytz import UTC as utc
+from datetime import timedelta
 import pytest
 import os
 import logging
@@ -152,9 +151,8 @@ class TestDedup():
         assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 3
         assert SentenceAnnotations.objects.filter(meaning_id=10).count() == 3
 
-    def test_merge_links(db, sents, dedup, deftime):
+    def test_merge_links(db, sents, dedup):
 
-        assert SentencesTranslations.objects.filter(sentence_id=6)[0].created == deftime
         assert SentencesTranslations.objects.filter(sentence_id=8).count() == 0
         dedup.merge_links(8, [6, 7])
 
@@ -162,7 +160,6 @@ class TestDedup():
         assert lnks_fd.count() == 2
         assert lnks_fd[0].sentence_id == 8 and lnks_fd[0].translation_id == 9
         assert lnks_fd[1].sentence_id == 8 and lnks_fd[1].translation_id == 10
-        assert lnks_fd[0].created > deftime
 
         contrib_fd_del = Contributions.objects.filter(sentence_id__in=[6,7], type='link', action='delete').order_by('translation_id')
         assert contrib_fd_del.count() == 2
@@ -178,7 +175,6 @@ class TestDedup():
         assert lnks_bd.count() == 2
         assert lnks_bd[0].sentence_id == 9 and lnks_bd[0].translation_id == 8
         assert lnks_bd[1].sentence_id == 10 and lnks_bd[1].translation_id == 8
-        assert lnks_bd[0].created > deftime
 
         contrib_bd_del = Contributions.objects.filter(translation_id__in=[6,7], type='link', action='delete').order_by('sentence_id')
         assert contrib_bd_del.count() == 2
