@@ -310,6 +310,10 @@ EOT;
                     $conf .= "
         sql_query_pre = DELETE FROM reindex_flags \
                             WHERE lang_id = (select id from languages where code = '$lang')";
+                } else {
+                    $conf .= "
+        sql_query_killlist = SELECT sentence_id FROM reindex_flags \
+                            WHERE lang_id = (select id from languages where code = '$lang')";
                 }
         
                 $delta_join = ($type == 'main') ?
