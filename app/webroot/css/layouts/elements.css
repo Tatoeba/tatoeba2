@@ -889,7 +889,7 @@
 .sentences_set .menu .option a,
 .sentences_set .menu .option,
 .sentences_set .link.button {
-    color: #888;
+    color: #aaaaaa;
     height: 16px;
     width: 16px;
 }
@@ -914,6 +914,31 @@
     box-shadow: inset 0 0 2px 2px #f8ad15;
 }
 
+.sentences_set .menu .correctness {
+    display: inline-block;
+    width: 100px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.sentences_set .menu .correctness .option {
+    margin: 0 3px;
+}
+
+.sentences_set .menu .correctness .selected {
+    opacity: 1;
+}
+
+.sentences_set .menu .correct.selected a {
+    color: #00AA00;
+}
+.sentences_set .menu .incorrect.selected a {
+    color: #EE0000;
+}
+.sentences_set .menu .not-sure.selected a {
+    color: #FF9900;
+}
 
 
 /*

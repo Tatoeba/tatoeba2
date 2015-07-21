@@ -543,6 +543,53 @@ class MenuHelper extends AppHelper
     }
 
 
+    public function correctnessButton($sentenceId)
+    {
+        $this->Javascript->link('users_sentences.add_remove.js', false);
+
+        $userCorrectness = CurrentUser::correctnessForSentence($sentenceId);
+
+        $icons = array(
+            1 => array(
+                'class' => 'correct',
+                'icon' => 'correct',
+                'tooltip' => __('Correct', true)
+            ),
+            0 => array(
+                'class' => 'not-sure',
+                'icon' => 'not-sure',
+                'tooltip' => __('Not sure if correct', true)
+            ),
+            -1 => array(
+                'class' => 'incorrect',
+                'icon' => 'incorrect',
+                'tooltip' => __('Incorrect', true)
+            )
+        );
+
+        echo '<ul class="correctness">';
+        foreach($icons as $correctness => $icon) {
+            $svgIcon = $this->Images->svgIcon(
+                $icon['icon'], array('width' => 20, 'height' => 16)
+            );
+            $cssClass = array('option', 'add-to-corpus', $icon['class']);
+            if ($correctness == $userCorrectness) {
+                $cssClass[] = 'selected';
+            }
+            echo $this->Html->tag('li',
+                $this->Html->tag('a', $svgIcon),
+                array(
+                    'class' => join(' ', $cssClass),
+                    'data-sentence-id' => $sentenceId,
+                    'data-sentence-correctness' => $correctness,
+                    'title' => $icon['tooltip']
+                )
+            );
+        }
+        echo '</ul>';
+    }
+
+
     /**
      * Display menu for the main sentence.
      *
@@ -595,6 +642,10 @@ class MenuHelper extends AppHelper
         if (CurrentUser::canRemoveSentence($sentenceId, null, $ownerName)) {
             // Delete
             $this->deleteButton($sentenceId, $hasAudio);
+        }
+
+        if ($isLogged) {
+            $this->correctnessButton($sentenceId);
         }
 
         if ($chineseScript == 'Hans') {
