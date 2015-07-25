@@ -236,11 +236,11 @@ class MenuHelper extends AppHelper
     public function favoriteButton($sentenceId, $isFavorited, $isLogged)
     {
         if ($isFavorited) {
-            $cssClass = 'remove';
+            $type = 'remove';
             $image = 'favorite-remove';
             $tooltip = __('Remove from favorites', true);
         } else {
-            $cssClass = 'add';
+            $type = 'add';
             $image = 'favorite-add';
             $tooltip = __('Add to favorites', true);
         }
@@ -253,8 +253,10 @@ class MenuHelper extends AppHelper
             )
         );
 
+        $cssClass = array('option', 'favorite', $type);
+
         echo $this->Html->tag('li', null, array(
-            'class' => 'option favorite' . $cssClass,
+            'class' => join(' ', $cssClass),
             'data-sentence-id' => $sentenceId,
             'title' => $tooltip
         ));
