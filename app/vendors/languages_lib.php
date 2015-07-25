@@ -379,7 +379,9 @@ class LanguagesLib
                 'guj' => __('Gujarati',true),
                 'pan' => __('Punjabi (Eastern)',true),
                 'kha' => __('Khasi',true),
-                'jav' => __('Javanese',true),//@lang
+                'jav' => __('Javanese',true),
+                'roa' => __('Reggiano',true),
+                'zza' => __('Zaza',true),//@lang
             );
         }
         return $languages;
