@@ -15,14 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 $(document).ready(function(){
-    $("div.showLink").click(function(){
+    $("div.showLink").live("click", function(){
         $(".more").hide();
         $("div.showLink").show();
         $(this).parents(".translations").find(".more").show();
         $(this).hide();
         $("div.hideLink").show();
     });
-    $("div.hideLink").click(function(){
+    $("div.hideLink").live("click", function(){
         $(this).parents(".more").hide();
         $(this).hide();
         $("div.showLink").show();
