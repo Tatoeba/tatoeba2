@@ -380,7 +380,8 @@ class LanguagesLib
                 'pan' => __('Punjabi (Eastern)',true),
                 'kha' => __('Khasi',true),
                 'jav' => __('Javanese',true),
-                'zza' => __('Zaza',true),//@lang
+                'zza' => __('Zaza',true),
+                'egl' => __('Emilian',true),//@lang
             );
         }
         return $languages;
