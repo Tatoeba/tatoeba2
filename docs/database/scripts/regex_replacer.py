@@ -1,4 +1,4 @@
-#regex_substituter.py
+#regex_replacer.py
 # -*- coding: utf-8 -*-
 
 #Script for replacing strings using regular expressions specified in a file
@@ -9,34 +9,34 @@
 #Note that you must download mysql.connector, since it doesn't come with the default distribution.
 #Use: sudo apt-get update && sudo apt-get install python-mysql.connector
 from __future__ import print_function
-#import argparse
 import codecs
-#import json
-#import mysql.connector
 import os
 import re
 import sys
 from python_mysql_connector import PythonMySQLConnector
 
-class RegexSubstituter(PythonMySQLConnector):
+class RegexReplacer(PythonMySQLConnector):
     """
     Class for replacing text using a regex specified in a file.
     
-    Reads a JSON file that contains a restrictor for the SELECT 
-    statement (possibly empty), a MySQL regex,
-    a Python regex, and a substitution string (to be fed to the re.sub() command). 
+    Only tested with Python 2.7.
     
-    Contents of file for replacing "is" or "IS" by "**" in Afrikaans sentences:
-    [{"nonascii": 0, "python_regex": "[iI][sS]", "mysql_regex": "[iI][sS]", "substitution_string": "**", "select_restrictor": " AND lang='afr'"}]
+    Reads a JSON file that contains a restrictor for the SELECT 
+    statement (possibly empty), a MySQL regex for matching an existing pattern,
+    a Python regex for matching the same pattern, and a substitution string to
+    replace that pattern (to be fed to the re.sub() command). 
+    
+    Contents of file for replacing "is" or its case variants by "**" in Afrikaans sentences:
+    [{"ascii": 1, "python_regex": "[iI][sS]", "mysql_regex": "[iI][sS]", "substitution_string": "**", "select_restrictor": " AND lang='afr'"}]
 
     Contents of file for replacing runs of whitespace with a single space character
     in all sentences:
-    [{"nonascii": 0, "python_regex": "\\s{2,}", "mysql_regex": "[[:space:]]{2,}", "substitution_string": " ", "select_restrictor": ""}]
+    [{"ascii": 1, "python_regex": "\\s{2,}", "mysql_regex": "[[:space:]]{2,}", "substitution_string": " ", "select_restrictor": ""}]
 
     Contents of file for replacing "à" (UTF-8 representation = 0xC3A0) by "À" in Italian sentences: 
-    [{"nonascii": 1, "python_regex": "à", "mysql_regex": "C3A0", "substitution_string": "À", "select_restrictor": " AND lang='ita'"}]    
+    [{"ascii": 0, "python_regex": "à", "mysql_regex": "C3A0", "substitution_string": "À", "select_restrictor": " AND lang='ita'"}]    
     """
-    NONASCII = "nonascii"
+    ASCII = "ascii"
     MYSQL_REGEX = "mysql_regex"
     PYTHON_REGEX = "python_regex"
     SELECT_RESTRICTOR = "select_restrictor"
@@ -45,8 +45,8 @@ class RegexSubstituter(PythonMySQLConnector):
         PythonMySQLConnector.__init__(self)
         self.json_fields = None
 
-    def get_nonascii(self):
-        return self.json_fields[0][self.NONASCII]
+    def get_ascii(self):
+        return self.json_fields[0][self.ASCII]
         
     def get_mysql_regex(self):
         return self.json_fields[0][self.MYSQL_REGEX]
@@ -62,9 +62,8 @@ class RegexSubstituter(PythonMySQLConnector):
         
     def init_parser(self):
         PythonMySQLConnector.init_parser(self, description='Uses a regex to replace instances of a matching pattern',   
-            epilog='Sample invocation: python regex_substituter.py --json_file config.json --user root --db tatoeba --pwd "" --csv_dir c:\\temp')
-        self.parser.add_argument('--csv_basename', default='regex_substituter.csv', help='basename of intermediate csv file') 
-        self.parser.add_argument('--nonascii', default=False, action='store_true', help='Required when searching for a string with non-ASCII characters')
+            epilog='Sample invocation: python regex_replacer.py --json_file config.json --user root --db tatoeba --pwd "" --csv_dir c:\\temp')
+        self.parser.add_argument('--csv_basename', default='regex_replacer.csv', help='basename of intermediate csv file') 
 
     def process(self):
         filename = os.path.join(self.parsed.csv_dir, self.parsed.csv_basename)
@@ -101,8 +100,11 @@ class RegexSubstituter(PythonMySQLConnector):
         cursor = self.cnx.cursor()
         mysql_regex_str = self.get_mysql_regex()
         mysql_regex_bytes = mysql_regex_str.encode('utf-8')
-        nonascii = self.get_nonascii()
-        if nonascii:
+        ascii = self.get_ascii()
+        if ascii:
+            query = "SELECT id, text FROM sentences WHERE text regexp '{0}'{1};".format(
+                mysql_regex_str, self.get_select_restrictor())
+        else:    
             # Special processing is necessary when the search and/or replacement string contain/s 
             # non-ASCII characters. When this occurs:
             
@@ -115,13 +117,9 @@ class RegexSubstituter(PythonMySQLConnector):
             # (3) The python_regex and substitution_string values must be written as literal strings
             # in UTF-8.
             
-            # (4) The value of nonascii in the JSON file must be set to 1 (technically, any value
-            # that evaluates as True).
+            # (4) The value of ascii in the JSON file must be set to 0.
             query = "SELECT id, text FROM sentences WHERE HEX(text) regexp '{0}'{1};".format(
                 mysql_regex_bytes, self.get_select_restrictor())
-        else:    
-            query = "SELECT id, text FROM sentences WHERE text regexp '{0}'{1};".format(
-                mysql_regex_str, self.get_select_restrictor())
 
         cursor.execute(query)
         python_regex_str = self.get_python_regex()
@@ -130,16 +128,16 @@ class RegexSubstituter(PythonMySQLConnector):
         substitution_str = self.get_substitution_string()
         sub_bytes = substitution_str.encode('utf-8')
         for (sid, text) in cursor:
-            if nonascii:
-                new_text = text.decode("utf-8").replace(python_regex_str, substitution_str)
-            else:
+            if ascii:
                 new_text = python_regex_obj.sub(sub_bytes, text)
+            else:
+                new_text = text.decode("utf-8").replace(python_regex_str, substitution_str)
             # Apostrophes must be escaped.
             new_text = new_text.replace("'", r"\'")
-            if nonascii:
-                line = "{0}\t{1}\n".format(sid, new_text.encode('utf-8')).decode('utf-8')
-            else:
+            if ascii:
                 line = "{0}\t{1}\n".format(sid, new_text).decode('utf-8')
+            else:
+                line = "{0}\t{1}\n".format(sid, new_text.encode('utf-8')).decode('utf-8')
             out_f.write(line)
         cursor.close()
         out_f.close()
@@ -149,10 +147,10 @@ class RegexSubstituter(PythonMySQLConnector):
         return ret
         
 if __name__ == "__main__":
-    substituter = RegexSubstituter()
-    substituter.process_args(sys.argv)
-    substituter.set_log_file()
-    substituter.read_json()
-    substituter.connect()
-    substituter.process()
-    substituter.disconnect()
+    replacer = RegexReplacer()
+    replacer.process_args(sys.argv)
+    replacer.set_log_file()
+    replacer.read_json()
+    replacer.connect()
+    replacer.process()
+    replacer.disconnect()
