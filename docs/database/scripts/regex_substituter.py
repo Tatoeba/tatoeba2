@@ -1,4 +1,5 @@
 #regex_substituter.py
+# -*- coding: utf-8 -*-
 
 #Script for replacing strings using regular expressions specified in a file
 
@@ -25,14 +26,17 @@ class RegexSubstituter(PythonMySQLConnector):
     statement (possibly empty), a MySQL regex,
     a Python regex, and a substitution string (to be fed to the re.sub() command). 
     
-    Contents of sample file (for replacing runs of whitespace with a single space character):
-    
-    [{"python_regex": "\\s{2,}", "mysql_regex": "[[:space:]]{2,}", "substitution_string": " ", "select_restrictor": " AND lang='eng'"}]
+    Contents of file for replacing "is" or "IS" by "**" in Afrikaans sentences:
+    [{"nonascii": 0, "python_regex": "[iI][sS]", "mysql_regex": "[iI][sS]", "substitution_string": "**", "select_restrictor": " AND lang='afr'"}]
 
-    Contents of sample file (for replacing "is" by "IS" in Afrikaans sentences):
-    [{"python_regex": "is", "mysql_regex": "is", "substitution_string": "IS", "select_restrictor": " AND lang='afr'"}]
+    Contents of file for replacing runs of whitespace with a single space character
+    in all sentences:
+    [{"nonascii": 0, "python_regex": "\\s{2,}", "mysql_regex": "[[:space:]]{2,}", "substitution_string": " ", "select_restrictor": ""}]
 
+    Contents of file for replacing "à" (UTF-8 representation = 0xC3A0) by "À" in Italian sentences: 
+    [{"nonascii": 1, "python_regex": "à", "mysql_regex": "C3A0", "substitution_string": "À", "select_restrictor": " AND lang='ita'"}]    
     """
+    NONASCII = "nonascii"
     MYSQL_REGEX = "mysql_regex"
     PYTHON_REGEX = "python_regex"
     SELECT_RESTRICTOR = "select_restrictor"
@@ -40,6 +44,9 @@ class RegexSubstituter(PythonMySQLConnector):
     def __init__(self):
         PythonMySQLConnector.__init__(self)
         self.json_fields = None
+
+    def get_nonascii(self):
+        return self.json_fields[0][self.NONASCII]
         
     def get_mysql_regex(self):
         return self.json_fields[0][self.MYSQL_REGEX]
@@ -57,6 +64,7 @@ class RegexSubstituter(PythonMySQLConnector):
         PythonMySQLConnector.init_parser(self, description='Uses a regex to replace instances of a matching pattern',   
             epilog='Sample invocation: python regex_substituter.py --json_file config.json --user root --db tatoeba --pwd "" --csv_dir c:\\temp')
         self.parser.add_argument('--csv_basename', default='regex_substituter.csv', help='basename of intermediate csv file') 
+        self.parser.add_argument('--nonascii', default=False, action='store_true', help='Required when searching for a string with non-ASCII characters')
 
     def process(self):
         filename = os.path.join(self.parsed.csv_dir, self.parsed.csv_basename)
@@ -82,39 +90,57 @@ class RegexSubstituter(PythonMySQLConnector):
             self.cnx.commit()
         cursor.close()
         in_f.close()
-        self.print_output("--------------------------------")
+        self.print_output("-------------------------------")
     
     def write_csv(self, filename):
         """
         Write a CSV file (id<TAB>text) containing IDs of sentences to be updated plus their new text.
         
         filename: the name to give the output file
-        
-        mysql_regex: the regex to specify the input to be matched, in MySQL regex syntax
-        
-        py_regex: the regex to specify the input to be matched, in Python regex syntax
-        
-        select_restrictor: a string that is either blank or of the form " AND <some text>"
-           where <some text> represents an additional qualifier for the SQL query.
-           Example: " AND lang='eng'"
-           
-        substitution_str: a string in Python regex syntax
         """
         cursor = self.cnx.cursor()
-        query = "SELECT id, text FROM sentences WHERE text regexp '{0}'{1};".format(
-            self.get_mysql_regex(), self.get_select_restrictor())
+        mysql_regex_str = self.get_mysql_regex()
+        mysql_regex_bytes = mysql_regex_str.encode('utf-8')
+        nonascii = self.get_nonascii()
+        if nonascii:
+            # Special processing is necessary when the search and/or replacement string contain/s 
+            # non-ASCII characters. When this occurs:
+            
+            # (1) The JSON file must be encoded as UTF-8.
+            
+            # (2) The mysql_regex string in the JSON file must be written as a hex representation
+            # of a UTF-8 string without any leading sequence of "0", "0x", "u", etc. For example,
+            # lowercase Latin e grave (UTF-8 = 0xC3A8) would be written as "C3A8".
+            
+            # (3) The python_regex and substitution_string values must be written as literal strings
+            # in UTF-8.
+            
+            # (4) The value of nonascii in the JSON file must be set to 1 (technically, any value
+            # that evaluates as True).
+            query = "SELECT id, text FROM sentences WHERE HEX(text) regexp '{0}'{1};".format(
+                mysql_regex_bytes, self.get_select_restrictor())
+        else:    
+            query = "SELECT id, text FROM sentences WHERE text regexp '{0}'{1};".format(
+                mysql_regex_str, self.get_select_restrictor())
+
         cursor.execute(query)
-        regex = re.compile(self.get_python_regex())
+        python_regex_str = self.get_python_regex()
+        python_regex_obj = re.compile(python_regex_str)
         out_f = codecs.open(filename, "w", "utf-8")
         substitution_str = self.get_substitution_string()
         sub_bytes = substitution_str.encode('utf-8')
         for (sid, text) in cursor:
-            new_text = regex.sub(sub_bytes, text)
+            if nonascii:
+                new_text = text.decode("utf-8").replace(python_regex_str, substitution_str)
+            else:
+                new_text = python_regex_obj.sub(sub_bytes, text)
             # Apostrophes must be escaped.
             new_text = new_text.replace("'", r"\'")
-            line = "{0}\t{1}\n".format(sid, new_text)
-            line_en = line.decode('utf-8')
-            out_f.write(line_en)
+            if nonascii:
+                line = "{0}\t{1}\n".format(sid, new_text.encode('utf-8')).decode('utf-8')
+            else:
+                line = "{0}\t{1}\n".format(sid, new_text).decode('utf-8')
+            out_f.write(line)
         cursor.close()
         out_f.close()
 
