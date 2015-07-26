@@ -25,17 +25,5 @@
  * @link     http://tatoeba.org
  */
 
-if (isset($saved)) {
-    echo '<a>';
-    echo $html->image(
-        'favorite-remove.svg',
-        array(
-            'alt'=>__('Remove from favorites', true), 
-            'title'=>__('Remove from favorites', true),
-            'height' => 16
-        )
-    );
-    echo '</a>';
-}
-
+$menu->favoriteButton($sentenceId, $isFavorited, $isLogged);
 ?> 
