@@ -118,8 +118,8 @@ class Sentence extends AppModel
     private function clean($text)
     {
         $text = trim($text);
-        // Strip out any initial byte-order mark that might be present.
-        $text = preg_replace("/^\xEF\xBB\xBF/", '', $text);
+        // Strip out any byte-order mark that might be present.
+        $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
         // Replace any series of spaces, newlines, tabs, or other 
         // ASCII whitespace characters with a single space. 
         $text = preg_replace('/\s+/', ' ', $text);
