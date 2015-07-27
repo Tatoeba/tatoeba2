@@ -12,10 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-11 16:41+0000\n"
-"PO-Revision-Date: 2015-07-19 19:46+0000\n"
+"POT-Creation-Date: 2015-07-20 20:39+0000\n"
+"PO-Revision-Date: 2015-07-21 10:58+0000\n"
 "Last-Translator: Dmitry K\n"
-"Language-Team: Russian (http://www.transifex.com/p/tatoeba_website/language/ru/)\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -40,7 +40,7 @@ msgid ""
 msgstr "Предложения №{firstNumber} и №{secondNumber} теперь прямые переводы друг друга."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L369
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -89,7 +89,7 @@ msgstr "удалить окончательно"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L346
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L465
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L112
@@ -289,35 +289,35 @@ msgstr "Изображение должно быть в формате GIF, JPEG
 msgid "Error while saving."
 msgstr "При сохранении произошла ошибка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L284
 msgid "That email address already exists. Please try another."
 msgstr "Данный адрес электронной почты уже существует. Пожалуйста, попробуйте другой."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L306
 msgid "Profile saved."
 msgstr "Профиль сохранён."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L317
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Не удалось изменить адрес электронной почты. Пожалуйста, введите подходящий адрес электронной почты."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L366
 msgid "Your settings have been saved."
 msgstr "Настройки сохранены."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L436
 msgid "New password cannot be empty."
 msgstr "Новый пароль не может быть пустым."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L472
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L446
 msgid "New password has been saved."
 msgstr "Новый пароль сохранён."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L448
 msgid "An error occurred while saving."
 msgstr "При сохранении произошла ошибка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L479
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L453
 msgid "Password error. Please try again."
 msgstr "Неверный пароль. Попробуйте снова."
 
@@ -1728,8 +1728,8 @@ msgstr "Очистить корзину"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L55
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L192
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L199
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L30
 msgid "Inbox"
 msgstr "Входящие"
@@ -1850,47 +1850,46 @@ msgid "Profile"
 msgstr "Профиль"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L65
+msgid "My profile"
+msgstr "Мой профиль"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L78
 msgid "My sentences"
 msgstr "Мои предложения"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L604
 msgid "My lists"
 msgstr "Мои списки"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
 msgid "My favorites"
 msgstr "Мои любимые предложения"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
 msgid "My comments"
 msgstr "Мои комментарии"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L130
 msgid "Comments on my sentences"
 msgstr "Комментарии к моим предложениям"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L143
 msgid "My Wall messages"
 msgstr "Мои записи на стене"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L156
 msgid "My sentence logs"
 msgstr "Журнал моих предложений"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L156
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
-msgid "Edit profile"
-msgstr "Изменить профиль"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L169
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L27
 msgid "Settings"
 msgstr "Настройки"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L225
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L227
 msgid "Log out"
 msgstr "Выйти"
 
@@ -2034,7 +2033,7 @@ msgstr "Связаться с {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L241
 msgid "Remove from favorites"
 msgstr "Убрать из избранных"
 
@@ -2048,7 +2047,7 @@ msgstr "У этого пользователя нет избранных пре�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L245
 msgid "Add to favorites"
 msgstr "В избранные"
 
@@ -2259,7 +2258,7 @@ msgstr "Вы не можете переводить предложения, та
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L476
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L294
 msgid "Add a language"
 msgstr "Добавить язык"
 
@@ -2343,7 +2342,7 @@ msgid "Add a sentence to this list : "
 msgstr "Добавить предложение в список: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L446
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L421
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L626
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L133
@@ -2415,10 +2414,9 @@ msgid "unlinked by {user}"
 msgstr "отсоединено {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L496
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L502
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L112
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L348
 msgid "Edit"
 msgstr "Изменить"
 
@@ -2446,80 +2444,77 @@ msgstr "неактивный"
 msgid "spammer"
 msgstr "спамер"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L65
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L81
 msgid "Translate"
 msgstr "Перевести"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L83
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
 msgstr "Это предложение в настоящий момент помечено как не получившее одобрения. Функция перевода для таких предложений недоступна."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L132
 msgid "This sentence is in simplified Chinese."
 msgstr "Это предложение записано упрощёнными иероглифами."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L159
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L157
 msgid "This sentence is in traditional Chinese."
 msgstr "Это предложение записано традиционными иероглифами."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L189
 msgid "Click to unadopt"
 msgstr "Кликните, чтобы освободить"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L195
 msgid "Click to adopt"
 msgstr "Кликните, чтобы присвоить"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L296
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L297
 msgid "Link to another sentence"
 msgstr "Связать с другим предложением"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L317
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L310
 msgid "Sentence number"
 msgstr "Номер предложения"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L315
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
 msgstr "Соединить"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L355
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L356
 msgid "Add to list"
 msgstr "Добавить в список"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L390
 msgid "Add to one of your lists"
 msgstr "Добавить в один из ваших списков"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L391
 msgid "Add to a collaborative list"
 msgstr "Добавить в общий список"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L442
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L450
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L105
-msgid "Delete"
-msgstr "Удалить"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L444
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Вы не можете удалить это предложение, так как оно имеет аудиозапись."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L498
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L452
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L105
+msgid "Delete"
+msgstr "Удалить"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L497
 msgid "You cannot edit this sentence because it has audio."
 msgstr "Вы не можете редактировать это предложение, так как оно имеет аудиозапись."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L526
 msgid "belongs to {user}"
 msgstr "принадлежит {user}"
 
@@ -4264,9 +4259,10 @@ msgstr "Обратная связь"
 msgid "Enter a text in shanghainese dialect"
 msgstr "Введите текст на шанхайском диалекте"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
-msgid "Picture"
-msgstr "Изображение"
+msgid "Edit profile"
+msgstr "Изменить профиль"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L45
 msgid "Current picture"
@@ -4276,46 +4272,42 @@ msgstr "Текущее изображение"
 msgid "New picture"
 msgstr "Новое изображение"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L73
 msgid "Upload"
 msgstr "Загрузить"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L78
-msgid "Personal information"
-msgstr "Личные данные"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L211
 msgid "Birthday"
 msgstr "Дата рождения"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L209
 msgctxt "user"
 msgid "Name"
 msgstr "Имя"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L210
 msgid "Country"
 msgstr "Страна"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L212
 msgid "Homepage"
 msgstr "Домашняя страница"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L130
-msgid "Save personal information"
-msgstr "Сохранить личные данные"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L135
 msgid "Description"
 msgstr "Описание"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L151
-msgid "Save description"
-msgstr "Сохранить описание"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L176
+msgid "Save"
+msgstr "Сохранить"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L30
 msgid "Add language"
@@ -4324,13 +4316,6 @@ msgstr "Добавить язык"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L32
 msgid "Edit language"
 msgstr "Редактировать язык"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L121
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L176
-msgid "Save"
-msgstr "Сохранить"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L87
 msgid "What is your level?"
@@ -4390,21 +4375,21 @@ msgstr "Участник с"
 msgid "Contributions blocked"
 msgstr "Участие заблокировано"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L267
+msgid "No description."
+msgstr "Описание отсутствует."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L302
 msgid "No language added."
 msgstr "Языки не добавлены."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L307
 msgid "TIP: We encourage you to indicate the languages you know."
 msgstr "СОВЕТ: Рекомендуем указать, какими языками Вы владеете."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L310
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "СОВЕТ: Попросите этого пользователя указать, какими языками он владеет."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L345
-msgid "No description."
-msgstr "Описание отсутствует."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L40
 msgid "Options"
