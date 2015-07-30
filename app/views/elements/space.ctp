@@ -88,6 +88,19 @@ if (isset($this->params['lang'])) {
         <li class="item">
             <?php
             echo $html->link(
+                __('My corpus', true),
+                array(
+                    'controller' => 'corpus',
+                    'action' => 'of',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $html->link(
                 __('My lists', true),
                 array(
                     'controller' => 'sentences_lists',

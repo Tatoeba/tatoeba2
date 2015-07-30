@@ -59,6 +59,19 @@
     <li class="item">
     <?php
     echo $html->link(
+        __('Corpus', true),
+        array(
+            'controller' => 'corpus',
+            'action' => 'of',
+            $username
+        )
+    );
+    ?>
+    </li>
+
+    <li class="item">
+    <?php
+    echo $html->link(
         __('Lists', true),
         array(
             'controller' => 'sentences_lists',

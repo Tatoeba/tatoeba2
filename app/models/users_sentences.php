@@ -38,6 +38,9 @@ class UsersSentences extends AppModel
 {
     public $name = 'UsersSentences';
     public $useTable = "users_sentences";
+    public $actsAs = array('Containable');
+    public $belongsTo = array('Sentence');
+    public $recursive = -1;
 
 
     public function correctnessForSentence($sentenceId, $userId)
@@ -58,8 +61,40 @@ class UsersSentences extends AppModel
         }
     }
 
-    public function getCorpusOf($userId, $lang = null, $correctness = null)
+    public function getPaginatedCorpusOf($userId, $correctness = null, $lang = null)
     {
+        $conditions = array('UsersSentences.user_id' => $userId);
+        if (is_int($correctness)) {
+            $conditions['UsersSentences.correctness'] = $correctness;
+        }
+        if (!empty($lang)) {
+            $conditions['lang'] = $lang;
+        }
 
+        $result = array(
+            'conditions' => $conditions,
+            'fields' => array('id'),
+            'contain' => array(
+                'Sentence' => array('id', 'lang', 'text', 'correctness')
+            ),
+            'limit' => 50
+        );
+
+        return $result;
+    }
+
+
+    public function correctnessValueFromLabel($label)
+    {
+        switch ($label) {
+            case "incorrect":
+                return -1;
+            case "not-sure":
+                return 0;
+            case "correct":
+                return 1;
+            default:
+                return null;
+        }
     }
 }
