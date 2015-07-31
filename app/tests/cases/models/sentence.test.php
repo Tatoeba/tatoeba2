@@ -391,8 +391,8 @@ class SentenceTestCase extends CakeTestCase {
 		$this->Sentence->delete($sentenceId, false);
 
 		$tagsAfter = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
-		$delta = count($tagsAfter) - count($tagsBefore);
-		$this->assertEqual(-1, $delta);
+		$this->assertNotEqual(0, count($tagsBefore));
+		$this->assertEqual(0, count($tagsAfter));
 	}
 
 	function testScriptIsSetOnSentenceCreation() {
