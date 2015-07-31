@@ -51,6 +51,9 @@ class SentencesControllerTestCase extends CakeTestCase {
 		'app.aro',
 		'app.aco',
 		'app.aros_aco',
+		'app.reindex_flag',
+		'app.transcription',
+		'app.users_language',
 	);
 
 	function setUp() {

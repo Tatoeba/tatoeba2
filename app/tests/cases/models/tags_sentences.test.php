@@ -29,7 +29,8 @@ class TagsSentencesTestCase extends CakeTestCase {
         'app.sentences_list',
         'app.sentences_sentences_lists',
         'app.sentences_sentences_list',
-        'app.favorites_user'
+        'app.favorites_user',
+        'app.transcription',
     );
 
     function startTest() {

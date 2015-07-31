@@ -50,6 +50,7 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
         'app.group',
         'app.language',
         'app.link',
+        'app.reindex_flag',
         'app.sentence',
         'app.sentence_comment',
         'app.sentence_annotation',

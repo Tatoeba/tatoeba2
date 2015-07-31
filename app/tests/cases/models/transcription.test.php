@@ -9,6 +9,7 @@ class TranscriptionTestCase extends CakeTestCase {
         'app.group',
         'app.language',
         'app.link',
+        'app.reindex_flag',
         'app.sentence',
         'app.sentence_annotation',
         'app.sentence_comment',

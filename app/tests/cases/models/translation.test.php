@@ -20,6 +20,7 @@ class TranslationTestCase extends CakeTestCase {
         'app.language',
         'app.link',
         'app.sentence_annotation',
+        'app.reindex_flag',
     );
 
     function startTest() {
