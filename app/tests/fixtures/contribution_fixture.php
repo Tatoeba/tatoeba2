@@ -293,19 +293,6 @@ class ContributionFixture extends CakeTestFixture {
 			'id' => '21'
 		),
 		array(
-			'sentence_id' => '10',
-			'sentence_lang' => NULL,
-			'translation_id' => NULL,
-			'translation_lang' => NULL,
-			'text' => 'La cause fondamentale du problème est que dans le monde moderne, les imbéciles sont emplis d\'assurance, alors que les gens intelligents sont emplis de doute.',
-			'action' => 'insert',
-			'user_id' => '7',
-			'datetime' => '2015-06-15 00:34:28',
-			'ip' => '127.0.0.1',
-			'type' => 'sentence',
-			'id' => '22'
-		),
-		array(
 			'sentence_id' => '11',
 			'sentence_lang' => NULL,
 			'translation_id' => NULL,
@@ -314,6 +301,19 @@ class ContributionFixture extends CakeTestFixture {
 			'action' => 'insert',
 			'user_id' => '7',
 			'datetime' => '2015-04-15 21:14:00',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '22'
+		),
+		array(
+			'sentence_id' => '12',
+			'sentence_lang' => NULL,
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'text' => 'La cause fondamentale du problème est que dans le monde moderne, les imbéciles sont emplis d\'assurance, alors que les gens intelligents sont emplis de doute.',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2015-06-15 00:34:28',
 			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '23'

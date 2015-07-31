@@ -136,18 +136,19 @@ class SentenceFixture extends CakeTestFixture {
 			'lang_id' => NULL,
 			'script' => null
 		),
-		array(
-			'id' => '10',
-			'lang' => 'fra',
-			'text' => 'La cause fondamentale du problème est que dans le monde moderne, les imbéciles sont emplis d\'assurance, alors que les gens intelligents sont emplis de doute.',
-			'correctness' => NULL,
-			'user_id' => '7',
-			'created' => '2015-06-15 00:34:28',
-			'modified' => '2015-06-15 00:34:28',
-			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '4'
-		),
+                array(
+                        'id' => '10',
+                        'lang' => 'jpn',
+                        'text' => 'ちょっと待って。',
+                        'correctness' => NULL,
+                        'user_id' => '7',
+                        'created' => '2014-04-15 21:13:23',
+                        'modified' => '2014-04-15 21:13:36',
+                        'dico_id' => NULL,
+                        'hasaudio' => 'no',
+                        'lang_id' => NULL,
+                        'script' => null
+                ),
 		array(
 			'id' => '11',
 			'lang' => 'yue',
@@ -160,6 +161,19 @@ class SentenceFixture extends CakeTestFixture {
 			'hasaudio' => 'no',
 			'lang_id' => NULL,
 			'script' => 'Hant'
+		),
+		array(
+			'id' => '12',
+			'lang' => 'fra',
+			'text' => 'La cause fondamentale du problème est que dans le monde moderne, les imbéciles sont emplis d\'assurance, alors que les gens intelligents sont emplis de doute.',
+			'correctness' => NULL,
+			'user_id' => '7',
+			'created' => '2015-06-15 00:34:28',
+			'modified' => '2015-06-15 00:34:28',
+			'dico_id' => NULL,
+			'hasaudio' => 'no',
+			'lang_id' => '4',
+                        'script' => null
 		),
 	);
 }
