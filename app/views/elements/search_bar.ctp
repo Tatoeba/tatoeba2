@@ -31,20 +31,24 @@ if (isset($this->params['lang'])) {
 ?>
 
 <div class="search_bar">
-
 <?php
+echo $html->div('search-bar-extra');
+echo $html->link(
+    __('Help', true),
+    'http://en.wiki.tatoeba.org/articles/show/text-search',
+    array(
+        'target' => '_blank'
+    )
+);
+echo $html->link(
+    __p('title', 'Advanced search', true),
+    array(
+        'controller' => 'sentences',
+        'action' => 'advanced_search'
+    )
+);
+echo '</div>';
 
-$restrictSearchLangsEnabled = CurrentUser::get('settings.restrict_search_langs');
-if ($restrictSearchLangsEnabled) {
-    $langArray = $languages->profileLanguagesArray(false, false, true);
-    $currentUserLanguages = CurrentUser::getProfileLanguages();
-}
-
-if (!$restrictSearchLangsEnabled || empty($currentUserLanguages)) {
-    $langs = $languages->getSearchableLanguagesArray();
-} else {
-    $langs = $langArray;
-}
 
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
@@ -63,9 +67,14 @@ echo $form->create(
 ?>
 <fieldset class="input text">
     <label for="SentenceQuery">
-        <?php __('Example sentences with the words:'); ?>
+        <?php __('Search'); ?>
     </label>
     <?php
+    $clearButton = $this->Html->tag('button', '✖', array(
+        'id' => 'clearSearch',
+        'type' => 'button',
+        'title' => __('Clear search', true),
+    ));
     echo $form->input(
         'query',
         array(
@@ -75,24 +84,21 @@ echo $form->create(
             'accesskey' => 4,
             'lang' => '',
             'dir' => 'auto',
+            'after' => $clearButton,
         )
     );
     ?>
 </fieldset>
 
-<fieldset class="select">
-    <label><?php __('From'); ?></label>
+<fieldset class="select from">
     <?php
-    
-    echo $form->select(
+    echo $this->Search->selectLang(
         'from',
-        $langs,
         $selectedLanguageFrom,
         array(
-            'class' => 'language-selector',
-            "empty" => false
-        ),
-        false
+            'div' => false,
+            'label' => __('From', true),
+        )
     );
     ?>
 </fieldset>
@@ -101,30 +107,26 @@ echo $form->create(
     <span id="into"><a id="arrow" style="color:white;">&raquo;</a></span>
 </fieldset>
     
-<fieldset class="select">
-    <label><?php __('To'); ?></label>
+<fieldset class="select to">
     <?php
-    echo $form->select(
+    echo $this->Search->selectLang(
         'to',
-        $langs,
         $selectedLanguageTo,
         array(
-            'class' => 'language-selector',
-            "empty" => false
-        ),
-        false
+            'div' => false,
+            'label' => __('To', true),
+        )
     );
     ?>
 </fieldset>
 
 <fieldset class="submit">
-    <input type="submit" value="<?php echo __('search'); ?>"/>
+    <?php
+    echo $form->button(null, array('class' => 'search-submit-button'));
+    ?>
 </fieldset>
 
 <?php
 echo $form->end();
 ?>
-
-
-<div id="tatoeba"><a href="/">TATOEBA.org</a></div>
 </div>

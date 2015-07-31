@@ -38,13 +38,11 @@ class Link extends AppModel
 {
     public $useTable = 'sentences_translations';
 
-    public function __construct($id = false, $table = null, $ds = null)
-    {
-        parent::__construct($id, $table, $ds);
-        if (Configure::read('Search.enabled')) {
-            $this->Behaviors->attach('Sphinx');
-        }
-    }
+    public $belongsTo = array(
+        'Sentence'
+    );
+
+    public $recursive = -1;
 
     public function beforeSave() {
         if (   isset($this->data[$this->alias]['sentence_id'])
@@ -74,27 +72,20 @@ class Link extends AppModel
             $this->data['Link']['translation_id'],
             'insert'
         );
+        $this->flagSentencesToReindex(
+            $this->data['Link']['sentence_id'],
+            $this->data['Link']['translation_id']
+        );
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
-        $isMVA = true;
-        $link = $this->data['Link'];
-        $attributes[] = 'trans_id';
-        $this->_updateSphinxLangIdAttrs($link['sentence_id'],    $attributes, $values);
-        $this->_updateSphinxLangIdAttrs($link['translation_id'], $attributes, $values);
-    }
-
-    private function _updateSphinxLangIdAttrs($sentenceId, &$attributes, &$values) {
-        $impactedSentences = $this->findDirectTranslationsIds($sentenceId);
-        $impactedSentences[] = $sentenceId;
-        foreach ($impactedSentences as $sentence) {
-            if (isset($values[$sentence]))
-                continue;
-
-            $trans_of_trans = $this->findDirectAndIndirectTranslationsIds($sentence);
-            $langIds = ClassRegistry::init('Sentence')->getSentencesLang($trans_of_trans, true);
-            $values[$sentence] = array(array_unique(array_values($langIds)));
-        }
+    private function flagSentencesToReindex($sentence, $translation)
+    {
+        $impactedSentences = array_merge(
+            $this->findDirectTranslationsIds($sentence),
+            $this->findDirectTranslationsIds($translation)
+        );
+        $impactedSentences = array_keys(array_flip($impactedSentences));
+        $this->Sentence->needsReindex($impactedSentences);
     }
 
     /**
@@ -113,6 +104,10 @@ class Link extends AppModel
                 'delete'
             );
         }
+        $this->flagSentencesToReindex(
+            $aboutToDelete['Link']['sentence_id'],
+            $aboutToDelete['Link']['translation_id']
+        );
         return true;
     }
 
@@ -216,7 +211,7 @@ class Link extends AppModel
         ));
         $toRemove = Set::extract($toRemove, '{n}.Link.id');
         if ($toRemove) {
-            $this->deleteAll(array('id' => $toRemove), false, true);
+            $this->deleteAll(array('Link.id' => $toRemove), false, true);
         }
 
         return true; // yes, it's useless, never mind...
@@ -251,6 +246,19 @@ class Link extends AppModel
             )
         ));
         return Set::classicExtract($links, '{n}.0.translation_id');
+    }
+
+    public function updateLanguage($sentenceId, $lang)
+    {
+        $this->updateAll(
+            array('sentence_lang' => "'$lang'"),
+            array('sentence_id' => $sentenceId)
+        );
+
+        $this->updateAll(
+            array('translation_lang' => "'$lang'"),
+            array('translation_id' => $sentenceId)
+        );
     }
 }
 ?>

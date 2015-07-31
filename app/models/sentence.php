@@ -54,7 +54,8 @@ class Sentence extends AppModel
 
     public $validate = array(
         'lang' => array(
-            'rule' => array()
+            'rule' => array(),
+            'allowEmpty' => true,
             // The rule will be defined in beforeValidate().
         ),
         'text' => array(
@@ -73,6 +74,8 @@ class Sentence extends AppModel
         'SentenceAnnotation',
         'Transcription',
     );
+
+    public $hasOne = 'ReindexFlag';
 
     public $belongsTo = array(
         'User',
@@ -116,8 +119,8 @@ class Sentence extends AppModel
     private function clean($text)
     {
         $text = trim($text);
-        // Strip out any initial byte-order mark that might be present.
-        $text = preg_replace("/^\xEF\xBB\xBF/", '', $text);
+        // Strip out any byte-order mark that might be present.
+        $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
         // Replace any series of spaces, newlines, tabs, or other 
         // ASCII whitespace characters with a single space. 
         $text = preg_replace('/\s+/', ' ', $text);
@@ -170,6 +173,23 @@ class Sentence extends AppModel
     {
         $this->logSentenceEdition($created);
         $this->updateTags($created);
+        if (isset($this->data['Sentence']['modified'])) {
+            $this->needsReindex($this->id);
+        }
+        $transIndexedAttr = array('lang_id', 'user_id', 'hasaudio');
+        $transNeedsReindex = array_intersect_key(
+            $this->data['Sentence'],
+            array_flip($transIndexedAttr)
+        );
+        if ($transNeedsReindex) {
+            $this->flagTranslationsToReindex($this->id);
+        }
+    }
+
+    private function flagTranslationsToReindex($id)
+    {
+        $transIds = $this->Link->findDirectAndIndirectTranslationsIds($id);
+        $this->needsReindex($transIds);
     }
 
     private function logSentenceEdition($created)
@@ -203,10 +223,25 @@ class Sentence extends AppModel
 
     private function updateTags($created)
     {
-        if (!$created) {
+        $edited = array_key_exists('text', $this->data[$this->alias]);
+        if (!$created && $edited) {
             $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
             $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
         }
+    }
+
+    public function needsReindex($ids)
+    {
+        $sentences = $this->find('all', array(
+            'conditions' => array('id' => $ids),
+            'fields' => array('id as sentence_id', 'lang_id'),
+            'recursive' => -1,
+        ));
+        foreach ($sentences as &$rec) {
+            unset($rec['Sentence']['script']); // TODO get this removed
+            $rec = $rec['Sentence'];
+        }
+        $this->ReindexFlag->saveAll($sentences);
     }
 
     /**
@@ -805,6 +840,7 @@ class Sentence extends AppModel
             $this->id = $sentenceId;
             $this->save($data);
 
+            $this->Link->updateLanguage($sentenceId, $newLang);
             $this->Contribution->updateLanguage($sentenceId, $newLang);
             $this->Language->incrementCountForLanguage($newLang);
             $this->Language->decrementCountForLanguage($prevLang);
@@ -917,14 +953,13 @@ class Sentence extends AppModel
         return $this->saveField('correctness', $correctness);
     }
 
-    public function getSentencesLang($sentencesIds, $langId = false) {
-        $field = $langId ? 'lang_id' : 'lang';
+    public function getSentencesLang($sentencesIds) {
         $result = $this->find('all', array(
-            'fields' => array($field, 'id'),
+            'fields' => array('lang', 'id'),
             'conditions' => array('Sentence.id' => $sentencesIds),
             'recursive' => -1
         ));
-        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
+        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.lang');
     }
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
@@ -940,6 +975,11 @@ class Sentence extends AppModel
             $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
         }
+        if (array_key_exists('hasaudio', $this->data['Sentence'])) {
+            $attributes[] = 'has_audio';
+            $sentenceHasAudio = $this->data['Sentence']['hasaudio'] != 'no';
+            $values[$sentenceId][] = $sentenceHasAudio;
+	}
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);
     }

@@ -36,6 +36,8 @@
  */
 class DateHelper extends AppHelper
 {
+    private $_months;
+
     /**
      * Display how long ago compared to now.
      *
@@ -46,20 +48,16 @@ class DateHelper extends AppHelper
      *
      * @return string
      */
-    public function ago($date, $isTimestamp = false)
+    public function ago($date)
     {
-        if (!$isTimestamp) {
-            $year = substr($date, 0, 4);
-            $month = substr($date, 5, 2);
-            $day = substr($date, 8, 2);
-            $hour = substr($date, 11, 2);
-            $min = substr($date, 14, 2);
+        $year = substr($date, 0, 4);
+        $month = substr($date, 5, 2);
+        $day = substr($date, 8, 2);
+        $hour = substr($date, 11, 2);
+        $min = substr($date, 14, 2);
 
-            $pureNumberDate = $year.$month.$day.','.$hour.$min;
-            $timestamp = strtotime($pureNumberDate);
-        } else {
-            $timestamp = $date;
-        }
+        $pureNumberDate = $year.$month.$day.','.$hour.$min;
+        $timestamp = strtotime($pureNumberDate);
         
         if (empty($date) || $date == '0000-00-00 00:00:00' || $timestamp == 0) {
             return __('date unknown', true);
@@ -70,7 +68,8 @@ class DateHelper extends AppHelper
         $hours = intval(($now-$timestamp) / 3600);
         $minutes = intval(($now-$timestamp) / 60);
         if ($days > 30) {
-            return date("M jS Y", $timestamp).', '.date("H:i", $timestamp);
+            // e.g., "2015-06-20 13:12"
+            return date("Y-m-d H:i", $timestamp);
         } elseif ($days > 0) {
             return format(__n('yesterday', '{n}&nbsp;days ago', $days, true), array('n' => $days));
         } elseif ($hours > 0) {
@@ -78,6 +77,41 @@ class DateHelper extends AppHelper
         } else {
             return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes, true), array('n' => $minutes));
         }
+    }
+
+
+    public function months()
+    {
+        if (!$this->_months) {
+            $this->_months = array(
+                '01' => __('January', true),
+                '02' => __('February', true),
+                '03' => __('March', true),
+                '04' => __('April', true),
+                '05' => __('May', true),
+                '06' => __('June', true),
+                '07' => __('July', true),
+                '08' => __('August', true),
+                '09' => __('September', true),
+                '10' => __('October', true),
+                '11' => __('November', true),
+                '12' => __('December', true),
+            );
+        }
+
+        return $this->_months;
+    }
+
+    /**
+     * @param string $mm Month number in 2 digit format (ex: '01' for January).
+     *
+     * @return string
+     */
+    public function monthName($mm)
+    {
+        $months = $this->months();
+
+        return $months[$mm];
     }
 }
 ?>

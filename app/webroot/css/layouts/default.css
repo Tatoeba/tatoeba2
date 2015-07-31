@@ -25,7 +25,7 @@
 /*
  * Generic rules
  */
-body, select, input, textarea {
+body, select, input, textarea, button {
     font-family: Trebuchet MS, sans-serif;
 }
 
@@ -44,18 +44,22 @@ textarea {
     border: 1px solid #ddd;
 }
 
+label, input[type="checkbox"] {
+    vertical-align: middle;
+}
+
 a img {
     border: none;
 }
 
 a {
-    color: #849684;
+    color: #66AA00;
     text-decoration: none;
 }
 
 a:hover {
     cursor: pointer;
-    color: #EAA315;
+    color: #DD8800;
 }
 
 h2 {
@@ -108,6 +112,7 @@ textarea {
 }
 
 svg {
+    display: block;
     width: inherit;
     height: inherit;
     fill: currentColor; /* Needs https://github.com/jonathantneal/svg4everybody
@@ -232,7 +237,7 @@ svg {
 #languageSelection {
     margin-left: 10px;
     margin-top: 2px;
-    height: 20px; /* need to specify height otherwise in Firefox and Opera it's too big */
+    height: 24px; /* need to specify height otherwise in Firefox and Opera it's too big */
 }
 
 /* 
@@ -278,17 +283,116 @@ svg {
 
 
 /*
- * Header, search bar
+ * search bar
  */
 
 .search_bar {
-    background-color: #94CE6C;
+    background-color: #66AA00;
     position: relative;
     color: #FFFFFF;
     margin-bottom: 20px;
-    -webkit-box-shadow: inset 0 -50px 30px -10px rgba(100,155,61,1);
-    -moz-box-shadow: inset 0 -50px 30px -10px rgba(100,155,61,1);
-    box-shadow: inset 0 -50px 30px -10px rgba(100,155,61,1);
+}
+
+.search_bar form {
+    margin-left: 70px;
+}
+
+.search_bar #into {
+    font-size: 1.3em;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search_bar fieldset {
+    border: none;
+    padding: 0;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    position: relative;
+}
+
+.search_bar label {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 2px;
+    color: #EEEEEE;
+}
+
+.search_bar label[for="SentenceQuery"] {
+    display: none;
+}
+
+.search_bar .select {
+    width: 110px;
+    margin-top: -17px;
+}
+
+#SentenceSearchForm {
+    text-align: center;
+    padding: 2px 20px 10px 10px;
+    position: relative;
+}
+
+#SentenceQuery {
+    width: 400px;
+    font-size: 20px;
+    padding: 2px 5px;
+    padding-right: 30px;
+}
+
+.search_bar select {
+    width: 120px;
+    font-size: 14px;
+    height: 30px;
+}
+
+#clearSearch {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #CCCCCC;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+#SentenceQuery,
+.search_bar select,
+.search_bar .search-submit-button {
+    background-color: #FFFFFF;
+    color: #111111;
+    border: 1px solid #EEEEEE;
+    border-radius: 2px;
+}
+
+.search_bar .search-submit-button {
+    color: #aaaaaa;
+    padding: 3px 20px;
+    cursor: pointer;
+    background: url(/img/search.svg) center no-repeat #f1f1f1;
+    width: 70px;
+    height: 30px;
+}
+
+.search-bar-extra {
+    text-align: right;
+    right: 400px;
+    top: 3px;
+    position: relative;
+}
+.search-bar-extra a {
+    color: #FFFFFF;
+    font-size: 13px;
+    margin: 10px;
+}
+
+.search-bar-extra a:hover {
+    color: #111111;
+}
+
+.search-bar-extra a:before {
+    content: '▸ ';
 }
 
 /*
@@ -333,50 +437,6 @@ svg {
     padding: 3px 4px;
 }
 
-.search_bar form {
-    margin-left: 100px;
-    margin-right: 100px;
-    padding: 5px;
-}
-
-.search_bar #into {
-    font-size: 1.3em;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.search_bar fieldset {
-    border: none;
-    padding: 0;
-    display: inline;
-    margin: 2px 5px 2px 2px;
-    text-align: left;
-}
-
-.search_bar label {
-    font-size: 0.8em;
-    display: block;
-}
-
-.search_bar .select {
-    width: 110px;
-}
-
-.search_bar .input {
-    width: 300px;
-}
-
-#SentenceSearchForm {
-    text-align: center;
-}
-
-#SentenceQuery {
-    width: 300px;
-}
-
-.search_bar select {
-    width: 110px;
-}
 
 #logo {
     position: absolute;
@@ -387,6 +447,14 @@ svg {
     background: #fff;
     width: 64px;
     height: 64px;
+}
+
+.tatoeba-name {
+    color: #EEEEEE;
+    position: absolute;
+    top: 2px;
+    left: 115px;
+    font-size: 18px;
 }
 
 #tatoeba {
@@ -598,19 +666,20 @@ svg {
     content: "\00BB \0020";
 }
 
-.contactLink {
-    margin-top: 20px;
-    background: url('../../img/pm.svg') no-repeat;
+.profile-actions {
+    margin: 20px 0;
 }
 
-.contactLink:hover {
-    background: url('../../img/pm-hover.svg') no-repeat;
-}
-
-.contactLink a{
+.profile-action-item {
     display: block;
-    padding-left: 30px;
-    line-height: 24px;
+    margin: 5px 0;
+}
+
+.profile-action-item svg,
+.profile-action-item span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 3px;
 }
 
 .loading-icon {

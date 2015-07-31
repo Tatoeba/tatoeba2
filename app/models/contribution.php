@@ -114,7 +114,7 @@ class Contribution extends AppModel
         $limit = Sanitize::paranoid($limit);
         $lang = Sanitize::paranoid($lang);
 
-        if (strlen($lang) != 3 || !is_numeric($limit)) {
+        if (!is_numeric($limit)) {
             return array();
         }
         
@@ -185,7 +185,7 @@ class Contribution extends AppModel
             array(
                 'fields' => array(
                     'COUNT(*) as total',
-                    'date_format(datetime,\'%b %D %Y\') as day',
+                    'date_format(datetime,\'%Y-%m-%d\') as day',
                 ),
                 'conditions' => array(
                     'Contribution.datetime > \''.$startDate.'\'',

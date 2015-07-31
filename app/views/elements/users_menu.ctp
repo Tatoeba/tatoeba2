@@ -134,23 +134,49 @@
     ?>
     </li>
     </ul>
-    
+
+    <div class="profile-actions">
     <?php
+    $translateIcon = $images->svgIcon(
+        'translate', array('width' => 20, 'height' => 20)
+    );
+    $translateText = $html->tag('span', format(
+        __("Translate {user}'s sentences", true), array('user' => $username)
+    ));
+    echo $html->link(
+        $translateIcon . $translateText,
+        array(
+            'controller' => 'activities',
+            'action' => 'translate_sentences_of',
+            $username
+        ),
+        array(
+            'escape' => false,
+            'class' => 'profile-action-item'
+        )
+    );
+
+
     if ($username != CurrentUser::get('username')) {
-        ?>
-        <div class="contactLink">
-        <?php
+        $contactIcon = $images->svgIcon(
+            'pm', array('width' => 20, 'height' => 20)
+        );
+        $contactText = $html->tag('span', format(
+            __('Contact {user}', true), array('user' => $username)
+        ));
         echo $html->link(
-            format(__('Contact {user}', true), array('user' => $username)),
+            $contactIcon . $contactText,
             array(
                 'controller' => 'private_messages',
                 'action' => 'write',
                 $username
+            ),
+            array(
+                'escape' => false,
+                'class' => 'profile-action-item'
             )
         );
-        ?>
-        </div>
-    <?php
     }
     ?>
+    </div>
 </div>

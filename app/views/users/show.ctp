@@ -87,43 +87,6 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             }
         echo '</div>';
     }
-    
-    /* Latest favorites from the user */
-    if (count($user['Favorited']) > 0) {
-        echo '<div class="module">';
-            echo '<h2>';
-            __('Favorite sentences');
-
-            echo $html->link(
-                __('view all', true),
-                array(
-                    "controller" => "favorites",
-                    "action" => "of_user",
-                    $user['User']['username']
-                ),
-                array(
-                    'class' => 'titleAnnexeLink'
-                )
-            );
-            echo '</h2>';
-
-            
-            $type = 'mainSentence';
-            $parentId = null;
-            $withAudio = false;
-            foreach ($user['Favorited'] as $sentence) {
-                $sentences->displayGenericSentence(
-                    $sentence,
-                    $sentence['Transcription'],
-                    $type,
-                    $parentId,
-                    $withAudio
-                );
-            }
-            
-
-        echo '</div>';
-    }
 
     /* Latest comments from the user */
     if (count($user['SentenceComments']) > 0) {

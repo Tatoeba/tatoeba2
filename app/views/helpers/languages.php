@@ -39,7 +39,7 @@ App::import('Vendor', 'LanguagesLib');
  */
 class LanguagesHelper extends AppHelper
 {
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'Session');
 
     /* Memoization of languages code and their localized names */
     private $__languages_alone;
@@ -70,7 +70,41 @@ class LanguagesHelper extends AppHelper
         }
     }
 
-    public function onlyLanguagesArray()
+    public function preferredLanguageFilter() {
+        if (CurrentUser::isMember()) {
+            return CurrentUser::getProfileLanguages();
+        } else {
+            return $this->Session->read('last_used_lang');
+        }
+    }
+
+    private function separatePreferredLanguages($languages)
+    {
+        $filter = $this->preferredLanguageFilter();
+        if (!$filter) {
+            return $languages;
+        }
+        $preferred = array();
+        foreach ($filter as $prefLang) {
+            if (isset($languages[$prefLang])) {
+                $preferred[$prefLang] = $languages[$prefLang];
+                unset($languages[$prefLang]);
+            }
+        }
+        $this->localizedAsort($preferred);
+
+        if (CurrentUser::isMember()) {
+            $filterName = __('Profile languages', true);
+        } else {
+            $filterName = __('Last used languages', true);
+        }
+        return array(
+            $filterName                 => $preferred,
+            __('Other languages', true) => $languages,
+        );
+    }
+
+    public function onlyLanguagesArray($split = true)
     {
         if (!$this->__languages_alone) {
             $this->__languages_alone = array_map(
@@ -79,7 +113,12 @@ class LanguagesHelper extends AppHelper
             );
             $this->localizedAsort($this->__languages_alone);
         }
-        return $this->__languages_alone;
+
+        $languages = $this->__languages_alone;
+        if ($split) {
+            $languages = $this->separatePreferredLanguages($languages);
+        }
+        return $languages;
     }
 
 
@@ -109,24 +148,20 @@ class LanguagesHelper extends AppHelper
      *
      * @param bool   $withAutoDetection Set to true if "Auto detect" should be one of the options.
      * @param bool   $withOther Set to true if "Other language" should be one of the options.
-     * @param bool   $withAny Set to true if "Any" should be one of the options.
      *
      * @return void
      */
 
-    public function profileLanguagesArray($withAutoDetection, $withOther, $withAny)
+    public function profileLanguagesArray($withAutoDetection, $withOther)
     {
         $languages = array_intersect_key(
-            $this->onlyLanguagesArray(),
+            $this->onlyLanguagesArray(false),
             array_flip(CurrentUser::getProfileLanguages())
         );
 
         $numLanguages = count(CurrentUser::getProfileLanguages());
         if (count($languages) > 1 && $withAutoDetection) {
             array_unshift($languages, array('auto' => __('Auto detect', true)));
-        }
-        if ($withAny) {
-            array_unshift($languages, array('und' => __('Any', true)));
         }
         if ($withOther) {
             array_unshift($languages, array('' => __('other language', true)));
@@ -181,7 +216,7 @@ class LanguagesHelper extends AppHelper
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
         // TODO xxx to be remplace by the code for 'unknown'
-        array_unshift($languages, array('unknown' => __('unknown language', true)));
+        array_push($languages, array('unknown' => __('unknown language', true)));
 
         return $languages;
     }
@@ -293,7 +328,7 @@ class LanguagesHelper extends AppHelper
     public function getSearchableLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        array_unshift($languages, array('und' => __('Any', true)));
+        array_unshift($languages, array('und' => __p('language', 'Any', true)));
 
         return $languages;
     }

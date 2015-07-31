@@ -39,6 +39,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::import('Model', 'User');
+
 class CurrentUser extends AppModel
 {
     public $useTable = false;
@@ -97,6 +100,14 @@ class CurrentUser extends AppModel
         return $value[0];
     }
 
+    public static function getSetting($setting)
+    {
+        if (CurrentUser::isMember()) {
+            return CurrentUser::get("settings.$setting");
+        } else {
+            return User::$defaultSettings[$setting];
+        }
+    }
 
     /**
      * Indicates if current user is admin or not.

@@ -62,6 +62,19 @@ if (isset($this->params['lang'])) {
         <li class="item">
             <?php
             echo $html->link(
+                __('My profile', true),
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $html->link(
                 __('My sentences', true),
                 array(
                     'controller' => 'sentences',
@@ -145,18 +158,6 @@ if (isset($this->params['lang'])) {
                     'controller' => 'contributions',
                     'action' => 'of_user',
                     $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="settings">
-            <?php
-            echo $html->link(
-                __('Edit profile', true),
-                array(
-                    'controller' => 'user',
-                    'action' => 'edit_profile',
                 )
             );
             ?>

@@ -34,5 +34,14 @@ class TagFixture extends CakeTestFixture {
 			'created' => '2014-02-13 10:46:09',
 			'nbrOfSentences' => '1',
 		),
+		array(
+			'id' => '3',
+			'internal_name' => 'regional',
+			'name' => 'regional',
+			'description' => '',
+			'user_id' => '1',
+			'created' => '2014-02-13 10:46:09',
+			'nbrOfSentences' => '1',
+		),
 	);
 }

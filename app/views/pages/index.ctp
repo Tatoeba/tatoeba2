@@ -104,17 +104,6 @@ if (!$isLogged) {
                 'class' => 'titleAnnexeLink'
             )
         );
-
-        echo $html->link(
-            __('show activity timeline', true),
-            array(
-                "controller"=>"contributions",
-                "action"=>"activity_timeline"
-            ),
-            array(
-                'class' => 'titleAnnexeLink'
-            )
-        );
         ?>
         </h2>
         <?php echo $this->element('latest_contributions'); ?>

@@ -156,7 +156,11 @@ $menuElements = array(
             __('Help', true) => array(
                 "controller" => "pages",
                 "action" => "help"
-            ),                
+            ),
+            __('Show activity timeline', true) => array(
+                "controller" => "contributions",
+                "action" => "activity_timeline"
+            ),
             __('Downloads', true) => array(
                 "controller" => "pages",
                 "action" => "downloads"

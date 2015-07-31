@@ -94,16 +94,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
-            <?php echo $form->checkbox('settings.restrict_search_langs'); ?>
-            <label for="UserSettingsRestrictSearchLangs">
-                <?php __(
-                    'Restrict languages listed in the search bar '.
-                    'to the ones in your profile.'
-                ); ?>
-            </label>
-        </div>
-        
-        <div>
             <?php echo $form->checkbox('settings.show_all_transcriptions'); ?>
             <label for="UserSettingsShowAllTranscriptions">
             <?php
@@ -137,6 +127,13 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         ?>
         </div>
         
+        <div>
+            <?php echo $form->input('settings.sentences_per_page', array(
+                 'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
+                 'label' => __('Number of sentences per page', true),
+            )); ?>
+        </div>
+
         <?php echo $form->end(__('Save', true)); ?>
     </div>
     

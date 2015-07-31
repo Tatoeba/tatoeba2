@@ -66,6 +66,10 @@ $(document).ready(function() {
     $('#SentenceFrom').val(langTo);
     $('#SentenceTo').val(langFrom);
     });
+
+    $('#clearSearch').click(function() {
+        $('#SentenceQuery').val('').focus();
+    });
 });
 
 /**

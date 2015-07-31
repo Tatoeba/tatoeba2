@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,16 +25,16 @@
  * @link     http://tatoeba.org
  */
 
-if (isset($saved)) {
-    echo '<a>'.$html->image(
-        'favorite-add.svg',
-        array(
-            'alt'=>__('Add to favorites', true), 
-            'title'=>__('Add to favorites', true),
-            'height' => 16
-        )
-    ).'</a>';
-} else {
-    echo 'error';
-}
-?> 
+/**
+ * This view displays the HTML inside of a sentences group.
+ *
+ * It is used by the adopt() and let_go() actions in the controller.
+ *
+ * @category Sentences
+ * @package  Views
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+
+$this->Menu->adoptButton($sentenceId, $ownerName);

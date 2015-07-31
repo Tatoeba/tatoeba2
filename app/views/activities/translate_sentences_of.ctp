@@ -27,12 +27,7 @@
 
 $username = Sanitize::paranoid($username, array("_"));
 
-if ($results == null) {
-    $title = format(
-        __("This user doesn't exist: {username}", true),
-        array('username' => $username)
-    );
-} else if (!empty($lang)) {
+if (!empty($lang)) {
     $title = format(
         __('Translate {language} sentences that belong to {user}', true),
         array('language' => $languages->codeToNameToFormat($lang),

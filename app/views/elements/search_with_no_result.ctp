@@ -29,60 +29,7 @@ $query = Sanitize::html($query);
 ?>
 
 <div class="module">
-    <h2>
     <?php
-        if (!empty($query)) {
-            echo format(__('Add a sentence containing {keywords}', true), array('keywords' => $query));
-        } elseif($from != 'und' && $to != 'und') {
-            echo format(__('Translate a {language} sentence into {translationLanguage}', true),
-                        array('language' => $languages->codeToNameToFormat($from),
-                              'translationLanguage' => $languages->codeToNameToFormat($to)));
-        } elseif($from != 'und') {
-            echo format(__('Translate a {language} sentence', true),
-                        array('language' => $languages->codeToNameToFormat($from)));
-        } elseif($to != 'und') {
-            echo format(__('Translate a sentence into {language}', true),
-                        array('language' => $languages->codeToNameToFormat($to)));
-        } else {
-            echo format(__('Add a new sentence'));
-        }
-    ?>
-    </h2>
-
-    <p>
-    <?php
-    __(
-        'There is no result for this search (yet) but you '.
-        'can help us by feeding the corpus with new vocabulary!'
-    );
-    ?>
-    </p>
-
-    <?php
-    if ($session->read('Auth.User.id')) {
-        ?>
-        <p>
-        <?php
-        echo format(
-            __(
-                'Feel free to <a href="{}">submit a sentence</a> '.
-                'with the words you were searching.', true
-            ),
-            $html->url(array('controller' => 'sentences', 'action' => 'add'))
-        );
-        ?>
-        </p>
-        <?php
-    } else {
-
-        __('If you are interested, please register.');
-        
-        echo $html->link(
-            'register',
-            array("controller" => "users", "action" => "register"),
-            array("class"=>"registerLink")
-        );
-        
-    }
+    echo $html->tag('h2', __('No results found', true));
     ?>
 </div>

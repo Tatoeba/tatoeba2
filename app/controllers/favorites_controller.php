@@ -40,7 +40,7 @@ class FavoritesController extends AppController
 
     public $name = 'Favorites' ;
     public $paginate = array('limit' => 50);
-    public $helpers = array('Navigation', 'Html');
+    public $helpers = array('Navigation', 'Html', 'Menu');
     public $uses = array('Favorite', 'User');
 
     /**
@@ -89,8 +89,10 @@ class FavoritesController extends AppController
 
         if ($userId != null) {
             $isSaved = $this->Favorite->addFavorite($sentenceId, $userId);
-            $this->set('saved', $isSaved);
+            $isLogged = true;
         }
+
+        $this->_renderFavoriteButton($sentenceId, $isSaved, $isLogged);
     }
 
     /**
@@ -101,20 +103,31 @@ class FavoritesController extends AppController
      * @return void
      */
 
-    public function remove_favorite ($sentenceId)
+    public function remove_favorite($sentenceId)
     {
         $sentenceId = Sanitize::paranoid($sentenceId);
 
         $userId =$this->Auth->user('id');
 
         if ($userId != null) {
-
-            if ($this->Favorite->removeFavorite($sentenceId, $userId)) {
-                $this->set('saved', true);
-            }
+            $isSaved = $this->Favorite->removeFavorite($sentenceId, $userId);
+            $isLogged = true;
         }
+
+        $this->_renderFavoriteButton($sentenceId, !$isSaved, $isLogged);
     }
 
+
+    private function _renderFavoriteButton($sentenceId, $isFavorited, $isLogged)
+    {
+        $this->set('sentenceId', $sentenceId);
+        $this->set('isFavorited', $isFavorited);
+        $this->set('isLogged', $isLogged);
+
+        $this->layout = null;
+        $this->render('add_remove_favorite');
+
+    }
 
 }
 ?>

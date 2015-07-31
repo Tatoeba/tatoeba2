@@ -1,5 +1,5 @@
 server {
-	server_name www.tatoeba.org;
+	server_name *.tatoeba.org;
 	return 301 $scheme://tatoeba.org$request_uri;
 }
 
@@ -9,7 +9,28 @@ server {
 }
 
 server {
+        listen  80;
+        listen  443 ssl;
         server_name tatoeba.fr;
+
+        ssl_certificate     path/to/certificate;
+        ssl_certificate_key path/to/key;
+        ssl_session_cache   shared:SSL:10m;
+        ssl_session_timeout 10m;
+
+        return 301 $scheme://tatoeba.org$request_uri;
+}
+
+server {
+        listen  80;
+        listen  443 ssl;
+        server_name m.tatoeba.org;
+
+        ssl_certificate     path/to/certificate;
+        ssl_certificate_key path/to/key;
+        ssl_session_cache   shared:SSL:10m;
+        ssl_session_timeout 10m;
+
         return 301 $scheme://tatoeba.org$request_uri;
 }
 

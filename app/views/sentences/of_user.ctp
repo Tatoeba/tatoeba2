@@ -60,23 +60,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     );
     
     $commonModules->createFilterByLangMod(2);
-    ?> 
-    
-    <div class="module">
-    <h2><?php __('Contribute'); ?></h2>
-    <p>
-    <?php
-    echo $html->link(
-        __('Translate these sentences', true),
-        array(
-            'controller' => 'activities',
-            'action' => 'translate_sentences_of',
-            $userName
-        )
-    );
     ?>
-    </p>
-    </div>
 </div>
     
     

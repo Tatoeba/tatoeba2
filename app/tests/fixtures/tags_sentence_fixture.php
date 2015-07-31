@@ -26,5 +26,11 @@ class TagsSentenceFixture extends CakeTestFixture {
 			'sentence_id' => '2',
 			'added_time' => '2014-02-13 10:46:09',
 		),
+		array(
+			'tag_id' => '3',
+			'user_id' => '1',
+			'sentence_id' => '8',
+			'added_time' => '2014-02-13 10:46:09',
+		),
 	);
 }

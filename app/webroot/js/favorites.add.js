@@ -19,84 +19,23 @@
 
 $(document).ready(function(){
 
-    var rootUrl = get_tatoeba_root_url();
-    
-    // there's only one  "click" function for favorite/unfavorite
-    // ( and a test inside to make the difference instead of two 
-    // "click" functions because of the way JQuery works so as it
-    // is done only one time at the beginning and as we change the
-    // class of the block after the first loading jquery can't add
-    // to it  "onclick"  so to get trough this we need to make a
-    // single function and a test for each class
-
-    $(".favorite").click(function(){
+    $(".favorite").live('click', function(){
         var favoriteId = $(this).attr("data-sentence-id");
         var favoriteOption = $(this);
-        
-        /*******************************
-        / the sentence can be favorite 
-        ********************************/
-
-        if (favoriteOption.hasClass("add")){
-            
-            $("#_"+favoriteId+"_in_process").show();
-
-            $.post(rootUrl + "/favorites/add_favorite/"+ favoriteId
-                , {}
-                ,function(data){
-                    // if add retrieve no data , then for a reason or
-                    // an other, the sentence couldn't have been added 
-                    // so we change nothing
-                    if ( null != data && "" != data ){
-                        // this second test is here because with debug
-                        // enable, the function always retrieve data
-                        // so we test if the retrieving data is an <a> </a> 
-                        if ( data[1] == "a" ){
-                            
-                            favoriteOption.html(data);
-                            favoriteOption.removeClass("add").addClass("remove");
-                            
-                        }
-                    }
-        
-                    $("#_"+favoriteId+"_in_process").hide();
-                    
-                }
-            );
-            
-
+        var action = 'remove_favorite';
+        if (favoriteOption.hasClass("add")) {
+            action = 'add_favorite';
         }
-    
-        /*******************************
-        / the sentence can be unfavorite 
-        ********************************/
 
-        else if (favoriteOption.hasClass("remove")){
-            
-            $("#_"+favoriteId+"_in_process").show();
-            
-            $.post(rootUrl + "/favorites/remove_favorite/"+ favoriteId
-                , {}
-                ,function(data){
-                    // if add retrieve no data , then for a reason or an
-                    // other, the sentence couldn't have been added                    
-                    // so we change nothing
-                    if ( null != data && "" != data ){
-                        // this second test is here because with debug
-                        // enable, the function always retrieve data
-                        // so we test if the retrieving data is an <a> </a> 
-                        if ( data[1] == "a" ){
+        var requestUrl = "/favorites/" + action + "/" + favoriteId;
 
-                            favoriteOption.html(data);
-                            favoriteOption.removeClass("remove").addClass("add");
+        favoriteOption.html(
+            "<img width='16' height='16' src='/img/loading.svg' alt='loading'>"
+        );
 
-                        }
-                    }
-                    $("#_"+favoriteId+"_in_process").hide();
-                }
-            );
-            
-
-        }
+        $.post(requestUrl, {}, function(data) {
+            favoriteOption.replaceWith(data);
+        });
     });
+
 });

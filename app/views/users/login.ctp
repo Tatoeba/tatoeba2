@@ -33,8 +33,11 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */ 
- 
+ */
+
+$title = __('Log in', true);
+$this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
+
 if  ($session->check('Message.auth')) $session->flash('auth');
 
 $formTarget = array('action' => 'check_login');

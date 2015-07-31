@@ -132,6 +132,14 @@ UPDATE `languages` l,
 SET sentences = s.count
 WHERE l.code = s.lang;
 
+UPDATE `languages` l,
+  (SELECT count(*) as count
+   FROM sentences
+   WHERE lang IS NULL
+  ) as s
+SET sentences = s.count
+WHERE l.code IS NULL;
+
 UPDATE `languages` SET audio = 0;
 UPDATE `languages` l,
   (SELECT count(*) as count, lang

@@ -79,17 +79,17 @@ class CommonSentenceComponent extends Object
                 $userName
             );
         }
-        if (empty($lang)) {
-            $lang = null;
-        }
 
         $sentenceData = array(
             'id' => $sentenceId,
-            'lang' => $lang,
             'user_id' => $userId,
             'text' => $text,
             'correctness' => $correctness,
         );
+
+        if (!empty($lang)) {
+            $sentenceData['lang'] = $lang;
+        }
 
         $Sentence = ClassRegistry::init('Sentence');
 

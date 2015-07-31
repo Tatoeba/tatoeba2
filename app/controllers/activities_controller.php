@@ -80,7 +80,7 @@ class ActivitiesController extends AppController
 
         $this->loadModel('Sentence');
         $this->paginate = array(
-            'limit' => 10,
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
             'contain' => array('Transcription' => array(
                 'User' => array('fields' => array('username')),
@@ -163,8 +163,17 @@ class ActivitiesController extends AppController
         $userId = $this->User->getIdFromUsername($username);
 
         if (empty($userId)) {
-            $this->set('results', null);
-            return;
+            $flashMessage = format(
+                __("There's no user called {username}", true),
+                array('username' => $username)
+            );
+            $this->Session->setFlash($flashMessage);
+            $this->redirect(
+                array(
+                    'controller' => 'users',
+                    'action' => 'all'
+                )
+            );
         }
 
         $this->loadModel('Sentence');
@@ -183,7 +192,8 @@ class ActivitiesController extends AppController
                 ),
                 'conditions' => $conditions,
                 'contain' => array(),
-                'limit' => 10,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
+                'order' => 'created DESC'
             )
         );
 

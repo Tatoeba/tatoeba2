@@ -4,19 +4,16 @@
 -- 3) Update the count in the 'languages' table.
 --
 -- Example:
--- CALL add_new_language('gla', 412, 'Scottish Gaelic');
+-- CALL add_new_language('gla', 412);
 --
--- If there is only a list:
--- CALL add_new_language('gla', 412, null);
---
--- If there are only tags:
--- CALL add_new_language('gla', 0, 'Scottish Gaelic');
+-- If there is no list:
+-- CALL add_new_language('gla', 0);
 
-DELIMITER | 
+DELIMITER |
 
 DROP PROCEDURE IF EXISTS add_new_language |
 
-CREATE PROCEDURE add_new_language(IN lang_iso_code CHAR(4), IN list_id_for_lang INT, IN tag_name_for_lang CHAR(50))
+CREATE PROCEDURE add_new_language(IN lang_iso_code CHAR(4), IN list_id_for_lang INT)
 ThisProc: BEGIN
 
 SELECT COUNT(*) INTO @code_found FROM languages WHERE code = lang_iso_code;
@@ -25,29 +22,22 @@ IF NOT (@code_found = 0) THEN
     -- We know this will fail, but we want the exception to occur so the caller will catch it.
     INSERT INTO languages (code) VALUES (lang_iso_code);
 END IF;
- 
-SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_lists 
-    WHERE sentences_list_id = list_id_for_lang AND sentences.id = sentence_id; 
-SELECT COUNT(*) INTO @sentences_in_tags FROM sentences, tags_sentences 
-    WHERE tag_id = (SELECT id FROM tags WHERE name = tag_name_for_lang) 
-    AND sentences.id = sentence_id;
-IF (@sentences_in_list = 0 AND @sentences_in_tags = 0) THEN
-    select CONCAT('There are no sentences in list ', list_id_for_lang, 
-              ', and no sentences with tag ', tag_name_for_lang, '.');
+
+SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_lists
+    WHERE sentences_list_id = list_id_for_lang AND sentences.id = sentence_id;
+
+IF (@sentences_in_list = 0) THEN
+    select CONCAT('There are no sentences in list ', list_id_for_lang);
     LEAVE ThisProc;
 END IF;
 
 INSERT INTO languages (code) VALUES (lang_iso_code);
-UPDATE sentences, sentences_sentences_lists 
+UPDATE sentences, sentences_sentences_lists
     SET lang = lang_iso_code, lang_id = LAST_INSERT_ID()
-    WHERE sentences_list_id = list_id_for_lang 
-    AND sentences.id = sentence_id;
-UPDATE sentences, tags_sentences 
-    SET lang = lang_iso_code, lang_id = LAST_INSERT_ID() 
-    WHERE tag_id = (SELECT id FROM tags WHERE name = tag_name_for_lang) 
+    WHERE sentences_list_id = list_id_for_lang
     AND sentences.id = sentence_id;
 UPDATE languages
-    SET numberOfSentences = (SELECT count(*) FROM sentences WHERE lang = lang_iso_code) 
+    SET sentences = (SELECT count(*) FROM sentences WHERE lang = lang_iso_code)
     WHERE code = lang_iso_code;
 
 END |

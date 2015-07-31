@@ -23,3 +23,93 @@
 .sentences_set {
     margin: 40px 0;
 }
+
+/*
+ * Search warning
+ */
+#searchWarning {
+    margin: 25px;
+    padding: 10px 20px;
+    color: #E05900;
+    background: #EDE0B8;
+}
+#searchWarning ul {
+    margin: 0.3em 0 0;
+}
+
+/*
+ * Advanced search form
+ */
+#annexe_content {
+    float: right;
+    width: auto;
+    padding: 10px 0 0;
+    margin: 0 5px;
+}
+
+#annexe_content h2 {
+    width: 280px;
+}
+
+legend {
+    font-size: 15px;
+}
+
+#AdvancedSearchSearchForm {
+    text-align: right;
+}
+
+#AdvancedSearchSearchForm label:first-child {
+    padding-right: 5px;
+    text-align: right;
+    width: 110px;
+    display: inline-block;
+}
+
+#AdvancedSearchSearchForm input {
+    border: 1px solid #DDDDDD;
+}
+
+#AdvancedSearchSearchForm input + label {
+    vertical-align: middle;
+    display: inline-block;
+    width: 50%;
+}
+
+#AdvancedSearchSearchForm input:first-child {
+    margin-left: 100px;
+}
+#AdvancedSearchSearchForm div.note {
+    margin-left: 118px;
+}
+
+#AdvancedSearchSearchForm .input {
+    margin: 10px 0;
+}
+
+.note {
+    font-size: 85%;
+    margin-left: 5px;
+}
+
+#AdvancedSearchSearchForm fieldset {
+    text-align: left;
+    border: 1px solid #DDD;
+    vertical-align: top;
+    width: 260px;
+    margin-bottom: 10px;
+}
+
+#AdvancedSearchFrom,
+#AdvancedSearchTo,
+#AdvancedSearchTransTo,
+#AdvancedSearchSort,
+#AdvancedSearchSearchForm input[type="text"] {
+    width: 140px;
+    margin-bottom: 3px;
+}
+
+#AdvancedSearchSearchForm .submit {
+    margin: 0 5px;
+}
+

@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,27 +25,5 @@
  * @link     http://tatoeba.org
  */
 
-/**
- * This view displays the HTML inside of a sentences group. 
- *
- * It is used by the adopt() and let_go() actions in the controller. There are no 
- * action called sentences_group() in the controller.
- *
- * @category Sentences
- * @package  Views
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */  
-
-$sentences->javascriptForAJAXSentencesGroup();
-
-// display sentence and translations
-$sentences->displaySentencesGroup(
-    $sentence['Sentence'],
-    $sentence['Transcription'],
-    $translations,
-    $sentence['User'],
-    $indirectTranslations
-);
+$menu->favoriteButton($sentenceId, $isFavorited, $isLogged);
 ?> 

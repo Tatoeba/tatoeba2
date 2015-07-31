@@ -25,10 +25,10 @@
  * @link     http://tatoeba.org
  */
 
-$query = Sanitize::html($query);
-
-if (!empty($query)) {
-    $title = format(__('Sentences with: {keywords}', true), array('keywords' => $query));
+if ($is_advanced_search) {
+    $title = __p('title', 'Advanced search', true);
+} else if (!empty($query)) {
+    $title = format(__('Sentences with: {keywords}', true), array('keywords' => Sanitize::html($query)));
 } else {
     if ($from != 'und' && $to != 'und') {
         $title = format(__('Sentences in {language} translated into {translationLanguage}', true),
@@ -45,15 +45,26 @@ if (!empty($query)) {
     }
 }
 $this->set('title_for_layout', $pages->formatTitle($title));
+
+if ($ignored) {
+    $list = $this->Html->nestedList($ignored);
+    $warn = format(
+        __("Warning: the following criteria have been ignored:{list}", true),
+        compact('list')
+    );
+    echo $this->Html->tag('div', $warn, array(
+        'id' => 'searchWarning',
+        'class' => 'message',
+    ));
+}
 ?>
 
 <div id="annexe_content">
-    <?php
-    echo $this->element('search_features');
-    ?>
+    <div class="module advanced-search">
+    <h2><?php echo __('More search criteria'); ?></h2>
+    <?php echo $this->element('advanced_search_form'); ?>
+    </div>
 </div>
-
-
 <div id="main_content">
 <?php
 if (!empty($results)) {
@@ -61,10 +72,10 @@ if (!empty($results)) {
     ?>
     <div class="module">
         <?php 
-        $keywords = $this->Languages->tagWithLang(
-            'span', '', $query, array('escape' => false)
-        );
-        if (!empty($query)) {
+        if (!$is_advanced_search && !empty($query)) {
+            $keywords = $this->Languages->tagWithLang(
+                'span', '', $query
+            );
             $title = format(
                 /* @translators: title on the top of a search result page */
                 __('Search: {keywords}', true),

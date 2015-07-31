@@ -141,7 +141,7 @@ class TagsController extends AppController
      * @param String $search Filters the tags list with only those that contain the
      *                       search string.
      */
-    public function view_all($search = null)
+    public function view_all($filter = null)
     {
         $this->helpers[] = 'Tags';
 
@@ -151,15 +151,15 @@ class TagsController extends AppController
             'contain' => array(),
             'order' => 'nbrOfSentences DESC'
         );
-        if (!empty($search)) {
+        if (!empty($filter)) {
             $this->paginate['conditions'] = array(
-                'name LIKE' => "%$search%"
+                'name LIKE' => "%$filter%"
             );
         }
         
         $allTags = $this->paginate('Tag');
         $this->set("allTags", $allTags);
-        $this->set("search", $search);
+        $this->set("filter", $filter);
     }
 
     /**
@@ -240,7 +240,11 @@ class TagsController extends AppController
         $this->set('tagId', $tagId);
 
         if ($tagExists) {
-            $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
+            $this->paginate = $this->Tag->paramsForPaginate(
+                $tagId,
+                CurrentUser::getSetting('sentences_per_page'),
+                $lang
+            );
 
             $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
 

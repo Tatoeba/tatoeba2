@@ -5,6 +5,12 @@
 
 # See http://en.wiki.tatoeba.org/articles/show/new-language-request# for more details.
 
+# NOTE: THIS SCRIPT WAS BROKEN BY THE FOLLOWING COMMIT:
+
+# https://github.com/Tatoeba/tatoeba2/commit/4d58dd5dca4645bfe07cf5ab9495150569e928dd#diff-3f96315be15bfac81691b06c5a0aabd4
+
+# IT HAS NOT BEEN FIXED YET.
+
 USAGE=$'Usage:\n./add_lang code EnglishName list_id local|dev|prod MySQLUser MySQLPasswd MySQLDB update|run|update_and_run\n\n'
 USAGE=$USAGE$'Example: Add Nepali to your development machine. Update the files and then run them.\n'
 USAGE=$USAGE$'First, search for \"Nepali\" on this page:\n'
@@ -153,7 +159,7 @@ echo "(1) If the language has a two-letter code (not all languages do), "
 echo "    update the array in the function iso639_3_To_Iso639_1()"
 echo "    in app/vendors/languages_lib.php."
 echo "(2) If the new language is written right-to-left, "
-echo "    update the array in the funciton getLanguageDirection()"
+echo "    update the array in the function getLanguageDirection()"
 echo "    in app/vendors/languages_lib.php."
 echo "(3) If the new language is stemmed, or is written with CJK characters, "
 echo "    or contains characters not previously used in Tatoeba, "

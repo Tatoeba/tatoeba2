@@ -138,16 +138,15 @@ class SentenceFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => '10',
-			'lang' => 'jpn',
-			'text' => 'ちょっと待って。',
+			'lang' => 'fra',
+			'text' => 'La cause fondamentale du problème est que dans le monde moderne, les imbéciles sont emplis d\'assurance, alors que les gens intelligents sont emplis de doute.',
 			'correctness' => NULL,
 			'user_id' => '7',
-			'created' => '2014-04-15 21:13:23',
-			'modified' => '2014-04-15 21:13:36',
+			'created' => '2015-06-15 00:34:28',
+			'modified' => '2015-06-15 00:34:28',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => NULL,
-			'script' => null
+			'lang_id' => '4'
 		),
 		array(
 			'id' => '11',

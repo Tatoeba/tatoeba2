@@ -50,30 +50,28 @@ class MenuHelper extends AppHelper
      * Display button to add a translation.
      *
      * @param int    $sentenceId Id of the original sentence.
-     * @param string $ownerName  Username of the owner of the main sentence.
      * @param bool   $isLogged   True if user is logged in, false otherwise.
      * @param bool   $enabled    True if sentence can be translated .Only sentences
      *                           that are not "unapproved" can be translated.
      *
      * @return void
      */
-    public function translateButton($sentenceId, $ownerName, $isLogged, $enabled)
+    public function translateButton($sentenceId, $isLogged, $enabled)
     {
         $translateButton = $this->Images->svgIcon(
             'translate',
             array(
-                'alt'=>__('Translate', true),
-                'title'=>__('Translate', true),
                 'width' => 16,
                 'height' => 16
             )
         );
-        ?>
 
-        <li class="option translateLink"
-            data-sentence-id="<?php echo $sentenceId; ?>">
+        echo $this->Html->tag('li', null, array(
+            'class' => 'option translateLink',
+            'data-sentence-id' => $sentenceId,
+            'title' => __('Translate', true)
+        ));
 
-        <?php
         if (!$enabled) {
 
             echo '<a class="disabled">';
@@ -111,9 +109,8 @@ class MenuHelper extends AppHelper
                 null
             );
         }
-        ?>
-        </li>
-    <?php
+
+        echo $this->Html->tag('/li');
     }
 
 
@@ -176,63 +173,52 @@ class MenuHelper extends AppHelper
      *                           is displayed
      * @param string $ownerName  Indicates whether the sentence is adopted by current
      *                           user or not.
-     * @param bool   $isLogged   True if user is logged in, false otherwise.
-     *
      * @return void
      */
-    public function adoptButton($sentenceId, $ownerName, $isLogged)
+    public function adoptButton($sentenceId, $ownerName)
     {
         $isAdopted = !empty($ownerName);
         $currentUserName = CurrentUser::get('username');
         $isOwnedByCurrentUser = $isAdopted && $ownerName == $currentUserName;
 
         $tooltip = null;
+        $action = '';
         if ($isAdopted) {
-            $cssClass = 'remove';
             $image = 'adopted';
-            if ($isLogged && $isOwnedByCurrentUser) {
+            if ($isOwnedByCurrentUser) {
                 $tooltip = __('Click to unadopt', true);
+                $action = ' remove';
             }
         } else {
-            $cssClass = 'add';
             $image = 'unadopted';
-            if ($isLogged) {
+            if (!$isAdopted) {
                 $tooltip = __('Click to adopt', true);
+                $action = ' add';
             }
         }
 
-        $adoptImage = $this->Images->svgIcon(
-            $image,
-            array(
-                'alt'=> $tooltip,
-                'title'=> $tooltip,
-                'width' => 26,
-                'height' => 16
-            )
+        $svgIconOptions = array(
+            'width' => 26,
+            'height' => 16,
+            'class' => 'option',
         );
-        if ($isLogged && ($isOwnedByCurrentUser || !$isAdopted)) {
 
-            ?>
-            <li class="option adopt <?php echo $cssClass; ?>"
-                data-sentence-id="<?php echo $sentenceId; ?>">
-            <?php
+        if (empty($action)) {
+            $svgIconOptions['class'] .= ' adopt-item uneditable';
+            $contents = $this->Images->svgIcon($image, $svgIconOptions);
+        } else {
             $this->Javascript->link('sentences.adopt.js', false);
-            ?>
-
-            <a><?php echo $adoptImage; ?></a>
-            </li>
-            <?php
-
-        } else if ($isAdopted) {
-
-            echo '<li class="option adopt uneditable">';
-            echo $adoptImage;
-            echo '</li>';
-
+            $contents = $this->Images->svgIcon($image, $svgIconOptions);
+            $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
-        ?>
-
-    <?php
+        if ($isAdopted) {
+            $contents .= $this->belongsTo($ownerName);
+        }
+        echo $this->Html->tag('li', $contents, array(
+            'class' => 'adopt'.$action,
+            'data-sentence-id' => $sentenceId,
+            'title'=> $tooltip,
+        ));
     }
 
 
@@ -250,11 +236,11 @@ class MenuHelper extends AppHelper
     public function favoriteButton($sentenceId, $isFavorited, $isLogged)
     {
         if ($isFavorited) {
-            $cssClass = 'remove';
+            $type = 'remove';
             $image = 'favorite-remove';
             $tooltip = __('Remove from favorites', true);
         } else {
-            $cssClass = 'add';
+            $type = 'add';
             $image = 'favorite-add';
             $tooltip = __('Add to favorites', true);
         }
@@ -262,18 +248,19 @@ class MenuHelper extends AppHelper
         $favoriteImage = $this->Images->svgIcon(
             $image,
             array(
-                'alt'=> $tooltip,
-                'title'=> $tooltip,
                 'width' => 16,
                 'height' => 16
             )
         );
-        ?>
 
-        <li class="option favorite <?php echo $cssClass; ?>"
-            data-sentence-id="<?php echo $sentenceId; ?>">
+        $cssClass = array('option', 'favorite', $type);
 
-        <?php
+        echo $this->Html->tag('li', null, array(
+            'class' => join(' ', $cssClass),
+            'data-sentence-id' => $sentenceId,
+            'title' => $tooltip
+        ));
+
         if ($isLogged) {
             $this->Javascript->link('favorites.add.js', false);
             ?>
@@ -293,9 +280,8 @@ class MenuHelper extends AppHelper
                 null
             );
         }
-        ?>
-        </li>
-    <?php
+
+        echo $this->Html->tag('/li');
     }
 
     public function linkToSentenceButton($sentenceId, $langFilter = 'und') {
@@ -303,8 +289,6 @@ class MenuHelper extends AppHelper
         $image = $this->Images->svgIcon(
             'link',
             array(
-                'alt'=>__('Link to another sentence', true),
-                'title'=>__('Link to another sentence', true),
                 'width' => 16,
                 'height' => 16
             )
@@ -312,6 +296,7 @@ class MenuHelper extends AppHelper
 
         $linkToSentenceButton = $this->Html->tag('a', $image,
             array(
+                'title' => __('Link to another sentence', true),
                 'class' => 'linkTo',
                 'onClick' => "linkToSentence($sentenceId, $langFilter)",
                 'onDrop' => "linkToSentenceByDrop(event, $sentenceId, $langFilter)",
@@ -362,17 +347,17 @@ class MenuHelper extends AppHelper
         $addToListButton = $this->Images->svgIcon(
             'list',
             array(
-                'alt'=>__('Add to list', true),
-                'title'=>__('Add to list', true),
                 'width' => 20,
                 'height' => 16
             )
         );
-        ?>
 
-        <li class="option addToList" data-sentence-id="<?php echo $sentenceId; ?>">
+        echo $this->Html->tag('li', null, array(
+            'class' => 'option addToList',
+            'data-sentence-id' => $sentenceId,
+            'title' => __('Add to list', true)
+        ));
 
-        <?php
         if ($isLogged) {
             ?>
             <a><?php echo $addToListButton; ?></a>
@@ -391,11 +376,13 @@ class MenuHelper extends AppHelper
                 null
             );
         }
-        ?>
 
-        </li>
+        echo $this->Html->tag('/li');
 
-        <?php
+        if (!$isLogged) {
+            return;
+        }
+
         $this->Javascript->link('sentences_lists.menu.js', false);
 
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
@@ -445,89 +432,85 @@ class MenuHelper extends AppHelper
      */
     public function deleteButton($sentenceId, $hasAudio)
     {
-        $title = __('Delete', true);
-        if ($hasAudio) {
-            $title = __('You cannot delete this sentence because it has audio.', true);
-        }
-
         $deleteImage = $this->Images->svgIcon(
             'delete',
             array(
-                'alt'=> __('Delete', true),
-                'title'=> $title,
                 'width' => 20,
                 'height' => 16
             )
         );
 
-        echo '<li class="option delete">';
-
         if ($hasAudio) {
 
-            echo '<a class="disabled">';
-            echo $deleteImage;
-            echo '</a>';
+            $title = __(
+                'You cannot delete this sentence because it has audio.', true
+            );
+            $liContent = $this->Html->tag(
+                'a', $deleteImage, array('class' => 'disabled')
+            );
 
         } else {
 
-            echo $this->Html->link(
+            $title = __('Delete', true);
+            $liContent = $this->Html->link(
                 $deleteImage,
                 array(
                     "controller" => "sentences",
                     "action" => "delete",
                     $sentenceId
                 ),
-                array("escape" => false),
+                array(
+                    "escape" => false,
+                    'alt'=> __('Delete', true),
+                    'title'=> $title,
+                ),
                 __('Are you sure?', true)
             );
 
         }
 
-        echo '</li>';
+        echo $this->Html->tag('li', $liContent,
+            array(
+                'class' => 'option delete',
+                'title'=> $title,
+            )
+        );
     }
 
 
     /**
      * Display button to edit a sentence.
      *
-     * @param int $sentenceId Id of the sentence on which this button
-     *                        is displayed
-     *
      * @param bool $hasAudio true if sentence has associated audio
      *
      * @return void
      */
-    public function editButton($sentenceId, $hasAudio)
+    public function editButton($hasAudio)
     {
-        $title = __('Edit', true);
-        if ($hasAudio) {
-            $title = __('You cannot edit this sentence because it has audio.', true);
-        }
-
         $editImage = $this->Images->svgIcon(
             'edit',
             array(
-                'alt'=> __('Edit', true),
-                'title'=> $title,
                 'width' => 16,
                 'height' => 16
             )
         );
 
-        echo '<li class="option edit">';
-
         if ($hasAudio) {
-            echo '<a class="disabled ">';
-            echo $editImage;
-            echo '</a>';
-
+            $title = __('You cannot edit this sentence because it has audio.', true);
+            $liContent = $this->Html->tag(
+                'a', $editImage, array('class' => 'disabled')
+            );
         } else {
-
-            echo $editImage;
-
+            $title = __('Edit', true);
+            $liContent = $editImage;
         }
 
-        echo '</li>';
+        echo $this->Html->tag('li', $liContent,
+            array(
+                'class' => 'option edit',
+                'title'=> $title,
+            )
+        );
     }
 
     private function transcribeButton($sentenceId) {
@@ -550,37 +533,31 @@ class MenuHelper extends AppHelper
     }
 
     /**
-     * Display a <li></li> with the current owner name
-     * and a link to owner's profile
+     * Return a link to owner's profile
      *
      * @param int    $sentenceId The sentence's id.
      * @param string $ownerName  The owner's name.
      *
-     * @return void
+     * @return string
      */
-    public function belongsTo($sentenceId,$ownerName)
+    private function belongsTo($ownerName)
     {
-        if (empty($ownerName)) {
-            return;
-        }
-
-        // the id is used by sentence.adopt.js
         $belongsToTitle = format(
             __('belongs to {user}', true),
             array('user' => $ownerName)
         );
-        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'"
-              title="'.$belongsToTitle.'">';
-        $userLink = $this->Html->link(
+        return $this->Html->link(
             $ownerName,
             array(
                 "controller" => "user",
                 "action" => "profile",
                 $ownerName
+            ),
+            array(
+                'title' => $belongsToTitle,
+                'class' => 'adopt-item',
             )
         );
-        echo $userLink;
-        echo '</li>';
     }
 
 
@@ -611,18 +588,15 @@ class MenuHelper extends AppHelper
         <?php
         $isLogged = CurrentUser::isMember();
 
-        // Username of the owner
-        $this->belongsTo($sentenceId, $ownerName);
-
         // Adopt
-        $this->adoptButton($sentenceId, $ownerName, $isLogged);
+        $this->adoptButton($sentenceId, $ownerName);
 
         // Translate
-        $this->translateButton($sentenceId, $ownerName, $isLogged, $canTranslate);
+        $this->translateButton($sentenceId, $isLogged, $canTranslate);
 
         // Edit
         if (CurrentUser::canEditSentenceOfUser($ownerName)) {
-           $this->editButton($sentenceId, $hasAudio);
+           $this->editButton($hasAudio);
         }
 
         // Favorite

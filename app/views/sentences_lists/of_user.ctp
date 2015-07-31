@@ -27,7 +27,7 @@
 
 $total = $paginator->counter("%count%");
 
-if (empty($search)) {
+if (empty($filter)) {
     $title = format(
         __("{username}'s lists ({total})", true),
         array('username' => $username, 'total' => $total)
@@ -35,7 +35,7 @@ if (empty($search)) {
 } else {
     $title = format(
         __("{username}'s lists containing \"{search}\" ({total})", true),
-        array('username' => $username, 'search' => $search, 'total' => $total)
+        array('username' => $username, 'search' => $filter, 'total' => $total)
     );
 }
 
@@ -46,7 +46,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <?php
     $lists->displayListsLinks();
 
-    $lists->displaySearchForm($search, array('username' => $username));
+    $lists->displaySearchForm($filter, array('username' => $username));
 
     if ($session->read('Auth.User.id')) {
         $lists->displayCreateListForm();
@@ -73,11 +73,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         </div>
         
         <?php
-        $pagination->display(array($username, $search));
+        $pagination->display(array($username, $filter));
 
         $lists->displayListTable($userLists);
 
-        $pagination->display(array($username, $search));
+        $pagination->display(array($username, $filter));
         ?>
     </div>
 </div>

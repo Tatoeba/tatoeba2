@@ -32,7 +32,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <?php
     $lists->displayListsLinks();
 
-    $lists->displaySearchForm($search);
+    $lists->displaySearchForm($filter);
 
     if ($session->read('Auth.User.id')) {
         $lists->displayCreateListForm();

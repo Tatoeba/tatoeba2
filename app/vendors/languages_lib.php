@@ -185,7 +185,16 @@ class LanguagesLib
         static $languages;
         static $lastLang;
 
-        $currentLang = Configure::read('Config.language');
+        if (class_exists('Configure')) {
+            $currentLang = Configure::read('Config.language');
+        } else {
+            $currentLang = null;
+        }
+        if (!function_exists('__')) {
+            function __($string) {
+                return $string;
+            }
+        }
         if (!$languages || $currentLang != $lastLang) {
             $lastLang = $currentLang;
             $languages = array(
@@ -283,9 +292,6 @@ class LanguagesLib
                 'ile' => __('Interlingue', true),
                 'oci' => __('Occitan', true),
                 'xal' => __('Kalmyk', true),
-
-
-
                 'ang' => __('Old English', true),
                 'kur' => __('Kurdish', true),
                 'dsb' => __('Lower Sorbian', true),
@@ -301,14 +307,12 @@ class LanguagesLib
                 'mri' => __('Maori', true),
                 'lld' => __('Ladin', true),
                 'ber' => __('Berber', true),
-
                 'xho' => __('Xhosa', true),
                 'pnb' => __('Punjabi (Western)', true),
                 'mlg' => __('Malagasy', true),
                 'grn' => __('Guarani', true),
                 'lad' => __('Ladino', true),
                 'pms' => __('Piedmontese', true),
-
                 'avk' => __('Kotava', true),
                 'mar' => __('Marathi', true),
                 'tpw' => __('Old Tupi', true),
@@ -365,17 +369,19 @@ class LanguagesLib
                 'abk' => __('Abkhaz',true), 
                 'tet' => __('Tetun',true), 
                 'tam' => __('Tamil',true), 
-            'udm' => __('Udmurt',true), 
-            'kum' => __('Kumyk',true), 
-            'crh' => __('Crimean Tatar',true), 
-            'nya' => __('Chinyanja',true), 
-            'liv' => __('Livonian',true), 
-            'nav' => __('Navajo',true), 
-            'chr' => __('Cherokee',true), 
-            'guj' => __('Gujarati',true), 
-            'pan' => __('Punjabi (Eastern)',true), 
-            'kha' => __('Khasi',true), 
-            'jav' => __('Javanese',true), //@lang 
+                'udm' => __('Udmurt',true),
+                'kum' => __('Kumyk',true),
+                'crh' => __('Crimean Tatar',true),
+                'nya' => __('Chinyanja',true),
+                'liv' => __('Livonian',true),
+                'nav' => __('Navajo',true),
+                'chr' => __('Cherokee',true),
+                'guj' => __('Gujarati',true),
+                'pan' => __('Punjabi (Eastern)',true),
+                'kha' => __('Khasi',true),
+                'jav' => __('Javanese',true),
+                'zza' => __('Zaza',true),
+                'egl' => __('Emilian',true),//@lang
             );
         }
         return $languages;
@@ -447,5 +453,11 @@ class LanguagesLib
             self::languagesInTatoeba(),
             array_flip($languageCodes)
         );
+    }
+
+    public static function languageExists($code)
+    {
+        $available =& self::languagesInTatoeba();
+        return isset($available[$code]);
     }
 }

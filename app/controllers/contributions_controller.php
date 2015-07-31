@@ -138,6 +138,8 @@ class ContributionsController extends AppController
      */
     public function activity_timeline($year = null, $month = null)
     {
+        $this->helpers[] = 'Date';
+
         $redirect = false;
         if ($year == null || $year > date('Y') || $year < 2007) {
             $year = date('Y');
