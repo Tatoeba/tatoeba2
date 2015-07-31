@@ -265,6 +265,9 @@ class Sentence extends AppModel
             return false;
         }
 
+        $this->data['ReindexFlag'] =
+            $this->Link->findDirectAndIndirectTranslationsIds($this->id);
+
         return true;
     }
 
@@ -298,6 +301,9 @@ class Sentence extends AppModel
                 $translation['id'], $sentenceId, $action
             );
         }
+
+        // Reindex translations
+        $this->needsReindex($this->data['ReindexFlag']);
 
         // Remove links
         $conditions = array(
