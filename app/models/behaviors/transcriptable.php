@@ -63,19 +63,24 @@ class TranscriptableBehavior extends ModelBehavior
     public function afterSave(&$model, $created) {
         if ($created) {
             $model->data[$model->alias]['id'] = $model->getLastInsertID();
-            $this->createTranscriptions($model);
+            $this->createTranscriptions($model, $model->data);
         } else {
             if (array_key_exists('text', $model->data[$model->alias]) ||
                 array_key_exists('lang', $model->data[$model->alias])) {
                 $this->deleteTranscriptions($model);
-                $model->read();
-                $this->createTranscriptions($model);
+                $sentence = $model->find('first', array(
+                    'conditions' => array(
+                        $model->alias . '.' . $model->primaryKey => $model->id
+                    ),
+                    'contain' => array(),
+                ));
+                $this->createTranscriptions($model, $sentence);
             }
         }
     }
 
-    private function createTranscriptions($model) {
-        $sentence = $model->data[$model->alias];
+    private function createTranscriptions($model, $data = null) {
+        $sentence = $data[$model->alias];
         $model->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
     }
 
