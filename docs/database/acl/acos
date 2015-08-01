@@ -86,9 +86,9 @@ cake acl create aco controllers UsersLanguages
 cake acl create aco UsersLanguages save
 cake acl create aco UsersLanguages delete
 
-cake acl create aco controllers UsersSentences
-cake acl create aco UsersLanguages add
-cake acl create aco UsersLanguages delete
+cake acl create aco controllers Corpus
+cake acl create aco Corpus add_sentence
+cake acl create aco Corpus delete_sentence
 
 cake acl create aco controllers Wall
 cake acl create aco Wall save

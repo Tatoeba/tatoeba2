@@ -26,11 +26,11 @@ $(document).ready(function(){
         var addToCorpusOption = $(this);
         var action = "add";
 
-        var requestUrl = "/users_sentences";
+        var requestUrl = "/corpus";
         if ($(this).hasClass("selected")){
-            requestUrl += "/delete/" + sentenceId + "/" + correctness;
+            requestUrl += "/delete_sentence/" + sentenceId + "/" + correctness;
         } else {
-            requestUrl += "/add/" + sentenceId + "/" + correctness;
+            requestUrl += "/add_sentence/" + sentenceId + "/" + correctness;
         }
 
         addToCorpusOptionParent = addToCorpusOption.parent();
