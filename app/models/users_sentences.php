@@ -39,8 +39,11 @@ class UsersSentences extends AppModel
     public $name = 'UsersSentences';
     public $useTable = "users_sentences";
     public $actsAs = array('Containable');
-    public $belongsTo = array('Sentence');
     public $recursive = -1;
+    public $belongsTo = array(
+        'Sentence',
+        'User' => array('foreignKey' => 'user_id')
+    );
 
 
     public function correctnessForSentence($sentenceId, $userId)
@@ -96,5 +99,27 @@ class UsersSentences extends AppModel
             default:
                 return null;
         }
+    }
+
+
+    public function getCorrectnessForSentence($sentenceId)
+    {
+        $result = $this->find('all',
+            array(
+                'fields' => array(
+                    'correctness', 'modified'
+                ),
+                'conditions' => array(
+                    'sentence_id' => $sentenceId
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('id', 'username')
+                    )
+                )
+            )
+        );
+
+        return $result;
     }
 }

@@ -69,6 +69,7 @@ class SentencesController extends AppController
         'User',
         'UsersLanguages',
         'Tag',
+        'UsersSentences',
     );
 
     private $defaultSearchCriteria = array(
@@ -192,6 +193,7 @@ class SentencesController extends AppController
 
             $tagsArray = $this->Sentence->getAllTagsOnSentence($id);
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
+            $correctnessArray = $this->UsersSentences->getCorrectnessForSentence($id);
 
             $this->set('sentence', $sentence);
 
@@ -202,6 +204,7 @@ class SentencesController extends AppController
 
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
+            $this->set('correctnessArray', $correctnessArray);
             $this->set('translations', $translations);
             $this->set('indirectTranslations', $indirectTranslations);
 
