@@ -424,12 +424,16 @@ class UsersController extends AppController
                     $this->Mailer->message = $message;
                     $this->Mailer->send();
 
-                    $this->flash(
-                        __(
-                            'Your new password has been sent to ', true
-                        ) . $this->data['User']['email'],
-                        '/users/login'
+                    $flashMessage = format(
+                        __('Your new password has been sent to {email}.', true),
+                        array('email' => $this->data['User']['email'])
                     );
+                    $flashMessage .= "<br/>";
+                    $flashMessage .= __(
+                        'You may need to check your spam folder '.
+                        'to find this message.', true
+                    );
+                    $this->flash($flashMessage, '/users/login');
                 }
             } else {
                 $this->flash(
