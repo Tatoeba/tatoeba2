@@ -36,9 +36,9 @@ if (isset($sentence)) {
     $sentenceHasAudio = $sentence['Sentence']['hasaudio'];
     
     $languageName = $languages->codeToNameToFormat($sentenceLang);
-    $title = format(__('{language} example sentence: ', true),
-                    array('language' => $languageName));
-    $this->set('title_for_layout', $pages->formatTitle($title . $sentenceText));
+    $title = format(__('{language} example sentence: {sentence}', true),
+                    array('language' => $languageName, 'sentence' => $sentenceText));
+    $this->set('title_for_layout', $pages->formatTitle($title));
 
     $html->meta(
         'description', 
