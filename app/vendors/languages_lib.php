@@ -207,7 +207,7 @@ class LanguagesLib
                 'ita' => __('Italian', true),
                 'vie' => __('Vietnamese', true),
                 'rus' => __('Russian', true),
-                'cmn' => __('Chinese', true),
+                'cmn' => __('Chinese (Mandarin)', true),
                 'kor' => __('Korean', true),
                 'nld' => __('Dutch', true),
                 'heb' => __('Hebrew', true),
