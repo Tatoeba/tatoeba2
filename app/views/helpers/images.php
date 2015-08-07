@@ -72,9 +72,9 @@ class ImagesHelper extends AppHelper
     public function correctnessIcon($correctness)
     {
         $icons = array(
-            1 => 'correct',
-            0 => 'not-sure',
-            -1 => 'incorrect',
+            1 => 'ok',
+            0 => 'unsure',
+            -1 => 'not-ok',
         );
 
         return $this->svgIcon(
