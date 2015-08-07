@@ -90,11 +90,11 @@ class UsersSentences extends AppModel
     public function correctnessValueFromLabel($label)
     {
         switch ($label) {
-            case "incorrect":
+            case "not-ok":
                 return -1;
-            case "not-sure":
+            case "unsure":
                 return 0;
-            case "correct":
+            case "ok":
                 return 1;
             default:
                 return null;

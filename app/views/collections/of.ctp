@@ -25,23 +25,33 @@
  * @link     http://tatoeba.org
  */
 
+$categories = array(
+    'ok' => __('Sentences marked as "OK"', true),
+    'unsure' => __('Sentences marked as "unsure"', true),
+    'not-ok' => __('Sentences marked as "not OK"', true),
+    'all' => __("All sentences", true)
+);
+
 if (!is_int($correctness)) {
-    $title = __("All the sentences in {user}'s corpus", true);
+    $category = 'all';
 } else {
     switch($correctness) {
         case -1:
-            $title = __('Sentences marked as incorrect by {user}', true);
+            $category = 'not-ok';
             break;
         case 0:
-            $title = __('Sentences marked as unsure by {user}', true);
+            $category = 'unsure';
             break;
         default:
-            $title = __('Sentences marked as correct by {user}', true);
+            $category = 'ok';
             break;
     }
 }
 
-$title = format($title, array('user' => $username));
+$title = format(
+    __("{user}'s collection - {category}", true),
+    array('user' => $username, 'category' => $categories[$category])
+);
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
@@ -50,24 +60,18 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         <?php
         echo $html->tag('h2', __('Filter', true));
 
-        $menu = array(
-            $html->link(
-                __('Marked as correct', true),
-                array('action' => 'of', $username, 'correct')
-            ),
-            $html->link(
-                __('Marked as unsure', true),
-                array('action' => 'of', $username, 'not-sure')
-            ),
-            $html->link(
-                __('Marked as incorrect', true),
-                array('action' => 'of', $username, 'incorrect')
-            ),
-            $html->link(
-                __('All the sentences', true),
-                array('action' => 'of', $username)
-            ),
-        );
+        $menu = array();
+        foreach($categories as $categoryKey => $categoryValue) {
+            $menu[] = $html->link(
+                $categoryValue,
+                array(
+                    'action' => 'of',
+                    $username,
+                    $categoryKey
+                )
+            );
+        }
+
         echo '<ul class="annexeMenu">';
         foreach($menu as $item) {
             echo $html->tag('li', $item, array('class' => 'item'));
@@ -80,31 +84,31 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">
     <div class="module">
 
-    <h2>
+        <h2>
+            <?php
+            echo $paginator->counter(array(
+                'format' => $title . ' ' . __("(total %count%)", true)
+            ));
+            ?>
+        </h2>
+
         <?php
-        echo $paginator->counter(array(
-            'format' => $title . ' ' . __("(total %count%)", true)
-        ));
+        $paginationUrl = array($username, $correctnessLabel, $lang);
+        $pagination->display($paginationUrl);
+
+        $type = 'mainSentence';
+        $parentId = null;
+        $withAudio = false;
+        foreach ($corpus as $sentence) {
+            $sentences->displayGenericSentence(
+                $sentence['Sentence'],
+                $type,
+                $parentId,
+                $withAudio
+            );
+        }
+
+        $pagination->display($paginationUrl);
         ?>
-    </h2>
-
-    <?php
-    $paginationUrl = array($username, $correctnessLabel, $lang);
-    $pagination->display($paginationUrl);
-
-    $type = 'mainSentence';
-    $parentId = null;
-    $withAudio = false;
-    foreach ($corpus as $sentence) {
-        $sentences->displayGenericSentence(
-            $sentence['Sentence'],
-            $type,
-            $parentId,
-            $withAudio
-        );
-    }
-
-    $pagination->display($paginationUrl);
-    ?>
     </div>
 </div>

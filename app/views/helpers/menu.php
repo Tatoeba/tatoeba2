@@ -551,19 +551,19 @@ class MenuHelper extends AppHelper
 
         $icons = array(
             1 => array(
-                'class' => 'correct',
-                'icon' => 'correct',
-                'tooltip' => __('Correct', true)
+                'class' => 'ok',
+                'icon' => 'ok',
+                'tooltip' => __('Mark as "OK"', true)
             ),
             0 => array(
-                'class' => 'not-sure',
-                'icon' => 'not-sure',
-                'tooltip' => __('Not sure if correct', true)
+                'class' => 'unsure',
+                'icon' => 'unsure',
+                'tooltip' => __('Mark as "unsure"', true)
             ),
             -1 => array(
-                'class' => 'incorrect',
-                'icon' => 'incorrect',
-                'tooltip' => __('Incorrect', true)
+                'class' => 'not-ok',
+                'icon' => 'not-ok',
+                'tooltip' => __('Mark as "not OK"', true)
             )
         );
 
@@ -575,6 +575,9 @@ class MenuHelper extends AppHelper
             $cssClass = array('option', 'add-to-corpus', $icon['class']);
             if ($correctness == $userCorrectness) {
                 $cssClass[] = 'selected';
+                $tooltip = __('Unmark sentence', true);
+            } else {
+                $tooltip = $icon['tooltip'];
             }
             echo $this->Html->tag('li',
                 $this->Html->tag('a', $svgIcon),
@@ -582,7 +585,7 @@ class MenuHelper extends AppHelper
                     'class' => join(' ', $cssClass),
                     'data-sentence-id' => $sentenceId,
                     'data-sentence-correctness' => $correctness,
-                    'title' => $icon['tooltip']
+                    'title' => $tooltip
                 )
             );
         }

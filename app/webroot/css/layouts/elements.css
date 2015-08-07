@@ -1263,16 +1263,16 @@ input.sentenceId {
     background-position: right 2px;
 }
 
-#annexe_content .correct,
-.sentences_set .menu .correct.selected a {
+#annexe_content .ok,
+.sentences_set .menu .ok.selected a {
     color: #00AA00;
 }
-#annexe_content .incorrect,
-.sentences_set .menu .incorrect.selected a {
+#annexe_content .not-ok,
+.sentences_set .menu .not-ok.selected a {
     color: #EE0000;
 }
-#annexe_content .not-sure,
-.sentences_set .menu .not-sure.selected a {
+#annexe_content .unsure,
+.sentences_set .menu .unsure.selected a {
     color: #FF9900;
 }
 
