@@ -59,9 +59,9 @@
     <li class="item">
     <?php
     echo $html->link(
-        __('Corpus', true),
+        __('Collection', true),
         array(
-            'controller' => 'corpus',
+            'controller' => 'collections',
             'action' => 'of',
             $username
         )

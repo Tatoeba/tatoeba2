@@ -34,7 +34,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-class CorpusController extends AppController
+class CollectionsController extends AppController
 {
     public $uses = array('UsersSentences', 'User');
     public $helper = array();

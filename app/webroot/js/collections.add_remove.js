@@ -26,7 +26,7 @@ $(document).ready(function(){
         var addToCorpusOption = $(this);
         var action = "add";
 
-        var requestUrl = "/corpus";
+        var requestUrl = "/collections";
         if ($(this).hasClass("selected")){
             requestUrl += "/delete_sentence/" + sentenceId + "/" + correctness;
         } else {

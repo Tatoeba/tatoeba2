@@ -545,7 +545,7 @@ class MenuHelper extends AppHelper
 
     public function correctnessButton($sentenceId)
     {
-        $this->Javascript->link('corpus.add_remove.js', false);
+        $this->Javascript->link('collections.add_remove.js', false);
 
         $userCorrectness = CurrentUser::correctnessForSentence($sentenceId);
 
