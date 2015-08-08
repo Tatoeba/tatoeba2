@@ -76,7 +76,7 @@ class UsersSentences extends AppModel
 
         $result = array(
             'conditions' => $conditions,
-            'fields' => array('id', 'correctness'),
+            'fields' => array('id', 'correctness', 'modified'),
             'contain' => array(
                 'Sentence' => array('id', 'lang', 'text', 'correctness')
             ),

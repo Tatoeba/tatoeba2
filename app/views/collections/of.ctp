@@ -124,7 +124,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             );
 
             $correctness = $sentence['UsersSentences']['correctness'];
-            echo $html->div('correctness', $images->correctnessIcon($correctness));
+            echo $html->div(
+                'correctness',
+                $images->correctnessIcon($correctness),
+                array('title' => $sentence['UsersSentences']['modified'])
+            );
 
             echo '</div>';
         }
