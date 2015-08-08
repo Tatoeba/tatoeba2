@@ -116,12 +116,31 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         foreach ($corpus as $sentence) {
             echo '<div>';
 
-            $sentences->displayGenericSentence(
-                $sentence['Sentence'],
-                $type,
-                $parentId,
-                $withAudio
-            );
+            if (empty($sentence['Sentence']['id'])) {
+                $sentenceId = $sentence['UsersSentences']['sentence_id'];
+                $linkToSentence = $html->link(
+                    '#'.$sentenceId,
+                    array(
+                        'controller' => 'sentences',
+                        'action' => 'show',
+                        $sentenceId
+                    )
+                );
+
+                echo $html->div('sentence deleted',
+                    format(
+                        __('Sentence {id} has beed deleted.', true),
+                        array('id' => $linkToSentence)
+                    )
+                );
+            } else {
+                $sentences->displayGenericSentence(
+                    $sentence['Sentence'],
+                    $type,
+                    $parentId,
+                    $withAudio
+                );
+            }
 
             $correctness = $sentence['UsersSentences']['correctness'];
             echo $html->div(

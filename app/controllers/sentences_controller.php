@@ -183,6 +183,9 @@ class SentencesController extends AppController
             $this->set('nextSentence', $neighbors['next']);
             $this->set('prevSentence', $neighbors['prev']);
 
+            $correctnessArray = $this->UsersSentences->getCorrectnessForSentence($id);
+            $this->set('correctnessArray', $correctnessArray);
+
             // If no sentence, we don't need to go further.
             // We just set some variable so we don't get warnings.
             if ($sentence == null) {
@@ -193,7 +196,6 @@ class SentencesController extends AppController
 
             $tagsArray = $this->Sentence->getAllTagsOnSentence($id);
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
-            $correctnessArray = $this->UsersSentences->getCorrectnessForSentence($id);
 
             $this->set('sentence', $sentence);
 
@@ -204,7 +206,6 @@ class SentencesController extends AppController
 
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
-            $this->set('correctnessArray', $correctnessArray);
             $this->set('translations', $translations);
             $this->set('indirectTranslations', $indirectTranslations);
 
