@@ -88,11 +88,7 @@ class SentencesHelper extends AppHelper
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
 
-        $ownerName = null;
-        if (isset($user['username'])) {
-            $ownerName = $user['username'];
-        }
-        $this->displayMainSentence($sentence, $ownerName, $withAudio, $langFilter);
+        $this->displayMainSentence($sentence, $user, $withAudio, $langFilter);
 
 
         // Loading gif
@@ -388,13 +384,13 @@ class SentencesHelper extends AppHelper
      * menu of action that can be applied on this sentence. This is the sentence at
      * the top.
      *
-     * @param array  $sentence  Sentence data.
-     * @param string $ownerName Name of the owner of the sentence.
+     * @param array  $sentence   Sentence data.
+     * @param string $user       Information about the owner of the sentence..
      * @param string $langFilter The language translations are filtered in, if any.
      *
      * @return void
      */
-    public function displayMainSentence($sentence, $ownerName, $withAudio, $langFilter = 'und') {
+    public function displayMainSentence($sentence, $user, $withAudio, $langFilter = 'und') {
         $sentenceId = $sentence['id'];
         $canTranslate = $sentence['correctness'] >= 0;
         $hasAudio = $sentence['hasaudio'] == 'shtooka';
@@ -403,9 +399,10 @@ class SentencesHelper extends AppHelper
             $script = $sentence['script'];
         }
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $script, $canTranslate, $langFilter, $hasAudio
+            $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio
         );
 
+        $ownerName = $user['username'];
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
             $sentence,

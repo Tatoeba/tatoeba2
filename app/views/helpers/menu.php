@@ -173,10 +173,15 @@ class MenuHelper extends AppHelper
      *                           is displayed
      * @param string $ownerName  Indicates whether the sentence is adopted by current
      *                           user or not.
+     * @param bool   $isNative   'true' if the owner is a native speaker in the
+     *                           language of the sentence.
+     *
      * @return void
      */
-    public function adoptButton($sentenceId, $ownerName)
+    public function adoptButton($sentenceId, $owner)
     {
+        $ownerName = $owner['username'];
+        $isNative = $owner['is_native'];
         $isAdopted = !empty($ownerName);
         $currentUserName = CurrentUser::get('username');
         $isOwnedByCurrentUser = $isAdopted && $ownerName == $currentUserName;
@@ -212,7 +217,7 @@ class MenuHelper extends AppHelper
             $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
         if ($isAdopted) {
-            $contents .= $this->belongsTo($ownerName);
+            $contents .= $this->belongsTo($ownerName, $isNative);
         }
         echo $this->Html->tag('li', $contents, array(
             'class' => 'adopt'.$action,
@@ -517,18 +522,20 @@ class MenuHelper extends AppHelper
     /**
      * Return a link to owner's profile
      *
-     * @param int    $sentenceId The sentence's id.
      * @param string $ownerName  The owner's name.
+     * @param bool   $isNative   'true' if the owner is a native speaker in the
+     *                           language of the sentence.
      *
      * @return string
      */
-    private function belongsTo($ownerName)
+    private function belongsTo($ownerName, $isNative)
     {
         $belongsToTitle = format(
             __('belongs to {user}', true),
             array('user' => $ownerName)
         );
-        return $this->Html->link(
+
+        $username = $this->Html->link(
             $ownerName,
             array(
                 "controller" => "user",
@@ -540,6 +547,16 @@ class MenuHelper extends AppHelper
                 'class' => 'adopt-item',
             )
         );
+
+        $belongsToContent = array($username);
+        if ($isNative) {
+            $belongsToContent[] = $this->Html->tag('span',
+                __('(native)', true),
+                array('class' => 'adopt-item is-native')
+            );
+        }
+
+        return join('', $belongsToContent);
     }
 
 
@@ -547,18 +564,20 @@ class MenuHelper extends AppHelper
      * Display menu for the main sentence.
      *
      * @param int    $sentenceId    Id of the sentence.
-     * @param int    $ownerName     Username of the owner of the sentence.
+     * @param int    $ownerName     Owner of the sentence.
      * @param string $chineseScript For chinese only, 'traditional' or 'simplified'
      * @param array  $canTranslate  True if user can translate the sentence.
      *                              False otherwise.
      * @param array  $langFilter    Language filter of translations.
      * @param bool   $hasAudio      'true' if sentence has audio, 'false' otherwise.
+     * @param bool   $isNative      'true' if the owner is a native speaker in the
+     *                              language of the sentence.
      *
      * @return void
      */
     public function displayMenu(
         $sentenceId,
-        $ownerName = null,
+        $owner = null,
         $chineseScript = null,
         $canTranslate,
         $langFilter = 'und',
@@ -569,9 +588,10 @@ class MenuHelper extends AppHelper
 
         <?php
         $isLogged = CurrentUser::isMember();
+        $ownerName = $owner['username'];
 
         // Adopt
-        $this->adoptButton($sentenceId, $ownerName);
+        $this->adoptButton($sentenceId, $owner);
 
         // Translate
         $this->translateButton($sentenceId, $isLogged, $canTranslate);
