@@ -96,7 +96,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="module correctness-info">
 
         <h2>
             <?php
@@ -114,12 +114,19 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         $parentId = null;
         $withAudio = false;
         foreach ($corpus as $sentence) {
+            echo '<div>';
+
             $sentences->displayGenericSentence(
                 $sentence['Sentence'],
                 $type,
                 $parentId,
                 $withAudio
             );
+
+            $correctness = $sentence['UsersSentences']['correctness'];
+            echo $html->div('correctness', $images->correctnessIcon($correctness));
+
+            echo '</div>';
         }
 
         $pagination->display($paginationUrl);
