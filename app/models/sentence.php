@@ -441,13 +441,13 @@ class Sentence extends AppModel
             )
         );
 
-        $UsersLanguages = ClassRegistry::init('UsersLanguages');
-        $result['User']['is_native'] = $UsersLanguages->isUserNative(
-            $result['User']['id'], $result['Sentence']['lang']
-        );
-
         if ($result == null) {
             return;
+        } else {
+            $UsersLanguages = ClassRegistry::init('UsersLanguages');
+            $result['User']['is_native'] = $UsersLanguages->isUserNative(
+                $result['User']['id'], $result['Sentence']['lang']
+            );
         }
 
         return $result;
