@@ -69,6 +69,35 @@ $navigation->displaySentenceNavigation(
 ?>
 
 <div id="annexe_content">
+    <?php
+    if (CurrentUser::get('settings.users_collections_ratings')) {
+        echo '<div class="module correctness-info">';
+
+        echo $html->tag('h2', __('Reviewed by', true));
+        foreach($correctnessArray as $correctness) {
+            echo '<div>';
+            echo $images->correctnessIcon(
+                $correctness['UsersSentences']['correctness']
+            );
+            echo $html->link(
+                $correctness['User']['username'],
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $correctness['User']['username']
+                ),
+                array(
+                    'class' => 'username',
+                    'title' => $correctness['UsersSentences']['modified']
+                )
+            );
+            echo '</div>';
+        }
+
+        echo '</div>';
+    }
+    ?>
+
     <?php 
     if (isset($sentence)){
         $tags->displayTagsModule($tagsArray, $sentenceId);

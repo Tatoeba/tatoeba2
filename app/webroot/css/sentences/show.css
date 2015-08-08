@@ -100,3 +100,14 @@
     list-style-type: circle;
     margin: 5px 5px 5px 10px;
 }
+
+
+/*
+ * Correctness by users
+ */
+.correctness-info .username,
+.correctness-info svg {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2px 5px 0;
+}

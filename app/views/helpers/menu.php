@@ -560,6 +560,56 @@ class MenuHelper extends AppHelper
     }
 
 
+    public function correctnessButton($sentenceId)
+    {
+        $this->Javascript->link('collections.add_remove.js', false);
+
+        $userCorrectness = CurrentUser::correctnessForSentence($sentenceId);
+
+        $icons = array(
+            1 => array(
+                'class' => 'ok',
+                'icon' => 'ok',
+                'tooltip' => __('Mark as "OK"', true)
+            ),
+            0 => array(
+                'class' => 'unsure',
+                'icon' => 'unsure',
+                'tooltip' => __('Mark as "unsure"', true)
+            ),
+            -1 => array(
+                'class' => 'not-ok',
+                'icon' => 'not-ok',
+                'tooltip' => __('Mark as "not OK"', true)
+            )
+        );
+
+        echo '<ul class="correctness">';
+        foreach($icons as $correctness => $icon) {
+            $svgIcon = $this->Images->svgIcon(
+                $icon['icon'], array('width' => 20, 'height' => 16)
+            );
+            $cssClass = array('option', 'add-to-corpus', $icon['class']);
+            if ($correctness == $userCorrectness) {
+                $cssClass[] = 'selected';
+                $tooltip = __('Unmark sentence', true);
+            } else {
+                $tooltip = $icon['tooltip'];
+            }
+            echo $this->Html->tag('li',
+                $this->Html->tag('a', $svgIcon),
+                array(
+                    'class' => join(' ', $cssClass),
+                    'data-sentence-id' => $sentenceId,
+                    'data-sentence-correctness' => $correctness,
+                    'title' => $tooltip
+                )
+            );
+        }
+        echo '</ul>';
+    }
+
+
     /**
      * Display menu for the main sentence.
      *
@@ -615,6 +665,10 @@ class MenuHelper extends AppHelper
         if (CurrentUser::canRemoveSentence($sentenceId, null, $ownerName)) {
             // Delete
             $this->deleteButton($sentenceId, $hasAudio);
+        }
+
+        if ($isLogged && CurrentUser::get('settings.users_collections_ratings')) {
+            $this->correctnessButton($sentenceId);
         }
 
         if ($chineseScript == 'Hans') {

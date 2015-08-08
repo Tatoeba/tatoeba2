@@ -59,6 +59,19 @@
     <li class="item">
     <?php
     echo $html->link(
+        __('Collection', true),
+        array(
+            'controller' => 'collections',
+            'action' => 'of',
+            $username
+        )
+    );
+    ?>
+    </li>
+
+    <li class="item">
+    <?php
+    echo $html->link(
         __('Lists', true),
         array(
             'controller' => 'sentences_lists',

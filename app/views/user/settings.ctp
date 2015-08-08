@@ -92,6 +92,16 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                 ); ?>
             </label>
         </div>
+
+        <div>
+            <?php echo $form->checkbox('settings.users_collections_ratings'); ?>
+            <label for="UserSettingsUsersCollections">
+                <?php __(
+                    'Activate the feature to rate sentences and build your '.
+                    'collection of sentences.'
+                ); ?>
+            </label>
+        </div>
         
         <div>
         <?php

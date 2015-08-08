@@ -1,0 +1,128 @@
+<?php
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+
+$categories = array(
+    'ok' => __('Sentences marked as "OK"', true),
+    'unsure' => __('Sentences marked as "unsure"', true),
+    'not-ok' => __('Sentences marked as "not OK"', true),
+    'all' => __("All sentences", true)
+);
+
+if (!is_int($correctness)) {
+    $category = 'all';
+} else {
+    switch($correctness) {
+        case -1:
+            $category = 'not-ok';
+            break;
+        case 0:
+            $category = 'unsure';
+            break;
+        default:
+            $category = 'ok';
+            break;
+    }
+}
+
+$title = format(
+    __("{user}'s collection - {category}", true),
+    array('user' => $username, 'category' => $categories[$category])
+);
+$this->set('title_for_layout', $pages->formatTitle($title));
+?>
+
+<div id="annexe_content">
+    <?php
+    if (!CurrentUser::get('settings.users_collections_ratings')) {
+        echo '<div class="module">';
+        echo $html->tag('p', __('This feature is currently deactivated.', true));
+        echo $html->tag('p',
+            __(
+                'You can activate it in your settings: "Activate the feature '.
+                'to rate sentences and build your collection..."',
+                true
+            )
+        );
+        echo '</div>';
+    }
+    ?>
+    <div class="module">
+        <?php
+        echo $html->tag('h2', __('Filter', true));
+
+        $menu = array();
+        foreach($categories as $categoryKey => $categoryValue) {
+            $menu[] = $html->link(
+                $categoryValue,
+                array(
+                    'action' => 'of',
+                    $username,
+                    $categoryKey
+                )
+            );
+        }
+
+        echo '<ul class="annexeMenu">';
+        foreach($menu as $item) {
+            echo $html->tag('li', $item, array('class' => 'item'));
+        }
+        echo '</ul>';
+        ?>
+    </div>
+</div>
+
+<div id="main_content">
+    <div class="module">
+
+        <h2>
+            <?php
+            echo $paginator->counter(array(
+                'format' => $title . ' ' . __("(total %count%)", true)
+            ));
+            ?>
+        </h2>
+
+        <?php
+        $paginationUrl = array($username, $correctnessLabel, $lang);
+        $pagination->display($paginationUrl);
+
+        $type = 'mainSentence';
+        $parentId = null;
+        $withAudio = false;
+        foreach ($corpus as $sentence) {
+            $sentences->displayGenericSentence(
+                $sentence['Sentence'],
+                $type,
+                $parentId,
+                $withAudio
+            );
+        }
+
+        $pagination->display($paginationUrl);
+        ?>
+    </div>
+</div>
