@@ -419,26 +419,31 @@ class Sentence extends AppModel
         $result = $this->find(
             'first',
             array(
-                    'conditions' => array ('Sentence.id' => $id),
-                    'contain'  => array (
-                        'Favorites_users' => array(
-                            'fields' => array()
-                        ),
-                        'User'            => array(
-                            'fields' => array('username')
-                        ),
-                        'SentencesList'   => array(
-                            'fields' => array('id')
-                        ),
+                'conditions' => array('Sentence.id' => $id),
+                'contain' => array (
+                    'Favorites_users' => array(
+                        'fields' => array()
                     ),
-                    'fields' => array(
-                        'text',
-                        'lang',
-                        'user_id',
-                        'hasaudio',
-                        'correctness'
-                    )
+                    'User' => array(
+                        'fields' => array('id', 'username')
+                    ),
+                    'SentencesList' => array(
+                        'fields' => array('id')
+                    ),
+                ),
+                'fields' => array(
+                    'text',
+                    'lang',
+                    'user_id',
+                    'hasaudio',
+                    'correctness'
+                )
             )
+        );
+
+        $UsersLanguages = ClassRegistry::init('UsersLanguages');
+        $result['User']['is_native'] = $UsersLanguages->isUserNative(
+            $result['User']['id'], $result['Sentence']['lang']
         );
 
         if ($result == null) {
