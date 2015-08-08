@@ -69,7 +69,7 @@ class SentenceButtonsHelper extends AppHelper
             array(
                 "escape" => false,
                 "class" => "navigationIcon " . $type,
-                "title" => __('Show', true),
+                "title" => __("Show sentence's details", true),
             )
         );
     }
