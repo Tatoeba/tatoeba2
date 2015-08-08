@@ -217,7 +217,7 @@ class LanguagesHelper extends AppHelper
         // Only 'und' is used for "undefined".
         // TODO xxx to be remplace by the code for 'unknown'
         array_push($languages, array(
-            'unknown' => $this->langAsAlone(__('unknown language', true))
+            'unknown' => __p('dropdown-list', 'Unknown language', true)
         ));
 
         return $languages;
