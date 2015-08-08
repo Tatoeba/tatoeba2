@@ -69,8 +69,10 @@ $navigation->displaySentenceNavigation(
 ?>
 
 <div id="annexe_content">
-    <div class="module correctness-info">
-        <?php
+    <?php
+    if (CurrentUser::get('settings.users_collections_ratings')) {
+        echo '<div class="module correctness-info">';
+
         echo $html->tag('h2', __('Reviewed by', true));
         foreach($correctnessArray as $correctness) {
             echo '<div>';
@@ -91,8 +93,11 @@ $navigation->displaySentenceNavigation(
             );
             echo '</div>';
         }
-        ?>
-    </div>
+
+        echo '</div>';
+    }
+    ?>
+
     <?php 
     if (isset($sentence)){
         $tags->displayTagsModule($tagsArray, $sentenceId);

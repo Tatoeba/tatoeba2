@@ -647,7 +647,7 @@ class MenuHelper extends AppHelper
             $this->deleteButton($sentenceId, $hasAudio);
         }
 
-        if ($isLogged) {
+        if ($isLogged && CurrentUser::get('settings.users_collections_ratings')) {
             $this->correctnessButton($sentenceId);
         }
 

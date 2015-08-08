@@ -56,6 +56,20 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
+    <?php
+    if (!CurrentUser::get('settings.users_collections_ratings')) {
+        echo '<div class="module">';
+        echo $html->tag('p', __('This feature is currently deactivated.', true));
+        echo $html->tag('p',
+            __(
+                'You can activate it in your settings: "Activate the feature '.
+                'to rate sentences and build your collection..."',
+                true
+            )
+        );
+        echo '</div>';
+    }
+    ?>
     <div class="module">
         <?php
         echo $html->tag('h2', __('Filter', true));
