@@ -41,10 +41,9 @@ class LanguagesHelper extends AppHelper
 {
     public $helpers = array('Html', 'Session');
 
-    /* Memoization of languages code and their localized names */
+    /* Memorization of languages code and their localized names */
     private $__languages_alone;
 
-    private $__languageLevels;
 
     private function langAsAlone($name)
     {
@@ -149,7 +148,7 @@ class LanguagesHelper extends AppHelper
      * @param bool   $withAutoDetection Set to true if "Auto detect" should be one of the options.
      * @param bool   $withOther Set to true if "Other language" should be one of the options.
      *
-     * @return void
+     * @return array
      */
 
     public function profileLanguagesArray($withAutoDetection, $withOther)
@@ -159,7 +158,6 @@ class LanguagesHelper extends AppHelper
             array_flip(CurrentUser::getProfileLanguages())
         );
 
-        $numLanguages = count(CurrentUser::getProfileLanguages());
         if (count($languages) > 1 && $withAutoDetection) {
             array_unshift($languages, array('auto' => __('Auto detect', true)));
         }
@@ -197,8 +195,6 @@ class LanguagesHelper extends AppHelper
     {
         $languages = LanguagesLib::languagesInTatoeba();
 
-        // Can't use 'any' as it's the code for anyin language.
-        // Only 'und' is used for "undefined".
         array_unshift($languages, array('und' => __('All languages', true)));
 
         return $languages;
@@ -213,9 +209,6 @@ class LanguagesHelper extends AppHelper
     {
         $languages = $this->onlyLanguagesArray();
 
-        // Can't use 'any' as it's the code for anyin language.
-        // Only 'und' is used for "undefined".
-        // TODO xxx to be remplace by the code for 'unknown'
         array_push($languages, array(
             'unknown' => __p('dropdown-list', 'Unknown language', true)
         ));
@@ -385,6 +378,7 @@ class LanguagesHelper extends AppHelper
      *
      * @param string $langCode          Language code.
      * @param int    $numberOfSentences Number of sentences.
+     * @param array  $link              Path to page with sentences in given language.
      *
      * @return void
      */
@@ -424,7 +418,7 @@ class LanguagesHelper extends AppHelper
      * @param string $lang    Language code.
      * @param array  $options Options for Html::image().
      *
-     * @return void
+     * @return string
      */
     public function icon($lang, $options)
     {
