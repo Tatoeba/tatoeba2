@@ -132,9 +132,9 @@ class ContributionsController extends AppController
     /**
      * Display number of contributions for each day.
      *
-     * @param string $month Example: '2010-02' (for February 2010).
+     * @param string $year  Year in 4 digits (ex: 2010).
+     * @param string $month Month in 2 digits (ex: 02 for February).
      *
-     * @return void
      */
     public function activity_timeline($year = null, $month = null)
     {

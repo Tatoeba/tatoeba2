@@ -80,8 +80,8 @@ class SentencesListsController extends AppController
     /**
      * Displays all the lists. If user is logged in, it will also display a form to
      * add a new list and the lists that belong to that user.
-     * 
-     * @return void
+     *
+     * @param string $filter
      */
     public function index($filter = null)
     {
@@ -374,9 +374,8 @@ class SentencesListsController extends AppController
     /**
      * Displays the lists of a specific user.
      *
-     * @param int $username Username of of the user we want lists of.
-     *
-     * @return void
+     * @param int    $username Username of of the user we want lists of.
+     * @param string $filter   Search query on name of list.
      */
     public function of_user($username, $filter = null)
     {

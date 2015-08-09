@@ -82,8 +82,8 @@ class TagsController extends AppController
     /**
      * Add a tag to a Sentence
      *
-     * @param string tagName    Name of the tag to add
-     * @param int    sentenceId Id of the sentence on which the tag will added
+     * @param string $tagName    Name of the tag to add
+     * @param int    $sentenceId Id of the sentence on which the tag will added
      *
      * @return void
      */
@@ -138,7 +138,7 @@ class TagsController extends AppController
     /**
      * Display list of tags.
      *
-     * @param String $search Filters the tags list with only those that contain the
+     * @param String $filter Filters the tags list with only those that contain the
      *                       search string.
      */
     public function view_all($filter = null)
@@ -279,8 +279,8 @@ class TagsController extends AppController
      * the grace (warning) period within which sentence owners are supposed to respond to comments.
      * A "moderator" is known on the site as a "corpus maintainer".
      *
-     * @param string $tagName         Tag name.
-     * @param string $lang            Language of the sentences.
+     * @param string $tagId Id of the tag.
+     * @param string $lang  Language of the sentences.
      *
      * @return void
      */

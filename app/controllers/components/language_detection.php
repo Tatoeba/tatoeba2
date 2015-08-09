@@ -42,6 +42,7 @@ class LanguageDetectionComponent extends Object
      * The language detection is done by https://github.com/Tatoeba/Tatodetect
      *
      * @param string $text Sentence to detect.
+     * @param string $user User who's adding the sentence.
      *
      * @return string 
      */

@@ -262,7 +262,9 @@ class PrivateMessagesController extends AppController
 
 
     /**
+     * @param array $privateMessage Private message info.
      *
+     * @return array
      */
     private function _getMessageFromPm($privateMessage)
     {
@@ -275,7 +277,10 @@ class PrivateMessagesController extends AppController
 
     /**
      *
+     * @param string $folder    Folder name: Inbox, Sent or Trash
+     * @param int    $messageId Id of private message.
      *
+     * @return array
      */
     private function _getMenu($folder, $messageId)
     {
@@ -355,9 +360,7 @@ class PrivateMessagesController extends AppController
     /**
      * Delete message function
      *
-     * @param string $folderId  The folder identifier where we are while
-     * deleting this message
-     * @param int    $messageId The identifier of the message we want to delete
+     * @param int $messageId The identifier of the message we want to delete
      *
      * @return void
      */

@@ -128,9 +128,7 @@ class PermissionsComponent extends Object
     /**
      * Convenience function to get permissions for an array of comments
      *
-     * @param array $comments         Array of comments.
-     * @param int   $currentUserId    Id of the requester.
-     * @param int   $currentUserGroup Group of the requester.
+     * @param array $comments Array of comments.
      *
      * @return array
      */

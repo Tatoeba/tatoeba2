@@ -386,8 +386,8 @@ class WallController extends Appcontroller
     /**
      * update the WallThread table
      *
-     * @param int  $messageId Message that have been add/updated
-     * @param date $newDate   Date of the event.
+     * @param int    $messageId Message that have been add/updated
+     * @param string $newDate   Date of the event.
      *
      * @return void
      */
