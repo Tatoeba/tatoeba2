@@ -212,6 +212,14 @@ class UserController extends AppController
         $this->redirect($redirectURL);
     }
 
+    public function remove_image()
+    {
+        $this->User->id = CurrentUser::get('id');
+        $this->User->saveField('image', null);
+
+        $this->redirect(array('action' => 'profile', CurrentUser::get('username')));
+    }
+
     /**
      * Resize an image and save it
      *
