@@ -185,7 +185,9 @@ class MenuHelper extends AppHelper
         $isAdopted = !empty($ownerName);
         $userAccountDeactivated = isset($owner['group_id']) ?
             $owner['group_id'] > 4 : false;
-        $isAdoptable = !$isAdopted || $userAccountDeactivated;
+        $currentUserIsAdvanced = in_array(CurrentUser::get('group_id'), range(1, 3));
+        $isAdoptable = !$isAdopted || ($userAccountDeactivated
+                && $currentUserIsAdvanced);
         $currentUserName = CurrentUser::get('username');
         $isOwnedByCurrentUser = $isAdopted && $ownerName == $currentUserName;
 
