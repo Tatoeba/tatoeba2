@@ -425,7 +425,7 @@ class Sentence extends AppModel
                         'fields' => array()
                     ),
                     'User' => array(
-                        'fields' => array('id', 'username')
+                        'fields' => array('id', 'username', 'group_id', 'level')
                     ),
                     'SentencesList' => array(
                         'fields' => array('id')
@@ -445,9 +445,12 @@ class Sentence extends AppModel
             return;
         } else if (CurrentUser::getSetting('native_indicator')) {
             $UsersLanguages = ClassRegistry::init('UsersLanguages');
-            $result['User']['is_native'] = $UsersLanguages->isUserNative(
+            $isUserLevelNative = $UsersLanguages->isUserNative(
                 $result['User']['id'], $result['Sentence']['lang']
             );
+            $isUserReliable = $result['User']['group_id'] != 6
+                && $result['User']['level'] > -1;
+            $result['User']['is_native'] = $isUserLevelNative && $isUserReliable;
         }
 
         return $result;
