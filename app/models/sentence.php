@@ -747,16 +747,24 @@ class Sentence extends AppModel
     /**
      * Set owner for a sentence.
      *
-     * @param int $sentenceId Id of the sentence.
-     * @param int $userId     Id of the user.
+     * @param int $sentenceId         Id of the sentence.
+     * @param int $userId             Id of the user.
+     * @param int $currentUserGroupId Group id of the user.
      *
      * @return bool
      */
-    public function setOwner($sentenceId, $userId)
+    public function setOwner($sentenceId, $userId, $currentUserGroupId)
     {
         $this->id = $sentenceId;
-        $currentOwner = $this->getOwnerIdOfSentence($sentenceId);
-        if (empty($currentOwner)) {
+
+        $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
+        $ownerId = $currentOwner['id'];
+        $ownerGroupId = $currentOwner['group_id'];
+
+        $isAdoptable = $ownerId == 0 || ($ownerGroupId > 4
+                && in_array($currentUserGroupId, range(1, 3)));
+
+        if ($isAdoptable) {
             $this->saveField('user_id', $userId);
             return true;
         }
@@ -775,8 +783,9 @@ class Sentence extends AppModel
     public function unsetOwner($sentenceId, $userId)
     {
         $this->id = $sentenceId;
-        $currentOwner = $this->getOwnerIdOfSentence($sentenceId);
-        if ($currentOwner == $userId) {
+        $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
+        $ownerId = $currentOwner['id'];
+        if ($ownerId == $userId) {
             $this->saveField('user_id', null);
             return true;
         }
@@ -789,22 +798,22 @@ class Sentence extends AppModel
      *
      * @param int $sentenceId Id of the sentence.
      *
-     * @return int
+     * @return array
      */
-    public function getOwnerIdOfSentence($sentenceId)
+    public function getOwnerInfoOfSentence($sentenceId)
     {
         $sentence = $this->find(
             'first',
             array(
                 'conditions' => array(
-                    'id' => $sentenceId
+                    'Sentence.id' => $sentenceId
                 ),
                 'fields' => array('user_id'),
-                'contain' => array()
+                'contain' => array('User' => array('group_id'))
             )
         );
 
-        return $sentence['Sentence']['user_id'];
+        return $sentence['User'];
     }
 
 

@@ -421,7 +421,7 @@ class SentencesController extends AppController
         $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
 
-        $this->Sentence->setOwner($id, $userId);
+        $this->Sentence->setOwner($id, $userId, CurrentUser::get('group_id'));
 
         $this->renderAdopt($id);
     }
