@@ -166,7 +166,7 @@ class MembersHelper extends AppHelper
             case 3  : return __('advanced contributor', true);
             case 4  : return __('contributor', true);
             case 5  : return __('inactive', true);
-            case 6  : return __('spammer', true);
+            case 6  : return __('suspended', true);
             default : return null;
         }
     }
