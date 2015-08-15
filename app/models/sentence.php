@@ -443,7 +443,7 @@ class Sentence extends AppModel
 
         if ($result == null) {
             return;
-        } else {
+        } else if (CurrentUser::getSetting('native_indicator')) {
             $UsersLanguages = ClassRegistry::init('UsersLanguages');
             $result['User']['is_native'] = $UsersLanguages->isUserNative(
                 $result['User']['id'], $result['Sentence']['lang']

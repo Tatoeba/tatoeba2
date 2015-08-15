@@ -181,7 +181,7 @@ class MenuHelper extends AppHelper
     public function adoptButton($sentenceId, $owner)
     {
         $ownerName = $owner['username'];
-        $isNative = $owner['is_native'];
+        $isNative = isset($owner['is_native']) ? $owner['is_native'] : false;
         $isAdopted = !empty($ownerName);
         $currentUserName = CurrentUser::get('username');
         $isOwnedByCurrentUser = $isAdopted && $ownerName == $currentUserName;

@@ -136,6 +136,18 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                     ); ?>
                 </label>
             </div>
+
+            <div>
+                <?php echo $form->checkbox('settings.native_indicator'); ?>
+                <label for="UserSettingsNativeIndicator">
+                    <?php __(
+                        'Display "(native)" next to username on sentences when '.
+                        'the owner indicated in their profile that they have a '.
+                        'native level in the language of the sentence.'
+                    ); ?>
+                </label>
+            </div>
+
         </fieldset>
 
         <?php echo $form->end(__('Save', true)); ?>
