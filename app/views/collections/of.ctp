@@ -129,7 +129,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
                 echo $html->div('sentence deleted',
                     format(
-                        __('Sentence {id} has beed deleted.', true),
+                        __('Sentence {id} has been deleted.', true),
                         array('id' => $linkToSentence)
                     )
                 );
