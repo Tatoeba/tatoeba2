@@ -37,4 +37,4 @@
  * @link     http://tatoeba.org
  */
 
-$this->Menu->adoptButton($sentenceId, $ownerName);
+$this->Menu->adoptButton($sentenceId, $owner);

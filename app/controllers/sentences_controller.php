@@ -453,9 +453,8 @@ class SentencesController extends AppController
             'fields' => array('id'),
         ));
 
-        $ownerName = $sentence['User'] ? $sentence['User']['username'] : null;
         $this->set('sentenceId', $id);
-        $this->set('ownerName', $ownerName);
+        $this->set('owner', $sentence['User']);
         $this->layout = null;
         $this->render('adopt');
     }
