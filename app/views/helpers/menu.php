@@ -183,24 +183,27 @@ class MenuHelper extends AppHelper
         $ownerName = $owner['username'];
         $isNative = isset($owner['is_native']) ? $owner['is_native'] : false;
         $isAdopted = !empty($ownerName);
+        $userAccountDeactivated = isset($owner['group_id']) ?
+            $owner['group_id'] > 4 : false;
+        $isAdoptable = !$isAdopted || $userAccountDeactivated;
         $currentUserName = CurrentUser::get('username');
         $isOwnedByCurrentUser = $isAdopted && $ownerName == $currentUserName;
 
         $tooltip = null;
         $action = '';
-        if ($isAdopted) {
-            $image = 'adopted';
-            if ($isOwnedByCurrentUser) {
-                $tooltip = __('Click to unadopt', true);
-                $action = ' remove';
-            }
-        } else {
+        if ($isAdoptable) {
             $image = 'unadopted';
-            if (!$isAdopted) {
-                $tooltip = __('Click to adopt', true);
-                $action = ' add';
-            }
+            $tooltip = __('Click to adopt', true);
+            $action = ' add';
+        } else {
+            $image = 'adopted';
         }
+
+        if ($isOwnedByCurrentUser) {
+            $tooltip = __('Click to unadopt', true);
+            $action = ' remove';
+        }
+
 
         $svgIconOptions = array(
             'width' => 26,
