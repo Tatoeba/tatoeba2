@@ -223,7 +223,7 @@ class SentenceButtonsHelper extends AppHelper
             $class = 'editableFlag';
 
             // language select
-            if (CurrentUser::isAdmin()) {
+            if (CurrentUser::isAdmin() || CurrentUser::isModerator()) {
                 $langArray = $this->Languages->otherLanguagesArray();
             } else {
                 $langArray = $this->Languages->profileLanguagesArray(
