@@ -25,7 +25,7 @@ SELECT DISTINCT ts.sentence_id, t.name FROM `tags` t JOIN `tags_sentences` ts
 INTO OUTFILE '/var/tmp/tags.csv';
 
 -- Sentence lists
-SELECT sl.id, u.username, sl.created, sl.modified, sl.name
+SELECT sl.id, u.username, sl.created, sl.modified, sl.name, sl.is_public
 FROM sentences_lists sl LEFT JOIN users u ON sl.user_id = u.id
 ORDER BY sl.id ASC
 INTO OUTFILE '/var/tmp/user_lists.csv';
