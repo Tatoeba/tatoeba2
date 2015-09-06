@@ -279,7 +279,6 @@ class Users(models.Model):
     last_time_active = models.IntegerField()
     level = models.IntegerField()
     group_id = models.IntegerField()
-    send_notifications = models.IntegerField()
     name = models.CharField(max_length=255)
     birthday = models.DateTimeField(blank=True, null=True)
     description = models.TextField()
