@@ -1,5 +1,9 @@
 from tatoeba2.management.commands.deduplicate import Command, Dedup
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Users, Wall, Languages
+from tatoeba2.models import (
+    Sentences, SentenceComments, SentencesTranslations, Contributions,
+    TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations,
+    Contributions, Users, Wall, Languages, UsersSentences
+    )
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.conf import settings
@@ -185,6 +189,13 @@ class TestDedup():
         assert contrib_bd_ins.count() == 2
         assert contrib_bd_ins[0].sentence_id == 9 and contrib_bd_ins[0].translation_id == 8
         assert contrib_bd_ins[1].sentence_id == 10 and contrib_bd_ins[1].translation_id == 8
+
+    def test_merge_collection(db, sents, dedup):
+        assert UsersSentences.objects.filter(sentence_id__range=[5, 8]).count() == 3
+        dedup.update_merge('UsersSentences', 5, [6, 7, 8])
+        coll = UsersSentences.objects.filter(sentence_id__range=[5, 8])
+        assert len(coll) == 1
+        assert coll[0].correctness == 1
 
     def test_delete_sents(db, sents, dedup):
         assert Sentences.objects.filter(id__in=[6,7]).count() == 2

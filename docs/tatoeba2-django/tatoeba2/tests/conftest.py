@@ -1,4 +1,8 @@
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
+from tatoeba2.models import (
+    Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences,
+    SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions,
+    Wall, UsersSentences
+    )
 from datetime import datetime
 from tatoeba2.management.commands.deduplicate import Dedup
 from django.db import connections
@@ -78,6 +82,10 @@ def sents(db, request):
 
     Wall(owner=1, content='test post', date=datetime.utcnow(), title='', hidden=0, lft=1, rght=2).save()
 
+    UsersSentences(user_id=1, sentence_id=5, correctness=1, modified=datetime.now()).save()
+    UsersSentences(user_id=1, sentence_id=6, correctness=0, modified=datetime.now()).save()
+    UsersSentences(user_id=1, sentence_id=7, correctness=-1, modified=datetime.now()).save()
+
     if request.config.option.mysql:
         def fin():
             conn = connections['default']
@@ -98,6 +106,7 @@ def sents(db, request):
             clean_up('Users')
             clean_up('Wall')
             clean_up('SentenceAnnotations')
+            clean_up('UsersSentences')
 
         request.addfinalizer(fin)
 

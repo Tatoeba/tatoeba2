@@ -329,6 +329,19 @@ class WallThreadsLastMessage(models.Model):
     class Meta:
         db_table = 'wall_threads_last_message'
 
+class UsersSentences(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField()
+    sentence_id = models.IntegerField()
+    correctness = models.IntegerField()
+    created = models.DateTimeField(blank=True, null=True)
+    modified = models.DateTimeField(blank=True, null=True)
+    dirty = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'users_sentences'
+        unique_together = ('user_id', 'sentence_id')
+
 from django.conf import settings
 
 if not settings.MANAGE_DB:

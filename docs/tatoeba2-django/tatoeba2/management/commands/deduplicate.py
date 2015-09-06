@@ -3,7 +3,10 @@
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage
+from tatoeba2.models import (
+    Sentences, SentencesTranslations, Contributions, Users, Wall,
+    SentenceComments, WallThreadsLastMessage, UsersSentences
+    )
 from collections import defaultdict
 from datetime import datetime, timedelta
 from optparse import make_option
@@ -387,6 +390,7 @@ class Dedup(object):
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
         cls.update_merge('SentenceAnnotations', main_sent.id, ids, 'meaning_id')
+        cls.update_merge('UsersSentences', main_sent.id, ids)
 
         # delete and log duplicates
         cls.delete_sents(main_sent.id, ids)
