@@ -21,19 +21,31 @@ class RegexReplacer(PythonMySQLConnector):
     
     Only tested with Python 2.7.
     
-    Reads a JSON file that contains a restrictor for the SELECT 
-    statement (possibly empty), a MySQL regex for matching an existing pattern,
-    a Python regex for matching the same pattern, and a substitution string to
-    replace that pattern (to be fed to the re.sub() command). 
+    Reads a JSON file that contains the following elements:
+    - a restrictor (possibly empty) for the SELECT statement
+        - example: " AND lang='afr'"
+    - a MySQL regex for matching an existing pattern
+        - example: "[[:space:]]{2,}"
+    - a Python regex for matching the same pattern
+        - example: "\\s{2,}"
+    - a substitution string to be fed to the re.sub() command
+    to replace that pattern
+        - example: " "
+    - a flag that indicates whether the input string is ASCII (1=yes, 0=no)
+        
+    The fields may occur in arbitrary error, as they do in the 
+    following examples.
     
-    Contents of file for replacing "is" or its case variants by "**" in Afrikaans sentences:
+    Contents of file for replacing "is" or its case variants by "**" 
+    in Afrikaans sentences:
     [{"ascii": 1, "python_regex": "[iI][sS]", "mysql_regex": "[iI][sS]", "substitution_string": "**", "select_restrictor": " AND lang='afr'"}]
 
-    Contents of file for replacing runs of whitespace with a single space character
-    in all sentences:
+    Contents of file for replacing runs of whitespace with a single 
+    space character in all sentences:
     [{"ascii": 1, "python_regex": "\\s{2,}", "mysql_regex": "[[:space:]]{2,}", "substitution_string": " ", "select_restrictor": ""}]
 
-    Contents of file for replacing "à" (UTF-8 representation = 0xC3A0) by "À" in Italian sentences: 
+    Contents of file for replacing "à" (UTF-8 representation = 0xC3A0) 
+    by "À" in Italian sentences: 
     [{"ascii": 0, "python_regex": "à", "mysql_regex": "C3A0", "substitution_string": "À", "select_restrictor": " AND lang='ita'"}]    
     """
     ASCII = "ascii"
@@ -71,7 +83,9 @@ class RegexReplacer(PythonMySQLConnector):
         self.read_csv(filename)
 
     def read_csv(self, filename):
-        """Read a CSV file (id<TAB>text) produced by an earlier step and execute an SQL query to update text."""
+        """
+        Read a CSV file (id<TAB>text) produced earlier and execute an SQL query to update text.
+        """
         self.print_output("\n\nfilename: {0}".format(filename))
         if self.parsed.dry_run:
             self.print_output("---NOT executing these lines---")
