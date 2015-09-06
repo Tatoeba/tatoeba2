@@ -36,6 +36,8 @@
  */
 class MailerComponent extends Object
 {
+    public $components = array('Email');
+
     public $from     = 'trang.dictionary.project@gmail.com';
     public $fromName = 'Tatoeba (no-reply)';
     public $to       = null;
@@ -63,6 +65,8 @@ class MailerComponent extends Object
 
     /**
      * Send via Gmail.
+     *
+     * @todo We can delete this and use the Email component instead
      *
      * @param string $from     Email of sender.
      * @param string $namefrom Name of sender.
@@ -162,6 +166,47 @@ class MailerComponent extends Object
         fclose($smtpConnect);
         //a return value of 221 in $retVal["quitcode"] is a success
         return($logArray);
+    }
+
+
+    public function sendBlockedOrSuspendedUserNotif(
+        $username, $isSuspended
+    ) {
+        $this->Email->smtpOptions = array(
+            'port' => '465',
+            'timeout' => '45',
+            'host' => 'ssl://smtp.gmail.com',
+            'username' => Configure::read('Mailer.username'),
+            'password' => Configure::read('Mailer.password'),
+        );
+        $this->Email->delivery = 'debug';
+
+        $this->Email->to = 'community-admins@tatoeba.org';
+        $this->Email->subject = 'User blocked/suspended: ' . $username;
+        $this->Email->from = $this->fromName;
+        $this->Email->template = 'blocked_or_suspended_user';
+        $this->Email->sendAs = 'html';
+
+        $User = ClassRegistry::init('User');
+        $Contribution = ClassRegistry::init('Contribution');
+        $userId = $User->getIdFromUsername($username);
+        $suspendedUsers = $User->getUsersWithSamePassword($userId);
+        $lastContribution = $Contribution->getLastContributionOf($userId);
+        $lastIp = $lastContribution['Contribution']['ip'];
+
+        $this->set('admin', CurrentUser::get('username'));
+        $this->set('user', $username);
+        $this->set('isSuspended', $isSuspended);
+        $this->set('suspendedUsers', $suspendedUsers);
+        $this->set('lastIp', $lastIp);
+
+        $this->Email->send();
+    }
+
+
+    private function set($key, $value)
+    {
+        $this->Email->Controller->set($key, $value);
     }
 }
 ?>

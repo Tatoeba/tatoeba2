@@ -322,5 +322,17 @@ class Contribution extends AppModel
 
         return $conditions;
     }
+
+
+    public function getLastContributionOf($userId)
+    {
+        return $this->find(
+            'first',
+            array(
+                'condition' => array('user_id' => $userId),
+                'order' => 'datetime DESC'
+            )
+        );
+    }
 }
 ?>

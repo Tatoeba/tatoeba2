@@ -585,6 +585,26 @@ class User extends AppModel
         return $result['User']['group_id'];
     }
 
+
+    public function getUsersWithSamePassword($userId)
+    {
+        $userPassword = $this->getPassword($userId);
+
+        $result = $this->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'password' => $userPassword,
+                    'group_id' => 6,
+                    'id !=' => $userId
+                ),
+                'fields' => array('username'),
+                'limit' => 10
+            )
+        );
+
+        return $result;
+    }
 }
 
 

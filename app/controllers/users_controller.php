@@ -116,9 +116,21 @@ class UsersController extends AppController
             $this->redirect(array('action'=>'index'));
         }
         if (!empty($this->data)) {
+
+            $wasBlocked = $this->User->getLevelOfUser($id) == -1;
+            $wasSuspended = $this->User->getGroupOfUser($id) == 6;
+            $isBlocked = !$wasBlocked && $this->data['User']['level'] == -1;
+            $isSuspended = !$wasSuspended && $this->data['User']['group_id'] == 6;
+
             if ($this->User->save($this->data)) {
+                $username = $this->data['User']['username'];
+                if ($isBlocked || $isSuspended) {
+                    $this->Mailer->sendBlockedOrSuspendedUserNotif(
+                        $username, $isSuspended
+                    );
+                }
+
                 $this->Session->setFlash('The user information has been saved.');
-                $this->redirect(array('action'=>'index'));
             } else {
                 $this->Session->setFlash(
                     'The user information could not be saved. Please try again.'
