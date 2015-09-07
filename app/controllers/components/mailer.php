@@ -179,7 +179,7 @@ class MailerComponent extends Object
             'username' => Configure::read('Mailer.username'),
             'password' => Configure::read('Mailer.password'),
         );
-        $this->Email->delivery = 'debug';
+        $this->Email->delivery = 'smtp';
 
         $this->Email->to = 'community-admins@tatoeba.org';
         $this->Email->subject = 'User blocked/suspended: ' . $username;
