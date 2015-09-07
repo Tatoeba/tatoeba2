@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-29 22:24+0000\n"
-"PO-Revision-Date: 2015-08-30 22:07+0000\n"
+"POT-Creation-Date: 2015-09-06 19:24+0000\n"
+"PO-Revision-Date: 2015-09-06 19:30+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -263,7 +263,7 @@ msgid ""
 msgstr "हा टॅग कोणत्याही वाक्यावर लावला नाही. आपण जो टॅग शोधत आहात तो खोडून टाकला गेला आहे किंवा तो अस्तित्वात नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L111
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L463
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L475
 msgid "No user with this username: "
 msgstr "अश्या प्रयोक्तानावाचे कोणतेही प्रयोक्ता नाहीत: "
 
@@ -315,76 +315,76 @@ msgstr "सेव्ह करताना त्रुटी आढळली."
 msgid "Password error. Please try again."
 msgstr "पासवर्ड त्रुटी. कृपया पुन्हा प्रयत्न करून पहा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L201
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "हे खाते निष्क्रिय म्हणून चिन्हित केले गेले आहे. आपण याने आता लॉगइन करू शकत नाहीत. जर असं चुकिने घडलं असेल, तर कृपया एखाद्या प्रशासकाशी संपर्क साधा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L200
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L212
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "हे खाते स्पॅमर म्हणून चिन्हित केले गेले आहे. आपण याने आता लॉगइन करू शकत नाहीत. जर असं चुकिने घडलं असेल, तर कृपया एका प्रशासकाशी संपर्क साधा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L234
 msgid "You must fill in your username and password."
 msgstr "प्रयोक्ता नाव व पासवर्ड भरणे आवश्यक आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L230
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L242
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "लॉगइन अपयशी झाले. कॅप्स लॉक व नम लॉक चालू नाही याची खात्री करावे. पासवर्ड केस-संवेदनशील आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L316
 msgid "You did not accept the terms of use."
 msgstr "वापरण्याच्या अटी आपण स्वीकारल्या नाहीत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L327
 msgid "Wrong answer to the question."
 msgstr "प्रश्नाचं उत्तर चुकलं."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L347
 msgid "Password cannot be empty."
 msgstr "पासवर्ड ठेवणं आवश्यक आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L365
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L377
 msgid "Welcome to Tatoeba!"
 msgstr "तातोएबावर आपले स्वागत आहे!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L381
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "सुरुवात करण्यास, आपल्याला ज्या भाषा येतात व ज्या भाषांमध्ये आपल्याला रस आहे, आपल्या <a href='{url}'>प्रोफाइलद्वारे</a> कळवा आम्हाला कळवा, असा आम्ही तुम्हाला सल्ला देतो."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L413
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L425
 msgid "Tatoeba, new password"
 msgstr "तातोएबा, नवीन पासवर्ड"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L426
 msgid "Your login: "
 msgstr "आपले लॉगइन : "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L429
 msgid "Your new password: "
 msgstr "आपला नवीन पासवर्ड : "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L428
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L440
 msgid "Your new password has been sent to {email}."
 msgstr "आपला नवीन पासवर्ड {email} येथे पाठवला गेला आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L445
 msgid "You may need to check your spam folder to find this message."
 msgstr "हा संदेश आपल्याला कदाचित स्पॅम फोल्डर तपासून सापडू शकेल."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L453
 msgid "There is no registered user with this email address: "
 msgstr "कोणतेही नोंदणीकृत प्रयोक्ता या ईमेलशी संबंधित नाहीत: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L502
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L514
 msgid "No user with this id: "
 msgstr "या आय.डी.चे कोणतेही प्रयोक्ता नाहीत: "
 
@@ -1351,7 +1351,7 @@ msgstr "संख्या"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L36
 msgid "Language"
 msgstr "भाषा"
 
@@ -1846,9 +1846,9 @@ msgstr "या भाषेतून"
 msgid "To"
 msgstr "या भाषेत"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
-msgid "No results found"
-msgstr "निकाल लागले नाहीत"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L34
+msgid "No results found for: {search}"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L46
@@ -1994,7 +1994,8 @@ msgid "List of all members"
 msgstr "सर्व सदस्यांची यादी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L32
 msgid "Languages of members"
 msgstr "भाषेनुसार सदस्यांच्या याद्या"
 
@@ -4056,7 +4057,7 @@ msgid "Contributors"
 msgstr "योगदाता"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L60
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L47
 msgid "Total"
 msgstr "एकूण"
 
@@ -4474,7 +4475,7 @@ msgid ""
 msgstr "ISO 639-3 कोड प्रविष्ट करून त्यांना स्वल्पविरामाने वेगवेगळे करा (उदा. jpn,epo,ara,deu). तातोएबा आपण निर्देशित केलेल्या भाषांमध्येच भाषांतरे दाखवेल. सर्व भाषांमध्ये भाषांतर दाखवण्यासाठी ही जागा रिकामी ठेवा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
 msgid "Languages"
 msgstr "भाषा"
 
@@ -4552,17 +4553,21 @@ msgstr "सदस्य (एकूण  %count%)"
 msgid "Member status"
 msgstr "सदस्य दर्जा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L38
+msgid "Members: {lang}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L51
 msgid "Back to global stats"
 msgstr "जागतिक आकडेवारीकडे परता"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L74
 msgid "{total} member"
 msgid_plural "{total} members"
 msgstr[0] "{total} सदस्य"
 msgstr[1] "{total} सदस्य"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L99
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
 msgstr[0] "{lang} ({total} सदस्य)"
