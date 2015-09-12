@@ -72,28 +72,20 @@ class TagsHelper extends AppHelper
                     <?php
                 } else {
 
-                foreach ($tagsArray as $tagArray) {
-                    ?>
-                    <span class="tag">
-                    <?php
-                    $tagName =  $tagArray['Tag']['name'];
-                    $userId = $tagArray['User']['id'];
-                    $username = $tagArray['User']['username'];
-                    $tagId = $tagArray['TagsSentences']['tag_id'];
-                    $date = $tagArray['TagsSentences']['added_time'];
+                    foreach ($tagsArray as $tagArray) {
 
-                    $this->displayTagLink(
-                        $tagName, $tagId, $username, $date
-                    );
+                        $tagName =  $tagArray['Tag']['name'];
+                        $userId = $tagArray['User']['id'];
+                        $username = $tagArray['User']['username'];
+                        $tagId = $tagArray['TagsSentences']['tag_id'];
+                        $date = $tagArray['TagsSentences']['added_time'];
 
-                    if (CurrentUser::canRemoveTagFromSentence($userId)) {
-                        $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
+                        $this->displayTag(
+                            $tagName, $tagId, $sentenceId, $userId, $username, $date
+                        );
+
                     }
-                    ?>
-                    </span>
-                <?php
-                } // end foreach
-                } // end else
+                }
                 ?>
             </div>
             <?php
@@ -112,6 +104,33 @@ class TagsHelper extends AppHelper
         </div>
     <?php
     }
+
+
+    /**
+     * @param $tagName
+     * @param $tagId
+     * @param null $username
+     * @param null $date
+     */
+    public function displayTag(
+        $tagName, $tagId, $sentenceId, $userId, $username = null, $date = null
+    ) {
+        ?>
+        <span class="tag">
+        <?php
+
+        $this->displayTagLink(
+            $tagName, $tagId, $username, $date
+        );
+
+        if (CurrentUser::canRemoveTagFromSentence($userId)) {
+            $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
+        }
+        ?>
+        </span>
+        <?php
+    }
+
 
     /**
      *
