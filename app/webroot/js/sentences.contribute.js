@@ -49,11 +49,12 @@ $(document).ready(function() {
                     "selectedLang": selectedLang
                 },
                 function(data){
+                    $("#SentenceText").val("");
+                    $("#SentenceText").focus(); // Adding back the focus.
                     $("#session_expired").remove();
                     $(".sentencesAddedloading").hide();
                     $("#sentencesAdded").prepend(data);
-                    $("#SentenceText").val("");
-                    $("#SentenceText").focus(); // Adding back the focus.
+                    // TODO fix "SyntaxError: expected expression, got '<'"
                 },
                 "html"
             );
