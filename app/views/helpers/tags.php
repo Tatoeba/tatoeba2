@@ -190,6 +190,8 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
+        echo $this->Javascript->link(JS_PATH . 'tags.add.js', true);
+
         echo $this->Form->create(
             'Tag',
             array(
@@ -210,13 +212,17 @@ class TagsHelper extends AppHelper
                 "label" => '',
                 "lang" => '',
                 "dir" => 'auto',
+                "data-sentence-id" => $sentenceId
             )
         );
         echo $this->Form->hidden(
             'sentence_id',
             array('value' => $sentenceId)
         );
-        echo $this->Form->button('+');
+
+        echo '<div class="input">';
+        echo $this->Form->button('+', array('id' => 'addNewTag'));
+        echo '</div>';
 
         echo $this->Form->end();
     }

@@ -73,10 +73,34 @@ class TagsController extends AppController
 
     public function add_tag_post()
     {
-        $tagName = $this->data['Tag']['tag_name'];
-        $sentenceId = Sanitize::paranoid($this->data['Tag']['sentence_id']);
-        $this->add_tag($tagName, $sentenceId);
+        if ($this->RequestHandler->isAjax()) {
 
+            $this->helpers[] = 'Tags';
+
+            $tagName = $this->params['form']['tag_name'];
+            $sentenceId = Sanitize::paranoid($this->params['form']['sentence_id']);
+            $userId = CurrentUser::get("id");
+            $username = CurrentUser::get("username");
+            $tagId = $this->Tag->addTag($tagName, $userId, $sentenceId);
+
+            $isSaved = !empty($tagId);
+            $this->set('isSaved', $isSaved);
+            if ($isSaved) {
+                $this->set('tagName', $tagName);
+                $this->set('tagId', $tagId);
+                $this->set('userId', $userId);
+                $this->set('username', $username);
+                $this->set('sentenceId', $sentenceId);
+                $this->set('date', date("Y-m-d H:i:s"));
+            }
+
+        } else {
+
+            $tagName = $this->data['Tag']['tag_name'];
+            $sentenceId = Sanitize::paranoid($this->data['Tag']['sentence_id']);
+            $this->add_tag($tagName, $sentenceId);
+
+        }
     }
 
     /**
@@ -114,7 +138,8 @@ class TagsController extends AppController
         }
 
         // save and check if the tag has been added
-        if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
+        $tag = $this->Tag->addTag($tagName, $userId, $sentenceId);
+        if (!empty($tag)) {
             $infoMessage = format(
                 __(
                     "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",

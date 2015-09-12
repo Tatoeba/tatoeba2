@@ -68,6 +68,7 @@
 
 #TagAddTagPostForm .input {
     display: inline-block;
+    vertical-align: middle;
 }
 
 #TagAddTagPostForm button[type="submit"] {
@@ -93,6 +94,14 @@
 #autocompletionDiv a{
     width: 140px; /* This has to be 10px less than #TagTagName to compensate the
                      text-indent and padding (in autocompletion.css) */
+}
+
+.tags-loader {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 

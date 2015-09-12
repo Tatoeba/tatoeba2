@@ -144,15 +144,15 @@ class Tag extends AppModel
         }
 
         if ($sentenceId != null) {
-            $ret = $this->TagsSentences->tagSentence(
+            $this->TagsSentences->tagSentence(
                 $sentenceId,
                 $tagId,
                 $userId
             );
-            return $ret;
+            return $tagId;
         }
         
-        return true;
+        return false;
     }
 
     public function removeTagFromSentence($tagId, $sentenceId) {
