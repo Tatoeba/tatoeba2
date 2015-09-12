@@ -36,7 +36,7 @@ var previousText = '';
 var isSuggestListActive = false;
 
 function sendToAutocomplete() {
-    countBeforeRequest--
+    countBeforeRequest--;
     if (countBeforeRequest > 0) {
         return;   
     } 
@@ -65,7 +65,7 @@ function sendToAutocomplete() {
  * replace the input text by the clicked one
  */
 function suggestSelect(suggestionStr) {
-    $("#TagTagName").attr("value", suggestionStr);
+    $("#TagTagName").val(suggestionStr);
     $("#TagTagName").focus();
     return false;
 }
@@ -94,12 +94,11 @@ function suggestShowResults(xmlDocResults) {
         }
         suggestion = suggestions[i].firstChild.data;
         var li = document.createElement("li");
-        li.innerHTML = "<a id='suggestItem" + i + "'onclick='suggestSelect(this.innerHTML)' style='color:black;'>"+
+        li.innerHTML = "<a id='suggestItem" + i + "' onclick='suggestSelect(this.innerHTML)' style='color:black;'>"+
             suggestion +
         "</a>";
         ul.appendChild(li);
     }
-    changeActiveSuggestion(1);
 }
 
 /**
@@ -111,7 +110,9 @@ function changeActiveSuggestion(offset) {
     if (currentSuggestPosition < 0) {
         currentSuggestPosition = suggestLength - 1;
     }
-    $("#suggestItem"+currentSuggestPosition % suggestLength).addClass("selected");
+    var selectedItem = $("#suggestItem"+currentSuggestPosition % suggestLength);
+    selectedItem.addClass("selected");
+    suggestSelect(selectedItem[0].innerHTML);
 } 
 
 /**
@@ -139,7 +140,7 @@ $(document).ready(function()
         300
         );
     });
- 
+
     $("#TagTagName").keyup(function(e){
         switch(e.keyCode) {
             case 38: //up
@@ -147,8 +148,6 @@ $(document).ready(function()
                 break;
             case 40://down
                 changeActiveSuggestion(1);
-                break;
-            case 13: //enter
                 break;
             case 27: //escape
                 removeSuggestList();
