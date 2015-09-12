@@ -77,14 +77,20 @@
     border: none;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    height: 22px;
+    height: 25px;
+    width: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: -24px;
     cursor: pointer;
-    width: 22px;
 }
 
 #TagAddTagPostForm input {
     border: 1px solid #cccccc;
-    padding: 2px;
+    padding: 2px 25px 2px 2px;
+    font-size: 16px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 #TagTagName {
