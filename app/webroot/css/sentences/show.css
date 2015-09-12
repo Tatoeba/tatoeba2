@@ -62,15 +62,28 @@
 /* 
  * Tags form
  */
-#TagAddTagForm {
-    margin-top: 10px;
-    border-top: 1px dotted #CCC;
-    padding: 10px 5px 5px 5px;
+#TagAddTagPostForm {
+    margin: 10px 0;
 }
 
-#TagAddTagForm div {
-    display: inline;
-    margin: 3px;
+#TagAddTagPostForm .input {
+    display: inline-block;
+}
+
+#TagAddTagPostForm button[type="submit"] {
+    background: #66AA00;
+    color: #FFFFFF;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 22px;
+    cursor: pointer;
+    width: 22px;
+}
+
+#TagAddTagPostForm input {
+    border: 1px solid #cccccc;
+    padding: 2px;
 }
 
 #TagTagName {

@@ -193,15 +193,13 @@ class TagsHelper extends AppHelper
                 "dir" => 'auto',
             )
         );
-
-        echo '<div>';
         echo $this->Form->hidden(
             'sentence_id',
             array('value' => $sentenceId)
         );
-        echo '</div>';
+        echo $this->Form->button('+');
 
-        echo $this->Form->end('+');
+        echo $this->Form->end();
     }
 
 
