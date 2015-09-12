@@ -64,27 +64,18 @@ class TagsHelper extends AppHelper
 
             <div class="tagsListOnSentence" >
                 <?php
-                if (count($tagsArray) == 0) {
-                    ?>
+                foreach ($tagsArray as $tagArray) {
 
-                    <p><?php __('No tag on this sentence.'); ?></p>
+                    $tagName =  $tagArray['Tag']['name'];
+                    $userId = $tagArray['User']['id'];
+                    $username = $tagArray['User']['username'];
+                    $tagId = $tagArray['TagsSentences']['tag_id'];
+                    $date = $tagArray['TagsSentences']['added_time'];
 
-                    <?php
-                } else {
+                    $this->displayTag(
+                        $tagName, $tagId, $sentenceId, $userId, $username, $date
+                    );
 
-                    foreach ($tagsArray as $tagArray) {
-
-                        $tagName =  $tagArray['Tag']['name'];
-                        $userId = $tagArray['User']['id'];
-                        $username = $tagArray['User']['username'];
-                        $tagId = $tagArray['TagsSentences']['tag_id'];
-                        $date = $tagArray['TagsSentences']['added_time'];
-
-                        $this->displayTag(
-                            $tagName, $tagId, $sentenceId, $userId, $username, $date
-                        );
-
-                    }
                 }
                 ?>
             </div>
@@ -92,14 +83,6 @@ class TagsHelper extends AppHelper
             if (CurrentUser::isTrusted()) {
                 $this->displayAddTagForm($sentenceId);
             }
-            echo $this->Html->link(
-                __('View all tags', true),
-                array(
-                    "controller" => "tags",
-                    "action" => "view_all",
-                )
-            );
-
             ?>
         </div>
     <?php
