@@ -211,10 +211,10 @@ class Link extends AppModel
         ));
         $toRemove = Set::extract($toRemove, '{n}.Link.id');
         if ($toRemove) {
-            $this->deleteAll(array('Link.id' => $toRemove), false, true);
+            $deleted = $this->deleteAll(array('Link.id' => $toRemove), false, true);
         }
 
-        return true; // yes, it's useless, never mind...
+        return $deleted;
     }
 
     public function findDirectTranslationsIds($sentenceId) {
