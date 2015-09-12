@@ -182,7 +182,7 @@ class MailerComponent extends Object
         $this->Email->delivery = 'smtp';
 
         $this->Email->to = 'community-admins@tatoeba.org';
-        $this->Email->subject = 'User blocked/suspended: ' . $username;
+        $this->Email->subject = '( ! ) ' . $username;
         $this->Email->from = $this->fromName;
         $this->Email->template = 'blocked_or_suspended_user';
         $this->Email->sendAs = 'html';
