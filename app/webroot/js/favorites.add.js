@@ -19,7 +19,7 @@
 
 $(document).ready(function(){
 
-    $(".favorite").live('click', function(){
+    $(document).on("click", ".favorite", function(){
         var favoriteId = $(this).attr("data-sentence-id");
         var favoriteOption = $(this);
         var action = 'remove_favorite';

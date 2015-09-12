@@ -126,7 +126,7 @@ $(document).ready(function(){
     }
 
 
-    $('.ajaxSubmit').live('click',
+    $(document).on('click', '.ajaxSubmit',
         function(){
             saveMessage() ;
             // this line is not in save message due to ajax's asynchronousity
@@ -140,7 +140,7 @@ $(document).ready(function(){
     });
 
 
-    $('.cancelFormLink').live('click',
+    $(document).on('click', '.cancelFormLink',
         function(){
            closeThisReplyForm( $(this) );
         }
