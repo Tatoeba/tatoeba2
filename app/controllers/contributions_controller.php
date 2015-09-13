@@ -49,6 +49,7 @@ class ContributionsController extends AppController
         'CommonModules'
     );
     public $components = array('Permissions');
+    public $uses = array('Contribution', 'ContributionsStats');
 
     /**
      * Before filter.
@@ -162,7 +163,9 @@ class ContributionsController extends AppController
 
         } else {
 
-            $stats = $this->Contribution->getActivityTimelineStatistics($year, $month);
+            $stats = $this->ContributionsStats->getActivityTimelineStatistics(
+                $year, $month
+            );
             $this->set('year', $year);
             $this->set('month', $month);
             $this->set('stats', $stats);

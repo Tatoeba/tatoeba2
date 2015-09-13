@@ -48,8 +48,8 @@ $maxWidth = 400;
 $maxTotal = 0;
 
 foreach ($stats as $stat) {
-    if ($stat[0]['total'] > $maxTotal) {
-        $maxTotal = $stat[0]['total'];
+    if ($stat['ContributionsStats']['sentences'] > $maxTotal) {
+        $maxTotal = $stat['ContributionsStats']['sentences'];
     }
 }
 ?>
@@ -72,25 +72,27 @@ foreach ($stats as $stat) {
 
     <?php
     echo '<table id="timeline">';
+
+    $currentDate = null;
+    $totalSentences = 0;
+    $i = 0;
+
     foreach ($stats as $stat) {
-        $total = $stat[0]['total'];
-        $percent = $total / $maxTotal;
-        $width = intval($percent * $maxWidth);
-        
+
+        $numSentences = $stat['ContributionsStats']['sentences'];
+        $date = $stat['ContributionsStats']['date'];
+
+        $width = ($numSentences / $maxTotal) * 100;
+        $bar = $html->div('logs_stats', null,
+            array('style' => 'width:'.$width.'%')
+        );
+
         echo '<tr>';
-            echo '<td class="date">';
-            echo $stat[0]['day'];
-            echo '</td>';
-            
-            echo '<td class="number">';
-            echo '<strong>'.$total.'</strong>';
-            echo '</td>';
-            
-            echo '<td class="line">';
-            echo '<div class="logs_stats" style="width:'.$width.'px">';
-            echo '</div>';
-            echo '</td>';
+        echo $html->tag('td', $date, array('class' => 'date'));
+        echo $html->tag('td', $numSentences, array('class' => 'number'));
+        echo $html->tag('td', $bar, array('class' => 'bar'));
         echo '</tr>';
+
     }
     echo '</table>';
     ?>

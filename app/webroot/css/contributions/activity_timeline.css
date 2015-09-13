@@ -32,15 +32,20 @@
 
 #timeline .date {
     text-align: right;
-    padding-right: 5px;
     color: #545454;
+    padding: 0 10px;
 }
 
 #timeline .number {
     text-align: center;
-    padding: 0 5px;
+    padding: 0 10px;
     color: #111;
     border-right: 1px solid #767676;
+    font-weight: bold;
+}
+
+#timeline .bar {
+    width: 100%;
 }
 
 #timeline .logs_stats {
