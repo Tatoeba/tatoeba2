@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-06 19:24+0000\n"
-"PO-Revision-Date: 2015-09-07 12:20+0000\n"
+"PO-Revision-Date: 2015-09-11 18:27+0000\n"
 "Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -260,7 +260,7 @@ msgstr "{firstSentence} {secondSentence}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L120
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
-msgstr "Тег '{tagName}' уже применён к предложению №{number}, его нельзя добавить повторно"
+msgstr "Предложение №{number} уже помечено тегом  '{tagName}' или добавление тега невозможно"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L269
 msgid ""
@@ -1270,7 +1270,7 @@ msgstr "Всякий раз, когда вы замечаете возможну
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr "Если вы хотите добавить предложение на языке, носителем которого не являетесь, и не полностью уверены, что это предложение правильно, добавляйте к вашему предложению тег {tagNNC}."
+msgstr "Если вы хотите добавить предложение на языке, носителем которого не являетесь, и не полностью уверены, что оно правильно, помечайте ваше предложение тегом {tagNNC}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L126
 msgid ""
@@ -1437,7 +1437,7 @@ msgstr "Последние изменения"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L80
 msgid "Contributions"
-msgstr "Вклад"
+msgstr "Вклады"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L45
 msgid "View all"
@@ -3477,7 +3477,7 @@ msgid ""
 "Creative Commons Attribution License 2.0 (fr). Please note that this license"
 " does allow commercial uses of your contributions, as long as such uses are "
 "compliant with the terms. "
-msgstr "Чтобы расширить доступные свободные знания и свободную культуру, все пользователи, вносящие вклад в проект Tatoeba, соглашаются передать неограниченному кругу лиц широкие права на свободное распространение и использование их вклада при условии указания авторства. Таким образом, размещая любой текст, авторскими правами на который вы владеете, вы соглашаетесь распространять его на условиях лицензии Creative Commons Attribution License 2.0 (fr). Обратите внимание, что эта лицензия позволяет коммерческое использование Вашего вклада при условии выполнения её условий. "
+msgstr "Чтобы расширить доступные свободные знания и свободную культуру, все пользователи, вносящие вклад в проект Tatoeba, соглашаются передать неограниченному кругу лиц широкие права на свободное распространение и использование их вклада при условии указания авторства. Таким образом, размещая любой текст, авторскими правами на который вы обладаете, вы соглашаетесь распространять его на условиях лицензии Creative Commons Attribution License 2.0 (fr). Обратите внимание, что эта лицензия позволяет коммерческое использование Вашего вклада при условии выполнения её условий. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L69
 msgid ""
