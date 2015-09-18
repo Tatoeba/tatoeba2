@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$javascript->link('jquery.scrollTo-min.js', false);
+$javascript->link('jquery.scrollTo.min.js', false);
 $javascript->link('sentences.logs.js', false);
 
 if (isset($sentence)) {
