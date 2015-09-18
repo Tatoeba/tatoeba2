@@ -45,6 +45,8 @@ class Contribution extends AppModel
     );
     public $belongsTo = array('Sentence', 'User');
 
+    public $recursive = -1;
+
     /**
      * Get number of contributions made by a given user
      *
@@ -327,10 +329,13 @@ class Contribution extends AppModel
     public function getLastContributionOf($userId)
     {
         return $this->find(
-            'first',
+            'all',
             array(
-                'condition' => array('user_id' => $userId),
-                'order' => 'datetime DESC'
+                'conditions' => array('user_id' => $userId),
+                'fields' => array('ip', 'count(*) as count'),
+                'group' => 'ip',
+                'order' => 'count DESC',
+                'limit' => 10
             )
         );
     }

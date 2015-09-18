@@ -11,11 +11,11 @@ $userProfile = $html->link(
 
 if ($isSuspended) {
     echo $html->tag('p',
-        "$adminProfile has suspended $userProfile."
+        "$adminProfile has suspended $userProfile (id=$userId)."
     );
 } else {
     echo $html->tag('p',
-        "$adminProfile has changed the level of $userProfile to -1."
+        "$adminProfile has changed the level of $userProfile (id=$userId) to -1."
     );
 }
 
@@ -39,6 +39,11 @@ if (count($suspendedUsers) > 0) {
     echo "<em>no one</em>";
 }
 
-echo $html->tag('p',
-    "The last IP with which $user has contributed is: $lastIp."
-);
+echo "The IP(s) under which $user has contributed are:";
+echo '<ul>';
+foreach($ips as $ip) {
+    echo $html->tag('li',
+        $ip['Contribution']['ip'] . ' ('. $ip[0]['count'] .' contributions)'
+    );
+}
+echo '</ul>';

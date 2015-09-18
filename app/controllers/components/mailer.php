@@ -191,14 +191,14 @@ class MailerComponent extends Object
         $Contribution = ClassRegistry::init('Contribution');
         $userId = $User->getIdFromUsername($username);
         $suspendedUsers = $User->getUsersWithSamePassword($userId);
-        $lastContribution = $Contribution->getLastContributionOf($userId);
-        $lastIp = $lastContribution['Contribution']['ip'];
+        $ips = $Contribution->getLastContributionOf($userId);
 
         $this->set('admin', CurrentUser::get('username'));
         $this->set('user', $username);
+        $this->set('userId', $userId);
         $this->set('isSuspended', $isSuspended);
         $this->set('suspendedUsers', $suspendedUsers);
-        $this->set('lastIp', $lastIp);
+        $this->set('ips', $ips);
 
         $this->Email->send();
     }
