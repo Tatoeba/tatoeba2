@@ -36,10 +36,10 @@ if (count($suspendedUsers) > 0) {
     }
     echo '</ul>';
 } else {
-    echo "<em>no one</em>";
+    echo "<em>no one</em><br/>";
 }
 
-echo "The IP(s) under which $user has contributed are:";
+echo $html->tag('p', "The IP(s) under which $user has contributed are:");
 echo '<ul>';
 foreach($ips as $ip) {
     echo $html->tag('li',
