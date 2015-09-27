@@ -261,10 +261,24 @@ class MailerComponent extends Object
     }
 
 
+    public function sendNewPassword($recipient, $username, $newPassword)
+    {
+        $this->Email->to = $recipient;
+        $this->Email->subject = __('Tatoeba, new password', true);
+        $this->Email->template = 'new_password';
+
+        $this->set('username', $username);
+        $this->set('newPassword', $newPassword);
+
+        $this->_send();
+    }
+
+
     private function set($key, $value)
     {
         $this->Email->Controller->set($key, $value);
     }
+
 
     private function _send()
     {

@@ -422,19 +422,11 @@ class UsersController extends AppController
 
                 if ($this->User->save($updatePasswordData)) { // if saved
                     // prepare message
-                    $subject = __('Tatoeba, new password', true);
-                    $message = __('Your login: ', true)
-                        . $user['User']['username']
-                        . "\n"
-                        . __('Your new password: ', true)
-                        . $newPassword;
-
-                    // send email with new password
-                    $this->Mailer->to = $this->data['User']['email'];
-                    $this->Mailer->toName = '';
-                    $this->Mailer->subject = $subject;
-                    $this->Mailer->message = $message;
-                    $this->Mailer->send();
+                    $this->Mailer->sendNewPassword(
+                        $this->data['User']['email'],
+                        $user['User']['username'],
+                        $newPassword
+                    );
 
                     $flashMessage = format(
                         __('Your new password has been sent to {email}.', true),
