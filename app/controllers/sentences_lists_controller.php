@@ -158,6 +158,9 @@ class SentencesListsController extends AppController
     {
         $id = Sanitize::paranoid($id);
         $translationsLang = Sanitize::paranoid($translationsLang);
+        if (empty($translationsLang)) {
+            $translationsLang = 'none';
+        }
 
         if (!isset($id)) {
             $this->redirect(array("action"=>"index"));
@@ -166,7 +169,7 @@ class SentencesListsController extends AppController
         $list = $this->SentencesList->getList($id);
 
         $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
-            $id, $translationsLang, CurrentUser::getSetting('sentences_per_page')
+            $id, CurrentUser::getSetting('sentences_per_page')
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
 
