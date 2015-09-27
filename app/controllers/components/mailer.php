@@ -239,6 +239,28 @@ class MailerComponent extends Object
     }
 
 
+    public function sendWallReplyNotification($recipient, $message)
+    {
+        $author = $message['User']['username'];
+        $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
+        $linkToMessage = 'https://'.$_SERVER['HTTP_HOST']
+            . '/wall/show_message/'
+            . $message['Wall']['id']
+            . '#message_'.$message['Wall']['id'];
+        $messageContent = $message['Wall']['content'];
+
+        $this->Email->to = $recipient;
+        $this->Email->subject = $subject;
+        $this->Email->template = 'wall_reply';
+
+        $this->set('author', $author);
+        $this->set('linkToMessage', $linkToMessage);
+        $this->set('messageContent', $messageContent);
+
+        $this->_send();
+    }
+
+
     private function set($key, $value)
     {
         $this->Email->Controller->set($key, $value);
