@@ -158,7 +158,8 @@ class LanguagesLib
             'yid' => 'yi', // Yiddish
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
-    
+            'tir' => 'ti', // Tigrinya
+
             // Macrolanguages
             'yue' => 'zh',
             'wuu' => 'zh',
@@ -381,7 +382,8 @@ class LanguagesLib
                 'kha' => __('Khasi',true),
                 'jav' => __('Javanese',true),
                 'zza' => __('Zaza',true),
-                'egl' => __('Emilian',true),//@lang
+                'egl' => __('Emilian',true),
+                'tir' => __('Tigrinya',true),
             );
         }
         return $languages;
