@@ -48,7 +48,8 @@ class SentencesListsController extends AppController
     );
     public $components = array(
         'LanguageDetection', 
-        'Cookie'
+        'Cookie',
+        'CommonSentence'
     );
     // We want to make sure that people don't download long lists, which can slow down the server.
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
@@ -168,6 +169,14 @@ class SentencesListsController extends AppController
             $id, $translationsLang, CurrentUser::getSetting('sentences_per_page')
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
+
+        $sentenceIds = array();
+        foreach ($sentencesInList as $sentence) {
+            $sentenceIds[] = $sentence['SentencesSentencesLists']['sentence_id'];
+        }
+        $sentencesInList = $this->CommonSentence->getAllNeededForSentences(
+            $sentenceIds, $translationsLang
+        );
 
         $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
         $downloadability_info = $this->_get_downloadability_info($thisListCount);

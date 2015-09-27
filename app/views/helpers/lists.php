@@ -360,10 +360,9 @@ class ListsHelper extends AppHelper
      *
      * @return void
      */
-    public function displaySentence(
-        $sentence, $translations = array(), $canCurrentUserEdit = false
-    ) {
-        if (empty($sentence['id'])) {
+    public function displaySentence($sentence, $canCurrentUserEdit = false) {
+        $sentenceId = $sentence['Sentence']['id'];
+        if (empty($sentenceId)) {
             // In case the sentence has been deleted, we don't want to display
             // it in the list.
             // We may also want to run the script to update the count of sentences
@@ -372,23 +371,21 @@ class ListsHelper extends AppHelper
             return;
         }
         ?>
-        <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">
+        <div id="sentence<?php echo $sentenceId; ?>" class="sentenceInList">
 
             <?php
             // Remove from list button
             if ($canCurrentUserEdit) {
-                $this->_displayRemoveButton($sentence['id']);
+                $this->_displayRemoveButton($sentenceId);
             }
 
             // Sentences group
-            $user = $sentence['User'];
             $withAudio = true;
-            $indirectTranslations = array();
             $this->Sentences->displaySentencesGroup(
-                $sentence,
-                $translations,
-                $user,
-                $indirectTranslations,
+                $sentence['Sentence'],
+                $sentence['Translations'],
+                $sentence['User'],
+                $sentence['IndirectTranslations'],
                 $withAudio
             );
             ?>

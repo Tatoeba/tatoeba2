@@ -141,15 +141,8 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
-    foreach ($sentencesInList as $item) {
-        $sentence = $item['Sentence'];
-        $translations = array();
-        if (!empty($sentence['Translation'])) {
-            foreach ($sentence['Translation'] as $value) {
-                $translations[] = array('Translation' => $value);
-            }
-        }
-        $lists->displaySentence($sentence, $translations, $canRemoveSentence);
+    foreach ($sentencesInList as $sentence) {
+        $lists->displaySentence($sentence, $canRemoveSentence);
     }
     ?>
     </div>

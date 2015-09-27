@@ -40,6 +40,7 @@ class SentencesSentencesLists extends AppModel
     public $name = 'SentencesSentencesLists';
     public $useTable = 'sentences_sentences_lists';
     public $actsAs = array('Containable');
+    public $recursive = -1;
 
     public $belongsTo = array(
         'Sentence' => array('foreignKey' => 'sentence_id'),
@@ -99,30 +100,9 @@ class SentencesSentencesLists extends AppModel
      */
     public function getPaginatedSentencesInList($listId, $translationsLang, $limit)
     {
-        $sentenceParams = array(
-            'fields' => array('id', 'text', 'lang', 'hasaudio', 'correctness'),
-            'User' => array('fields' => array('id', 'username'))
-        );
-
-        if ($translationsLang != null) {
-            // All
-            $sentenceParams['Translation'] = array(
-                "fields" => array("id", "lang", "text", "correctness", "hasaudio"),
-            );
-            // Specific language
-            if ($translationsLang != 'und') {
-                $sentenceParams['Translation']['conditions'] = array(
-                    "lang" => $translationsLang
-                );
-            }
-        }
-
         return array(
             'limit' => $limit,
             'conditions' => array('sentences_list_id' => $listId),
-            'contain' => array(
-                'Sentence' => $sentenceParams
-            ),
             'order' => 'created DESC'
         );
     }
