@@ -92,13 +92,12 @@ class SentencesSentencesLists extends AppModel
     /**
      * Returns value of $this->paginate, for paginating sentences of a list.
      *
-     * @param int    $listId           Id of the list.
-     * @param string $translationsLang Language of the translations.
-     * @param int    $limit            Number of sentences per page.
+     * @param int    $listId Id of the list.
+     * @param int    $limit  Number of sentences per page.
      *
      * @return array
      */
-    public function getPaginatedSentencesInList($listId, $translationsLang, $limit)
+    public function getPaginatedSentencesInList($listId, $limit)
     {
         return array(
             'limit' => $limit,
