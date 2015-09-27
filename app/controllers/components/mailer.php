@@ -214,6 +214,31 @@ class MailerComponent extends Object
     }
 
 
+    public function sendSentenceCommentNotification(
+        $recipient, $comment, $sentenceOwner
+    ) {
+        $author = CurrentUser::get('username');
+        $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
+        $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
+            . '/sentence_comments/show/'
+            . $comment['sentence_id']
+            . '#comments';
+        $recipientIsOwner = ($recipient == $sentenceOwner);
+        $commentText = $comment['text'];
+
+        $this->Email->to = $recipient;
+        $this->Email->subject = $subject;
+        $this->Email->template = 'comment_on_sentence';
+
+        $this->set('author', $author);
+        $this->set('linkToSentence', $linkToSentence);
+        $this->set('commentText', $commentText);
+        $this->set('recipientIsOwner', $recipientIsOwner);
+
+        $this->_send();
+    }
+
+
     private function set($key, $value)
     {
         $this->Email->Controller->set($key, $value);

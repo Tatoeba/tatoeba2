@@ -115,13 +115,10 @@ class ClickableLinksHelper extends AppHelper
         $content = preg_replace_callback(
             $this::SENTENCE_ID_PATTERN, 
             function ($m) use ($self) {
-                return $m[1] . $self->Html->link($m[2], array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $m[3]
-                )
-            );
-        }, $text);
+                return $m[1] . $self->Html->link($m[2],
+                    'https://'.$_SERVER['HTTP_HOST'].'/sentences/show/'.$m[3]
+                );
+            }, $text);
 
         $content = str_replace('\\#', '#', $content);
 

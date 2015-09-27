@@ -164,7 +164,6 @@ class SentenceCommentsController extends AppController
     public function save()
     {
         $userId = $this->Auth->user('id');
-        $userName = $this->Auth->user('username');
         $userEmail = $this->Auth->user('email');
 
         $sentenceId = $this->data['SentenceComment']['sentence_id'];
@@ -212,46 +211,18 @@ class SentenceCommentsController extends AppController
                 $sentenceId
             );
 
-            if ($sentenceOwner != null
-                && !in_array($sentenceOwner, $participants)
-            ) {
+            if ($sentenceOwner != null && !in_array($sentenceOwner, $participants)) {
                 $participants[] = $sentenceOwner;
             }
 
             // send message to the other participants of the thread
             foreach ($participants as $participant) {
                 if ($participant != $userEmail) {
-                    // prepare message
-                    $subject = 'Tatoeba - Comment on sentence : '
-                        . $this->data['SentenceComment']['sentence_text'];
-                    if ($participant == $sentenceOwner) {
-                        $msgStart = sprintf(
-                            '%s has posted a comment on one of your sentences.',
-                            $userName
-                        );
-                    } else {
-                        $msgStart = sprintf(
-                            '%s has posted a comment on a sentence where you also
-                            posted a comment.',
-                            $userName
-                        );
-                    }
-                    $message = $msgStart
-                        . "\n"
-                        . 'http://'.$_SERVER['HTTP_HOST']
-                        . '/sentence_comments/show/'
-                        . $this->data['SentenceComment']['sentence_id']
-                        .'#comments'
-                        . "\n\n- - - - - - - - - - - - - - - - -\n\n"
-                        . $this->data['SentenceComment']['text']
-                        . "\n\n- - - - - - - - - - - - - - - - -\n\n";
-
-                    // send notification
-                    $this->Mailer->to = $participant;
-                    $this->Mailer->toName = '';
-                    $this->Mailer->subject = $subject;
-                    $this->Mailer->message = $message;
-                    $this->Mailer->send();
+                    $this->Mailer->sendSentenceCommentNotification(
+                        $participant,
+                        $this->data['SentenceComment'],
+                        $sentenceOwner
+                    );
                 }
             }
 
