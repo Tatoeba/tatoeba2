@@ -172,20 +172,9 @@ class MailerComponent extends Object
     public function sendBlockedOrSuspendedUserNotif(
         $username, $isSuspended
     ) {
-        $this->Email->smtpOptions = array(
-            'port' => '465',
-            'timeout' => '45',
-            'host' => 'ssl://smtp.gmail.com',
-            'username' => Configure::read('Mailer.username'),
-            'password' => Configure::read('Mailer.password'),
-        );
-        $this->Email->delivery = 'smtp';
-
         $this->Email->to = 'community-admins@tatoeba.org';
         $this->Email->subject = '( ! ) ' . $username;
-        $this->Email->from = $this->fromName;
         $this->Email->template = 'blocked_or_suspended_user';
-        $this->Email->sendAs = 'html';
 
         $User = ClassRegistry::init('User');
         $Contribution = ClassRegistry::init('Contribution');
@@ -200,13 +189,28 @@ class MailerComponent extends Object
         $this->set('suspendedUsers', $suspendedUsers);
         $this->set('ips', $ips);
 
-        $this->Email->send();
+        $this->_send();
     }
 
 
     private function set($key, $value)
     {
         $this->Email->Controller->set($key, $value);
+    }
+
+    private function _send()
+    {
+        $this->Email->smtpOptions = array(
+            'port' => '465',
+            'timeout' => '45',
+            'host' => 'ssl://smtp.gmail.com',
+            'username' => Configure::read('Mailer.username'),
+            'password' => Configure::read('Mailer.password'),
+        );
+        $this->Email->delivery = 'debug';
+        $this->Email->sendAs = 'html';
+        $this->Email->from = $this->fromName;
+        $this->Email->send();
     }
 }
 ?>
