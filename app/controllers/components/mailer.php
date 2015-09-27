@@ -193,6 +193,27 @@ class MailerComponent extends Object
     }
 
 
+    public function sendPmNotification($pm, $id)
+    {
+        $User = ClassRegistry::init('User');
+        $recipientEmail = $User->getEmailFromId($pm['recpt']);
+        $sender = $User->getUsernameFromId($pm['sender']);
+        $title = $pm['title'];
+        $content = $pm['content'];
+
+        $this->Email->to = $recipientEmail;
+        $this->Email->subject = 'Tatoeba PM - ' . $title;
+        $this->Email->template = 'new_private_message';
+
+        $this->set('sender', $sender);
+        $this->set('title', $title);
+        $this->set('message', $content);
+        $this->set('messageId', $id);
+
+        $this->_send();
+    }
+
+
     private function set($key, $value)
     {
         $this->Email->Controller->set($key, $value);
@@ -207,7 +228,7 @@ class MailerComponent extends Object
             'username' => Configure::read('Mailer.username'),
             'password' => Configure::read('Mailer.password'),
         );
-        $this->Email->delivery = 'debug';
+        $this->Email->delivery = 'smtp';
         $this->Email->sendAs = 'html';
         $this->Email->from = $this->fromName;
         $this->Email->send();

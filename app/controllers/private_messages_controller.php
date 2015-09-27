@@ -41,6 +41,8 @@ class PrivateMessagesController extends AppController
 
     public $helpers = array('Html', 'Date');
 
+    public $components = array ('Mailer');
+
 
     /**
      * We don't use index at all : by default, we just display the
@@ -169,6 +171,7 @@ class PrivateMessagesController extends AppController
 
                 $recpt = trim($recpt);
                 $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
+                $recptSettings = $this->PrivateMessage->User->getSettings($recptId);
 
                 // we send the msg only if the user exists.
                 if ($recptId) {
@@ -176,6 +179,11 @@ class PrivateMessagesController extends AppController
                     $message['recpt'] = $recptId;
                     $message['user_id'] = $recptId;
                     $this->PrivateMessage->save($message);
+                    if ($recptSettings['User']['send_notifications']) {
+                        $this->Mailer->sendPmNotification(
+                            $message, $this->PrivateMessage->id
+                        );
+                    }
                     $this->PrivateMessage->id = null;
 
                     // we need to save the msg to our outbox folder of course.
