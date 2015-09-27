@@ -221,6 +221,10 @@ class MailerComponent extends Object
 
     private function _send()
     {
+        if (Configure::read('Mailer.enabled') == false) {
+            return;
+        }
+        
         $this->Email->smtpOptions = array(
             'port' => '465',
             'timeout' => '45',
