@@ -18,5 +18,7 @@ echo $html->div(null, $messages->formatedContent($commentText),
     )
 );
 
-echo $html->tag('p', $linkToSentence);
+echo "<p>";
+echo $html->link($linkToSentence, $linkToSentence);
+echo "</p>";
 ?>

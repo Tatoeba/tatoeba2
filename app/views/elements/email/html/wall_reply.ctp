@@ -1,5 +1,7 @@
 <?php
-echo $html->tag("p", $linkToMessage);
+echo "<p>";
+echo $html->link($linkToMessage, $linkToMessage);
+echo "</p>";
 
 echo $html->div(null, $messages->formatedContent($messageContent),
     array(
