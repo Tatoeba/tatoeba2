@@ -161,6 +161,7 @@ class LanguagesLib
             'tir' => 'ti', // Tigrinya
             'sme' => 'sm', // Northern Sami
             'max' => 'mx', // North Moluccan Malay
+            'pam' => 'pa', // Kapampangan
 
 
             // Macrolanguages
@@ -389,6 +390,8 @@ class LanguagesLib
                 'tir' => __('Tigrinya',true),
                 'sme' => __('Northern Sami',true),
                 'max' => __('North Moluccan Malay',true),
+                'pam' => __('Kapampangan', true),
+				
 				
 				
 				
