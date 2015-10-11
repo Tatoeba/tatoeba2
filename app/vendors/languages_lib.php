@@ -157,6 +157,7 @@ class LanguagesLib
             'tgl' => 'tl', // Tagalog
             'tha' => 'th', // Thai
             'tir' => 'ti', // Tigrinya
+            'ton' => 'to', // Tongan
             'tuk' => 'tk', // Turkmen
             'tur' => 'tr', // Turkish
             'uig' => 'ug', // Uyghur
@@ -412,7 +413,7 @@ class LanguagesLib
                 'che' => __('Chechen',true),
                 'sag' => __('Sango',true),
                 'hif' => __('Fiji Hindi',true),
-				
+                'ton' => __('Tongan',true),
 				
 				
 				
