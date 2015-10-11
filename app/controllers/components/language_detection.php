@@ -50,10 +50,6 @@ class LanguageDetectionComponent extends Object
     {
         $textToAnalyze = urlencode($text);
         $url = "http://127.0.0.1:4242/api/detects/simple?query=" . $textToAnalyze;
-
-        if ($user != "") {
-            $url .= ("&user=" . urlencode($user));
-        }
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
