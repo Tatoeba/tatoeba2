@@ -165,6 +165,7 @@ class LanguagesLib
             'dtp' => 'dt', // Central Dusun
             'cho' => 'ch', // Choctaw
             'kzj' => 'kz', // Coastal Kadazan
+            'smo' => 'so', // Samoan
 
 
             // Macrolanguages
@@ -397,6 +398,8 @@ class LanguagesLib
                 'dtp' => __('Central Dusun',true),
                 'cho' => __('Choctaw',true),
                 'kzj' => __('Coastal Kadazan',true),
+                'smo' => __('Samoan',true),
+				
 				
 				
 				
