@@ -162,6 +162,7 @@ class LanguagesLib
             'uzb' => 'uz', // Uzbek
             'vie' => 'vi', // Vietnamese
             'vol' => 'vo', // Volapük
+            'wol' => 'wo', // Wolof
             'wln' => 'wa', // Walloon
             'xho' => 'xh', // Xhosa
             'yid' => 'yi', // Yiddish
@@ -403,8 +404,8 @@ class LanguagesLib
                 'cho' => __('Choctaw',true),
                 'kzj' => __('Coastal Kadazan',true),
                 'smo' => __('Samoan',true),
-                'fij' => __('Fijian, true),
-				
+                'fij' => __('Fijian', true),
+                'wol' => __('Wolof',true),
 				
 				
 				
