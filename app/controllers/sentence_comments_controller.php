@@ -250,7 +250,7 @@ class SentenceCommentsController extends AppController
         foreach ($usernames[0] as $string) {
             $username = substr($string, 1);
             $user = $this->User->findByUsername($username);
-            $sendNotif = $username != CurrentUser::get('username')
+            $sendNotif = !empty($user) && $username != CurrentUser::get('username')
                 && $user['User']['send_notifications'] == 1;
             if ($sendNotif) {
                 $email = $user['User']['email'];
