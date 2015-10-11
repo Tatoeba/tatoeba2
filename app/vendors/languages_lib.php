@@ -164,6 +164,7 @@ class LanguagesLib
             'pam' => 'pa', // Kapampangan
             'dtp' => 'dt', // Central Dusun
             'cho' => 'ch', // Choctaw
+            'kzj' => 'kz', // Coastal Kadazan
 
 
             // Macrolanguages
@@ -395,6 +396,7 @@ class LanguagesLib
                 'pam' => __('Kapampangan', true),
                 'dtp' => __('Central Dusun',true),
                 'cho' => __('Choctaw',true),
+                'kzj' => __('Coastal Kadazan',true),
 				
 				
 				
