@@ -159,9 +159,9 @@ class LanguagesLib
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
             'tir' => 'ti', // Tigrinya
-			'sme' => 'sm', // Northern Sami
-			'max' => 'mx', // North Moluccan Malay
-			
+            'sme' => 'sm', // Northern Sami
+            'max' => 'mx', // North Moluccan Malay
+
 
             // Macrolanguages
             'yue' => 'zh',
@@ -387,8 +387,8 @@ class LanguagesLib
                 'zza' => __('Zaza',true),
                 'egl' => __('Emilian',true),
                 'tir' => __('Tigrinya',true),
-				'sme' => __('Northern Sami',true),
-				'max' => __('North Moluccan Malay',true),
+                'sme' => __('Northern Sami',true),
+                'max' => __('North Moluccan Malay',true),
 				
 				
 				
