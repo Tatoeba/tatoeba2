@@ -62,11 +62,13 @@ class LanguagesLib
             'cat' => 'ca', // Catalan
             'ces' => 'cs', // Czech
             'cha' => 'ch', // Chamorro
+            'cho' => 'ch', // Choctaw
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
             'cym' => 'cy', // Welsh
             'dan' => 'da', // Danish
             'deu' => 'de', // German
+            'dtp' => 'dt', // Central Dusun
             'ell' => 'el', // Greek
             'eng' => 'en', // English
             'epo' => 'eo', // Esperanto
@@ -74,6 +76,7 @@ class LanguagesLib
             'eus' => 'eu', // Basque
             'ewe' => 'ee', // Ewe
             'fao' => 'fo', // Faroese
+            'fij' => 'fj', // Fijian
             'fin' => 'fi', // Finnish
             'fra' => 'fr', // French
             'fry' => 'fy', // Frisian
@@ -105,12 +108,14 @@ class LanguagesLib
             'kir' => 'ky', // Kyrgyz
             'kor' => 'ko', // Korean
             'kur' => 'ku', // Kurdish
+            'kzj' => 'kz', // Coastal Kadazan
             'lao' => 'lo', // Lao
             'lat' => 'la', // Latin
             'lit' => 'lt', // Lithuanian
             'ltz' => 'lb', // Luxembourgish
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
+            'max' => 'mx', // North Moluccan Malay
             'mkd' => 'mk', // Macedonian
             'mlg' => 'mg', // Malagasy
             'mlt' => 'mt', // Maltese
@@ -123,6 +128,7 @@ class LanguagesLib
             'oci' => 'oc', // Occitan
             'oss' => 'os', // Ossetian
             'pan' => 'pa', // Punjabi (Eastern)
+            'pam' => 'pa', // Kapampangan
             'pol' => 'pl', // Polish
             'por' => 'pt', // Portuguese
             'que' => 'qu', // Quechua
@@ -133,6 +139,8 @@ class LanguagesLib
             'sin' => 'si', // Sinhala
             'slk' => 'sk', // Slovak
             'slv' => 'sl', // Slovenian
+            'sme' => 'sm', // Northern Sami
+            'smo' => 'so', // Samoan
             'sna' => 'sn', // Shona
             'som' => 'so', // Somali
             'spa' => 'es', // Spanish
@@ -145,6 +153,7 @@ class LanguagesLib
             'tgk' => 'tg', // Tajik
             'tgl' => 'tl', // Tagalog
             'tha' => 'th', // Thai
+            'tir' => 'ti', // Tigrinya
             'tuk' => 'tk', // Turkmen
             'tur' => 'tr', // Turkish
             'uig' => 'ug', // Uyghur
@@ -158,14 +167,9 @@ class LanguagesLib
             'yid' => 'yi', // Yiddish
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
-            'tir' => 'ti', // Tigrinya
-            'sme' => 'sm', // Northern Sami
-            'max' => 'mx', // North Moluccan Malay
-            'pam' => 'pa', // Kapampangan
-            'dtp' => 'dt', // Central Dusun
-            'cho' => 'ch', // Choctaw
-            'kzj' => 'kz', // Coastal Kadazan
-            'smo' => 'so', // Samoan
+
+
+
 
 
             // Macrolanguages
@@ -399,6 +403,7 @@ class LanguagesLib
                 'cho' => __('Choctaw',true),
                 'kzj' => __('Coastal Kadazan',true),
                 'smo' => __('Samoan',true),
+                'fij' => __('Fijian, true),
 				
 				
 				
