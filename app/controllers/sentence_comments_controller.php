@@ -42,7 +42,8 @@ class SentenceCommentsController extends AppController
     public $uses = array(
         "SentenceComment",
         "Sentence",
-        "User"
+        "User",
+        "PrivateMessage"
     );
     public $helpers = array(
         'Comments',
@@ -226,11 +227,35 @@ class SentenceCommentsController extends AppController
                 }
             }
 
+            $commentId = $this->SentenceComment->id;
+            $this->_sendMentionsNotifications($comment, $commentId);
+
             $this->flash(
                 __('Your comment has been saved.', true),
                 '/sentence_comments/show/'
                 .$this->data['SentenceComment']['sentence_id']
             );
+        }
+    }
+
+
+    private function _sendMentionsNotifications($comment, $commentId)
+    {
+        preg_match_all(
+            "/@[a-zA-Z0-9_]+/",
+            $comment['text'],
+            $usernames
+        );
+
+        foreach ($usernames[0] as $string) {
+            $username = substr($string, 1);
+            $user = $this->User->findByUsername($username);
+            $sendNotif = $username != CurrentUser::get('username')
+                && $user['User']['send_notifications'] == 1;
+            if ($sendNotif) {
+                $email = $user['User']['email'];
+                $this->Mailer->sendMentionNotification($email, $comment, $commentId);
+            }
         }
     }
 
