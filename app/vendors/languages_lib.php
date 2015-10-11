@@ -89,6 +89,7 @@ class LanguagesLib
             'hat' => 'ht', // Haitian Creole
             'hau' => 'ha', // Hausa
             'heb' => 'he', // Hebrew
+            'hif' => 'hf', // Fiji Hindi
             'hin' => 'hi', // Hindi
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
@@ -410,7 +411,7 @@ class LanguagesLib
                 'wol' => __('Wolof',true),
                 'che' => __('Chechen',true),
                 'sag' => __('Sango',true),
-				
+                'hif' => __('Fiji Hindi',true),
 				
 				
 				
