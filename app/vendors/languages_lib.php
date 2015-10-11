@@ -62,6 +62,7 @@ class LanguagesLib
             'cat' => 'ca', // Catalan
             'ces' => 'cs', // Czech
             'cha' => 'ch', // Chamorro
+            'che' => 'ce', // Chechen
             'cho' => 'ch', // Choctaw
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
@@ -406,6 +407,7 @@ class LanguagesLib
                 'smo' => __('Samoan',true),
                 'fij' => __('Fijian', true),
                 'wol' => __('Wolof',true),
+                'che' => __('Chechen',true),
 				
 				
 				
