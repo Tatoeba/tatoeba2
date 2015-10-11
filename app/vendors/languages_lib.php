@@ -136,6 +136,7 @@ class LanguagesLib
             'roh' => 'rm', // Romansh
             'ron' => 'ro', // Romanian
             'rus' => 'ru', // Russian
+            'sag' => 'sg', // Sango
             'san' => 'sa', // Sanskrit
             'sin' => 'si', // Sinhala
             'slk' => 'sk', // Slovak
@@ -408,6 +409,7 @@ class LanguagesLib
                 'fij' => __('Fijian', true),
                 'wol' => __('Wolof',true),
                 'che' => __('Chechen',true),
+                'sag' => __('Sango',true),
 				
 				
 				
