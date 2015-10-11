@@ -387,8 +387,9 @@ class LanguagesLib
                 'zza' => __('Zaza',true),
                 'egl' => __('Emilian',true),
                 'tir' => __('Tigrinya',true),
-				'sme' => __('Northern Sami', true),
-				'max' => __('North Moluccan Malay', true),
+				'sme' => __('Northern Sami',true),
+				'max' => __('North Moluccan Malay',true),
+				
 				
 				
 				
