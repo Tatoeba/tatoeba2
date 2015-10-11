@@ -162,6 +162,8 @@ class LanguagesLib
             'sme' => 'sm', // Northern Sami
             'max' => 'mx', // North Moluccan Malay
             'pam' => 'pa', // Kapampangan
+            'dtp' => 'dt', // Central Dusun
+            'cho' => 'ch', // Choctaw
 
 
             // Macrolanguages
@@ -391,6 +393,8 @@ class LanguagesLib
                 'sme' => __('Northern Sami',true),
                 'max' => __('North Moluccan Malay',true),
                 'pam' => __('Kapampangan', true),
+                'dtp' => __('Central Dusun',true),
+                'cho' => __('Choctaw',true),
 				
 				
 				
