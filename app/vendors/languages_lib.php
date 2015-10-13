@@ -414,9 +414,7 @@ class LanguagesLib
                 'sag' => __('Sango',true),
                 'hif' => __('Fiji Hindi',true),
                 'ton' => __('Tongan',true),
-				
-				
-				
+                'ngt' => __('Ngeq ',true),
             );
         }
         return $languages;
