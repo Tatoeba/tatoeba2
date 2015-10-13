@@ -165,6 +165,7 @@ class LanguagesLib
             'ukr' => 'uk', // Ukrainian
             'urd' => 'ur', // Urdu
             'uzb' => 'uz', // Uzbek
+            'vec' => 've', // Venetian
             'vie' => 'vi', // Vietnamese
             'vol' => 'vo', // Volapük
             'wol' => 'wo', // Wolof
@@ -417,6 +418,8 @@ class LanguagesLib
                 'ton' => __('Tongan',true),
                 'ngt' => __('Ngeq ',true),
                 'kam' => __('Kamba',true),
+                'vec' => __('Venetian',true),
+				
 
             );
         }
