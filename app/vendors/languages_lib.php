@@ -126,6 +126,7 @@ class LanguagesLib
             'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
             'mya' => 'ma', // Burmese
+            'myv' => 'my', // Erzya
             'nav' => 'nv', // Navajo
             'nld' => 'nl', // Dutch
             'nob' => 'nb', // Norwegian (Bokmål)
@@ -423,6 +424,7 @@ class LanguagesLib
                 'vec' => __('Venetian',true),
                 'mya' => __('Burmese',true),
                 'gil' => __('Gilbertese',true),
+                'myv' => __('Erzya',true),
 				
 
             );
