@@ -81,6 +81,7 @@ class LanguagesLib
             'fin' => 'fi', // Finnish
             'fra' => 'fr', // French
             'fry' => 'fy', // Frisian
+            'gil' => 'gi', // Gilbertese
             'gla' => 'gd', // Scottish Gaelic
             'gle' => 'ga', // Irish
             'glg' => 'gl', // Galician
@@ -421,6 +422,7 @@ class LanguagesLib
                 'kam' => __('Kamba',true),
                 'vec' => __('Venetian',true),
                 'mya' => __('Burmese',true),
+                'gil' => __('Gilbertese',true),
 				
 
             );
