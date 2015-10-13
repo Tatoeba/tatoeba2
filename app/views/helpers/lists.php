@@ -446,15 +446,7 @@ class ListsHelper extends AppHelper
                 'class' => 'submit'
             )
         );
-
-        echo $this->Images->svgIcon(
-            'loading',
-            array(
-                'width' => 20,
-                'height' => 20,
-                'class' => 'adding-new-sentence-in-list'
-            )
-        );
+        echo "<div class='loader-container'></div>";
         ?>
 
         <p>

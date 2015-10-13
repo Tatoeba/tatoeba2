@@ -1714,6 +1714,7 @@ div.hideLink {
  */
 
 .loader {
+    display: inline-block;
     clear: both;
     border: 4px rgba(0, 0, 0, 0.25) solid;
     border-top: 4px rgba(0, 0, 0, 1) solid;
@@ -1728,4 +1729,10 @@ div.hideLink {
 @keyframes spCircRot {
     from { transform: rotate(0deg); }
     to { transform: rotate(359deg); }
+}
+
+.loader-small {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
 }

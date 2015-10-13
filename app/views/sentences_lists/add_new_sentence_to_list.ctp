@@ -31,6 +31,8 @@ if (!empty($sentence)) {
     
     $sentences->javascriptForAJAXSentencesGroup();
 
+    $sentence['Translations'] = array();
+    $sentence['IndirectTranslations'] = array();
     $lists->displaySentence($sentence, array(), true);
 
 } else {
