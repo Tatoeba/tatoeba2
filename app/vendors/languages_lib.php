@@ -103,6 +103,7 @@ class LanguagesLib
             'jav' => 'jv', // Javanese
             'jpn' => 'ja', // Japanese
             'kal' => 'kl', // Greenlandic
+            'kam' => 'kk', // Kamba
             'kat' => 'ka', // Georgian
             'kaz' => 'kk', // Kazakh
             'khm' => 'km', // Khmer
@@ -415,6 +416,8 @@ class LanguagesLib
                 'hif' => __('Fiji Hindi',true),
                 'ton' => __('Tongan',true),
                 'ngt' => __('Ngeq ',true),
+                'kam' => __('Kamba',true),
+
             );
         }
         return $languages;
