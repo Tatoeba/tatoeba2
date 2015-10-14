@@ -116,6 +116,7 @@ class LanguagesLib
             'kzj' => 'kz', // Coastal Kadazan
             'lao' => 'lo', // Lao
             'lat' => 'la', // Latin
+            'lin' => 'li', // Lingala
             'lit' => 'lt', // Lithuanian
             'ltz' => 'lb', // Luxembourgish
             'mal' => 'ml', // Malayalam
@@ -431,6 +432,7 @@ class LanguagesLib
                 'niu' => __('Niuean',true),
                 'vro' => __('Võro',true),
                 'glv' => __('Manx',true),
+                'lin' => __('Lingala',true),
 				
 
             );
