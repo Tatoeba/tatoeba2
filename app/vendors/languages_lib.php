@@ -139,6 +139,7 @@ class LanguagesLib
             'oss' => 'os', // Ossetian
             'pan' => 'pa', // Punjabi (Eastern)
             'pam' => 'pa', // Kapampangan
+            'pus' => 'pu', // Pashto
             'pol' => 'pl', // Polish
             'por' => 'pt', // Portuguese
             'que' => 'qu', // Quechua
@@ -434,7 +435,8 @@ class LanguagesLib
                 'vro' => __('Võro',true),
                 'glv' => __('Manx',true),
                 'lin' => __('Lingala',true),
-                'lfn' => __('Lingua Franca Nova', true),
+                'lfn' => __('Lingua Franca Nova',true),
+                'pus' => __('Pashto',true),
 				
 
             );
