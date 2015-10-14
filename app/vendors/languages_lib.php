@@ -172,6 +172,7 @@ class LanguagesLib
             'vec' => 've', // Venetian
             'vie' => 'vi', // Vietnamese
             'vol' => 'vo', // Volapük
+            'vro' => 'vr', // Võro
             'wol' => 'wo', // Wolof
             'wln' => 'wa', // Walloon
             'xho' => 'xh', // Xhosa
@@ -427,6 +428,7 @@ class LanguagesLib
                 'gil' => __('Gilbertese',true),
                 'myv' => __('Erzya',true),
                 'niu' => __('Niuean',true),
+                'vro' => __('Võro',true),
 				
 
             );
