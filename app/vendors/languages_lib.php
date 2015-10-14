@@ -128,6 +128,7 @@ class LanguagesLib
             'mya' => 'ma', // Burmese
             'myv' => 'my', // Erzya
             'nav' => 'nv', // Navajo
+            'niu' => 'ni', // Niuean
             'nld' => 'nl', // Dutch
             'nob' => 'nb', // Norwegian (Bokmål)
             'nya' => 'ny', // Chinyanja
@@ -425,6 +426,7 @@ class LanguagesLib
                 'mya' => __('Burmese',true),
                 'gil' => __('Gilbertese',true),
                 'myv' => __('Erzya',true),
+                'niu' => __('Niuean',true),
 				
 
             );
