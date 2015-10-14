@@ -85,6 +85,7 @@ class LanguagesLib
             'gla' => 'gd', // Scottish Gaelic
             'gle' => 'ga', // Irish
             'glg' => 'gl', // Galician
+            'glv' => 'gv', // Manx
             'grn' => 'gn', // Guarani
             'guj' => 'gu', // Gujarati
             'hat' => 'ht', // Haitian Creole
@@ -429,6 +430,7 @@ class LanguagesLib
                 'myv' => __('Erzya',true),
                 'niu' => __('Niuean',true),
                 'vro' => __('Võro',true),
+                'glv' => __('Manx',true),
 				
 
             );
