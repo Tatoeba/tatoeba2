@@ -116,6 +116,7 @@ class LanguagesLib
             'kzj' => 'kz', // Coastal Kadazan
             'lao' => 'lo', // Lao
             'lat' => 'la', // Latin
+            'lfn' => 'lf', // Lingua Franca Nova
             'lin' => 'li', // Lingala
             'lit' => 'lt', // Lithuanian
             'ltz' => 'lb', // Luxembourgish
@@ -433,6 +434,7 @@ class LanguagesLib
                 'vro' => __('Võro',true),
                 'glv' => __('Manx',true),
                 'lin' => __('Lingala',true),
+                'lfn' => __('Lingua Franca Nova', true),
 				
 
             );
