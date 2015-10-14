@@ -111,6 +111,7 @@ class LanguagesLib
             'khm' => 'km', // Khmer
             'kin' => 'rw', // Kinyarwanda
             'kir' => 'ky', // Kyrgyz
+            'kjh' => 'kj'. // Khakas
             'kor' => 'ko', // Korean
             'kur' => 'ku', // Kurdish
             'kzj' => 'kz', // Coastal Kadazan
@@ -419,7 +420,7 @@ class LanguagesLib
                 'cho' => __('Choctaw',true),
                 'kzj' => __('Coastal Kadazan',true),
                 'smo' => __('Samoan',true),
-                'fij' => __('Fijian', true),
+                'fij' => __('Fijian',true),
                 'wol' => __('Wolof',true),
                 'che' => __('Chechen',true),
                 'sag' => __('Sango',true),
@@ -437,6 +438,7 @@ class LanguagesLib
                 'lin' => __('Lingala',true),
                 'lfn' => __('Lingua Franca Nova',true),
                 'pus' => __('Pashto',true),
+                'kjh' => __('Khakas',true),
 				
 
             );
