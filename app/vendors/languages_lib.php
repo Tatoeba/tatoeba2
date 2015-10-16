@@ -69,6 +69,7 @@ class LanguagesLib
             'cym' => 'cy', // Welsh
             'dan' => 'da', // Danish
             'deu' => 'de', // German
+            'dng' => 'dg', // Dungan
             'dtp' => 'dt', // Central Dusun
             'ell' => 'el', // Greek
             'eng' => 'en', // English
@@ -439,6 +440,7 @@ class LanguagesLib
                 'lfn' => __('Lingua Franca Nova',true),
                 'pus' => __('Pashto',true),
                 'kjh' => __('Khakas',true),
+                'dng' => __('Dungan',true),
 				
 
             );
