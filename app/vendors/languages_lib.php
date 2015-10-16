@@ -442,7 +442,7 @@ class LanguagesLib
                 'pus' => __('Pashto',true),
                 'kjh' => __('Khakas',true),
                 'dng' => __('Dungan',true),
-                'fur' => __('Friulian,true),
+                'fur' => __('Friulian',true),
 				
 
             );
