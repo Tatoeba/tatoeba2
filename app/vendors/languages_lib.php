@@ -82,6 +82,7 @@ class LanguagesLib
             'fin' => 'fi', // Finnish
             'fra' => 'fr', // French
             'fry' => 'fy', // Frisian
+            'fur' => 'fu', // Friulian
             'gil' => 'gi', // Gilbertese
             'gla' => 'gd', // Scottish Gaelic
             'gle' => 'ga', // Irish
@@ -441,6 +442,7 @@ class LanguagesLib
                 'pus' => __('Pashto',true),
                 'kjh' => __('Khakas',true),
                 'dng' => __('Dungan',true),
+                'fur' => __('Friulian,true),
 				
 
             );
