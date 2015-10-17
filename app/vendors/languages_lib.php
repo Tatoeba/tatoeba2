@@ -66,6 +66,7 @@ class LanguagesLib
             'cho' => 'ch', // Choctaw
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
+            'crs' => 'cr', // Seychellois Creole
             'cym' => 'cy', // Welsh
             'dan' => 'da', // Danish
             'deu' => 'de', // German
@@ -449,7 +450,8 @@ class LanguagesLib
                 'mah' => __('Marshallese',true),
                 'pfl' => __('Palatine German',true),
                 'kan' => __('Kannada',true),
-
+                'crs' => __('Seychellois Creole',true),
+                
 
             );
         }
