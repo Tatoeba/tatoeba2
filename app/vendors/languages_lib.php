@@ -133,6 +133,7 @@ class LanguagesLib
             'mkd' => 'mk', // Macedonian
             'mlg' => 'mg', // Malagasy
             'mlt' => 'mt', // Maltese
+            'moh' => 'mo', // Mohawk
             'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
             'mya' => 'ma', // Burmese
@@ -459,6 +460,7 @@ class LanguagesLib
                 'osx' => __('Old Saxon',true),
                 'sux' => __('Sumerian',true),
                 'sco' => __('Scots',true),
+                'moh' => __('Mohawk',true),
                 
 
             );
