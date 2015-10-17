@@ -90,6 +90,7 @@ class LanguagesLib
             'glg' => 'gl', // Galician
             'glv' => 'gv', // Manx
             'grn' => 'gn', // Guarani
+            'gsw' => 'gs', // Swiss German
             'guj' => 'gu', // Gujarati
             'hat' => 'ht', // Haitian Creole
             'hau' => 'ha', // Hausa
@@ -451,6 +452,7 @@ class LanguagesLib
                 'pfl' => __('Palatine German',true),
                 'kan' => __('Kannada',true),
                 'crs' => __('Seychellois Creole',true),
+                'gsw' => __('Swiss German',true),
                 
 
             );
