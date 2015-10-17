@@ -157,6 +157,7 @@ class LanguagesLib
             'rus' => 'ru', // Russian
             'sag' => 'sg', // Sango
             'san' => 'sa', // Sanskrit
+            'sco' => 'sc', // Scots
             'sin' => 'si', // Sinhala
             'slk' => 'sk', // Slovak
             'slv' => 'sl', // Slovenian
@@ -457,6 +458,7 @@ class LanguagesLib
                 'gsw' => __('Swiss German',true),
                 'osx' => __('Old Saxon',true),
                 'sux' => __('Sumerian',true),
+                'sco' => __('Scots',true),
                 
 
             );
