@@ -144,6 +144,7 @@ class LanguagesLib
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
             'oss' => 'os', // Ossetian
+            'osx' => 'ox', // Old Saxon
             'pan' => 'pa', // Punjabi (Eastern)
             'pam' => 'pa', // Kapampangan
             'pfl' => 'pf', // Palatine German
@@ -453,6 +454,7 @@ class LanguagesLib
                 'kan' => __('Kannada',true),
                 'crs' => __('Seychellois Creole',true),
                 'gsw' => __('Swiss German',true),
+                'osx' => __('Old Saxon',true),
                 
 
             );
