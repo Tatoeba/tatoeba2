@@ -143,6 +143,7 @@ class LanguagesLib
             'oss' => 'os', // Ossetian
             'pan' => 'pa', // Punjabi (Eastern)
             'pam' => 'pa', // Kapampangan
+            'pfl' => 'pf', // Palatine German
             'pus' => 'pu', // Pashto
             'pol' => 'pl', // Polish
             'por' => 'pt', // Portuguese
@@ -445,7 +446,8 @@ class LanguagesLib
                 'dng' => __('Dungan',true),
                 'fur' => __('Friulian',true),
                 'mah' => __('Marshallese',true),
-                
+                'pfl' => __('Palatine German',true),
+
 
             );
         }
