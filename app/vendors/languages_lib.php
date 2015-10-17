@@ -123,6 +123,7 @@ class LanguagesLib
             'lin' => 'li', // Lingala
             'lit' => 'lt', // Lithuanian
             'ltz' => 'lb', // Luxembourgish
+            'mah' => 'mh', // Marshallese
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
             'max' => 'mx', // North Moluccan Malay
@@ -443,6 +444,7 @@ class LanguagesLib
                 'kjh' => __('Khakas',true),
                 'dng' => __('Dungan',true),
                 'fur' => __('Friulian',true),
+                'mah' => __('Marshallese',true),
                 
 
             );
