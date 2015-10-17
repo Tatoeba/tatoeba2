@@ -108,6 +108,7 @@ class LanguagesLib
             'jpn' => 'ja', // Japanese
             'kal' => 'kl', // Greenlandic
             'kam' => 'kk', // Kamba
+            'kan' => 'kn', // Kannada
             'kat' => 'ka', // Georgian
             'kaz' => 'kk', // Kazakh
             'khm' => 'km', // Khmer
@@ -447,6 +448,7 @@ class LanguagesLib
                 'fur' => __('Friulian',true),
                 'mah' => __('Marshallese',true),
                 'pfl' => __('Palatine German',true),
+                'kan' => __('Kannada',true),
 
 
             );
