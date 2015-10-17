@@ -443,7 +443,7 @@ class LanguagesLib
                 'kjh' => __('Khakas',true),
                 'dng' => __('Dungan',true),
                 'fur' => __('Friulian',true),
-				
+                
 
             );
         }
