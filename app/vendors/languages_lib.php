@@ -167,6 +167,7 @@ class LanguagesLib
             'spa' => 'es', // Spanish
             'sqi' => 'sq', // Albanian
             'srp' => 'sr', // Serbian
+            'sux' => 'sx', // Sumerian
             'swe' => 'sv', // Swedish
             'tam' => 'ta', // Tamil
             'tat' => 'tt', // Tatar
@@ -455,6 +456,7 @@ class LanguagesLib
                 'crs' => __('Seychellois Creole',true),
                 'gsw' => __('Swiss German',true),
                 'osx' => __('Old Saxon',true),
+                'sux' => __('Sumerian',true),
                 
 
             );
