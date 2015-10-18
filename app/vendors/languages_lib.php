@@ -116,7 +116,7 @@ class LanguagesLib
             'khm' => 'km', // Khmer
             'kin' => 'rw', // Kinyarwanda
             'kir' => 'ky', // Kyrgyz
-            'kjh' => 'kj'. // Khakas
+            'kjh' => 'kj', // Khakas
             'kor' => 'ko', // Korean
             'kur' => 'ku', // Kurdish
             'kzj' => 'kz', // Coastal Kadazan
