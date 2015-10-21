@@ -41,7 +41,7 @@ class LanguagesHelper extends AppHelper
 {
     public $helpers = array('Html', 'Session');
 
-    /* Memorization of languages code and their localized names */
+    /* Memoization of languages code and their localized names */
     private $__languages_alone;
 
 
