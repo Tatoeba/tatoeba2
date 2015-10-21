@@ -60,6 +60,7 @@ class LanguagesLib
             'bre' => 'br', // Breton
             'bul' => 'bg', // Bulgarian
             'cat' => 'ca', // Catalan
+            'ceb' => 'cb', // Cebuano
             'ces' => 'cs', // Czech
             'cha' => 'ch', // Chamorro
             'che' => 'ce', // Chechen
@@ -461,6 +462,7 @@ class LanguagesLib
                 'sux' => __('Sumerian',true),
                 'sco' => __('Scots',true),
                 'moh' => __('Mohawk',true),
+                'ceb' => __('Cebuano',true),
                 
 
             );
