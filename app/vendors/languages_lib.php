@@ -51,6 +51,7 @@ class LanguagesLib
             'afr' => 'af', // Afrikaans
             'amh' => 'am', // Amharic
             'ara' => 'ar', // Arabic
+            'aym' => 'ay', // Aymara
             'aze' => 'az', // Azerbaijani
             'bak' => 'ba', // Bashkir
             'bel' => 'be', // Belarusian
@@ -469,6 +470,7 @@ class LanguagesLib
                 'lmo' => __('Lombard',true),
                 'tso' => __('Tsonga',true),
                 'bua' => __('Buryat',true),
+                'aym' => __('Aymara',true),
                 
 
             );
