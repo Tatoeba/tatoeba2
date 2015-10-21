@@ -181,6 +181,7 @@ class LanguagesLib
             'tha' => 'th', // Thai
             'tir' => 'ti', // Tigrinya
             'ton' => 'to', // Tongan
+            'tso' => 'ts', // Tsonga
             'tuk' => 'tk', // Turkmen
             'tur' => 'tr', // Turkish
             'uig' => 'ug', // Uyghur
@@ -464,7 +465,8 @@ class LanguagesLib
                 'sco' => __('Scots',true),
                 'moh' => __('Mohawk',true),
                 'ceb' => __('Cebuano',true),
-                'lmo' => __(Lombard,true),
+                'lmo' => __('Lombard',true),
+                'tso' => __('Tsonga',true),
                 
 
             );
