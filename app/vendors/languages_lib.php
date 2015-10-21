@@ -58,6 +58,7 @@ class LanguagesLib
             'bod' => 'bo', // Tibetan
             'bos' => 'bs', // Bosnian
             'bre' => 'br', // Breton
+            'bua' => 'bu', // Buryat
             'bul' => 'bg', // Bulgarian
             'cat' => 'ca', // Catalan
             'ceb' => 'cb', // Cebuano
@@ -467,6 +468,7 @@ class LanguagesLib
                 'ceb' => __('Cebuano',true),
                 'lmo' => __('Lombard',true),
                 'tso' => __('Tsonga',true),
+                'bua' => __('Buryat',true),
                 
 
             );
