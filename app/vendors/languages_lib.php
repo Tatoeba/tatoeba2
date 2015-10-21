@@ -126,6 +126,7 @@ class LanguagesLib
             'lfn' => 'lf', // Lingua Franca Nova
             'lin' => 'li', // Lingala
             'lit' => 'lt', // Lithuanian
+            'lmo' => 'lm', // Lombard
             'ltz' => 'lb', // Luxembourgish
             'mah' => 'mh', // Marshallese
             'mal' => 'ml', // Malayalam
@@ -463,6 +464,7 @@ class LanguagesLib
                 'sco' => __('Scots',true),
                 'moh' => __('Mohawk',true),
                 'ceb' => __('Cebuano',true),
+                'lmo' => __(Lombard,true),
                 
 
             );
