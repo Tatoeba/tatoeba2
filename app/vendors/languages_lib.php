@@ -145,6 +145,7 @@ class LanguagesLib
             'mya' => 'ma', // Burmese
             'myv' => 'my', // Erzya
             'nav' => 'nv', // Navajo
+            'ngu' => 'ng', // Guerrero Nahuatl
             'niu' => 'ni', // Niuean
             'nld' => 'nl', // Dutch
             'nlv' => 'nn', // Orizaba Nahuatl
@@ -477,6 +478,7 @@ class LanguagesLib
                 'ilo' => __('Ilocano',true),
                 'kaa' => __('Karakalpak',true),
                 'nlv' => __('Orizaba Nahuatl',true),
+                'ngu' => __('Guerrero Nahuatl',true),
                 
 
             );
