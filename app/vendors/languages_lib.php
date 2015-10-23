@@ -105,6 +105,7 @@ class LanguagesLib
             'hye' => 'hy', // Armenian
             'ido' => 'io', // Ido
             'ile' => 'ie', // Interlingue
+            'ilo' => 'il', // Ilocano
             'ina' => 'ia', // Interlingua
             'ind' => 'id', // Indonesian
             'isl' => 'is', // Icelandic
@@ -471,6 +472,7 @@ class LanguagesLib
                 'tso' => __('Tsonga',true),
                 'bua' => __('Buryat',true),
                 'aym' => __('Aymara',true),
+                'ilo' => __('Ilocano',true),
                 
 
             );
