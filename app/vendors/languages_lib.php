@@ -112,6 +112,7 @@ class LanguagesLib
             'ita' => 'it', // Italian
             'jav' => 'jv', // Javanese
             'jpn' => 'ja', // Japanese
+            'kaa' => 'kz', // Karakalpak
             'kal' => 'kl', // Greenlandic
             'kam' => 'kk', // Kamba
             'kan' => 'kn', // Kannada
@@ -473,7 +474,7 @@ class LanguagesLib
                 'bua' => __('Buryat',true),
                 'aym' => __('Aymara',true),
                 'ilo' => __('Ilocano',true),
-                
+                'kaa' => __('Karakalpak',true),
 
             );
         }
