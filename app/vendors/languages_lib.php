@@ -48,6 +48,7 @@ class LanguagesLib
         // Example: Khasi
         static $map = array(
             'abk' => 'ab', // Abkhaz
+            'ady' => 'ad', // Adyghe
             'afr' => 'af', // Afrikaans
             'amh' => 'am', // Amharic
             'ara' => 'ar', // Arabic
@@ -479,6 +480,7 @@ class LanguagesLib
                 'kaa' => __('Karakalpak',true),
                 'nlv' => __('Orizaba Nahuatl',true),
                 'ngu' => __('Guerrero Nahuatl',true),
+                'ady' => __('Adyghe',true),
                 
 
             );
