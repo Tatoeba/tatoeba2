@@ -147,6 +147,7 @@ class LanguagesLib
             'nav' => 'nv', // Navajo
             'niu' => 'ni', // Niuean
             'nld' => 'nl', // Dutch
+            'nlv' => 'nn', // Orizaba Nahuatl
             'nob' => 'nb', // Norwegian (Bokmål)
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
@@ -475,6 +476,8 @@ class LanguagesLib
                 'aym' => __('Aymara',true),
                 'ilo' => __('Ilocano',true),
                 'kaa' => __('Karakalpak',true),
+                'nlv' => __('Orizaba Nahuatl',true),
+                
 
             );
         }
