@@ -60,6 +60,7 @@ class LanguagesLib
             'bod' => 'bo', // Tibetan
             'bos' => 'bs', // Bosnian
             'bre' => 'br', // Breton
+            'brx' => 'bx', // Bodo
             'bua' => 'bu', // Buryat
             'bul' => 'bg', // Bulgarian
             'cat' => 'ca', // Catalan
@@ -481,6 +482,7 @@ class LanguagesLib
                 'nlv' => __('Orizaba Nahuatl',true),
                 'ngu' => __('Guerrero Nahuatl',true),
                 'ady' => __('Adyghe',true),
+                'brx' => __('Bodo',true),
                 
 
             );
