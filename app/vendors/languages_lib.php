@@ -88,6 +88,7 @@ class LanguagesLib
             'fin' => 'fi', // Finnish
             'fra' => 'fr', // French
             'fry' => 'fy', // Frisian
+            'fuc' => 'fc', // Pulaar
             'fur' => 'fu', // Friulian
             'gag' => 'gg', // Gagauz
             'gil' => 'gi', // Gilbertese
@@ -489,6 +490,7 @@ class LanguagesLib
                 'gag' => __('Gagauz',true),
                 'rom' => __('Romani',true),
                 'lzz' => __('Laz',true),
+                'fuc' => __('Pulaar',true),
                 
 
             );
