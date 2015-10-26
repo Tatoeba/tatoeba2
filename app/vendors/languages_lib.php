@@ -165,6 +165,7 @@ class LanguagesLib
             'por' => 'pt', // Portuguese
             'que' => 'qu', // Quechua
             'roh' => 'rm', // Romansh
+            'rom' => 'rr', // Romani
             'ron' => 'ro', // Romanian
             'rus' => 'ru', // Russian
             'sag' => 'sg', // Sango
@@ -485,6 +486,7 @@ class LanguagesLib
                 'ady' => __('Adyghe',true),
                 'brx' => __('Bodo',true),
                 'gag' => __('Gagauz',true),
+                'rom' => __('Romani',true),
                 
 
             );
