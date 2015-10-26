@@ -89,6 +89,7 @@ class LanguagesLib
             'fra' => 'fr', // French
             'fry' => 'fy', // Frisian
             'fur' => 'fu', // Friulian
+            'gag' => 'gg', // Gagauz
             'gil' => 'gi', // Gilbertese
             'gla' => 'gd', // Scottish Gaelic
             'gle' => 'ga', // Irish
@@ -483,6 +484,7 @@ class LanguagesLib
                 'ngu' => __('Guerrero Nahuatl',true),
                 'ady' => __('Adyghe',true),
                 'brx' => __('Bodo',true),
+                'gag' => __('Gagauz',true),
                 
 
             );
