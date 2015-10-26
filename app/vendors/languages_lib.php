@@ -135,6 +135,7 @@ class LanguagesLib
             'lit' => 'lt', // Lithuanian
             'lmo' => 'lm', // Lombard
             'ltz' => 'lb', // Luxembourgish
+            'lzz' => 'lz', // Laz
             'mah' => 'mh', // Marshallese
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
@@ -487,6 +488,7 @@ class LanguagesLib
                 'brx' => __('Bodo',true),
                 'gag' => __('Gagauz',true),
                 'rom' => __('Romani',true),
+                'lzz' => __('Laz',true),
                 
 
             );
