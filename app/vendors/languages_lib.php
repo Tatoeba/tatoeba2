@@ -111,6 +111,7 @@ class LanguagesLib
             'heb' => 'he', // Hebrew
             'hif' => 'hf', // Fiji Hindi
             'hin' => 'hi', // Hindi
+            'hoc' => 'ho', // Ho
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
             'hye' => 'hy', // Armenian
@@ -525,6 +526,7 @@ class LanguagesLib
                 'arg' => __('Aragonese',true),
                 'asm' => __('Assamese',true),
                 'fuv' => __('Nigerian Fulfulde',true),
+                'hoc' => __('Ho',true),
                 
 
             );
