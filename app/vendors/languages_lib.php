@@ -185,6 +185,7 @@ class LanguagesLib
             'sot' => 'st', // Southern Sotho
             'spa' => 'es', // Spanish
             'sqi' => 'sq', // Albanian
+            'srd' => 'ss', // Sardinian
             'srp' => 'sr', // Serbian
             'sux' => 'sx', // Sumerian
             'swe' => 'sv', // Swedish
@@ -505,7 +506,7 @@ class LanguagesLib
                 'war' => __('Waray',true),
                 'snd' => __('Sindhi',true),
                 'tsn' => __('Setswana',true),
-                
+                'srd' => __('Sardinian',true),
 
             );
         }
