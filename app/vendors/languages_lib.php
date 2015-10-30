@@ -94,6 +94,7 @@ class LanguagesLib
             'fry' => 'fy', // Frisian
             'fuc' => 'fc', // Pulaar
             'fur' => 'fu', // Friulian
+            'fuv' => 'fv', // Nigerian Fulfulde
             'gag' => 'gg', // Gagauz
             'gil' => 'gi', // Gilbertese
             'gbm' => 'gb', // Garhwali
@@ -523,6 +524,7 @@ class LanguagesLib
                 'bam' => __('Bambara',true),
                 'arg' => __('Aragonese',true),
                 'asm' => __('Assamese',true),
+                'fuv' => __('Nigerian Fulfulde',true),
                 
 
             );
