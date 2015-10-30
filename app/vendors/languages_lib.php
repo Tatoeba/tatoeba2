@@ -197,6 +197,7 @@ class LanguagesLib
             'sqi' => 'sq', // Albanian
             'srd' => 'ss', // Sardinian
             'srp' => 'sr', // Serbian
+            'sun' => 'su', // Sundanese
             'sux' => 'sx', // Sumerian
             'swe' => 'sv', // Swedish
             'tam' => 'ta', // Tamil
@@ -527,7 +528,8 @@ class LanguagesLib
                 'asm' => __('Assamese',true),
                 'fuv' => __('Nigerian Fulfulde',true),
                 'hoc' => __('Ho',true),
-                
+                'sun' => __('Sundanese',true),
+
 
             );
         }
