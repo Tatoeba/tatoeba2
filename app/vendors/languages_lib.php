@@ -529,7 +529,8 @@ class LanguagesLib
                 'fuv' => __('Nigerian Fulfulde',true),
                 'hoc' => __('Ho',true),
                 'sun' => __('Sundanese',true),
-
+                'apc' => __('North Levantine Arabic',true),
+                
 
             );
         }
@@ -585,7 +586,9 @@ class LanguagesLib
             "urd",
             "yid",
             "pnb",
-            "ota"
+            "ota",
+            "apc"
+
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
