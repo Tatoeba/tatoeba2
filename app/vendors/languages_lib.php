@@ -213,6 +213,7 @@ class LanguagesLib
             'tso' => 'ts', // Tsonga
             'tuk' => 'tk', // Turkmen
             'tur' => 'tr', // Turkish
+            'tyv' => 'tv', // Tuvinian
             'uig' => 'ug', // Uyghur
             'ukr' => 'uk', // Ukrainian
             'umb' => 'um', // Umbundu
@@ -530,6 +531,7 @@ class LanguagesLib
                 'hoc' => __('Ho',true),
                 'sun' => __('Sundanese',true),
                 'apc' => __('North Levantine Arabic',true),
+                'tyv' => __('Tuvinian',true),
                 
 
             );
