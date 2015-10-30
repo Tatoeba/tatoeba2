@@ -138,6 +138,7 @@ class LanguagesLib
             'lit' => 'lt', // Lithuanian
             'lmo' => 'lm', // Lombard
             'ltz' => 'lb', // Luxembourgish
+            'lug' => 'lg', // Luganda
             'lzz' => 'lz', // Laz
             'mah' => 'mh', // Marshallese
             'mal' => 'ml', // Malayalam
@@ -513,6 +514,7 @@ class LanguagesLib
                 'pau' => __('Palauan',true),
                 'gbm' => __('Garhwali',true),
                 'oji' => __('Ojibwe',true),
+                'lug' => __('Luganda',true),
                 
 
             );
