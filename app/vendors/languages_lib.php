@@ -162,6 +162,7 @@ class LanguagesLib
             'osx' => 'ox', // Old Saxon
             'pan' => 'pa', // Punjabi (Eastern)
             'pam' => 'pa', // Kapampangan
+            'pau' => 'pp', // Palauan
             'pfl' => 'pf', // Palatine German
             'pus' => 'pu', // Pashto
             'pol' => 'pl', // Polish
@@ -507,6 +508,8 @@ class LanguagesLib
                 'snd' => __('Sindhi',true),
                 'tsn' => __('Setswana',true),
                 'srd' => __('Sardinian',true),
+                'pau' => __('Palauan',true),
+                
 
             );
         }
