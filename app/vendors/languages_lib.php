@@ -135,6 +135,7 @@ class LanguagesLib
             'kir' => 'ky', // Kyrgyz
             'kjh' => 'kj', // Khakas
             'kor' => 'ko', // Korean
+            'krc' => 'kr', // Karachay-Balkar
             'kur' => 'ku', // Kurdish
             'kzj' => 'kz', // Coastal Kadazan
             'lao' => 'lo', // Lao
@@ -230,7 +231,6 @@ class LanguagesLib
             'yid' => 'yi', // Yiddish
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
-
 
 
 
@@ -532,6 +532,7 @@ class LanguagesLib
                 'sun' => __('Sundanese',true),
                 'apc' => __('North Levantine Arabic',true),
                 'tyv' => __('Tuvinian',true),
+                'krc' => __('Karachay-Balkar',true),
                 
 
             );
