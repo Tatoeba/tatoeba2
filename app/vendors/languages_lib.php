@@ -159,6 +159,7 @@ class LanguagesLib
             'nob' => 'nb', // Norwegian (Bokmål)
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
+            'oji' => 'oj', // Ojibwe
             'oss' => 'os', // Ossetian
             'osx' => 'ox', // Old Saxon
             'pan' => 'pa', // Punjabi (Eastern)
@@ -511,6 +512,7 @@ class LanguagesLib
                 'srd' => __('Sardinian',true),
                 'pau' => __('Palauan',true),
                 'gbm' => __('Garhwali',true),
+                'oji' => __('Ojibwe',true),
                 
 
             );
