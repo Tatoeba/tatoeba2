@@ -50,6 +50,7 @@ class LanguagesLib
             'abk' => 'ab', // Abkhaz
             'ady' => 'ad', // Adyghe
             'afr' => 'af', // Afrikaans
+            'alt' => 'al', // Southern Altai
             'amh' => 'am', // Amharic
             'ara' => 'ar', // Arabic
             'aym' => 'ay', // Aymara
@@ -497,6 +498,7 @@ class LanguagesLib
                 'umb' => __('Umbundu',true),
                 'tkl' => __('Tokelauan',true),
                 'sot' => __('Southern Sotho',true),
+                'alt' => __('Southern Altai',true),
                 
 
             );
