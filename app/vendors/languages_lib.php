@@ -101,6 +101,7 @@ class LanguagesLib
             'grn' => 'gn', // Guarani
             'gsw' => 'gs', // Swiss German
             'guj' => 'gu', // Gujarati
+            'hak' => 'hk', // Hakka Chinese
             'hat' => 'ht', // Haitian Creole
             'hau' => 'ha', // Hausa
             'heb' => 'he', // Hebrew
@@ -515,6 +516,7 @@ class LanguagesLib
                 'gbm' => __('Garhwali',true),
                 'oji' => __('Ojibwe',true),
                 'lug' => __('Luganda',true),
+                'hak' => __('Hakka Chinese',true),
                 
 
             );
