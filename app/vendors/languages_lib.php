@@ -54,6 +54,7 @@ class LanguagesLib
             'amh' => 'am', // Amharic
             'ara' => 'ar', // Arabic
             'arg' => 'ag', // Aragonese
+            'asm' => 'as', // Assamese
             'aym' => 'ay', // Aymara
             'aze' => 'az', // Azerbaijani
             'bak' => 'ba', // Bashkir
@@ -521,6 +522,7 @@ class LanguagesLib
                 'hak' => __('Hakka Chinese',true),
                 'bam' => __('Bambara',true),
                 'arg' => __('Aragonese',true),
+                'asm' => __('Assamese',true),
                 
 
             );
