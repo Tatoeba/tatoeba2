@@ -53,6 +53,7 @@ class LanguagesLib
             'alt' => 'al', // Southern Altai
             'amh' => 'am', // Amharic
             'ara' => 'ar', // Arabic
+            'arg' => 'ag', // Aragonese
             'aym' => 'ay', // Aymara
             'aze' => 'az', // Azerbaijani
             'bak' => 'ba', // Bashkir
@@ -519,6 +520,7 @@ class LanguagesLib
                 'lug' => __('Luganda',true),
                 'hak' => __('Hakka Chinese',true),
                 'bam' => __('Bambara',true),
+                'arg' => __('Aragonese',true),
                 
 
             );
