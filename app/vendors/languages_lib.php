@@ -197,6 +197,7 @@ class LanguagesLib
             'tkl' => 'tz', // Tokelauan
             'tir' => 'ti', // Tigrinya
             'ton' => 'to', // Tongan
+            'tsn' => 'tn', // Setswana
             'tso' => 'ts', // Tsonga
             'tuk' => 'tk', // Turkmen
             'tur' => 'tr', // Turkish
@@ -503,6 +504,7 @@ class LanguagesLib
                 'alt' => __('Southern Altai',true),
                 'war' => __('Waray',true),
                 'snd' => __('Sindhi',true),
+                'tsn' => __('Setswana',true),
                 
 
             );
