@@ -93,6 +93,7 @@ class LanguagesLib
             'fur' => 'fu', // Friulian
             'gag' => 'gg', // Gagauz
             'gil' => 'gi', // Gilbertese
+            'gbm' => 'gb', // Garhwali
             'gla' => 'gd', // Scottish Gaelic
             'gle' => 'ga', // Irish
             'glg' => 'gl', // Galician
@@ -509,6 +510,7 @@ class LanguagesLib
                 'tsn' => __('Setswana',true),
                 'srd' => __('Sardinian',true),
                 'pau' => __('Palauan',true),
+                'gbm' => __('Garhwali',true),
                 
 
             );
