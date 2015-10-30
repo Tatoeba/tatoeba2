@@ -198,6 +198,7 @@ class LanguagesLib
             'tur' => 'tr', // Turkish
             'uig' => 'ug', // Uyghur
             'ukr' => 'uk', // Ukrainian
+            'umb' => 'um', // Umbundu
             'urd' => 'ur', // Urdu
             'uzb' => 'uz', // Uzbek
             'vec' => 've', // Venetian
@@ -491,6 +492,7 @@ class LanguagesLib
                 'rom' => __('Romani',true),
                 'lzz' => __('Laz',true),
                 'fuc' => __('Pulaar',true),
+                'umb' => __('Umbundu',true),
                 
 
             );
