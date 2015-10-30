@@ -180,6 +180,7 @@ class LanguagesLib
             'smo' => 'so', // Samoan
             'sna' => 'sn', // Shona
             'som' => 'so', // Somali
+            'sot' => 'st', // Southern Sotho
             'spa' => 'es', // Spanish
             'sqi' => 'sq', // Albanian
             'srp' => 'sr', // Serbian
@@ -495,6 +496,7 @@ class LanguagesLib
                 'fuc' => __('Pulaar',true),
                 'umb' => __('Umbundu',true),
                 'tkl' => __('Tokelauan',true),
+                'sot' => __('Southern Sotho',true),
                 
 
             );
