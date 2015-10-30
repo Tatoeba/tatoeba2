@@ -56,6 +56,7 @@ class LanguagesLib
             'aym' => 'ay', // Aymara
             'aze' => 'az', // Azerbaijani
             'bak' => 'ba', // Bashkir
+            'bam' => 'bm', // Bambara
             'bel' => 'be', // Belarusian
             'ben' => 'bn', // Bengali
             'bod' => 'bo', // Tibetan
@@ -517,6 +518,7 @@ class LanguagesLib
                 'oji' => __('Ojibwe',true),
                 'lug' => __('Luganda',true),
                 'hak' => __('Hakka Chinese',true),
+                'bam' => __('Bambara',true),
                 
 
             );
