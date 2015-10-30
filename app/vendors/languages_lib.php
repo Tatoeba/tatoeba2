@@ -191,6 +191,7 @@ class LanguagesLib
             'tgk' => 'tg', // Tajik
             'tgl' => 'tl', // Tagalog
             'tha' => 'th', // Thai
+            'tkl' => 'tz', // Tokelauan
             'tir' => 'ti', // Tigrinya
             'ton' => 'to', // Tongan
             'tso' => 'ts', // Tsonga
@@ -493,6 +494,7 @@ class LanguagesLib
                 'lzz' => __('Laz',true),
                 'fuc' => __('Pulaar',true),
                 'umb' => __('Umbundu',true),
+                'tkl' => __('Tokelauan',true),
                 
 
             );
