@@ -180,6 +180,7 @@ class LanguagesLib
             'sme' => 'sm', // Northern Sami
             'smo' => 'so', // Samoan
             'sna' => 'sn', // Shona
+            'snd' => 'sd', // Sindhi
             'som' => 'so', // Somali
             'sot' => 'st', // Southern Sotho
             'spa' => 'es', // Spanish
@@ -501,6 +502,7 @@ class LanguagesLib
                 'sot' => __('Southern Sotho',true),
                 'alt' => __('Southern Altai',true),
                 'war' => __('Waray',true),
+                'snd' => __('Sindhi',true),
                 
 
             );
