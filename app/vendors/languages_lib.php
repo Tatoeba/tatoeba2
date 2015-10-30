@@ -208,6 +208,7 @@ class LanguagesLib
             'vie' => 'vi', // Vietnamese
             'vol' => 'vo', // Volapük
             'vro' => 'vr', // Võro
+            'war' => 'wr', // Waray
             'wol' => 'wo', // Wolof
             'wln' => 'wa', // Walloon
             'xho' => 'xh', // Xhosa
@@ -499,6 +500,7 @@ class LanguagesLib
                 'tkl' => __('Tokelauan',true),
                 'sot' => __('Southern Sotho',true),
                 'alt' => __('Southern Altai',true),
+                'war' => __('Waray',true),
                 
 
             );
