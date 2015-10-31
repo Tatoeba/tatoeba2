@@ -172,6 +172,7 @@ class LanguagesLib
             'osx' => 'ox', // Old Saxon
             'pan' => 'pa', // Punjabi (Eastern)
             'pam' => 'pa', // Kapampangan
+            'pap' => 'po', // Papiamento
             'pau' => 'pp', // Palauan
             'pfl' => 'pf', // Palatine German
             'pus' => 'pu', // Pashto
@@ -533,6 +534,7 @@ class LanguagesLib
                 'apc' => __('North Levantine Arabic',true),
                 'tyv' => __('Tuvinian',true),
                 'krc' => __('Karachay-Balkar',true),
+                'pap' => __('Papiamento',true),
                 
 
             );
