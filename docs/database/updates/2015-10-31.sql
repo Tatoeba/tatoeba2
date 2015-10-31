@@ -1,0 +1,1 @@
+ALTER TABLE `languages` MODIFY `id` INT(10) unsigned NOT NULL AUTO_INCREMENT;

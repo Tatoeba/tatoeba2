@@ -7,7 +7,7 @@
 
 DROP TABLE IF EXISTS `languages`;
 CREATE TABLE `languages` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
   `sentences` INT(10) unsigned NOT NULL DEFAULT '0',
   `audio` INT(10) NOT NULL DEFAULT 0,
