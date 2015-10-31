@@ -988,6 +988,22 @@
     height: 16px;
 }
 
+.sentence .copy.column {
+    float: right;
+    height: 16px;
+}
+.sentence .copy-btn {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.sentence .copy-btn.copied {
+    background: greenyellow;
+}
+
 .sentence .languageFlag {
     margin-top: 2px;
     border-top: 1px solid #FFF;

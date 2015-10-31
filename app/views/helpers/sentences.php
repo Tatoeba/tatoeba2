@@ -479,10 +479,16 @@ class SentencesHelper extends AppHelper
         echo '<div class="content column">';
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
-
             $this->_displayLinkOrUnlinkButton(
                 $parentId, $sentenceId, $type, $langFilter
             );
+        }
+
+        // Copy
+        if (CurrentUser::getSetting('copy_button')) {
+            echo '<div class="copy column">';
+            $this->SentenceButtons->displayCopyButton($sentence['text']);
+            echo '</div>';
         }
 
         // Sentence and romanization

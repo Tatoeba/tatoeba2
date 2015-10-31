@@ -267,5 +267,20 @@ class SentenceButtonsHelper extends AppHelper
         );
 
     }
+
+
+    /**
+     *
+     */
+    public function displayCopyButton($text)
+    {
+        $this->Javascript->link('clipboard.min.js', false);
+        $copyButton = $this->Images->svgIcon('copy');
+        echo $this->Html->div('copy-btn', $copyButton,
+            array(
+                'data-clipboard-text' => $text,
+            )
+        );
+    }
 }
 ?>
