@@ -320,7 +320,7 @@ class LanguagesLib
                 'ron' => __('Romanian', true),
                 'uig' => __('Uyghur', true),
                 'uzb' => __('Uzbek', true),
-                'non' => __('Norwegian (Nynorsk)', true),
+                'nno' => __('Norwegian (Nynorsk)', true),
                 'srp' => __('Serbian', true),
                 'tat' => __('Tatar', true),
                 'yid' => __('Yiddish', true),
