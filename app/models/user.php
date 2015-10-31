@@ -117,6 +117,7 @@ class User extends AppModel
         'sentences_per_page' => 10,
         'users_collections_ratings' => false,
         'native_indicator' => false,
+        'copy_button' => false,
     );
 
     private $settingsValidation = array(

@@ -148,6 +148,15 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                 </label>
             </div>
 
+            <div>
+                <?php echo $form->checkbox('settings.copy_button'); ?>
+                <label for="UserSettingsCopyButton">
+                    <?php __(
+                        'Display button to copy a sentence to the clipboard.'
+                    ); ?>
+                </label>
+            </div>
+
         </fieldset>
 
         <?php echo $form->end(__('Save', true)); ?>
