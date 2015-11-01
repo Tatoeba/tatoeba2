@@ -169,6 +169,10 @@
     <?php echo $this->element('sql_dump'); ?>
 
     <?php
+    if (CurrentUser::getSetting('copy_button')) {
+        echo $javascript->link(JS_PATH . 'sentences.copy.js', true);
+    }
+
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', array('cache' => true));
     }
