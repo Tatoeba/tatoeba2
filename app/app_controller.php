@@ -101,17 +101,6 @@ class AppController extends Controller
      */
     public function beforeFilter() 
     {
-        // blocked IP's
-        $blockedIps = Configure::read('Tatoeba.blockedIP');
-        $ip = CurrentUser::getIp();
-        foreach( $blockedIps as $blockedIp) {
-            if (strpos($ip, $blockedIp, 0) ===0) {
-                sleep(60);
-                $this->redirect($redirectPage, 404);
-                return; 
-            }
-        }
-        
         Security::setHash('md5');
         $this->Cookie->domain = TATOEBA_DOMAIN;
         // This line will call views/elements/session_expired.ctp.
