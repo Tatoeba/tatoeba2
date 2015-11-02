@@ -91,7 +91,7 @@ if (isset($this->params['lang'])) {
         <?php
         echo $html->link(
             __('Facebook', true),
-            'http://www.facebook.com/group.php?gid=129340017083187',
+            'https://www.facebook.com/groups/129340017083187/',
             array('target' => '_blank')
         );
         ?>
