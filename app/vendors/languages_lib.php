@@ -54,6 +54,7 @@ class LanguagesLib
             'amh' => 'am', // Amharic
             'ara' => 'ar', // Arabic
             'arg' => 'ag', // Aragonese
+            'ary' => 'ay', // Moroccan Arabic
             'asm' => 'as', // Assamese
             'aym' => 'ay', // Aymara
             'aze' => 'az', // Azerbaijani
@@ -535,6 +536,7 @@ class LanguagesLib
                 'tyv' => __('Tuvinian',true),
                 'krc' => __('Karachay-Balkar',true),
                 'pap' => __('Papiamento',true),
+                'ary' => __('Moroccan Arabic',true),
                 
 
             );
