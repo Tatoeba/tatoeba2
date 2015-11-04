@@ -166,6 +166,7 @@ class LanguagesLib
             'nld' => 'nl', // Dutch
             'nlv' => 'nn', // Orizaba Nahuatl
             'nob' => 'nb', // Norwegian (Bokmål)
+            'non' => 'no', // Old Norse
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
             'oji' => 'oj', // Ojibwe
@@ -537,6 +538,7 @@ class LanguagesLib
                 'krc' => __('Karachay-Balkar',true),
                 'pap' => __('Papiamento',true),
                 'ary' => __('Moroccan Arabic',true),
+                'non' => __('Old Norse',true),
                 
 
             );
