@@ -37,8 +37,6 @@
 class MailerComponent extends Object
 {
     public $components = array('Email');
-    
-    public $fromName = 'Tatoeba (no-reply)';
 
 
     public function sendBlockedOrSuspendedUserNotif(
@@ -191,7 +189,7 @@ class MailerComponent extends Object
         );
         $this->Email->delivery = 'smtp';
         $this->Email->sendAs = 'html';
-        $this->Email->from = $this->fromName;
+        $this->Email->from = Configure::read('Mailer.username');
         $this->Email->send();
     }
 }
