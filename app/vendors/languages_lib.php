@@ -168,6 +168,7 @@ class LanguagesLib
             'nob' => 'nb', // Norwegian (Bokmål)
             'non' => 'no', // Old Norse
             'nya' => 'ny', // Chinyanja
+            'oar' => 'oa', // Old Aramaic
             'oci' => 'oc', // Occitan
             'oji' => 'oj', // Ojibwe
             'oss' => 'os', // Ossetian
@@ -539,6 +540,7 @@ class LanguagesLib
                 'pap' => __('Papiamento',true),
                 'ary' => __('Moroccan Arabic',true),
                 'non' => __('Old Norse',true),
+                'oar' => __('Old Aramaic',true),
                 
 
             );
