@@ -116,6 +116,7 @@ class LanguagesLib
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
             'hye' => 'hy', // Armenian
+            'iba' => 'ib', // Iban
             'ido' => 'io', // Ido
             'ile' => 'ie', // Interlingue
             'ilo' => 'il', // Ilocano
@@ -543,6 +544,7 @@ class LanguagesLib
                 'non' => __('Old Norse',true),
                 'oar' => __('Old Aramaic',true),
                 'ori' => __('Odia (Oriya)',true),
+                'iba' => __('Iban',true),
                 
 
             );
