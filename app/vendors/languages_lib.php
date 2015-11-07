@@ -171,6 +171,7 @@ class LanguagesLib
             'oar' => 'oa', // Old Aramaic
             'oci' => 'oc', // Occitan
             'oji' => 'oj', // Ojibwe
+            'ori' => 'or', // Odia (Oriya)
             'oss' => 'os', // Ossetian
             'osx' => 'ox', // Old Saxon
             'pan' => 'pa', // Punjabi (Eastern)
@@ -541,6 +542,7 @@ class LanguagesLib
                 'ary' => __('Moroccan Arabic',true),
                 'non' => __('Old Norse',true),
                 'oar' => __('Old Aramaic',true),
+                'ori' => __('Odia (Oriya)',true),
                 
 
             );
