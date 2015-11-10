@@ -77,6 +77,7 @@ class LanguagesLib
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
             'crs' => 'cr', // Seychellois Creole
+            'cyo' => 'co', // Cuyonon
             'cym' => 'cy', // Welsh
             'dan' => 'da', // Danish
             'deu' => 'de', // German
@@ -545,6 +546,8 @@ class LanguagesLib
                 'iba' => __('Iban',true),
                 'oar' => __('Old Aramaic',true),
                 'ary' => __('Moroccan Arabic',true),
+                'cyo' => __('Cuyonon',true),
+
             );
         }
         return $languages;
