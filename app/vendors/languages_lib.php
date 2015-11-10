@@ -77,6 +77,7 @@ class LanguagesLib
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
             'crs' => 'cr', // Seychellois Creole
+            'csb' => 'cb', // Kashubian
             'cyo' => 'co', // Cuyonon
             'cym' => 'cy', // Welsh
             'dan' => 'da', // Danish
@@ -549,6 +550,7 @@ class LanguagesLib
                 'ary' => __('Moroccan Arabic',true),
                 'cyo' => __('Cuyonon',true),
                 'ibo' => __('Igbo',true),
+                'csb' => __('Kashubian',true),
                 
 
             );
