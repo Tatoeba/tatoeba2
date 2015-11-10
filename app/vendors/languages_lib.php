@@ -118,6 +118,7 @@ class LanguagesLib
             'hun' => 'hu', // Hungarian
             'hye' => 'hy', // Armenian
             'iba' => 'ib', // Iban
+            'ibo' => 'ii', // Igbo
             'ido' => 'io', // Ido
             'ile' => 'ie', // Interlingue
             'ilo' => 'il', // Ilocano
@@ -547,6 +548,8 @@ class LanguagesLib
                 'oar' => __('Old Aramaic',true),
                 'ary' => __('Moroccan Arabic',true),
                 'cyo' => __('Cuyonon',true),
+                'ibo' => __('Igbo',true),
+                
 
             );
         }
