@@ -149,6 +149,7 @@ class LanguagesLib
             'lin' => 'li', // Lingala
             'lit' => 'lt', // Lithuanian
             'lmo' => 'lm', // Lombard
+            'lou' => 'lu', // Louisiana Creole
             'ltz' => 'lb', // Luxembourgish
             'lug' => 'lg', // Luganda
             'lzz' => 'lz', // Laz
@@ -551,6 +552,7 @@ class LanguagesLib
                 'cyo' => __('Cuyonon',true),
                 'ibo' => __('Igbo',true),
                 'csb' => __('Kashubian',true),
+                'lou' => __('Louisiana Creole',true),
                 
 
             );
