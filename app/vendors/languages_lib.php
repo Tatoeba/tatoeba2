@@ -540,7 +540,6 @@ class LanguagesLib
                 'tyv' => __('Tuvinian',true),
                 'krc' => __('Karachay-Balkar',true),
                 'pap' => __('Papiamento',true),
-                'ary' => __('Moroccan Arabic',true),
                 'non' => __('Old Norse',true),
                 'ori' => __('Odia (Oriya)',true),
                 'iba' => __('Iban',true),
@@ -603,6 +602,7 @@ class LanguagesLib
             "ota",
             "apc",
             "oar",
+            "ary",
             
         );
 
