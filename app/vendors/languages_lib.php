@@ -543,8 +543,8 @@ class LanguagesLib
                 'non' => __('Old Norse',true),
                 'ori' => __('Odia (Oriya)',true),
                 'iba' => __('Iban',true),
-                
-
+                'oar' => __('Old Aramaic',true),
+                'ary' => __('Moroccan Arabic',true),
             );
         }
         return $languages;
