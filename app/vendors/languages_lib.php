@@ -542,7 +542,6 @@ class LanguagesLib
                 'pap' => __('Papiamento',true),
                 'ary' => __('Moroccan Arabic',true),
                 'non' => __('Old Norse',true),
-                'oar' => __('Old Aramaic',true),
                 'ori' => __('Odia (Oriya)',true),
                 'iba' => __('Iban',true),
                 
@@ -602,8 +601,9 @@ class LanguagesLib
             "yid",
             "pnb",
             "ota",
-            "apc"
-
+            "apc",
+            "oar",
+            
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
