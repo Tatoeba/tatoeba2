@@ -163,6 +163,7 @@ class LanguagesLib
             'moh' => 'mo', // Mohawk
             'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
+            'mvv' => 'mv', // Tagal Murut
             'mya' => 'ma', // Burmese
             'myv' => 'my', // Erzya
             'nav' => 'nv', // Navajo
@@ -555,6 +556,7 @@ class LanguagesLib
                 'csb' => __('Kashubian',true),
                 'lou' => __('Louisiana Creole',true),
                 'urh' => __('Urhobo',true),
+                'mvv' => __('Tagal Murut',true),
                 
 
             );
