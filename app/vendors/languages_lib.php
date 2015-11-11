@@ -157,6 +157,7 @@ class LanguagesLib
             'mal' => 'ml', // Malayalam
             'mar' => 'mr', // Marathi
             'max' => 'mx', // North Moluccan Malay
+            'mdf' => 'md', // Moksha
             'mkd' => 'mk', // Macedonian
             'mlg' => 'mg', // Malagasy
             'mlt' => 'mt', // Maltese
@@ -557,6 +558,7 @@ class LanguagesLib
                 'lou' => __('Louisiana Creole',true),
                 'urh' => __('Urhobo',true),
                 'mvv' => __('Tagal Murut',true),
+                'mdf' => __('Moksha',true),
                 
 
             );
