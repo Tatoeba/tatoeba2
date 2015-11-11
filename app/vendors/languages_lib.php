@@ -181,6 +181,7 @@ class LanguagesLib
             'ori' => 'or', // Odia (Oriya)
             'oss' => 'os', // Ossetian
             'osx' => 'ox', // Old Saxon
+            'pag' => 'pg', // Pangasinan
             'pan' => 'pa', // Punjabi (Eastern)
             'pam' => 'pa', // Kapampangan
             'pap' => 'po', // Papiamento
@@ -559,7 +560,8 @@ class LanguagesLib
                 'urh' => __('Urhobo',true),
                 'mvv' => __('Tagal Murut',true),
                 'mdf' => __('Moksha',true),
-                
+                'pag' => __('Pangasinan',true),
+
 
             );
         }
