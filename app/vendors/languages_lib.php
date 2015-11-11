@@ -229,6 +229,7 @@ class LanguagesLib
             'ukr' => 'uk', // Ukrainian
             'umb' => 'um', // Umbundu
             'urd' => 'ur', // Urdu
+            'urh' => 'uh', // Urhobo
             'uzb' => 'uz', // Uzbek
             'vec' => 've', // Venetian
             'vie' => 'vi', // Vietnamese
@@ -553,6 +554,7 @@ class LanguagesLib
                 'ibo' => __('Igbo',true),
                 'csb' => __('Kashubian',true),
                 'lou' => __('Louisiana Creole',true),
+                'urh' => __('Urhobo',true),
                 
 
             );
