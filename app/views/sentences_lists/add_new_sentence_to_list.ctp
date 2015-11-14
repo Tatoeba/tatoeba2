@@ -34,8 +34,7 @@ if (!empty($sentence)) {
     $sentence['Translations'] = array();
     $sentence['IndirectTranslations'] = array();
     $lists->displaySentence(
-        $sentence['Sentence'],
-        $sentence['Transcription'],
+        $sentence,
         array(),
         true
     );

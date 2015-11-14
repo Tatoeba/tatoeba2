@@ -355,14 +355,12 @@ class ListsHelper extends AppHelper
      * Display sentence.
      *
      * @param array  $sentence           Sentence data.
-     * @param array  $transcriptions     Sentence transcriptions.
      * @param bool   $canCurrentUserEdit 'true' if user remove sentence from list.
      *
      * @return void
      */
     public function displaySentence(
         $sentence,
-        $transcriptions,
         $canCurrentUserEdit = false
     ) {
         $sentenceId = $sentence['Sentence']['id'];
@@ -387,7 +385,7 @@ class ListsHelper extends AppHelper
             $withAudio = true;
             $this->Sentences->displaySentencesGroup(
                 $sentence['Sentence'],
-                $transcriptions,
+                $sentence['Transcription'],
                 $sentence['Translations'],
                 $sentence['User'],
                 $sentence['IndirectTranslations'],

@@ -140,8 +140,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
          data-list-id="<?php echo $listId; ?>">
     <?php
     foreach ($sentencesInList as $sentence) {
-        $transcrs = $sentence['Transcription'];
-        $lists->displaySentence($sentence, $transcrs, $canRemoveSentence);
+        $lists->displaySentence($sentence, $canRemoveSentence);
     }
     ?>
     </div>
