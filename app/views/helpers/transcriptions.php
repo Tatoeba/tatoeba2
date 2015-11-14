@@ -150,10 +150,17 @@ class TranscriptionsHelper extends AppHelper
                     true
                 );
             } elseif ($isEditable) {
-                $warningMessage = __(
+                $editIcon = $this->Images->svgIcon('edit', array(
+                    'height' => 16,
+                    'width' => 16,
+                    'style' => 'color: #AAA; display: inline',
+                ));
+                $warningMessage = __(format(
                     'The following transcription has been automatically '.
                     'generated and <strong>may contain errors</strong>. '.
-                    'If you can, you are welcome to review by clicking it.',
+                    'If you can, you are welcome to review by clicking '.
+                    'the {editIcon} button.',
+                    compact('editIcon')),
                     true
                 );
             } else {
