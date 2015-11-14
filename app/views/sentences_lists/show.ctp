@@ -128,8 +128,6 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 
     if ($belongsToUser) {
         echo $html->div('edit-list-name', $editImage);
-
-        $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', false);
         $lists->displayAddSentenceForm($listId);
     }
 
