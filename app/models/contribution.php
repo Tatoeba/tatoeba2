@@ -41,6 +41,8 @@ class Contribution extends AppModel
     );
     public $belongsTo = array('Sentence', 'User');
 
+    public $recursive = -1;
+
     /**
      * Get number of contributions made by a given user
      *
@@ -156,48 +158,6 @@ class Contribution extends AppModel
         );
         
         return $results;
-    }
-
-
-    /**
-     * Returns number of contributions for each day. We only count the number of new
-     * sentences, not the number of modifications.
-     *
-     * @return array
-     */
-    public function getActivityTimelineStatistics($year = null, $month = null)
-    {
-        if ($year == null || $month == null) {
-
-            $startDate = date('Y-m');
-
-        } else {
-
-            $startTimestamp = mktime(0, 0, 0, intval($month), 1, intval($year));
-            $endTimestamp = mktime(0, 0, 0, intval($month)+1, 1, intval($year));
-            $startDate = date('Y-m', $startTimestamp);
-            $endDate = date('Y-m', $endTimestamp);
-
-        }
-
-        return $this->find(
-            'all',
-            array(
-                'fields' => array(
-                    'COUNT(*) as total',
-                    'date_format(datetime,\'%Y-%m-%d\') as day',
-                ),
-                'conditions' => array(
-                    'Contribution.datetime > \''.$startDate.'\'',
-                    'Contribution.datetime < \''.$endDate.'\'',
-                    'Contribution.type' => 'sentence',
-                    'Contribution.action' => 'insert',
-                ),
-                'group' => array('day'),
-                'order' => 'Contribution.id DESC',
-                'contain' => array()
-            )
-        );
     }
 
     /**
@@ -320,6 +280,21 @@ class Contribution extends AppModel
         }
 
         return $conditions;
+    }
+
+
+    public function getLastContributionOf($userId)
+    {
+        return $this->find(
+            'all',
+            array(
+                'conditions' => array('user_id' => $userId),
+                'fields' => array('ip', 'count(*) as count'),
+                'group' => 'ip',
+                'order' => 'count DESC',
+                'limit' => 10
+            )
+        );
     }
 }
 ?>

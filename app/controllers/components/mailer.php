@@ -36,132 +36,161 @@
  */
 class MailerComponent extends Object
 {
-    public $from     = 'trang.dictionary.project@gmail.com';
-    public $fromName = 'Tatoeba (no-reply)';
-    public $to       = null;
-    public $toName   = null;
-    public $subject  = null;
-    public $message  = null;
+    public $components = array('Email');
 
-    /**
-     * Send email.
-     *
-     * @return void
-     */
-    public function send()
-    {
-        /* email notification */
-        $this->_authgMail(
-            $this->from,
-            $this->fromName,
-            $this->to,
-            $this->toName,
-            $this->subject,
-            $this->message
-        );
+
+    public function sendBlockedOrSuspendedUserNotif(
+        $username, $isSuspended
+    ) {
+        $this->Email->to = 'community-admins@tatoeba.org';
+        $this->Email->subject = '( ! ) ' . $username;
+        $this->Email->template = 'blocked_or_suspended_user';
+
+        $User = ClassRegistry::init('User');
+        $Contribution = ClassRegistry::init('Contribution');
+        $userId = $User->getIdFromUsername($username);
+        $suspendedUsers = $User->getUsersWithSamePassword($userId);
+        $ips = $Contribution->getLastContributionOf($userId);
+
+        $this->set('admin', CurrentUser::get('username'));
+        $this->set('user', $username);
+        $this->set('userId', $userId);
+        $this->set('isSuspended', $isSuspended);
+        $this->set('suspendedUsers', $suspendedUsers);
+        $this->set('ips', $ips);
+
+        $this->_send();
     }
 
-    /**
-     * Send via Gmail.
-     *
-     * @param string $from     Email of sender.
-     * @param string $namefrom Name of sender.
-     * @param string $to       Email of recipient.
-     * @param string $nameto   Name of recipient.
-     * @param string $subject  Subject.
-     * @param string $message  Message.
-     *
-     * @return array
-     */
-    private function _authgMail($from, $namefrom, $to, $nameto, $subject, $message)
+
+    public function sendPmNotification($pm, $id)
+    {
+        $User = ClassRegistry::init('User');
+        $recipientEmail = $User->getEmailFromId($pm['recpt']);
+        $sender = $User->getUsernameFromId($pm['sender']);
+        $title = $pm['title'];
+        $content = $pm['content'];
+
+        $this->Email->to = $recipientEmail;
+        $this->Email->subject = 'Tatoeba PM - ' . $title;
+        $this->Email->template = 'new_private_message';
+
+        $this->set('sender', $sender);
+        $this->set('title', $title);
+        $this->set('message', $content);
+        $this->set('messageId', $id);
+
+        $this->_send();
+    }
+
+
+    public function sendSentenceCommentNotification(
+        $recipient, $comment, $sentenceOwner
+    ) {
+        $author = CurrentUser::get('username');
+        $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
+        $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
+            . '/sentence_comments/show/'
+            . $comment['sentence_id']
+            . '#comments';
+        $recipientIsOwner = ($recipient == $sentenceOwner);
+        $commentText = $comment['text'];
+
+        $this->Email->to = $recipient;
+        $this->Email->subject = $subject;
+        $this->Email->template = 'comment_on_sentence';
+
+        $this->set('author', $author);
+        $this->set('linkToSentence', $linkToSentence);
+        $this->set('commentText', $commentText);
+        $this->set('recipientIsOwner', $recipientIsOwner);
+
+        $this->_send();
+    }
+
+
+    public function sendWallReplyNotification($recipient, $message)
+    {
+        $author = $message['User']['username'];
+        $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
+        $linkToMessage = 'https://'.$_SERVER['HTTP_HOST']
+            . '/wall/show_message/'
+            . $message['Wall']['id']
+            . '#message_'.$message['Wall']['id'];
+        $messageContent = $message['Wall']['content'];
+
+        $this->Email->to = $recipient;
+        $this->Email->subject = $subject;
+        $this->Email->template = 'wall_reply';
+
+        $this->set('author', $author);
+        $this->set('linkToMessage', $linkToMessage);
+        $this->set('messageContent', $messageContent);
+
+        $this->_send();
+    }
+
+
+    public function sendNewPassword($recipient, $username, $newPassword)
+    {
+        $this->Email->to = $recipient;
+        $this->Email->subject = __('Tatoeba, new password', true);
+        $this->Email->template = 'new_password';
+
+        $this->set('username', $username);
+        $this->set('newPassword', $newPassword);
+
+        $this->_send();
+    }
+
+
+    public function sendMentionNotification($recipient, $comment, $commentId)
+    {
+        $author = CurrentUser::get('username');
+        $subject = 'Tatoeba - '
+            . $author . ' mentioned you in the comments of sentence '
+            . '#' . $comment['sentence_id'];
+        $commentText = $comment['text'];
+        $linkToComment = 'https://' . $_SERVER['HTTP_HOST']
+            . '/sentence_comments/show/'
+            . $comment['sentence_id']
+            . '#comment-' . $commentId;
+
+        $this->Email->to = $recipient;
+        $this->Email->subject = $subject;
+        $this->Email->template = 'user_mentioned_in_comment';
+
+        $this->set('author', $author);
+        $this->set('linkToComment', $linkToComment);
+        $this->set('commentText', $commentText);
+
+        $this->_send();
+    }
+
+
+    private function set($key, $value)
+    {
+        $this->Email->Controller->set($key, $value);
+    }
+
+
+    private function _send()
     {
         if (Configure::read('Mailer.enabled') == false) {
             return;
         }
-
-        /*  your configuration here  */
-
-        $smtpServer = "tls://smtp.gmail.com"; //does not accept STARTTLS
-        $port = "465"; // try 587 if this fails
-        $timeout = "45"; //typical timeout. try 45 for slow servers
-        $username = Configure::read('Mailer.username'); //your gmail account
-        $password = Configure::read('Mailer.password'); //the pass for your gmail
-        $localhost = $_SERVER['REMOTE_ADDR']; //requires a real ip
-        $newLine = "\r\n"; //var just for newlines
-
-        /*  you shouldn't need to mod anything else */
-
-        //connect to the host and port
-        $smtpConnect = fsockopen($smtpServer, $port, $errno, $errstr, $timeout);
-        //echo $errstr." - ".$errno;
-        $smtpResponse = fgets($smtpConnect, 4096);
-        if (empty($smtpConnect)) {
-            $output = "Failed to connect: $smtpResponse";
-            //echo $output;
-            return $output;
-        } else {
-            $logArray['connection'] = "Connected to: $smtpResponse";
-            //echo "connection accepted<br>".$smtpResponse."<p />Continuing<p />";
-        }
-
-        //you have to say HELO again after TLS is started
-        fputs($smtpConnect, "HELO $localhost". $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['heloresponse2'] = "$smtpResponse";
-
-        //request for auth login
-        fputs($smtpConnect, "AUTH LOGIN" . $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['authrequest'] = "$smtpResponse";
-
-        //send the username
-        fputs($smtpConnect, base64_encode($username) . $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['authusername'] = "$smtpResponse";
-
-        //send the password
-        fputs($smtpConnect, base64_encode($password) . $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['authpassword'] = "$smtpResponse";
-
-        //email from
-        fputs($smtpConnect, "MAIL FROM: <$from>" . $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['mailfromresponse'] = "$smtpResponse";
-
-        //email to
-        fputs($smtpConnect, "RCPT TO: <$to>" . $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['mailtoresponse'] = "$smtpResponse";
-
-        //the email
-        fputs($smtpConnect, "DATA" . $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['data1response'] = "$smtpResponse";
-
-        //construct headers
-        $subject  = mb_encode_mimeheader($subject);
-        $nameto   = mb_encode_mimeheader($nameto);
-        $namefrom = mb_encode_mimeheader($namefrom);
-        $headers = "MIME-Version: 1.0" . $newLine;
-        $headers .= "Content-type: text/plain; charset=UTF-8" . $newLine;
-        $headers .= "To: $nameto <$to>" . $newLine;
-        $headers .= "From: $namefrom <$from>" . $newLine;
-        $headers .= "Subject: $subject" . $newLine;
-
-        //observe the . after the newline, it signals the end of message
-        fputs($smtpConnect, "$headers\r\n\r\n$message\r\n.\r\n");
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['data2response'] = "$smtpResponse";
-
-        // say goodbye
-        fputs($smtpConnect, "QUIT" . $newLine);
-        $smtpResponse = fgets($smtpConnect, 4096);
-        $logArray['quitresponse'] = "$smtpResponse";
-        $logArray['quitcode'] = substr($smtpResponse, 0, 3);
-        fclose($smtpConnect);
-        //a return value of 221 in $retVal["quitcode"] is a success
-        return($logArray);
+        
+        $this->Email->smtpOptions = array(
+            'port' => '465',
+            'timeout' => '45',
+            'host' => 'ssl://smtp.gmail.com',
+            'username' => Configure::read('Mailer.username'),
+            'password' => Configure::read('Mailer.password'),
+        );
+        $this->Email->delivery = 'smtp';
+        $this->Email->sendAs = 'html';
+        $this->Email->from = Configure::read('Mailer.username');
+        $this->Email->send();
     }
 }
 ?>

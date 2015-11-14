@@ -34,6 +34,11 @@
 * @license  Affero General Public License
 * @link     http://tatoeba.org
 */
+$title = format(
+    __('Members: {lang}', true),
+    array('lang' => $languages->codeToNameToFormat($lang))
+);
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">

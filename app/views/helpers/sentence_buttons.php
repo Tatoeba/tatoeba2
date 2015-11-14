@@ -69,7 +69,7 @@ class SentenceButtonsHelper extends AppHelper
             array(
                 "escape" => false,
                 "class" => "navigationIcon " . $type,
-                "title" => __('Show', true),
+                "title" => __("Show sentence's details", true),
             )
         );
     }
@@ -223,7 +223,7 @@ class SentenceButtonsHelper extends AppHelper
             $class = 'editableFlag';
 
             // language select
-            if (CurrentUser::isAdmin()) {
+            if (CurrentUser::isAdmin() || CurrentUser::isModerator()) {
                 $langArray = $this->Languages->otherLanguagesArray();
             } else {
                 $langArray = $this->Languages->profileLanguagesArray(
@@ -266,6 +266,22 @@ class SentenceButtonsHelper extends AppHelper
             )
         );
 
+    }
+
+
+    /**
+     *
+     */
+    public function displayCopyButton($text)
+    {
+        $this->Javascript->link('clipboard.min.js', false);
+        $copyButton = $this->Images->svgIcon('copy');
+        echo $this->Html->div('copy-btn', $copyButton,
+            array(
+                'data-clipboard-text' => $text,
+                'title' => __('Copy sentence', true)
+            )
+        );
     }
 }
 ?>

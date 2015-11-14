@@ -73,17 +73,41 @@ class TagsController extends AppController
 
     public function add_tag_post()
     {
-        $tagName = $this->data['Tag']['tag_name'];
-        $sentenceId = Sanitize::paranoid($this->data['Tag']['sentence_id']);
-        $this->add_tag($tagName, $sentenceId);
+        if ($this->RequestHandler->isAjax()) {
 
+            $this->helpers[] = 'Tags';
+
+            $tagName = $this->params['form']['tag_name'];
+            $sentenceId = Sanitize::paranoid($this->params['form']['sentence_id']);
+            $userId = CurrentUser::get("id");
+            $username = CurrentUser::get("username");
+            $tagId = $this->Tag->addTag($tagName, $userId, $sentenceId);
+
+            $isSaved = !empty($tagId);
+            $this->set('isSaved', $isSaved);
+            if ($isSaved) {
+                $this->set('tagName', $tagName);
+                $this->set('tagId', $tagId);
+                $this->set('userId', $userId);
+                $this->set('username', $username);
+                $this->set('sentenceId', $sentenceId);
+                $this->set('date', date("Y-m-d H:i:s"));
+            }
+
+        } else {
+
+            $tagName = $this->data['Tag']['tag_name'];
+            $sentenceId = Sanitize::paranoid($this->data['Tag']['sentence_id']);
+            $this->add_tag($tagName, $sentenceId);
+
+        }
     }
 
     /**
      * Add a tag to a Sentence
      *
-     * @param string tagName    Name of the tag to add
-     * @param int    sentenceId Id of the sentence on which the tag will added
+     * @param string $tagName    Name of the tag to add
+     * @param int    $sentenceId Id of the sentence on which the tag will added
      *
      * @return void
      */
@@ -114,7 +138,8 @@ class TagsController extends AppController
         }
 
         // save and check if the tag has been added
-        if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
+        $tag = $this->Tag->addTag($tagName, $userId, $sentenceId);
+        if (!empty($tag)) {
             $infoMessage = format(
                 __(
                     "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",
@@ -138,7 +163,7 @@ class TagsController extends AppController
     /**
      * Display list of tags.
      *
-     * @param String $search Filters the tags list with only those that contain the
+     * @param String $filter Filters the tags list with only those that contain the
      *                       search string.
      */
     public function view_all($filter = null)
@@ -279,8 +304,8 @@ class TagsController extends AppController
      * the grace (warning) period within which sentence owners are supposed to respond to comments.
      * A "moderator" is known on the site as a "corpus maintainer".
      *
-     * @param string $tagName         Tag name.
-     * @param string $lang            Language of the sentences.
+     * @param string $tagId Id of the tag.
+     * @param string $lang  Language of the sentences.
      *
      * @return void
      */

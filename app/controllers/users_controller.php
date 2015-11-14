@@ -116,9 +116,21 @@ class UsersController extends AppController
             $this->redirect(array('action'=>'index'));
         }
         if (!empty($this->data)) {
+
+            $wasBlocked = $this->User->getLevelOfUser($id) == -1;
+            $wasSuspended = $this->User->getGroupOfUser($id) == 6;
+            $isBlocked = !$wasBlocked && $this->data['User']['level'] == -1;
+            $isSuspended = !$wasSuspended && $this->data['User']['group_id'] == 6;
+
             if ($this->User->save($this->data)) {
+                $username = $this->data['User']['username'];
+                if ($isBlocked || $isSuspended) {
+                    $this->Mailer->sendBlockedOrSuspendedUserNotif(
+                        $username, $isSuspended
+                    );
+                }
+
                 $this->Session->setFlash('The user information has been saved.');
-                $this->redirect(array('action'=>'index'));
             } else {
                 $this->Session->setFlash(
                     'The user information could not be saved. Please try again.'
@@ -410,26 +422,22 @@ class UsersController extends AppController
 
                 if ($this->User->save($updatePasswordData)) { // if saved
                     // prepare message
-                    $subject = __('Tatoeba, new password', true);
-                    $message = __('Your login: ', true)
-                        . $user['User']['username']
-                        . "\n"
-                        . __('Your new password: ', true)
-                        . $newPassword;
-
-                    // send email with new password
-                    $this->Mailer->to = $this->data['User']['email'];
-                    $this->Mailer->toName = '';
-                    $this->Mailer->subject = $subject;
-                    $this->Mailer->message = $message;
-                    $this->Mailer->send();
-
-                    $this->flash(
-                        __(
-                            'Your new password has been sent to ', true
-                        ) . $this->data['User']['email'],
-                        '/users/login'
+                    $this->Mailer->sendNewPassword(
+                        $this->data['User']['email'],
+                        $user['User']['username'],
+                        $newPassword
                     );
+
+                    $flashMessage = format(
+                        __('Your new password has been sent to {email}.', true),
+                        array('email' => $this->data['User']['email'])
+                    );
+                    $flashMessage .= "<br/>";
+                    $flashMessage .= __(
+                        'You may need to check your spam folder '.
+                        'to find this message.', true
+                    );
+                    $this->flash($flashMessage, '/users/login');
                 }
             } else {
                 $this->flash(

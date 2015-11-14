@@ -19,7 +19,7 @@
 
 $(document).ready(function(){
 
-    $('.adopt-button').live('click', function () {
+    $(document).on("click", ".adopt-button", function () {
         var adoptOption = $(this).parent();
         var sentenceId = adoptOption.attr("data-sentence-id");
         

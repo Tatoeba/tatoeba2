@@ -31,12 +31,15 @@ if (!empty($sentence)) {
     
     $sentences->javascriptForAJAXSentencesGroup();
 
+    $sentence['Translations'] = array();
+    $sentence['IndirectTranslations'] = array();
     $lists->displaySentence(
         $sentence['Sentence'],
         $sentence['Transcription'],
         array(),
         true
     );
+
 } else {
     ?>
 

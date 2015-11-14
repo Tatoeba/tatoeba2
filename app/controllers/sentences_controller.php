@@ -69,6 +69,7 @@ class SentencesController extends AppController
         'User',
         'UsersLanguages',
         'Tag',
+        'UsersSentences',
     );
 
     private $defaultSearchCriteria = array(
@@ -181,6 +182,9 @@ class SentencesController extends AppController
             $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
             $this->set('nextSentence', $neighbors['next']);
             $this->set('prevSentence', $neighbors['prev']);
+
+            $correctnessArray = $this->UsersSentences->getCorrectnessForSentence($id);
+            $this->set('correctnessArray', $correctnessArray);
 
             // If no sentence, we don't need to go further.
             // We just set some variable so we don't get warnings.
@@ -417,9 +421,9 @@ class SentencesController extends AppController
         $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
 
-        $this->Sentence->setOwner($id, $userId);
+        $this->Sentence->setOwner($id, $userId, CurrentUser::get('group_id'));
 
-        $this->renderAdopt($id, $userId);
+        $this->renderAdopt($id);
     }
 
     /**
@@ -438,10 +442,10 @@ class SentencesController extends AppController
 
         $this->Sentence->unsetOwner($id, $userId);
 
-        $this->renderAdopt($id, $userId);
+        $this->renderAdopt($id);
     }
 
-    private function renderAdopt($id, $userId)
+    private function renderAdopt($id)
     {
         $sentence = $this->Sentence->find('first', array(
             'conditions' => array('Sentence.id' => $id),
@@ -449,24 +453,12 @@ class SentencesController extends AppController
             'fields' => array('id'),
         ));
 
-        $ownerName = $sentence['User'] ? $sentence['User']['username'] : null;
         $this->set('sentenceId', $id);
-        $this->set('ownerName', $ownerName);
+        $this->set('owner', $sentence['User']);
         $this->layout = null;
         $this->render('adopt');
     }
 
-    private function _setSentenceData($id)
-    {
-        $sentence = $this->Sentence->getSentenceWithId($id);
-        $allTranslations = $this->Sentence->getTranslationsOf($id);
-        $translations = $allTranslations['Translation'];
-        $indirectTranslations = $allTranslations['IndirectTranslation'];
-
-        $this->set('sentence', $sentence);
-        $this->set('translations', $translations);
-        $this->set('indirectTranslations', $indirectTranslations);
-    }
 
     /**
      * Save the translation.
@@ -530,8 +522,6 @@ class SentencesController extends AppController
 
     /**
      * Search sentences.
-     *
-     * @param string $query The research query.
      *
      * @return void
      */
@@ -934,7 +924,7 @@ class SentencesController extends AppController
      * @param string $model           Model to use for pagination
      * @param string $translationLang If different of null, will only
      *                                retrieve translation in this language.
-     * @param string &$real_total     If Sphinx returns the "real total", it
+     * @param int    &$real_total     If Sphinx returns the "real total", it
      *                                will be stored here. Sphinx returns a
      *                                limited number of results (1000), but
      *                                it's able to tell the exact number of

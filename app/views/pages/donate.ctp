@@ -49,11 +49,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Donate', true)));
     <div class="module">
         <h2><?php __("Latest donations"); ?></h2>
         <ol>
+            <li>Xung - 100 €</li>
+            <li>Dmitriy - 5 €</li>
             <li>Xung - 20 €</li>
             <li>Stanislav - 5 €</li>
             <li>Rev - 50 €</li>
-            <li>anonymous - 1 939,07 €</li>
-            <li>Ray - 100,00 €</li>
         </ol>
         <?php echo $html->link(
             __("All donations", true),

@@ -81,9 +81,11 @@
         // ---------------------- //
         //      Javascript        //
         // ---------------------- //
-        echo $javascript->link(JS_PATH . 'jquery-1.4.min.js', true);
+        ?>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/js/jquery-1.11.3.min.js"><\/script>')</script>
+        <?php
         echo $javascript->link(JS_PATH . 'generic_functions.js', true);
-
         // Source: https://github.com/jonathantneal/svg4everybody
         // This is needed to make "fill: currentColor" work on every browser.
         echo $javascript->link(JS_PATH . 'svg4everybody.min.js', true);
@@ -109,7 +111,7 @@
         
         echo $this->element('seo_international_targeting');
     ?>
-    
+
     <link rel="search" type="application/opensearchdescription+xml"
           href="http://tatoeba.org/opensearch.xml" title="Tatoeba" />
 </head>
@@ -167,6 +169,10 @@
     <?php echo $this->element('sql_dump'); ?>
 
     <?php
+    if (CurrentUser::getSetting('copy_button')) {
+        echo $javascript->link(JS_PATH . 'sentences.copy.js', true);
+    }
+
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', array('cache' => true));
     }

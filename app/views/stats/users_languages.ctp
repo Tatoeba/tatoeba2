@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+$this->set('title_for_layout', $pages->formatTitle(__('Languages of members', true)));
 ?>
 
 <div id="main_content">

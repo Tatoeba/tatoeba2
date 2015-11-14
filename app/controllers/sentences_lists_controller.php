@@ -48,7 +48,8 @@ class SentencesListsController extends AppController
     );
     public $components = array(
         'LanguageDetection', 
-        'Cookie'
+        'Cookie',
+        'CommonSentence'
     );
     // We want to make sure that people don't download long lists, which can slow down the server.
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
@@ -80,8 +81,8 @@ class SentencesListsController extends AppController
     /**
      * Displays all the lists. If user is logged in, it will also display a form to
      * add a new list and the lists that belong to that user.
-     * 
-     * @return void
+     *
+     * @param string $filter
      */
     public function index($filter = null)
     {
@@ -157,6 +158,9 @@ class SentencesListsController extends AppController
     {
         $id = Sanitize::paranoid($id);
         $translationsLang = Sanitize::paranoid($translationsLang);
+        if (empty($translationsLang)) {
+            $translationsLang = 'none';
+        }
 
         if (!isset($id)) {
             $this->redirect(array("action"=>"index"));
@@ -165,9 +169,17 @@ class SentencesListsController extends AppController
         $list = $this->SentencesList->getList($id);
 
         $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
-            $id, $translationsLang, CurrentUser::getSetting('sentences_per_page')
+            $id, CurrentUser::getSetting('sentences_per_page')
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
+
+        $sentenceIds = array();
+        foreach ($sentencesInList as $sentence) {
+            $sentenceIds[] = $sentence['SentencesSentencesLists']['sentence_id'];
+        }
+        $sentencesInList = $this->CommonSentence->getAllNeededForSentences(
+            $sentenceIds, $translationsLang
+        );
 
         $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
         $downloadability_info = $this->_get_downloadability_info($thisListCount);
@@ -374,9 +386,8 @@ class SentencesListsController extends AppController
     /**
      * Displays the lists of a specific user.
      *
-     * @param int $username Username of of the user we want lists of.
-     *
-     * @return void
+     * @param int    $username Username of of the user we want lists of.
+     * @param string $filter   Search query on name of list.
      */
     public function of_user($username, $filter = null)
     {
@@ -431,7 +442,6 @@ class SentencesListsController extends AppController
                 $sentenceText,
                 $sentenceLang
             );
-            $sentence['Sentence']['User'] = $sentence['User'];
 
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         }

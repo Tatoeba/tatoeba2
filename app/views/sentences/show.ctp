@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$javascript->link('jquery.scrollTo-min.js', false);
+$javascript->link('jquery.scrollTo.min.js', false);
 $javascript->link('sentences.logs.js', false);
 
 if (isset($sentence)) {
@@ -36,9 +36,9 @@ if (isset($sentence)) {
     $sentenceHasAudio = $sentence['Sentence']['hasaudio'];
     
     $languageName = $languages->codeToNameToFormat($sentenceLang);
-    $title = format(__('{language} example sentence: ', true),
-                    array('language' => $languageName));
-    $this->set('title_for_layout', $pages->formatTitle($title . $sentenceText));
+    $title = format(__('{language} example sentence: {sentence}', true),
+                    array('language' => $languageName, 'sentence' => $sentenceText));
+    $this->set('title_for_layout', $pages->formatTitle($title));
 
     $html->meta(
         'description', 
@@ -69,6 +69,35 @@ $navigation->displaySentenceNavigation(
 ?>
 
 <div id="annexe_content">
+    <?php
+    if (CurrentUser::get('settings.users_collections_ratings')) {
+        echo '<div class="module correctness-info">';
+
+        echo $html->tag('h2', __('Reviewed by', true));
+        foreach($correctnessArray as $correctness) {
+            echo '<div>';
+            echo $images->correctnessIcon(
+                $correctness['UsersSentences']['correctness']
+            );
+            echo $html->link(
+                $correctness['User']['username'],
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $correctness['User']['username']
+                ),
+                array(
+                    'class' => 'username',
+                    'title' => $correctness['UsersSentences']['modified']
+                )
+            );
+            echo '</div>';
+        }
+
+        echo '</div>';
+    }
+    ?>
+
     <?php 
     if (isset($sentence)){
         $tags->displayTagsModule($tagsArray, $sentenceId);

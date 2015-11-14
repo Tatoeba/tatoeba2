@@ -60,11 +60,8 @@ class FavoritesController extends AppController
     /**
      * view all favorites sentences of a given user
      *
-     * @param int $userId user to retrieve favorites
-     *
-     * @return void
+     * @param string $username User to retrieve favorites
      */
-
     public function of_user($username)
     {
         $userId = $this->User->getIdFromUsername($username);

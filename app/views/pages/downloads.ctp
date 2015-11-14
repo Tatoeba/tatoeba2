@@ -95,6 +95,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $tag_name_str = __('Tag name', true);
         $list_id_str = __('List id', true);
         $list_name_str = __('List name', true);
+        $list_is_public = __('Is collaborative', true);
         $meaning_id_str = __('Meaning id', true);
         $skill_level_str = __('Skill level', true);
         $details_str = __('Details', true);
@@ -271,6 +272,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 <span class="param"><?php echo $date_last_mod_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $list_name_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $list_is_public; ?></span>
             </dd>
             
             <dt><?php echo $file_desc_str; ?></dt>

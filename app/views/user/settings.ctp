@@ -36,106 +36,148 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="module options">
+        <?php echo $form->create(null, array('action' => 'save_settings')); ?>
+
         <h2><?php __('Options'); ?></h2>
-        
-        <?php        
-        echo $form->create(
-            null, 
-            array(
-                'action' => 'save_settings'
-            )
-        );
-        ?>
-        
-        <div>
-            <?php echo $form->checkbox('send_notifications'); ?>
-            <label for="UserSendNotifications">
-                <?php __('Email notifications'); ?>
-            </label>
-        </div>
-        
-        <div>
-            <?php echo $form->checkbox('settings.is_public'); ?>
-            <label for="UserSettingsIsPublic">
-                <?php __('Set your profile public?'); ?>
-            </label>
-        </div>
+        <fieldset>
+            <div>
+                <?php echo $form->checkbox('send_notifications'); ?>
+                <label for="UserSendNotifications">
+                    <?php __('Email notifications'); ?>
+                </label>
+            </div>
 
-        <div>
-            <?php echo $form->checkbox('jquery_chosen'); ?>
-            <label for="UserJqueryChosen">
-                <?php __(
-                    'Advanced language selector (experimental). Note: this '.
-                    'option is saved in your cookies so it will only apply '.
-                    'for your current browser.'
-                ); ?>
-            </label>
-        </div>
-        
-        <div>
-            <?php echo $form->checkbox('settings.use_most_recent_list'); ?>
-            <label for="UserSettingsUseMostRecentList">
-                <?php __(
-                    'Remember the last list to which you assigned a '.
-                    'sentence, and select it by default.'
-                ); ?>
-            </label>
-        </div>
+            <div>
+                <?php echo $form->checkbox('settings.is_public'); ?>
+                <label for="UserSettingsIsPublic">
+                    <?php __('Set your profile public?'); ?>
+                </label>
+            </div>
 
-        <div>
-            <?php echo $form->checkbox('settings.collapsible_translations'); ?>
-            <label for="UserSettingsCollapsibleTranslations">
-                <?php __(
-                    'Display a link to expand/collapse translations '.
-                    'when there are too many translations.'
-                ); ?>
-            </label>
-        </div>
-        
-        <div>
-            <?php echo $form->checkbox('settings.show_all_transcriptions'); ?>
-            <label for="UserSettingsShowAllTranscriptions">
-            <?php
-                $warningIcon = $html->image('warning-small.svg', array(
-                    'height' => 16,
-                    'width' => 16,
-                ));
-                echo format(
-                    __('Display untrustworthy transcriptions by default, '.
-                       'which will only be marked with a {warningIcon}.', true),
-                    compact('warningIcon')
+            <div>
+                <?php echo $form->checkbox('settings.use_most_recent_list'); ?>
+                <label for="UserSettingsUseMostRecentList">
+                    <?php __(
+                        'Remember the last list to which you assigned a '.
+                        'sentence, and select it by default.'
+                    ); ?>
+                </label>
+            </div>
+
+            <div>
+                <?php echo $form->checkbox('settings.collapsible_translations'); ?>
+                <label for="UserSettingsCollapsibleTranslations">
+                    <?php __(
+                        'Display a link to expand/collapse translations '.
+                        'when there are too many translations.'
+                    ); ?>
+                </label>
+            </div>
+
+            <div>
+                <?php
+                $tip = __(
+                    'Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). '.
+                    'Tatoeba will then only display translations in the languages you '.
+                    'indicated. You can leave this empty to display translations in all '.
+                    'languages.', true
                 );
+                echo $form->input(
+                    'settings.lang',
+                    array(
+                        'label' => __('Languages', true),
+                        'after' => '<div>'.$tip.'</div>'
+                    )
+                );
+                ?>
+            </div>
+
+            <div>
+                <?php echo $form->input('settings.sentences_per_page', array(
+                    'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
+                    'label' => __('Number of sentences per page', true),
+                )); ?>
+            </div>
+        </fieldset>
+
+
+        <fieldset>
+            <legend><?php __('Experimental options'); ?></legend>
+
+            <?php
+            echo $html->div('experimental-info',
+                __(
+                    'Options in this category are not fully functional, '.
+                    'may not work for everyone and/or are in a phase of '.
+                    'beta testing. They may change or be removed in the future.',
+                    true
+                )
+            );
             ?>
-            </label>
-        </div>
-        <div>
-        <?php
-        $tip = __(
-            'Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). '.
-            'Tatoeba will then only display translations in the languages you '.
-            'indicated. You can leave this empty to display translations in all '.
-            'languages.', true
-        );
-        echo $form->input(
-            'settings.lang',
-            array(
-                'label' => __('Languages', true),
-                'after' => '<div>'.$tip.'</div>'
-            )
-        );
-        ?>
-        </div>
-        
-        <div>
-            <?php echo $form->input('settings.sentences_per_page', array(
-                 'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
-                 'label' => __('Number of sentences per page', true),
-            )); ?>
-        </div>
+
+            <div>
+                <?php echo $form->checkbox('jquery_chosen'); ?>
+                <label for="UserJqueryChosen">
+                    <?php __(
+                        'Advanced language selector. Note: this '.
+                        'option is saved in your cookies so it will only apply '.
+                        'for your current browser.'
+                    ); ?>
+                </label>
+            </div>
+
+            <div>
+                <?php echo $form->checkbox('settings.users_collections_ratings'); ?>
+                <label for="UserSettingsUsersCollections">
+                    <?php __(
+                        'Activate the feature to rate sentences and build your '.
+                        'collection of sentences.'
+                    ); ?>
+                </label>
+            </div>
+
+            <div>
+                <?php echo $form->checkbox('settings.native_indicator'); ?>
+                <label for="UserSettingsNativeIndicator">
+                    <?php __(
+                        'Display "(native)" next to username on sentences when '.
+                        'the owner indicated in their profile that they have a '.
+                        'native level in the language of the sentence.'
+                    ); ?>
+                </label>
+            </div>
+
+            <div>
+                <?php echo $form->checkbox('settings.copy_button'); ?>
+                <label for="UserSettingsCopyButton">
+                    <?php __(
+                        'Display button to copy a sentence to the clipboard.'
+                    ); ?>
+                </label>
+            </div>
+
+            <div>
+                <?php echo $form->checkbox('settings.show_all_transcriptions'); ?>
+                <label for="UserSettingsShowAllTranscriptions">
+                <?php
+                    $warningIcon = $html->image('warning-small.svg', array(
+                        'height' => 16,
+                        'width' => 16,
+                    ));
+                    echo format(
+                        __('Display untrustworthy transcriptions by default, '.
+                           'which will only be marked with a {warningIcon}.', true),
+                        compact('warningIcon')
+                    );
+                ?>
+                </label>
+            </div>
+        </fieldset>
 
         <?php echo $form->end(__('Save', true)); ?>
     </div>
+
     
     <div class="module">
         <h2><?php __('Change email address'); ?></h2>

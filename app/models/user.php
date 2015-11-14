@@ -116,6 +116,9 @@ class User extends AppModel
         'collapsible_translations' => false,
         'show_all_transcriptions' => false,
         'sentences_per_page' => 10,
+        'users_collections_ratings' => false,
+        'native_indicator' => false,
+        'copy_button' => false,
     );
 
     private $settingsValidation = array(
@@ -584,6 +587,26 @@ class User extends AppModel
         return $result['User']['group_id'];
     }
 
+
+    public function getUsersWithSamePassword($userId)
+    {
+        $userPassword = $this->getPassword($userId);
+
+        $result = $this->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'password' => $userPassword,
+                    'group_id' => 6,
+                    'id !=' => $userId
+                ),
+                'fields' => array('username'),
+                'limit' => 10
+            )
+        );
+
+        return $result;
+    }
 }
 
 

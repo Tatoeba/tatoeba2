@@ -40,6 +40,7 @@ class SentencesSentencesLists extends AppModel
     public $name = 'SentencesSentencesLists';
     public $useTable = 'sentences_sentences_lists';
     public $actsAs = array('Containable');
+    public $recursive = -1;
 
     public $belongsTo = array(
         'Sentence' => array('foreignKey' => 'sentence_id'),
@@ -91,43 +92,17 @@ class SentencesSentencesLists extends AppModel
     /**
      * Returns value of $this->paginate, for paginating sentences of a list.
      *
-     * @param int    $listId           Id of the list.
-     * @param string $translationsLang Language of the translations.
-     * @param int    $limit            Number of sentences per page.
+     * @param int    $listId Id of the list.
+     * @param int    $limit  Number of sentences per page.
      *
      * @return array
      */
-    public function getPaginatedSentencesInList($listId, $translationsLang, $limit)
+    public function getPaginatedSentencesInList($listId, $limit)
     {
-        $sentenceParams = array(
-            'User' => array('fields' => array('id', 'username')),
-            'Transcription' => array(
-                'User' => array('fields' => array('username'))
-            ),
-        );
-
-        if ($translationsLang != null) {
-            // All
-            $sentenceParams['Translation'] = array(
-                'Transcription' => array(
-                    'User' => array('fields' => array('username'))
-                ),
-            );
-            // Specific language
-            if ($translationsLang != 'und') {
-                $sentenceParams['Translation']['conditions'] = array(
-                    "lang" => $translationsLang
-                );
-            }
-        }
-
         return array(
             'limit' => $limit,
             'conditions' => array('sentences_list_id' => $listId),
-            'contain' => array(
-                'Sentence' => $sentenceParams
-            ),
-            'order' => 'Sentence.created DESC'
+            'order' => 'created DESC'
         );
     }
 

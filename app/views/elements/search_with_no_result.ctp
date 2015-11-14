@@ -30,6 +30,10 @@ $query = Sanitize::html($query);
 
 <div class="module">
     <?php
-    echo $html->tag('h2', __('No results found', true));
+    $noResultLabel = format(
+        __('No results found for: {search}', true),
+        array('search' => $query)
+    );
+    echo $html->tag('h2', $noResultLabel);
     ?>
 </div>

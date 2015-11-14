@@ -64,54 +64,56 @@ class TagsHelper extends AppHelper
 
             <div class="tagsListOnSentence" >
                 <?php
-                if (count($tagsArray) == 0) {
-                    ?>
-
-                    <p><?php __('No tag on this sentence.'); ?></p>
-
-                    <?php
-                } else {
-
                 foreach ($tagsArray as $tagArray) {
-                    ?>
-                    <span class="tag">
-                    <?php
+
                     $tagName =  $tagArray['Tag']['name'];
                     $userId = $tagArray['User']['id'];
                     $username = $tagArray['User']['username'];
                     $tagId = $tagArray['TagsSentences']['tag_id'];
                     $date = $tagArray['TagsSentences']['added_time'];
 
-                    $this->displayTagLink(
-                        $tagName, $tagId, $username, $date
+                    $this->displayTag(
+                        $tagName, $tagId, $sentenceId, $userId, $username, $date
                     );
 
-                    if (CurrentUser::canRemoveTagFromSentence($userId)) {
-                        $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
-                    }
-                    ?>
-                    </span>
-                <?php
-                } // end foreach
-                } // end else
+                }
                 ?>
             </div>
             <?php
             if (CurrentUser::isTrusted()) {
                 $this->displayAddTagForm($sentenceId);
             }
-            echo $this->Html->link(
-                __('View all tags', true),
-                array(
-                    "controller" => "tags",
-                    "action" => "view_all",
-                )
-            );
-
             ?>
         </div>
     <?php
     }
+
+
+    /**
+     * @param $tagName
+     * @param $tagId
+     * @param null $username
+     * @param null $date
+     */
+    public function displayTag(
+        $tagName, $tagId, $sentenceId, $userId, $username = null, $date = null
+    ) {
+        ?>
+        <span class="tag">
+        <?php
+
+        $this->displayTagLink(
+            $tagName, $tagId, $username, $date
+        );
+
+        if (CurrentUser::canRemoveTagFromSentence($userId)) {
+            $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
+        }
+        ?>
+        </span>
+        <?php
+    }
+
 
     /**
      *
@@ -171,6 +173,8 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
+        echo $this->Javascript->link(JS_PATH . 'tags.add.js', true);
+
         echo $this->Form->create(
             'Tag',
             array(
@@ -191,17 +195,19 @@ class TagsHelper extends AppHelper
                 "label" => '',
                 "lang" => '',
                 "dir" => 'auto',
+                "data-sentence-id" => $sentenceId
             )
         );
-
-        echo '<div>';
         echo $this->Form->hidden(
             'sentence_id',
             array('value' => $sentenceId)
         );
+
+        echo '<div class="input">';
+        echo $this->Form->button('+', array('id' => 'addNewTag'));
         echo '</div>';
 
-        echo $this->Form->end('+');
+        echo $this->Form->end();
     }
 
 

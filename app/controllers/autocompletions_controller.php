@@ -52,7 +52,7 @@ class AutocompletionsController extends AppController
     }
 
     /**
-     *
+     * @param string $searchString
      */
     public function request($searchString) {
         $this->layout = '';

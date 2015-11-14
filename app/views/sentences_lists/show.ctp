@@ -128,8 +128,6 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 
     if ($belongsToUser) {
         echo $html->div('edit-list-name', $editImage);
-
-        $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', false);
         $lists->displayAddSentenceForm($listId);
     }
 
@@ -141,24 +139,9 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
-    foreach ($sentencesInList as $item) {
-        $sentence = $item['Sentence'];
+    foreach ($sentencesInList as $sentence) {
         $transcrs = $sentence['Transcription'];
-        $translations = array();
-        if (!empty($sentence['Translation'])) {
-            foreach ($sentence['Translation'] as $value) {
-                $translations[] = array(
-                    'Translation' => $value,
-                    'Transcription' => $value['Transcription'],
-                );
-            }
-        }
-        $lists->displaySentence(
-            $sentence,
-            $transcrs,
-            $translations,
-            $canRemoveSentence
-        );
+        $lists->displaySentence($sentence, $transcrs, $canRemoveSentence);
     }
     ?>
     </div>

@@ -42,6 +42,17 @@ $this->Languages->localizedAsort($countries);
     <div class="module form">
     <h2><?php __('Edit profile'); ?></h2>
     <div class="currentPicture">
+        <?php
+        echo $form->create(
+            'profile_image',
+            array(
+                'url' => array(
+                    'controller' => 'user',
+                    'action' => 'remove_image'
+                )
+            )
+        );
+        ?>
         <div class="title"><?php __('Current picture'); ?></div>
         <?php
         $image = 'unknown-avatar.png';
@@ -51,6 +62,15 @@ $this->Languages->localizedAsort($countries);
         echo $html->image(
             IMG_PATH . 'profiles_128/'.$image
         );
+
+        if (!empty($this->data['User']['image'])) {
+            $removeButton = $form->button(
+                __('Remove', true), array('class' => 'delete button')
+            );
+            echo $html->div('buttons', $removeButton);
+        }
+
+        echo $form->end();
         ?>
     </div>
     
@@ -72,7 +92,7 @@ $this->Languages->localizedAsort($countries);
         $uploadButton = $form->button(
             __('Upload', true), array('class' => 'submit button')
         );
-        echo $html->div('upload-button', $uploadButton);
+        echo $html->div('buttons', $uploadButton);
 
         echo $form->end();
         ?>

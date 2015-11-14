@@ -136,24 +136,23 @@ class Tag extends AppModel
             }
         }
         // Send a request to suggestd (the auto-suggest daemon) to update its internal
-        // table. 
+        // table.
         // TODO only do this if we add a new ("dirty") tag.
-        // See views/helpers/tags.php.
-        // $dirty = fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
-        // if ($dirty != null) {
-            // fclose($dirty);
-        // }
+        $dirty = fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
+        if ($dirty != null) {
+            fclose($dirty);
+        }
 
         if ($sentenceId != null) {
-            $ret = $this->TagsSentences->tagSentence(
+            $this->TagsSentences->tagSentence(
                 $sentenceId,
                 $tagId,
                 $userId
             );
-            return $ret;
+            return $tagId;
         }
         
-        return true;
+        return false;
     }
 
     public function removeTagFromSentence($tagId, $sentenceId) {

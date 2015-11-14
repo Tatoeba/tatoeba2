@@ -69,6 +69,7 @@ cake acl create aco Tags remove_tag_of_sentence_from_tags_show
 
 cake acl create aco controllers User
 cake acl create aco User save_image
+cake acl create aco User remove_image
 cake acl create aco User save_description
 cake acl create aco User save_basic
 cake acl create aco User save_settings
@@ -85,6 +86,10 @@ cake acl create aco Users delete
 cake acl create aco controllers UsersLanguages
 cake acl create aco UsersLanguages save
 cake acl create aco UsersLanguages delete
+
+cake acl create aco controllers Collections
+cake acl create aco Collections add_sentence
+cake acl create aco Collections delete_sentence
 
 cake acl create aco controllers Wall
 cake acl create aco Wall save

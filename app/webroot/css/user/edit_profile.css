@@ -81,11 +81,12 @@ textarea {
  * Save
  */
 
-.upload-button {
+.buttons {
     margin: 10px 0;
 }
 
-.upload-button .submit {
+.buttons .submit,
+.buttons .delete {
     margin-left: 0;
 }
 

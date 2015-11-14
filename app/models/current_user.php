@@ -308,6 +308,22 @@ class CurrentUser extends AppModel
         return $Favorite->isSentenceFavoritedByUser($sentenceId, $userId);
     }
 
+
+    /**
+     * Retrieve correctness that the user has set for a certain sentence.
+     *
+     * @param int $sentenceId Id of the sentence.
+     *
+     * @return int
+     */
+    public static function correctnessForSentence($sentenceId)
+    {
+        $userId = self::get('id');
+        $UsersSentences = ClassRegistry::init('UsersSentences');
+        return $UsersSentences->correctnessForSentence($sentenceId, $userId);
+    }
+
+
     /**
      * Get user's ip, even if behind a proxy (anyway tatoeba is currently
      * behind a proxy

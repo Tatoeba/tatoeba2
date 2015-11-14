@@ -356,7 +356,6 @@ class ListsHelper extends AppHelper
      *
      * @param array  $sentence           Sentence data.
      * @param array  $transcriptions     Sentence transcriptions.
-     * @param string $translationsLang   Language of the translations.
      * @param bool   $canCurrentUserEdit 'true' if user remove sentence from list.
      *
      * @return void
@@ -364,10 +363,10 @@ class ListsHelper extends AppHelper
     public function displaySentence(
         $sentence,
         $transcriptions,
-        $translations = array(),
         $canCurrentUserEdit = false
     ) {
-        if (empty($sentence['id'])) {
+        $sentenceId = $sentence['Sentence']['id'];
+        if (empty($sentenceId)) {
             // In case the sentence has been deleted, we don't want to display
             // it in the list.
             // We may also want to run the script to update the count of sentences
@@ -376,24 +375,22 @@ class ListsHelper extends AppHelper
             return;
         }
         ?>
-        <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">
+        <div id="sentence<?php echo $sentenceId; ?>" class="sentenceInList">
 
             <?php
             // Remove from list button
             if ($canCurrentUserEdit) {
-                $this->_displayRemoveButton($sentence['id']);
+                $this->_displayRemoveButton($sentenceId);
             }
 
             // Sentences group
-            $user = $sentence['User'];
             $withAudio = true;
-            $indirectTranslations = array();
             $this->Sentences->displaySentencesGroup(
-                $sentence,
+                $sentence['Sentence'],
                 $transcriptions,
-                $translations,
-                $user,
-                $indirectTranslations,
+                $sentence['Translations'],
+                $sentence['User'],
+                $sentence['IndirectTranslations'],
                 array('withAudio' => false)
             );
             ?>
@@ -403,6 +400,9 @@ class ListsHelper extends AppHelper
 
 
     private function _displayRemoveButton($sentenceId) {
+        $this->Javascript->link(
+            JS_PATH . 'sentences_lists.remove_sentence_from_list.js', false
+        );
         ?>
         <span class="removeFromList">
 
@@ -454,15 +454,7 @@ class ListsHelper extends AppHelper
                 'class' => 'submit'
             )
         );
-
-        echo $this->Images->svgIcon(
-            'loading',
-            array(
-                'width' => 20,
-                'height' => 20,
-                'class' => 'adding-new-sentence-in-list'
-            )
-        );
+        echo "<div class='loader-container'></div>";
         ?>
 
         <p>

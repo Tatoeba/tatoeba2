@@ -99,17 +99,14 @@ class SentencesHelper extends AppHelper
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
 
-        $ownerName = null;
-        if (isset($user['username'])) {
-            $ownerName = $user['username'];
-        }
         $this->displayMainSentence(
             $sentence,
             $transcriptions,
-            $ownerName,
+            $user,
             $withAudio,
             $langFilter
         );
+
 
         // Loading gif
         echo $this->Images->svgIcon(
@@ -412,9 +409,9 @@ class SentencesHelper extends AppHelper
      * menu of action that can be applied on this sentence. This is the sentence at
      * the top.
      *
-     * @param array  $sentence  Sentence data.
+     * @param array  $sentence   Sentence data.
      * @param array  $transcriptions Transcriptions of the sentence.
-     * @param string $ownerName Name of the owner of the sentence.
+     * @param string $user       Information about the owner of the sentence..
      * @param string $langFilter The language translations are filtered in, if any.
      *
      * @return void
@@ -422,7 +419,7 @@ class SentencesHelper extends AppHelper
     public function displayMainSentence(
         $sentence,
         $transcriptions,
-        $ownerName,
+        $user,
         $withAudio,
         $langFilter = 'und'
     ) {
@@ -434,9 +431,10 @@ class SentencesHelper extends AppHelper
             $script = $sentence['script'];
         }
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $script, $canTranslate, $langFilter, $hasAudio
+            $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio
         );
 
+        $ownerName = $user['username'];
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
             $sentence,
@@ -515,10 +513,16 @@ class SentencesHelper extends AppHelper
         echo '<div class="content column">';
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
-
             $this->_displayLinkOrUnlinkButton(
                 $parentId, $sentenceId, $type, $langFilter
             );
+        }
+
+        // Copy
+        if (CurrentUser::getSetting('copy_button')) {
+            echo '<div class="copy column">';
+            $this->SentenceButtons->displayCopyButton($sentence['text']);
+            echo '</div>';
         }
 
         // Sentence and transcriptions
@@ -698,6 +702,7 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.change_language.js', true);
         echo $this->Javascript->link('sentences.link.js', true);
         echo $this->Javascript->link('sentences.collapse.js', true);
+        echo $this->Javascript->link('collections.add_remove.js', true);
         $this->javascriptForAJAXTranslationsGroup();
     }
 

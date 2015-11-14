@@ -173,29 +173,39 @@ class MenuHelper extends AppHelper
      *                           is displayed
      * @param string $ownerName  Indicates whether the sentence is adopted by current
      *                           user or not.
+     * @param bool   $isNative   'true' if the owner is a native speaker in the
+     *                           language of the sentence.
+     *
      * @return void
      */
-    public function adoptButton($sentenceId, $ownerName)
+    public function adoptButton($sentenceId, $owner)
     {
+        $ownerName = $owner['username'];
+        $isNative = isset($owner['is_native']) ? $owner['is_native'] : false;
         $isAdopted = !empty($ownerName);
+        $userAccountDeactivated = isset($owner['group_id']) ?
+            $owner['group_id'] > 4 : false;
+        $currentUserIsAdvanced = in_array(CurrentUser::get('group_id'), range(1, 3));
+        $isAdoptable = !$isAdopted || ($userAccountDeactivated
+                && $currentUserIsAdvanced);
         $currentUserName = CurrentUser::get('username');
         $isOwnedByCurrentUser = $isAdopted && $ownerName == $currentUserName;
 
         $tooltip = null;
         $action = '';
-        if ($isAdopted) {
-            $image = 'adopted';
-            if ($isOwnedByCurrentUser) {
-                $tooltip = __('Click to unadopt', true);
-                $action = ' remove';
-            }
-        } else {
+        if ($isAdoptable) {
             $image = 'unadopted';
-            if (!$isAdopted) {
-                $tooltip = __('Click to adopt', true);
-                $action = ' add';
-            }
+            $tooltip = __('Click to adopt', true);
+            $action = ' add';
+        } else {
+            $image = 'adopted';
         }
+
+        if ($isOwnedByCurrentUser) {
+            $tooltip = __('Click to unadopt', true);
+            $action = ' remove';
+        }
+
 
         $svgIconOptions = array(
             'width' => 26,
@@ -212,7 +222,7 @@ class MenuHelper extends AppHelper
             $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
         if ($isAdopted) {
-            $contents .= $this->belongsTo($ownerName);
+            $contents .= $this->belongsTo($ownerName, $isNative);
         }
         echo $this->Html->tag('li', $contents, array(
             'class' => 'adopt'.$action,
@@ -535,18 +545,20 @@ class MenuHelper extends AppHelper
     /**
      * Return a link to owner's profile
      *
-     * @param int    $sentenceId The sentence's id.
      * @param string $ownerName  The owner's name.
+     * @param bool   $isNative   'true' if the owner is a native speaker in the
+     *                           language of the sentence.
      *
      * @return string
      */
-    private function belongsTo($ownerName)
+    private function belongsTo($ownerName, $isNative)
     {
         $belongsToTitle = format(
             __('belongs to {user}', true),
             array('user' => $ownerName)
         );
-        return $this->Html->link(
+
+        $username = $this->Html->link(
             $ownerName,
             array(
                 "controller" => "user",
@@ -558,6 +570,66 @@ class MenuHelper extends AppHelper
                 'class' => 'adopt-item',
             )
         );
+
+        $belongsToContent = array($username);
+        if ($isNative) {
+            $belongsToContent[] = $this->Html->tag('span',
+                __('(native)', true),
+                array('class' => 'adopt-item is-native')
+            );
+        }
+
+        return join('', $belongsToContent);
+    }
+
+
+    public function correctnessButton($sentenceId)
+    {
+        $this->Javascript->link('collections.add_remove.js', false);
+
+        $userCorrectness = CurrentUser::correctnessForSentence($sentenceId);
+
+        $icons = array(
+            1 => array(
+                'class' => 'ok',
+                'icon' => 'ok',
+                'tooltip' => __('Mark as "OK"', true)
+            ),
+            0 => array(
+                'class' => 'unsure',
+                'icon' => 'unsure',
+                'tooltip' => __('Mark as "unsure"', true)
+            ),
+            -1 => array(
+                'class' => 'not-ok',
+                'icon' => 'not-ok',
+                'tooltip' => __('Mark as "not OK"', true)
+            )
+        );
+
+        echo '<ul class="correctness">';
+        foreach($icons as $correctness => $icon) {
+            $svgIcon = $this->Images->svgIcon(
+                $icon['icon'], array('width' => 20, 'height' => 16)
+            );
+            $cssClass = array('option', 'add-to-corpus', $icon['class']);
+            if ($correctness == $userCorrectness) {
+                $cssClass[] = 'selected';
+                $tooltip = __('Unmark sentence', true);
+            } else {
+                $tooltip = $icon['tooltip'];
+            }
+            echo $this->Html->tag('li',
+                $this->Html->tag('a', $svgIcon),
+                array(
+                    'class' => join(' ', $cssClass),
+                    'data-sentence-id' => $sentenceId,
+                    'data-sentence-correctness' => $correctness,
+                    'title' => $tooltip
+                )
+            );
+        }
+        echo '</ul>';
     }
 
 
@@ -565,18 +637,20 @@ class MenuHelper extends AppHelper
      * Display menu for the main sentence.
      *
      * @param int    $sentenceId    Id of the sentence.
-     * @param int    $ownerName     Username of the owner of the sentence.
+     * @param int    $ownerName     Owner of the sentence.
      * @param string $chineseScript For chinese only, 'traditional' or 'simplified'
      * @param array  $canTranslate  True if user can translate the sentence.
      *                              False otherwise.
      * @param array  $langFilter    Language filter of translations.
      * @param bool   $hasAudio      'true' if sentence has audio, 'false' otherwise.
+     * @param bool   $isNative      'true' if the owner is a native speaker in the
+     *                              language of the sentence.
      *
      * @return void
      */
     public function displayMenu(
         $sentenceId,
-        $ownerName = null,
+        $owner = null,
         $chineseScript = null,
         $canTranslate,
         $langFilter = 'und',
@@ -587,9 +661,10 @@ class MenuHelper extends AppHelper
 
         <?php
         $isLogged = CurrentUser::isMember();
+        $ownerName = $owner['username'];
 
         // Adopt
-        $this->adoptButton($sentenceId, $ownerName);
+        $this->adoptButton($sentenceId, $owner);
 
         // Translate
         $this->translateButton($sentenceId, $isLogged, $canTranslate);
@@ -613,6 +688,10 @@ class MenuHelper extends AppHelper
         if (CurrentUser::canRemoveSentence($sentenceId, null, $ownerName)) {
             // Delete
             $this->deleteButton($sentenceId, $hasAudio);
+        }
+
+        if ($isLogged && CurrentUser::get('settings.users_collections_ratings')) {
+            $this->correctnessButton($sentenceId);
         }
 
         if ($chineseScript == 'Hans') {

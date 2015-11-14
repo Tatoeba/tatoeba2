@@ -142,7 +142,7 @@ $(document).ready(function(){
         return false;
     });
 
-    $('.glyph').live('click',
+    $(document).on('click', '.glyph',
         function(){
             glyph = $(this).html();
             loadSinogramInformations(glyph);
@@ -150,13 +150,13 @@ $(document).ready(function(){
         }
     );
 
-    $('.subGlyph').live('click',
+    $(document).on('click', '.subGlyph',
         function(){
             copyToSearchInput($(this));
         }
     );
 
-    $('.radical').live('click',
+    $(document).on('click', '.radical',
         function(){
             copyRadicalToSearchInput($(this));
         }

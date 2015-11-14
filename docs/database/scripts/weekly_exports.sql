@@ -25,7 +25,7 @@ SELECT DISTINCT ts.sentence_id, t.name FROM `tags` t JOIN `tags_sentences` ts
 INTO OUTFILE '/var/tmp/tags.csv';
 
 -- Sentence lists
-SELECT sl.id, u.username, sl.created, sl.modified, sl.name
+SELECT sl.id, u.username, sl.created, sl.modified, sl.name, sl.is_public
 FROM sentences_lists sl LEFT JOIN users u ON sl.user_id = u.id
 ORDER BY sl.id ASC
 INTO OUTFILE '/var/tmp/user_lists.csv';
@@ -87,3 +87,8 @@ SELECT ul.language_code, ul.level, u.username, ul.details
 FROM users_languages ul LEFT JOIN users u ON ul.of_user_id = u.id
 ORDER BY ul.language_code ASC, ul.level DESC, u.username ASC
 INTO OUTFILE '/var/tmp/user_languages.csv';
+
+-- Users sentences
+SELECT u.username, us.sentence_id, us.correctness, us.created, us.modified
+FROM users_sentences us LEFT JOIN users u ON us.user_id = u.id
+INTO OUTFILE '/var/tmp/users_sentences.csv';

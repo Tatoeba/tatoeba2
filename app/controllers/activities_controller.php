@@ -66,7 +66,7 @@ class ActivitiesController extends AppController
     /**
      * Adopt sentences.
      *
-     * @return void
+     * @param string $lang
      */
     public function adopt_sentences($lang = null)
     {

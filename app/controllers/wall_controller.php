@@ -211,36 +211,16 @@ class WallController extends Appcontroller
 
                 $this->set("message", $message);
 
-                // ------------------
+
                 // send notification
-                // ------------------
-
-                // Retrieve parent message
                 $parentMessage = $this->Wall->getMessageForMail($parentId);
-
-                // prepare email
-                // TODO : i18n mail + move this out of here.
                 if ($parentMessage['User']['send_notifications']
                     && $parentMessage['User']['id'] != $idTemp
                 ) {
                     $participant = $parentMessage['User']['email'];
-                    $subject  = 'Tatoeba - ' .
-                         $message['User']['username'] .
-                         ' has replied to you on the Wall';
-
-                    $mailContent
-                        = 'http://'.$_SERVER['HTTP_HOST'].'/wall/show_message/'
-                        .$message['Wall']['id'].'#message_'.$message['Wall']['id']
-                        ."\n\n";
-                    $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
-                    $mailContent .= $message['Wall']['content']."\n\n";
-                    $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
-
-                    $this->Mailer->to = $participant;
-                    $this->Mailer->toName = '';
-                    $this->Mailer->subject = $subject;
-                    $this->Mailer->message = $mailContent;
-                    $this->Mailer->send();
+                    $this->Mailer->sendWallReplyNotification(
+                        $participant, $message
+                    );
                 }
             }
         }
@@ -386,8 +366,8 @@ class WallController extends Appcontroller
     /**
      * update the WallThread table
      *
-     * @param int  $messageId Message that have been add/updated
-     * @param date $newDate   Date of the event.
+     * @param int    $messageId Message that have been add/updated
+     * @param string $newDate   Date of the event.
      *
      * @return void
      */

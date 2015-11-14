@@ -219,8 +219,19 @@ echo $this->Form->create(
 </fieldset>
 
 <?php
+echo '<p>';
+echo $html->link(
+    __('More search options', true),
+    'http://en.wiki.tatoeba.org/articles/show/text-search',
+    array(
+        'target' => '_blank'
+    )
+);
+echo '</p>';
+
 echo $this->Form->button(
     __p('button', 'Advanced search', true),
     array('class' => 'button submit')
 );
+
 echo $this->Form->end();

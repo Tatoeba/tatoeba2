@@ -279,7 +279,6 @@ class Users(models.Model):
     last_time_active = models.IntegerField()
     level = models.IntegerField()
     group_id = models.IntegerField()
-    send_notifications = models.IntegerField()
     name = models.CharField(max_length=255)
     birthday = models.DateTimeField(blank=True, null=True)
     description = models.TextField()
@@ -329,6 +328,19 @@ class WallThreadsLastMessage(models.Model):
     last_message_date = models.DateTimeField()
     class Meta:
         db_table = 'wall_threads_last_message'
+
+class UsersSentences(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.IntegerField()
+    sentence_id = models.IntegerField()
+    correctness = models.IntegerField()
+    created = models.DateTimeField(blank=True, null=True)
+    modified = models.DateTimeField(blank=True, null=True)
+    dirty = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'users_sentences'
+        unique_together = ('user_id', 'sentence_id')
 
 from django.conf import settings
 

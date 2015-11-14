@@ -42,6 +42,7 @@ class LanguageDetectionComponent extends Object
      * The language detection is done by https://github.com/Tatoeba/Tatodetect
      *
      * @param string $text Sentence to detect.
+     * @param string $user User who's adding the sentence.
      *
      * @return string 
      */
@@ -49,10 +50,6 @@ class LanguageDetectionComponent extends Object
     {
         $textToAnalyze = urlencode($text);
         $url = "http://127.0.0.1:4242/api/detects/simple?query=" . $textToAnalyze;
-
-        if ($user != "") {
-            $url .= ("&user=" . urlencode($user));
-        }
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

@@ -137,31 +137,10 @@ class SentenceNotTranslatedInto extends AppModel
         $target = Sanitize::paranoid($target);
         $audioOnly = Sanitize::paranoid($audioOnly);
 
-        // to add to the sql conditions, if we want only sentences with audio
-        $filterAudio = '';
         if ($audioOnly == true) {
-            $filterAudio = "AND Sentence.hasaudio != 'no' ";
-        }
-
-        // First, calculate the number of sentences.
-        if ($target == 'und') { 
-            // we want only untranslated sentences
-            $sql
-                = "
-                SELECT count(DISTINCT sentence_id) as Count
-                FROM sentences_translations
-                WHERE sentence_lang = '$source'
-                $filterAudio
-                ";
+            $sql = $this->_paginateCountSqlWithAudio($source, $target);
         } else {
-            $sql
-                = "
-            SELECT count(DISTINCT sentence_id) as Count
-            FROM sentences_translations
-            WHERE sentence_lang = '$source'
-            AND translation_lang = '$target'
-            $filterAudio
-            " ;
+            $sql = $this->_paginateCountSqlWithoutAudio($source, $target);
         }
 
         $total = 0;
@@ -174,7 +153,7 @@ class SentenceNotTranslatedInto extends AppModel
         // in the source language
         if ($audioOnly == true) {
             $sql = "SELECT count(Sentence.id) as Count FROM sentences as Sentence
-                    WHERE Sentence.lang = '$source' $filterAudio";
+                    WHERE Sentence.lang = '$source' AND Sentence.hasaudio != 'no'";
             $results = $this->query($sql);
             if (isset($results[0])) {
                 $total = $results[0][0]['Count'];
@@ -186,10 +165,55 @@ class SentenceNotTranslatedInto extends AppModel
             if (isset($results[0])) {
                 $total = $results[0]['languages']['Count'];
             }
-
         }
 
         return $total - $translations_count;
+    }
+
+
+    private function _paginateCountSqlWithAudio($source, $target)
+    {
+        if ($target == 'und') {
+
+            $sql = "SELECT count(distinct Sentence.id) as Count
+            FROM sentences as Sentence
+            JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
+            WHERE Sentence.lang = '$source'
+            AND Sentence.hasaudio != 'no'";
+
+        } else {
+
+            $sql = " SELECT count(DISTINCT Sentence.id) as Count
+            FROM sentences as Sentence
+            JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
+            JOIN sentences t on ( st.translation_id = t.id )
+            WHERE Sentence.lang = '$source'
+            AND t.lang = '$target'
+            AND Sentence.hasaudio != 'no'";
+        }
+
+        return $sql;
+    }
+
+
+    private function _paginateCountSqlWithoutAudio($source, $target)
+    {
+        if ($target == 'und') {
+
+            $sql = "SELECT count(DISTINCT sentence_id) as Count
+            FROM sentences_translations
+            WHERE sentence_lang = '$source'";
+
+        } else {
+
+            $sql = "SELECT count(DISTINCT sentence_id) as Count
+            FROM sentences_translations
+            WHERE sentence_lang = '$source'
+            AND translation_lang = '$target'";
+
+        }
+
+        return $sql;
     }
 }
 ?>
