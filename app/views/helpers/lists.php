@@ -231,29 +231,22 @@ class ListsHelper extends AppHelper
                 $listId
             ),
             array(
-                'class' => 'downloadLink'
+                'class' => 'button download'
             )
         );
     }
 
 
     /**
-     * Display actions that can be done by everyone.
+     * Display dropdownlist for translations.
      *
      * @param int    $listId           Id of the list.
      * @param string $translationsLang Language of the translations for the
      *                                 'correction version'.
-     * @param string $action           Can be 'show' or 'edit'.
      *
      * @return void
      */
-    public function displayPublicActions(
-        $listId, $translationsLang = null, $action = null
-    ) {
-        ?>
-
-        <li>
-        <?php
+    public function displayTranslationsDropdown($listId, $translationsLang = null) {
         __('Show translations :'); echo ' ';
 
         // TODO User $html->url()
@@ -261,7 +254,7 @@ class ListsHelper extends AppHelper
         if (!empty($this->params['lang'])) {
             $path .= $this->params['lang'] . '/';
         }
-        $path .= 'sentences_lists/'.$action.'/'. $listId.'/';
+        $path .= 'sentences_lists/show/'. $listId.'/';
         
         // TODO onChange should be defined in a separate js file
         echo $this->Form->select(
@@ -275,66 +268,70 @@ class ListsHelper extends AppHelper
             ),
             false
         );
+
+
+    }
+
+    public function displayIsPublicOption($listId, $isChecked)
+    {
         ?>
+        <li>
+            <?php
+            if ($isChecked) {
+                $checkboxValue = 'checked';
+            } else {
+                $checkboxValue = '';
+            }
+
+            echo $this->Form->checkbox(
+                'isPublic',
+                array(
+                    "id" => "isPublicCheckbox",
+                    "name" => "isPublic",
+                    "checked" => $checkboxValue,
+                    "data-list-id" => $listId
+                )
+            );
+            echo $this->Html->tag('label',
+                __('Set list to publicly viewable.', true),
+                array('for' => 'isPublicCheckbox')
+            );
+            ?>
         </li>
         <?php
     }
 
-    /**
-     * Display actions that are restricted to the creator of the list.
-     *
-     * @param int $listId       Id of the list.
-     * @param string $action    Can be 'show' or 'edit'.
-     * @param int $isListPublic true if list is public. false otherwise.
-     *
-     * @return void
-     */
-    public function displayRestrictedActions(
-        $listId,
-        $action,
-        $isListPublic = false
-    ) {
+    public function displayIsEditableByAnyOption($listId, $isChecked)
+    {
         ?>
         <li>
-        <label for="isPublicCheckbox"><?php __('Set list as collaborative'); ?></label>
-        <?php
-        $this->Javascript->link('sentences_lists.set_as_public.js', false);
-        if ($isListPublic) {
-            $checkboxValue = 'checked';
-        } else {
-            $checkboxValue = '';
-        }
+            <?php
+            if ($isChecked) {
+                $checkboxValue = 'checked';
+            } else {
+                $checkboxValue = '';
+            }
 
-        echo $this->Form->checkbox(
-            'isPublic',
-            array(
-                "id" => "isPublicCheckbox",
-                "name" => "isPublic",
-                "checked" => $checkboxValue,
-                "data-list-id" => $listId
-            )
-        );
-        echo $this->Images->svgIcon(
-            'loading',
-            array(
-                'id' => 'inProcess',
-                'class' => 'loading',
-                'height' => 16,
-                'width' => 16
-            )
-        );
-        echo $this->Html->link(
-            '[?]',
-            array(
-                "controller"=>"pages", 
-                "action"=>"help#sentences_lists_help"
-            )
-        );
-        ?>
+            echo $this->Form->checkbox(
+                'isPublic',
+                array(
+                    "id" => "editableCheckbox",
+                    "name" => "isEditableByAnyone",
+                    "checked" => $checkboxValue,
+                    "data-list-id" => $listId
+                )
+            );
+            echo $this->Html->tag('label',
+                __('Make list editable by anyone.', true),
+                array('for' => 'editableCheckbox')
+            );
+            ?>
         </li>
-
-        <li class="deleteList">
         <?php
+    }
+
+    public function displayDeleteButton($listId)
+    {
         echo $this->Html->link(
             __('Delete this list', true),
             array(
@@ -342,12 +339,11 @@ class ListsHelper extends AppHelper
                 "action" => "delete",
                 $listId
             ),
-            null,
+            array(
+                'class' => 'delete button'
+            ),
             __('Are you sure?', true)
         );
-        ?>
-        </li>
-        <?php
     }
 
 

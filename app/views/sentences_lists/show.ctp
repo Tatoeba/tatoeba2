@@ -69,23 +69,32 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         ?>
     </div>
 
-    <div class="module">
-    <ul class="sentencesListActions">
-        <?php
-        $lists->displayPublicActions(
-            $listId, $translationsLang, 'show'
-        );
-        
-        if ($belongsToUser) {
-            $lists->displayRestrictedActions(
-                $listId,
-                'edit',
-                $isListPublic
-            );
-        }
-        ?>
-    </ul>
+
     <?php
+    if ($belongsToUser) {
+        ?>
+        <div class="module">
+            <h2><?php __('Options'); ?></h2>
+            <ul class="sentencesListActions">
+                <?php
+                $lists->displayIsPublicOption($listId, $isListPublic);
+                $lists->displayIsEditableByAnyOption($listId, $isListPublic);
+                ?>
+            </ul>
+        </div>
+        <?php
+    }
+    ?>
+
+    <div class="module">
+    <h2><?php __('Actions'); ?></h2>
+    <?php
+    $lists->displayTranslationsDropdown($listId, $translationsLang);
+
+    if ($belongsToUser) {
+        $lists->displayDeleteButton($listId);
+    }
+
     if ($canDownload) {
         $lists->displayDownloadLink($listId);
     } else {
