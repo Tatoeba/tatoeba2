@@ -70,6 +70,16 @@ $(document).ready(function() {
     $('#clearSearch').click(function() {
         $('#SentenceQuery').val('').focus();
     });
+
+    // Announcement
+    var announcementId = $('.announcement').attr('data-announcement-id');
+    if ($.cookie(announcementId) === undefined) {
+        $('.announcement').show();
+    }
+    $('.announcement .close').click(function() {
+        $('.announcement').hide();
+        $.cookie(announcementId, 'done', {'expires' : 7});
+    });
 });
 
 /**
