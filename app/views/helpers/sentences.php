@@ -525,9 +525,9 @@ class SentencesHelper extends AppHelper
             echo '</div>';
         }
 
-        // Sentence and transcriptions
+        // Sentence
         $canEdit = $isEditable && $sentenceAudio == 'no';
-        $this->displaySentenceContent($sentence, $transcriptions, $canEdit);
+        $this->displaySentenceContent($sentence, $canEdit);
         echo '</div>';
 
         // audio
@@ -538,6 +538,18 @@ class SentencesHelper extends AppHelper
             );
             echo '</div>';
         }
+
+        // Transcriptions
+        if ($transcriptions) {
+            echo $this->Html->div('transcriptions', null, array(
+               'data-sentence-id' => $sentence['id'],
+            ));
+            $this->Transcriptions->displayTranscriptions(
+                $transcriptions, $sentence['lang'], $sentence['user_id']
+            );
+            echo $this->Html->tag('/div');
+        }
+
         ?>
         </div>
 
@@ -600,21 +612,18 @@ class SentencesHelper extends AppHelper
      * script of a sentence.
      *
      * @param array $sentence   Sentence data.
-     * @param array $transcriptions   Transcriptions of the sentence.
      * @param bool  $isEditable Set to 'true' if sentence is editable.
      *
      * @return void
      */
     public function displaySentenceContent(
         $sentence,
-        $transcriptions,
         $isEditable
     ) {
         echo $this->Html->div('sentenceContent', null, array(
             'data-sentence-id' => $sentence['id'],
         ));
 
-        // text
         $script = null;
         if (isset($sentence['script'])) {
             $script = $sentence['script'];
@@ -623,13 +632,6 @@ class SentencesHelper extends AppHelper
             $sentence['id'], $sentence['text'], $isEditable,
             $sentence['lang'], $script, $sentence['correctness']
         );
-
-        // romanization
-        if ($transcriptions) {
-            $this->Transcriptions->displayTranscriptions(
-                $transcriptions, $sentence['lang'], $sentence['user_id']
-            );
-        }
 
         echo $this->Html->tag('/div');
     }

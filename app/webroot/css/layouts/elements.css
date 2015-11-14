@@ -1022,13 +1022,18 @@
 /*
  * Transcriptions
  */
-.transcriptionContainer {
-    width: 500px;
+.transcriptions .menu {
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
-.transcription {
+.transcriptions .column {
+    margin: 0;
+}
+
+.transcriptions .transcription {
     color: #A1A1A1;
-    display: inline-block;
     width: 474px;
     padding-left: 8px;
     vertical-align: middle;
@@ -1042,10 +1047,9 @@
     color: #A15F2F;
 }
 
-.transcriptionIcon {
+.transcriptions .script img {
+    display: block;
     font-size: 7px;
-    display: inline-block;
-    vertical-align: middle;
 }
 
 .rightWarningIcon {
@@ -1153,9 +1157,9 @@
 /*
  * Edit in place
  */
- .edit {
-    cursor: pointer;
- }
+.edit, .edit_transcription {
+   cursor: pointer;
+}
 
 .editableSentence button{
     padding: 1px 20px;

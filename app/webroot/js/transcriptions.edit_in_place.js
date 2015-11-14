@@ -67,6 +67,7 @@ $(document).ready(function() {
             type      : 'textarea',
             cancel    : div.attr('data-cancel'),
             submit    : div.attr('data-submit'),
+            event     : 'edit_transcription',
             id        : 'divId',
             height    : false, // disable autoheight, we'll set it in onedit()
             onedit    : function(settings, self) {
@@ -115,7 +116,7 @@ $(document).ready(function() {
             tooltip   : div.attr('data-tooltip'),
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'
-        }).click(function(e) {
+        }).bind('edit_transcription', function(e) {
             $(this).find('textarea').keydown(function(event) {
                 if (event.which == 13)
                     $(this).closest('form').submit();
@@ -132,6 +133,10 @@ $(document).ready(function() {
                 });
                 $(editable).find('form').append(reset);
             }
+        });
+
+        $(".edit_transcription").bind("click", function() {
+            $(this).closest('.transcriptionContainer').find('.transcription').trigger("edit_transcription");
         });
     });
 });

@@ -21,6 +21,7 @@ class TranscriptionsHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
+        'Images',
         'Javascript',
         'Languages',
         'Pinyin',
@@ -86,21 +87,20 @@ class TranscriptionsHelper extends AppHelper
         $needsReview = $transcr['needsReview'] && !$isReviewed;
         $showAllTranscr = CurrentUser::get('settings.show_all_transcriptions');
 
-        $icon = $this->Html->image(
-            IMG_PATH . 'scripts/' . $transcr['script'] . '.png',
-            array(
-                'class' => 'transcriptionIcon',
-                'width' => 18,
-                'height' => 16,
-                'alt' => $transcr['script'],
-            )
+        $buttonsDiv = $this->Html->tag('div',
+            $this->Html->tag(
+                'ul',
+                $this->editButton($isEditable)
+                . $this->icon($transcr),
+                array('class' => 'menu')
+            ),
+            array('class' => 'column')
         );
 
-        $class = 'transcription';
+        $class = 'column transcription';
         if ($isEditable)
             $class .= ' editable';
         $html = $this->transcriptionAsHTML($lang, $transcr);
-        $tooltip = __('Click to edit this transcription.', true);
         $log = '';
         if (isset($transcr['User']['username'])) {
             $log = format(
@@ -117,7 +117,6 @@ class TranscriptionsHelper extends AppHelper
             'div', $lang, $html,
             array(
                 'data-script' => $transcr['script'],
-                'data-tooltip' => "$log$tooltip",
                 'data-submit' => __('OK', true),
                 'data-cancel' => __('Cancel', true),
                 'data-reset' => __('Reset', true),
@@ -179,11 +178,54 @@ class TranscriptionsHelper extends AppHelper
         }
         $hide = !$showAllTranscr && $needsReview;
         echo $this->Html->tag('div',
-            $infoDiv.$icon.$transcriptionDiv,
+            $infoDiv.$buttonsDiv.$transcriptionDiv,
             array(
                 'escape' => false,
                 'class' => $class,
                 'style' => $hide ? 'display:none' : null,
+            )
+        );
+    }
+
+    private function icon($transcr) {
+        $icon = $this->Html->image(
+            IMG_PATH . 'scripts/' . $transcr['script'] . '.png',
+            array(
+                'width' => 18,
+                'height' => 16,
+                'alt' => $transcr['script'],
+            )
+        );
+        return $this->Html->tag('li', $icon,
+            array(
+                'class' => 'option script',
+            )
+        );
+    }
+
+    private function editButton($isEditable) {
+        $editImage = $this->Images->svgIcon(
+            'edit',
+            array(
+                'width' => 16,
+                'height' => 16
+            )
+        );
+
+        if ($isEditable) {
+            $title = __('Edit transcription', true);
+            $content = $editImage;
+        } else {
+            $title = __('You cannot edit this transcription.', true);
+            $content = $this->Html->tag(
+                'a', $editImage, array('class' => 'disabled')
+            );
+        }
+
+        return $this->Html->tag('li', $content,
+            array(
+                'class' => 'option edit_transcription',
+                'title'=> $title,
             )
         );
     }
