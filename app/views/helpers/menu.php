@@ -126,12 +126,12 @@ class MenuHelper extends AppHelper
         <li class="option simplified">
         <?php
         echo $this->Html->image(
-            IMG_PATH . 'scripts/Hans.png',
+            IMG_PATH . 'scripts/Hans.svg',
             array(
                 'alt'=>__('This sentence is written with simplified characters.', true),
                 'title'=>__('This sentence is written with simplified characters.', true),
                 'width' => 18,
-                'height' => 16
+                'height' => 18
             )
         );
         ?>
@@ -151,12 +151,12 @@ class MenuHelper extends AppHelper
         <li class="option traditional">
         <?php
         echo $this->Html->image(
-            IMG_PATH . 'scripts/Hant.png',
+            IMG_PATH . 'scripts/Hant.svg',
             array(
                 'alt'=>__('This sentence is written with traditional characters.', true),
                 'title'=>__('This sentence is written with traditional characters.', true),
                 'width' => 18,
-                'height' => 16
+                'height' => 18
             )
         );
         ?>

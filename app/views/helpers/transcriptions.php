@@ -196,10 +196,10 @@ class TranscriptionsHelper extends AppHelper
 
     private function icon($transcr) {
         $icon = $this->Html->image(
-            IMG_PATH . 'scripts/' . $transcr['script'] . '.png',
+            IMG_PATH . 'scripts/' . $transcr['script'] . '.svg',
             array(
-                'width' => 18,
-                'height' => 16,
+                'width' => 20,
+                'height' => 20,
                 'alt' => $transcr['script'],
             )
         );
