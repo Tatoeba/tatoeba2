@@ -34,16 +34,14 @@ $(document).ready(function() {
             },
             callback : function(result, settings) {
                 // Update transcriptions if any
-                transcr = div.parent().find('.transcriptionContainer');
+                transcr = div.closest('.sentence').find('.transcriptions');
                 if (transcr.length) {
                     transcr.html('<img width="30" height="30" src="/img/loading.svg">');
                     $.get(
                         rootUrl + '/transcriptions/view/' + sentenceId,
                         null,
                         function(result, status) {
-                            isVisible = transcr.is(":visible");
-                            result = $(result).toggle(isVisible);
-                            transcr.replaceWith(result);
+                            transcr.html(result);
                         }
                     );
                 }
