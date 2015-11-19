@@ -87,11 +87,13 @@ class TranscriptionsHelper extends AppHelper
         $needsReview = $transcr['needsReview'] && !$isReviewed;
         $showAllTranscr = CurrentUser::get('settings.show_all_transcriptions');
 
+        $toggleButton = $this->toggleButton($transcr);
+
         $buttonsDiv = $this->Html->tag('div',
             $this->Html->tag(
                 'ul',
                 $this->editButton($isEditable)
-                . $this->icon($transcr),
+                . $this->scriptIcon($transcr),
                 array('class' => 'menu')
             ),
             array('class' => 'column')
@@ -185,7 +187,7 @@ class TranscriptionsHelper extends AppHelper
         }
         $hide = !$showAllTranscr && $needsReview;
         echo $this->Html->tag('div',
-            $infoDiv.$buttonsDiv.$transcriptionDiv,
+            $toggleButton.$infoDiv.$buttonsDiv.$transcriptionDiv,
             array(
                 'escape' => false,
                 'class' => $class,
@@ -194,7 +196,25 @@ class TranscriptionsHelper extends AppHelper
         );
     }
 
-    private function icon($transcr) {
+    private function toggleButton($transcr) {
+        $title = __('Show transcription', true);
+        $icon = $this->Html->image(
+            IMG_PATH . "scripts/${transcr['script']}.svg",
+            array(
+                'alt'    => $title,
+                'title'  => $title,
+                'width'  => 18,
+                'height' => 18,
+            )
+        );
+        return $this->Html->tag('li', "<a>$icon</a>", array(
+            'class' => 'transcribe option',
+            'style' => 'display:none',
+            'escape' => false,
+        ));
+    }
+
+    private function scriptIcon($transcr) {
         $icon = $this->Html->image(
             IMG_PATH . 'scripts/' . $transcr['script'] . '.svg',
             array(

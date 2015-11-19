@@ -523,22 +523,10 @@ class MenuHelper extends AppHelper
         );
     }
 
-    private function transcribeButton($sentenceId) {
-        $title = __('Show transcriptions', true);
-        $editImage = $this->Images->svgIcon(
-            'edit',
-            array(
-                'alt'    => $title,
-                'title'  => $title,
-                'width'  => 16,
-                'height' => 16,
-                'onClick' => "displayTranscriptions($sentenceId)",
-            )
-        );
-        echo $this->Html->tag('li', "<a>$editImage</a>", array(
-            'class' => 'transcribe option',
-            'style' => 'display:none',
-            'escape' => false,
+    private function transcribeButtons() {
+        /* Buttons will be loaded using Javascript */
+        echo $this->Html->tag('ul', '', array(
+            'class' => 'transcribe-buttons',
         ));
     }
 
@@ -700,7 +688,7 @@ class MenuHelper extends AppHelper
             $this->traditionalButton();
         }
 
-        $this->transcribeButton($sentenceId);
+        $this->transcribeButtons();
         ?>
 
         <li>

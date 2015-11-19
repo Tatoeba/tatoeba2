@@ -1022,6 +1022,11 @@
 /*
  * Transcriptions
  */
+.transcribe-buttons {
+    display: inline-block;
+    padding-left: 0;
+}
+
 .transcriptions .menu {
     border: none;
     margin: 0;

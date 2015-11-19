@@ -16,27 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-function displayTranscriptions(sentenceId) {
-    var firstItemVisibility;
-
-    $(
-        '#sentences_group_' + sentenceId + ' .needsReview'
-    ).each(function(index) {
-        if (index == 0) {
-            firstItemVisibility = $(this).is(":visible");
-        }
-        $(this).toggle(!firstItemVisibility);
-    });
-}
-
 $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
 
-    // Show the transcribe button if there are some
+    // Show the transcribe buttons if there are some
     // hidden transcriptions
     $('.needsReview:hidden').each(function(index) {
-       transcribeButton = $(this).closest(".sentences_set").find('.transcribe');
-       transcribeButton.show();
+        /* Move the toggling button in the menu */
+        transcr = $(this);
+        menu = transcr.closest(".sentences_set").find('.transcribe-buttons');
+        button = transcr.find('.transcribe.option');
+        button.click(function(event) {
+            transcr.toggle();
+        });
+        button.toggle(true);
+        menu.append(button);
     });
 
     function markupToStored(lang, text) {
