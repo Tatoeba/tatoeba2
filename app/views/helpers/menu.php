@@ -113,59 +113,6 @@ class MenuHelper extends AppHelper
         echo $this->Html->tag('/li');
     }
 
-
-    /**
-     * Display button to notify the chinese sentence is in
-     * simplified script
-     *
-     * @return void
-     */
-    public function simplifiedButton()
-    {
-        ?>
-        <li class="option simplified">
-        <?php
-        echo $this->Html->image(
-            IMG_PATH . 'scripts/Hans.svg',
-            array(
-                'alt'=>__('This sentence is written with simplified characters.', true),
-                'title'=>__('This sentence is written with simplified characters.', true),
-                'width' => 18,
-                'height' => 18
-            )
-        );
-        ?>
-        </li>
-    <?php
-    }
-
-    /**
-     * Display button to indicate that the Chinese sentence is in
-     * traditional script
-     *
-     * @return void
-     */
-    public function traditionalButton()
-    {
-        ?>
-        <li class="option traditional">
-        <?php
-        echo $this->Html->image(
-            IMG_PATH . 'scripts/Hant.svg',
-            array(
-                'alt'=>__('This sentence is written with traditional characters.', true),
-                'title'=>__('This sentence is written with traditional characters.', true),
-                'width' => 18,
-                'height' => 18
-            )
-        );
-        ?>
-        </li>
-    <?php
-    }
-
-
-
     /**
      * Display button to adopt a sentence.
      *
@@ -680,12 +627,6 @@ class MenuHelper extends AppHelper
 
         if ($isLogged && CurrentUser::get('settings.users_collections_ratings')) {
             $this->correctnessButton($sentenceId);
-        }
-
-        if ($chineseScript == 'Hans') {
-            $this->simplifiedButton();
-        } else if ($chineseScript == 'Hant') {
-            $this->traditionalButton();
         }
 
         $this->transcribeButtons();
