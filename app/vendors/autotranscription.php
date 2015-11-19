@@ -48,10 +48,123 @@ define('CMN_SCRIPT', 12);
 define('JPN_FURIGANA', 20);
 define('JPN_ROMAJI', 21);
 
+
+	// some Unicode routines for parsing / constructing Ge'ez chars:
+	//  Oyd11,  2014 , MIT license , based on JS code :: http://jsfiddle.net/oyd11/Z5Wws/
+	
+// Concider moving to utf8 lib:
+ // 	http://pageconfig.com/post/portable-utf8
+// (if tatoeba stays on php)	
+	/**
+	* Helper function: unicode safe version of 'str_split'
+	* Since: str_split - does not handle Unicode arrays:
+	 * str_split_unicode
+	 * 
+     * @param string $unicode_str
+     *
+     * @return array of unicode chars
+	 *
+	 * from http://php.net/manual/en/function.mb-split.php
+	 */
+	  function unicode_str_split($unicode_str) {
+		 return preg_split('//u', $unicode_str, null, PREG_SPLIT_NO_EMPTY); 
+	}
+	
+ /**
+ * @param string $unicode_str - a one-character string
+ *
+ * @return unicode representation as a number
+	*/
+	function unicode_str_ord($unicode_str) {	
+		$le_str = mb_convert_encoding($unicode_str, "UTF-32LE");	
+		$le_arr = unpack('C*', $le_str);
+		$acc = 0;
+		$factor = 1;
+		foreach ($le_arr as $b) {
+			$acc += $b*$factor;
+			$factor <<= 8;
+		}
+		return $acc;
+	}
+	
+     function unicode_chr_to_utf8($num) {
+		$ret = iconv('UCS-4LE', 'UTF-8', pack('V', $num));
+		return $ret;
+	}
+	
+    $geezVowels = array( 'ä' , 'u' , 'i' ,'a' ,'e' , "" ,'o' , 'wa' );
+	
+ $geezConsBase = array(
+		'ሀ' => 'h',		'ለ' => 'l',	'ሐ' => 'ħ',		'መ' => 'm',
+		'ሠ' => 'ś',		'ረ' => 'r',	'ሰ' => 's',		'ሸ' =>'š',
+		'ቀ' => 'q', 	'ቈ' => 'qʷ',	'ቐ' => 'Q',	'ቘ' => 'Qʷ',
+		'በ' => 'b',		'ቨ' => 'v',		'ተ' => 't',		'ቸ' => 'č',
+		'ኀ' => 'ḫ',		'ኈ' => 'ḫʷ',	'ነ' => 'n',		'ኘ' => 'ñ',
+		'አ' => '‘',		'ከ' => 'k',	'ኰ' => 'kʷ',		'ኸ' => 'K',
+		'ዀ' => 'kʷ',		'ወ' => 'w',	'ዐ' => 'ʕ',		'ዘ' => 'z',
+		'ዠ' => 'ž',		'የ' => 'y',	'ደ' =>'d',		'ዸ' => 'D',
+		'ጀ' =>'ǧ',		'ገ' =>'g',	'ጐ' =>'gʷ',		'ጘ' =>'ŋ',
+		'ጠ' =>'T',		'ጨ' =>'Č',	'ጰ' =>'P',		'ጸ' =>'ṣ',
+		'ፀ' =>'ṩ',		'ፈ' =>'f',	'ፐ' =>'p'
+	);
+	
+	
+ $geezPuncTable = array(
+    'ፘ' => 'RYA', 	'ፙ' => 'MYA' , 'ፚ' => 'FYA' ,
+    '፠' => '/section/',
+    '፡' => ' ',
+    '።'	=> '.',
+    '፣' => ',',
+    '፤' => ';',
+    '፥' => ':' ,	'፦' => '<' ,	'፧' => '?' ,	'፨' => '/parag/',	
+    '፩' =>'1',	'፪' => '2',	'፫' => '3', 	'፬' => '4' , 	'፭' => '5',
+    '፮' => '6', 	'፯' => '7', '፰' => '8'	, '፱' =>'9' , 	'፲'=>'10+',
+    '፳' =>'20+', 	'፴'=>'30',	'፵'=>'40'	,'፶'=>'50',	'፷'=>'60',
+    '፸' => '70'	,'፹'=>'80' ,
+    '፺' => '90',	'፻'=> '100',	'፼'=>'1000'	
+	);
+	
+
+/**  unicode 6.3 Ethiopic::
+ * http://www.unicode.org/charts/PDF/U1200.pdf
+ */
+ function isGeezCharCode($num) {
+		return ($num >= 0x1200) && ($num < 0x1380);
+	}
+
+
+ function isGeezPunc($num) {
+		return ($num >= 0x1358) && ($num < 0x1380);
+	}
+
+
+	   /**
+     * Return Phonetic-transcription of a Ge'ez script-text
+     * Covered languages: Tigrinya (tir), Tigre (tig), Amharic (amh), Ge'ez (gez)
+	 * TODO: Missing Blin (byn) letters
+     * @param string $text text in Ge'ez
+     *
+     * @return string
+     */
+ function geezNum2Latin($num) {
+		 global $geezConsBase, $geezVowels;
+		$row = $num & 0x07;
+		$consonantNum = $num & (~0x07);
+		$v = $geezVowels[$row];
+		$conAsChar = unicode_chr_to_utf8( $consonantNum );
+		$c = $geezConsBase[$conAsChar];
+		return "$c$v";
+		}
+
+		
+
+
 class Autotranscription
 {
     var $availableLanguages = array(
-        'cmn', 'jpn', 'kat', 'uzb', 'wuu', 'yue'
+        'cmn', 'jpn', 'kat',
+	'tig', 'tir', 'gez', 'amh',
+	'uzb', 'wuu', 'yue'
     );
 
     
@@ -90,6 +203,24 @@ class Autotranscription
     public function kat($text)
     {
         return $this->_getGeorgianRomanization($text);
+    }
+
+    // Ge'ez::
+    public function amh($text)
+    {
+        return $this->_getGeezRomanization($text);
+    }
+    public function gez($text)
+    {
+        return $this->_getGeezRomanization($text);
+    }
+    public function tig($text)
+    {
+        return $this->_getGeezRomanization($text);
+    }
+    public function tir($text)
+    {
+        return $this->_getGeezRomanization($text);
     }
 
     public function uzb($text)
@@ -150,7 +281,6 @@ class Autotranscription
 
     }
 
-
     /**
      * Return IPA of a Georgian text
      *
@@ -159,18 +289,33 @@ class Autotranscription
      * @return string
      */
     private function _getGeorgianRomanization($text) {
-        //a - b - g - d - e - v - z - t - i - k - l - m - n -
-        // o - p - dj - r - s - t - u - p - q - gh - kh - sh -
-        //ch - ts - dz - ts - tch- x - j - h -
-
+       # Changing table :: Oyd11::
+   /**
+     * transforming to a consistant translitaration with Wiktionary/Wikipedia:
+     * https://en.wiktionary.org/wiki/Appendix:Georgian_script
+     * https://en.wikipedia.org/wiki/Help:IPA_for_Georgian
+     * which is consistant with ISO-9984, 2010 revision(2.0)
+     * http://www.translitteration.com/transliteration/en/georgian/iso-9984/
+     * 
+     * ISO-9984 2010, has apparently made these decisions:
+     *   + One latin letter per georgian letter (apart from extra apostrophes )
+     *  + Apostrophe ’ - mark Aspirated consonants, Ejectives are unmarked
+     *  + The only extended characters are latin letters with Caron(haček)
+     *  + With the exeption with "g macron"
+     *  + No capitilization (apparently)
+     *  - Both as it doesn't appear in the original script
+     *  - and might confuse people since common "web" translitarations
+     *   transribe the Caron chars as capitals instead. (eg S for š)
+     *  - (finially!) No Digraphs
+     */
         $ipaArray = array(
             'a', 'b', 'g', 'd', 'e',
-            'v', 'z', 'tʰ', 'i', 'k’',
-            'l', 'm', 'n', 'o', 'p’',
-            'ʒ' , 'r', 's', 't’', 'u',
-            'pʰ', 'q', 'gh', 'kh', 'ʃ',
-            'ch', 'ʦ', 'dz', 'ts', 'tch',
-            'x', 'ʤ', 'h',
+            'v', 'z', 't’', 'i', 'k',
+            'l', 'm', 'n', 'o', 'p',
+            'ž' , 'r', 's', 't’', 'u',
+            'p’', 'k’', 'ḡ', 'q', 'š',
+            'č’', 'c’', 'j', 'c’', 'č',
+            'x', 'ǰ', 'h','w','ō', 'f'
         );
 
         $alphabetArray = array(
@@ -180,13 +325,46 @@ class Autotranscription
             'ჟ', 'რ', 'ს', 'ტ', 'უ',
             'ფ', 'ქ', 'ღ', 'ყ', 'შ',
             'ჩ', 'ც', 'ძ', 'წ', 'ჭ',
-            'ხ', 'ჯ', 'ჰ',
+            'ხ', 'ჯ', 'ჰ','ჳ', 'ჵ', 'ჶ'
         );
-
+		
         $ipaSentence = str_replace($alphabetArray, $ipaArray, $text);
         return $ipaSentence;
     }
 
+
+  /**
+  * as Ge'ez is an  abugida (syllable alphabet)
+  *  eg: Ge'ez :     ሀ    ሁ  ሂ   ሃ   ሄ   ህ ሆ   ሇ
+  *  reads :            hä hu hi ha he h ho hwa
+  * encoded as unicode : 0x1200 .. 0x1207
+  * so the low-7-bits - encode the 'vowel'
+  * So:
+  * map 'base consonant' to a latin consonant
+  *  and alter to matching character using a bit-mask
+  *
+  * There is no accepted standard for transcribing Ge'ez:
+  * Following the transliteration on http://memhr.org/dic/ (almost)
+  * rather than "BGN/PCGN"
+  * differences being prefering "ħ" over "ḥ" for "ሐ" , etc
+  * using CAPITALs for velarized variants of letter 
+  * (which is somewhat a standard) 
+  * eg: "ክ" => "k" , "ኽ" => "K"
+  * but: "ብ" => "b", "ቭ" => "v" (more in loan words) 
+  */
+	   // testing in "http://ideone.com/eizWUV"
+	 
+	private function _getGeezRomanization($text) {
+		global $geezPuncTable;
+		$out = "";
+		foreach ( unicode_str_split($text) as $ch ) {
+			$num = unicode_str_ord($ch);
+			$out .=  isGeezCharCode($num) ?
+				(isGeezPunc($num) ? $geezPuncTable[$ch] : 	geezNum2Latin($num) )
+				: $ch;
+		}
+		return $out;
+	}
 
     /**
      * Uzbek sctript-switching functions
