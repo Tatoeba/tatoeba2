@@ -22,12 +22,13 @@ $(document).ready(function() {
     // Show the transcribe buttons if there are some
     // hidden transcriptions
     $('.needsReview:hidden').each(function(index) {
-        /* Move the toggling button in the menu */
+        /* Move the show button in the menu */
         transcr = $(this);
         menu = transcr.closest(".sentences_set").find('.transcribe-buttons');
         button = transcr.find('.transcribe.option');
         button.click(function(event) {
-            transcr.toggle();
+            button.remove();
+            transcr.toggle(true);
         });
         button.toggle(true);
         menu.append(button);
