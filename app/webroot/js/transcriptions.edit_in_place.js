@@ -75,8 +75,11 @@ $(document).ready(function() {
                 var contents = $('<span>').html(value);
                 return contents.find('.markup').text() || contents.text();
             },
-            callback : function(result, settings) {
-                div.parent().replaceWith(result);
+            ajaxoptions : {
+                success : function(result, status) {
+                    div.editing = false;
+                    div.parent().replaceWith(result);
+                }
             },
             onsubmit  : function(settings, self) {
                 // Save the submitted value to restore it on error
