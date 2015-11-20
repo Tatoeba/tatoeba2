@@ -92,7 +92,7 @@ class TranscriptionsHelper extends AppHelper
         $buttonsDiv = $this->Html->tag('div',
             $this->Html->tag(
                 'ul',
-                $this->editButton($isEditable)
+                $this->editButton($canEdit, $transcr['readonly'])
                 . $this->scriptIcon($transcr),
                 array('class' => 'menu')
             ),
@@ -230,16 +230,17 @@ class TranscriptionsHelper extends AppHelper
         );
     }
 
-    private function editButton($isEditable) {
-        $editImage = $this->Images->svgIcon(
-            'edit',
-            array(
-                'width' => 16,
-                'height' => 16
-            )
-        );
+    private function editButton($canEdit, $isReadonly) {
+        if ($isReadonly) {
+            return $this->Html->tag('li', '', array('class' => 'option'));
+        }
 
-        if ($isEditable) {
+        $editImage = $this->Images->svgIcon('edit', array(
+            'width'  => 16,
+            'height' => 16,
+        ));
+
+        if ($canEdit) {
             $title = __('Edit transcription', true);
             $content = $editImage;
         } else {
