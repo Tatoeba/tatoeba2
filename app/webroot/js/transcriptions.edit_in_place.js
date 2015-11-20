@@ -22,16 +22,19 @@ $(document).ready(function() {
     // Show the transcribe buttons if there are some
     // hidden transcriptions
     $('.needsReview:hidden').each(function(index) {
-        /* Move the show button in the menu */
-        transcr = $(this);
-        menu = transcr.closest(".sentences_set").find('.transcribe-buttons');
-        button = transcr.find('.transcribe.option');
-        button.click(function(event) {
-            button.remove();
-            transcr.toggle(true);
-        });
-        button.toggle(true);
-        menu.append(button);
+        var transcr = $(this);
+        if (transcr.closest('.translations').length == 0) {
+            /* Transcription of the main sentence, not a translation */
+            /* Move the show button in the menu */
+            var menu = transcr.closest('.sentences_set').find('.transcribe-buttons');
+            var button = transcr.find('.transcribe.option');
+            button.click(function(event) {
+                button.remove();
+                transcr.toggle(true);
+            });
+            button.toggle(true);
+            menu.append(button);
+        }
     });
 
     function markupToStored(lang, text) {
