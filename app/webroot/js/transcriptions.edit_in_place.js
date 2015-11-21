@@ -141,4 +141,8 @@ $(document).ready(function() {
             $(this).closest('.transcriptionContainer').find('.transcription').trigger("edit_transcription");
         });
     });
+
+    $('.transcriptionInfo .close').click(function() {
+        $(this).parent().remove();
+    });
 });

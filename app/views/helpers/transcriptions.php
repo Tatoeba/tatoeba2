@@ -146,9 +146,14 @@ class TranscriptionsHelper extends AppHelper
                 compact('warningIcon')),
                 true
             );
-            $infoDiv = $this->Html->tag('div', $warningMessage, array(
-                'class' => 'transcriptionInfo'
-            ));
+            $closeButton = $this->Html->div(
+                'close',
+                $this->Images->svgIcon('close')
+            );
+            $infoDiv = $this->Html->div(
+                'transcriptionInfo',
+                $closeButton.$warningMessage
+            );
         }
 
         $class = 'transcriptionContainer';
