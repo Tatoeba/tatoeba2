@@ -76,6 +76,13 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             </div>
 
             <div>
+                <?php echo $form->checkbox('settings.show_transcriptions'); ?>
+                <label for="UserSettingsShowTranscriptions">
+                    <?php __('Always show transcriptions'); ?>
+                </label>
+            </div>
+
+            <div>
                 <?php
                 $tip = __(
                     'Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). '.
