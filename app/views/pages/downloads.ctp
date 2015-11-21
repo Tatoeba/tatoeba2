@@ -85,6 +85,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $field_struct_str = __('Fields and structure', true);
         $file_desc_str = __('File description', true);
         $sent_id_str = __('Sentence id', true);
+        $mark_id_str = __('Sentence id', true);
         $text_str = __('Text', true);
         $lang_str = __('Lang', true);
         $username_str = __('Username', true);
@@ -412,7 +413,38 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
              __('Indicates the self-reported skill levels of members in individual languages.'); ?>
             </dd>  
         </dl>
+        
+        <!-- Users' collections -->
+        <h3><?php __('Users\' collections'); ?></h3>
+        <dl>
+            <dt><?php echo $download_str; ?></dt>
+            <dd>
+            <a href="http://downloads.tatoeba.org/exports/users_sentences.csv">
+             http://downloads.tatoeba.org/exports/users_sentences.csv
+            </a>
+            </dd>
 
+            <dt><?php echo $field_struct_str; ?></dt>
+            <dd>
+                <span class="param"><?php echo $username_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $lang_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $sent_id_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $mark_id_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $date_added_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $date_last_mod_str; ?></span>
+            </dd>
+
+            <dt><?php echo $file_desc_str; ?></dt>
+            <dd>
+            <?php 
+             __('Contains sentences\' marked by users.'); ?>
+            </dd>  
+        </dl>
 
     </div>
     
