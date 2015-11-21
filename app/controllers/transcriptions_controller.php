@@ -143,6 +143,7 @@ class TranscriptionsController extends AppController
         }
 
         $this->set('transcr', $transcription);
+        $this->set('validationErrors', $this->Transcription->validationErrors);
         $this->layout = null;
     }
 }

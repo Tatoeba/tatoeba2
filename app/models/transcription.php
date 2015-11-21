@@ -131,6 +131,10 @@ class Transcription extends AppModel
         'User',
     );
 
+    /* Transcription-specific validation error messages
+       of the last transcription save operation */
+    public $validationErrors = array();
+
     public function setAutotranscription($object) {
         $this->autotranscription = $object;
     }
@@ -249,9 +253,11 @@ class Transcription extends AppModel
             $targetScript
         );
         if (method_exists($this->autotranscription, $transcrValidateMethod)) {
+            $this->validationErrors = array();
             $ok = $this->autotranscription->{$transcrValidateMethod}(
                 $parentSentence['Sentence']['text'],
-                $this->_getFieldFromDataOrDatabase('text')
+                $this->_getFieldFromDataOrDatabase('text'),
+                $this->validationErrors
             );
             if (!$ok) {
                 return false;

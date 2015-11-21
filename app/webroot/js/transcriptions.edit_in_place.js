@@ -112,6 +112,10 @@ $(document).ready(function() {
                 $(self).find("textarea").each(function(idx) {
                     $(this).val(previousValue[idx]);
                 });
+
+                // Display errors
+                $(self).prepend(xhr.responseText);
+
                 return false; // don't reset the form
             },
             indicator : '<img width="30" height="30" src="/img/loading.svg">',

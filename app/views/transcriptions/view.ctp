@@ -17,6 +17,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if ($validationErrors) {
+    $prefix = h(__n(
+        'Please fix the following error or press the Cancel button.',
+        'Please fix the following errors or press the Cancel button.',
+        count($validationErrors),
+        true
+    ));
+    $errors = $html->nestedList($validationErrors);
+    echo $html->div('validation-errors', $prefix.$errors, array(
+        'escape' => false
+    ));
+}
+
 if ($transcr && $lang) {
     echo $javascript->link('transcriptions.edit_in_place.js', true);
     $transcriptions->displayTranscriptions($transcr, $lang, $sentenceOwnerId);

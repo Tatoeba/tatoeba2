@@ -1103,6 +1103,18 @@
     width: 16px;
 }
 
+.validation-errors {
+    color: #222;
+    background: #FF2020;
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.validation-errors ul {
+    margin-bottom: 0;
+}
+
 /*
  * Flag
  */
