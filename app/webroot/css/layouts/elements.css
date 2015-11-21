@@ -1033,7 +1033,7 @@
     border-radius: 25%;
 }
 
-.altscript {
+.script-icon.altscript {
     color: #CCC;
     background: #222;
 }
@@ -1062,6 +1062,10 @@
 
 .mainSentence .transcription {
     font-size: 80%;
+}
+
+.mainSentence .transcription.altscript {
+    font-size: 100%;
 }
 
 .transcriptions .script img {

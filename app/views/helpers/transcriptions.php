@@ -101,11 +101,13 @@ class TranscriptionsHelper extends AppHelper
         );
 
         $class = 'column transcription';
-        if ($needsReview) {
+        if ($needsReview)
             $class .= ' rightWarningIcon';
-        }
         if ($isEditable)
             $class .= ' editable';
+        if ($transcr['type'] == 'altscript')
+            $class .= ' altscript';
+
         $html = $this->transcriptionAsHTML($lang, $transcr);
         $log = '';
         if (isset($transcr['User']['username'])) {
