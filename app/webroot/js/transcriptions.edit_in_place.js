@@ -144,9 +144,11 @@ $(document).ready(function() {
 
     $('.transcriptionInfo .close').click(function() {
         $(this).parent().remove();
-        $.post(
-            rootUrl + '/user/save_settings',
-            { 'data[User][settings][transcriptions_warning]': '0' }
-        );
+        if ($(this).attr('data-save-settings')) {
+            $.post(
+                rootUrl + '/user/save_settings',
+                { 'data[User][settings][transcriptions_warning]': '0' }
+            );
+        }
     });
 });

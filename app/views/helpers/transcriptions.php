@@ -161,7 +161,8 @@ class TranscriptionsHelper extends AppHelper
                 'close',
                 $this->Images->svgIcon('close', array(
                     'title' => __("Don't show this message again", true)
-                ))
+                )),
+                array('data-save-settings' => CurrentUser::isMember())
             );
             $infoDiv = $this->Html->div(
                 'transcriptionInfo',
