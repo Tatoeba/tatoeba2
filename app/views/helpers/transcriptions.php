@@ -172,8 +172,7 @@ class TranscriptionsHelper extends AppHelper
         if ($needsReview) {
             $class .= ' needsReview';
         }
-        $show = $transcr['type'] == 'altscript'
-                || CurrentUser::get('settings.show_transcriptions');
+        $show = CurrentUser::get('settings.show_transcriptions');
         echo $this->Html->tag('div',
             $toggleButton.$infoDiv.$buttonsDiv.$transcriptionDiv,
             array(

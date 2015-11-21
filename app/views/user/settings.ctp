@@ -78,7 +78,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             <div>
                 <?php echo $form->checkbox('settings.show_transcriptions'); ?>
                 <label for="UserSettingsShowTranscriptions">
-                    <?php __('Always show transcriptions'); ?>
+                    <?php __('Always show transcriptions and alternative scripts'); ?>
                 </label>
             </div>
 
