@@ -229,9 +229,9 @@ class TranscriptionsHelper extends AppHelper
             'height' => 16,
         ));
         if ($transcr['type'] == 'altscript') {
-            $title = __('Edit transcription', true);
-        } else {
             $title = __('Edit alternative script', true);
+        } else {
+            $title = __('Edit transcription', true);
         }
         $content = $editImage;
 
@@ -248,9 +248,9 @@ class TranscriptionsHelper extends AppHelper
             );
         } elseif (!$canEdit) {
             if ($transcr['type'] == 'altscript') {
-                $title = __('You cannot edit this transcription.', true);
-            } else {
                 $title = __('You cannot edit this script.', true);
+            } else {
+                $title = __('You cannot edit this transcription.', true);
             }
             $content = $this->Html->tag(
                 'a', $editImage, array('class' => 'disabled')
