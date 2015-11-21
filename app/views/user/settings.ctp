@@ -162,9 +162,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                 <label for="UserSettingsTranscriptionsWarning">
                 <?php
                     $warningIcon = $images->svgIcon('warning-small', array(
-                        'height' => 16,
-                        'width' => 16,
-                        'style' => 'display: inline; vertical-align: text-bottom',
+                        'class' => 'inlined-icon',
                     ));
                     echo format(
                         __('Display a message that explains the meaning of '.

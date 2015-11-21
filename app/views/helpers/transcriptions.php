@@ -135,9 +135,7 @@ class TranscriptionsHelper extends AppHelper
         $infoDiv = '';
         if ($needsReview && $warn) {
             $warningIcon = $this->Images->svgIcon('warning-small', array(
-                'height' => 16,
-                'width' => 16,
-                'style' => 'display: inline; vertical-align: text-bottom',
+                'class' => 'inlined-icon',
             ));
             $warningMessage = __(format(
                 'The following transcription is marked with the '.
