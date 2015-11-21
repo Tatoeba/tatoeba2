@@ -143,7 +143,7 @@ $(document).ready(function() {
     });
 
     $('.transcriptionInfo .close').click(function() {
-        $(this).parent().remove();
+        $('.transcriptionInfo .close').parent().remove();
         if ($(this).attr('data-save-settings')) {
             $.post(
                 rootUrl + '/user/save_settings',
