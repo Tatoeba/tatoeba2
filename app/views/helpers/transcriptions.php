@@ -85,7 +85,7 @@ class TranscriptionsHelper extends AppHelper
         $isEditable = $canEdit && !$transcr['readonly'];
         $isReviewed = isset($transcr['user_id']);
         $needsReview = $transcr['needsReview'] && !$isReviewed;
-        $showAllTranscr = CurrentUser::get('settings.show_all_transcriptions');
+        $warn = CurrentUser::get('settings.transcriptions_warning');
 
         $toggleButton = $this->toggleButton($transcr);
 
@@ -133,7 +133,7 @@ class TranscriptionsHelper extends AppHelper
         );
 
         $infoDiv = '';
-        if ($needsReview && !$showAllTranscr) {
+        if ($needsReview && $warn) {
             $warningIcon = $this->Images->svgIcon('warning-small', array(
                 'height' => 16,
                 'width' => 16,
@@ -148,7 +148,9 @@ class TranscriptionsHelper extends AppHelper
             );
             $closeButton = $this->Html->div(
                 'close',
-                $this->Images->svgIcon('close')
+                $this->Images->svgIcon('close', array(
+                    'title' => __("Don't show this message again", true)
+                ))
             );
             $infoDiv = $this->Html->div(
                 'transcriptionInfo',
@@ -160,7 +162,7 @@ class TranscriptionsHelper extends AppHelper
         if ($needsReview) {
             $class .= ' needsReview';
         }
-        $hide = !$showAllTranscr && $needsReview;
+        $hide = $needsReview;
         echo $this->Html->tag('div',
             $toggleButton.$infoDiv.$buttonsDiv.$transcriptionDiv,
             array(

@@ -361,11 +361,9 @@ class UserController extends AppController
             $this->data['User']['settings']['lang'] = $this->_language_settings(
                 $this->data['User']['settings']['lang']
             );
-            $dataToSave = array(
-                'id' => $currentUserId,
-                'send_notifications' => $this->data['User']['send_notifications'],
-                'settings' => $this->data['User']['settings'],
-            );
+            $allowedFields = array('send_notifications', 'settings');
+            $dataToSave = $this->filterKeys($this->data['User'], $allowedFields);
+            $dataToSave['id'] = $currentUserId;
             if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
                 $user = $this->User->read(null, $currentUserId);
