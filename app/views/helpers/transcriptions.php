@@ -93,7 +93,7 @@ class TranscriptionsHelper extends AppHelper
             $this->Html->tag(
                 'ul',
                 $this->editButton($canEdit, $transcr)
-                . $this->scriptIcon($transcr['script']),
+                . $this->scriptIcon($transcr),
                 array('class' => 'menu')
             ),
             array('class' => 'column')
@@ -187,7 +187,7 @@ class TranscriptionsHelper extends AppHelper
         } else {
             $title = __('Show transcription', true);
         }
-        $icon = $this->scriptSvg($transcr['script'], $title);
+        $icon = $this->scriptSvg($transcr, $title);
         return $this->Html->tag('li', "<a>$icon</a>", array(
             'class' => 'transcribe option',
             'style' => 'display:none',
@@ -195,17 +195,22 @@ class TranscriptionsHelper extends AppHelper
         ));
     }
 
-    private function scriptIcon($script) {
-        return $this->Html->tag('li', $this->scriptSvg($script), array(
+    private function scriptIcon($transcr) {
+        return $this->Html->tag('li', $this->scriptSvg($transcr), array(
             'class' => 'option script'
         ));
     }
 
-    private function scriptSvg($script, $title = null) {
+    private function scriptSvg($transcr, $title = null) {
+        $class = 'script-icon';
+        if ($transcr['type'] == 'altscript') {
+            $class .= ' altscript';
+        }
+        $script = $transcr['script'];
         return $this->Images->svgIcon(
             'scripts/' . $script,
             array(
-                'class' => 'script-icon',
+                'class' => $class,
                 'title' => $title,
             ),
             $script
