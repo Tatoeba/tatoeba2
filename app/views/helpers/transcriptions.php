@@ -174,13 +174,13 @@ class TranscriptionsHelper extends AppHelper
         if ($needsReview) {
             $class .= ' needsReview';
         }
-        $show = CurrentUser::get('settings.show_transcriptions');
+        $hide = $needsReview && !CurrentUser::get('settings.show_transcriptions');
         echo $this->Html->tag('div',
             $toggleButton.$infoDiv.$buttonsDiv.$transcriptionDiv,
             array(
                 'escape' => false,
                 'class' => $class,
-                'style' => $show ? null : 'display:none',
+                'style' => $hide ? 'display:none' : null,
             )
         );
     }
