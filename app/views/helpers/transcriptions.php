@@ -222,7 +222,7 @@ class TranscriptionsHelper extends AppHelper
     }
 
     private function editButton($canEdit, $transcr) {
-        if ($transcr['readonly']) {
+        if ($transcr['readonly'] || !CurrentUser::isMember()) {
             return $this->Html->tag('li', '', array('class' => 'option'));
         }
 
@@ -237,18 +237,7 @@ class TranscriptionsHelper extends AppHelper
         }
         $content = $editImage;
 
-        if(!CurrentUser::isMember()) {
-            $loginUrl = $this->url(array(
-                'controller' => 'users',
-                'action' => 'login',
-                '?' => array(
-                    'redirectTo' => Router::reverse($this->params)
-                ),
-            ));
-            $content = $this->Html->tag(
-                'a', $editImage, array('href' => $loginUrl)
-            );
-        } elseif (!$canEdit) {
+        if (!$canEdit) {
             if ($transcr['type'] == 'altscript') {
                 $title = __('You cannot edit this script.', true);
             } else {
