@@ -147,18 +147,47 @@ class Autotranscription
         return trim($romanization);
     }
 
-    public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr) {
+    public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr, &$errors) {
         $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー]+)\]/u';
 
         $withoutFuri = preg_replace($tokenizeFuriRegex, '$1', $transcr);
-        if ($sentenceText !== $withoutFuri)
-            return false;
+        if ($sentenceText !== $withoutFuri) {
+            /* Find the first character that differs */
+            $character = mb_substr(
+                mb_strcut(
+                    $withoutFuri,
+                    strspn($withoutFuri ^ $sentenceText, "\0")
+                ),
+                0,
+                1
+            );
+            $errors[] = format(
+                __(
+                    'The provided sentence differs from the original one '.
+                    'near “{character}”.',
+                    true),
+                compact('character')
+            );
+        }
 
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $transcr);
-        if (preg_match("/[\p{Han}]/u", $withFuri))
-            return false;
+        if (preg_match_all("/[\p{Han}]/u", $withFuri, $matches)) {
+            /* @translators: This string is used to create an enumeration by
+               joining each item with it. For instance, if you translate this
+               string to “/” and the list is A, B, C, then the translated
+               enumeration will be A/B/C. */
+            $kanjisEnumeration = implode(__(', ', true), $matches[0]);
+            $errors[] = format(
+                __n(
+                    'The following kanji lack furigana: {kanjisEnumeration}.',
+                    'The following kanjis lack furigana: {kanjisEnumeration}.',
+                    count($matches[0]),
+                    true),
+                compact('kanjisEnumeration')
+            );
+        }
 
-        return true;
+        return count($errors) == 0;
     }
 
     private function _sino_detectScript($text) {
