@@ -158,16 +158,18 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.show_all_transcriptions'); ?>
-                <label for="UserSettingsShowAllTranscriptions">
+                <?php echo $form->checkbox('settings.transcriptions_warning'); ?>
+                <label for="UserSettingsTranscriptionsWarning">
                 <?php
-                    $warningIcon = $html->image('warning-small.svg', array(
+                    $warningIcon = $images->svgIcon('warning-small', array(
                         'height' => 16,
                         'width' => 16,
+                        'style' => 'display: inline; vertical-align: text-bottom',
                     ));
                     echo format(
-                        __('Display untrustworthy transcriptions by default, '.
-                           'which will only be marked with a {warningIcon}.', true),
+                        __('Display a message that explains the meaning of '.
+                           'the icon {warningIcon} next to transcriptions.',
+                           true),
                         compact('warningIcon')
                     );
                 ?>
