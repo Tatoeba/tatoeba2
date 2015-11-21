@@ -35,10 +35,12 @@ class Transcription extends AppModel
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
             'Hrkt' => array(
+                'type' => 'altscript',
             ),
         ),
         'cmn-Hans' => array(
             'Hant' => array(
+                'type' => 'altscript',
                 'needsReview' => false,
                 'readonly' => true,
             ),
@@ -47,6 +49,7 @@ class Transcription extends AppModel
         ),
         'cmn-Hant' => array(
             'Hans' => array(
+                'type' => 'altscript',
                 'needsReview' => false,
                 'readonly' => true,
             ),
@@ -65,12 +68,14 @@ class Transcription extends AppModel
         ),
         'uzb-Latn' => array(
             'Cyrl' => array(
+                'type' => 'altscript',
                 'needsReview' => false,
                 'readonly' => true,
             ),
         ),
         'uzb-Cyrl' => array(
             'Latn' => array(
+                'type' => 'altscript',
                 'needsReview' => false,
                 'readonly' => true,
             ),
@@ -79,6 +84,7 @@ class Transcription extends AppModel
     private $defaultFlags = array(
         'readonly' => false,
         'needsReview' => true,
+        'type' => 'transcription',
     );
 
     public $actsAs = array('Containable');

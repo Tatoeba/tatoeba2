@@ -92,7 +92,7 @@ class TranscriptionsHelper extends AppHelper
         $buttonsDiv = $this->Html->tag('div',
             $this->Html->tag(
                 'ul',
-                $this->editButton($canEdit, $transcr['readonly'])
+                $this->editButton($canEdit, $transcr)
                 . $this->scriptIcon($transcr),
                 array('class' => 'menu')
             ),
@@ -137,13 +137,23 @@ class TranscriptionsHelper extends AppHelper
             $warningIcon = $this->Images->svgIcon('warning-small', array(
                 'class' => 'inlined-icon',
             ));
-            $warningMessage = __(format(
-                'The following transcription is marked with the '.
-                '{warningIcon} icon, which means it has been automatically '.
-                'generated and <strong>may contain errors</strong>.',
-                compact('warningIcon')),
-                true
-            );
+            if ($transcr['type'] == 'altscript') {
+                $warningMessage = __(format(
+                    'The following alternative script is marked with the '.
+                    '{warningIcon} icon, which means it has been automatically '.
+                    'generated and <strong>may contain errors</strong>.',
+                    compact('warningIcon')),
+                    true
+                );
+            } else {
+                $warningMessage = __(format(
+                    'The following transcription is marked with the '.
+                    '{warningIcon} icon, which means it has been automatically '.
+                    'generated and <strong>may contain errors</strong>.',
+                    compact('warningIcon')),
+                    true
+                );
+            }
             $closeButton = $this->Html->div(
                 'close',
                 $this->Images->svgIcon('close', array(
@@ -160,7 +170,7 @@ class TranscriptionsHelper extends AppHelper
         if ($needsReview) {
             $class .= ' needsReview';
         }
-        $hide = $needsReview;
+        $hide = $transcr['type'] == 'transcription';
         echo $this->Html->tag('div',
             $toggleButton.$infoDiv.$buttonsDiv.$transcriptionDiv,
             array(
@@ -172,7 +182,11 @@ class TranscriptionsHelper extends AppHelper
     }
 
     private function toggleButton($transcr) {
-        $title = __('Show transcription', true);
+        if ($transcr['type'] == 'altscript') {
+            $title = __('Show alternative script', true);
+        } else {
+            $title = __('Show transcription', true);
+        }
         $icon = $this->Html->image(
             IMG_PATH . "scripts/${transcr['script']}.svg",
             array(
@@ -205,8 +219,8 @@ class TranscriptionsHelper extends AppHelper
         );
     }
 
-    private function editButton($canEdit, $isReadonly) {
-        if ($isReadonly) {
+    private function editButton($canEdit, $transcr) {
+        if ($transcr['readonly']) {
             return $this->Html->tag('li', '', array('class' => 'option'));
         }
 
@@ -214,7 +228,11 @@ class TranscriptionsHelper extends AppHelper
             'width'  => 16,
             'height' => 16,
         ));
-        $title = __('Edit transcription', true);
+        if ($transcr['type'] == 'altscript') {
+            $title = __('Edit transcription', true);
+        } else {
+            $title = __('Edit alternative script', true);
+        }
         $content = $editImage;
 
         if(!CurrentUser::isMember()) {
@@ -229,7 +247,11 @@ class TranscriptionsHelper extends AppHelper
                 'a', $editImage, array('href' => $loginUrl)
             );
         } elseif (!$canEdit) {
-            $title = __('You cannot edit this transcription.', true);
+            if ($transcr['type'] == 'altscript') {
+                $title = __('You cannot edit this transcription.', true);
+            } else {
+                $title = __('You cannot edit this script.', true);
+            }
             $content = $this->Html->tag(
                 'a', $editImage, array('class' => 'disabled')
             );
