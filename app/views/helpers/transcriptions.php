@@ -100,6 +100,9 @@ class TranscriptionsHelper extends AppHelper
         );
 
         $class = 'column transcription';
+        if ($needsReview) {
+            $class .= ' rightWarningIcon';
+        }
         if ($isEditable)
             $class .= ' editable';
         $html = $this->transcriptionAsHTML($lang, $transcr);
@@ -131,59 +134,26 @@ class TranscriptionsHelper extends AppHelper
 
         $infoDiv = '';
         if ($needsReview && !$showAllTranscr) {
-            if(!CurrentUser::isMember()) {
-                $loginUrl = $this->url(array(
-                    'controller' => 'users',
-                    'action' => 'login',
-                    '?' => array(
-                        'redirectTo' => Router::reverse($this->params)
-                    ),
-                ));
-                $registerUrl = $this->url(array(
-                    'controller' => 'users',
-                    'action' => 'register',
-                ));
-                $warningMessage = __(format(
-                    'The following transcription has been automatically '.
-                    'generated and <strong>may contain errors</strong>. '.
-                    'If you wish to review it, please <a href="{loginUrl}">'.
-                    'log in</a> or <a href="{registerUrl}">register</a> first.',
-                    compact('loginUrl', 'registerUrl')),
-                    true
-                );
-            } elseif ($isEditable) {
-                $editIcon = $this->Images->svgIcon('edit', array(
-                    'height' => 16,
-                    'width' => 16,
-                    'style' => 'color: #AAA; display: inline',
-                ));
-                $warningMessage = __(format(
-                    'The following transcription has been automatically '.
-                    'generated and <strong>may contain errors</strong>. '.
-                    'If you can, you are welcome to review by clicking '.
-                    'the {editIcon} button.',
-                    compact('editIcon')),
-                    true
-                );
-            } else {
-                $warningMessage = __(
-                    'The following transcription has been automatically '.
-                    'generated and <strong>may contain errors</strong>. '.
-                    'You may not edit it for technical reasons.',
-                    true
-                );
-            }
+            $warningIcon = $this->Images->svgIcon('warning-small', array(
+                'height' => 16,
+                'width' => 16,
+                'style' => 'display: inline; vertical-align: text-bottom',
+            ));
+            $warningMessage = __(format(
+                'The following transcription is marked with the '.
+                '{warningIcon} icon, which means it has been automatically '.
+                'generated and <strong>may contain errors</strong>.',
+                compact('warningIcon')),
+                true
+            );
             $infoDiv = $this->Html->tag('div', $warningMessage, array(
-                'class' => 'transcriptionInfo leftWarningIcon'
+                'class' => 'transcriptionInfo'
             ));
         }
 
         $class = 'transcriptionContainer';
         if ($needsReview) {
             $class .= ' needsReview';
-        }
-        if ($showAllTranscr && $needsReview) {
-            $class .= ' rightWarningIcon';
         }
         $hide = !$showAllTranscr && $needsReview;
         echo $this->Html->tag('div',
@@ -239,11 +209,21 @@ class TranscriptionsHelper extends AppHelper
             'width'  => 16,
             'height' => 16,
         ));
+        $title = __('Edit transcription', true);
+        $content = $editImage;
 
-        if ($canEdit) {
-            $title = __('Edit transcription', true);
-            $content = $editImage;
-        } else {
+        if(!CurrentUser::isMember()) {
+            $loginUrl = $this->url(array(
+                'controller' => 'users',
+                'action' => 'login',
+                '?' => array(
+                    'redirectTo' => Router::reverse($this->params)
+                ),
+            ));
+            $content = $this->Html->tag(
+                'a', $editImage, array('href' => $loginUrl)
+            );
+        } elseif (!$canEdit) {
             $title = __('You cannot edit this transcription.', true);
             $content = $this->Html->tag(
                 'a', $editImage, array('class' => 'disabled')

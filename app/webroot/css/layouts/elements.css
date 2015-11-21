@@ -1039,17 +1039,13 @@
 
 .transcriptions .transcription {
     color: #A1A1A1;
-    width: 474px;
+    width: 500px;
     padding-left: 8px;
     vertical-align: middle;
 }
 
 .mainSentence .transcription {
     font-size: 80%;
-}
-
-.needsReview > .transcription {
-    color: #A15F2F;
 }
 
 .transcriptions .script img {
@@ -1062,14 +1058,12 @@
     background: url("/img/warning-small.svg") no-repeat right 50%;
 }
 
-.leftWarningIcon {
-    padding-left: 25px;
-    background: url("/img/warning-small.svg") no-repeat left 50%;
-}
-
 .transcriptionInfo {
     margin-top: 20px;
     margin-bottom: 5px;
+    padding: 10px;
+    background: #E0E0E0;
+    border-radius: 5px;
     font-size: 13px;
 }
 
