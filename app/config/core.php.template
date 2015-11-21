@@ -441,4 +441,14 @@
  * to prevent spam.
  */
     Configure::write('Bots.userIds', array());
+
+/**
+ * Announcement message displayed below the search bar. This should be used when
+ * we want some information or message to have higher visibility, and not just
+ * something that will be noticed mostly by regular members who read the Wall.
+ *
+ * The message of the announcement has to be set in
+ *  /app/views/elements/announcement.ctp
+ */
+    Configure::write('Announcement.enabled', false);
 ?>

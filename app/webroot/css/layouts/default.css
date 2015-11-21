@@ -686,3 +686,28 @@ svg {
     margin: 40px auto;
     display: block;
 }
+
+
+/*
+ *
+ */
+.announcement {
+    display: none;
+    margin: 20px;
+    padding: 20px;
+    background: #06A;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 20px;
+}
+.announcement .close {
+    float: right;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.announcement a {
+    color: #FFD800;
+    border-radius: 2px;
+}
