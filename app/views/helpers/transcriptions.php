@@ -85,7 +85,8 @@ class TranscriptionsHelper extends AppHelper
         $isEditable = $canEdit && !$transcr['readonly'];
         $isReviewed = isset($transcr['user_id']);
         $needsReview = $transcr['needsReview'] && !$isReviewed;
-        $warn = CurrentUser::get('settings.transcriptions_warning');
+        $warn = !CurrentUser::isMember()
+                || CurrentUser::get('settings.transcriptions_warning');
 
         $toggleButton = $this->toggleButton($transcr);
 
