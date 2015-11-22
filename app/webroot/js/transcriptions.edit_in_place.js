@@ -46,8 +46,8 @@ $(document).ready(function() {
                 // ー: \u30fc
                 // ｛: \uff5b
                 // ｝: \uff5d
-                // 〈〉《》「」『』: \u3008-\u300f
-                /([^\u3041-\u3096\u309d\u309e\u30a1-\u30fa\u30fd\u30fe\u30fc\u3008-\u300f]*)\uff5b([^\uff5d]*)\uff5d/g,
+                // CJK punctuaction (。、「」etc.): \u3000-\u3004\u3007-\u3020
+                /([^\u3041-\u3096\u309d\u309e\u30a1-\u30fa\u30fd\u30fe\u30fc\uff5b\uff5d\u3000-\u3004\u3007-\u3020]*)\uff5b([^\uff5d]*)\uff5d/g,
                 '[$1|$2]'
             );
         }
