@@ -149,6 +149,14 @@ $(document).ready(function() {
         });
     });
 
+    // review button
+    $('.transcriptionContainer .option.review').click(function() {
+        transcription = $(this).closest('.transcriptionContainer').find('.transcription');
+        transcription.trigger('edit_transcription');
+        transcription.find('form').submit();
+    });
+
+    // warning message close button
     $('.transcriptionInfo .close').click(function() {
         $('.transcriptionInfo .close').parent().remove();
         if ($(this).attr('data-save-settings')) {
