@@ -71,7 +71,7 @@ class TranscriptionsHelper extends AppHelper
         }
     }
 
-    private function displayTranscription(
+    public function displayTranscription(
         $transcr,
         $lang,
         $sentenceOwnerId

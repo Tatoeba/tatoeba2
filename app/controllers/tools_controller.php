@@ -116,7 +116,6 @@ class ToolsController extends AppController
         );
         if (!empty($query)) {
             $result = $this->Transcription->generateTranscription($sentence, 'Hrkt');
-            $result = $result[0];
         }
         
         $this->set('query', $query);
@@ -150,7 +149,7 @@ class ToolsController extends AppController
             );
 
             if ($transcr) {
-                $this->set('convertedText', $transcr[0]['text']);
+                $this->set('convertedText', $transcr['text']);
                 $this->set('script', $targetScript);
             }
         }
@@ -186,7 +185,7 @@ class ToolsController extends AppController
                     'Latn'
                 );
                 if ($transcr)
-                    $this->set('convertedText', $transcr[0]['text']);
+                    $this->set('convertedText', $transcr['text']);
             } else {
                 $this->set('convertedText', $text);
             }
