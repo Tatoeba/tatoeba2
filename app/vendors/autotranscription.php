@@ -138,6 +138,14 @@ class Autotranscription
                 if ($reading->hasChildNodes()) {
                     $furigana = $reading->getAttribute('furigana');
                     $romanization .= "[$text|$furigana]";
+                } elseif (
+                    preg_match("/[^\p{Hiragana}\p{Katakana}ー\p{P}]/u", $text)
+                ) {
+                    /* Nihongoparserd returns furigana-less tokens for both
+                       tokens it was unable to find a reading AND tokens that
+                       can’t have readings such as punctuation. Let's insert
+                       empty furiganas only on tokens that should have some. */
+                    $romanization .= "[$text|]";
                 } else {
                     $romanization .= $text;
                 }
@@ -148,7 +156,7 @@ class Autotranscription
     }
 
     public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr, &$errors) {
-        $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー]+)\]/u';
+        $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー]*)\]/u';
 
         $withoutFuri = preg_replace($tokenizeFuriRegex, '$1', $transcr);
         if ($sentenceText !== $withoutFuri) {
@@ -180,7 +188,8 @@ class Autotranscription
             }
         }
 
-        $withFuri = preg_replace($tokenizeFuriRegex, '$2', $transcr);
+        $withFuri = preg_replace('/\[([^|]+)\|\]/u', '$1', $transcr);
+        $withFuri = preg_replace($tokenizeFuriRegex, '$2', $withFuri);
         if (preg_match_all("/[^\p{Hiragana}\p{Katakana}ー\p{P}]/u", $withFuri, $matches)) {
             /* @translators: This string is used to create an enumeration by
                joining each item with it. For instance, if you translate this

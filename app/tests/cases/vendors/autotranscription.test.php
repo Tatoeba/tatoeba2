@@ -59,6 +59,7 @@ class AutotranscriptionTestCase extends CakeTestCase {
             'Perfumeの曲' => array(
                 /* Everything that is not kana should have furi */
                 'Perfumeの[曲|きょく]',
+                '[Perfume|]の[曲|きょく]',
             ),
         );
         $method = 'jpn_Jpan_to_Hrkt_validate';
