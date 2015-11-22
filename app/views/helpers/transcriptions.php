@@ -94,8 +94,8 @@ class TranscriptionsHelper extends AppHelper
             $this->Html->tag(
                 'ul',
                 $this->editButton($canEdit, $transcr)
-                . $this->warningReviewButton($canEdit, $needsReview)
-                . $this->scriptIcon($transcr),
+                . $this->scriptIcon($transcr)
+                . $this->warningReviewButton($canEdit, $needsReview),
                 array('class' => 'menu')
             ),
             array('class' => 'column')
