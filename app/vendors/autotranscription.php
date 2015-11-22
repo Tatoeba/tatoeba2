@@ -181,7 +181,7 @@ class Autotranscription
         }
 
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $transcr);
-        if (preg_match_all("/[\p{Han}]/u", $withFuri, $matches)) {
+        if (preg_match_all("/[^\p{Hiragana}\p{Katakana}ー\p{P}]/u", $withFuri, $matches)) {
             /* @translators: This string is used to create an enumeration by
                joining each item with it. For instance, if you translate this
                string to “/” and the list is A, B, C, then the translated
