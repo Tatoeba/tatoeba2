@@ -94,6 +94,7 @@ class TranscriptionsHelper extends AppHelper
             $this->Html->tag(
                 'ul',
                 $this->editButton($canEdit, $transcr)
+                . $this->warningReviewButton($canEdit, $needsReview)
                 . $this->scriptIcon($transcr),
                 array('class' => 'menu')
             ),
@@ -101,8 +102,6 @@ class TranscriptionsHelper extends AppHelper
         );
 
         $class = 'column transcription';
-        if ($needsReview)
-            $class .= ' rightWarningIcon';
         if ($isEditable)
             $class .= ' editable';
         if ($transcr['type'] == 'altscript')
@@ -255,6 +254,22 @@ class TranscriptionsHelper extends AppHelper
                 'title'=> $title,
             )
         );
+    }
+
+    private function warningReviewButton($canEdit, $needsReview) {
+        $content = '';
+        if ($needsReview) {
+            $content = $this->Images->svgIcon('warning-small');
+            $title = __("May contain errors.\nClick to mark as reviewed.", true);
+        };
+
+        if ($content) {
+            $content = $this->Html->tag('li', $content, array(
+                'class' => 'option review',
+                'title' => $title,
+            ));
+        }
+        return $content;
     }
 
     /**
