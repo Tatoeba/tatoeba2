@@ -98,6 +98,7 @@ $(document).ready(function() {
 
                 // Handle reset button
                 if (self.resetClicked) {
+                    self.resetClicked = false;
                     settings.target = settings.target.replace(/\/save\//, '/reset/');
                 }
                 return true;
@@ -116,6 +117,8 @@ $(document).ready(function() {
                 // Display errors
                 $(self).prepend(xhr.responseText);
 
+                // Restore after reset button hackery
+                settings.target = settings.target.replace(/\/reset\//, '/save/');
                 return false; // don't reset the form
             },
             indicator : '<img width="30" height="30" src="/img/loading.svg">',
