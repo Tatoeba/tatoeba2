@@ -29,6 +29,7 @@ class TestTranscriptionsController extends TranscriptionsController {
         $autotranscription->setReturnValue('jpn_Jpan_to_Hrkt_validate', true);
         $autotranscription->setReturnValue('jpn_Jpan_to_Hrkt_generate', 'furi');
         $autotranscription->setReturnValue('jpn_Hrkt_to_Latn_generate', 'roma');
+        $autotranscription->setReturnValue('yue_Hant_to_Latn_generate', 'yeah');
         $this->Transcription->setAutotranscription($autotranscription);
 
         parent::beforeFilter();
@@ -185,5 +186,13 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
             'conditions' => array('sentence_id' => 6, 'script' => 'Hrkt')
         ));
         $this->assertEqual('furi', $result['Transcription']['text']);
+    }
+
+    function testRegularUserCanResetNonExistingTranscription() {
+        $this->_resetAsUser('kazuki', 11, 'Latn');
+        $result = $this->Transcriptions->Transcription->find('count', array(
+            'conditions' => array('sentence_id' => 11, 'script' => 'Latn')
+        ));
+        $this->assertEqual(1, $result);
     }
 }

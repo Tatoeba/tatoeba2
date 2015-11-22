@@ -69,6 +69,13 @@ class TranscriptionsController extends AppController
                     true
                 );
             }
+        } else {
+            $sentence = $this->Sentence->findById($sentenceId);
+            $saved = $this->Transcription->generateTranscription(
+                $sentence,
+                $script,
+                true
+            );
         }
 
         if (!$saved) {
