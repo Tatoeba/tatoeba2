@@ -121,6 +121,10 @@ class TranscriptionsController extends AppController
 
         if (!$saved) {
             $this->header('HTTP/1.1 400 Bad transcription');
+        } else {
+            $saved['User'] = array(
+                'username' => CurrentUser::get('username')
+            );
         }
 
         /* Used by tests, to check permissions */
