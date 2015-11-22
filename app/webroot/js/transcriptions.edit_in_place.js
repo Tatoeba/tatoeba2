@@ -122,7 +122,7 @@ $(document).ready(function() {
                 return false; // don't reset the form
             },
             indicator : '<img width="30" height="30" src="/img/loading.svg">',
-            tooltip   : div.attr('data-tooltip'),
+            tooltip   : div.attr('title'),
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'
         }).bind('edit_transcription', function(e) {

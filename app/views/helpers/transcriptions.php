@@ -127,7 +127,7 @@ class TranscriptionsHelper extends AppHelper
                 'data-submit' => __('OK', true),
                 'data-cancel' => __('Cancel', true),
                 'data-reset' => __('Reset', true),
-                'data-tooltip' => $log,
+                'title' => $log,
                 'class' => $class,
                 'escape' => false,
             ),
