@@ -82,5 +82,10 @@ class AutotranscriptionTestCase extends CakeTestCase {
         $this->_assertFurigana('男の子', 'おとこのこ', '[男|おとこ]の[子|こ]');
         /* This is plain wrong, only to show we can't handle every case */
         $this->_assertFurigana('物の具', 'もののぐ', '[物|も]の[具|のぐ]');
+
+        /* Remove furigana on numbers since they are almost always wrong.
+           Mecab parses them individually, e.g. 10 reads いちぜろ. */
+        $this->_assertFurigana('１', 'いち', '１');
+        $this->_assertFurigana('1', 'いち', '1');
     }
 }

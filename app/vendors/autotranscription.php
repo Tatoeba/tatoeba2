@@ -138,6 +138,12 @@ class Autotranscription
             return "[$start|$startReading]${middle}[$end|$endReading]";
         }
 
+        /* Remove furigana on numbers since they are almost always wrong.
+           Mecab parses them individually, e.g. 10 reads いちぜろ. */
+        if (preg_match('/^[0-9０-９]$/u', $text)) {
+            return $text;
+        }
+
         return "[$text|$furigana]";
     }
 
