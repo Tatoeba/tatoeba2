@@ -53,6 +53,7 @@ class TranscriptionsController extends AppController
     public function reset($sentenceId, $script) {
         $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
         $saved = false;
+        $sentence = null;
 
         if ($transcriptionId) {
             list($transcrOwnerId, $sentenceOwnerId)
@@ -82,14 +83,7 @@ class TranscriptionsController extends AppController
             $this->header('HTTP/1.1 400 Bad transcription');
         }
 
-        if (isset($sentence)) {
-            $this->set('lang', $sentence['Sentence']['lang']);
-            $this->set('sentenceOwnerId', $sentence['Sentence']['user_id']);
-        }
-
-        $this->set('transcr', $saved);
-        $this->set('validationErrors', $this->Transcription->validationErrors);
-        $this->layout = null;
+        $this->setViewVars($saved, $sentenceId, $sentence);
         $this->render('view');
     }
 
@@ -138,12 +132,14 @@ class TranscriptionsController extends AppController
         $this->render('view');
     }
 
-    private function setViewVars($transcription, $sentenceId) {
+    private function setViewVars($transcription, $sentenceId, $sentence = null) {
         if ($transcription) {
-            $sentence = $this->Sentence->findById(
-                $sentenceId,
-                array('lang', 'user_id')
-            );
+            if (!$sentence) {
+                $sentence = $this->Sentence->findById(
+                    $sentenceId,
+                    array('lang', 'user_id')
+                );
+            }
             if ($sentence) {
                 $this->set('lang', $sentence['Sentence']['lang']);
                 $this->set('sentenceOwnerId', $sentence['Sentence']['user_id']);
