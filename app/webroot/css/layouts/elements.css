@@ -1043,6 +1043,19 @@
     height: 20px;
 }
 
+.menu .review svg {
+    position: absolute;
+}
+
+.menu .review svg.check {
+    display: none;
+}
+
+.menu .review:hover svg.check {
+    cursor: pointer;
+    display: block;
+}
+
 .transcriptions .menu {
     border: none;
     margin: 0;
