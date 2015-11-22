@@ -1022,6 +1022,29 @@
 /*
  * Transcriptions
  */
+
+.transcriptions .menu li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 8px;
+}
+
+.transcriptions .menu .option {
+    color: #aaaaaa;
+    height: 16px;
+    width: 16px;
+}
+
+.transcriptions .menu .option a:hover,
+.transcriptions .menu .option:hover {
+    color: #222;
+}
+
+.transcriptions .menu a.disabled,
+.transcriptions .menu a.disabled:hover {
+    color: #CCC;
+}
+
 .transcribe-buttons {
     display: inline-block;
     padding-left: 0;
