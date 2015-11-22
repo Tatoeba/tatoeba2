@@ -11,7 +11,7 @@ class AutotranscriptionTestCase extends CakeTestCase {
     }
 
     function _assertCheck($method, $sentence, $transcription, $true) {
-        $result = $this->AT->{$method}($sentence, $transcription);
+        $result = $this->AT->{$method}($sentence, $transcription, $errors);
         if ($true)
             $this->assertTrue($result, "$method “${sentence}” → “${transcription}” should pass check");
         else

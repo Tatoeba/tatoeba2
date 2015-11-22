@@ -161,13 +161,23 @@ class Autotranscription
                 0,
                 1
             );
-            $errors[] = format(
-                __(
-                    'The provided sentence differs from the original one '.
-                    'near “{character}”.',
-                    true),
-                compact('character')
-            );
+            if ($character) {
+                $errors[] = format(
+                    __(
+                        'The provided sentence differs from the original one '.
+                        'near “{character}”.',
+                        true),
+                    compact('character')
+                );
+            } else {
+                $errors[] = format(
+                    __(
+                        'The provided sentence is shorter than the '.
+                        'orginial one.',
+                        true),
+                    compact('character')
+                );
+            }
         }
 
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $transcr);
@@ -176,14 +186,14 @@ class Autotranscription
                joining each item with it. For instance, if you translate this
                string to “/” and the list is A, B, C, then the translated
                enumeration will be A/B/C. */
-            $kanjisEnumeration = implode(__(', ', true), $matches[0]);
+            $charsEnumeration = implode(__(', ', true), $matches[0]);
             $errors[] = format(
                 __n(
-                    'The following kanji lack furigana: {kanjisEnumeration}.',
-                    'The following kanjis lack furigana: {kanjisEnumeration}.',
+                    'The following character lack furigana: {charsEnumeration}.',
+                    'The following characters lack furigana: {charsEnumeration}.',
                     count($matches[0]),
                     true),
-                compact('kanjisEnumeration')
+                compact('charsEnumeration')
             );
         }
 
