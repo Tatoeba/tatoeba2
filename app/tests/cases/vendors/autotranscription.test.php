@@ -71,4 +71,16 @@ class AutotranscriptionTestCase extends CakeTestCase {
             foreach ($furis as $furi)
                 $this->_assertCheck($method, $japanese, $furi, false);
     }
+
+    function _assertFurigana($kanji, $reading, $expected) {
+        $result = $this->AT->formatFurigana($kanji, $reading);
+        $this->assertEqual($expected, $result, "furigana should be formatted like “${expected}”, got “${result}”");
+    }
+
+    function test_formatFurigana() {
+        $this->_assertFurigana('男', 'おとこ', '[男|おとこ]');
+        $this->_assertFurigana('男の子', 'おとこのこ', '[男|おとこ]の[子|こ]');
+        /* This is plain wrong, only to show we can't handle every case */
+        $this->_assertFurigana('物の具', 'もののぐ', '[物|も]の[具|のぐ]');
+    }
 }
