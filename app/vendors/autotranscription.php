@@ -198,7 +198,7 @@ class Autotranscription
             $charsEnumeration = implode(__(', ', true), $matches[0]);
             $errors[] = format(
                 __n(
-                    'The following character lack furigana: {charsEnumeration}.',
+                    'The following character lacks furigana: {charsEnumeration}.',
                     'The following characters lack furigana: {charsEnumeration}.',
                     count($matches[0]),
                     true),
