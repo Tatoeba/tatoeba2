@@ -26,7 +26,10 @@
  */
 
 if (Configure::read('Announcement.enabled')) {
-    $announcementId = 'announcement-id2';
+    echo $javascript->link(JS_PATH . 'jquery.cookie.js');
+    echo $javascript->link(JS_PATH . 'announcement.js');
+
+    $announcementId = 'announcement-id';
     $announcementText = 'Text of the announcement';
 
     $closeButton = $html->div('close', $images->svgIcon('close'));

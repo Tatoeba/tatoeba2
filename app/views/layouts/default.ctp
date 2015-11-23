@@ -90,10 +90,6 @@
         // This is needed to make "fill: currentColor" work on every browser.
         echo $javascript->link(JS_PATH . 'svg4everybody.min.js', true);
 
-        if (Configure::read('Announcement.enabled')) {
-            echo $javascript->link(JS_PATH . 'jquery.cookie.js', true);
-        }
-
         // Enhanced dropdown for language selection
         // It's needed on every page since it's used on the search bar
         $isChosenSelectEnabled = $session->read('jquery_chosen');
