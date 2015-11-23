@@ -16,5 +16,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+$this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordings', true)));
+
 ?>
-<h1>It works!</h1>
+<div id="main_content">
+    <div class="module">
+        <h2><?php __d('admin', 'Import recordings'); ?></h2>
+        <h3><?php __d('admin', 'Files detected'); ?></h3>
+        <?php if ($filesToImport): ?>
+            <p><?php __dn(
+                'admin',
+                'The following file has been detected '.
+                'inside the import directory.',
+                'The following files have been detected '.
+                'inside the import directory.',
+                count($filesToImport)
+            ); ?></p>
+        <?php echo $html->nestedList($filesToImport); ?>
+        <?php else: ?>
+            <p><?php __('admin', 'No files have been detected '.
+                                 'inside the import directory.'); ?></p>
+        <?php endif; ?>
+    </div>
+</div>

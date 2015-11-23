@@ -22,6 +22,7 @@ class RecordingsController extends AppController
     public $name = 'Recordings';
 
     public $uses = array(
+        'Recordings'
     );
 
     public $components = array(
@@ -39,6 +40,9 @@ class RecordingsController extends AppController
     }
 
     public function import() {
+        $filesToImport = $this->Recordings->getFilesToImport();
+
+        $this->set(compact('filesToImport'));
     }
 }
 ?>
