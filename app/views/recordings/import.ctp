@@ -43,7 +43,7 @@ $this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordin
         foreach ($filesImported as $lang => $numberOfFiles) {
             $subTotals[] = format(
                 __dn('admin',
-                     '{numberOfFiles} were {language}.',
+                     '{numberOfFiles} was {language}.',
                      '{numberOfFiles} were {language}.',
                      $filesImported,
                      true),
