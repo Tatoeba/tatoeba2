@@ -40,9 +40,13 @@ class RecordingsController extends AppController
     }
 
     public function import() {
+        $filesImported = $errors = false;
+        if ($this->RequestHandler->isPost()) {
+            $filesImported = $this->Recordings->importFiles($errors);
+        }
         $filesToImport = $this->Recordings->getFilesToImport();
 
-        $this->set(compact('filesToImport'));
+        $this->set(compact('filesToImport', 'errors', 'filesImported'));
     }
 }
 ?>
