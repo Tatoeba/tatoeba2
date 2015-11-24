@@ -83,9 +83,9 @@ $this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordin
         array(
             __d('admin', 'File name', true),
             __d('admin', 'Sentence id', true),
-            __d('admin', 'Sentence language', true),
+            __d('admin', 'Language', true),
             __d('admin', 'Already has audio', true),
-            __d('admin', 'Can be imported', true),
+            __d('admin', 'May be imported', true),
         )
     );
     foreach ($filesToImport as $file) {
