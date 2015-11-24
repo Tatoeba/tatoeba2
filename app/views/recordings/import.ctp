@@ -25,15 +25,63 @@ $this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordin
         <h2><?php __d('admin', 'Import recordings'); ?></h2>
         <h3><?php __d('admin', 'Files detected'); ?></h3>
         <?php if ($filesToImport): ?>
-            <p><?php __dn(
-                'admin',
-                'The following file has been detected '.
-                'inside the import directory.',
-                'The following files have been detected '.
-                'inside the import directory.',
-                count($filesToImport)
+            <p><?php echo format(
+                __dn(
+                    'admin',
+                    'A total of {count} file has been detected '.
+                    'inside the import directory.',
+                    'A total of {count} files have been detected '.
+                    'inside the import directory.',
+                    count($filesToImport),
+                    true
+                ),
+                array('count' => count($filesToImport))
             ); ?></p>
-        <?php echo $html->nestedList($filesToImport); ?>
+        <table>
+        <?php
+        echo $html->tableHeaders(
+            array(
+                __d('admin', 'File name', true),
+                __d('admin', 'Sentence id', true),
+                __d('admin', 'Sentence language', true),
+                __d('admin', 'Already has audio', true),
+                __d('admin', 'Can be imported', true),
+            )
+        );
+        foreach ($filesToImport as $file) {
+            $lang = isset($file['lang']) ?
+                    $languages->codeToNameAlone($file['lang']) :
+                    __d('admin', 'N/A', true);
+            $sentenceId = isset($file['sentenceId']) ?
+                          $html->link(
+                              $file['sentenceId'], array(
+                                  'controller' => 'sentences',
+                                  'action' => 'show',
+                                  $file['sentenceId']
+                              )
+                          ) :
+                          __d('admin', 'Invalid', true);
+            $hasaudio = isset($file['hasaudio']) ? (
+                            $file['hasaudio'] ?
+                            __('Yes', true) :
+                            __('No',  true)
+                        ) :
+                        __d('admin', 'N/A', true);
+            $isValid = $file['valid'] ?
+                       __('Yes', true) :
+                       __('No', true);
+            echo $html->tableCells(
+                array(
+                    $file['fileName'],
+                    $sentenceId,
+                    $lang,
+                    $hasaudio,
+                    $isValid,
+                )
+            );
+        }
+        ?>
+        </table>
         <?php else: ?>
             <p><?php __('admin', 'No files have been detected '.
                                  'inside the import directory.'); ?></p>

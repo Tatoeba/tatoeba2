@@ -23,18 +23,49 @@ class Recordings extends AppModel
 
     public $useTable = false;
 
+    public $belongsTo = array(
+        'Sentence',
+    );
+
     public function getFilesToImport() {
         $importPath = Configure::read('Recordings.importPath');
         $audioFiles = array();
+        $allSentenceIds = array();
 
         $dh = opendir($importPath);
         while (false !== ($filename = readdir($dh))) {
             $file = $importPath.$filename;
-            if (is_file($file) && preg_match('/\d+\.mp3$/i', $file)) {
-               $audioFiles[] = $filename;
+            if (is_file($file)) {
+                $fileInfos = array(
+                    'fileName' => $filename,
+                    'sourcePath' => $importPath.$filename,
+                    'valid'    => false,
+                );
+                if (preg_match('/(\d+)\.mp3$/i', $file, $matches)) {
+                    $fileInfos['sentenceId'] = $allSentenceIds[] = $matches[1];
+                }
+                $audioFiles[] = $fileInfos;
             }
         }
         closedir($dh);
+
+        $sentences = $this->Sentence->find('all', array(
+            'conditions' => array('Sentence.id' => $allSentenceIds),
+            'fields' => array('id', 'lang', 'hasaudio'),
+            'recursive' => -1
+        ));
+        $sentences = Set::combine($sentences, '{n}.Sentence.id', '{n}.Sentence');
+
+        foreach ($audioFiles as &$file) {
+            if (isset($file['sentenceId'])) {
+                $id = $file['sentenceId'];
+                if (isset($sentences[$id])) {
+                    $file['lang'] = $sentences[$id]['lang'];
+                    $file['hasaudio'] = $sentences[$id]['hasaudio'] != 'no';
+                    $file['valid'] = !is_null($sentences[$id]['lang']);
+                }
+            }
+        }
 
         return $audioFiles;
     }
