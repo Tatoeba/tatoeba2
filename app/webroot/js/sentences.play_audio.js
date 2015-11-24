@@ -26,11 +26,11 @@ $(document).ready(function() {
                 '<param name="src" value="'+ audioURL +'" />' +
                 '<object '+
                     'type="application/x-shockwave-flash" '+
-                    'data="http://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" '+
+                    'data="https://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" '+
                     'width="0" '+
                     'height="0" '+
                 '>'+
-                    '<param name="movie" value="http://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" />'+
+                    '<param name="movie" value="https://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" />'+
                 '</object>'+
             '</object>'
        );
