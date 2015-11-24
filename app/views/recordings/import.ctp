@@ -45,7 +45,7 @@ $this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordin
                 __dn('admin',
                      '{numberOfFiles} was {language}.',
                      '{numberOfFiles} were {language}.',
-                     $filesImported,
+                     $numberOfFiles,
                      true),
                 array('numberOfFiles' => $numberOfFiles,
                       'language' => $languages->codeToNameToFormat($lang))
