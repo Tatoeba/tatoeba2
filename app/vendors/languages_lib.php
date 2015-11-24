@@ -76,6 +76,7 @@ class LanguagesLib
             'cho' => 'ch', // Choctaw
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
+            'cos' => 'cc', // Corsican
             'crs' => 'cr', // Seychellois Creole
             'csb' => 'cb', // Kashubian
             'cyo' => 'co', // Cuyonon
@@ -561,7 +562,8 @@ class LanguagesLib
                 'mvv' => __('Tagal Murut',true),
                 'mdf' => __('Moksha',true),
                 'pag' => __('Pangasinan',true),
-
+                'cos' => __('Corsican',true),
+                
 
             );
         }
