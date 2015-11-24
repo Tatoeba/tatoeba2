@@ -77,7 +77,7 @@ $this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordin
         ),
         array('count' => count($filesToImport))
     ); ?></p>
-    <table>
+    <table id="files-detected">
     <?php
     echo $html->tableHeaders(
         array(
@@ -117,7 +117,8 @@ $this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordin
                 $lang,
                 $hasaudio,
                 $isValid,
-            )
+            ),
+            array('class' => 'even')
         );
     }
     ?>
