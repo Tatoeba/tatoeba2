@@ -74,6 +74,9 @@ class UsersController extends AppController
             'check_email',
             'for_language'
         );
+        // prevent CSRF in this controller
+        // since we're handling login and registration
+        $this->Security->validatePost = true;
     }
 
     /**
