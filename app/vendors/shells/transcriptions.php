@@ -83,6 +83,7 @@ class TranscriptionsShell extends Shell {
         $options = array(
             'validate' => true,
             'atomic' => false,
+            'callbacks' => false,
         );
         if ($this->Sentence->saveAll($data, $options))
             $proceeded += count($data);
