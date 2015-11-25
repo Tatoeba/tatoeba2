@@ -376,7 +376,6 @@ class Transcription extends AppModel
             $sentence = $sentence['Sentence'];
 
         $langScript = $this->getSourceLangScript($sentence);
-        $result = array();
         if (!$transcr) {
             $transcr = $this->_generateTranscription(
                 $sentence['id'],
@@ -385,14 +384,14 @@ class Transcription extends AppModel
                 $targetScript
             );
             if (!$transcr)
-                return array();
+                return false;
         }
 
         $params = $this->availableTranscriptions[$langScript][$targetScript];
         if ($save) {
             $this->create();
             if (!$this->save($transcr))
-                return array();
+                return false;
             $this->read();
             $transcr = $this->data[$this->alias];
         } else {
