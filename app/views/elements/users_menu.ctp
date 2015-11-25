@@ -72,6 +72,19 @@
     <li class="item">
     <?php
     echo $html->link(
+        __('Transcriptions', true),
+        array(
+            'controller' => 'transcriptions',
+            'action' => 'of_user',
+            $username
+        )
+    );
+    ?>
+    </li>
+
+    <li class="item">
+    <?php
+    echo $html->link(
         __('Lists', true),
         array(
             'controller' => 'sentences_lists',

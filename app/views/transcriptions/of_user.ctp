@@ -24,6 +24,15 @@ $title = format(
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
+<div id="annexe_content">
+    <?php
+    echo $this->element(
+        'users_menu',
+        array('username' => $username)
+    );
+    ?>
+</div>
+
 <div id="main_content">
 <div class="module">
 <?php
