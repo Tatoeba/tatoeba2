@@ -41,27 +41,27 @@ if (isset($sentencesWithTranscription)) {
 <div class="module">
 <?php
 if (isset($sentencesWithTranscription)) {
-   if (count($sentencesWithTranscription) == 0) {
-       echo $html->tag('h2', format(
-           __('{username} does not have any transcriptions', true),
-           array('username' => $username)
-       ));
-   } else {
-       echo $html->tag('h2', $title);
+    if (count($sentencesWithTranscription) == 0) {
+        echo $html->tag('h2', format(
+            __('{username} does not have any transcriptions', true),
+            array('username' => $username)
+        ));
+    } else {
+        echo $html->tag('h2', $title);
 
-       $type = 'mainSentence';
-       $parentId = null;
-       $withAudio = false;
-       foreach ($sentencesWithTranscription as $sentence) {
-           $sentences->displayGenericSentence(
-               $sentence['Sentence'],
-               $sentence['Transcription'],
-               $type,
-               $parentId,
-               $withAudio
-           );
-       }
-   }
+        $type = 'mainSentence';
+        $parentId = null;
+        $withAudio = false;
+        foreach ($sentencesWithTranscription as $sentence) {
+            $sentences->displayGenericSentence(
+                $sentence['Sentence'],
+                $sentence['Transcription'],
+                $type,
+                $parentId,
+                $withAudio
+            );
+        }
+    }
 } else {
     echo $html->tag('h2', format(
         __("There's no user called {username}", true),
