@@ -75,7 +75,7 @@
         __('Transcriptions', true),
         array(
             'controller' => 'transcriptions',
-            'action' => 'of_user',
+            'action' => 'of',
             $username
         )
     );

@@ -40,6 +40,7 @@ class TranscriptionsController extends AppController
 
         $this->Auth->allowedActions = array(
             'view',
+            'of',
         );
     }
 
@@ -137,7 +138,7 @@ class TranscriptionsController extends AppController
         $this->render('view');
     }
 
-    public function of_user($username) {
+    public function of($username) {
         $userId = $this->User->getIdFromUsername($username);
         if ($userId) {
             $result = $this->Transcription->find('all', array(
