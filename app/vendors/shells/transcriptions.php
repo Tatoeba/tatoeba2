@@ -96,7 +96,7 @@ class TranscriptionsShell extends Shell {
         do {
             $sentences = $this->Sentence->find('all', array(
                 'conditions' => $conditions,
-                'fields' => array('id', 'lang', 'text'),
+                'fields' => array('id', 'lang', 'script', 'text'),
                 'contain' => array(),
                 'limit' => $batchSize,
                 'offset' => $offset,
