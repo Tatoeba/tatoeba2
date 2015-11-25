@@ -17,22 +17,39 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$this->set('title_for_layout', $pages->formatTitle(format(
+$title = format(
     __('Transcriptions of {username}', true),
     array('username' => $username)
-)));
+);
+$this->set('title_for_layout', $pages->formatTitle($title));
+?>
 
+<div id="main_content">
+<div class="module">
+<?php
 if (isset($sentencesWithTranscription)) {
-   $type = 'mainSentence';
-   $parentId = null;
-   $withAudio = false;
-   foreach ($sentencesWithTranscription as $sentence) {
-       $sentences->displayGenericSentence(
-           $sentence['Sentence'],
-           $sentence['Transcription'],
-           $type,
-           $parentId,
-           $withAudio
-       );
+   if (count($sentencesWithTranscription) == 0) {
+       echo $html->tag('h2', format(
+           __('{username} does not have any transcriptions', true),
+           array('username' => $username)
+       ));
+   } else {
+       echo $html->tag('h2', $title);
+
+       $type = 'mainSentence';
+       $parentId = null;
+       $withAudio = false;
+       foreach ($sentencesWithTranscription as $sentence) {
+           $sentences->displayGenericSentence(
+               $sentence['Sentence'],
+               $sentence['Transcription'],
+               $type,
+               $parentId,
+               $withAudio
+           );
+       }
    }
 }
+?>
+</div>
+</div>
