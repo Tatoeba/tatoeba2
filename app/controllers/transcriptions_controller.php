@@ -24,6 +24,7 @@ class TranscriptionsController extends AppController
     public $uses = array(
         'Transcription',
         'Sentence',
+        'User',
     );
 
     public $components = array(
@@ -134,6 +135,31 @@ class TranscriptionsController extends AppController
 
         $this->setViewVars($saved, $sentenceId);
         $this->render('view');
+    }
+
+    public function of_user($username) {
+        $userId = $this->User->getIdFromUsername($username);
+        if ($userId) {
+            $result = $this->Transcription->find('all', array(
+                'conditions' => array('Transcription.user_id' => $userId),
+                'contain' => array('Sentence', 'User'),
+            ));
+            $sentencesWithTranscription = array();
+            foreach ($result as $data) {
+                $sentenceId = $data['Sentence']['id'];
+                if (!isset($sentencesWithTranscription[$sentenceId])) {
+                    $sentencesWithTranscription[$sentenceId] = array(
+                        'Sentence' => $data['Sentence'],
+                        'Transcription' => array()
+                    );
+                }
+                $data['Transcription']['User'] = $data['User'];
+                $sentencesWithTranscription[$sentenceId]['Transcription'][] =
+                    $data['Transcription'];
+            }
+            $this->set(compact('sentencesWithTranscription'));
+        }
+        $this->set(compact('username'));
     }
 
     private function setViewVars($transcription, $sentenceId, $sentence = null) {
