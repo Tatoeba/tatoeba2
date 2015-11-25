@@ -24,14 +24,18 @@ $title = format(
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
-<div id="annexe_content">
-    <?php
-    echo $this->element(
-        'users_menu',
-        array('username' => $username)
+<?php
+if (isset($sentencesWithTranscription)) {
+    echo $html->div(
+        null,
+        $this->element(
+            'users_menu',
+            array('username' => $username)
+        ),
+        array('id' => 'annexe_content')
     );
-    ?>
-</div>
+}
+?>
 
 <div id="main_content">
 <div class="module">
@@ -58,6 +62,11 @@ if (isset($sentencesWithTranscription)) {
            );
        }
    }
+} else {
+    echo $html->tag('h2', format(
+        __("There's no user called {username}", true),
+        array('username' => $username)
+    ));
 }
 ?>
 </div>
