@@ -31,7 +31,14 @@ class TranscriptionsController extends AppController
     );
 
     public $helpers = array(
+        'Pagination',
         'Transcriptions',
+    );
+
+    public $paginate = array(
+        'contain' => array('User', 'Sentence'),
+        'limit' => 100,
+        'order' => 'Transcription.modified DESC'
     );
 
     public function beforeFilter()
@@ -141,9 +148,8 @@ class TranscriptionsController extends AppController
     public function of($username) {
         $userId = $this->User->getIdFromUsername($username);
         if ($userId) {
-            $result = $this->Transcription->find('all', array(
-                'conditions' => array('Transcription.user_id' => $userId),
-                'contain' => array('Sentence', 'User'),
+            $result = $this->paginate('Transcription', array(
+                'Transcription.user_id' => $userId
             ));
             $sentencesWithTranscription = array();
             foreach ($result as $data) {

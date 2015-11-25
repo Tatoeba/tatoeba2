@@ -47,7 +47,15 @@ if (isset($sentencesWithTranscription)) {
             array('username' => $username)
         ));
     } else {
+        $title = $paginator->counter(
+            array(
+                'format' => $title . ' ' . __("(total %count%)", true)
+            )
+        );
         echo $html->tag('h2', $title);
+
+        $paginationUrl = array($username);
+        $pagination->display($paginationUrl);
 
         $type = 'mainSentence';
         $parentId = null;
@@ -61,6 +69,8 @@ if (isset($sentencesWithTranscription)) {
                 $withAudio
             );
         }
+
+        $pagination->display($paginationUrl);
     }
 } else {
     echo $html->tag('h2', format(
