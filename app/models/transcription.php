@@ -247,12 +247,14 @@ class Transcription extends AppModel
         if (!isset($this->availableTranscriptions[$langScript][$targetScript]))
             return false;
 
+        $userId = $this->_getFieldFromDataOrDatabase('user_id');
         $transcrValidateMethod = sprintf(
             '%s_to_%s_validate',
             strtr($langScript, '-', '_'),
             $targetScript
         );
-        if (method_exists($this->autotranscription, $transcrValidateMethod)) {
+        if ($userId &&
+            method_exists($this->autotranscription, $transcrValidateMethod)) {
             $this->validationErrors = array();
             $ok = $this->autotranscription->{$transcrValidateMethod}(
                 $parentSentence['Sentence']['text'],

@@ -398,7 +398,22 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertFalse($result);
     }
 
-    function testSaveTranscriptionChecksTranscriptionValidityOnCreate() {
+    function testSaveTranscriptionChecksUserProvidedTranscriptionValidityOnCreate() {
+        $transcr = $this->Transcription->find('first', array(
+            'conditions' => array('sentence_id' => 10)
+        ));
+        $this->Transcription->delete($transcr['Transcription']['id'], false);
+        unset($transcr['Transcription']['id']);
+        $transcr['Transcription']['user_id'] = 4;
+
+        $this->AutoTranscr = $this->_installAutotranscriptionMock();
+        $this->AutoTranscr->setReturnValue('jpn_Jpan_to_Hrkt_validate', false);
+
+        $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
+        $this->assertFalse($result);
+    }
+
+    function testSaveTranscriptionDontCheckGeneratedTranscriptionValidityOnCreate() {
         $transcr = $this->Transcription->find('first', array(
             'conditions' => array('sentence_id' => 10)
         ));
@@ -409,10 +424,24 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->AutoTranscr->setReturnValue('jpn_Jpan_to_Hrkt_validate', false);
 
         $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
+        $this->assertTrue($result);
+    }
+
+    function testSaveTranscriptionChecksUserProvidedTranscriptionValidityOnUpdate() {
+        $transcr = $this->Transcription->find('first', array(
+            'conditions' => array('sentence_id' => 10)
+        ));
+        $transcr['Transcription']['text'] = 'something new';
+        $transcr['Transcription']['user_id'] = 4;
+
+        $this->AutoTranscr = $this->_installAutotranscriptionMock();
+        $this->AutoTranscr->setReturnValue('jpn_Jpan_to_Hrkt_validate', false);
+
+        $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
         $this->assertFalse($result);
     }
 
-    function testSaveTranscriptionChecksTranscriptionValidityOnUpdate() {
+    function testSaveTranscriptionDontCheckGeneratedTranscriptionValidityOnUpdate() {
         $transcr = $this->Transcription->find('first', array(
             'conditions' => array('sentence_id' => 10)
         ));
@@ -422,7 +451,7 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->AutoTranscr->setReturnValue('jpn_Jpan_to_Hrkt_validate', false);
 
         $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
-        $this->assertFalse($result);
+        $this->assertTrue($result);
     }
 
     function testAddGeneratedTranscriptionsAddsEverything() {
