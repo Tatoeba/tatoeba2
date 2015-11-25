@@ -72,6 +72,7 @@ class TranscriptionsShell extends Shell {
     private function setScript() {
         $proceeded = $this->allSentencesOperation('_setScript', array(
             'lang' => $this->Transcription->langsInNeedOfScriptAutodetection(),
+            'script' => null,
         ));
         echo "\nScript set for $proceeded sentences.\n";
     }
