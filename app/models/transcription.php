@@ -366,9 +366,15 @@ class Transcription extends AppModel
         if (!$langScript)
             return;
 
+        $generated = 0;
         foreach ($this->availableTranscriptions[$langScript] as $targetScript => $process) {
-            $this->generateTranscription($sentence, $targetScript, true);
+            $generated += (int)$this->generateTranscription(
+                $sentence,
+                $targetScript,
+                true
+            );
         }
+        return $generated;
     }
 
     public function generateTranscription($sentence, $targetScript, $save = false, $transcr = array()) {

@@ -359,6 +359,18 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertEqual(1, $created);
     }
 
+    function testGenerateAndSaveAllTranscriptionsReturnValue() {
+        $this->Transcription->deleteAll('1=1');
+        $cmnSentence = $this->Transcription->Sentence->findById(2);
+
+        $returned = $this->Transcription->generateAndSaveAllTranscriptionsFor($cmnSentence);
+
+        $created = $this->Transcription->find('count', array(
+            'conditions' => array('sentence_id' => 2)
+        ));
+        $this->assertEqual($created, $returned);
+    }
+
     function testGenerateAndSaveAllTranscriptionsForChinese() {
         $this->Transcription->deleteAll('1=1');
         $cmnSentence = $this->Transcription->Sentence->findById(2);
