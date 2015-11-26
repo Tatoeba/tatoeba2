@@ -86,7 +86,7 @@ class TranscriptionsShell extends Shell {
             'atomic' => false,
             'callbacks' => false,
         );
-        if ($this->Sentence->saveAll($data, $options))
+        if ($data && $this->Sentence->saveAll($data, $options))
             $proceeded += count($data);
         return $proceeded;
     }
