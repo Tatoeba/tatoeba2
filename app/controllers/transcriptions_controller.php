@@ -92,7 +92,7 @@ class TranscriptionsController extends AppController
             $this->header('HTTP/1.1 400 Bad transcription');
         }
 
-        $this->setViewVars(array($saved), $sentenceId, $sentence);
+        $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
         $this->render('view');
     }
 
@@ -141,7 +141,7 @@ class TranscriptionsController extends AppController
             return $canEdit && $saved;
         }
 
-        $this->setViewVars(array($saved), $sentenceId);
+        $this->setViewVars(array_filter(array($saved)), $sentenceId);
         $this->render('view');
     }
 
