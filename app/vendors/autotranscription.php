@@ -279,7 +279,19 @@ class Autotranscription
     }
 
     private function cmn_Latn_validate($sentenceText, $transcr, &$errors) {
-        return !preg_match('/\p{Han}/u', $transcr);
+        if (preg_match_all('/[\p{Han}]/u', $transcr, $matches)) {
+            $charsEnumeration = implode(__(', ', true), $matches[0]);
+            $errors[] = format(
+                __n(
+                    'The following character is not transcribed: {charsEnumeration}.',
+                    'The following characters are not transcribed: {charsEnumeration}.',
+                    count($matches[0]),
+                    true),
+                compact('charsEnumeration')
+            );
+            return false;
+        }
+        return true;
     }
 
     private function yue_jyutping($text) {
