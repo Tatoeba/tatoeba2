@@ -63,13 +63,23 @@ class AutotranscriptionTestCase extends CakeTestCase {
                 '[Perfume|]の[曲|きょく]',
             ),
         );
-        $method = 'jpn_Jpan_to_Hrkt_validate';
-        foreach ($testGood as $japanese => $furis)
-            foreach ($furis as $furi)
-                $this->_assertCheck($method, $japanese, $furi, true);
-        foreach ($testBad as $japanese => $furis)
-            foreach ($furis as $furi)
-                $this->_assertCheck($method, $japanese, $furi, false);
+        $this->assertValidTranscriptions('jpn', 'Jpan', 'Hrkt', $testGood);
+        $this->assertInvalidTranscriptions('jpn', 'Jpan', 'Hrkt', $testBad);
+    }
+
+    function assertTranscriptions($lang, $fromScript, $toScript, $transcriptions, $validity) {
+        $method = "${lang}_${fromScript}_to_${toScript}_validate";
+        foreach ($transcriptions as $from => $tos)
+            foreach ($tos as $to)
+                $this->_assertCheck($method, $from, $to, $validity);
+    }
+
+    function assertInvalidTranscriptions($lang, $fromScript, $toScript, $transcriptions) {
+        $this->assertTranscriptions($lang, $fromScript, $toScript, $transcriptions, false);
+    }
+
+    function assertValidTranscriptions($lang, $fromScript, $toScript, $transcriptions) {
+        $this->assertTranscriptions($lang, $fromScript, $toScript, $transcriptions, true);
     }
 
     function _assertFurigana($kanji, $reading, $expected) {
