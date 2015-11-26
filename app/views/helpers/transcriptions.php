@@ -268,10 +268,13 @@ class TranscriptionsHelper extends AppHelper
         $content = '';
         if ($needsReview) {
             $content = $this->Images->svgIcon('warning-small');
-            $content .= $this->Images->svgIcon('check', array(
-                'class' => 'check',
-            ));
-            $title = __("May contain errors.\nClick to mark as reviewed.", true);
+            $title = __("May contain errors.", true);
+            if ($canEdit) {
+                $content .= $this->Images->svgIcon('check', array(
+                    'class' => 'check',
+                ));
+                $title .= "\n" . __('Click to mark as reviewed.', true);
+            }
         };
 
         if ($content) {
