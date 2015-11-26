@@ -40,6 +40,13 @@ class Translation extends AppModel
     public $useTable = 'sentences';
     public $hasMany = array('Transcription');
 
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+        if (!Configure::read('AutoTranscriptions.enabled')) {
+            $this->Behaviors->disable('Transcriptable');
+        }
+    }
 
     public function find($sentenceId, $languages)
     {

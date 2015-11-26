@@ -342,7 +342,8 @@
  * - Set Search.enabled to false if you don't have Sphinx installed.
  * - Set AutoTranscriptions.enabled to false if you don't have the
  *   various transcription tools installed, or if you simply don't
- *   want to have the transcriptions displayed.
+ *   want to have transcriptions automatically generated for new
+ *   sentences.
  */
     Configure::write('Search.enabled', false);
     Configure::write('AutoTranscriptions.enabled', false);

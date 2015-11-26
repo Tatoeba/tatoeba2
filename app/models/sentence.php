@@ -111,6 +111,9 @@ class Sentence extends AppModel
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
+        if (!Configure::read('AutoTranscriptions.enabled')) {
+            $this->Behaviors->disable('Transcriptable');
+        }
         if (Configure::read('Search.enabled')) {
             $this->Behaviors->attach('Sphinx');
         }
