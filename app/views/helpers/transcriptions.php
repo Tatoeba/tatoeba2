@@ -77,7 +77,7 @@ class TranscriptionsHelper extends AppHelper
         $sentenceOwnerId
     ) {
         $this->Javascript->link('jquery.jeditable.js', false);
-        $this->Javascript->link('transcriptions.edit_in_place.js', false);
+        $this->Javascript->link('transcriptions.js', false);
 
         $canEdit = CurrentUser::canEditTranscription(
             $transcr['user_id'], $sentenceOwnerId

@@ -31,7 +31,7 @@ if ($validationErrors) {
 }
 
 if ($transcr && $lang) {
-    echo $javascript->link('transcriptions.edit_in_place.js', true);
+    echo $javascript->link('transcriptions.js', true);
     $transcriptions->displayTranscriptions($transcr, $lang, $sentenceOwnerId);
 }
 ?>
