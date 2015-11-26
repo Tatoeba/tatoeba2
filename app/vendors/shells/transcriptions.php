@@ -43,10 +43,9 @@ class TranscriptionsShell extends Shell {
         return $result;
     }
 
-    private function autogen($params) {
-        $param = array_shift($params);
-        $langs = $param ?
-                 array($param) :
+    private function autogen($lang) {
+        $langs = $lang ?
+                 array($lang) :
                  $this->Transcription->transcriptableLanguages();
 
         foreach ($langs as $lang) {
@@ -76,26 +75,31 @@ class TranscriptionsShell extends Shell {
         return $generated;
     }
 
-    private function setContributionsScript() {
-        $conditions = array(
-            'sentence_lang' => $this->Transcription->langsInNeedOfScriptAutodetection(),
-        );
+    private function setContributionsScript($lang) {
+        $langs = $lang ?
+                 array($lang) :
+                 $this->Transcription->langsInNeedOfScriptAutodetection();
         $proceeded = $this->batchOperation(
             'Contribution',
             '_setScript',
             array(
-                'conditions' => $conditions,
+                'conditions' => array('sentence_lang' => $langs),
                 'fields' => array('id', 'sentence_lang', 'script', 'text'),
             )
         );
-        echo "\nScript set for $proceeded contributions.\n";
+        $langs = implode(', ', $langs);
+        echo "\nScript set for $proceeded contributions in lang(s) $langs.\n";
     }
 
-    private function setSentencesScript() {
+    private function setSentencesScript($lang) {
+        $langs = $lang ?
+                 array($lang) :
+                 $this->Transcription->langsInNeedOfScriptAutodetection();
         $proceeded = $this->allSentencesOperation('_setScript', array(
-            'lang' => $this->Transcription->langsInNeedOfScriptAutodetection(),
+            'lang' => $langs,
         ));
-        echo "\nScript set for $proceeded sentences.\n";
+        $langs = implode(', ', $langs);
+        echo "\nScript set for $proceeded sentences in lang(s) $lang.\n";
     }
 
     private function _setScript($rows, $model) {
@@ -143,7 +147,7 @@ class TranscriptionsShell extends Shell {
         $me = basename(__FILE__, '.php');
         die(
             "\nWrites transcription-related information to the database.\n\n".
-            "  Usage: $me script {sentences|contrubution}\n".
+            "  Usage: $me script {sentences|contrubution} [lang]\n".
             "         $me autogen [lang]\n".
             "Example: $me script sentences\n\n".
             "Parameters:\n".
@@ -163,17 +167,17 @@ class TranscriptionsShell extends Shell {
                 $table = array_shift($this->args);
                 switch ($table) {
                     case 'sentences':
-                        $this->setSentencesScript();
+                        $this->setSentencesScript(array_shift($this->args));
                         break;
                     case 'contributions':
-                        $this->setContributionsScript();
+                        $this->setContributionsScript(array_shift($this->args));
                         break;
                     default:
                         $this->die_usage();
                 }
                 break;
             case 'autogen':
-                $this->autogen($this->args);
+                $this->autogen(array_shift($this->args));
                 break;
             default:
                 $this->die_usage();
