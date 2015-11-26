@@ -163,23 +163,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                     ); ?>
                 </label>
             </div>
-
-            <div>
-                <?php echo $form->checkbox('settings.transcriptions_warning'); ?>
-                <label for="UserSettingsTranscriptionsWarning">
-                <?php
-                    $warningIcon = $images->svgIcon('warning-small', array(
-                        'class' => 'inlined-icon',
-                    ));
-                    echo format(
-                        __('Display a message that explains the meaning of '.
-                           'the icon {warningIcon} next to transcriptions.',
-                           true),
-                        compact('warningIcon')
-                    );
-                ?>
-                </label>
-            </div>
         </fieldset>
 
         <?php echo $form->end(__('Save', true)); ?>

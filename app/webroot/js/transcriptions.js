@@ -155,15 +155,4 @@ $(document).ready(function() {
         transcription.trigger('edit_transcription');
         transcription.find('form').submit();
     });
-
-    // warning message close button
-    $('.transcriptionInfo .close').click(function() {
-        $('.transcriptionInfo .close').parent().remove();
-        if ($(this).attr('data-save-settings')) {
-            $.post(
-                rootUrl + '/user/save_settings',
-                { 'data[User][settings][transcriptions_warning]': '0' }
-            );
-        }
-    });
 });
