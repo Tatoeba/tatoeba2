@@ -70,7 +70,7 @@ class TranscriptionsShell extends Shell {
         return $generated;
     }
 
-    private function setScript() {
+    private function setSentencesScript() {
         $proceeded = $this->allSentencesOperation('_setScript', array(
             'lang' => $this->Transcription->langsInNeedOfScriptAutodetection(),
             'script' => null,
@@ -78,32 +78,41 @@ class TranscriptionsShell extends Shell {
         echo "\nScript set for $proceeded sentences.\n";
     }
 
-    private function _setScript($sentences) {
+    private function _setScript($rows, $model) {
         $proceeded = 0;
-        $data = $this->detectTranscriptionsFor($sentences);
+        $data = $this->detectTranscriptionsFor($rows);
         $options = array(
             'validate' => true,
             'atomic' => false,
             'callbacks' => false,
         );
-        if ($data && $this->Sentence->saveAll($data, $options))
+        if ($data && $this->{$model}->saveAll($data, $options))
             $proceeded += count($data);
         return $proceeded;
     }
 
     private function allSentencesOperation($operation, $conditions) {
+        return $this->batchOperation('Sentence', $operation, array(
+            'conditions' => $conditions,
+            'fields' => array('id', 'lang', 'script', 'text'),
+        ));
+    }
+
+    private function batchOperation($model, $operation, $options) {
         $batchSize = 1000;
         $offset = 0;
         $proceeded = 0;
-
-        do {
-            $sentences = $this->Sentence->find('all', array(
-                'conditions' => $conditions,
-                'fields' => array('id', 'lang', 'script', 'text'),
+        $options = array_merge(
+            array(
                 'contain' => array(),
                 'limit' => $batchSize,
                 'offset' => $offset,
-            ));
+            ),
+            $options
+        );
+
+        do {
+            $sentences = $this->{$model}->find('all', $options);
             $proceeded += $this->{$operation}($sentences);
             echo ".";
             $offset += $batchSize;
@@ -115,7 +124,7 @@ class TranscriptionsShell extends Shell {
         $me = basename(__FILE__, '.php');
         die(
             "\nWrites transcription-related information to the database.\n\n".
-            "  Usage: $me {script|autogen [lang]}\n".
+            "  Usage: $me { script {sentences} | autogen [lang] }\n".
             "Example: $me script\n\n".
             "Parameters:\n".
             " script: fills 'script' column in the sentences table.\n".
@@ -131,7 +140,14 @@ class TranscriptionsShell extends Shell {
         $operation = array_shift($this->args);
         switch($operation) {
             case 'script':
-                $this->setScript();
+                $table = array_shift($this->args);
+                switch ($table) {
+                    case 'sentences':
+                        $this->setSentencesScript();
+                        break;
+                    default:
+                        $this->die_usage();
+                }
                 break;
             case 'autogen':
                 $this->autogen($this->args);
