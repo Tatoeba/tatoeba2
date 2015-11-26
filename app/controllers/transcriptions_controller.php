@@ -92,7 +92,7 @@ class TranscriptionsController extends AppController
             $this->header('HTTP/1.1 400 Bad transcription');
         }
 
-        $this->setViewVars($saved, $sentenceId, $sentence);
+        $this->setViewVars(array($saved), $sentenceId, $sentence);
         $this->render('view');
     }
 
@@ -141,7 +141,7 @@ class TranscriptionsController extends AppController
             return $canEdit && $saved;
         }
 
-        $this->setViewVars($saved, $sentenceId);
+        $this->setViewVars(array($saved), $sentenceId);
         $this->render('view');
     }
 
@@ -169,8 +169,8 @@ class TranscriptionsController extends AppController
         $this->set(compact('username'));
     }
 
-    private function setViewVars($transcription, $sentenceId, $sentence = null) {
-        if ($transcription) {
+    private function setViewVars($transcriptions, $sentenceId, $sentence = null) {
+        if ($transcriptions) {
             if (!$sentence) {
                 $sentence = $this->Sentence->findById(
                     $sentenceId,
@@ -183,7 +183,7 @@ class TranscriptionsController extends AppController
             }
         }
 
-        $this->set('transcr', $transcription);
+        $this->set('transcr', $transcriptions);
         $this->set('validationErrors', $this->Transcription->validationErrors);
         $this->layout = null;
     }
