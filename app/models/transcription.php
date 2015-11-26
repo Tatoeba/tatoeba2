@@ -453,15 +453,13 @@ class Transcription extends AppModel
             return array(false, false);
     }
 
-    public function findTranscriptionId($sentenceId, $script) {
-        $result = $this->find('first', array(
+    public function findTranscription($sentenceId, $script) {
+        return $this->find('first', array(
             'conditions' => array(
                 'sentence_id' => $sentenceId,
                 'script' => $script
             ),
-            'fields' => array('id')
         ));
-        return $result ? $result['Transcription']['id'] : null;
     }
 
     private function insertTranscriptionOrdered(&$transcriptions, $newTranscr) {

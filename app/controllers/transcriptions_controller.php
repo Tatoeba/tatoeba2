@@ -60,27 +60,17 @@ class TranscriptionsController extends AppController
     }
 
     public function reset($sentenceId, $script) {
-        $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
-        $saved = false;
-        $sentence = null;
+        $transcr = $this->Transcription->findTranscription($sentenceId, $script);
+        $transcrOwnerId = $transcr ? $transcr['Transcription']['user_id'] : null;
+        $sentence = $this->Sentence->findById($sentenceId);
+        $sentenceOwnerId = $sentence ? $sentence['Sentence']['user_id'] : null;
+        $canEdit = CurrentUser::canEditTranscription(
+            $transcrOwnerId, $sentenceOwnerId
+        );
 
-        if ($transcriptionId) {
-            list($transcrOwnerId, $sentenceOwnerId)
-                = $this->Transcription->getOwners($transcriptionId);
-            $canEdit = CurrentUser::canEditTranscription(
-                $transcrOwnerId, $sentenceOwnerId
-            );
-            if ($canEdit) {
-                $this->Transcription->delete($transcriptionId, false);
-                $sentence = $this->Sentence->findById($sentenceId);
-                $saved = $this->Transcription->generateTranscription(
-                    $sentence,
-                    $script,
-                    true
-                );
-            }
-        } else {
-            $sentence = $this->Sentence->findById($sentenceId);
+        $saved = false;
+        if ($canEdit) {
+            $this->Transcription->delete($transcr['Transcription']['id'], false);
             $saved = $this->Transcription->generateTranscription(
                 $sentence,
                 $script,
@@ -97,35 +87,26 @@ class TranscriptionsController extends AppController
     }
 
     public function save($sentenceId, $script) {
-        $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
-        $transcriptionText = $this->params['form']['value'];
-        $userId = CurrentUser::get('id');
-        $canEdit = true;
+        $transcr = $this->Transcription->findTranscription($sentenceId, $script);
+        $transcrOwnerId = $transcr ? $transcr['Transcription']['user_id'] : null;
+        $sentence = $this->Sentence->findById($sentenceId, 'user_id');
+        $sentenceOwnerId = $sentence ? $sentence['Sentence']['user_id'] : null;
+        $canEdit = CurrentUser::canEditTranscription(
+            $transcrOwnerId, $sentenceOwnerId
+        );
 
-        if ($transcriptionId) { // Modifying existing transcription
-            list($transcrOwnerId, $sentenceOwnerId)
-                = $this->Transcription->getOwners($transcriptionId);
-            $canEdit = CurrentUser::canEditTranscription(
-                $transcrOwnerId, $sentenceOwnerId
-            );
-
-            $saved = false;
-            if ($canEdit) {
-                $saved = $this->Transcription->saveTranscription(array(
-                    'id' => $transcriptionId,
-                    'sentence_id' => $sentenceId,
-                    'script' => $script,
-                    'text' => $transcriptionText,
-                    'user_id' => $userId,
-                ));
-            }
-        } else { // Inserting a new transcription
-            $saved = $this->Transcription->saveTranscription(array(
-                'text' => $transcriptionText,
+        $saved = false;
+        if ($canEdit) {
+            $data = array(
                 'sentence_id' => $sentenceId,
                 'script' => $script,
-                'user_id' => $userId,
-            ));
+                'text' => $this->params['form']['value'],
+                'user_id' => CurrentUser::get('id'),
+            );
+            if ($transcr) { // Modifying existing transcription
+                $data['id'] = $transcr['Transcription']['id'];
+            }
+            $saved = $this->Transcription->saveTranscription($data);
         }
 
         if (!$saved) {
