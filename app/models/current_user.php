@@ -267,7 +267,7 @@ class CurrentUser extends AppModel
         }
 
         $currentUserId = self::get('id');
-        return $transcrOwnerId === null
+        return ($transcrOwnerId === null && CurrentUser::isTrusted())
                || $sentenceOwnerId === $currentUserId
                || $transcrOwnerId === $currentUserId
                || CurrentUser::isModerator();

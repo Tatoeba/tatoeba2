@@ -124,9 +124,9 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
         $this->assertFalse($result);
     }
 
-    function testRegularUserCanEditMachineTranscription() {
+    function testRegularUserCannotEditMachineTranscription() {
         $result = $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $this->assertFalse($result);
     }
     function testOwnerCanEditOwnTranscription() {
         $result = $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
@@ -147,9 +147,14 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
 
         $this->assertTrue($result);
     }
-    function testRegularUserCanInsertTranscription() {
+    function testRegularUserCannotInsertTranscription() {
         $this->Transcriptions->Transcription->deleteAll('1=1');
         $result = $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
+        $this->assertFalse($result);
+    }
+    function testOwnerCanInsertTranscription() {
+        $this->Transcriptions->Transcription->deleteAll('1=1');
+        $result = $this->_saveAsUser('kazuki', 10, 'Hrkt', 'something new');
         $this->assertTrue($result);
     }
 
