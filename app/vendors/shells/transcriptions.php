@@ -31,6 +31,7 @@ class TranscriptionsShell extends Shell {
             $result[] = array(
                 'id' => $sentence['Sentence']['id'],
                 'script' => $script,
+                'modified' => false,
             );
         }
         return $result;
