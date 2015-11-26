@@ -98,4 +98,19 @@ class AutotranscriptionTestCase extends CakeTestCase {
         $this->_assertFurigana('１', 'いち', '１');
         $this->_assertFurigana('1', 'いち', '1');
     }
+
+    function testPinyin() {
+        $testGood = array(
+            '你不得不制造一些借口。' => array(
+                'Ni3 bu4de2bu4 zhi4zao4 yi1xie1 jie4kou3.',
+            ),
+        );
+        $testBad = array(
+            '你不得不制造一些借口。' => array(
+                'Ni3 bu4de2bu4 製 zao4 yi1xie1 jie4kou3.',
+            ),
+        );
+        $this->assertValidTranscriptions('cmn', 'Hant', 'Latn', $testGood);
+        $this->assertInvalidTranscriptions('cmn', 'Hant', 'Latn', $testBad);
+    }
 }

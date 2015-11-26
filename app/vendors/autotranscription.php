@@ -270,6 +270,18 @@ class Autotranscription
         return $this->_call_sinoparserd('pinyin', $text);
     }
 
+    public function cmn_Hans_to_Latn_validate($sentenceText, $transcr, &$errors) {
+        return $this->cmn_Latn_validate($sentenceText, $transcr, $errors);
+    }
+
+    public function cmn_Hant_to_Latn_validate($sentenceText, $transcr, &$errors) {
+        return $this->cmn_Latn_validate($sentenceText, $transcr, $errors);
+    }
+
+    private function cmn_Latn_validate($sentenceText, $transcr, &$errors) {
+        return !preg_match('/\p{Han}/u', $transcr);
+    }
+
     private function yue_jyutping($text) {
         return $this->_call_sinoparserd('jyutping', $text);
     }
