@@ -79,7 +79,6 @@ class TranscriptionsShell extends Shell {
     private function setContributionsScript() {
         $conditions = array(
             'sentence_lang' => $this->Transcription->langsInNeedOfScriptAutodetection(),
-            'script' => null,
         );
         $proceeded = $this->batchOperation(
             'Contribution',
@@ -95,7 +94,6 @@ class TranscriptionsShell extends Shell {
     private function setSentencesScript() {
         $proceeded = $this->allSentencesOperation('_setScript', array(
             'lang' => $this->Transcription->langsInNeedOfScriptAutodetection(),
-            'script' => null,
         ));
         echo "\nScript set for $proceeded sentences.\n";
     }
