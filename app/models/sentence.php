@@ -307,6 +307,14 @@ class Sentence extends AppModel
         // Reindex translations
         $this->needsReindex($this->data['ReindexFlag']);
 
+        // Add the sentence to the kill-list
+        // so that it won't appear in search results anymore
+        $this->ReindexFlag->create();
+        $this->ReindexFlag->save(array(
+            'sentence_id' => $sentenceId,
+            'lang_id' => $this->data['Sentence']['lang_id'],
+        ));
+
         // Remove links
         $conditions = array(
             'Link.sentence_id' => $sentenceId,
