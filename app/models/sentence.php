@@ -47,7 +47,6 @@ class Sentence extends AppModel
 
     public $name = 'Sentence';
     public $actsAs = array('Containable', 'Transcriptable');
-    public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
 
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
