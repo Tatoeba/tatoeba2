@@ -320,6 +320,8 @@ EOT;
                     '' :
                     'join reindex_flags on reindex_flags.sentence_id = sent_start.id';
                 $conf .= "
+        sql_query_range = select min(id), max(id) from sentences
+        sql_range_step = 500000
         sql_query = \
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
@@ -358,6 +360,7 @@ EOT;
                        transtrans.translation_id) \
                 where \
                     sent_start.lang_id = (select id from languages where code = '$lang') \
+                    and sent_start.id >= \$start and sent_start.id <= \$end \
                 group by id, sent_end.id \
             ) r \
             left join \
