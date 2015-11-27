@@ -39,6 +39,10 @@ if (!isset($lastText)) {
          <h2><?php __('Pinyin converter'); ?></h2>
         <?php
         if (isset($convertedText)) {
+            if ($this->data['Tool']['to'] === 'diacPinyin') {
+                $convertedText = $this->Pinyin->numeric2diacritic($convertedText);
+            }
+
             echo $languages->tagWithLang(
                 'div', 'zh', $convertedText,
                 array('id' => 'conversion'),
@@ -78,7 +82,6 @@ if (!isset($lastText)) {
                     'numPinyin' => __('numerical pinyin', true),
                 ),
                 array(
-                    'value' => 'chinese',
                     'legend' => ''
                 )
             );
@@ -94,7 +97,6 @@ if (!isset($lastText)) {
                     'diacPinyin' => __('diacritical pinyin', true),
                 ),
                 array(
-                    'value' => 'numPinyin',
                     'legend' => ''
                 )
             );

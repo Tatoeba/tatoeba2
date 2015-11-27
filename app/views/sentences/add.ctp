@@ -160,6 +160,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
             $translation = array();            
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
+                $sentence['Transcription'],
                 $translation,
                 $sentence['User']
             );

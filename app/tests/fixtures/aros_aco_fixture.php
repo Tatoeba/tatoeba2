@@ -1,5 +1,5 @@
 <?php
-/* ArosAco Fixture generated on: 2014-09-14 16:11:45 : 1410711105 */
+/* ArosAco Fixture generated on: 2014-10-20 07:39:46 : 1413790786 */
 class ArosAcoFixture extends CakeTestFixture {
 	var $name = 'ArosAco';
 
@@ -524,6 +524,42 @@ class ArosAcoFixture extends CakeTestFixture {
 			'id' => '179',
 			'aro_id' => '6',
 			'aco_id' => '490',
+			'_create' => '1',
+			'_read' => '1',
+			'_update' => '1',
+			'_delete' => '1'
+		),
+		array(
+			'id' => '180',
+			'aro_id' => '4',
+			'aco_id' => '500',
+			'_create' => '1',
+			'_read' => '1',
+			'_update' => '1',
+			'_delete' => '1'
+		),
+		array(
+			'id' => '181',
+			'aro_id' => '3',
+			'aco_id' => '500',
+			'_create' => '1',
+			'_read' => '1',
+			'_update' => '1',
+			'_delete' => '1'
+		),
+		array(
+			'id' => '182',
+			'aro_id' => '2',
+			'aco_id' => '500',
+			'_create' => '1',
+			'_read' => '1',
+			'_update' => '1',
+			'_delete' => '1'
+		),
+		array(
+			'id' => '183',
+			'aro_id' => '1',
+			'aco_id' => '500',
 			'_create' => '1',
 			'_read' => '1',
 			'_update' => '1',

@@ -50,6 +50,7 @@ if ($sentenceFound == false) {
 
         $sentences->displaySentencesGroup(
             $sentence,
+            $transcrs,
             $translations,
             $sentenceOwner,
             $indirectTranslations

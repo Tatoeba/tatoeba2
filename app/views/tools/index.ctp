@@ -35,14 +35,14 @@ $this->set('title_for_layout', $pages->formatTitle(__('Useful tools', true)));
             <li>
                 <?php
                 echo $html->link(
-                    __('Romaji/furigana conversion', true),
+                    __('Furigana autogeneration', true),
                     array(
                         "controller" => "tools",
-                        "action" => "romaji_furigana"
+                        "action" => "furigana"
                     )
                 );
                 echo ': ';
-                __("convert Japanese to romaji or furigana.");
+                __("autogenerate furigana over Japanese.");
                 ?>
             </li>
             <li>

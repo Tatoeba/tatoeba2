@@ -76,6 +76,7 @@ class LanguagesLib
             'cho' => 'ch', // Choctaw
             'chv' => 'cv', // Chuvash
             'cor' => 'kw', // Cornish
+            'cos' => 'cc', // Corsican
             'crs' => 'cr', // Seychellois Creole
             'csb' => 'cb', // Kashubian
             'cyo' => 'co', // Cuyonon
@@ -114,6 +115,7 @@ class LanguagesLib
             'heb' => 'he', // Hebrew
             'hif' => 'hf', // Fiji Hindi
             'hin' => 'hi', // Hindi
+            'hmn' => 'hn', // Hmong
             'hoc' => 'ho', // Ho
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
@@ -561,7 +563,9 @@ class LanguagesLib
                 'mvv' => __('Tagal Murut',true),
                 'mdf' => __('Moksha',true),
                 'pag' => __('Pangasinan',true),
-
+                'cos' => __('Corsican',true),
+                'hmn' => __('Hmong',true),
+                
 
             );
         }

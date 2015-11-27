@@ -113,59 +113,6 @@ class MenuHelper extends AppHelper
         echo $this->Html->tag('/li');
     }
 
-
-    /**
-     * Display button to notify the chinese sentence is in
-     * simplified script
-     *
-     * @return void
-     */
-    public function simplifiedButton()
-    {
-        ?>
-        <li class="option simplified">
-        <?php
-        echo $this->Html->image(
-            IMG_PATH . 'simplified_chinese.png',
-            array(
-                'alt'=>__('This sentence is in simplified Chinese.', true),
-                'title'=>__('This sentence is in simplified Chinese.', true),
-                'width' => 18,
-                'height' => 16
-            )
-        );
-        ?>
-        </li>
-    <?php
-    }
-
-    /**
-     * Display button to indicate that the Chinese sentence is in
-     * traditional script
-     *
-     * @return void
-     */
-    public function traditionalButton()
-    {
-        ?>
-        <li class="option traditional">
-        <?php
-        echo $this->Html->image(
-            IMG_PATH . 'traditional_chinese.png',
-            array(
-                'alt'=>__('This sentence is in traditional Chinese.', true),
-                'title'=>__('This sentence is in traditional Chinese.', true),
-                'width' => 18,
-                'height' => 16
-            )
-        );
-        ?>
-        </li>
-    <?php
-    }
-
-
-
     /**
      * Display button to adopt a sentence.
      *
@@ -523,6 +470,12 @@ class MenuHelper extends AppHelper
         );
     }
 
+    private function transcribeButtons() {
+        /* Buttons will be loaded using Javascript */
+        echo $this->Html->tag('ul', '', array(
+            'class' => 'transcribe-buttons',
+        ));
+    }
 
     /**
      * Return a link to owner's profile
@@ -676,11 +629,7 @@ class MenuHelper extends AppHelper
             $this->correctnessButton($sentenceId);
         }
 
-        if ($chineseScript == 'Hans') {
-            $this->simplifiedButton();
-        } else if ($chineseScript == 'Hant') {
-            $this->traditionalButton();
-        }
+        $this->transcribeButtons();
         ?>
 
         <li>

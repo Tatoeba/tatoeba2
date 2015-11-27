@@ -56,9 +56,9 @@ class SentencesHelper extends AppHelper
         'SentenceButtons',
         'Languages',
         'Session',
-        'Pinyin',
         'Menu',
-        'Images'
+        'Images',
+        'Transcriptions',
     );
 
 
@@ -66,29 +66,46 @@ class SentencesHelper extends AppHelper
      * Diplays a sentence and its translations.
      *
      * @param array $sentence             Sentence to display.
+     * @param array $transcriptions       Transcriptions of the sentence.
      * @param array $translations         Translations of the sentence.
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
-     * @param bool  $withAudio            Set to 'true' if audio icon is displayed.
-     * @param bool  $langFilter           The language $indirectTranslations are filtered in, if any.
+     * @param bool  $options              Array of options
+                                          withAudio: set it to false to hide audio icon
+     *                                    langFilter: the language $indirectTranslations are filtered in, if any.
      *
      * @return void
      */
     public function displaySentencesGroup(
         $sentence,
+        $transcriptions,
         $translations,
         $user = null,
         $indirectTranslations = array(),
-        $withAudio = true,
-        $langFilter = 'und'
+        $options = array()
     ) {
+        $options = array_merge(
+            array(
+                'withAudio' => true,
+                'langFilter' => 'und'
+            ),
+            $options
+        );
+        extract($options);
+
         $id = $sentence['id'];
 
         ?>
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
 
-        $this->displayMainSentence($sentence, $user, $withAudio, $langFilter);
+        $this->displayMainSentence(
+            $sentence,
+            $transcriptions,
+            $user,
+            $withAudio,
+            $langFilter
+        );
 
 
         // Loading gif
@@ -154,6 +171,7 @@ class SentencesHelper extends AppHelper
 
                 $this->displayGenericSentence(
                     $translation['Translation'],
+                    $translation['Transcription'],
                     $type,
                     $withAudio,
                     $id,
@@ -188,6 +206,7 @@ class SentencesHelper extends AppHelper
 
                 $this->displayGenericSentence(
                     $translation['Translation'],
+                    $translation['Transcription'],
                     $type,
                     $withAudio,
                     $id,
@@ -213,12 +232,16 @@ class SentencesHelper extends AppHelper
      * Displays group of sentences with only text, flag and audio button.
      *
      * @param array $sentence             Sentence to display.
+     * @param array $transcriptions       Transcriptions of the sentence.
      * @param array $translations         Translations of the sentence.
      *
      * @return void
      */
-    public function displaySimpleSentencesGroup($sentence, $translations)
-    {
+    public function displaySimpleSentencesGroup(
+        $sentence,
+        $transcriptions,
+        $translations
+    ) {
         $withAudio = true;
         $id = $sentence['id'];
         ?>
@@ -227,6 +250,7 @@ class SentencesHelper extends AppHelper
         <?php
         $this->displayGenericSentence(
             $sentence,
+            $transcriptions,
             'mainSentence',
             $withAudio
         );
@@ -238,6 +262,7 @@ class SentencesHelper extends AppHelper
         foreach ($translations as $translation) {
             $this->displayGenericSentence(
                 $translation,
+                $translation['Transcription'],
                 'directTranslation',
                 $withAudio
             );
@@ -385,12 +410,19 @@ class SentencesHelper extends AppHelper
      * the top.
      *
      * @param array  $sentence   Sentence data.
+     * @param array  $transcriptions Transcriptions of the sentence.
      * @param string $user       Information about the owner of the sentence..
      * @param string $langFilter The language translations are filtered in, if any.
      *
      * @return void
      */
-    public function displayMainSentence($sentence, $user, $withAudio, $langFilter = 'und') {
+    public function displayMainSentence(
+        $sentence,
+        $transcriptions,
+        $user,
+        $withAudio,
+        $langFilter = 'und'
+    ) {
         $sentenceId = $sentence['id'];
         $canTranslate = $sentence['correctness'] >= 0;
         $hasAudio = $sentence['hasaudio'] == 'shtooka';
@@ -406,6 +438,7 @@ class SentencesHelper extends AppHelper
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
             $sentence,
+            $transcriptions,
             'mainSentence',
             $withAudio,
             null,
@@ -426,6 +459,7 @@ class SentencesHelper extends AppHelper
      *  - the audio button
      *
      * @param array  $sentence        Sentence data.
+     * @param array  $transcriptions  Transcriptions of the sentence.
      * @param string $type            Type of sentence. Can be 'mainSentence',
      *                                'directTranslation' or 'indirectTranslation'.
      * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
@@ -437,6 +471,7 @@ class SentencesHelper extends AppHelper
      */
     public function displayGenericSentence(
         $sentence,
+        $transcriptions,
         $type,
         $withAudio = true,
         $parentId = null,
@@ -446,11 +481,10 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
-        $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
-        $classes = array('sentence', $type, $correctnessLabel);
+        $classes = array('sentence', $type);
         if ($isEditable && $type == 'directTranslation') {
             $classes[] = 'editableTranslation';
         }
@@ -491,7 +525,7 @@ class SentencesHelper extends AppHelper
             echo '</div>';
         }
 
-        // Sentence and romanization
+        // Sentence
         $canEdit = $isEditable && $sentenceAudio == 'no';
         $this->displaySentenceContent($sentence, $canEdit);
         echo '</div>';
@@ -504,6 +538,18 @@ class SentencesHelper extends AppHelper
             );
             echo '</div>';
         }
+
+        // Transcriptions
+        if ($transcriptions) {
+            echo $this->Html->div('transcriptions', null, array(
+               'data-sentence-id' => $sentence['id'],
+            ));
+            $this->Transcriptions->displayTranscriptions(
+                $transcriptions, $sentence['lang'], $sentence['user_id']
+            );
+            echo $this->Html->tag('/div');
+        }
+
         ?>
         </div>
 
@@ -570,31 +616,24 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    public function displaySentenceContent($sentence, $isEditable) {
-        ?>
+    public function displaySentenceContent(
+        $sentence,
+        $isEditable
+    ) {
+        echo $this->Html->div('sentenceContent', null, array(
+            'data-sentence-id' => $sentence['id'],
+        ));
 
-        <div class="sentenceContent">
-        <?php
-        // text
         $script = null;
         if (isset($sentence['script'])) {
             $script = $sentence['script'];
         }
         $this->displaySentenceText(
             $sentence['id'], $sentence['text'], $isEditable,
-            $sentence['lang'], $script
+            $sentence['lang'], $script, $sentence['correctness']
         );
 
-        // romanization
-        if (isset($sentence['transcriptions'])) {
-            $this->_displayTranscriptions(
-                $sentence['transcriptions'], $sentence['lang'], $sentence['script']
-            );
-        }
-        ?>
-        </div>
-
-        <?php
+        echo $this->Html->tag('/div');
     }
 
 
@@ -606,14 +645,20 @@ class SentencesHelper extends AppHelper
      * @param bool  $isEditable   Set to 'true' if sentence is editable.
      * @param bool  $sentenceLang Language of the sentence.
      * @param bool  $sentenceScript ISO 15924 script code.
+     * @param bool  $correctness  Sentence correctness level.
      *
      * @return void
      */
     public function displaySentenceText(
         $sentenceId, $sentenceText, $isEditable = false,
-        $sentenceLang = '', $sentenceScript = ''
+        $sentenceLang = '', $sentenceScript = '', $correctness
     ) {
+        $classes = array(
+            'text',
+            $this->getCorrectnessLabel($correctness),
+        );
         if ($isEditable) {
+            $classes[] = 'editableSentence';
 
             $this->Javascript->link('jquery.jeditable.js', false);
             $this->Javascript->link('sentences.edit_in_place.js', false);
@@ -624,7 +669,7 @@ class SentencesHelper extends AppHelper
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
                 array(
-                    'class' => 'text editableSentence',
+                    'class' => join(' ', $classes),
                     'id' => $sentenceLang.'_'.$sentenceId,
                     'data-submit' => __('OK', true),
                     'data-cancel' => __('Cancel', true),
@@ -636,85 +681,12 @@ class SentencesHelper extends AppHelper
 
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
-                array('class' => 'text'),
+                array('class' => join(' ', $classes)),
                 $sentenceScript
             );
 
         }
     }
-
-
-    /**
-    * Transforms "[kanji|reading]" to HTML <ruby> tags
-    */
-    private function _rubify($formatted) {
-        return preg_replace(
-            '/\[([^|]*)\|([^\]]*)\]/',
-            '<ruby>$1<rp>(</rp><rt>$2</rt><rp>)</rp></ruby>',
-            $formatted);
-    }
-
-    /**
-     * Display transcriptions.
-     *
-     * @todo Rename CSS class: 'romanization' -> 'transcription'.
-     *
-     * @param array  $transcriptions List of transcriptions.
-     * @param string $lang           Language of the sentence transcripted.
-     * @param string $script         Script of the sentence the transcription is derived from.
-     *
-     * @return void
-     */
-    private function _displayTranscriptions($transcriptions, $lang, $script)
-    {
-        if ($lang == 'jpn') {
-
-            $furigana = $this->_rubify($transcriptions[0]);
-            $romaji = $transcriptions[1];
-            $contents = $this->Languages->tagWithLang(
-                'span', $lang, $furigana,
-                array('class' => 'romanization', 'escape' => false)
-            );
-            echo $this->Languages->tagWithLang(
-                'div', $lang, $contents,
-                array('title' => $romaji, 'escape' => false),
-                'Latn'
-            );
-
-        } else if ($lang === 'cmn') {
-            $mapToAlternateScript = array(
-                'Hans' => 'Hant',
-                'Hant' => 'Hans'
-            );
-            $alternateScript = (string)$transcriptions[1];
-            $pinyin = (string)$transcriptions[0];
-
-            echo $this->Languages->tagWithLang(
-                'div', $lang, $alternateScript,
-                array('class' => 'romanization'),
-                $mapToAlternateScript[$script]
-            );
-
-            $pinyin = $this->Pinyin->numeric2diacritic($pinyin);
-            echo $this->Languages->tagWithLang(
-                'div', $lang, $pinyin,
-                array('class' => 'romanization'),
-                'Latn'
-            );
-
-        } else {
-
-            foreach ($transcriptions as $transcription) {
-                echo $this->Languages->tagWithLang(
-                    'div', $lang, $transcription,
-                    array('class' => 'romanization'),
-                    'Latn'
-                );
-            }
-
-        }
-    }
-
 
     /**
      * Inline Javascript for AJAX loaded sentences group.
@@ -728,6 +700,7 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.adopt.js', true);
         echo $this->Javascript->link('jquery.jeditable.js', true);
         echo $this->Javascript->link('sentences.edit_in_place.js', true);
+        echo $this->Javascript->link('transcriptions.js', true);
         echo $this->Javascript->link('sentences.change_language.js', true);
         echo $this->Javascript->link('sentences.link.js', true);
         echo $this->Javascript->link('sentences.collapse.js', true);
@@ -738,7 +711,6 @@ class SentencesHelper extends AppHelper
     public function javascriptForAJAXTranslationsGroup() {
         echo $this->Javascript->link('sentences.play_audio.js', true);
         echo $this->Javascript->link('links.add_and_delete.js', true);
-        echo $this->Javascript->link('furigana.js', true);
         echo $this->Javascript->link('sentences.logs.js', true);
     }
 

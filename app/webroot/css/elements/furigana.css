@@ -38,6 +38,10 @@ rt {
     display: table-header-group;
     font-size: 60%;
     letter-spacing: 0;
+    /* Try to ease copy and pastes */
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 rp {

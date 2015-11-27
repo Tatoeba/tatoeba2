@@ -45,6 +45,7 @@ if (isset($sentence)) {
     $translation = array();
     $sentences->displaySentencesGroup(
         $sentence['Sentence'], 
+        $sentence['Transcription'],
         $translation, 
         $sentence['User']
     );

@@ -39,9 +39,8 @@ App::import('Vendor', 'autotranscription');
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Javascript');
-    public $components = array('Pinyin');
-    public $uses = array();
+    public $helpers = array('Javascript', 'Transcriptions', 'Pinyin');
+    public $uses = array('Transcription');
 
     /**
      * Before filter.
@@ -90,30 +89,36 @@ class ToolsController extends AppController
      */
     public function romaji_furigana()
     {
+        $this->redirect(
+            array(
+                'action' => 'furigana'
+            ),
+            301
+        );
+    }
+
+    /**
+     * Furigana autogeneration
+     */
+    public function furigana()
+    {
         $query = '';
-        $type = 'romaji';
         $result = '';
         
         if (isset($_GET['query'])) {
             $query = $_GET['query'];
         }
-        if (isset($_GET['type'])) {
-            $type = Sanitize::paranoid($_GET['type']);
-        }
 
-        $option = JPN_ROMAJI;
-        if ($type == 'furigana') {
-            $option = JPN_FURIGANA;
-        }
-
+        $sentence = array(
+            'id' => null,
+            'lang' => 'jpn',
+            'text' => $query,
+        );
         if (!empty($query)) {
-            $autotranscription = new Autotranscription();
-            $result = $autotranscription->jpn($query, $option);
+            $result = $this->Transcription->generateTranscription($sentence, 'Hrkt');
         }
         
-
         $this->set('query', $query);
-        $this->set('type', $type);
         $this->set('result', $result);
     }
 
@@ -127,16 +132,28 @@ class ToolsController extends AppController
     public function conversion_simplified_traditional_chinese()
     {
         $text = $this->data['Tool']['query'];
-        $convertedText = '';
         
         if (!empty($text)) {
-            $autotranscription = new Autotranscription();
-            $convertedText = $autotranscription->cmn($text, CMN_OTHER_SCRIPT);
-            $convertedTextScript = $autotranscription->cmn($convertedText, CMN_SCRIPT);
+            $script = $this->Transcription->detectScript('cmn', $text);
+            $sentence = array(
+                'id' => null,
+                'lang' => 'cmn',
+                'text' => $text,
+                'script' => $script,
+            );
+
+            $targetScript = ($script == 'Hant') ? 'Hans' : 'Hant';
+            $transcr = $this->Transcription->generateTranscription(
+                $sentence,
+                $targetScript
+            );
+
+            if ($transcr) {
+                $this->set('convertedText', $transcr['text']);
+                $this->set('script', $targetScript);
+            }
         }
 
-        $this->set('convertedTextScript', $convertedTextScript);
-        $this->set('convertedText', $convertedText);
         $this->set('lastText', $text);
     }
 
@@ -153,37 +170,26 @@ class ToolsController extends AppController
         $to = Sanitize::paranoid($this->data['Tool']['to']);
 
         if (!empty($text)) {
-            // we don't need to do nothing if we have choose the same output
-            // than input
-            if ($from === $to) {
-                $this->set('pinyin', $text);
-                $this->set('lastText', $text);
-                return;
-            }
-
+            $this->set('lastText', $text);
 
             if ($from === 'chinese') {
-                $autotranscription = new Autotranscription();
-                $pinyin = $autotranscription->cmn($text, CMN_PINYIN);
-
-                if ($to === 'diacPinyin') {
-                    $pinyin = $this->Pinyin->numeric2diacritic($pinyin);
-                }
-
-                $this->set('convertedText', $pinyin);
-                $this->set('lastText', $text);
-                return;
+                $script = $this->Transcription->detectScript('cmn', $text);
+                $sentence = array(
+                    'id' => null,
+                    'lang' => 'cmn',
+                    'text' => $text,
+                    'script' => $script,
+                );
+                $transcr = $this->Transcription->generateTranscription(
+                    $sentence,
+                    'Latn'
+                );
+                if ($transcr)
+                    $this->set('convertedText', $transcr['text']);
+            } else {
+                $this->set('convertedText', $text);
             }
-
-            if ($from == 'numPinyin') {
-                $pinyin = $this->Pinyin->numeric2diacritic($text);
-                $this->set('convertedText', $pinyin);
-                $this->set('lastText', $text);
-                return;
-            }
-
         }
-
     }
 
     /**

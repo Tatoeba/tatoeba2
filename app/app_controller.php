@@ -47,7 +47,8 @@ class AppController extends Controller
         'RememberMe',
         'Cookie',
         'RequestHandler',
-        'Session'
+        'Session',
+        'Security',
     );
 
     public $helpers = array(
@@ -102,6 +103,9 @@ class AppController extends Controller
     public function beforeFilter() 
     {
         Security::setHash('md5');
+        // only prevent CSRF for logins and registration in the users controller
+        $this->Security->validatePost = false;
+
         $this->Cookie->domain = TATOEBA_DOMAIN;
         // This line will call views/elements/session_expired.ctp.
         // When one tries to do an AJAX action after the session is expired,
