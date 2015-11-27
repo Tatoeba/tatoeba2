@@ -113,7 +113,7 @@
     ?>
 
     <link rel="search" type="application/opensearchdescription+xml"
-          href="http://tatoeba.org/opensearch.xml" title="Tatoeba" />
+          href="/opensearch.xml" title="Tatoeba" />
 </head>
 <body>
     <div id="audioPlayer"></div>
