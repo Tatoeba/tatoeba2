@@ -164,6 +164,7 @@ $navigation->displaySentenceNavigation(
             // display sentence and translations
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
+                $sentence['Transcription'],
                 $translations,
                 $sentence['User'],
                 $indirectTranslations

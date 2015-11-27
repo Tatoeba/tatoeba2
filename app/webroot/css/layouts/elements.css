@@ -1020,12 +1020,113 @@
 
 
 /*
- * Romanization
+ * Transcriptions
  */
-.romanization {
-    color: #A1A1A1;
+
+.transcriptions .menu li {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 8px;
 }
 
+.transcriptions .menu .option {
+    color: #aaaaaa;
+    height: 16px;
+    width: 16px;
+}
+
+.transcriptions .menu .option a:hover,
+.transcriptions .menu .option:hover {
+    color: #222;
+}
+
+.transcriptions .menu a.disabled,
+.transcriptions .menu a.disabled:hover {
+    color: #CCC;
+}
+
+.transcribe-buttons {
+    display: inline-block;
+    padding-left: 0;
+}
+
+.script-icon {
+    color: #222;
+    background: #CCC;
+    border-radius: 25%;
+}
+
+.script-icon.altscript {
+    color: #CCC;
+    background: #222;
+}
+
+.menu .option.script {
+    width: 20px;
+    height: 20px;
+}
+
+.menu .review svg {
+    position: absolute;
+}
+
+.menu .review svg.check {
+    display: none;
+}
+
+.menu .review:hover svg.check {
+    cursor: pointer;
+    display: block;
+}
+
+.transcriptions .menu {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.transcriptions .column {
+    margin: 0;
+}
+
+.transcriptions .transcription {
+    color: #A1A1A1;
+    width: 500px;
+    padding-left: 8px;
+    vertical-align: middle;
+}
+
+.mainSentence .transcription {
+    font-size: 80%;
+}
+
+.mainSentence .transcription.altscript {
+    font-size: 100%;
+}
+
+.transcriptions .script img {
+    display: block;
+    font-size: 7px;
+}
+
+.inlined-icon {
+    display: inline;
+    vertical-align: text-bottom;
+    height: 16px;
+    width: 16px;
+}
+
+.validation-errors {
+    color: #222;
+    background: #FF2020;
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.validation-errors ul {
+    margin: 5px 0;
+}
 
 /*
  * Flag
@@ -1049,7 +1150,7 @@
  * Main sentences
  */
 
-.mainSentence, .mainSentence textarea {
+.mainSentence, .mainSentence .editableSentence textarea {
     font-size: 24px;
 }
 
@@ -1116,9 +1217,9 @@
 /*
  * Edit in place
  */
- .edit {
-    cursor: pointer;
- }
+.edit, .edit_transcription {
+   cursor: pointer;
+}
 
 .editableSentence button{
     padding: 1px 20px;
@@ -1267,20 +1368,17 @@ input.sentenceId {
 /*
  * Sentence correctness
  */
-.correctnessNegative1 .text {
+.correctnessNegative1 {
+    background: url("/img/warning-small.svg") no-repeat;
+    padding-right: 25px;
     color: #EE0000;
 }
 
-.correctnessNegative1 .sentenceContent {
-    background: url("/img/warning-small.svg") no-repeat;
-    padding-right: 25px;
-}
-
-.mainSentence.correctnessNegative1 .sentenceContent {
+.mainSentence .correctnessNegative1 {
     background-position: right 5px;
 }
 
-.translations .correctnessNegative1 .sentenceContent {
+.translations .correctnessNegative1 {
     background-position: right 2px;
 }
 
@@ -1414,29 +1512,24 @@ div.hideLink {
     height: 150px;
 }
 
-#ToolTypeFurigana, #ToolTypeRomaji {
-    margin-left: 30px;
-    margin-right: 10px;
-}
-
-#ToolRomajiFuriganaForm {
+#ToolFuriganaForm {
     font-size: 16px;
     margin: 20px;
 }
 
-#ToolRomajiFuriganaForm fieldset {
+#ToolFuriganaForm fieldset {
     border: none;
 }
 
-#ToolRomajiFuriganaForm legend {
+#ToolFuriganaForm legend {
     display: inline;
 }
 
-#ToolRomajiFuriganaForm div.submit, #ToolRomajiFuriganaForm p {
+#ToolFuriganaForm div.submit, #ToolFuriganaForm p {
     text-align: center;
 }
 
-#ToolRomajiFuriganaForm * {
+#ToolFuriganaForm * {
     font-size: 16px;
 }
 

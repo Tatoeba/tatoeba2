@@ -36,6 +36,10 @@
  */
 class ImagesHelper extends AppHelper
 {
+    public $helpers = array(
+        'Html',
+    );
+
     /**
      * Returns the HTML to display a SVG image.
      *
@@ -48,24 +52,16 @@ class ImagesHelper extends AppHelper
      * @return string
      */
     public function svgIcon($imageName, $options = null, $id = null) {
-        $svgOpeningTag = array('svg');
-
-        if (!empty($options)) {
-            foreach ($options as $key => $value) {
-                $svgOpeningTag[] = "$key='$value'";
-            }
-        }
-
         $imgPath = $this->assetTimestamp('/img/' . $imageName . '.svg');
         if (empty($id)) {
             $id = $imageName;
         }
 
-        $html = "<".join(' ', $svgOpeningTag).">";
-        $html.= "<use xlink:href='$imgPath#$id'></use>";
-        $html.= "</svg>";
-
-        return $html;
+        return $this->Html->tag(
+            'svg',
+            "<use xlink:href='$imgPath#$id'></use>",
+            $options
+        );
     }
 
 

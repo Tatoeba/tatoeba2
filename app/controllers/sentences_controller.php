@@ -284,7 +284,7 @@ class SentencesController extends AppController
 
         $isDeleted = $this->Sentence->delete(
             $id,
-            true
+            false
         );
         if ($isDeleted) {
             $this->flash(
@@ -508,11 +508,11 @@ class SentencesController extends AppController
             );
 
             if ($isSaved) {
-                // We reconstruct the translation to use it in the helper's function
-                $translation['id'] = $this->Sentence->id;
-                $translation['lang'] = $translationLang;
-                $translation['text'] = $translationText;
-                $translation['correctness'] = 0;
+                $translationId = $this->Sentence->getLastInsertID();
+                $translation = $this->Sentence->find('first', array(
+                    'conditions' => array('Sentence.id' => $translationId),
+                    'contain' => array('Transcription')
+                ));
 
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
@@ -1093,6 +1093,9 @@ class SentencesController extends AppController
                     'correctness'
                 ),
                 'contain' => array(
+                    'Transcription' => array(
+                        'User' => array('fields' => array('username')),
+                    ),
                     'User' => array(
                         'fields' => array('username')
                     )
@@ -1193,14 +1196,11 @@ class SentencesController extends AppController
     {
         $this->paginate = array(
             'Sentence' => array(
-                'fields' => array(
-                    'id',
-                    'text',
-                    'lang',
-                    'hasaudio',
-                    'correctness'
+                'contain' => array(
+                    'Transcription' => array(
+                        'User' => array('fields' => array('username')),
+                    ),
                 ),
-                'contain' => array(),
                 'limit' => 50,
                 'conditions' => array(
                     'hasaudio' => array('shtooka', 'from_users')

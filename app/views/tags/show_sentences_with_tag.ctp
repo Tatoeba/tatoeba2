@@ -63,6 +63,7 @@ if ($tagExists) {
                     );
                     $tags->displaySentence(
                         $sentence['Sentence'],
+                        $sentence['Transcription'],
                         $sentence['User'],
                         $sentence['Translations'],
                         $sentence['IndirectTranslations'],

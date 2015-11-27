@@ -355,12 +355,14 @@ class ListsHelper extends AppHelper
      * Display sentence.
      *
      * @param array  $sentence           Sentence data.
-     * @param string $translationsLang   Language of the translations.
      * @param bool   $canCurrentUserEdit 'true' if user remove sentence from list.
      *
      * @return void
      */
-    public function displaySentence($sentence, $canCurrentUserEdit = false) {
+    public function displaySentence(
+        $sentence,
+        $canCurrentUserEdit = false
+    ) {
         $sentenceId = $sentence['Sentence']['id'];
         if (empty($sentenceId)) {
             // In case the sentence has been deleted, we don't want to display
@@ -383,10 +385,11 @@ class ListsHelper extends AppHelper
             $withAudio = true;
             $this->Sentences->displaySentencesGroup(
                 $sentence['Sentence'],
+                $sentence['Transcription'],
                 $sentence['Translations'],
                 $sentence['User'],
                 $sentence['IndirectTranslations'],
-                $withAudio
+                array('withAudio' => false)
             );
             ?>
         </div>

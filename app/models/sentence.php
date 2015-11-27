@@ -46,8 +46,7 @@ class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable", "Autotranscriptable");
-    public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
+    public $actsAs = array('Containable', 'Transcriptable');
 
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
@@ -71,7 +70,8 @@ class Sentence extends AppModel
             'classname'  => 'favorites',
             'foreignKey' => 'favorite_id'
         ),
-        'SentenceAnnotation'
+        'SentenceAnnotation',
+        'Transcription',
     );
 
     public $hasOne = 'ReindexFlag';
@@ -110,6 +110,9 @@ class Sentence extends AppModel
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
+        if (!Configure::read('AutoTranscriptions.enabled')) {
+            $this->Behaviors->disable('Transcriptable');
+        }
         if (Configure::read('Search.enabled')) {
             $this->Behaviors->attach('Sphinx');
         }
@@ -195,10 +198,13 @@ class Sentence extends AppModel
     {
         if (isset($this->data['Sentence']['text'])) {
             // --- Logs for sentence ---
+            $sentenceLang = null;
             if (isset($this->data['Sentence']['lang'])) {
                 $sentenceLang = $this->data['Sentence']['lang'];
-            } else {
-                $sentenceLang = null;
+            }
+            $sentenceScript = null;
+            if (isset($this->data['Sentence']['script'])) {
+                $sentenceScript = $this->data['Sentence']['script'];
             }
             $sentenceAction = 'update';
             $sentenceText = $this->data['Sentence']['text'];
@@ -208,7 +214,11 @@ class Sentence extends AppModel
             }
 
             $this->Contribution->saveSentenceContribution(
-                $this->id, $sentenceLang, $sentenceText, $sentenceAction
+                $this->id,
+                $sentenceLang,
+                $sentenceScript,
+                $sentenceText,
+                $sentenceAction
             );
         }
     }
@@ -237,23 +247,54 @@ class Sentence extends AppModel
     }
 
     /**
+     * Called before every deletion operation.
+     *
+     * @param boolean $cascade If true records that depend on this record will also be deleted
+     * @return boolean True if the operation should continue, false if it should abort
+     */
+    public function beforeDelete($cascade = true) {
+        // Retrieve data before deleting it, so that we can log things
+        // in afterDelete()
+        $this->data = $this->find(
+            'first',
+            array(
+                'conditions' => array('Sentence.id' => $this->id),
+                'contain' => array ('Translation', 'User')
+            )
+        );
+
+        if ($this->data['Sentence']['hasaudio'] != 'no') {
+            return false;
+        }
+
+        $this->data['ReindexFlag'] =
+            $this->Link->findDirectAndIndirectTranslationsIds($this->id);
+
+        return true;
+    }
+
+    /**
      * Call after a deletion.
      *
      * @return void
      */
     public function afterDelete()
     {
-        $action = 'delete';
-
         // --- Logs for sentence ---
         $sentenceLang = $this->data['Sentence']['lang'];
+        $sentenceScript = $this->data['Sentence']['script'];
         $sentenceId = $this->data['Sentence']['id'];
         $sentenceText = $this->data['Sentence']['text'];
         $this->Contribution->saveSentenceContribution(
-            $sentenceId, $sentenceLang, $sentenceText, 'delete'
+            $sentenceId,
+            $sentenceLang,
+            $sentenceScript,
+            $sentenceText,
+            'delete'
         );
 
         // --- Logs for links ---
+        $action = 'delete';
         foreach ($this->data['Translation'] as $translation) {
             $this->Contribution->saveLinkContribution(
                 $sentenceId, $translation['id'], $action
@@ -262,6 +303,18 @@ class Sentence extends AppModel
                 $translation['id'], $sentenceId, $action
             );
         }
+
+        // Reindex translations
+        $this->needsReindex($this->data['ReindexFlag']);
+
+        // Remove links
+        $conditions = array(
+            'Link.sentence_id' => $sentenceId,
+            // Note that deleting Link.translation_id == $sentenceId
+            // is unnecessary because CakePHP already deleted them
+            // during delete() thanks to the HABTM relation
+        );
+        $this->Link->deleteAll($conditions, false);
 
         // Decrement statistics
         $this->Language->decrementCountForLanguage($sentenceLang);
@@ -430,13 +483,17 @@ class Sentence extends AppModel
                     'SentencesList' => array(
                         'fields' => array('id')
                     ),
+                    'Transcription'   => array(
+                        'User' => array('fields' => array('username')),
+                    ),
                 ),
                 'fields' => array(
                     'text',
                     'lang',
                     'user_id',
                     'hasaudio',
-                    'correctness'
+                    'correctness',
+                    'script',
                 )
             )
         );
@@ -455,47 +512,6 @@ class Sentence extends AppModel
 
         return $result;
     }
-
-
-    /**
-     * Delete the sentence with the given id.
-     *
-     * @param int $id     Id of the sentence to be deleted.
-     * @param int $userId Id of the user who deleted the sentence. Used for logs.
-     *
-     * @return void
-     */
-    public function delete($id, $userId)
-    {
-        $id = Sanitize::paranoid($id);
-        // for the logs
-        $this->data = $this->find(
-            'first',
-            array(
-                'conditions' => array('Sentence.id' => $id),
-                'contain' => array ('Translation', 'User')
-            )
-        );
-        
-        $this->data['User']['id'] = $userId;
-
-        $isDeleted = false;
-        
-        if ($this->data['Sentence']['hasaudio'] == 'no')
-        {
-            $this->flagTranslationsToReindex($id);
-            $this->query('DELETE FROM sentences WHERE id='.$id);
-            $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
-            $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
-            $isDeleted = true;
-        }
-
-        // need to call afterDelete() manually for the logs
-        $this->afterDelete();
-
-        return $isDeleted;
-    }
-
 
     /**
      * Get number of sentences owned by a given user.

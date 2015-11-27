@@ -94,6 +94,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     foreach ($results as $sentence) {
         $sentences->displaySentencesGroup(
             $sentence['Sentence'], 
+            $sentence['Transcription'],
             array(), 
             null
         );

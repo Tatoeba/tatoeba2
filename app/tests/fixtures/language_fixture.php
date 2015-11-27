@@ -126,5 +126,22 @@ class LanguageFixture extends CakeTestFixture {
 			'level_5' => '0',
 			'level_unknown' => '0'
 		),
+		array(
+			'id' => '7',
+			'code' => 'yue',
+			'sentences' => '1',
+			'audio' => '0',
+			'group_1' => '0',
+			'group_2' => '0',
+			'group_3' => '0',
+			'group_4' => '0',
+			'level_0' => '0',
+			'level_1' => '0',
+			'level_2' => '0',
+			'level_3' => '0',
+			'level_4' => '0',
+			'level_5' => '0',
+			'level_unknown' => '0'
+		),
 	);
 }

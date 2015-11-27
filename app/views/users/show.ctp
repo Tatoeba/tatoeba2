@@ -55,7 +55,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
 <div id="main_content">
     <?php
     /* Latest sentences, translations or adoptions from the user */
-    if (count($user['Sentences']) > 0) {
+    if (count($user['Sentence']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
             __('Latest sentences');
@@ -76,9 +76,10 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            foreach ($user['Sentences'] as $sentence) {
+            foreach ($user['Sentence'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
+                    $sentence['Transcription'],
                     $type,
                     $parentId,
                     $withAudio

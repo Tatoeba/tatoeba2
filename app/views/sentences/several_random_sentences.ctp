@@ -98,6 +98,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
         foreach ($allSentences as $index=>$sentence) {
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
+                $sentence['Transcription'],
                 $sentence['Translations'],
                 $sentence['User'],
                 $sentence['IndirectTranslations']

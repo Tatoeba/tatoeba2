@@ -104,7 +104,7 @@ class User extends AppModel
     public $hasMany = array(
         'SentenceComments',
         'Contributions',
-        'Sentences',
+        'Sentence',
         'SentencesLists',
         'Wall' => array('foreignKey' => 'owner')
     );
@@ -114,6 +114,7 @@ class User extends AppModel
         'lang' => null,
         'use_most_recent_list' => false,
         'collapsible_translations' => false,
+        'show_transcriptions' => false,
         'sentences_per_page' => 10,
         'users_collections_ratings' => false,
         'native_indicator' => false,

@@ -26,7 +26,7 @@
  */
 
 $this->set('title_for_layout', $pages->formatTitle(
-    __('Convert Japanese text into romaji or furigana', true)
+    __('Autogenerate furigana over Japanese', true)
 ));
 
 ?>
@@ -65,20 +65,20 @@ $this->set('title_for_layout', $pages->formatTitle(
 
 <div id="main_content">
     <div class="module">
-        <h2><?php __('Convert Japanese text into romaji or furigana'); ?></h2>
+        <h2><?php __('Autogenerate furigana over Japanese'); ?></h2>
         <?php
 
-        $script = ($type == 'romaji') ? 'Latn' : '';
-        echo $languages->tagWithLang(
-            'div', 'ja', $result,
-            array('id' => 'conversion'),
-            $script
-        );
+        if ($result) {
+            echo $languages->tagWithLang(
+                'div', 'ja', $transcriptions->transcriptionAsHTML('jpn', $result),
+                array('id' => 'conversion', 'escape' => false)
+            );
+        }
 
         echo $form->create(
             'Tool',
             array(
-                "action" => "romaji_furigana",
+                "action" => "furigana",
                 "type" => "get"
             )
         );
@@ -97,22 +97,6 @@ $this->set('title_for_layout', $pages->formatTitle(
         );
         ?>
         </p>
-        <p>
-            <?php
-            __('Convert Japanese text into: ');
-            echo $form->radio(
-                'type',
-                array(
-                    'romaji' => __('romaji', true),
-                    'furigana' => __('furigana', true)
-                ),
-                array(
-                    'value' => $type,
-                    'legend' => ''
-                )
-            );
-            ?>
-        </p>
-        <?php echo $form->end(__('Convert', true)); ?>
+        <?php echo $form->end(__('Autogenerate furigana', true)); ?>
     </div>
 </div>
