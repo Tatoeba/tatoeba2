@@ -19,5 +19,4 @@
 
 class ReindexFlag extends AppModel
 {
-    public $primaryKey = 'sentence_id';
 }

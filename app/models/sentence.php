@@ -882,7 +882,16 @@ class Sentence extends AppModel
             $this->Contribution->updateLanguage($sentenceId, $newLang);
             $this->Language->incrementCountForLanguage($newLang);
             $this->Language->decrementCountForLanguage($prevLang);
-            
+
+            // In the previous language, add the sentence to the kill-list
+            // so that it doesn't appear in results any more.
+            $prevLangId = $this->Language->getIdFromLang($prevLang);
+            $this->ReindexFlag->create();
+            $this->ReindexFlag->save(array(
+                'sentence_id' => $sentenceId,
+                'lang_id' => $prevLangId,
+            ));
+
             return $newLang;
         }
 
