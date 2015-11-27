@@ -115,6 +115,7 @@ class LanguagesLib
             'heb' => 'he', // Hebrew
             'hif' => 'hf', // Fiji Hindi
             'hin' => 'hi', // Hindi
+            'hmn' => 'hn', // Hmong
             'hoc' => 'ho', // Ho
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
@@ -563,6 +564,7 @@ class LanguagesLib
                 'mdf' => __('Moksha',true),
                 'pag' => __('Pangasinan',true),
                 'cos' => __('Corsican',true),
+                'hmn' => __('Hmong',true),
                 
 
             );
