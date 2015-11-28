@@ -23,7 +23,7 @@
 #UserRegisterForm {
     padding: 10px 10px 20px;
     margin: 20px auto;
-    width: 500px;
+    width: 580px;
     background: #fafafa;
     border: 1px solid #dddddd;
     border-radius: 10px;
@@ -49,6 +49,10 @@
 #UserRegisterForm .field label {
     display: block;
     margin: 15px 0;
+}
+
+#UserRegisterForm label[for="UserQuiz"] {
+    display: block;
 }
 
 #UserRegisterForm .valid {
