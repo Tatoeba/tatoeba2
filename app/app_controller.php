@@ -188,6 +188,12 @@ class AppController extends Controller
      */
     public function beforeRender()
     {
+        if (!$this->Security->validatePost) {
+            // Avoid polluting forms with hidden fields
+            // set by the Security component when it's not needed
+            unset($this->params['_Token']);
+        }
+
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
