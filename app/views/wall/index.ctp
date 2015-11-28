@@ -89,7 +89,11 @@ $javascript->link('wall.show_and_hide_replies.js', false);
                     'action' => 'index#message_'.$currentMessage['Wall']['id']
                     );
                 // link
-                echo $html->link($text, $path, array('escape' => false));
+                $isInitialPost = $currentMessage['Wall']['parent_id'] == null;
+                echo $html->link($text, $path, array(
+                    'escape' => false,
+                    'class' => $isInitialPost ? 'initial-post' : null,
+                ));
                 echo '</li>';
             };
             ?>
