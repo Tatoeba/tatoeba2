@@ -110,8 +110,8 @@ class Tag extends AppModel
         
         // Special case: don't allow the owner of a sentence to give it an OK tag.
         if ($tagName == 'OK') {
-            $ownerId = $this->Sentence->getOwnerIdOfSentence($sentenceId);
-            if ($userId == $ownerId) {
+            $owner = $this->Sentence->getOwnerInfoOfSentence($sentenceId);
+            if ($owner && $userId == $owner['id']) {
                 return false;
             }
         }

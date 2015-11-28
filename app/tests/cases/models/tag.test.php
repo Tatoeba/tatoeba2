@@ -42,4 +42,16 @@ class TagTestCase extends CakeTestCase {
         $added = $after - $before;
         $this->assertEqual(1, $added);
     }
+
+    function testSentenceOwnerCannotTagOwnSentenceAsOK() {
+        $sentenceId = 1;
+        $ownerId = 7;
+        $before = $this->Tag->TagsSentences->find('count');
+
+        $this->Tag->addTag('OK', $ownerId, $sentenceId);
+
+        $after = $this->Tag->TagsSentence->find('count');
+        $added = $after - $before;
+        $this->assertEqual(0, $added);
+    }
 }
