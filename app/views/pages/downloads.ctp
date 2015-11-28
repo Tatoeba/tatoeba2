@@ -85,7 +85,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $field_struct_str = __('Fields and structure', true);
         $file_desc_str = __('File description', true);
         $sent_id_str = __('Sentence id', true);
-        $mark_id_str = __('Sentence id', true);
+        $rating_str = __('Rating', true);
         $text_str = __('Text', true);
         $lang_str = __('Lang', true);
         $username_str = __('Username', true);
@@ -414,8 +414,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             </dd>  
         </dl>
         
-        <!-- Users' collections -->
-        <h3><?php __('Users\' collections'); ?></h3>
+        <!-- Users' collections/ratings -->
+        <h3><?php __('Users\' sentences ratings'); ?></h3>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -432,7 +432,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $sent_id_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
-                <span class="param"><?php echo $mark_id_str; ?></span>
+                <span class="param"><?php echo $rating_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $date_added_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
@@ -442,7 +442,13 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
             <?php 
-             __('Contains sentences\' marked by users.'); ?>
+            __(
+                'Contains sentences rated by users. The value of the rating ' .
+                'can be -1 (sentence not OK), 0 (undecided or unsure), ' .
+                'or 1 (sentence OK). Warning: the feature that gathers this '.
+                'data is still experimental.'
+            );
+            ?>
             </dd>  
         </dl>
 
