@@ -472,15 +472,19 @@ class SentenceTestCase extends CakeTestCase {
 		$expected = array(1, 2, 4, 5);
 		$this->Sentence->id = 5;
 		$this->Sentence->save(array('user_id' => 0));
-		$result = $this->Sentence->ReindexFlag->find('all');
+		$result = $this->Sentence->ReindexFlag->find('all', array(
+			'order' => 'sentence_id'
+		));
 		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
 		$this->assertEqual($expected, $result);
 	}
 
-	function testRemovedSentenceNeedsTranslationsReindex() {
-		$expected = array(1, 2, 4);
+	function testRemovedSentenceNeedsItselfAndTranslationsReindex() {
+		$expected = array(1, 2, 4, 5);
 		$this->Sentence->delete(5, false);
-		$result = $this->Sentence->ReindexFlag->find('all');
+		$result = $this->Sentence->ReindexFlag->find('all', array(
+			'order' => 'sentence_id'
+		));
 		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
 		$this->assertEqual($expected, $result);
 	}
