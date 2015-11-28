@@ -123,7 +123,34 @@ echo $form->create('User', array("action" => "register"));
         ?>
     </td>
 </tr>
+<tr>
+    <td class="field">
+        <label for="UserLanguage"><?php __('Native language:'); ?></label>
+    </td>
+    <td>
+        <?php
+        $languagesList = $languages->languagesArrayWithNone(false);
+        echo $form->select(
+            'language',
+            $languagesList,
+            null,
+            array(
+                'class' => 'language-selector',
+                'empty' => false
+            ),
+            false
+        );
+        echo $html->div('hint',
+            __(
+                "If you don't find your native language in the list, ".
+                "leave this as 'None'.", true
+            )
+        );
+        ?>
+    </td>
+</tr>
 </table>
+
 
 <div id="quiz">
 <?php

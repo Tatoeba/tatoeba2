@@ -366,6 +366,18 @@ class UsersController extends AppController
 
         // And we save
         if ($this->User->save($newUser)) {
+            // Save native language
+            $language = $this->data['User']['language'];
+            if (!empty($language) && $language != 'none') {
+                $userLanguage = array(
+                    'of_user_id' => $this->User->id,
+                    'by_user_id' => $this->User->id,
+                    'level' => 5,
+                    'language_code' => $language
+                );
+                $this->UsersLanguages->save($userLanguage);
+            }
+
             $this->Auth->login($newUser);
 
             $profileUrl = Router::url(
