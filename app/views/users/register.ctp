@@ -55,10 +55,6 @@ echo $form->create('User', array("action" => "register"));
                 "id" => "registrationUsername",
                 "class" => "registrationField",
                 'error' => array(
-                    'alphanumeric' => __(
-                        'Username can only contain letters, numbers, or underscore',
-                        true
-                    ),
                     'isUnique' => __(
                         'Username already taken.', 
                         true
@@ -69,6 +65,9 @@ echo $form->create('User', array("action" => "register"));
                     )
                 )
             )
+        );
+        echo $html->div('hint',
+            __('Username can only contain letters, numbers, or underscore', true)
         );
         ?>
     </td>
@@ -137,7 +136,9 @@ echo $form->input(
     )
 );
 
-__('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.');
+echo $html->div('hint',
+    __('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.', true)
+);
 ?>
 </div>
 
@@ -156,6 +157,6 @@ echo $form->input('acceptation_terms_of_use', array(
 </div>
 
 <?php
-echo $form->submit(__('Register',true));
+echo $form->submit(__('Register',true), array('class' => 'registerLink'));
 echo $form->end();
 ?>

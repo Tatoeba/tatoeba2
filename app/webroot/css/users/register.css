@@ -23,34 +23,53 @@
 #UserRegisterForm {
     padding: 10px 10px 20px;
     margin: 20px auto;
-    width: 420px;
-    border: 1px solid #B3C6A9;
-    background: #DBEFCB;
-    border-radius: 15px;
+    width: 500px;
+    background: #fafafa;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
 }
 
 #UserRegisterForm input {
     font-size: 1em;
+    padding: 5px;
+    border: 1px solid #cccccc;
+}
+
+#UserRegisterForm input[type="text"],
+#UserRegisterForm input[type="password"] {
+    width: 200px;
+    margin: 10px 0;
 }
 
 #UserRegisterForm .field {
     text-align: right;
-}    
+    min-width: 150px;
+}
+
+#UserRegisterForm .field label {
+    display: block;
+    margin: 15px 0;
+}
 
 #UserRegisterForm .valid {
-    background: url(/img/valid_16x16.png) no-repeat scroll right center;
+    background: #ffffff url(/img/valid_16x16.png) no-repeat scroll right 5px center;
 }
 
 #UserRegisterForm .error {
-    background: #FFE8E0 url(/img/error_16x16.png) no-repeat scroll right center;
+    background: #ffffff url(/img/error_16x16.png) no-repeat scroll right 5px center;
+    border: 1px solid #EE0000;
 }
 
 #UserRegisterForm .checking {
-    background: url(/img/loading.svg) no-repeat scroll right center;
+    background: #ffffff url(/img/loading.svg) no-repeat scroll right center;
 }
 
 #UserRegisterForm .submit {
     text-align: center;
+}
+
+#UserRegisterForm .submit input {
+    cursor: pointer;
 }
 
 #userInformation {
@@ -74,4 +93,9 @@
     padding: 10px;
     margin-bottom: 20px;
     text-align: center;
+}
+
+#UserRegisterForm .hint {
+    font-size: 13px;
+    color: #666666;
 }
