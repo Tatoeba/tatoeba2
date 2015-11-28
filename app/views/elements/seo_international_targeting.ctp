@@ -44,7 +44,7 @@ foreach ($uiLanguages as $langs) {
     if ($newUrl[0] == '/') {
         $newUrl = substr($newUrl, 1);
     }
-    $alternateURL = "http://".TATOEBA_DOMAIN.'/'.$newUrl;
+    $alternateURL = '/'.$newUrl;
     $hreflang = LanguagesLib::languageTag($langs[0], $langs[1]);
     ?>
     <link rel="alternate" 
