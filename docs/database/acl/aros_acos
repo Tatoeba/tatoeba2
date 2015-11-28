@@ -21,6 +21,8 @@ cake acl grant Group.2 Wall all
 cake acl deny  Group.2 Wall/hide_message all
 cake acl deny  Group.2 Wall/unhide_message all
 cake acl grant Group.2 Transcriptions all
+cake acl grant Group.2 Recordings all
+cake acl deny  Group.2 Recordings/import all
 
 cake acl grant Group.3 Favorites all
 cake acl grant Group.3 Links all
@@ -43,6 +45,8 @@ cake acl grant Group.3 Wall all
 cake acl deny  Group.3 Wall/hide_message all
 cake acl deny  Group.3 Wall/unhide_message all
 cake acl grant Group.3 Transcriptions all
+cake acl grant Group.3 Recordings all
+cake acl deny  Group.3 Recordings/import all
 
 cake acl grant Group.4 Favorites all
 cake acl grant Group.4 PrivateMessages all
@@ -63,3 +67,5 @@ cake acl grant Group.4 Wall all
 cake acl deny  Group.4 Wall/hide_message all
 cake acl deny  Group.4 Wall/unhide_message all
 cake acl grant Group.4 Transcriptions all
+cake acl grant Group.4 Recordings all
+cake acl deny  Group.4 Recordings/import all

@@ -320,14 +320,23 @@
  * define("CSS_PATH", "http://css.tatoeba.org/css/");
  * define("JS_PATH", "http://js.tatoeba.org/js/");
  * define("IMG_PATH", "http://flags.tatoeba.org/img/");
- * Configure::write('Path.audio', 'http://audio.tatoeba.org/sentences/');
  */
     define("TATOEBA_DOMAIN", "localhost"); // used for cookie domain
     define("CSS_PATH", "");
     define("JS_PATH", "");
     define("IMG_PATH", "");
 	// TODO We probably want to change the above to use Configure::write() instead of define()
-	Configure::write('Path.audio', '/files/audio/'); 
+
+/**
+ * Recordings paths. They should end with a directory separator character (/).
+ * The web server must serve <Recordings.path> under <Recordings.url>.
+ * Admins may import audio files located in <Recordings.uploadPath>, in which
+ * the webserver must have write access.
+ */
+    Configure::write('Recordings.url', 'https://example.com/sentences/');
+    Configure::write('Recordings.path', '/sentences/audio/files/');
+    Configure::write('Recordings.importPath', '/audio/files/to/import/');
+
     
 /**
  * For email notifications.

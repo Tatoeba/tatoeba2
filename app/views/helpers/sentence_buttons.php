@@ -177,7 +177,7 @@ class SentenceButtonsHelper extends AppHelper
             // sentence has audio
             case 'shtooka' :
                 $onClick = 'return false';
-                $path = Configure::read('Path.audio')
+                $path = Configure::read('Recordings.url')
                     .$sentenceLang.'/'.$sentenceId.'.mp3'; 
                 $css = 'audioAvailable';
                 $title = __('Play audio', true);
