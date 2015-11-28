@@ -22,6 +22,6 @@ $(document).ready(function() {
     }
     $('.announcement .close').click(function() {
         $('.announcement').hide();
-        $.cookie(announcementId, 'done', {'expires' : 7});
+        $.cookie(announcementId, 'done', {'expires' : 7, 'path' : '/'});
     });
 });
