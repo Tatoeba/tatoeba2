@@ -4,7 +4,6 @@ App::import('Model', 'Transcription');
 class TranscriptionTestCase extends CakeTestCase {
     var $fixtures = array(
         'app.contribution',
-        'app.country',
         'app.favorites_user',
         'app.group',
         'app.language',

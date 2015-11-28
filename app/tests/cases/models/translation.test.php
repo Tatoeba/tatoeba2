@@ -6,7 +6,6 @@ class TranslationTestCase extends CakeTestCase {
         'app.sentence',
         'app.user',
         'app.group',
-        'app.country',
         'app.sentence_comment',
         'app.contribution',
         'app.sentences_list',
