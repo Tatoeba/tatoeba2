@@ -93,7 +93,7 @@ class TranscriptionsHelper extends AppHelper
                 'ul',
                 $this->editButton($canEdit, $transcr)
                 . $this->scriptIcon($transcr)
-                . $this->warningReviewButton($canEdit, $needsReview, $transcr['type']),
+                . $this->warningReviewButton($isEditable, $needsReview, $transcr['type']),
                 array('class' => 'menu')
             ),
             array('class' => 'column')
@@ -225,7 +225,7 @@ class TranscriptionsHelper extends AppHelper
         );
     }
 
-    private function warningReviewButton($canEdit, $needsReview, $type) {
+    private function warningReviewButton($isEditable, $needsReview, $type) {
         $content = '';
         if ($needsReview) {
             $content = $this->Images->svgIcon('warning-small');
@@ -244,7 +244,7 @@ class TranscriptionsHelper extends AppHelper
                     true
                 );
             }
-            if ($canEdit) {
+            if ($isEditable) {
                 $content .= $this->Images->svgIcon('check', array(
                     'class' => 'check',
                 ));
