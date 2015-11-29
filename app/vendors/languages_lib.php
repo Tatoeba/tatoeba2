@@ -115,7 +115,7 @@ class LanguagesLib
             'heb' => 'he', // Hebrew
             'hif' => 'hf', // Fiji Hindi
             'hin' => 'hi', // Hindi
-            'hnj' => 'hn', // Hmong
+            'hnj' => 'hn', // Hmong Njua
             'hoc' => 'ho', // Ho
             'hrv' => 'hr', // Croatian
             'hun' => 'hu', // Hungarian
@@ -193,6 +193,7 @@ class LanguagesLib
             'pol' => 'pl', // Polish
             'por' => 'pt', // Portuguese
             'que' => 'qu', // Quechua
+            'rif' => 'ri', // Tarifit
             'roh' => 'rm', // Romansh
             'rom' => 'rr', // Romani
             'ron' => 'ro', // Romanian
@@ -564,7 +565,8 @@ class LanguagesLib
                 'mdf' => __('Moksha',true),
                 'pag' => __('Pangasinan',true),
                 'cos' => __('Corsican',true),
-                'hnj' => __('Hmong',true),
+                'hnj' => __('Hmong Njua',true),
+                'tnf' => __('Tarifit',true),
                 
 
             );
