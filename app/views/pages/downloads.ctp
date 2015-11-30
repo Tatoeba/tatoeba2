@@ -415,7 +415,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         </dl>
         
         <!-- Users' collections/ratings -->
-        <h3><?php __('Users\' sentences ratings'); ?></h3>
+        <h3><?php __('Users\' sentence ratings'); ?></h3>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -445,8 +445,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             __(
                 'Contains sentences rated by users. The value of the rating ' .
                 'can be -1 (sentence not OK), 0 (undecided or unsure), ' .
-                'or 1 (sentence OK). Warning: the feature that gathers this '.
-                'data is still experimental.'
+                'or 1 (sentence OK). Warning: this data is still experimental.'
             );
             ?>
             </dd>  
