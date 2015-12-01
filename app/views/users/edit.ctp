@@ -72,17 +72,7 @@ $username = $form->value('User.username');
 
 <div id="main_content">
 <?php 
-// HACK / quick fix
-echo '<form id="UserEditForm" method="post" action="/'.$this->params['lang'].'/users/edit/'.$userId.'">';
-// Because...
-//   echo $form->create('User'); 
-// will echo this:
-//   <form id="UserEditForm" method="post" action="/users/edit/218/lang:eng">
-// And that doesn't work because the URL doesn't start with a language.
-// So until someone figures out what's wrong, I'm just hardcoding the HTML...
-
-$form->create('User'); // But we still need to call $form->create() 
-                       // to retrieve the user data...
+echo $form->create('User');
 ?>
     <fieldset>
     <legend><?php __d('admin', 'Edit User'); ?></legend>
