@@ -77,6 +77,7 @@
 </ul>
 
 <?php
+$security->enableCSRFProtection();
 echo $form->create(
     'User', 
     array(
@@ -137,4 +138,5 @@ echo $html->link(
 
 <?php
 echo $form->end();
+$security->disableCSRFProtection();
 ?>

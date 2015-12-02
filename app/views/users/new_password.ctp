@@ -41,10 +41,12 @@ echo '<h2>';
 __('Send new password');
 echo '</h2>';
 
+$security->enableCSRFProtection();
 echo $form->create('User', array("action" => "new_password"));
 echo $form->input(
     'email',
     array('label' => __('Email', true))
 );
 echo $form->end(__('Send',true));
+$security->disableCSRFProtection();
 ?>

@@ -73,6 +73,7 @@ $username = $form->value('User.username');
 <div id="main_content">
 <?php 
 echo $form->create('User');
+$security->enableCSRFProtection();
 ?>
     <fieldset>
     <legend><?php __d('admin', 'Edit User'); ?></legend>
@@ -98,5 +99,8 @@ echo $form->create('User');
     ));
     ?>
     </fieldset>
-<?php echo $form->end(array('label' => __d('admin', 'Submit', true))); ?>
+<?php
+echo $form->end(array('label' => __d('admin', 'Submit', true)));
+$security->disableCSRFProtection();
+?>
 </div>

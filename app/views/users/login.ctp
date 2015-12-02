@@ -44,6 +44,7 @@ $formTarget = array('action' => 'check_login');
 if (isset($this->params['url']['redirectTo'])) {
     $formTarget['?'] = array('redirectTo' => $this->params['url']['redirectTo']);
 }
+$security->enableCSRFProtection();
 echo $form->create(
     'User',
     array(
@@ -74,6 +75,7 @@ echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
 
 <?php
 echo $form->end(__('Log in',true));
+$security->disableCSRFProtection();
 ?>
 
 

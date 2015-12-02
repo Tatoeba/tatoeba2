@@ -42,6 +42,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Members', true)));
     <div class="module">
     <h2><?php __('Search user') ?></h2>
     <?php
+    $security->enableCSRFProtection();
     echo $form->create('User', array("action" => "search"));
     echo $form->input(
         'username',
@@ -51,6 +52,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Members', true)));
         )
     );
     echo $form->end(__('search', true));
+    $security->disableCSRFProtection();
     ?>
     </div>
     
