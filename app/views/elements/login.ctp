@@ -37,11 +37,6 @@
 -->
 </script>
 
-<?php $redirectParams = array_diff_key(
-    $this->params,
-    array_flip(array("_Token"))
-); ?>
-
 <ul>
     <li>
     <?php
@@ -65,7 +60,7 @@
         array(
             'controller' => 'users',
             'action' => 'login',
-            '?' => array('redirectTo' => Router::reverse($redirectParams)),
+            '?' => array('redirectTo' => $pages->currentPageUrl()),
         ),
         array(
             'onclick' => 'javascript:openLoginForm(); return false;',
@@ -83,7 +78,7 @@ echo $form->create(
     array(
         'url' => array(
             'action' => 'check_login',
-            '?' => array('redirectTo' => Router::reverse($redirectParams)),
+            '?' => array('redirectTo' => $pages->currentPageUrl()),
         ),
         'id' => 'UserLoginForm_FromBar',
         'style' => 'display:none;'

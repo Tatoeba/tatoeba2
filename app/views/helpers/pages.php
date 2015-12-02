@@ -50,5 +50,10 @@ class PagesHelper extends AppHelper
         $title = sprintf('<h2>%s</h2>', $title);
         return $title;
     }
+
+    public function currentPageUrl() {
+        $params = array_diff_key($this->params, array_flip(array("_Token")));
+        return Router::reverse($params);
+    }
 }
 ?>

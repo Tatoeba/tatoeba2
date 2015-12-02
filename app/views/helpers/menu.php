@@ -41,6 +41,7 @@ class MenuHelper extends AppHelper
         'Html',
         'Javascript',
         'Form',
+        'Pages',
         'Session',
         'Images'
     );
@@ -101,7 +102,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => Router::reverse($this->params)),
+                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -229,7 +230,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => Router::reverse($this->params)),
+                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -325,7 +326,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => Router::reverse($this->params)),
+                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
