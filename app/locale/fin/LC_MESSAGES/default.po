@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-10 07:04+0000\n"
-"PO-Revision-Date: 2015-11-11 09:00+0000\n"
+"POT-Creation-Date: 2015-11-28 20:31+0000\n"
+"PO-Revision-Date: 2015-11-29 04:27+0000\n"
 "Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +20,15 @@ msgstr ""
 "Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L117
 msgid "You need to be logged in."
 msgstr "Sinun täytyy kirjautua sisään."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L77
 msgid "There's no user called {username}"
 msgstr "{username}-nimistä käyttäjää ei ole"
 
@@ -42,7 +43,7 @@ msgid ""
 msgstr "Lauseet #{firstNumber} ja #{secondNumber} ovat nyt toistensa suoria käännöksiä."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L375
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -89,9 +90,9 @@ msgstr "Poista lopullisesti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L252
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L346
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L477
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L424
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L112
@@ -99,7 +100,7 @@ msgid "Are you sure?"
 msgstr "Oletko varma?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L316
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L241
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L246
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L456
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L133
 msgid "delete"
@@ -122,11 +123,11 @@ msgstr "Kansio ”{name}” tyhjennetty."
 msgid "Your comment has been saved."
 msgstr "Kommenttisi on tallennettu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L289
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L295
 msgid "You do not have permission to edit this comment. "
 msgstr "Sinulla ei ole oikeuksia muokata tätä kommenttia. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L291
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L297
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
@@ -135,15 +136,15 @@ msgid ""
 " team@tatoeba.org."
 msgstr "Jos saat tämän viestin ilman syytä, ota yhteyttä ylläpitäjiin sähköpostilla team@tatoeba.org."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L320
 msgid "Comments cannot be empty."
 msgstr "Kommentit eivät voi olla tyhjiä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L337
 msgid "Changes to your comment have been saved."
 msgstr "Muutokset kommenttiisi on tallennettu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L349
 msgid "We could not save your changes."
 msgstr "Emme voineet tallentaa muutoksiasi."
 
@@ -267,7 +268,7 @@ msgid ""
 msgstr "Tätä tunnistetta ei ole käytetty yhdessäkään lauseessa. Etsimäsi tunniste on poistettu lopullisesti tai sitä ei ole olemassa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L111
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L482
 msgid "No user with this username: "
 msgstr "Tällä käyttäjätunnuksella ei ole käyttäjää: "
 
@@ -299,84 +300,84 @@ msgstr "Profiili tallennettu."
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Sähköpostiosoitteen muuttaminen epäonnistui. Syötä kelvollinen sähköpostiosoite."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L372
 msgid "Your settings have been saved."
 msgstr "Asetuksesi on tallennettu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L444
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L442
 msgid "New password cannot be empty."
 msgstr "Uusi salasana ei voi olla tyhjä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L452
 msgid "New password has been saved."
 msgstr "Uusi salasana on tallennettu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L454
 msgid "An error occurred while saving."
 msgstr "Tallennettaessa tapahtui virhe."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L459
 msgid "Password error. Please try again."
 msgstr "Salasanavirhe. Yritä uudelleen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L204
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Tämä käyttäjätili on merkitty epäaktiiviseksi. Et voi enää kirjautua siihen sisään. Ota yhteyttä ylläpitäjään, jos tämä on virhe."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L215
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Tämä käyttäjätili on merkitty roskapostin lähettäjäksi. Et voi enää kirjautua siihen sisään. Ota yhteyttä ylläpitäjään, jos tämä on virhe."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L237
 msgid "You must fill in your username and password."
 msgstr "Sinun täytyy syöttää käyttäjätunnuksesi ja salasanasi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L245
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Sisäänkirjautuminen epäonnistui. Varmista, että Caps Lock ja Num Lock eivät ole tarkoituksetta päällä. Isoilla ja pienillä kirjaimilla on ero salasanassasi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L319
 msgid "You did not accept the terms of use."
 msgstr "Et hyväksynyt käyttöehtoja."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L330
 msgid "Wrong answer to the question."
 msgstr "Vastasit väärin kysymykseen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L350
 msgid "Password cannot be empty."
 msgstr "Salasana ei voi olla tyhjä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L392
 msgid "Welcome to Tatoeba!"
 msgstr "Tervetuloa Tatoebaan!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L396
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "Päästäksesi hyvään alkuun suosittelemme, että menet <a href='{url}'>profiiliisi</a> ja kerrot meille muille mitä kieliä osaat ja mistä kielistä olet kiinnostunut."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L447
 msgid "Your new password has been sent to {email}."
 msgstr "Uusi salasanasi on lähetetty sähköpostiosoitteeseen {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L437
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L452
 msgid "You may need to check your spam folder to find this message."
 msgstr "Sinun täytyy mahdollisesti tarkistaa roskaposti-kansiosi, että löydät tämän viestin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L445
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L460
 msgid "There is no registered user with this email address: "
 msgstr "Käyttäjää, joka on rekisteröitynyt tällä sähköpostilla, ei ole: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L506
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L521
 msgid "No user with this id: "
 msgstr "Tällä tunnistetiedolla ei ole käyttäjää: "
 
@@ -418,1060 +419,1131 @@ msgstr "Viestiä, jota yrität katsella, ei ole olemassa tai se on poistettu."
 msgid "unnamed list"
 msgstr "Nimeämätön lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L283
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L199
+msgid ""
+"The provided sentence differs from the original one near “{character}”."
+msgstr "Annettu lause on erilainen kuin alkuperäinen lause kohdan ”{character}” lähellä."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L207
+msgid "The provided sentence is shorter than the orginial one."
+msgstr "Annettu lause on lyhyempi kuin alkuperäinen."
+
+#. @translators: This string is used to create an enumeration by
+#. joining each item with it. For instance, if you translate this
+#. string to “/” and the list is A, B, C, then the translated
+#. enumeration will be A/B/C.
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L283
+msgid ", "
+msgstr ", "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L225
+msgid "The following character lacks furigana: {charsEnumeration}."
+msgid_plural "The following characters lack furigana: {charsEnumeration}."
+msgstr[0] "Seuraavalta merkiltä puuttuu furigana: {charsEnumeration}."
+msgstr[1] "Seuraavilta merkeiltä puuttuu furigana: {charsEnumeration}."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L286
+msgid "The following character is not transcribed: {charsEnumeration}."
+msgid_plural ""
+"The following characters are not transcribed: {charsEnumeration}."
+msgstr[0] "Seuraavaa merkkiä ei ole transkriboitu: {charsEnumeration}."
+msgstr[1] "Seuraavia merkkejä ei ole transkriboitu: {charsEnumeration}."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L293
 msgid "Arabic"
 msgstr "; nominative: arabia; genitive: arabian; partitive: arabiaa; inessive: arabiassa; elative: arabiasta; illative: arabiaan; translative: arabiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L294
 msgid "English"
 msgstr "; nominative: englanti; genitive: englanin; partitive: englantia; inessive: englanissa; elative: englanista; illative: englantiin; translative: englaniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L295
 msgid "Japanese"
 msgstr "; nominative: japani; genitive: japanin; partitive: japania; inessive: japanissa; elative: japanista; illative: japaniin; translative: japaniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L286
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L296
 msgid "French"
 msgstr "; nominative: ranska; genitive: ranskan; partitive: ranskaa; inessive: ranskassa; elative: ranskasta; illative: ranskaan; translative: ranskaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L297
 msgid "German"
 msgstr "; nominative: saksa; genitive: saksan; partitive: saksaa; inessive: saksassa; elative: saksasta; illative: saksaan; translative: saksaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L298
 msgid "Spanish"
 msgstr "; nominative: espanja; genitive: espanjan; partitive: espanjaa; inessive: espanjassa; elative: espanjasta; illative: espanjaan; translative: espanjaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L289
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L299
 msgid "Italian"
 msgstr "; nominative: italia; genitive: italian; partitive: italiaa; inessive: italiassa; elative: italiasta; illative: italiaan; translative: italiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L300
 msgid "Vietnamese"
 msgstr "; nominative: vietnam; genitive: vietnamin; partitive: vietnamia; inessive: vietnamissa; elative: vietnamista; illative: vietnamiin; translative: vietnamiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L291
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L301
 msgid "Russian"
 msgstr "; nominative: venäjä; genitive: venäjän; partitive: venäjää; inessive: venäjässä; elative: venäjästä; illative: venäjään; translative: venäjäksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L302
 msgid "Chinese (Mandarin)"
 msgstr "; nominative: kiina (mandariinikiina); genitive: mandariinikiinan; partitive: mandariinikiinaa; inessive: mandariinikiinassa; elative: mandariinikiinasta; illative: mandariinikiinaan; translative: mandariinikiinaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L303
 msgid "Korean"
 msgstr "; nominative: korea; genitive: korean; partitive: koreaa; inessive: koreassa; elative: koreasta; illative: koreaan; translative: koreaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L304
 msgid "Dutch"
 msgstr "; nominative: hollanti; genitive: hollanin; partitive: hollantia; inessive: hollannissa; elative: hollannista; illative: hollantiin; translative: hollanniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L305
 msgid "Hebrew"
 msgstr "; nominative: heprea; genitive: heprean; partitive: hepreaa; inessive: hepreassa; elative: hepreasta; illative: hepreaan; translative: hepreaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L306
 msgid "Indonesian"
 msgstr "; nominative: indonesia; genitive: indonesian; partitive: indonesiaa; inessive: indonesiassa; elative: indonesiasta; illative: indonesiaan; translative: indonesiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L307
 msgid "Portuguese"
 msgstr "; nominative: portugali; genitive: portugalin; partitive: portugalia; inessive: portugalissa; elative: portugalista; illative: portugaliin; translative: portugaliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L298
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L308
 msgid "Finnish"
 msgstr "; nominative: suomi; genitive: suomen; partitive: suomea; inessive: suomessa; elative: suomesta; illative: suomeen; translative: suomeksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L299
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L309
 msgid "Bulgarian"
 msgstr "; nominative: bulgaria; genitive: bulgarian; partitive: bulgariaa; inessive: bulgariassa; elative: bulgariasta; illative: bulgariaan; translative: bulgariaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L310
 msgid "Ukrainian"
 msgstr "; nominative: ukraina; genitive: ukrainan; partitive: ukrainaa; inessive: ukrainassa; elative: ukrainasta; illative: ukrainaan; translative: ukrainaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L311
 msgid "Czech"
 msgstr "; nominative: tšekki; genitive: tšekin; partitive: tšekkiä; inessive: tšekissä; elative: tšekistä; illative: tšekkiin; translative: tšekiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L302
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L312
 msgid "Esperanto"
 msgstr "; nominative: esperanto; genitive: esperanton; partitive: esperantoa; inessive: esperantossa; elative: esperantosta; illative: esperantoon; translative: esperantoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L313
 msgid "Greek"
 msgstr "; nominative: kreikka; genitive: kreikan; partitive: kreikkaa; inessive: kreikassa; elative: kreikasta; illative: kreikkaan; translative: kreikaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L314
 msgid "Turkish"
 msgstr "; nominative: turkki; genitive: turkin; partitive: turkkia; inessive: turkissa; elative: turkista; illative: turkkiin; translative: turkiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L315
 msgid "Swedish"
 msgstr "; nominative: ruotsi; genitive: ruotsin; partitive: ruotsia; inessive: ruotsissa; elative: ruotsista; illative: ruotsiin; translative: ruotsiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L316
 msgid "Norwegian (Bokmål)"
 msgstr "; nominative: norja (kirjanorja); genitive: (kirja)norjan; partitive: (kirja)norjaa; inessive: (kirja)norjassa; elative: (kirja)norjasta; illative: (kirja)norjaan; translative: (kirja)norjaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L307
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L317
 msgid "Malay"
 msgstr "; nominative: malaiji; genitive: malaijin; partitive: malaijia; inessive: malaijissa; elative: malaijista; illative: malaijiin; translative: malaijiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L318
 msgid "Estonian"
 msgstr "; nominative: viro; genitive: viron; partitive: viroa; inessive: virossa; elative: virosta; illative: viroon; translative: viroksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L319
 msgid "Georgian"
 msgstr "; nominative: georgia; genitive: georgian; partitive: georgiaa; inessive: georgiassa; elative: georgiasta; illative: georgiaan; translative: georgiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L310
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L320
 msgid "Polish"
 msgstr "; nominative: puola; genitive: puolan; partitive: puolaa; inessive: puolassa; elative: puolasta; illative: puolaan; translative: puolaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L311
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L321
 msgid "Swahili"
 msgstr "; nominative: swahili; genitive: swahilin; partitive: swahilia; inessive: swahilissa; elative: swahilista; illative: swahiliin; translative: swahiliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L322
 msgid "Latin"
 msgstr "; nominative: latina; genitive: latinan; partitive: latinaa; inessive: latinassa; elative: latinasta; illative: latinaan; translative: latinaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L324
 msgid "Shanghainese"
 msgstr "; nominative: shanghainkiina; genitive: shanghainkiinan; partitive: shanghainkiinaa; inessive: shanghainkiinassa; elative: shanghainkiinasta; illative: shanghainkiinaan; translative: shanghainkiinaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L325
 msgid "Egyptian Arabic"
 msgstr "; nominative: egyptinarabia; genitive: egyptinarabian; partitive: egyptinarabiaa; inessive: egyptinarabiassa; elative: egyptinarabiasta; illative: egyptinarabiaan; translative: egyptinarabiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L326
 msgid "Belarusian"
 msgstr "; nominative: valkovenäjä; genitive: valkovenäjän; partitive: valkovenäjää; inessive: valkovenäjässä; elative: valkovenäjästä; illative: valkovenäjään; translative: valkovenäjäksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L317
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L327
 msgid "Hungarian"
 msgstr "; nominative: unkari; genitive: unkarin; partitive: unkaria; inessive: unkarissa; elative: unkarista; illative: unkariin; translative: unkariksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L328
 msgid "Icelandic"
 msgstr "; nominative: islanti; genitive: islannin; partitive: islantia; inessive: islannissa; elative: islannista; illative: islantiin; translative: islanniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L319
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L329
 msgid "Albanian"
 msgstr "; nominative: albania; genitive: albanian; partitive: albaniaa; inessive: albaniassa; elative: albaniasta; illative: albaniaan; translative: albaniaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L330
 msgid "Cantonese"
 msgstr "; nominative: kantoninkiina; genitive: kantoninkiinan; partitive: kantoninkiinaa; inessive: kantoninkiinassa; elative: kantoninkiinasta; illative: kantoninkiinaan; translative: kantoninkiinaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L331
 msgid "Afrikaans"
 msgstr "; nominative: afrikaans; genitive: afrikaansin; partitive: afrikaansia; inessive: afrikaansissa; elative: afrikaansista; illative: afrikaansiin; translative: afrikaansiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L332
 msgid "Faroese"
 msgstr "; nominative: fääri; genitive: fäärin; partitive: fääriä; inessive: fäärissä; elative: fääristä; illative: fääriin; translative: fääriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L323
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L333
 msgid "Frisian"
 msgstr "; nominative: friisi; genitive: friisin; partitive: friisiä; inessive: friisissä; elative: friisistä; illative: friisiin; translative: friisiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L324
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L334
 msgid "Breton"
 msgstr "; nominative: bretoni; genitive: bretonin; partitive: bretonia; inessive: bretonissa; elative: bretonista; illative: bretoniin; translative: bretoniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L325
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L335
 msgid "Romanian"
 msgstr "; nominative: romania; genitive: romanian; partitive: romaniaa; inessive: romaniassa; elative: romaniasta; illative: romaniaan; translative: romaniaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L336
 msgid "Uyghur"
 msgstr "; nominative: uiguuri; genitive: uiguurin; partitive: uiguuria; inessive: uiguurissa; elative: uiguurista; illative: uiguuriin; translative: uiguuriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L337
 msgid "Uzbek"
 msgstr "; nominative: uzbekki; genitive: uzbekkin; partitive: uzbekkia; inessive: uzbekkissa; elative: uzbekkista; illative: uzbekkiin; translative: uzbekkiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L338
 msgid "Norwegian (Nynorsk)"
 msgstr "; nominative: norja (uusnorja); genitive: (uus)norjan; partitive: (uus)norjaa; inessive: (uus)norjassa; elative: (uus)norjasta; illative: (uus)norjaan; translative: (uus)norjaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L339
 msgid "Serbian"
 msgstr "; nominative: serbia; genitive: serbian; partitive: serbiaa; inessive: serbiassa; elative: serbiasta; illative: serbiaan; translative: serbiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L330
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L340
 msgid "Tatar"
 msgstr "; nominative: tataari; genitive: tataarin; partitive: tataaria; inessive: tataarissa; elative: tataarista; illative: tataariin; translative: tataariksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L341
 msgid "Yiddish"
 msgstr "; nominative: jiddiš; genitive: jiddišin; partitive: jiddišia; inessive: jiddišissa; elative: jiddišista; illative: jiddišiin; translative: jiddišiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L342
 msgid "Persian"
 msgstr "; nominative: persia/farsi; genitive: persian; partitive: persiaa; inessive: persiassa; elative: persiasta; illative: persiaan; translative: persiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L343
 msgid "Min Nan Chinese"
 msgstr "; nominative: min nan -kiina; genitive: min nan -kiinan; partitive: min nan -kiinaa; inessive: min nan -kiinassa; elative: min nan -kiinasta; illative: min nan -kiinaan; translative: min nan -kiinaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L344
 msgid "Basque"
 msgstr "; nominative: baski; genitive: baskin; partitive: baskia; inessive: baskissa; elative: baskista; illative: baskiin; translative: baskiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L345
 msgid "Slovak"
 msgstr "; nominative: slovakki; genitive: slovakin; partitive: slovakkia; inessive: slovakissa; elative: slovakista; illative: slovakkiin; translative: slovakiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L346
 msgid "Danish"
 msgstr "; nominative: tanska; genitive: tanskan; partitive: tanskaa; inessive: tanskassa; elative: tanskasta; illative: tanskaan; translative: tanskaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L347
 msgid "Armenian"
 msgstr "; nominative: armenia; genitive: armenian; partitive: armeniaa; inessive: armeniassa; elative: armeniasta; illative: armeniaan; translative: armeniaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L338
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L348
 msgid "Iraqi Arabic"
 msgstr "; nominative: irakinarabia; genitive: irakinarabian; partitive: irakinarabiaa; inessive: irakinarabiassa; elative: irakinarabiasta; illative: irakinarabiaan; translative: irakinarabiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L349
 msgid "Sanskrit"
 msgstr "; nominative: sanskriitti; genitive: sanskriitin; partitive: sanskriittia; inessive: sanskriitissa; elative: sanskriitista; illative: sanskriittiin; translative: sanskriitiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L350
 msgid "Urdu"
 msgstr "; nominative: urdu; genitive: urdun; partitive: urdua; inessive: urdussa; elative: urdusta; illative: urduun; translative: urduksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L341
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L351
 msgid "Hindi"
 msgstr "; nominative: hindi; genitive: hindin; partitive: hindiä; inessive: hindissä; elative: hindistä; illative: hindiin; translative: hindiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L352
 msgid "Bengali"
 msgstr "; nominative: bengali; genitive: bengalin; partitive: bengalia; inessive: bengalissa; elative: bengalista; illative: bengaliin; translative: bengaliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L353
 msgid "CycL"
 msgstr "; nominative: cycL; genitive: cycL:in; partitive: cycL:ia; inessive: cycL:issa; elative: cycL:ista; illative: cycL:iin; translative: cycL:iksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L354
 msgid "Catalan"
 msgstr "; nominative: katalaani; genitive: katalaanin; partitive: katalaania; inessive: katalaanissa; elative: katalaanista; illative: katalaaniin; translative: katalaaniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L355
 msgid "Kazakh"
 msgstr "; nominative: kazakki; genitive: kazakin; partitive: kazakkia; inessive: kazakissa; elative: kazakista; illative: kazakkiin; translative: kazakiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L356
 msgid "Latvian"
 msgstr "; nominative: latvia; genitive: latvian; partitive: latviaa; inessive: latviassa; elative: latviasta; illative: latviaan; translative: latviaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L357
 msgid "Bosnian"
 msgstr "; nominative: bosnia; genitive: bosnian; partitive: bosniaa; inessive: bosniassa; elative: bosniasta; illative: bosniaan; translative: bosniaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L358
 msgid "Croatian"
 msgstr "; nominative: kroatia; genitive: kroatian; partitive: kroatiaa; inessive: kroatiassa; elative: kroatiasta; illative: kroatiaan; translative: kroatiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L359
 msgid "Old East Slavic"
 msgstr "; nominative: muinaisitäslaavi; genitive: muinaisitäslaavin; partitive: muinaisitäslaavia; inessive: muinaisitäslaavissa; elative: muinaisitäslaavista; illative: muinaisitäslaaviin; translative: muinaisitäslaaviksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L350
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L360
 msgid "Chamorro"
 msgstr "; nominative: tšamorro; genitive: tšamorron; partitive: tšamorroa; inessive: tšamorrossa; elative: tšamorrosta; illative: tšamorroon; translative: tšamorroksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L351
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L361
 msgid "Tagalog"
 msgstr "; nominative: tagalog; genitive: tagalogin; partitive: tagalogia; inessive: tagalogissa; elative: tagalogista; illative: tagalogiin; translative: tagalogiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L352
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L362
 msgid "Quechua"
 msgstr "; nominative: ketšua; genitive: ketšuan; partitive: ketšuaa; inessive: ketšuassa; elative: ketšuasta; illative: ketšuaan; translative: ketšuaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L363
 msgid "Mongolian"
 msgstr "; nominative: mongolia; genitive: mongolian; partitive: mongoliaa; inessive: mongoliassa; elative: mongoliasta; illative: mongoliaan; translative: mongoliaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L364
 msgid "Lithuanian"
 msgstr "; nominative: liettua; genitive: liettuan; partitive: liettuaa; inessive: liettuassa; elative: liettuasta; illative: liettuaan; translative: liettuaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L355
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L365
 msgid "Galician"
 msgstr "; nominative: galego; genitive: galegon; partitive: galegoa; inessive: galegossa; elative: galegosta; illative: galegoon; translative: galegoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L366
 msgid "Irish"
 msgstr "; nominative: iiri; genitive: iirin; partitive: iiria; inessive: iirissa; elative: iirista; illative: iiriin; translative: iiriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L367
 msgid "Interlingua"
 msgstr "; nominative: interlingua; genitive: interlinguan; partitive: interlinguaa; inessive: interlinguassa; elative: interlinguasta; illative: interlinguaan; translative: interlinguaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L368
 msgid "Lojban"
 msgstr "; nominative: lojban; genitive: lojbanin; partitive: lojbania; inessive: lojbanissa; elative: lojbanista; illative: lojbaniin; translative: lojbaniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L369
 msgid "Toki Pona"
 msgstr "; nominative: toki pona; genitive: toki ponan; partitive: toki ponaa; inessive: toki ponassa; elative: toki ponasta; illative: toki ponaan; translative: toki ponaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L370
 msgid "Ainu"
 msgstr "; nominative: ainu; genitive: ainun; partitive: ainua; inessive: ainussa; elative: ainusta; illative: ainuun; translative: ainuksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L371
 msgid "Sicilian"
 msgstr "; nominative: sisilia; genitive: sisilian; partitive: sisiliaa; inessive: sisiliassa; elative: sisiliasta; illative: sisiliaan; translative: sisiliaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L372
 msgid "Malayalam"
 msgstr "; nominative: malajalam; genitive: malajalamin; partitive: malajalamia; inessive: malajalamissa; elative: malajalamista; illative: malajalamiin; translative: malajalamiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L373
 msgid "Low Saxon"
 msgstr "; nominative: alasaksa; genitive: alasaksan; partitive: alasaksaa; inessive: alasaksassa; elative: alasaksasta; illative: alasaksaan; translative: alasaksaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L364
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L374
 msgid "Klingon"
 msgstr "; nominative: klingon; genitive: klingonin; partitive: klingonia; inessive: klingonissa; elative: klingonista; illative: klingoniin; translative: klingoniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L365
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L375
 msgid "Slovenian"
 msgstr "; nominative: sloveeni; genitive: sloveenin; partitive: sloveenia; inessive: sloveenissa; elative: sloveenista; illative: sloveeniin; translative: sloveeniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L366
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L376
 msgid "Thai"
 msgstr "; nominative: thai; genitive: thain; partitive: thaita; inessive: thaissa; elative: thaista; illative: thaihin; translative: thaiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L377
 msgid "Literary Chinese"
 msgstr "; nominative: kirjallinen kiina; genitive: kirjallisen kiinan; partitive: kirjallista kiinaa; inessive: kirjallisessa kiinassa; elative: kirjallisesta kiinasta; illative: kirjalliseen kiinaan; translative: kirjalliseksi kiinaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L378
 msgid "Ossetian"
 msgstr "; nominative: osseetti; genitive: osseetin; partitive: osseettia; inessive: osseetissa; elative: osseetista; illative: osseettiin; translative: osseetiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L369
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L379
 msgid "Romansh"
 msgstr "; nominative: retoromaani; genitive: retoromaanin; partitive: retoromaania; inessive: retoromaanissa; elative: retoromaanista; illative: retoromaaniin; translative: retoromaaniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L380
 msgid "Volapük"
 msgstr "; nominative: volapük; genitive: volapükin; partitive: volapükia; inessive: volapükissa; elative: volapükista; illative: volapükiin; translative: volapükiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L381
 msgid "Scottish Gaelic"
 msgstr "; nominative: gaeli (skotlanti); genitive: gaelin; partitive: gaelia; inessive: gaelissa; elative: gaelista; illative: gaeliin; translative: gaeliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L372
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L382
 msgid "Ido"
 msgstr "; nominative: ido; genitive: idon; partitive: idoa; inessive: idossa; elative: idosta; illative: idoon; translative: idoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L383
 msgid "Asturian"
 msgstr "; nominative: asturia; genitive: asturian; partitive: asturiaa; inessive: asturiassa; elative: asturiasta; illative: asturiaan; translative: asturiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L384
 msgid "Interlingue"
 msgstr "; nominative: interlingue; genitive: interlinguen; partitive: interlingueta; inessive: interlinguessa; elative: interlinguesta; illative: interlingueen; translative: interlingueksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L385
 msgid "Occitan"
 msgstr "; nominative: oksitaani; genitive: oksitaanin; partitive: oksitaania; inessive: oksitaanissa; elative: oksitaanista; illative: oksitaaniin; translative: oksitaaniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L376
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L386
 msgid "Kalmyk"
 msgstr "; nominative: kalmukki; genitive: kalmukin; partitive: kalmukkia; inessive: kalmukissa; elative: kalmukista; illative: kalmukkiin; translative: kalmukiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L387
 msgid "Old English"
 msgstr "; nominative: muinaisenglanti; genitive: muinaisenglannin; partitive: muinaisenglantia; inessive: muinaisenglannissa; elative: muinaisenglannista; illative: muinaisenglantiin; translative: muinaisenglanniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L378
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L388
 msgid "Kurdish"
 msgstr "; nominative: kurdi; genitive: kurdin; partitive: kurdia; inessive: kurdissa; elative: kurdista; illative: kurdiin; translative: kurdiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L389
 msgid "Lower Sorbian"
 msgstr "; nominative: alasorbi; genitive: alasorbin; partitive: alasorbia; inessive: alasorbissa; elative: alasorbista; illative: alasorbiin; translative: alasorbiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L380
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L390
 msgid "Upper Sorbian"
 msgstr "; nominative: yläsorbi; genitive: yläsorbin; partitive: yläsorbia; inessive: yläsorbissa; elative: yläsorbista; illative: yläsorbiin; translative: yläsorbiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L391
 msgid "Kölsch"
 msgstr "; nominative: kölschin murre; genitive: kölschin murteen; partitive: kölschin murretta; inessive: kölschin murteessa; elative: kölschin murteesta; illative: kölschin murteeseen; translative: kölschin murteeksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L392
 msgid "Welsh"
 msgstr "; nominative: kymri; genitive: kymrin; partitive: kymriä; inessive: kymrissä; elative: kymristä; illative: kymriin; translative: kymriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L383
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L393
 msgid "Ewe"
 msgstr "; nominative: ewe; genitive: ewen; partitive: ewea; inessive: ewessa; elative: ewesta; illative: eween; translative: eweksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L394
 msgid "Sindarin"
 msgstr "; nominative: sindar; genitive: sindarin; partitive: sindaria; inessive: sindarissa; elative: sindarista; illative: sindariin; translative: sindariksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L395
 msgid "Telugu"
 msgstr "; nominative: telugu; genitive: telugun; partitive: telugua; inessive: telugussa; elative: telugusta; illative: teluguun; translative: teluguksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L396
 msgid "Tok Pisin"
 msgstr "; nominative: tok-pisin; genitive: tok-pisinin; partitive: tok-pisinia; inessive: tok-pisinissa; elative: tok-pisinista; illative: tok-pisiniin; translative: tok-pisiniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L397
 msgid "Quenya"
 msgstr "; nominative: quenya; genitive: quenyan; partitive: quenyaa; inessive: quenyassa; elative: quenyasta; illative: quenyaan; translative: quenyaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L398
 msgid "Novial"
 msgstr "; nominative: novial; genitive: novialin; partitive: novialia; inessive: novialissa; elative: novialista; illative: novialiin; translative: novialiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L399
 msgid "Maori"
 msgstr "; nominative: maori; genitive: maorin; partitive: maoria; inessive: maorissa; elative: maorista; illative: maoriin; translative: maoriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L400
 msgid "Ladin"
 msgstr "; nominative: ladin; genitive: ladinin; partitive: ladinia; inessive: ladinissa; elative: ladinista; illative: ladiniin; translative: ladiniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L391
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L401
 msgid "Berber"
 msgstr "; nominative: berberikielet; genitive: berberikielten; partitive: berberikieliä; inessive: berberikielissä; elative: berberikielistä; illative: berberikieliin; translative: berberikieliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L402
 msgid "Xhosa"
 msgstr "; nominative: xhosa; genitive: xhosan; partitive: xhosaa; inessive: xhosassa; elative: xhosasta; illative: xhosaan; translative: xhosaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L403
 msgid "Punjabi (Western)"
 msgstr "; nominative: länsipandžabi; genitive: länsipandžabin; partitive: länsipandžabia; inessive: länsipandžabissa; elative: länsipandžabista; illative: länsipandžabiin; translative: länsipandžabiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L404
 msgid "Malagasy"
 msgstr "; nominative: malagassi; genitive: malagassin; partitive: malagassia; inessive: malagassissa; elative: malagassista; illative: malagassiin; translative: malagassiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L405
 msgid "Guarani"
 msgstr "; nominative: guarani; genitive: guaranin; partitive: guarania; inessive: guaranissa; elative: guaranista; illative: guaraniin; translative: guaraniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L406
 msgid "Ladino"
 msgstr "; nominative: ladino/juutalaisespanja; genitive: ladinon; partitive: ladinoa; inessive: ladinossa; elative: ladinosta; illative: ladinoon; translative: ladinoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L397
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L407
 msgid "Piedmontese"
 msgstr "; nominative: piemonte; genitive: piemonten; partitive: piemontea; inessive: piemontessa; elative: piemontesta; illative: piemonteen; translative: piemonteksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L408
 msgid "Kotava"
 msgstr "; nominative: kotava; genitive: kotavan; partitive: kotavaa; inessive: kotavassa; elative: kotavasta; illative: kotavaan; translative: kotavaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L409
 msgid "Marathi"
 msgstr "; nominative: marathi; genitive: marathin; partitive: marathia; inessive: marathissa; elative: marathista; illative: marathiin; translative: marathiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L410
 msgid "Old Tupi"
 msgstr "; nominative: muinaistupi; genitive: muinaistupin; partitive: muinaistupia; inessive: muinaistupissa; elative: muinaistupista; illative: muinaistupiin; translative: muinaistupiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L411
 msgid "Tajik"
 msgstr "; nominative: tadžikki; genitive: tadžikin; partitive: tadžikkia; inessive: tadžikissa; elative: tadžikista; illative: tadžikkiin; translative: tadžikiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L412
 msgid "Old Prussian"
 msgstr "; nominative: muinaispreussi; genitive: muinaispreussin; partitive: muinaispreussia; inessive: muinaispreussissa; elative: muinaispreussista; illative: muinaispreussiin; translative: muinaispreussiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L413
 msgid "Nepali"
 msgstr "; nominative: nepali; genitive: nepalin; partitive: nepalia; inessive: nepalissa; elative: nepalista; illative: nepaliin; translative: nepaliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L404
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L414
 msgid "Maltese"
 msgstr "; nominative: malta; genitive: maltan; partitive: maltaa; inessive: maltassa; elative: maltasta; illative: maltaan; translative: maltaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L415
 msgid "Chukchi"
 msgstr "; nominative: tšuktšin; genitive: tšuktšinin; partitive: tšuktšinia; inessive: tšuktšinissa; elative: tšuktšinista; illative: tšuktšiniin; translative: tšuktšiniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L416
 msgid "Cornish"
 msgstr "; nominative: korni; genitive: kornin; partitive: kornia; inessive: kornissa; elative: kornista; illative: korniin; translative: korniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L417
 msgid "Azerbaijani"
 msgstr "; nominative: azeri; genitive: azerin; partitive: azeria; inessive: azerissa; elative: azerista; illative: azeriin; translative: azeriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L418
 msgid "Khmer"
 msgstr "; nominative: khmer; genitive: khmerin; partitive: khmeria; inessive: khmerissa; elative: khmerista; illative: khmeriin; translative: khmeriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L409
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L419
 msgid "Lao"
 msgstr "; nominative: lao; genitive: laon; partitive: laoa; inessive: laossa; elative: laosta; illative: laoon; translative: laoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L410
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L420
 msgid "Tibetan"
 msgstr "; nominative: tiibet; genitive: tiibetin; partitive: tiibetia; inessive: tiibetissa; elative: tiibetista; illative: tiibetiin; translative: tiibetiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L411
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L421
 msgid "Hiligaynon"
 msgstr "; nominative: hiligaino/ilonggo; genitive: hiligainon; partitive: hiligainoa; inessive: hiligainossa; elative: hiligainosta; illative: hiligainoon; translative: hiligainoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L412
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L422
 msgid "Algerian Arabic"
 msgstr "; nominative: arabia (Algeria); genitive: (Algerian) arabian; partitive: (Algerian) arabiaa; inessive: (Algerian) arabiassa; elative: (Algerian) arabiasta; illative: (Algerian) arabiaan; translative: (Algerian) arabiaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L413
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L423
 msgid "Picard"
 msgstr "; nominative: picard; genitive: picardin; partitive: picardia; inessive: picardissa; elative: picardista; illative: picardiin; translative: picardiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L424
 msgid "Ancient Greek"
 msgstr "; nominative: muinaiskreikka; genitive: muinaiskreikan; partitive: muinaiskreikkaa; inessive: muinaiskreikassa; elative: muinaiskreikasta; illative: muinaiskreikkaan; translative: muinaiskreikaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L425
 msgid "Amharic"
 msgstr "; nominative: amhara; genitive: amharan; partitive: amharaa; inessive: amharassa; elative: amharasta; illative: amharaan; translative: amharaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L416
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L426
 msgid "Awadhi"
 msgstr "; nominative: awadhi; genitive: awadhin; partitive: awadhia; inessive: awadhissa; elative: awadhista; illative: awadhiin; translative: awadhiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L427
 msgid "Bhojpuri"
 msgstr "; nominative: bhodžpuri; genitive: bhodžpurin; partitive: bhodžpuria; inessive: bhodžpurissa; elative: bhodžpurista; illative: bhodžpuriin; translative: bhodžpuriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L428
 msgid "Chavacano"
 msgstr "; nominative: chavacano/chabacano; genitive: chavacanon; partitive: chavacanoa; inessive: chavacanossa; elative: chavacanosta; illative: chavacanoon; translative: chavacanoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L419
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L429
 msgid "Middle English"
 msgstr "; nominative: keskienglanti; genitive: keskienglannin; partitive: keskienglantia; inessive: keskienglannissa; elative: keskienglannista; illative: keskienglantiin; translative: keskienglanniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L420
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L430
 msgid "Middle French"
 msgstr "; nominative: keskiranska; genitive: keskiranskan; partitive: keskiranskaa; inessive: keskiranskassa; elative: keskiranskasta; illative: keskiranskaan; translative: keskiranskaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L421
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L431
 msgid "Haitian Creole"
 msgstr "; nominative: haiti/haitin kreoli; genitive: haitin; partitive: haitia; inessive: haitissa; elative: haitista; illative: haitiin; translative: haitiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L432
 msgid "Juhuri (Judeo-Tat)"
 msgstr "; nominative: juhuri; genitive: juhurin; partitive: juhuria; inessive: juhurissa; elative: juhurista; illative: juhuriin; translative: juhuriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L433
 msgid "Greenlandic"
 msgstr "; nominative: grönlanti/kalaallisut; genitive: grönlannin; partitive: grönlantia; inessive: grönlannissa; elative: grönlannista; illative: grönlantiin; translative: grönlanniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L434
 msgid "Meadow Mari"
 msgstr "; nominative: niittymari/itämari; genitive: niittymarin; partitive: niittymaria; inessive: niittymarissa; elative: niittymarista; illative: niittymariin; translative: niittymariksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L435
 msgid "Nahuatl"
 msgstr "; nominative: nahuatl; genitive: nahuatlin; partitive: nahuatlia; inessive: nahuatlissa; elative: nahuatlista; illative: nahuatliin; translative: nahuatliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L426
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L436
 msgid "Pennsylvania German"
 msgstr "; nominative: pennsylvaniansaksa; genitive: pennsylvaniansaksan; partitive: pennsylvaniansaksaa; inessive: pennsylvaniansaksassa; elative: pennsylvaniansaksasta; illative: pennsylvaniansaksaan; translative: pennsylvaniansaksaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L437
 msgid "Sinhala"
 msgstr "; nominative: sinhali/singaleesi/sinhala; genitive: sinhalin; partitive: sinhalia; inessive: sinhalissa; elative: sinhalista; illative: sinhaliin; translative: sinhaliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L428
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L438
 msgid "Turkmen"
 msgstr "; nominative: turkmeeni; genitive: turkmeenin; partitive: turkmeenia; inessive: turkmeenissa; elative: turkmeenista; illative: turkmeeniin; translative: turkmeeniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L429
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L439
 msgid "Walloon"
 msgstr "; nominative: valloni; genitive: vallonin; partitive: vallonia; inessive: vallonissa; elative: vallonista; illative: valloniin; translative: valloniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L440
 msgid "Bashkir"
 msgstr "; nominative: baškiiri; genitive: baškiirin; partitive: baškiiria; inessive: baškiirissa; elative: baškiirista; illative: baškiiriin; translative: baškiiriksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L431
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L441
 msgid "Hausa"
 msgstr "; nominative: hausa; genitive: hausan; partitive: hausaa; inessive: hausassa; elative: hausasta; illative: hausaan; translative: hausaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L442
 msgid "Luxembourgish"
 msgstr "; nominative: luxemburg; genitive: luxemburgin; partitive: luxemburgia; inessive: luxemburgissa; elative: luxemburgista; illative: luxemburgiin; translative: luxemburgiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L433
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L443
 msgid "Mambae"
 msgstr "; nominative: mambai; genitive: mambain; partitive: mambaita; inessive: mambaissa; elative: mambaista; illative: mambaihin; translative: mambaiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L434
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L444
 msgid "Somali"
 msgstr "; nominative: somali; genitive: somalin; partitive: somalia; inessive: somalissa; elative: somalista; illative: somaliin; translative: somaliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L445
 msgid "Zulu"
 msgstr "; nominative: zulu; genitive: zulun; partitive: zulua; inessive: zulussa; elative: zulusta; illative: zuluun; translative: zuluksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L436
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L446
 msgid "Hawaiian"
 msgstr "; nominative: havaiji; genitive: havaijin; partitive: havaijia; inessive: havaijissa; elative: havaijista; illative: havaijiin; translative: havaijiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L437
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L447
 msgid "Kyrgyz"
 msgstr "; nominative: kirgiisi; genitive: kirgiisin; partitive: kirgiisiä; inessive: kirgiisissä; elative: kirgiisistä; illative: kirgiisiin; translative: kirgiisiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L448
 msgid "Macedonian"
 msgstr "; nominative: makedonia; genitive: makedonian; partitive: makedoniaa; inessive: makedoniassa; elative: makedoniasta; illative: makedoniaan; translative: makedoniaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L439
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L449
 msgid "Hill Mari"
 msgstr "; nominative: vuorimari/länsimari; genitive: vuorimarin; partitive: vuorimaria; inessive: vuorimarissa; elative: vuorimarista; illative: vuorimariin; translative: vuorimariksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L440
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L450
 msgid "Pipil"
 msgstr "; nominative: nawat; genitive: nawatin; partitive: nawatia; inessive: nawatissa; elative: nawatista; illative: nawatiin; translative: nawatiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L451
 msgid "Yoruba"
 msgstr "; nominative: joruba; genitive: joruban; partitive: jorubaa; inessive: jorubassa; elative: jorubasta; illative: jorubaan; translative: jorubaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L442
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L452
 msgid "Kinyarwanda"
 msgstr "; nominative: ruanda; genitive: ruandan; partitive: ruandaa; inessive: ruandassa; elative: ruandasta; illative: ruandaan; translative: ruandaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L453
 msgid "Shuswap"
 msgstr "; nominative: shuswap; genitive: shuswapin; partitive: shuswapia; inessive: shuswapissa; elative: shuswapista; illative: shuswapiin; translative: shuswapiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L444
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L454
 msgid "Chuvash"
 msgstr "; nominative: tšuvassi; genitive: tšuvassin; partitive: tšuvassia; inessive: tšuvassissa; elative: tšuvassista; illative: tšuvassiin; translative: tšuvassiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L445
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L455
 msgid "Lakota"
 msgstr "; nominative: lakota; genitive: lakotan; partitive: lakotaa; inessive: lakotassa; elative: lakotasta; illative: lakotaan; translative: lakotaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L456
 msgid "Ottoman Turkish"
 msgstr "; nominative: osmaninturkki; genitive: osmaninturkin; partitive: osmaninturkkia; inessive: osmaninturkissa; elative: osmaninturkista; illative: osmaninturkkiin; translative: osmaninturkiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L457
 msgid "Shona"
 msgstr "; nominative: šona/shona; genitive: šonan; partitive: šonaa; inessive: šonassa; elative: šonasta; illative: šonaan; translative: šonaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L458
 msgid "Mon"
 msgstr "; nominative: mon; genitive: monin; partitive: monia; inessive: monissa; elative: monista; illative: moniin; translative: moniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L449
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L459
 msgid "Nogai"
 msgstr "; nominative: nogai; genitive: nogain; partitive: nogaita; inessive: nogaissa; elative: nogaista; illative: nogaihin; translative: nogaiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L450
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L460
 msgid "Yakut"
 msgstr "; nominative: jakuutti; genitive: jakuuttin; partitive: jakuuttia; inessive: jakuuttissa; elative: jakuuttista; illative: jakuuttiin; translative: jakuuttiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L461
 msgid "Abkhaz"
 msgstr "; nominative: abhaasi; genitive: abhaasin; partitive: abhaasia; inessive: abhaasissa; elative: abhaasista; illative: abhaasiin; translative: abhaasiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L452
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L462
 msgid "Tetun"
 msgstr "; nominative: tetum; genitive: tetumin; partitive: tetumia; inessive: tetumissa; elative: tetumista; illative: tetumiin; translative: tetumiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L453
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L463
 msgid "Tamil"
 msgstr "; nominative: tamili; genitive: tamilin; partitive: tamilia; inessive: tamilissa; elative: tamilista; illative: tamiliin; translative: tamiliksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L464
 msgid "Udmurt"
 msgstr "; nominative: udmurtti; genitive: udmurtin; partitive: udmurttia; inessive: udmurtissa; elative: udmurtista; illative: udmurttiin; translative: udmurtiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L465
 msgid "Kumyk"
 msgstr "; nominative: kumykki; genitive: kumykin; partitive: kumykkiä; inessive: kumykissä; elative: kumykistä; illative: kumykkiin; translative: kumykiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L466
 msgid "Crimean Tatar"
 msgstr "; nominative: krimintataari; genitive: krimintataarin; partitive: krimintataaria; inessive: krimintataarissa; elative: krimintataarista; illative: krimintataariin; translative: krimintataariksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L457
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L467
 msgid "Chinyanja"
 msgstr "; nominative: chinyanja; genitive: chinyanjan; partitive: chinyanjaa; inessive: chinyanjassa; elative: chinyanjasta; illative: chinyanjaan; translative: chinyanjaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L458
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L468
 msgid "Livonian"
 msgstr "; nominative: liivi; genitive: liivin; partitive: liiviä; inessive: liivissä; elative: liivistä; illative: liiviin; translative: liiviksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L459
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L469
 msgid "Navajo"
 msgstr "; nominative: navajo/navaho; genitive: navajon; partitive: navajoa; inessive: navajossa; elative: navajosta; illative: navajoon; translative: navajoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L470
 msgid "Cherokee"
 msgstr "; nominative: cherokee; genitive: cherokeen; partitive: cherokeeta; inessive: cherokeessa; elative: cherokeesta; illative: cherokeehin; translative: cherokeeksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L471
 msgid "Gujarati"
 msgstr "; nominative: gudžarati/gujarati; genitive: gudžaratin; partitive: gudžaratia; inessive: gudžaratissa; elative: gudžaratista; illative: gudžaratiin; translative: gudžaratiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L472
 msgid "Punjabi (Eastern)"
 msgstr "; nominative: itäpandžabi; genitive: itäpandžabin; partitive: itäpandžabia; inessive: itäpandžabissa; elative: itäpandžabista; illative: itäpandžabiin; translative: itäpandžabiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L463
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L473
 msgid "Khasi"
 msgstr "khasi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L464
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L474
 msgid "Javanese"
 msgstr "jaava"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L475
 msgid "Zaza"
 msgstr "zaza"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L466
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L476
 msgid "Emilian"
 msgstr "; nominative: emialian kieli; genitive: emialian kielen; partitive: emialian kieltä; inessive: emialian kielessä; elative: emialian kielestä; illative: emialian kieleen; translative: emialian kieleksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L477
 msgid "Tigrinya"
 msgstr "; nominative: tigrinja; genitive: tigrinjan; partitive: tigrinjaa; inessive: tigrinjassa; elative: tigrinjasta; illative: tigrinjaan; translative: tigrinjaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L478
 msgid "Northern Sami"
 msgstr "; nominative: pohjoissaame; genitive: pohjoissaamen; partitive: pohjoissaamea; inessive: pohjoissaamessa; elative: pohjoissaamesta; illative: pohjoissaameen; translative: pohjoissaameksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L469
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L479
 msgid "North Moluccan Malay"
 msgstr "; nominative: pohjois-molukkien malaiji; genitive: pohjois-molukkien malaijin; partitive: pohjois-molukkien malaijia; inessive: pohjois-molukkien malaijissa; elative: pohjois-molukkien malaijista; illative: pohjois-molukkien malaijiin; translative: pohjois-molukkien malaijiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L470
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L480
 msgid "Kapampangan"
 msgstr "; nominative: pampanga; genitive: pampangan; partitive: pampangaa; inessive: pampangassa; elative: pampangasta; illative: pampangaan; translative: pampangaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L481
 msgid "Central Dusun"
 msgstr "; nominative: dusun; genitive: dusunin; partitive: dusunia; inessive: dusunissa; elative: dusunista; illative: dusuniin; translative: dusuniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L472
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L482
 msgid "Choctaw"
 msgstr "; nominative: choctawi; genitive: choctawin; partitive: choctawia; inessive: choctawissa; elative: choctawista; illative: choctawiin; translative: choctawiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L473
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L483
 msgid "Coastal Kadazan"
 msgstr "; nominative: rannikkokadazan; genitive: rannikkokadazanin; partitive: rannikkokadazania; inessive: rannikkokadazanissa; elative: rannikkokadazanista; illative: rannikkokadazaniin; translative: rannikkokadazaniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L484
 msgid "Samoan"
 msgstr "; nominative: samoa; genitive: samoan; partitive: samoaa; inessive: samoassa; elative: samoasta; illative: samoaan; translative: samoaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L485
 msgid "Fijian"
 msgstr "; nominative: fidži; genitive: fidžin; partitive: fidžiä; inessive: fidžissä; elative: fidžistä; illative: fidžiin; translative: fidžiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L486
 msgid "Wolof"
 msgstr "; nominative: wolof; genitive: wolofin; partitive: wolofia; inessive: wolofissa; elative: wolofista; illative: wolofiin; translative: wolofiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L477
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L487
 msgid "Chechen"
 msgstr "; nominative: tšetšeeni; genitive: tšetšeenin; partitive: tšetšeeniä; inessive: tšetšeenissä; elative: tšetšeenistä; illative: tšetšeeniin; translative: tšetšeeniksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L478
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L488
 msgid "Sango"
 msgstr "; nominative: sango; genitive: sangon; partitive: sangoa; inessive: sangossa; elative: sangosta; illative: sangoon; translative: sangoksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L479
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L489
 msgid "Fiji Hindi"
 msgstr "; nominative: fidžinhindi; genitive: fidžinhindin; partitive: fidžinhindiä; inessive: fidžinhindissä; elative: fidžinhindistä; illative: fidžinhindiin; translative: fidžinhindiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L480
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L490
 msgid "Tongan"
 msgstr "; nominative: tonga; genitive: tongan; partitive: tongaa; inessive: tongassa; elative: tongasta; illative: tongaan; translative: tongaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L481
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L491
 msgid "Ngeq "
 msgstr "; nominative: ngeq; genitive: ngeqin; partitive: ngeqiä; inessive: ngeqissä; elative: ngeqistä; illative: ngeqiin; translative: ngeqiksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L482
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L492
 msgid "Kamba"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L483
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L493
 msgid "Venetian"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L484
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L494
 msgid "Burmese"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L485
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L495
 msgid "Gilbertese"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L496
 msgid "Erzya"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L487
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L497
 msgid "Niuean"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L488
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L498
 msgid "Võro"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L499
 msgid "Manx"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L490
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L500
 msgid "Lingala"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L491
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L501
 msgid "Lingua Franca Nova"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L492
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L502
 msgid "Pashto"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L503
 msgid "Khakas"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L494
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L504
 msgid "Dungan"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L495
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L505
 msgid "Friulian"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L496
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L506
 msgid "Marshallese"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L497
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L507
 msgid "Palatine German"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L498
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L508
 msgid "Kannada"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L499
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L509
 msgid "Seychellois Creole"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L500
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L510
 msgid "Swiss German"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L501
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L511
 msgid "Old Saxon"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L502
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L512
 msgid "Sumerian"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L513
 msgid "Scots"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L514
 msgid "Mohawk"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L505
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L515
 msgid "Cebuano"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L506
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L516
 msgid "Lombard"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L507
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L517
 msgid "Tsonga"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L508
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L518
 msgid "Buryat"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L509
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L519
 msgid "Aymara"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L520
 msgid "Ilocano"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L511
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L521
 msgid "Karakalpak"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L512
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L522
 msgid "Orizaba Nahuatl"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L513
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L523
 msgid "Guerrero Nahuatl"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L514
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L524
 msgid "Adyghe"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L515
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L525
 msgid "Bodo"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L516
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L526
 msgid "Gagauz"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L517
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L527
 msgid "Romani"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L518
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L528
 msgid "Laz"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L519
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L529
 msgid "Pulaar"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L520
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L530
 msgid "Umbundu"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L531
 msgid "Tokelauan"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L522
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L532
 msgid "Southern Sotho"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L533
 msgid "Southern Altai"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L524
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L534
 msgid "Waray"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L525
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L535
 msgid "Sindhi"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L526
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L536
 msgid "Setswana"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L527
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L537
 msgid "Sardinian"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L528
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L538
 msgid "Palauan"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L529
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L539
 msgid "Garhwali"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L530
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L540
 msgid "Ojibwe"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L541
 msgid "Luganda"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L532
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L542
 msgid "Hakka Chinese"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L533
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L543
 msgid "Bambara"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L534
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L544
 msgid "Aragonese"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L535
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L545
 msgid "Assamese"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L536
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L546
 msgid "Nigerian Fulfulde"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L537
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L547
 msgid "Ho"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L538
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L548
 msgid "Sundanese"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L549
 msgid "North Levantine Arabic"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L540
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L550
 msgid "Tuvinian"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L541
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L551
 msgid "Karachay-Balkar"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L552
 msgid "Papiamento"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L543
-msgid "Moroccan Arabic"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L544
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L553
 msgid "Old Norse"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L545
-msgid "Old Aramaic"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L546
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L554
 msgid "Odia (Oriya)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L547
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L555
 msgid "Iban"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L556
+msgid "Old Aramaic"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L557
+msgid "Moroccan Arabic"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L558
+msgid "Cuyonon"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L559
+msgid "Igbo"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L560
+msgid "Kashubian"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L561
+msgid "Louisiana Creole"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L562
+msgid "Urhobo"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L563
+msgid "Tagal Murut"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L564
+msgid "Moksha"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L565
+msgid "Pangasinan"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L566
+msgid "Corsican"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L567
+msgid "Hmong"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L29
@@ -1721,6 +1793,7 @@ msgstr "Suodata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L104
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L52
 msgid "(total %count%)"
 msgstr "(yhteensä %count%)"
 
@@ -1739,7 +1812,7 @@ msgstr "{month} {year}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L41
 msgid "Latest contributions"
 msgstr "Viimeksi annetut työpanokset"
@@ -1774,7 +1847,7 @@ msgstr "Sanat:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L323
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L348
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L60
 msgid "Language:"
 msgstr "Kieli:"
@@ -1805,6 +1878,8 @@ msgstr "Kaikki käy"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L172
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L181
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L190
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L112
 msgid "No"
 msgstr "Ei"
 
@@ -1814,6 +1889,8 @@ msgstr "Ei"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L173
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L182
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L191
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L111
 msgid "Yes"
 msgstr "Kyllä"
 
@@ -2040,45 +2117,45 @@ msgid ""
 msgstr "Mitä enemmän osallistujia on, sitä hyödyllisemmäksi Tatoeba tulee! Sitä paitsi osallistumalla et ole vain hyödyksi koko muulle maailmalle, vaan opit myös itse paljon."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L187
 msgid "Register"
 msgstr "Luo käyttäjätili"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L59
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L76
 msgid "Log in"
 msgstr "Kirjaudu sisään"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L56
 msgid "Username: "
 msgstr "Käyttäjätunnus: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L104
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L61
 msgid "Password: "
 msgstr "Salasana: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L71
 msgid "Remember me"
 msgstr "Muista minut"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L83
 msgid "Forgot your password?"
 msgstr "Unohditko salasanasi?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L127
 msgid "Close"
 msgstr "Sulje"
 
@@ -2136,8 +2213,8 @@ msgid "show another "
 msgstr "Näytä toinen "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L117
 msgid "show more..."
 msgstr "Näytä lisää..."
 
@@ -2155,8 +2232,8 @@ msgid "Advanced search"
 msgstr "Tarkennettu haku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L536
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L560
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L43
 msgid "Search"
@@ -2232,7 +2309,7 @@ msgid "My collection"
 msgstr "Minun kokoelmani"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L593
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L599
 msgid "My lists"
 msgstr "Minun listani"
 
@@ -2373,40 +2450,44 @@ msgid "Collection"
 msgstr "Kokoelma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L479
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L567
+msgid "Transcriptions"
+msgstr "Transkriptiot"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L485
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L573
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L256
 msgid "Lists"
 msgstr "Listat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L101
 msgid "Favorites"
 msgstr "Suosikit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L101
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L197
 msgid "Comments"
 msgstr "Kommentit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L39
 msgid "Comments on {user}'s sentences"
 msgstr "Käyttäjän {user} lauseiden kommentit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L140
 msgid "Wall messages"
 msgstr "Seinäviestit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L132
 msgid "Logs"
 msgstr "Lokit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L170
 msgid "Translate {user}'s sentences"
 msgstr "Käännä käyttäjän {user} lauseita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L191
 msgid "Contact {user}"
 msgstr "Ota yhteyttä käyttäjään {user}"
 
@@ -2414,7 +2495,7 @@ msgstr "Ota yhteyttä käyttäjään {user}"
 msgid "{user}'s favorite sentences"
 msgstr "Käyttäjän {user} suosikkilauseet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L65
 msgid "This user does not have any favorites."
 msgstr "Tällä käyttäjällä ei ole yhtään suosikkeja."
 
@@ -2438,28 +2519,29 @@ msgstr "Toivota uudet käyttäjät tervetulleiksi."
 msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Käytä yksityisviestejä, jos haluat keskustella tähän lauseeseen liittymättömistä asioista."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L368
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L630
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L188
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L675
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L117
 msgid "Cancel"
 msgstr "Peruuta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L199
 msgid "Save changes"
 msgstr "Tallenna muutokset"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L226
 msgid "unhide"
 msgstr "Tuo esiin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L229
 msgid "hide"
 msgstr "Piilota"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L254
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L259
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L443
 msgid "edit"
 msgstr "Muokkaa"
@@ -2691,51 +2773,52 @@ msgstr "Määritä lista yhteistyölistaksi"
 msgid "Delete this list"
 msgstr "Poista tämä lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L409
 msgid "Remove sentence {number} from list"
 msgstr "Poista lause {number} listalta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L412
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L418
 msgid "Remove from list"
 msgstr "Poista listalta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L444
 msgid "Add a sentence to this list : "
 msgstr "Lisää lause tälle listalle: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L443
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L449
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L371
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L629
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L674
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L124
 msgid "OK"
 msgstr "OK"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L462
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
 msgstr "HUOM: Voi myös lisätä olemassa olevia lauseita käyttämällä tätä kuvaketta {addToListButton} (esimerkiksi kun <a href=\"{url}\">selailet</a>)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L508
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L514
 msgid "Create a new list"
 msgstr "Luo uusi lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L527
 msgctxt "list"
 msgid "Name"
 msgstr "Nimi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L524
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L530
 msgid "create"
 msgstr "Luo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L572
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L578
 msgid "All lists"
 msgstr "Kaikki listat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L588
 msgid "Collaborative lists"
 msgstr "Yhteistyölistat"
 
@@ -2743,7 +2826,7 @@ msgstr "Yhteistyölistat"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L159
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L176
 msgid "Sentence #{number}"
 msgstr "Lause nro {number}"
 
@@ -2776,13 +2859,14 @@ msgid "unlinked by {user}"
 msgstr "käyttäjän {user} poistama linkitys"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L514
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L461
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L112
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L348
 msgid "Edit"
 msgstr "Muokkaa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L127
 msgid "admin"
 msgstr "ylläpitäjä"
 
@@ -2817,94 +2901,84 @@ msgid ""
 " be translated."
 msgstr "Tämä lause on määritelty tällä hetkellä vahvistamattomaksi. Vahvistamattomia lauseita ei voi kääntää."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L131
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L132
-msgid "This sentence is in simplified Chinese."
-msgstr "Tämä lause on kirjoitettu yksinkertaistetulla kiinalla."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L156
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L157
-msgid "This sentence is in traditional Chinese."
-msgstr "Tämä lause on kirjoitettu perinteisellä kiinalla."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L145
 msgid "Click to adopt"
 msgstr "Klikkaa adoptoidaksesi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L152
 msgid "Click to unadopt"
 msgstr "Klikkaa hylätäksesi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L198
 msgid "Remove from favorites"
 msgstr "Poista suosikeista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L202
 msgid "Add to favorites"
 msgstr "Lisää suosikkeihin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L256
 msgid "Link to another sentence"
 msgstr "Linkitä toiseen lauseeseen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L269
 msgid "Sentence number"
 msgstr "Lausenumero"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L274
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
 msgstr "Linkitä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L315
 msgid "Add to list"
 msgstr "Lisää listaan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L349
 msgid "Add to one of your lists"
 msgstr "Lisää jollekin listoistasi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L350
 msgid "Add to a collaborative list"
 msgstr "Lisää yhteistyölistalle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L403
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Et voi poistaa tätä lausetta, koska siihen on liitetty äänite."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L464
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L411
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L421
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L105
 msgid "Delete"
 msgstr "Poista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L509
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L456
 msgid "You cannot edit this sentence because it has audio."
 msgstr "Et voi muokata tätä lausetta, koska siihen on liitetty äänite."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L492
 msgid "belongs to {user}"
 msgstr "kuuluu jäsenelle {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L559
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L512
 msgid "(native)"
 msgstr "(äidinkielinen puhuja)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L578
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L531
 msgid "Mark as \"OK\""
 msgstr "Anna merkintä ”OK”"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L583
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L536
 msgid "Mark as \"unsure\""
 msgstr "Anna merkintä ”epävarma”"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L588
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L541
 msgid "Mark as \"not OK\""
 msgstr "Anna merkintä ”ei OK”"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L600
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L553
 msgid "Unmark sentence"
 msgstr "Poista merkintä lauseesta"
 
@@ -3063,21 +3137,21 @@ msgstr "Tällä lauseella ei ole äänitettä. Klikkaa ja lue miten voit osallis
 msgid "Copy sentence"
 msgstr "Kopioi lause"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L188
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Näytä 1 käännös lisää"
 msgstr[1] "Näytä {number} käännöstä lisää "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L221
 msgid "Fewer translations"
 msgstr "Vähemmän käännöksiä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L328
 msgid "Translation:"
 msgstr "Käännös:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L384
 msgid "Submit translation"
 msgstr "Lisää käännös"
 
@@ -3114,13 +3188,76 @@ msgstr "Tunnisteet"
 msgid "Added by {username}, {date}"
 msgstr "Käyttäjän {username} lisäämä, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L270
 msgid "remove tag '{tagName}' from this sentence."
 msgstr "poista tunniste \"{tagName}\" tästä lauseesta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L305
 msgid "remove tag from sentence"
 msgstr "poista tunniste lauseesta"
+
+#. @translators: refers to a transcription
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L113
+msgid "Last edited by {author} the {date}"
+msgstr "Viimeksi muokannut {author} {date}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L121
+msgid "This alternative script was generated by a piece of software"
+msgstr "Tämä vaihtoehtoinen kirjoitus on tietokoneohjelman luoma"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L124
+msgid "This transcription was generated by a piece of software"
+msgstr "Tämä transkriptio on tietokoneohjelman luoma"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L134
+msgid "Reset"
+msgstr "Palauta alkutilaan"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L159
+msgid "Show alternative script"
+msgstr "Näytä vaihtoehtoinen kirjoitus"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L161
+msgid "Show transcription"
+msgstr "Näytä transkriptio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L203
+msgid "Edit alternative script"
+msgstr "Muokkaa vaihtoehtoista kirjoitusta"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L205
+msgid "Edit transcription"
+msgstr "Muokkaa transkriptiota"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L211
+msgid "You cannot edit this script."
+msgstr "Et voi muokata tätä kirjoitusta."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L213
+msgid "You cannot edit this transcription."
+msgstr "Et voi muokata tätä transkriptiota."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L234
+msgid ""
+"This alternative script may contain errors because it has been generated by "
+"a piece of software that is not perfect."
+msgstr "Tämä vaihtoehtoinen kirjoitus saattaa sisältää virheitä, koska se on luoto tietokoneohjelmalla, joka ei ole täydellinen."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L241
+msgid ""
+"This transcription may contain errors because it has been generated by a "
+"piece of software that is not perfect."
+msgstr "Tämä transkriptio saattaa sisältää virheitä, koska se on luoto tietokoneohjelmalla, joka ei ole täydellinen."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L255
+msgctxt "alternative script"
+msgid "Click to mark it as reviewed."
+msgstr "Klikkaa merkitäksesi sen arvioiduksi."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L261
+msgctxt "transcription"
+msgid "Click to mark it as reviewed."
+msgstr "Klikkaa merkitäksesi sen arvioiduksi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L74
 msgid "Add a message: "
@@ -3742,8 +3879,8 @@ msgstr "Tatoeba: lause- ja käännöskokoelma"
 msgid "Latest messages"
 msgstr "Uusimmat viestit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L112
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L95
 msgid "Latest comments"
 msgstr "Uusimmat kommentit"
 
@@ -3918,7 +4055,7 @@ msgid ""
 msgstr "Klikkaa ylintä lausetta, niin siirryt tatoeba.orgiin, jossa voit kääntää lauseen tai kommentoida sitä."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L183
 msgid "There is no sentence with id {number}"
 msgstr "Lausetta, jonka numero on {number}, ei ole olemassa"
 
@@ -4087,11 +4224,11 @@ msgstr "Arvioinnit"
 msgid "There is no log for this sentence"
 msgstr "Tällä lauseella ei ole lokia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L220
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L221
 msgid "There are no comments for now."
 msgstr "Lausetta ei ole vielä kommentoitu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L226
 msgid "Sentence deleted"
 msgstr "Lause poistettu lopullisesti"
 
@@ -4111,7 +4248,7 @@ msgstr "{language.genitive}kieliset lauseet, joita ei ole käännetty {translati
 msgid "Sentences in {language} with audio"
 msgstr "Äänitetyt {language.genitive}kieliset lauseet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/add_new_sentence_to_list.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/add_new_sentence_to_list.ctp#L46
 msgid "Problem while saving"
 msgstr "Ongelma tallennettaessa"
 
@@ -4318,7 +4455,7 @@ msgid ""
 "href=\"{}\">here</a>."
 msgstr "Ei löytynyt yhtään lausetta, jossa tätä merkkiä käytetään. Voit lisätä lauseen <a href=\"{}\">täällä</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L64
 msgid "View all sentences using this character <a href=\"{}\">here</a>"
 msgstr "Katso kaikki lauseet, joissa tätä merkkiä käytetään <a href=\"{}\">täältä</a>."
 
@@ -4424,11 +4561,11 @@ msgid "Sentences with tag {tagName}"
 msgstr "Lauseet, joissa on tunniste {tagName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L90
 msgid "View all tags"
 msgstr "Näytä kaikki tunnisteet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L85
 msgid "No tag with id {tagId}"
 msgstr "Ei tunnistetta numerolla {tagId}"
 
@@ -4483,28 +4620,57 @@ msgid ""
 "to correct it."
 msgstr "Saamasi tulokset eivät ole aina täydellisiä. Voit kuitenkin auttaa meitä parantamaan tätä kertomalla meille näkemistäsi virheistä. Me yritämme mahdollisuuksien mukaan korjata niitä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L104
 msgid "Enter either traditional or simplified Chinese"
 msgstr "Syötä joko perinteistä tai yksinkertaistettua kiinaa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L134
 msgid "Convert"
 msgstr "Muunna"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L68
+msgid "Autogenerate furigana over Japanese"
+msgstr "Luo automaattisesti furiganat japanilaiseen kirjoitukseen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L43
+msgid "Credits"
+msgstr "Kunniamaininnat"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L40
+msgid "This tool is powered by <a href=\"{}\">MeCab</a>."
+msgstr "Tämän työkalun tarjoaa <a href=\"{}\">MeCab</a>"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L49
+msgid "More information"
+msgstr "Lisätietoja"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L53
+msgid "Japanese romanization in Tatoeba, now using MeCab"
+msgstr "Japanin romanisointi Tatoebassa käyttää nyt MeCabia"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L59
+msgid "Tools for Japanese romanization"
+msgstr "Työkalut japanin romanisointiin"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L100
+msgid "Autogenerate furigana"
+msgstr "Luo furiganat automaattisesti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L28
 msgid "Useful tools"
 msgstr "Hyödyllisiä työkaluja"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L38
-msgid "Romaji/furigana conversion"
-msgstr "Roomaji/furigana-muunnos"
+msgid "Furigana autogeneration"
+msgstr "Furiganojen automaattinen luonti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L45
-msgid "convert Japanese to romaji or furigana."
-msgstr "muunna japania roomajille tai furiganoille"
+msgid "autogenerate furigana over Japanese."
+msgstr "Luo automaattisesti furiganat japanilaiseen kirjoitukseen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L51
 msgid "Sinogram search"
@@ -4543,64 +4709,26 @@ msgid ""
 "Phonetic Alphabet"
 msgstr "Muunna shanghainkiinaksi kirjoitettua tekstiä sen äänneasuun, jossa käytetään IPA-merkkejä (kansainvälisiä foneettisia aakkosia)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L77
 msgid "Convert text from: "
 msgstr "Muunna teksti muodosta: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L81
 msgid "Chinese characters"
 msgstr "Kiinalaiset kirjoitusmerkit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L96
 msgid "numerical pinyin"
 msgstr "numeerinen pinyin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L92
 msgid "Convert text to: "
 msgstr "Muunna teksti muotoon: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L97
 msgid "diacritical pinyin"
 msgstr "ääntämisen mukainen pinyin"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L68
-msgid "Convert Japanese text into romaji or furigana"
-msgstr "Muunna japaninkielistä tekstiä roomaji- tai furiganamuotoon"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L36
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L43
-msgid "Credits"
-msgstr "Kunniamaininnat"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L40
-msgid "This tool is powered by <a href=\"{}\">MeCab</a>."
-msgstr "Tämän työkalun tarjoaa <a href=\"{}\">MeCab</a>"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L49
-msgid "More information"
-msgstr "Lisätietoja"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L53
-msgid "Japanese romanization in Tatoeba, now using MeCab"
-msgstr "Japanin romanisointi Tatoebassa käyttää nyt MeCabia"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L59
-msgid "Tools for Japanese romanization"
-msgstr "Työkalut japanin romanisointiin"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L102
-msgid "Convert Japanese text into: "
-msgstr "Muunna japaninkielinen teksti muotoon: "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L106
-msgid "romaji"
-msgstr "roomaji"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L107
-msgid "furigana"
-msgstr "furigana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L95
@@ -4633,6 +4761,20 @@ msgstr "Palaute"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L118
 msgid "Enter a text in shanghainese dialect"
 msgstr "Syötä shanghainmurteella kirjoitettua tekstiä"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L21
+msgid "Transcriptions of {username}"
+msgstr "Käyttäjän {username} transkriptiot"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L46
+msgid "{username} does not have any transcriptions"
+msgstr "Käyttäjällä {username} ei ole yhtään transkriptiota"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/view.ctp#L22
+msgid "Please fix the following error or press the Cancel button."
+msgid_plural "Please fix the following errors or press the Cancel button."
+msgstr[0] "Korjaa seuraava virhe tai klikkaa Peruuta-painiketta."
+msgstr[1] "Korjaa seuraavat virheet tai klikkaa Peruuta-painiketta."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
@@ -4682,9 +4824,9 @@ msgstr "Kuvaus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L162
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L181
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L187
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L224
 msgid "Save"
 msgstr "Tallenna"
 
@@ -4795,76 +4937,80 @@ msgid ""
 msgstr "Näytä linkki, josta voi laajentaa/piilottaa käännökset, kun käännöksiä on liian monta."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L81
+msgid "Always show transcriptions and alternative scripts"
+msgstr "Näytä aina transkriptiot ja vaihtoehtoiset kirjoitukset"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L88
 msgid ""
 "Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). "
 "Tatoeba will then only display translations in the languages you indicated. "
 "You can leave this empty to display translations in all languages."
 msgstr "Syötä ISO 639-3 -koodeja pilkulla erotettuna (esim: fin,jpn,epo,ara,deu). Tatoeba näyttää sitten vain käännökset valitsemillasi kielillä. <a href=\"tatoeba.org/fin/stats/sentences_by_language\">Lista ISO 639-3 -koodesta</a>. Voit jättää tämän tyhjäksi, jos haluat nähdä käännökset kaikilla kielillä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
 msgid "Languages"
 msgstr "Kielet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L106
 msgid "Number of sentences per page"
 msgstr "Lauseiden lukumäärä kullakin sivulla"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L113
 msgid "Experimental options"
 msgstr "Kokeelliset valinnat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L118
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
 msgstr "Tässä kategoriassa olevat valinnat eivät ole täysin toiminnassa, eivät välttämättä toimi kaikilla ja/tai ovat vielä beta-testauksessa. Niitä saatetaan muuttaa tai ne saatetaan poistaa tulevaisuudessa."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L130
 msgid ""
 "Advanced language selector. Note: this option is saved in your cookies so it"
 " will only apply for your current browser."
 msgstr "Edistynyt kielivalitsin. Huom: tämä valinta tallennetaan selaimesi evästeisiin, joten se toimii vain tällä hetkellä käyttämässäsi selaimessa."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L141
 msgid ""
 "Activate the feature to rate sentences and build your collection of "
 "sentences."
 msgstr "Ota käyttöön lauseiden arvosteluominaisuus ja rakenna oma lausekokoelmasi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L151
 msgid ""
 "Display \"(native)\" next to username on sentences when the owner indicated "
 "in their profile that they have a native level in the language of the "
 "sentence."
 msgstr "Näytä lauseissa merkintä ”(äidinkielinen puhuja)” käyttäjätunnuksen vieressä, kun lauseen omistaja on ilmaissut profiilissaan, että hän puhuu lauseen kieltä äidinkielenään."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L162
 msgid "Display button to copy a sentence to the clipboard."
 msgstr "Näytä painike, jolla voit kopioida lauseen leikepöydälle."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L173
 msgid "Change email address"
 msgstr "Vaihda sähköpostia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L184
 msgid "Email address"
 msgstr "Sähköposti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L192
 msgid "Change password"
 msgstr "Vaihda salasana"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L200
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L206
 msgid "Old password"
 msgstr "Vanha salasana"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L213
 msgid "New password"
 msgstr "Uusi salasana"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L220
 msgid "New password again"
 msgstr "Uusi salasana uudestaan"
 
@@ -4918,52 +5064,61 @@ msgid "Username:"
 msgstr "Käyttäjätunnus:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L59
-msgid "Username can only contain letters, numbers, or underscore"
-msgstr "Käyttäjätunnus voi sisältää vain kirjaimia, numeroita tai alaviivan"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L63
 msgid "Username already taken."
 msgstr "Käyttäjätunnus on jo varattu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L63
 msgid "Username must be at least two characters long"
 msgstr "Käyttäjätunnuksen on oltava vähintään 2 merkkiä pitkä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L70
+msgid "Username can only contain letters, numbers, or underscore"
+msgstr "Käyttäjätunnus voi sisältää vain kirjaimia, numeroita tai alaviivan"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L77
 msgid "Password:"
 msgstr "Salasana:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L94
 msgid "unmask password"
 msgstr "näytä salasanan merkit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L101
 msgid "Email address:"
 msgstr "Sähköposti:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L113
 msgid "Invalid email address"
 msgstr "Epäkelpo sähköposti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L117
 msgid "Email address already used."
 msgstr "Sähköposti on jo käytössä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L128
+msgid "Native language:"
+msgstr "Äidinkieli:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L145
+msgid ""
+"If you don't find your native language in the list, leave this as 'None'."
+msgstr "Jos ei löydä äidinkieltäsi listalta, valitse ”Ei mitään”."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L157
 msgid "We need to make sure you are human."
 msgstr "Meidän täytyy varmistaa, että olet ihminen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L162
 msgid "What are the first five characters of your email address?"
 msgstr "Mitkä ovat viisi ensimmäistä merkkiä sähköpostiosoitteessasi?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L167
 msgid ""
 "For instance, if your email address is a.b.cd@example.com, type a.b.c into "
 "the box."
 msgstr "Esimerkiksi, jos sähköpostisi on ”a.b.cd@example.com”, vastaus on ”a.b.c”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L176
 msgid "I accept the <a href=\"{}\">terms of use</a>"
 msgstr "Hyväksyn <a href=\"{}\">käyttöehdot</a>"
 
@@ -4976,12 +5131,12 @@ msgid "Latest sentences"
 msgstr "Viimeisimmät lauseet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L97
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L137
 msgid "view all"
 msgstr "Näytä kaikki"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L134
 msgid "Latest Wall messages"
 msgstr "Uusimmat viestit seinällä"
 
@@ -5013,12 +5168,12 @@ msgstr "Ennen kun esität kysymyksen, varmista, että olet lukenut <a href=\"{}\
 msgid "{date}, by {author}"
 msgstr "{date}, käyttäjältä {author}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L107
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
 msgstr "Voit kirjoittaa millä tahansa haluamallasi kielellä. Tatoebassa kaikki kielet ovat samanarvoisia."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "Seinä (yksi viestiketju)"
