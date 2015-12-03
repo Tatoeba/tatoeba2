@@ -566,7 +566,7 @@ class LanguagesLib
                 'pag' => __('Pangasinan',true),
                 'cos' => __('Corsican',true),
                 'hnj' => __('Hmong Njua',true),
-                'tnf' => __('Tarifit',true),
+                'rif' => __('Tarifit',true),
                 
 
             );
