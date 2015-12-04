@@ -71,9 +71,9 @@ $username = $form->value('User.username');
 </div>
 
 <div id="main_content">
-<?php 
-echo $form->create('User');
+<?php
 $security->enableCSRFProtection();
+echo $form->create('User');
 ?>
     <fieldset>
     <legend><?php __d('admin', 'Edit User'); ?></legend>

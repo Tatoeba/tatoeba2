@@ -39,6 +39,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Register', true)));
 
 echo $javascript->link(JS_PATH . 'users.check_registration.js', false);
 
+$security->enableCSRFProtection();
 echo $form->create('User', array("action" => "register"));
 ?>
 <table id="userInformation">
@@ -186,4 +187,5 @@ echo $form->input('acceptation_terms_of_use', array(
 <?php
 echo $form->submit(__('Register',true), array('class' => 'registerLink'));
 echo $form->end();
+$security->disableCSRFProtection();
 ?>
