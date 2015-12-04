@@ -61,7 +61,7 @@ $(document).ready(function()
      * Username validation
      */
     $("#registrationUsername").keyup(function(e){
-        var correctUsername = /^[A-Za-z_]{3,20}$/;
+        var correctUsername = /^\w{3,20}$/;
         // so we don't take account keys like shift, home, end, etc.
         // But we accept backspace... 
         if (e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13) {
