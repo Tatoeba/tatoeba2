@@ -312,13 +312,17 @@ EOT;
                             WHERE lang_id = (select id from languages where code = '$lang')";
                 } else {
                     $conf .= "
+        sql_query_pre = UPDATE reindex_flags SET indexed = 1 \
+                        WHERE lang_id = (select id from languages where code = '$lang') \
+                        AND indexed = 0
         sql_query_killlist = SELECT sentence_id FROM reindex_flags \
-                            WHERE lang_id = (select id from languages where code = '$lang')";
+                             WHERE lang_id = (select id from languages where code = '$lang') \
+                             AND indexed = 1";
                 }
         
                 $delta_join = ($type == 'main') ?
                     '' :
-                    'join reindex_flags on reindex_flags.sentence_id = sent_start.id';
+                    'join reindex_flags on reindex_flags.sentence_id = sent_start.id and reindex_flags.indexed = 1';
                 $conf .= "
         sql_query_range = select min(id), max(id) from sentences
         sql_range_step = 500000
