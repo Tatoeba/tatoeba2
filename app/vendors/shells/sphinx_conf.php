@@ -271,7 +271,6 @@ index common_index
     index_field_lengths     = 1
     ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7
     charset_table           = $charset_table_opt
-    enable_star             = 1
     min_infix_len           = 3
     docinfo                 = extern
 }
