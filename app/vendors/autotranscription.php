@@ -214,7 +214,7 @@ class Autotranscription
 
         $withFuri = preg_replace('/\[([^|]+)\|\]/u', '$1', $transcr);
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $withFuri);
-        if (preg_match_all("/[^\p{Hiragana}\p{Katakana}ー\p{P}]/u", $withFuri, $matches)) {
+        if (preg_match_all("/[^\p{Hiragana}\p{Katakana}ー\p{P}\p{Z}]/u", $withFuri, $matches)) {
             /* @translators: This string is used to create an enumeration by
                joining each item with it. For instance, if you translate this
                string to “/” and the list is A, B, C, then the translated

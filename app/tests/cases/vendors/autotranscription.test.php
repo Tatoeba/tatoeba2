@@ -34,6 +34,9 @@ class AutotranscriptionTestCase extends CakeTestCase {
             'Perfumeの曲' => array(
                 '[Perfume|パフューム]の[曲|きょく]',
             ),
+            /* Allow spaces */
+            '今は？ 今は？' => array('[今|いま]は？ [今|いま]は？'),
+            '今は？　今は？' => array('[今|いま]は？　[今|いま]は？'),
         );
         $testBad = array(
             '行けそう。' => array(
