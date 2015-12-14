@@ -267,7 +267,6 @@ source default
 
 index common_index
 {
-    index_exact_words       = 1
     index_field_lengths     = 1
     ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7
     charset_table           = $charset_table_opt
@@ -403,6 +402,7 @@ EOT;
                 if ($type == 'main') {
                     if (in_array($lang, $this->languageWithStemmer)) {
                         $conf .= "
+        index_exact_words       = 1
         morphology              = libstemmer_$lang
         min_stemming_len        = 4";
                     }
