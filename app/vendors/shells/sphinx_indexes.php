@@ -26,7 +26,7 @@ define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
 
 class SphinxIndexesShell extends Shell {
 
-    public $searchd_user = 'sphinxsearch';
+    public $sphinx_user = 'sphinxsearch';
 
     private $tatoeba_languages;
 
@@ -78,10 +78,13 @@ class SphinxIndexesShell extends Shell {
         echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
     }
 
-    private function check_prerequistes() {
-        $processUser = posix_getpwuid(posix_geteuid());
-        if ($this->searchd_user != $processUser['name']) {
-            $this->_die("You must run this script as user '{$this->searchd_user}'.\n");
+    private function become_sphinx_user() {
+        $sphinxUserInfo = posix_getpwnam($this->sphinx_user);
+        if (!$sphinxUserInfo) {
+            $this->_die("No such user: {$this->sphinx_user}\n");
+        }
+        if (!posix_setuid($sphinxUserInfo['uid'])) {
+            $this->_die("Unable to change uid. Make sure you're root.\n");
         }
     }
 
@@ -123,8 +126,8 @@ class SphinxIndexesShell extends Shell {
     }
 
     private function run() {
-        $this->check_prerequistes();
         $this->get_tatoeba_languages();
+        $this->become_sphinx_user();
         $this->process_args();
     }
 
