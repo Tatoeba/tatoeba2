@@ -127,11 +127,11 @@ class SphinxIndexesShell extends Shell {
 
     private function run() {
         $this->get_tatoeba_languages();
-        $this->become_sphinx_user();
         $this->process_args();
     }
 
     public function main() {
+        $this->become_sphinx_user();
         if (file_exists(LOCK_FILE)) {
             die("Exiting because another instance of this script "
                ."seems to be running. If you're sure it's not, "
