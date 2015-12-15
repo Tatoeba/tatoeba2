@@ -1,57 +1,36 @@
-IMOUTO
+Imouto
 =========
 
-IMOUTO is a collection of easy-to-use automation scripts for [tatoeba](http://tatoeba.org/eng/) website based on [vagrant](http://www.vagrantup.com/) and [ansible](http://www.ansible.com/home). It can be used to set up and provision both **development** and **production** servers.
+Imouto is a collection of easy-to-use automation scripts for [tatoeba](http://tatoeba.org/eng/) website based on [vagrant](http://www.vagrantup.com/) and [ansible](http://www.ansible.com/home). It can be used to set up and provision both **development** and **production** servers.
 
-
-
-Version
-----
-
-1.3
-
+Requirements
+-----------
+These requirements can usually be installed using your package manager.
+* Git
+* VirtualBox ([generic binaries](https://www.virtualbox.org/wiki/Downloads))
+* Ansible 1.4 or later (also available on pip: `pip install ansible`)
 
 Usage Instructions
 -----------
 
-###imouto for development:
-- Install `git` if not already present.
+###Imouto for development:
+- Install the requirements above
 - Clone the github repo on your machine:
 ```bash
 $ git clone https://github.com/Tatoeba/imouto.git
 ```
-- Install VirtualBox. You can download the appropriate package from [here](https://www.virtualbox.org/wiki/Linux_Downloads)
-- Install vagrant 1.5 or later. You can download the package [here](https://www.vagrantup.com/downloads) or if you are on a debian based 64-bit machine, just run the following commands:
-```bash
-$ cd imouto
-$ sudo sh install_vagrant-1.6.3_x64.sh
-```
-- Install ansible 1.4 or later. You can follow the instructions [here](http://docs.ansible.com/intro_installation.html#getting-ansible) or simply use one of the following methods:
-	- Method 1 (for Fedora, CentOS and RHEL users):
-	```bash
-	$ #install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux
-	$ sudo yum install ansible
-	```
-	- Method 2 (for Ubuntu/Debian users):
-	```bash
-	$ sudo apt-add-repository ppa:ansible/ansible
-	$ sudo apt-get update
-	$ sudo apt-get install ansible
-	```
-	- Method 3 (via python-pip):
-	```bash
-	$ sudo easy_install pip
-	$ sudo pip install ansible
-	```
-- Use vagrant to first download the box and then provision it using ansible.
+- Use vagrant to first download the box and then provision it using ansible. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
 ```bash
 $ cd imouto #ignore if already in the imouto directory
 $ vagrant up
 ```
-- Run `vagrant ssh` to ssh to the machine.
+- Once it completed, you should be able to:
+  - Access your local instance of Tatoeba at http://localhost:8080/
+  - Run `vagrant ssh` to ssh to the machine.
+  - Use the script `mount.sh` (run it to get usage instructions) to mount any of the VM's directory on your host machine in order to modify files without ssh-ing to the VM.
 
-####Post-provisioning tasks:
-Once `vagrant up` has successfully finished, you will be able to SSH to the machine and check out the website at `localhost:8080` on the host. But you may also want to perform certain tasks independently without having to re-provision the whole machine again. To do that you can use the following command:
+###Post-provisioning tasks
+You may want to perform certain tasks independently without having to re-provision the whole machine again. To do that you can use the following command:
 ```bash
 $ cd ansible
 $ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root playbook-name.yml
@@ -89,21 +68,16 @@ $ imouto-devel -e version=3 restore_version.yml
 ```
 
 #####Note:
-- It takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible. Please be patient and let it finish before running `vagrant ssh`.
-- You can use the script `mount.sh` (run it to get usage instructions) to mount any of the VM's directory on your host machine in order to modify files without ssh-ing to the VM.
 - This project is still in its development stage, so there are high chances of bugs. Please report them through github's bug tracker.
-- Currently the host port 8080 is forwarded to guest port 80. So you can check the website running on your host browser at "localhost:8080" once vagrant finishes provisioning the VM (i.e. after `vagrant up` finishes).
-- This is only an initial set-up guide, I will write down a detailed usage guide at some point of time.
 - There are a lot of variables defined in `ansible/host_vars/default` that allow specifying further parameters related to various tools. Though the default values just work, it is recommended to change these values according to your need.
 
 ###imouto for production:
 The same set of scripts of imouto (with a few changes) can be used for setting up production servers as well. You need to follow these steps:
-- Install `git` if not already present.
+- Install the requirements above
 - Clone the github repo on your machine (this should be different from the repo cloned for development server):
 ```bash
 $ git clone https://github.com/Tatoeba/imouto.git
 ```
-- Install ansible 1.4 or later (see the **imouto for development** section for instructions).
 - Edit `imouto/ansible/ansible.cfg`:
     * Uncomment the line `#ask_sudo_pass = True` if you want to enter sudo password through prompt. Alternatively, you can also specify `-K` flag with the `ansible-playbook` command given below to do so.
     * Uncomment the line `#ask_pass = True` if you want to enter ssh password through prompt. Alternatively, you can also specify `-k` flag with the `ansible-playbook` command given below to do so. If you want to avoid typing ssh password repeatedly, you can set up passwordless ssh using the method described [here](http://www.linuxproblem.org/art_9.html).
