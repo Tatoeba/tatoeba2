@@ -18,12 +18,12 @@ Usage Instructions
 - Install `git` if not already present.
 - Clone the github repo on your machine:
 ```bash
-$ git clone https://github.com/Tatoeba/admin.git
+$ git clone https://github.com/Tatoeba/imouto.git
 ```
 - Install VirtualBox. You can download the appropriate package from [here](https://www.virtualbox.org/wiki/Linux_Downloads)
 - Install vagrant 1.5 or later. You can download the package [here](https://www.vagrantup.com/downloads) or if you are on a debian based 64-bit machine, just run the following commands:
 ```bash
-$ cd admin/imouto
+$ cd imouto
 $ sudo sh install_vagrant-1.6.3_x64.sh
 ```
 - Install ansible 1.4 or later. You can follow the instructions [here](http://docs.ansible.com/intro_installation.html#getting-ansible) or simply use one of the following methods:
@@ -45,7 +45,7 @@ $ sudo sh install_vagrant-1.6.3_x64.sh
 	```
 - Use vagrant to first download the box and then provision it using ansible.
 ```bash
-$ cd admin/imouto #ignore if already in the admin/imouto directory
+$ cd imouto #ignore if already in the imouto directory
 $ vagrant up
 ```
 - Run `vagrant ssh` to ssh to the machine.
@@ -101,7 +101,7 @@ The same set of scripts of imouto (with a few changes) can be used for setting u
 - Install `git` if not already present.
 - Clone the github repo on your machine (this should be different from the repo cloned for development server):
 ```bash
-$ git clone https://github.com/Tatoeba/admin.git
+$ git clone https://github.com/Tatoeba/imouto.git
 ```
 - Install ansible 1.4 or later (see the **imouto for development** section for instructions).
 - Edit `imouto/ansible/ansible.cfg`:
@@ -113,7 +113,7 @@ $ git clone https://github.com/Tatoeba/admin.git
 - Edit `imouto/ansible/production-server` and replace `127.0.0.1` with the address of the server.
 - Run ansible-playbook command to run a playbook:
 ```bash
-$ cd admin/imouto/ansible
+$ cd imouto/ansible
 $ ansible-playbook -i production-server playbook.yml
 ```
   To set up the whole server you can use `production.yml` playbook or to perform individual tasks you can use the other playbooks provided with imouto.
