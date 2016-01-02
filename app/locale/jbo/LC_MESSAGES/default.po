@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-28 20:31+0000\n"
-"PO-Revision-Date: 2015-11-30 06:54+0000\n"
+"PO-Revision-Date: 2015-12-14 06:57+0000\n"
 "Last-Translator: gleki <gleki.is.my.name@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/tatoeba/tatoeba_website/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -435,7 +435,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L222
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L283
 msgid ", "
-msgstr ""
+msgstr " ce'o "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L225
 msgid "The following character lacks furigana: {charsEnumeration}."
@@ -1620,7 +1620,7 @@ msgstr "{tagCheck} zo'u: le jufra jai sarcu fai lo ka se inspekte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr "{tagNNC} zo'u: le jufra cu sarcu fai lo ka se inspekte lo rarna se bangu"
+msgstr "{tagNNC} zo'u: le jufra cu jai sarcu fai lo ka se inspekte lo pilno be co'a lo ka jbena"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
@@ -1652,7 +1652,7 @@ msgstr "ca ro no do ganse lo ka'e se srera vau do jmina e'u lo tcita poi du zo'o
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr "ca ro nu do jmina lo jufra poi se bangu lo fange be do bangu vau gi'e na ro va'ei birti lo nu le jufra cu drani vau do jmina e'u lo tcita poi du la'oi {tagNNC}"
+msgstr "ca ro nu do jmina lo jufra poi se bangu lo fange be do bangu vau gi'e na se la'u li ro birti lo nu le jufra cu drani vau do jmina e'u lo tcita poi du la'oi {tagNNC}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L126
 msgid ""
@@ -1667,7 +1667,7 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr "ba lo nu da danfu tu'a lo jufra vau ko jai gau tcita jy. fai zo'oi {tagOK} i do'anai do ka'e zgana je inspekte lo jufra poi se jmina lo drata gi'e jai gau tcita le jufra fai zo'oi {tagOK} i ku'i ko tai zukte fau po'o lo nu do rova'e birti lo nu le jufra cu drani ije ko na jai gau tcita lo jufra poi do ponse"
+msgstr "ba lo nu da danfu tu'a lo jufra vau ko jai gau tcita jy. fai zo'oi {tagOK} i do'anai do ka'e zgana je inspekte lo jufra poi se jmina lo drata gi'e jai gau tcita le jufra fai zo'oi {tagOK} i ku'i ko tai zukte fau po'o lo nu do sela'u li ro birti lo nu le jufra cu drani ije ko na jai gau tcita lo jufra poi do ponse"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L79
@@ -2402,7 +2402,7 @@ msgstr "liste lo ro cmima"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L32
 msgid "Languages of members"
-msgstr "bangu lo cmima"
+msgstr "bangu gi'e se pilno lo cmima"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L28
@@ -2712,23 +2712,23 @@ msgstr "na se jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L491
 msgid "0: Almost no knowledge"
-msgstr "0moi i me'i so'u va'e se bangu"
+msgstr "0moi i se la'u li me'i so'u pilno lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L492
 msgid "1: Beginner"
-msgstr "1moi i so'u va'e se bangu"
+msgstr "1moi i se la'u li so'u pilno lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L493
 msgid "2: Intermediate"
-msgstr "2moi i lo so'o va'e se bangu"
+msgstr "2moi i se la'u li so'o pilno lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L494
 msgid "3: Advanced"
-msgstr "3moi i lo so'i va'e se bangu"
+msgstr "3moi i se la'u li so'i pilno lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L495
 msgid "4: Fluent"
-msgstr "4moi i lo so'a va'e se bangu"
+msgstr "4moi i se la'u li so'a pilno lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L496
 msgid "5: Native level"
@@ -3377,7 +3377,7 @@ msgid ""
 "But you don't have to be a polyglot in order to contribute! You can help us "
 "a lot simply by <strong>checking sentences</strong> and <strong>reporting "
 "mistakes</strong>. This is something everyone can do!"
-msgstr "i ku'i e'i nai sai do se bangu so'i da te zu'e lo ka kontribute i do ka'e sidju mi'a fi po'o lo ka <strong>inspekte lo jufra</strong> gi'e <strong>jai gau djuno fi lo se srera<strong> vau noi ro sai lo prenu ka'e zukte"
+msgstr "i ku'i e'i nai sai do certu tu'a lo so'i bangu te zu'e lo ka kontribute i do ka'e sidju mi'a fi po'o lo ka <strong>inspekte lo jufra</strong> gi'e <strong>jai gau djuno fi lo se srera<strong> vau noi ro sai lo prenu ka'e zukte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L139
 msgid ""
@@ -3673,7 +3673,7 @@ msgstr "lo ni certu lo bangu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L412
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr "sinxa lo ni lo cmima cu certu lo bangu vau poi le cmima pu jai gau djuno fai lo drata"
+msgstr "sinxa lo ni lo cmima cu certu tu'a lo bangu vau poi le cmima pu jai gau djuno fai lo drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L420
 msgid "General information about the files"
@@ -3943,7 +3943,7 @@ msgid ""
 "attribution in the edit summary, which is recorded in the sentence history "
 "when importing the text. Regardless of the license, the text you import may "
 "be rejected if the required attribution is deemed too intrusive."
-msgstr "da'i do jmina lo uenzi poi jai krali fai lo mapti poi ja'i ke'a sarcu fa lo nu jai gau djuno zo'e pe lo finti i se fau bo do bilga lo ka jai gau djuno zo'e pe le finti i so'i roi ku jau gau djuno zo'e pe le finti ta'i lo ka cusku lo pinka be le jufra i ku'i banzu fa lo nu jai gau djuno ta'i lo ka ciska fi lo ve skicu be lo nu stika lo jufra poi du le uenzi ije ca lo nu gau co'a vreji le jufra vau le ve skicu co'a se vreji lo citri be le jufra i le uenzi ka'e se vimcu fau lo nu le nu jau gau djuno cu du'e va'e fanza i lo nu go'i na fancu le krali"
+msgstr "da'i do jmina lo uenzi poi jai krali fai lo mapti poi ja'i ke'a sarcu fa lo nu jai gau djuno zo'e pe lo finti i se fau bo do bilga lo ka jai gau djuno zo'e pe le finti i so'i roi ku jau gau djuno zo'e pe le finti ta'i lo ka cusku lo pinka be le jufra i ku'i banzu fa lo nu jai gau djuno ta'i lo ka ciska fi lo ve skicu be lo nu stika lo jufra poi du le uenzi ije ca lo nu gau co'a vreji le jufra vau le ve skicu co'a se vreji lo citri be le jufra i le uenzi ka'e se vimcu fau lo nu le nu jau gau djuno cu se la'u li du'e fanza i lo nu go'i na fancu le krali"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L96
 msgid "Information for re-users:"
@@ -4389,7 +4389,7 @@ msgstr "katna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L86
 msgid "Still beta"
-msgstr "ca'o na rova'e bredi"
+msgstr "ca'o sela'u li me'i ro bredi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L93
 msgid "This work is based on <a href=\"{}\">this project</a>."
@@ -4400,7 +4400,7 @@ msgid ""
 "Please note that this tool is still not complete yet and may contain errors "
 "(although it will be accurate for most searches), so don't hesitate to "
 "report missing characters or any suggestion of improvement."
-msgstr "o'i lo do'i tutci me'iva'e bredi gi'e ka'e cupra lo se srera gi'u ku'i drani fau so'e da i ko na denpa fo lo ka jai gau djuno zo'ei lo se claxu lerfu gi'a stidi lo nu jai gau xamgu"
+msgstr "o'i lo do'i tutci se la'u li me'i ro bredi gi'e ka'e cupra lo se srera gi'u ku'i drani fau so'e da i ko na denpa fo lo ka jai gau djuno zo'ei lo se claxu lerfu gi'a stidi lo nu jai gau xamgu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L118
 msgid "Hanzis - Kanjis search"
@@ -4611,7 +4611,7 @@ msgid ""
 "This tool is powered by our own home-brewed software. The source code will "
 "be released as open source. Feel free to contact us if you would like to "
 "know more about it."
-msgstr "lo dei tutci cu pilno lo proga poi pu se finti mi'a gi'e me'i va'e bredi i lo krasi be lo proga na kalri i e'a do tavla mi'a za'u lo info be le tutci"
+msgstr "lo dei tutci cu pilno lo proga poi pu se finti mi'a gi'e se la'u li me'i ro bredi i lo krasi be lo proga na kalri i e'a do tavla mi'a za'u lo info be le tutci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L56
 msgid ""
@@ -4741,7 +4741,7 @@ msgid ""
 "with much more complete data files. If you're interested in his work, you "
 "can check his project page <a href='{1}'>here</a>. Without him, the "
 "Shanghainese sentences wouldn't have such a complete IPA."
-msgstr "mi'a ja'e djica lo ka ckire la'o gy.<a href='{0}'>Kellen Parker</a>.gy. noi pu sabji fi mi'a fe lo datni vreji poi za'u va'e mulno i fau lo nu do se cinri lo se zukte be ky py vau do zifre lo ka tcidu <a href='{1}'>la'e dei</a> noi projekto papri i da'i se cau ky py lo banve'u'u jufra cu claxu lo mulno te transkribe pe la'oi IPA"
+msgstr "mi'a ja'e djica lo ka ckire la'o gy.<a href='{0}'>Kellen Parker</a>.gy. noi pu sabji fi mi'a fe lo datni vreji poi se la'u li za'u mulno i fau lo nu do se cinri lo se zukte be ky py vau do zifre lo ka tcidu <a href='{1}'>la'e dei</a> noi projekto papri i da'i se cau ky py lo banve'u'u jufra cu claxu lo mulno te transkribe pe la'oi IPA"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L64
 msgid "Note"
@@ -4840,11 +4840,11 @@ msgstr "stika lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L87
 msgid "What is your level?"
-msgstr "do xo va'e se bangu"
+msgstr "do sela'u li xo certu tu'a lo bangu?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L96
 msgid "Details (optional). For instance, which dialect or from which country."
-msgstr "lo tcila (to do zifre lo ka jmina  toi) i mu'a jmina lo klesi be lo bangu be do gi'a jmina lo gugde be do"
+msgstr "lo tcila (to do zifre lo ka jmina  toi) i mu'a jmina lo klesi be lo bangu poi do pilno vau gi'a jmina lo gugde poi do xabju"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L72
 msgid "Stats"
@@ -4906,11 +4906,11 @@ msgstr "no bangu cu se jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L307
 msgid "TIP: We encourage you to indicate the languages you know."
-msgstr "lo se stidi zo'u mi'a e'ende do lo ka jarco lo ka se bangu makau"
+msgstr "lo se stidi zo'u mi'a e'ende do lo ka jarco lo ka pilno makau noi bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L310
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
-msgstr "lo se stidi zo'u ko e'ende le pilno lo ka jarco lo ka se bangu makau"
+msgstr "lo se stidi zo'u ko e'ende le pilno lo ka jarco lo ka pilno makau noi bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L42
 msgid "Options"
@@ -5097,7 +5097,7 @@ msgstr "le mrilu judri ca'o se pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L128
 msgid "Native language:"
-msgstr ""
+msgstr "pilno lo bangu co'a lo ka jbena"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L145
 msgid ""
