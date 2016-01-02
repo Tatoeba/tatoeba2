@@ -262,12 +262,23 @@ class Autotranscription
         return $this->_call_sinoparserd('trad', $text);
     }
 
+    private function _basic_pinyin_cleanup($text) {
+        $text = preg_replace('/\s+([!?:;.,])/', '$1', $text);
+        $text = preg_replace('/"\s*([^"]+)\s*"/', '"$1"', $text);
+        $text = ucfirst($text);
+        return $text;
+    }
+
     public function cmn_Hant_to_Latn_generate($text) {
-        return $this->_call_sinoparserd('pinyin', $text);
+        $pinyin = $this->_call_sinoparserd('pinyin', $text);
+        $pinyin = $this->_basic_pinyin_cleanup($pinyin);
+        return $pinyin;
     }
 
     public function cmn_Hans_to_Latn_generate($text) {
-        return $this->_call_sinoparserd('pinyin', $text);
+        $pinyin = $this->_call_sinoparserd('pinyin', $text);
+        $pinyin = $this->_basic_pinyin_cleanup($pinyin);
+        return $pinyin;
     }
 
     public function cmn_Hans_to_Latn_validate($sentenceText, $transcr, &$errors) {
