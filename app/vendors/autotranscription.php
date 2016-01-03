@@ -130,16 +130,18 @@ class Autotranscription
         $furiRegex = preg_replace('/([^\p{Han}]+)/u', '($1)', $text);
         $furiRegex = preg_replace('/[\p{Han}]+/u', '(.{1,})', $furiRegex,
                                   -1, $kanjis);
-        preg_match("/^${furiRegex}\$/u", $furigana, $furiMatches);
-        preg_match("/^${furiRegex}\$/u", $text,     $textMatches);
-        if (count($furiMatches) == count($textMatches) && $kanjis > 0) {
-            $result = '';
-            for ($i = 1 ; $i < count($furiMatches); $i++) {
-                $kanji = $textMatches[$i];
-                $furi  = $furiMatches[$i];
-                $result .= $kanji == $furi ? $furi : "[$kanji|$furi]";
+        if ($kanjis > 0) {
+            preg_match("/^${furiRegex}\$/u", $furigana, $furiMatches);
+            preg_match("/^${furiRegex}\$/u", $text,     $textMatches);
+            if (count($furiMatches) == count($textMatches)) {
+                $result = '';
+                for ($i = 1 ; $i < count($furiMatches); $i++) {
+                    $kanji = $textMatches[$i];
+                    $furi  = $furiMatches[$i];
+                    $result .= $kanji == $furi ? $furi : "[$kanji|$furi]";
+                }
+                return $result;
             }
-            return $result;
         }
 
         /* Remove furigana on numbers since they are almost always wrong.
