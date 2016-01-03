@@ -65,7 +65,8 @@ class ListsHelper extends AppHelper
                 $list['User']['username'],
                 $list['SentencesList']['created'],
                 $list['SentencesList']['numberOfSentences'],
-                $list['SentencesList']['is_public']
+                $list['SentencesList']['visibility'],
+                $list['SentencesList']['editable_by']
             );
         }
         ?>
@@ -91,20 +92,18 @@ class ListsHelper extends AppHelper
         $listCreatorName,
         $createdDate,
         $count = 0,
-        $isPublic = false
+        $visibility = 'private',
+        $editableBy = 'creator'
     ) {
-        if ($isPublic) {
-            $type = 'collaborative';
-        } else {
-            $type = 'personal';
-        }
         ?>
         <tr class="listSummary">
 
-        <td class="<?php echo $type ?>">
+        <td class="icon">
             <?php
-            if ($isPublic) {
+            if ($visibility == 'public' && $editableBy == 'anyone') {
                 echo $this->Images->svgIcon('users');
+            } else if ($visibility == 'private') {
+                echo $this->Images->svgIcon('lock');
             }
             ?>
         </td>
