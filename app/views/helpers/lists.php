@@ -582,7 +582,7 @@ class ListsHelper extends AppHelper
 
             echo '<li class="item">';
             echo $this->Html->link(
-                __('All lists', true),
+                __('All public lists', true),
                 array(
                     'controller' => 'sentences_lists',
                     'action' => 'index'
@@ -592,7 +592,7 @@ class ListsHelper extends AppHelper
 
             echo '<li class="item">';
             echo $this->Html->link(
-                __('Collaborative lists', true),
+                __('Collaborative public lists', true),
                 array(
                     'controller' => 'sentences_lists',
                     'action' => 'collaborative'

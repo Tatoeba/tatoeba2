@@ -132,7 +132,7 @@ class SentencesList extends AppModel
      * @return array
      */
     public function getPaginatedLists(
-        $search = null, $username = null, $visibility = null
+        $search = null, $username = null, $visibility = null, $editableBy = null
     ) {
         $conditions = null;
         if (!empty($search)) {
@@ -144,6 +144,9 @@ class SentencesList extends AppModel
         }
         if (!empty($visibility)) {
             $conditions['SentencesList.visibility'] = $visibility;
+        }
+        if (!empty($editableBy)) {
+            $conditions['SentencesList.editable_by'] = $editableBy;
         }
 
 

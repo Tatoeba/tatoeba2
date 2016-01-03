@@ -123,7 +123,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesList->getPaginatedLists(
-            $filter, null, true
+            $filter, null, 'public', 'anyone'
         );
         $allLists = $this->paginate();
 
