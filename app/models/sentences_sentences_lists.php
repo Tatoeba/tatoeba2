@@ -109,7 +109,7 @@ class SentencesSentencesLists extends AppModel
 
     public function getListsForSentence($sentenceId)
     {
-        $orCondition['is_public'] = true;
+        $orCondition['visibility'] = 'public';
         if (CurrentUser::isMember()) {
             $orCondition['user_id'] = CurrentUser::get('id');
         }
@@ -124,10 +124,10 @@ class SentencesSentencesLists extends AppModel
                 'fields' => array('created'),
                 'contain' => array(
                     'SentencesList' => array(
-                        'fields' => array('id', 'name', 'is_public')
+                        'fields' => array('id', 'name', 'visibility')
                     )
                 ),
-                'order' => 'is_public, created DESC'
+                'order' => 'visibility, created DESC'
             )
         );
     }
