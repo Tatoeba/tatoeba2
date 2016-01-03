@@ -53,13 +53,32 @@ $numberOfSentences = count($favorites);
         $withAudio = false;
         $ownerName = null;
         foreach ($favorites as $favorite) {
-            $sentences->displayGenericSentence(
-                $favorite['Sentence'],
-                $favorite['Sentence']['Transcription'],
-                $type,
-                $parentId,
-                $withAudio
-            );
+            if (empty($favorite['Sentence']['text'])) {
+                $sentenceId = $favorite['Favorite']['favorite_id'];
+                $linkToSentence = $html->link(
+                    '#'.$sentenceId,
+                    array(
+                        'controller' => 'sentences',
+                        'action' => 'show',
+                        $sentenceId
+                    )
+                );
+
+                echo $html->div('sentence deleted',
+                    format(
+                        __('Sentence {id} has been deleted.', true),
+                        array('id' => $linkToSentence)
+                    )
+                );
+            } else {
+                $sentences->displayGenericSentence(
+                    $favorite['Sentence'],
+                    $favorite['Sentence']['Transcription'],
+                    $type,
+                    $parentId,
+                    $withAudio
+                );
+            }
         }
     } else {
         __('This user does not have any favorites.');
