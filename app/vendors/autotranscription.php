@@ -127,15 +127,19 @@ class Autotranscription
         /* Try to fix Mecab untokenized tokens like 男の子 or 飼い犬,
            mainly to have tokenized syntax already here and only need
            to fix the furiganas. */
-        preg_match('/([\p{Han}])([\p{Hiragana}])(\p{Han})/u', $text, $matches);
-        if (count($matches) == 4) {
-            $start  = $matches[1];
-            $middle = $matches[2];
-            $end    = $matches[3];
-            $kanaPosition = mb_strpos($furigana, $middle);
-            $startReading = mb_substr($furigana, 0, $kanaPosition);
-            $endReading   = mb_substr($furigana, $kanaPosition + mb_strlen($middle));
-            return "[$start|$startReading]${middle}[$end|$endReading]";
+        $furiRegex = preg_replace('/([^\p{Han}]+)/u', '($1)', $text);
+        $furiRegex = preg_replace('/[\p{Han}]+/u', '(.{1,})', $furiRegex,
+                                  -1, $kanjis);
+        preg_match("/^${furiRegex}\$/u", $furigana, $furiMatches);
+        preg_match("/^${furiRegex}\$/u", $text,     $textMatches);
+        if (count($furiMatches) == count($textMatches) && $kanjis > 0) {
+            $result = '';
+            for ($i = 1 ; $i < count($furiMatches); $i++) {
+                $kanji = $textMatches[$i];
+                $furi  = $furiMatches[$i];
+                $result .= $kanji == $furi ? $furi : "[$kanji|$furi]";
+            }
+            return $result;
         }
 
         /* Remove furigana on numbers since they are almost always wrong.
