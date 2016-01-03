@@ -58,6 +58,35 @@ def executeCommand(commandToExecute, returnOrNot):
     if returnOrNot:
         return output
 
+def getResourcesFiles(languagesTable, resourceSlug, resourceFilename, translationsLocal, mainLocal):
+    for language in languagesTable:
+        if language[0]=='en': continue
+        r=requests.get(
+            '%s/project/tatoeba_website/resource/%s/translation/%s/?mode=default&file'%(
+                URL,resourceSlug,language[0]), auth=myAuthentication)
+        if r.status_code != requests.codes.ok:
+            if r.status_code==401:
+                printAndLog('Please check your Transifex user information in ~/.transifexrc.')
+                quit()
+            printAndLog('Problem with %s'%language)
+            continue
+        with open(os.path.join(translationsLocal,'%s.po'%language[0]),'w') as handle:
+            handle.write(r.text.encode("iso8859-1").decode('utf8'))
+    
+    for language in languagesTable:
+        languageFile=os.path.join(translationsLocal,'%s.po'%language[0])
+        if language[0]=='en': continue
+        if not os.path.exists(languageFile):
+            printAndLog('Problem with %s'%language)
+            continue
+        languagePath=os.path.join(mainLocal,'app','locale',language[1],'LC_MESSAGES')
+        if not os.path.exists(languagePath):
+            os.makedirs(languagePath)
+        printAndLog('Copying %s.po (%s)'%(resourceFilename,language[1]))
+        os.system('cp "%s" "%s/%s.po"'%(languageFile,languagePath,resourceFilename))
+        printAndLog('Compiling to %s.mo (%s)'%(language[1],resourceFilename))
+        os.system('msgfmt "%s" -o "%s/%s.mo"'%(languageFile,languagePath,resourceFilename))
+
 def main():
     TMP_DIR=os.path.join('/','tmp','.fetch-translations-%s'%(datetime.datetime.now().strftime('%F-%T')))
     os.makedirs(TMP_DIR)
@@ -116,33 +145,8 @@ def main():
         os.makedirs(TRANSLATIONS_LOCAL)
     printAndLog('Fetching from Transifex')
     
-    for language in languagesTable:
-        if language[0]=='en': continue
-        r=requests.get(
-            '%s/project/tatoeba_website/resource/tatoebaResource/translation/%s/?mode=default&file'%(
-                URL,language[0]), auth=myAuthentication)
-        if r.status_code != requests.codes.ok:
-            if r.status_code==401:
-                printAndLog('Please check your Transifex user information in ~/.transifexrc.')
-                quit()
-            printAndLog('Problem with %s'%language)
-            continue
-        with open(os.path.join(TRANSLATIONS_LOCAL,'%s.po'%language[0]),'w') as handle:
-            handle.write(r.text.encode("iso8859-1").decode('utf8'))
-    
-    for language in languagesTable:
-        languageFile=os.path.join(TRANSLATIONS_LOCAL,'%s.po'%language[0])
-        if language[0]=='en': continue
-        if not os.path.exists(languageFile):
-            printAndLog('Problem with %s'%language)
-            continue
-        languagePath=os.path.join(MAIN_LOCAL,'app','locale',language[1],'LC_MESSAGES')
-        if not os.path.exists(languagePath):
-            os.makedirs(languagePath)
-        printAndLog('Copying default.po (%s)'%(language[1]))
-        os.system('cp "%s" "%s/default.po"'%(languageFile,languagePath))
-        printAndLog('Compiling to default.mo (%s)'%language[1])
-        os.system('msgfmt "%s" -o "%s/default.mo"'%(languageFile,languagePath))
+    getResourcesFiles(languagesTable, 'tatoebaResource', 'default', TRANSLATIONS_LOCAL, MAIN_LOCAL)
+    getResourcesFiles(languagesTable, 'languages', 'languages', TRANSLATIONS_LOCAL, MAIN_LOCAL)
     
     if executeCommand('cd %s && git status'%MAIN_LOCAL,True) == '':
         print('git status: nothing has changed. will not commit.')
