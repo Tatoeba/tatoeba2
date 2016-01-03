@@ -131,6 +131,10 @@ class ToolsController extends AppController
      */
     public function conversion_simplified_traditional_chinese()
     {
+        if (empty($this->data['Tool'])) {
+            return;
+        }
+
         $text = $this->data['Tool']['query'];
         
         if (!empty($text)) {
@@ -165,6 +169,10 @@ class ToolsController extends AppController
      */
     public function pinyin_converter()
     {
+        if (empty($this->data['Tool'])) {
+            return;
+        }
+
         $text = $this->data['Tool']['query'];
         $from = Sanitize::paranoid($this->data['Tool']['from']);
         $to = Sanitize::paranoid($this->data['Tool']['to']);
@@ -201,7 +209,7 @@ class ToolsController extends AppController
      */
     public function shanghainese_to_ipa($text = null)
     {
-        if (empty($text)) {
+        if (empty($text) && !empty($this->data['Tool'])) {
             $text = $this->data['Tool']['query'];
         }
 

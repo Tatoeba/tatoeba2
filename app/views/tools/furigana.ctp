@@ -33,33 +33,15 @@ $this->set('title_for_layout', $pages->formatTitle(
 
 <div id="annexe_content">
     <div class="module">
-        <h2><?php __('Credits'); ?></h2>
+        <h2><?php __('Source code'); ?></h2>
         <p>
-            <?php
-            echo format(
-                __('This tool is powered by <a href="{}">MeCab</a>.',true),
-                'http://mecab.sourceforge.net/feature.html'
-            );
-
-            ?>
+        <?php
+        echo $html->link(
+            'GitHub/nihongoparserd',
+            'https://github.com/Tatoeba/nihongoparserd'
+        );
+        ?>
         </p>
-    </div>
-
-    <div class="module">
-    <h2><?php __('More information'); ?></h2>
-    <ul>
-        <li>
-            <a href="http://blog.tatoeba.org/2010/04/japanese-romanization-in-tatoeba-now.html">
-               <?php __('Japanese romanization in Tatoeba, now using MeCab'); ?>
-            </a>
-        </li>
-        <li>&nbsp;</li>
-        <li>
-            <a href="http://blog.tatoeba.org/2009/02/tools-for-japanese-romanization.html">
-                <?php __('Tools for Japanese romanization'); ?>
-            </a>
-        </li>
-    </ul>
     </div>
 </div>
 

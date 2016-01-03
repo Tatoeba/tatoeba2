@@ -39,37 +39,14 @@ if (!isset($lastText)) {
 ?>
 <div id="annexe_content">
     <div class="module">
-        <h2><?php __('The software'); ?></h2>
+        <h2><?php __('Source code'); ?></h2>
         <p>
-            <?php
-            __(
-                'This tool is powered by our own home-brewed software. '.
-                'The source code will be released as open source. '.
-                'Feel free to contact us if you would like to know more about it.'
-            );
-            ?>
-        </p>
-
-        <p>
-            <?php
-            __(
-                'The results you get will not always be perfect. However,'.
-                ' you can help us improve this by telling us the mistakes you saw.'.
-                ' We will try, if possible, to correct it.'
-            );
-            ?>
-        </p>
-
-        <p class="more_link">
-            <?php
-            echo $html->link(
-                __('Contact us', true),
-                array(
-                    "controller"=>"pages",
-                    "action"=>"contact"
-                )
-            );
-            ?>
+        <?php
+        echo $html->link(
+            'GitHub/sinoparserd',
+            'https://github.com/allan-simon/sinoparserd'
+        );
+        ?>
         </p>
     </div>
 </div>

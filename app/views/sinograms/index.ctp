@@ -102,10 +102,8 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
             <p>
             <?php
             __(
-                'Please note that this tool is still not complete yet and may'.
-                ' contain errors (although it will be accurate for most searches),'.
-                ' so don\'t hesitate to report missing characters or any'.
-                ' suggestion of improvement.'
+                'Please note that this tool is not complete and may '.
+                'contain errors (although it will be accurate for most searches).'
             );
             ?>
             </p>

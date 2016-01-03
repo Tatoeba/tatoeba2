@@ -58,34 +58,6 @@ if (!isset($lastText)) {
             ?>
         </p>
     </div>
-
-
-    <div class="module">
-        <h2><?php __("Note"); ?></h2>
-        <p>
-            <?php
-            __(
-                "This tool is in a very early stage, and we're looking for ".
-                "people who can help us improve the transcription ".
-                "by providing IPA of non-converted characters or reporting ".
-                "mistakes."
-            );
-            ?>
-        </p>
-
-        <p class="more_link">
-            <?php
-            echo $html->link(
-                __('Feedback', true),
-                array(
-                    "controller"=>"pages",
-                    "action"=>"contact"
-                )
-            );
-            ?>
-        </p>
-    </div>
-
 </div>
 
 
