@@ -274,6 +274,9 @@ class ListsHelper extends AppHelper
 
     public function displayIsPublicOption($listId, $isChecked)
     {
+        $this->Javascript->link(
+            JS_PATH . 'sentences_lists.set_option.js', false
+        );
         ?>
         <li>
             <?php
@@ -282,6 +285,8 @@ class ListsHelper extends AppHelper
             } else {
                 $checkboxValue = '';
             }
+
+            echo "<div class='is-public loader-container'></div>";
 
             echo $this->Form->checkbox(
                 'isPublic',
@@ -296,6 +301,7 @@ class ListsHelper extends AppHelper
                 __('Set list to publicly viewable.', true),
                 array('for' => 'isPublicCheckbox')
             );
+
             ?>
         </li>
         <?php
@@ -303,6 +309,9 @@ class ListsHelper extends AppHelper
 
     public function displayIsEditableByAnyOption($listId, $isChecked)
     {
+        $this->Javascript->link(
+            JS_PATH . 'sentences_lists.set_option.js', false
+        );
         ?>
         <li>
             <?php
@@ -312,8 +321,10 @@ class ListsHelper extends AppHelper
                 $checkboxValue = '';
             }
 
+            echo "<div class='is-editable loader-container'></div>";
+
             echo $this->Form->checkbox(
-                'isPublic',
+                'isEditableByAnyone',
                 array(
                     "id" => "editableCheckbox",
                     "name" => "isEditableByAnyone",

@@ -187,7 +187,8 @@ class SentencesListsController extends AppController
         $listId = $list['SentencesList']['id'];
         $listName = $list['SentencesList']['name'];
         $listOwnerId = $list['SentencesList']['user_id'];
-        $isListPublic = $list['SentencesList']['is_public'] == 1;
+        $isListPublic = $list['SentencesList']['visibility'] == 'public';
+        $isEditableByAnyone = $list['SentencesList']['editable_by'] == 'anyone';
         $belongsToUser = CurrentUser::get('id') == $listOwnerId;
         $canRemoveSentence = $isListPublic || $belongsToUser;
 
@@ -199,6 +200,7 @@ class SentencesListsController extends AppController
         $this->set('listId', $listId);
         $this->set('listName', $listName);
         $this->set('isListPublic', $isListPublic);
+        $this->set('isEditableByAnyone', $isEditableByAnyone);
         $this->set('belongsToUser', $belongsToUser);
         $this->set('canRemoveSentence', $canRemoveSentence);
         $this->set('listCount', $thisListCount);
@@ -464,6 +466,33 @@ class SentencesListsController extends AppController
 
         $this->SentencesList->id = $listId;
         $this->SentencesList->saveField('is_public', $isPublic);
+    }
+
+
+    /**
+     *
+     * @return void
+     */
+    public function set_option()
+    {
+        $allowedOptions = array('visibility', 'editable_by');
+
+        $listId = Sanitize::paranoid($_POST['listId']);
+        $option = $_POST['option'];
+        $value = $_POST['value'];
+
+        $userId = CurrentUser::get('id');
+        $belongsToUser = $this->SentencesList->belongsTotUser($listId, $userId);
+
+        if ($belongsToUser && in_array($option, $allowedOptions)) {
+            $this->SentencesList->id = $listId;
+            $this->SentencesList->saveField($option, $value);
+
+            $result = $this->SentencesList->getList($listId);
+        }
+
+        $this->header('Content-Type: application/json');
+        $this->set('result', json_encode($result['SentencesList']));
     }
     
     /**

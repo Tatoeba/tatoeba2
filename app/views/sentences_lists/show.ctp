@@ -46,15 +46,9 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
             __('created by {listAuthor}', true),
             array('listAuthor' => $linkToAuthorProfile)
         );
-        if ($isListPublic) {
-            $listType = __('Collaborative list', true);
-        } else {
-            $listType = __('Personal list', true);
-        }
         $createdDate = $date->ago($list['SentencesList']['created']);
         echo $html->tag('p', $createdBy);
         echo $html->tag('p', $createdDate);
-        echo $html->tag('p', $listType);
         $numberOfSentencesMsg = format(
             __n(
                 /* @translators: number of sentences contained in the list */
@@ -78,7 +72,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
             <ul class="sentencesListActions">
                 <?php
                 $lists->displayIsPublicOption($listId, $isListPublic);
-                $lists->displayIsEditableByAnyOption($listId, $isListPublic);
+                $lists->displayIsEditableByAnyOption($listId, $isEditableByAnyone);
                 ?>
             </ul>
         </div>

@@ -60,7 +60,8 @@ class SentencesList extends AppModel
                     'SentencesList.id',
                     'SentencesList.name',
                     'SentencesList.user_id',
-                    'SentencesList.is_public',
+                    'SentencesList.visibility',
+                    'SentencesList.editable_by',
                     'SentencesList.created'
                 ),
                 'contain' => array(
@@ -294,6 +295,29 @@ class SentencesList extends AppModel
                 "fields" => array(
                     'user_id',
                     'is_public'
+                )
+            )
+        );
+
+        return !empty($list);
+    }
+
+    /**
+     * Returns true if list belongs to user.
+     *
+     * @param int $listId Id of list.
+     * @param int $userId Id of user.
+     *
+     * @return bool
+     */
+    public function belongsTotUser($listId, $userId)
+    {
+        $list = $this->find(
+            'first',
+            array(
+                "conditions" => array(
+                    "SentencesList.id" => $listId,
+                    "user_id" => $userId
                 )
             )
         );
