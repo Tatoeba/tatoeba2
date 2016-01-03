@@ -125,14 +125,14 @@ class SentencesList extends AppModel
 
 
     /**
-     * Returns public lists that do not belong to given user.
+     * Returns lists.
      *
      * @param int $userId Id of the user.
      *
      * @return array
      */
     public function getPaginatedLists(
-        $search = null, $username = null, $onlyCollaborative = false
+        $search = null, $username = null, $visibility = null
     ) {
         $conditions = null;
         if (!empty($search)) {
@@ -142,9 +142,10 @@ class SentencesList extends AppModel
             $userId = $this->User->getIdFromUsername($username);
             $conditions['SentencesList.user_id'] = $userId;
         }
-        if ($onlyCollaborative) {
-            $conditions['SentencesList.is_public'] = true;
+        if (!empty($visibility)) {
+            $conditions['SentencesList.visibility'] = $visibility;
         }
+
 
         return array(
             'conditions' => $conditions,

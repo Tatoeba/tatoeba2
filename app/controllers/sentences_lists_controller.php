@@ -91,7 +91,9 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index', $filter));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists($filter);
+        $this->paginate = $this->SentencesList->getPaginatedLists(
+            $filter, null, 'public'
+        );
         $allLists = $this->paginate();
 
         $total = $this->params['paging']['SentencesList']['count'];
