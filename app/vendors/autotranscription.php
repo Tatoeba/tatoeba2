@@ -128,8 +128,16 @@ class Autotranscription
            mainly to have tokenized syntax already here and only need
            to fix the furiganas. */
         $furiRegex = preg_replace('/([^\p{Han}]+)/u', '($1)', $text);
-        $furiRegex = preg_replace('/[\p{Han}]+/u', '(.{1,})', $furiRegex,
-                                  -1, $kanjis);
+        $furiRegex = str_replace(
+            '物',
+            '(もの|.+?)',
+            $furiRegex,
+            $kanjis
+        );
+        $furiRegex = preg_replace('/[\p{Han}]+/u', '(.+?)', $furiRegex,
+                                  -1, $kanjis2);
+        $kanjis += $kanjis2;
+
         if ($kanjis > 0) {
             preg_match("/^${furiRegex}\$/u", $furigana, $furiMatches);
             preg_match("/^${furiRegex}\$/u", $text,     $textMatches);

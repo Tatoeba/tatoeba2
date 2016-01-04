@@ -97,9 +97,13 @@ class AutotranscriptionTestCase extends CakeTestCase {
         $this->_assertFurigana('生き字引', 'いきじびき', '[生|い]き[字引|じびき]');
         $this->_assertFurigana('青天の霹靂', 'せいてんのへきれき', '[青天|せいてん]の[霹靂|へきれき]');
         $this->_assertFurigana('物の具', 'もののぐ', '[物|もの]の[具|ぐ]');
-
-        /* This is plain wrong, only to show we can't handle every case */
-        $this->_assertFurigana('飼い犬', 'かいいぬ', '[飼|かい]い[犬|ぬ]');
+        $this->_assertFurigana('合い印', 'あいいん', '[合|あ]い[印|いん]');
+        $this->_assertFurigana('飼い犬', 'かいいぬ', '[飼|か]い[犬|いぬ]');
+        $this->_assertFurigana('冷や奴', 'ひややっこ', '[冷|ひ]や[奴|やっこ]');
+        $this->_assertFurigana('縫い糸', 'ぬいいと', '[縫|ぬ]い[糸|いと]');
+        $this->_assertFurigana('差し潮', 'さししお', '[差|さ]し[潮|しお]');
+        $this->_assertFurigana('食い意地', 'くいいじ', '[食|く]い[意地|いじ]');
+        $this->_assertFurigana('四つ辻', 'よつつじ', '[四|よ]つ[辻|つじ]');
 
         /* Remove furigana on numbers since they are almost always wrong.
            Mecab parses them individually, e.g. 10 reads いちぜろ. */
