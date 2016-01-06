@@ -170,6 +170,19 @@ class SentencesListsController extends AppController
 
         $list = $this->SentencesList->getList($id);
 
+        $listId = $list['SentencesList']['id'];
+        $listName = $list['SentencesList']['name'];
+        $listVisibility = $list['SentencesList']['visibility'];
+        $isEditableByAnyone = $list['SentencesList']['editable_by'] == 'anyone';
+        $belongsToUser = CurrentUser::get('id') == $list['SentencesList']['user_id'];
+
+        if ($listVisibility == 'private' && !$belongsToUser) {
+            $this->Session->setFlash(
+                __('You do not have permission to view this list.', true)
+            );
+            $this->redirect(array("action"=>"index"));
+        }
+
         $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
             $id, CurrentUser::getSetting('sentences_per_page')
         );
@@ -186,12 +199,6 @@ class SentencesListsController extends AppController
         $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
         $downloadability_info = $this->_get_downloadability_info($thisListCount);
 
-        $listId = $list['SentencesList']['id'];
-        $listName = $list['SentencesList']['name'];
-        $listOwnerId = $list['SentencesList']['user_id'];
-        $listVisibility = $list['SentencesList']['visibility'];
-        $isEditableByAnyone = $list['SentencesList']['editable_by'] == 'anyone';
-        $belongsToUser = CurrentUser::get('id') == $listOwnerId;
 
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
