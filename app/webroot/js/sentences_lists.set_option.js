@@ -19,18 +19,18 @@
 
 $(document).ready(function() {
 
-    $("#isPublicCheckbox").change(function(){
-        var value = $(this).is(':checked') ? 'public' : 'private';
+    $("input[name=visibility]").change(function(){
+        var value = $(this).val();
         var listId = $(this).attr('data-list-id');
 
-        $("#isPublicCheckbox").hide();
         $(".is-public.loader-container").html(
             "<div class='loader loader-small'></div>"
         );
 
         setOption(listId, 'visibility', value, function(data){
-            $("#isPublicCheckbox").show();
-            $("#isPublicCheckbox").prop('checked', data["visibility"] === "public");
+            $("input[name=visibility][value="+value+"]").prop(
+                'checked', data["visibility"] === value
+            );
             $(".is-public.loader-container").html("");
         });
     });

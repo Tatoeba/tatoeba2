@@ -189,10 +189,9 @@ class SentencesListsController extends AppController
         $listId = $list['SentencesList']['id'];
         $listName = $list['SentencesList']['name'];
         $listOwnerId = $list['SentencesList']['user_id'];
-        $isListPublic = $list['SentencesList']['visibility'] == 'public';
+        $listVisibility = $list['SentencesList']['visibility'];
         $isEditableByAnyone = $list['SentencesList']['editable_by'] == 'anyone';
         $belongsToUser = CurrentUser::get('id') == $listOwnerId;
-        $canRemoveSentence = $isListPublic || $belongsToUser;
 
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
@@ -201,10 +200,10 @@ class SentencesListsController extends AppController
         $this->set('downloadMessage', $downloadability_info['message']);
         $this->set('listId', $listId);
         $this->set('listName', $listName);
-        $this->set('isListPublic', $isListPublic);
+        $this->set('listVisibility', $listVisibility);
         $this->set('isEditableByAnyone', $isEditableByAnyone);
         $this->set('belongsToUser', $belongsToUser);
-        $this->set('canRemoveSentence', $canRemoveSentence);
+        $this->set('canRemoveSentence', $isEditableByAnyone);
         $this->set('listCount', $thisListCount);
     }
 

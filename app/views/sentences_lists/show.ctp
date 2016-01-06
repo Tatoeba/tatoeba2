@@ -71,8 +71,12 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
             <h2><?php __('Options'); ?></h2>
             <ul class="sentencesListActions">
                 <?php
-                $lists->displayIsPublicOption($listId, $isListPublic);
+                echo '<p>';
+                $lists->displayVisibilityOption($listId, $listVisibility);
+                echo '</p>';
+                echo '<p>';
                 $lists->displayIsEditableByAnyOption($listId, $isEditableByAnyone);
+                echo '</p>';
                 ?>
             </ul>
         </div>

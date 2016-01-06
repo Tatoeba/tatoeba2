@@ -271,38 +271,34 @@ class ListsHelper extends AppHelper
 
     }
 
-    public function displayIsPublicOption($listId, $isChecked)
+    public function displayVisibilityOption($listId, $value)
     {
         $this->Javascript->link(
             JS_PATH . 'sentences_lists.set_option.js', false
         );
         ?>
-        <li>
+        <dl>
             <?php
-            if ($isChecked) {
-                $checkboxValue = 'checked';
-            } else {
-                $checkboxValue = '';
-            }
+            $title = __('List visibility', true);
+            $loader = "<div class='is-public loader-container'></div>";
+            echo $this->Html->tag('dt', $title . $loader);
 
-            echo "<div class='is-public loader-container'></div>";
-
-            echo $this->Form->checkbox(
-                'isPublic',
+            echo $this->Form->radio(
+                'visibility',
                 array(
-                    "id" => "isPublicCheckbox",
-                    "name" => "isPublic",
-                    "checked" => $checkboxValue,
-                    "data-list-id" => $listId
+                    'public' => __('Public', true),
+                    'unlisted' => __('Unlisted', true),
+                    'private' => __('Private', true)
+                ),
+                array(
+                    "name" => "visibility",
+                    "value" => $value,
+                    "data-list-id" => $listId,
+                    "separator" => "<br/>"
                 )
             );
-            echo $this->Html->tag('label',
-                __('Set list to publicly viewable.', true),
-                array('for' => 'isPublicCheckbox')
-            );
-
             ?>
-        </li>
+        </dl>
         <?php
     }
 
@@ -312,8 +308,9 @@ class ListsHelper extends AppHelper
             JS_PATH . 'sentences_lists.set_option.js', false
         );
         ?>
-        <li>
+        <dl>
             <?php
+            echo $this->Html->tag('dt', __('Permission to edit', true));
             if ($isChecked) {
                 $checkboxValue = 'checked';
             } else {
@@ -332,11 +329,11 @@ class ListsHelper extends AppHelper
                 )
             );
             echo $this->Html->tag('label',
-                __('Make list editable by anyone.', true),
+                __('Allow anyone to add and delete sentences from the list', true),
                 array('for' => 'editableCheckbox')
             );
             ?>
-        </li>
+        </dl>
         <?php
     }
 
@@ -581,7 +578,7 @@ class ListsHelper extends AppHelper
 
             echo '<li class="item">';
             echo $this->Html->link(
-                __('All public lists', true),
+                __('All lists', true),
                 array(
                     'controller' => 'sentences_lists',
                     'action' => 'index'
@@ -591,7 +588,7 @@ class ListsHelper extends AppHelper
 
             echo '<li class="item">';
             echo $this->Html->link(
-                __('Collaborative public lists', true),
+                __('Collaborative lists', true),
                 array(
                     'controller' => 'sentences_lists',
                     'action' => 'collaborative'
