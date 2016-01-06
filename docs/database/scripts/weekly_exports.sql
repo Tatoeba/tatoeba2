@@ -35,6 +35,7 @@ INTO OUTFILE '/var/tmp/user_lists.csv';
 SELECT sl.id, s_sl.sentence_id
 FROM sentences_sentences_lists s_sl
      JOIN sentences_lists sl ON s_sl.sentences_list_id = sl.id
+WHERE sl.visibility = 'public'
 ORDER BY sl.id ASC, s_sl.sentence_id
 INTO OUTFILE '/var/tmp/sentences_in_lists.csv';
 
