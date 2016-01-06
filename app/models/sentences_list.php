@@ -89,7 +89,7 @@ class SentencesList extends AppModel
                 "conditions" =>
                     array("OR" => array(
                         "SentencesList.user_id" => $userId,
-                        "SentencesList.is_public" => 1
+                        "SentencesList.editable_by" => 'anyone'
                     )
                 ),
                 'fields' => array('id', 'name', 'user_id'),
@@ -97,8 +97,8 @@ class SentencesList extends AppModel
             )
         );
 
-        $privateLists = array();
-        $publicLists = array();
+        $listsOfUser = array();
+        $collaborativeLists = array();
 
         $currentUserId = CurrentUser::get('id');
         foreach ($results as $result) {
@@ -111,14 +111,14 @@ class SentencesList extends AppModel
             }
 
             if ($currentUserId == $userId) {
-                $privateLists[$listId] = $listName;
+                $listsOfUser[$listId] = $listName;
             } else {
-                $publicLists[$listId] = $listName;
+                $collaborativeLists[$listId] = $listName;
             }
         }
 
-        $lists['Private'] = $privateLists;
-        $lists['Public'] = $publicLists;
+        $lists['OfUser'] = $listsOfUser;
+        $lists['Collaborative'] = $collaborativeLists;
 
         return $lists;
     }
