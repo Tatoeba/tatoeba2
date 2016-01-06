@@ -100,10 +100,13 @@ class ListsHelper extends AppHelper
 
         <td class="icon">
             <?php
-            if ($visibility == 'public' && $editableBy == 'anyone') {
+            if ($editableBy == 'anyone') {
                 echo $this->Images->svgIcon('users');
-            } else if ($visibility == 'private') {
+            }
+            if ($visibility == 'private') {
                 echo $this->Images->svgIcon('lock');
+            } else if ($visibility == 'unlisted') {
+                echo $this->Images->svgIcon('hidden');
             }
             ?>
         </td>
