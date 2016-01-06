@@ -414,7 +414,13 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists($filter, $username);
+        $visibility = null;
+        if ($username != CurrentUser::get('username')) {
+            $visibility = 'public';
+        }
+        $this->paginate = $this->SentencesList->getPaginatedLists(
+            $filter, $username, $visibility
+        );
         $userLists = $this->paginate('SentencesList');
 
         $this->set('userLists', $userLists);
