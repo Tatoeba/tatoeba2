@@ -510,7 +510,7 @@ class LanguagesLib
                 'nch' => __d('languages', 'Central Huasteca Nahuatl',true),
                 'kek' => __d('languages', 'Kekchi (Q'eqchi')',true),
                 'ssw' => __d('languages', 'Swazi',true),
-                
+                'ban' => __d('languages', 'Balinese',true),
 
             );
         }
