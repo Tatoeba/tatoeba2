@@ -507,6 +507,7 @@ class LanguagesLib
                 'hnj' => __d('languages', 'Hmong Njua',true),
                 'rif' => __d('languages', 'Tarifit',true),
                 'nch' => __d('languages', 'Central Huasteca Nahuatl',true),
+                'kek' => __d('languages', 'Kekchi (Q'eqchi')',true),
                 
                 
 
