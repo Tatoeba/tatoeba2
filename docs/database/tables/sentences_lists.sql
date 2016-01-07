@@ -21,7 +21,7 @@ CREATE TABLE `sentences_lists` (
   `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `visibility` enum('private', 'public') NOT NULL DEFAULT 'private',
+  `visibility` enum('private', 'unlisted', 'public') NOT NULL DEFAULT 'unlisted',
   `editable_by` enum('creator', 'anyone') NOT NULL DEFAULT 'creator',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3961 DEFAULT CHARSET=latin1;
