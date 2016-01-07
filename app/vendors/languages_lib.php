@@ -506,6 +506,8 @@ class LanguagesLib
                 'cos' => __d('languages', 'Corsican',true),
                 'hnj' => __d('languages', 'Hmong Njua',true),
                 'rif' => __d('languages', 'Tarifit',true),
+                'nch' => __d('languages', 'Central Huasteca Nahuatl',true),
+                
                 
 
             );
