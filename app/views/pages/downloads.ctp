@@ -104,12 +104,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
     ?>
     <div class="module">
         <h2><?php echo $downloads_str; ?></h2>
-        <p><strong><?php __('Attention: '); ?></strong>
-        <?php __('As of 2014-08-16, the URL to download the '.
-               'latest files has changed and the new export files are provided in a compressed format. The old '.
-               'URL is still available, but will not contain the latest data.'); 
-        ?>
-        </p>
         
         <!-- Sentences -->
         <h3><?php __('Sentences'); ?></h3>
