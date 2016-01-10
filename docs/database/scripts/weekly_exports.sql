@@ -27,7 +27,7 @@ INTO OUTFILE '/var/tmp/tags.csv';
 -- Sentence lists
 SELECT sl.id, u.username, sl.created, sl.modified, sl.name, sl.editable_by
 FROM sentences_lists sl LEFT JOIN users u ON sl.user_id = u.id
-WHERE sl.visibility = 'public'
+WHERE sl.visibility != 'private'
 ORDER BY sl.id ASC
 INTO OUTFILE '/var/tmp/user_lists.csv';
 
@@ -35,7 +35,7 @@ INTO OUTFILE '/var/tmp/user_lists.csv';
 SELECT sl.id, s_sl.sentence_id
 FROM sentences_sentences_lists s_sl
      JOIN sentences_lists sl ON s_sl.sentences_list_id = sl.id
-WHERE sl.visibility = 'public'
+WHERE sl.visibility != 'private'
 ORDER BY sl.id ASC, s_sl.sentence_id
 INTO OUTFILE '/var/tmp/sentences_in_lists.csv';
 
