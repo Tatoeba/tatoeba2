@@ -511,7 +511,7 @@ class LanguagesLib
                 'kek' => __d('languages', "Kekchi (Q'eqchi')",true),
                 'ssw' => __d('languages', 'Swazi',true),
                 'ban' => __d('languages', 'Balinese',true),
-                'aai' => __d('languages', 'Assyrian',true),
+                'aii' => __d('languages', 'Assyrian',true),
 
             );
         }
@@ -571,7 +571,7 @@ class LanguagesLib
             "apc",
             "oar",
             "ary",
-            "aai",
+            "aii",
             
         );
 
