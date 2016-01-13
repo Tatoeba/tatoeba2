@@ -4,15 +4,15 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
-# Samer <mmmnnn333@gmail.com>, 2014-2015
+# Samer <mmmnnn333@gmail.com>, 2014-2016
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-03 15:17+0000\n"
-"PO-Revision-Date: 2016-01-03 16:41+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2016-01-13 15:10+0000\n"
+"Last-Translator: Samer <mmmnnn333@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/tatoeba/tatoeba_website/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +108,7 @@ msgstr "احذف"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L326
 msgid "mark as unread"
-msgstr "علِّم على أنها غير مقروء"
+msgstr "علِّم على أنها غير مقروءة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L335
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L470
@@ -430,11 +430,11 @@ msgstr "قائمة غير مسماة"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L205
 msgid ""
 "The provided sentence differs from the original one near “{character}”."
-msgstr ""
+msgstr "تختلف الجملة المعطاة عن الجملة الأصلية بالقرب من “{character}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L213
 msgid "The provided sentence is shorter than the orginial one."
-msgstr ""
+msgstr "الجملة المعطاة أقصر من الأصلية."
 
 #. @translators: This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
@@ -443,7 +443,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L228
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L300
 msgid ", "
-msgstr ""
+msgstr "،"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L231
 msgid "The following character lacks furigana: {charsEnumeration}."
@@ -2482,7 +2482,7 @@ msgstr "معرّف الجملة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L88
 msgid "Rating"
-msgstr ""
+msgstr "التقييم"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L169
@@ -2641,14 +2641,14 @@ msgstr "تشير إلى مستوى المهارة التي أعلن عنها ا�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L418
 msgid "Users' sentence ratings"
-msgstr ""
+msgstr "تقييم جمل المستخدمين"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L446
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "تتضمن الجمل التي قيمها المستخدمون. ربما يكون التقييم -1 (الجملة ليست صحيحة)، أو 0 (غير متأكد)، أو 1 (الجملة صحيحة). تحذير: هذه البيانات ما تزال تجريبية."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L457
 msgid "General information about the files"
@@ -3386,7 +3386,7 @@ msgstr "هذا العمل مبني على <a href=\"{}\">هذا المشروع</
 msgid ""
 "Please note that this tool is not complete and may contain errors (although "
 "it will be accurate for most searches)."
-msgstr ""
+msgstr "نرجو منكم ملاحظة أن هذه الأداة ليست مكتملة، وربما تكون فيها أخطاء (إلا أنها ستكون مناسبة لأغلب البحوث)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L116
 msgid "Hanzis - Kanjis search"
@@ -3591,7 +3591,7 @@ msgstr "تحويل الصينية التقليدية/المبسطة"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L36
 msgid "Source code"
-msgstr ""
+msgstr "شفرة المصدر"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L81
 msgid "Enter either traditional or simplified Chinese"
@@ -3606,11 +3606,11 @@ msgstr "حوّل"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L50
 msgid "Autogenerate furigana over Japanese"
-msgstr ""
+msgstr "ولِّد فوريغانا فوق اليابانية تلقائيًا"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L82
 msgid "Autogenerate furigana"
-msgstr ""
+msgstr "توليد فوريغانا تلقائي"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L28
 msgid "Useful tools"
@@ -3618,11 +3618,11 @@ msgstr "أدوات مفيدة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "توليد تلقائي للفوريغانا"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "ولِّد فوريغانا فوق اليابانية تلقائيًا"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L51
 msgid "Sinogram search"
@@ -4050,12 +4050,12 @@ msgstr "البريد الإلكتروني هذا مُستخدَم."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L129
 msgid "Native language:"
-msgstr ""
+msgstr "اللغة الأم:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L146
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
-msgstr ""
+msgstr "إن لم تجد لغتك الأم في القائمة، فاختر \"بدون\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
 msgid "We need to make sure you are human."
