@@ -156,6 +156,7 @@ class LanguagesLib
             'sna' => 'sn', // Shona
             'snd' => 'sd', // Sindhi
             'som' => 'so', // Somali
+            'ssw' => 'ss', // Swazi
             'sot' => 'st', // Southern Sotho
             'spa' => 'es', // Spanish
             'sqi' => 'sq', // Albanian
@@ -506,7 +507,11 @@ class LanguagesLib
                 'cos' => __d('languages', 'Corsican',true),
                 'hnj' => __d('languages', 'Hmong Njua',true),
                 'rif' => __d('languages', 'Tarifit',true),
-                
+                'nch' => __d('languages', 'Central Huasteca Nahuatl',true),
+                'kek' => __d('languages', "Kekchi (Q'eqchi')",true),
+                'ssw' => __d('languages', 'Swazi',true),
+                'ban' => __d('languages', 'Balinese',true),
+                'aii' => __d('languages', 'Assyrian',true),
 
             );
         }
@@ -566,6 +571,7 @@ class LanguagesLib
             "apc",
             "oar",
             "ary",
+            "aii",
             
         );
 
