@@ -60,7 +60,8 @@ class SentencesList extends AppModel
                     'SentencesList.id',
                     'SentencesList.name',
                     'SentencesList.user_id',
-                    'SentencesList.is_public',
+                    'SentencesList.visibility',
+                    'SentencesList.editable_by',
                     'SentencesList.created'
                 ),
                 'contain' => array(
@@ -88,7 +89,7 @@ class SentencesList extends AppModel
                 "conditions" =>
                     array("OR" => array(
                         "SentencesList.user_id" => $userId,
-                        "SentencesList.is_public" => 1
+                        "SentencesList.editable_by" => 'anyone'
                     )
                 ),
                 'fields' => array('id', 'name', 'user_id'),
@@ -96,8 +97,8 @@ class SentencesList extends AppModel
             )
         );
 
-        $privateLists = array();
-        $publicLists = array();
+        $listsOfUser = array();
+        $collaborativeLists = array();
 
         $currentUserId = CurrentUser::get('id');
         foreach ($results as $result) {
@@ -110,28 +111,28 @@ class SentencesList extends AppModel
             }
 
             if ($currentUserId == $userId) {
-                $privateLists[$listId] = $listName;
+                $listsOfUser[$listId] = $listName;
             } else {
-                $publicLists[$listId] = $listName;
+                $collaborativeLists[$listId] = $listName;
             }
         }
 
-        $lists['Private'] = $privateLists;
-        $lists['Public'] = $publicLists;
+        $lists['OfUser'] = $listsOfUser;
+        $lists['Collaborative'] = $collaborativeLists;
 
         return $lists;
     }
 
 
     /**
-     * Returns public lists that do not belong to given user.
+     * Returns lists.
      *
      * @param int $userId Id of the user.
      *
      * @return array
      */
     public function getPaginatedLists(
-        $search = null, $username = null, $onlyCollaborative = false
+        $search = null, $username = null, $visibility = null, $editableBy = null
     ) {
         $conditions = null;
         if (!empty($search)) {
@@ -141,9 +142,13 @@ class SentencesList extends AppModel
             $userId = $this->User->getIdFromUsername($username);
             $conditions['SentencesList.user_id'] = $userId;
         }
-        if ($onlyCollaborative) {
-            $conditions['SentencesList.is_public'] = true;
+        if (!empty($visibility)) {
+            $conditions['SentencesList.visibility'] = $visibility;
         }
+        if (!empty($editableBy)) {
+            $conditions['SentencesList.editable_by'] = $editableBy;
+        }
+
 
         return array(
             'conditions' => $conditions,
@@ -294,6 +299,29 @@ class SentencesList extends AppModel
                 "fields" => array(
                     'user_id',
                     'is_public'
+                )
+            )
+        );
+
+        return !empty($list);
+    }
+
+    /**
+     * Returns true if list belongs to user.
+     *
+     * @param int $listId Id of list.
+     * @param int $userId Id of user.
+     *
+     * @return bool
+     */
+    public function belongsTotUser($listId, $userId)
+    {
+        $list = $this->find(
+            'first',
+            array(
+                "conditions" => array(
+                    "SentencesList.id" => $listId,
+                    "user_id" => $userId
                 )
             )
         );

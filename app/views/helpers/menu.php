@@ -347,10 +347,10 @@ class MenuHelper extends AppHelper
             CurrentUser::get('id')
         );
 
-        $privateLists = __('Add to one of your lists', true);
-        $publicLists = __('Add to a collaborative list', true);
-        $selectItems[$privateLists] = $lists['Private'];
-        $selectItems[$publicLists] = $lists['Public'];
+        $listsOfCurrentUser = __('Add to one of your lists', true);
+        $listsEditableByAnyone = __('Add to a collaborative list', true);
+        $selectItems[$listsOfCurrentUser] = $lists['OfUser'];
+        $selectItems[$listsEditableByAnyone] = $lists['Collaborative'];
         ?>
 
         <li style="display:none" id="addToList<?php echo $sentenceId; ?>">

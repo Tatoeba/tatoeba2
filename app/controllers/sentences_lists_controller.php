@@ -91,7 +91,9 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index', $filter));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists($filter);
+        $this->paginate = $this->SentencesList->getPaginatedLists(
+            $filter, null, 'public'
+        );
         $allLists = $this->paginate();
 
         $total = $this->params['paging']['SentencesList']['count'];
@@ -121,7 +123,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesList->getPaginatedLists(
-            $filter, null, true
+            $filter, null, 'public', 'anyone'
         );
         $allLists = $this->paginate();
 
@@ -168,6 +170,19 @@ class SentencesListsController extends AppController
 
         $list = $this->SentencesList->getList($id);
 
+        $listId = $list['SentencesList']['id'];
+        $listName = $list['SentencesList']['name'];
+        $listVisibility = $list['SentencesList']['visibility'];
+        $isEditableByAnyone = $list['SentencesList']['editable_by'] == 'anyone';
+        $belongsToUser = CurrentUser::get('id') == $list['SentencesList']['user_id'];
+
+        if ($listVisibility == 'private' && !$belongsToUser) {
+            $this->Session->setFlash(
+                __('You do not have permission to view this list.', true)
+            );
+            $this->redirect(array("action"=>"index"));
+        }
+
         $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
             $id, CurrentUser::getSetting('sentences_per_page')
         );
@@ -184,12 +199,6 @@ class SentencesListsController extends AppController
         $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
         $downloadability_info = $this->_get_downloadability_info($thisListCount);
 
-        $listId = $list['SentencesList']['id'];
-        $listName = $list['SentencesList']['name'];
-        $listOwnerId = $list['SentencesList']['user_id'];
-        $isListPublic = $list['SentencesList']['is_public'] == 1;
-        $belongsToUser = CurrentUser::get('id') == $listOwnerId;
-        $canRemoveSentence = $isListPublic || $belongsToUser;
 
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
@@ -198,9 +207,10 @@ class SentencesListsController extends AppController
         $this->set('downloadMessage', $downloadability_info['message']);
         $this->set('listId', $listId);
         $this->set('listName', $listName);
-        $this->set('isListPublic', $isListPublic);
+        $this->set('listVisibility', $listVisibility);
+        $this->set('isEditableByAnyone', $isEditableByAnyone);
         $this->set('belongsToUser', $belongsToUser);
-        $this->set('canRemoveSentence', $canRemoveSentence);
+        $this->set('canRemoveSentence', $isEditableByAnyone);
         $this->set('listCount', $thisListCount);
     }
 
@@ -404,7 +414,13 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists($filter, $username);
+        $visibility = null;
+        if ($username != CurrentUser::get('username')) {
+            $visibility = 'public';
+        }
+        $this->paginate = $this->SentencesList->getPaginatedLists(
+            $filter, $username, $visibility
+        );
         $userLists = $this->paginate('SentencesList');
 
         $this->set('userLists', $userLists);
@@ -464,6 +480,33 @@ class SentencesListsController extends AppController
 
         $this->SentencesList->id = $listId;
         $this->SentencesList->saveField('is_public', $isPublic);
+    }
+
+
+    /**
+     *
+     * @return void
+     */
+    public function set_option()
+    {
+        $allowedOptions = array('visibility', 'editable_by');
+
+        $listId = Sanitize::paranoid($_POST['listId']);
+        $option = $_POST['option'];
+        $value = $_POST['value'];
+
+        $userId = CurrentUser::get('id');
+        $belongsToUser = $this->SentencesList->belongsTotUser($listId, $userId);
+
+        if ($belongsToUser && in_array($option, $allowedOptions)) {
+            $this->SentencesList->id = $listId;
+            $this->SentencesList->saveField($option, $value);
+
+            $result = $this->SentencesList->getList($listId);
+        }
+
+        $this->header('Content-Type: application/json');
+        $this->set('result', json_encode($result['SentencesList']));
     }
     
     /**

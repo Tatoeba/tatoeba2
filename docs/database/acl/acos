@@ -60,6 +60,7 @@ cake acl create aco SentencesLists add_sentence_to_list
 cake acl create aco SentencesLists remove_sentence_from_list
 cake acl create aco SentencesLists add_new_sentence_to_list
 cake acl create aco SentencesLists set_as_public
+cake acl create aco SentencesLists set_option
 
 cake acl create aco controllers Tags
 cake acl create aco Tags add_tag_post

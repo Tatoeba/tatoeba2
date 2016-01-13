@@ -65,7 +65,8 @@ class ListsHelper extends AppHelper
                 $list['User']['username'],
                 $list['SentencesList']['created'],
                 $list['SentencesList']['numberOfSentences'],
-                $list['SentencesList']['is_public']
+                $list['SentencesList']['visibility'],
+                $list['SentencesList']['editable_by']
             );
         }
         ?>
@@ -91,20 +92,21 @@ class ListsHelper extends AppHelper
         $listCreatorName,
         $createdDate,
         $count = 0,
-        $isPublic = false
+        $visibility = 'private',
+        $editableBy = 'creator'
     ) {
-        if ($isPublic) {
-            $type = 'collaborative';
-        } else {
-            $type = 'personal';
-        }
         ?>
         <tr class="listSummary">
 
-        <td class="<?php echo $type ?>">
+        <td class="icon">
             <?php
-            if ($isPublic) {
+            if ($editableBy == 'anyone') {
                 echo $this->Images->svgIcon('users');
+            }
+            if ($visibility == 'private') {
+                echo $this->Images->svgIcon('lock');
+            } else if ($visibility == 'unlisted') {
+                echo $this->Images->svgIcon('hidden');
             }
             ?>
         </td>
@@ -231,29 +233,22 @@ class ListsHelper extends AppHelper
                 $listId
             ),
             array(
-                'class' => 'downloadLink'
+                'class' => 'button download'
             )
         );
     }
 
 
     /**
-     * Display actions that can be done by everyone.
+     * Display dropdownlist for translations.
      *
      * @param int    $listId           Id of the list.
      * @param string $translationsLang Language of the translations for the
      *                                 'correction version'.
-     * @param string $action           Can be 'show' or 'edit'.
      *
      * @return void
      */
-    public function displayPublicActions(
-        $listId, $translationsLang = null, $action = null
-    ) {
-        ?>
-
-        <li>
-        <?php
+    public function displayTranslationsDropdown($listId, $translationsLang = null) {
         __('Show translations :'); echo ' ';
 
         // TODO User $html->url()
@@ -261,7 +256,7 @@ class ListsHelper extends AppHelper
         if (!empty($this->params['lang'])) {
             $path .= $this->params['lang'] . '/';
         }
-        $path .= 'sentences_lists/'.$action.'/'. $listId.'/';
+        $path .= 'sentences_lists/show/'. $listId.'/';
         
         // TODO onChange should be defined in a separate js file
         echo $this->Form->select(
@@ -275,66 +270,78 @@ class ListsHelper extends AppHelper
             ),
             false
         );
+
+
+    }
+
+    public function displayVisibilityOption($listId, $value)
+    {
+        $this->Javascript->link(
+            JS_PATH . 'sentences_lists.set_option.js', false
+        );
         ?>
-        </li>
+        <dl>
+            <?php
+            $title = __('List visibility', true);
+            $loader = "<div class='is-public loader-container'></div>";
+            echo $this->Html->tag('dt', $title . $loader);
+
+            echo $this->Form->radio(
+                'visibility',
+                array(
+                    'public' => __('Public', true),
+                    'unlisted' => __('Unlisted', true),
+                    'private' => __('Private', true)
+                ),
+                array(
+                    "name" => "visibility",
+                    "value" => $value,
+                    "data-list-id" => $listId,
+                    "separator" => "<br/>"
+                )
+            );
+            ?>
+        </dl>
         <?php
     }
 
-    /**
-     * Display actions that are restricted to the creator of the list.
-     *
-     * @param int $listId       Id of the list.
-     * @param string $action    Can be 'show' or 'edit'.
-     * @param int $isListPublic true if list is public. false otherwise.
-     *
-     * @return void
-     */
-    public function displayRestrictedActions(
-        $listId,
-        $action,
-        $isListPublic = false
-    ) {
-        ?>
-        <li>
-        <label for="isPublicCheckbox"><?php __('Set list as collaborative'); ?></label>
-        <?php
-        $this->Javascript->link('sentences_lists.set_as_public.js', false);
-        if ($isListPublic) {
-            $checkboxValue = 'checked';
-        } else {
-            $checkboxValue = '';
-        }
-
-        echo $this->Form->checkbox(
-            'isPublic',
-            array(
-                "id" => "isPublicCheckbox",
-                "name" => "isPublic",
-                "checked" => $checkboxValue,
-                "data-list-id" => $listId
-            )
-        );
-        echo $this->Images->svgIcon(
-            'loading',
-            array(
-                'id' => 'inProcess',
-                'class' => 'loading',
-                'height' => 16,
-                'width' => 16
-            )
-        );
-        echo $this->Html->link(
-            '[?]',
-            array(
-                "controller"=>"pages", 
-                "action"=>"help#sentences_lists_help"
-            )
+    public function displayIsEditableByAnyOption($listId, $isChecked)
+    {
+        $this->Javascript->link(
+            JS_PATH . 'sentences_lists.set_option.js', false
         );
         ?>
-        </li>
+        <dl>
+            <?php
+            echo $this->Html->tag('dt', __('Permission to edit', true));
+            if ($isChecked) {
+                $checkboxValue = 'checked';
+            } else {
+                $checkboxValue = '';
+            }
 
-        <li class="deleteList">
+            echo "<div class='is-editable loader-container'></div>";
+
+            echo $this->Form->checkbox(
+                'isEditableByAnyone',
+                array(
+                    "id" => "editableCheckbox",
+                    "name" => "isEditableByAnyone",
+                    "checked" => $checkboxValue,
+                    "data-list-id" => $listId
+                )
+            );
+            echo $this->Html->tag('label',
+                __('Allow anyone to add and delete sentences from the list', true),
+                array('for' => 'editableCheckbox')
+            );
+            ?>
+        </dl>
         <?php
+    }
+
+    public function displayDeleteButton($listId)
+    {
         echo $this->Html->link(
             __('Delete this list', true),
             array(
@@ -342,12 +349,11 @@ class ListsHelper extends AppHelper
                 "action" => "delete",
                 $listId
             ),
-            null,
+            array(
+                'class' => 'delete button'
+            ),
             __('Are you sure?', true)
         );
-        ?>
-        </li>
-        <?php
     }
 
 
@@ -485,7 +491,7 @@ class ListsHelper extends AppHelper
             echo $this->Html->tag('h2', __('Lists', true));
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
-                if ($list['SentencesList']['is_public']) {
+                if ($list['SentencesList']['visibility'] == 'public') {
                     $class = 'public-list';
                 } else {
                     $class = 'personal-list';

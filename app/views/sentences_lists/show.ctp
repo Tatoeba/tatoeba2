@@ -46,15 +46,9 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
             __('created by {listAuthor}', true),
             array('listAuthor' => $linkToAuthorProfile)
         );
-        if ($isListPublic) {
-            $listType = __('Collaborative list', true);
-        } else {
-            $listType = __('Personal list', true);
-        }
         $createdDate = $date->ago($list['SentencesList']['created']);
         echo $html->tag('p', $createdBy);
         echo $html->tag('p', $createdDate);
-        echo $html->tag('p', $listType);
         $numberOfSentencesMsg = format(
             __n(
                 /* @translators: number of sentences contained in the list */
@@ -69,23 +63,36 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         ?>
     </div>
 
-    <div class="module">
-    <ul class="sentencesListActions">
-        <?php
-        $lists->displayPublicActions(
-            $listId, $translationsLang, 'show'
-        );
-        
-        if ($belongsToUser) {
-            $lists->displayRestrictedActions(
-                $listId,
-                'edit',
-                $isListPublic
-            );
-        }
-        ?>
-    </ul>
+
     <?php
+    if ($belongsToUser) {
+        ?>
+        <div class="module">
+            <h2><?php __('Options'); ?></h2>
+            <ul class="sentencesListActions">
+                <?php
+                echo '<p>';
+                $lists->displayVisibilityOption($listId, $listVisibility);
+                echo '</p>';
+                echo '<p>';
+                $lists->displayIsEditableByAnyOption($listId, $isEditableByAnyone);
+                echo '</p>';
+                ?>
+            </ul>
+        </div>
+        <?php
+    }
+    ?>
+
+    <div class="module">
+    <h2><?php __('Actions'); ?></h2>
+    <?php
+    $lists->displayTranslationsDropdown($listId, $translationsLang);
+
+    if ($belongsToUser) {
+        $lists->displayDeleteButton($listId);
+    }
+
     if ($canDownload) {
         $lists->displayDownloadLink($listId);
     } else {

@@ -1650,6 +1650,31 @@ div.hideLink {
 }
 
 
+.button.delete {
+    background: #B00;
+    padding: 8px 12px;
+    color: #fff;
+    border: 1px solid #800;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+    width: 150px;
+}
+.button.download {
+    background: #6A0;
+    padding: 8px 12px;
+    color: #fff;
+    border: 1px solid #6E994E;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+    width: 150px;
+}
+
 /*
  * Download
  */
@@ -1802,11 +1827,11 @@ div.hideLink {
     color: #aaaaaa;
 }
 
-.listSummary .collaborative {
+.listSummary .icon {
     color: #777777;
 }
 
-.listSummary .collaborative {
+.listSummary .icon {
     width: 16px;
     height: 16px;
 }
