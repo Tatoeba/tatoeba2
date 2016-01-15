@@ -27,7 +27,31 @@
 
 $title = __('Native speakers', true);
 $this->set('title_for_layout', $pages->formatTitle($title));
+$membersIcons = array(
+    'status1' => __('Admins', true),
+    'status2' => __('Corpus maintainers', true),
+    'status3' => __('Advanced contributors', true),
+    'status4' => __('Contributors', true)
+);
 ?>
+<div id="annexe_content">
+    <div class="module">
+        <?php
+        foreach ($membersIcons as $iconClass => $tooltip) {
+            $icon = $images->svgIcon(
+                'user',
+                array(
+                    'width' => 16,
+                    'height' => 16,
+                    'class' => $iconClass
+                )
+            );
+            $legend = $html->tag('span', $tooltip);
+            echo $html->tag('p', $icon . $legend, array('class' => 'key'));
+        }
+        ?>
+    </div>
+</div>
 
 <div id="main_content">
     <div class="module">
@@ -39,12 +63,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 <th></th>
                 <th><?php __('Language'); ?></th>
                 <?php
-                $membersIcons = array(
-                    'status1' => __('Admins', true),
-                    'status2' => __('Corpus maintainers', true),
-                    'status3' => __('Advanced contributors', true),
-                    'status4' => __('Contributors', true)
-                );
                 foreach ($membersIcons as $iconClass => $tooltip) {
                     $icon = $images->svgIcon(
                         'user',

@@ -20,6 +20,10 @@
     text-align: center;
 }
 
+.languages-stats th {
+    text-align: center;
+}
+
 .languages-stats tr {
     border-bottom: 1px solid #f1f1f1;
 }
@@ -32,6 +36,9 @@
     display: block;
 }
 
-.languages-stats svg {
+svg,
+.key span {
     display: inline-block;
+    margin: 0 5px;
+    vertical-align: baseline;
 }
