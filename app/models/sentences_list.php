@@ -293,12 +293,12 @@ class SentencesList extends AppModel
                     "SentencesList.id" => $listId,
                     "OR" => array(
                         "user_id" => $userId,
-                        "is_public" => 1
+                        "editable_by" => 'anyone'
                     )
                 ),
                 "fields" => array(
                     'user_id',
-                    'is_public'
+                    'editable_by'
                 )
             )
         );

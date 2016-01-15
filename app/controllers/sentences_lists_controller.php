@@ -210,7 +210,7 @@ class SentencesListsController extends AppController
         $this->set('listVisibility', $listVisibility);
         $this->set('isEditableByAnyone', $isEditableByAnyone);
         $this->set('belongsToUser', $belongsToUser);
-        $this->set('canRemoveSentence', $isEditableByAnyone);
+        $this->set('canRemoveSentence', $belongsToUser || $isEditableByAnyone);
         $this->set('listCount', $thisListCount);
     }
 
