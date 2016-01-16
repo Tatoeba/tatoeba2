@@ -512,6 +512,7 @@ class LanguagesLib
                 'ssw' => __d('languages', 'Swazi',true),
                 'ban' => __d('languages', 'Balinese',true),
                 'aii' => __d('languages', 'Assyrian',true),
+                'tvl' => __d('languages', 'Tuvaluan',true),
 
             );
         }
