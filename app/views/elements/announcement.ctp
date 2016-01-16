@@ -32,7 +32,7 @@ if (Configure::read('Announcement.enabled')) {
     $announcementId = 'announcement-id';
     $announcementText = 'Text of the announcement';
 
-    $closeButton = $html->div('close', $images->svgIcon('close'));
+    $closeButton = $html->div('close button', $images->svgIcon('close'));
     $content = $html->div('content', $announcementText);
 
     echo $html->div(
