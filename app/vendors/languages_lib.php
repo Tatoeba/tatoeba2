@@ -513,7 +513,8 @@ class LanguagesLib
                 'ban' => __d('languages', 'Balinese',true),
                 'aii' => __d('languages', 'Assyrian',true),
                 'tvl' => __d('languages', 'Tuvaluan',true),
-
+                'kxi' => __d('languages', 'Keningau Murut,),
+				
             );
         }
         return $languages;
