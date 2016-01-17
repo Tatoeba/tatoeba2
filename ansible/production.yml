@@ -12,7 +12,7 @@
   - setup_nginx
   - setup_php
   - setup_mysql
-  - { role: update_code, update_cakephp_config: no }
+  - { role: update_code }
   - { role: setup_database }
   - install_sphinx
   - { role: configure_sphinx, sphinx_create_indexes: no }

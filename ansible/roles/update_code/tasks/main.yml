@@ -1,78 +1,31 @@
 ---
 # Tasks to fetch latest tatoeba-php code and optionally update cakephp configs
 
-- name: Create the code directory if it doesn't already exists
-  shell: mkdir -p {{code_dir}}/versions ; mkdir -p {{code_dir}}/common/config/
-- name: Ensure directories for avatars, logs and cache are present
-  file: state=directory dest={{code_dir}}/common/{{item}} force=yes
-  with_items:
-  - profiles_128/
-  - profiles_36/
-  - logs/
-  - cache/
-- name: Clean the temp directory
-  command: rm -rf {{code_dir}}/versions/{{git_temp_dir}}
 - name: Fetch the code from github repository
-  git: repo=https://github.com/Tatoeba/tatoeba2.git dest={{code_dir}}/versions/{{git_temp_dir}} version={{repo_version}} remote={{git_remote}}
+  git: repo=https://github.com/Tatoeba/tatoeba2.git dest={{code_dir}} version={{repo_version}} remote={{git_remote}}
 
 - name: Copy CakePHP config files from remote host
-  fetch: src={{code_dir}}/versions/{{git_temp_dir}}/app/config/{{item}}.template dest=roles/update_code/templates/{{item}}.template flat=yes
+  fetch: src={{code_dir}}/app/config/{{item}}.template dest=roles/update_code/templates/{{item}}.template flat=yes
   with_items:
   - database.php
   - core.php
-  when: update_cakephp_config == true
+
 - name: Template out CakePHP config files
-  template: src={{item}}.template dest={{code_dir}}/common/config/{{item}}
-  with_items:
-  - database.php
-  - core.php
-  when: update_cakephp_config == true
-- name: Create links for CakePHP config files
-  file: state=link src=../../../../common/config/{{item}} dest={{code_dir}}/versions/{{git_temp_dir}}/app/config/{{item}} force=yes
+  template: src={{item}}.template dest={{code_dir}}/app/config/{{item}}
   with_items:
   - database.php
   - core.php
 
-- name: Copy avatars from "app/webroot/img" in repo to common directory
-  shell: cp {{code_dir}}/versions/{{git_temp_dir}}/app/webroot/img/{{item}}/* {{code_dir}}/common/{{item}}
-  with_items:
-  - profiles_128
-  - profiles_36
-- name: Delete avatar directories in the repo
-  command: rm -rf {{code_dir}}/versions/{{git_temp_dir}}/app/webroot/img/{{item}}
-  with_items:
-  - profiles_128
-  - profiles_36
-- name: Create links for avatar directories
-  file: state=link src=../../../../../common/{{item}} dest={{code_dir}}/versions/{{git_temp_dir}}/app/webroot/img/{{item}} force=yes mode=777
-  with_items:
-  - profiles_128
-  - profiles_36
-- name: Delete cache and logs directories in the repo
-  command: rm -rf {{code_dir}}/versions/{{git_temp_dir}}/app/tmp/{{item}}
-  with_items:
-  - logs
-  - cache
-- name: Create links for cache and logs directories
-  file: state=link src=../../../../common/{{item}} dest={{code_dir}}/versions/{{git_temp_dir}}/app/tmp/{{item}} force=yes mode=777
-  with_items:
-  - logs
-  - cache
+- name: Set ownership of the repository
+  file: path={{code_dir}} state=directory recurse=yes owner={{ansible_ssh_user}} group={{ansible_ssh_user}}
+
 - name: Give proper permissions to avatar, logs and cache directories
-  file: path={{code_dir}}/common/{{item}} state=directory recurse=yes owner=www-data group=www-data mode=777
+  file: path={{code_dir}}/{{item}} state=directory recurse=yes owner=www-data group=www-data
   with_items:
-  - profiles_128
-  - profiles_36
-  - logs
-  - cache
-
-- name: Set ownership for /var/www-prod
-  file: path={{code_dir}}/versions/{{git_temp_dir}} state=directory recurse=yes owner={{ansible_ssh_user}} group={{ansible_ssh_user}}
-
-- name: Clean-up old versions of code from the code directory and change current link
-  script: remove_old_dirs.sh {{code_dir}} {{revision_limit}} {{git_temp_dir}}
-- name: Create symbolic link for the current code directory as /var/www-prod
-  file: state=link src={{code_dir}}/versions/current dest=/var/www-prod force=yes
+  - app/webroot/img/profiles_128
+  - app/webroot/img/profiles_36
+  - app/tmp/logs
+  - app/tmp/cache
 
 - name: Restart php5-fpm
   service: name=php5-fpm state=restarted enabled=yes

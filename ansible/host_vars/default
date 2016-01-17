@@ -15,8 +15,8 @@ ansible_ssh_port: 2222
 # Variables for nginx configuration
 # ---------------------------------
 nginx_config_file: default
-main_server_name: tatoeba.org
-main_server_root: /var/www-prod/
+main_server_name: localhost
+main_server_root: "{{code_dir}}/app/webroot"
 audio_server_name: audio.tatoeba.org
 audio_server_root: /var/www-audio/
 downloads_server_name: downloads.tatoeba.org
@@ -48,9 +48,6 @@ revision_limit: 3
 git_temp_dir: .temp_repo
 repo_version: HEAD
 git_remote: origin
-
-# Set this to true if you want cakephp configs (database.php and core.php) to be updated (from latest revision) everytime you update the code
-update_cakephp_config: true
 
 # Variables for test server (leave unchanged if you don't need them or don't know what they mean)
 mysql_test_user: user
