@@ -2,11 +2,11 @@
 # Tasks to create the database, install updates and import sentences in it
 
 - name: Check whether tatoeba's code is present or not
-  shell: ' [ -d  {{code_dir}}/versions/current ] '
+  shell: ' [ -d  {{code_dir}} ] '
   register: code_status
   ignore_errors: yes
 - name: Database import/update fail message
-  fail: msg="Tatoeba's code is not present in {{code_dir}}/versions or the current link is missing. Please fetch the code first using update_code.yml playbook."
+  fail: msg="Tatoeba's code is not present in {{code_dir}} or the current link is missing. Please fetch the code first using update_code.yml playbook."
   when: code_status|failed
 
 - include: create_db.yml
