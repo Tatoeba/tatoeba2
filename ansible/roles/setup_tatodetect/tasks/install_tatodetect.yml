@@ -15,7 +15,7 @@
   - libgcrypt11-dev
   - libicu-dev
 - name: Fetch cppms source
-  get_url: url=http://cznic.dl.sourceforge.net/project/cppcms/cppcms/1.0.4/cppcms-1.0.4.tar.bz2 dest=/tmp/
+  get_url: url=http://downloads.sourceforge.net/project/cppcms/cppcms/1.0.4/cppcms-1.0.4.tar.bz2 dest=/tmp/
 - name: Extract source from the archive
   command: tar -jxvf cppcms-1.0.4.tar.bz2 chdir=/tmp/
   when: install_state|failed or force_install == true
@@ -26,7 +26,7 @@
 - name: Install
   command: make install chdir=/tmp/cppcms-1.0.4
 - name: Fetch cppdb source
-  get_url: url=http://kaz.dl.sourceforge.net/project/cppcms/cppdb/0.3.1/cppdb-0.3.1.tar.bz2 dest=/tmp/
+  get_url: url=http://downloads.sourceforge.net/project/cppcms/cppdb/0.3.1/cppdb-0.3.1.tar.bz2 dest=/tmp/
   when: install_state|failed or force_install == true
 - name: Extract source files
   command: tar -jxvf cppdb-0.3.1.tar.bz2 chdir=/tmp/
