@@ -23,8 +23,6 @@
 
 - name: Ensure git is installed
   apt: name=git state=present
-- name: Ensure vim is installed
-  apt: name=vim state=present
 - name: Install pip on remote machine
   apt: name=python-pip state=present force=yes
 - name: Ensure python MySQLdb module is present
