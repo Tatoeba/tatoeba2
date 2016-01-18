@@ -1,9 +1,17 @@
 ---
 # Playbook to install sphinx search
-- name: Install sphinx search
-  apt: name=sphinxsearch state=present force=yes
-- name: Remove cron job for daily indexing from /etc/cron.d
-  cron: name="" cron_file=sphinxsearch state=absent
+- name: Download Sphinx package
+  get_url: url={{sphinx_deb_url}} dest=/tmp/sphinx.deb
+- name: Install Sphinx package
+  apt: deb=/tmp/sphinx.deb
+- name: Remove downloaded package
+  command: rm -f /tmp/sphinx.deb
+
+- name: Create sphinsearch group
+  group: name=sphinxsearch state=present
+- name: Create sphinsearch user
+  user: name=sphinxsearch state=present group=sphinxsearch comment="Sphinx fulltext search service" system=yes
+
 - name: Set the location of pid file in Sphinx's init.d script
   command: sed -i 's|^PIDFILE=.*|PIDFILE={{sphinx_pid_file}}|' /etc/init.d/sphinxsearch
 - name: Set the location of log directory in Sphinx's init.d script

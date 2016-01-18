@@ -57,6 +57,7 @@ mysql_test_db_name: test_database
 
 # Variables for sphinx search
 # ---------------------------
+sphinx_deb_url: "http://sphinxsearch.com/files/sphinxsearch_2.2.9-release-1~wheezy_{{ansible_architecture}}.deb"
 sphinx_index_dir: /var/sphinx/indices
 sphinx_log_dir: /var/sphinx/log
 sphinx_sql_socket: /run/mysqld/mysqld.sock
