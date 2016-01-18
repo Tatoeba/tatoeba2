@@ -4,7 +4,7 @@
   command: service tatodetect stop
   when: install_state|success and force_install == true
   ignore_errors: yes
-- name: Install dependencies for cppms
+- name: Install dependencies for cppcms
   apt: name={{item}} state=present
   with_items:
   - make
@@ -14,7 +14,7 @@
   - zlib1g-dev
   - libgcrypt11-dev
   - libicu-dev
-- name: Fetch cppms source
+- name: Fetch cppcms source
   get_url: url=http://downloads.sourceforge.net/project/cppcms/cppcms/1.0.4/cppcms-1.0.4.tar.bz2 dest=/tmp/
 - name: Extract source from the archive
   command: tar -jxvf cppcms-1.0.4.tar.bz2 chdir=/tmp/
@@ -67,6 +67,6 @@
 - name: Remove temporary files - 1
   command: rm -rf /tmp/tatodetect
 - name: Remove temporary files - 2
-  command: rm -rf /tmp/cppms*
+  command: rm -rf /tmp/cppcms*
 - name: Remove temporary files - 3
   command: rm -rf /tmp/cppdb*
