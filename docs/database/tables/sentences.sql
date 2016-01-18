@@ -33,6 +33,7 @@ CREATE TABLE `sentences` (
   `dico_id` int(11) DEFAULT NULL,
   `hasaudio` enum('no','from_users','shtooka') NOT NULL DEFAULT 'no',
   `lang_id` tinyint(3) unsigned DEFAULT NULL,
+  `script` varchar(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `dico_id` (`dico_id`),

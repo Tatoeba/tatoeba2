@@ -22,7 +22,7 @@ CREATE TABLE `users_sentences` (
   `correctness` smallint(1) NOT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `dirty` BOOLEAN DEFAULT FALSE,
+  `dirty` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_sentence` (`user_id`,`sentence_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

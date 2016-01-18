@@ -7,7 +7,7 @@
 DROP TABLE IF EXISTS `wall`;
 CREATE TABLE `wall` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `owner` int(11) NOT NULL,
+  `owner` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `date` datetime NOT NULL,
   `title` varchar(255) NOT NULL,
