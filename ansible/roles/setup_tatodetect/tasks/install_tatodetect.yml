@@ -39,7 +39,7 @@
 - name: Install dependencies for tatodetect
   apt: name=libsqlite3-dev state=present
 - name: Fetch tatodetect source
-  git: repo=https://github.com/allan-simon/Tatodetect.git dest=/tmp/tatodetect
+  git: repo=https://github.com/Tatoeba/Tatodetect.git dest=/tmp/tatodetect
 - name: Generate makefile
   command: cmake . chdir=/tmp/tatodetect
 - name: Compile
@@ -54,7 +54,7 @@
   copy: src=default dest=/etc/default/tatodetect mode=555
 
 - name: Download ngrams.db file
-  get_url: url={{ngrams_db_download_url}} dest={{ngrams_db_dir}}/{{ngrams_db_file}} mode=777
+  get_url: url={{ngrams_db_download_url}} dest={{ngrams_db_file}} mode=777
   when: ngrams_create_mode == "download"
 
 - include: generate_ngrams_db.yml
