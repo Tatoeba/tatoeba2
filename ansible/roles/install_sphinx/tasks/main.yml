@@ -16,3 +16,7 @@
   command: sed -i 's|^PIDFILE=.*|PIDFILE={{sphinx_pid_file}}|' /etc/init.d/sphinxsearch
 - name: Set the location of log directory in Sphinx's init.d script
   command: sed -i 's|^LOGDIR=.*|LOGDIR={{sphinx_log_dir}}|' /etc/init.d/sphinxsearch
+- name: Make Sphinx to be run by the sphinxsearch user
+  command: sed -i '/start-stop-daemon .*--stop/ s/start-stop-daemon/start-stop-daemon --chuid sphinxsearch/;/start-stop-daemon .*--start/ s/start-stop-daemon/start-stop-daemon --user sphinxsearch/' /etc/init.d/sphinxsearch
+- name: Allow Sphinx to open more than 1024 files
+  command: sed -i '/start-stop-daemon .*--start/i ulimit -n 2048' /etc/init.d/sphinxsearch
