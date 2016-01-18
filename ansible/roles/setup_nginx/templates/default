@@ -15,7 +15,7 @@ server {
     #}
 
     location / {
-        try_files $uri $uri/ /app/webroot/index.php?url=$uri&$args;
+        try_files $uri $uri/ /index.php?url=$uri&$args;
     }
 
 
@@ -31,7 +31,7 @@ server {
 
 	# Comment this out when the subdomain for static files is activated
 	location ~ /(img|js|css|files)/ {
-		try_files /app/webroot/$uri =404;
+		try_files /$uri =404;
 	}
 
 	location ~ /(\.ht|\.svn) {
