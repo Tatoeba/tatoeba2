@@ -14,7 +14,7 @@
   - libexpat1-dev
   - libgmm++-dev
 - name: Fetch sinoparserd source
-  git: repo=https://github.com/allan-simon/sinoparserd.git dest=/tmp/sinoparserd
+  git: repo=https://github.com/Tatoeba/sinoparserd.git dest=/tmp/sinoparserd
 - name: Fix to import the correct file in Index.h
   command: sed -i 's/tree_str/TatoTreeStr/' src/Index.h chdir=/tmp/sinoparserd
   ignore_errors: yes
