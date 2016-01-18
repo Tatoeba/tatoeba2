@@ -1,9 +1,0 @@
----
-# Tasks to install and set up imagick
-
-- name: Install imagemagick
-  apt: name=imagemagick state=present
-- name: Install imagick
-  apt: name=php5-imagick state=present
-- name: Restart php5-fpm
-  service: name=php5-fpm state=restarted enabled=yes
