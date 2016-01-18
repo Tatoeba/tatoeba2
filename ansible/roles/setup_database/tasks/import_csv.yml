@@ -18,4 +18,4 @@
   when: import_csv == 'download'
 - name: Import sentences in the tatoeba database 
 # This task requires mysql root because restore_dumps.sql sets soem global variables 
-  shell: mysql -u root -p{{mysql_root_password}} {{mysql_db_name}} < /var/www-prod/docs/database/import/restore_dumps.sql
+  shell: mysql -u root -p{{mysql_root_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/import/restore_dumps.sql
