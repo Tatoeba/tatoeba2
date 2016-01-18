@@ -37,3 +37,5 @@
   command: update-rc.d nihongoparserd defaults
 - name: Remove temporary files
   command: rm -rf /tmp/nihongoparserd
+- name: Enable auto-transcriptions
+  command: sed -i 's/\(Configure::write(.AutoTranscriptions.enabled.,\).*)/\1 true)/' {{code_dir}}/app/config/core.php
