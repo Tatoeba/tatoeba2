@@ -85,32 +85,6 @@ class AutotranscriptionTestCase extends CakeTestCase {
         $this->assertTranscriptions($lang, $fromScript, $toScript, $transcriptions, true);
     }
 
-    function _assertFurigana($kanji, $reading, $expected) {
-        $result = $this->AT->formatFurigana($kanji, $reading);
-        $this->assertEqual($expected, $result, "furigana should be formatted like “${expected}”, got “${result}”");
-    }
-
-    function test_formatFurigana() {
-        $this->_assertFurigana('男', 'おとこ', '[男|おとこ]');
-        $this->_assertFurigana('男の子', 'おとこのこ', '[男|おとこ]の[子|こ]');
-        $this->_assertFurigana('聞き覚え', 'ききおぼえ', '[聞|き]き[覚|おぼ]え');
-        $this->_assertFurigana('生き字引', 'いきじびき', '[生|い]き[字引|じびき]');
-        $this->_assertFurigana('青天の霹靂', 'せいてんのへきれき', '[青天|せいてん]の[霹靂|へきれき]');
-        $this->_assertFurigana('物の具', 'もののぐ', '[物|もの]の[具|ぐ]');
-        $this->_assertFurigana('合い印', 'あいいん', '[合|あ]い[印|いん]');
-        $this->_assertFurigana('飼い犬', 'かいいぬ', '[飼|か]い[犬|いぬ]');
-        $this->_assertFurigana('冷や奴', 'ひややっこ', '[冷|ひ]や[奴|やっこ]');
-        $this->_assertFurigana('縫い糸', 'ぬいいと', '[縫|ぬ]い[糸|いと]');
-        $this->_assertFurigana('差し潮', 'さししお', '[差|さ]し[潮|しお]');
-        $this->_assertFurigana('食い意地', 'くいいじ', '[食|く]い[意地|いじ]');
-        $this->_assertFurigana('四つ辻', 'よつつじ', '[四|よ]つ[辻|つじ]');
-
-        /* Remove furigana on numbers since they are almost always wrong.
-           Mecab parses them individually, e.g. 10 reads いちぜろ. */
-        $this->_assertFurigana('１', 'いち', '１');
-        $this->_assertFurigana('1', 'いち', '1');
-    }
-
     function testPinyin() {
         $testGood = array(
             '你不得不制造一些借口。' => array(

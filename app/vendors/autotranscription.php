@@ -123,44 +123,6 @@ class Autotranscription
         return $ipaSentence;
     }
 
-    public function formatFurigana($text, $furigana) {
-        /* Try to fix Mecab untokenized tokens like 男の子 or 飼い犬,
-           mainly to have tokenized syntax already here and only need
-           to fix the furiganas. */
-        $furiRegex = preg_replace('/([^\p{Han}]+)/u', '($1)', $text);
-        $furiRegex = str_replace(
-            '物',
-            '(もの|.+?)',
-            $furiRegex,
-            $kanjis
-        );
-        $furiRegex = preg_replace('/[\p{Han}]+/u', '(.+?)', $furiRegex,
-                                  -1, $kanjis2);
-        $kanjis += $kanjis2;
-
-        if ($kanjis > 0) {
-            preg_match("/^${furiRegex}\$/u", $furigana, $furiMatches);
-            preg_match("/^${furiRegex}\$/u", $text,     $textMatches);
-            if (count($furiMatches) == count($textMatches)) {
-                $result = '';
-                for ($i = 1 ; $i < count($furiMatches); $i++) {
-                    $kanji = $textMatches[$i];
-                    $furi  = $furiMatches[$i];
-                    $result .= $kanji == $furi ? $furi : "[$kanji|$furi]";
-                }
-                return $result;
-            }
-        }
-
-        /* Remove furigana on numbers since they are almost always wrong.
-           Mecab parses them individually, e.g. 10 reads いちぜろ. */
-        if (preg_match('/^[0-9０-９]$/u', $text)) {
-            return $text;
-        }
-
-        return "[$text|$furigana]";
-    }
-
     private function _append_furigana(&$group, $text, $furigana)
     {
         $group[0] .= $text;
@@ -195,7 +157,6 @@ class Autotranscription
                 $text = $reading->nodeValue;
                 if ($reading->hasChildNodes()) {
                     $furigana = $reading->getAttribute('furigana');
-                    $romanization .= $this->formatFurigana($text, $furigana);
                     $this->_append_furigana($group, $text, $furigana);
                 } elseif (
                     preg_match("/[^\p{Hiragana}\p{Katakana}ー\p{P}]/u", $text)
