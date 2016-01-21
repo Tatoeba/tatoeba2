@@ -178,7 +178,7 @@ class Autotranscription
     }
 
     public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr, &$errors) {
-        $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー]*)\]/u';
+        $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー|]*)\]/u';
 
         $withoutFuri = preg_replace($tokenizeFuriRegex, '$1', $transcr);
         if ($sentenceText !== $withoutFuri) {
@@ -212,6 +212,7 @@ class Autotranscription
 
         $withFuri = preg_replace('/\[([^|]+)\|\]/u', '$1', $transcr);
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $withFuri);
+        $withFuri = str_replace('|', '', $withFuri);
         if (preg_match_all("/[^\p{Hiragana}\p{Katakana}ー\p{P}\p{Z}]/u", $withFuri, $matches)) {
             /* @translators: This string is used to create an enumeration by
                joining each item with it. For instance, if you translate this

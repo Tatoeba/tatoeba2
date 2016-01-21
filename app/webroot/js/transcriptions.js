@@ -50,6 +50,7 @@ $(document).ready(function() {
                 /([^\u3041-\u3096\u309d\u309e\u30a1-\u30fa\u30fd\u30fe\u30fc\uff5b\uff5d\u3000-\u3004\u3007-\u3020]*)\uff5b([^\uff5d]*)\uff5d/g,
                 '[$1|$2]'
             );
+            text = text.replace(/\uff5c/g, '|'); // \uff5c = ｜ (fullwith pipe)
         }
         return text;
     }

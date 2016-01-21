@@ -31,20 +31,41 @@ class TranscriptionsHelper extends AppHelper
      * Transforms "[kanji|reading]" to HTML <ruby> tags
      */
     private function _rubify($formatted) {
-        return preg_replace(
+        return preg_replace_callback(
             '/\[([^|]*)\|([^\]]*)\]/',
-            '<ruby><rp>[</rp>$1<rp>|</rp><rt>$2</rt><rp>]</rp></ruby>',
+            function ($matches) {
+               $kanjis = preg_split('//u', $matches[1], null, PREG_SPLIT_NO_EMPTY);
+               $readings = explode('|',$matches[2]);
+               for ($i = 0; $i < count($readings); $i++) {
+                   if ($i > 0 && empty($readings[$i])) {
+                       array_splice($kanjis, $i-1, 2, $kanjis[$i-1].$kanjis[$i]);
+                       array_splice($readings, $i, 1);
+                       $i--;
+                   }
+               }
+               while (count($kanjis) > count($readings)) {
+                   $last = array_pop($kanjis);
+                   array_push($kanjis, array_pop($kanjis).$last);
+               }
+               $ruby = '';
+               for ($i = 0; $i < count($kanjis); $i++) {
+                   $ruby .= "<ruby>{$kanjis[$i]}<rp>（</rp><rt>{$readings[$i]}</rt><rp>）</rp></ruby>";
+               }
+               return $ruby;
+            },
             $formatted);
     }
 
     /**
      * Transforms "[kanji|reading]" into kanji｛reading｝
+     * and "[kanjikanji|reading|reading]" into kanjikanji｛reading｜reading｝
      */
     private function _bracketify($formatted) {
-        return preg_replace(
+        $formatted = preg_replace(
             '/\[([^|]*)\|([^\]]*)\]/',
             '$1｛$2｝',
             $formatted);
+        return str_replace('|', '｜', $formatted);
     }
 
     /**
