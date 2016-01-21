@@ -161,6 +161,25 @@ class Autotranscription
         return "[$text|$furigana]";
     }
 
+    private function _append_furigana(&$group, $text, $furigana)
+    {
+        $group[0] .= $text;
+        array_push($group, $furigana);
+        for ($i = mb_strlen($text)-1; $i > 0; $i--) {
+            array_push($group, '');
+        }
+    }
+
+    private function _unpack_grouped_furigana(&$group)
+    {
+        while (count($group) > 2 && end($group) == '') {
+            array_pop($group);
+        }
+        $formatted = count($group) > 1 ? '['.implode('|',$group).']' : '';
+        $group = array('');
+        return $formatted;
+    }
+
     /**
      * Convert Japanese text into furigana.
      */
@@ -171,11 +190,13 @@ class Autotranscription
         $xml = DOMDocument::load("http://127.0.0.1:8842/furigana?str=".urlencode($text), LIBXML_NOBLANKS|LIBXML_NOCDATA);
         $parse = $xml->firstChild->firstChild;
         foreach ($parse->childNodes as $token) {
+            $group = array('');
             foreach ($token->childNodes as $reading) {
                 $text = $reading->nodeValue;
                 if ($reading->hasChildNodes()) {
                     $furigana = $reading->getAttribute('furigana');
                     $romanization .= $this->formatFurigana($text, $furigana);
+                    $this->_append_furigana($group, $text, $furigana);
                 } elseif (
                     preg_match("/[^\p{Hiragana}\p{Katakana}ー\p{P}]/u", $text)
                 ) {
@@ -183,11 +204,13 @@ class Autotranscription
                        tokens it was unable to find a reading AND tokens that
                        can’t have readings such as punctuation. Let's insert
                        empty furiganas only on tokens that should have some. */
-                    $romanization .= "[$text|]";
+                    $this->_append_furigana($group, $text, '');
                 } else {
+                    $romanization .= $this->_unpack_grouped_furigana($group);
                     $romanization .= $text;
                 }
             }
+            $romanization .= $this->_unpack_grouped_furigana($group);
         }
 
         return trim($romanization);
