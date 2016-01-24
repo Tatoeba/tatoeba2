@@ -37,20 +37,35 @@ $(document).ready(function() {
         }
     });
 
+    function escapeUnicodeChar(c) {
+        var code = c.charCodeAt(0);
+        if (code >= 128) {
+           c = '\\u' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4);
+        }
+        return c;
+    }
+
+    function escapeUnicodeString(input) {
+        var output = '';
+        for (var i = 0, l = input.length; i < l; i++) {
+            output += escapeUnicodeChar(input.charAt(i));
+        }
+        return output;
+    }
+
+    function uniRegExp(regex, flags) {
+       return new RegExp(escapeUnicodeString(regex), flags);
+    }
+
     function markupToStored(lang, text) {
         if (lang == 'ja-Hrkt') {
-            text = text.replace(
-                // Converts the kanji｛reading｝ notation into [kanji|reading]
-                // \p{Hiragana}: \u3041-\u3096\u309d\u309e
-                // \p{Katakana}: \u30a1-\u30fa\u30fd\u30fe
-                // ー: \u30fc
-                // ｛: \uff5b
-                // ｝: \uff5d
-                // CJK punctuaction (。、「」etc.): \u3000-\u3004\u3007-\u3020
-                /([^\u3041-\u3096\u309d\u309e\u30a1-\u30fa\u30fd\u30fe\u30fc\uff5b\uff5d\u3000-\u3004\u3007-\u3020]*)\uff5b([^\uff5d]*)\uff5d/g,
-                '[$1|$2]'
-            );
-            text = text.replace(/\uff5c/g, '|'); // \uff5c = ｜ (fullwith pipe)
+            // Converts the kanji｛reading｝ notation into [kanji|reading]
+            var hiragana = 'ぁ-ゖーゝゞ'; // \p{Hiragana}
+            var katakana = 'ァ-ヺーヽヾ'; // \p{Katakana}
+            var punct = '　-〄〇-〠'; // 。、「」etc.
+            var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
+            text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
+            text = text.replace(uniRegExp('｜', 'g'),  '|');
         }
         return text;
     }
