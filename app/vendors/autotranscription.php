@@ -41,10 +41,14 @@
 class Autotranscription
 {
     private $nihongoparserd_hdl;
+    private $sinoparserd_hdl;
 
     public function __destruct() {
         if ($this->nihongoparserd_hdl) {
             curl_close($this->nihongoparserd_hdl);
+        }
+        if ($this->sinoparserd_hdl) {
+            curl_close($this->sinoparserd_hdl);
         }
     }
 
@@ -260,10 +264,20 @@ class Autotranscription
     }
 
     private function _call_sinoparserd($action, $text) {
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/$action?str=".urlencode($text)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
+        if (!$this->sinoparserd_hdl) {
+            $this->sinoparserd_hdl = curl_init();
+            curl_setopt_array($this->sinoparserd_hdl, array(
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_HEADER => false,
+            ));
+        }
+        $url = "http://127.0.0.1:8042/$action?str=".urlencode($text);
+        curl_setopt($this->sinoparserd_hdl, CURLOPT_URL, $url);
+        $response = curl_exec($this->sinoparserd_hdl);
+        if ($response === false) {
+            return false;
+        }
+        $xml = simplexml_load_string($response, 'SimpleXMLElement', LIBXML_NOCDATA);
         foreach($xml as $key => $value) {
             return (string)$value;
         }
