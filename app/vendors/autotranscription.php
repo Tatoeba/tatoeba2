@@ -183,14 +183,6 @@ class Autotranscription
                 if ($reading->hasChildNodes()) {
                     $furigana = $reading->getAttribute('furigana');
                     $this->_append_furigana($group, $text, $furigana);
-                } elseif (
-                    preg_match("/[^\p{Hiragana}\p{Katakana}ー\p{P}]/u", $text)
-                ) {
-                    /* Nihongoparserd returns furigana-less tokens for both
-                       tokens it was unable to find a reading AND tokens that
-                       can’t have readings such as punctuation. Let's insert
-                       empty furiganas only on tokens that should have some. */
-                    $this->_append_furigana($group, $text, '');
                 } else {
                     $romanization .= $this->_unpack_grouped_furigana($group);
                     $romanization .= $text;
