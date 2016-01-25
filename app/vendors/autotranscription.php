@@ -40,6 +40,14 @@
 
 class Autotranscription
 {
+    private $nihongoparserd_hdl;
+
+    public function __destruct() {
+        if ($this->nihongoparserd_hdl) {
+            curl_close($this->nihongoparserd_hdl);
+        }
+    }
+
     // Still don't know what to do with these
     public function kat($text)
     {
@@ -147,9 +155,22 @@ class Autotranscription
      */
     public function jpn_Jpan_to_Hrkt_generate($text)
     {
+        if (!$this->nihongoparserd_hdl) {
+            $this->nihongoparserd_hdl = curl_init();
+            curl_setopt_array($this->nihongoparserd_hdl, array(
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_HEADER => false,
+            ));
+        }
+        $url = "http://127.0.0.1:8842/furigana?str=".urlencode($text);
+        curl_setopt($this->nihongoparserd_hdl, CURLOPT_URL, $url);
+        $response = curl_exec($this->nihongoparserd_hdl);
+        if ($response === false) {
+            return false;
+        }
+        $xml = DOMDocument::loadXML($response, LIBXML_NOBLANKS|LIBXML_NOCDATA);
+
         $romanization = '';
-        // Use DOMDocument since SimpleXML can't handle mixed content
-        $xml = DOMDocument::load("http://127.0.0.1:8842/furigana?str=".urlencode($text), LIBXML_NOBLANKS|LIBXML_NOCDATA);
         $parse = $xml->firstChild->firstChild;
         foreach ($parse->childNodes as $token) {
             $group = array('');
