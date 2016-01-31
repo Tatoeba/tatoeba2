@@ -542,7 +542,7 @@ class Command(Dedup, BaseCommand):
                 Dedup.bot = Users.objects.create(
                     username=bot_name, password='', email='bot@example.com',
                     since=now(), last_time_active=now().strftime('%Y%m%d'),
-                    level=1, group_id=1
+                    level=1, group_id=1, send_notifications=1
                     )
 
         pause_for = options.get('pause_for') or 0

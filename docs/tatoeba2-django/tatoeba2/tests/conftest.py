@@ -115,7 +115,7 @@ def bot(db):
     return Users.objects.create(
                 username='Horus', password='', email='bot@bots.com',
                 since=datetime.now(), last_time_active=datetime.now().strftime('%Y%m%d'),
-                level=1, group_id=1
+                level=1, group_id=1, send_notifications=1
                 )
 
 @pytest.fixture
