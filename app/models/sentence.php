@@ -82,9 +82,9 @@ class Sentence extends AppModel
             'classname' => 'Language',
             /* Our foreign key is 'lang' but it doesn't correspond
                to the primary key of the `languages` table.
-               So let's use a bogus value here, so that warnings
-               will appear whenever we use it. */
-            'foreignKey' => 'dont_do_this',
+               It is just set here so that we can access the Language
+               model while true linking doesn't work. */
+            'foreignKey' => 'lang',
         ),
     );
 
