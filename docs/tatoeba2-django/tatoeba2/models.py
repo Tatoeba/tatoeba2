@@ -62,6 +62,7 @@ class Contributions(models.Model):
     sentence_lang = models.CharField(max_length=4, blank=True)
     translation_id = models.IntegerField(blank=True, null=True)
     translation_lang = models.CharField(max_length=4, blank=True)
+    script = models.CharField(max_length=4, blank=True)
     text = models.CharField(max_length=1500)
     action = models.CharField(max_length=6)
     user_id = models.IntegerField(blank=True, null=True)
@@ -72,13 +73,16 @@ class Contributions(models.Model):
     class Meta:
         db_table = 'contributions'
 
-class Countries(models.Model):
-    id = models.CharField(primary_key=True, max_length=2)
-    iso3 = models.CharField(max_length=3, blank=True)
-    numcode = models.IntegerField(blank=True, null=True)
-    name = models.CharField(max_length=80)
+class ContributionsStats(models.Model):
+    id = models.AutoField(primary_key=True, unique=True)
+    date = models.DateField(blank=True, null=True)
+    lang = models.CharField(max_length=4, blank=True)
+    sentences = models.IntegerField(blank=True, null=True)
+    action = models.CharField(max_length=6)
+    type = models.CharField(max_length=8)
+
     class Meta:
-        db_table = 'countries'
+        db_table = 'contributions_stats'
 
 class FavoritesUsers(models.Model):
     id = models.AutoField(primary_key=True)
@@ -128,6 +132,7 @@ class LastContributions(models.Model):
     sentence_lang = models.CharField(max_length=4, blank=True)
     translation_id = models.IntegerField(blank=True, null=True)
     translation_lang = models.CharField(max_length=4, blank=True)
+    script = models.CharField(max_length=4, blank=True)
     text = models.CharField(max_length=1500)
     action = models.CharField(max_length=6)
     user_id = models.IntegerField(blank=True, null=True)
@@ -150,6 +155,15 @@ class PrivateMessages(models.Model):
     isnonread = models.IntegerField()
     class Meta:
         db_table = 'private_messages'
+
+class ReindexFlags(models.Model):
+    id = models.AutoField(primary_key=True)
+    sentence_id = models.IntegerField()
+    lang_id = models.IntegerField(blank=True, null=True)
+    indexed = models.IntegerField()
+
+    class Meta:
+        db_table = 'reindex_flags'
 
 class SentenceAnnotations(models.Model):
     id = models.AutoField(primary_key=True)
@@ -193,6 +207,7 @@ class Sentences(models.Model):
     dico_id = models.IntegerField(blank=True, null=True)
     hasaudio = models.CharField(max_length=10)
     lang_id = models.IntegerField(blank=True, null=True)
+    script = models.CharField(max_length=4, blank=True)
     class Meta:
         db_table = 'sentences'
 
@@ -204,6 +219,9 @@ class SentencesLists(models.Model):
     numberofsentences = models.IntegerField(db_column='numberOfSentences') # Field name made lowercase.
     created = models.DateTimeField(blank=True, null=True)
     modified = models.DateTimeField(blank=True, null=True)
+    visibility = models.CharField(max_length=8)
+    editable_by = models.CharField(max_length=7)
+
     class Meta:
         db_table = 'sentences_lists'
 
@@ -217,6 +235,7 @@ class SentencesSentencesLists(models.Model):
         unique_together = ('sentences_list_id', 'sentence_id')
 
 class SentencesTranslations(models.Model):
+    id = models.AutoField(primary_key=True)
     sentence_id = models.IntegerField()
     translation_id = models.IntegerField()
     sentence_lang = models.CharField(max_length=4, blank=True)
@@ -263,12 +282,25 @@ class Tags(models.Model):
         db_table = 'tags'
 
 class TagsSentences(models.Model):
+    id = models.AutoField(primary_key=True)
     tag_id = models.IntegerField()
     user_id = models.IntegerField(blank=True, null=True)
     sentence_id = models.IntegerField(blank=True, null=True)
     added_time = models.DateTimeField(blank=True, null=True)
     class Meta:
         db_table = 'tags_sentences'
+
+class Transcriptions(models.Model):
+    id = models.AutoField(primary_key=True)
+    sentence_id = models.IntegerField()
+    script = models.CharField(max_length=4)
+    text = models.CharField(max_length=10000)
+    user_id = models.IntegerField(blank=True, null=True)
+    created = models.DateTimeField()
+    modified = models.DateTimeField()
+
+    class Meta:
+        db_table = 'transcriptions'
 
 class Users(models.Model):
     id = models.AutoField(primary_key=True)
@@ -279,13 +311,14 @@ class Users(models.Model):
     last_time_active = models.IntegerField()
     level = models.IntegerField()
     group_id = models.IntegerField()
+    send_notifications = models.IntegerField()
     name = models.CharField(max_length=255)
     birthday = models.DateTimeField(blank=True, null=True)
     description = models.TextField()
+    settings = models.TextField()
     homepage = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
     country_id = models.CharField(max_length=2, blank=True)
-    settings = models.TextField()
     class Meta:
         db_table = 'users'
 
