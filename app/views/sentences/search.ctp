@@ -67,62 +67,53 @@ if ($ignored) {
     <?php echo $this->element('advanced_search_form'); ?>
     </div>
 </div>
+
 <div id="main_content">
+<div class="module">
 <?php
 if ($search_disabled) {
 ?>
-<div class="module">
     <h2><?php echo __('Search disabled'); ?></h2>
-    <p><?php echo __('Due to technical reasons, the search feature is currently disabled. We are sorry for the inconvenience. Please try again later.'); ?></p>
-</div>
+    <p><?php echo __('Due to technical reasons, the search feature is '.
+                     'currently disabled. We are sorry for the '.
+                     'inconvenience. Please try again later.'); ?></p>
 <?
 } else if (!is_array($results)) {
 ?>
-<div class="module">
     <h2><?php echo __('An error occured while performing the search'); ?></h2>
-</div>
 <?
 } elseif (!empty($results)) {
-    
-    ?>
-    <div class="module">
-        <?php 
-        if (!$is_advanced_search && !empty($query)) {
-            $keywords = $this->Languages->tagWithLang(
-                'span', '', $query
-            );
-            $title = format(
-                /* @translators: title on the top of a search result page */
-                __('Search: {keywords}', true),
-                compact('keywords')
-            );
-        }
-        echo $this->Pages->formatTitleWithResultCount($paginator, $title, $real_total);
-        ?>
-        
-        <?php
-        $pagination->display();
-        
-        foreach ($results as $sentence) {
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'], 
-                $sentence['Transcription'],
-                $sentence['Translations'], 
-                $sentence['User'],
-                $sentence['IndirectTranslations'],
-                array('langFilter' => $to)
-            );
-        }
-        
-        $pagination->display();
-        ?>
-    </div>
-    <?php
-    
+
+    if (!$is_advanced_search && !empty($query)) {
+        $keywords = $this->Languages->tagWithLang(
+            'span', '', $query
+        );
+        $title = format(
+            /* @translators: title on the top of a search result page */
+            __('Search: {keywords}', true),
+            compact('keywords')
+        );
+    }
+    echo $this->Pages->formatTitleWithResultCount($paginator, $title, $real_total);
+
+    $pagination->display();
+
+    foreach ($results as $sentence) {
+        $sentences->displaySentencesGroup(
+            $sentence['Sentence'],
+            $sentence['Transcription'],
+            $sentence['Translations'],
+            $sentence['User'],
+            $sentence['IndirectTranslations'],
+            array('langFilter' => $to)
+        );
+    }
+
+    $pagination->display();
+
 } else {
-    
     echo $this->element('search_with_no_result');
-    
 }
-?>  
+?>
+</div>
 </div>

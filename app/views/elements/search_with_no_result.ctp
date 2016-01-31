@@ -26,18 +26,12 @@
  */
  
 $query = Sanitize::html($query);
-?>
-
-<div class="module">
-    <?php
-    if (empty($query)) {
-        $noResultLabel = __('No results found.', true);
-    } else {
-        $noResultLabel = format(
-            __('No results found for: {search}', true),
-            array('search' => $query)
-        );
-    }
-    echo $html->tag('h2', $noResultLabel);
-    ?>
-</div>
+if (empty($query)) {
+    $noResultLabel = __('No results found.', true);
+} else {
+    $noResultLabel = format(
+        __('No results found for: {search}', true),
+        array('search' => $query)
+    );
+}
+echo $html->tag('h2', $noResultLabel);
