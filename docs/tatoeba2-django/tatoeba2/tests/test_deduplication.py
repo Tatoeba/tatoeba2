@@ -2,7 +2,7 @@ from tatoeba2.management.commands.deduplicate import Command, Dedup
 from tatoeba2.models import (
     Sentences, SentenceComments, SentencesTranslations, Contributions,
     TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations,
-    Contributions, Users, Wall, Languages, UsersSentences
+    Contributions, Users, Wall, Languages, UsersSentences, Transcriptions
     )
 from django.db import transaction, IntegrityError
 from django.db.models import Q
@@ -196,6 +196,13 @@ class TestDedup():
         coll = UsersSentences.objects.filter(sentence_id__range=[5, 8])
         assert len(coll) == 1
         assert coll[0].correctness == 1
+
+    def test_merge_transcriptions(db, sents, dedup):
+        assert Transcriptions.objects.filter(sentence_id__range=[5, 8]).count() == 3
+        dedup.update_merge('Transcriptions', 5, [6, 7, 8], 'sentence_id')
+        trans = Transcriptions.objects.filter(sentence_id__range=[5, 8])
+        assert len(trans) == 1
+        assert trans[0].text == 'transcription 1' and trans[0].script == 'Hrkt' and trans[0].sentence_id == 5
 
     def test_delete_sents(db, sents, dedup):
         assert Sentences.objects.filter(id__in=[6,7]).count() == 2

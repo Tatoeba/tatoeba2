@@ -1,7 +1,7 @@
 from tatoeba2.models import (
     Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences,
     SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions,
-    Wall, UsersSentences
+    Wall, UsersSentences, Transcriptions
     )
 from datetime import datetime
 from tatoeba2.management.commands.deduplicate import Dedup
@@ -86,6 +86,10 @@ def sents(db, request):
     UsersSentences(user_id=1, sentence_id=6, correctness=0, modified=datetime.now()).save()
     UsersSentences(user_id=1, sentence_id=7, correctness=-1, modified=datetime.now()).save()
 
+    Transcriptions(user_id=1, sentence_id=5, script='Hrkt', text='transcription 1', created=datetime.now(), modified=datetime.now()).save()
+    Transcriptions(user_id=1, sentence_id=6, script='Hrkt', text='transcription 2', created=datetime.now(), modified=datetime.now()).save()
+    Transcriptions(user_id=1, sentence_id=7, script='Hrkt', text='transcription 3', created=datetime.now(), modified=datetime.now()).save()
+
     if request.config.option.mysql:
         def fin():
             conn = connections['default']
@@ -107,6 +111,7 @@ def sents(db, request):
             clean_up('Wall')
             clean_up('SentenceAnnotations')
             clean_up('UsersSentences')
+            clean_up('Transcriptions')
 
         request.addfinalizer(fin)
 
