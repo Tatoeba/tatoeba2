@@ -301,6 +301,7 @@ class Transcriptions(models.Model):
 
     class Meta:
         db_table = 'transcriptions'
+        unique_together = ('sentence_id', 'script')
 
 class Users(models.Model):
     id = models.AutoField(primary_key=True)
