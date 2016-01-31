@@ -941,7 +941,7 @@ class SentencesController extends AppController
         $this->paginate = $pagination;
         $results = $this->paginate($model);
         if (!is_array($results)) {
-            $results = array();
+            return false;
         }
         if (isset($results[0]['Sentence']['_total_found'])) {
             $real_total = $results[0]['Sentence']['_total_found'];

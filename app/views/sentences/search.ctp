@@ -67,7 +67,13 @@ if ($ignored) {
 </div>
 <div id="main_content">
 <?php
-if (!empty($results)) {
+if (!is_array($results)) {
+?>
+<div class="module">
+    <h2><?php echo __('An error occured while performing the search'); ?></h2>
+</div>
+<?
+} elseif (!empty($results)) {
     
     ?>
     <div class="module">
