@@ -25,7 +25,9 @@
  * @link     http://tatoeba.org
  */
 
-if ($is_advanced_search) {
+if ($search_disabled) {
+    $title = __('Search disabled', true);
+} else if ($is_advanced_search) {
     $title = __p('title', 'Advanced search', true);
 } else if (!empty($query)) {
     $title = format(__('Sentences with: {keywords}', true), array('keywords' => Sanitize::html($query)));
@@ -67,7 +69,14 @@ if ($ignored) {
 </div>
 <div id="main_content">
 <?php
-if (!is_array($results)) {
+if ($search_disabled) {
+?>
+<div class="module">
+    <h2><?php echo __('Search disabled'); ?></h2>
+    <p><?php echo __('Due to technical reasons, the search feature is currently disabled. We are sorry for the inconvenience. Please try again later.'); ?></p>
+</div>
+<?
+} else if (!is_array($results)) {
 ?>
 <div class="module">
     <h2><?php echo __('An error occured while performing the search'); ?></h2>

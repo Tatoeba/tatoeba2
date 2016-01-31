@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::import('Vendor', 'sphinxapi');
+
 /**
  * Controller for sentences.
  *
@@ -773,34 +775,35 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('has_audio', $audio);
         }
 
-        $model = 'Sentence';
-        $pagination = array(
-            'Sentence' => array(
-                'fields' => array(
-                    'id',
-                ),
-                'contain' => array(),
-                'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'sphinx' => $sphinx,
-                'search' => $query
-            )
-        );
+        $search_disabled = !Configure::read('Search.enabled');
+        if (!$search_disabled) {
+            $model = 'Sentence';
+            $pagination = array(
+                'Sentence' => array(
+                    'fields' => array(
+                        'id',
+                    ),
+                    'contain' => array(),
+                    'limit' => CurrentUser::getSetting('sentences_per_page'),
+                    'sphinx' => $sphinx,
+                    'search' => $query
+                )
+            );
 
-        $allSentences = $this->_common_sentences_pagination(
-            $pagination,
-            $model,
-            $to,
-            $real_total
-        );
+            $results = $this->_common_sentences_pagination(
+                $pagination,
+                $model,
+                $to,
+                $real_total
+            );
+        }
 
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
-        $this->set('results', $allSentences);
-        $this->set('real_total', $real_total);
+        $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
             'is_advanced_search',
             isset($this->params['url']['trans_to'])
         );
-        $this->set('ignored', $ignored);
     }
 
     public function advanced_search() {
