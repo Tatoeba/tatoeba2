@@ -80,7 +80,16 @@ if ($search_disabled) {
 <?
 } else if (!is_array($results)) {
 ?>
-    <h2><?php echo __('An error occured while performing the search'); ?></h2>
+    <h2><?php echo __('Search error'); ?></h2>
+    <p><?php
+        echo format(
+            __(
+                'An error occured while performing the search. '.
+                'If the problem persists, please '.
+                '<a href="{}">let us know</a>.', true),
+            $html->url(array('controller' => 'pages', 'action' => 'contact'))
+        );
+    ?></p>
 <?
 } elseif (!empty($results)) {
 
