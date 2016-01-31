@@ -80,7 +80,11 @@ class Sentence extends AppModel
         'User',
         'Language' => array(
             'classname' => 'Language',
-            'foreignKey' => 'lang_id'
+            /* Our foreign key is 'lang' but it doesn't correspond
+               to the primary key of the `languages` table.
+               So let's use a bogus value here, so that warnings
+               will appear whenever we use it. */
+            'foreignKey' => 'dont_do_this',
         ),
     );
 
@@ -152,17 +156,6 @@ class Sentence extends AppModel
         }
     }
 
-    public function beforeSave()
-    {
-        if (isset($this->data['Sentence']['lang']))
-        {
-            $lang = $this->data['Sentence']['lang'];
-            $langId = $this->Language->getIdFromLang($lang);
-            $this->data['Sentence']['lang_id'] = $langId;
-        }
-        return true;
-    }
-
     /**
      * Called after a sentence is saved.
      *
@@ -178,7 +171,7 @@ class Sentence extends AppModel
         if (isset($this->data['Sentence']['modified'])) {
             $this->needsReindex($this->id);
         }
-        $transIndexedAttr = array('lang_id', 'user_id', 'hasaudio');
+        $transIndexedAttr = array('lang', 'user_id', 'hasaudio');
         $transNeedsReindex = array_intersect_key(
             $this->data['Sentence'],
             array_flip($transIndexedAttr)
@@ -236,7 +229,7 @@ class Sentence extends AppModel
     {
         $sentences = $this->find('all', array(
             'conditions' => array('id' => $ids),
-            'fields' => array('id as sentence_id', 'lang_id'),
+            'fields' => array('id as sentence_id', 'lang'),
             'recursive' => -1,
         ));
         foreach ($sentences as &$rec) {
@@ -312,7 +305,7 @@ class Sentence extends AppModel
         $this->ReindexFlag->create();
         $this->ReindexFlag->save(array(
             'sentence_id' => $sentenceId,
-            'lang_id' => $this->data['Sentence']['lang_id'],
+            'lang' => $this->data['Sentence']['lang'],
         ));
 
         // Remove links
@@ -869,11 +862,9 @@ class Sentence extends AppModel
             if ($newLang == "" ) {
                 $newLang = null;
             }
-            $newLangId = $this->Language->getIdFromLang($newLang);
 
             $data['Sentence'] = array(
                 'lang' => $newLang,
-                'lang_id' => $newLangId
             );
             $this->id = $sentenceId;
             $this->save($data);
@@ -885,11 +876,10 @@ class Sentence extends AppModel
 
             // In the previous language, add the sentence to the kill-list
             // so that it doesn't appear in results any more.
-            $prevLangId = $this->Language->getIdFromLang($prevLang);
             $this->ReindexFlag->create();
             $this->ReindexFlag->save(array(
                 'sentence_id' => $sentenceId,
-                'lang_id' => $prevLangId,
+                'lang' => $prevLang,
             ));
 
             return $newLang;

@@ -309,14 +309,14 @@ EOT;
                 if ($type == 'main') {
                     $conf .= "
         sql_query_pre = DELETE FROM reindex_flags \
-                            WHERE lang_id = (select id from languages where code = '$lang')";
+                            WHERE lang = '$lang'";
                 } else {
                     $conf .= "
         sql_query_pre = UPDATE reindex_flags SET indexed = 1 \
-                        WHERE lang_id = (select id from languages where code = '$lang') \
+                        WHERE lang = '$lang' \
                         AND indexed = 0
         sql_query_killlist = SELECT sentence_id FROM reindex_flags \
-                             WHERE lang_id = (select id from languages where code = '$lang') \
+                             WHERE lang = '$lang' \
                              AND indexed = 1";
                 }
         
@@ -342,7 +342,7 @@ EOT;
                     (sent_start.hasaudio <> 'no') as has_audio, \
                     \
                     CONCAT('{', \
-                        'l:',sent_end.lang_id,',', \
+                        'l:\"',sent_end.lang,'\",', \
                         'd:',MIN( IF(trans.sentence_id = transtrans.translation_id,1,2) ),',', \
                         'u:',COALESCE(sent_end.user_id, 0),',', \
                         'c:',sent_end.correctness + 1,',', \
@@ -363,7 +363,7 @@ EOT;
                        trans.translation_id, \
                        transtrans.translation_id) \
                 where \
-                    sent_start.lang_id = (select id from languages where code = '$lang') \
+                    sent_start.lang = '$lang' \
                     and sent_start.id >= \$start and sent_start.id <= \$end \
                 group by id, sent_end.id \
             ) r \

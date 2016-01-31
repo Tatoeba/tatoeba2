@@ -19,7 +19,6 @@
 
 App::import('Helper');
 App::import('Helper', 'Languages');
-App::import('Model', 'Language');
 App::import('Model', 'ReindexFlag');
 
 define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
@@ -60,10 +59,8 @@ class SphinxIndexesShell extends Shell {
         }
 
         /* Remove sentences that were indexed */
-        $Language = ClassRegistry::init('Language');
-        $lang_id = $Language->getIdFromLang($lang);
         $ReindexFlag = ClassRegistry::init('ReindexFlag');
-        $conditions = array('lang_id' => $lang_id, 'indexed' => true);
+        $conditions = array('lang' => $lang, 'indexed' => true);
         $ReindexFlag->deleteAll($conditions, false);
         echo "ok\n";
     }

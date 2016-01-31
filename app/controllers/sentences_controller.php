@@ -602,10 +602,8 @@ class SentencesController extends AppController
         // if we want to search only on sentences having translations
         // in a specified language
         if ($trans_to !== 'und') {
-            $this->loadModel('Language');
-            $toId = $this->Language->getIdFromLang($trans_to);
-            if ($toId) {
-                $transFilter[] = "t.l=$toId";
+            if ($trans_to && LanguagesLib::languageExists($trans_to)) {
+                $transFilter[] = "t.l='$trans_to'";
             }
         }
         if (!empty($trans_link)) {

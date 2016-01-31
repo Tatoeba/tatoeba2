@@ -41,34 +41,6 @@ class Language extends AppModel
     const MAX_LEVEL = 5;
 
     /**
-     * Return the id associated with the given lang string
-     *
-     * @param $langCode ISO code of the language for which we want to get the id.
-     *
-     * @return int Id of the language
-     */
-    public function getIdFromLang($langCode)
-    {
-        if ($langCode == null || $langCode == '')
-        {
-            return null;
-        }
-        else
-        {
-            $result = $this->find(
-                'first',
-                array(
-                    'fields' => array('id'),
-                    'contain' => array(),
-                    'conditions' => array ('code' => $langCode),
-                )
-            );
-            return $result['Language']['id'];
-        }
-    }
-
-
-    /**
      * Return stats for number of sentences per language.
      *
      * @param int $limit Specifying a limit will only take the top languages
