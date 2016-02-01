@@ -20,9 +20,9 @@ function translationLink(action, sentenceId, translationId, langFilter)
 {
     var rootUrl = get_tatoeba_root_url();
 
-    // Show the loading gif...
+    // Show the loading icon
     $('#link_' + sentenceId + '_' + translationId).html(
-        "<img width='16' height='16' src='/img/loading.svg' alt='loading'>"
+        "<div class='loader-small loader'></div>"
     );
     $("#_" + sentenceId + "_message").remove();
 

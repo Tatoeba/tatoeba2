@@ -108,16 +108,11 @@ class SentencesHelper extends AppHelper
         );
 
 
-        // Loading gif
-        echo $this->Images->svgIcon(
-            'loading',
-            array(
-                "id" => "_".$id."_loading",
-                "class" => "loading",
-                "width" => 31,
-                "height" => 31
-            )
-        );
+        // Loading icon
+        echo $this->Html->div('translation-loader loader', '', array(
+            'id' => '_'.$id.'_loading',
+            'style' => 'display:none',
+        ));
 
         // Form to add a new translation
         $this->_displayNewTranslationForm($id);

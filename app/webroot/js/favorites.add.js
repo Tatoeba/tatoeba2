@@ -29,9 +29,7 @@ $(document).ready(function(){
 
         var requestUrl = "/favorites/" + action + "/" + favoriteId;
 
-        favoriteOption.html(
-            "<img width='16' height='16' src='/img/loading.svg' alt='loading'>"
-        );
+        favoriteOption.html("<div class='loader-small loader'></div>");
 
         $.post(requestUrl, {}, function(data) {
             favoriteOption.replaceWith(data);

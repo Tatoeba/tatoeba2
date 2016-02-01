@@ -24,7 +24,7 @@ $(document).ready(function() {
     $('.editable-list-name').each(function() {
         $(this).editable(rootUrl + '/sentences_lists/save_name', {
             type      : 'text',
-            indicator : '<img width="20" height="20" src="/img/loading.svg" alt="loading">',
+            indicator : "<div class='loader-small loader'></div>",
             tooltip   : $(this).attr('data-tooltip'),
             submit    : $(this).attr('data-submit'),
             cancel    : $(this).attr('data-cancel'),

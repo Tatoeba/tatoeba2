@@ -635,15 +635,10 @@ class MenuHelper extends AppHelper
 
         <li>
         <?php
-        echo $this->Images->svgIcon(
-            'loading',
-            array(
-                'id' => '_'.$sentenceId.'_in_process',
-                'class' => 'loading',
-                'width' => 16,
-                'height' => 16
-            )
-        );
+        echo $this->Html->div('loader-small loader', '', array(
+            'id' => '_'.$sentenceId.'_in_process',
+            'style' => 'display:none',
+        ));
         echo $this->Html->image(
             IMG_PATH . 'valid_16x16.png',
             array(

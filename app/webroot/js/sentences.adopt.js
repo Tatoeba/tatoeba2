@@ -32,9 +32,7 @@ $(document).ready(function(){
         }
 
         if (reqUrl) {
-            adoptOption.html(
-                "<img width='16' height='16' src='/img/loading.svg' alt='loading'>"
-            );
+            adoptOption.html("<div class='loader-small loader'></div>");
             $.get(reqUrl, {}, function(data, textStatus, jqXHR) {
                 adoptOption.replaceWith(data);
             });

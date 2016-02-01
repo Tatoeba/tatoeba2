@@ -137,7 +137,7 @@ $(document).ready(function() {
                 settings.target = settings.target.replace(/\/reset\//, '/save/');
                 return false; // don't reset the form
             },
-            indicator : '<img width="30" height="30" src="/img/loading.svg">',
+            indicator : "<div class='sentence-loader loader'></div>",
             tooltip   : div.attr('title'),
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'

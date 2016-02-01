@@ -187,15 +187,7 @@ class NavigationHelper extends AppHelper
             </li>
 
             <li id="loadingAnimationForNavigation" style="display:none">
-            <?php
-            echo $this->Images->svgIcon(
-                'loading',
-                array(
-                    'width' => 16,
-                    'height' => 16
-                )
-            );
-            ?>
+            <?php echo $this->Html->div('loader-small loader', ''); ?>
             </li>
 
             </ul>

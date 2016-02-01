@@ -36,7 +36,7 @@ $(document).ready(function() {
                 // Update transcriptions if any
                 transcr = div.closest('.sentence').find('.transcriptions');
                 if (transcr.length) {
-                    transcr.html('<img width="30" height="30" src="/img/loading.svg">');
+                    transcr.html("<div class='sentence-loader loader'></div>");
                     $.get(
                         rootUrl + '/transcriptions/view/' + sentenceId,
                         null,
@@ -46,7 +46,7 @@ $(document).ready(function() {
                     );
                 }
             },
-            indicator : '<img width="30" height="30" src="/img/loading.svg">',
+            indicator : "<div class='sentence-loader loader'></div>",
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'
         }).bind('edit_sentence', function(e) {

@@ -34,9 +34,7 @@ $(document).ready(function(){
         }
 
         addToCorpusOptionParent = addToCorpusOption.parent();
-        addToCorpusOption.html(
-            "<img width='16' height='16' src='/img/loading.svg' alt='loading' />"
-        );
+        addToCorpusOption.html("<div class='loader-small loader'></div>");
 
         $.post(requestUrl, {}, function(data){
             addToCorpusOptionParent.replaceWith(data);

@@ -40,7 +40,7 @@ $(document).ready(function(){
         var messageContent = $("#replyFormDiv_" + previousReplyFormInMessageID ).find("textarea").val();
         
         $("#replyFormDiv_" + previousReplyFormInMessageID ).html(
-            "<img width='50' height='50' class='loading-icon' src='/img/loading.svg' alt='loading'>"
+            "<div class='block-loader loader'></div>"
         );
         
         var rootUrl = get_tatoeba_root_url();

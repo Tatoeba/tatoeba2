@@ -34,10 +34,8 @@ $(document).ready(function(){
 
     function loadExampleSentence(sinogram){
         var rootUrl = get_tatoeba_root_url();
-        $("#example_part").html(
-            "<div class='loading'><img width='50' height='50' class='loading-icon' src='/img/loading.svg' alt='loading'></div>"
-        );
-          $.post(
+        $("#example_part").html("<div class='block-loader loader'></div>");
+        $.post(
             rootUrl + "/sinograms/load_example_sentence"
             , { "sinogram" : sinogram  } 
             , function(data){

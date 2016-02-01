@@ -132,14 +132,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
         <h2><?php __('Sentences added'); ?></h2>
         
         <div class="sentencesAddedloading" style="display:none">
-        <?php echo $images->svgIcon(
-            'loading',
-            array(
-                'width' => 50,
-                'height' => 50,
-                'class' => 'loading-icon'
-            )
-        ); ?>
+        <?php echo $this->Html->div('block-loader loader', ''); ?>
         </div>
         
         <div id="sentencesAdded">

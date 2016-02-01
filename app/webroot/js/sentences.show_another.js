@@ -30,6 +30,6 @@ $(document).ready(function(){
 });
 
 function loadRandom(lang){
-    $(".random_sentences_set").html("<img class='loading-icon' width='50' height='50' src='/img/loading.svg' alt='loading'>");
+    $(".random_sentences_set").html("<div class='block-loader loader'></div>");
     $(".random_sentences_set").load("/sentences/random/" + lang);
 }
