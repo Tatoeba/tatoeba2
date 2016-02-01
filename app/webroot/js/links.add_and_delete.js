@@ -21,7 +21,7 @@ function translationLink(action, sentenceId, translationId, langFilter)
     var rootUrl = get_tatoeba_root_url();
 
     // Show the loading icon
-    $('#link_' + sentenceId + '_' + translationId).html(
+    $('#link_' + sentenceId + '_' + translationId).blur().html(
         "<div class='loader-small loader'></div>"
     );
     $("#_" + sentenceId + "_message").remove();
