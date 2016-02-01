@@ -1,4 +1,4 @@
-from tatoeba2.management.commands.deduplicate import Command, Dedup
+from dedup.management.commands.deduplicate import Command, Dedup
 from tatoeba2.models import (
     Sentences, SentenceComments, SentencesTranslations, Contributions,
     TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations,
