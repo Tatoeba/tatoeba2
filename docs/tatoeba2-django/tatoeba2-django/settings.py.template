@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'tatoeba2',
     'dedup',
+    'xplisqlus'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,7 +65,22 @@ DATABASES = {
          'HOST': 'localhost',
          'USER': 'tatoeba',
          'PASSWORD': 'tatoeba'
-     }
+     },
+     'copy': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'export_db',
+         'HOST': 'localhost',
+         'USER': 'tatoeba',
+         'PASSWORD': 'tatoeba'
+     },
+     'test': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'test_db',
+         'HOST': 'localhost',
+         'USER': 'tatoeba',
+         'PASSWORD': 'tatoeba'
+     },
+
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': os.path.join(BASE_DIR, 'tatoeba.db'),
