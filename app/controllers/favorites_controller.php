@@ -40,7 +40,7 @@ class FavoritesController extends AppController
 
     public $name = 'Favorites' ;
     public $paginate = array('limit' => 50);
-    public $helpers = array('Navigation', 'Html', 'Menu');
+    public $helpers = array('Navigation', 'Html', 'Menu', 'CommonModules', 'Pagination');
     public $uses = array('Favorite', 'User');
 
     /**
@@ -65,9 +65,36 @@ class FavoritesController extends AppController
     public function of_user($username)
     {
         $userId = $this->User->getIdFromUsername($username);
-        $favorites = $this->Favorite->getAllFavoritesOfUser($userId);
-        $this->set('favorites', $favorites);
+        $backLink = $this->referer(array('action'=>'index'), true);
+
+        $this->set('backLink', $backLink);
+        $data = $this->Favorite->getAllFavoritesOfUser($userId);
         $this->set('username', $username);
+        if (empty($userId)) {
+
+            $this->set("userExists", false);
+            return;
+        }
+        $this->paginate = array(
+                'fields' => array(
+                    'favorite_id'
+                ),
+                'conditions' => array(
+                    'Favorite.user_id' => $userId
+                ),
+                'limit' => 20,
+                'contain' => array(
+                    'Sentence' => array(
+                        'Transcription' => array(
+                            'User' => array('fields' => 'username'),
+                        ),
+                    )
+                )
+            );
+        $favorites = $this->paginate('Favorite');
+        $this->set('favorites', $favorites);
+        $this->set('data', $data);
+        $this->set("userExists", true);
     }
 
     /**

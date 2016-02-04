@@ -26,9 +26,21 @@
  */
 
 $username = Sanitize::paranoid($username, array("_"));
-$title = format(__("{user}'s favorite sentences", true), array('user' => $username));
+
+if ($userExists === true) {
+    $numberOfSentences = (int) $paginator->counter(
+        array(
+            "format" => "%count%"
+        )
+    );
+
+    $title = format(__("{user}'s favorite sentences", true), array('user' => $username));
+} else {
+    $title = format(__("There's no user called {username}", true), array('username' => $username));
+}
+
 $this->set('title_for_layout', $pages->formatTitle($title));
-$numberOfSentences = count($favorites);
+$numberOfSentences = count($data);
 ?>
 
 <div id="annexe_content">
@@ -43,45 +55,56 @@ $numberOfSentences = count($favorites);
 <div id="main_content">
     <div class="module">
     
-    <h2><?php echo $title . ' ('. $numberOfSentences.')'; ?></h2>
-    
     <?php
-    
-    if ($numberOfSentences > 0) {
-        $type = 'mainSentence';
-        $parentId = null;
-        $withAudio = false;
-        $ownerName = null;
-        foreach ($favorites as $favorite) {
-            if (empty($favorite['Sentence']['text'])) {
-                $sentenceId = $favorite['Favorite']['favorite_id'];
-                $linkToSentence = $html->link(
-                    '#'.$sentenceId,
-                    array(
-                        'controller' => 'sentences',
-                        'action' => 'show',
-                        $sentenceId
-                    )
-                );
-
-                echo $html->div('sentence deleted',
-                    format(
-                        __('Sentence {id} has been deleted.', true),
-                        array('id' => $linkToSentence)
-                    )
-                );
-            } else {
-                $sentences->displayGenericSentence(
-                    $favorite['Sentence'],
-                    $favorite['Sentence']['Transcription'],
-                    $type,
-                    $parentId,
-                    $withAudio
-                );
-            }
-        }
+    if ($userExists === false) {
+        $commonModules->displayNoSuchUser($username, $backLink);
     } else {
-        __('This user does not have any favorites.');
+        echo '<h2>';
+        echo $title . ' ('. $numberOfSentences.')';
+        echo '</h2>';
+        if ($numberOfSentences > 0) {
+
+            $paginationUrl = array($username);
+            $pagination->display($paginationUrl);
+
+            $type = 'mainSentence';
+            $parentId = null;
+            $withAudio = false;
+            $ownerName = null;
+            foreach ($favorites as $favorite) {
+                if (empty($favorite['Sentence']['text'])) {
+                    $sentenceId = $favorite['Favorite']['favorite_id'];
+                    $linkToSentence = $html->link(
+                        '#'.$sentenceId,
+                        array(
+                            'controller' => 'sentences',
+                            'action' => 'show',
+                            $sentenceId
+                        )
+                    );
+
+                    echo $html->div('sentence deleted',
+                        format(
+                            __('Sentence {id} has been deleted.', true),
+                            array('id' => $linkToSentence)
+                        )
+                    );
+                } else {
+                    $sentences->displayGenericSentence(
+                        $favorite['Sentence'],
+                        $favorite['Sentence']['Transcription'],
+                        $type,
+                        $parentId,
+                        $withAudio
+                    );
+                }
+            }
+            $pagination->display($paginationUrl);
+
+        } else {
+            __('This user does not have any favorites.');
+            echo $html->link(__('Go back to previous page', true), $backLink);
+        }
     }
     ?>
     </div>
