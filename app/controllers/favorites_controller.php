@@ -68,7 +68,6 @@ class FavoritesController extends AppController
         $backLink = $this->referer(array('action'=>'index'), true);
 
         $this->set('backLink', $backLink);
-        $data = $this->Favorite->numberOfFavoritesOfUser($userId);
         $this->set('username', $username);
         if (empty($userId)) {
 
@@ -78,7 +77,6 @@ class FavoritesController extends AppController
         $this->paginate = $this->Favorite->getPaginatedFavoritesOfUser($userId);
         $favorites = $this->paginate('Favorite');
         $this->set('favorites', $favorites);
-        $this->set('data', $data);
         $this->set("userExists", true);
     }
 

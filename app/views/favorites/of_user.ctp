@@ -40,7 +40,6 @@ if ($userExists === true) {
 }
 
 $this->set('title_for_layout', $pages->formatTitle($title));
-$numberOfSentences = $data;
 ?>
 
 <div id="annexe_content">
@@ -59,9 +58,12 @@ $numberOfSentences = $data;
     if ($userExists === false) {
         $commonModules->displayNoSuchUser($username, $backLink);
     } else {
-        echo '<h2>';
-        echo $title . ' ('. $numberOfSentences.')';
-        echo '</h2>';
+        $title = $paginator->counter(
+            array(
+                'format' => $title . ' ' . __("(total %count%)", true)
+            )
+        );
+        echo $html->tag('h2', $title);
         if ($numberOfSentences > 0) {
 
             $paginationUrl = array($username);
