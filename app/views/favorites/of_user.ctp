@@ -105,7 +105,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
         } else {
             __('This user does not have any favorites.');
-            echo $html->link(__('Go back to previous page', true), $backLink);
         }
     }
     ?>
