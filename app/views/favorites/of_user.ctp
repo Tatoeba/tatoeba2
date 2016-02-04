@@ -40,7 +40,7 @@ if ($userExists === true) {
 }
 
 $this->set('title_for_layout', $pages->formatTitle($title));
-$numberOfSentences = count($data);
+$numberOfSentences = $data;
 ?>
 
 <div id="annexe_content">

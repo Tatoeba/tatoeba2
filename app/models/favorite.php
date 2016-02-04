@@ -78,23 +78,21 @@ class Favorite extends AppModel
      * @return array
      */
 
-    public function getAllFavoritesOfUser($userId)
+    public function getPaginatedFavoritesOfUser($userId)
     {
-        $favorites = $this->find(
-            'all',
-            array(
-                'fields' => array(
-                    'favorite_id'
-                ),
-                'conditions' => array(
-                    'Favorite.user_id' => $userId
-                ),
-                'contain' => array(
-                    'Sentence' => array(
-                        'Transcription' => array(
-                            'User' => array('fields' => 'username'),
-                        ),
-                    )
+
+        $favorites = array(
+            'fields' => array(
+                'favorite_id'
+            ),
+            'conditions' => array(
+                'Favorite.user_id' => $userId
+            ),
+            'contain' => array(
+                'Sentence' => array(
+                    'Transcription' => array(
+                        'User' => array('fields' => 'username'),
+                    ),
                 )
             )
         );

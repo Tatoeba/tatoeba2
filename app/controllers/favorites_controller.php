@@ -68,29 +68,14 @@ class FavoritesController extends AppController
         $backLink = $this->referer(array('action'=>'index'), true);
 
         $this->set('backLink', $backLink);
-        $data = $this->Favorite->getAllFavoritesOfUser($userId);
+        $data = $this->Favorite->numberOfFavoritesOfUser($userId);
         $this->set('username', $username);
         if (empty($userId)) {
 
             $this->set("userExists", false);
             return;
         }
-        $this->paginate = array(
-                'fields' => array(
-                    'favorite_id'
-                ),
-                'conditions' => array(
-                    'Favorite.user_id' => $userId
-                ),
-                'limit' => 20,
-                'contain' => array(
-                    'Sentence' => array(
-                        'Transcription' => array(
-                            'User' => array('fields' => 'username'),
-                        ),
-                    )
-                )
-            );
+        $this->paginate = $this->Favorite->getPaginatedFavoritesOfUser($userId);
         $favorites = $this->paginate('Favorite');
         $this->set('favorites', $favorites);
         $this->set('data', $data);
