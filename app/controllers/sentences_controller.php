@@ -891,6 +891,7 @@ class SentencesController extends AppController
                         'audioOnly' => $audioOnly,
                     ),
                     'contain' => array(),
+                    'order' => 'Sentence.id DESC',
                     'limit' => 10,
                 )
             );
