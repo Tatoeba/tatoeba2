@@ -73,9 +73,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'], 
                 $sentence['Transcription'],
-                $sentence['Translations'], 
+                $sentence['Sentence']['Translation'],
                 $sentence['User'],
-                $sentence['IndirectTranslations'],
+                $sentence['Sentence']['IndirectTranslation'],
                 array('langFilter' => $translationLang)
             );
         }

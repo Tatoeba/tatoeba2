@@ -121,14 +121,9 @@ class SentenceNotTranslatedInto extends AppModel
             $conditions['Sentence.hasaudio !='] = 'no';
         }
 
-        $result = ClassRegistry::init('Sentence')->find('all', array(
-            'fields' => $fields,
-            'conditions' => $conditions,
-            'order' => $order,
-            'limit' => $limit,
-            'page' => $page,
-            'contain' => array(),
-        ));
+        $Sentence = ClassRegistry::init('Sentence');
+        $options = compact('fields', 'conditions', 'order', 'limit', 'page');
+        $result = $Sentence->find('all', array_merge($options, $extra));
 
         return $result;
     }

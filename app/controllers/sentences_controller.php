@@ -780,10 +780,8 @@ class SentencesController extends AppController
             $model = 'Sentence';
             $pagination = array(
                 'Sentence' => array(
-                    'fields' => array(
-                        'id',
-                    ),
-                    'contain' => array(),
+                    'fields' => $this->Sentence->fields(),
+                    'contain' => $this->Sentence->contain(),
                     'limit' => CurrentUser::getSetting('sentences_per_page'),
                     'sphinx' => $sphinx,
                     'search' => $query
@@ -856,13 +854,11 @@ class SentencesController extends AppController
 
         $pagination = array(
             'Sentence' => array(
-                'fields' => array(
-                    'id',
-                ),
+                'fields' => $this->Sentence->fields(),
+                'contain' => $this->Sentence->contain(),
                 'conditions' => array(
-                    'lang' => $lang,
+                    'Sentence.lang' => $lang,
                 ),
-                'contain' => array(),
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => "Sentence.id desc"
             )
@@ -881,16 +877,14 @@ class SentencesController extends AppController
             $model = 'SentenceNotTranslatedInto';
             $pagination = array(
                 'SentenceNotTranslatedInto' => array(
-                    'fields' => array(
-                        'id',
-                    ),
+                    'fields' => $this->Sentence->fields(),
                     'conditions' => array(
                         'source' => $lang,
                         'translatedInto' => $translationLang,
                         'notTranslatedInto' => $notTranslatedInto,
                         'audioOnly' => $audioOnly,
                     ),
-                    'contain' => array(),
+                    'contain' => $this->Sentence->contain(),
                     'order' => 'Sentence.id DESC',
                     'limit' => 10,
                 )
@@ -962,11 +956,8 @@ class SentencesController extends AppController
             $translationLang = null ;
         }
 
-        $allSentences = $this->CommonSentence->getAllNeededForSentences(
-            $sentenceIds,
-            $translationLang
-        );
-        return $allSentences;
+        $this->Sentence->addTranslationsToSentences($results, $translationLang);
+        return $results;
     }
     /**
      * Show random sentence.
