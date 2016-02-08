@@ -4,7 +4,7 @@ from tatoeba2.models import (
     Wall, UsersSentences, Transcriptions
     )
 from datetime import datetime
-from tatoeba2.management.commands.deduplicate import Dedup
+from dedup.management.commands.deduplicate import Dedup
 from django.db import connections
 from django.db.models.loading import get_model
 import pytest
