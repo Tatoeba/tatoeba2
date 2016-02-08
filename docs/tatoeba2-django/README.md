@@ -1,11 +1,7 @@
 tatoeba2-django
 ---------------
 
-This is a bridge project between the current website's schema and python/django.
-
-- Memory:
-  - Make sure that you have at least 1.2 GB of memory to run the script.
-  - If you encounter the message "Killed" before the script finishes, you need to add more.
+This project houses a bridge project and scripts written in python/django for tatoeba's current schema.
 
 - Dependencies:
   - Make sure you have the python2.7, python-dev, and python-pip packages.
@@ -25,24 +21,21 @@ This is a bridge project between the current website's schema and python/django.
 - Configuration:
   - Copy settings.py.template to settings.py in the same directory.
   - Change settings in settings.py if necessary.
-  - If you will be running the script without the test suite: 
-     - Copy models\_unmanaged.py to models\models.py. 
-  - If you need to run the test suite:
-     - Copy models\_managed.py to models\models.py. WARNING: Don't do this on a production server.
+  - To Allow the manage command to drop or create table, change the MANAGE_DB variable in settings.py
 
-- Running the script:
+- Running a manage.py script:
   - Use:
   ```sh
   python manage.py script_name_without_extension [args]
   ```
   - For example:
   ```sh
-  python manage.py deduplicate --dry-run --log-dir /var/tmp 
+  python manage.py deduplicate --dry-run --log-dir /var/tmp
   ```
- 
+
 - Running the test suite:
   - You can run the accompanying test suite using:
   ```sh
   py.test
   ```
-  - Remember that the test suite requires the managed models.py file. See "Configuration" above.
+  - Remember that the test suite requires django to be able to manage tables.
