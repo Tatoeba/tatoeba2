@@ -271,21 +271,16 @@ class TagsController extends AppController
                 $lang
             );
 
-            $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
+            $sentences = $this->paginate('TagsSentences');
+            $this->Tag->Sentence->addTranslationsToSentences($sentences);
 
             $taggerIds = array();
-            $sentenceIds = array();
-
-            foreach ($sentencesIdsTaggerIds as $sentenceIdTaggerId) {
-                $taggerIds[] = $sentenceIdTaggerId['TagsSentences']['user_id'];
-                $sentenceIds[] = $sentenceIdTaggerId['TagsSentences']['sentence_id'];
+            foreach ($sentences as $sentence) {
+                $taggerIds[] = $sentence['TagsSentences']['user_id'];
             }
-            $allSentences = $this->CommonSentence->getAllNeededForSentences(
-                $sentenceIds
-            );
 
             $this->set('langFilter', $lang);
-            $this->set('allSentences', $allSentences);
+            $this->set('allSentences', $sentences);
             $this->set('tagName', $tagName);
             $this->set('taggerIds', $taggerIds);
         } else {

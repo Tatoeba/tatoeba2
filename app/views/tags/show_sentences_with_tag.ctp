@@ -61,12 +61,13 @@ if ($tagExists) {
                     $canUserRemove = CurrentUser::canRemoveTagFromSentence(
                         $taggerIds[$i]
                     );
+                    $sentence = $sentence['Sentence'];
                     $tags->displaySentence(
-                        $sentence['Sentence'],
+                        $sentence,
                         $sentence['Transcription'],
                         $sentence['User'],
-                        $sentence['Translations'],
-                        $sentence['IndirectTranslations'],
+                        $sentence['Translation'],
+                        $sentence['IndirectTranslation'],
                         $canUserRemove,
                         $tagId
                     );

@@ -460,6 +460,73 @@ class Sentence extends AppModel
 
     }
 
+    /**
+     * Returns the fields names typically needed to display a sentence.
+     */
+    public function fields()
+    {
+        return array(
+            'text',
+            'lang',
+            'user_id',
+            'hasaudio',
+            'correctness',
+            'script',
+        );
+    }
+
+    /**
+     * Returns the appropriate value for the 'contain' parameter
+     * of a typical ->find('all', ...). It makes it return everything
+     * we need to display typical sentence groups (except translations,
+     * that require calling ->addTranslationsToSentences() afterwards).
+     */
+    public function contain()
+    {
+        return array(
+            'Favorites_users' => array(
+                'fields' => array()
+            ),
+            'User' => array(
+                'fields' => array('id', 'username', 'group_id', 'level')
+            ),
+            'SentencesList' => array(
+                'fields' => array('id')
+            ),
+            'Transcription'   => array(
+                'User' => array('fields' => array('username')),
+            ),
+        );
+    }
+
+    /**
+     * Returns the appropriate value for the 'contain' parameter
+     * of typical a pagination of sentences.
+     */
+    public function paginateContain()
+    {
+        $params = $this->contain();
+        $params['fields'] = $this->fields();
+        return $params;
+    }
+
+    /**
+     * Add a 'Translation' and 'IndirectTranslation' keys to each 'Sentence'
+     * of $resultSet. Use this to get indirect and direct translations added
+     * to the result of a ->find() to the Sentence model.
+     */
+    public function addTranslationsToSentences(&$resultSet, $lang = null)
+    {
+        foreach ($resultSet as &$result) {
+            $alltranslations = $this->getTranslationsOf(
+                $result['Sentence']['id'],
+                $lang
+            );
+            foreach ($alltranslations as $type => $translations) {
+                $result['Sentence'][$type] = $translations;
+            }
+        }
+    }
 
     /**
      * Get all the informations needed to display a sentences in show section.
@@ -470,32 +537,14 @@ class Sentence extends AppModel
      */
     public function getSentenceWithId($id)
     {
+        $contain = $this->contain();
+        $fields = $this->fields();
         $result = $this->find(
             'first',
             array(
                 'conditions' => array('Sentence.id' => $id),
-                'contain' => array (
-                    'Favorites_users' => array(
-                        'fields' => array()
-                    ),
-                    'User' => array(
-                        'fields' => array('id', 'username', 'group_id', 'level')
-                    ),
-                    'SentencesList' => array(
-                        'fields' => array('id')
-                    ),
-                    'Transcription'   => array(
-                        'User' => array('fields' => array('username')),
-                    ),
-                ),
-                'fields' => array(
-                    'text',
-                    'lang',
-                    'user_id',
-                    'hasaudio',
-                    'correctness',
-                    'script',
-                )
+                'contain' => $this->contain(),
+                'fields' => $this->fields(),
             )
         );
 
