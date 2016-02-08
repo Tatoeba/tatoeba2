@@ -1020,14 +1020,14 @@ class SentencesController extends AppController
             $number = 5 ;
         }
 
-        // for far better perfomance we must do it in one request, but hmmm no time
-        // for that and as said above that's a work around
-
-        $randomIds = $this->Sentence->getSeveralRandomIds($lang, $number);
-
         $this->Session->write('random_lang_selected', $lang);
 
-        $allSentences = $this->CommonSentence->getAllNeededForSentences($randomIds);
+        $allSentences = $this->Sentence->find('random', array(
+            'lang' => $lang,
+            'number' => $number,
+            'contain' => $this->Sentence->contain(),
+        ));
+        $this->Sentence->addTranslationsToSentences($allSentences);
 
         $this->set("allSentences", $allSentences);
         $this->set('lastNumberChosen', $number);

@@ -98,35 +98,4 @@ class CommonSentenceComponent extends Object
         return $isSaved;
     }
 
-    public function getAllNeededForSentences($sentenceIds, $lang = null)
-    {
-        $allSentences = array();
-
-        $Sentence = ClassRegistry::init('Sentence');
-        foreach ($sentenceIds as $i=>$sentenceId) {
-
-            $sentence = $Sentence->getSentenceWithId($sentenceId);
-
-
-            $alltranslations = $Sentence->getTranslationsOf(
-                $sentenceId,
-                $lang
-            );
-            $translations = $alltranslations['Translation'];
-            $indirectTranslations = $alltranslations['IndirectTranslation'];
-
-            $allSentences[$i] = array (
-                "Sentence" => $sentence['Sentence'],
-                "Transcription" => $sentence['Transcription'],
-                "User" => $sentence['User'],
-                "Translations" => $translations,
-                "IndirectTranslations" => $indirectTranslations
-            );
-        }
-        return $allSentences;
-    }
-
-
-
-
 }

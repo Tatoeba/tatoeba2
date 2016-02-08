@@ -120,6 +120,7 @@ class Sentence extends AppModel
         if (Configure::read('Search.enabled')) {
             $this->Behaviors->attach('Sphinx');
         }
+        $this->_findMethods['random'] = true;
     }
 
     private function clean($text)
@@ -341,6 +342,22 @@ class Sentence extends AppModel
         );
 
         return $results[0]['Sentence']['id'];
+    }
+
+    /**
+     * Custom ->find('random', ...) function.
+     */
+    public function _findRandom($state, $query, $results = array())
+    {
+        if ($state == 'before') {
+            $ids = $this->getSeveralRandomIds($query['lang'], $query['number']);
+            $query['conditions'][$this->alias.'.'.$this->primaryKey] = $ids;
+            unset($query['lang']);
+            unset($query['number']);
+            return $query;
+        } else {
+            return $results;
+        }
     }
 
     /**
