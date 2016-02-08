@@ -466,6 +466,7 @@ class Sentence extends AppModel
     public function fields()
     {
         return array(
+            'id',
             'text',
             'lang',
             'user_id',
