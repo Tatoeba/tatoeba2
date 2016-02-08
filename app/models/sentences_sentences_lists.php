@@ -102,6 +102,8 @@ class SentencesSentencesLists extends AppModel
         return array(
             'limit' => $limit,
             'conditions' => array('sentences_list_id' => $listId),
+            'contain' => array('Sentence' => $this->Sentence->paginateContain()),
+            'fields' => array('created', 'sentence_id'),
             'order' => 'created DESC'
         );
     }

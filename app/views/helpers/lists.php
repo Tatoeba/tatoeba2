@@ -369,7 +369,7 @@ class ListsHelper extends AppHelper
         $sentence,
         $canCurrentUserEdit = false
     ) {
-        $sentenceId = $sentence['Sentence']['id'];
+        $sentenceId = $sentence['id'];
         if (empty($sentenceId)) {
             // In case the sentence has been deleted, we don't want to display
             // it in the list.
@@ -390,11 +390,11 @@ class ListsHelper extends AppHelper
             // Sentences group
             $withAudio = true;
             $this->Sentences->displaySentencesGroup(
-                $sentence['Sentence'],
+                $sentence,
                 $sentence['Transcription'],
-                $sentence['Translations'],
+                $sentence['Translation'],
                 $sentence['User'],
-                $sentence['IndirectTranslations'],
+                $sentence['IndirectTranslation'],
                 array('withAudio' => false)
             );
             ?>

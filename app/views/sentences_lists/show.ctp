@@ -147,7 +147,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
          data-list-id="<?php echo $listId; ?>">
     <?php
     foreach ($sentencesInList as $sentence) {
-        $lists->displaySentence($sentence, $canRemoveSentence);
+        $lists->displaySentence($sentence['Sentence'], $canRemoveSentence);
     }
     ?>
     </div>

@@ -187,18 +187,11 @@ class SentencesListsController extends AppController
             $id, CurrentUser::getSetting('sentences_per_page')
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
-
-        $sentenceIds = array();
-        foreach ($sentencesInList as $sentence) {
-            $sentenceIds[] = $sentence['SentencesSentencesLists']['sentence_id'];
-        }
-        $sentencesInList = $this->CommonSentence->getAllNeededForSentences(
-            $sentenceIds, $translationsLang
-        );
+        $this->SentencesSentencesLists->Sentence
+             ->addTranslationsToSentences($sentencesInList, $translationsLang);
 
         $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
         $downloadability_info = $this->_get_downloadability_info($thisListCount);
-
 
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
