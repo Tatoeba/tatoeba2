@@ -127,8 +127,13 @@ class Sentence extends AppModel
 
         $this->_findMethods['random'] = true;
 
+        $this->linkTranslationModel();
+    }
+
+    public function linkTranslationModel($conditions = array())
+    {
         $this->hasMany['Translation']['finderQuery']
-            = $this->Translation->hasManyTranslationsLikeSqlQuery();
+            = $this->Translation->hasManyTranslationsLikeSqlQuery($conditions);
     }
 
     private function clean($text)

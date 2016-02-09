@@ -928,6 +928,11 @@ class SentencesController extends AppController
         $translationLang = null,
         &$real_total = 0
     ) {
+        if ($translationLang != "und") {
+            $this->Sentence->linkTranslationModel(array(
+                'Translation.lang' => $translationLang
+            ));
+        }
 
         $this->paginate = $pagination;
         $results = $this->paginate($model);
@@ -936,10 +941,6 @@ class SentencesController extends AppController
         }
         if (isset($results[0]['Sentence']['_total_found'])) {
             $real_total = $results[0]['Sentence']['_total_found'];
-        }
-
-        if ($translationLang == "und") {
-            $translationLang = null ;
         }
 
         return $results;

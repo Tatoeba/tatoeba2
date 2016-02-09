@@ -53,7 +53,7 @@ class Translation extends AppModel
      * fast. It returns results that mimics a regular hasMany relationship,
      * so that it interfaces well with CakePHP's Containable behavior.
      */
-    public function hasManyTranslationsLikeSqlQuery()
+    public function hasManyTranslationsLikeSqlQuery($conditions = array())
     {
         $dbo = $this->getDataSource();
         $query = $this->fetchTranslationsQuery('({$__cakeID__$})', false);
@@ -61,7 +61,7 @@ class Translation extends AppModel
             array(
                 'table' => $dbo->fullTableName($this),
                 'alias' => $this->alias,
-                'conditions' => array(),
+                'conditions' => $conditions,
                 'group' => null,
                 'order' => null,
                 'limit' => null,
