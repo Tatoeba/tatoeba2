@@ -37,7 +37,6 @@ class TranslationTestCase extends CakeTestCase {
         );
         $result = $this->Translation->getTranslationsOf(5, array());
         $expected = array(
-            'Translation' => array(
                 array(
                     'Translation' => array(
                         'id' => "2",
@@ -47,10 +46,10 @@ class TranslationTestCase extends CakeTestCase {
                         'hasaudio' => "no",
                         'correctness' => "0",
                         'script' => 'Hans',
+                        'type' => '0',
+                        'sentence_id' => '5',
                     ),
                 ),
-            ),
-            'IndirectTranslation' => array(
                 array(
                     'Translation' => array(
                         'id' => "1",
@@ -60,6 +59,8 @@ class TranslationTestCase extends CakeTestCase {
                         'hasaudio' => "no",
                         'correctness' => "0",
                         'script' => null,
+                        'type' => '1',
+                        'sentence_id' => '5',
                     ),
                 ),
                 array(
@@ -71,21 +72,26 @@ class TranslationTestCase extends CakeTestCase {
                         'hasaudio' => "no",
                         'correctness' => "0",
                         'script' => null,
+                        'type' => '1',
+                        'sentence_id' => '5',
                     ),
                 ),
-            ),
         );
         $this->assertEqual($expected, $result);
     }
 
     function _assertFind($sentenceId, $langs, $expectedTranslationIds, $expectedIndirectTranslationIds) {
         $result = $this->Translation->getTranslationsOf($sentenceId, $langs);
-        $result = Set::classicExtract($result, '{}.{n}.Translation.id');
+        $returned = array(0 => array(), 1 => array());
+        foreach ($result as $rec) {
+            $rec = $rec['Translation'];
+            $returned[$rec['type']][] = $rec['id'];
+        }
         $expected = array(
-            'Translation' => $expectedTranslationIds,
-            'IndirectTranslation' => $expectedIndirectTranslationIds,
+            $expectedTranslationIds,
+            $expectedIndirectTranslationIds,
         );
-        $this->assertEqual($expected, $result);
+        $this->assertEqual($expected, $returned);
     }
 
     function testFindCheckIds() {
