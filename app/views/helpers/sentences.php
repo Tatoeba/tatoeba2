@@ -642,14 +642,34 @@ class SentencesHelper extends AppHelper
         if (isset($sentence['script'])) {
             $script = $sentence['script'];
         }
+        $highlight = null;
+        if (isset($sentence['highlight'])) {
+            $highlight = $sentence['highlight'];
+        }
         $this->displaySentenceText(
             $sentence['id'], $sentence['text'], $isEditable,
-            $sentence['lang'], $script, $sentence['correctness']
+            $sentence['lang'], $script, $sentence['correctness'],
+            $highlight
         );
 
         echo $this->Html->tag('/div');
     }
 
+    private function highlightMatches($highlight, $text) {
+        list($markers, $excerpts) = $highlight;
+        foreach ($excerpts as $excerpt) {
+            $excerpt = h($excerpt);
+            $from = str_replace($markers, '', $excerpt);
+            $from = '/'.preg_quote($from).'/';
+            $to = str_replace(
+                $markers,
+                array('<span class="match">', '</span>'),
+                $excerpt
+            );
+            $text = preg_replace($from, $to, $text);
+        }
+        return $text;
+    }
 
     /**
      * Displays the text of a sentence. This text can be editable or not.
@@ -660,17 +680,26 @@ class SentencesHelper extends AppHelper
      * @param bool  $sentenceLang Language of the sentence.
      * @param bool  $sentenceScript ISO 15924 script code.
      * @param bool  $correctness  Sentence correctness level.
+     * @param array $highlight    Highlighting markers for search results.
      *
      * @return void
      */
     public function displaySentenceText(
         $sentenceId, $sentenceText, $isEditable = false,
-        $sentenceLang = '', $sentenceScript = '', $correctness
+        $sentenceLang = '', $sentenceScript = '', $correctness,
+        $highlight
     ) {
         $classes = array(
             'text',
             $this->getCorrectnessLabel($correctness),
         );
+        $sentenceEscaped = false;
+        if ($highlight) {
+            $sentenceText = h($sentenceText);
+            $sentenceEscaped = true;
+            $sentenceText = $this->highlightMatches($highlight, $sentenceText);
+        }
+
         if ($isEditable) {
             $classes[] = 'editableSentence';
 
@@ -687,6 +716,7 @@ class SentencesHelper extends AppHelper
                     'id' => $sentenceLang.'_'.$sentenceId,
                     'data-submit' => __('OK', true),
                     'data-cancel' => __('Cancel', true),
+                    'escape' => !$sentenceEscaped,
                 ),
                 $sentenceScript
             );
@@ -695,7 +725,10 @@ class SentencesHelper extends AppHelper
 
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
-                array('class' => join(' ', $classes)),
+                array(
+                    'class' => join(' ', $classes),
+                    'escape' => !$sentenceEscaped,
+                ),
                 $sentenceScript
             );
 
