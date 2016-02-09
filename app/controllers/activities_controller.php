@@ -196,7 +196,6 @@ class ActivitiesController extends AppController
         );
 
         $results = $this->paginate('Sentence');
-        $this->Sentence->addTranslationsToSentences($results);
 
         $this->set('results', $results);
         $this->set('lang', $lang);

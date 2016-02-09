@@ -945,18 +945,10 @@ class SentencesController extends AppController
             $real_total = $results[0]['Sentence']['_total_found'];
         }
 
-        $sentenceIds = array();
-
-        foreach ($results as $i=>$sentence) {
-            $sentenceIds[$i] = $sentence['Sentence']['id'];
-        }
-
-
         if ($translationLang == "und") {
             $translationLang = null ;
         }
 
-        $this->Sentence->addTranslationsToSentences($results, $translationLang);
         return $results;
     }
     /**
@@ -1027,7 +1019,6 @@ class SentencesController extends AppController
             'number' => $number,
             'contain' => $this->Sentence->contain(),
         ));
-        $this->Sentence->addTranslationsToSentences($allSentences);
 
         $this->set("allSentences", $allSentences);
         $this->set('lastNumberChosen', $number);

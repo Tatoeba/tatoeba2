@@ -56,7 +56,7 @@ class Translation extends AppModel
     public function hasManyTranslationsLikeSqlQuery()
     {
         $dbo = $this->getDataSource();
-        $query = $this->fetchTranslationsQuery('{$__cakeID__$}');
+        $query = $this->fetchTranslationsQuery('({$__cakeID__$})', false);
         $query = array_merge(
             array(
                 'table' => $dbo->fullTableName($this),
@@ -89,10 +89,11 @@ class Translation extends AppModel
      * of direct and indirect translations of sentence $id.
      *
      * @param int  $id Sentence id the query will fetch translations of.
+     * @param bool $escapeId Escape $id while building SQL internally.
      *
      * @return array find()-compatible options
      */
-    public function fetchTranslationsQuery($id)
+    public function fetchTranslationsQuery($id, $escapeId = true)
     {
         /**
          * This query is constructed with a subquery, which finds the
@@ -122,6 +123,11 @@ class Translation extends AppModel
          *   ORDER BY Translation.lang;
          */
         $dbo = $this->getDataSource();
+        if ($escapeId) {
+            $conditions = array('Link.sentence_id' => $id);
+        } else {
+            $conditions = array("Link.sentence_id = $id");
+        }
         $subQuery = $dbo->buildStatement(
             array(
                 'fields' => array(
@@ -145,7 +151,7 @@ class Translation extends AppModel
                         'Link.translation_id = IndirectLink.sentence_id'
                     ),
                 )),
-                'conditions' => array('Link.sentence_id' => $id),
+                'conditions' => $conditions,
                 'order' => null,
                 'group' => 'translation_id',
             ),

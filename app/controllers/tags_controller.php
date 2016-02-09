@@ -272,7 +272,6 @@ class TagsController extends AppController
             );
 
             $sentences = $this->paginate('TagsSentences');
-            $this->Tag->Sentence->addTranslationsToSentences($sentences);
 
             $taggerIds = array();
             foreach ($sentences as $sentence) {

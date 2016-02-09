@@ -504,8 +504,7 @@ class Sentence extends AppModel
     /**
      * Returns the appropriate value for the 'contain' parameter
      * of a typical ->find('all', ...). It makes it return everything
-     * we need to display typical sentence groups (except translations,
-     * that require calling ->addTranslationsToSentences() afterwards).
+     * we need to display typical sentence groups.
      */
     public function contain()
     {
@@ -522,6 +521,11 @@ class Sentence extends AppModel
             'Transcription'   => array(
                 'User' => array('fields' => array('username')),
             ),
+            'Translation' => array(
+                'Transcription' => array(
+                    'User' => array('fields' => array('username')),
+                ),
+            ),
         );
     }
 
@@ -534,24 +538,6 @@ class Sentence extends AppModel
         $params = $this->contain();
         $params['fields'] = $this->fields();
         return $params;
-    }
-
-    /**
-     * Add a 'Translation' and 'IndirectTranslation' keys to each 'Sentence'
-     * of $resultSet. Use this to get indirect and direct translations added
-     * to the result of a ->find() to the Sentence model.
-     */
-    public function addTranslationsToSentences(&$resultSet, $lang = null)
-    {
-        foreach ($resultSet as &$result) {
-            $alltranslations = $this->getTranslationsOf(
-                $result['Sentence']['id'],
-                $lang
-            );
-            foreach ($alltranslations as $type => $translations) {
-                $result['Sentence'][$type] = $translations;
-            }
-        }
     }
 
     /**
