@@ -47,7 +47,8 @@ class SentenceNotTranslatedInto extends AppModel
 
 
     /**
-     * Overriding the paginate function in order to use a "raw" SQL request
+     * Overriding the paginate function in order to speed up
+     * things using custom queries.
      *
      * @return array
      */
@@ -88,12 +89,6 @@ class SentenceNotTranslatedInto extends AppModel
                 $this
             );
         } else {
-            $subquery
-                = "
-                SELECT sentence_id FROM sentences_translations
-                WHERE sentence_lang = '$source'
-                  AND translation_lang = '$target'
-            ";
             $subQuery = $dbo->buildStatement(
                 array(
                     'fields' => array('Link.sentence_id'),
