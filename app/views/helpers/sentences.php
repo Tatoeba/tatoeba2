@@ -67,9 +67,8 @@ class SentencesHelper extends AppHelper
      *
      * @param array $sentence             Sentence to display.
      * @param array $transcriptions       Transcriptions of the sentence.
-     * @param array $translations         Translations of the sentence.
+     * @param array $translations         Translations of the sentence (direct and indirect).
      * @param array $user                 Owner of the sentence.
-     * @param array $indirectTranslations Indirect translations of the sentence.
      * @param bool  $options              Array of options
                                           withAudio: set it to false to hide audio icon
      *                                    langFilter: the language $indirectTranslations are filtered in, if any.
@@ -81,7 +80,6 @@ class SentencesHelper extends AppHelper
         $transcriptions,
         $translations,
         $user = null,
-        $indirectTranslations = array(),
         $options = array()
     ) {
         $options = array_merge(
@@ -117,14 +115,35 @@ class SentencesHelper extends AppHelper
         // Form to add a new translation
         $this->_displayNewTranslationForm($id);
 
-        $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio, $langFilter);
+        $this->displayTranslations($id, $translations, $withAudio, $langFilter);
 
         ?>
         </div>
         <?php
     }
 
-    public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true, $langFilter = 'und') {
+    private function segregateTranslations($translations) {
+        $result = array(0 => array(), 1 => array());
+        foreach ($translations as $translation) {
+            if (isset($translation['Translation'])) {
+                // direct Translation::find() call case, as opposed to
+                // find('all', array('contain' => array('Translation')))
+                foreach ($translation['Translation'] as $k => $v) {
+                    $translation[$k] = $v;
+                }
+                unset($translation['Translation']);
+            }
+            $type = $translation['type'];
+            if (array_key_exists($type, $result)) {
+                $result[$type][] = $translation;
+            }
+        }
+        return $result;
+    }
+
+    public function displayTranslations($id, $translations, $withAudio = true, $langFilter = 'und') {
+        list($translations, $indirectTranslations)
+            = $this->segregateTranslations($translations);
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
             
@@ -165,7 +184,7 @@ class SentencesHelper extends AppHelper
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
-                    $translation['Translation'],
+                    $translation,
                     $translation['Transcription'],
                     $type,
                     $withAudio,
@@ -200,7 +219,7 @@ class SentencesHelper extends AppHelper
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
-                    $translation['Translation'],
+                    $translation,
                     $translation['Transcription'],
                     $type,
                     $withAudio,
@@ -733,7 +752,9 @@ class SentencesHelper extends AppHelper
             <div class="translations">
                 <?php
                 foreach ($translations as $translation) {
-                    $this->displayS($translation['Translation'], 'directTranslation');
+                    if ($translation['type'] == 0) {
+                        $this->displayS($translation, 'directTranslation');
+                    }
                 }
                 ?>
             </div>

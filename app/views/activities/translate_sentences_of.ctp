@@ -70,9 +70,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
                 $sentence['Transcription'],
-                $sentence['Sentence']['Translation'],
-                $sentence['User'],
-                $sentence['Sentence']['IndirectTranslation']
+                $sentence['Translation'],
+                $sentence['User']
             );
         }
         

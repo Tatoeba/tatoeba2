@@ -181,6 +181,21 @@ class Translation extends AppModel
         );
     }
 
+    public function afterFind($results, $primary = false) {
+        if ($primary) {
+            // Direct Translation::find() call case, as
+            // opposed to find('contain' => array('Translation')).
+            // Let's fix getTranslationsOf()'s return value.
+            foreach ($results as $i => $result) {
+                foreach ($results[$i]['AllTranslations'] as $k => $v) {
+                    $results[$i]['Translation'][$k] = $v;
+                }
+                unset($results[$i]['AllTranslations']);
+            }
+        }
+        return $results;
+    }
+
     /**
      * Get translations of a given sentence and translations of translations.
      *
@@ -200,23 +215,7 @@ class Translation extends AppModel
                 'User' => array('fields' => 'username')
             )
         );
-        $translations = parent::find('all', $query);
-
-        $orderedTranslations = array(
-            'Translation' => array(),
-            'IndirectTranslation' => array()
-        );
-        $map = array(
-            '0' => 'Translation',
-            '1' => 'IndirectTranslation',
-        );
-        foreach ($translations as $record) {
-            $distance = $record['AllTranslations']['type'];
-            unset($record['AllTranslations']);
-            $orderedTranslations[ $map[$distance] ][] = $record;
-        };
-
-        return $orderedTranslations;
+        return $this->find('all', $query);
     }
 }
 ?>

@@ -165,9 +165,8 @@ $navigation->displaySentenceNavigation(
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
                 $sentence['Transcription'],
-                $translations,
-                $sentence['User'],
-                $indirectTranslations
+                $sentence['Translation'],
+                $sentence['User']
             );
             
         } else {

@@ -28,7 +28,6 @@ if (!$saved) {
 $sentences->displayTranslations(
     $sentenceId,
     $translations,
-    $indirectTranslations,
     true,
     $langFilter
 );

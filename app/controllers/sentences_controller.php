@@ -201,15 +201,8 @@ class SentencesController extends AppController
 
             $this->set('sentence', $sentence);
 
-            // we get translations and split them
-            $alltranslations = $this->Sentence->getTranslationsOf($id);
-            $translations = $alltranslations['Translation'];
-            $indirectTranslations = $alltranslations['IndirectTranslation'];
-
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
-            $this->set('translations', $translations);
-            $this->set('indirectTranslations', $indirectTranslations);
 
         } else {
             // ----- if we want a random sentence in a specific language -----
@@ -968,15 +961,10 @@ class SentencesController extends AppController
 
         $randomId = $this->Sentence->getRandomId($lang);
         $randomSentence = $this->Sentence->getSentenceWithId($randomId);
-        $alltranslations = $this->Sentence->getTranslationsOf($randomId);
-        $translations = $alltranslations['Translation'];
-        $indirectTranslations = $alltranslations['IndirectTranslation'];
 
         $this->Session->write('random_lang_selected', $lang);
 
         $this->set('random', $randomSentence);
-        $this->set('translations', $translations);
-        $this->set('indirectTranslations', $indirectTranslations);
     }
 
     /**

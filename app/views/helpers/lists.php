@@ -394,7 +394,6 @@ class ListsHelper extends AppHelper
                 $sentence['Transcription'],
                 $sentence['Translation'],
                 $sentence['User'],
-                $sentence['IndirectTranslation'],
                 array('withAudio' => false)
             );
             ?>

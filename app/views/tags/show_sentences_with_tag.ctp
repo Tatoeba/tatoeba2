@@ -67,7 +67,6 @@ if ($tagExists) {
                         $sentence['Transcription'],
                         $sentence['User'],
                         $sentence['Translation'],
-                        $sentence['IndirectTranslation'],
                         $canUserRemove,
                         $tagId
                     );

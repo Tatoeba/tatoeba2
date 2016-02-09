@@ -52,8 +52,7 @@ if ($sentenceFound == false) {
             $sentence,
             $transcrs,
             $translations,
-            $sentenceOwner,
-            $indirectTranslations
+            $sentenceOwner
         );
         ?>
     </div>
