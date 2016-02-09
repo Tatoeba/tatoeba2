@@ -58,7 +58,6 @@ class SphinxBehavior extends ModelBehavior
 
         if ($model->findQueryType == 'count')
         {
-            $model->recursive = -1;
             $query['limit'] = 1;
             $query['page'] = 1;
         }
