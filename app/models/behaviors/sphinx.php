@@ -144,7 +144,7 @@ class SphinxBehavior extends ModelBehavior
         else
         {
             $this->_cached_result = $result;
-            $this->_cached_query = array($query['search'], $query['sphinx']['index']);
+            $this->_cached_query = $query['search'];
     
             if (isset($result['matches']))
                 $ids = array_keys($result['matches']);
@@ -158,25 +158,44 @@ class SphinxBehavior extends ModelBehavior
         return $query;
     }
 
-    private function addHighlightMarkers($model, &$results, $search, $index) {
-        $documents = Set::extract(
-            $results,
-            '{n}.'.$model->name.'.text'
-        );
+    private function addHighlightMarkers($model, &$results, $search) {
+        // Sort the results by lang, i.e. by index
+        $docsByLang = array();
+        $size = count($results);
+        foreach ($results as $i => $result) {
+            $lang = $result[$model->name]['lang'];
+            $text = $result[$model->name]['text'];
+            if (!array_key_exists($lang, $docsByLang)) {
+                $docsByLang[$lang] = array_fill(0, $size, '');
+            }
+            $docsByLang[$lang][$i] = $text;
+        }
+
+        // Call BuildExcerpts() for each index and merge the results
         $options = array(
             'query_mode' => true,
             'before_match' => '%__START_MATCH__%',
             'after_match' => '%__END_MATCH__%',
             'chunk_separator' => '%__CHUNK_SEPARATOR__%',
         );
-        $excerpts = $this->runtime[$model->alias]['sphinx']->BuildExcerpts(
-            $documents,
-            $index,
-            $search,
-            $options
-        );
+        $mergedExcerpts = array();
+        foreach ($docsByLang as $lang => $documents) {
+            $excerpts = $this->runtime[$model->alias]['sphinx']->BuildExcerpts(
+                $documents,
+                $lang.'_main_index',
+                $search,
+                $options
+            );
+            foreach ($excerpts as $i => $excerpt) {
+                if (!empty($excerpt)) {
+                    $mergedExcerpts[$i] = $excerpt;
+                }
+            }
+        }
+
+        // Insert highlight markers in $results
         foreach ($results as $i => $result) {
-            $excerpt = explode($options['chunk_separator'], $excerpts[$i]);
+            $excerpt = explode($options['chunk_separator'], $mergedExcerpts[$i]);
             $highlight = array(
                 array($options['before_match'], $options['after_match']),
                 $excerpt
@@ -187,10 +206,9 @@ class SphinxBehavior extends ModelBehavior
 
     public function afterFind(&$model, $results, $primary) {
         if(!is_null($this->_cached_query)) {
-            list($search, $indexes) = $this->_cached_query;
+            $search = $this->_cached_query;
             if ($search) {
-                $index = $indexes[0];
-                $this->addHighlightMarkers($model, $results, $search, $index);
+                $this->addHighlightMarkers($model, $results, $search);
             }
             $this->_cached_query = null;
         }
