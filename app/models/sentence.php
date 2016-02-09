@@ -72,6 +72,10 @@ class Sentence extends AppModel
         ),
         'SentenceAnnotation',
         'Transcription',
+        'Translation' => array(
+            'className' => 'Translation',
+            'foreignKey' => 'sentence_id',
+        ),
     );
 
     public $hasOne = 'ReindexFlag';
@@ -114,13 +118,18 @@ class Sentence extends AppModel
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
+
         if (!Configure::read('AutoTranscriptions.enabled')) {
             $this->Behaviors->disable('Transcriptable');
         }
         if (Configure::read('Search.enabled')) {
             $this->Behaviors->attach('Sphinx');
         }
+
         $this->_findMethods['random'] = true;
+
+        $this->hasMany['Translation']['finderQuery']
+            = $this->Translation->hasManyTranslationsLikeSqlQuery();
     }
 
     private function clean($text)
@@ -623,7 +632,7 @@ class Sentence extends AppModel
             $languages = CurrentUser::getLanguages();
         }
 
-        return $this->Translation->find($id, $languages);
+        return $this->Translation->getTranslationsOf($id, $languages);
     }
 
 

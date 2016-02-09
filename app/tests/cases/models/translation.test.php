@@ -35,7 +35,7 @@ class TranslationTestCase extends CakeTestCase {
         $this->Translation->unbindModel(
             array('hasMany' => array('Transcription'))
         );
-        $result = $this->Translation->find(5, array());
+        $result = $this->Translation->getTranslationsOf(5, array());
         $expected = array(
             'Translation' => array(
                 array(
@@ -79,7 +79,7 @@ class TranslationTestCase extends CakeTestCase {
     }
 
     function _assertFind($sentenceId, $langs, $expectedTranslationIds, $expectedIndirectTranslationIds) {
-        $result = $this->Translation->find($sentenceId, $langs);
+        $result = $this->Translation->getTranslationsOf($sentenceId, $langs);
         $result = Set::classicExtract($result, '{}.{n}.Translation.id');
         $expected = array(
             'Translation' => $expectedTranslationIds,

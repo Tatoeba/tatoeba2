@@ -48,37 +48,51 @@ class Translation extends AppModel
         }
     }
 
-    public function find($sentenceId, $languages)
+    /**
+     * Return an SQL query that retrieves direct and indirect translations
+     * fast. It returns results that mimics a regular hasMany relationship,
+     * so that it interfaces well with CakePHP's Containable behavior.
+     */
+    public function hasManyTranslationsLikeSqlQuery()
     {
-        $translations = $this->_getTranslationsOf($sentenceId, $languages);
-
-        $orderedTranslations = array(
-            'Translation' => array(),
-            'IndirectTranslation' => array()
+        $dbo = $this->getDataSource();
+        $query = $this->fetchTranslationsQuery('{$__cakeID__$}');
+        $query = array_merge(
+            array(
+                'table' => $dbo->fullTableName($this),
+                'alias' => $this->alias,
+                'conditions' => array(),
+                'group' => null,
+                'order' => null,
+                'limit' => null,
+            ),
+            $query
         );
-        $map = array(
-            '0' => 'Translation',
-            '1' => 'IndirectTranslation',
+        $sqlQuery = $dbo->buildStatement($query, $this);
+        $sqlQuery = $dbo->buildStatement(
+            array(
+                'fields' => array('*'),
+                'table' => "($sqlQuery)",
+                'alias' => 'Translation',
+                'conditions' => array(),
+                'group' => null,
+                'order' => null,
+                'limit' => null,
+            ),
+            $this
         );
-        foreach ($translations as $record) {
-            $distance = $record['AllTranslations']['type'];
-            unset($record['AllTranslations']);
-            $orderedTranslations[ $map[$distance] ][] = $record;
-        };
-
-        return $orderedTranslations;
+        return $sqlQuery;
     }
 
-
     /**
-     * Get translations of a given sentence and translations of translations.
+     * Build the array parameter for find() that allows fast retrieval
+     * of direct and indirect translations of sentence $id.
      *
-     * @param int   $id    Id of the sentence we want translations of.
-     * @param array $langs To filter translations only in some languages.
+     * @param int  $id Sentence id the query will fetch translations of.
      *
-     * @return array Array of translations (direct and indirect).
+     * @return array find()-compatible options
      */
-    private function _getTranslationsOf($id, $langs)
+    public function fetchTranslationsQuery($id)
     {
         /**
          * This query is constructed with a subquery, which finds the
@@ -87,11 +101,13 @@ class Translation extends AppModel
          * all the sentences with these ids, along with the type.
          * In SQL terms, it looks like this:
          *
-         *   SELECT AllTranslations.type, Translation.*
+         *   SELECT
+         *     AllTranslations.type, AllTranslations.sentence_id, Translation.*
          *   FROM
          *     sentences AS Translation,
          *     (
-         *       SELECT IF(Link.sentence_id = IndirectLink.translation_id,
+         *       SELECT Link.sentence_id as sentence_id,
+         *              IF(Link.sentence_id = IndirectLink.translation_id,
          *                IndirectLink.sentence_id, IndirectLink.translation_id)
          *                AS translation_id,
          *              MIN(Link.sentence_id <> IndirectLink.translation_id)
@@ -109,6 +125,7 @@ class Translation extends AppModel
         $subQuery = $dbo->buildStatement(
             array(
                 'fields' => array(
+                    "Link.sentence_id as sentence_id",
                     "IF(Link.sentence_id = IndirectLink.translation_id, "
                         ."IndirectLink.sentence_id, "
                         ."IndirectLink.translation_id) "
@@ -135,8 +152,7 @@ class Translation extends AppModel
             $this
         );
 
-        $conditions = $langs ? array('Translation.lang' => $langs) : array();
-        return parent::find('all', array(
+        return array(
             'joins' => array(
                 array(
                     'table' => "($subQuery)",
@@ -144,9 +160,9 @@ class Translation extends AppModel
                     'conditions' => array('Translation.id = AllTranslations.translation_id'),
                 )
             ),
-            'conditions' => $conditions,
             'fields' => array(
                 'AllTranslations.type',
+                'AllTranslations.sentence_id',
                 'Translation.id',
                 'Translation.text',
                 'Translation.user_id',
@@ -156,12 +172,45 @@ class Translation extends AppModel
                 'Translation.correctness',
             ),
             'order' => array('Translation.lang'),
-            'contain' => array(
-                'Transcription' => array(
-                    'User' => array('fields' => 'username')
-                )
-            ),
-        ));
+        );
+    }
+
+    /**
+     * Get translations of a given sentence and translations of translations.
+     *
+     * @param int   $id    Id of the sentence we want translations of.
+     * @param array $langs To filter translations only in some languages.
+     *
+     * @return array Array of translations (direct and indirect).
+     */
+    public function getTranslationsOf($id, $langs)
+    {
+        $query = $this->fetchTranslationsQuery($id);
+        if ($langs) {
+            $query['conditions']['Translation.lang'] = $langs;
+        }
+        $query['contain'] = array(
+            'Transcription' => array(
+                'User' => array('fields' => 'username')
+            )
+        );
+        $translations = parent::find('all', $query);
+
+        $orderedTranslations = array(
+            'Translation' => array(),
+            'IndirectTranslation' => array()
+        );
+        $map = array(
+            '0' => 'Translation',
+            '1' => 'IndirectTranslation',
+        );
+        foreach ($translations as $record) {
+            $distance = $record['AllTranslations']['type'];
+            unset($record['AllTranslations']);
+            $orderedTranslations[ $map[$distance] ][] = $record;
+        };
+
+        return $orderedTranslations;
     }
 }
 ?>
