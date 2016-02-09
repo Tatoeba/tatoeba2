@@ -182,7 +182,7 @@ class ActivitiesController extends AppController
             'user_id' => $userId
         );
         if (!empty($lang)) {
-            $conditions['lang'] = $lang;
+            $conditions['Sentence.lang'] = $lang;
         }
 
         $this->paginate = array(
