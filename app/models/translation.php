@@ -86,14 +86,14 @@ class Translation extends AppModel
 
     /**
      * Build the array parameter for find() that allows fast retrieval
-     * of direct and indirect translations of sentence $id.
+     * of direct and indirect translations of sentences of id $ids.
      *
-     * @param int  $id Sentence id the query will fetch translations of.
+     * @param array or int $ids Sentence(s) id the query will fetch translations of.
      * @param bool $escapeId Escape $id while building SQL internally.
      *
      * @return array find()-compatible options
      */
-    public function fetchTranslationsQuery($id, $escapeId = true)
+    public function fetchTranslationsQuery($ids, $escapeId = true)
     {
         /**
          * This query is constructed with a subquery, which finds the
@@ -124,9 +124,9 @@ class Translation extends AppModel
          */
         $dbo = $this->getDataSource();
         if ($escapeId) {
-            $conditions = array('Link.sentence_id' => $id);
+            $conditions = array('Link.sentence_id' => $ids);
         } else {
-            $conditions = array("Link.sentence_id = $id");
+            $conditions = array("Link.sentence_id = $ids");
         }
         $subQuery = $dbo->buildStatement(
             array(
@@ -153,7 +153,7 @@ class Translation extends AppModel
                 )),
                 'conditions' => $conditions,
                 'order' => null,
-                'group' => 'translation_id',
+                'group' => array('sentence_id', 'translation_id'),
             ),
             $this
         );
@@ -197,16 +197,16 @@ class Translation extends AppModel
     }
 
     /**
-     * Get translations of a given sentence and translations of translations.
+     * Get translations of one or more given sentences and translations of translations.
      *
-     * @param int   $id    Id of the sentence we want translations of.
+     * @param int   $ids   Ids of the sentences we want translations of.
      * @param array $langs To filter translations only in some languages.
      *
      * @return array Array of translations (direct and indirect).
      */
-    public function getTranslationsOf($id, $langs)
+    public function getTranslationsOf($ids, $langs)
     {
-        $query = $this->fetchTranslationsQuery($id);
+        $query = $this->fetchTranslationsQuery($ids);
         if ($langs) {
             $query['conditions']['Translation.lang'] = $langs;
         }
