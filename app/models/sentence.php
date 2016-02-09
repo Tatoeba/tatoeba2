@@ -63,7 +63,6 @@ class Sentence extends AppModel
     );
 
     public $hasMany = array(
-        'Link',
         'Contribution',
         'SentenceComment',
         'Favorites_users' => array (
@@ -93,8 +92,8 @@ class Sentence extends AppModel
     );
 
     public $hasAndBelongsToMany = array(
-        'Translation' => array(
-            'className' => 'Translation',
+        'Link' => array(
+            'className' => 'Link',
             'joinTable' => 'sentences_translations',
             'foreignKey' => 'translation_id',
             'associationForeignKey' => 'sentence_id'
@@ -262,7 +261,7 @@ class Sentence extends AppModel
             'first',
             array(
                 'conditions' => array('Sentence.id' => $this->id),
-                'contain' => array ('Translation', 'User')
+                'contain' => array('Link', 'User')
             )
         );
 
@@ -298,7 +297,7 @@ class Sentence extends AppModel
 
         // --- Logs for links ---
         $action = 'delete';
-        foreach ($this->data['Translation'] as $translation) {
+        foreach ($this->data['Link'] as $translation) {
             $this->Contribution->saveLinkContribution(
                 $sentenceId, $translation['id'], $action
             );
