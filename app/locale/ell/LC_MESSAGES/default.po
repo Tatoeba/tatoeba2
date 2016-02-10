@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-21 17:10+0000\n"
-"PO-Revision-Date: 2016-01-22 10:00+0000\n"
+"POT-Creation-Date: 2016-02-06 16:58+0000\n"
+"PO-Revision-Date: 2016-02-07 09:57+0000\n"
 "Last-Translator: gillux\n"
 "Language-Team: Greek (http://www.transifex.com/tatoeba/tatoeba_website/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -153,21 +153,21 @@ msgstr "Οι αλλαγές στο σχόλιο σου έχουν αποθηκε
 msgid "We could not save your changes."
 msgstr "Δεν μπορέσαμε να αποθηκεύσουμε τις αλλαγές σου."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L281
 msgid "You cannot delete this sentence."
 msgstr "Δεν μπορείτε να διαγράψετε αυτή τη φράση."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L294
 msgid "The sentence #{id} has been deleted."
 msgstr "Η φράση #{id} έχει διαγραφεί. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L302
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Σφάλμα: η φράση #{id} δεν κατέστη δυνατόν να διαγραφεί. "
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L551
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L553
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -428,12 +428,12 @@ msgstr "Το μήνυμα που προσπαθείτε να προβάλλετ�
 msgid "unnamed list"
 msgstr "κατάλογος χωρίς όνομα"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L214
 msgid ""
 "The provided sentence differs from the original one near “{character}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L222
 msgid "The provided sentence is shorter than the orginial one."
 msgstr ""
 
@@ -441,18 +441,18 @@ msgstr ""
 #. joining each item with it. For instance, if you translate this
 #. string to “/” and the list is A, B, C, then the translated
 #. enumeration will be A/B/C.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L236
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L238
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L320
 msgid ", "
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L241
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L311
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L323
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
@@ -682,7 +682,7 @@ msgid "Sentences marked as \"not OK\""
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L32
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L46
 msgid "All sentences"
 msgstr "Όλες οι φράσεις "
 
@@ -761,7 +761,7 @@ msgstr "Λέξεις:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L343
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L60
 msgid "Language:"
 msgstr "Γλώσσα:"
@@ -1139,7 +1139,7 @@ msgstr "Βοήθεια"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/advanced_search.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L31
 msgctxt "title"
 msgid "Advanced search"
 msgstr ""
@@ -1164,7 +1164,11 @@ msgstr "Από"
 msgid "To"
 msgstr "Πρός"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L30
+msgid "No results found."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
 msgid "No results found for: {search}"
 msgstr ""
 
@@ -1433,9 +1437,9 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Χρησιμοποιήστε ιδιωτικά μηνύματα για να συζητήσετε πράγματα που δεν σχετίζονται με τη φράση."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L188
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L393
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L675
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L670
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L154
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L117
@@ -1721,8 +1725,8 @@ msgstr "Προσθήκη μιας φράσης σε αυτόν τον κατάλ
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L455
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L372
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L674
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L669
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L131
 msgid "OK"
@@ -1964,7 +1968,7 @@ msgstr "επόμενο"
 msgid "random"
 msgstr "τυχαίο"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L210
 msgid "all lists"
 msgstr "όλοι οι κατάλογοι"
 
@@ -2070,21 +2074,21 @@ msgstr "Δεν υπάρχει αρχείο ήχου γι΄αυτή τη φράσ
 msgid "Copy sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L188
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L183
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Εμφάνιση 1 περισσότερης μετάφρασης"
 msgstr[1] "Εμφάνιση {αριθμός} περισσότερων μεταφράσεων"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L216
 msgid "Fewer translations"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L323
 msgid "Translation:"
 msgstr "Μετάφραση:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L379
 msgid "Submit translation"
 msgstr "Υποβολή μετάφρασης"
 
@@ -2130,64 +2134,64 @@ msgid "remove tag from sentence"
 msgstr "απομάκρυνση ετικέτας από τη φράση"
 
 #. @translators: refers to a transcription
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L134
 msgid "Last edited by {author} the {date}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L142
 msgid "This alternative script was generated by a piece of software"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L145
 msgid "This transcription was generated by a piece of software"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L155
 msgid "Reset"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L180
 msgid "Show alternative script"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L161
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L182
 msgid "Show transcription"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L224
 msgid "Edit alternative script"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L226
 msgid "Edit transcription"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L232
 msgid "You cannot edit this script."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L234
 msgid "You cannot edit this transcription."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L255
 msgid ""
 "This alternative script may contain errors because it has been generated by "
 "a piece of software that is not perfect."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L241
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L262
 msgid ""
 "This transcription may contain errors because it has been generated by a "
 "piece of software that is not perfect."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L276
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L282
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
 msgstr ""
@@ -3086,32 +3090,53 @@ msgstr "Ο {user} δεν έχει καμία φράση στα {language}"
 msgid "{user} does not have any sentence"
 msgstr "{user} δεν έχει κάποια φράση"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L76
+msgid "Search disabled"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L33
 msgid "Sentences with: {keywords}"
 msgstr "Φράσεις με: {keywords}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L36
 msgid "Sentences in {language} translated into {translationLanguage}"
 msgstr "Φράσεις από τα {language} μεταφρασμένες στα {translationLanguage}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L40
 msgid "Sentences in {language}"
 msgstr "Φράσεις στα  {language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L43
 msgid "Sentences translated into {language}"
 msgstr "Φράσεις μεταφρασμένες στα {language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L54
 msgid "Warning: the following criteria have been ignored:{list}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L66
 msgid "More search criteria"
 msgstr "Περισσότερα κριτήρια αναζήτησης"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L77
+msgid ""
+"Due to technical reasons, the search feature is currently disabled. We are "
+"sorry for the inconvenience. Please try again later."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L83
+msgid "Search error"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L87
+msgid ""
+"An error occured while performing the search. If the problem persists, "
+"please <a href=\"{}\">let us know</a>."
+msgstr ""
+
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L102
 msgid "Search: {keywords}"
 msgstr "Αναζήτηση: {keywords}"
 
