@@ -47,6 +47,7 @@ class Sentence extends AppModel
 
     public $name = 'Sentence';
     public $actsAs = array('Containable', 'Transcriptable');
+    public $recursive = -1;
 
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
@@ -244,7 +245,6 @@ class Sentence extends AppModel
         $sentences = $this->find('all', array(
             'conditions' => array('id' => $ids),
             'fields' => array('id as sentence_id', 'lang'),
-            'recursive' => -1,
         ));
         foreach ($sentences as &$rec) {
             unset($rec['Sentence']['script']); // TODO get this removed
@@ -480,7 +480,6 @@ class Sentence extends AppModel
             array(
                 'fields' => array('id'),
                 'sphinx' => $sphinx,
-                'contain' => array(),
                 'search' => '',
                 'limit' => 100,
             )
@@ -595,7 +594,6 @@ class Sentence extends AppModel
                 'conditions' => array(
                     'Sentence.user_id' => $userId
                 ),
-                'contain' => array()
             )
         );
     }
@@ -648,7 +646,6 @@ class Sentence extends AppModel
             array(
                 'fields' => array("id"),
                 'conditions' => $conditions,
-                'contain'=> array()
             )
         );
 
@@ -912,7 +909,6 @@ class Sentence extends AppModel
     {
         $sentence = $this->find('first', array(
             'conditions' => array('id' => $sentenceId),
-            'recursive' => -1,
             'fields' => array('lang', 'user_id'),
         ));
         if (!$sentence) {
@@ -962,14 +958,7 @@ class Sentence extends AppModel
      */
     public function getTotalNumberOfSentences()
     {
-        $numSentences = $this->find(
-            'count',
-            array(
-                'contain' => array()
-            )
-        );
-
-        return $numSentences;
+        return $this->find('count');
     }
 
 
@@ -1012,7 +1001,6 @@ class Sentence extends AppModel
             array(
                 'fields' => array('text'),
                 'conditions' => array('id' => $sentenceId),
-                'contain' => array()
             )
         );
 
@@ -1033,7 +1021,6 @@ class Sentence extends AppModel
             array(
                 'fields' => array('lang'),
                 'conditions' => array('id' => $sentenceId),
-                'contain' => array()
             )
         );
         
@@ -1060,7 +1047,6 @@ class Sentence extends AppModel
         $result = $this->find('all', array(
             'fields' => array('lang', 'id'),
             'conditions' => array('Sentence.id' => $sentencesIds),
-            'recursive' => -1
         ));
         return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.lang');
     }

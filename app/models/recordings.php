@@ -52,7 +52,6 @@ class Recordings extends AppModel
         $sentences = $this->Sentence->find('all', array(
             'conditions' => array('Sentence.id' => $allSentenceIds),
             'fields' => array('id', 'lang', 'hasaudio'),
-            'recursive' => -1
         ));
         $sentences = Set::combine($sentences, '{n}.Sentence.id', '{n}.Sentence');
 

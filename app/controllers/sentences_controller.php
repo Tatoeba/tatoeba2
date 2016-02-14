@@ -262,7 +262,6 @@ class SentencesController extends AppController
             return;
         }
 
-        $this->Sentence->recursive = -1;
         $sentence = $this->Sentence->findById($id);
         if (!$sentence) {
             $this->redirect(array('controller' => 'pages', 'action' => 'home'));
@@ -381,7 +380,6 @@ class SentencesController extends AppController
             $realSentenceId = Sanitize::paranoid($hack_array[1]);
             $sentenceLang = Sanitize::paranoid($hack_array[0]);
 
-            $this->Sentence->recursive = -1;
             $sentence = $this->Sentence->findById($realSentenceId);
             if (!$sentence || !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id'])) {
                 $this->redirect(array('controller' => 'pages', 'action' => 'home'));
