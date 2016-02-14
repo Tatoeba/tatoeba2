@@ -928,7 +928,9 @@ class SentencesController extends AppController
         $translationLang = null,
         &$real_total = 0
     ) {
-        if ($translationLang != "und") {
+        if ($translationLang == "none") {
+            unset($pagination[$model]['contain']['Translation']);
+        } elseif ($translationLang != "und") {
             $this->Sentence->linkTranslationModel(array(
                 'Translation.lang' => $translationLang
             ));
