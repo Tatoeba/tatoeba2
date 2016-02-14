@@ -157,7 +157,7 @@ class Autotranscription
     /**
      * Convert Japanese text into furigana.
      */
-    public function jpn_Jpan_to_Hrkt_generate($text, &$needsReview)
+    public function jpn_Jpan_to_Hrkt_generate($sentence, &$needsReview)
     {
         if (!$this->nihongoparserd_hdl) {
             $this->nihongoparserd_hdl = curl_init();
@@ -166,7 +166,7 @@ class Autotranscription
                 CURLOPT_HEADER => false,
             ));
         }
-        $url = "http://127.0.0.1:8842/furigana?str=".urlencode($text);
+        $url = "http://127.0.0.1:8842/furigana?str=".urlencode($sentence);
         curl_setopt($this->nihongoparserd_hdl, CURLOPT_URL, $url);
         $response = curl_exec($this->nihongoparserd_hdl);
         if ($response === false) {
@@ -190,7 +190,10 @@ class Autotranscription
             }
             $romanization .= $this->_unpack_grouped_furigana($group);
         }
-        return trim($romanization);
+        $romanization = trim($romanization);
+
+        $needsReview = $romanization != $sentence;
+        return $romanization;
     }
 
     public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr, &$errors) {
