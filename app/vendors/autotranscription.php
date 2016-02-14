@@ -174,7 +174,7 @@ class Autotranscription
         }
         $xml = DOMDocument::loadXML($response, LIBXML_NOBLANKS|LIBXML_NOCDATA);
 
-        $romanization = '';
+        $furiganas = '';
         $parse = $xml->firstChild->firstChild;
         foreach ($parse->childNodes as $token) {
             $group = array('');
@@ -184,16 +184,16 @@ class Autotranscription
                     $furigana = $reading->getAttribute('furigana');
                     $this->_append_furigana($group, $text, $furigana);
                 } else {
-                    $romanization .= $this->_unpack_grouped_furigana($group);
-                    $romanization .= $text;
+                    $furiganas .= $this->_unpack_grouped_furigana($group);
+                    $furiganas .= $text;
                 }
             }
-            $romanization .= $this->_unpack_grouped_furigana($group);
+            $furiganas .= $this->_unpack_grouped_furigana($group);
         }
-        $romanization = trim($romanization);
+        $furiganas = trim($furiganas);
 
-        $needsReview = $romanization != $sentence;
-        return $romanization;
+        $needsReview = $furiganas != $sentence;
+        return $furiganas;
     }
 
     public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr, &$errors) {
