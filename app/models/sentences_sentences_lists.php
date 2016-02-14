@@ -40,7 +40,6 @@ class SentencesSentencesLists extends AppModel
     public $name = 'SentencesSentencesLists';
     public $useTable = 'sentences_sentences_lists';
     public $actsAs = array('Containable');
-    public $recursive = -1;
 
     public $belongsTo = array(
         'Sentence' => array('foreignKey' => 'sentence_id'),

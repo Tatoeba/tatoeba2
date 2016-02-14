@@ -17,6 +17,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 class AppModel extends Model {
+
+    public $recursive = -1;
+
     /**
      * Function to be used in beforeSave().
      * Checks if the save() is about to update any of the provided $fields.

@@ -39,7 +39,6 @@ class Translation extends AppModel
     public $actsAs = array('Containable', 'Transcriptable');
     public $useTable = 'sentences';
     public $hasMany = array('Transcription');
-    public $recursive = -1;
 
     public function __construct($id = false, $table = null, $ds = null)
     {

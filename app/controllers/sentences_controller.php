@@ -685,7 +685,6 @@ class SentencesController extends AppController
             $tagsArray = array_map('trim', $tagsArray);
             $result = $this->Tag->find('all', array(
                 'conditions' => array('name' => $tagsArray),
-                'contain' => array(),
                 'fields' => array('id', 'name')
             ));
             $tagsById = Set::combine($result, '{n}.Tag.id', '{n}.Tag.name');

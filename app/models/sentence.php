@@ -44,10 +44,8 @@ App::import('Vendor', 'LanguagesLib');
 
 class Sentence extends AppModel
 {
-
     public $name = 'Sentence';
     public $actsAs = array('Containable', 'Transcriptable');
-    public $recursive = -1;
 
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;

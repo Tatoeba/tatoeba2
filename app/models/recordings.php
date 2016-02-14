@@ -19,8 +19,6 @@
 
 class Recordings extends AppModel
 {
-    public $recursive = -1;
-
     public $useTable = false;
 
     public $belongsTo = array(

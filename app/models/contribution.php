@@ -41,8 +41,6 @@ class Contribution extends AppModel
     );
     public $belongsTo = array('Sentence', 'User');
 
-    public $recursive = -1;
-
     /**
      * Get number of contributions made by a given user
      *
@@ -55,7 +53,6 @@ class Contribution extends AppModel
         return $this->find(
             'count',
             array(
-                'contain' => array(),
                 'conditions' => array(
                     'Contribution.user_id' => $userId
                 )
@@ -177,7 +174,6 @@ class Contribution extends AppModel
                     'Contribution.translation_id' => null,
                     'Contribution.action' => 'insert'
                 ),
-                'contain' => array()
             )
         );
     }

@@ -173,7 +173,6 @@ class TagsController extends AppController
         $this->paginate = array(
             'limit' => 50,
             'fields' => array('name', 'id', 'nbrOfSentences'),
-            'contain' => array(),
             'order' => 'nbrOfSentences DESC'
         );
         if (!empty($filter)) {

@@ -216,7 +216,6 @@ class Tag extends AppModel
             'first',
             array(
                 'conditions' => array('Tag.internal_name' => $tagInternalName),
-                'contain' => array(),
                 'fields' => 'id'
             )
         );
@@ -234,7 +233,6 @@ class Tag extends AppModel
             'first',
             array(
                 'conditions' => array('Tag.name'=>$tagName),
-                'contain' => array(),
                 'fields' => 'id'
             )
         );
@@ -252,7 +250,6 @@ class Tag extends AppModel
         'first',
             array(
                 'conditions' => array('Tag.id'=>$tagId),
-                'contain' => array(),
                 'fields' => 'name'
             )
         );
@@ -270,7 +267,6 @@ class Tag extends AppModel
             'first',
             array(
                 'conditions' => array('Tag.id'=>$tagId),
-                'contain' => array(),
                 'fields' => 'name'
             )
         );

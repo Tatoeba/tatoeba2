@@ -124,7 +124,6 @@ class PrivateMessage extends AppModel
                     'PrivateMessage.folder' => 'Inbox',
                     'PrivateMessage.isnonread' => 1
                 ),
-                "contain" => array()
             )
         );
     }

@@ -52,7 +52,6 @@ class SentenceComment extends AppModel
             'count',
             array(
                 'conditions' => array( 'SentenceComment.user_id' => $userId),
-                'contain' => array()
              )
         );
 
@@ -191,7 +190,6 @@ class SentenceComment extends AppModel
             array(
                 'fields' => array('SentenceComment.user_id'),
                 'conditions' => array('SentenceComment.id' => $commentId),
-                'contain' => array()
             )
         );
 

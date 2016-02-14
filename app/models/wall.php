@@ -249,7 +249,6 @@ class Wall extends AppModel
             array(
                 'fields' => array('owner'),
                 'conditions' => array('id' => $messageId),
-                'contain' => array()
             )
         );
 
@@ -282,7 +281,6 @@ class Wall extends AppModel
                     'lft <=' => $replyLft,
                     'rght >=' => $replyRght
                 ),
-                'contain' => array()
             )
         );
 
@@ -349,7 +347,6 @@ class Wall extends AppModel
             array(
                 'fields' => array('lft', 'rght'),
                 'conditions' => array('id' => $messageId),
-                'contain' => array()
             )
         );
 
@@ -372,7 +369,6 @@ class Wall extends AppModel
                 'conditions' => array(
                     'id' => $messageId,
                 ),
-                'contain' => array()
             )
         );
         return $replyLftRght['Wall']['lft'] != ($replyLftRght['Wall']['rght'] - 1);
@@ -404,7 +400,6 @@ class Wall extends AppModel
                     'lft <=' => $replyLft,
                     'rght >=' => $replyRght
                 ),
-                'contain' => array()
             )
         );
 

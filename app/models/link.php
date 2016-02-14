@@ -42,8 +42,6 @@ class Link extends AppModel
         'Sentence'
     );
 
-    public $recursive = -1;
-
     public function beforeSave() {
         if (   isset($this->data[$this->alias]['sentence_id'])
             && isset($this->data[$this->alias]['translation_id'])) {

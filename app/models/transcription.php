@@ -88,7 +88,6 @@ class Transcription extends AppModel
     );
 
     public $actsAs = array('Containable');
-    public $recursive = -1;
 
     public $validate = array(
         'sentence_id' => array(
