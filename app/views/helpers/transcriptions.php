@@ -104,8 +104,7 @@ class TranscriptionsHelper extends AppHelper
             $transcr['user_id'], $sentenceOwnerId
         );
         $isEditable = $canEdit && !$transcr['readonly'];
-        $isReviewed = isset($transcr['user_id']);
-        $needsReview = $transcr['needsReview'] && !$isReviewed;
+        $needsReview = $transcr['needsReview'];
 
         $toggleButton = $this->toggleButton($transcr);
 
