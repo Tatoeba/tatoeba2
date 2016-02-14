@@ -157,7 +157,7 @@ class Autotranscription
     /**
      * Convert Japanese text into furigana.
      */
-    public function jpn_Jpan_to_Hrkt_generate($text)
+    public function jpn_Jpan_to_Hrkt_generate($text, &$needsReview)
     {
         if (!$this->nihongoparserd_hdl) {
             $this->nihongoparserd_hdl = curl_init();
@@ -190,7 +190,6 @@ class Autotranscription
             }
             $romanization .= $this->_unpack_grouped_furigana($group);
         }
-
         return trim($romanization);
     }
 
@@ -280,11 +279,13 @@ class Autotranscription
         return $this->_sino_detectScript($text);
     }
 
-    public function cmn_Hant_to_Hans_generate($text) {
+    public function cmn_Hant_to_Hans_generate($text, &$needsReview) {
+        $needsReview = false;
         return $this->_call_sinoparserd('simp', $text);
     }
 
-    public function cmn_Hans_to_Hant_generate($text) {
+    public function cmn_Hans_to_Hant_generate($text, &$needsReview) {
+        $needsReview = false;
         return $this->_call_sinoparserd('trad', $text);
     }
 
@@ -295,13 +296,13 @@ class Autotranscription
         return $text;
     }
 
-    public function cmn_Hant_to_Latn_generate($text) {
+    public function cmn_Hant_to_Latn_generate($text, &$needsReview) {
         $pinyin = $this->_call_sinoparserd('pinyin', $text);
         $pinyin = $this->_basic_pinyin_cleanup($pinyin);
         return $pinyin;
     }
 
-    public function cmn_Hans_to_Latn_generate($text) {
+    public function cmn_Hans_to_Latn_generate($text, &$needsReview) {
         $pinyin = $this->_call_sinoparserd('pinyin', $text);
         $pinyin = $this->_basic_pinyin_cleanup($pinyin);
         return $pinyin;
@@ -339,11 +340,11 @@ class Autotranscription
         return $this->_sino_detectScript($text);
     }
 
-    public function yue_Hant_to_Latn_generate($text) {
+    public function yue_Hant_to_Latn_generate($text, &$needsReview) {
         return $this->yue_jyutping($text);
     }
 
-    public function yue_Hans_to_Latn_generate($text) {
+    public function yue_Hans_to_Latn_generate($text, &$needsReview) {
         return $this->yue_jyutping($text);
     }
 
@@ -386,7 +387,8 @@ class Autotranscription
         return ($cyr >= $lat) ? 'Cyrl' : 'Latn';
     }
 
-    public function uzb_Latn_to_Cyrl_generate($text) {
+    public function uzb_Latn_to_Cyrl_generate($text, &$needsReview) {
+        $needsReview = false;
         $needles = array(
             '‘', '’', "s'h", "S'h", "S'H",
             "O'", "o'", "G'", "g'", 'SH',
@@ -430,7 +432,8 @@ class Autotranscription
         return str_replace($needles, $replacements, $text);
     }
 
-    public function uzb_Cyrl_to_Latn_generate($text) {
+    public function uzb_Cyrl_to_Latn_generate($text, &$needsReview) {
+        $needsReview = false;
         $needles =  array(
             'ац',  'ец',  'иц',  'оц',  'уц',
             'ўц',   'эц',  'АЦ',  'ЕЦ',  'ИЦ',

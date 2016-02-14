@@ -215,7 +215,7 @@ class TranscriptionTestCase extends CakeTestCase {
         ));
         $this->AutoTranscr->expectOnce(
             'jpn_Jpan_to_Hrkt_generate',
-            array($jpnSentence['Sentence']['text'])
+            array($jpnSentence['Sentence']['text'], true)
         );
 
         $this->Transcription->generateTranscription($jpnSentence, 'Hrkt');

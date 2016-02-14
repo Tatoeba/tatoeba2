@@ -13,6 +13,7 @@ CREATE TABLE `transcriptions` (
   `script` varchar(4) NOT NULL,
   `text` varbinary(10000) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `needsReview` tinyint(1) NOT NULL DEFAULT '1',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),

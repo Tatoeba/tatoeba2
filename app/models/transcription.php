@@ -41,7 +41,6 @@ class Transcription extends AppModel
         'cmn-Hans' => array(
             'Hant' => array(
                 'type' => 'altscript',
-                'needsReview' => false,
                 'readonly' => true,
             ),
             'Latn' => array(
@@ -50,7 +49,6 @@ class Transcription extends AppModel
         'cmn-Hant' => array(
             'Hans' => array(
                 'type' => 'altscript',
-                'needsReview' => false,
                 'readonly' => true,
             ),
             'Latn' => array(
@@ -69,21 +67,18 @@ class Transcription extends AppModel
         'uzb-Latn' => array(
             'Cyrl' => array(
                 'type' => 'altscript',
-                'needsReview' => false,
                 'readonly' => true,
             ),
         ),
         'uzb-Cyrl' => array(
             'Latn' => array(
                 'type' => 'altscript',
-                'needsReview' => false,
                 'readonly' => true,
             ),
         ),
     );
     private $defaultFlags = array(
         'readonly' => false,
-        'needsReview' => true,
         'type' => 'transcription',
     );
 
@@ -419,7 +414,11 @@ class Transcription extends AppModel
             $targetScript
         );
         if (method_exists($this->autotranscription, $generatorMethod)) {
-            $transcrText = $this->autotranscription->{$generatorMethod}($text);
+            $needsReview = true;
+            $transcrText = $this->autotranscription->{$generatorMethod}(
+                $text,
+                $needsReview
+            );
             if (!$transcrText)
                 return false;
 
@@ -430,6 +429,7 @@ class Transcription extends AppModel
                 'user_id' => null,
             );
             $flags = array_intersect_key($process, $this->defaultFlags);
+            $flags['needsReview'] = $needsReview;
             return array_merge($transcr, $this->defaultFlags, $flags);
         }
         return false;
