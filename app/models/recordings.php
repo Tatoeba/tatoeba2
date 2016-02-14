@@ -64,6 +64,25 @@ class Recordings extends AppModel
             }
         }
 
+        usort($audioFiles, function($a, $b) {
+            /* Sort:
+             * 1. May not be imported
+             * 2. Already has audio
+             * 3. The rest by sentence id
+             */
+            if (isset($a['valid']) && isset($b['valid'])
+                && $a['valid'] != $b['valid']) {
+                return $a['valid'] ? 1 : -1;
+            } elseif (isset($a['hasaudio']) && isset($b['hasaudio'])
+                      && $a['hasaudio'] != $b['hasaudio']) {
+                return $a['hasaudio'] ? -1 : 1;
+            } elseif (isset($a['sentenceId']) && isset($b['sentenceId'])) {
+                return $a['sentenceId'] - $b['sentenceId'];
+            } else {
+                return 0;
+            }
+        });
+
         return $audioFiles;
     }
 

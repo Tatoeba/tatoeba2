@@ -9,6 +9,7 @@ class TranscriptionFixture extends CakeTestFixture {
 		'script' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 10000),
 		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+		'needsReview' => array('type' => 'boolean', 'null' => false, 'default' => '1'),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'unique_transcriptions' => array('column' => array('sentence_id', 'script'), 'unique' => 1)),
@@ -22,6 +23,7 @@ class TranscriptionFixture extends CakeTestFixture {
 			'script' => 'Hrkt',
 			'text' => 'その[問題|もんだい]の[根本|こんぽん][原因|げんいん]は、[現代|げんだい]の[世界|せかい]において、[賢明|けんめい]な[人々|ひとびと]が[猜疑心|さいぎしん]に[満|み]ちている[一方|いっぽう]で、[愚|おろ]かな[人々|ひとびと]が[自信|じしん][過剰|かじょう]であるということである。',
 			'user_id' => 7,
+			'needsReview' => 0,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
 		),
@@ -31,6 +33,7 @@ class TranscriptionFixture extends CakeTestFixture {
 			'script' => 'Hant',
 			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
 			'user_id' => null,
+			'needsReview' => 0,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
 		),
@@ -40,6 +43,7 @@ class TranscriptionFixture extends CakeTestFixture {
 			'script' => 'Hrkt',
 			'text' => 'ちょっと [待|ま]って 。',
 			'user_id' => null,
+			'needsReview' => 1,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
 		),
