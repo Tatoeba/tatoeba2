@@ -551,8 +551,6 @@ class Sentence extends AppModel
      */
     public function getSentenceWithId($id)
     {
-        $contain = $this->contain();
-        $fields = $this->fields();
         $result = $this->find(
             'first',
             array(
