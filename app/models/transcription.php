@@ -390,6 +390,9 @@ class Transcription extends AppModel
             );
             if (!$transcr)
                 return false;
+        } else {
+            if (isset($transcr['user_id']))
+                $transcr['needsReview'] = false;
         }
 
         $params = $this->availableTranscriptions[$langScript][$targetScript];

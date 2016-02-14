@@ -294,7 +294,7 @@ class TranscriptionTestCase extends CakeTestCase {
             'text' => 'あああ',
             'user_id' => 33,
             'readonly' => false,
-            'needsReview' => true,
+            'needsReview' => false,
             'type' => 'altscript',
         );
         $this->assertEqual($expected, $created);
@@ -321,7 +321,7 @@ class TranscriptionTestCase extends CakeTestCase {
             'text' => 'あああ',
             'user_id' => 33,
             'readonly' => false,
-            'needsReview' => true,
+            'needsReview' => false,
             'type' => 'altscript',
         );
         $this->assertEqual($expected, $updated);
@@ -463,6 +463,21 @@ class TranscriptionTestCase extends CakeTestCase {
 
         $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
         $this->assertTrue($result);
+    }
+
+    function testSaveTranscriptionSetsNeedsReviewToFalseWhenSavedByAUser() {
+        $transcr = $this->Transcription->find('first', array(
+            'conditions' => array('sentence_id' => 10)
+        ));
+        $transcr['Transcription']['text'] = 'something new';
+        $transcr['Transcription']['user_id'] = 4;
+
+        $this->Transcription->saveTranscription($transcr['Transcription']);
+
+        $transcr = $this->Transcription->find('first', array(
+            'conditions' => array('sentence_id' => 10)
+        ));
+        $this->assertFalse($transcr['Transcription']['needsReview']);
     }
 
     function testAddGeneratedTranscriptionsAddsEverything() {
