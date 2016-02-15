@@ -68,6 +68,7 @@ class EditSentencesShell extends Shell {
             $this->Sentence->save(array(
                 'id' => $id,
                 'text' => $text,
+                'lang' => $sentence['Sentence']['lang'],
             ));
             echo ".";
             $nb_sentences++;
