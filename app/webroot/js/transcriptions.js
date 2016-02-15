@@ -62,7 +62,8 @@ $(document).ready(function() {
             // Converts the kanji｛reading｝ notation into [kanji|reading]
             var hiragana = 'ぁ-ゖーゝゞ'; // \p{Hiragana}
             var katakana = 'ァ-ヺーヽヾ'; // \p{Katakana}
-            var punct = '　-〄〇-〠（）・'; // 。、「」etc.
+            var punct = '　-〄〇-〠・'; // 。、「」etc.
+            punct += '！＂＃＇（），．／：；？［＼］＾｀～｟｠'; // fullwitdh forms
             var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
             text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
             text = text.replace(uniRegExp('｜', 'g'),  '|');
