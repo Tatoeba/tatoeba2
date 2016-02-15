@@ -64,6 +64,7 @@ $(document).ready(function() {
             var katakana = 'ァ-ヺーヽヾ'; // \p{Katakana}
             var punct = '　-〄〇-〠・'; // 。、「」etc.
             punct += '！＂＃＇（），．／：；？［＼］＾｀～｟｠'; // fullwitdh forms
+            punct += ' '; // space
             var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
             text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
             text = text.replace(uniRegExp('｜', 'g'),  '|');
