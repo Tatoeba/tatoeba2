@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+App::import('Core', 'Sanitize');
+
 class TranscriptionsHelper extends AppHelper
 {
     public $helpers = array(
@@ -49,7 +51,9 @@ class TranscriptionsHelper extends AppHelper
                }
                $ruby = '';
                for ($i = 0; $i < count($kanjis); $i++) {
-                   $ruby .= "<ruby>{$kanjis[$i]}<rp>（</rp><rt>{$readings[$i]}</rt><rp>）</rp></ruby>";
+                   $kanji = Sanitize::html($kanjis[$i]);
+                   $reading = Sanitize::html($readings[$i]);
+                   $ruby .= "<ruby>$kanji<rp>（</rp><rt>$reading</rt><rp>）</rp></ruby>";
                }
                return $ruby;
             },
@@ -302,7 +306,7 @@ class TranscriptionsHelper extends AppHelper
         $text = Sanitize::html($transcr['text']);
 
         if ($transcr['script'] == 'Hrkt') {
-            $ruby = $this->_rubify($text);
+            $ruby = $this->_rubify($transcr['text']);
             $bracketed = $this->_bracketify($text);
             $text = $this->Html->tag('span', $bracketed, array(
                 'style' => 'display:none',
