@@ -52,8 +52,15 @@ class EditSentencesShell extends Shell {
             }
 
             list($id, $text) = $data;
-            if (!$this->Sentence->findById($id)) {
+            $sentence = $this->Sentence->findById($id);
+            if ($sentence === false) {
                 echo "Sentence $id does not exists, skipping!\n";
+                $nb_ignored++;
+                continue;
+            }
+
+            if ($text === $sentence['Sentence']['text']) {
+                echo "Contents of sentence $id already set, skipping!\n";
                 $nb_ignored++;
                 continue;
             }
@@ -67,6 +74,6 @@ class EditSentencesShell extends Shell {
         }
         fclose($stdin);
 
-        echo "\n$nb_sentences sentences edited, $nb_ignored ignored because they don't exist.\n";
+        echo "\n$nb_sentences sentences edited, $nb_ignored ignored.\n";
     }
 }
