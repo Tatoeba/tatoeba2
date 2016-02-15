@@ -31,5 +31,18 @@ class TranscriptionsHelperTestCase extends CakeTestCase {
             '<ruby>言<rp>（</rp><rt>こと</rt><rp>）</rp></ruby>'.
             '<ruby>葉<rp>（</rp><rt>ば</rt><rp>）</rp></ruby>'
         );
+        $this->assertFurigana(
+            '[−2|マイナス|に]',
+            '&minus;2｛マイナス｜に｝',
+            '<ruby>&minus;<rp>（</rp><rt>マイナス</rt><rp>）</rp></ruby>'.
+            '<ruby>2<rp>（</rp><rt>に</rt><rp>）</rp></ruby>'
+        );
+        $this->assertFurigana(
+            '[A&R|エー|アンド|アール]',
+            'A&amp;R｛エー｜アンド｜アール｝',
+            '<ruby>A<rp>（</rp><rt>エー</rt><rp>）</rp></ruby>'.
+            '<ruby>&amp;<rp>（</rp><rt>アンド</rt><rp>）</rp></ruby>'.
+            '<ruby>R<rp>（</rp><rt>アール</rt><rp>）</rp></ruby>'
+        );
     }
 }
