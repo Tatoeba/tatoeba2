@@ -5,10 +5,11 @@ Imouto is a collection of easy-to-use automation scripts for [tatoeba](http://ta
 
 Requirements
 -----------
-These requirements can usually be installed using your package manager.
+These requirements can usually be installed using your package manager. Make sure it provides the required versions, or download them from the official sites.
 * Git
-* VirtualBox ([generic binaries](https://www.virtualbox.org/wiki/Downloads))
+* VirtualBox 4.0 or later ([generic binaries](https://www.virtualbox.org/wiki/Downloads))
 * Ansible 1.4 or later (also available on pip: `pip install ansible`)
+* Vagrant 1.7 or later
 
 Usage Instructions
 -----------
