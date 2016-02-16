@@ -253,7 +253,7 @@ class WallController extends Appcontroller
 
             if ($messagePermissions['canEdit'] == false) {
                 $this->Session->setFlash(
-                    __("You do not have permission to edit this message. ", true).
+                    __("You do not have permission to edit this message.", true).
                     __(
                         "If you have received this message in error, ".
                         "please contact administrators at ".
