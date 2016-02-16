@@ -442,7 +442,11 @@ class Sentence extends AppModel
                  array($lang . '_main_index', $lang . '_delta_index');
         $sphinx = array(
             'index' => $index,
-            'sortMode' => array(SPH_SORT_EXTENDED => "@random")
+            'sortMode' => array(SPH_SORT_EXTENDED => "@random"),
+            'filter' => array(
+                array('user_id', 0, true), // exclude orphans
+                array('ucorrectness', 127, true), // exclude unapproved
+            ),
         );
 
         $results = $this->find(
