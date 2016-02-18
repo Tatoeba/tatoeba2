@@ -93,18 +93,25 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
     
 <div id="main_content">
     <div class="module">
-    <h2><?php __('Random sentences'); ?></h2>
-        <?php
-        foreach ($allSentences as $index=>$sentence) {
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $sentence['Translations'],
-                $sentence['User'],
-                $sentence['IndirectTranslations']
-            );
-        }
-        ?>
+    <?php 
+    if(!isset($searchProblem)) { 
+        $this->Html->tag('h2', 'Random sentences', null);
+            foreach ($allSentences as $index=>$sentence) {
+                $sentences->displaySentencesGroup(
+                    $sentence['Sentence'],
+                    $sentence['Transcription'],
+                    $sentence['Translations'],
+                    $sentence['User'],
+                    $sentence['IndirectTranslations']
+                );
+            }
+    } else if($searchProblem == 'error') {
+        echo $this->Html->tag('h2', 'There was an error while performing this function.', null);
+    } else if($searchProblem == 'disabled') {
+        echo $this->Html->tag('h2', 'This feature is temporarily disabled. Please try later', null);
+    }
+    ?>
+
     </div>
 </div>
 

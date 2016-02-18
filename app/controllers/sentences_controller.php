@@ -223,8 +223,17 @@ class SentencesController extends AppController
 
             $randomId = $this->Sentence->getRandomId($lang);
 
-            $this->Session->write('random_lang_selected', $lang);
-            $this->redirect(array("action"=>"show", $randomId));
+            if (is_bool($randomId) && !$randomId) {
+                $searchDisabled = !Configure::read('Search.enabled');
+                if ($searchDisabled) {
+                    $this->set('searchProblem', 'disabled');
+                } else {
+                    $this->set('searchProblem', 'error');
+                }
+            } else {
+                $this->Session->write('random_lang_selected', $lang);
+                $this->redirect(array("action"=>"show", $randomId));
+            }
 
         }
     }
@@ -253,7 +262,7 @@ class SentencesController extends AppController
 
     public function add()
     {
-    }
+    }    
 
     /**
      * Delete a sentence.
@@ -983,16 +992,23 @@ class SentencesController extends AppController
         }
 
         $randomId = $this->Sentence->getRandomId($lang);
+
+        //Hack to ensure random doesn't break
+        //if(!$randomId && is_bool($randomId)) {
+        //    $randomId = 1;
+        //}
+        
         $randomSentence = $this->Sentence->getSentenceWithId($randomId);
         $alltranslations = $this->Sentence->getTranslationsOf($randomId);
         $translations = $alltranslations['Translation'];
         $indirectTranslations = $alltranslations['IndirectTranslation'];
 
-        $this->Session->write('random_lang_selected', $lang);
-
         $this->set('random', $randomSentence);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
+
+        $this->Session->write('random_lang_selected', $lang);
+
     }
 
     /**
@@ -1033,14 +1049,23 @@ class SentencesController extends AppController
 
         $randomIds = $this->Sentence->getSeveralRandomIds($lang, $number);
 
-        $this->Session->write('random_lang_selected', $lang);
+        if(is_bool($randomIds) && !$randomIds) {
+            $searchDisabled = !Configure::read('Search.enabled');
+            if ($searchDisabled) {
+                $this->set('searchProblem', 'disabled');
+            } else {
+                $this->set('searchProblem', 'error');
+            }
 
-        $allSentences = $this->CommonSentence->getAllNeededForSentences($randomIds);
+        } else {
+            $this->Session->write('random_lang_selected', $lang);
 
-        $this->set("allSentences", $allSentences);
+            $allSentences = $this->CommonSentence->getAllNeededForSentences($randomIds);
+
+            $this->set("allSentences", $allSentences);
+        }
         $this->set('lastNumberChosen', $number);
     }
-
    
     /**
      * Show all the sentences of a given user

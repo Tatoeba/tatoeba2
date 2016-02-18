@@ -364,8 +364,8 @@ class Sentence extends AppModel
     public function getRandomId($lang = 'und')
     {
         $arrayIds = $this->getSeveralRandomIds($lang, 1);
-        if (empty($arrayIds) || empty($arrayIds[0])) {
-            return 1;
+        if (is_bool($arrayIds)) {
+            return $arrayIds;
         }
 
         return  $arrayIds[0];//$results['Sentence']['id'];
@@ -382,7 +382,7 @@ class Sentence extends AppModel
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
         if(Configure::read('Search.enabled') == false) {
-            return array(1);
+            return false;
         }
         
         if(empty($lang)) {
@@ -402,26 +402,30 @@ class Sentence extends AppModel
         if (!is_array($arrayRandom)) {
             $arrayRandom = $this->_getRandomsToCached($lang, 3);
         }
+        
+        if(is_array($arrayRandom)){
+            for ($i = 0; $i < $numberOfIdWanted; $i++) {
 
-        for ($i = 0; $i < $numberOfIdWanted; $i++) {
-
-            $id = array_pop($arrayRandom);
-            // if we have take all the cached ids, then we request a new bunch
-            if ($id === NULL) {
-                $arrayRandom = $this->_getRandomsToCached($lang, 5);
                 $id = array_pop($arrayRandom);
+                // if we have take all the cached ids, then we request a new bunch
+                if ($id === NULL) {
+                    $arrayRandom = $this->_getRandomsToCached($lang, 5);
+                    $id = array_pop($arrayRandom);
+                }
+                array_push(
+                    $returnIds,
+                    $id
+                );
+
             }
-            array_push(
-                $returnIds,
-                $id
-            );
+            // we cache the random ids array less all the poped value, for latter use
+            Cache::write($cacheKey, $arrayRandom);
 
+
+            return $returnIds;
         }
-        // we cache the random ids array less all the poped value, for latter use
-        Cache::write($cacheKey, $arrayRandom);
-
-
-        return $returnIds;
+        
+        return false;
 
     }
 
@@ -460,8 +464,11 @@ class Sentence extends AppModel
             )
         );
 
-        return array_keys($results);
-
+        if(is_array($results)){
+            return array_keys($results);
+        }
+    
+    return 1;
     }
 
 
