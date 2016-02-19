@@ -514,6 +514,7 @@ class LanguagesLib
                 'aii' => __d('languages', 'Assyrian',true),
                 'tvl' => __d('languages', 'Tuvaluan',true),
                 'kxi' => __d('languages', 'Keningau Murut', true),
+                'bvy' => __d('languages', 'Baybayanon', true),
 				
             );
         }
