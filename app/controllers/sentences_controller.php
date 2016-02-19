@@ -225,10 +225,11 @@ class SentencesController extends AppController
 
             if (is_bool($randomId) && !$randomId) {
                 $searchDisabled = !Configure::read('Search.enabled');
+                $this->set('searchProblem', true);
                 if ($searchDisabled) {
-                    $this->set('searchProblem', 'disabled');
+                    $this->Session->setFlash(__('Search was disabled. Please try again later.', true));
                 } else {
-                    $this->set('searchProblem', 'error');
+                    $this->Session->setFlash(__('An error occurred while performing this function.', true));
                 }
             } else {
                 $this->Session->write('random_lang_selected', $lang);
@@ -994,20 +995,24 @@ class SentencesController extends AppController
         $randomId = $this->Sentence->getRandomId($lang);
 
         //Hack to ensure random doesn't break
-        //if(!$randomId && is_bool($randomId)) {
-        //    $randomId = 1;
-        //}
+        if (is_bool($randomId) && !$randomId) {
+                $this->set('searchProblem', true);
+                $randomSentence = ""; //empty sentence for checking
+                $this->set('random', $randomSentence);
+
+        } else {
         
-        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
-        $alltranslations = $this->Sentence->getTranslationsOf($randomId);
-        $translations = $alltranslations['Translation'];
-        $indirectTranslations = $alltranslations['IndirectTranslation'];
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+            $alltranslations = $this->Sentence->getTranslationsOf($randomId);
+            $translations = $alltranslations['Translation'];
+            $indirectTranslations = $alltranslations['IndirectTranslation'];
 
-        $this->set('random', $randomSentence);
-        $this->set('translations', $translations);
-        $this->set('indirectTranslations', $indirectTranslations);
+            $this->set('random', $randomSentence);
+            $this->set('translations', $translations);
+            $this->set('indirectTranslations', $indirectTranslations);
 
-        $this->Session->write('random_lang_selected', $lang);
+            $this->Session->write('random_lang_selected', $lang);
+        }
 
     }
 
@@ -1051,10 +1056,11 @@ class SentencesController extends AppController
 
         if(is_bool($randomIds) && !$randomIds) {
             $searchDisabled = !Configure::read('Search.enabled');
+            $this->set('searchProblem', true);
             if ($searchDisabled) {
-                $this->set('searchProblem', 'disabled');
+                $this->Session->setFlash(__('Search was disabled. Please try again later.', true));
             } else {
-                $this->set('searchProblem', 'error');
+                $this->Session->setFlash(__('An error occurred while performing this function.', true));
             }
 
         } else {

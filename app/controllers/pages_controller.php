@@ -188,12 +188,7 @@ class PagesController extends AppController
         $lang = $this->Session->read('random_lang_selected');
         $randomId = $this->Sentence->getRandomId($lang);
         if (is_bool($randomId) && !$randomId) {
-            $searchDisabled = !Configure::read('Search.enabled');
-            if ($searchDisabled) {
-                $this->set("searchProblem", 'disabled');
-            } else {
-                $this->set("searchProblem", 'error');
-            }
+            $this->set('searchProblem', true);
 
         } else {
             $randomSentence = $this->Sentence->getSentenceWithId($randomId);
