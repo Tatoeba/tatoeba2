@@ -33,7 +33,7 @@ END IF;
 
 INSERT INTO languages (code) VALUES (lang_iso_code);
 UPDATE sentences, sentences_sentences_lists
-    SET lang = lang_iso_code, lang_id = LAST_INSERT_ID()
+    SET lang = lang_iso_code
     WHERE sentences_list_id = list_id_for_lang
     AND sentences.id = sentence_id;
 UPDATE languages
