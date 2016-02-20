@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-06 16:58+0000\n"
-"PO-Revision-Date: 2016-02-07 09:57+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2016-02-10 20:17+0000\n"
+"PO-Revision-Date: 2016-02-14 13:33+0000\n"
+"Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,6 +24,7 @@ msgid "You need to be logged in."
 msgstr "Devi avere eseguito l'accesso."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L49
@@ -699,13 +700,14 @@ msgid "Filter"
 msgstr "Filtro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L52
 msgid "(total %count%)"
 msgstr "(in totale %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L132
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L90
 msgid "Sentence {id} has been deleted."
 msgstr "La frase n° {id} è stata eliminata."
 
@@ -1160,7 +1162,7 @@ msgstr "A"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L30
 msgid "No results found."
-msgstr ""
+msgstr "Nessun risultato trovato."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
 msgid "No results found for: {search}"
@@ -1402,11 +1404,11 @@ msgstr "Traduci le frasi di {user}"
 msgid "Contact {user}"
 msgstr "Contatta {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L37
 msgid "{user}'s favorite sentences"
 msgstr "Frasi preferite di {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L107
 msgid "This user does not have any favorites."
 msgstr "Questo utente non ha ancora delle frasi preferite."
 
@@ -3087,7 +3089,7 @@ msgstr "{user} non ha alcuna frase"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L76
 msgid "Search disabled"
-msgstr ""
+msgstr "Ricerca disabilitata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L33
 msgid "Sentences with: {keywords}"
@@ -3117,17 +3119,17 @@ msgstr "Ulteriori criteri di ricerca"
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
-msgstr ""
+msgstr "A causa di ragioni tecniche, la funzione di ricerca è al momento disabilitata. Ci dispiace per l'inconveniente. Riprova più tardi, per favore."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L83
 msgid "Search error"
-msgstr ""
+msgstr "Errore di ricerca"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L87
 msgid ""
 "An error occured while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "C'è stato un errore durante l'esecuzione della ricerca. Se il problema persiste, <a href=\"{}\">faccelo sapere</a>, per favore."
 
 #. @translators: title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L102

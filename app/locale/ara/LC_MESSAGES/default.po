@@ -5,14 +5,14 @@
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Samer <mmmnnn333@gmail.com>, 2014-2016
-# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2015
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-06 16:58+0000\n"
-"PO-Revision-Date: 2016-02-07 09:57+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2016-02-10 20:17+0000\n"
+"PO-Revision-Date: 2016-02-20 04:46+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/tatoeba/tatoeba_website/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +25,7 @@ msgid "You need to be logged in."
 msgstr "عليك الولوج."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L49
@@ -230,7 +231,7 @@ msgstr "القوائم التعاونية المحتوية على {search}\" ({t
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L181
 msgid "You do not have permission to view this list."
-msgstr ""
+msgstr "لا صلاحية لديك لعرض هذه القائمة."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L239
 msgid ""
@@ -716,13 +717,14 @@ msgid "Filter"
 msgstr "رشّح"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L52
 msgid "(total %count%)"
 msgstr "(المجموع %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L132
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L90
 msgid "Sentence {id} has been deleted."
 msgstr "حُذفت الجملة رقم {id}."
 
@@ -1189,7 +1191,7 @@ msgstr "إلى"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L30
 msgid "No results found."
-msgstr ""
+msgstr "لا نتائج."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
 msgid "No results found for: {search}"
@@ -1395,7 +1397,7 @@ msgstr "التجميعة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
 msgid "Transcriptions"
-msgstr ""
+msgstr "المدوّنات"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L491
@@ -1435,11 +1437,11 @@ msgstr "ترجم جمل {user}"
 msgid "Contact {user}"
 msgstr "اتصل ب{user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L37
 msgid "{user}'s favorite sentences"
 msgstr "جمل {user} المفضلة"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L107
 msgid "This user does not have any favorites."
 msgstr "هذا المستخدم لا يملك أي مفضلة"
 
@@ -1743,7 +1745,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L335
 msgid "Allow anyone to add and delete sentences from the list"
-msgstr ""
+msgstr "اسمح للجميع بإضافة الجمل وحذفها من القائمة."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L346
 msgid "Delete this list"
@@ -3152,7 +3154,7 @@ msgstr "ليس لدى {user} أي جمل"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L76
 msgid "Search disabled"
-msgstr ""
+msgstr "البحث معطّل"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L33
 msgid "Sentences with: {keywords}"
@@ -3745,11 +3747,11 @@ msgstr "أدخِل نصًّا بالشنغهايية"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
-msgstr ""
+msgstr "مدوّنات {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L46
 msgid "{username} does not have any transcriptions"
-msgstr ""
+msgstr "ليس ل‍ {username} أية مدوّنات"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."

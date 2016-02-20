@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# ciaran, 2014-2015
+# ciaran, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-06 16:58+0000\n"
-"PO-Revision-Date: 2016-02-07 09:57+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2016-02-10 20:17+0000\n"
+"PO-Revision-Date: 2016-02-19 11:51+0000\n"
+"Last-Translator: ciaran\n"
 "Language-Team: Welsh (http://www.transifex.com/tatoeba/tatoeba_website/language/cy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,6 +23,7 @@ msgid "You need to be logged in."
 msgstr "Rhaid i chi fewngofnodi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L49
@@ -706,13 +707,14 @@ msgid "Filter"
 msgstr "Hidlo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L52
 msgid "(total %count%)"
 msgstr "(cyfanswm o %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L132
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L90
 msgid "Sentence {id} has been deleted."
 msgstr ""
 
@@ -785,7 +787,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L171
 msgctxt "orphan"
 msgid "Any"
-msgstr ""
+msgstr "Unrhyw iaith"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L81
@@ -822,7 +824,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L180
 msgctxt "unapproved"
 msgid "Any"
-msgstr ""
+msgstr "Unrhyw iaith"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -855,7 +857,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L189
 msgctxt "audio"
 msgid "Any"
-msgstr ""
+msgstr "Unrhyw iaith"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L128
 msgid "Translations"
@@ -886,7 +888,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L157
 msgctxt "link"
 msgid "Any"
-msgstr ""
+msgstr "Unrhyw iaith"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L158
 msgid "Direct"
@@ -1206,7 +1208,7 @@ msgstr "Casgliad o frawddegau a chyfieithiadau yw Tatoeba."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L35
 msgid "It's collaborative, open, free and even addictive."
-msgstr ""
+msgstr "Mae'n gydweithredol, agored, a rhad ac am ddim."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L43
 msgid "How it works"
@@ -1359,7 +1361,7 @@ msgstr "Cwestiynau Cyffredin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L160
 msgid "Show activity timeline"
-msgstr ""
+msgstr "Dangos y llinell amser gweithgarwch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L84
@@ -1417,11 +1419,11 @@ msgstr "Cyfieithu brawddegau {user}"
 msgid "Contact {user}"
 msgstr "Cysylltu â {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L37
 msgid "{user}'s favorite sentences"
 msgstr "Hoff frawddegau {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L107
 msgid "This user does not have any favorites."
 msgstr "Nid oes gan y defnyddiwr hwn unrhyw ffefrynnau."
 
@@ -1614,7 +1616,7 @@ msgstr "Unrhyw iaith"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L326
 msgctxt "language"
 msgid "Any"
-msgstr ""
+msgstr "Unrhyw iaith"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L359
 msgid "unknown"
