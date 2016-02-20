@@ -69,25 +69,26 @@ if (!$isLogged) {
 </div>
 
 <div id="main_content">
+    <?php if(!isset($searchProblem)) { ?>
+        <div class="module">
+            <?php echo $this->element('random_sentence_header'); ?>
+            <div class="random_sentences_set">
+            <?php
+            $sentence = $random['Sentence'];
+            $transcrs = $random['Transcription'];
+            $sentenceOwner = $random['User'];
 
-    <div class="module">
-        <?php echo $this->element('random_sentence_header'); ?>
-        <div class="random_sentences_set">
-        <?php
-        $sentence = $random['Sentence'];
-        $transcrs = $random['Transcription'];
-        $sentenceOwner = $random['User'];
-
-        $sentences->displaySentencesGroup(
-            $sentence, 
-            $transcrs,
-            $translations, 
-            $sentenceOwner,
-            $indirectTranslations
-        );
-        ?>
+            $sentences->displaySentencesGroup(
+                $sentence, 
+                $transcrs,
+                $translations, 
+                $sentenceOwner,
+                $indirectTranslations
+            );
+            ?>
+            </div>
         </div>
-    </div>
+    <?php } ?>
 
     <div class="module">
         <h2>

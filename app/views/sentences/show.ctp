@@ -28,6 +28,7 @@
 $javascript->link('jquery.scrollTo.min.js', false);
 $javascript->link('sentences.logs.js', false);
 
+if (!isset($searchProblem)) {
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
@@ -234,4 +235,4 @@ $navigation->displaySentenceNavigation(
     echo '</div>';
     ?>
 </div>
-
+<?php } ?>

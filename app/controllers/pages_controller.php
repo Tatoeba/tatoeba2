@@ -187,17 +187,22 @@ class PagesController extends AppController
         $this->loadModel('Sentence');
         $lang = $this->Session->read('random_lang_selected');
         $randomId = $this->Sentence->getRandomId($lang);
-        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
-        $alltranslations = $this->Sentence->getTranslationsOf($randomId);
-        $translations = $alltranslations['Translation'];
-        $indirectTranslations = $alltranslations['IndirectTranslation'];
+        if (is_bool($randomId) && !$randomId) {
+            $this->set('searchProblem', true);
 
-        $this->set('random', $randomSentence);
-        $this->set('translations', $translations);
-        $this->set('indirectTranslations', $indirectTranslations);
+        } else {
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+            $alltranslations = $this->Sentence->getTranslationsOf($randomId);
+            $translations = $alltranslations['Translation'];
+            $indirectTranslations = $alltranslations['IndirectTranslation'];
 
-        if (isset($randomSentence['Sentence']['script'])) {
-            $this->set('sentenceScript', $randomSentence['Sentence']['script']);
+            $this->set('random', $randomSentence);
+            $this->set('translations', $translations);
+            $this->set('indirectTranslations', $indirectTranslations);
+
+            if (isset($randomSentence['Sentence']['script'])) {
+                $this->set('sentenceScript', $randomSentence['Sentence']['script']);
+            }
         }
     }
 

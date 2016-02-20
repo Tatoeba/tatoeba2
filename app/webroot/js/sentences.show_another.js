@@ -30,6 +30,13 @@ $(document).ready(function(){
 });
 
 function loadRandom(lang){
-    $(".random_sentences_set").html("<div class='block-loader loader'></div>");
-    $(".random_sentences_set").load("/sentences/random/" + lang);
+
+    //$(".random_sentences_set").html("<div class='block-loader loader'></div>");
+    $.get( "/sentences/random/" + lang, function( data ) {  
+        if($(data).find(".mainSentence > .content > .sentenceContent").text() == "") {
+            alert("There was an error in performing this function. Please try later.")
+        } else {
+            $( ".random_sentences_set" ).html( data );
+        }
+    });
 }

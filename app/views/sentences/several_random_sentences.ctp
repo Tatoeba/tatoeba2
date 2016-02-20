@@ -26,7 +26,7 @@
  */
 
 $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true)));
-
+if (!isset($searchProblem)) {
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -107,5 +107,4 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
         ?>
     </div>
 </div>
-
-
+<?php } ?>
