@@ -35,9 +35,8 @@ class TranslationTestCase extends CakeTestCase {
         $this->Translation->unbindModel(
             array('hasMany' => array('Transcription'))
         );
-        $result = $this->Translation->find(5, array());
+        $result = $this->Translation->getTranslationsOf(5, array());
         $expected = array(
-            'Translation' => array(
                 array(
                     'Translation' => array(
                         'id' => "2",
@@ -47,10 +46,10 @@ class TranslationTestCase extends CakeTestCase {
                         'hasaudio' => "no",
                         'correctness' => "0",
                         'script' => 'Hans',
+                        'type' => '0',
+                        'sentence_id' => '5',
                     ),
                 ),
-            ),
-            'IndirectTranslation' => array(
                 array(
                     'Translation' => array(
                         'id' => "1",
@@ -60,6 +59,8 @@ class TranslationTestCase extends CakeTestCase {
                         'hasaudio' => "no",
                         'correctness' => "0",
                         'script' => null,
+                        'type' => '1',
+                        'sentence_id' => '5',
                     ),
                 ),
                 array(
@@ -71,40 +72,71 @@ class TranslationTestCase extends CakeTestCase {
                         'hasaudio' => "no",
                         'correctness' => "0",
                         'script' => null,
+                        'type' => '1',
+                        'sentence_id' => '5',
                     ),
                 ),
-            ),
         );
         $this->assertEqual($expected, $result);
     }
 
-    function _assertFind($sentenceId, $langs, $expectedTranslationIds, $expectedIndirectTranslationIds) {
-        $result = $this->Translation->find($sentenceId, $langs);
-        $result = Set::classicExtract($result, '{}.{n}.Translation.id');
-        $expected = array(
-            'Translation' => $expectedTranslationIds,
-            'IndirectTranslation' => $expectedIndirectTranslationIds,
+    function _assertFind($sentenceIdsAndTheirExpectedTranslationIds, $langs) {
+        $sentenceIds = array_keys($sentenceIdsAndTheirExpectedTranslationIds);
+        $result = $this->Translation->getTranslationsOf($sentenceIds, $langs);
+        $returned = array_fill_keys(
+            $sentenceIds,
+            array(0 => array(), 1 => array())
         );
-        $this->assertEqual($expected, $result);
+        foreach ($result as $rec) {
+            $rec = $rec['Translation'];
+            $sentenceId = $rec['sentence_id'];
+            $returned[$sentenceId][$rec['type']][] = $rec['id'];
+        }
+        $this->assertEqual($sentenceIdsAndTheirExpectedTranslationIds, $returned);
     }
 
     function testFindCheckIds() {
-        $this->_assertFind(1, array(), array(2, 4, 3), array(5, 6));
+        $checkIf[1] = array(
+            0 => array(2, 4, 3), 1 => array(5, 6)
+        );
+        $this->_assertFind($checkIf, array());
+    }
+
+    function testFindCheckSeveralIds() {
+        $checkIf[1] = array(
+            array(2, 4, 3), array(5, 6)
+        );
+        $checkIf[2] = array(
+            array(5, 1, 4), array(6, 3)
+        );
+        $this->_assertFind($checkIf, array());
     }
 
     function testFindWithFilteredDirectTranslation() {
-        $this->_assertFind(1, array('cmn'), array(2), array());
+        $checkIf[1] = array(
+            array(2), array()
+        );
+        $this->_assertFind($checkIf, array('cmn'));
     }
 
     function testFindWithFilteredIndirectTranslation() {
-        $this->_assertFind(1, array('jpn'), array(), array(6));
+        $checkIf[1] = array(
+            array(), array(6)
+        );
+        $this->_assertFind($checkIf, array('jpn'));
     }
 
     function testFindWithFilteredMultipleLang() {
-        $this->_assertFind(1, array('spa', 'deu'), array(3), array(5));
+        $checkIf[1] = array(
+            array(3), array(5)
+        );
+        $this->_assertFind($checkIf, array('spa', 'deu'));
     }
 
     function testFindWithoutTranslation() {
-        $this->_assertFind(7, array(), array(), array());
+        $checkIf[7] = array(
+            array(), array()
+        );
+        $this->_assertFind($checkIf, array());
     }
 }

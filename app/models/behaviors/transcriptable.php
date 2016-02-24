@@ -72,7 +72,6 @@ class TranscriptableBehavior extends ModelBehavior
                     'conditions' => array(
                         $model->alias . '.' . $model->primaryKey => $model->id
                     ),
-                    'contain' => array(),
                 ));
                 $this->createTranscriptions($model, $sentence);
             }

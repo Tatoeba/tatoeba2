@@ -35,7 +35,7 @@ if (isset($sentence)) {
     // display sentence and translations
     $sentences->displaySGroup(
         $sentence['Sentence'],
-        $translations
+        $sentence['Translation']
     );
     
     ?>

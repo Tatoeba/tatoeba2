@@ -39,7 +39,6 @@ class UsersSentences extends AppModel
     public $name = 'UsersSentences';
     public $useTable = "users_sentences";
     public $actsAs = array('Containable');
-    public $recursive = -1;
     public $belongsTo = array(
         'Sentence',
         'User' => array('foreignKey' => 'user_id')

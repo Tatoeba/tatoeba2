@@ -99,9 +99,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
                 $sentence['Transcription'],
-                $sentence['Translations'],
-                $sentence['User'],
-                $sentence['IndirectTranslations']
+                $sentence['Translation'],
+                $sentence['User']
             );
         }
         ?>

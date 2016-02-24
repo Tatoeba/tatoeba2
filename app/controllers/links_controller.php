@@ -42,13 +42,10 @@ class LinksController extends AppController
     {
         $this->loadModel('Sentence');
         $langFilter = isset($this->params['form']['langFilter']) ? $this->params['form']['langFilter'] : 'und';
-        $alltranslations = $this->Sentence->getTranslationsOf($sentenceId, $langFilter);
-        $translations = $alltranslations['Translation'];
-        $indirectTranslations = $alltranslations['IndirectTranslation'];
+        $translations = $this->Sentence->getTranslationsOf($sentenceId, $langFilter);
 
         $this->set('sentenceId', $sentenceId);
         $this->set('translations', $translations);
-        $this->set('indirectTranslations', $indirectTranslations);
         $this->set('message', $message);
         $this->set('langFilter', $langFilter);
         $this->render('/sentences/translations_group');

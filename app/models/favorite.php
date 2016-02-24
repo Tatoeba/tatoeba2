@@ -39,7 +39,6 @@ class Favorite extends AppModel
 {
     public $name = 'Favorite';
     public $useTable = 'favorites_users';
-    public $recursive = -1;
 
     public $actsAs = array(
         'Containable'

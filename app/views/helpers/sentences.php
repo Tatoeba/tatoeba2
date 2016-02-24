@@ -67,9 +67,8 @@ class SentencesHelper extends AppHelper
      *
      * @param array $sentence             Sentence to display.
      * @param array $transcriptions       Transcriptions of the sentence.
-     * @param array $translations         Translations of the sentence.
+     * @param array $translations         Translations of the sentence (direct and indirect).
      * @param array $user                 Owner of the sentence.
-     * @param array $indirectTranslations Indirect translations of the sentence.
      * @param bool  $options              Array of options
                                           withAudio: set it to false to hide audio icon
      *                                    langFilter: the language $indirectTranslations are filtered in, if any.
@@ -81,7 +80,6 @@ class SentencesHelper extends AppHelper
         $transcriptions,
         $translations,
         $user = null,
-        $indirectTranslations = array(),
         $options = array()
     ) {
         $options = array_merge(
@@ -117,14 +115,35 @@ class SentencesHelper extends AppHelper
         // Form to add a new translation
         $this->_displayNewTranslationForm($id);
 
-        $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio, $langFilter);
+        $this->displayTranslations($id, $translations, $withAudio, $langFilter);
 
         ?>
         </div>
         <?php
     }
 
-    public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true, $langFilter = 'und') {
+    private function segregateTranslations($translations) {
+        $result = array(0 => array(), 1 => array());
+        foreach ($translations as $translation) {
+            if (isset($translation['Translation'])) {
+                // direct Translation::find() call case, as opposed to
+                // find('all', array('contain' => array('Translation')))
+                foreach ($translation['Translation'] as $k => $v) {
+                    $translation[$k] = $v;
+                }
+                unset($translation['Translation']);
+            }
+            $type = $translation['type'];
+            if (array_key_exists($type, $result)) {
+                $result[$type][] = $translation;
+            }
+        }
+        return $result;
+    }
+
+    public function displayTranslations($id, $translations, $withAudio = true, $langFilter = 'und') {
+        list($translations, $indirectTranslations)
+            = $this->segregateTranslations($translations);
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
             
@@ -165,7 +184,7 @@ class SentencesHelper extends AppHelper
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
-                    $translation['Translation'],
+                    $translation,
                     $translation['Transcription'],
                     $type,
                     $withAudio,
@@ -200,7 +219,7 @@ class SentencesHelper extends AppHelper
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
-                    $translation['Translation'],
+                    $translation,
                     $translation['Transcription'],
                     $type,
                     $withAudio,
@@ -623,14 +642,34 @@ class SentencesHelper extends AppHelper
         if (isset($sentence['script'])) {
             $script = $sentence['script'];
         }
+        $highlight = null;
+        if (isset($sentence['highlight'])) {
+            $highlight = $sentence['highlight'];
+        }
         $this->displaySentenceText(
             $sentence['id'], $sentence['text'], $isEditable,
-            $sentence['lang'], $script, $sentence['correctness']
+            $sentence['lang'], $script, $sentence['correctness'],
+            $highlight
         );
 
         echo $this->Html->tag('/div');
     }
 
+    private function highlightMatches($highlight, $text) {
+        list($markers, $excerpts) = $highlight;
+        foreach ($excerpts as $excerpt) {
+            $excerpt = h($excerpt);
+            $from = str_replace($markers, '', $excerpt);
+            $from = '/'.preg_quote($from).'/';
+            $to = str_replace(
+                $markers,
+                array('<span class="match">', '</span>'),
+                $excerpt
+            );
+            $text = preg_replace($from, $to, $text);
+        }
+        return $text;
+    }
 
     /**
      * Displays the text of a sentence. This text can be editable or not.
@@ -641,17 +680,26 @@ class SentencesHelper extends AppHelper
      * @param bool  $sentenceLang Language of the sentence.
      * @param bool  $sentenceScript ISO 15924 script code.
      * @param bool  $correctness  Sentence correctness level.
+     * @param array $highlight    Highlighting markers for search results.
      *
      * @return void
      */
     public function displaySentenceText(
         $sentenceId, $sentenceText, $isEditable = false,
-        $sentenceLang = '', $sentenceScript = '', $correctness
+        $sentenceLang = '', $sentenceScript = '', $correctness,
+        $highlight
     ) {
         $classes = array(
             'text',
             $this->getCorrectnessLabel($correctness),
         );
+        $sentenceEscaped = false;
+        if ($highlight) {
+            $sentenceText = h($sentenceText);
+            $sentenceEscaped = true;
+            $sentenceText = $this->highlightMatches($highlight, $sentenceText);
+        }
+
         if ($isEditable) {
             $classes[] = 'editableSentence';
 
@@ -668,6 +716,7 @@ class SentencesHelper extends AppHelper
                     'id' => $sentenceLang.'_'.$sentenceId,
                     'data-submit' => __('OK', true),
                     'data-cancel' => __('Cancel', true),
+                    'escape' => !$sentenceEscaped,
                 ),
                 $sentenceScript
             );
@@ -676,7 +725,10 @@ class SentencesHelper extends AppHelper
 
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
-                array('class' => join(' ', $classes)),
+                array(
+                    'class' => join(' ', $classes),
+                    'escape' => !$sentenceEscaped,
+                ),
                 $sentenceScript
             );
 
@@ -733,7 +785,9 @@ class SentencesHelper extends AppHelper
             <div class="translations">
                 <?php
                 foreach ($translations as $translation) {
-                    $this->displayS($translation['Translation'], 'directTranslation');
+                    if ($translation['type'] == 0) {
+                        $this->displayS($translation, 'directTranslation');
+                    }
                 }
                 ?>
             </div>

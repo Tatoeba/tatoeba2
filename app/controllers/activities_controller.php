@@ -182,32 +182,20 @@ class ActivitiesController extends AppController
             'user_id' => $userId
         );
         if (!empty($lang)) {
-            $conditions['lang'] = $lang;
+            $conditions['Sentence.lang'] = $lang;
         }
 
         $this->paginate = array(
             'Sentence' => array(
-                'fields' => array(
-                    'id',
-                ),
+                'fields' => $this->Sentence->fields(),
                 'conditions' => $conditions,
-                'contain' => array(),
+                'contain' => $this->Sentence->contain(),
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => 'created DESC'
             )
         );
 
-        $paginationResults = $this->paginate('Sentence');
-
-        $sentenceIds = array();
-
-        foreach ($paginationResults as $i=>$sentence) {
-            $sentenceIds[$i] = $sentence['Sentence']['id'];
-        }
-
-        $results = $this->CommonSentence->getAllNeededForSentences(
-            $sentenceIds
-        );
+        $results = $this->paginate('Sentence');
 
         $this->set('results', $results);
         $this->set('lang', $lang);

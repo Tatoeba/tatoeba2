@@ -86,15 +86,7 @@ class SController extends AppController
                 return;
             }
 
-
             $this->set('sentence', $sentence);
-
-            // we get translations and split them
-            $alltranslations = $this->Sentence->getTranslationsOf($id);
-            $translations = $alltranslations['Translation'];
-
-            $this->set('translations', $translations);
-
 
         } else {
 

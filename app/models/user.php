@@ -53,8 +53,6 @@ class User extends AppModel
         'Containable'
     );
 
-    public $recursive = -1;
-
     // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
 

@@ -184,10 +184,6 @@ class SinogramsController extends AppController
                     $sentenceWhichUseThisSinogram, $this->Auth->user('id')
                 );
 
-            $alltranslations = $this->Sentence->getTranslationsOf($sentenceId);
-            $translations = $alltranslations['Translation'];
-            $indirectTranslations = $alltranslations['IndirectTranslation'];
-
             $this->set('specialOptions', $specialOptions);
             $this->set("sentenceFound", true);
         } else {
@@ -197,8 +193,7 @@ class SinogramsController extends AppController
         $this->set("sentence", $sentenceWhichUseThisSinogram['Sentence']);
         $this->set("transcrs", $sentenceWhichUseThisSinogram['Transcription']);
         $this->set("sentenceOwner", $sentenceWhichUseThisSinogram['User']);
-        $this->set('indirectTranslations', $indirectTranslations);
-        $this->set('translations', $translations);
+        $this->set('translations', $sentenceWhichUseThisSinogram['Translation']);
 
     }
 

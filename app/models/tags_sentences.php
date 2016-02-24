@@ -176,8 +176,8 @@ class TagsSentences extends AppModel
                 'fields' => 'tag_id',
                 'conditions' => array(
                     "tag_id" => $tagId,
-                    "sentence_id" => $sentenceId),
-                'contain' => array()
+                    "sentence_id" => $sentenceId
+                ),
             )
         );
 
@@ -191,7 +191,6 @@ class TagsSentences extends AppModel
         $records = $this->find('all', array(
             'conditions' => array('sentence_id' => $sentenceId),
             'fields' => 'tag_id',
-            'recursive' => -1,
         ));
         $tagsId = Set::classicExtract($records, '{n}.TagsSentences.tag_id');
         $values = array($sentenceId => array($tagsId));

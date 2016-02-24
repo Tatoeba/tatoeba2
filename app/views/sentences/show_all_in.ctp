@@ -68,14 +68,16 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             $filterAudioOnly,
         );
         $pagination->display($paginationUrl);
-        
+
         foreach ($results as $sentence) {
+            $translations = isset($sentence['Translation']) ?
+                            $sentence['Translation'] :
+                            array();
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'], 
                 $sentence['Transcription'],
-                $sentence['Translations'], 
+                $translations,
                 $sentence['User'],
-                $sentence['IndirectTranslations'],
                 array('langFilter' => $translationLang)
             );
         }

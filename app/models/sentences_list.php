@@ -37,7 +37,6 @@
 class SentencesList extends AppModel
 {
     public $actsAs = array('Containable');
-    public $recursive = -1;
     public $belongsTo = array('User');
     public $hasMany = array('SentencesSentencesLists');
     public $hasAndBelongsToMany = array('Sentence');

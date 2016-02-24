@@ -43,7 +43,6 @@ class UsersLanguages extends AppModel
         'User' => array('foreignKey' => 'of_user_id'),
         'Language' => array('foreignKey' => 'language_code')
     );
-    public $recursive = -1;
 
 
     public function beforeSave()

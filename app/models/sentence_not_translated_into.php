@@ -26,6 +26,8 @@
  * @link     http://tatoeba.org
  */
 
+App::import('Core', 'Sanitize');
+
 /**
  * Model Class used only for pagination
  *
@@ -45,7 +47,8 @@ class SentenceNotTranslatedInto extends AppModel
 
 
     /**
-     * Overriding the paginate function in order to use a "raw" SQL request
+     * Overriding the paginate function in order to speed up
+     * things using custom queries.
      *
      * @return array
      */
@@ -58,60 +61,65 @@ class SentenceNotTranslatedInto extends AppModel
         $recursive = null,
         $extra = array()
     ) {
-        $recursive = -1;
         $source = $conditions['source'] ;
         $target = $conditions['notTranslatedInto'] ;
         $audioOnly = $conditions['audioOnly'];
 
-        $source = Sanitize::paranoid($source);
-        $target = Sanitize::paranoid($target);
-        $audioOnly = Sanitize::paranoid($audioOnly);
-
-        if ($page < 1) {
-         $page = 1;
-        }
-
-        $limitHigh = $limit * $page;
-        $limitLow = $limitHigh - $limit;
-
-        // to add to the sql conditions, if we want only sentences with audio
-        $filterAudio = '';
-        if ($audioOnly == true) {
-            $filterAudio = "AND Sentence.hasaudio != 'no' ";
-        }
+        $dbo = $this->getDataSource();
 
         if ($target == 'und') {
             // we want only untranslated sentences
-            $sql
-                = "
-            SELECT distinct Sentence.id FROM sentences as Sentence
-            WHERE Sentence.lang = '$source' $filterAudio
-              AND Sentence.id NOT IN
-              (
-                SELECT s.id FROM sentences s
-                  JOIN sentences_translations st ON ( s.id = st.sentence_id )
-                WHERE s.lang = '$source'
-              )
-            ORDER BY Sentence.id DESC
-            LIMIT $limitLow,$limit;
-            ";
+            $subQuery = $dbo->buildStatement(
+                array(
+                    'fields' => array('Sentence.id'),
+                    'table' => 'sentences',
+                    'alias' => 'Sentence',
+                    'limit' => null,
+                    'joins' => array(array(
+                        'table' => 'sentences_translations',
+                        'alias' => 'Link',
+                        'conditions' => array(
+                            'Sentence.id = Link.sentence_id'
+                        ),
+                    )),
+                    'conditions' => array('Sentence.lang' => $source),
+                    'order' => null,
+                    'group' => null,
+                ),
+                $this
+            );
         } else {
-            $sql
-                = "
-            SELECT distinct Sentence.id FROM sentences as Sentence
-            WHERE Sentence.lang = '$source' $filterAudio
-              AND Sentence.id NOT IN
-              (
-                SELECT sentence_id FROM sentences_translations
-                WHERE sentence_lang = '$source'
-                  AND translation_lang = '$target'
-              )
-            ORDER BY Sentence.id DESC
-            LIMIT $limitLow,$limit;
-            ";
+            $subQuery = $dbo->buildStatement(
+                array(
+                    'fields' => array('Link.sentence_id'),
+                    'table' => 'sentences_translations',
+                    'alias' => 'Link',
+                    'limit' => null,
+                    'conditions' => array(
+                        'Link.sentence_lang' => $source,
+                        'Link.translation_lang' => $target,
+                    ),
+                    'order' => null,
+                    'group' => null,
+                ),
+                $this
+            );
+        }
+        $notTranslatedInCondition
+            = $dbo->expression("Sentence.id NOT IN ($subQuery)");
+
+        $conditions = array(
+            'Sentence.lang' => $source,
+            $notTranslatedInCondition,
+        );
+        if ($audioOnly == true) {
+            $conditions['Sentence.hasaudio !='] = 'no';
         }
 
-        $result = $this->query($sql);
+        $Sentence = ClassRegistry::init('Sentence');
+        $options = compact('fields', 'conditions', 'order', 'limit', 'page');
+        $result = $Sentence->find('all', array_merge($options, $extra));
+
         return $result;
     }
 

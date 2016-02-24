@@ -217,9 +217,8 @@ class TagsHelper extends AppHelper
      * @param array $sentence             Sentence data.
      * @param array $transcriptions       Sentence transcriptions.
      * @param array $sentenceOwner        Array with Sentence owner info.
-     * @param array $translations         Array with translations of this sentence.
-     * @param array $indirectTranslations Array with Ind. translations of this
-     *                                    sentence.
+     * @param array $translations         Array with translations of this sentence
+     *                                    (direct and indirect).
      * @param bool  $canCurrentUserRemove 'true' if user can remove tag from this
      *                                    sentence..
      * @param int   $tagId                Id of the tag.
@@ -231,7 +230,6 @@ class TagsHelper extends AppHelper
         $transcriptions,
         $sentenceOwner,
         $translations = array(),
-        $indirectTranslations = array(),
         $canCurrentUserRemove = false,
         $tagId = null
     ) {
@@ -255,7 +253,6 @@ class TagsHelper extends AppHelper
                 $transcriptions,
                 $translations,
                 $sentenceOwner,
-                $indirectTranslations,
                 array('withAudio' => true)
             );
             ?>

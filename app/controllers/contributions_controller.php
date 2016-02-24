@@ -87,7 +87,6 @@ class ContributionsController extends AppController
                 'conditions' => $conditions,
                 'limit' => 200,
                 'order' => 'id DESC',
-                'contain' => array()
             )
         );
         $contributions = $this->paginate();
@@ -200,7 +199,6 @@ class ContributionsController extends AppController
                 ),
                 'limit' => 200,
                 'order' => 'id DESC',
-                'contain' => array()
             )
         );
         $contributions = $this->paginate();

@@ -76,14 +76,14 @@ if (!$isLogged) {
         <?php
         $sentence = $random['Sentence'];
         $transcrs = $random['Transcription'];
+        $translations = $random['Translation'];
         $sentenceOwner = $random['User'];
 
         $sentences->displaySentencesGroup(
             $sentence, 
             $transcrs,
             $translations, 
-            $sentenceOwner,
-            $indirectTranslations
+            $sentenceOwner
         );
         ?>
         </div>

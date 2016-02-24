@@ -19,8 +19,6 @@
 
 class Recordings extends AppModel
 {
-    public $recursive = -1;
-
     public $useTable = false;
 
     public $belongsTo = array(
@@ -52,7 +50,6 @@ class Recordings extends AppModel
         $sentences = $this->Sentence->find('all', array(
             'conditions' => array('Sentence.id' => $allSentenceIds),
             'fields' => array('id', 'lang', 'hasaudio'),
-            'recursive' => -1
         ));
         $sentences = Set::combine($sentences, '{n}.Sentence.id', '{n}.Sentence');
 

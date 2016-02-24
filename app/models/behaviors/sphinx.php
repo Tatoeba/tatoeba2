@@ -18,6 +18,7 @@ class SphinxBehavior extends ModelBehavior
     var $_defaults = array('host' => 'localhost', 'port' => 9312);
 
     var $_cached_result = null;
+    var $_cached_query = null;
 
     /**
      * Spinx client object
@@ -58,7 +59,6 @@ class SphinxBehavior extends ModelBehavior
 
         if ($model->findQueryType == 'count')
         {
-            $model->recursive = -1;
             $query['limit'] = 1;
             $query['page'] = 1;
         }
@@ -144,6 +144,7 @@ class SphinxBehavior extends ModelBehavior
         else
         {
             $this->_cached_result = $result;
+            $this->_cached_query = $query['search'];
     
             if (isset($result['matches']))
                 $ids = array_keys($result['matches']);
@@ -157,9 +158,61 @@ class SphinxBehavior extends ModelBehavior
         return $query;
     }
 
+    private function addHighlightMarkers($model, &$results, $search) {
+        // Sort the results by lang, i.e. by index
+        $docsByLang = array();
+        $size = count($results);
+        foreach ($results as $i => $result) {
+            $lang = $result[$model->name]['lang'];
+            $text = $result[$model->name]['text'];
+            if (!array_key_exists($lang, $docsByLang)) {
+                $docsByLang[$lang] = array_fill(0, $size, '');
+            }
+            $docsByLang[$lang][$i] = $text;
+        }
+
+        // Call BuildExcerpts() for each index and merge the results
+        $options = array(
+            'query_mode' => true,
+            'before_match' => '%__START_MATCH__%',
+            'after_match' => '%__END_MATCH__%',
+            'chunk_separator' => '%__CHUNK_SEPARATOR__%',
+        );
+        $mergedExcerpts = array();
+        foreach ($docsByLang as $lang => $documents) {
+            $excerpts = $this->runtime[$model->alias]['sphinx']->BuildExcerpts(
+                $documents,
+                $lang.'_main_index',
+                $search,
+                $options
+            );
+            foreach ($excerpts as $i => $excerpt) {
+                if (!empty($excerpt)) {
+                    $mergedExcerpts[$i] = $excerpt;
+                }
+            }
+        }
+
+        // Insert highlight markers in $results
+        foreach ($results as $i => $result) {
+            $excerpt = explode($options['chunk_separator'], $mergedExcerpts[$i]);
+            $highlight = array(
+                array($options['before_match'], $options['after_match']),
+                $excerpt
+            );
+            $results[$i][$model->name]['highlight'] = $highlight;
+        }
+    }
 
     public function afterFind(&$model, $results, $primary) {
-        
+        if(!is_null($this->_cached_query)) {
+            $search = $this->_cached_query;
+            if ($search) {
+                $this->addHighlightMarkers($model, $results, $search);
+            }
+            $this->_cached_query = null;
+        }
+
         if(!is_null($this->_cached_result)) {
             foreach($results as &$result) {
                 $result[$model->name]['_weight'] = $this->_cached_result['matches'][$result[$model->name]['id']]['weight'];

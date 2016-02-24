@@ -111,9 +111,8 @@ if ($search_disabled) {
         $sentences->displaySentencesGroup(
             $sentence['Sentence'],
             $sentence['Transcription'],
-            $sentence['Translations'],
+            $sentence['Translation'],
             $sentence['User'],
-            $sentence['IndirectTranslations'],
             array('langFilter' => $to)
         );
     }

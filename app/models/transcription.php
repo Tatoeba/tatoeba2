@@ -83,7 +83,6 @@ class Transcription extends AppModel
     );
 
     public $actsAs = array('Containable');
-    public $recursive = -1;
 
     public $validate = array(
         'sentence_id' => array(
@@ -231,7 +230,6 @@ class Transcription extends AppModel
             return false;
         $parentSentence = $this->Sentence->find('first', array(
             'conditions' => array('Sentence.id' => $parentSentenceId),
-            'contain' => array(),
         ));
         if (!$parentSentence)
             return false;

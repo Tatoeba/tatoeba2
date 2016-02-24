@@ -180,29 +180,15 @@ class Tag extends AppModel
     public function paramsForPaginate($tagId, $limit, $lang = null)
     {
         $conditions = array('Tag.id' => $tagId);
-        $contain =  array(
+        $contain = array(
             'Tag' => array(
-                'fields' => array()
-            )
+                'fields' => array('id'),
+            ),
+            'Sentence' => $this->Sentence->paginateContain(),
         );
 
         if (!empty($lang) && $lang != 'und') {
-             $conditions = array(
-                "AND" => array(
-                    'Tag.id' => $tagId,
-                    'Sentence.lang' => $lang
-                )
-            );
-
-            $contain =  array(
-                'Tag' => array(
-                    'fields' => array()
-                ),
-                'Sentence' => array(
-                    'fields' => array()
-                ),
-            );
-
+            $conditions['Sentence.lang'] = $lang;
         }
         $params = array(
             'TagsSentences' => array(
@@ -230,7 +216,6 @@ class Tag extends AppModel
             'first',
             array(
                 'conditions' => array('Tag.internal_name' => $tagInternalName),
-                'contain' => array(),
                 'fields' => 'id'
             )
         );
@@ -248,7 +233,6 @@ class Tag extends AppModel
             'first',
             array(
                 'conditions' => array('Tag.name'=>$tagName),
-                'contain' => array(),
                 'fields' => 'id'
             )
         );
@@ -266,7 +250,6 @@ class Tag extends AppModel
         'first',
             array(
                 'conditions' => array('Tag.id'=>$tagId),
-                'contain' => array(),
                 'fields' => 'name'
             )
         );
@@ -284,7 +267,6 @@ class Tag extends AppModel
             'first',
             array(
                 'conditions' => array('Tag.id'=>$tagId),
-                'contain' => array(),
                 'fields' => 'name'
             )
         );

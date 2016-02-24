@@ -31,12 +31,12 @@ $sentences->javascriptForAJAXSentencesGroup();
 $sentence = $random['Sentence'];
 $transcription = $random['Transcription'];
 $sentenceOwner = $random['User'];
+$translations = $random['Translation'];
 
 $sentences->displaySentencesGroup(
     $sentence, 
     $transcription,
     $translations, 
-    $sentenceOwner,
-    $indirectTranslations
+    $sentenceOwner
 );
 ?>
