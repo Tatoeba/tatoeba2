@@ -216,8 +216,17 @@ class SentencesController extends AppController
 
             $randomId = $this->Sentence->getRandomId($lang);
 
-            $this->Session->write('random_lang_selected', $lang);
-            $this->redirect(array("action"=>"show", $randomId));
+            if (is_bool($randomId) && !$randomId) {
+                $searchDisabled = !Configure::read('Search.enabled');
+                if ($searchDisabled) {
+                    $this->set('searchProblem', 'disabled');
+                } else {
+                    $this->set('searchProblem', 'error');
+                }
+            } else {
+                $this->Session->write('random_lang_selected', $lang);
+                $this->redirect(array("action"=>"show", $randomId));
+            }
 
         }
     }
@@ -246,7 +255,7 @@ class SentencesController extends AppController
 
     public function add()
     {
-    }
+    }    
 
     /**
      * Delete a sentence.
@@ -1011,7 +1020,6 @@ class SentencesController extends AppController
         $this->set("allSentences", $allSentences);
         $this->set('lastNumberChosen', $number);
     }
-
    
     /**
      * Show all the sentences of a given user

@@ -187,8 +187,11 @@ class PagesController extends AppController
         $this->loadModel('Sentence');
         $lang = $this->Session->read('random_lang_selected');
         $randomId = $this->Sentence->getRandomId($lang);
-        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+        if(is_null($randomId)) {
 
+        } else {
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+        }
         $this->set('random', $randomSentence);
 
         if (isset($randomSentence['Sentence']['script'])) {
