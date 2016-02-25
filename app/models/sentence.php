@@ -410,7 +410,7 @@ class Sentence extends AppModel
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
         if(Configure::read('Search.enabled') == false) {
-            return false;
+            return null;
         }
         
         if(empty($lang)) {
@@ -446,14 +446,14 @@ class Sentence extends AppModel
                 );
 
             }
-            // we cache the random ids array less all the poped value, for latter use
-            Cache::write($cacheKey, $arrayRandom);
+        // we cache the random ids array less all the poped value, for latter use
+        Cache::write($cacheKey, $arrayRandom);
 
 
             return $returnIds;
         }
         
-        return false;
+        return null;
 
     }
 

@@ -28,6 +28,7 @@
 $javascript->link('jquery.scrollTo.min.js', false);
 $javascript->link('sentences.logs.js', false);
 
+if (!isset($searchProblem)) {
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
@@ -52,16 +53,6 @@ if (isset($sentence)) {
         ), 
         array('inline' => false)
     );
-} else if (isset($searchProblem)) {
-    if($searchProblem == 'error') {
-        $this->set('title_for_layout', $pages->formatTitle(
-            __('An error occurred', true)
-        ));
-    } else if ($searchProblem == 'disabled') {
-        $this->set('title_for_layout', $pages->formatTitle(
-            __('Search is currently disabled', true)
-        ));
-    }
 } else {
     // Case where the sentence has been deleted
     $this->set('title_for_layout', $pages->formatTitle(
@@ -69,14 +60,13 @@ if (isset($sentence)) {
     ));
 }
 
-if (!isset($searchProblem)) {
-    // navigation (previous, random, next)
-    $navigation->displaySentenceNavigation(
-        $sentenceId,
-        $nextSentence,
-        $prevSentence
-    );
-}
+
+// navigation (previous, random, next)
+$navigation->displaySentenceNavigation(
+    $sentenceId,
+    $nextSentence,
+    $prevSentence
+);
 ?>
 
 <div id="annexe_content">
@@ -179,13 +169,7 @@ if (!isset($searchProblem)) {
                 $sentence['Translation'],
                 $sentence['User']
             );
-        } else if (isset($searchProblem)) {
-            if($searchProblem == 'error') {
-                echo $this->Html->tag('h2', 'There was an error while performing this function.');
-            } else if ($searchProblem == 'disabled') {
-                echo $this->Html->tag('h2', 'This feature is temporarily disabled. Please try later.');
-            } 
-
+            
         } else {
             
             echo '<h2>' .
@@ -207,48 +191,66 @@ if (!isset($searchProblem)) {
     </div>
 
     <?php
-    if (!isset($searchProblem)) {
-        echo '<div class="module">';
+    echo '<div class="module">';
 
-        echo '<h2>';
-        __('Comments');
-        echo '</h2>';
+    echo '<h2>';
+    __('Comments');
+    echo '</h2>';
 
-        if (!empty($sentenceComments)) {
-            echo '<div class="comments">';
-            foreach ($sentenceComments as $i=>$comment) {
-                $commentId = $comment['SentenceComment']['id'];
-                $menu = $comments->getMenuForComment(
-                    $comment['SentenceComment'],
-                    $comment['User'],
-                    $commentsPermissions[$i]
-                );
+    if (!empty($sentenceComments)) {
+        echo '<div class="comments">';
+        foreach ($sentenceComments as $i=>$comment) {
+            $commentId = $comment['SentenceComment']['id'];
+            $menu = $comments->getMenuForComment(
+                $comment['SentenceComment'],
+                $comment['User'],
+                $commentsPermissions[$i]
+            );
 
-                echo '<a id="comment-'.$commentId.'"></a>';
+            echo '<a id="comment-'.$commentId.'"></a>';
 
-                $messages->displayMessage(
-                    $comment['SentenceComment'],
-                    $comment['User'],
-                    null,
-                    $menu
-                );
-            }
-            echo '</div>';
-        } else {
-            echo '<em>' . __('There are no comments for now.', true) .'</em>';
-        }
-
-        if ($canComment) {
-            if(!isset($sentence['Sentence'])) {
-                $sentenceText = __('Sentence deleted', true);
-            }
-            $comments->displayCommentForm(
-                $sentenceId,
-                $sentenceText
+            $messages->displayMessage(
+                $comment['SentenceComment'],
+                $comment['User'],
+                null,
+                $menu
             );
         }
-
         echo '</div>';
+    } else {
+        echo '<em>' . __('There are no comments for now.', true) .'</em>';
     }
+
+    if ($canComment) {
+        if(!isset($sentence['Sentence'])) {
+            $sentenceText = __('Sentence deleted', true);
+        }
+        $comments->displayCommentForm(
+            $sentenceId,
+            $sentenceText
+        );
+    }
+
+    echo '</div>';
     ?>
 </div>
+<?php 
+} else {
+?>
+    <div id="main_content">
+        <div class="module">
+            <?php
+            echo $html->tag('h2', __('Random Sentence',true));
+            if($searchProblem == 'disabled') {
+                echo $html->tag('p', __('The random sentence feature is currently disabled, please try again later.', true));
+            } else if ($searchProblem == 'error') {
+                echo $html->tag('p', format(__('An error occurred while fetching random sentences. '. 
+                        'If this persists, please <a href="{}">let us know</a>.', true),
+                    $html->url(array("controller"=>"pages", "action" => "contact"))
+                ));
+            }
+            ?>
+        </div>
+    </div>
+<?php } ?>
+

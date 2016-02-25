@@ -216,7 +216,7 @@ class SentencesController extends AppController
 
             $randomId = $this->Sentence->getRandomId($lang);
 
-            if (is_bool($randomId) && !$randomId) {
+            if (is_null($randomId)) {
                 $searchDisabled = !Configure::read('Search.enabled');
                 if ($searchDisabled) {
                     $this->set('searchProblem', 'disabled');
@@ -255,7 +255,7 @@ class SentencesController extends AppController
 
     public function add()
     {
-    }    
+    }
 
     /**
      * Delete a sentence.
@@ -969,10 +969,15 @@ class SentencesController extends AppController
         }
 
         $randomId = $this->Sentence->getRandomId($lang);
-        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+
+        if (is_null($randomId)) {
+            $this->set('searchProblem', true);
+            $randomSentence = null;
+        } else {
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+        }
 
         $this->Session->write('random_lang_selected', $lang);
-
         $this->set('random', $randomSentence);
     }
 
@@ -1017,8 +1022,18 @@ class SentencesController extends AppController
             'contain' => $this->Sentence->contain(),
         ));
 
-        $this->set("allSentences", $allSentences);
+        if (empty($allSentences)) {
+                $searchDisabled = !Configure::read('Search.enabled');
+                if ($searchDisabled) {
+                    $this->set('searchProblem', 'disabled');
+                } else {
+                    $this->set('searchProblem', 'error');
+                }
+        } else {
+            $this->set("allSentences", $allSentences);
+        }
         $this->set('lastNumberChosen', $number);
+
     }
    
     /**
