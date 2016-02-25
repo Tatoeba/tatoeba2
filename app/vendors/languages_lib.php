@@ -515,7 +515,8 @@ class LanguagesLib
                 'tvl' => __d('languages', 'Tuvaluan',true),
                 'kxi' => __d('languages', 'Keningau Murut', true),
                 'bvy' => __d('languages', 'Baybayanon', true),
-				
+                'mfe' => __d('languages', 'Morisyen',true),
+
             );
         }
         return $languages;
