@@ -513,7 +513,8 @@ class LanguagesLib
                 'ban' => __d('languages', 'Balinese',true),
                 'aii' => __d('languages', 'Assyrian Neo-Aramaic',true),
                 'tvl' => __d('languages', 'Tuvaluan',true),
-                'kxi' => __d('languages', 'Keningau Murut', true),
+                'kxi' => __d('languages', 'Keningau Murut',true),
+                'mfe' => __d('languages', 'Morisyen',true),
 				
             );
         }
