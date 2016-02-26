@@ -23,6 +23,25 @@ $ git clone https://github.com/Tatoeba/imouto.git
 - Use vagrant to first download the box and then provision it using ansible. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
 ```bash
 $ cd imouto #ignore if already in the imouto directory
+```
+- Configure proxy on Vagrant VM if you are behind proxy server:
+  - Install proxyconf plugin:
+
+    ```bash
+$ vagrant plugin install vagrant-proxyconf
+```
+  - And then add the following to Vagrantfile:
+
+    ```ruby
+Vagrant.configure("2") do |config|
+if Vagrant.has_plugin?("vagrant-proxyconf")
+config.proxy.http     = "http://username:password@proxy_host:proxy_port"
+config.proxy.https    = "http://username:password@proxy_host:proxy_port"
+config.proxy.no_proxy = "localhost,127.0.0.1,.example.com"
+end
+end
+```
+```bash
 $ vagrant up
 ```
 - Once it completed, you should be able to:
