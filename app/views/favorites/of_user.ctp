@@ -27,7 +27,7 @@
 
 $username = Sanitize::paranoid($username, array("_"));
 
-if ($userExists === true) {
+if ($userExists == true) {
     $numberOfSentences = (int) $paginator->counter(
         array(
             "format" => "%count%"
@@ -55,7 +55,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <div class="module">
     
     <?php
-    if ($userExists === false) {
+    if ($userExists == false) {
         $commonModules->displayNoSuchUser($username, $backLink);
     } else {
         $title = $paginator->counter(

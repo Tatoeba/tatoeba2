@@ -41,6 +41,7 @@ class SentencesListsController extends AppController
         'Sentences',
         'Navigation',
         'Csv',
+        'CommonModules',
         'Html',
         'Lists',
         'Menu',
@@ -55,7 +56,7 @@ class SentencesListsController extends AppController
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
     const MAX_COUNT_FOR_DOWNLOAD = 100;
 
-    public $uses = array('SentencesList', 'SentencesSentencesLists');
+    public $uses = array('SentencesList', 'SentencesSentencesLists', 'User');
     
     /**
      * Before filter.
@@ -414,9 +415,17 @@ class SentencesListsController extends AppController
         );
         $userLists = $this->paginate('SentencesList');
 
-        $this->set('userLists', $userLists);
         $this->set('username', $username);
+        $this->set('userLists', $userLists);
         $this->set('filter', $filter);
+        $this->set("userExists", true);
+        
+        $userId = $this->User->getIdFromUsername($username);
+        if (empty($userId)) {
+            $backLink = $this->referer(array('action'=>'index'), true);
+            $this->set('backLink', $backLink);
+            $this->set("userExists", false);
+        }
     }
 
     /**

@@ -48,10 +48,15 @@ if (!is_int($correctness)) {
     }
 }
 
-$title = format(
-    __("{user}'s collection - {category}", true),
-    array('user' => $username, 'category' => $categories[$category])
-);
+if ($userExists == true) {    
+    $title = format(
+        __("{user}'s collection - {category}", true),
+        array('user' => $username, 'category' => $categories[$category])
+    );
+} else {
+    $title = format(__("There's no user called {username}", true), array('username' => $username));
+}
+
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
@@ -98,62 +103,63 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">
     <div class="module correctness-info">
 
-        <h2>
-            <?php
-            echo $paginator->counter(array(
+        <?php
+        if ($userExists == false) {
+            $commonModules->displayNoSuchUser($username, $backLink);
+        } else {
+            $title = $paginator->counter(array(
                 'format' => $title . ' ' . __("(total %count%)", true)
             ));
-            ?>
-        </h2>
+            echo $html->tag('h2', $title);
 
-        <?php
-        $paginationUrl = array($username, $correctnessLabel, $lang);
-        $pagination->display($paginationUrl);
+            $paginationUrl = array($username, $correctnessLabel, $lang);
+            $pagination->display($paginationUrl);
 
-        $type = 'mainSentence';
-        $parentId = null;
-        $withAudio = false;
-        foreach ($corpus as $sentence) {
-            echo '<div>';
+            $type = 'mainSentence';
+            $parentId = null;
+            $withAudio = false;
+            foreach ($corpus as $sentence) {
+                echo '<div>';
 
-            if (empty($sentence['Sentence']['id'])) {
-                $sentenceId = $sentence['UsersSentences']['sentence_id'];
-                $linkToSentence = $html->link(
-                    '#'.$sentenceId,
-                    array(
-                        'controller' => 'sentences',
-                        'action' => 'show',
-                        $sentenceId
-                    )
+                if (empty($sentence['Sentence']['id'])) {
+                    $sentenceId = $sentence['UsersSentences']['sentence_id'];
+                    $linkToSentence = $html->link(
+                        '#'.$sentenceId,
+                        array(
+                            'controller' => 'sentences',
+                            'action' => 'show',
+                            $sentenceId
+                        )
+                    );
+
+                    echo $html->div('sentence deleted',
+                        format(
+                            __('Sentence {id} has been deleted.', true),
+                            array('id' => $linkToSentence)
+                        )
+                    );
+                } else {
+                    $sentences->displayGenericSentence(
+                        $sentence['Sentence'],
+                        null,
+                        $type,
+                        $parentId,
+                        $withAudio
+                    );
+                }
+
+                $correctness = $sentence['UsersSentences']['correctness'];
+                echo $html->div(
+                    'correctness',
+                    $images->correctnessIcon($correctness),
+                    array('title' => $sentence['UsersSentences']['modified'])
                 );
 
-                echo $html->div('sentence deleted',
-                    format(
-                        __('Sentence {id} has been deleted.', true),
-                        array('id' => $linkToSentence)
-                    )
-                );
-            } else {
-                $sentences->displayGenericSentence(
-                    $sentence['Sentence'],
-                    null,
-                    $type,
-                    $parentId,
-                    $withAudio
-                );
+                echo '</div>';
             }
 
-            $correctness = $sentence['UsersSentences']['correctness'];
-            echo $html->div(
-                'correctness',
-                $images->correctnessIcon($correctness),
-                array('title' => $sentence['UsersSentences']['modified'])
-            );
-
-            echo '</div>';
+            $pagination->display($paginationUrl);
         }
-
-        $pagination->display($paginationUrl);
         ?>
     </div>
 </div>

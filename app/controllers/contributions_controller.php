@@ -189,6 +189,8 @@ class ContributionsController extends AppController
 
         if (empty($userId)) {
             $this->set('userExists', false);
+            $backLink = $this->referer(array('action'=>'index'), true);
+            $this->set('backLink', $backLink);
             return;
         }
 

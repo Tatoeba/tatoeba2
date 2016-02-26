@@ -27,7 +27,11 @@
 
 $total = $paginator->counter("%count%");
 
-if (empty($filter)) {
+if ($userExists == false) {
+    $title = format(
+        __("There's no user called {username}", true),
+        array('username' => $username));
+} else if (empty($filter)) {
     $title = format(
         __("{username}'s lists ({total})", true),
         array('username' => $username, 'total' => $total)
@@ -56,28 +60,33 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 <div id="main_content">
     <div class="module">
-        <?php echo $html->tag('h2', $title, array('escape' => true)); ?>
+        <?php 
+        if ($userExists == false) {
+            $commonModules->displayNoSuchUser($username, $backLink);
+        } else {    
+            echo $html->tag('h2', $title, array('escape' => true)); ?>
 
-        <div class="sortBy">
-            <strong><?php __("Sort by:") ?> </strong>
+            <div class="sortBy">
+                <strong><?php __("Sort by:") ?> </strong>
+                <?php
+                echo $this->Paginator->sort(__('list name', true), 'name');
+                echo " | ";
+                echo $this->Paginator->sort(__('date created', true), 'created');
+                echo " | ";
+                echo $this->Paginator->sort(
+                    __('number of sentences', true),
+                    'numberOfSentences'
+                );
+                ?>
+            </div>
+            
             <?php
-            echo $this->Paginator->sort(__('list name', true), 'name');
-            echo " | ";
-            echo $this->Paginator->sort(__('date created', true), 'created');
-            echo " | ";
-            echo $this->Paginator->sort(
-                __('number of sentences', true),
-                'numberOfSentences'
-            );
-            ?>
-        </div>
-        
-        <?php
-        $pagination->display(array($username, $filter));
+            $pagination->display(array($username, $filter));
 
-        $lists->displayListTable($userLists);
+            $lists->displayListTable($userLists);
 
-        $pagination->display(array($username, $filter));
+            $pagination->display(array($username, $filter));
+        }
         ?>
     </div>
 </div>
