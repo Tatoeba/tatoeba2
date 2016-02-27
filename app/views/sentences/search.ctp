@@ -34,25 +34,25 @@ if ($search_disabled) {
 } else {
     if ($from != 'und' && $to != 'und') {
         if ($trans_filter == 'exclude') {
-	    $title = format(__('Sentences in {language} not translated into {translationLanguage}', true)
-		            array('language' => $languages->codeToNameToFormat($from),
-			           'translationLanguage' => $languages->codeToNameToFormat($to)));
-	} else {
-	    $title = format(__('Sentences in {language} translated into {translationLanguage}', true),
-	                    array('language' => $languages->codeToNameToFormat($from),
-		                  'translationLanguage' => $languages->codeToNameToFormat($to)));
-	}
+            $title = format(__('Sentences in {language} not translated into {translationLanguage}', true),
+                            array('language' => $languages->codeToNameToFormat($from),
+                                   'translationLanguage' => $languages->codeToNameToFormat($to)));
+        } else {
+            $title = format(__('Sentences in {language} translated into {translationLanguage}', true),
+                            array('language' => $languages->codeToNameToFormat($from),
+                                  'translationLanguage' => $languages->codeToNameToFormat($to)));
+        }
     } elseif ($from != 'und') {
         $title = format(__('Sentences in {language}', true),
                         array('language' => $languages->codeToNameToFormat($from)));
     } elseif ($to != 'und') {
-	if ($trans_filter == 'exclude') {
-	    $title = format(__('Sentences not translated into {language}', true),
-	                    array('language' => $language->codeToNameToFormat($to)));
-	} else {
+        if ($trans_filter == 'exclude') {
+            $title = format(__('Sentences not translated into {language}', true),
+                            array('language' => $language->codeToNameToFormat($to)));
+        } else {
             $title = format(__('Sentences translated into {language}', true),
-	                    array('language' => $languages->codeToNameToFormat($to)));
-	}
+                            array('language' => $languages->codeToNameToFormat($to)));
+        }
     } else {
         $title = format(__('All sentences', true));
     }
