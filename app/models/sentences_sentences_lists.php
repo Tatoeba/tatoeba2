@@ -93,15 +93,24 @@ class SentencesSentencesLists extends AppModel
      *
      * @param int    $listId Id of the list.
      * @param int    $limit  Number of sentences per page.
+     * @param string $translationsLang  Limit translations in that language
      *
      * @return array
      */
-    public function getPaginatedSentencesInList($listId, $limit)
+    public function getPaginatedSentencesInList($listId, $limit, $translationsLang)
     {
+        $contain = array('Sentence' => $this->Sentence->paginateContain());
+        if ($translationsLang == 'none') {
+            unset($contain['Sentence']['Translation']);
+        } elseif ($translationsLang != 'und') {
+            $this->Sentence->linkTranslationModel(array(
+                'Translation.lang' => $translationsLang
+            ));
+        }
         return array(
             'limit' => $limit,
             'conditions' => array('sentences_list_id' => $listId),
-            'contain' => array('Sentence' => $this->Sentence->paginateContain()),
+            'contain' => $contain,
             'fields' => array('created', 'sentence_id'),
             'order' => 'created DESC'
         );

@@ -184,7 +184,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
-            $id, CurrentUser::getSetting('sentences_per_page')
+            $id, CurrentUser::getSetting('sentences_per_page'), $translationsLang
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
 
