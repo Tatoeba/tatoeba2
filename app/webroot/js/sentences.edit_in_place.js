@@ -23,7 +23,7 @@ $(document).ready(function() {
     $('.editableSentence').each(function() {
         var div = $(this);
 
-        sentenceId = div.parent().attr('data-sentence-id');
+        var sentenceId = div.parent().attr('data-sentence-id');
         div.editable(rootUrl + '/sentences/edit_sentence', {
             type      : 'textarea',
             submit    : div.attr('data-submit'),
@@ -34,7 +34,7 @@ $(document).ready(function() {
             },
             callback : function(result, settings) {
                 // Update transcriptions if any
-                transcr = div.closest('.sentence').find('.transcriptions');
+                var transcr = div.closest('.sentence').find('.transcriptions');
                 if (transcr.length) {
                     transcr.html("<div class='sentence-loader loader'></div>");
                     $.get(
