@@ -1023,12 +1023,12 @@ class SentencesController extends AppController
         ));
 
         if (empty($allSentences)) {
-                $searchDisabled = !Configure::read('Search.enabled');
-                if ($searchDisabled) {
-                    $this->set('searchProblem', 'disabled');
-                } else {
-                    $this->set('searchProblem', 'error');
-                }
+            $searchDisabled = !Configure::read('Search.enabled');
+            if ($searchDisabled) {
+                $this->set('searchProblem', 'disabled');
+            } else {
+                $this->set('searchProblem', 'error');
+            }
         } else {
             $this->set("allSentences", $allSentences);
         }
