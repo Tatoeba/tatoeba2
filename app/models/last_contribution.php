@@ -37,6 +37,7 @@
 class LastContribution extends AppModel
 {
     public $belongsTo = array('Sentence', 'User');
+    public $actsAs = array('Containable');
 
     /**
      * Get the top contributors from the latest contributions.
