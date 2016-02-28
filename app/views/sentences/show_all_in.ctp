@@ -27,18 +27,28 @@
 
 $languageName = $languages->codeToNameToFormat($lang);
 
-$title = format(__('All sentences in {language}', true),
-                array('language' => $languageName));
+if ( $filterAudioOnly == 'Yes' ) {
+    $title = format(__('{language} sentences with audio', true),
+        	    array('language' => $languageName));
+} else {
+    $title = format(__('{language} sentences', true),
+        	    array('language' => $languageName));
+}
 if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
     if ($notTranslatedInto == 'und') {
         $notTranslatedIntoName = __('any language', true);
     } else {
         $notTranslatedIntoName = $languages->codeToNameToFormat($notTranslatedInto);
     }
-    $title = format(
-        __('Sentences in {language} not translated into {translationLanguage}', true),
-        array('language' => $languageName, 'translationLanguage' => $notTranslatedIntoName)
-    );
+    if ( $filterAudioOnly == 'Yes' ) {
+        $title = format(
+            __('{language} sentences with audio that are not translated into {translationLanguage}', true),
+            array('language' => $languageName, 'translationLanguage' => $notTranslatedIntoName));
+    } else {
+        $title = format(
+            __('{language} sentences that are not translated into {translationLanguage}', true),
+            array('language' => $languageName, 'translationLanguage' => $notTranslatedIntoName));
+    }
 }
 
 $this->set('title_for_layout', $pages->formatTitle($title));
