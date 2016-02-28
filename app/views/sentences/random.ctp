@@ -28,10 +28,10 @@
 
 $sentences->javascriptForAJAXSentencesGroup();
 if (is_null($random)) {
-  	echo $html->tag('p', format(__('An error occurred while fetching the random sentence. '.
-                    'If this persists, please <a href="{}">let us know</a>.', true),
-                $html->url(array("controller"=>"pages", "action" => "contact"))
-            ));
+   echo $html->tag('p', format(__('An error occurred while fetching the random sentence. '.
+                                  'If this persists, please <a href="{}">let us know</a>.', true),
+                        $html->url(array("controller"=>"pages", "action" => "contact"))
+   ));
 } else {
 	$sentence = $random['Sentence'];
 	$transcription = $random['Transcription'];

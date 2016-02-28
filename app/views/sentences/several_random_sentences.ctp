@@ -103,11 +103,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
                 );
             }
         } else if($searchProblem == 'disabled') {
-                echo $html->tag('p', __('The random sentence feature is currently disabled, please try again later.', true));
+            echo $html->tag('p', __('The random sentence feature is currently disabled, please try again later.', true));
         } else if ($searchProblem == 'error') {
             echo $html->tag('p', format(__('An error occurred while fetching random sentences. '.
-                    'If this persists, please <a href="{}">let us know</a>.', true),
-                $html->url(array("controller"=>"pages", "action" => "contact"))
+                                            'If this persists, please <a href="{}">let us know</a>.', true),
+                                        $html->url(array("controller"=>"pages", "action" => "contact"))
             ));
         }
     ?>
