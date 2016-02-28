@@ -26,7 +26,6 @@
  */
 
 $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true)));
-
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -89,22 +88,30 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
         ?>
     </div>
 </div>    
-    
-    
+      
 <div id="main_content">
     <div class="module">
-    <h2><?php __('Random sentences'); ?></h2>
-        <?php
-        foreach ($allSentences as $index=>$sentence) {
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $sentence['Translation'],
-                $sentence['User']
-            );
+    <?php  
+        $this->Html->tag('h2', 'Random sentences', null);
+        if(!isset($searchProblem)) {
+            foreach ($allSentences as $index=>$sentence) {
+                $sentences->displaySentencesGroup(
+                    $sentence['Sentence'],
+                    $sentence['Transcription'],
+                    $sentence['Translation'],
+                    $sentence['User']
+                );
+            }
+        } else if($searchProblem == 'disabled') {
+            echo $html->tag('p', __('The random sentence feature is currently disabled, please try again later.', true));
+        } else if ($searchProblem == 'error') {
+            echo $html->tag('p', format(__('An error occurred while fetching random sentences. '.
+                                            'If this persists, please <a href="{}">let us know</a>.', true),
+                                        $html->url(array("controller"=>"pages", "action" => "contact"))
+            ));
         }
-        ?>
+    ?>
+
     </div>
 </div>
-
 
