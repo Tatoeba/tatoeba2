@@ -166,8 +166,7 @@ class TranscriptionsHelper extends AppHelper
         $class = 'transcriptionContainer';
         if ($needsReview) {
             $class .= ' needsReview';
-        }
-        if ($lang == 'jpn') {
+        } elseif ($lang == 'jpn') {
             $class .= ' blend';
         }
         $hide = $needsReview && !CurrentUser::get('settings.show_transcriptions');

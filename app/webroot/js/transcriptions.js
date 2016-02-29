@@ -39,7 +39,7 @@ $(document).ready(function() {
 
     // For transcriptions marked with class 'blend',
     // replace the sentence content with the transcription
-    $('.transcriptionContainer.blend').not('.needsReview').each(function() {
+    $('.transcriptionContainer.blend').each(function() {
         var container = $(this);
         var transcr = container.find('.transcription');
         var sentence = container.closest('.sentence').find('.content .text');
