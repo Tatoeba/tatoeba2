@@ -167,6 +167,9 @@ class TranscriptionsHelper extends AppHelper
         if ($needsReview) {
             $class .= ' needsReview';
         }
+        if ($lang == 'jpn') {
+            $class .= ' blend';
+        }
         $hide = $needsReview && !CurrentUser::get('settings.show_transcriptions');
         echo $this->Html->tag('div',
             $toggleButton.$buttonsDiv.$transcriptionDiv,

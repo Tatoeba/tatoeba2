@@ -37,6 +37,32 @@ $(document).ready(function() {
         }
     });
 
+    // For transcriptions marked with class 'blend',
+    // replace the sentence content with the transcription
+    $('.transcriptionContainer.blend').not('.needsReview').each(function() {
+        var container = $(this);
+        var transcr = container.find('.transcription');
+        var sentence = container.closest('.sentence').find('.content .text');
+        var originalSentence = sentence.html();
+        sentence.html(transcr.html());
+        container.toggle(false);
+
+        var isMainSentence = container.closest('.translations').length == 0;
+        if (isMainSentence) {
+            // Allow to unblend back the transcription and the sentence
+            // by clicking on the transcribe button
+            var menu = container.closest('.sentences_set').find('.transcribe-buttons');
+            var button = container.find('.transcribe.option');
+            button.click(function(event) {
+                sentence.html(originalSentence);
+                button.remove();
+                container.toggle(true);
+            });
+            button.toggle(true);
+            menu.append(button);
+        }
+    });
+
     function escapeUnicodeChar(c) {
         var code = c.charCodeAt(0);
         if (code >= 128) {
