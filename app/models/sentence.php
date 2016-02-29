@@ -333,6 +333,20 @@ class Sentence extends AppModel
         $this->Language->decrementCountForLanguage($sentenceLang);
     }
 
+    public function afterFind($results, $primary = false) {
+        foreach ($results as &$result) {
+            /* Work around afterFind() not being called by Containable */
+            if (isset($result['Translation'])) {
+                $result['Translation'] = $this->Behaviors->Transcriptable->afterFind(
+                    $this->Translation,
+                    $result['Translation'],
+                    false
+                );
+            }
+        }
+        return $results;
+    }
+
     /**
      * Search one random chinese/japanese sentence containing $sinogram.
      *

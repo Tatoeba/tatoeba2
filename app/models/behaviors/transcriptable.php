@@ -94,12 +94,13 @@ class TranscriptableBehavior extends ModelBehavior
 
     public function afterFind(&$model, $results, $primary) {
         foreach ($results as &$result) {
+            $sentence = $primary ? $result[$model->alias] : $result;
             if (isset($result['Transcription'])
-                && isset($result[$model->alias]['lang'])
-                && isset($result[$model->alias]['text'])) {
+                && isset($sentence['lang'])
+                && isset($sentence['text'])) {
                 $result['Transcription'] =
                     $model->Transcription->addGeneratedTranscriptions(
-                        $result['Transcription'], $result[$model->alias]
+                        $result['Transcription'], $sentence
                     );
             }
         }
