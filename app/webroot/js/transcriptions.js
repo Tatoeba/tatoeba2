@@ -45,6 +45,7 @@ $(document).ready(function() {
         var sentence = container.closest('.sentence').find('.content .text');
         var originalSentence = sentence.html();
         sentence.html(transcr.html());
+        sentence.addClass('blended');
         container.toggle(false);
 
         var isMainSentence = container.closest('.translations').length == 0;
@@ -55,6 +56,7 @@ $(document).ready(function() {
             var button = container.find('.transcribe.option');
             button.click(function(event) {
                 sentence.html(originalSentence);
+                sentence.removeClass('blended');
                 button.remove();
                 container.toggle(true);
             });

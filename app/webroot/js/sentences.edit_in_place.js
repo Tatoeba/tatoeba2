@@ -29,6 +29,13 @@ $(document).ready(function() {
             submit    : div.attr('data-submit'),
             cancel    : div.attr('data-cancel'),
             event     : 'edit_sentence',
+            onedit    : function() {
+                // Restore the original sentence if it was blended
+                if (div.hasClass('blended')) {
+                    div.closest('.sentences_set').find('.transcribe.option')
+                       .trigger('click');
+                }
+            },
             data : function(value, settings) {
                 return $('<div>').html(value).text() // added to correct problem with html entities
             },
