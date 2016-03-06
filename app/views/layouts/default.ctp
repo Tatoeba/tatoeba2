@@ -139,6 +139,13 @@
                 'key' => Configure::read('Config.language')
             )
         ));
+    } else {
+        echo $this->element('short_description', array(
+            'cache' => array(
+                'time' => '+1 day',
+                'key' => Configure::read('Config.language')
+            )
+        ));
     }
     ?>
             

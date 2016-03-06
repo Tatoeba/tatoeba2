@@ -27,6 +27,7 @@
 ?>
 
 <div class="topContent">
+    <div class="container">
     <div class="description">
         <strong>
             <?php __("Tatoeba is a collection of sentences and translations."); ?>
@@ -34,5 +35,6 @@
         <div>
             <?php __("It's collaborative, open, free and even addictive."); ?>
         </div>
+    </div>
     </div>
 </div>

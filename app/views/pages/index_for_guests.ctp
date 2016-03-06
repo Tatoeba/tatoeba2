@@ -24,13 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-echo $this->element('short_description', array(
-    'cache' => array(
-        'time' => '+1 day',
-        'key' => Configure::read('Config.language')
-    )
-));
 ?>
 
 <div id="main_content">
