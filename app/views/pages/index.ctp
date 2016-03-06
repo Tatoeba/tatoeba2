@@ -32,6 +32,8 @@ $selectedLanguage = $session->read('random_lang_selected');
 <div id="annexe_content">
     <?php 
     echo $this->element('sentences_statistics', array(
+        'stats' => $stats,
+        'numSentences' => $numSentences,
         'cache' => array(
             'time' => '+15 minutes',
             'key' => Configure::read('Config.language')

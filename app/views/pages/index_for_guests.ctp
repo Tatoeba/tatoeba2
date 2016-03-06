@@ -24,7 +24,89 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::import('Vendor', 'LanguagesLib');
 ?>
+
+<div id="annexe_content">
+    <div class="module join-us">
+        <?php
+        echo $html->tag('h2', __('Want to help?', true));
+        echo $html->tag('p', __(
+            'We are collecting sentences and their translations. '.
+            'You can help us by translating or adding new sentences.', true
+        ));
+        echo $html->link(
+            __('Join the community', true),
+            array(
+                'controller' => 'users',
+                'action' => 'regiser'
+            ),
+            array(
+                'class' => 'registerLink'
+            )
+        )
+        ?>
+    </div>
+
+    <div class="module stats">
+        <?php
+        echo $html->tag('h2', __('Stats', true));
+
+        $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
+
+        echo $html->div('stat', format(
+            __('{number} contributions today', true),
+            array('number' => $html->tag('strong', $contribToday))
+        ));
+        echo $html->div('stat', format(
+            __('{number} supported languages', true),
+            array('number' => $html->tag('strong', $numberOfLanguages))
+        ));
+        echo $html->div('stat', format(
+            __('{number} sentences', true),
+            array('number' => $html->tag('strong', $numSentences))
+        ));
+        ?>
+
+        <ul class="guest-sentences-stats">
+            <?php
+            foreach ($stats as $stat) {
+                $langCode = $stat['Language']['code'];
+                $numberOfSentences = $stat['Language']['sentences'];
+                $link = array(
+                    "controller" => "sentences",
+                    "action" => "show_all_in",
+                    $langCode,
+                    'none',
+                    'none',
+                    'indifferent',
+                );
+                $numberOfSentencesLabel = format(
+                    __('{number} sentences in {lang}', true),
+                    array(
+                        'number' => $numberOfSentences,
+                        'lang' => $languages->codeToNameAlone($langCode)
+                    )
+                );
+                $languages->stat($langCode, $numberOfSentencesLabel, $link);
+            }
+            ?>
+
+            <li>
+                <?php
+                echo $html->link(
+                    __('show all languages', true),
+                    array(
+                        'controller' => 'stats',
+                        'action' => 'sentences_by_language'
+                    )
+                );
+                ?>
+            </li>
+        </ul>
+    </div>
+</div>
 
 <div id="main_content">
     <?php if(!isset($searchProblem)) { ?>

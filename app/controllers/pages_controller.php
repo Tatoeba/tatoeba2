@@ -91,6 +91,13 @@ class PagesController extends AppController
         // Random sentence part
         $this->_random_sentence();
 
+        // Stats
+        $stats = ClassRegistry::init('Language')->getSentencesStatistics(5);
+        $numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
+
+        $this->set('stats', $stats);
+        $this->set('numSentences', $numSentences);
+
         if ($isLogged) {
             $this->_homepageForMembers();
         } else {
@@ -100,6 +107,9 @@ class PagesController extends AppController
 
 
     private function _homepageForGuests() {
+        $contribToday = ClassRegistry::init('Contribution')->getTodayContributions();
+
+        $this->set('contribToday', $contribToday);
         $this->render('index_for_guests');
     }
 

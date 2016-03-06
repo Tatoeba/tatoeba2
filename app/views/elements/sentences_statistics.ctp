@@ -24,8 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$stats = ClassRegistry::init('Language')->getSentencesStatistics(5);
-$numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 ?>
 
 <div class="module">
