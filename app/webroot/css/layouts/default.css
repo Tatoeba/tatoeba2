@@ -127,11 +127,10 @@ svg {
 }
 
 #top_menu {
-    height: 30px;
     width: 960px;
     margin: auto;
-    font-size: 14px;
     overflow: hidden;
+    padding: 10px;
 }
 
 #top_menu .whatsNewItem {
@@ -152,13 +151,14 @@ svg {
  * Menu (Home, Browse, etc)
  */
 #top_menu ul {
+    display: inline-block;
     list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 
 #top_menu li {
-    float: left;
+    display: inline-block;
     padding: 0;
 }
 
@@ -198,6 +198,7 @@ svg {
     margin:0;
     padding:0;
     width:225px;
+    line-height: 24px;
 }
 
 #top_menu li:hover li a {
@@ -229,10 +230,6 @@ svg {
 /* 
  * Interface Language Selector
  */
-#languageSelectionContainer {
-    padding-top: 2px;
-    float: right;
-}
 
 #languageSelection {
     margin-left: 10px;
@@ -243,7 +240,9 @@ svg {
 /* 
  * User Menu 
  */
+#languageSelectionContainer,
 #user_menu {
+    line-height: 48px;
     float: right;
 }
 
@@ -439,22 +438,16 @@ svg {
 
 
 #logo {
-    position: absolute;
-    padding: 4px 12px;
-    z-index: 1;
-    border-top-right-radius: 40px;
-    border-bottom-right-radius: 32px;
-    background: #fff;
-    width: 64px;
-    height: 64px;
+    color: #EEEEEE;
+    font-size: 24px;
+    margin-right: 10px;
 }
 
-.tatoeba-name {
-    color: #EEEEEE;
-    position: absolute;
-    top: 2px;
-    left: 115px;
-    font-size: 18px;
+#logo .tatoeba-name,
+#logo img {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
 }
 
 #tatoeba {
@@ -604,7 +597,7 @@ svg {
  */
 #UserLoginForm_FromBar {
     position: absolute;
-    top: 30px;
+    top: 60px;
     z-index: 1000;
     min-width: 270px;
     padding: 5px 10px;

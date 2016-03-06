@@ -123,9 +123,6 @@
 
 
     <div id="container">
-        <!--  Logo  -->
-        <?php echo $this->element('header'); ?>
-        
         <!--  SEARCH BAR  -->
         <?php
         echo $this->element('search_bar', array(
