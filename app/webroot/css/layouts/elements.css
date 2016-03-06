@@ -976,7 +976,7 @@
 }
 
 .sentence .content.column {
-    width: 500px;
+    width: 540px;
 }
 
 .sentence .audio.column {
@@ -1446,14 +1446,17 @@ div.hideLink {
     margin: 5px 0;
 }
 
+.stat .total,
+.stat .langCode {
+    display: inline-block;
+}
+
 .stat .langCode {
     display: none;
 }
 
 .stat .total {
-    line-height: 20px;
-    float: left;
-    display: block;
+    width: 200px;
     margin: 0 5px;
 }
 
