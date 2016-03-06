@@ -25,85 +25,182 @@
  * @link     http://tatoeba.org
  */
 
-$onlineVisitors = ClassRegistry::init('Visitor')->numberOfOnlineVisitors();
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }
 ?>
 <div id="footer">
-<ul>
-    <li>
-        <?php echo format(__n('One visitor online', '{n}&nbsp;visitors online', $onlineVisitors, true),
-                          array('n' => $onlineVisitors)); ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('Terms of use', true),
-            array(
-                "controller" => 'pages',
-                "action" => 'terms_of_use'
-            )
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('Contact us', true),
-            array(
-                "controller" => 'pages',
-                "action" => 'contact'
-            )
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('Donate', true),
-            array(
-                "controller" => 'pages',
-                "action" => 'donate'
-            )
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('Blog', true),
-            'http://blog.tatoeba.org/',
-            array('target' => '_blank')
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('Twitter', true),
-            'http://twitter.com/tatoeba_org',
-            array('target' => '_blank')
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('Facebook', true),
-            'https://www.facebook.com/groups/129340017083187/',
-            array('target' => '_blank')
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('GitHub', true),
-            'https://github.com/Tatoeba/tatoeba2',
-            array('target' => '_blank')
-        );
-        ?>
-    </li>
-</ul>
+
+    <div class="category">
+        <h3><?php __('Need some help?'); ?></h3>
+        <ul>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Quick Start Guide', true),
+                    'http://en.wiki.tatoeba.org/articles/show/quick-start'
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Tatoeba Wiki', true),
+                    'http://en.wiki.tatoeba.org/articles/show/main'
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('FAQ', true),
+                    'http://en.wiki.tatoeba.org/articles/show/faq'
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Help', true),
+                    array(
+                        "controller" => "pages",
+                        "action" => "help"
+                    )
+                );
+                ?>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h3><?php __('Developers'); ?></h3>
+        <ul>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Downloads', true),
+                    array(
+                        "controller" => "pages",
+                        "action" => "downloads"
+                    )
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('GitHub', true),
+                    'https://github.com/Tatoeba/tatoeba2',
+                    array('target' => '_blank')
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Google group', true),
+                    'https://groups.google.com/forum/#!forum/tatoebaproject'
+                );
+                ?>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h3><?php __('About'); ?></h3>
+        <ul>
+            <li>
+                <?php
+                echo $html->link(
+                    __('What is Tatoeba?', true),
+                    array(
+                        "controller" => "pages",
+                        "action" => "about"
+                    )
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Contact us', true),
+                    array(
+                        "controller" => 'pages',
+                        "action" => 'contact'
+                    )
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Terms of use', true),
+                    array(
+                        "controller" => 'pages',
+                        "action" => 'terms_of_use'
+                    )
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Blog', true),
+                    'http://blog.tatoeba.org/',
+                    array('target' => '_blank')
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Twitter', true),
+                    'http://twitter.com/tatoeba_org',
+                    array('target' => '_blank')
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Facebook', true),
+                    'https://www.facebook.com/groups/129340017083187/',
+                    array('target' => '_blank')
+                );
+                ?>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="license">
+        <a class="cc-by-icon" rel="license"
+           href="http://creativecommons.org/licenses/by/2.0/fr/">
+            <img alt="Creative Commons License" style="border-width:0"
+                 src="http://i.creativecommons.org/l/by/2.0/fr/88x31.png" />
+        </a>
+        <div class="text">
+            <?php
+            __(
+                'Our sentences and translations can be used under the '.
+                'Creative Commons Attribution 2.0 license (CC-BY 2.0).'
+            );
+            ?>
+            <br/>
+            <?php
+            echo format(
+                __(
+                    'If you love this content, please consider a '.
+                    '<a href={}>donation</a>.', true
+                ),
+                $html->url(
+                    array('controller' => 'pages', 'action' => 'donate')
+                )
+            );
+            ?>
+        </div>
+
+    </div>
+
 </div>

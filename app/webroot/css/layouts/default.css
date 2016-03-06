@@ -514,30 +514,46 @@ svg {
  * Footer 
  */
 #footer {
-    background: #e3e0d6;
+    background: #F5F5F5;
 }
 
-#footer a {
-    color: #3d3d3d;
-    cursor: pointer;
-    text-decoration: none;
+#footer .category {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px;
+    font-size: 16px;
 }
+
+#footer .category h3 {
+    border-bottom: 1px solid #E2E2E2;
+    font-size: inherit;
+    font-weight: normal;
+    padding: 0 0 15px 0;
+}
+
 
 #footer ul {
-    display: block;
-    font-size: 80%;
-    text-align: right;
+    margin: 0;
+    padding: 0;
 }
-
 #footer li {
-    display: inline;
-    line-height: 30px;
-    text-align: center;
     list-style: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    font-size: 15px;
+    margin: 5px 0;
 }
-
+#footer .license {
+    font-size: 15px;
+    margin-top: 20px;
+}
+#footer .license .text,
+#footer .cc-by-icon {
+    display: inline-block;
+}
+#footer .license .text {
+    max-width: 820px;
+    margin-left: 10px;
+}
 
 /*
  * HTML Elements
