@@ -103,6 +103,10 @@ $menuElements = array(
             __('Discuss sentences', true) => array(
                 "controller" => "sentence_comments",
                 "action" => "index"
+            ),
+            __('Show activity timeline', true) => array(
+                "controller" => "contributions",
+                "action" => "activity_timeline"
             )
         )
     ),
