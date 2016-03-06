@@ -35,7 +35,6 @@ if (!empty($sentence)) {
     $sentence['IndirectTranslations'] = array();
     $lists->displaySentence(
         $sentence,
-        array(),
         true
     );
 
