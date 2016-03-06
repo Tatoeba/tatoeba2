@@ -40,7 +40,7 @@ App::import('Vendor', 'LanguagesLib');
             __('Join the community', true),
             array(
                 'controller' => 'users',
-                'action' => 'regiser'
+                'action' => 'register'
             ),
             array(
                 'class' => 'registerLink'
