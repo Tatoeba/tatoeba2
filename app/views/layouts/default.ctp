@@ -125,20 +125,24 @@
     <div id="container">
         <!--  SEARCH BAR  -->
         <?php
-        echo $this->element('search_bar', array(
-            'selectedLanguageFrom' => $session->read('search_from'),
-            'selectedLanguageTo' => $session->read('search_to'),
-            'searchQuery' => $session->read('search_query'),
-            'cache' => array(
-                // Only use cache when search fields are not prefilled
-                'time' => is_null($session->read('search_from'))
-                          && is_null($session->read('search_to'))
-                          && is_null($session->read('search_query'))
-                          && !$languages->preferredLanguageFilter()
-                          ? '+1 day' : false,
-                'key' => Configure::read('Config.language')
-            )
-        )); ?>
+        $isHomepage = $controller == 'pages' && $action == 'index';
+        if (CurrentUser::isMember() || !$isHomepage) {
+            echo $this->element('search_bar', array(
+                'selectedLanguageFrom' => $session->read('search_from'),
+                'selectedLanguageTo' => $session->read('search_to'),
+                'searchQuery' => $session->read('search_query'),
+                'cache' => array(
+                    // Only use cache when search fields are not prefilled
+                    'time' => is_null($session->read('search_from'))
+                    && is_null($session->read('search_to'))
+                    && is_null($session->read('search_query'))
+                    && !$languages->preferredLanguageFilter()
+                        ? '+1 day' : false,
+                    'key' => Configure::read('Config.language')
+                )
+            ));
+        }
+        ?>
             
         <!--  CONTENT -->
         <div id="content">
