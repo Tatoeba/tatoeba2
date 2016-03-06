@@ -448,7 +448,7 @@ class SentencesHelper extends AppHelper
             $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio
         );
 
-        $ownerName = $user['username'];
+        $ownerName = $user ? $user['username'] : null;
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
             $sentence,

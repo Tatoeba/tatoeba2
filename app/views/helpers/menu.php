@@ -128,7 +128,7 @@ class MenuHelper extends AppHelper
      */
     public function adoptButton($sentenceId, $owner)
     {
-        $ownerName = $owner['username'];
+        $ownerName = $owner ? $owner['username'] : null;
         $isNative = isset($owner['is_native']) ? $owner['is_native'] : false;
         $isAdopted = !empty($ownerName);
         $userAccountDeactivated = isset($owner['group_id']) ?
@@ -597,7 +597,7 @@ class MenuHelper extends AppHelper
 
         <?php
         $isLogged = CurrentUser::isMember();
-        $ownerName = $owner['username'];
+        $ownerName = $owner ? $owner['username'] : null;
 
         // Adopt
         $this->adoptButton($sentenceId, $owner);
