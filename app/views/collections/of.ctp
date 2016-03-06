@@ -48,7 +48,7 @@ if (!is_int($correctness)) {
     }
 }
 
-if ($userExists == true) {    
+if ($userExists) {    
     $title = format(
         __("{user}'s collection - {category}", true),
         array('user' => $username, 'category' => $categories[$category])
@@ -104,7 +104,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <div class="module correctness-info">
 
         <?php
-        if ($userExists == false) {
+        if (!$userExists) {
             $commonModules->displayNoSuchUser($username, $backLink);
         } else {
             $title = $paginator->counter(array(

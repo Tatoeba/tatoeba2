@@ -393,6 +393,14 @@ class SentencesListsController extends AppController
      */
     public function of_user($username, $filter = null)
     {
+        $this->set('username', $username);
+        $userId = $this->User->getIdFromUsername($username);
+        if (empty($userId)) {
+            $backLink = $this->referer(array('action'=>'index'), true);
+            $this->set('backLink', $backLink);
+            $this->set("userExists", false);
+            return;
+        }
         if (isset($this->params['url']['username'])) {
             $usernameParam = $this->params['url']['username'];
         }
@@ -415,17 +423,9 @@ class SentencesListsController extends AppController
         );
         $userLists = $this->paginate('SentencesList');
 
-        $this->set('username', $username);
         $this->set('userLists', $userLists);
         $this->set('filter', $filter);
         $this->set("userExists", true);
-        
-        $userId = $this->User->getIdFromUsername($username);
-        if (empty($userId)) {
-            $backLink = $this->referer(array('action'=>'index'), true);
-            $this->set('backLink', $backLink);
-            $this->set("userExists", false);
-        }
     }
 
     /**

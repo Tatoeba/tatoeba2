@@ -34,7 +34,7 @@
  */
 
 $username = Sanitize::paranoid($username, array("_"));
-if ($userExists === true) {
+if ($userExists) {
     $title = format(__("Logs of {user}'s contributions", true), array('user' => $username));
 } else {
     $title = format(__("There's no user called {username}", true), array('username' => $username));
@@ -55,7 +55,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">
     <div class="module">
     <?php
-    if ($userExists == false) {
+    if (!$userExists) {
         $commonModules->displayNoSuchUser($username, $backLink);
     } else {
         echo $html->tag('h2', $title);

@@ -25,9 +25,11 @@
  * @link     http://tatoeba.org
  */
 
-$total = $paginator->counter("%count%");
+if ($userExists) {
+    $total = $paginator->counter("%count%");
+}
 
-if ($userExists == false) {
+if (!$userExists) {
     $title = format(
         __("There's no user called {username}", true),
         array('username' => $username));
@@ -49,9 +51,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="annexe_content">
     <?php
     $lists->displayListsLinks();
-
-    $lists->displaySearchForm($filter, array('username' => $username));
-
+    if($userExists) {
+        $lists->displaySearchForm($filter, array('username' => $username));
+    }
     if ($session->read('Auth.User.id')) {
         $lists->displayCreateListForm();
     }
@@ -61,7 +63,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">
     <div class="module">
         <?php 
-        if ($userExists == false) {
+        if (!$userExists) {
             $commonModules->displayNoSuchUser($username, $backLink);
         } else {    
             echo $html->tag('h2', $title, array('escape' => true)); ?>
