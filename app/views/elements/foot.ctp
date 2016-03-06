@@ -31,6 +31,7 @@ if (isset($this->params['lang'])) {
 ?>
 <div id="footer">
 
+    <div class="container">
     <div class="category">
         <h3><?php __('Need some help?'); ?></h3>
         <ul>
@@ -172,8 +173,6 @@ if (isset($this->params['lang'])) {
         </ul>
     </div>
 
-
-
     <div class="license">
         <a class="cc-by-icon" rel="license"
            href="http://creativecommons.org/licenses/by/2.0/fr/">
@@ -202,5 +201,5 @@ if (isset($this->params['lang'])) {
         </div>
 
     </div>
-
+    </div>
 </div>

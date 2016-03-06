@@ -33,11 +33,11 @@ div, p {
     word-wrap: break-word;
 }
 
-body {
+html, body {
     padding: 0;
     margin: 0;
     color: #222222;
-    background: #e5e3da;
+    background: #F5F5F5;
 }
 
 textarea {
@@ -271,13 +271,9 @@ svg {
  * Container
  */
 
-#container {
+.container {
     width: 960px;
-    margin: auto auto 100px;
-    background-color: #fff;
-    -webkit-box-shadow: 0 0 5px 5px rgba(50, 50, 50, 0.3);
-    -moz-box-shadow: 0 0 5px 5px rgba(50, 50, 50, 0.3);
-    box-shadow: 0 0 5px 5px rgba(50, 50, 50, 0.3);
+    margin: auto auto 10px;
 }
 
 
@@ -289,7 +285,6 @@ svg {
     background-color: #66AA00;
     position: relative;
     color: #FFFFFF;
-    margin-bottom: 20px;
 }
 
 .search_bar form {
@@ -376,8 +371,8 @@ svg {
 }
 
 .search-bar-extra {
-    text-align: right;
-    right: 450px;
+    text-align: center;
+    padding-right: 100px;
     top: 3px;
     position: relative;
 }
@@ -474,6 +469,7 @@ svg {
     width: 100%;
     background: #FFFFFF;
     min-height: 550px;
+    padding-top: 20px;
 }
 
 #annexe_content {
@@ -514,7 +510,7 @@ svg {
  * Footer 
  */
 #footer {
-    background: #F5F5F5;
+    padding-bottom: 10px;
 }
 
 #footer .category {

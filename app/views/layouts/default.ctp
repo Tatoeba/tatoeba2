@@ -121,53 +121,51 @@
     <!--  TOP  -->
     <?php echo $this->element('top_menu'); ?>
 
-
-    <div id="container">
-        <!--  SEARCH BAR  -->
+    <!--  SEARCH BAR  -->
+    <?php
+    $isHomepage = $controller == 'pages' && $action == 'index';
+    if (CurrentUser::isMember() || !$isHomepage) {
+        echo $this->element('search_bar', array(
+            'selectedLanguageFrom' => $session->read('search_from'),
+            'selectedLanguageTo' => $session->read('search_to'),
+            'searchQuery' => $session->read('search_query'),
+            'cache' => array(
+                // Only use cache when search fields are not prefilled
+                'time' => is_null($session->read('search_from'))
+                && is_null($session->read('search_to'))
+                && is_null($session->read('search_query'))
+                && !$languages->preferredLanguageFilter()
+                    ? '+1 day' : false,
+                'key' => Configure::read('Config.language')
+            )
+        ));
+    }
+    ?>
+            
+    <!--  CONTENT -->
+    <div id="content">
+        <div class="container">
         <?php
-        $isHomepage = $controller == 'pages' && $action == 'index';
-        if (CurrentUser::isMember() || !$isHomepage) {
-            echo $this->element('search_bar', array(
-                'selectedLanguageFrom' => $session->read('search_from'),
-                'selectedLanguageTo' => $session->read('search_to'),
-                'searchQuery' => $session->read('search_query'),
-                'cache' => array(
-                    // Only use cache when search fields are not prefilled
-                    'time' => is_null($session->read('search_from'))
-                    && is_null($session->read('search_to'))
-                    && is_null($session->read('search_query'))
-                    && !$languages->preferredLanguageFilter()
-                        ? '+1 day' : false,
-                    'key' => Configure::read('Config.language')
-                )
-            ));
+        echo $this->element('announcement');
+        if($session->check('Message.flash')){
+            echo $session->flash();
         }
-        ?>
-            
-        <!--  CONTENT -->
-        <div id="content">
-            <?php
-            echo $this->element('announcement');
-            if($session->check('Message.flash')){
-                echo $session->flash();
-            }
 
-            echo $content_for_layout;
-            ?>
-            
-            <!-- 
-                Quick fix to readjust the size of the container when
-                the main content is smaller than the annexe content.
-            -->
-            <div style="clear:both"></div>
+        echo $content_for_layout;
+        ?>
+
+        <!--
+            Quick fix to readjust the size of the container when
+            the main content is smaller than the annexe content.
+        -->
+        <div style="clear:both"></div>
         </div>
-
-
-        <!--  FOOT -->
-        <?php
-        echo $this->element('foot');
-        ?>
     </div>
+
+    <!--  FOOT -->
+    <?php
+    echo $this->element('foot');
+    ?>
     <?php echo $this->element('sql_dump'); ?>
 
     <?php
