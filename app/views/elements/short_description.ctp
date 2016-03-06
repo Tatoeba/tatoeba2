@@ -28,67 +28,11 @@
 
 <div class="topContent">
     <div class="description">
-        <p>
+        <strong>
             <?php __("Tatoeba is a collection of sentences and translations."); ?>
-        </p>
-        <p>
+        </strong>
+        <div>
             <?php __("It's collaborative, open, free and even addictive."); ?>
-        </p>
-    </div><!--
-
-    --><ul class="links">
-        <?php
-        echo '<li>';
-        echo $html->link(
-            __("How it works", true),
-            'http://en.wiki.tatoeba.org/articles/show/quick-start',
-            array(
-                "class" => "learnMore"
-            )
-        );
-        echo '</li>';
-
-
-        echo '<li>';
-        echo $html->link(
-            __("About us", true),
-            array(
-                "controller" => "pages",
-                "action" => "about"
-            ),
-            array(
-                "class" => "learnMore"
-            )
-        );
-        echo '</li>';
-
-
-        echo '<li>';
-        echo $html->link(
-            __("Register", true),
-            array(
-                "controller" => "users",
-                "action" => "register"
-            ),
-            array(
-                "class" => "registerButton"
-            )
-        );
-        echo '</li>';
-
-
-        echo '<li>';
-        echo $html->link(
-            __("Log in", true),
-            array(
-                "controller" => "users",
-                "action" => "login"
-            ),
-            array(
-                "class" => "loginButton"
-            )
-        );
-        echo '</li>';
-        ?>
-    </ul>
+        </div>
+    </div>
 </div>

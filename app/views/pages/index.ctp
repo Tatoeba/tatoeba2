@@ -28,15 +28,6 @@
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations', true));
 
 $selectedLanguage = $session->read('random_lang_selected');
-
-if (!$isLogged) {
-    echo $this->element('short_description', array(
-        'cache' => array(
-            'time' => '+1 day',
-            'key' => Configure::read('Config.language')
-        )
-    ));
-}
 ?>
 <div id="annexe_content">
     <?php 

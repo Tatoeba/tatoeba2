@@ -83,12 +83,29 @@ class PagesController extends AppController
      */
     public function index()
     {
-        $this->helpers[] = 'Wall';
         $this->helpers[] = 'Sentences';
-        $this->helpers[] = 'Messages';
 
         $userId = $this->Auth->user('id');
         $isLogged = !empty($userId);
+
+        // Random sentence part
+        $this->_random_sentence();
+
+        if ($isLogged) {
+            $this->_homepageForMembers();
+        } else {
+            $this->_homepageForGuests();
+        }
+    }
+
+
+    private function _homepageForGuests() {
+        $this->render('index_for_guests');
+    }
+
+    private function _homepageForMembers() {
+        $this->helpers[] = 'Wall';
+        $this->helpers[] = 'Messages';
 
         /*latest comments part */
         $this->loadModel('SentenceComment');
@@ -105,11 +122,7 @@ class PagesController extends AppController
         $this->loadModel('Wall');
         $latestMessages = $this->Wall->getLastMessages(5);
 
-        $this->set('isLogged', $isLogged);
         $this->set('latestMessages', $latestMessages);
-
-        // Random sentence part
-        $this->_random_sentence();
     }
 
     /**
