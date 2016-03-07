@@ -300,8 +300,7 @@ svg {
     padding: 0;
     display: inline-block;
     text-align: left;
-    vertical-align: middle;
-    position: relative;
+    vertical-align: bottom;
 }
 
 .search_bar label {
@@ -316,7 +315,6 @@ svg {
 
 .search_bar .select {
     width: 110px;
-    margin-top: -17px;
 }
 
 #SentenceSearchForm {
@@ -377,14 +375,12 @@ svg {
 }
 
 .search-bar-extra {
-    text-align: center;
-    padding-right: 100px;
-    top: 3px;
-    position: relative;
+    text-align: right;
+    padding-right: 2px;
 }
 .search-bar-extra a {
     font-size: 13px;
-    margin: 10px;
+    margin-left: 20px;
 }
 
 .search-bar-extra a:hover {

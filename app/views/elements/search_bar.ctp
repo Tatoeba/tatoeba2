@@ -32,24 +32,6 @@ if (isset($this->params['lang'])) {
 
 <div class="search_bar">
 <?php
-echo $html->div('search-bar-extra');
-echo $html->link(
-    __('Help', true),
-    'http://en.wiki.tatoeba.org/articles/show/text-search',
-    array(
-        'target' => '_blank'
-    )
-);
-echo $html->link(
-    __p('title', 'Advanced search', true),
-    array(
-        'controller' => 'sentences',
-        'action' => 'advanced_search'
-    )
-);
-echo '</div>';
-
-
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }
@@ -70,6 +52,22 @@ echo $form->create(
         <?php __('Search'); ?>
     </label>
     <?php
+    echo $html->div('search-bar-extra');
+    echo $html->link(
+        __('Help', true),
+        'http://en.wiki.tatoeba.org/articles/show/text-search',
+        array(
+            'target' => '_blank'
+        )
+    );
+    echo $html->link(
+        __p('title', 'Advanced search', true),
+        array(
+            'controller' => 'sentences',
+            'action' => 'advanced_search'
+        )
+    );
+    echo '</div>';
     $clearButton = $this->Html->tag('button', '✖', array(
         'id' => 'clearSearch',
         'type' => 'button',
