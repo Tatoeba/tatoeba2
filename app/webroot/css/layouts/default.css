@@ -289,10 +289,11 @@ svg {
     margin-left: 70px;
 }
 
-.search_bar #into {
+.search_bar #arrow {
     font-size: 1.3em;
-    margin-top: 20px;
     text-align: center;
+    cursor: pointer;
+    line-height: 30px;
 }
 
 .search_bar fieldset {

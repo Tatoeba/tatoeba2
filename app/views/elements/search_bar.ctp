@@ -102,7 +102,7 @@ echo $form->create(
 </fieldset>
 
 <fieldset class="into">
-    <span id="into"><a id="arrow" style="color:white;">&raquo;</a></span>
+    <span id="arrow">&raquo;</span>
 </fieldset>
     
 <fieldset class="select to">
