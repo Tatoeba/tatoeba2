@@ -324,7 +324,7 @@ class LanguagesHelper extends AppHelper
     {
         $languages = $this->onlyLanguagesArray();
         array_unshift(
-            $languages, array('und' => __('Any language', true))
+            $languages, array('und' => __p('searchbar', 'Any language', true))
         );
 
         return $languages;
