@@ -282,9 +282,7 @@ svg {
  */
 
 .search_bar {
-    background-color: #66AA00;
     position: relative;
-    color: #FFFFFF;
 }
 
 .search_bar form {
@@ -310,7 +308,6 @@ svg {
     font-size: 13px;
     display: block;
     margin-bottom: 2px;
-    color: #EEEEEE;
 }
 
 .search_bar label[for="SentenceQuery"] {
@@ -353,8 +350,7 @@ svg {
 }
 
 #SentenceQuery,
-.search_bar select,
-.search_bar .search-submit-button {
+.search_bar select {
     background-color: #FFFFFF;
     color: #111111;
     border: 1px solid #EEEEEE;
@@ -362,12 +358,22 @@ svg {
 }
 
 .search_bar .search-submit-button {
-    color: #aaaaaa;
-    padding: 3px 20px;
+    color: #ffffff;
     cursor: pointer;
-    background: url(/img/search.svg) center no-repeat #f1f1f1;
+    background: #66AA00;
     width: 70px;
     height: 30px;
+    border: 1px solid #66AA00;
+    border-radius: 2px;
+}
+
+.search-submit-button svg {
+    display: block;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    padding-top: 2px;
 }
 
 .search-bar-extra {
@@ -377,7 +383,6 @@ svg {
     position: relative;
 }
 .search-bar-extra a {
-    color: #FFFFFF;
     font-size: 13px;
     margin: 10px;
 }
