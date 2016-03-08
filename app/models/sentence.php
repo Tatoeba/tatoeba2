@@ -124,8 +124,6 @@ class Sentence extends AppModel
         }
 
         $this->_findMethods['random'] = true;
-
-        $this->linkTranslationModel();
     }
 
     public function linkTranslationModel($conditions = array())
