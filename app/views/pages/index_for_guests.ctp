@@ -58,15 +58,24 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
         $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
 
         echo $html->div('stat', format(
-            __('{number} contributions today', true),
+            __n('{number} contribution today',
+                '{number} contributions today',
+                $contribToday,
+                true),
             array('number' => $html->tag('strong', $contribToday))
         ));
         echo $html->div('stat', format(
-            __('{number} supported languages', true),
+            __n('{number} supported language',
+                '{number} supported languages',
+                $numberOfLanguages,
+                true),
             array('number' => $html->tag('strong', $numberOfLanguages))
         ));
         echo $html->div('stat', format(
-            __('{number} sentences', true),
+            __n('{number} sentence',
+                '{number} sentences',
+                $numSentences,
+                true),
             array('number' => $html->tag('strong', $numSentences))
         ));
         ?>
@@ -85,7 +94,10 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
                     'indifferent',
                 );
                 $numberOfSentencesLabel = format(
-                    __('{number} sentences in {lang}', true),
+                    __n('{number} sentence in {lang}',
+                        '{number} sentences in {lang}',
+                        $numberOfSentences,
+                        true),
                     array(
                         'number' => $numberOfSentences,
                         'lang' => $languages->codeToNameAlone($langCode)
