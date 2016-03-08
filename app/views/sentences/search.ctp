@@ -119,10 +119,13 @@ if ($search_disabled) {
     $pagination->display();
 
     foreach ($results as $sentence) {
+        $translations = isset($sentence['Translation']) ?
+                        $sentence['Translation'] :
+                        array();
         $sentences->displaySentencesGroup(
             $sentence['Sentence'],
             $sentence['Transcription'],
-            $sentence['Translation'],
+            $translations,
             $sentence['User'],
             array('langFilter' => $to)
         );
