@@ -94,7 +94,15 @@ class TranscriptableBehavior extends ModelBehavior
 
     public function afterFind(&$model, $results, $primary) {
         foreach ($results as &$result) {
-            $sentence = $primary ? $result[$model->alias] : $result;
+            if ($primary) {
+                if (isset($result[$model->alias])) {
+                    $sentence = $result[$model->alias];
+                } else {
+                    continue;
+                }
+            } else {
+                $sentence = $result;
+            }
             if (isset($result['Transcription'])
                 && isset($sentence['lang'])
                 && isset($sentence['text'])) {
