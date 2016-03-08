@@ -74,9 +74,8 @@ class Sentence extends AppModel
             'className' => 'Translation',
             'foreignKey' => 'sentence_id',
         ),
+        'ReindexFlag',
     );
-
-    public $hasOne = 'ReindexFlag';
 
     public $belongsTo = array(
         'User',
