@@ -26,6 +26,8 @@
  */
 
 App::import('Vendor', 'LanguagesLib');
+
+$this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations', true));
 ?>
 
 <div id="annexe_content">
