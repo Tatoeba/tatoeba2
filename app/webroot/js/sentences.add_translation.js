@@ -19,7 +19,7 @@
 
 $(document).ready(function() {
 
-    $(".translateLink").click(function(){
+    $(".translateLink:not(:has(a.disabled))").click(function(){
         var sentenceId = $(this).attr("data-sentence-id");
         
         var rootUrl = get_tatoeba_root_url();
