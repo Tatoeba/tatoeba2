@@ -59,11 +59,11 @@
                 )
             );
 
-            if ($selectedLanguageFrom == null) {
+            if (!isset($selectedLanguageFrom)) {
                 $selectedLanguageFrom = 'und';
             }
 
-            if ($selectedLanguageTo == null) {
+            if (!isset($selectedLanguageTo)) {
                 $selectedLanguageTo = 'und';
             }
 
