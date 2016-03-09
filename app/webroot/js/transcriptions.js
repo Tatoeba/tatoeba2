@@ -33,7 +33,7 @@ $(document).ready(function() {
                 transcr.toggle(true);
             });
             button.toggle(true);
-            menu.append(button);
+            menu.empty().append(button);
         }
     });
 
@@ -60,7 +60,7 @@ $(document).ready(function() {
                 container.toggle(true);
             });
             button.toggle(true);
-            menu.append(button);
+            menu.empty().append(button);
         }
     });
 
