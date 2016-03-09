@@ -43,7 +43,7 @@ $(document).ready(function() {
         var container = $(this);
         var transcr = container.find('.transcription');
         var sentence = container.closest('.sentence').find('.content .text');
-        var originalSentence = sentence.text();
+        sentence.data('text', sentence.text());
         sentence.html(transcr.html());
         container.toggle(false);
 

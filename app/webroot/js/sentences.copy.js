@@ -1,8 +1,8 @@
 var clipboard = new Clipboard('.copy-btn', {
     text: function(button) {
-        return $(button).closest('.content')
-                        .find('.editableSentence')
-                        .data('text');
+        var sentence = $(button).closest('.content')
+                                .find('.sentenceContent > .text');
+        return sentence.data('text') ? sentence.data('text') : sentence.text();
     }
 });
 clipboard.on('success', function(e) {
