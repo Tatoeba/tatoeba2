@@ -337,14 +337,22 @@ svg {
     height: 30px;
 }
 
+.search_bar .input {
+    position: relative;
+}
+
 .search_bar #clearSearch {
     background: transparent;
     border: none;
     cursor: pointer;
     color: #CCCCCC;
     position: absolute;
-    top: 5px;
-    right: 0;
+    right: 2px;
+    line-height: 28px;
+}
+
+#SentenceQuery {
+    padding-right: 30px;
 }
 
 #SentenceQuery,
