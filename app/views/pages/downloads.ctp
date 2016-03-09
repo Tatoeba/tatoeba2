@@ -450,8 +450,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
     <div class="module">
     <h2><?php __('General information about the files'); ?></h2>
         <p>
-        <?php __('The files provided here are updated every <strong>Saturday at 9 a.m.</strong>, '.
-        'France time.'); 
+        <?php __('The files provided here are updated every <strong>Saturday at 9 a.m.</strong> '.
+        '(GMT).');
         ?>
         </p>
         
