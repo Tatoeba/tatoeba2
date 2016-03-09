@@ -148,7 +148,9 @@
                     );
                     echo "<br/>";
                     echo $html->link(
-                        __('More', true),
+                        /* @translators: links to a page with tips to perform
+                           searches, like search operators */
+                        __('More tips', true),
                         'http://en.wiki.tatoeba.org/articles/show/text-search',
                         array(
                             'target' => '_blank'
