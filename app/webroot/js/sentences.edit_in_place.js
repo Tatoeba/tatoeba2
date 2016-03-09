@@ -24,16 +24,18 @@ $(document).ready(function() {
         var div = $(this);
 
         var sentenceId = div.parent().attr('data-sentence-id');
+        div.data('text', div.text());
         div.editable(rootUrl + '/sentences/edit_sentence', {
             type      : 'textarea',
             submit    : div.attr('data-submit'),
             cancel    : div.attr('data-cancel'),
             event     : 'edit_sentence',
             data : function(value, settings) {
-                var orig = $(this).data('originalSentence');
-                return orig ? orig : $('<div>').html(value).text() // added to correct problem with html entities
+                return $(this).data('text');
             },
             callback : function(result, settings) {
+                var text = $('<div>').html(result).text(); // fix html entities
+                $(this).data('text', text);
                 // Update transcriptions if any
                 var transcr = div.closest('.sentence').find('.transcriptions');
                 if (transcr.length) {

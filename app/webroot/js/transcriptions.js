@@ -45,7 +45,6 @@ $(document).ready(function() {
         var sentence = container.closest('.sentence').find('.content .text');
         var originalSentence = sentence.text();
         sentence.html(transcr.html());
-        sentence.data('originalSentence', originalSentence);
         container.toggle(false);
 
         var isMainSentence = container.closest('.translations').length == 0;
@@ -55,7 +54,7 @@ $(document).ready(function() {
             var menu = container.closest('.sentences_set').find('.transcribe-buttons');
             var button = container.find('.transcribe.option');
             button.click(function(event) {
-                sentence.text(sentence.data('originalSentence'));
+                sentence.text(sentence.data('text'));
                 button.remove();
                 container.toggle(true);
             });

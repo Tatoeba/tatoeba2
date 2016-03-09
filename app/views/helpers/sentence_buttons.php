@@ -278,7 +278,6 @@ class SentenceButtonsHelper extends AppHelper
         $copyButton = $this->Images->svgIcon('copy');
         echo $this->Html->div('copy-btn', $copyButton,
             array(
-                'data-clipboard-text' => $text,
                 'title' => __('Copy sentence', true)
             )
         );
