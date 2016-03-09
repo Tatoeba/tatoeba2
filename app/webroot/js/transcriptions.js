@@ -43,9 +43,9 @@ $(document).ready(function() {
         var container = $(this);
         var transcr = container.find('.transcription');
         var sentence = container.closest('.sentence').find('.content .text');
-        var originalSentence = sentence.html();
+        var originalSentence = sentence.text();
         sentence.html(transcr.html());
-        sentence.addClass('blended');
+        sentence.data('originalSentence', originalSentence);
         container.toggle(false);
 
         var isMainSentence = container.closest('.translations').length == 0;
@@ -55,8 +55,7 @@ $(document).ready(function() {
             var menu = container.closest('.sentences_set').find('.transcribe-buttons');
             var button = container.find('.transcribe.option');
             button.click(function(event) {
-                sentence.html(originalSentence);
-                sentence.removeClass('blended');
+                sentence.text(sentence.data('originalSentence'));
                 button.remove();
                 container.toggle(true);
             });
