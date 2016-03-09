@@ -37,7 +37,7 @@
 class CollectionsController extends AppController
 {
     public $uses = array('UsersSentences', 'User');
-    public $helper = array();
+    public $helpers = array('CommonModules');
 
 
     public function beforeFilter()
@@ -114,14 +114,21 @@ class CollectionsController extends AppController
         $correctness = $this->UsersSentences->correctnessValueFromLabel(
             $correctnessLabel
         );
+        $backLink = $this->referer(array('action'=>'index'), true);
+        $this->set('backLink', $backLink);
+        $this->set('username', $username);
+        $this->set('correctness', $correctness);
+        if(empty($userId)) {
+            $this->set("userExists", false);
+            return;
+        }
         $this->paginate = $this->UsersSentences->getPaginatedCorpusOf(
             $userId, $correctness, $lang
         );
         $corpus = $this->paginate();
 
         $this->set('corpus', $corpus);
-        $this->set('username', $username);
-        $this->set('correctness', $correctness);
+        $this->set("userExists", true);
         $this->set('correctnessLabel', $correctnessLabel);
         $this->set('lang', $lang);
     }

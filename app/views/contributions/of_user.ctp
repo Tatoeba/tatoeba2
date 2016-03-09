@@ -34,7 +34,11 @@
  */
 
 $username = Sanitize::paranoid($username, array("_"));
-$title = format(__("Logs of {user}'s contributions", true), array('user' => $username));
+if ($userExists) {
+    $title = format(__("Logs of {user}'s contributions", true), array('user' => $username));
+} else {
+    $title = format(__("There's no user called {username}", true), array('username' => $username));
+}
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 <div id="annexe_content">
@@ -50,30 +54,34 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 <div id="main_content">
     <div class="module">
-    <h2><?php echo $title; ?></h2>
-    
     <?php
-    if (isset($contributions)) {
-        
-        $pagination->display(array($username));
-        ?>
+    if (!$userExists) {
+        $commonModules->displayNoSuchUser($username, $backLink);
+    } else {
+        echo $html->tag('h2', $title);
+    
+        if (isset($contributions)) {
+            
+            $pagination->display(array($username));
+            ?>
 
-        <div id="logs">
-        <?php
-        $user = array(
-            'username' => $username
-        );
-        foreach ($contributions as $contribution) {
-            $logs->entry(
-                $contribution['Contribution'],
-                $user
+            <div id="logs">
+            <?php
+            $user = array(
+                'username' => $username
             );
-        }
-        ?>
-        </div>
+            foreach ($contributions as $contribution) {
+                $logs->entry(
+                    $contribution['Contribution'],
+                    $user
+                );
+            }
+            ?>
+            </div>
 
-        <?php
-        $pagination->display(array($username));
+            <?php
+            $pagination->display(array($username));
+        }
     }
     ?>
     </div>
