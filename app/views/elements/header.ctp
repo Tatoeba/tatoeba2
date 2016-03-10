@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 ?>
-<div id="logo">
+<li id="logo">
     <?php
     $name = __('Tatoeba', true);
     $path = array(
@@ -35,13 +35,16 @@
     $logo = $html->image(
         IMG_PATH . 'tatoeba.svg',
         array(
-            'width' => 64,
-            'height' => 64,
+            'width' => 48,
+            'height' => 48,
             'title' => $name
 
         )
     );
-    echo $html->link($logo, $path, array('escape' => false));
-    echo $html->div('tatoeba-name', $name);
+    echo $html->link(
+        $logo . $html->div('tatoeba-name', $name),
+        $path,
+        array('escape' => false)
+    );
     ?>
-</div>
+</li>

@@ -32,24 +32,6 @@ if (isset($this->params['lang'])) {
 
 <div class="search_bar">
 <?php
-echo $html->div('search-bar-extra');
-echo $html->link(
-    __('Help', true),
-    'http://en.wiki.tatoeba.org/articles/show/text-search',
-    array(
-        'target' => '_blank'
-    )
-);
-echo $html->link(
-    __p('title', 'Advanced search', true),
-    array(
-        'controller' => 'sentences',
-        'action' => 'advanced_search'
-    )
-);
-echo '</div>';
-
-
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }
@@ -70,6 +52,22 @@ echo $form->create(
         <?php __('Search'); ?>
     </label>
     <?php
+    echo $html->div('search-bar-extra');
+    echo $html->link(
+        __('Help', true),
+        'http://en.wiki.tatoeba.org/articles/show/text-search',
+        array(
+            'target' => '_blank'
+        )
+    );
+    echo $html->link(
+        __p('title', 'Advanced search', true),
+        array(
+            'controller' => 'sentences',
+            'action' => 'advanced_search'
+        )
+    );
+    echo '</div>';
     $clearButton = $this->Html->tag('button', '✖', array(
         'id' => 'clearSearch',
         'type' => 'button',
@@ -104,7 +102,7 @@ echo $form->create(
 </fieldset>
 
 <fieldset class="into">
-    <span id="into"><a id="arrow" style="color:white;">&raquo;</a></span>
+    <span id="arrow">&raquo;</span>
 </fieldset>
     
 <fieldset class="select to">
@@ -122,7 +120,10 @@ echo $form->create(
 
 <fieldset class="submit">
     <?php
-    echo $form->button(null, array('class' => 'search-submit-button'));
+    echo $form->button(
+        $images->svgIcon('search'),
+        array('class' => 'search-submit-button')
+    );
     ?>
 </fieldset>
 

@@ -27,68 +27,148 @@
 ?>
 
 <div class="topContent">
-    <div class="description">
-        <p>
-            <?php __("Tatoeba is a collection of sentences and translations."); ?>
-        </p>
-        <p>
-            <?php __("It's collaborative, open, free and even addictive."); ?>
-        </p>
-    </div><!--
+    <div class="descriptionBar">
+        <div class="container">
+            <div class="description">
+                <strong>
+                    <?php
+                    __("Tatoeba is a collection of sentences and translations.");
+                    ?>
+                </strong>
+                <div>
+                    <?php
+                    __("It's collaborative, open, free and even addictive.");
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    --><ul class="links">
+    <div class="container">
+        <!-- Search -->
         <?php
-        echo '<li>';
-        echo $html->link(
-            __("How it works", true),
-            'http://en.wiki.tatoeba.org/articles/show/quick-start',
-            array(
-                "class" => "learnMore"
-            )
-        );
-        echo '</li>';
-
-
-        echo '<li>';
-        echo $html->link(
-            __("About us", true),
-            array(
-                "controller" => "pages",
-                "action" => "about"
-            ),
-            array(
-                "class" => "learnMore"
-            )
-        );
-        echo '</li>';
-
-
-        echo '<li>';
-        echo $html->link(
-            __("Register", true),
-            array(
-                "controller" => "users",
-                "action" => "register"
-            ),
-            array(
-                "class" => "registerButton"
-            )
-        );
-        echo '</li>';
-
-
-        echo '<li>';
-        echo $html->link(
-            __("Log in", true),
-            array(
-                "controller" => "users",
-                "action" => "login"
-            ),
-            array(
-                "class" => "loginButton"
-            )
-        );
-        echo '</li>';
+        if (isset($this->params['lang'])) {
+            Configure::write('Config.language', $this->params['lang']);
+        }
         ?>
-    </ul>
+
+        <div class="search-bar">
+            <?php
+            echo $form->create(
+                'Sentence',
+                array(
+                    "action" => "search",
+                    "type" => "get",
+                    "id" => "new-search-bar"
+                )
+            );
+
+            if (!isset($selectedLanguageFrom)) {
+                $selectedLanguageFrom = 'und';
+            }
+
+            if (!isset($selectedLanguageTo)) {
+                $selectedLanguageTo = 'und';
+            }
+
+            ?>
+            <fieldset class="input text languages">
+                <?php
+                $langFrom = $this->Search->selectLang(
+                    'from',
+                    $selectedLanguageFrom,
+                    array(
+                        'div' => false,
+                        'label' => '',
+                    )
+                );
+
+                $langTo = $this->Search->selectLang(
+                    'to',
+                    $selectedLanguageTo,
+                    array(
+                        'div' => false,
+                        'label' => '',
+                    )
+                );
+                echo format(
+                    __('Search sentences in {langFrom} '.
+                        'translated into {langTo} containing:', true),
+                    array('langFrom' => $langFrom, 'langTo' => $langTo)
+                );
+                ?>
+            </fieldset>
+
+            <fieldset class="input text search-input">
+                <?php
+                $clearButton = $this->Html->tag('button', '✖', array(
+                    'id' => 'clearSearch',
+                    'type' => 'button',
+                    'title' => __('Clear search', true),
+                ));
+                echo $form->input(
+                    'query',
+                    array(
+                        'id' => 'SentenceQuery',
+                        'label' => '',
+                        'accesskey' => 4,
+                        'lang' => '',
+                        'dir' => 'auto',
+                        'after' => $clearButton,
+                        'placeholder' => __('Enter a word or a phrase', true)
+                    )
+                );
+                ?>
+            </fieldset>
+
+            <fieldset class="submit">
+                <?php
+                echo $form->button(
+                    $images->svgIcon('search'),
+                    array('class' => 'search-submit-button')
+                );
+                ?>
+            </fieldset>
+
+
+            <div class="extra-links">
+                <div class="advanced-search">
+                    <?php
+                    echo $html->link(
+                        __p('title', 'Advanced search', true),
+                        array(
+                            'controller' => 'sentences',
+                            'action' => 'advanced_search'
+                        )
+                    );
+                    ?>
+                </div>
+
+                <div class="tip">
+                    <?php
+                    __(
+                        "Tip: <em>=word</em> will search for ".
+                        "an exact match on <em>word</em>"
+                    );
+                    echo "<br/>";
+                    echo $html->link(
+                        /* @translators: links to a page with tips to perform
+                           searches, like search operators */
+                        __('More tips', true),
+                        'http://en.wiki.tatoeba.org/articles/show/text-search',
+                        array(
+                            'target' => '_blank'
+                        )
+                    );
+                    ?>
+                </div>
+            </div>
+
+            <?php
+            echo $form->end();
+            ?>
+        </div>
+
+
+    </div>
 </div>

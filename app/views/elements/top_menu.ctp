@@ -46,12 +46,6 @@ if (empty($notTranslatedInto)) {
 
 // array containing the elements of the menu : $title => $route
 $menuElements = array(
-    __('Home', true) => array(
-        "route" => array(
-            "controller" => "pages",
-            "action" => "index"
-        )
-    ),
     __('Browse', true) => array(
         "route" => array(
             "controller" => null,
@@ -109,15 +103,23 @@ $menuElements = array(
             __('Discuss sentences', true) => array(
                 "controller" => "sentence_comments",
                 "action" => "index"
+            ),
+            __('Show activity timeline', true) => array(
+                "controller" => "contributions",
+                "action" => "activity_timeline"
             )
         )
     ),
-    __('Members', true) => array(
+    __('Community', true) => array(
         "route" => array(
             "controller" => null,
             "action" => null
         ),
         "sub-menu" => array(
+            __('Wall', true) => array(
+                "controller" => "wall",
+                "action" => "index"
+            ),
             __('List of all members', true) => array(
                 "controller" => "users",
                 "action" => "all"
@@ -131,49 +133,6 @@ $menuElements = array(
                 "action" => "native_speakers"
             )
         )
-    ),
-    __('Wall', true) => array(
-        "route" => array(
-            "controller" => "wall",
-            "action" => "index"
-        )
-    ),
-    __('More', true) => array(
-        "route" => array(
-            "controller" => null,
-            "action" => null,
-        ),
-        "sub-menu" => array(
-            __('Quick Start Guide', true) =>
-                'http://en.wiki.tatoeba.org/articles/show/quick-start'
-            ,
-            __('Tatoeba Wiki', true) =>
-                'http://en.wiki.tatoeba.org/articles/show/main'
-            ,
-            __('FAQ', true) =>
-                'http://en.wiki.tatoeba.org/articles/show/faq'
-            ,
-            __('Help', true) => array(
-                "controller" => "pages",
-                "action" => "help"
-            ),
-            __('Show activity timeline', true) => array(
-                "controller" => "contributions",
-                "action" => "activity_timeline"
-            ),
-            __('Downloads', true) => array(
-                "controller" => "pages",
-                "action" => "downloads"
-            ),
-            __('Tools', true) => array(
-                "controller" => "tools",
-                "action" => "index"
-            ),
-            __('Donate', true) => array(
-                "controller" => "pages",
-                "action" => "donate"
-            )
-        )
     )
 );
 
@@ -181,29 +140,10 @@ $menuElements = array(
 
 <div id="top_menu_container">
     <div id="top_menu">
-        <div id="languageSelectionContainer">
-        <?php echo $this->element('interface_language'); ?>
-        </div>
-        
-        <div id="user_menu">
-        <?php
-        // User menu    
-        if (!$session->read('Auth.User.id')) {
-            $isOnLoginPage = ($this->params['controller'] == 'users')
-            && ($this->params['action'] == 'login');
-            
-            if (!$isOnLoginPage) {
-                echo $this->element('login');
-            }
-        } else {
-            echo $this->element('space');
-        }
-        ?>
-        </div>
-        
-        
         <ul id="navigation_menu">
         <?php
+        echo $this->element('header');
+
         // current path param
         $param = '';
         if (isset($this->params['pass'][0])) {
@@ -282,6 +222,26 @@ $menuElements = array(
         }
         ?>
         </ul>
-        
+
+        <div id="languageSelectionContainer">
+            <?php echo $this->element('interface_language'); ?>
+        </div>
+
+        <div id="user_menu">
+            <?php
+            // User menu
+            if (!$session->read('Auth.User.id')) {
+                $isOnLoginPage = ($this->params['controller'] == 'users')
+                    && ($this->params['action'] == 'login');
+
+                if (!$isOnLoginPage) {
+                    echo $this->element('login');
+                }
+            } else {
+                echo $this->element('space');
+            }
+            ?>
+        </div>
+
     </div>
 </div>

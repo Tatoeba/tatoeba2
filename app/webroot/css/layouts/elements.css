@@ -65,9 +65,23 @@
     padding: 5px;
 }
 
+.currentContributor .image,
+.currentContributor .info,
+.currentContributor .activityBar {
+    display: inline-block;
+    vertical-align: middle;
+}
+
 .currentContributor .image {
-    float: left;
     margin-right: 10px;
+}
+
+.currentContributor .image img {
+    display: block;
+}
+
+.currentContributor .info {
+    width: 155px;
 }
 
 .currentContributor .username {
@@ -76,13 +90,13 @@
 }
 
 .currentContributor .score {
+    display: inline-block;
     color: #777;
     font-size: 0.8em;
     line-height: 15px;
 }
 
 .activityBar {
-    float: right;
     border: 1px solid #CCC;
     width: 10px;
     margin: 2px 0;
@@ -976,7 +990,7 @@
 }
 
 .sentence .content.column {
-    width: 500px;
+    width: 540px;
 }
 
 .sentence .audio.column {
@@ -1438,7 +1452,6 @@ div.hideLink {
  */
 .sentencesStats {
     margin: 5px 0;
-    padding-left: 20px;
 }
 
 .stat {
@@ -1446,14 +1459,17 @@ div.hideLink {
     margin: 5px 0;
 }
 
+.stat .total,
+.stat .langCode {
+    display: inline-block;
+}
+
 .stat .langCode {
     display: none;
 }
 
 .stat .total {
-    line-height: 20px;
-    float: left;
-    display: block;
+    width: 200px;
     margin: 0 5px;
 }
 

@@ -21,7 +21,7 @@
  * Random sentence
  */
 #randomLangChoice {
-    width: 110px;
+    width: 200px;
 }
 
 
@@ -51,54 +51,127 @@
  * Tatoeba short description
  */
 .topContent {
-    margin-bottom: 50px;
-    font-size: 40px;
 }
 
-.topContent ul {
-    list-style: none;
-}
-
-.topContent .description,
-.topContent .links {
-    display: inline-block;
-    vertical-align: middle;
-    padding: 20px 40px;
-    box-sizing : border-box;
+.topContent .descriptionBar {
+    background: #6A0;
+    color: #FFF;
 }
 
 .topContent .description {
-    width: 65%;
-    text-align: center;
+    padding: 50px 10px;
 }
 
-.topContent .links {
-    width: 35%;
-    text-align: center;
-}
-
-.topContent .links a {
-    display: inline-block;
-    padding: 15px;
-    margin: 10px 0;
-    min-width: 240px;
-    font-size: 30px;
-}
-
-.topContent .registerButton {
-    background: #6A0;
-    color: #fff;
-}
-
-.topContent .loginButton {
-    background: #06A;
-    color: #fff;
-}
-
-.topContent .links .learnMore {
-    display: inline-block;
-    border: 1px solid #6A0;
-    color: #6A0;
-    padding: 5px 15px;
+.topContent strong {
     font-size: 24px;
+}
+
+
+/*
+ * Search
+ */
+#new-search-bar {
+    padding: 25px 10px;
+    margin-top: 20px;
+    color: #777;
+}
+
+#new-search-bar fieldset {
+    padding: 2px 0;
+}
+
+#new-search-bar .search-input {
+    position: relative;
+    width: 800px;
+}
+
+#new-search-bar #SentenceQuery {
+    padding: 10px 40px 10px 10px;
+    width: 800px;
+    margin-left: -4px;
+}
+
+#new-search-bar #clearSearch {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #CCCCCC;
+    position: absolute;
+    right: 5px;
+    font-size: 24px;
+    line-height: 46px;
+}
+
+#new-search-bar .search-input,
+#new-search-bar .submit {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#new-search-bar .search-submit-button {
+    color: #ffffff;
+    cursor: pointer;
+    background: #66AA00;
+    width: 70px;
+    height: 44px;
+    border: 1px solid #66AA00;
+    border-radius: 2px;
+}
+
+#new-search-bar .search-submit-button svg {
+    display: block;
+    margin: auto;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    padding-top: 2px;
+}
+
+#new-search-bar .extra-links {
+    width: 850px;
+}
+
+#new-search-bar .extra-links em {
+    color: #000000;
+}
+
+#new-search-bar .advanced-search {
+    float: right;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #cccccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #cccccc;
+    opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #cccccc;
+    opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #cccccc;
+}
+
+
+/*
+ *
+ */
+
+.join-us .registerLink {
+    margin: 20px 0;
+    width: 180px;
+}
+
+.guest-sentences-stats {
+    padding: 10px 0;
+}
+
+.guest-sentences-stats .stat {
+    padding: 2px 0;
+}
+
+#annexe_content .join-us {
+    font-size: 15px;
 }

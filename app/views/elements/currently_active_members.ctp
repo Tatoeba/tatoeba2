@@ -45,27 +45,6 @@ foreach($currentContributors as $i=>$currentContributor){
     $percentage = ($numberOfContributions/$total)*100;
     ?>
     <div class="currentContributor">
-        <div class="activityBar">
-        <?php
-        $maxActivity = 5;
-        $relativeScore = $numberOfContributions/$highestNumberOfContributions;
-        $activity = ceil($relativeScore*$maxActivity);
-        for ($j = $activity; $j < $maxActivity; $j++) {
-            echo '<div class="level0 box"></div>';
-        }
-        for ($k = $activity; $k > 0; $k--) {
-            echo '<div class="level'.$k.' box"></div>';
-        }
-        // The contributor who has contributed the most in the last contributions
-        // will have a level 5 activity. The activity of all other people will be
-        // relative to that number one contributor.
-        // For instance if the top contributor for the last contributions has made
-        // 100 contributions, and I have made 31 contributions, my activity would
-        // be 2 (0.31*5 = 1.55).
-        ?>
-        </div>
-    
-    
         <div class="image">
             <?php
             echo $members->image(
@@ -74,34 +53,55 @@ foreach($currentContributors as $i=>$currentContributor){
             );
             ?>
         </div>
-        
-        
-        <div class="username">
-            <?php
-            echo $html->link($currentContributor['userName'],
-                array(
-                    "controller" => "contributions",
-                    "action" => "of_user",
-                    $currentContributor['userName']
-                )
-            );
-        ?>
+
+        <div class="info">
+            <div class="username">
+                <?php
+                echo $html->link($currentContributor['userName'],
+                    array(
+                        "controller" => "contributions",
+                        "action" => "of_user",
+                        $currentContributor['userName']
+                    )
+                );
+                ?>
+            </div>
+
+
+            <div class="score">
+                <?php
+                echo format(
+                    __n(
+                        '#{rank} - {n}&nbsp;sentence - {percentage}%',
+                        '#{rank} - {n}&nbsp;sentences - {percentage}%',
+                        $numberOfContributions, true),
+                    array(
+                        'rank' => $i + 1,
+                        'n' => $numberOfContributions,
+                        'percentage' => $percentage
+                    )
+                );
+                ?>
+            </div>
         </div>
-        
-        
-        <div class="score">
+
+        <div class="activityBar">
             <?php
-            echo format(
-                __n(
-                    '#{rank} - {n}&nbsp;sentence - {percentage}%',
-                    '#{rank} - {n}&nbsp;sentences - {percentage}%',
-                    $numberOfContributions, true),
-                array(
-                    'rank' => $i + 1,
-                    'n' => $numberOfContributions,
-                    'percentage' => $percentage
-                )
-            );
+            $maxActivity = 5;
+            $relativeScore = $numberOfContributions/$highestNumberOfContributions;
+            $activity = ceil($relativeScore*$maxActivity);
+            for ($j = $activity; $j < $maxActivity; $j++) {
+                echo '<div class="level0 box"></div>';
+            }
+            for ($k = $activity; $k > 0; $k--) {
+                echo '<div class="level'.$k.' box"></div>';
+            }
+            // The contributor who has contributed the most in the last contributions
+            // will have a level 5 activity. The activity of all other people will be
+            // relative to that number one contributor.
+            // For instance if the top contributor for the last contributions has made
+            // 100 contributions, and I have made 31 contributions, my activity would
+            // be 2 (0.31*5 = 1.55).
             ?>
         </div>
     </div>
