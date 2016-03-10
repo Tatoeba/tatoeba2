@@ -752,6 +752,10 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.link.js', true);
         echo $this->Javascript->link('sentences.collapse.js', true);
         echo $this->Javascript->link('collections.add_remove.js', true);
+        if (CurrentUser::getSetting('copy_button')) {
+            echo $this->Javascript->link('clipboard.min.js', true);
+            echo $this->Javascript->link('sentences.copy.js', true);
+        }
         $this->javascriptForAJAXTranslationsGroup();
     }
 
