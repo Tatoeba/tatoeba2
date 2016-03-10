@@ -373,6 +373,7 @@ svg {
     height: 30px;
     border: 1px solid #EEEEEE;
     border-radius: 2px;
+    padding: 2px 0 4px 0; /* Fix Chrome bogus bottom margin */
 }
 
 .search-submit-button svg {
