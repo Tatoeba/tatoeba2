@@ -51,7 +51,6 @@
  * Tatoeba short description
  */
 .topContent {
-    padding: 0 0 50px 0;
 }
 
 .topContent .descriptionBar {
@@ -60,7 +59,7 @@
 }
 
 .topContent .description {
-    padding: 40px 0 50px 10px;
+    padding: 50px 10px;
 }
 
 .topContent strong {
@@ -72,7 +71,7 @@
  * Search
  */
 #new-search-bar {
-    padding: 10px;
+    padding: 25px 10px;
     margin-top: 20px;
     color: #777;
 }
@@ -114,7 +113,7 @@
     cursor: pointer;
     background: #66AA00;
     width: 70px;
-    height: 42px;
+    height: 44px;
     border: 1px solid #66AA00;
     border-radius: 2px;
 }
