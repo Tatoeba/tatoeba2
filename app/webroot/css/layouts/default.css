@@ -281,6 +281,8 @@ svg {
  */
 
 .search_bar {
+    color: #FFFFFF;
+    background-color: #66AA00;
     position: relative;
 }
 
@@ -364,12 +366,12 @@ svg {
 }
 
 .search_bar .search-submit-button {
-    color: #ffffff;
+    color: #AAAAAA;
     cursor: pointer;
-    background: #66AA00;
+    background: #F1F1F1;
     width: 70px;
     height: 30px;
-    border: 1px solid #66AA00;
+    border: 1px solid #EEEEEE;
     border-radius: 2px;
 }
 
@@ -387,6 +389,7 @@ svg {
     padding-right: 2px;
 }
 .search-bar-extra a {
+    color: #FFFFFF;
     font-size: 13px;
     margin-left: 20px;
 }
