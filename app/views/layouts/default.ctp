@@ -49,18 +49,8 @@
         // Specific
         $controller = $this->params["controller"];
         $action = $this->params["action"];
-        
-        
         echo $html->css(CSS_PATH . $controller."/".$action .".css"); 
-        
-        
-        // Special case for Chrome and furigana.
-        $browser = $_SERVER['HTTP_USER_AGENT'];
-        $isChrome = (strpos($browser, "Chrome")) !== false;
-        if (!$isChrome) {
-            echo $html->css(CSS_PATH . "elements/furigana.css"); 
-        }
-        
+
         // Develop site override
         if (Configure::read('Tatoeba.devStylesheet')) { ?>
             <style>
