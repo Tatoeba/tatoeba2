@@ -51,12 +51,16 @@
  * Tatoeba short description
  */
 .topContent {
-    background: #F5F5F5;
-    padding: 60px 0 50px 0;
+    padding: 0 0 50px 0;
+}
+
+.topContent .descriptionBar {
+    background: #6A0;
+    color: #FFF;
 }
 
 .topContent .description {
-    padding: 0 10px;
+    padding: 40px 0 50px 10px;
 }
 
 .topContent strong {

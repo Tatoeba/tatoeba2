@@ -27,20 +27,24 @@
 ?>
 
 <div class="topContent">
-    <div class="container">
-        <div class="description">
-            <strong>
-                <?php
-                __("Tatoeba is a collection of sentences and translations.");
-                ?>
-            </strong>
-            <div>
-                <?php
-                __("It's collaborative, open, free and even addictive.");
-                ?>
+    <div class="descriptionBar">
+        <div class="container">
+            <div class="description">
+                <strong>
+                    <?php
+                    __("Tatoeba is a collection of sentences and translations.");
+                    ?>
+                </strong>
+                <div>
+                    <?php
+                    __("It's collaborative, open, free and even addictive.");
+                    ?>
+                </div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <!-- Search -->
         <?php
         if (isset($this->params['lang'])) {
