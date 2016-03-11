@@ -516,6 +516,7 @@ class LanguagesLib
                 'kxi' => __d('languages', 'Keningau Murut', true),
                 'bvy' => __d('languages', 'Baybayanon', true),
                 'mfe' => __d('languages', 'Morisyen',true),
+                'mww' => __d('languages', 'Hmong Daw (White)',true),
 
             );
         }
