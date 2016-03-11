@@ -505,7 +505,7 @@ class LanguagesLib
                 'mdf' => __d('languages', 'Moksha',true),
                 'pag' => __d('languages', 'Pangasinan',true),
                 'cos' => __d('languages', 'Corsican',true),
-                'hnj' => __d('languages', 'Hmong Njua',true),
+                'hnj' => __d('languages', 'Hmong Njua (Green)',true),
                 'rif' => __d('languages', 'Tarifit',true),
                 'nch' => __d('languages', 'Central Huasteca Nahuatl',true),
                 'kek' => __d('languages', "Kekchi (Q'eqchi')",true),
