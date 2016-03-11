@@ -517,6 +517,7 @@ class LanguagesLib
                 'bvy' => __d('languages', 'Baybayanon', true),
                 'mfe' => __d('languages', 'Morisyen',true),
                 'mww' => __d('languages', 'Hmong Daw (White)',true),
+                'bcl' => __d('languages', 'Bikol (Central)',true),
 
             );
         }
