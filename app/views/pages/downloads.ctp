@@ -54,9 +54,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
     <div class="module">
     <h2><?php __('Creative commons'); ?></h2>
     <p><?php __('These files are released under CC-BY.'); ?></p>
-    <a rel="license" href="http://creativecommons.org/licenses/by/2.0/fr/">
+    <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">
     <img alt="Creative Commons License" style="border-width:0"
-        src="http://i.creativecommons.org/l/by/2.0/fr/88x31.png" />
+        src="https://licensebuttons.net/l/by/2.0/88x31.png" />
     </a>
     </div>
 
