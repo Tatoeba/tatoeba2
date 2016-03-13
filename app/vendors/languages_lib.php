@@ -130,6 +130,7 @@ class LanguagesLib
             'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
             'mya' => 'my', // Burmese
+            'nau' => 'na', // Nauruan
             'nav' => 'nv', // Navajo
             'nld' => 'nl', // Dutch
             'nob' => 'nb', // Norwegian (Bokmål)
@@ -518,7 +519,8 @@ class LanguagesLib
                 'mfe' => __d('languages', 'Morisyen',true),
                 'mww' => __d('languages', 'Hmong Daw (White)',true),
                 'bcl' => __d('languages', 'Bikol (Central)',true),
-
+                'nau' => __d('languages', 'Nauruan',true),
+                
             );
         }
         return $languages;
