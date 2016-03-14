@@ -508,9 +508,7 @@ rt {
     margin: 0 0 20px 0;
     font-size: 13px;
     border-bottom: 1px solid #ededed;
-    -webkit-box-shadow: inset 0 -50px 30px -10px rgba(245, 245, 245, 1);
-    -moz-box-shadow: inset 0 -50px 30px -10px rgba(245, 245, 245, 1);
-    box-shadow: inset 0 -50px 30px -10px rgba(245, 245, 245, 1);
+    background: linear-gradient(to top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 0) 100px, rgba(255, 255, 255, 0) 100%);
 }
 #annexe_content .module {
     margin-left: 5px;
