@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-09 15:40+0000\n"
-"PO-Revision-Date: 2016-03-10 12:43+0000\n"
+"PO-Revision-Date: 2016-03-14 14:21+0000\n"
 "Last-Translator: older\n"
 "Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -584,7 +584,7 @@ msgstr "Коли проблемне речення було виправлене
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 msgid "Translate sentences"
-msgstr "Переклад речень"
+msgstr "Перекласти речення"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L41
 msgid "How to add a translation"
@@ -782,7 +782,7 @@ msgstr "Не має власника:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L171
 msgctxt "orphan"
 msgid "Any"
-msgstr "Будь-яка"
+msgstr "Будь-які"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L81
@@ -819,7 +819,7 @@ msgstr "Не схвалені:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L180
 msgctxt "unapproved"
 msgid "Any"
-msgstr "Будь-яка"
+msgstr "Будь-які"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -852,7 +852,7 @@ msgstr "Зі звуком:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L189
 msgctxt "audio"
 msgid "Any"
-msgstr "Будь-яка"
+msgstr "Будь-які"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L128
 msgid "Translations"
@@ -883,7 +883,7 @@ msgstr "Посилання:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L157
 msgctxt "link"
 msgid "Any"
-msgstr "Будь-яка"
+msgstr "Будь-які"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L158
 msgid "Direct"
@@ -1051,7 +1051,7 @@ msgstr "Facebook"
 msgid ""
 "Our sentences and translations can be used under the Creative Commons "
 "Attribution 2.0 license (CC-BY 2.0)."
-msgstr "Нашіми реченнями і перекладам можна користуватись на умовах ліцензії Creative Commons Attribution 2.0 (CC-BY 2.0)."
+msgstr "Нашими реченнями і перекладами можна користуватись на умовах ліцензії Creative Commons Attribution 2.0 (CC-BY 2.0)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L193
 msgid "If you love this content, please consider a <a href={}>donation</a>."
@@ -1195,11 +1195,11 @@ msgstr "Очистити пошук"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L98
 msgid "From"
-msgstr "Від"
+msgstr "З мови"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L115
 msgid "To"
-msgstr "Кому"
+msgstr "На мову"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L30
 msgid "No results found."
@@ -1451,7 +1451,7 @@ msgstr "Кажіть \"ласкаво просимо\" новим користу
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L116
 msgid "Use private messages to discuss things unrelated to the sentence."
-msgstr "Використовуйте приватні повідомлення для обговорення речей не пов'ящаних з реченням."
+msgstr "Використовуйте приватні повідомлення для обговорення речей не пов'язаних з реченням."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L188
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L407
@@ -1580,7 +1580,7 @@ msgstr "Мови профіля"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L98
 msgid "Last used languages"
-msgstr "Останні викорисані мови"
+msgstr "Останні використані мови"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L102
 msgid "Other languages"
@@ -1610,7 +1610,7 @@ msgstr "Невідома мова"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L310
 msgid "None"
-msgstr "Жодного"
+msgstr "Жодна мова"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L290
 msgid "Any language"
@@ -2564,7 +2564,7 @@ msgstr "Перший файл (sentences.tar.bz2) містить тільки ц
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L162
 msgid "Links"
-msgstr "Посилання"
+msgstr "Зв'язки"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L195
 msgid ""
@@ -2653,7 +2653,7 @@ msgstr "Файли надані тут оновлюються кожної <stro
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
-msgstr "Багато Японських та Англійських речень походять з <a href=\"{}\">мовного корпуса Танаки</a>, який є публічною власністю (public domain)."
+msgstr "Багато речень японською та англійською походять з <a href=\"{}\">мовного корпуса Танаки</a>, який є публічною власністю (public domain)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L33
 msgid "Need more help?"
@@ -2748,7 +2748,7 @@ msgstr "З розділу <a href=\"{}\">Зробити внесок</a>"
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr "За допомогою створення нового <a href=\"{}\">список</a>, та переходу до сторінки редагування цього списка."
+msgstr "За допомогою створення нового <a href=\"{}\">списка</a>, та переходу до сторінки редагування цього списка."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L204
 msgid ""
@@ -2772,7 +2772,7 @@ msgstr "Переклад є одним з найважливіших завда�
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr "Можливо перекладати речення майже звідки завгодно. Достатньо натисніть на цей знак {translateButton} там де ви бачите його."
+msgstr "Можливо перекладати речення майже звідки завгодно. Достатньо натиснути на цей знак {translateButton} там де ви бачите його."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L241
 msgid "Correcting mistakes"
@@ -4135,7 +4135,7 @@ msgstr "Якими є п'ять перших знаків вашої адрес�
 msgid ""
 "For instance, if your email address is a.b.cd@example.com, type a.b.c into "
 "the box."
-msgstr "Наприклад, якщо ваша адреса електронної пошти a.b.cd@example.com, введіть a.b.c в якості відповіді на це питання."
+msgstr "Наприклад, якщо ваша адреса електронної пошти a.b.cd@example.com, введіть a.b.c як відповідь на це запитання."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L177
 msgid "I accept the <a href=\"{}\">terms of use</a>"
