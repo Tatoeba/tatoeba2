@@ -130,6 +130,7 @@ class LanguagesLib
             'mon' => 'mn', // Mongolian
             'mri' => 'mi', // Maori
             'mya' => 'my', // Burmese
+            'nau' => 'na', // Nauruan
             'nav' => 'nv', // Navajo
             'nld' => 'nl', // Dutch
             'nob' => 'nb', // Norwegian (Bokmål)
@@ -505,7 +506,7 @@ class LanguagesLib
                 'mdf' => __d('languages', 'Moksha',true),
                 'pag' => __d('languages', 'Pangasinan',true),
                 'cos' => __d('languages', 'Corsican',true),
-                'hnj' => __d('languages', 'Hmong Njua',true),
+                'hnj' => __d('languages', 'Hmong Njua (Green)',true),
                 'rif' => __d('languages', 'Tarifit',true),
                 'nch' => __d('languages', 'Central Huasteca Nahuatl',true),
                 'kek' => __d('languages', "Kekchi (Q'eqchi')",true),
@@ -516,7 +517,10 @@ class LanguagesLib
                 'kxi' => __d('languages', 'Keningau Murut', true),
                 'bvy' => __d('languages', 'Baybayanon', true),
                 'mfe' => __d('languages', 'Morisyen',true),
-
+                'mww' => __d('languages', 'Hmong Daw (White)',true),
+                'bcl' => __d('languages', 'Bikol (Central)',true),
+                'nau' => __d('languages', 'Nauruan',true),
+                
             );
         }
         return $languages;
