@@ -520,6 +520,7 @@ class LanguagesLib
                 'mww' => __d('languages', 'Hmong Daw (White)',true),
                 'bcl' => __d('languages', 'Bikol (Central)',true),
                 'nau' => __d('languages', 'Nauruan',true),
+                'zlm' => __d('languages', 'Malay (Vernacular)',true),
                 
             );
         }
