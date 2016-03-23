@@ -30,6 +30,7 @@ if (isset($this->params['lang'])) {
 }
 ?>
 
+<div class="search_container">
 <div class="search_bar">
 <?php
 if ($selectedLanguageFrom == null) {
@@ -130,4 +131,5 @@ echo $form->create(
 <?php
 echo $form->end();
 ?>
+</div>
 </div>
