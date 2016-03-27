@@ -521,7 +521,7 @@ class LanguagesLib
                 'bcl' => __d('languages', 'Bikol (Central)',true),
                 'nau' => __d('languages', 'Nauruan',true),
                 'zlm' => __d('languages', 'Malay (Vernacular)',true),
-                'nst' => __d('languages', 'Tase Naga'), true,
+                'nst' => __d('languages', 'Tangshang Naga'), true,
                 
             );
         }
