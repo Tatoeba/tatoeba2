@@ -522,6 +522,8 @@ class LanguagesLib
                 'nau' => __d('languages', 'Nauruan',true),
                 'zlm' => __d('languages', 'Malay (Vernacular)',true),
                 'nst' => __d('languages', 'Tangshang Naga'), true,
+                'arb' => __d('languages', 'Arabic (Modern Standard)',true),
+                
                 
             );
         }
