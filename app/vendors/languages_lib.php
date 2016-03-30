@@ -523,7 +523,7 @@ class LanguagesLib
                 'zlm' => __d('languages', 'Malay (Vernacular)',true),
                 'nst' => __d('languages', 'Tangshang Naga'), true,
                 'arb' => __d('languages', 'Arabic (Modern Standard)',true),
-                
+                'quc' => __d('languages', "K'iche'",true),
                 
             );
         }
