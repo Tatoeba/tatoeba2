@@ -524,6 +524,7 @@ class LanguagesLib
                 'nst' => __d('languages', 'Tangshang Naga'), true,
                 'arb' => __d('languages', 'Arabic (Modern Standard)',true),
                 'quc' => __d('languages', "K'iche'",true),
+                'afb' => __d('languages', "Arabic (Gulf)")
                 
             );
         }
