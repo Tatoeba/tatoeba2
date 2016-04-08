@@ -514,7 +514,7 @@ class LanguagesLib
                 'ban' => __d('languages', 'Balinese',true),
                 'aii' => __d('languages', 'Assyrian Neo-Aramaic',true),
                 'tvl' => __d('languages', 'Tuvaluan',true),
-                'kxi' => __d('languages', 'Keningau Murut', true),
+                'kxi' => __d('languages', 'Keningau Murut',true),
                 'bvy' => __d('languages', 'Baybayanon', true),
                 'mfe' => __d('languages', 'Morisyen',true),
                 'mww' => __d('languages', 'Hmong Daw (White)',true),
@@ -527,6 +527,8 @@ class LanguagesLib
                 'afb' => __d('languages', 'Arabic (Gulf)',true),
                 'min' => __d('languages', 'Minangkabau',true),
                 'tmw' => __d('languages', 'Temuan',true),
+                'cjy' => __d('languages', 'Chinese (Jin)',true),
+                
                 
             );
         }
