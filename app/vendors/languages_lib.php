@@ -529,7 +529,7 @@ class LanguagesLib
                 'tmw' => __d('languages', 'Temuan',true),
                 'cjy' => __d('languages', 'Chinese (Jin)',true),
                 'mai' => __d('languages', 'Maithili',true),
-                
+                'mad' => __d('languages', 'Madurese',true),
                 
             );
         }
