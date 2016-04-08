@@ -530,6 +530,7 @@ class LanguagesLib
                 'cjy' => __d('languages', 'Chinese (Jin)',true),
                 'mai' => __d('languages', 'Maithili',true),
                 'mad' => __d('languages', 'Madurese',true),
+                'bjn' => __d('languages', 'Banjar',true),
                 
             );
         }
