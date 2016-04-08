@@ -528,6 +528,7 @@ class LanguagesLib
                 'min' => __d('languages', 'Minangkabau',true),
                 'tmw' => __d('languages', 'Temuan',true),
                 'cjy' => __d('languages', 'Chinese (Jin)',true),
+                'mai' => __d('languages', 'Maithili',true),
                 
                 
             );
