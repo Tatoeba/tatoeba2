@@ -29,8 +29,11 @@ if (Configure::read('Announcement.enabled')) {
     echo $javascript->link(JS_PATH . 'jquery.cookie.js');
     echo $javascript->link(JS_PATH . 'announcement.js');
 
-    $announcementId = 'announcement-id';
-    $announcementText = 'Text of the announcement';
+    $announcementId = 'looking-for-devs';
+    $announcementText = 'Tatoeba is looking for developers!
+    If you are interested to contribute to an open source project, please contact us
+    at <a href="mailto:team@tatoeba.org">team@tatoeba.org</a>.
+    Beginners are welcome.';
 
     $closeButton = $html->div('close button', $images->svgIcon('close'));
     $content = $html->div('content', $announcementText);
