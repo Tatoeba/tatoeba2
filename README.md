@@ -38,7 +38,7 @@ message in our [Google group][5] or ask in our IRC channel (server: freenode,
 channel: #tatoeba).
 
 [1]: https://github.com/Tatoeba/tatoeba2/wiki/Joining-the-dev-team
-[2]: https://github.com/Tatoeba/admin
-[3]: https://github.com/Tatoeba/admin/blob/master/README.md#imouto-for-development
-[4]: http://en.wiki.tatoeba.org/articles/show/install-tatoeba
+[2]: https://github.com/Tatoeba/imouto
+[3]: https://github.com/Tatoeba/imouto/blob/master/README.md#imouto-for-development
+[4]: https://github.com/Tatoeba/tatoeba2/wiki/How-to-install-Tatoeba
 [5]: http://groups.google.com/group/tatoebaproject
