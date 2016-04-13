@@ -50,7 +50,7 @@ class LanguagesLib
             'abk' => 'ab', // Abkhaz
             'afr' => 'af', // Afrikaans
             'amh' => 'am', // Amharic
-            'ara' => 'ar', // Arabic
+            'arb' => 'ar', // Arabic
             'arg' => 'an', // Aragonese
             'asm' => 'as', // Assamese
             'aym' => 'ay', // Aymara
@@ -232,7 +232,7 @@ class LanguagesLib
         if (!$languages || $currentLang != $lastLang) {
             $lastLang = $currentLang;
             $languages = array(
-                'ara' => __d('languages', 'Arabic', true),
+                'arb' => __d('languages', 'Arabic', true),
                 'eng' => __d('languages', 'English', true),
                 'jpn' => __d('languages', 'Japanese', true),
                 'fra' => __d('languages', 'French', true),
@@ -520,7 +520,7 @@ class LanguagesLib
                 'mww' => __d('languages', 'Hmong Daw (White)',true),
                 'bcl' => __d('languages', 'Bikol (Central)',true),
                 'nau' => __d('languages', 'Nauruan',true),
-                
+
             );
         }
         return $languages;
@@ -566,7 +566,7 @@ class LanguagesLib
         $direction = "ltr";
 
         $rightToLeftLangs = array(
-            "ara",
+            "arb",
             "heb",
             "arz",
             "uig",
@@ -580,7 +580,7 @@ class LanguagesLib
             "oar",
             "ary",
             "aii",
-            
+
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
