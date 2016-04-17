@@ -55,25 +55,32 @@ COMMIT;
 -- Deleting and creating the table again.
 DROP TABLE IF EXISTS `languages`;
 CREATE TABLE `languages` (
-  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(4) CHARACTER SET utf8 NOT NULL,
-  `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `id` INT(10) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
+  `sentences` INT(10) unsigned NOT NULL DEFAULT '0',
+  `audio` INT(10) NOT NULL DEFAULT 0,
+  `group_1` TINYINT(2) NOT NULL DEFAULT 0,
+  `group_2` SMALLINT(3) NOT NULL DEFAULT 0,
+  `group_3` SMALLINT(4) NOT NULL DEFAULT 0,
+  `group_4` INT(10) NOT NULL DEFAULT 0,
+  `level_0` INT(10) NOT NULL DEFAULT 0,
+  `level_1` INT(10) NOT NULL DEFAULT 0,
+  `level_2` INT(10) NOT NULL DEFAULT 0,
+  `level_3` INT(10) NOT NULL DEFAULT 0,
+  `level_4` INT(10) NOT NULL DEFAULT 0,
+  `level_5` INT(10) NOT NULL DEFAULT 0,
+  `level_unknown` INT(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `lang` (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Making sure that there's no entry in the "sentences" table
 -- that has lang as an empty string.
 UPDATE sentences SET lang = NULL WHERE lang = '';
 
 -- Inserting the stats into languages table
-INSERT INTO languages (code, numberOfSentences)
+INSERT INTO languages (code, sentences)
     SELECT lang , count(*) FROM sentences GROUP BY lang;
-
--- Updating the table sentences to have same lang_id for each
--- language as in languages table
-UPDATE sentences s, languages l SET s.lang_id = l.id
-	WHERE s.lang = l.code;
 
 SET @@global.general_log = @_general_log;
 SET @@global.general_log_file = @_general_log_file;
