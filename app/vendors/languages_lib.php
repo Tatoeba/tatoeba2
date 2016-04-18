@@ -50,7 +50,7 @@ class LanguagesLib
             'abk' => 'ab', // Abkhaz
             'afr' => 'af', // Afrikaans
             'amh' => 'am', // Amharic
-            'ara' => 'ar', // Arabic
+            'arb' => 'ar', // Arabic
             'arg' => 'an', // Aragonese
             'asm' => 'as', // Assamese
             'aym' => 'ay', // Aymara
@@ -232,7 +232,7 @@ class LanguagesLib
         if (!$languages || $currentLang != $lastLang) {
             $lastLang = $currentLang;
             $languages = array(
-                'ara' => __d('languages', 'Arabic', true),
+                'arb' => __d('languages', 'Arabic (Modern Standard)', true),
                 'eng' => __d('languages', 'English', true),
                 'jpn' => __d('languages', 'Japanese', true),
                 'fra' => __d('languages', 'French', true),
@@ -264,7 +264,7 @@ class LanguagesLib
                 'lat' => __d('languages', 'Latin', true),
                 // TODO to change when shanghainese will not be the only wu dialect
                 'wuu' => __d('languages', 'Shanghainese', true),
-                'arz' => __d('languages', 'Egyptian Arabic', true),
+                'arz' => __d('languages', 'Arabic Dialect (Egyptian)', true),
                 'bel' => __d('languages', 'Belarusian', true),
                 'hun' => __d('languages', 'Hungarian', true),
                 'isl' => __d('languages', 'Icelandic', true),
@@ -287,7 +287,7 @@ class LanguagesLib
                 'slk' => __d('languages', 'Slovak', true),
                 'dan' => __d('languages', 'Danish', true),
                 'hye' => __d('languages', 'Armenian', true),
-                'acm' => __d('languages', 'Iraqi Arabic', true),
+                'acm' => __d('languages', 'Arabic Dialect (Iraqi)', true),
                 'san' => __d('languages', 'Sanskrit', true),
                 'urd' => __d('languages', 'Urdu', true),
                 'hin' => __d('languages', 'Hindi', true),
@@ -361,7 +361,7 @@ class LanguagesLib
                 'lao' => __d('languages', 'Lao',true),
                 'bod' => __d('languages', 'Tibetan',true),
                 'hil' => __d('languages', 'Hiligaynon',true),
-                'arq' => __d('languages', 'Algerian Arabic',true),
+                'arq' => __d('languages', 'Arabic Dialect (Algerian)',true),
                 'pcd' => __d('languages', 'Picard',true),
                 'grc' => __d('languages', 'Ancient Greek',true),
                 'amh' => __d('languages', 'Amharic',true),
@@ -488,7 +488,7 @@ class LanguagesLib
                 'fuv' => __d('languages', 'Nigerian Fulfulde',true),
                 'hoc' => __d('languages', 'Ho',true),
                 'sun' => __d('languages', 'Sundanese',true),
-                'apc' => __d('languages', 'North Levantine Arabic',true),
+                'apc' => __d('languages', 'Arabic Dialect (North Levantine)',true),
                 'tyv' => __d('languages', 'Tuvinian',true),
                 'krc' => __d('languages', 'Karachay-Balkar',true),
                 'pap' => __d('languages', 'Papiamento',true),
@@ -496,7 +496,7 @@ class LanguagesLib
                 'ori' => __d('languages', 'Odia (Oriya)',true),
                 'iba' => __d('languages', 'Iban',true),
                 'oar' => __d('languages', 'Old Aramaic',true),
-                'ary' => __d('languages', 'Moroccan Arabic',true),
+                'ary' => __d('languages', 'Arabic Dialect (Moroccan)',true),
                 'cyo' => __d('languages', 'Cuyonon',true),
                 'ibo' => __d('languages', 'Igbo',true),
                 'csb' => __d('languages', 'Kashubian',true),
@@ -520,7 +520,7 @@ class LanguagesLib
                 'mww' => __d('languages', 'Hmong Daw (White)',true),
                 'bcl' => __d('languages', 'Bikol (Central)',true),
                 'nau' => __d('languages', 'Nauruan',true),
-                
+
             );
         }
         return $languages;
@@ -566,7 +566,7 @@ class LanguagesLib
         $direction = "ltr";
 
         $rightToLeftLangs = array(
-            "ara",
+            "arb",
             "heb",
             "arz",
             "uig",
@@ -580,7 +580,7 @@ class LanguagesLib
             "oar",
             "ary",
             "aii",
-            
+
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
