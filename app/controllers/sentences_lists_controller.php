@@ -388,7 +388,7 @@ class SentencesListsController extends AppController
     /**
      * Displays the lists of a specific user.
      *
-     * @param int    $username Username of of the user we want lists of.
+     * @param string $username Username of of the user we want lists of.
      * @param string $filter   Search query on name of list.
      */
     public function of_user($username, $filter = null)
