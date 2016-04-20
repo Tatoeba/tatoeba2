@@ -391,7 +391,7 @@ class SentencesListsController extends AppController
      * @param string $username Username of of the user we want lists of.
      * @param string $filter   Search query on name of list.
      */
-    public function of_user($username, $filter = null)
+    public function of_user($username=null, $filter = null)
     {
         if (isset($this->params['url']['username'])) {
             $usernameParam = $this->params['url']['username'];
