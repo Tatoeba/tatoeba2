@@ -393,14 +393,6 @@ class SentencesListsController extends AppController
      */
     public function of_user($username, $filter = null)
     {
-        $this->set('username', $username);
-        $userId = $this->User->getIdFromUsername($username);
-        if (empty($userId)) {
-            $backLink = $this->referer(array('action'=>'index'), true);
-            $this->set('backLink', $backLink);
-            $this->set("userExists", false);
-            return;
-        }
         if (isset($this->params['url']['username'])) {
             $usernameParam = $this->params['url']['username'];
         }
@@ -412,6 +404,15 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
         } else if (empty($username)) {
             $this->redirect(array('action' => 'index'));
+        }
+
+        $this->set('username', $username);
+        $userId = $this->User->getIdFromUsername($username);
+        if (empty($userId)) {
+            $backLink = $this->referer(array('action'=>'index'), true);
+            $this->set('backLink', $backLink);
+            $this->set("userExists", false);
+            return;
         }
 
         $visibility = null;
