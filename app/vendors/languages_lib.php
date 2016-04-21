@@ -514,12 +514,22 @@ class LanguagesLib
                 'ban' => __d('languages', 'Balinese',true),
                 'aii' => __d('languages', 'Assyrian Neo-Aramaic',true),
                 'tvl' => __d('languages', 'Tuvaluan',true),
-                'kxi' => __d('languages', 'Keningau Murut', true),
+                'kxi' => __d('languages', 'Keningau Murut',true),
                 'bvy' => __d('languages', 'Baybayanon', true),
                 'mfe' => __d('languages', 'Morisyen',true),
                 'mww' => __d('languages', 'Hmong Daw (White)',true),
                 'bcl' => __d('languages', 'Bikol (Central)',true),
                 'nau' => __d('languages', 'Nauruan',true),
+                'zlm' => __d('languages', 'Malay (Vernacular)',true),
+                'nst' => __d('languages', 'Naga (Tangshang)', true),
+                'quc' => __d('languages', "K'iche'",true),
+                'afb' => __d('languages', 'Arabic (Gulf)',true),
+                'min' => __d('languages', 'Minangkabau',true),
+                'tmw' => __d('languages', 'Temuan',true),
+                'cjy' => __d('languages', 'Chinese (Jin)',true),
+                'mai' => __d('languages', 'Maithili',true),
+                'mad' => __d('languages', 'Madurese',true),
+                'bjn' => __d('languages', 'Banjar',true),
                 
             );
         }
