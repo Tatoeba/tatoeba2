@@ -521,7 +521,7 @@ class LanguagesLib
                 'bcl' => __d('languages', 'Bikol (Central)',true),
                 'nau' => __d('languages', 'Nauruan',true),
                 'zlm' => __d('languages', 'Malay (Vernacular)',true),
-                'nst' => __d('languages', 'Naga (Tangshang)'), true,
+                'nst' => __d('languages', 'Naga (Tangshang)', true),
                 'quc' => __d('languages', "K'iche'",true),
                 'afb' => __d('languages', 'Arabic (Gulf)',true),
                 'min' => __d('languages', 'Minangkabau',true),
