@@ -590,6 +590,8 @@ class LanguagesLib
             "oar",
             "ary",
             "aii",
+            "afb",
+            "arb"
             
         );
 
