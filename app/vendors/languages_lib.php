@@ -590,7 +590,7 @@ class LanguagesLib
             "oar",
             "ary",
             "aii",
-            
+            "afb",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
