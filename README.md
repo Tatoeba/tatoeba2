@@ -15,7 +15,8 @@ Installing Tatoeba
 
 ### Linux & Mac
 
-To install Tatoeba on your machine, we recommend that you use [Imouto][2]. 
+If you are a Linux or Mac user, we recommend that you use [Imouto][2] to
+install Tatoeba on your machine.
 Simply follow the instructions in [Imouto for development][3] in the README.
 
 If for some reason you prefer to install manually or if Imouto doesn't work 
@@ -23,9 +24,14 @@ for you, you can follow our [wiki article about installing Tatoeba][4].
 
 ### Windows
 
-If you are a Windows user, you won't be able to use Imouto. You will have to 
+If you are a Windows user, you won't be able to use Imouto. You will have to
 install everything manually. Please refer to our [wiki article about installing
 Tatoeba][4].
+
+Note that since Imouto uses VirtualBox, it will not make sense to install a VM 
+on Windows and then use Imouto inside the VM. If you wish, you may set up a VM 
+rather than installing Tatoeba directly on your Windows, but you will still have 
+to install Tatoeba manually inside the VM.
 
 
 
