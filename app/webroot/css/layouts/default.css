@@ -6,7 +6,7 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -236,7 +236,7 @@ rt {
 }
 
 
-/*
+/* 
  * Interface Language Selector
  */
 
@@ -245,8 +245,8 @@ rt {
     margin-top: 2px;
 }
 
-/*
- * User Menu
+/* 
+ * User Menu 
  */
 #languageSelectionContainer,
 #user_menu {
@@ -375,9 +375,9 @@ rt {
 }
 
 .search_bar .search-submit-button {
-    color: #1D1D1D;
+    color: #1d1d1d;
     cursor: pointer;
-    background-image: linear-gradient(to bottom, #F1F1F1, #D3A5A5);
+    background-image: linear-gradient(to bottom, #F1F1F1, #d1d1d1);
     width: 70px;
     height: 30px;
     border: 1px solid #477700;
@@ -386,13 +386,12 @@ rt {
 }
 
 .search_bar .search-submit-button:hover {
-    background-image: linear-gradient(to bottom, #d8d7d7, #be9797);
-    border-color: 1px solid #406b00;
+    background-image: linear-gradient(to bottom, #d8d8d8, #bcbcbc);
+    border-color: #406b00;
 }
 
 .search_bar .search-submit-button:active {
-    background-color: #be9797;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+    background: #bcbcbc;
 }
 
 .search-submit-button svg {
@@ -494,7 +493,7 @@ rt {
 }
 
 /*
- * Content
+ * Content 
  */
 
 #content {
@@ -535,7 +534,7 @@ rt {
 
 
 /*
- * Footer
+ * Footer 
  */
 #footer {
     padding-bottom: 10px;
@@ -615,12 +614,12 @@ rt {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #FFC1B5;
-    background-color: #FFDDD6;
+    background-color: #FFDDD6; 
     color: #D1523C;
 }
 
-/*
- * Important
+/* 
+ * Important 
  */
 .important {
     color: red;
@@ -634,7 +633,7 @@ rt {
 }
 
 /*
- * Login Form
+ * Login Form 
  */
 #UserLoginForm_FromBar {
     position: absolute;
