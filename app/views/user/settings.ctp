@@ -85,11 +85,18 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             <div>
                 <?php
                 $tip = __(
-                    'Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). '.
+                    'Enter %s, separated with a comma (e.g.: jpn,epo,ara,deu). '.
                     'Tatoeba will then only display translations in the languages you '.
                     'indicated. You can leave this empty to display translations in all '.
                     'languages.', true
                 );
+                $tip = sprintf($tip, $html->link(
+                    __('ISO 639-3 codes', true),
+                    array(
+                        'controller' => 'stats',
+                        'action' => 'sentences_by_language'
+                    )
+                ));
                 echo $form->input(
                     'settings.lang',
                     array(
