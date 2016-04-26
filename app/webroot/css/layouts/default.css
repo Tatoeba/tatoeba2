@@ -375,21 +375,30 @@ rt {
 }
 
 .search_bar .search-submit-button {
-    color: #AAAAAA;
+    color: #1d1d1d;
     cursor: pointer;
-    background: #F1F1F1;
+    background-image: linear-gradient(to bottom, #F1F1F1, #d1d1d1);
     width: 70px;
     height: 30px;
-    border: 1px solid #EEEEEE;
+    border: 1px solid #477700;
     border-radius: 2px;
     padding: 2px 0 4px 0; /* Fix Chrome bogus bottom margin */
+}
+
+.search_bar .search-submit-button:hover {
+    background-image: linear-gradient(to bottom, #d8d8d8, #bcbcbc);
+    border-color: #406b00;
+}
+
+.search_bar .search-submit-button:active {
+    background: #bcbcbc;
 }
 
 .search-submit-button svg {
     display: block;
     margin: auto;
-    width: 20px;
-    height: 20px;
+    width: 17px;
+    height: 17px;
     vertical-align: middle;
     padding-top: 2px;
 }
