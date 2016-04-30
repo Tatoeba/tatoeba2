@@ -39,7 +39,7 @@ class ClickableLinksHelper extends AppHelper
 {
     public $helpers = array('Html');
 
-    const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\!<]+)/siu';
+    const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n"\'\!<]+)/siu';
     const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
 
     /**
@@ -72,27 +72,27 @@ class ClickableLinksHelper extends AppHelper
                     $urlText = $url;
                 }
 
-                // Checking last character and taking it out if it's a puncturation
-                $unwantedLastCharacters = array('?', '!', '.', ',', ')', ';', ':');
+                // Checking last character and taking it out if it's punctuation
+                $unwantedLastCharacters = array('?', '!', '.', ',', ';', ':');
                 $lastCharacter = mb_substr($url, -1, 1);
                 if (in_array($lastCharacter, $unwantedLastCharacters)) {
                     $url = mb_substr($url, 0, -1);
                     $urlText = mb_substr($urlText, 0, -1);
                 }
 
-                // There was a problem when one URL is be included in another one.
+                // There was a problem when one URL is included in another one.
                 // For instance, http://tatoeba.org is included in
                 // http://tatoeba.org/wall.
                 // Because of the presence of http://tatoeba.org, the other URLS
                 // beginning with http://tatoeba.org would be messed up.
-                // That's why we need to do replace only if there's a stop character.
+                // That's why we need to replace only if there's a stop character.
                 $escapedUrl = quotemeta($url);  // meta characters
                 $escapedUrl = str_replace('/', '\/', $escapedUrl); // identifier
                 $escapedUrl = str_replace('|', '\|', $escapedUrl); // pipe
                 $pattern2 = '/('.$escapedUrl.'([\?!\.,\);:< \n]))|('.$escapedUrl.'$)/u';
                 $text = preg_replace(
                     $pattern2,
-                    '<a href="'. $url .'">'. $urlText .'</a>$2',
+                    "<a href=\"$url\" target=\"_blank\">$urlText</a>$2",
                     $text
                 );
             }
