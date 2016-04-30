@@ -660,13 +660,12 @@ class SentencesHelper extends AppHelper
         foreach ($excerpts as $excerpt) {
             $excerpt = h($excerpt);
             $from = str_replace($markers, '', $excerpt);
-            $from = '/'.preg_quote($from, '/').'/';
             $to = str_replace(
                 $markers,
                 array('<span class="match">', '</span>'),
                 $excerpt
             );
-            $text = preg_replace($from, $to, $text);
+            $text = str_replace($from, $to, $text);
         }
         return $text;
     }
