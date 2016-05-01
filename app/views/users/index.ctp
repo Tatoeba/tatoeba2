@@ -70,7 +70,7 @@ echo $paginator->next(
     <th><?php echo $paginator->sort(__d('admin', 'Email',true),'email'); ?></th>
     <th><?php echo $paginator->sort(__d('admin', 'Since',true),'since'); ?></th>
     <th><?php echo $paginator->sort(__d('admin', 'Level',true),'level'); ?></th>
-    <th><?php echo $paginator->sort(__d('admin', 'Group',true),'group'); ?></th>
+    <th><?php echo $paginator->sort(__d('admin', 'Group',true),'group_id'); ?></th>
     <th class="actions"></th>
 </tr>
 <?php
