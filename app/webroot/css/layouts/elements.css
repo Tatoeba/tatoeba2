@@ -526,6 +526,11 @@
     text-align: center;
 }
 
+.message .date .created,
+.message .date .edited {
+    cursor: help;
+}
+
 
 /*
  * Message header (menu)
