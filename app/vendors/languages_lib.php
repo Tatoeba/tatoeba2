@@ -531,6 +531,8 @@ class LanguagesLib
                 'mad' => __d('languages', 'Madurese',true),
                 'bjn' => __d('languages', 'Banjar',true),
                 'got' => __d('languages', 'Gothic',true),
+                'gan' => __d('languages', 'Gan Chinese',true),
+                
                 
             );
         }
