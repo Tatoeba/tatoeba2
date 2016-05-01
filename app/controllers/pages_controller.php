@@ -145,14 +145,7 @@ class PagesController extends AppController
 
     private function _redirect_for_old_url()
     {
-
-        // TODO it's an hack
-        $urlArray = explode("/", $this->params['url']['url']);
-        if (empty($urlArray[1]) || $urlArray[1] != "pages") {
-            return;
-        }
-
-        $action = $urlArray[2];
+        $action = $this->params['action'];
 
         switch ($action) {
             case "tatoeba-team-and-credits":
@@ -166,6 +159,9 @@ class PagesController extends AppController
             case "terms-of-use":
                 $action = "terms_of_use";
                 break;
+
+            default:
+                return;
         }
 
         $this->redirect(
