@@ -532,7 +532,7 @@ class LanguagesLib
                 'bjn' => __d('languages', 'Banjar',true),
                 'got' => __d('languages', 'Gothic',true),
                 'hsn' => __d('languages', 'Xiang Chinese',true),
-                
+                'gan' => __d('languages', 'Gan Chinese',true),
             );
         }
         return $languages;
