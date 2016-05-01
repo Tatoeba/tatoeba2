@@ -182,7 +182,7 @@ class MessagesHelper extends AppHelper
 
                 <div class="date">
                 <?php
-                echo '<span class="created" title="'. $created .'">'. 
+                echo '<span class="created" title="'. $created .' UTC">'.
                     $this->Date->ago($created).
                     '</span>';
 
@@ -192,7 +192,7 @@ class MessagesHelper extends AppHelper
                     if ($date1 != $date2) {
                         echo " - ";
                         __("edited");
-                        echo ' <span class="edited" title="'. $modified .'">'.
+                        echo ' <span class="edited" title="'. $modified .' UTC">'.
                             $this->Date->ago($modified).
                             '</span>'; 
                     }
