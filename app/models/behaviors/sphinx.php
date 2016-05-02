@@ -99,12 +99,9 @@ class SphinxBehavior extends ModelBehavior
                     $sphinx->SetFieldWeights($setting);
                     break;
                 case 'rankingMode': 
-                    if (is_array($setting))
-                    {
+                    if (is_array($setting)) {
                         $sphinx->SetRankingMode(key($setting), reset($setting));
-                    }
-                    else
-                    {
+                    } else {
                         $sphinx->SetRankingMode($setting);
                     }
                     break;
@@ -121,15 +118,11 @@ class SphinxBehavior extends ModelBehavior
 
         $result = $sphinx->Query($this->escapeQuery($query['search']), $indexes);
 
-        if ($result === false)
-        {
+        if ($result === false) {
             trigger_error("Search query failed: " . $sphinx->GetLastError());
             return false;
-        }
-        else if(isset($result['matches']))
-        {
-            if ($sphinx->GetLastWarning())
-            {
+        } else if(isset($result['matches'])) {
+            if ($sphinx->GetLastWarning()) {
                 trigger_error("Search query warning: " . $sphinx->GetLastWarning());
             }
         }
@@ -138,24 +131,16 @@ class SphinxBehavior extends ModelBehavior
         unset($query['order']);
         unset($query['offset']);
         $query['page'] = 1;
-        if ($model->findQueryType == 'count')
-        {
+        if ($model->findQueryType == 'count') {
             $result['total'] = !empty($result['total']) ? $result['total'] : 0;
             $query['fields'] = 'ABS(' . $result['total'] . ') AS count';
-
-        }
-        else
-        {
+        } else {
             $this->_cached_result = $result;
             $this->_cached_query = $query['search'];
     
-            if (isset($result['matches']))
-                $ids = array_keys($result['matches']);
-            else
-                $ids = array(0);
+            $ids = isset($result['matches']) ? array_keys($result['matches']) : array(0);
             $query['conditions'] = array($model->alias . '.'.$model->primaryKey => $ids);
             $query['order'] = 'FIND_IN_SET('.$model->alias.'.'.$model->primaryKey.', \'' . implode(',', $ids) . '\')';
-
         }
 
         return $query;
@@ -163,7 +148,7 @@ class SphinxBehavior extends ModelBehavior
 
     private function escapeQuery($search)
     {
-      return str_replace('/', '\\/', $search);
+      return str_replace(array('/', '$'), array('\\/', '\\$'), $search);
     }
 
     private function addHighlightMarkers($model, &$results, $search) {
