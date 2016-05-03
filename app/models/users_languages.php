@@ -161,7 +161,7 @@ class UsersLanguages extends AppModel
         $result = array(
             'conditions' => array(
                 'language_code' => $lang,
-                'User.group_id != 6'
+                'User.group_id NOT' => array(5,6)
             ),
             'fields' => array(
                 'of_user_id',
@@ -192,7 +192,7 @@ class UsersLanguages extends AppModel
                 'fields' => array('language_code', 'COUNT(*) as total'),
                 'group' => 'language_code',
                 'conditions' => array(
-                    'User.group_id != 6'
+                    'User.group_id NOT' => array(5,6)
                 ),
                 'order' => 'total DESC',
                 'contain' => array(
