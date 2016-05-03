@@ -195,11 +195,7 @@ class UsersLanguages extends AppModel
                     'User.group_id NOT' => array(5,6)
                 ),
                 'order' => 'total DESC',
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array()
-                    )
-                )
+                'contain' => array('User')
             )
         );
 
