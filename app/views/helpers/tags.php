@@ -83,6 +83,13 @@ class TagsHelper extends AppHelper
             if (CurrentUser::isTrusted()) {
                 $this->displayAddTagForm($sentenceId);
             }
+	    echo $this->Html->link(
+		__('View all tags', true),
+		array(
+		   "controller" => "tags",
+		   "action" => "view_all",
+     		)
+   	    );
             ?>
         </div>
     <?php
