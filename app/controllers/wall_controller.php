@@ -299,7 +299,18 @@ class WallController extends Appcontroller
                     'id' => $messageId,
                     'content' => $this->data['Wall']['content'],
                 );
-                if ($this->Wall->save($editedPost)) {
+
+                if (empty($editedPost['content'])) {
+                    $this->Session->setFlash(__('You cannot save an empty message', true));
+                
+                        $this->redirect(
+                        array(
+                                    "action" => "edit",
+                                    $messageId
+                                )
+                            );
+                
+                } else  if ($this->Wall->save($editedPost)) {
                     $this->Session->setFlash(
                         __("Message saved.", true)
                     );
