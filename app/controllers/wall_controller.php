@@ -301,14 +301,16 @@ class WallController extends Appcontroller
                 );
 
                 if (empty($editedPost['content'])) {
-                    $this->Session->setFlash(__('You cannot save an empty message', true));
+                    $this->Session->setFlash(
+                        __('You cannot save an empty message.', true)
+                    );
                 
-                        $this->redirect(
-                        array(
-                                    "action" => "edit",
-                                    $messageId
-                                )
-                            );
+                    $this->redirect(
+                    array(
+                            "action" => "edit",
+                            $messageId
+                        )
+                    );
                 
                 } else  if ($this->Wall->save($editedPost)) {
                     $this->Session->setFlash(
