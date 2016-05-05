@@ -49,7 +49,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level = 5
+   WHERE users_languages.level = 5 AND users.group_id NOT IN (5, 6)
    GROUP BY users_languages.language_code
   ) as ul
 SET level_5 = ul.count
@@ -60,7 +60,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level = 4
+   WHERE users_languages.level = 4 AND users.group_id NOT IN (5, 6)
    GROUP BY users_languages.language_code
   ) as ul
 SET level_4 = ul.count
@@ -71,7 +71,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level = 3
+   WHERE users_languages.level = 3 AND users.group_id NOT IN (5, 6)
    GROUP BY users_languages.language_code
   ) as ul
 SET level_3 = ul.count
@@ -82,7 +82,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level = 2
+   WHERE users_languages.level = 2 AND users.group_id NOT IN (5, 6)
    GROUP BY users_languages.language_code
   ) as ul
 SET level_2 = ul.count
@@ -93,7 +93,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level = 1
+   WHERE users_languages.level = 1 AND users.group_id NOT IN (5, 6)
    GROUP BY users_languages.language_code
   ) as ul
 SET level_1 = ul.count
@@ -104,7 +104,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level = 0
+   WHERE users_languages.level = 0 AND users.group_id NOT IN (5, 6)
    GROUP BY users_languages.language_code
   ) as ul
 SET level_0 = ul.count
@@ -115,7 +115,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level IS null
+   WHERE users_languages.level IS null AND users.group_id NOT IN (5, 6)
    GROUP BY users_languages.language_code
   ) as ul
 SET level_unknown = ul.count
