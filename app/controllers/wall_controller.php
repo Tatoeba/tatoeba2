@@ -297,7 +297,7 @@ class WallController extends Appcontroller
             } else {
                 $editedPost = array(
                     'id' => $messageId,
-                    'content' => $this->data['Wall']['content'],
+                    'content' => trim($this->data['Wall']['content']),
                 );
 
                 if (empty($editedPost['content'])) {
