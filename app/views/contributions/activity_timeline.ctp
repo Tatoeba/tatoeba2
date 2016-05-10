@@ -76,7 +76,7 @@ foreach ($stats as $stat) {
     $currentDate = null;
     $totalSentences = 0;
     $numberOfDays = 0;
-    
+
     foreach ($stats as $stat) {
 
         $numSentences = $stat['ContributionsStats']['sentences'];
@@ -96,7 +96,6 @@ foreach ($stats as $stat) {
         $totalSentences += $numSentences;
     }
     echo '</table>';
-    
     
     if( $month == date('m') && $year == date('Y')) {
         $numberOfDays = date('d');
