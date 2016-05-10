@@ -75,8 +75,8 @@ foreach ($stats as $stat) {
 
     $currentDate = null;
     $totalSentences = 0;
-    $i = 0;
-
+    $numberOfDays = 0;
+    
     foreach ($stats as $stat) {
 
         $numSentences = $stat['ContributionsStats']['sentences'];
@@ -93,8 +93,26 @@ foreach ($stats as $stat) {
         echo $html->tag('td', $bar, array('class' => 'bar'));
         echo '</tr>';
 
+        $totalSentences += $numSentences;
     }
     echo '</table>';
+    
+    
+    if( $month == date('m') && $year == date('Y')) {
+        $numberOfDays = date('d');
+    } else if (($year < date('Y')) || ($year == date('Y') && $month < date('m'))){
+        $numberOfDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+    }
+    
+    if($numberOfDays > 0){
+        $dailyAverage = $totalSentences / $numberOfDays;
+        if($dailyAverage == 1){
+            echo '<div class="daily-average">Daily Average: ' . $dailyAverage . ' sentence</div>';         
+        } else {
+            echo '<div class="daily-average">Daily Average: ' . $dailyAverage . ' sentences</div>';         
+        }
+    }
+    
     ?>
     </div>
 </div>
