@@ -553,6 +553,12 @@ class SentencesHelper extends AppHelper
             echo '</div>';
         }
 
+        if($this->params['controller'] == 'favorites'){
+            echo '<div class="favorite-page column">';
+            $this->Menu->favoriteButton($sentenceId, true, true);
+            echo '</div>';
+        }
+
         // Transcriptions
         if ($transcriptions) {
             echo $this->Html->div('transcriptions', null, array(
