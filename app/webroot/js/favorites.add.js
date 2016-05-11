@@ -35,21 +35,19 @@ $(document).ready(function(){
         }
 
         var requestUrl = "/favorites/" + action + "/" + favoriteId;
-
         favoriteOption.html("<div class='loader-small loader'></div>");
-
         $.post(requestUrl, {}, function(data) {
             if(favoriteOption.parent().hasClass("favorite-page")){
                 if(favoriteOption.hasClass("remove")){
-                    favoriteOption.parent().parent().find(".content.column").html("Successfully Removed");
-                    favoriteOption.parent().parent().find(".content.column").css("font-style", "italic");
-                    favoriteOption.parent().parent().find(".nav.column").css("visibility", "hidden");
-                    favoriteOption.parent().parent().find(".lang.column").css("visibility", "hidden");
+                    favoriteOption.parent().parent().find(".content.column").html('Favorite Successfully Removed');
+                    favoriteOption.parent().parent().find(".content.column").addClass("add");
+                    favoriteOption.parent().parent().find(".nav.column").css("display", "none");
+                    favoriteOption.parent().parent().find(".lang.column").css("display", "none");
                 } else {
+                    favoriteOption.parent().parent().find(".content.column").removeClass("add");
                     favoriteOption.parent().parent().find(".content.column").html(sentenceDictionary[favoriteId]);
-                    favoriteOption.parent().parent().find(".content.column").css("font-style", "");
-                    favoriteOption.parent().parent().find(".nav.column").css("visibility", "");
-                    favoriteOption.parent().parent().find(".lang.column").css("visibility", "");
+                    favoriteOption.parent().parent().find(".nav.column").css("display", "");
+                    favoriteOption.parent().parent().find(".lang.column").css("display", "");
                 }
             }
             favoriteOption.replaceWith(data);

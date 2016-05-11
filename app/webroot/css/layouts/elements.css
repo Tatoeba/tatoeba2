@@ -998,6 +998,13 @@
     width: 540px;
 }
 
+.sentence .content.column.add{
+    font-style: italic;
+    width: 612px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
 .sentence .audio.column {
 }
 
@@ -1035,7 +1042,7 @@
 
 .sentence .favorite-page.column{
     list-style-type: none;
-    padding-top: 2px;
+    vertical-align: initial;
 }
 
 .translations .text {
@@ -1884,7 +1891,7 @@ div.hideLink {
 .loader-small {
     width: 11px;
     height: 11px;
-    border-width: 3px;
+    border-width: 3px; 
 }
 
 .sentence-loader {
