@@ -114,9 +114,7 @@ foreach ($stats as $stat) {
             ),
             array('n' => $dailyAverage)
         );
-        
         echo $html->div("daily-average", $averageString);
-        
     }
     
     ?>
