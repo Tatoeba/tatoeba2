@@ -104,12 +104,19 @@ foreach ($stats as $stat) {
     }
     
     if($numberOfDays > 0){
-        $dailyAverage = $totalSentences / $numberOfDays;
-        if($dailyAverage == 1){
-            echo '<div class="daily-average">Daily Average: ' . $dailyAverage . ' sentence</div>';         
-        } else {
-            echo '<div class="daily-average">Daily Average: ' . $dailyAverage . ' sentences</div>';         
-        }
+        $dailyAverage = round($totalSentences / $numberOfDays,1);
+        $averageString = format(
+            __n(
+                'Daily Average: {n} sentence',
+                'Daily Average: {n} sentences',
+                $dailyAverage,
+                true
+            ),
+            array('n' => $dailyAverage)
+        );
+        
+        echo $html->div("daily-average", $averageString);
+        
     }
     
     ?>
