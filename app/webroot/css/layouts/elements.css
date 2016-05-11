@@ -1265,6 +1265,11 @@
     color: #fff;
 }
 
+.editableSentence button[disabled]{
+    background-color: #ccc;
+    border-color: #aaa;
+}
+
 .editableSentence textarea{
     margin: 0;
     padding: 0;

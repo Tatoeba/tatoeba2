@@ -34,7 +34,7 @@ $(document).ready(function() {
                 } else {
                     return true;   
                 }
-            },
+            }, 
             cancel    : div.attr('data-cancel'),
             event     : 'edit_sentence',
             data : function(value, settings) {
@@ -64,11 +64,9 @@ $(document).ready(function() {
                 var submitBtn = $(this).parent().find('button[type=submit]');
                 if($(this).val().trim().length == 0) {
                     submitBtn.prop('disabled', true);
-                    submitBtn.css("background-color","gray");
                 }
                 else {
                     submitBtn.prop('disabled', false);
-                    submitBtn.css("background-color","");
                 }
                 
             }); 
