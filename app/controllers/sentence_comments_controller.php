@@ -216,6 +216,13 @@ class SentenceCommentsController extends AppController
                 $participants[] = $sentenceOwner;
             }
 
+            $commentId = $this->SentenceComment->id;
+            $mentionEmails = $this->_getMentionEmails($comment, $commentId);
+            foreach($mentionEmails as $email) {
+                $participants[] = $email;
+            }
+            $participants = array_unique($participants);
+            
             // send message to the other participants of the thread
             foreach ($participants as $participant) {
                 if ($participant != $userEmail) {
@@ -227,9 +234,7 @@ class SentenceCommentsController extends AppController
                 }
             }
 
-            $commentId = $this->SentenceComment->id;
-            $this->_sendMentionsNotifications($comment, $commentId);
-
+            
             $this->flash(
                 __('Your comment has been saved.', true),
                 '/sentence_comments/show/'
@@ -258,6 +263,29 @@ class SentenceCommentsController extends AppController
             }
         }
     }
+    
+    private function _getMentionEmails($comment, $commentId)
+    {
+        preg_match_all(
+            "/@[a-zA-Z0-9_]+/",
+            $comment['text'],
+            $usernames
+        );
+        $emails = array();
+        foreach ($usernames[0] as $string) {
+            $username = substr($string, 1);
+            $user = $this->User->findByUsername($username);
+            $sendNotif = !empty($user) && $username != CurrentUser::get('username')
+                && $user['User']['send_notifications'] == 1;
+            if ($sendNotif) {
+                $emails[] = $user['User']['email'];
+                //$this->Mailer->sendMentionNotification($email, $comment, $commentId);
+            }
+        }
+        
+        return $emails;
+    }
+
 
     /**
      * Edit comment

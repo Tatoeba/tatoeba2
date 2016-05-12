@@ -95,7 +95,8 @@ class MailerComponent extends Object
             . '#comments';
         $recipientIsOwner = ($recipient == $sentenceOwner);
         $commentText = $comment['text'];
-
+        $sentenceText = $comment['sentence_text'];
+        
         $this->Email->to = $recipient;
         $this->Email->subject = $subject;
         $this->Email->template = 'comment_on_sentence';
@@ -104,7 +105,8 @@ class MailerComponent extends Object
         $this->set('linkToSentence', $linkToSentence);
         $this->set('commentText', $commentText);
         $this->set('recipientIsOwner', $recipientIsOwner);
-
+        $this->set('sentenceText', $sentenceText);
+        
         $this->_send();
     }
 
