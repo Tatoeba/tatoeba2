@@ -52,7 +52,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="module" id="favorites-list" data-success="<?php echo __("Successfully Removed Favorite", true); ?>" >
+    <div class="module" id="favorites-list" data-success="<?php echo __("Successfully removed favorite", true); ?>" >
     
     <?php
     if (!$userExists) {
