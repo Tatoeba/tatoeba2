@@ -26,6 +26,8 @@ $(document).ready(function(){
         sentenceDictionary[key] = sentence;
     });
 
+    var successString = $("#favorites-list").attr("data-success");
+    
     $(document).on("click", ".favorite", function(){
         var favoriteId = $(this).attr("data-sentence-id");
         var favoriteOption = $(this);
@@ -42,7 +44,7 @@ $(document).ready(function(){
         $.post(requestUrl, {}, function(data) {
             if(favoriteOption.parent().hasClass("favorite-page")){
                 if(favoriteOption.hasClass("remove")){
-                    favoriteOption.parent().parent().find(".content.column").html('Favorite Successfully Removed');
+                    favoriteOption.parent().parent().find(".content.column").html(successString);
                     favoriteOption.parent().parent().find(".content.column").addClass("add");
                     favoriteOption.parent().parent().find(".nav.column").css("display", "none");
                     favoriteOption.parent().parent().find(".lang.column").css("display", "none");
