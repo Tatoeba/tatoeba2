@@ -191,16 +191,26 @@ class MenuHelper extends AppHelper
      *
      * @return void
      */
-    public function favoriteButton($sentenceId, $isFavorited, $isLogged)
+    public function favoriteButton($sentenceId, $isFavorited, $isLogged, $withRemoveAndUndo = false)
     {
         if ($isFavorited) {
             $type = 'remove';
-            $image = 'favorite-remove';
+            if ($withRemoveAndUndo){
+                $image = 'clear';
+            } else {
+                $image = 'favorite-remove';   
+            }           
             $tooltip = __('Remove from favorites', true);
         } else {
             $type = 'add';
-            $image = 'favorite-add';
-            $tooltip = __('Add to favorites', true);
+            if($withRemoveAndUndo){
+                $image = 'undo';  
+                $tooltip = __('Undo', true);
+            } else {
+                $image = 'favorite-add';
+                $tooltip = __('Add to favorites', true);                
+            }
+            
         }
 
         $favoriteImage = $this->Images->svgIcon(

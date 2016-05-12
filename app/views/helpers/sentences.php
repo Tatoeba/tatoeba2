@@ -555,7 +555,7 @@ class SentencesHelper extends AppHelper
 
         if($this->params['controller'] == 'favorites'){
             echo '<div class="favorite-page column">';
-            $this->Menu->favoriteButton($sentenceId, true, true);
+            $this->Menu->favoriteButton($sentenceId, true, true, true);
             echo '</div>';
         }
 

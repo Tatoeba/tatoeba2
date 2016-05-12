@@ -35,6 +35,9 @@ $(document).ready(function(){
         }
 
         var requestUrl = "/favorites/" + action + "/" + favoriteId;
+        if(favoriteOption.parent().hasClass("favorite-page")){
+            requestUrl += "/true"; 
+        }
         favoriteOption.html("<div class='loader-small loader'></div>");
         $.post(requestUrl, {}, function(data) {
             if(favoriteOption.parent().hasClass("favorite-page")){
