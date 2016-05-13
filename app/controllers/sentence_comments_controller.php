@@ -279,7 +279,6 @@ class SentenceCommentsController extends AppController
                 && $user['User']['send_notifications'] == 1;
             if ($sendNotif) {
                 $emails[] = $user['User']['email'];
-                //$this->Mailer->sendMentionNotification($email, $comment, $commentId);
             }
         }
         
