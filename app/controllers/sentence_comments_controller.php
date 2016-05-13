@@ -217,7 +217,7 @@ class SentenceCommentsController extends AppController
             }
 
             $commentId = $this->SentenceComment->id;
-            $mentionEmails = $this->_getMentionEmails($comment, $commentId);
+            $mentionEmails = $this->_getMentionedEmails($comment, $commentId);
             foreach($mentionEmails as $email) {
                 $participants[] = $email;
             }
@@ -244,27 +244,7 @@ class SentenceCommentsController extends AppController
     }
 
 
-    private function _sendMentionsNotifications($comment, $commentId)
-    {
-        preg_match_all(
-            "/@[a-zA-Z0-9_]+/",
-            $comment['text'],
-            $usernames
-        );
-
-        foreach ($usernames[0] as $string) {
-            $username = substr($string, 1);
-            $user = $this->User->findByUsername($username);
-            $sendNotif = !empty($user) && $username != CurrentUser::get('username')
-                && $user['User']['send_notifications'] == 1;
-            if ($sendNotif) {
-                $email = $user['User']['email'];
-                $this->Mailer->sendMentionNotification($email, $comment, $commentId);
-            }
-        }
-    }
-    
-    private function _getMentionEmails($comment, $commentId)
+    private function _getMentionedEmails($comment, $commentId)
     {
         preg_match_all(
             "/@[a-zA-Z0-9_]+/",
@@ -279,6 +259,7 @@ class SentenceCommentsController extends AppController
                 && $user['User']['send_notifications'] == 1;
             if ($sendNotif) {
                 $emails[] = $user['User']['email'];
+                //$this->Mailer->sendMentionNotification($email, $comment, $commentId);
             }
         }
         
