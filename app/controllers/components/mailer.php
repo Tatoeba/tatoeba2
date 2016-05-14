@@ -191,7 +191,7 @@ class MailerComponent extends Object
         );
         $this->Email->delivery = 'smtp';
         $this->Email->sendAs = 'html';
-        $this->Email->from = Configure::read('Mailer.username');
+        $this->Email->from = 'no-reply <'.Configure::read('Mailer.username').'>';
         $this->Email->send();
     }
 }
