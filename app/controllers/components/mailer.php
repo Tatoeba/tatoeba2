@@ -146,30 +146,6 @@ class MailerComponent extends Object
     }
 
 
-    public function sendMentionNotification($recipient, $comment, $commentId)
-    {
-        $author = CurrentUser::get('username');
-        $subject = 'Tatoeba - '
-            . $author . ' mentioned you in the comments of sentence '
-            . '#' . $comment['sentence_id'];
-        $commentText = $comment['text'];
-        $linkToComment = 'https://' . $_SERVER['HTTP_HOST']
-            . '/sentence_comments/show/'
-            . $comment['sentence_id']
-            . '#comment-' . $commentId;
-
-        $this->Email->to = $recipient;
-        $this->Email->subject = $subject;
-        $this->Email->template = 'user_mentioned_in_comment';
-
-        $this->set('author', $author);
-        $this->set('linkToComment', $linkToComment);
-        $this->set('commentText', $commentText);
-
-        $this->_send();
-    }
-
-
     private function set($key, $value)
     {
         $this->Email->Controller->set($key, $value);
