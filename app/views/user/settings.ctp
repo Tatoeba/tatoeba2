@@ -83,6 +83,13 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             </div>
 
             <div>
+                <?php echo $form->checkbox('settings.hide_random_sentence'); ?>
+                <label for="UserSettingsHideRandomSentence">
+                    <?php __('Hide random sentence on the homepage'); ?>
+                </label>
+            </div>
+
+            <div>
                 <?php
                 $sentencesByLanguageURL = $html->url(
                     array(
