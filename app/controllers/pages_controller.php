@@ -89,7 +89,13 @@ class PagesController extends AppController
         $isLogged = !empty($userId);
 
         // Random sentence part
-        $this->_random_sentence();
+        $hideRandomSentence = CurrentUser::getSetting('hide_random_sentence');
+        
+        $this->set('hideRandomSentence', $hideRandomSentence);
+
+        if (!$hideRandomSentence) {
+            $this->_random_sentence();
+        }
 
         // Stats
         $stats = ClassRegistry::init('Language')->getSentencesStatistics(5);

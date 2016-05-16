@@ -62,7 +62,7 @@ $selectedLanguage = $session->read('random_lang_selected');
 </div>
 
 <div id="main_content">
-    <?php if(!isset($searchProblem)) { ?>
+    <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
         <div class="module">
             <?php echo $this->element('random_sentence_header'); ?>
             <div class="random_sentences_set">

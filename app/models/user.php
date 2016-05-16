@@ -117,6 +117,7 @@ class User extends AppModel
         'users_collections_ratings' => false,
         'native_indicator' => false,
         'copy_button' => false,
+        'hide_random_sentence' => false
     );
 
     private $settingsValidation = array(
