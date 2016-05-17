@@ -110,7 +110,7 @@ class SphinxBehavior extends ModelBehavior
 
         $indexes = !empty($query['sphinx']['index']) ? implode(',' , $query['sphinx']['index']) : '*';
 
-        $result = $sphinx->Query($this->escapeQuery($query['search']), $indexes);
+        $result = $sphinx->Query($query['search'], $indexes);
 
         if ($result === false) {
             trigger_error("Search query failed: " . $sphinx->GetLastError());
@@ -144,11 +144,6 @@ class SphinxBehavior extends ModelBehavior
         }
 
         return $query;
-    }
-
-    private function escapeQuery($search)
-    {
-      return str_replace('/', '\\/', $search);
     }
 
     private function addHighlightMarkers($model, &$results, $search) {
@@ -198,10 +193,10 @@ class SphinxBehavior extends ModelBehavior
     }
 
     public function afterFind(&$model, $results, $primary) {
-        if(!is_null($this->_cached_query)) {
+        if (!is_null($this->_cached_query)) {
             $search = $this->_cached_query;
             if ($search) {
-                $this->addHighlightMarkers($model, $results, $this->escapeQuery($search));
+                $this->addHighlightMarkers($model, $results, $search);
             }
             $this->_cached_query = null;
         }
