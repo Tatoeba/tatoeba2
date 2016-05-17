@@ -52,6 +52,8 @@ class SphinxConfShell extends Shell {
     public $charsetTable = array(
         # Ascii
         '0..9', 'a..z', '_', 'A..Z->a..z',
+        # Searchable symbols
+        '$',
         # Latin-1 Supplement, with case folding (0080-00FF)
         'U+C0..U+D6->U+E0..U+F6', 'U+D8..U+DE->U+F8..U+FE', 'U+E0..U+F6', 'U+F8..U+FF',
         # Latin extended-A, with case folding (0100-017F)
