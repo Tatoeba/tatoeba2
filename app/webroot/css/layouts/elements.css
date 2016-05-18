@@ -1844,6 +1844,15 @@ div.hideLink {
     color: #aaaaaa;
 }
 
+.listSummary .lastUpdatedDate .date{
+    text-align:right;
+    margin-right: 10px;
+}
+
+.noBorder td{
+    border-top:none;
+}
+
 .listSummary .icon {
     color: #777777;
 }
