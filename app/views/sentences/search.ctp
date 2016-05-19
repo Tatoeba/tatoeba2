@@ -110,8 +110,8 @@ if ($search_disabled) {
         echo format(
             __(
                 'Invalid query. '.
-                'Please refer to '.
-                '<a href="{}">text search wiki</a> for more details.', true),
+                'Please refer to the '.
+                '<a href="{}">search documentation</a> for more details.', true),
             'http://en.wiki.tatoeba.org/articles/show/text-search'
         );
     ?></p>
