@@ -56,9 +56,10 @@ class ListsHelper extends AppHelper
     public function displayListTable($arrayOfLists)
     {
         //Do not display the table if there is nothing to display
-        if(count($arrayOfLists) == 0)
+        if(count($arrayOfLists) == 0){
             return; 
-        ?>
+        }
+		?>
         <table class="listIndex">
             <tr class="listSummary noBorder">
                 <td></td>
@@ -158,7 +159,7 @@ class ListsHelper extends AppHelper
                     $listCreatorName
                 )
             );
-            echo format(__('created by {listAuthor}', true),
+            echo format(__('created by {listAuthor}, ', true),
                         array('listAuthor' => $link));
             
             echo $this->Html->tag(
