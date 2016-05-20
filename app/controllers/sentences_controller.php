@@ -522,6 +522,19 @@ class SentencesController extends AppController
         }
     }
 
+    private function _find_sphinx_markers($query)
+    {
+        // TODO take into account escaped sequences
+        $sphinx_markers = array('"', '/', '$', '^', '-', '|', '!');
+        $result = array();
+        foreach ($sphinx_markers as $marker) {
+            if (strpos($query, $marker) !== false) {
+                $result[] = $marker;
+            }
+        }
+        return $result;
+    }
+
     /**
      * Search sentences.
      *
@@ -774,6 +787,10 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('has_audio', $audio);
         }
 
+        $sphinx_markers = $this->_find_sphinx_markers($query);
+        if (!empty($sphinx_markers)) {
+            $this->set(compact('sphinx_markers'));
+        }
         $search_disabled = !Configure::read('Search.enabled');
         if (!$search_disabled) {
             $model = 'Sentence';

@@ -54,28 +54,23 @@ class SphinxBehavior extends ModelBehavior
      */
     function beforeFind(&$model, $query)
     {
-        if (empty($query['sphinx']))
+        if (empty($query['sphinx'])) {
             return true;
+        }
 
-        if ($model->findQueryType == 'count')
-        {
+        if ($model->findQueryType == 'count') {
             $query['limit'] = 1;
             $query['page'] = 1;
-        }
-        else if (empty($query['limit']))
-        {
+        } else if (empty($query['limit'])) {
             $query['limit'] = 9999999;
             $query['page'] = 1;
         }
 
         $sphinx = $this->runtime[$model->alias]['sphinx'];
-        foreach ($query['sphinx'] as $key => $setting)
-        {
-            switch ($key)
-            {
+        foreach ($query['sphinx'] as $key => $setting) {
+            switch ($key) {
                 case 'filter':
-                    foreach ($setting as $arg)
-                    {
+                    foreach ($setting as $arg) {
                         $arg[2] = empty($arg[2]) ? false : $arg[2];
                         $sphinx->SetFilter($arg[0], (array)$arg[1], $arg[2]);
                     }
@@ -83,8 +78,7 @@ class SphinxBehavior extends ModelBehavior
                 case 'filterRange':
                 case 'filterFloatRange':
                     $method = 'Set' . $key;
-                    foreach ($setting as $arg)
-                    {
+                    foreach ($setting as $arg) {
                         $arg[3] = empty($arg[3]) ? false : $arg[3];
                         $sphinx->{$method}($arg[0], (array)$arg[1], $arg[2], $arg[3]);
                     }
@@ -99,12 +93,9 @@ class SphinxBehavior extends ModelBehavior
                     $sphinx->SetFieldWeights($setting);
                     break;
                 case 'rankingMode': 
-                    if (is_array($setting))
-                    {
+                    if (is_array($setting)) {
                         $sphinx->SetRankingMode(key($setting), reset($setting));
-                    }
-                    else
-                    {
+                    } else {
                         $sphinx->SetRankingMode($setting);
                     }
                     break;
@@ -119,17 +110,13 @@ class SphinxBehavior extends ModelBehavior
 
         $indexes = !empty($query['sphinx']['index']) ? implode(',' , $query['sphinx']['index']) : '*';
 
-        $result = $sphinx->Query($this->escapeQuery($query['search']), $indexes);
+        $result = $sphinx->Query($query['search'], $indexes);
 
-        if ($result === false)
-        {
+        if ($result === false) {
             trigger_error("Search query failed: " . $sphinx->GetLastError());
             return false;
-        }
-        else if(isset($result['matches']))
-        {
-            if ($sphinx->GetLastWarning())
-            {
+        } else if(isset($result['matches'])) {
+            if ($sphinx->GetLastWarning()) {
                 trigger_error("Search query warning: " . $sphinx->GetLastWarning());
             }
         }
@@ -138,32 +125,25 @@ class SphinxBehavior extends ModelBehavior
         unset($query['order']);
         unset($query['offset']);
         $query['page'] = 1;
-        if ($model->findQueryType == 'count')
-        {
+        if ($model->findQueryType == 'count') {
             $result['total'] = !empty($result['total']) ? $result['total'] : 0;
             $query['fields'] = 'ABS(' . $result['total'] . ') AS count';
 
-        }
-        else
-        {
+        } else {
             $this->_cached_result = $result;
             $this->_cached_query = $query['search'];
     
-            if (isset($result['matches']))
+            if (isset($result['matches'])) {
                 $ids = array_keys($result['matches']);
-            else
+            } else {
                 $ids = array(0);
+            }
             $query['conditions'] = array($model->alias . '.'.$model->primaryKey => $ids);
             $query['order'] = 'FIND_IN_SET('.$model->alias.'.'.$model->primaryKey.', \'' . implode(',', $ids) . '\')';
 
         }
 
         return $query;
-    }
-
-    private function escapeQuery($search)
-    {
-      return str_replace('/', '\\/', $search);
     }
 
     private function addHighlightMarkers($model, &$results, $search) {
@@ -213,10 +193,10 @@ class SphinxBehavior extends ModelBehavior
     }
 
     public function afterFind(&$model, $results, $primary) {
-        if(!is_null($this->_cached_query)) {
+        if (!is_null($this->_cached_query)) {
             $search = $this->_cached_query;
             if ($search) {
-                $this->addHighlightMarkers($model, $results, $this->escapeQuery($search));
+                $this->addHighlightMarkers($model, $results, $search);
             }
             $this->_cached_query = null;
         }
