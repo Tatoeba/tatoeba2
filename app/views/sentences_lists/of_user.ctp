@@ -79,7 +79,10 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                     __('number of sentences', true),
                     'numberOfSentences'
                 );
+                echo " | ";
+                echo $this->Paginator->sort(__('last updated', true), 'modified');
                 ?>
+                
             </div>
             
             <?php
