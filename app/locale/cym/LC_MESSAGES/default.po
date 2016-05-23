@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-07 17:51+0000\n"
-"PO-Revision-Date: 2016-05-07 21:05+0000\n"
+"POT-Creation-Date: 2016-05-14 19:58+0000\n"
+"PO-Revision-Date: 2016-05-14 20:05+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Welsh (http://www.transifex.com/tatoeba/tatoeba_website/language/cy/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Rhaid i chi fewngofnodi."
 msgid "There's no user called {username}"
 msgstr "Nid oes defnyddiwr o'r enw {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/components/mailer.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/components/mailer.php#L139
 msgid "Tatoeba, new password"
 msgstr "Tatoeba - cyfrinair newydd"
 
@@ -121,15 +121,15 @@ msgstr "ymateb"
 msgid "Folder \"{name}\" emptied."
 msgstr "Gwagiwyd y blygell \"{name}\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L239
 msgid "Your comment has been saved."
 msgstr "Cadwyd eich sylw."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L302
 msgid "You do not have permission to edit this comment. "
 msgstr "Nid oes gennych chi'r hawl i olygu'r sylw hwn."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L304
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
@@ -138,15 +138,15 @@ msgid ""
 " team@tatoeba.org."
 msgstr "Os derbynioch chi'r neges hon ar ddamwain, cysylltwch â'r gweinyddwyr drwy anfon ebost at team@tatoeba.org."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L327
 msgid "Comments cannot be empty."
 msgstr "Ni all sylwadau fod yn wag."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L344
 msgid "Changes to your comment have been saved."
 msgstr "Cadwyd y newidiadau i'ch sylw."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L356
 msgid "We could not save your changes."
 msgstr "Nid oedd yn bosib cadw eich newidiadau."
 
@@ -729,6 +729,14 @@ msgstr "Llinell amser gweithgarwch"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L43
 msgid "{month} {year}"
 msgstr "{month} {year}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L110
+msgid "Daily Average: {n} sentence"
+msgid_plural "Daily Average: {n} sentences"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
@@ -3203,7 +3211,7 @@ msgid "Sentences with: {keywords}"
 msgstr "Brawddegau gyda: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L51
 msgid "Sentences in {language} not translated into {translationLanguage}"
 msgstr "Brawddegau {language} sydd heb gael eu cyfieithu i {translationLanguage}"
 
@@ -3318,13 +3326,22 @@ msgstr "Dilëwyd y frawddeg"
 msgid "Random Sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L30
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L31
+msgid "All sentences in {language} with audio"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
 msgstr "Pob brawddeg {language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L40
 msgid "any language"
 msgstr "unrhyw iaith"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L46
+msgid ""
+"Sentences in {language} with audio not translated into {translationLanguage}"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L31
 msgid "Sentences in {language} with audio"

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-07 17:51+0000\n"
-"PO-Revision-Date: 2016-05-07 21:05+0000\n"
+"POT-Creation-Date: 2016-05-14 19:58+0000\n"
+"PO-Revision-Date: 2016-05-14 20:05+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Japanese (http://www.transifex.com/tatoeba/tatoeba_website/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "ログインしてください。"
 msgid "There's no user called {username}"
 msgstr "{username} というユーザーはいません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/components/mailer.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/components/mailer.php#L139
 msgid "Tatoeba, new password"
 msgstr "Tatoeba パスワードの再送"
 
@@ -124,15 +124,15 @@ msgstr "返信"
 msgid "Folder \"{name}\" emptied."
 msgstr "「{name}」が空になりました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L239
 msgid "Your comment has been saved."
 msgstr "コメントを投稿しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L302
 msgid "You do not have permission to edit this comment. "
 msgstr "このコメントを編集する権限がありません。 "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L304
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
@@ -141,15 +141,15 @@ msgid ""
 " team@tatoeba.org."
 msgstr "このエラーメッセージが誤って表示される場合は、team@tatoeba.org にご連絡ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L327
 msgid "Comments cannot be empty."
 msgstr "コメントが空欄です。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L344
 msgid "Changes to your comment have been saved."
 msgstr "コメントを変更しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L356
 msgid "We could not save your changes."
 msgstr "コメントの編集に失敗しました。"
 
@@ -720,6 +720,11 @@ msgstr "活動タイムライン"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L43
 msgid "{month} {year}"
 msgstr "{year}{month}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L110
+msgid "Daily Average: {n} sentence"
+msgid_plural "Daily Average: {n} sentences"
+msgstr[0] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
@@ -3149,7 +3154,7 @@ msgid "Sentences with: {keywords}"
 msgstr "「{keywords}」の例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L51
 msgid "Sentences in {language} not translated into {translationLanguage}"
 msgstr "{translationLanguage}に訳されていない{language}の例文"
 
@@ -3264,13 +3269,22 @@ msgstr "削除されました"
 msgid "Random Sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L30
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L31
+msgid "All sentences in {language} with audio"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
 msgstr "{language}の例文一覧"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L40
 msgid "any language"
 msgstr "すべての言語"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L46
+msgid ""
+"Sentences in {language} with audio not translated into {translationLanguage}"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L31
 msgid "Sentences in {language} with audio"
