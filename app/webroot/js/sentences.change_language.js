@@ -18,40 +18,41 @@
 
 
 $(document).ready(function() {
+    $(document).watch("addrule", function() {
+        var context = this;
     
-    $(".languageFlag").unbind('click');
-    // NOTE: It's important to unbind because when adding two translations in a row,
-    // it will rebind again the same function. So the second time the user clicks
-    // on a flag, the function is triggered twice and therefore it looks like 
-    // nothing happens. But what happens is that the <select> is displayed then
-    // hidden right away.
-    
-    $(".languageFlag").click(function(){
-        var flagImage = $(this);
+        $(".languageFlag", context).unbind('click');
+        // NOTE: It's important to unbind because when adding two translations in a row,
+        // it will rebind again the same function. So the second time the user clicks
+        // on a flag, the function is triggered twice and therefore it looks like 
+        // nothing happens. But what happens is that the <select> is displayed then
+        // hidden right away.
         
-        // The data is set in sentence_buttons.php, displayLanguageFlag()
-        var sentenceId = $(this).attr('data-sentence-id');
-        
-        $("#selectLangContainer_" + sentenceId).toggle();
-        
-        $("#selectLang_" + sentenceId).change(function(){
-        
-            var newLang = $(this).val();
-            var rootUrl = get_tatoeba_root_url();
+        $(".languageFlag", context).click(function(){
+            var flagImage = $(this);
             
-            flagImage.attr('src', '/img/loading.svg');
-            $("#selectLangContainer_" + sentenceId).hide();
+            // The data is set in sentence_buttons.php, displayLanguageFlag()
+            var sentenceId = $(this).attr('data-sentence-id');
             
-            $.post(
-                rootUrl + "/sentences/change_language/",
-                { "id": sentenceId, "newLang": newLang },
-                function(data){
-                    $("#_" + sentenceId + "_in_process").hide();
-                    flagImage.attr('src', '/img/flags/' + data + '.png');
-                }
-            );
+            $("#selectLangContainer_" + sentenceId, context).toggle();
+            
+            $("#selectLang_" + sentenceId, context).change(function(){
+            
+                var newLang = $(this).val();
+                var rootUrl = get_tatoeba_root_url();
+                
+                flagImage.attr('src', '/img/loading.svg');
+                $("#selectLangContainer_" + sentenceId, context).hide();
+                
+                $.post(
+                    rootUrl + "/sentences/change_language/",
+                    { "id": sentenceId, "newLang": newLang },
+                    function(data){
+                        $("#_" + sentenceId + "_in_process", context).hide();
+                        flagImage.attr('src', '/img/flags/' + data + '.png');
+                    }
+                );
+            });
         });
-        
     });
-    
 });
