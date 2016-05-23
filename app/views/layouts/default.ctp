@@ -74,6 +74,7 @@
         <script>window.jQuery || document.write('<script src="/js/jquery-1.11.3.min.js"><\/script>')</script>
         <?php
         echo $javascript->link(JS_PATH . 'generic_functions.js', true);
+        echo $javascript->link(JS_PATH . 'watch.js', true);
         // Source: https://github.com/jonathantneal/svg4everybody
         // This is needed to make "fill: currentColor" work on every browser.
         echo $javascript->link(JS_PATH . 'svg4everybody.min.js', true);
