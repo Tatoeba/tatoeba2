@@ -46,10 +46,12 @@ $(document).ready(function(){
                 if(favoriteOption.hasClass("remove")){
                     favoriteOption.parent().parent().find(".content.column").html(successString);
                     favoriteOption.parent().parent().find(".content.column").addClass("add");
+                    favoriteOption.parent().parent().find(".content.column").removeClass("remove");
                     favoriteOption.parent().parent().find(".nav.column").css("display", "none");
                     favoriteOption.parent().parent().find(".lang.column").css("display", "none");
                 } else {
                     favoriteOption.parent().parent().find(".content.column").removeClass("add");
+                    favoriteOption.parent().parent().find(".content.column").addClass("remove");
                     favoriteOption.parent().parent().find(".content.column").html(sentenceDictionary[favoriteId]);
                     favoriteOption.parent().parent().find(".nav.column").css("display", "");
                     favoriteOption.parent().parent().find(".lang.column").css("display", "");

@@ -1000,10 +1000,15 @@
 
 .sentence .content.column.add{
     font-style: italic;
-    width: 612px;
+    width: 604px;
     font-size: 14px;
     vertical-align: middle;
 }
+
+.sentence .content.column.remove {
+    width: 532px;
+}
+
 
 .sentence .audio.column {
 }
@@ -1042,8 +1047,17 @@
 
 .sentence .favorite-page.column{
     list-style-type: none;
-    vertical-align: initial;
 }
+
+.sentence .favorite-page.column a{
+    color: gray;
+    width: 24px;
+    height: 24px;
+} 
+
+.sentence .favorite-page.column svg:hover{
+    color: black;
+} 
 
 .translations .text {
     margin-top: 3px;

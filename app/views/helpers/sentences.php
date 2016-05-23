@@ -495,6 +495,7 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
+        $isFavoritePage = ($this->params['controller'] == 'favorites' && $this->params['action'] == 'of_user');
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
@@ -524,7 +525,12 @@ class SentencesHelper extends AppHelper
         );
         echo '</div>';
 
-        echo '<div class="content column">';
+        if($isFavoritePage){
+            echo '<div class="content column remove">';
+        } else {
+            echo '<div class="content column">';
+        }
+        
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
             $this->_displayLinkOrUnlinkButton(
@@ -553,7 +559,7 @@ class SentencesHelper extends AppHelper
             echo '</div>';
         }
 
-        if($this->params['controller'] == 'favorites'){
+        if( $isFavoritePage && $this->params['pass'][0] == CurrentUser::get('username') ){
             echo '<div class="favorite-page column">';
             $this->Menu->favoriteButton($sentenceId, true, true, true);
             echo '</div>';
