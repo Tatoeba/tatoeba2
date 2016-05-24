@@ -88,7 +88,7 @@ class FavoritesController extends AppController
      * @return void
      */
 
-    public function add_favorite($sentenceId)
+    public function add_favorite($sentenceId, $withRemoveOrUndo = false)
     {
         $sentenceId = Sanitize::paranoid($sentenceId);
 
@@ -99,7 +99,7 @@ class FavoritesController extends AppController
             $isLogged = true;
         }
 
-        $this->_renderFavoriteButton($sentenceId, $isSaved, $isLogged);
+        $this->_renderFavoriteButton($sentenceId, $isSaved, $isLogged, $withRemoveOrUndo);
     }
 
     /**
@@ -110,7 +110,7 @@ class FavoritesController extends AppController
      * @return void
      */
 
-    public function remove_favorite($sentenceId)
+    public function remove_favorite($sentenceId, $withRemoveOrUndo = false)
     {
         $sentenceId = Sanitize::paranoid($sentenceId);
 
@@ -121,15 +121,16 @@ class FavoritesController extends AppController
             $isLogged = true;
         }
 
-        $this->_renderFavoriteButton($sentenceId, !$isSaved, $isLogged);
+        $this->_renderFavoriteButton($sentenceId, !$isSaved, $isLogged, $withRemoveOrUndo);
     }
 
 
-    private function _renderFavoriteButton($sentenceId, $isFavorited, $isLogged)
+    private function _renderFavoriteButton($sentenceId, $isFavorited, $isLogged, $withRemoveOrUndo = false)
     {
         $this->set('sentenceId', $sentenceId);
         $this->set('isFavorited', $isFavorited);
         $this->set('isLogged', $isLogged);
+        $this->set('withRemoveOrUndo', $withRemoveOrUndo);
 
         $this->layout = null;
         $this->render('add_remove_favorite');

@@ -998,6 +998,18 @@
     width: 540px;
 }
 
+.sentence .content.column.add{
+    font-style: italic;
+    width: 604px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.sentence .content.column.remove {
+    width: 532px;
+}
+
+
 .sentence .audio.column {
 }
 
@@ -1032,6 +1044,20 @@
 .sentence .audioButton {
     margin-top: 3px;
 }
+
+.sentence .favorite-page.column{
+    list-style-type: none;
+}
+
+.sentence .favorite-page.column a{
+    color: gray;
+    width: 24px;
+    height: 24px;
+} 
+
+.sentence .favorite-page.column svg:hover{
+    color: black;
+} 
 
 .translations .text {
     margin-top: 3px;
@@ -1884,7 +1910,7 @@ div.hideLink {
 .loader-small {
     width: 11px;
     height: 11px;
-    border-width: 3px;
+    border-width: 3px; 
 }
 
 .sentence-loader {
