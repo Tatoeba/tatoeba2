@@ -95,8 +95,13 @@ class ListsHelper extends AppHelper
         $visibility = 'private',
         $editableBy = 'creator'
     ) {
+        $listStatus = 'activeList';
+
+        if ($editableBy == 'no_one') {
+            $listStatus = 'inactiveList';
+        }
         ?>
-        <tr class="listSummary">
+        <tr class="listSummary <?php echo $listStatus; ?>">
 
         <td class="icon">
             <?php
@@ -305,36 +310,38 @@ class ListsHelper extends AppHelper
         <?php
     }
 
-    public function displayIsEditableByAnyOption($listId, $isChecked)
+    /**
+     * Display editable_by options for sentence lists.
+     *
+     * @param int    $listId List ID.
+     * @param string $value  Currently set option.
+     */
+    public function displayEditableByOptions($listId, $value)
     {
         $this->Javascript->link(
-            JS_PATH . 'sentences_lists.set_option.js', false
+            JS_PATH.'sentences_lists.set_option.js', false
         );
         ?>
         <dl>
             <?php
-            echo $this->Html->tag('dt', __('Permission to edit', true));
-            if ($isChecked) {
-                $checkboxValue = 'checked';
-            } else {
-                $checkboxValue = '';
-            }
+                $title = __('Who can add/remove sentences', true);
+                $loader = "<div class='is-editable loader-container'></div>";
+                echo $this->Html->tag('dt', $title.$loader);
 
-            echo "<div class='is-editable loader-container'></div>";
-
-            echo $this->Form->checkbox(
-                'isEditableByAnyone',
-                array(
-                    "id" => "editableCheckbox",
-                    "name" => "isEditableByAnyone",
-                    "checked" => $checkboxValue,
-                    "data-list-id" => $listId
-                )
-            );
-            echo $this->Html->tag('label',
-                __('Allow anyone to add and delete sentences from the list', true),
-                array('for' => 'editableCheckbox')
-            );
+                echo $this->Form->radio(
+                    'editable_by',
+                    array(
+                        'anyone' => __('Anyone', true),
+                        'creator' => __('Only me', true),
+                        'no_one' => __('No one (list inactive)', true),
+                    ),
+                    array(
+                        'name' => 'editable_by',
+                        'value' => $value,
+                        'data-list-id' => $listId,
+                        'separator' => '<br/>',
+                    )
+                );
             ?>
         </dl>
         <?php

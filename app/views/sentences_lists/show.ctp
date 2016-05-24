@@ -75,7 +75,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
                 $lists->displayVisibilityOption($listId, $listVisibility);
                 echo '</p>';
                 echo '<p>';
-                $lists->displayIsEditableByAnyOption($listId, $isEditableByAnyone);
+                $lists->displayEditableByOptions($listId, $editableBy);
                 echo '</p>';
                 ?>
             </ul>
@@ -133,7 +133,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         'data-tooltip' => __('Click to edit...', true),
     ));
 
-    if ($belongsToUser) {
+    if ($belongsToUser && $editableBy !== 'no_one') {
         echo $html->div('edit-list-name', $editImage);
         $lists->displayAddSentenceForm($listId);
     }
