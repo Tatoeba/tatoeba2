@@ -90,6 +90,7 @@ if ($search_disabled) {
                      'inconvenience. Please try again later.'); ?></p>
 <?
 } else if (!is_array($results)) {
+  if (!isset($sphinx_markers)) {
 ?>
     <h2><?php echo __('Search error'); ?></h2>
     <p><?php
@@ -102,6 +103,20 @@ if ($search_disabled) {
         );
     ?></p>
 <?
+  } else {
+?>
+    <h2><?php echo __('Search error'); ?></h2>
+    <p><?php
+        echo format(
+            __(
+                'Invalid query. '.
+                'Please refer to the '.
+                '<a href="{}">search documentation</a> for more details.', true),
+            'http://en.wiki.tatoeba.org/articles/show/text-search'
+        );
+    ?></p>
+<?
+  }
 } elseif (!empty($results)) {
 
     if (!$is_advanced_search && !empty($query)) {

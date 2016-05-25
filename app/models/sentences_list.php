@@ -85,10 +85,13 @@ class SentencesList extends AppModel
         $results = $this->find(
             "all",
             array(
-                "conditions" =>
-                    array("OR" => array(
+                "conditions" => array(
+                    "OR" => array(
                         "SentencesList.user_id" => $userId,
                         "SentencesList.editable_by" => 'anyone'
+                    ),
+                    "NOT" => array(
+                        "SentencesList.editable_by" => 'no_one'
                     )
                 ),
                 'fields' => array('id', 'name', 'user_id'),

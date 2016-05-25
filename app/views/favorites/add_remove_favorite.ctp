@@ -25,5 +25,5 @@
  * @link     http://tatoeba.org
  */
 
-$menu->favoriteButton($sentenceId, $isFavorited, $isLogged);
+$menu->favoriteButton($sentenceId, $isFavorited, $isLogged, $withRemoveOrUndo);
 ?> 
