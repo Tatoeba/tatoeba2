@@ -214,6 +214,7 @@ class LogsHelper extends AppHelper
 
             // date of contribution
             echo '<li class="date">';
+            echo ' ';
             echo $this->Date->ago($datetime);
             echo '</li>';
 
@@ -389,6 +390,7 @@ class LogsHelper extends AppHelper
             echo $this->_getActionLabel($type, $action, $username);
             echo '</li>';
 
+    
             // date of contribution
             echo '<li class="date">';
             echo $this->Html->link(
