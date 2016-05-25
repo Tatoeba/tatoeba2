@@ -47,7 +47,7 @@ $ vagrant up
 - Once it completed, you should be able to:
   - Access your local instance of Tatoeba at http://localhost:8080/
   - Run `vagrant ssh` to ssh to the machine.
-  - Use the script `mount.sh` (run it to get usage instructions) to mount any of the VM's directory on your host machine in order to modify files without ssh-ing to the VM.
+  - Use the script `mount.sh` (run it to get usage instructions) to mount any of the VM's directory on your host machine in order to modify files without ssh-ing to the VM. (Use 'vagrant' as the password if prompted after running `mount.sh`: `vagrant@127.0.0.1's password:`)
 
 ###Post-provisioning tasks
 You may want to perform certain tasks independently without having to re-provision the whole machine again. To do that you can use the following command:
