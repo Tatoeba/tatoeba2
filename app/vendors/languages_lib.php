@@ -533,7 +533,8 @@ class LanguagesLib
                 'got' => __d('languages', 'Gothic',true),
                 'hsn' => __d('languages', 'Xiang Chinese',true),
                 'gan' => __d('languages', 'Gan Chinese',true),
-                'bar' => __d('languages', 'Bavarian',true)
+                'bar' => __d('languages', 'Bavarian',true),
+				'tzl' => __d('languages', 'Talossan',true),
             );
         }
         return $languages;
