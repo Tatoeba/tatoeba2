@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-05-20 23:06+0000\n"
-"PO-Revision-Date: 2016-05-21 18:48+0000\n"
+"PO-Revision-Date: 2016-06-04 05:09+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -234,7 +234,7 @@ msgstr "सहयोगी याद्या ज्यात \"{search}\" आ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L182
 msgid "You do not have permission to view this list."
-msgstr ""
+msgstr "ही यादी पाहण्याची आपल्याकडे परवानगी नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L231
 msgid ""
@@ -408,7 +408,7 @@ msgstr "हा संदेश संपादित करण्याची �
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L305
 msgid "You cannot save an empty message."
-msgstr ""
+msgstr "रिकामा निरोप सेव्ह करता येत नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L317
 msgid "Message saved."
@@ -727,8 +727,8 @@ msgstr "{month} {year}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L110
 msgid "Daily Average: {n} sentence"
 msgid_plural "Daily Average: {n} sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "दैनिक सरासरी: {n} वाक्य"
+msgstr[1] "दैनिक सरासरी: {n} वाक्ये"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
@@ -1004,7 +1004,7 @@ msgstr "मदत"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L77
 msgid "Developers"
-msgstr ""
+msgstr "विकासक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L84
@@ -1017,11 +1017,11 @@ msgstr "गिटहब"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L102
 msgid "Google group"
-msgstr ""
+msgstr "गूगल ग्रूप"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L111
 msgid "About"
-msgstr ""
+msgstr "याबद्दल"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L31
@@ -1707,19 +1707,19 @@ msgstr "भाषांतरे दाखवा :"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L285
 msgid "List visibility"
-msgstr ""
+msgstr "यादी दृश्ता"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L292
 msgid "Public"
-msgstr ""
+msgstr "सार्वजनिक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L293
 msgid "Unlisted"
-msgstr ""
+msgstr "असूचीगत"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L294
 msgid "Private"
-msgstr ""
+msgstr "खाजगी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L316
 msgid "Permission to edit"
