@@ -38,6 +38,7 @@ mysql_db_name: tatoeba
 # Set this to 'local' if the csv's are already present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
 # Set this to 'no' if you don't want to import data
 import_csv: 'download'
+download_url: http://tatoeba.org/files/downloads/
 
 # Variables for Tatoeba's code and Cakephp
 # ----------------------------------------
@@ -48,6 +49,8 @@ revision_limit: 3
 git_temp_dir: .temp_repo
 repo_version: HEAD
 git_remote: origin
+# change the repository to your own fork to contribute
+git_rep: https://github.com/Tatoeba/tatoeba2.git
 
 # Variables for test server (leave unchanged if you don't need them or don't know what they mean)
 mysql_test_user: user

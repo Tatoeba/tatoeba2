@@ -2,7 +2,7 @@
 # Tasks to fetch latest tatoeba-php code and optionally update cakephp configs
 
 - name: Fetch the code from github repository
-  git: repo=https://github.com/Tatoeba/tatoeba2.git dest={{code_dir}} version={{repo_version}} remote={{git_remote}}
+  git: repo={{git_rep}} dest={{code_dir}} version={{repo_version}} remote={{git_remote}}
 
 - name: Copy CakePHP config files from remote host
   fetch: src={{code_dir}}/app/config/{{item}}.template dest=roles/update_code/templates/{{item}}.template flat=yes
