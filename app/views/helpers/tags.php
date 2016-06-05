@@ -84,12 +84,12 @@ class TagsHelper extends AppHelper
                 $this->displayAddTagForm($sentenceId);
             }
 	    echo $this->Html->link(
-		__('View all tags', true),
-		array(
-		   "controller" => "tags",
-		   "action" => "view_all",
-     		)
-   	    );
+                __('View all tags', true),
+                array(
+                    "controller" => "tags",
+                    "action" => "view_all",
+                )
+            );
             ?>
         </div>
     <?php
