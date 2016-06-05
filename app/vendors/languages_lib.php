@@ -538,6 +538,7 @@ class LanguagesLib
                 'sgs' => __d('languages', 'Samogitian', true),
                 'ldn' => __d('languages', 'Láadan', true),
                 'dws' => __d('languages', 'Dutton World Speedwords', true),
+                'afh' => __d('languages', 'Afrihili', true),
             );
         }
         return $languages;
