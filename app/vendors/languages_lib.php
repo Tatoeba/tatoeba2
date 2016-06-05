@@ -535,7 +535,7 @@ class LanguagesLib
                 'gan' => __d('languages', 'Gan Chinese', true),
                 'bar' => __d('languages', 'Bavarian', true),
                 'tzl' => __d('languages', 'Talossan', true),
-                'sys' => __d('languages', 'Samogitian', true),
+                'sgs' => __d('languages', 'Samogitian', true),
             );
         }
         return $languages;
