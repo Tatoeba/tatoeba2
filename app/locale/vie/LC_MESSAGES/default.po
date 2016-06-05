@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Duy Truong Nguyen <truongap.ars@gmail.com>, 2016
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2012
 # Nguyễn Đức Khoa <nguyenduckhoa1996@gmail.com>, 2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
@@ -10,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-09 15:40+0000\n"
-"PO-Revision-Date: 2016-03-09 15:46+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2016-05-20 23:06+0000\n"
+"PO-Revision-Date: 2016-05-23 06:52+0000\n"
+"Last-Translator: Duy Truong Nguyen <truongap.ars@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/tatoeba/tatoeba_website/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,20 +21,23 @@ msgstr ""
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L132
 msgid "You need to be logged in."
 msgstr "Bạn cần phải đăng nhập."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/of_user.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L77
 msgid "There's no user called {username}"
-msgstr ""
+msgstr "Người dùng {username} không tồn tại"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/components/mailer.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/components/mailer.php#L139
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, mật khẩu mới."
 
@@ -60,7 +64,7 @@ msgstr "Câu #{firstNumber} và câu #{secondNumber} không còn được dịch
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "Có lỗi đã xảy ra trong quá trình huỷ liên kết. Vui lòng thử lại hoặc liên hệ với chúng tôi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L140
 msgid ""
@@ -118,17 +122,17 @@ msgstr "phản hồi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L360
 msgid "Folder \"{name}\" emptied."
-msgstr ""
+msgstr "Thư mục \"{name}\" trống."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L239
 msgid "Your comment has been saved."
 msgstr "Bình luận của bạn đã được lưu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L302
 msgid "You do not have permission to edit this comment. "
 msgstr "Bạn không có quyền chỉnh sửa bình luận này."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L304
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
@@ -137,17 +141,17 @@ msgid ""
 " team@tatoeba.org."
 msgstr "Nếu bạn nghĩ rằng mình nhận được tin nhắn này do lỗi, xin vui lòng liên hệ với quản trị viên ở team@tatoeba.org"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L320
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L327
 msgid "Comments cannot be empty."
 msgstr "Bình luận không được để trống."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L344
 msgid "Changes to your comment have been saved."
 msgstr "Bình luận của bạn đã được chỉnh sửa."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L349
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L356
 msgid "We could not save your changes."
-msgstr ""
+msgstr "Chúng tôi không thể lưu thay đổi của bạn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L282
 msgid "You cannot delete this sentence."
@@ -163,7 +167,7 @@ msgstr "Lỗi: Câu #{id} không thể bị xóa."
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L553
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L566
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -172,89 +176,89 @@ msgstr ""
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L624
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L637
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L633
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L646
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L674
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L687
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L683
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L696
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L719
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L732
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L757
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L770
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L103
 msgid "All lists ({total})"
-msgstr ""
+msgstr "Tất cả danh sách ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L108
 msgid "All lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Tất cả danh sách có kèm \"{search}\" ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L134
 msgid "Collaborative lists ({total})"
-msgstr ""
+msgstr "Danh sách chung ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L139
 msgid "Collaborative lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Danh sách chung có kèm  \"{search}\" ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L182
 msgid "You do not have permission to view this list."
-msgstr ""
+msgstr "Bạn không có quyền xem danh sách này."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L230
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L231
 msgid ""
 "The download feature has been disabled for this list because it contains a "
 "sentence."
 msgid_plural ""
 "The download feature has been disabled for this list because it contains "
 "{n}&nbsp;sentences."
-msgstr[0] ""
+msgstr[0] "Tính năng tải về đã bị vô hiệu hoá cho danh sách này bởi vì nó có kèm {n}&nbsp;sentences."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L237
 msgid ""
 "Only lists containing one sentence or fewer can be downloaded. If you can "
 "edit the list, you may want to split it into multiple lists."
 msgid_plural ""
 "Only lists containing {max} or fewer sentences can be downloaded. If you can"
 " edit the list, you may want to split it into multiple lists."
-msgstr[0] ""
+msgstr[0] "Chỉ những danh sách đi kèm {max} câu hoặc ít hơn mới có thể được tải về. Nếu bạn có thể sửa danh sách, bạn nên chia nhỏ nó thành nhiều danh sách."
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
 #. if your language don't use space as a word separator.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L250
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L74
 msgid "{firstSentence} {secondSentence}"
 msgstr ""
@@ -262,22 +266,22 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L145
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
-msgstr ""
+msgstr "Thẻ '{tagName}' đã tồn tại cho câu #{number}, hoặc không thể thêm vào"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L287
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr ""
+msgstr "Không có câu nào cho thẻ này. Thẻ mà bạn tìm kiếm có thể đã bị xoá hoặc không tồn tại."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L111
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L482
 msgid "No user with this username: "
-msgstr ""
+msgstr "Không có người dùng nào với tên này:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L159
 msgid "Failed to upload image"
-msgstr ""
+msgstr "Tải ảnh lên thất bại"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L168
 msgid "Please choose an image that does not exceed 1 MB."
@@ -293,15 +297,15 @@ msgstr "Lỗi trong quá trình lưu dữ liệu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L292
 msgid "That email address already exists. Please try another."
-msgstr ""
+msgstr "Địa chỉ email này đã tồn tại. Vui lòng thử lại."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L314
 msgid "Profile saved."
-msgstr ""
+msgstr "Tiểu sử đã được lưu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L325
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr ""
+msgstr "Thay đổi địa chỉ email thất bại. Vui lòng điền một địa chỉ email đúng."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L372
 msgid "Your settings have been saved."
@@ -309,7 +313,7 @@ msgstr "Cài đặt của bạn đã được lưu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L442
 msgid "New password cannot be empty."
-msgstr ""
+msgstr "Không thể để trống mật khẩu mới."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L452
 msgid "New password has been saved."
@@ -337,7 +341,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L237
 msgid "You must fill in your username and password."
-msgstr ""
+msgstr "Bạn tải điền tên người dùng và mật khẩu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L245
 msgid ""
@@ -355,78 +359,82 @@ msgstr "trả lời sai câu hỏi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L350
 msgid "Password cannot be empty."
-msgstr ""
+msgstr "Không thể để trống mật khẩu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L392
 msgid "Welcome to Tatoeba!"
-msgstr ""
+msgstr "Chào mừng đến với Tatoeba!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L396
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
-msgstr ""
+msgstr "Để bắt đầu, chúng tôi khuyến khích bạn truy cập vào <a href='{url}'>tiểu sử</a> của bạn và cho mọi người biết ngôn ngữ mà bạn nói hoặc bạn đang quan tâm."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L447
 msgid "Your new password has been sent to {email}."
-msgstr ""
+msgstr "Mật khẩu mới đã được gửi tới {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L452
 msgid "You may need to check your spam folder to find this message."
-msgstr ""
+msgstr "Bạn có thể cần phải kiểm thư mục thư rác để để tìm tin nhắn này."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L460
 msgid "There is no registered user with this email address: "
-msgstr ""
+msgstr "Không có người dùng nào đăng ký bằng địa chỉ email này:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L521
 msgid "No user with this id: "
-msgstr ""
+msgstr "Không có người dùng nào có id này:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L64
 msgid "You cannot edit this language."
-msgstr ""
+msgstr "Bạn không thể chỉnh sửa ngôn ngữ này."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L85
 msgid "Language deleted"
-msgstr ""
+msgstr "Ngôn ngữ đã bị xoá"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L87
 msgid "You cannot delete this language."
-msgstr ""
+msgstr "Bạn không thể xoá ngôn ngữ này."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L256
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L285
 msgid "You do not have permission to edit this message."
-msgstr ""
+msgstr "Bạn không có quyền sửa tin nhắn này."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L305
+msgid "You cannot save an empty message."
+msgstr "Bạn không thể lưu một tin nhắn trống."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L317
 msgid "Message saved."
-msgstr ""
+msgstr "Tin nhắn đã được lưu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L328
 msgid ""
 "We apologize, but we could not save your data.\n"
 "                             Please try again"
-msgstr ""
+msgstr "Chúng tôi không thể lưu dữ liệu của bạn.\nVui lòng thứ lại"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L438
 msgid "The message you are trying to view does not exist or has been deleted."
-msgstr ""
+msgstr "Tin nhắn mà bạn đang cố để xem không tồn tại hoặc đã bị xoá."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L109
 msgid "unnamed list"
-msgstr ""
+msgstr "danh sách chưa được đặt tên."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L216
 msgid ""
 "The provided sentence differs from the original one near “{character}”."
-msgstr ""
+msgstr "Câu được cung cấp khác với nguyên bản ở gần  “{character}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L224
 msgid "The provided sentence is shorter than the orginial one."
-msgstr ""
+msgstr "Câu được cung cấp ngắn hơn so với nguyên bản."
 
 #. @translators: This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
@@ -435,7 +443,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L240
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L324
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L243
 msgid "The following character lacks furigana: {charsEnumeration}."
@@ -446,7 +454,7 @@ msgstr[0] ""
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
-msgstr[0] ""
+msgstr[0] "Những ký tự sau đây không được sao chép lại: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L29
 msgid "Orphan sentences"
@@ -458,7 +466,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L43
 msgid "About adoption"
-msgstr ""
+msgstr "Về việc tiếp nhận"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L47
 msgid ""
@@ -478,7 +486,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L47
 msgid "Tips"
-msgstr ""
+msgstr "Mẹo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L76
 msgid ""
@@ -492,19 +500,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L92
 msgid "Improve sentences"
-msgstr ""
+msgstr "Hoàn thiện câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L61
 msgid "Related links"
-msgstr ""
+msgstr "Liên kết liên quan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L63
 msgid "Tag guidelines"
-msgstr ""
+msgstr "Hướng dẫn gắn thẻ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L70
 msgid "Tags you should know about"
-msgstr ""
+msgstr "Thẻ mà bạn nên biết"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L72
 msgid ""
@@ -514,29 +522,29 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
-msgstr ""
+msgstr "{tagChange}: câu cần phải được thay đổi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr ""
+msgstr "{tagCheck}: câu cần phải được kiểm tra."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr ""
+msgstr "{tagNNC}: câu cần phải được kiểm tra bởi người bản ngữ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr ""
+msgstr "{tagOK}: cầu cần được cân nhắc hiệu chỉnh bởi ít nhất một người."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L102
 msgid "How to help"
-msgstr ""
+msgstr "Trợ giúp như thế nào"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L104
 msgid ""
 "You need to be an <a href=\"{}\">advanced contributor</a>; otherwise you "
 "will not be able to tag sentences."
-msgstr ""
+msgstr "Bạn cần phải là một <a href=\"{}\">advanced contributor</a>; nếu không bạn sẽ không thể gắn thẻ cho câu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L109
 msgid ""
@@ -554,14 +562,14 @@ msgstr ""
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr ""
+msgstr "Bất kỳ khi nào bạn thêm một câu bằng tiếng nước ngoài và không hoàn toàn chắc là nó đúng, thêm thẻ {tagNNC}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L126
 msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr ""
+msgstr "Bất cứ khi nào bạn có thể duyệt qua những câu được gắn thẻ {tagChange}, {tagCheck}, và {tagNNC} để thảo luận về chúng với những thành viên khác và giúp quyết định phải làm gì với những câu đó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L135
 msgid ""
@@ -569,50 +577,50 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr ""
+msgstr "Một khi câu có vấn đề được nhận diện, gắn thẻ {tagOK}.  Bạn có thể duyệt và kiểm tra những câu khác và gắn cho chúng bằng thẻ {tagOK}. Nhưng chỉ làm điều đó khi bạn hoàn toàn chắc chắn rằng chúng chính xác, và không được thẻ cho những câu của bạn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 msgid "Translate sentences"
-msgstr ""
+msgstr "Dịch câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L41
 msgid "How to add a translation"
-msgstr ""
+msgstr "Làm sao để thêm bản dịch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L46
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr ""
+msgstr "Một khi các câu được hiển thị nhấn vào {translateButton} để thêm vào bản dịch."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L56
 msgid "About translations"
-msgstr ""
+msgstr "Về dịch thuật"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L58
 msgid "Good translations"
-msgstr ""
+msgstr "Bản dịch tốt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L60
 msgid "We know it's difficult, but do NOT translate word for word!"
-msgstr ""
+msgstr "Chúng tôi biết điều đó rất khó khăn, nhưng KHÔNG được dịch từng chữ một!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L64
 msgid "Multiple translations"
-msgstr ""
+msgstr "Đa bản dịch."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L68
 msgid ""
 "If you feel there are several possible translations, you can add several "
 "translations in the same language. "
-msgstr ""
+msgstr "Nếu bạn cảm thấy có nhiều bản dịch khả thi. bạn có thể thêm vào một vài bản dịch cho cùng một ngôn ngữ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L81
 msgid "Search for untranslated sentences"
-msgstr ""
+msgstr "Tìm kiếm những câu chưa được dịch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L135
@@ -626,16 +634,16 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L130
 msgid "show sentences"
-msgstr ""
+msgstr "hiện các câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L136
 msgid "Display random sentences"
-msgstr ""
+msgstr "Hiển thị các câu ngẫu nhiên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L58
 msgid "Quantity"
-msgstr ""
+msgstr "Số lượng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L71
@@ -643,75 +651,80 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L36
 msgid "Language"
-msgstr ""
+msgstr "Ngôn ng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L177
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L85
 msgid "show random sentences"
-msgstr ""
+msgstr "hiện các câu ngẫu nhiên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L32
 msgid "Translate {language} sentences that belong to {user}"
-msgstr ""
+msgstr "Dịch các câu {language} thuộc về {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L38
 msgid "Translate sentences that belong to {user}"
-msgstr ""
+msgstr "Dịch các thuộc về {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L29
 msgid "Sentences marked as \"OK\""
-msgstr ""
+msgstr "Các câu được đánh dấu \"Được\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L30
 msgid "Sentences marked as \"unsure\""
-msgstr ""
+msgstr "Các câu được đánh dấu \"không chắc\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L31
 msgid "Sentences marked as \"not OK\""
-msgstr ""
+msgstr "Các câu được đánh dấu \"chưa được\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L57
 msgid "All sentences"
-msgstr ""
+msgstr "Tất cả các câu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L53
 msgid "{user}'s collection - {category}"
-msgstr ""
+msgstr "Bộ sưu tập của {user} - {category}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L67
 msgid "This feature is currently deactivated."
-msgstr ""
+msgstr "Tính năng này hiện đang bị vô hiệu hoá."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L70
 msgid ""
 "You can activate it in your settings: \"Activate the feature to rate "
 "sentences and build your collection...\""
-msgstr ""
+msgstr "Bạn có thể bật nó trong cài đặt của bạn: \"Bật tính năng đánh giá câu và xây dựng bộ sưu tập của bạn...\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L80
 msgid "Filter"
-msgstr ""
+msgstr "L"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L111
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L52
 msgid "(total %count%)"
-msgstr ""
+msgstr "(total %count%)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L90
 msgid "Sentence {id} has been deleted."
-msgstr ""
+msgstr "Câu  {id} đã bị xoá."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L39
 msgid "Activity timeline"
-msgstr ""
+msgstr "Biểu đồ hoạt động"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L43
 msgid "{month} {year}"
-msgstr ""
+msgstr "{month} {year}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L110
+msgid "Daily Average: {n} sentence"
+msgid_plural "Daily Average: {n} sentences"
+msgstr[0] "Trung bình hằng ngày: {n} câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
@@ -719,22 +732,22 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L41
 msgid "Latest contributions"
-msgstr ""
+msgstr "Đóng góp mới nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L80
 msgid "Contributions"
-msgstr ""
+msgstr "Đóng góp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L45
 msgid "View all"
-msgstr ""
+msgstr "Xem tất cả"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L49
 msgid "Browse all contributions"
-msgstr ""
+msgstr "Duyệt tất cả các đóng góp"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/of_user.ctp#L37
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/of_user.ctp#L38
 msgid "Logs of {user}'s contributions"
 msgstr ""
 
@@ -743,23 +756,23 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L57
 msgid "Sentences"
-msgstr ""
+msgstr "Câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L37
 msgid "Words:"
-msgstr ""
+msgstr "Từ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L60
 msgid "Language:"
-msgstr ""
+msgstr "Ngôn ngữ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L48
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
-msgstr ""
+msgstr "Hiện bản dịch ở:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L54
 msgid "Orphan sentences are likely to be incorrect."
@@ -774,7 +787,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L171
 msgctxt "orphan"
 msgid "Any"
-msgstr ""
+msgstr "Bất kỳ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L81
@@ -785,7 +798,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L112
 msgid "No"
-msgstr ""
+msgstr "Không"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L82
@@ -796,22 +809,22 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L111
 msgid "Yes"
-msgstr ""
+msgstr "Có"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
-msgstr ""
+msgstr "Các câu không được chấp nhận gần như là không chính xác."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L178
 msgid "Is unapproved:"
-msgstr ""
+msgstr "Không được chấp nhận:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L180
 msgctxt "unapproved"
 msgid "Any"
-msgstr ""
+msgstr "Bất kỳ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -820,35 +833,35 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L164
 msgid "Owner:"
-msgstr ""
+msgstr "Chủ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L165
 msgid "Enter a username"
-msgstr ""
+msgstr "Nhập tên người dùng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L104
 msgid "Separate tags with commas."
-msgstr ""
+msgstr "Tách các thể bằng dấu phẩy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L110
 msgid "Tags:"
-msgstr ""
+msgstr "Thẻ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L187
 msgid "Has audio:"
-msgstr ""
+msgstr "Có âm thanh:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L189
 msgctxt "audio"
 msgid "Any"
-msgstr ""
+msgstr "Bất kỳ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L128
 msgid "Translations"
-msgstr ""
+msgstr "Bản dịch"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
@@ -860,7 +873,7 @@ msgstr ""
 #. that begins with {action}
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L138
 msgid "Exclude"
-msgstr ""
+msgstr "Loại trừ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L144
 msgid ""
@@ -870,91 +883,91 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L155
 msgid "Link:"
-msgstr ""
+msgstr "Liên kết:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L157
 msgctxt "link"
 msgid "Any"
-msgstr ""
+msgstr "Bất kỳ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L158
 msgid "Direct"
-msgstr ""
+msgstr "Trực tiếp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L159
 msgid "Indirect"
-msgstr ""
+msgstr "Không trực tiếp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L199
 msgid "Sort"
-msgstr ""
+msgstr "Sắp xếp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L202
 msgid "Order:"
-msgstr ""
+msgstr "Thứ tự:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L204
 msgid "Fewest words first"
-msgstr ""
+msgstr "Nhiều chữ trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L205
 msgid "Last created first"
-msgstr ""
+msgstr "Được tạo gần đây trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L206
 msgid "Last modified first"
-msgstr ""
+msgstr "Được chỉnh sửa gần đây trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L207
 msgid "Random"
-msgstr ""
+msgstr "Ngẫu nhiên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L214
 msgid "Reverse order"
-msgstr ""
+msgstr "Đảo thứ tự"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L224
 msgid "More search options"
-msgstr ""
+msgstr "Nhiều tuỳ chọn tìm kiếm hơn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L233
 msgctxt "button"
 msgid "Advanced search"
-msgstr ""
+msgstr "Tìm kiếm nâng cao"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
-msgstr ""
+msgstr "Số câu có âm thanh bằng ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr ""
+msgstr "Duyệt âm thanh cho tất cả các ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L44
 msgid "Month"
-msgstr ""
+msgstr "Tháng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L70
 msgid "Year"
-msgstr ""
+msgstr "Năm"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L29
 msgid "Currently contributing"
-msgstr ""
+msgstr "Đóng góp hiện tại"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L34
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
+msgstr[0] "Người dùng tham gia vào {n}&nbsp;đóng góp mới nhất."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L75
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
 msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
-msgstr[0] ""
+msgstr[0] "#{rank} - {n}&nbsp;câu - {percentage}%"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/email/html/new_password.ctp#L2
 msgid "Your login: "
-msgstr ""
+msgstr "Đăng nhập của bạn:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/email/html/new_password.ctp#L3
 msgid "Your new password: "
@@ -962,103 +975,103 @@ msgstr "Mật khẩu mới của bạn : "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L36
 msgid "Need some help?"
-msgstr ""
+msgstr "Cần được trợ giúp?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L41
 msgid "Quick Start Guide"
-msgstr ""
+msgstr "Hướng dẫn nhanh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L49
 msgid "Tatoeba Wiki"
-msgstr ""
+msgstr "Tatoeba Wiki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L42
 msgid "FAQ"
-msgstr ""
+msgstr "Câu hỏi thường gặp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L28
 msgid "Help"
-msgstr ""
+msgstr "Trợ giúp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L77
 msgid "Developers"
-msgstr ""
+msgstr "Nhà phát triển"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L84
 msgid "Downloads"
-msgstr ""
+msgstr "Tải về"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L93
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L102
 msgid "Google group"
-msgstr ""
+msgstr "Nhóm Google"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L111
 msgid "About"
-msgstr ""
+msgstr "Về"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L31
 msgid "What is Tatoeba?"
-msgstr ""
+msgstr "Tatoeba là gì?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L52
 msgid "Contact us"
-msgstr ""
+msgstr "Liên lạc với chúng tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L28
 msgid "Terms of use"
-msgstr ""
+msgstr "Điều khoản sử dụng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L149
 msgid "Blog"
-msgstr ""
+msgstr "Blog"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L59
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L61
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L185
 msgid ""
 "Our sentences and translations can be used under the Creative Commons "
 "Attribution 2.0 license (CC-BY 2.0)."
-msgstr ""
+msgstr "Các câu và bản dịch của chúng tôi được sử dụng dưới giấy phép Creative Commons Attribution 2.0 (CC-BY 2.0)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L193
 msgid "If you love this content, please consider a <a href={}>donation</a>."
-msgstr ""
+msgstr "Nếu bạn thích nội dụng, hãy cân nhắc <a href={}>ủng hộ</a>. chúng tôi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/header.ctp#L30
 msgid "Tatoeba"
-msgstr ""
+msgstr "Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L30
 msgid "Join the community!"
-msgstr ""
+msgstr "Tham gia cộng đồng!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L33
 msgid ""
 "The more contributors there are, the more useful Tatoeba will become! "
 "Besides, by contributing, not only will you be helpful to the rest of the "
 "world, but you will also get to learn a lot."
-msgstr ""
+msgstr "Càng nhiều người đóng bao nhiêu,  Tatoeba càng hữu dụng bấy nhiêu! Bên cạnh đó, bằng việc đóng góp, bạn không chỉ giúp ích cho cộng đồng mà còn học được rất nhiều thứ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L44
@@ -1068,54 +1081,54 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L188
 msgid "Register"
-msgstr ""
+msgstr "Đăng ký"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L77
 msgid "Log in"
-msgstr ""
+msgstr "Đăng nhập"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L57
 msgid "Username: "
-msgstr ""
+msgstr "Tên người dùng:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L62
 msgid "Password: "
-msgstr ""
+msgstr "Mật khẩu:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L72
 msgid "Remember me"
-msgstr ""
+msgstr "Hãy ghi nhớ tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L85
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Quên mật khẩu?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L123
 msgid "Close"
-msgstr ""
+msgstr "Đóng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L36
 msgid "Private messages"
-msgstr ""
+msgstr "Tin nhắn cá nhân"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid "New message"
-msgstr ""
+msgstr "Tin nhắn mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L45
 msgid "Empty trash"
-msgstr ""
+msgstr "Xoá thùng rác"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L55
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L41
@@ -1123,42 +1136,42 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L212
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L30
 msgid "Inbox"
-msgstr ""
+msgstr "Hộp thư đến"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L61
 msgid "Unread"
-msgstr ""
+msgstr "Chưa đọc"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L32
 msgid "Sent"
-msgstr ""
+msgstr "Đã gửi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L74
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L34
 msgid "Trash"
-msgstr ""
+msgstr "Thùng rác"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L35
 msgid "Folders"
-msgstr ""
+msgstr "Thư mục"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L55
 msgid "Random sentence"
-msgstr ""
+msgstr "Câu ngẫu nhiên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L54
 msgid "show another "
-msgstr ""
+msgstr "hiện câu khác"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L70
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L111
 msgid "show more..."
-msgstr ""
+msgstr "hiện nhiều hơn..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L549
@@ -1166,208 +1179,208 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L181
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L43
 msgid "Search"
-msgstr ""
+msgstr "Tìm"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/advanced_search.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L31
 msgctxt "title"
 msgid "Advanced search"
-msgstr ""
+msgstr "Tìm kiếm nâng cao"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L107
 msgid "Clear search"
-msgstr ""
+msgstr "Xoá tìm kiếm"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L98
 msgid "From"
-msgstr ""
+msgstr "Từ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L115
 msgid "To"
-msgstr ""
+msgstr "Đến"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L30
 msgid "No results found."
-msgstr ""
+msgstr "Không có kết quả nào."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
 msgid "No results found for: {search}"
-msgstr ""
+msgstr "Không có kế qủa cho:  {search}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L46
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
+msgstr[0] "{n}&nbsp;câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L113
 msgid "show all languages"
-msgstr ""
+msgstr "hiện tất cả các ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L31
 msgid "Your session has expired."
-msgstr ""
+msgstr "Phiên làm việc đã quá hạn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L34
 msgid "Please <a href=\"{}\">click here</a> to log in again."
-msgstr ""
+msgstr "Xin hãy <a href=\"{}\">nhấn vào đây</a> để đăng nhập lại."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L35
 msgid "Tatoeba is a collection of sentences and translations."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L40
 msgid "It's collaborative, open, free and even addictive."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L95
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
-msgstr ""
+msgstr "Tìm kiếm câu bằng {langFrom} được dịch sang {langTo} bao gồm:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L118
 msgid "Enter a word or a phrase"
-msgstr ""
+msgstr "Nhập một từ hoặc một cụm từ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L150
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr ""
 
 #. @translators: links to a page with tips to perform
 #. searches, like search operators
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L157
 msgid "More tips"
-msgstr ""
+msgstr "Nhiều mẹo hơn nữa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L74
 msgid "Profile"
-msgstr ""
+msgstr "Tiểu sử"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L65
 msgid "My profile"
-msgstr ""
+msgstr "Tiểu sử của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L78
 msgid "My sentences"
-msgstr ""
+msgstr "Câu của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L91
 msgid "My collection"
-msgstr ""
+msgstr "Bộ sưu tập của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L606
 msgid "My lists"
-msgstr ""
+msgstr "Danh sách của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
 msgid "My favorites"
-msgstr ""
+msgstr "Mục ưa thích của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L130
 msgid "My comments"
-msgstr ""
+msgstr "Bình luận của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L143
 msgid "Comments on my sentences"
-msgstr ""
+msgstr "Bình luận trong câu của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L156
 msgid "My Wall messages"
-msgstr ""
+msgstr "Tin nhắn tường của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L169
 msgid "My sentence logs"
-msgstr ""
+msgstr "Nhật ký của tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L182
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L27
 msgid "Settings"
-msgstr ""
+msgstr "Cài đặt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L239
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L240
 msgid "Log out"
-msgstr ""
+msgstr "Đăng xuất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L49
 msgid "Browse"
-msgstr ""
+msgstr "Duyệt theo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L60
 msgid "Browse by language"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L66
 msgid "Browse by list"
-msgstr ""
+msgstr "Danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L70
 msgid "Browse by tag"
-msgstr ""
+msgstr "Thẻ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L74
 msgid "Browse audio"
-msgstr ""
+msgstr "Âm thanh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L71
 msgid "Contribute"
-msgstr ""
+msgstr "Đóng góp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L28
 msgid "Add sentences"
-msgstr ""
+msgstr "Thêm câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L87
 msgid "Adopt sentences"
-msgstr ""
+msgstr "Tiếp nhận câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L96
 msgid "Discuss sentences"
-msgstr ""
+msgstr "Thảo luận về câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L107
 msgid "Show activity timeline"
-msgstr ""
+msgstr "Hiện biểu đồ hoạt động"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L113
 msgid "Community"
-msgstr ""
+msgstr "Cộng đồng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L119
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
 msgid "Wall"
-msgstr ""
+msgstr "Tường"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L123
 msgid "List of all members"
-msgstr ""
+msgstr "Danh sách tất cả các thành viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L32
 msgid "Languages of members"
-msgstr ""
+msgstr "Ngôn ngữ của các thành viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr ""
+msgstr "Người bản ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L62
 msgid "Collection"
-msgstr ""
+msgstr "Bộ sưu tập"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
 msgid "Transcriptions"
@@ -1378,54 +1391,54 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L580
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L251
 msgid "Lists"
-msgstr ""
+msgstr "Danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L101
 msgid "Favorites"
-msgstr ""
+msgstr "Mục ưa thích"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L197
 msgid "Comments"
-msgstr ""
+msgstr "Bình luận"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L39
 msgid "Comments on {user}'s sentences"
-msgstr ""
+msgstr "Bình luận trong câu của {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L140
 msgid "Wall messages"
-msgstr ""
+msgstr "Tin nhắn tường"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L133
 msgid "Logs"
-msgstr ""
+msgstr "Nhật ký"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L170
 msgid "Translate {user}'s sentences"
-msgstr ""
+msgstr "Dịch các câu của {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L191
 msgid "Contact {user}"
-msgstr ""
+msgstr "Liên hệ với {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L37
 msgid "{user}'s favorite sentences"
-msgstr ""
+msgstr "Các câu ưa thích của {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L107
 msgid "This user does not have any favorites."
-msgstr ""
+msgstr "Người dùng này không có bất kỳ mục ưa thích nào."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L76
 msgid "Add a comment"
-msgstr ""
+msgstr "Thêm bình luận"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L95
 msgid "Submit comment"
-msgstr ""
+msgstr "Đăng bình luận"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L103
 msgid "Good practices"
@@ -1437,38 +1450,38 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L116
 msgid "Use private messages to discuss things unrelated to the sentence."
-msgstr ""
+msgstr "Sửa dụng tin nhắn cá nhân để thảo luận những vấn đề không liên quan đến câu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L188
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L407
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L718
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L717
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L117
 msgid "Cancel"
-msgstr ""
+msgstr "Huỷ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L199
 msgid "Save changes"
-msgstr ""
+msgstr "Lưu thay đổi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L226
 msgid "unhide"
-msgstr ""
+msgstr "ẩn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L229
 msgid "hide"
-msgstr ""
+msgstr "hiện"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L259
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L443
 msgid "edit"
-msgstr ""
+msgstr "sửa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L61
 msgid "Filter by language"
-msgstr ""
+msgstr "Lọc theo ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L66
@@ -1476,74 +1489,74 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L89
 msgid "Go back to previous page"
-msgstr ""
+msgstr "Quay lại trang trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L63
 msgid "date unknown"
-msgstr ""
+msgstr "không rõ ngày"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L74
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
-msgstr[0] ""
+msgstr[0] "{n}&nbsp;ngày trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L76
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
-msgstr[0] ""
+msgstr[0] "{n}&nbsp;giờ trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L78
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
-msgstr[0] ""
+msgstr[0] "{n}&nbsp;phút trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L87
 msgid "January"
-msgstr ""
+msgstr "Tháng 1"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L88
 msgid "February"
-msgstr ""
+msgstr "Tháng 2"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L89
 msgid "March"
-msgstr ""
+msgstr "Tháng 3"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L90
 msgid "April"
-msgstr ""
+msgstr "Tháng 4"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L91
 msgid "May"
-msgstr ""
+msgstr "Tháng 5"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L92
 msgid "June"
-msgstr ""
+msgstr "Tháng 6"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L93
 msgid "July"
-msgstr ""
+msgstr "Tháng 7"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L94
 msgid "August"
-msgstr ""
+msgstr "Tháng 8"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L95
 msgid "September"
-msgstr ""
+msgstr "Tháng 9"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L96
 msgid "October"
-msgstr ""
+msgstr "Tháng 10"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L97
 msgid "November"
-msgstr ""
+msgstr "Tháng 11"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L98
 msgid "December"
-msgstr ""
+msgstr "Tháng 12"
 
 #. @translators: this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -1552,135 +1565,135 @@ msgstr ""
 #. for instance {language.alone}
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L56
 msgid "{language}"
-msgstr ""
+msgstr "{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L96
 msgid "Profile languages"
-msgstr ""
+msgstr "Tiểu sử ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L98
 msgid "Last used languages"
-msgstr ""
+msgstr "Các ngôn ngữ được sử dụng gần đây"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L102
 msgid "Other languages"
-msgstr ""
+msgstr "Ngôn ngữ khác"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L249
 msgid "Auto detect"
-msgstr ""
+msgstr "Tự động nhận diện"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L165
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L231
 msgid "other language"
-msgstr ""
+msgstr "ngôn ngữ khác"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L181
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L198
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L268
 msgid "All languages"
-msgstr ""
+msgstr "Tất cả các ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L213
 msgctxt "dropdown-list"
 msgid "Unknown language"
-msgstr ""
+msgstr "Không rõ ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L310
 msgid "None"
-msgstr ""
+msgstr "Trống"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L290
 msgid "Any language"
-msgstr ""
+msgstr "Ngôn ngữ bất kỳ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L327
 msgctxt "searchbar"
 msgid "Any language"
-msgstr ""
+msgstr "Ngôn ngữ bất kỳ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L361
 msgid "unknown"
-msgstr ""
+msgstr "không rõ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L461
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "Bạn không thể thêm câu bởi vì bạn đã không thêm bất cứ ngôn ngữ nào trong tiểu sử của bạn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L466
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "Bạn không thể dịch câu bởi vì bạn đã không thêm bất cứ ngôn ngữ nào trong tiểu sử của bạn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L474
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L294
 msgid "Add a language"
-msgstr ""
+msgstr "Thêm một ngôn ngữ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L492
+msgid "Unspecified"
+msgstr "Không được xác định"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L493
+msgid "0: Almost no knowledge"
+msgstr "0: Gần như không có hiểu biết nào"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L494
-msgid "Unspecified"
-msgstr ""
+msgid "1: Beginner"
+msgstr "1: Bắt đầu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L495
-msgid "0: Almost no knowledge"
-msgstr ""
+msgid "2: Intermediate"
+msgstr "2: Trung cấp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L496
-msgid "1: Beginner"
-msgstr ""
+msgid "3: Advanced"
+msgstr "3: Nâng cao"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L497
-msgid "2: Intermediate"
-msgstr ""
+msgid "4: Fluent"
+msgstr "4: Lưu loát"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L498
-msgid "3: Advanced"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L499
-msgid "4: Fluent"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L500
 msgid "5: Native level"
-msgstr ""
+msgstr "5: Bản ngữ"
 
 #. @translators: string used as a placeholder for
 #. the name of a list when it happens to be empty
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L119
 msgid "(unnamed list)"
-msgstr ""
+msgstr "(danh sách chưa có tên)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L145
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L46
 msgid "created by {listAuthor}"
-msgstr ""
+msgstr "tạo bởi {listAuthor}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L164
 msgid "Number of sentences"
-msgstr ""
+msgstr "Số câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L185
 msgid "Back to all lists"
-msgstr ""
+msgstr "Quay lại danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L208
 msgid "Back to this list"
-msgstr ""
+msgstr "Quay lại danh sách này"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L229
 msgid "Download this list"
-msgstr ""
+msgstr "Tải về danh sách này"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L252
 msgid "Show translations :"
-msgstr ""
+msgstr "Hiện bản dịch :"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L285
 msgid "List visibility"
@@ -1688,44 +1701,44 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L292
 msgid "Public"
-msgstr ""
+msgstr "Công khai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L293
 msgid "Unlisted"
-msgstr ""
+msgstr "Không công khai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L294
 msgid "Private"
-msgstr ""
+msgstr "Cá nhân"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L316
 msgid "Permission to edit"
-msgstr ""
+msgstr "Quyền để sửa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L335
 msgid "Allow anyone to add and delete sentences from the list"
-msgstr ""
+msgstr "Cho phép tất cả mọi người thêm và xoá câu trong danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L346
 msgid "Delete this list"
-msgstr ""
+msgstr "Xoá danh sách này"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L416
 msgid "Remove sentence {number} from list"
-msgstr ""
+msgstr "Xoá câu {number} khỏi danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L425
 msgid "Remove from list"
-msgstr ""
+msgstr "Xoá khỏi dánh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L451
 msgid "Add a sentence to this list : "
-msgstr ""
+msgstr "Thêm câu vào danh sách này :"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L456
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L372
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L717
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L716
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L131
@@ -1736,28 +1749,28 @@ msgstr ""
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
-msgstr ""
+msgstr "Ghi chú: Bạn cũng có thể thêm câu đã tồn tại bằng biểu tượng này {addToListButton} (trong khi đang <a href=\"{url}\">duyệt</a> chẳng hạn)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L521
 msgid "Create a new list"
-msgstr ""
+msgstr "Tạo danh sách mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L534
 msgctxt "list"
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L537
 msgid "create"
-msgstr ""
+msgstr "tạo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L585
 msgid "All lists"
-msgstr ""
+msgstr "Tất cả các danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L595
 msgid "Collaborative lists"
-msgstr ""
+msgstr "Danh sách chung"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L384
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
@@ -1765,47 +1778,47 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L160
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L176
 msgid "Sentence #{number}"
-msgstr ""
+msgstr "Câu #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L456
 msgid "linked to #{sentenceNumber}"
-msgstr ""
+msgstr "được liên kết đến #{sentenceNumber}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L461
 msgid "unlinked from #{sentenceNumber}"
-msgstr ""
+msgstr "được bỏ liên kết khỏi #{sentenceNumber}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L515
 msgid "added by {user}"
-msgstr ""
+msgstr "được thêm bởi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L517
 msgid "linked by {user}"
-msgstr ""
+msgstr "được liên kết bởi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L521
 msgid "edited by {user}"
-msgstr ""
+msgstr "được sửa bởi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L525
 msgid "deleted by {user}"
-msgstr ""
+msgstr "xoá bởi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L527
 msgid "unlinked by {user}"
-msgstr ""
+msgstr "được bỏ liên kết {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L119
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L348
 msgid "Edit"
-msgstr ""
+msgstr "Sửa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/recordings/import.ctp#L127
 msgid "admin"
-msgstr ""
+msgstr "quản trị viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L165
 msgid "corpus maintainer"
@@ -1813,24 +1826,24 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L166
 msgid "advanced contributor"
-msgstr ""
+msgstr "người đóng góp nâng cao"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L167
 msgid "contributor"
-msgstr ""
+msgstr "người đóng góp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L168
 msgid "inactive"
-msgstr ""
+msgstr "không hoạt động"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L169
 msgid "suspended"
-msgstr ""
+msgstr "bị đình chỉ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L82
 msgid "Translate"
-msgstr ""
+msgstr "Dịch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L84
 msgid ""
@@ -1840,64 +1853,64 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L146
 msgid "Click to adopt"
-msgstr ""
+msgstr "Nhấn để tiếp nhận"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L153
 msgid "Click to unadopt"
-msgstr ""
+msgstr "Nhấn để bỏ tiếp nhận"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L199
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Xoá khoá mục ưa thích"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L203
 msgid "Add to favorites"
-msgstr ""
+msgstr "Thêm vào mục ưa thích"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L257
 msgid "Link to another sentence"
-msgstr ""
+msgstr "Liên kết với câu khác"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L270
 msgid "Sentence number"
-msgstr ""
+msgstr "Số của câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
-msgstr ""
+msgstr "Liên kết"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L316
 msgid "Add to list"
-msgstr ""
+msgstr "Thêm vào danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L350
 msgid "Add to one of your lists"
-msgstr ""
+msgstr "Thêm vào một những danh sách của bạn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L351
 msgid "Add to a collaborative list"
-msgstr ""
+msgstr "Thêm vào danh sách cộng tác"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L404
 msgid "You cannot delete this sentence because it has audio."
-msgstr ""
+msgstr "Bạn không thể xoá câu nay bởi vì nó đi kèm âm thanh."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L422
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L105
 msgid "Delete"
-msgstr ""
+msgstr "Xoá"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L457
 msgid "You cannot edit this sentence because it has audio."
-msgstr ""
+msgstr "Bạn không thể xoá câu này bởi vì nó đi kèm âm thanh."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L493
 msgid "belongs to {user}"
-msgstr ""
+msgstr "thuộc về {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L513
 msgid "(native)"
@@ -1905,77 +1918,77 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L532
 msgid "Mark as \"OK\""
-msgstr ""
+msgstr "Đánh dấu là \"được\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L537
 msgid "Mark as \"unsure\""
-msgstr ""
+msgstr "Đánh dấu là \"không chắc\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L542
 msgid "Mark as \"not OK\""
-msgstr ""
+msgstr "Đánh dấu là \"chưa được\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L554
 msgid "Unmark sentence"
-msgstr ""
+msgstr "Bỏ đánh dấu câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L147
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L241
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L245
 msgid "Former member"
-msgstr ""
+msgstr "Cựu thành viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L176
 msgid "Send private message"
-msgstr ""
+msgstr "Gửi tin nhắn cá nhân"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L194
 msgid "edited"
-msgstr ""
+msgstr "đã bị sửa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L229
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L184
 msgid "View this user's profile"
-msgstr ""
+msgstr "Xem tiểu sử của người dùng này."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L397
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L401
 msgid "sentence deleted"
-msgstr ""
+msgstr "câu đã bị xoá"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L418
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr ""
+msgstr "Nội dung của tin nhắn này đi ngược lại với <a href=\"{}\">các quy tắc</a> của chúng tôi và đã bị ẩn đi. Nó chỉ được hiển thị cho quản trị viên và tác giả của tin nhắn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L83
 msgid "Show sentence #: "
-msgstr ""
+msgstr "Hiên câu #:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L116
 msgid "Language for previous, next or random sentence"
-msgstr ""
+msgstr "Ngôn ngữ cho câu trước đó, tiếp theo hoặc ngẫu nhiên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L126
 msgid "previous"
-msgstr ""
+msgstr "trước đó"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L151
 msgid "next"
-msgstr ""
+msgstr "tiếp theo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L179
 msgid "random"
-msgstr ""
+msgstr "ngẫu nhiên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L210
 msgid "all lists"
-msgstr ""
+msgstr "tất cả các danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L23
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid " - Tatoeba"
-msgstr ""
+msgstr "- Tatoeba"
 
 #. @translators: this formats the title at the top of every page
 #. that shows a list of sentences (search, browse by language,
@@ -1984,7 +1997,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L33
 msgid "{title} (one result)"
 msgid_plural "{title} ({n}&nbsp;results)"
-msgstr[0] ""
+msgstr[0] "{title} ({n}&nbsp;kết quả)"
 
 #. @translators: this formats the title at the top of the search
 #. page by appending the number of results. Tatoeba is only able
@@ -1998,61 +2011,61 @@ msgstr[0] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L103
 msgid "First page"
-msgstr ""
+msgstr "Trang đầu tiên"
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L114
 msgid "Previous page [Ctrl+←]"
-msgstr ""
+msgstr "Trang trước đó [Ctrl+←]"
 
 #. @translators Appears on “next page” links
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L129
 msgid "Next page [Ctrl+→]"
-msgstr ""
+msgstr "Trang tiếp theo [Ctrl+→]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L136
 msgid "Last page"
-msgstr ""
+msgstr "Trang cuối"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
-msgstr ""
+msgstr "Phản hồi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L85
 msgid "to"
-msgstr ""
+msgstr "đến"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L100
 msgid "Title"
-msgstr ""
+msgstr "Tiêu đề"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L50
 msgid "Send"
-msgstr ""
+msgstr "Gửi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L149
 msgid "{sender} wrote:"
-msgstr ""
+msgstr "{sender} đã viết:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L72
 msgid "Show sentence's details"
-msgstr ""
+msgstr "Hiện chi tiết của câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
 msgid "Unlink"
-msgstr ""
+msgstr "Bỏ liên kết"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
-msgstr ""
+msgstr "Bỏ liên kết bản dịch này."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L10
@@ -2062,20 +2075,20 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L183
 msgid "Play audio"
-msgstr ""
+msgstr "Phát âm thanh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L193
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L282
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L281
 msgid "Copy sentence"
-msgstr ""
+msgstr "Chép câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L202
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
-msgstr[0] ""
+msgstr[0] "Hiện thêm {number} bản dịch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L235
 msgid "Fewer translations"
@@ -2083,57 +2096,57 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L342
 msgid "Translation:"
-msgstr ""
+msgstr "Bản dịch:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L398
 msgid "Submit translation"
-msgstr ""
+msgstr "Đăng bản dịch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L173
 msgid "NOTE: Both direct and indirect translations will be shown."
-msgstr ""
+msgstr "Ghi chú: Cả bản dịch trực tiếp và gián tiếp đều sẽ được hiện."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L205
 msgid "NOTE: Sentences that have an indirect translation will be displayed."
-msgstr ""
+msgstr "Ghi chú: Câu có bản dịch giasn tiếp sẽ được hiển thị."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L224
 msgid "Only sentences with audio:"
-msgstr ""
+msgstr "Chỉ những câu có âm thanh:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
 msgid "no"
-msgstr ""
+msgstr "không"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L228
 msgid "yes"
-msgstr ""
+msgstr "có"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L239
 msgid "NOTE: Not all languages have audio at the moment."
-msgstr ""
+msgstr "Ghi chú: Ở thời điểm này không phải ngôn ngữ nào cũng có âm thanh."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L210
 msgid "Tags"
-msgstr ""
+msgstr "Thẻ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L132
 msgid "Added by {username}, {date}"
-msgstr ""
+msgstr "Được thêm bởi {username}, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L267
 msgid "remove tag '{tagName}' from this sentence."
-msgstr ""
+msgstr "xoá thẻ  '{tagName}' khỏi câu này."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L302
 msgid "remove tag from sentence"
-msgstr ""
+msgstr "xoá thẻ khỏi câu"
 
 #. @translators: refers to a transcription
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L137
 msgid "Last edited by {author} the {date}"
-msgstr ""
+msgstr "Sửa lần cuối bởi {author} ngày {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L145
 msgid "This alternative script was generated by a piece of software"
@@ -2145,7 +2158,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L158
 msgid "Reset"
-msgstr ""
+msgstr "Đặt lại"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L185
 msgid "Show alternative script"
@@ -2186,102 +2199,102 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L281
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
-msgstr ""
+msgstr "Nhấn để đánh dấu là đã duyệt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L287
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
-msgstr ""
+msgstr "Nhấn để đánh dấu là đã duyệt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L74
 msgid "Add a message: "
-msgstr ""
+msgstr "Thêm một tin nhắn:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L90
 msgid "cancel"
-msgstr ""
+msgstr "huỷ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L129
 msgid "Edit Wall Message"
-msgstr ""
+msgstr "Sửa tin nhắn tường"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L149
 msgid "submit"
-msgstr ""
+msgstr "đăng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L301
 msgid "hide replies"
-msgstr ""
+msgstr "ẩn phản hồi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L306
 msgid "show replies"
-msgstr ""
+msgstr "hiện phản hồi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L378
 msgid "by {messageAuthor}"
-msgstr ""
+msgstr "bởi {messageAuthor}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L62
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr ""
+msgstr "Cảnh báo: trang này được dùng với mục đích thử nghiệm. Mọi thứ bạn đăng sẽ chắc chắn bị mất."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L92
 msgid "No language matches"
-msgstr ""
+msgstr "Không có ngôn ngữ phù hợp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L48
 msgid ""
 "Please make sure to <a href=\"{}\">read the FAQ</a> before asking a "
 "question."
-msgstr ""
+msgstr "Xin hãy đọc <a href=\"{}\">FAQ</a> trước khi hỏi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L57
 msgid "Follow us"
-msgstr ""
+msgstr "Theo dõi chúng tôi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L60
 msgid "Tatoeba Blog"
-msgstr ""
+msgstr "Tatoeba Blog"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L73
 msgid ""
 "If you have any question, suggestion, or request (or if you would just like "
 "to say thank you), feel free to drop us an email at {emailAddress}."
-msgstr ""
+msgstr "Nếu bạn có bất cứ câu hỏi, đề nghị hoặc yêu cầu (hay chỉ muốn gửi lời cám ơn), cứ tự nhiên gửi email cho chúng tôi theo địa chỉ {emailAddress}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L82
 msgid "Post on the Wall"
-msgstr ""
+msgstr "Đăng lên tường"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L86
 msgid ""
 "You can also tell us what you think by posting on the <a "
 "href=\"{}\">Wall</a>."
-msgstr ""
+msgstr "Bạn cũng có thể kể cho chúng suy nghĩ của bạn bằng cách đăng bài lên <a href=\"{}\">Tường</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L96
 msgid "Join us on IRC"
-msgstr ""
+msgstr "Tham gia với chúng tôi trên IRC"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L100
 msgid ""
 "We also have an IRC channel on freenode, #tatoeba. If you are not familiar "
 "with IRC, you can read the <a href=\"{}\">Help</a>."
-msgstr ""
+msgstr "Chúng tôi cũng có một kênh IRC trên freenode, #tatoeba. Nếu bạn không quen với IRC, bạn có thể đọc <a href=\"{}\">Trợ giúp</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L28
 msgid "How to contribute"
-msgstr ""
+msgstr "Làm thế nào để đóng góp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L39
 msgid "If you are interested, please register."
-msgstr ""
+msgstr "Nếu bạn quan tâm, xin hãy đăng ký."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L52
 msgid "Important to read"
-msgstr ""
+msgstr "Cần phải đọc"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L56
 msgid "Guide to being a good contributor"
@@ -2289,11 +2302,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L62
 msgid "Reliability of the sentences"
-msgstr ""
+msgstr "Độ tin cậy của câu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L115
 msgid "How can you contribute?"
-msgstr ""
+msgstr "Bạn có thể đóng góp bằng cách nào?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L119
 msgid ""
@@ -2331,7 +2344,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L28
 msgid "Donate"
-msgstr ""
+msgstr "Ủng hộ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L33
 msgid "Any question?"
@@ -2347,19 +2360,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L50
 msgid "Latest donations"
-msgstr ""
+msgstr "Ủng hộ mới nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L59
 msgid "All donations"
-msgstr ""
+msgstr "Tất cả các ủng hộ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L68
 msgid "How to donate"
-msgstr ""
+msgstr "Làm thế nào để ủng hộ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L69
 msgid "You have two possible ways to make a donation:"
-msgstr ""
+msgstr "Bạn có hai cách để ủng hộ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L74
 msgid ""
@@ -2393,11 +2406,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L28
 msgid "Download sentences"
-msgstr ""
+msgstr "Tải về câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L33
 msgid "Warning"
-msgstr ""
+msgstr "Cảnh báo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L36
 msgid ""
@@ -2418,17 +2431,17 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L56
 msgid "These files are released under CC-BY."
-msgstr ""
+msgstr "Những tệp tin này được phát hành dưới giấy phép CC-BY."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L64
 msgid "Questions?"
-msgstr ""
+msgstr "Câu hỏi?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L69
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>."
-msgstr ""
+msgstr "Nếu có có câu hỏi, hoặc yêu cầu, cứ tự nhiên <a href=\"{}\">liên hệ với chúng tôi</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L73
 msgid "In general, we answer quickly."
@@ -2438,12 +2451,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L144
 msgid "Download"
-msgstr ""
+msgstr "Tải về"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L158
 msgid "Fields and structure"
-msgstr ""
+msgstr "Trường và cấu trúc"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L86
 msgid "File description"
@@ -2452,57 +2465,57 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L167
 msgid "Sentence id"
-msgstr ""
+msgstr "Id của câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L88
 msgid "Rating"
-msgstr ""
+msgstr "Đánh giá"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L169
 msgid "Text"
-msgstr ""
+msgstr "Văn bản"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L90
 msgid "Lang"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L84
 msgid "Username"
-msgstr ""
+msgstr "Tên người dùng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L92
 msgid "Date added"
-msgstr ""
+msgstr "Ngày thêm vào"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L93
 msgid "Date created"
-msgstr ""
+msgstr "Ngày tạo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L94
 msgid "Date last modified"
-msgstr ""
+msgstr "Ngày chỉnh sửa gần nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L95
 msgid "Translation id"
-msgstr ""
+msgstr "Id bản dịch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
 msgid "Tag name"
-msgstr ""
+msgstr "Tên thẻ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
 msgid "List id"
-msgstr ""
+msgstr "Id danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L98
 msgid "List name"
-msgstr ""
+msgstr "Tên danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
 msgid "Editable by"
-msgstr ""
+msgstr "Có thể chỉnh sửa bởi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L100
 msgid "Meaning id"
@@ -2510,11 +2523,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L101
 msgid "Skill level"
-msgstr ""
+msgstr "Trình độ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L102
 msgid "Details"
-msgstr ""
+msgstr "Chi tiết"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
@@ -2526,7 +2539,7 @@ msgstr ""
 msgid ""
 "Contains all the sentences. Each sentence is associated with a unique id and"
 " an <a href=\"{}\">ISO 639-3</a> language code. "
-msgstr ""
+msgstr "Bao gồm tất cả các câu. Mỗi câu được gắn với một id duy nhất và một mã ngôn ngữ <a href=\"{}\">ISO 639-3</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L153
 msgid ""
@@ -2538,7 +2551,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L162
 msgid "Links"
-msgstr ""
+msgstr "LIên kết"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L195
 msgid ""
@@ -2561,7 +2574,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L287
 msgid "Sentences in lists"
-msgstr ""
+msgstr "Câu theo danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L312
 msgid ""
@@ -2585,7 +2598,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
-msgstr ""
+msgstr "Câu kèm âm thanh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L379
 msgid ""
@@ -2595,7 +2608,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L384
 msgid "User skill level per language"
-msgstr ""
+msgstr "Trình độ của người dùng theo ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L407
 msgid ""
@@ -2604,7 +2617,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L412
 msgid "Users' sentence ratings"
-msgstr ""
+msgstr "Đánh giá câu của người dùng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L440
 msgid ""
@@ -2615,13 +2628,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L451
 msgid "General information about the files"
-msgstr ""
+msgstr "Thông tin tổng quát về các tệp tin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L453
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
-"a.m.</strong>, France time."
-msgstr ""
+"a.m.</strong> (GMT)."
+msgstr "Các tệp tin được cung cấp ở đây được cập nhật lúc <strong>9 giờ sáng thứ 7</strong> hàng tuần (GMT)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L460
 msgid ""
@@ -2631,57 +2644,57 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L33
 msgid "Need more help?"
-msgstr ""
+msgstr "Cần thêm sự trợ giúp?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L37
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "Bạn có thể ghé qua trang <a href=\"{}\">FAQ</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L44
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to contact "
 "us."
-msgstr ""
+msgstr "Nếu bạn không thể tìm thấy câu trả lời, đừng ngại liên lạc với chúng tôi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L54
 msgid "By email"
-msgstr ""
+msgstr "Qua "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L56
 msgid "From the Wall"
-msgstr ""
+msgstr "Từ tường"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L60
 msgid "Click here to go to the Wall."
-msgstr ""
+msgstr "Nhấn vào đây để đến Tường"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L65
 msgid "On IRC"
-msgstr ""
+msgstr "Trên IRC"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L71
 msgid "How to use IRC"
-msgstr ""
+msgstr "Sử dụng IRC như thế nào"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L75
 msgid ""
 "For those who are not familiar with IRC, it is pretty much like an instant "
 "messenger. You will be able to talk to us in real time, if we are there."
-msgstr ""
+msgstr "Cho những ai không quen thuộc với IRC, nó gần như là một trình nhắn tin tức thời. Bạn sẽ có thể nói chuyện trực tiếp với chúng tôi, nếu chúng tôi có mặt ở đó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L83
 msgid "There are many ways to join our channel. One is to go to this website:"
-msgstr ""
+msgstr "Có nhiều cách để tham gia vào kênh của chúng tôi. Một cách là truy cập vào trang:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L89
 msgid ""
 "Enter a nickname, enter \"#tatoeba\" for the channel, and click on "
 "\"connect\". That's it!"
-msgstr ""
+msgstr "Nhập một cái tên, nhập \"#tatoeba\" cho phần kênh và nhấn vào \"kết nối\". Chỉ vậy thôi!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L102
 msgid "Getting started"
-msgstr ""
+msgstr "Bắt đầu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L109
 msgid ""
@@ -2694,7 +2707,7 @@ msgstr ""
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "Nếu bạn nghĩ dự án này thật tuyệt và muốn đóng góp một cách tích cực, đây là liên kết mà bạn cần <strong>PHẢI</strong> đọc:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L133
 msgid ""
@@ -2704,25 +2717,25 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L145
 msgid "Important links"
-msgstr ""
+msgstr "Liên kết quan trọng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L167
 msgid "Adding new sentences"
-msgstr ""
+msgstr "Thêm câu mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L168
 msgid "There are two ways to add new sentences."
-msgstr ""
+msgstr "Có hai cách để thêm các câu mới."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L173
 msgid "From the <a href=\"{}\">Contribute</a> section"
-msgstr ""
+msgstr "Từ phần <a href=\"{}\">Đóng góp</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L187
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr ""
+msgstr "Bằng việc tạo <a href=\"{}\">danh sách</a> mới và đi đến trang chỉnh sửa cho danh sách đó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L204
 msgid ""
@@ -2730,44 +2743,44 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr ""
+msgstr "Mặc dùng đã có khá nhiều câu trên Tatoeba, có rất nhiều từ vựng chưa được nhắc đến. Đó là lý do mà chúng tôi khuyến khích bạn thêm câu có kèm theo từ vựng mới,  ngay cả khi bạn không biết làm thế nào để dịch nó sang các ngôn ngữ khác."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L215
 msgid "Translating sentences"
-msgstr ""
+msgstr "Dịch câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L219
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
-msgstr ""
+msgstr "Dịch là một trong những việc quan trọng nhất trên Tatoeba, kể từ khi mục tiêu chính của dự án là thu thập các câu được dịch ra nhiều ngôn ngữ khác nhau."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L229
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr ""
+msgstr "Bạn có thể dịch câu gần như khắp mọi nơi. Chỉ cần nhấn vào biểu tượng {translateButton} bất cứ khi nào mà bạn thấy nó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L241
 msgid "Correcting mistakes"
-msgstr ""
+msgstr "Sửa lỗi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L245
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr ""
+msgstr "Bạn chỉ có thể sửa lỗi cho những câu thuộc về bạn. Nếu bạn thấy lỗi trong câu của người khác, bạn có thể đăng bình luận để thông báo cho họ biết."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L254
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "Trong một số trường hợp, câu không có chủ nhân. Đọc đoạn văn dưới đây (về việc tiếp nhận câu) để tìm hiểu thêm."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L263
 msgid "Adopting sentences"
-msgstr ""
+msgstr "Tiếp nhận câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L267
 msgid ""
@@ -2775,7 +2788,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr ""
+msgstr "Khi bạn thêm một câu, câu đó \"thuộc\" về bạn - chỉ bạn mới có thể sửa nó. Tuy nhiên, nhiều câu trên Tatoeba đến từ corpus Nhật-Anh được gọi là Corpus Tanaka. Những câu này không có người sở hữu bởi vì chúng được thu thập bên ngoài Tatoeba."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L279
 msgid ""
@@ -2793,90 +2806,90 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L309
 msgid "Sentence lists"
-msgstr ""
+msgstr "Danh sách câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L313
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr ""
+msgstr "Bạn có thể tạo các danh sách câu trên Tatoeba. Mặc định danh sách thuộc về <strong>cá nhân</strong>, nghĩa là chỉ có thể được chỉnh sửa bởi người đã tạo ra nó (nhưng mọi người vẫn được thấy nó)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L322
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr ""
+msgstr "Tuy nhiên cũng có thể để bất cứ thành viên nào trên Tatoeba thêm và xoá câu bằng việc đặt danh sách thành <strong>cộng tác</strong>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L30
 msgid "Tatoeba: Collection of sentences and translations"
-msgstr ""
+msgstr "Tatoeba: Bộ sưu tập câu và bản dịch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L72
 msgid "Latest messages"
-msgstr ""
+msgstr "Tin nhắn mới nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L95
 msgid "Latest comments"
-msgstr ""
+msgstr "Bình luận mới nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L36
 msgid "Want to help?"
-msgstr ""
+msgstr "Muốn giúp đỡ?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L38
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr ""
+msgstr "Chúng tôi thu thập các câu và bản dịch của chúng. Bạn có thể giúp chúng tôi bằng việc dịch hoặc thêm vào những câu mới."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L42
 msgid "Join the community"
-msgstr ""
+msgstr "Tham gia cộng đồng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L72
 msgid "Stats"
-msgstr ""
+msgstr "Thống kê"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L61
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
-msgstr[0] ""
+msgstr[0] "hôm nay có {number} đóng góp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L68
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
-msgstr[0] ""
+msgstr[0] "{number} ngôn ngữ được hỗ trợ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L75
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
-msgstr[0] ""
+msgstr[0] "{number} câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L97
 msgid "{number} sentence in {lang}"
 msgid_plural "{number} sentences in {lang}"
-msgstr[0] ""
+msgstr[0] "{number} câu bằng {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
 msgid "Table of contents"
-msgstr ""
+msgstr "Mục lục"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L36
 msgid "English version"
-msgstr ""
+msgstr "Phiên bản tiếng Anh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L41
 msgid "Version française"
-msgstr ""
+msgstr "Phiên bản tiếng Pháp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L53
 msgid "Information for contributors of text to the Tatoeba project"
-msgstr ""
+msgstr "Thông tin cho những người đóng góp văn bản cho dự án Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L57
 msgid ""
@@ -2904,14 +2917,14 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L79
 msgid "Importing text:"
-msgstr ""
+msgstr "Nhập văn bản:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L82
 msgid ""
 "If you want to import text that you have found elsewhere or that you have "
 "co-authored with others, you can only do so if it is available under terms "
 "that are compatible with the CC-BY license."
-msgstr ""
+msgstr "Nếu bạn muốn nhập văn bản mà bạn thấy ở đâu đó hoặc bạn là đồng tác giả, bạn chỉ có thể làm vậy khi nó sẵn sàng dưới các điều khoản tương thích với giấy phép CC-BY."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L88
 msgid ""
@@ -2925,11 +2938,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L96
 msgid "Information for re-users:"
-msgstr ""
+msgstr "Thông tin cho người tái sử dụng:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L99
 msgid "Re-use of text:"
-msgstr ""
+msgstr "Tái sử dụng văn bản:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L105
 msgid ""
@@ -2983,57 +2996,57 @@ msgstr ""
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L40
 msgid "Private messages - {folderName}"
-msgstr ""
+msgstr "Tin nhắn cá nhân - {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L50
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
-msgstr[0] ""
+msgstr[0] "{folderName} ({n}&nbsp;tin nhắn)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L77
 msgid "from {sender}"
-msgstr ""
+msgstr "từ {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L80
 msgid "to {recipient}"
-msgstr ""
+msgstr "đến {recipient}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L29
 msgid "[no subject]"
-msgstr ""
+msgstr "[không chủ đề]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L38
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                 new users can send only 5 messages per day."
-msgstr ""
+msgstr "Để giúp giữ Tatoeba khỏi tin nhắn rác và các tin không tử tế khác\nngười dùng chỉ có thể gửi 5 tin nhắn mỗi ngày."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
+msgstr[0] "Hôm nay bạn đã gửi {n}&nbsp;tin nhắn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L56
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr ""
+msgstr "Để giúp giữ Tatoeba khỏi tin nhắn rác và các tin không tử tế khác người dùng chỉ có thể gửi 5 tin nhắn mỗi ngày."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L61
 msgid "Please wait until you can send more messages. "
-msgstr ""
+msgstr "Xin hãy đợi cho đến khi bạn có thể gửi được tin nhắn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L43
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr ""
+msgstr "Nhấn vào câu trên cùng để truy cập tatoeba.org để dịch hay để lại lời bình luận."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L183
 msgid "There is no sentence with id {number}"
-msgstr ""
+msgstr "Không có câu nào với id {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/last_modified.ctp#L55
 msgid "Browse by last modified (total %count%)"
@@ -3041,89 +3054,89 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L28
 msgid "Edit Comment"
-msgstr ""
+msgstr "Sửa bình luận"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L47
 msgid "Edit Comment on Sentence #{number}"
-msgstr ""
+msgstr "Sửa bình luận trong câu #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L38
 msgid "Comments on sentences"
-msgstr ""
+msgstr "Bình luận trong câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L58
 msgid "Comments on sentences (total %count%)"
-msgstr ""
+msgstr "Bình luận trong câu (total %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L39
 msgid "{user}'s comments"
-msgstr ""
+msgstr "Bình luận của {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L61
 msgid "{user} has posted no comment"
-msgstr ""
+msgstr "{user} chưa đăng bình luận nào"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L75
 msgid "{user}'s comments (total&nbsp;{n})"
-msgstr ""
+msgstr "bình luận của {user} (total&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L66
 msgid "{user} has no comment posted on his/her sentences"
-msgstr ""
+msgstr "{user} chưa đăng bình luận nào trong câu của anh/cô ấy"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L80
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
-msgstr ""
+msgstr "Bình luận trong câu của {user}  (total&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L35
 msgid "Important"
-msgstr ""
+msgstr "Quan trọng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L40
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "
 "<strong>punctuation</strong>! Thank you."
-msgstr ""
+msgstr "Xin đừng quên <strong>chưa in hoa</strong> và <strong>dấu trong câu</strong>! Cảm ơn bạn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L49
 msgid ""
 "Do not copy-paste sentences from elsewhere, except if the content is CC-BY "
 "compatible. <a href=\"{}\">Learn more...</a>"
-msgstr ""
+msgstr "Đừng sao chép các câu từ nơi khác, trừ khi nội dung của chúng tương thích với CC-BY. <a href=\"{}\">Tìm hiểu thêm...</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L65
 msgid ""
 "You can add sentences that you do not know how to translate. Perhaps someone"
 " else will know!"
-msgstr ""
+msgstr "Bạn có thể thêm câu mà bạn không biết làm sao để dịch. Có lẽ ai đó sẽ biết!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L76
 msgid "Add new sentences"
-msgstr ""
+msgstr "Thêm câu mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L90
 msgid "Sentence: "
-msgstr ""
+msgstr "Câu:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L132
 msgid "Sentences added"
-msgstr ""
+msgstr "Câu đã được thêm"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L42
 msgid "{user}'s sentences"
-msgstr ""
+msgstr "câu của {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L45
 msgid "{user}'s sentences in {language}"
-msgstr ""
+msgstr "câu của {user} bằng {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L78
 msgid "{user} does not have any sentence in {language}"
-msgstr ""
+msgstr "{user} không có bất kỳ câu nào bằng {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L83
 msgid "{user} does not have any sentence"
-msgstr ""
+msgstr "{user} không có bất kỳ câu nào"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/random.ctp#L31
 msgid ""
@@ -3134,32 +3147,32 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L87
 msgid "Search disabled"
-msgstr ""
+msgstr "Tìm kiếm đã bị vô hiệu hoá"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L33
 msgid "Sentences with: {keywords}"
-msgstr ""
+msgstr "Câu với: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L51
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr ""
+msgstr "Câu bằng {language} không được dịch sang {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L41
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr ""
+msgstr "Câu bằng {language} đã được dịch sang {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L46
 msgid "Sentences in {language}"
-msgstr ""
+msgstr "Câu bằng "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L50
 msgid "Sentences not translated into {language}"
-msgstr ""
+msgstr "Câu không được dịch sang {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L53
 msgid "Sentences translated into {language}"
-msgstr ""
+msgstr "Câu đã được dịch sang {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L65
 msgid "Warning: the following criteria have been ignored:{list}"
@@ -3175,28 +3188,35 @@ msgid ""
 "sorry for the inconvenience. Please try again later."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L108
 msgid "Search error"
-msgstr ""
+msgstr "Lỗi tìm kiếm"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L99
 msgid ""
 "An error occured while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
 msgstr ""
 
-#. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L113
-msgid "Search: {keywords}"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L112
+msgid ""
+"Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
+"for more details."
 msgstr ""
+
+#. @translators: title on the top of a search result page
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L128
+msgid "Search: {keywords}"
+msgstr "Tìm: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L28
 msgid "Random sentences"
-msgstr ""
+msgstr "Câu ngẫu nhiên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L32
 msgid "For serial translators"
-msgstr ""
+msgstr "Cho những kẻ dịch thuật hàng loạt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L36
 msgid ""
@@ -3207,13 +3227,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L43
 msgid "Just keep in mind that our server is not as fast as you ;-)"
-msgstr ""
+msgstr "Hãy nhớ rằng máy chủ của chúng tôi không nhanh bằng bạn ;-)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L245
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
-msgstr ""
+msgstr "Tính năng câu ngẫu nhiên hiện đang bị vô hiệu hoá, xin hãy thử lại sau."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L247
@@ -3224,7 +3244,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L40
 msgid "{language} example sentence: {sentence}"
-msgstr ""
+msgstr "Câu ví dụ cho {language}: {sentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L48
 msgid ""
@@ -3234,7 +3254,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L59
 msgid "Sentence does not exist: "
-msgstr ""
+msgstr "Câu không tồn tại:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L77
 msgid "Reviewed by"
@@ -3242,48 +3262,57 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L147
 msgid "There is no log for this sentence"
-msgstr ""
+msgstr "Không có nhật ký cho câu này"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L221
 msgid "There are no comments for now."
-msgstr ""
+msgstr "Hiện không có bình luận nào."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L226
 msgid "Sentence deleted"
-msgstr ""
+msgstr "Câu đã bị xoá"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L243
 msgid "Random Sentence"
-msgstr ""
+msgstr "Câu ngẫu nhiên"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L30
-msgid "All sentences in {language}"
-msgstr ""
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L31
+msgid "All sentences in {language} with audio"
+msgstr "Tất cả các câu bằng {language} kèm âm thanh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
+msgid "All sentences in {language}"
+msgstr "Tất cả các câu bằng {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L40
 msgid "any language"
-msgstr ""
+msgstr "ngôn ngữ bất kỳ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L46
+msgid ""
+"Sentences in {language} with audio not translated into {translationLanguage}"
+msgstr "Câu bằng {language} kèm âm thanh chưa được dịch sang {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L31
 msgid "Sentences in {language} with audio"
-msgstr ""
+msgstr "Câu bằng {language} kèm âm thanh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/add_new_sentence_to_list.ctp#L45
 msgid "Problem while saving"
-msgstr ""
+msgstr "Vấn đề trong quá trình lưu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L38
 msgid "Download list: "
-msgstr ""
+msgstr "Danh sách tải về:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L88
 msgid "Actions"
-msgstr ""
+msgstr "Hành động"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L81
 msgid "Id (optional)"
-msgstr ""
+msgstr "Id (tuỳ chọn)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L89
 msgid ""
@@ -3317,65 +3346,65 @@ msgid ""
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L48
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L82
 msgid "Sort by:"
-msgstr ""
+msgstr "Sắp xếp theo:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L50
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L74
 msgid "list name"
-msgstr ""
+msgstr "tên danh sách"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L52
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L76
 msgid "date created"
-msgstr ""
+msgstr "ngày tạo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L79
 msgid "number of sentences"
-msgstr ""
+msgstr "số câu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L38
 msgid "{username}'s lists ({total})"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L37
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L43
 msgid "{username}'s lists containing \"{search}\" ({total})"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
-msgstr ""
+msgstr "Câu đã được xoá thành công."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L35
 msgid "About this list"
-msgstr ""
+msgstr "Về danh sách này"
 
 #. @translators: number of sentences contained in the list
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L55
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
-msgstr[0] ""
+msgstr[0] "Bao gồm {n}&nbsp;câu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L42
 msgid "Options"
-msgstr ""
+msgstr "Tùy chọn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L120
 msgid "Edit name"
-msgstr ""
+msgstr "Sửa tên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L133
 msgid "Click to edit..."
-msgstr ""
+msgstr "Nhấn để sửa..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/explode.ctp#L27
 msgid "Result"
-msgstr ""
+msgstr "Kết qủa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L28
 msgid "Search sinograms"
@@ -3405,7 +3434,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L86
 msgid "Still beta"
-msgstr ""
+msgstr "Vẫn ở beta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L93
 msgid "This work is based on <a href=\"{}\">this project</a>."
@@ -3468,15 +3497,15 @@ msgstr ""
 msgid ""
 "No sentence using this character has been found, you can add one <a "
 "href=\"{}\">here</a>."
-msgstr ""
+msgstr "Không tìm thấy câu nào sử dụng ký tự này, bạn có thể thêm một câu <a href=\"{}\">tại đây</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L63
 msgid "View all sentences using this character <a href=\"{}\">here</a>"
-msgstr ""
+msgstr "Xem tất cả các câu sử dụng ký tự này <a href=\"{}\">ở đây</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L31
 msgid "10 or more strokes"
-msgstr ""
+msgstr "10 nét hoặc nhiều hơn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L31
 msgid "Information about {sinograph}"
@@ -3484,7 +3513,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L43
 msgid "number of strokes:"
-msgstr ""
+msgstr "số nét:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L48
 msgid "pinyin:"
@@ -3504,11 +3533,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L68
 msgid "Example of use"
-msgstr ""
+msgstr "Cách dùng mẫu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/search.ctp#L29
 msgid "Results"
-msgstr ""
+msgstr "Kết qủa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/search.ctp#L41
 msgid "No result found. Try to search with fewer subglyphs."
@@ -3537,19 +3566,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L47
 msgid "Total"
-msgstr ""
+msgstr "Tổng cộng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L28
 msgid "Number of sentences per language"
-msgstr ""
+msgstr "Số câu mỗi ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L28
 msgid "Tags for moderators"
-msgstr ""
+msgstr "Thẻ cho điều hành viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L64
 msgid "Guidelines"
-msgstr ""
+msgstr "Hướng dẫn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L73
 msgid ""
@@ -3569,62 +3598,67 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L84
 msgid ""
 "NOTE: The maximum number of sentences displayed at a time is limited to 100."
-msgstr ""
+msgstr "Ghi chú: Số câu tối đa được hiển thị trong một thời điểm bị giới hạn tới 100."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
 msgid "Tagged '{tagName}' more than 2 weeks ago"
-msgstr ""
+msgstr "Đã gắn thẻ '{tagName}' hơn 2 tuần trước"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
-msgstr ""
+msgstr "Câu với thẻ {tagName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L95
 msgid "View all tags"
-msgstr ""
+msgstr "Xem tất cả các thẻ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L53
+msgid "{tagName} ({n} sentence)"
+msgid_plural "{tagName} ({n} sentences)"
+msgstr[0] "{tagName} ({n} câu)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L90
 msgid "No tag with id {tagId}"
-msgstr ""
+msgstr "Không có thẻ với id {tagId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L28
 msgid "All existing tags"
-msgstr ""
+msgstr "Tất cả các thẻ đang tồn tại"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L34
 msgid "Search tags"
-msgstr ""
+msgstr "Tìm thẻ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L48
 msgid "Show all tags"
-msgstr ""
+msgstr "Hiện tất cả các thẻ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L66
 msgid "All tags (total %count%)"
-msgstr ""
+msgstr "Tất cả các thẻ (total %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L72
 msgid "Tags containing: {search} (total %count%)"
-msgstr ""
+msgstr "Thẻ bao gồm "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L84
 msgid "count"
-msgstr ""
+msgstr "đếm"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L86
 msgid "name"
-msgstr ""
+msgstr "tên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L58
 msgid "Chinese traditional/simplified conversion"
-msgstr ""
+msgstr "Chuyển đổi giữa tiếng Trung Phồn thể - Giản thể"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L36
 msgid "Source code"
-msgstr ""
+msgstr "Mã nguồn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L81
 msgid "Enter either traditional or simplified Chinese"
@@ -3634,7 +3668,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L106
 msgid "Convert"
-msgstr ""
+msgstr "Chuyển đổi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L50
@@ -3647,11 +3681,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L28
 msgid "Useful tools"
-msgstr ""
+msgstr "Các công cụ hữu ích"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L32
 msgid "Tools"
-msgstr ""
+msgstr "Công cụ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L38
 msgid "Furigana autogeneration"
@@ -3667,13 +3701,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L58
 msgid "search all Chinese characters / kanjis by all possible methods."
-msgstr ""
+msgstr "tim kiếm mọi ký tự tiếng Trung / kanji bằng mọi phương pháp có thể."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L39
 msgid "Pinyin converter"
-msgstr ""
+msgstr "Trình chuyển đổi Pinyin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L72
 msgid ""
@@ -3682,7 +3716,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L80
 msgid "Chinese simplified/traditional conversion"
-msgstr ""
+msgstr "chuyển đổi giữa tiếng Trung Phồn thể - Giản thể"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L88
 msgid "convert traditional Chinese to simplified and vice versa"
@@ -3700,11 +3734,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L77
 msgid "Convert text from: "
-msgstr ""
+msgstr "Chuyển văn bản từ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L81
 msgid "Chinese characters"
-msgstr ""
+msgstr "Ký tự tiếng Trung"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L96
@@ -3713,7 +3747,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L92
 msgid "Convert text to: "
-msgstr ""
+msgstr "Chuyển văn bản sang:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L97
 msgid "diacritical pinyin"
@@ -3726,7 +3760,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
-msgstr ""
+msgstr "Công trạng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L48
 msgid ""
@@ -3751,73 +3785,73 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."
 msgid_plural "Please fix the following errors or press the Cancel button."
-msgstr[0] ""
+msgstr[0] "Xin hãy sửa các lỗi sau đây hoặc nhấn nút Huỷ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
 msgid "Edit profile"
-msgstr ""
+msgstr "Sửa tiểu sử"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L56
 msgid "Current picture"
-msgstr ""
+msgstr "Ảnh hiện tại"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L68
 msgid "Remove"
-msgstr ""
+msgstr "Xoá"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L78
 msgid "New picture"
-msgstr ""
+msgstr "Ảnh mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L93
 msgid "Upload"
-msgstr ""
+msgstr "Tải lên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L211
 msgid "Birthday"
-msgstr ""
+msgstr "Sinh nhật"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L209
 msgctxt "user"
 msgid "Name"
-msgstr ""
+msgstr "Tên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L210
 msgid "Country"
-msgstr ""
+msgstr "Quốc gia"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L212
 msgid "Homepage"
-msgstr ""
+msgstr "Trang chủ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L155
 msgid "Description"
-msgstr ""
+msgstr "Mô tả"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L168
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L187
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L242
 msgid "Save"
-msgstr ""
+msgstr "Lưu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L30
 msgid "Add language"
-msgstr ""
+msgstr "Thêm ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L32
 msgid "Edit language"
-msgstr ""
+msgstr "Sửa ngôn ngữ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L87
 msgid "What is your level?"
-msgstr ""
+msgstr "Trình độ của bạn?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L96
 msgid "Details (optional). For instance, which dialect or from which country."
@@ -3825,45 +3859,45 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L74
 msgid "Comments posted"
-msgstr ""
+msgstr "Bình luận đã được đăng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L76
 msgid "Sentences owned"
-msgstr ""
+msgstr "Các câu đã sở hữu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L78
 msgid "Sentences favorited"
-msgstr ""
+msgstr "Các câu đã thích"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L88
 msgid "Show latest activity"
-msgstr ""
+msgstr "Hiện hoạt gần đây nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L120
 msgid "Email notifications are ENABLED."
-msgstr ""
+msgstr "Thông báo qua email đã được BẬT"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L122
 msgid "Email notifications are DISABLED."
-msgstr ""
+msgstr "Thông báo qua email đã được TẮT"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L131
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr ""
+msgstr "Truy cập đến tiểu sử này được CÔNG KHAI. Mọi thông tin có thể được xem bởi mọi tất cả mọi người."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L136
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr ""
+msgstr "Truy cập đến tiểu sử này bị HẠN CHẾ. Chỉ thành viên Tatoeba mới có thể xem thông tin cá nhân và phần mô tả."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L240
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L126
 msgid "Member since"
-msgstr ""
+msgstr "Thành viên kể từ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L251
 msgid "Contributions blocked"
@@ -3871,245 +3905,250 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L267
 msgid "No description."
-msgstr ""
+msgstr "Không có mô tả."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L302
 msgid "No language added."
-msgstr ""
+msgstr "Không có ngôn ngữ nào được thêm."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L307
 msgid "TIP: We encourage you to indicate the languages you know."
-msgstr ""
+msgstr "MẸO: Chúng tôi khuyễn khích bạn chú trọng vào những ngôn ngữ mà bạn biết."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L310
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
-msgstr ""
+msgstr "MẸO: Khuyến khích người dùng này chú trọng vào ngôn ngữ anh ấy hoặc cô ấy biết."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L47
 msgid "Email notifications"
-msgstr ""
+msgstr "Thông báo email"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L54
 msgid "Set your profile public?"
-msgstr ""
+msgstr "Công khai tiểu sử của bạn?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L62
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default."
-msgstr ""
+msgstr "Nhớ danh sách mà bạn đã thêm câu và mặc định chọn nó."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L72
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations."
-msgstr ""
+msgstr "Hiển thị một liên kết để mở rộng / thu gọn bản dịch khi có quá nhiều bản dịch."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L81
 msgid "Always show transcriptions and alternative scripts"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L88
+msgid "Hide random sentence on the homepage"
+msgstr "Ẩn câu ngẫu nhiên trên trang chủ"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L102
 msgid ""
-"Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). "
-"Tatoeba will then only display translations in the languages you indicated. "
-"You can leave this empty to display translations in all languages."
+"Enter <a href=\"{url}\">ISO 639-3 codes</a>, separated with a comma (e.g.: "
+"jpn,epo,ara,deu). Tatoeba will then only display translations in the "
+"languages you indicated. You can leave this empty to display translations in"
+" all languages."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
 msgid "Languages"
-msgstr ""
+msgstr "Ngôn ngữ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L124
 msgid "Number of sentences per page"
-msgstr ""
+msgstr "Số câu mỗi trang"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L131
 msgid "Experimental options"
-msgstr ""
+msgstr "Tuỳ chọn thử nghiệm"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L136
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
-msgstr ""
+msgstr "Các tuỳ chọn trong mục này không hoàn toàn hoạt động, có thể không hoạt động cho mọi người và/hoặc đang được thử nghiệm. Chúng có thể thay đổi hoặc bị loại bỏ trong tương lai."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L148
 msgid ""
 "Advanced language selector. Note: this option is saved in your cookies so it"
 " will only apply for your current browser."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L159
 msgid ""
 "Activate the feature to rate sentences and build your collection of "
 "sentences."
-msgstr ""
+msgstr "Bật tính năng này để đánh giá câu và xây dựng bộ sưu tập câu của riêng bạn."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L169
 msgid ""
 "Display \"(native)\" next to username on sentences when the owner indicated "
 "in their profile that they have a native level in the language of the "
 "sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L180
 msgid "Display button to copy a sentence to the clipboard."
-msgstr ""
+msgstr "Hiện nút để sao chép câu vào clipboard."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L191
 msgid "Change email address"
-msgstr ""
+msgstr "Thay đổi địa chỉ email"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L202
 msgid "Email address"
-msgstr ""
+msgstr "Địa chỉ email"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L210
 msgid "Change password"
-msgstr ""
+msgstr "Thay mật khẩu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L224
 msgid "Old password"
-msgstr ""
+msgstr "Mật khẩu cũ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L231
 msgid "New password"
-msgstr ""
+msgstr "Mật khẩu mới"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L220
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L238
 msgid "New password again"
-msgstr ""
+msgstr "Nhập lại mật khẩu mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L38
 msgid "Members"
-msgstr ""
+msgstr "Thành viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L43
 msgid "Search user"
-msgstr ""
+msgstr "Tìm kiếm người dùng"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L54
 msgid "search"
-msgstr ""
+msgstr "tìm"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L76
 msgid "Members (total %count%)"
-msgstr ""
+msgstr "Thành viên (total %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L88
 msgid "Member status"
-msgstr ""
+msgstr "Trạng thái thành viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L38
 msgid "Members: {lang}"
-msgstr ""
+msgstr "Thành viên: {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L51
 msgid "Back to global stats"
-msgstr ""
+msgstr "Trở về thống kê toàn cầu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L74
 msgid "{total} member"
 msgid_plural "{total} members"
-msgstr[0] ""
+msgstr[0] "{total} thành viên"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L99
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
-msgstr[0] ""
+msgstr[0] "{lang} ({total} thành viên)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L41
 msgid "Send new password"
-msgstr ""
+msgstr "Gửi mật khẩu mới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L48
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L48
 msgid "Username:"
-msgstr ""
+msgstr "Tên người dùng:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L60
 msgid "Username already taken."
-msgstr ""
+msgstr "Tên người dùng đã được sử dụng."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L64
 msgid "Username must be at least two characters long"
-msgstr ""
+msgstr "Tên người dùng phải bao gồn ít nhất 2 ký tự"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L71
 msgid "Username can only contain letters, numbers, or underscore"
-msgstr ""
+msgstr "Tên người dùng có thể bao gồm chữ cái, số hoặc dấu gạch dưới"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
 msgid "Password:"
-msgstr ""
+msgstr "Mật khẩu:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
 msgid "unmask password"
-msgstr ""
+msgstr "hiện mật khẩu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L102
 msgid "Email address:"
-msgstr ""
+msgstr "Địa chỉ email:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L114
 msgid "Invalid email address"
-msgstr ""
+msgstr "Địa chỉ email không phù hợp"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L118
 msgid "Email address already used."
-msgstr ""
+msgstr "Địa chỉ email đã được sử dụng."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L129
 msgid "Native language:"
-msgstr ""
+msgstr "Ngôn ngữ bản địa:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L146
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
-msgstr ""
+msgstr "Nế như bạn không tìm thấy ngôn ngữ bản địa trong danh sách, hãy chọn \"Trống\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
 msgid "We need to make sure you are human."
-msgstr ""
+msgstr "Chúng tôi cần chắc chắn bạn là con người."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L163
 msgid "What are the first five characters of your email address?"
-msgstr ""
+msgstr "Năm ký tự đầu tiên trong địa chỉ email của bạn là gì?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L168
 msgid ""
 "For instance, if your email address is a.b.cd@example.com, type a.b.c into "
 "the box."
-msgstr ""
+msgstr "Ví dụ, nếu địa chỉ email của bạn là a.b.cd@example.com, hãy điền a.b.c vào chỗ trống."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L177
 msgid "I accept the <a href=\"{}\">terms of use</a>"
-msgstr ""
+msgstr "Tôi chấp nhận <a href=\"{}\">điều khoản sử dụng</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L23
 msgid "Tatoeba user: {username}"
-msgstr ""
+msgstr "Người dùng Tatoeba: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L61
 msgid "Latest sentences"
-msgstr ""
+msgstr "Câu mới nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L137
 msgid "view all"
-msgstr ""
+msgstr "xem tất cả"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L134
 msgid "Latest Wall messages"
-msgstr ""
+msgstr "Tin nhắn tường mới nhất"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
@@ -4118,7 +4157,7 @@ msgstr "Chỉnh sửa tin nhắn {number}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L49
 msgid "Menu"
-msgstr ""
+msgstr "Thực đơn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L53
@@ -4142,20 +4181,20 @@ msgstr "{date}, bởi {author}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L107
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
-msgstr ""
+msgstr "Bạn có thể viết bằng mọi ngôn ngữ mà bạn muốn, Trên Tatoeba, mọi ngôn ngữ đều bình đẳng."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] ""
+msgstr[0] "Tường ({n}&nbsp;threads)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
-msgstr ""
+msgstr "Tin nhắn tường của {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L50
 msgid "{user}'s messages on the Wall (total&nbsp;{n})"
-msgstr ""
+msgstr "Tin nhắn của {user} trên tường (total&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L40
 msgid "Thread #{number}"

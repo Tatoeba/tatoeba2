@@ -47,7 +47,12 @@ if ($tagExists) {
 
     <div id="main_content">
         <div class="module">
-            <h2><?php echo $tagName; ?></h2>
+            <h2><?php 
+            $n = $paginator->counter(array('format' => '%count%'));
+            echo format(
+                __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n, true), 
+                compact('tagName', 'n')
+            ); ?></h2>
             <?php
             $url = array($tagId, $langFilter);
             $pagination->display($url);

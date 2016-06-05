@@ -28,6 +28,13 @@ $(document).ready(function() {
         div.editable(rootUrl + '/sentences/edit_sentence', {
             type      : 'textarea',
             submit    : div.attr('data-submit'),
+            onsubmit  : function () {
+                if($(this).find('textarea').val().trim().length == 0){
+                    return false;
+                } else {
+                    return true;   
+                }
+            }, 
             cancel    : div.attr('data-cancel'),
             event     : 'edit_sentence',
             data : function(value, settings) {
@@ -53,9 +60,21 @@ $(document).ready(function() {
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'
         }).bind('edit_sentence', function(e) {
+            $(this).find('textarea').keyup(function(event) {
+                var submitBtn = $(this).parent().find('button[type=submit]');
+                if($(this).val().trim().length == 0) {
+                    submitBtn.prop('disabled', true);
+                }
+                else {
+                    submitBtn.prop('disabled', false);
+                }
+                
+            }); 
             $(this).find('textarea').keydown(function(event) {
-                if (event.which == 13)
-                    $(this).closest('form').submit();
+                if (event.which == 13){
+                    event.preventDefault();
+                    $(this).closest('form').submit();   
+                }
             });
         });
     });

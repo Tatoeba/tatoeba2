@@ -52,6 +52,8 @@ class SphinxConfShell extends Shell {
     public $charsetTable = array(
         # Ascii
         '0..9', 'a..z', '_', 'A..Z->a..z',
+        # Searchable symbols
+        '$',
         # Latin-1 Supplement, with case folding (0080-00FF)
         'U+C0..U+D6->U+E0..U+F6', 'U+D8..U+DE->U+F8..U+FE', 'U+E0..U+F6', 'U+F8..U+FF',
         # Latin extended-A, with case folding (0100-017F)
@@ -198,6 +200,11 @@ class SphinxConfShell extends Shell {
         'tha' => array('U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59'),
     );
 
+    public $regexpFilter = array(
+      '\$(\w+) => $ \1', 
+      '(\w+)\$ => \1 $' 
+    );
+
     public $indexExtraOptions = array();
 
     private $configs;
@@ -252,6 +259,11 @@ class SphinxConfShell extends Shell {
     // languages should be safe.
     private function conf_beginning() {
         $charset_table_opt = implode(", ", $this->charsetTable);
+        $regexp_filter = "";
+        foreach ($this->regexpFilter as $regex) {
+            $regexp_filter .= "    regexp_filter           = $regex\n";
+        }
+
         return <<<EOT
 source default
 {
@@ -271,6 +283,7 @@ index common_index
 {
     index_field_lengths     = 1
     ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7
+$regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
     docinfo                 = extern

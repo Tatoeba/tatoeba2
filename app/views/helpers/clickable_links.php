@@ -112,11 +112,13 @@ class ClickableLinksHelper extends AppHelper
     public function clickableSentence($text)
     {
         $self = $this;
+        $model = ClassRegistry::init('Sentence');
         $content = preg_replace_callback(
             $this::SENTENCE_ID_PATTERN, 
-            function ($m) use ($self) {
+            function ($m) use ($self, $model) {
                 return $m[1] . $self->Html->link($m[2],
-                    'https://'.$_SERVER['HTTP_HOST'].'/sentences/show/'.$m[3]
+                    'https://'.$_SERVER['HTTP_HOST'].'/sentences/show/'.$m[3],
+                    array('title' => $model->getSentenceTextForId($m[3]))
                 );
             }, $text);
 

@@ -35,19 +35,19 @@ $(document).ready(function() {
         });
     });
 
-    $("#editableCheckbox").change(function(){
-        var value = $(this).is(':checked') ? 'anyone' : 'creator';
+    $("input[name=editable_by]").change(function(){
+        var value = $(this).val();
         var listId = $(this).attr('data-list-id');
 
         $("#editableCheckbox").hide();
+
         $(".is-editable.loader-container").html(
             "<div class='loader loader-small'></div>"
         );
-
         setOption(listId, 'editable_by', value, function(data){
-            $("#editableCheckbox").show();
-            console.log(data);
-            $("#editableCheckbox").prop('checked', data["editable_by"] === "anyone");
+            $("input[name=editable_by][value="+value+"]").prop(
+                'checked', data["editable_by"] === value
+            );
             $(".is-editable.loader-container").html("");
         });
     });

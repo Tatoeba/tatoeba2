@@ -1,6 +1,8 @@
 Tatoeba
 =======
 
+[![Join the chat at https://gitter.im/Tatoeba/tatoeba2](https://badges.gitter.im/Tatoeba/tatoeba2.svg)](https://gitter.im/Tatoeba/tatoeba2?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This repository contains the source code of Tatoeba's website: 
 http://tatoeba.org. 
 
@@ -40,11 +42,12 @@ Need help?
 
 If you are stuck somewhere and can't figure out how to fix the problem(s) so 
 that you can run Tatoeba properly on your machine, don't hesitate to post a 
-message in our [Google group][5] or ask in our IRC channel (server: freenode, 
-channel: #tatoeba).
+message in our [Google group][5], ask in our [Gitter chatroom][6], or in our 
+IRC channel (server: freenode, channel: #tatoeba).
 
 [1]: https://github.com/Tatoeba/tatoeba2/wiki/Joining-the-dev-team
 [2]: https://github.com/Tatoeba/imouto
 [3]: https://github.com/Tatoeba/imouto/blob/master/README.md#imouto-for-development
 [4]: https://github.com/Tatoeba/tatoeba2/wiki/How-to-install-Tatoeba
 [5]: http://groups.google.com/group/tatoebaproject
+[6]: https://gitter.im/Tatoeba/tatoeba2?utm_source=share-link&utm_medium=link&utm_campaign=share-link

@@ -174,7 +174,8 @@ class SentencesListsController extends AppController
         $listId = $list['SentencesList']['id'];
         $listName = $list['SentencesList']['name'];
         $listVisibility = $list['SentencesList']['visibility'];
-        $isEditableByAnyone = $list['SentencesList']['editable_by'] == 'anyone';
+        $editableBy = $list['SentencesList']['editable_by'];
+        $isEditableByAnyone = $editableBy == 'anyone';
         $belongsToUser = CurrentUser::get('id') == $list['SentencesList']['user_id'];
 
         if ($listVisibility == 'private' && !$belongsToUser) {
@@ -200,7 +201,7 @@ class SentencesListsController extends AppController
         $this->set('listId', $listId);
         $this->set('listName', $listName);
         $this->set('listVisibility', $listVisibility);
-        $this->set('isEditableByAnyone', $isEditableByAnyone);
+        $this->set('editableBy', $editableBy);
         $this->set('belongsToUser', $belongsToUser);
         $this->set('canRemoveSentence', $belongsToUser || $isEditableByAnyone);
         $this->set('listCount', $thisListCount);

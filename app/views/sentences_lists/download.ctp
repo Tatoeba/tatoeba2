@@ -38,12 +38,12 @@
 $this->set('title_for_layout', $pages->formatTitle(__('Download list: ', true) . $listName));
 ?>
 <div id="annexe_content">
+    <?php $lists->displayListsLinks(); ?>
+
     <div class="module">
     <h2><?php __('Actions'); ?></h2>
     <ul class="sentencesListActions">
-    <?php 
-        $lists->displayBackToIndexLink(); 
-        
+    <?php       
         $lists->displayBackToListLink($listId); 
     ?>
     </ul>
