@@ -43,6 +43,7 @@
         // the name of the controller.
         
         // Generic
+        echo $html->css(CSS_PATH . 'angular-material.min.css');
         echo $html->css(CSS_PATH . 'layouts/default.css');
         echo $html->css(CSS_PATH . 'layouts/elements.css');
         
@@ -66,44 +67,13 @@
             </style>
         <?php }
 
-        // ---------------------- //
-        //      Javascript        //
-        // ---------------------- //
-        ?>
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script>window.jQuery || document.write('<script src="/js/jquery-1.11.3.min.js"><\/script>')</script>
-        <?php
-        echo $javascript->link(JS_PATH . 'generic_functions.js', true);
-        // Source: https://github.com/jonathantneal/svg4everybody
-        // This is needed to make "fill: currentColor" work on every browser.
-        echo $javascript->link(JS_PATH . 'svg4everybody.min.js', true);
-
-        // Enhanced dropdown for language selection
-        // It's needed on every page since it's used on the search bar
-        $isChosenSelectEnabled = $session->read('jquery_chosen');
-        if (CurrentUser::isMember() && $isChosenSelectEnabled)
-        {
-            echo $javascript->link(JS_PATH . 'chosen.jquery.min.js', true);
-            echo $javascript->codeBlock(
-                '$(document).ready(function(){'.
-                    '$(".language-selector").chosen({'.
-                        'inherit_select_classes: true,'.
-                        'search_contains: true,'. /* helps languages without spaces */
-                        'no_results_text: ' . json_encode(__('No language matches', true)).
-                    '});'.
-                '});',
-                array('allowCache' => false));  
-        }
-
-        echo $scripts_for_layout;
-        
         echo $this->element('seo_international_targeting');
     ?>
 
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
 </head>
-<body>
+<body ng-app="app">
     <div id="audioPlayer"></div>
     
     <!--  TOP  -->
@@ -160,13 +130,48 @@
     <!--  FOOT -->
     <?php
     echo $this->element('foot');
-    ?>
-    <?php echo $this->element('sql_dump'); ?>
+    echo $this->element('sql_dump');
 
-    <?php
+    echo $javascript->link(JS_PATH . 'jquery-1.11.3.min.js');
+    echo $javascript->link(JS_PATH . 'angular/angular.min.js');
+    echo $javascript->link(JS_PATH . 'angular/angular-animate.min.js');
+    echo $javascript->link(JS_PATH . 'angular/angular-aria.min.js');
+    echo $javascript->link(JS_PATH . 'angular/angular-material.min.js');
+    echo $javascript->link(JS_PATH . 'responsive/app.module.js');
+
+
+    echo $javascript->link(JS_PATH . 'generic_functions.js');
+    // Source: https://github.com/jonathantneal/svg4everybody
+    // This is needed to make "fill: currentColor" work on every browser.
+    echo $javascript->link(JS_PATH . 'svg4everybody.min.js');
+
     if (CurrentUser::getSetting('copy_button')) {
-        echo $javascript->link(JS_PATH . 'sentences.copy.js', true);
+        echo $javascript->link(JS_PATH . 'sentences.copy.js');
     }
+
+    // Enhanced dropdown for language selection
+    // It's needed on every page since it's used on the search bar
+    $isChosenSelectEnabled = $session->read('jquery_chosen');
+    if (CurrentUser::isMember() && $isChosenSelectEnabled)
+    {
+        echo $javascript->link(JS_PATH . 'chosen.jquery.min.js', true);
+        echo $javascript->codeBlock(
+            '$(document).ready(function(){'.
+            '$(".language-selector").chosen({'.
+            'inherit_select_classes: true,'.
+            'search_contains: true,'. /* helps languages without spaces */
+            'no_results_text: ' . json_encode(__('No language matches', true)).
+            '});'.
+            '});',
+            array('allowCache' => false));
+    }
+
+    if (Configure::read('Announcement.enabled')) {
+        echo $javascript->link(JS_PATH . 'jquery.cookie.js');
+        echo $javascript->link(JS_PATH . 'announcement.js');
+    }
+
+    echo $scripts_for_layout;
 
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', array('cache' => true));
