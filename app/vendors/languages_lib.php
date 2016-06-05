@@ -536,6 +536,7 @@ class LanguagesLib
                 'bar' => __d('languages', 'Bavarian', true),
                 'tzl' => __d('languages', 'Talossan', true),
                 'sgs' => __d('languages', 'Samogitian', true),
+                'dws' => __d('languages', 'Dutton World Speedwords',true),
             );
         }
         return $languages;
