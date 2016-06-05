@@ -51,8 +51,8 @@ class ContributionsStats extends AppModel
 
             $startTimestamp = mktime(0, 0, 0, intval($month), 1, intval($year));
             $endTimestamp = mktime(0, 0, 0, intval($month)+1, 1, intval($year));
-            $startDate = date('Y-m', $startTimestamp);
-            $endDate = date('Y-m', $endTimestamp);
+            $startDate = date('Y-m-d', $startTimestamp);
+            $endDate = date('Y-m-d', $endTimestamp);
 
         }
 
@@ -65,7 +65,7 @@ class ContributionsStats extends AppModel
                     'date',
                 ),
                 'conditions' => array(
-                    'date >' => $startDate,
+                    'date >=' => $startDate,
                     'date <' => $endDate,
                     'type' => 'sentence',
                     'action' => 'insert',

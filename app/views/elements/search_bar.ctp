@@ -30,7 +30,7 @@ if (isset($this->params['lang'])) {
 }
 ?>
 
-<div class="search_bar">
+<md-toolbar class="search_bar md-whiteframe-1dp md-primary">
 <?php
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
@@ -119,15 +119,12 @@ echo $form->create(
 </fieldset>
 
 <fieldset class="submit">
-    <?php
-    echo $form->button(
-        $images->svgIcon('search'),
-        array('class' => 'search-submit-button')
-    );
-    ?>
+    <md-button type="submit" class="search-submit-button md-raised">
+        <md-icon>search</md-icon>
+    </md-button>
 </fieldset>
 
 <?php
 echo $form->end();
 ?>
-</div>
+</md-toolbar>

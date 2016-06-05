@@ -230,17 +230,18 @@ class ListsHelper extends AppHelper
      */
     public function displayDownloadLink($listId)
     {
-        echo $this->Html->link(
-            __('Download this list', true),
+        $url = $this->Html->url(
             array(
                 "controller" => "sentences_lists",
                 "action" => "download",
                 $listId
-            ),
-            array(
-                'class' => 'button download'
             )
         );
+        ?>
+        <md-button class="md-raised md-primary" href="<?= $url ?>">
+            <?php __('Download this list'); ?>
+        </md-button>
+        <?php
     }
 
 
@@ -349,18 +350,21 @@ class ListsHelper extends AppHelper
 
     public function displayDeleteButton($listId)
     {
-        echo $this->Html->link(
-            __('Delete this list', true),
+        $url = $this->Html->url(
             array(
                 "controller" => "sentences_lists",
                 "action" => "delete",
                 $listId
-            ),
-            array(
-                'class' => 'delete button'
-            ),
-            __('Are you sure?', true)
+            )
         );
+        $confirmation = __('Are you sure?', true);
+        ?>
+        <md-button type="submit" class="md-raised md-warn"
+                   href="<?= $url; ?>"
+                   onclick="return confirm('<?= $confirmation; ?>');">
+            <?php __('Delete this list'); ?>
+        </md-button>
+        <?php
     }
 
 

@@ -38,17 +38,16 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
             'We are collecting sentences and their translations. '.
             'You can help us by translating or adding new sentences.', true
         ));
-        echo $html->link(
-            __('Join the community', true),
+        $registerUrl = $html->url(
             array(
-                'controller' => 'users',
-                'action' => 'register'
-            ),
-            array(
-                'class' => 'registerLink'
+                "controller" => "users",
+                "action" => "register"
             )
-        )
+        );
         ?>
+        <md-button class="md-raised md-primary" href="<?= $registerUrl; ?>">
+            <?php __('Join the community'); ?>
+        </md-button>
     </div>
 
     <div class="module stats">

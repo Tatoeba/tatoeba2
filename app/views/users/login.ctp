@@ -73,8 +73,12 @@ echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
 ?>
 </div>
 
+<md-button type="submit" class="md-raised">
+    <?php __('Log in'); ?>
+</md-button>
+
 <?php
-echo $form->end(__('Log in',true));
+echo $form->end();
 $security->disableCSRFProtection();
 ?>
 
@@ -92,15 +96,17 @@ echo $html->link(
 </div>
 
 
-<div id="ClickHereToRegister">
-<?php
-echo $html->link(
-    __('Register',true),
-    array(
-        "controller" => "users",
-        "action" => "register"
-    ),
-    array("class"=>"registerLink")
+<div layout="row" layout-align="center center">
+    <?php
+    $registerUrl = $html->url(
+        array(
+            "controller" => "users",
+            "action" => "register"
+        )
     );
-?>
+    ?>
+    <md-button class="md-raised md-primary" href="<?= $registerUrl; ?>">
+        <?php __('Register'); ?>
+    </md-button>
 </div>
+

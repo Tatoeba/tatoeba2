@@ -16,6 +16,43 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
 /*
  * Language selection dropdowns
  */
@@ -53,7 +90,7 @@ a img {
 }
 
 a {
-    color: #66AA00;
+    color: #4caf50;
     text-decoration: none;
 }
 
@@ -73,7 +110,7 @@ h2 {
     margin: 5px;
     border-radius: 4px;
     color: #fff;
-    background: #6A0;
+    background: #4caf50;
 }
 
 .titleAnnexeLink:hover {
@@ -290,8 +327,6 @@ rt {
  */
 
 .search_bar {
-    color: #FFFFFF;
-    background-color: #66AA00;
     position: relative;
 }
 
@@ -375,32 +410,15 @@ rt {
 }
 
 .search_bar .search-submit-button {
-    color: #1d1d1d;
     cursor: pointer;
-    background-image: linear-gradient(to bottom, #F1F1F1, #d1d1d1);
+    margin-bottom: 0;
+    margin-right: 0;
     width: 70px;
-    height: 30px;
-    border: 1px solid #477700;
-    border-radius: 2px;
-    padding: 2px 0 4px 0; /* Fix Chrome bogus bottom margin */
+    min-width: 0;
 }
 
-.search_bar .search-submit-button:hover {
-    background-image: linear-gradient(to bottom, #d8d8d8, #bcbcbc);
-    border-color: #406b00;
-}
-
-.search_bar .search-submit-button:active {
-    background: #bcbcbc;
-}
-
-.search-submit-button svg {
-    display: block;
-    margin: auto;
-    width: 17px;
-    height: 17px;
-    vertical-align: middle;
-    padding-top: 2px;
+.search_bar .search-submit-button.md-raised:hover {
+    background-color: #DDDDDD;
 }
 
 .search-bar-extra {
@@ -739,4 +757,16 @@ rt {
 .announcement a {
     color: #FFD800;
     border-radius: 2px;
+}
+
+/*
+ * Angular Material override
+ */
+
+md-toolbar {
+    transition: none;
+}
+
+.md-button {
+    padding: 0 10px;
 }

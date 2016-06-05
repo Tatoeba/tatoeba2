@@ -27,7 +27,7 @@
 ?>
 
 <div class="topContent">
-    <div class="descriptionBar">
+    <md-toolbar class="md-whiteframe-1dp md-primary">
         <div class="container">
             <div class="description">
                 <strong>
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </md-toolbar>
 
     <div class="container">
         <!-- Search -->
@@ -122,12 +122,9 @@
             </fieldset>
 
             <fieldset class="submit">
-                <?php
-                echo $form->button(
-                    $images->svgIcon('search'),
-                    array('class' => 'search-submit-button')
-                );
-                ?>
+                <md-button type="submit" class="search-submit-button md-raised md-primary">
+                    <md-icon>search</md-icon>
+                </md-button>
             </fieldset>
 
 

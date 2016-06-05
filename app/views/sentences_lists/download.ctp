@@ -140,9 +140,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download list: ', true) .
             <td></td>
             
             <td>
-            <?php
-            echo $form->submit(__('Download',true));
-            ?>
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('Download'); ?>
+                </md-button>
             </td>
             
             <td>

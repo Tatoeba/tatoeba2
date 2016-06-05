@@ -64,10 +64,11 @@ $this->Languages->localizedAsort($countries);
         );
 
         if (!empty($this->data['User']['image'])) {
-            $removeButton = $form->button(
-                __('Remove', true), array('class' => 'delete button')
-            );
-            echo $html->div('buttons', $removeButton);
+            ?>
+            <md-button type="submit" class="md-raised md-warn">
+                <?php __('Remove'); ?>
+            </md-button>
+            <?php
         }
 
         echo $form->end();
@@ -88,12 +89,11 @@ $this->Languages->localizedAsort($countries);
             )
         );
         echo $form->file('image');
-
-        $uploadButton = $form->button(
-            __('Upload', true), array('class' => 'submit button')
-        );
-        echo $html->div('buttons', $uploadButton);
-
+        ?>
+        <md-button type="submit" class="md-raised md-primary">
+            <?php __('Upload'); ?>
+        </md-button>
+        <?php
         echo $form->end();
         ?>
     </div>
@@ -162,10 +162,14 @@ $this->Languages->localizedAsort($countries);
             'dir' => 'auto',
         )
     );
+    ?>
+    <div layout="row" layout-align="end center" layout-padding>
+        <md-button type="submit" class="md-raised md-primary">
+            <?php __('Save'); ?>
+        </md-button>
+    </div>
 
-    $saveButton = $form->button(__('Save', true), array('class' => 'button submit'));
-    echo $html->div('save-button', $saveButton);
-
+    <?php
     echo $form->end()
     ?>
     </div>

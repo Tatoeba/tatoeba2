@@ -183,7 +183,10 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             </div>
         </fieldset>
 
-        <?php echo $form->end(__('Save', true)); ?>
+        <md-button type="submit" class="md-raised md-primary">
+            <?php __('Save'); ?>
+        </md-button>
+        <?php echo $form->end(); ?>
     </div>
 
     
@@ -202,7 +205,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                 'label' => __('Email address', true)
             )
         );
-        echo $form->end(__('Save', true));
+        ?>
+        <md-button type="submit" class="md-raised md-primary">
+            <?php __('Save'); ?>
+        </md-button>
+        <?php
+        echo $form->end();
         ?>
     </div>
     
@@ -239,7 +247,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                 "type" => "password"
             )
         );
-        echo $form->end(__('Save', true));
+        ?>
+        <md-button type="submit" class="md-raised md-primary">
+            <?php __('Save'); ?>
+        </md-button>
+        <?php
+        echo $form->end();
         ?>
     </div>
 </div>
