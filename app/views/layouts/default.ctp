@@ -146,6 +146,7 @@
     echo $javascript->link(JS_PATH . 'svg4everybody.min.js');
 
     if (CurrentUser::getSetting('copy_button')) {
+        echo $javascript->link(JS_PATH . 'clipboard.min.js');
         echo $javascript->link(JS_PATH . 'sentences.copy.js');
     }
 
