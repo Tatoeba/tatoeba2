@@ -90,7 +90,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
     } else {
         ?>
-        
+
         <h2>
             <?php 
             echo $paginator->counter(
