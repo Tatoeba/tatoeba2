@@ -135,7 +135,7 @@ if (empty($notTranslatedInto)) {
 
         <h3><?php __('Display random sentences'); ?></h3>
         <?php
-        $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
+        $numberOfSentencesWanted = array (10 => 10 , 20 => 20 , 50 => 50, 100 => 100);
         $selectedLanguage = $session->read('random_lang_selected');
         echo $form->create(
             'Sentence',

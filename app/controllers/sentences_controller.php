@@ -1027,8 +1027,8 @@ class SentencesController extends AppController
 
         $type = null ;
         // to avoid "petit malin"
-        if ( $number > 15 or $number < 1) {
-            $number = 5 ;
+        if ( $number > 100 or $number < 10) {
+            $number = 10 ;
         }
 
         $this->Session->write('random_lang_selected', $lang);

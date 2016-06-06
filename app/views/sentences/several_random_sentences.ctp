@@ -43,7 +43,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
         __("Just keep in mind that our server is not as fast as you ;-)");
         echo '</p>';
 
-        $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
+        $numberOfSentencesWanted = array (10 => 10 , 20 => 20 , 50 => 50, 100 => 100);
         $selectedLanguage = $session->read('random_lang_selected');
         
         echo $form->create(
