@@ -89,8 +89,12 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         echo $html->link(__('Go back to previous page', true), $backLink);
 
     } else {
+        
+        
         ?>
 
+
+        
         <h2>
             <?php 
             echo $paginator->counter(
@@ -100,6 +104,15 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             ); 
             ?>
         </h2>
+        
+                        <div class="sortBy">
+            <strong><?php __("Sort by:") ?> </strong>
+            <?php
+            echo $this->Paginator->sort(__('date modified', true), 'modified');
+            echo " | ";
+            echo $this->Paginator->sort(__('date created', true), 'created');
+            ?>
+        </div>
         
         <?php
         $paginationUrl = array($userName, $lang);
