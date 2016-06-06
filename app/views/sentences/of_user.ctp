@@ -101,7 +101,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             ?>
         </h2>
         
-                        <div class="sortBy">
+        <div class="sortBy">
             <strong><?php __("Sort by:") ?> </strong>
             <?php
             echo $this->Paginator->sort(__('date modified', true), 'modified');
