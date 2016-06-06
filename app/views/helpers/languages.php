@@ -445,6 +445,7 @@ class LanguagesHelper extends AppHelper
                 'lang' => LanguagesLib::languageTag($lang, $script),
                 'dir'  => $direction,
                 'escape' => true,
+                'ng-non-bindable' => ''
             ),
             $options
         );
