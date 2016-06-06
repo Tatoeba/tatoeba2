@@ -89,11 +89,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         echo $html->link(__('Go back to previous page', true), $backLink);
 
     } else {
-        
-        
         ?>
-
-
         
         <h2>
             <?php 
