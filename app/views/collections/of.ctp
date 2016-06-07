@@ -111,7 +111,18 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 'format' => $title . ' ' . __("(total %count%)", true)
             ));
             echo $html->tag('h2', $title);
-
+        ?>
+        <div class="sortBy">
+            <strong><?php __("Sort by:") ?> </strong>
+            <?php 
+            echo $this->Paginator->sort(__("date modified",true), 'modified');
+            echo " | ";
+            echo $this->Paginator->sort(__("date created",true), 'created');
+            echo " | ";
+            echo $this->Paginator->sort(__("sentence id",true), 'sentence_id');
+            ?>
+        </div>
+        <?php
             $paginationUrl = array($username, $correctnessLabel, $lang);
             $pagination->display($paginationUrl);
 

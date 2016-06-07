@@ -79,7 +79,8 @@ class UsersSentences extends AppModel
             'contain' => array(
                 'Sentence' => array('id', 'lang', 'text', 'correctness')
             ),
-            'limit' => 50
+            'limit' => 50,
+            'order' => 'modified DESC'
         );
 
         return $result;
