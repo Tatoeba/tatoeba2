@@ -127,7 +127,9 @@ if (empty($notTranslatedInto)) {
             </fieldset>
 
             <fieldset class="submit">
-            <input type="submit" value="<?php __('show sentences'); ?>"/>
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('show sentences'); ?>
+                </md-button>
             </fieldset>
             <?php echo $form->end(); ?>
         </div>
@@ -174,7 +176,9 @@ if (empty($notTranslatedInto)) {
         </fieldset>
 
         <fieldset class="submit">
-        <input type="submit" value="<?php __('show random sentences'); ?>"/>
+            <md-button type="submit" class="md-raised md-primary">
+                <?php __('show random sentences'); ?>
+            </md-button>
         </fieldset>
 
         <?php echo $form->end();?>

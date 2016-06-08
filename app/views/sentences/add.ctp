@@ -27,7 +27,7 @@
 
 $this->set('title_for_layout', $pages->formatTitle(__('Add sentences', true)));
 
-echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
+$javascript->link(JS_PATH . 'sentences.contribute.js', false);
 ?>
 
 <div id="annexe_content">

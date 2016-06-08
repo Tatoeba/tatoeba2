@@ -106,7 +106,7 @@ class PrivateMessagesHelper extends AppHelper
             ?>
             </div>
 
-            <div class="content">
+            <div class="textarea">
             <?php
             if ($content != null) {
                 $content = $this->formatReplyMessage($content, $recipients);
@@ -123,8 +123,11 @@ class PrivateMessagesHelper extends AppHelper
             );
             ?>
             </div>
-
-            <?php echo $this->Form->submit(__('Send', true)); ?>
+            <div layout="row" layout-align="end center" layout-padding>
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('Send'); ?>
+                </md-button>
+            </div>
         </div>
 
         <?php

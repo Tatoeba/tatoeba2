@@ -78,7 +78,7 @@ class CommentsHelper extends AppHelper
         </div>
 
         <div class="body">
-            <div class="content">
+            <div class="textarea">
             <?php
             echo $this->Form->textarea(
                 'text',
@@ -91,9 +91,11 @@ class CommentsHelper extends AppHelper
             ?>
             </div>
 
-            <?php
-            echo $this->Form->submit(__('Submit comment', true));
-            ?>
+            <div layout="row" layout-align="end center" layout-padding>
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('Submit comment'); ?>
+                </md-button>
+            </div>
         </div>
         <?php
         echo $this->Form->end();
@@ -177,31 +179,30 @@ class CommentsHelper extends AppHelper
         ?>
 
         <div class="body">
-            <div class="content">
+            <div class="textarea">
             <?php
             echo $this->Form->textarea('SentenceComment.text');
             ?>
             </div>
 
             <?php
-            $cancelLink = $this->Html->link(
-                __('Cancel', true),
+            $cancelUrl = $this->Html->url(
                 array(
                     "controller" => "sentences",
                     "action" => "show",
                     $message['sentence_id']."#comment-".$message['id']
-                ),
-                array(
-                    "class" => "cancel_edit"
-                )
-            );
-            echo $this->Form->submit(
-                __('Save changes', true),
-                array(
-                    "before" => $cancelLink
                 )
             );
             ?>
+            <div layout="row" layout-align="end center" layout-padding>
+                <md-button class="md-raised" href="<?= $cancelUrl; ?>">
+                    <?php __('Cancel'); ?>
+                </md-button>
+
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('Save changes'); ?>
+                </md-button>
+            </div>
         </div>
         <?php
         echo $this->Form->end();

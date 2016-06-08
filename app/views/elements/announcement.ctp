@@ -26,9 +26,6 @@
  */
 
 if (Configure::read('Announcement.enabled')) {
-    echo $javascript->link(JS_PATH . 'jquery.cookie.js');
-    echo $javascript->link(JS_PATH . 'announcement.js');
-
     $announcementId = 'looking-for-desingers';
     $announcementText = '<p>Tatoeba needs help to re-design the website to be 
         mobile-friendly! If you have experience in UI/UX design, please contact 

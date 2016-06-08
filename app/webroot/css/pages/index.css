@@ -50,14 +50,6 @@
 /*
  * Tatoeba short description
  */
-.topContent {
-}
-
-.topContent .descriptionBar {
-    background: #6A0;
-    color: #FFF;
-}
-
 .topContent .description {
     padding: 50px 10px;
 }
@@ -109,12 +101,10 @@
 }
 
 #new-search-bar .search-submit-button {
-    color: #ffffff;
     cursor: pointer;
-    background: #66AA00;
-    width: 70px;
-    height: 44px;
-    border: 1px solid #66AA00;
+    width: 60px;
+    min-width: 0;
+    height: 42px;
     border-radius: 2px;
 }
 

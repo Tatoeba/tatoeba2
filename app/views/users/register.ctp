@@ -184,8 +184,12 @@ echo $form->input('acceptation_terms_of_use', array(
 ?>
 </div>
 
+<div layout="row" layout-align="center center">
+    <md-button type="submit" class="md-raised md-primary">
+        <?php __('Register'); ?>
+    </md-button>
+</div>
 <?php
-echo $form->submit(__('Register',true), array('class' => 'registerLink'));
 echo $form->end();
 $security->disableCSRFProtection();
 ?>

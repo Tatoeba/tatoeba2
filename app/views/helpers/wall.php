@@ -76,21 +76,22 @@ class WallHelper extends AppHelper
         </div>
 
         <div class="body">
-            <div class="content">
+            <div class="textarea">
             <?php
             echo $this->Form->textarea('content', array('lang' => '', 'dir' => 'auto'));
             echo $this->Form->hidden('replyTo', array('value'=>"" ));
             ?>
             </div>
 
-            <?php
-            echo $this->Form->submit(
-                __('Send', true),
-                array(
-                    "before" => '<a class="cancelFormLink" >' . __("cancel", true) . '</a>'
-                )
-            );
-            ?>
+            <div layout="row" layout-align="end center" layout-padding>
+                <md-button type="submit" class="cancelFormLink md-raised">
+                    <?php __('Cancel'); ?>
+                </md-button>
+
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('Send'); ?>
+                </md-button>
+            </div>
         </div>
         
         <?php
@@ -130,28 +131,28 @@ class WallHelper extends AppHelper
         ?>
 
         <div class="body">
-            <div class="content">
+            <div class="textarea">
             <?php echo $this->Form->textarea('content'); ?>
             </div>
 
             <?php
-            $cancelLink = $this->Html->link(
-                __("Cancel", true),
+            $cancelUrl = $this->Html->url(
                 array(
                     "action" => "show_message",
                     "{$message['Wall']['id']}#message_{$message['Wall']['id']}"
-                ),
-                array(
-                    "class" => "cancel_edit"
-                )
-            );
-            echo $this->Form->submit(
-                __("submit", true),
-                array(
-                    "before" => $cancelLink
                 )
             );
             ?>
+            <div layout="row" layout-align="end center" layout-padding>
+                <md-button class="md-raised" href="<?= $cancelUrl; ?>">
+                    <?php __('Cancel'); ?>
+                </md-button>
+
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('Save changes'); ?>
+                </md-button>
+            </div>
+
         </div>
         
         <?php

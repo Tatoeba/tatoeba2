@@ -88,17 +88,20 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <h2><?php __('Actions'); ?></h2>
     <?php
     $lists->displayTranslationsDropdown($listId, $translationsLang);
-
-    if ($belongsToUser) {
-        $lists->displayDeleteButton($listId);
-    }
-
-    if ($canDownload) {
-        $lists->displayDownloadLink($listId);
-    } else {
-        echo $downloadMessage;
-    }
     ?>
+    <div layout="column" layout-align="end center" layout-padding>
+        <?php
+        if ($belongsToUser) {
+            $lists->displayDeleteButton($listId);
+        }
+
+        if ($canDownload) {
+            $lists->displayDownloadLink($listId);
+        } else {
+            echo $downloadMessage;
+        }
+        ?>
+    </div>
     </div>
     
 </div>

@@ -99,37 +99,47 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         echo $form->textarea('details');
 
         // Buttons
-        echo '<div class="buttons">';
-        if (!empty($this->data)) {
-            echo $html->link(
-                __('Delete', true),
+        ?>
+        <div layout="row" layout-align="end center">
+            <?php
+            if (!empty($this->data)) {
+                $deleteUrl = $html->url(
+                    array(
+                        'controller' => 'users_languages',
+                        'action' => 'delete',
+                        $this->data['UsersLanguages']['id']
+                    )
+                );
+                $confirmation = __('Are you sure?', true);
+                ?>
+                <md-button type="submit" class="md-raised md-warn"
+                           href="<?= $deleteUrl; ?>"
+                           onclick="return confirm('<?= $confirmation; ?>');">
+                    <?php __('Delete this list'); ?>
+                </md-button>
+                <?php
+            }
+
+            $cancelUrl = $html->url(
                 array(
-                    'controller' => 'users_languages',
-                    'action' => 'delete',
-                    $this->data['UsersLanguages']['id']
-                ),
-                array('class' => 'delete button'),
-                __('Are you sure?', true)
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $username
+                )
             );
-        }
+            ?>
+            <md-button class="md-raised" href="<?= $cancelUrl; ?>">
+                <?php __('Cancel'); ?>
+            </md-button>
 
-        echo $html->link(
-            __('Cancel', true),
-            array(
-                'controller' => 'user',
-                'action' => 'profile',
-                $username
-            ),
-            array('class' => 'cancel button')
-        );
+            <md-button type="submit" class="md-raised md-primary">
+                <?php __('Submit translation'); ?>
+            </md-button>
+        </div>
 
-        echo $form->button(
-            $submitLabel,
-            array('class' => 'submit button')
-        );
-        echo '</div>';
-
+        <?php
         echo $form->end();
         ?>
+
     </div>
 </div>

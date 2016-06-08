@@ -313,7 +313,7 @@ class MessagesHelper extends AppHelper
      */
     private function _displayBody($content, $sentence, $hidden, $authorId)
     {
-        ?><div class="body"><?php
+        ?><div class="body" ng-non-bindable><?php
         if (!empty($sentence)) {
             $this->_displaySentence($sentence);    
         }
