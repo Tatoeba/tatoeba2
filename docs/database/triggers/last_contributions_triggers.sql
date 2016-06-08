@@ -70,3 +70,26 @@ END;
 |
 delimiter ;
 
+-- create the trigger
+DROP TRIGGER IF EXISTS update_lang_in_last_contributions ;
+delimiter |
+CREATE TRIGGER update_lang_in_last_contributions AFTER UPDATE ON contributions
+FOR EACH ROW BEGIN
+  IF NEW.type = "sentence" THEN
+
+    -- The following code may cause problems in future if there are
+    -- columns, in the last_contributions table, that would 
+    -- be expected to be updated.
+    --
+    -- The code below only updates the sentence_lang column, 
+    -- ignoring other columns. Worryingly, this behaviour may have to 
+    -- change according to future issues in the GitHub issue tracker.
+    UPDATE last_contributions
+      SET sentence_lang=NEW.sentence_lang
+      WHERE sentence_id=OLD.sentence_id;
+
+  END IF;
+
+END;
+|
+delimiter ;
