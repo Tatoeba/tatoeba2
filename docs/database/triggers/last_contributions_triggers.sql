@@ -70,3 +70,19 @@ END;
 |
 delimiter ;
 
+-- create the trigger
+DROP TRIGGER IF EXISTS update_lang_in_last_contributions ;
+delimiter |
+CREATE TRIGGER update_lang_in_last_contributions AFTER UPDATE ON contributions
+FOR EACH ROW BEGIN
+  IF NEW.type = "sentence" THEN
+
+    UPDATE last_contributions
+      SET sentence_lang=NEW.sentence_lang
+      WHERE sentence_id=OLD.sentence_id;
+
+  END IF;
+
+END;
+|
+delimiter ;
