@@ -53,6 +53,14 @@ if ($tagExists) {
                 __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n, true), 
                 compact('tagName', 'n')
             ); ?></h2>
+            
+            <div class="sortBy">
+                <strong><?php __("Sort by:") ?></strong>
+                <?php
+                echo $this->Paginator->sort(__("date of tag", true), 'added_time');
+                ?>
+            </div>
+
             <?php
             $url = array($tagId, $langFilter);
             $pagination->display($url);
