@@ -107,7 +107,7 @@ $(document).ready(function(){
             sendMessageForm.attr("id" , "replyForm_" + currentMessageId  ); 
             sendMessageForm.attr("method","");
             sendMessageForm.attr("action","");
-            sendMessageForm.find('.submit').attr("class" , "submit ajaxSubmit"); 
+            sendMessageForm.find('.submit').addClass("ajaxSubmit");
             
             // note to myself
             // use append instead of  .html(previous + "") because the previous code will be unbound by jquery

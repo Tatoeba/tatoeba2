@@ -88,7 +88,7 @@ class WallHelper extends AppHelper
                     <?php __('Cancel'); ?>
                 </md-button>
 
-                <md-button type="submit" class="md-raised md-primary">
+                <md-button type="submit" class="md-raised md-primary submit">
                     <?php __('Send'); ?>
                 </md-button>
             </div>
