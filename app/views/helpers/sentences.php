@@ -354,10 +354,6 @@ class SentencesHelper extends AppHelper
                 'dir' => 'auto',
             )
         );
-        ?>
-
-        <div layout="row" layout-align="start center">
-        <?php
 
         // language select
         echo '<div class="languageSection">';
@@ -396,18 +392,16 @@ class SentencesHelper extends AppHelper
         echo '</div>';
         ?>
 
-        <span flex></span>
+        <div layout="row" layout-align="end center">
+            <md-button id="<?php echo '_'.$id.'_cancel'; ?>"
+                       class="md-raised">
+                <?php __('Cancel'); ?>
+            </md-button>
 
-        <md-button id="<?php echo '_'.$id.'_cancel'; ?>"
-                   class="md-raised">
-            <?php __('Cancel'); ?>
-        </md-button>
-
-        <md-button id="<?php echo '_'.$id.'_submit'; ?>"
-                   class="md-raised md-primary">
-            <?php __('Submit translation'); ?>
-        </md-button>
-
+            <md-button id="<?php echo '_'.$id.'_submit'; ?>"
+                       class="md-raised md-primary">
+                <?php __('Submit translation'); ?>
+            </md-button>
         </div>
 
         </div>
