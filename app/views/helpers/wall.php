@@ -288,8 +288,8 @@ class WallHelper extends AppHelper
                 $children
             );
         }
-        ?></div><?php ?>
-
+        ?></div>
+        <?php echo "<md-progress-circular id='loader_" . $messageId ."' class='block-loader' style='display: none;'></md-progress-circular>"; ?>
         </div>
     <?php
     }

@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 $(document).ready(function(){
+    
     var lang = $("#randomLangChoice").val();
     if (lang == null) {
         lang = '';
@@ -30,6 +30,16 @@ $(document).ready(function(){
 });
 
 function loadRandom(lang){
-    $(".random_sentences_set").html("<div class='block-loader loader'></div>");
-    $(".random_sentences_set").load("/sentences/random/" + lang);
+    $("#random-progress").show();
+    $("#random_sentence_display").hide();
+    
+    $.ajax({
+      type: "GET",
+      url: "/sentences/random/" + lang,
+      success: function (data){ 
+          $("#random_sentence_display").html(data);
+          $("#random-progress").hide();
+          $("#random_sentence_display").show();
+          }
+    });
 }

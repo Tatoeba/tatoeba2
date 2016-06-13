@@ -18,7 +18,6 @@
 
 
 $(document).ready(function(){
-
     var sentenceDictionary = new Array();
     $('.sentenceContent').each(function(){
         var key = $(this).attr("data-sentence-id");
@@ -40,7 +39,13 @@ $(document).ready(function(){
         if(favoriteOption.parent().hasClass("favorite-page")){
             requestUrl += "/true"; 
         }
-        favoriteOption.html("<div class='loader-small loader'></div>");
+        if(favoriteOption.parent().hasClass("favorite-page")){
+            favoriteOption.hide();
+            var loader = favoriteOption.parent().find(".option.favorite.progress");
+            loader.show();    
+        } else {
+            $("#_" + favoriteId + "_in_process").show();
+        }
         $.post(requestUrl, {}, function(data) {
             if(favoriteOption.parent().hasClass("favorite-page")){
                 if(favoriteOption.hasClass("remove")){
@@ -57,7 +62,15 @@ $(document).ready(function(){
                     favoriteOption.parent().parent().find(".lang.column").css("display", "");
                 }
             }
+            
+            if(favoriteOption.parent().hasClass("favorite-page")){
+                loader.hide();
+                favoriteOption.show();     
+            } else {
+               $("#_" + favoriteId + "_in_process").hide();
+            }
             favoriteOption.replaceWith(data);
+            
         });
     });
 

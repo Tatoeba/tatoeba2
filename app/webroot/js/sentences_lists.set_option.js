@@ -23,15 +23,13 @@ $(document).ready(function() {
         var value = $(this).val();
         var listId = $(this).attr('data-list-id');
 
-        $(".is-public.loader-container").html(
-            "<div class='loader loader-small'></div>"
-        );
+        $(".is-public.loader-container").show();
 
         setOption(listId, 'visibility', value, function(data){
             $("input[name=visibility][value="+value+"]").prop(
                 'checked', data["visibility"] === value
             );
-            $(".is-public.loader-container").html("");
+            $(".is-public.loader-container").hide();
         });
     });
 
@@ -41,14 +39,12 @@ $(document).ready(function() {
 
         $("#editableCheckbox").hide();
 
-        $(".is-editable.loader-container").html(
-            "<div class='loader loader-small'></div>"
-        );
+        $(".is-editable.loader-container").show();
         setOption(listId, 'editable_by', value, function(data){
             $("input[name=editable_by][value="+value+"]").prop(
                 'checked', data["editable_by"] === value
             );
-            $(".is-editable.loader-container").html("");
+            $(".is-editable.loader-container").hide();
         });
     });
 

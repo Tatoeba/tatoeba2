@@ -132,7 +132,7 @@ $javascript->link(JS_PATH . 'sentences.contribute.js', false);
         <h2><?php __('Sentences added'); ?></h2>
         
         <div class="sentencesAddedloading" style="display:none">
-        <?php echo $this->Html->div('block-loader loader', ''); ?>
+        <md-progress-circular md-mode="indeterminate" class="block-loader"></md-progress-circular>
         </div>
         
         <div id="sentencesAdded">

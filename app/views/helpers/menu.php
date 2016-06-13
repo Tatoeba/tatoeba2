@@ -198,19 +198,19 @@ class MenuHelper extends AppHelper
             if ($withRemoveAndUndo){
                 $image = 'clear';
             } else {
-                $image = 'favorite-remove';   
-            }           
+                $image = 'favorite-remove';
+            }
             $tooltip = __('Remove from favorites', true);
         } else {
             $type = 'add';
             if($withRemoveAndUndo){
-                $image = 'undo';  
+                $image = 'undo';
                 $tooltip = __('Undo', true);
             } else {
                 $image = 'favorite-add';
-                $tooltip = __('Add to favorites', true);                
+                $tooltip = __('Add to favorites', true);
             }
-            
+
         }
 
         $favoriteImage = $this->Images->svgIcon(
@@ -645,10 +645,7 @@ class MenuHelper extends AppHelper
 
         <li>
         <?php
-        echo $this->Html->div('loader-small loader', '', array(
-            'id' => '_'.$sentenceId.'_in_process',
-            'style' => 'display:none',
-        ));
+        echo "<md-progress-circular  md-diameter='16' style='display: none;' id='_" . $sentenceId ."_in_process'></md-progress-circular>";
         echo $this->Html->image(
             IMG_PATH . 'valid_16x16.png',
             array(

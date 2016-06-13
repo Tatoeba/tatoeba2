@@ -39,9 +39,8 @@ $(document).ready(function(){
     function saveMessage(){
         var messageContent = $("#replyFormDiv_" + previousReplyFormInMessageID ).find("textarea").val();
         
-        $("#replyFormDiv_" + previousReplyFormInMessageID ).html(
-            "<div class='block-loader loader'></div>"
-        );
+        $("#loader_" + previousReplyFormInMessageID).show();
+        $("#replyFormDiv_" + previousReplyFormInMessageID ).hide();
         
         var rootUrl = get_tatoeba_root_url();
         
@@ -56,6 +55,8 @@ $(document).ready(function(){
                 // alert ("already exist") ; 
                 // we remove the previous inside reply form 
                 $("#replyFormDiv_" + previousReplyFormInMessageID ).remove();
+                $("#loader_" + previousReplyFormInMessageID).hide();
+                $("#replyFormDiv_" + previousReplyFormInMessageID ).show();
                 previousReplyFormInMessageID = -1 ;        
             }
             , "html"
