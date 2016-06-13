@@ -32,6 +32,8 @@ if ($folder == 'Inbox') {
     $folderName = __('Sent', true);
 } elseif ($folder == 'Trash') {
     $folderName = __('Trash', true);
+} elseif ($folder == 'Drafts') {
+    $folderName = __('Drafts', true);
 }
 
 $this->set('title_for_layout', $pages->formatTitle(
@@ -70,17 +72,24 @@ echo $this->element('pmmenu');
 
             /* Used to display properly the name of the sender, or receiver
              * while we are in Sent or other folder.
-             * NOTA: the caps to the word 'Sent' is IMPORTANT.
+             * NOTE: the caps to the word 'Sent' is IMPORTANT.
              */
-            if ($folder != 'Sent') {
-                $user = $msg['Sender'];
-                $label = format(__('from {sender}', true), array('sender' => $user['username']));
-            } else {
+            if ($folder == 'Sent') {
                 $user = $msg['Recipient'];
                 $label = format(__('to {recipient}', true), array('recipient' => $user['username']));
+            } elseif ($folder == 'Drafts' || $msg['PrivateMessage']["draft_recpts"] != '') {
+                $user = null;
+                $label = format(__('Draft', true));
+            } else {
+                $user = $msg['Sender'];
+                $label = format(__('from {sender}', true), array('sender' => $user['username']));
             }
             echo '<td class="senderImage">';
-            $messages->displayAvatar($user);
+            if ($user) {
+                $messages->displayAvatar($user);
+            } else {
+                $messages->displayUnknownAvatar('Recipient not set.');
+            }
             echo '</td>';
 
             if ($msg['PrivateMessage']['title'] == '') {
@@ -88,14 +97,24 @@ echo $this->element('pmmenu');
             } else {
                 $messageTitle = $msg['PrivateMessage']['title'];
             }
-            
+
             echo '<td>';
-                $url = $html->url(
-                    array(
-                        'action' => 'show',
-                        $msg['PrivateMessage']['id']
-                    )
-                );
+                if ($folder == 'Drafts') {
+                    $url = $html->url(
+                        array(
+                            'action' => 'write',
+                            'none',
+                            $msg['PrivateMessage']['id']
+                        )
+                    );
+                } else {
+                    $url = $html->url(
+                        array(
+                            'action' => 'show',
+                            $msg['PrivateMessage']['id']
+                        )
+                    );
+                }
                 // Title
                 echo '<a class="linkToMessage" href="'.$url.'">';
                 echo $this->Languages->tagWithLang(

@@ -207,53 +207,78 @@ class MessagesHelper extends AppHelper
 
 
     /**
-     * Author avatar.
-     * 
+     * Display author avatar.
      *
+     * @param array  $author [author info]
      */
     public function displayAvatar($author)
     {
         $image = $author['image'];
+
         $username = $author['username'];
+
+        if ($username) {
+            $this->displayUserAvatar($image, $username);
+        } else {
+            $this->displayUnknownAvatar();
+        }
+    }
+
+    /**
+     * Display the user avatar.
+     *
+     * @param  string $image    [user image name]
+     * @param  string $username
+     */
+    public function displayUserAvatar($image, $username)
+    {
         if (empty($image)) {
             $image = 'unknown-avatar.png';
         }
 
         ?><div class="avatar"><?php
-        if ($username) {
-            echo $this->Html->link(
-                $this->Html->image(
-                    IMG_PATH . 'profiles_36/'. $image,
-                    array(
-                        'alt' => $username,
-                        'title' => __("View this user's profile", true),
-                        'width' => 36,
-                        'height' => 36
-                    )
-                ),
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $username
-                ),
-                array('escape' => false)
-            );
-        } else {
-            echo $this->Html->image(
+        echo $this->Html->link(
+            $this->Html->image(
                 IMG_PATH . 'profiles_36/'. $image,
                 array(
-                    'alt' => __('Former member', true),
+                    'alt' => $username,
+                    'title' => __("View this user's profile", true),
                     'width' => 36,
-                    'height' => 36,
+                    'height' => 36
                 )
-            );
-        }
+            ),
+            array(
+                'controller' => 'user',
+                'action' => 'profile',
+                $username
+            ),
+            array('escape' => false)
+        );
+        ?></div><?php
+    }
+
+    /**
+     * Display the default, unknown avatar.
+     *
+     * @param  string $alt [Alt text for avatar]
+     */
+    public function displayUnknownAvatar($alt = 'Former member')
+    {
+        ?><div class="avatar"><?php
+        echo $this->Html->image(
+            IMG_PATH . 'profiles_36/unknown-avatar.png',
+            array(
+                'alt' => __($alt, true),
+                'width' => 36,
+                'height' => 36,
+            )
+        );
         ?></div><?php
     }
 
     /**
      * Message menu (show, edit, delete, etc).
-     * 
+     *
      *
      */
     private function _displayMenu($menu)

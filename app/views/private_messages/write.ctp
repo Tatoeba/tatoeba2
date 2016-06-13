@@ -50,7 +50,11 @@ echo $this->element('pmmenu');
          );
          echo "</p>";
          echo "<br/>";
-         $privateMessages->displayForm($recipients);
+        if (isset($messageId)) {
+            $privateMessages->displayForm($recipients, $title, $content, $messageId);
+        } else {
+            $privateMessages->displayForm($recipients);
+        }
      } else if ($isNewUser) {
          echo "<p>";
              __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
@@ -67,7 +71,11 @@ echo $this->element('pmmenu');
              );
          echo "</p>";
      } else {
-         $privateMessages->displayForm($recipients);
+        if (isset($messageId)) {
+            $privateMessages->displayForm($recipients, $title, $content, $messageId);
+        } else {
+            $privateMessages->displayForm($recipients);
+        }
      }
      ?>
     </div>

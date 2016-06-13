@@ -77,7 +77,7 @@ class PrivateMessagesController extends AppController
         $conditions = array('folder' => $folder);
         if ($folder == 'Inbox') {
             $conditions['recpt'] = $currentUserId;
-        } else if ($folder == 'Sent') {
+        } else if ($folder == 'Sent' || $folder == 'Drafts') {
             $conditions['sender'] = $currentUserId;
         } else if ($folder == 'Trash') {
             $conditions['user_id'] = $currentUserId;
@@ -126,29 +126,46 @@ class PrivateMessagesController extends AppController
      */
     public function send()
     {
-        if (!empty($this->data['PrivateMessage']['recpt'])
-            && !empty($this->data['PrivateMessage']['content'])
-        ) {
-            $currentUserId = $this->Auth->user('id');
+        if ($this->_isIncompleteDraft($this->data['PrivateMessage'])) {
+            $this->_redirectIncomplete(
+                'You must fill at least the content field.'
+            );
+        } elseif ($this->_isIncomplete($this->data['PrivateMessage'])) {
+            $this->_redirectIncomplete(
+                'You must fill at least the "To" field and the content field.'
+            );
+        }
 
-            //Remember new users are not allowed to send more than 5 messages per day
-            $messagesTodayOfUser
-                = $this->PrivateMessage->messagesTodayOfUser($currentUserId);
-            if (CurrentUser::isNewUser() && $messagesTodayOfUser >= 5) {
-                $this->Session->setFlash(
-                    __(
-                        "You have reached your message limit for today. ".
-                        "Please wait until you can send more messages. ".
-                        "If you have received this message in error, ".
-                        "please contact administrators at ".
-                        "team@tatoeba.org.",
-                        true
-                    )
-                );
-                $this->redirect(array('action' => 'folder', 'Sent'));
-            }
+        $currentUserId = $this->Auth->user('id');
 
-            $now = date("Y/m/d H:i:s", time());
+        //Remember new users are not allowed to send more than 5 messages per day
+        $messagesTodayOfUser
+            = $this->PrivateMessage->messagesTodayOfUser($currentUserId);
+        if (CurrentUser::isNewUser() && $messagesTodayOfUser >= 5) {
+            $this->Session->setFlash(
+                __(
+                    "You have reached your message limit for today. ".
+                    "Please wait until you can send more messages. ".
+                    "If you have received this message in error, ".
+                    "please contact administrators at ".
+                    "team@tatoeba.org.",
+                    true
+                )
+            );
+            $this->redirect(array('action' => 'folder', 'Sent'));
+        }
+
+        $now = date("Y/m/d H:i:s", time());
+
+        if ($this->data['PrivateMessage']['submitType'] === 'saveDraft') {
+            $this->PrivateMessage->saveDraft(
+                $currentUserId,
+                $now,
+                $this->data
+            );
+
+            $this->redirect(array('action' => 'folder', 'Drafts'));
+        } else {
             $messageToSend = array(
                 'sender'    => $currentUserId,
                 'date'      => $now,
@@ -163,59 +180,99 @@ class PrivateMessagesController extends AppController
                 'folder'    => 'Sent',
                 'isnonread' => 0,
             ));
-
-            $recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
-
-            // loop to send msg to different dest.
-            foreach ($recptArray as $recpt) {
-
-                $recpt = trim($recpt);
-                $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
-                $recptSettings = $this->PrivateMessage->User->getSettings($recptId);
-
-                // we send the msg only if the user exists.
-                if ($recptId) {
-                    $message = $messageToSend;
-                    $message['recpt'] = $recptId;
-                    $message['user_id'] = $recptId;
-                    $this->PrivateMessage->save($message);
-                    if ($recptSettings['User']['send_notifications']) {
-                        $this->Mailer->sendPmNotification(
-                            $message, $this->PrivateMessage->id
-                        );
-                    }
-                    $this->PrivateMessage->id = null;
-
-                    // we need to save the msg to our outbox folder of course.
-                    $message = $messageToSave;
-                    $message['recpt'] = $recptId;
-                    $this->PrivateMessage->save($message);
-                    $this->PrivateMessage->id = null;
-                } else {
-                    $this->Session->setFlash(
-                        format(
-                            __(
-                                'The user {username} to whom you want to send this message '.
-                                'does not exist. Please try with another '.
-                                'username.',
-                                true
-                            ),
-                            array('username' => $recpt)
-                        )
-                    );
-                    $this->redirect(array('action' => 'write'));
-                }
-            }
-            $this->redirect(array('action' => 'folder', 'Sent'));
-        } else {
-            $this->Session->setFlash(
-                __(
-                    'You must fill at least the "To" field and the content field.',
-                    true
-                )
-            );
-            $this->redirect(array('action' => 'write'));
         }
+
+        if ($this->data['PrivateMessage']['messageId']) {
+            $messageToSend['id'] = $this->data['PrivateMessage']['messageId'];
+        }
+
+        $recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
+
+        // loop to send msg to different dest.
+        foreach ($recptArray as $recpt) {
+
+            $recpt = trim($recpt);
+            $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
+            $recptSettings = $this->PrivateMessage->User->getSettings($recptId);
+
+            // we send the msg only if the user exists.
+            if ($recptId) {
+                $message = $messageToSend;
+                $message['recpt'] = $recptId;
+                $message['user_id'] = $recptId;
+                $message['draft_recpts'] = '';
+                $message['sent'] = 1;
+                $this->PrivateMessage->save($message);
+                if ($recptSettings['User']['send_notifications']) {
+                    $this->Mailer->sendPmNotification(
+                        $message, $this->PrivateMessage->id
+                    );
+                }
+                $this->PrivateMessage->id = null;
+
+                // we need to save the msg to our outbox folder of course.
+                $message = $messageToSave;
+                $message['recpt'] = $recptId;
+                $message['draft_recpts'] = '';
+                $message['sent'] = 1;
+                $this->PrivateMessage->save($message);
+                $this->PrivateMessage->id = null;
+            } else {
+                $this->Session->setFlash(
+                    format(
+                        __(
+                            'The user {username} to whom you want to send this message '.
+                            'does not exist. Please try with another '.
+                            'username.',
+                            true
+                        ),
+                        array('username' => $recpt)
+                    )
+                );
+                $this->redirect(array('action' => 'write'));
+            }
+        }
+        $this->redirect(array('action' => 'folder', 'Sent'));
+    }
+
+    /**
+     * Private message is draft and content is empty.
+     *
+     * @param  array  $message [Private message submitted by user]
+     *
+     * @return boolean
+     */
+    private function _isIncompleteDraft($message)
+    {
+        return empty($message['content'])
+            && $message['submitType'] == 'saveDraft';
+    }
+
+    /**
+     * Private message recipient or content are empty and message is not draft.
+     *
+     * @param  array  $message [Private message submitted by user]
+     *
+     * @return boolean
+     */
+    private function _isIncomplete($message)
+    {
+        return (empty($message['recpt']) || empty($message['content']))
+            && $message['submitType'] != 'saveDraft';
+    }
+
+    /**
+     * Set flash message with error and redirect back to write.
+     *
+     * @param  string $error [Flash message to set]
+     */
+    private function _redirectIncomplete($error)
+    {
+        $this->Session->setFlash(
+            __($error, true)
+        );
+
+        $this->redirect(array('action' => 'write'));
     }
 
     /**
@@ -254,7 +311,6 @@ class PrivateMessagesController extends AppController
             $this->PrivateMessage->save($pm);
         }
 
-
         $folder =  $pm['PrivateMessage']['folder'];
         $title = $pm['PrivateMessage']['title'];
         $message = $this->_getMessageFromPm($pm['PrivateMessage']);
@@ -267,7 +323,6 @@ class PrivateMessagesController extends AppController
         $this->set('message', $message);
         $this->set('folder', $folder);
     }
-
 
     /**
      * @param array $privateMessage Private message info.
@@ -399,18 +454,20 @@ class PrivateMessagesController extends AppController
      */
     public function restore($messageId)
     {
-
         $messageId = Sanitize::paranoid($messageId);
 
         $message = $this->PrivateMessage->findById($messageId);
 
         if ($message['PrivateMessage']['recpt'] == $this->Auth->user('id')) {
             $folder = 'Inbox';
+        } elseif ($message['PrivateMessage']['sent'] == false) {
+            $folder = 'Drafts';
         } else {
             $folder = 'Sent';
         }
 
         $message['PrivateMessage']['folder'] = $folder;
+
         $this->PrivateMessage->save($message);
         $this->redirect(array('action' => 'folder', $folder));
     }
@@ -448,7 +505,7 @@ class PrivateMessagesController extends AppController
      *
      * @return void
      */
-    public function write($recipients = null)
+    public function write($recipients = null, $messageId = null)
     {
         $this->helpers[] = "PrivateMessages";
         
@@ -466,11 +523,33 @@ class PrivateMessagesController extends AppController
         $this->set('canSend', $canSend);
         $this->set('isNewUser', $isNewUser);
 
-        if ($recipients == null) {
-            $recipients = '';
-        }
+        $pm = $this->PrivateMessage->getMessageWithId($messageId);
 
-        $this->set('recipients', $recipients);
+        if ($messageId) {
+            $messageId = Sanitize::paranoid($messageId);
+
+            $senderId = $pm['PrivateMessage']['sender'];
+
+            if ($senderId != $userId) {
+                $this->redirect(
+                    array(
+                        'action' => 'folder',
+                        'Drafts'
+                    )
+                );
+            }
+
+            $this->set('recipients', $pm['PrivateMessage']['draft_recpts']);
+            $this->set('title', $pm['PrivateMessage']['title']);
+            $this->set('content', $pm['PrivateMessage']['content']);
+            $this->set('messageId', $messageId);
+        } else {
+            if ($recipients == null) {
+                $recipients = '';
+            }
+
+            $this->set('recipients', $recipients);
+        }
     }
 
     /**
