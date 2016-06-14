@@ -736,21 +736,22 @@
 /*
  * Pagination
  */
+
 .paging {
     margin: 20px 0;
     text-align: center;
 }
 
 .paging a {
-    padding: 3px 5px;
-    margin: 2px;
-    background: #D3F3B9;
-    color: #257D0C;
+    padding: 5px 8px;
+    margin: 3px;
+    background: #EEEEEE;
+    color: #757575;
 }
 
 .paging a:hover {
-    background: #257D0C;
-    color: white;
+    background: #E0E0E0;
+    color: #757575;
 }
 
 .paging .disabled {
@@ -758,20 +759,29 @@
     padding: 3px 5px;
     margin: 3px;
     background: #EEE;
+    color: #BDBDBD;
 }
 
 .paging .current {
-    padding: 3px 5px;
+    padding: 5px 8px;
     margin: 3px;
-    background: #9FD374;
-    color: white;
+    background: #66AA00;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
 .paging .numbers {
     padding: 0 10px;
+    font-size: 10.5pt;
 }
 
+a.prev {
+    background: #FFFFFF;
+}
+
+a.next {
+   background: #FFFFFF;
+}
 
 /*
  * --------------------------------------------------------------------

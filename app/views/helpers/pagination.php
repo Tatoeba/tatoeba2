@@ -93,27 +93,25 @@ class PaginationHelper extends AppHelper
             // the largest numbers (for example, when we're near the
             // end of the list of English sentences).
             'modulus' => 6,
-            'class' => 'pageNumber'
+            'class' => 'pageNumber',
+            'first' => 1,
+            'last' => 1,
+            'ellipsis' => 'more_horiz'
         );
         ?>
         <div class="paging">
-            <?php
-            $first = $this->Paginator->first(
-                '<<',
-                array('title' => __('First page', true))
-            );
-            if (empty($first)) {
-                $first = '<span class="disabled">&lt;&lt;</span>';
-            }
-            echo $first;
+ 
+           <?php
 
             echo $this->Paginator->prev(
-                '<',
+                'keyboard_arrow_left',
                 // @translators Appears on “previous page” links
                 // mouseover. Keyboard shortcut is between brackets.
-                array('title' => __('Previous page [Ctrl+←]', true)),
+                array('title' => __('Previous page [Ctrl+←]', true),
+                  'tag' => 'md-icon'),
                 null,
-                array('class' => 'disabled')
+                array('class' => 'material-icons disabled',
+                  'tag' => 'md-icon')
             );
             ?>
 
@@ -123,22 +121,17 @@ class PaginationHelper extends AppHelper
 
             <?php
             echo $this->Paginator->next(
-                '>',
+                'keyboard_arrow_right',
                 // @translators Appears on “next page” links
                 // mouseover. Keyboard shortcut is between brackets.
-                array('title' => __('Next page [Ctrl+→]', true)),
+                array('title' => __('Next page [Ctrl+→]', true),
+                  'tag' => 'md-icon'),
                 null,
-                array('class' => 'disabled')
+                array('class' => 'material-icons disabled',
+                  'tag' => 'md-icon')
             );
 
-            $last = $this->Paginator->last(
-                '>>',
-                array('title' => __('Last page', true))
-            );
-            if (empty($last)) {
-                $last = '<span class="disabled">&gt;&gt;</span>';
-            }
-            echo $last;
+
             ?>
         </div>
         <?php
