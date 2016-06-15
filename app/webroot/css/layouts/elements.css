@@ -742,14 +742,14 @@
     text-align: center;
 }
 
-.paging a {
+.numbers a {
     padding: 5px 8px;
     margin: 3px;
     background: #EEEEEE;
     color: #757575;
 }
 
-.paging a:hover {
+.numbers a:hover {
     background: #E0E0E0;
     color: #757575;
 }
@@ -765,7 +765,7 @@
 .paging .current {
     padding: 5px 8px;
     margin: 3px;
-    background: #66AA00;
+    background: #4caf50;
     color: #FFFFFF;
     font-weight: bold;
 }
