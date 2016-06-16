@@ -54,12 +54,6 @@
 }
 
 /*
- * Language selection dropdowns
- */
-
-@import url(chosen.css);
-
-/*
  * Generic rules
  */
 body, select, input, textarea, button {
@@ -438,48 +432,6 @@ rt {
 
 .search-bar-extra a:before {
     content: '▸ ';
-}
-
-/*
- * Language dropdown customization. Overrides rules from chosen.css.
- */
-
-/* Colors that better fits Tatoeba's style */
-.search_bar .chosen-container {
-    color: #000000; /* Avoid white on white */
-}
-.chosen-container {
-    padding: 1px 0 0 0;
-}
-.chosen-container .chosen-results li.highlighted {
-    background: #86BF5E none;
-}
-/* Smaller margins, paddings etc. */
-.chosen-container-single .chosen-single {
-    height: 20px;
-    line-height: 21px;
-    padding: 0 0 0 6px;
-}
-.chosen-container-single .chosen-single span {
-    margin-right: 14px;
-}
-.chosen-container-single .chosen-single div {
-    width: 14px;
-}
-.chosen-container .chosen-results {
-    margin: 0;
-    padding: 0;
-}
-.chosen-container-single .chosen-search {
-    margin: 0;
-    padding: 0;
-}
-.chosen-container-single .chosen-search input[type="text"] {
-    border-style: solid none;
-    margin: 0;
-}
-.chosen-container .chosen-results li {
-    padding: 3px 4px;
 }
 
 

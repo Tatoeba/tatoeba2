@@ -142,17 +142,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             ?>
 
             <div>
-                <?php echo $form->checkbox('jquery_chosen'); ?>
-                <label for="UserJqueryChosen">
-                    <?php __(
-                        'Advanced language selector. Note: this '.
-                        'option is saved in your cookies so it will only apply '.
-                        'for your current browser.'
-                    ); ?>
-                </label>
-            </div>
-
-            <div>
                 <?php echo $form->checkbox('settings.users_collections_ratings'); ?>
                 <label for="UserSettingsUsersCollections">
                     <?php __(

@@ -150,23 +150,6 @@
         echo $javascript->link(JS_PATH . 'sentences.copy.js');
     }
 
-    // Enhanced dropdown for language selection
-    // It's needed on every page since it's used on the search bar
-    $isChosenSelectEnabled = $session->read('jquery_chosen');
-    if (CurrentUser::isMember() && $isChosenSelectEnabled)
-    {
-        echo $javascript->link(JS_PATH . 'chosen.jquery.min.js', true);
-        echo $javascript->codeBlock(
-            '$(document).ready(function(){'.
-            '$(".language-selector").chosen({'.
-            'inherit_select_classes: true,'.
-            'search_contains: true,'. /* helps languages without spaces */
-            'no_results_text: ' . json_encode(__('No language matches', true)).
-            '});'.
-            '});',
-            array('allowCache' => false));
-    }
-
     if (Configure::read('Announcement.enabled')) {
         echo $javascript->link(JS_PATH . 'jquery.cookie.js');
         echo $javascript->link(JS_PATH . 'announcement.js');
