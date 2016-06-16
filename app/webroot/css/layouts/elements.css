@@ -731,42 +731,54 @@
 /*
  * Pagination
  */
+
 .paging {
     margin: 20px 0;
     text-align: center;
 }
 
-.paging a {
-    padding: 3px 5px;
-    margin: 2px;
-    background: #D3F3B9;
-    color: #257D0C;
+.numbers a {
+    padding: 5px 8px;
+    margin: 3px;
+    background: #EEEEEE;
+    color: #757575;
 }
 
-.paging a:hover {
-    background: #257D0C;
-    color: white;
+.numbers a:hover {
+    background: #E0E0E0;
+    color: #757575;
 }
 
 .paging .disabled {
-    display: inline;
-    padding: 3px 5px;
-    margin: 3px;
+
     background: #EEE;
+    color: #BDBDBD;
 }
 
 .paging .current {
-    padding: 3px 5px;
+    padding: 5px 8px;
     margin: 3px;
-    background: #9FD374;
-    color: white;
+    background: #4caf50;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
 .paging .numbers {
     padding: 0 10px;
+    font-size: 10.5pt;
 }
 
+a.prev {
+    background: none;
+}
+
+a.next {
+   background: none;
+}
+
+md-icon.disabled.material-icons {
+   background: none;
+}
 
 /*
  * --------------------------------------------------------------------
