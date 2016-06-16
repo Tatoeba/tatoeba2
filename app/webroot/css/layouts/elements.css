@@ -755,9 +755,7 @@
 }
 
 .paging .disabled {
-    display: inline;
-    padding: 3px 5px;
-    margin: 3px;
+
     background: #EEE;
     color: #BDBDBD;
 }
@@ -776,15 +774,15 @@
 }
 
 a.prev {
-    background: #FFFFFF;
+    background: none;
 }
 
 a.next {
-   background: #FFFFFF;
+   background: none;
 }
 
 md-icon.disabled.material-icons {
-   background: #FFFFFF;
+   background: none;
 }
 
 /*

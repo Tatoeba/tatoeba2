@@ -75,7 +75,8 @@ class PaginationHelper extends AppHelper
         $this->Paginator->options(array('url' => $extramParams));
         // -----------------------------------------------------------
 
-
+        $numberFirstLinks = 1;
+        $numberLastLinks = 1;
         $numbersOptions = array(
             'separator' => '',
             // Print up to 6/2 = 3 numbered links in rectangles on each side
@@ -94,9 +95,8 @@ class PaginationHelper extends AppHelper
             // end of the list of English sentences).
             'modulus' => 6,
             'class' => 'pageNumber',
-            'first' => 1,
-            'last' => 1,
-            'ellipsis' => 'more_horiz'
+            'first' => $numberFirstLinks,
+            'last' => $numberLastLinks,
         );
         ?>
         <div class="paging">
