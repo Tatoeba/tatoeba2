@@ -55,8 +55,27 @@ class ListsHelper extends AppHelper
      */
     public function displayListTable($arrayOfLists)
     {
+		//Do not display the table if there is nothing to display
+        if(count($arrayOfLists) == 0){
+	        return; 
+        }
         ?>
-        <table class="listIndex">
+        <table class="listIndex noNameMinLength">
+             <tr class="listSummary noBorder">
+                 <td></td>
+                 <td></td>
+                <td class="date createdDate">
+                     <?php
+                     echo __('created', true);
+                     ?>
+                </td>
+                <td class="date lastUpdatedDate">
+                    <?php
+                     echo __('last updated', true);
+                     ?>
+                </td>
+                <td></td>
+            </tr>
         <?php
         foreach ($arrayOfLists as $list) {
             $this->displayRow(
@@ -64,6 +83,7 @@ class ListsHelper extends AppHelper
                 $list['SentencesList']['name'],
                 $list['User']['username'],
                 $list['SentencesList']['created'],
+                $list['SentencesList']['modified'],
                 $list['SentencesList']['numberOfSentences'],
                 $list['SentencesList']['visibility'],
                 $list['SentencesList']['editable_by']
@@ -91,6 +111,7 @@ class ListsHelper extends AppHelper
         $listName,
         $listCreatorName,
         $createdDate,
+        $modifiedDate,
         $count = 0,
         $visibility = 'private',
         $editableBy = 'creator'
@@ -148,20 +169,35 @@ class ListsHelper extends AppHelper
                 )
             );
             echo format(__('created by {listAuthor}', true),
-                        array('listAuthor' => $link));
-            ?>
+                         array('listAuthor' => $link));
+            
+             ?>
+             </div>
+         </td>
+
+         <td>
+            <div class='createdDate'>
+                <?php
+                 echo $this->Html->tag(
+                    'span',
+                    $this->Date->ago($createdDate),
+                    array(
+                        'class' => 'date'
+                    )
+                );
+            ?> 
             </div>
         </td>
-
-        <td class="date">
-            <?php
-            echo $this->Html->tag(
-                'span',
-                $this->Date->ago($createdDate),
-                array(
-                    'class' => 'date'
-                )
-            );
+         <td class="date lastUpdatedDate">
+             <?php
+             echo $this->Html->tag(
+                 'span',
+                 $this->Date->ago($createdDate),
+                 $this->Date->ago($modifiedDate),
+                 array(
+                     'class' => 'date'
+                 )
+             );
             ?>
         </td>
 

@@ -81,8 +81,19 @@ class SentencesSentencesLists extends AppModel
             'sentence_id' => $sentenceId,
             'sentences_list_id' => $listId
         );
-
+        $tmp = $this->belongsTo;
+        /**
+         * We have to temporarily remove the relation at least to sentence_list
+         * CakePHP will automatically (left) join the associated tables for the deletion process
+         * MySQL currently does not support altering the table with a trigger if the 
+         * query firing the trigger itself was already accessing the table in question
+         * 
+         * As there is no need to join the relations during the deletion, we
+         * may skip them as well. Furthermore, this will be faster. 
+         */
+        $this->belongsTo = null;
         $isDeleted = $this->deleteAll($conditions, false);
+        $this->belongsTo = $tmp;
 
         return $isDeleted;
     }
