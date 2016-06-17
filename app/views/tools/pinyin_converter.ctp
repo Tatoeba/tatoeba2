@@ -74,33 +74,37 @@ if (!isset($lastText)) {
         </p>
         <p>
             <?php
-            __('Convert text from: ');
-            echo $form->radio(
-                'from',
-                array(
-                    'chinese' => __('Chinese characters', true),
-                    'numPinyin' => __('numerical pinyin', true),
-                ),
-                array(
-                    'legend' => ''
-                )
-            );
+            if(empty($this->data['Tool']['from'])){
+                $this->data['Tool']['from'] = 'chinese';
+            }
             ?>
+            <input type="radio" name="data[Tool][from]" value="{{tool.from}}" checked hidden ng-init="tool.from = '<?= $this->data['Tool']['from'] ?>'"/>
+            <legend><?= __('Convert text from: '); ?></legend>
+            <md-radio-group ng-model='tool.from' class='md-primary'>
+                <md-radio-button value='chinese'>
+                    <?= __('Chinese characters', true) ?>
+                </md-radio-button>
+                <md-radio-button value='numPinyin' class='md-primary'>
+                    <?= __('numerical pinyin', true) ?>
+                </md-radio-button>  
+            </md-radio-group>
         </p>
         <p>
             <?php
-            __('Convert text to: ');
-            echo $form->radio(
-                'to',
-                array(
-                    'numPinyin' => __('numerical pinyin', true),
-                    'diacPinyin' => __('diacritical pinyin', true),
-                ),
-                array(
-                    'legend' => ''
-                )
-            );
+            if(empty($this->data['Tool']['to'])){
+                $this->data['Tool']['to'] = 'numPinyin';
+            }
             ?>
+            <input type="radio" name="data[Tool][to]" value="{{tool.to}}" checked hidden ng-init="tool.to = '<?= $this->data['Tool']['to'] ?>'"/>
+            <legend><?= __('Convert text to: '); ?></legend>
+            <md-radio-group ng-model='tool.to'>
+                <md-radio-button value='numPinyin' class='md-primary'>
+                    <?= __('numerical pinyin', true) ?>
+                </md-radio-button>
+                <md-radio-button value='diacPinyin' class='md-primary'>
+                    <?=  __('diacritical pinyin', true) ?>
+                </md-radio-button>  
+            </md-radio-group>
         </p>
         <?php echo $form->end(__('Convert', true)); ?>
     </div>

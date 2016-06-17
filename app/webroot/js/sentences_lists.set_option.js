@@ -16,45 +16,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-$(document).ready(function() {
-
-    $("input[name=visibility]").change(function(){
-        var value = $(this).val();
-        var listId = $(this).attr('data-list-id');
-
-        $(".is-public.loader-container").show();
-
-        setOption(listId, 'visibility', value, function(data){
-            $("input[name=visibility][value="+value+"]").prop(
-                'checked', data["visibility"] === value
-            );
-            $(".is-public.loader-container").hide();
-        });
+ (function(){
+    angular.module('app').controller('optionsCtrl', function ($scope){
+        
+        $scope.visibilityChanged = function () {
+            
+            $(".is-public.loader-container").show();
+            var listId = $("input[name=visibility]").attr('data-list-id');
+            var rootUrl = get_tatoeba_root_url();
+            $.post(
+                rootUrl + "/sentences_lists/set_option/",
+                { "listId": listId, "option": "visibility", "value": $scope.visibility },
+                function () {$(".is-public.loader-container").hide();}
+            ); 
+            
+        };
+        
+        $scope.editableChanged = function () {
+            $(".is-editable.loader-container").show();
+            var listId = $("input[name=editable_by]").attr('data-list-id');
+            var rootUrl = get_tatoeba_root_url();
+            $.post(
+                rootUrl + "/sentences_lists/set_option/",
+                { "listId": listId, "option": "editable_by", "value": $scope.editable },
+                function () {$(".is-editable.loader-container").hide();}
+            ); 
+            
+        };
     });
-
-    $("input[name=editable_by]").change(function(){
-        var value = $(this).val();
-        var listId = $(this).attr('data-list-id');
-
-        $("#editableCheckbox").hide();
-
-        $(".is-editable.loader-container").show();
-        setOption(listId, 'editable_by', value, function(data){
-            $("input[name=editable_by][value="+value+"]").prop(
-                'checked', data["editable_by"] === value
-            );
-            $(".is-editable.loader-container").hide();
-        });
-    });
-
-    function setOption(listId, optionName, optionValue, callback) {
-        var rootUrl = get_tatoeba_root_url();
-        $.post(
-            rootUrl + "/sentences_lists/set_option/",
-            { "listId": listId, "option": optionName, "value": optionValue },
-            callback
-        );
-    }
-
-});
+    
+})();

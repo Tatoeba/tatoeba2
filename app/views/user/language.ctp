@@ -79,17 +79,20 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
             $selected = $this->data['UsersLanguages']['level'];
         }
 
-        // Level
-        echo $form->radio(
-            'level',
-            $languages->getLevelsLabels(),
-            array(
-                'legend' => __('What is your level?', true),
-                'separator' => '<br/>',
-                'value' => $selected
-            )
-        );
-
+        $radioLabels = $languages->getLevelsLabels();
+        ?>
+        
+        <input type="radio" name="data[UsersLanguages][level]" value="{{userLanguage.level}}" checked hidden ng-init="userLanguage.level = <?= $selected ?>"/>
+        <legend><?= __('What is your level?') ?></legend>
+        <md-radio-group ng-model='userLanguage.level'>
+        <?php foreach($radioLabels as $key => $radioLabel) { ?>
+            <md-radio-button value='<?= $key ?>' class='md-primary'>
+                <?= $radioLabel ?>
+            </md-radio-button>  
+        <?php } ?>
+        </md-radio-group>
+        
+        <?php
         // Details
         echo $html->tag(
             'label',

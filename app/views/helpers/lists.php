@@ -326,22 +326,19 @@ class ListsHelper extends AppHelper
             $title = __('List visibility', true);
             $loader = "<md-progress-circular class='is-public loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
             echo $this->Html->tag('dt', $title . $loader);
-
-            echo $this->Form->radio(
-                'visibility',
-                array(
-                    'public' => __('Public', true),
-                    'unlisted' => __('Unlisted', true),
-                    'private' => __('Private', true)
-                ),
-                array(
-                    "name" => "visibility",
-                    "value" => $value,
-                    "data-list-id" => $listId,
-                    "separator" => "<br/>"
-                )
-            );
             ?>
+            <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
+            <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
+                <md-radio-button value='public' class='md-primary'>
+                    <?=  __('Public', true) ?>
+                </md-radio-button>
+                <md-radio-button value='unlisted' class='md-primary'>
+                    <?=  __('Unlisted', true) ?>
+                </md-radio-button> 
+                <md-radio-button value='private' class='md-primary'>
+                    <?=  __('Private', true) ?>
+                </md-radio-button>                 
+            </md-radio-group>
         </dl>
         <?php
     }
@@ -360,25 +357,25 @@ class ListsHelper extends AppHelper
         ?>
         <dl>
             <?php
+                if(empty($value)){
+                    $value = "no_one";
+                }
                 $title = __('Who can add/remove sentences', true);
                 $loader = "<md-progress-circular class='is-editable loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
                 echo $this->Html->tag('dt', $title.$loader);
-
-                echo $this->Form->radio(
-                    'editable_by',
-                    array(
-                        'anyone' => __('Anyone', true),
-                        'creator' => __('Only me', true),
-                        'no_one' => __('No one (list inactive)', true),
-                    ),
-                    array(
-                        'name' => 'editable_by',
-                        'value' => $value,
-                        'data-list-id' => $listId,
-                        'separator' => '<br/>',
-                    )
-                );
             ?>
+            <input type="radio"  name="editable_by" data-list-id='<?= $listId ?>'  value="{{editable}}" checked hidden ng-init="editable = '<?= $value ?>';"/>
+            <md-radio-group ng-controller='optionsCtrl' ng-model='editable' ng-change='editableChanged()'>
+                <md-radio-button value='anyone' class='md-primary'>
+                    <?=  __('Anyone', true) ?>
+                </md-radio-button>
+                <md-radio-button value='creator' class='md-primary'>
+                    <?= __('Only me', true) ?>
+                </md-radio-button> 
+                <md-radio-button value='no_one' class='md-primary'>
+                    <?= __('No one (list inactive)', true) ?>
+                </md-radio-button>                 
+            </md-radio-group>
         </dl>
         <?php
     }
