@@ -146,7 +146,7 @@ def main():
     printAndLog('Fetching from Transifex')
     
     getResourcesFiles(languagesTable, 'tatoebaResource', 'default', TRANSLATIONS_LOCAL, MAIN_LOCAL)
-    getResourcesFiles(languagesTable, 'languages', 'languages', TRANSLATIONS_LOCAL, MAIN_LOCAL)
+    getResourcesFiles(languagesTable, 'tatoeba-languages', 'languages', TRANSLATIONS_LOCAL, MAIN_LOCAL)
     
     if executeCommand('cd %s && git status'%MAIN_LOCAL,True) == '':
         print('git status: nothing has changed. will not commit.')
