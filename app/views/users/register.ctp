@@ -37,158 +37,213 @@
 
 $this->set('title_for_layout', $pages->formatTitle(__('Register', true)));
 
-echo $javascript->link(JS_PATH . 'users.check_registration.js', false);
+echo $javascript->link('/js/users/register.ctrl.js', false);
 
 $security->enableCSRFProtection();
-echo $form->create('User', array("action" => "register"));
+echo $form->create('User', array(
+    'name' => 'registrationForm',
+    'action' => 'register',
+    'class' => 'md-whiteframe-1dp',
+    'ng-controller' => 'UsersRegisterController as ctrl'
+));
+
+
+echo $form->checkbox(
+    'mask_password',
+    array(
+        'class' => 'ng-hide',
+        'value' => '{{registration.maskPassword}}'
+    )
+);
+
+echo $form->checkbox(
+    'acceptation_terms_of_use',
+    array(
+        'class' => 'ng-hide',
+        'checked' => '{{registration.termsOfUse}}',
+        'value' => '{{registration.termsOfUse ? 1 : 0 }}'
+    )
+);
+
+$lang = $this->params['lang'];
+$label = format(
+    __('I accept the <a href="{}">terms of use</a>',true),
+    $html->url(array("controller"=>"pages", "action"=>"terms_of_use#$lang"))
+);
 ?>
-<table id="userInformation">
-<tr>
-    <td class="field">
-        <label for="registrationUsername"><?php __('Username:'); ?></label>
-    </td>
-    <td>
+<h2><? __('Register'); ?></h2>
+
+<div layout="row" layout-align="">
+    <md-input-container class="md-icon-float md-icon-left md-block" flex>
+        <label for="registrationUsername"><?php __('Username'); ?></label>
+        <md-icon>person</md-icon>
         <?php
         echo $form->input(
             'username',
             array(
-                "label" => "",
-                "id" => "registrationUsername",
-                "class" => "registrationField",
-                'error' => array(
-                    'isUnique' => __(
-                        'Username already taken.', 
-                        true
-                    ),
-                    'min' => __(
-                        'Username must be at least two characters long',
-                        true
-                    )
-                )
+                'label' => '',
+                'id' => 'registrationUsername',
+                'ng-model' => 'user.username',
+                'required' => '',
+                'minlength' => 2,
+                'maxlength' => 20,
+                'ng-pattern' => '/^\w{2,20}$/',
+                'unique-username' => '',
+                'ng-init' => "user.username = '$username'"
             )
         );
-        echo $html->div('hint',
-            __('Username can only contain letters, numbers, or underscore', true)
-        );
         ?>
-    </td>
-</tr>
-<tr>
-    <td class="field">
-        <label for="registrationPassword"><?php __('Password:'); ?></label>
-    </td>
-    <td>
-        <div id="unmaskedPasswordContainer"></div>
+        <div ng-messages="registrationForm['data[User][username]'].$error">
+            <div ng-message="required">
+                <? __('Field required') ?>
+            </div>
+            <div ng-message="minlength">
+                <? __('Username must be at least two characters long') ?>
+            </div>
+            <div ng-message="pattern">
+                <? __('Username can only contain letters, numbers, or underscore') ?>
+            </div>
+            <div ng-message="uniqueUsername">
+                <? __('Username already taken.') ?>
+            </div>
+        </div>
+    </md-input-container>
+</div>
+
+
+<div layout="row">
+    <md-input-container class="md-icon-float md-icon-left md-block" flex>
+        <label for="registrationPassword"><?php __('Password'); ?></label>
+        <md-icon>lock</md-icon>
         <?php
         echo $form->input(
             'password',
             array(
-                "label" => "",
-                "id" => "registrationPassword",
-                "class" => "registrationField"
-            )
-        );
-        
-        // Box for users to actually see what their writing
-        echo $form->input('mask_password', array(
-            'type' => 'checkbox',
-            'label' => __('unmask password', true),
-        ));
-        ?>
-    </td>
-</tr>
-<tr>
-    <td class="field">
-        <label for="registrationEmail"><?php __('Email address:'); ?></label>
-    </td>
-    <td>
-        <?php
-        echo $form->input(
-            'email',
-            array(
-                "label" => "",
-                "id" => "registrationEmail",
-                "class" => "registrationField",
-                'error' => array(
-                    'email' => __(
-                        'Invalid email address', 
-                        true
-                    ),
-                    'isUnique' => __(
-                        'Email address already used.', 
-                        true
-                    )
-                )
+                'label' => '',
+                'id' => 'registrationPassword',
+                'ng-model' => 'user.password',
+                'required' => '',
+                'minlength' => 6,
             )
         );
         ?>
-    </td>
-</tr>
-<tr>
-    <td class="field">
-        <label for="UserLanguage"><?php __('Native language:'); ?></label>
-    </td>
-    <td>
-        <?php
+        <div ng-messages="registrationForm['data[User][password]'].$error">
+            <div ng-message="required">
+                <? __('Field required') ?>
+            </div>
+            <div ng-message="minlength">
+                <? __('Password must be at least 6 characters long') ?>
+            </div>
+        </div>
+    </md-input-container>
+</div>
+
+<md-input-container class="md-icon-float md-icon-left md-block">
+    <label for="registrationEmail"><?php __('Email address'); ?></label>
+    <md-icon>email</md-icon>
+    <?php
+    $pattern = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/';
+    echo $form->input(
+        'email',
+        array(
+            'label' => '',
+            'id' => 'registrationEmail',
+            'class' => 'registrationField',
+            'ng-model' => 'user.email',
+            'required' => '',
+            'ng-pattern' => $pattern,
+            'unique-email' => '',
+            'ng-init' => "user.email = '$email'"
+        )
+    );
+    ?>
+    <div ng-messages="registrationForm['data[User][email]'].$error">
+        <div ng-message="required">
+            <? __('Field required') ?>
+        </div>
+        <div ng-message="pattern">
+            <? __('Invalid email address') ?>
+        </div>
+        <div ng-message="uniqueEmail">
+            <? __('Email address already used.') ?>
+        </div>
+    </div>
+</md-input-container>
+
+<div id="native-language" layout="column">
+    <div class="input" layout="row">
+        <md-icon>language</md-icon>
+        <label for="UserLanguage" flex><? __('Native language:'); ?></label>
+        <?
         $languagesList = $languages->languagesArrayWithNone(false);
+        $language = $language ? $language : 'none';
         echo $form->select(
             'language',
             $languagesList,
             null,
             array(
                 'class' => 'language-selector',
-                'empty' => false
+                'empty' => false,
+                'ng-model' => 'user.language',
+                'ng-init' => "user.language = '$language'"
             ),
             false
         );
-        echo $html->div('hint',
-            __(
-                "If you don't find your native language in the list, ".
-                "leave this as 'None'.", true
+        ?>
+    </div>
+    <?
+    echo $html->div('hint',
+        __(
+            "If you don't find your native language in the list, ".
+            "leave this as 'None'.", true
+        )
+    );
+    ?>
+</div>
+
+<div id="human-check" layout="column">
+    <div layout="row" layout-align="center start">
+        <md-icon>verified_user</md-icon>
+        <div class="title" flex>
+            <? __('We need to make sure you are human.'); ?>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <? __('What are the first five characters of your email address?'); ?>
+    </div>
+
+    <md-input-container class="md-block">
+        <?
+        echo $form->input(
+            'quiz',
+            array(
+                'label' => __('Answer', true),
+                'ng-model' => 'registration.quizAnswer',
+                'required' => '',
             )
         );
+
+        echo $html->div('hint',
+            __('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.', true)
+        );
         ?>
-    </td>
-</tr>
-</table>
-
-
-<div id="quiz">
-<?php
-__('We need to make sure you are human.');
-
-echo $form->input(
-    'quiz', 
-    array(
-        "label" => __('What are the first five characters of your email address?', true)
-    )
-);
-
-echo $html->div('hint',
-    __('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.', true)
-);
-?>
+    </md-input-container>
 </div>
 
-<div id="termsOfUse">
-<?php
-$lang = $this->params['lang'];
-$label = format(
-    __('I accept the <a href="{}">terms of use</a>',true), 
-    $html->url(array("controller"=>"pages", "action"=>"terms_of_use#$lang"))
-);
-echo $form->input('acceptation_terms_of_use', array(
-    'type' => 'checkbox',
-    'label' => $label,
-));
-?>
-</div>
+<md-input-container class="md-block">
+    <md-checkbox ng-model="registration.termsOfUse" class="md-primary">
+        <?= $label ?>
+    </md-checkbox>
+</md-input-container>
 
-<div layout="row" layout-align="center center">
+<div layout="column">
     <md-button type="submit" class="md-raised md-primary">
         <?php __('Register'); ?>
     </md-button>
 </div>
+
+
 <?php
 echo $form->end();
 $security->disableCSRFProtection();

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngMaterial'])
+        .module('app', ['ngMaterial', 'ngMessages'])
         .config(function($mdThemingProvider, $mdIconProvider, $httpProvider) {
             $mdThemingProvider.theme('default')
                 .primaryPalette('green')
