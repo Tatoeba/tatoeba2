@@ -16,6 +16,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+md-card {
+    margin: 0 0 20px 0;
+}
+
 .profileSummary,
 .profileLanguages {
     border: 1px solid #CCC;
@@ -26,51 +30,44 @@
 /*
  * Summary
  */
-.profileSummary {
-    position: relative;
+
+#profile .header {
+    padding-bottom: 20px;
 }
 
-.profileSummary img {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.profileSummary .info {
-    display: inline-block;
-    vertical-align: top;
-    width: 465px;
-    min-height: 128px;
-    position: relative;
-}
-
-.profileSummary .username {
-    font-size: 1.7em;
-    margin-bottom: 2px;
-}
-
-.profileSummary .field {
-    font-weight: bold;
-    padding-right: 5px;
-}
-
-.profileSummary .status {
-    font-size: 1.2em;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-}
-
-.profileSummary .contributionsBlocked {
-    background: url(../../img/warning-small.svg) no-repeat 0px center;
+#profile .info {
     padding-left: 20px;
 }
 
+#profile .info h2 {
+    margin: 0;
+}
+
+#profile .personal-info {
+    padding: 5px;
+}
+
+#profile .label {
+    font-weight: bold;
+    padding-right: 20px;
+    color: #9e9e9e;
+    text-transform: uppercase;
+}
+
+#profile .status {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#profile .contributionsBlocked {
+    background: url(../../img/warning-small.svg) no-repeat 0px center;
+    padding-left: 20px;
+}
 
 /*
  * Description
  */
 .profileDescription {
-    border-top: 1px dotted #CCCCCC;
     padding: 20px 20px 10px 20px;
     margin: 10px 0;
 }

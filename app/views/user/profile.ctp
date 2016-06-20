@@ -36,14 +36,15 @@
  * @link     http://tatoeba.org
  */
 
+$dateFormat = 'Y-m-d';
 $userId = $user['id'];
-
 $realName = $user['name'];
 $username = $user['username'];
 $userDescription = Sanitize::html($user['description']);
 $homepage = $user['homepage'];
 $birthday = $user['birthday'];
 $userSince = $user['since'];
+$userSince = date($dateFormat, strtotime($userSince));
 $userStatus = $members->groupName($groupId);
 $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
@@ -159,104 +160,115 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 </div>
 
 <div id="main_content">
-    <div class="section" md-whiteframe="1">
-        <?php
-        echo $html->image(
-            IMG_PATH . 'profiles_128/'.$userImage,
-            array(
-                'width' => 128,
-                'height' => 128,
-                'alt' => $username
-            )
-        );
-        ?>
-            
-        <div class="info">
-            <?php
-            if ($username == $currentMember) {
-                $members->displayEditButton(
-                    array(
-                        'controller' => 'user',
-                        'action' => 'edit_profile'
-                    )
-                );
-            } else if (CurrentUser::isAdmin()) {
-                $members->displayEditButton(
-                    array(
-                        'controller' => 'users',
-                        'action' => 'edit',
-                        $userId
-                    )
-                );
-            }
-            ?>
+    <div id="profile" class="section" layout="column" md-whiteframe="1">
 
-            <?php echo $html->tag('div', $username, array('class' => 'username')); ?>
-            
-            <?php
-            if ($isDisplayed) {
-                // For consistency, this format should match the first part of the format
-                // under app/views/helpers/date.php.
-                $dateFormat = 'Y-m-d';
-                if (!empty($birthday)) {
-                    $birthday = $date->formatBirthday($birthday, $dateFormat);
-                }
-                if (!empty($homepage)) {
-                    $homepage = $clickableLinks->clickableURL(Sanitize::html($homepage));
-                }
-                $userSince = date($dateFormat, strtotime($userSince));
-                $fields = array(
-                    __p('user', 'Name', true) => array($realName, true),
-                    __('Country', true)       => array($countryName, false),
-                    __('Birthday', true)      => array($birthday, false),
-                    __('Homepage', true)      => array($homepage, false),
-                );
-                
-                foreach ($fields as $fieldName => $value) {
-                    ?>
-                    <div>
-                        <span class="field <?php echo $statusClass ?>">
-                        <?php echo $fieldName; ?>
-                        </span>
-                        <?php
-                        $options = array('class' => 'value');
-                        $dispValue = empty($value[0]) ? ' - ' : $value[0];
-                        if ($value[1]) {
-                            echo $languages->tagWithLang(
-                                'span', '', $dispValue, $options
-                            );
-                        } else {
-                            echo $html->tag('span', $dispValue, $options);
-                        }
-                        ?>
-                    </div>
-                    <?php
-                }
-            }
-            ?>
-            
+        <div layout="row" class="header">
             <div>
-                <span class="field <?php echo $statusClass ?>">
-                <?php echo __('Member since'); ?>
-                </span>
-                <span class="value"><?php echo $userSince; ?></span>
+                <?php
+                echo $html->image(
+                    IMG_PATH . 'profiles_128/'.$userImage,
+                    array(
+                        'width' => 128,
+                        'height' => 128,
+                        'alt' => $username
+                    )
+                );
+                ?>
             </div>
 
+            <div layout="column" class="info" flex>
+                <div layout="row" layout-align="space-between center">
+                    <h2 flex><?= $username ?></h2>
+                    <?
+                    $editUrl = null;
+                    if ($username == $currentMember) {
+                        $editUrl = $html->url(
+                            array(
+                                'controller' => 'user',
+                                'action' => 'edit_profile'
+                            )
+                        );
+                    } else if (CurrentUser::isAdmin()) {
+                        $editUrl = $html->url(
+                            array(
+                                'controller' => 'users',
+                                'action' => 'edit',
+                                $userId
+                            )
+                        );
+                    }
+                    if (!empty($editUrl)){
+                        ?>
+                        <md-button class="md-icon-button"
+                                   aria-label="<?= __('Edit') ?>"
+                                   href="<?= $editUrl ?>">
+                            <md-icon>edit</md-icon>
+                        </md-button>
+                        <?
+                    }
+                    ?>
+                </div>
 
-            <?php
-            $cssClasses = array('status', $statusClass);
-            $options = null;
-            if ($level == -1) {
-                $cssClasses[] = 'contributionsBlocked';
-                $options = array('title' => __('Contributions blocked', true));
+
+                <div layout="column" flex layout-margin>
+                    <div layout="row">
+                        <div class="label"><? __('Member since') ?></div>
+                        <div flex><?= $userSince ?></div>
+                    </div>
+
+                    <?php
+                    $cssClasses = array('status', $statusClass);
+                    $options = null;
+                    if ($level == -1) {
+                        $cssClasses[] = 'contributionsBlocked';
+                        $options = array('title' => __('Contributions blocked', true));
+                    }
+                    echo $html->div(
+                        join($cssClasses, ' '),
+                        $userStatus,
+                        $options
+                    );
+                    ?>
+                </div>
+
+
+            </div>
+        </div>
+
+        <md-divider></md-divider>
+
+        <?php
+        if ($isDisplayed) {
+            // For consistency, this format should match the first part of the format
+            // under app/views/helpers/date.php.
+
+            if (!empty($birthday)) {
+                $birthday = $date->formatBirthday($birthday, $dateFormat);
             }
-            echo $html->div(
-                join($cssClasses, ' '),
-                $userStatus,
-                $options
+            if (!empty($homepage)) {
+                $homepage = $clickableLinks->clickableURL(Sanitize::html($homepage));
+            }
+
+            $personalInfo = array(
+                __p('user', 'Name', true) => $realName,
+                __('Country', true) => $countryName,
+                __('Birthday', true) => $birthday,
+                __('Homepage', true) => $homepage
             );
             ?>
-        </div>
+            <div class="personal-info" layout-margin>
+                <? foreach ($personalInfo as $label => $value) { ?>
+                    <div layout="row">
+                        <div flex="25" class="label"><?= $label ?></div>
+                        <div flex><?= $value ? $value : '-' ?></div>
+                    </div>
+                <? } ?>
+            </div>
+            <?php
+        }
+        ?>
+
+        <md-divider></md-divider>
 
         <?php
         if (!empty($userDescription)) {
