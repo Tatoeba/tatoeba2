@@ -615,13 +615,13 @@ rt {
 /*
  * Flash message
  */
-#flashMessage, #authMessage {
-    margin: 25px;
-    padding: 10px 20px;
-    color: #E05900;
-    background: #EDE0B8;
-    text-align: center;
-    font-size: 1.2em;
+#flashMessage {
+    margin: 20px 5% 40px 5%;
+    padding: 20px;
+    color: #ffffff;
+    background: #424242;
+    border: none;
+    border-radius: 2px;
 }
 
 /*
