@@ -16,10 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.settings {
-    position: relative;
-}
-
 .profileSummary,
 .profileLanguages {
     border: 1px solid #CCC;
@@ -86,25 +82,6 @@
 .profileDescription .tip{
     color: #555;
     font-style: italic;
-}
-
-/*
- * Edit
- */
-.editOption {
-    display: inline-block;
-    position: absolute;
-    right: 0;
-    top: 2px;
-}
-
-.editOption a{
-    background: #4caf50;
-    padding: 3px 10px;
-    color: #FFF;
-    border: 1px solid #4caf50;
-    border-radius: 4px;
-    font-weight: bold;
 }
 
 

@@ -68,7 +68,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
     );
     ?>
 
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php __('Stats'); ?></h2>
         <dl>
             <dt><?php __('Comments posted'); ?></dt>
@@ -99,7 +99,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
     <?php
     if ($isDisplayed) {
         ?>
-        <div class="module settings">
+        <div class="section" md-whiteframe="1">
             <?php
             if ($username == $currentMember) {
                 $members->displayEditButton(
@@ -159,7 +159,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 </div>
 
 <div id="main_content">
-    <div class="module profileSummary">
+    <div class="section" md-whiteframe="1">
         <?php
         echo $html->image(
             IMG_PATH . 'profiles_128/'.$userImage,
@@ -282,7 +282,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         ?>
     </div>
 
-    <div class="module profileLanguages">
+    <div class="section" md-whiteframe="1">
         <?php
         if ($username == $currentMember) {
             echo $html->div('edit');
