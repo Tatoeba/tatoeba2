@@ -57,7 +57,7 @@ class CommonModulesHelper extends AppHelper
     public function createFilterByLangMod($maxNumberOfParams = 1)
     {
         ?>
-        <div class="module">
+        <div class="section" layout="column" md-whiteframe="1">
             <h2><?php __('Filter by language'); ?></h2>
             <?php
             /*to stay on the same page except language filter option*/
