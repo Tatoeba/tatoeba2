@@ -146,6 +146,15 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 
     ?>
     
+    <div class="sortBy" id="sortBy">
+     <strong><?php __("Sort by:") ?> </strong>
+            <?php 
+            echo $this->Paginator->sort(__("date added",true), 'created');
+            echo " | ";
+            echo $this->Paginator->sort(__("sentence id",true), 'sentence_id');
+    ?>
+   
+    </div>
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
