@@ -1722,7 +1722,16 @@ div.hideLink {
 
 .listSummary .name {
     font-size: 1.2em;
-    min-width: 300px;
+    min-width: 250px;
+}
+
+.noNameMinLength .name{
+    width:400px;
+}
+
+
+.noNameMinLength .spacer{
+    width: 60%;
 }
 
 .listSummary .creator {
@@ -1731,10 +1740,24 @@ div.hideLink {
     color: #444;
 }
 
+
 .listSummary .date {
-    width: 100px;
+    width: 120px;
     text-align: center;
     color: #aaaaaa;
+}
+
+.listSummary .createdDate{
+    text-align:left;
+}
+
+.listSummary .lastUpdatedDate .date{
+    text-align:right;
+    margin-right: 10px;
+}
+
+.noBorder td{
+    border-top:none;
 }
 
 .listSummary .icon {
