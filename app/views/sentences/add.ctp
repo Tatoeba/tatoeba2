@@ -28,6 +28,11 @@
 $this->set('title_for_layout', $pages->formatTitle(__('Add sentences', true)));
 
 $javascript->link(JS_PATH . 'sentences.contribute.js', false);
+
+$vocabularyUrl = $html->url(array(
+    'controller' => 'vocabulary',
+    'action' => 'add_sentences'
+));
 ?>
 
 <div id="annexe_content">
@@ -124,6 +129,13 @@ $javascript->link(JS_PATH . 'sentences.contribute.js', false);
 
             }
             ?>
+            </div>
+
+            <div layout="row" layout-align="center center">
+                <md-button href="<?= $vocabularyUrl ?>">
+                    <md-icon>keyboard_arrow_right</md-icon>
+                    Check out the vocabulary for which we need sentences
+                </md-button>
             </div>
         </div>
     </div>
