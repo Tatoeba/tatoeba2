@@ -27,7 +27,12 @@
 ?>
 <li id="logo">
     <?php
-    $name = __('Tatoeba', true);
+    if (Configure::read('Tatoeba.devStylesheet')) {
+        $name = 'TatoeDev';
+    } else {
+        $name = __('Tatoeba', true);
+    }
+
     $path = array(
         'controller' => 'pages',
         'action' => 'index'

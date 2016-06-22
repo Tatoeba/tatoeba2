@@ -16,12 +16,18 @@
  */
 
 $(document).ready(function() {
-    var announcementId = $('.announcement').attr('data-announcement-id');
-    if ($.cookie(announcementId) === undefined) {
-        $('.announcement').show();
-    }
+
+    $('.announcement').each(function() {
+        var announcementId = $(this).attr('data-announcement-id');
+        if ($.cookie(announcementId) === undefined) {
+            $(this).show();
+        }
+    });
+
     $('.announcement .close').click(function() {
-        $('.announcement').hide();
+        var announcementId = $(this).parent().attr('data-announcement-id');
+        $(this).parent().hide();
         $.cookie(announcementId, 'done', {'expires' : 7, 'path' : '/'});
     });
+
 });

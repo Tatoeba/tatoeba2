@@ -26,7 +26,7 @@
  */
 
 if (Configure::read('Announcement.enabled')) {
-    $announcementId = 'looking-for-desingers';
+    $announcementId = 'looking-for-designers';
     $announcementText = '<p>Tatoeba needs help to re-design the website to be 
         mobile-friendly! If you have experience in UI/UX design, please contact 
         Trang at trang@tatoeba.org.</p>
@@ -49,4 +49,20 @@ if (Configure::read('Announcement.enabled')) {
         )
     );
 }
+
+if (Configure::read('Tatoeba.devStylesheet')) {
+    $content = __(
+        'Warning: this website is for testing purposes. '.
+        'Everything you submit will be definitely lost.', true
+    );
+    $closeButton = $html->div('close button', $images->svgIcon('close'));
+    echo $html->div(
+        'announcement',
+        $closeButton . $content,
+        array(
+            'data-announcement-id' => 'dev-warning5'
+        )
+    );
+}
+
 ?>
