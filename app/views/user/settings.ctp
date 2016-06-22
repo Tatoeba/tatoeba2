@@ -42,51 +42,122 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         <h2><?php __('Options'); ?></h2>
         <fieldset>
             <div>
-                <?php echo $form->checkbox('send_notifications'); ?>
-                <label for="UserSendNotifications">
-                    <?php __('Email notifications'); ?>
-                </label>
+                <?php $sendNotifications = $this->data['User']['send_notifications']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1" 
+                    ng-model="sendNotifications" 
+                    ng-init="sendNotifications = <?= $sendNotifications ?>"
+                    class="md-primary">
+                <label> <?= __('Email notifications') ?></label> 
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'send_notifications',
+                        array(
+                        'value' => '{{sendNotifications}}'
+                        )
+                    );
+                ?>
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.is_public'); ?>
-                <label for="UserSettingsIsPublic">
-                    <?php __('Set your profile public?'); ?>
-                </label>
+                <?php $isPublic = $this->data['User']['settings']['is_public']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1" 
+                    ng-model="isPublic" 
+                    ng-init="isPublic = <?= $isPublic ?>" 
+                    class="md-primary"> 
+                <label><?= __('Set your profile public?') ?></label>
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'settings.is_public',
+                        array(
+                        'value' => '{{isPublic}}'
+                        )
+                    );
+                ?>
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.use_most_recent_list'); ?>
-                <label for="UserSettingsUseMostRecentList">
-                    <?php __(
-                        'Remember the last list to which you assigned a '.
-                        'sentence, and select it by default.'
-                    ); ?>
-                </label>
+                <?php $useRecent = $this->data['User']['settings']['use_most_recent_list']; ?>
+                <md-checkbox 
+                    ng-false-value="0"
+                    ng-true-value="1" 
+                    ng-model="useRecent" 
+                    ng-init="useRecent = <?= $useRecent ?>" 
+                    class="md-primary"> 
+                <label><?=  __(
+                'Remember the last list to which you assigned' . 
+                ' a sentence, and select it by default.'
+                ) ?> </label>
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'settings.use_most_recent_list',
+                        array(
+                        'value' => '{{useRecent}}'
+                        )
+                    );
+                ?>
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.collapsible_translations'); ?>
-                <label for="UserSettingsCollapsibleTranslations">
-                    <?php __(
-                        'Display a link to expand/collapse translations '.
-                        'when there are too many translations.'
-                    ); ?>
-                </label>
+                <?php $collapsibleTranslations = $this->data['User']['settings']['collapsible_translations']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1" 
+                    ng-model="collapsibleTranslations" 
+                    ng-init="collapsibleTranslations = <?= $collapsibleTranslations ?>" 
+                    class="md-primary">
+                <label><?= __(
+                'Display a link to expand/collapse translations ' . 
+                'when there are too many translations.'
+                ) ?></label>
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'settings.collapsible_translations',
+                        array(
+                        'value' => '{{collapsibleTranslations}}'
+                        )
+                    );
+                ?>
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.show_transcriptions'); ?>
-                <label for="UserSettingsShowTranscriptions">
-                    <?php __('Always show transcriptions and alternative scripts'); ?>
-                </label>
+                <?php $showTranscriptions = $this->data['User']['settings']['show_transcriptions']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1" 
+                    ng-model="showTranscriptions" 
+                    ng-init="showTranscriptions = <?= $showTranscriptions ?>" 
+                    class="md-primary">
+                <label><?= __('Always show transcriptions and alternative scripts') ?> </label>
+                </md-checkbox>
+                <input type="checkbox" name="data[User][settings][show_transcriptions]" value="{{showTranscriptions}}" style="display: none;" checked/>
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.hide_random_sentence'); ?>
-                <label for="UserSettingsHideRandomSentence">
-                    <?php __('Hide random sentence on the homepage'); ?>
-                </label>
+                <?php $hideRandomSentence = $this->data['User']['settings']['hide_random_sentence']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1" 
+                    ng-model="hideRandomSentence" 
+                    ng-init="hideRandomSentence = <?= $hideRandomSentence ?>" 
+                    class="md-primary">
+                <label><?= __('Hide random sentence on the homepage') ?> </label>
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'settings.hide_random_sentence',
+                        array(
+                        'value' => '{{hideRandomSentence}}'
+                        )
+                    );
+                ?>
             </div>
 
             <div>
@@ -142,33 +213,69 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             ?>
 
             <div>
-                <?php echo $form->checkbox('settings.users_collections_ratings'); ?>
-                <label for="UserSettingsUsersCollections">
-                    <?php __(
-                        'Activate the feature to rate sentences and build your '.
-                        'collection of sentences.'
-                    ); ?>
-                </label>
+
+            <div>
+                <?php $collectionRatings = $this->data['User']['settings']['users_collections_ratings']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1" 
+                    ng-model="collectionRatings" 
+                    ng-init="collectionRatings = <?= $collectionRatings ?>" 
+                    class="md-primary">
+                <label><?= __('Activate the feature to rate sentences and build your collection of sentences.') ?></label>
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'settings.users_collections_ratings',
+                        array(
+                        'value' => '{{collectionRatings}}'
+                        )
+                    );
+                ?>
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.native_indicator'); ?>
-                <label for="UserSettingsNativeIndicator">
-                    <?php __(
-                        'Display "(native)" next to username on sentences when '.
-                        'the owner indicated in their profile that they have a '.
-                        'native level in the language of the sentence.'
-                    ); ?>
-                </label>
+                <?php $nativeIndicator = $this->data['User']['settings']['native_indicator']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1"
+                    ng-model="nativeIndicator" 
+                    ng-init="nativeIndicator = <?= $nativeIndicator ?>" 
+                    class="md-primary">
+                <label><?= __(
+                'Display "(native)" next to username on sentences ' . 
+                'when the owner indicated in their profile that they have a native '.
+                'level in the language of the sentence.'
+                ) ?></label>
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'settings.native_indicator',
+                        array(
+                        'value' => '{{nativeIndicator}}'
+                        )
+                    );
+                ?>
             </div>
 
             <div>
-                <?php echo $form->checkbox('settings.copy_button'); ?>
-                <label for="UserSettingsCopyButton">
-                    <?php __(
-                        'Display button to copy a sentence to the clipboard.'
-                    ); ?>
-                </label>
+            <?php $copyButton = $this->data['User']['settings']['copy_button']; ?>
+                <md-checkbox 
+                    ng-false-value="0" 
+                    ng-true-value="1" 
+                    ng-model="copyButton" 
+                    ng-init="copyButton = <?= $copyButton ?>" 
+                    class="md-primary">
+                <label><?= __('Display button to copy a sentence to the clipboard.') ?></label>
+                </md-checkbox>
+                <?php
+                    echo $form->hidden(
+                        'settings.copy_button',
+                        array(
+                        'value' => '{{copyButton}}'
+                        )
+                    );
+                ?>
             </div>
         </fieldset>
 

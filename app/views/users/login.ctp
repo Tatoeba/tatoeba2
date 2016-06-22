@@ -65,11 +65,22 @@ echo $form->input(
 ?>
 
 <div>
+<md-checkbox  
+    ng-model='rememberLogin'
+    ng-false-value='0'
+    ng-true-value='1' ng-init='rememberLogin = 0' 
+    class='md-primary'>
+    <label>Remember Me</label>
+</md-checkbox> 
 <?php
 echo $form->checkbox(
-    'rememberMe'
-); 
-echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
+    'rememberMe',
+    array(
+    'value' => '{{rememberLogin}}',
+    'checked' => '',
+    'style' => 'display: none;'
+    )
+);
 ?>
 </div>
 
