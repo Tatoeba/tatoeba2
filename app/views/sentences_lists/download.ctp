@@ -80,8 +80,20 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download list: ', true) .
         <tr>
             <td><?php __('Id (optional)'); ?></td>
             <td>
+            <md-checkbox 
+                ng-true-value='1' 
+                ng-false-value='0' 
+                ng-model='showid'
+                ng-init="showid = 0;" 
+                class="md-primary">
+            </md-checkbox>
             <?php 
-            echo $form->checkbox('insertId');
+            echo $form->hidden(
+                'insertId',
+                array(
+                   'value' => '{{showid}}'
+                )
+            );
             ?>
             </td>
             <td>
