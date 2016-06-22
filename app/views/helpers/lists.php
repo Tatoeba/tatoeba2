@@ -192,7 +192,6 @@ class ListsHelper extends AppHelper
              <?php
              echo $this->Html->tag(
                  'span',
-                 $this->Date->ago($createdDate),
                  $this->Date->ago($modifiedDate),
                  array(
                      'class' => 'date'
