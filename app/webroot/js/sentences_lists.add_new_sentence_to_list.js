@@ -29,19 +29,19 @@ $(document).ready(function() {
     });
     
     function save(){
+        $("#list_add_loader").show();
         var sentenceText = $("#text").val();
         var listId = $("#sentencesList").attr('data-list-id');
         var rootUrl = get_tatoeba_root_url();
         
-        $(".loader-container").html("<div class='loader loader-small'></div>");
-        
+
         $.post(rootUrl + "/sentences_lists/add_new_sentence_to_list/"
         , { "listId": listId, "sentenceText" : sentenceText }
         , function(data){
             $("#text").val("");
-            $(".loader-container").html('');
             $("#session_expired").remove();
             $(".sentencesList").prepend(data);
+            $("#list_add_loader").hide();
         }
         , "html");        
     }

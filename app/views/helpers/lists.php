@@ -324,7 +324,7 @@ class ListsHelper extends AppHelper
         <dl>
             <?php
             $title = __('List visibility', true);
-            $loader = "<div class='is-public loader-container'></div>";
+            $loader = "<md-progress-circular class='is-public loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
             echo $this->Html->tag('dt', $title . $loader);
 
             echo $this->Form->radio(
@@ -361,7 +361,7 @@ class ListsHelper extends AppHelper
         <dl>
             <?php
                 $title = __('Who can add/remove sentences', true);
-                $loader = "<div class='is-editable loader-container'></div>";
+                $loader = "<md-progress-circular class='is-editable loader-container' md-diameter='16' style='display: none'> </md-progress-circular>";
                 echo $this->Html->tag('dt', $title.$loader);
 
                 echo $this->Form->radio(
@@ -505,7 +505,7 @@ class ListsHelper extends AppHelper
                 'class' => 'submit'
             )
         );
-        echo "<div class='loader-container'></div>";
+        echo "<md-progress-circular id='list_add_loader' md-diameter='16' style='display: none;'></md-progress-circular>";
         ?>
 
         <p>

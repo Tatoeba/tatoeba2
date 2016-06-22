@@ -66,19 +66,22 @@ $selectedLanguage = $session->read('random_lang_selected');
         <div class="module">
             <?php echo $this->element('random_sentence_header'); ?>
             <div class="random_sentences_set">
-            <?php
-            $sentence = $random['Sentence'];
-            $transcrs = $random['Transcription'];
-            $translations = $random['Translation'];
-            $sentenceOwner = $random['User'];
+                <md-progress-circular md-mode="indeterminate" class="block-loader" id="random-progress" style="display: none;"></md-progress-circular>
+                <div id="random_sentence_display">
+                    <?php
+                    $sentence = $random['Sentence'];
+                    $transcrs = $random['Transcription'];
+                    $translations = $random['Translation'];
+                    $sentenceOwner = $random['User'];
 
-            $sentences->displaySentencesGroup(
-                $sentence, 
-                $transcrs,
-                $translations, 
-                $sentenceOwner
-            );
-            ?>
+                    $sentences->displaySentencesGroup(
+                        $sentence,
+                        $transcrs,
+                        $translations,
+                        $sentenceOwner
+                    );
+                    ?>
+                </div>
             </div>
         </div>
     <?php } ?>
