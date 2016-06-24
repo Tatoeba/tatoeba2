@@ -37,16 +37,30 @@
 
 $this->set('title_for_layout', $pages->formatTitle(__('Send new password', true)));
 
-echo '<h2>';
-__('Send new password');
-echo '</h2>';
-
 $security->enableCSRFProtection();
 echo $form->create('User', array("action" => "new_password"));
-echo $form->input(
-    'email',
-    array('label' => __('Email', true))
-);
-echo $form->end(__('Send',true));
+?>
+
+<div md-whiteframe="1" id="reset-form">
+    <h2><? __('Send new password'); ?></h2>
+        <md-input-container class="md-block">
+        <?php
+        echo $form->input(
+            'email', array(
+                'label' => __('Email',true),
+            )
+        );
+        ?>
+     </md-input-container>
+    
+    <div layout="column">
+        <md-button type="submit" class="md-raised md-primary">
+            <?php __('Send'); ?>
+        </md-button>
+    </div>
+</div>
+
+<?php
+echo $form->end();
 $security->disableCSRFProtection();
 ?>
