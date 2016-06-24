@@ -540,6 +540,7 @@ class LanguagesLib
                 'dws' => __d('languages', 'Dutton World Speedwords', true),
                 'afh' => __d('languages', 'Afrihili', true),
                 'krl' => __d('languages', 'Karelian', true),
+                'vep' => __d('languages', 'Veps', true),
             );
         }
         return $languages;
