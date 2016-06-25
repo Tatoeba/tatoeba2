@@ -56,8 +56,45 @@
 /*
  * Generic rules
  */
-body, select, input, textarea, button {
-    font-family: Trebuchet MS, sans-serif;
+body, select, input, textarea, button, option, optgroup {
+    font-family: "Noto Sans", sans-serif;
+
+    /* Fonts for other languages */
+    /*
+    "Noto Kufi Arabic", "Noto Naskh Arabic",
+    "Noto Nastaliq Urdu", "Noto Sans Armenian", "Noto Sans Avestan",
+    "Noto Sans Balinese", "Noto Sans Bamum", "Noto Sans Batak",
+    "Noto Sans Bengali", "Noto Sans Brahmi", "Noto Sans Buginese",
+    "Noto Sans Buhid", "Noto Sans CJK JP", "Noto Sans CJK KR",
+    "Noto Sans CJK SC", "Noto Sans CJK TC", "Noto Sans Canadian Aboriginal",
+    "Noto Sans Carian", "Noto Sans Cham", "Noto Sans Cherokee",
+    "Noto Sans Coptic", "Noto Sans Cuneiform", "Noto Sans Cypriot",
+    "Noto Sans Deseret", "Noto Sans Devanagari", "Noto Sans Egyptian Hieroglyphs",
+    "Noto Sans Ethiopic", "Noto Sans Georgian", "Noto Sans Glagolitic",
+    "Noto Sans Gothic", "Noto Sans Gujarati", "Noto Sans Gurmukhi",
+    "Noto Sans Hanunoo", "Noto Sans Hebrew", "Noto Sans Imperial Aramaic",
+    "Noto Sans Inscriptional Pahlavi", "Noto Sans Inscriptional Parthian",
+    "Noto Sans Javanese", "Noto Sans Kaithi", "Noto Sans Kannada",
+    "Noto Sans Kayah Li", "Noto Sans Kharoshthi", "Noto Sans Khmer",
+    "Noto Sans Lao", "Noto Sans Lepcha", "Noto Sans Limbu", "Noto Sans Linear B",
+    "Noto Sans Lisu", "Noto Sans Lycian", "Noto Sans Lydian",
+    "Noto Sans Malayalam", "Noto Sans Mandaic", "Noto Sans Meetei Mayek",
+    "Noto Sans Mongolian", "Noto Sans Myanmar", "Noto Sans NKo",
+    "Noto Sans New Tai Lue", "Noto Sans Ogham", "Noto Sans Ol Chiki",
+    "Noto Sans Old Italic", "Noto Sans Old Persian", "Noto Sans Old South Arabian",
+    "Noto Sans Old Turkic", "Noto Sans Oriya", "Noto Sans Osmanya",
+    "Noto Sans Phags Pa", "Noto Sans Phoenician", "Noto Sans Rejang",
+    "Noto Sans Runic", "Noto Sans Samaritan", "Noto Sans Saurashtra",
+    "Noto Sans Shavian", "Noto Sans Sinhala", "Noto Sans Sundanese",
+    "Noto Sans Syloti Nagri", "Noto Sans Syriac Eastern",
+    "Noto Sans Syriac Estrangela", "Noto Sans Syriac Western",
+    "Noto Sans Tagalog", "Noto Sans Tagbanwa", "Noto Sans Tai Le",
+    "Noto Sans Tai Tham", "Noto Sans Tai Viet", "Noto Sans Tamil",
+    "Noto Sans Telugu", "Noto Sans Thaana", "Noto Sans Thai", "Noto Sans Tibetan",
+    "Noto Sans Tifinagh", "Noto Sans Ugaritic", "Noto Sans Vai",
+    "Noto Sans Yi", "Noto Serif Armenian", "Noto Serif Georgian",
+    "Noto Serif Khmer", "Noto Serif Lao", "Noto Serif Thai",
+    */
 }
 
 div, p {
@@ -373,12 +410,13 @@ rt {
     font-size: 20px;
     padding: 2px 5px;
     padding-right: 30px;
+    height: 36px;
 }
 
 .search_bar select {
     width: 200px;
     font-size: 14px;
-    height: 30px;
+    height: 36px;
 }
 
 .search_bar .input {
@@ -495,7 +533,7 @@ rt {
 .module {
     padding: 10px 10px 5px 10px;
     margin: 0 0 20px 0;
-    font-size: 13px;
+    font-size: 14px;
     border-bottom: 1px solid #ededed;
     background: linear-gradient(to top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 0) 100px, rgba(255, 255, 255, 0) 100%);
 }
