@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-11 09:00+0000\n"
-"PO-Revision-Date: 2016-06-16 11:09+0000\n"
+"PO-Revision-Date: 2016-06-25 09:18+0000\n"
 "Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1267,7 +1267,7 @@ msgstr "Klicke <a href=\"{}\">hier</a>, um dich wieder anzumelden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L35
 msgid "Tatoeba is a collection of sentences and translations."
-msgstr "Tatoeba ist eine Sammlung übersetzter Sätze."
+msgstr "Tatoeba ist eine Sätzesammlung mit Übersetzungen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L40
 msgid "It's collaborative, open, free and even addictive."
@@ -1283,7 +1283,7 @@ msgstr "Wort oder Satz(-fragment) eingeben"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L147
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
-msgstr "Bemerkung: Bei einem vorgestellten Gleichheitszeichen („=Blume“) ist die Suche exakt. Bei dem gegebenen Beispiel wird nur ganz genau nach „Blume“, nicht aber nach ähnlichen Wörtern gesucht."
+msgstr "Bemerkung: Bei einem vorangestellten Gleichheitszeichen („=Blume“) ist die Suche exakt, sonst werden auch ähnliche Wörter gesucht."
 
 #. @translators: links to a page with tips to perform
 #. searches, like search operators
@@ -2935,8 +2935,8 @@ msgstr[1] "{number} Sätze"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L96
 msgid "{number} sentence in {lang}"
 msgid_plural "{number} sentences in {lang}"
-msgstr[0] "{number} Satz in dieser Sprache: {lang}"
-msgstr[1] "{number} Sätze in dieser Sprache: {lang}"
+msgstr[0] "{number} Satz in {lang}"
+msgstr[1] "{number} Sätze in {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
 msgid "Table of contents"
@@ -3161,7 +3161,7 @@ msgstr "Wichtig"
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "
 "<strong>punctuation</strong>! Thank you."
-msgstr "Beachte bitte die Groß- und Kleinschreibung und die Interpunktion!"
+msgstr "Bitte beachte die Groß- und Kleinschreibung sowie die Interpunktion!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L49
 msgid ""
@@ -3233,7 +3233,7 @@ msgstr "Sätze {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L50
 msgid "Sentences not translated into {language}"
-msgstr "Sätze ohne Übersetzung in dieser Sprache: {language}"
+msgstr "Sätze ohne Übersetzung in {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L53
 msgid "Sentences translated into {language}"
@@ -3343,7 +3343,7 @@ msgstr "Zufälliger Satz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L31
 msgid "All sentences in {language} with audio"
-msgstr "Alle vertonten Sätze in dieser Sprache: {language}"
+msgstr "Alle vertonten Sätze in {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
