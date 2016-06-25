@@ -42,7 +42,12 @@ class Vocabulary extends AppModel
 
 
     /**
-     * 
+     * Adds an item into the vocabulary list of current user.
+     *
+     * @param $lang string Language of the vocabulary item.
+     * @param $text string Text of the vocabulary item.
+     *
+     * @return $data array
      */
     public function addItem($lang, $text) {
         $text = trim($text);
@@ -64,6 +69,18 @@ class Vocabulary extends AppModel
         return $data;
     }
 
+
+    /**
+     * Returns the number of sentences for $text in language $lang.
+     *
+     * This uses the search engine (Sphinx) to count the number of search result
+     * for an exact search on $text in language $lang.
+     *
+     * @param $lang string Language of the vocabulary item
+     * @param $text string Text of the vocabulary item.
+     *
+     * @return int
+     */
     private function _getNumberOfSentences($lang, $text) {
         $this->Behaviors->attach('Sphinx');
         $index = array($lang . '_main_index', $lang . '_delta_index');
@@ -80,7 +97,15 @@ class Vocabulary extends AppModel
 
 
     /**
+     * Returns array to use in $this->paginate, to retrieve all the vocabulary
+     * items in language $lang for which sentences are needed.
+     * We assume that a vocabulary item needs sentences if there are less than
+     * 10 sentences for it.
+     * The vocabulary items are sorted be number of sentences.
      *
+     * @param $lang string
+     *
+     * @return array
      */
     public function getPaginatedVocabulary($lang = null) {
         $conditions = array(
@@ -103,7 +128,11 @@ class Vocabulary extends AppModel
 
 
     /**
+     * Updates the number of sentences for a vocabulary item.
      *
+     * @param $id int Hexadecimal value of the vocabulary id.
+     *
+     * @return void
      */
     public function updateNumSentences($id) {
         $vocabularyId = hex2bin($id);

@@ -52,8 +52,12 @@ class VocabularyController extends AppController
         $this->Auth->allowedActions = array('of');
     }
 
+
     /**
+     * Page that lists all the vocabulary items of given user in given language.
      *
+     * @param $username string Username of the user.
+     * @param $lang     string Language of the items.
      */
     public function of($username, $lang = null)
     {
@@ -73,7 +77,7 @@ class VocabularyController extends AppController
 
 
     /**
-     *
+     * Page where users can add new vocabulary items to their list.
      */
     public function add()
     {
@@ -81,7 +85,9 @@ class VocabularyController extends AppController
 
 
     /**
+     * Page that lists all the vocabulary items for which sentences are wanted.
      *
+     * @param $lang string Language of the vocabulary items.
      */
     public function add_sentences($lang = null)
     {
@@ -98,7 +104,7 @@ class VocabularyController extends AppController
 
 
     /**
-     *
+     * Saves a vocabulary item.
      */
     public function save()
     {
@@ -120,7 +126,9 @@ class VocabularyController extends AppController
 
 
     /**
+     * Removes vocabulary item of given id.
      *
+     * @param $id int Hexadecimal value of vocabulary id.
      */
     public function remove($id)
     {
@@ -148,7 +156,8 @@ class VocabularyController extends AppController
 
 
     /**
-     *
+     * Saves a sentence for vocabulary of given id and updates the count of
+     * sentences for that vocabulary item.
      */
     public function save_sentence($vocabularyId)
     {
