@@ -47,82 +47,80 @@ echo $form->create(
     )
 );
 ?>
-<fieldset class="input text">
-    <label for="SentenceQuery">
-        <?php __('Search'); ?>
-    </label>
-    <?php
-    echo $html->div('search-bar-extra');
-    echo $html->link(
-        __('Help', true),
-        'http://en.wiki.tatoeba.org/articles/show/text-search',
-        array(
-            'target' => '_blank'
-        )
-    );
-    echo $html->link(
-        __p('title', 'Advanced search', true),
-        array(
-            'controller' => 'sentences',
-            'action' => 'advanced_search'
-        )
-    );
-    echo '</div>';
-    $clearButton = $this->Html->tag('button', '✖', array(
-        'id' => 'clearSearch',
-        'type' => 'button',
-        'title' => __('Clear search', true),
-    ));
-    echo $form->input(
-        'query',
-        array(
-            'id' => 'SentenceQuery',
-            'value' => $searchQuery,
-            'label' => '',
-            'accesskey' => 4,
-            'lang' => '',
-            'dir' => 'auto',
-            'after' => $clearButton,
-        )
-    );
-    ?>
-</fieldset>
+<div layout-gt-sm="row" layout-align-gt-sm="center end" layout-margin
+     layout="column" layout-align="center center">
+    <div layout="column" flex>
+        <div layout="row" layout-align="end center" class="search-bar-extra">
+            <?php
+            echo $html->link(
+                __('Help', true),
+                'http://en.wiki.tatoeba.org/articles/show/text-search',
+                array(
+                    'target' => '_blank'
+                )
+            );
+            echo $html->link(
+                __p('title', 'Advanced search', true),
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'advanced_search'
+                )
+            );
+            ?>
+        </div>
 
-<fieldset class="select from">
-    <?php
-    echo $this->Search->selectLang(
-        'from',
-        $selectedLanguageFrom,
-        array(
-            'div' => false,
-            'label' => __('From', true),
-        )
-    );
-    ?>
-</fieldset>
+        <div layout="row">
+            <label for="SentenceQuery">
+                <?php __('Search'); ?>
+            </label>
+            <input id="SentenceQuery"
+                   type="text"
+                   name="query"
+                   value="<?= $searchQuery ?>"
+                   accesskey="4"
+                   lang=""
+                   dir="auto"
+                   flex>
+            <md-icon id="clearSearch">clear</md-icon>
+        </div>
+    </div>
 
-<fieldset class="into">
-    <span id="arrow">&raquo;</span>
-</fieldset>
-    
-<fieldset class="select to">
-    <?php
-    echo $this->Search->selectLang(
-        'to',
-        $selectedLanguageTo,
-        array(
-            'div' => false,
-            'label' => __('To', true),
-        )
-    );
-    ?>
-</fieldset>
+    <div layout="row" layout-align="center end">
+        <div layout="column">
+            <?php
+            echo $this->Search->selectLang(
+                'from',
+                $selectedLanguageFrom,
+                array(
+                    'div' => false,
+                    'label' => __('From', true),
+                )
+            );
+            ?>
+        </div>
 
-<fieldset class="submit">
+        <div id="arrow">
+            <md-icon>swap_horiz</md-icon>
+        </div>
+
+        <div layout="column">
+            <?php
+            echo $this->Search->selectLang(
+                'to',
+                $selectedLanguageTo,
+                array(
+                    'div' => false,
+                    'label' => __('To', true),
+                )
+            );
+            ?>
+        </div>
+    </div>
+
     <md-button type="submit" class="search-submit-button md-raised">
         <md-icon>search</md-icon>
     </md-button>
-</fieldset>
+</div>
 
 <?php
 echo $form->end();
