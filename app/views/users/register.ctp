@@ -73,7 +73,7 @@ $label = format(
 ?>
 <h2><? __('Register'); ?></h2>
 
-<div layout="row" layout-align="">
+<div layout="row" layout-align="center center">
     <md-input-container class="md-icon-float md-icon-left md-block" flex>
         <label for="registrationUsername"><?php __('Username'); ?></label>
         <md-icon>person</md-icon>
@@ -108,8 +108,12 @@ $label = format(
             </div>
         </div>
     </md-input-container>
+    <md-input-container class="registration-loader">
+        <md-progress-circular md-diameter="16"
+                              ng-if="registrationForm['data[User][username]'].$pending">
+        </md-progress-circular>
+    </md-input-container>
 </div>
-
 
 <div layout="row">
     <md-input-container class="md-icon-float md-icon-left md-block" flex>
@@ -149,37 +153,44 @@ $label = format(
     </md-input-container>
 </div>
 
-<md-input-container class="md-icon-float md-icon-left md-block">
-    <label for="registrationEmail"><?php __('Email address'); ?></label>
-    <md-icon>email</md-icon>
-    <?php
-    $pattern = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/';
-    echo $form->input(
-        'email',
-        array(
-            'label' => '',
-            'id' => 'registrationEmail',
-            'class' => 'registrationField',
-            'ng-model' => 'user.email',
-            'required' => '',
-            'ng-pattern' => $pattern,
-            'unique-email' => '',
-            'ng-init' => "user.email = '$email'"
-        )
-    );
-    ?>
-    <div ng-messages="registrationForm['data[User][email]'].$error">
-        <div ng-message="required">
-            <? __('Field required') ?>
+<div layout="row" layout-align="center center">
+    <md-input-container class="md-icon-float md-icon-left md-block" flex>
+        <label for="registrationEmail"><?php __('Email address'); ?></label>
+        <md-icon>email</md-icon>
+        <?php
+        $pattern = '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/';
+        echo $form->input(
+            'email',
+            array(
+                'label' => '',
+                'id' => 'registrationEmail',
+                'class' => 'registrationField',
+                'ng-model' => 'user.email',
+                'required' => '',
+                'ng-pattern' => $pattern,
+                'unique-email' => '',
+                'ng-init' => "user.email = '$email'"
+            )
+        );
+        ?>
+        <div ng-messages="registrationForm['data[User][email]'].$error">
+            <div ng-message="required">
+                <? __('Field required') ?>
+            </div>
+            <div ng-message="pattern">
+                <? __('Invalid email address') ?>
+            </div>
+            <div ng-message="uniqueEmail">
+                <? __('Email address already used.') ?>
+            </div>
         </div>
-        <div ng-message="pattern">
-            <? __('Invalid email address') ?>
-        </div>
-        <div ng-message="uniqueEmail">
-            <? __('Email address already used.') ?>
-        </div>
-    </div>
-</md-input-container>
+    </md-input-container>
+    <md-input-container class="registration-loader">
+        <md-progress-circular md-diameter="16"
+                              ng-if="registrationForm['data[User][email]'].$pending">
+        </md-progress-circular>
+    </md-input-container>
+</div>
 
 <div id="native-language" layout="column">
     <div class="input" layout="row">

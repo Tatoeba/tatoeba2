@@ -75,3 +75,7 @@
 #UserRegisterForm label.md-required::after {
     content: '';
 }
+
+#UserRegisterForm .registration-loader {
+    padding: 0 36px 0 20px;
+}
