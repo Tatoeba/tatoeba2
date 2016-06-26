@@ -57,6 +57,19 @@
     </li>
 
     <li class="item">
+        <?php
+        echo $html->link(
+            __('Vocabulary', true),
+            array(
+                'controller' => 'vocabulary',
+                'action' => 'of',
+                $username
+            )
+        );
+        ?>
+    </li>
+
+    <li class="item">
     <?php
     echo $html->link(
         __('Collection', true),

@@ -107,3 +107,10 @@ cake acl create aco Transcriptions reset
 
 cake acl create aco controllers Recordings
 cake acl create aco Recordings import
+
+cake acl create aco controllers Vocabulary
+cake acl create aco Vocabulary add
+cake acl create aco Vocabulary add_sentences
+cake acl create aco Vocabulary save
+cake acl create aco Vocabulary remove
+cake acl create aco Vocabulary save_sentence
