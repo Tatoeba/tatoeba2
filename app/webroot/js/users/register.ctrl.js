@@ -25,7 +25,18 @@
         .directive('uniqueEmail', uniqueEmail);
 
     function UsersRegisterController() {
+        var vm = this;
 
+        vm.togglePassword = togglePassword;
+        vm.isPasswordVisible = false;
+
+        ///////////////////////////////////////////////////////////////////////////
+
+        function togglePassword() {
+            vm.isPasswordVisible = !vm.isPasswordVisible;
+            var type = vm.isPasswordVisible ? 'text' : 'password';
+            $('#registrationPassword').attr('type', type);
+        }
     }
 
     function uniqueUsername($http, $q) {
