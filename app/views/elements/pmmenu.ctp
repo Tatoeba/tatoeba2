@@ -62,6 +62,12 @@
                 ); 
                 ?>
             </li>
+            <li><?php
+                echo $html->link(
+                    __('Drafts', true), array('action' => 'folder', 'Drafts')
+                );
+                ?>
+            </li>
             <li>
                 <?php
                 echo $html->link(

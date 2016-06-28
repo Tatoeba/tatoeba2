@@ -44,11 +44,14 @@ class PrivateMessagesHelper extends AppHelper
      * @param string $recipient Recipient of the message.
      * @param string $title     Title of the message.
      * @param string $content   Content of the message.
+     * @param int    $messageId Id of message if message is draft
      */
     public function displayForm(
-        $recipients = null, $title = null, $content = null
+        $recipients = null, $title = null, $content = null, $messageId = null
     ) {
-        if ($content != null) {
+        if ($messageId != null) {
+            $headerTitle = __('Message', true);
+        } elseif ($content != null) {
             $headerTitle = __('Reply', true);
         } else {
             $headerTitle = __('New message', true);
@@ -79,10 +82,11 @@ class PrivateMessagesHelper extends AppHelper
         <div class="body">
             <div class="pmFields">
             <?php
+            echo $this->Form->hidden('messageId', array('value' => $messageId));
             echo $this->Form->input(
                 'recpt',
                 array(
-                    'label' => __('to', true),
+                    'label' => __('To', true),
                     'default' => $recipients,
                     'type' => 'text',
                     'maxlength' => 250,
@@ -108,7 +112,7 @@ class PrivateMessagesHelper extends AppHelper
 
             <div class="textarea">
             <?php
-            if ($content != null) {
+            if ($content != null && !$messageId) {
                 $content = $this->formatReplyMessage($content, $recipients);
             }
             echo $this->Form->input(
@@ -124,7 +128,10 @@ class PrivateMessagesHelper extends AppHelper
             ?>
             </div>
             <div layout="row" layout-align="end center" layout-padding>
-                <md-button type="submit" class="md-raised md-primary">
+                <md-button type="submit" name="data[PrivateMessage][submitType]" value="saveDraft" class="md-raised">
+                    <?php __('Save as draft'); ?>
+                </md-button>
+                <md-button type="submit" name="data[PrivateMessage][submitType]" value="send" class="md-raised md-primary">
                     <?php __('Send'); ?>
                 </md-button>
             </div>

@@ -146,9 +146,40 @@ class PrivateMessage extends AppModel
                       'folder' => array('Sent', 'Trash'),
                       'date >= ' => date_format($yesterday, "Y/m/d H:i:s")
                   )
-           )
+            )
+        );
+    }
+
+    /**
+     * Save a draft message.
+     *
+     * @param  int      $currentUserId
+     * @param  string   $now            [Timestamp]
+     * @param  array    $data           [Form data from controller]
+     *
+     * @return array                    [Draft]
+     */
+    public function saveDraft($currentUserId, $now, $data)
+    {
+        $draft = array(
+            'user_id'       => $currentUserId,
+            'sender'        => $currentUserId,
+            'draft_recpts'  => $data['PrivateMessage']['recpt'],
+            'date'          => $now,
+            'folder'        => 'Drafts',
+            'title'         => $data['PrivateMessage']['title'],
+            'content'       => $data['PrivateMessage']['content'],
+            'isnonread'     => 1,
+            'sent'          => 0,
         );
 
+        if ($data['PrivateMessage']['messageId']) {
+            $draft['id'] = $data['PrivateMessage']['messageId'];
+        }
+
+        $this->save($draft);
+
+        return $draft;
     }
 }
 ?>
