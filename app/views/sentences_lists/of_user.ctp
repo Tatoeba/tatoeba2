@@ -80,7 +80,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                     'numberOfSentences'
                 );
                 echo " | ";
-                echo $this->Paginator->sort(__('last updated', true), 'modified');
+                $options = array('defaultOrders' => array('modified' => 'desc'));
+                echo $pagination->sortDefaultOrder(__('last updated', true), 'modified', $options);
                 ?>
                 
             </div>
