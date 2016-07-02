@@ -541,6 +541,7 @@ class LanguagesLib
                 'afh' => __d('languages', 'Afrihili', true),
                 'krl' => __d('languages', 'Karelian', true),
                 'vep' => __d('languages', 'Veps', true),
+                'rue' => __d('languages', 'Rusyn', true),
             );
         }
         return $languages;
