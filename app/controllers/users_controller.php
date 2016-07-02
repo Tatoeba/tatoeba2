@@ -310,13 +310,30 @@ class UsersController extends AppController
 
         // No data
         if (empty($this->data)) {
+            $this->set('username', null);
+            $this->set('email', null);
+            $this->set('language', null);
             return;
         }
 
-        // Did not accept terms of use
-        if (!$this->data['User']['acceptation_terms_of_use']) {
+        $this->set('username', $this->data['User']['username']);
+        $this->set('email', $this->data['User']['email']);
+        $this->set('language', $this->data['User']['language']);
+
+        // Username does not fit requirements
+        if (!$this->User->validates()) {
+            $this->data['User']['password'] = '';
+            $this->data['User']['quiz'] = '';
+            return;
+        }
+
+        // Password is empty
+        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
+        if ($this->data['User']['password'] == ''
+            || $this->data['User']['password'] == $emptyPasswordMd5
+        ) {
             $this->Session->setFlash(
-                __('You did not accept the terms of use.', true)
+                __('Password cannot be empty.', true)
             );
             $this->data['User']['password'] = '';
             $this->data['User']['quiz'] = '';
@@ -334,20 +351,10 @@ class UsersController extends AppController
             return;
         }
 
-        // Username does not fit requirements
-        if (!$this->User->validates()) {
-            $this->data['User']['password'] = '';
-            $this->data['User']['quiz'] = '';
-            return;
-        }
-
-        // Password is empty
-        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
-        if ($this->data['User']['password'] == ''
-            || $this->data['User']['password'] == $emptyPasswordMd5
-        ) {
+        // Did not accept terms of use
+        if (!$this->data['User']['acceptation_terms_of_use']) {
             $this->Session->setFlash(
-                __('Password cannot be empty.', true)
+                __('You did not accept the terms of use.', true)
             );
             $this->data['User']['password'] = '';
             $this->data['User']['quiz'] = '';

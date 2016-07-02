@@ -21,63 +21,13 @@
  * Registration form
  */
 #UserRegisterForm {
-    padding: 10px 10px 20px;
+    padding: 20px;
     margin: 20px auto;
-    width: 580px;
-    background: #fafafa;
-    border: 1px solid #dddddd;
-    border-radius: 10px;
+    width: 400px;
 }
 
-#UserRegisterForm input {
-    font-size: 1em;
-    padding: 5px;
-    border: 1px solid #cccccc;
-}
-
-#UserRegisterForm input[type="text"],
-#UserRegisterForm input[type="password"] {
-    width: 200px;
-    margin: 10px 0;
-}
-
-
-#UserRegisterForm select {
-    font-size: 16px;
-    width: 210px;
-    padding: 5px;
-    margin: 10px 0;
-}
-
-
-#UserRegisterForm .field {
-    text-align: right;
-    min-width: 150px;
-}
-
-#UserRegisterForm .field label {
-    display: block;
-    margin: 15px 0;
-}
-
-#UserRegisterForm label[for="UserQuiz"] {
-    display: block;
-}
-
-#UserRegisterForm .valid {
-    background: #ffffff url(/img/valid_16x16.png) no-repeat scroll right 5px center;
-}
-
-#UserRegisterForm .error {
-    background: #ffffff url(/img/error_16x16.png) no-repeat scroll right 5px center;
-    border: 1px solid #EE0000;
-}
-
-#UserRegisterForm .checking {
-    background: #ffffff url(/img/loading.svg) no-repeat scroll right center;
-}
-
-#UserRegisterForm .submit {
+#UserRegisterForm h2 {
+    margin: 0 0 40px 0;
     text-align: center;
 }
 
@@ -85,30 +35,47 @@
     cursor: pointer;
 }
 
-#userInformation {
-    margin: 10px 0;
+#native-language {
+    padding: 5px 0 20px 0;
 }
 
-#userInformation td {
-    padding: 10px;
-    vertical-align: top;
+#native-language md-icon,
+#human-check md-icon {
+    color: #000000;
+    padding: 0 2px;
 }
 
-#quiz {
-    border-top: 1px dotted #B3C6A9;
-    border-bottom: 1px dotted #B3C6A9;
-    padding: 20px;
-    text-align: center;
+#native-language .input {
+    margin-bottom: 10px;
 }
 
-#termsOfUse {
-    border-bottom: 1px dotted #B3C6A9;
-    padding: 10px;
-    margin-bottom: 20px;
-    text-align: center;
+#native-language select {
+    max-width: 200px;
+}
+
+#native-language label,
+#human-check .title {
+    padding: 2px 0 0 10px;
+}
+
+#human-check {
+    margin: 20px 0;
+}
+
+
+#human-check .instructions {
+    margin-top: 10px;
 }
 
 #UserRegisterForm .hint {
     font-size: 13px;
     color: #666666;
+}
+
+#UserRegisterForm label.md-required::after {
+    content: '';
+}
+
+#UserRegisterForm .registration-loader {
+    padding: 0 36px 0 20px;
 }

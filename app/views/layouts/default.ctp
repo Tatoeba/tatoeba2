@@ -122,6 +122,7 @@
     echo $javascript->link(JS_PATH . 'angular/angular-animate.min.js');
     echo $javascript->link(JS_PATH . 'angular/angular-aria.min.js');
     echo $javascript->link(JS_PATH . 'angular/angular-material.min.js');
+    echo $javascript->link(JS_PATH . 'angular/angular-messages.min.js');
     echo $javascript->link(JS_PATH . 'responsive/app.module.js');
 
 
