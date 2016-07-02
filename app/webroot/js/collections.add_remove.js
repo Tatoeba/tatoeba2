@@ -24,7 +24,6 @@ $(document).ready(function(){
         var sentenceId = $(this).attr("data-sentence-id");
         var correctness = $(this).attr("data-sentence-correctness");
         var addToCorpusOption = $(this);
-        var loader = $("#_" + sentenceId + "_in_process");
         var action = "add";
 
         var requestUrl = "/collections";
@@ -35,11 +34,10 @@ $(document).ready(function(){
         }
 
         addToCorpusOptionParent = addToCorpusOption.parent();
-        loader.show();
+        addToCorpusOption.html("<div class='loader-small loader'></div>");
 
         $.post(requestUrl, {}, function(data){
             addToCorpusOptionParent.replaceWith(data);
-            loader.hide();
         });
     });
 });

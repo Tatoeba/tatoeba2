@@ -645,7 +645,10 @@ class MenuHelper extends AppHelper
 
         <li>
         <?php
-        echo "<md-progress-circular  md-diameter='16' style='display: none;' id='_" . $sentenceId ."_in_process'></md-progress-circular>";
+        echo $this->Html->div('loader-small loader', '', array(
+            'id' => '_'.$sentenceId.'_in_process',
+            'style' => 'display:none',
+        ));
         echo $this->Html->image(
             IMG_PATH . 'valid_16x16.png',
             array(

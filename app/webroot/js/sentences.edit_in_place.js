@@ -32,10 +32,9 @@ $(document).ready(function() {
                 if($(this).find('textarea').val().trim().length == 0){
                     return false;
                 } else {
-                    $("#_" + sentenceId + "_translate_loader").show();
-                    return true;   
+                    return true;
                 }
-            }, 
+            },
             cancel    : div.attr('data-cancel'),
             event     : 'edit_sentence',
             data : function(value, settings) {
@@ -56,9 +55,8 @@ $(document).ready(function() {
                         }
                     );
                 }
-                $("#_" + sentenceId + "_translate_loader").hide();
             },
-            indicator : "<div></div>",
+            indicator : "<div class='sentence-loader loader'></div>",
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'
         }).bind('edit_sentence', function(e) {
