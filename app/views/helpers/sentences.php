@@ -107,7 +107,10 @@ class SentencesHelper extends AppHelper
 
 
         // Loading icon
-        echo  "<md-progress-circular class='translation-loader' id='_" . $id . "_loading' style='display: none;'></md-progress-circular>";
+        echo $this->Html->div('translation-loader loader', '', array(
+            'id' => '_'.$id.'_loading',
+            'style' => 'display:none',
+        ));
 
         // Form to add a new translation
         $this->_displayNewTranslationForm($id);
@@ -143,7 +146,7 @@ class SentencesHelper extends AppHelper
             = $this->segregateTranslations($translations);
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
-
+            
             <?php
             $this->Javascript->link('sentences.collapse.js', false);
 
@@ -165,19 +168,19 @@ class SentencesHelper extends AppHelper
                 $initiallyDisplayedTranslations = 5;
                 $displayed = $totalTranslations - $initiallyDisplayedTranslations;
             }
-
-            //Split 'allTranslations' array into two, visible & hidden sets of sentences
+            
+            //Split 'allTranslations' array into two, visible & hidden sets of sentences        
             $visibleTranslations = array_slice($allTranslations, 0, $initiallyDisplayedTranslations);
             $hiddenTranslations = array_slice($allTranslations, $initiallyDisplayedTranslations);
-
-            $sentenceCount = 0;
+            
+            $sentenceCount = 0;  
 
             //visible list of translations
             foreach ($visibleTranslations as $translation) {
 
                 if ($sentenceCount < $totalDirectTranslations)
                     $type = 'directTranslation';
-                else
+                else 
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
@@ -207,12 +210,12 @@ class SentencesHelper extends AppHelper
 
             //expanded list of translations
             echo $this->Html->tag('div', null, array('class' => 'more'));
-
+            
             foreach ($hiddenTranslations as $translation) {
 
                 if ($sentenceCount < $totalDirectTranslations)
                     $type = 'directTranslation';
-                else
+                else 
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
@@ -233,7 +236,7 @@ class SentencesHelper extends AppHelper
                     array('class' => 'hideLink')
                 );
             ?>
-          </div>
+          </div>  
         </div>
         <?php
     }
@@ -387,22 +390,31 @@ class SentencesHelper extends AppHelper
             )
         );
         echo '</div>';
-        ?>
 
-        <div layout="row" layout-align="end center">
-            <md-button id="<?php echo '_'.$id.'_cancel'; ?>"
-                       class="md-raised">
-                <?php __('Cancel'); ?>
-            </md-button>
+        // Buttons
+        echo '<div class="addTranslation_buttons">';
+        // OK
+        echo $this->Form->button(
+            __('Submit translation', true),
+            array(
+                'id' => '_'.$id.'_submit',
+                'class' => 'submit button'
+            )
+        );
 
-            <md-button id="<?php echo '_'.$id.'_submit'; ?>"
-                       class="md-raised md-primary">
-                <?php __('Submit translation'); ?>
-            </md-button>
-        </div>
+        // Cancel
+        echo $this->Form->button(
+            __('Cancel', true),
+            array(
+                'id' => '_'.$id.'_cancel',
+                'type' => 'reset',
+                'class'=>'cancel button'
+            )
+        );
+        echo '</div>';
 
-        </div>
-        <?php
+        echo '</div>';
+
     }
 
 
@@ -518,7 +530,7 @@ class SentencesHelper extends AppHelper
         } else {
             echo '<div class="content column">';
         }
-
+        
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
             $this->_displayLinkOrUnlinkButton(
@@ -550,7 +562,6 @@ class SentencesHelper extends AppHelper
         if( $isFavoritePage && $this->params['pass'][0] == CurrentUser::get('username') ){
             echo '<div class="favorite-page column">';
             $this->Menu->favoriteButton($sentenceId, true, true, true);
-            echo '<li class="option favorite progress" style="display: none;"><md-progress-circular md-diameter="24"></md-progress-circular></li>';
             echo '</div>';
         }
 
@@ -570,11 +581,11 @@ class SentencesHelper extends AppHelper
 
         <?php
     }
-
-
+    
+    
     /**
      * Returns the label for the correctness of a sentence.
-     *
+     * 
      * @param int $correctness Correctness of the sentence.
      *
      * @return String
@@ -582,7 +593,7 @@ class SentencesHelper extends AppHelper
     private function getCorrectnessLabel($correctness)
     {
         $result = 'correctness';
-
+        
         if ($correctness < 0) {
             $result .= 'Negative'.abs($correctness);
         } else if ($correctness == 0) {
@@ -590,11 +601,11 @@ class SentencesHelper extends AppHelper
         } else {
             $result .= 'Positive'.$correctness;
         }
-
+        
         return $result;
     }
 
-
+     
     /**
      * Display the link or unlink button.
      *
@@ -635,7 +646,6 @@ class SentencesHelper extends AppHelper
         $sentence,
         $isEditable
     ) {
-        echo "<md-progress-circular class='sentence-loader' md-diameter='20' id='_" . $sentence['id'] . "_translate_loader' style='display: none;'></md-progress-circular>";
         echo $this->Html->div('sentenceContent', null, array(
             'data-sentence-id' => $sentence['id'],
         ));
