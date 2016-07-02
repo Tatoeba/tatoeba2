@@ -118,7 +118,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                 <md-button type="submit" class="md-raised md-warn"
                            href="<?= $deleteUrl; ?>"
                            onclick="return confirm('<?= $confirmation; ?>');">
-                    <?php __('Delete this list'); ?>
+                    <?php __('Delete'); ?>
                 </md-button>
                 <?php
             }
@@ -136,7 +136,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
             </md-button>
 
             <md-button type="submit" class="md-raised md-primary">
-                <?php __('Submit translation'); ?>
+                <?= $submitLabel ?>
             </md-button>
         </div>
 
