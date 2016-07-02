@@ -29,7 +29,7 @@ $addSentencesUrl = $html->url(
             <? __('Add vocabulary items'); ?>
         </md-list-item>
         <md-list-item href="<?= $addSentencesUrl ?>">
-            <? __('Sentences wanted for vocabulary'); ?>
+            <? __('Sentences wanted'); ?>
         </md-list-item>
     </md-list>
 </div>
