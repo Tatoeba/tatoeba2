@@ -21,15 +21,15 @@ $addSentencesUrl = $html->url(
 ?>
 <div class="section" layout="column" md-whiteframe="1">
     <h2><? __('Vocabulary items'); ?></h2>
-    <div layout="column" flex>
-        <md-button class="md-primary" href="<?= $indexUrl ?>">
+    <md-list>
+        <md-list-item href="<?= $indexUrl ?>">
             <? __('My vocabulary items'); ?>
-        </md-button>
-        <md-button class="md-primary" href="<?= $addUrl ?>">
+        </md-list-item>
+        <md-list-item href="<?= $addUrl ?>">
             <? __('Add vocabulary items'); ?>
-        </md-button>
-        <md-button class="md-primary" href="<?= $addSentencesUrl ?>">
-            <? __('Sentences wanted'); ?>
-        </md-button>
-    </div>
+        </md-list-item>
+        <md-list-item href="<?= $addSentencesUrl ?>">
+            <? __('Sentences wanted for vocabulary'); ?>
+        </md-list-item>
+    </md-list>
 </div>
