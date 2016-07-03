@@ -16,15 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-md-card {
-    margin: 0 0 20px 0;
-}
-
 .profileSummary,
 .profileLanguages {
     border: 1px solid #CCC;
     border-radius: 5px;
     padding-bottom: 10px;
+}
+
+
+.with-title-button h2 {
+    margin: 0;
 }
 
 /*
@@ -37,10 +38,6 @@ md-card {
 
 #profile .info {
     padding-left: 20px;
-}
-
-#profile .info h2 {
-    margin: 0;
 }
 
 #profile .personal-info {
@@ -88,4 +85,24 @@ md-card {
 .profileLanguages .edit {
     position: relative;
     height: 20px;
+}
+
+.language-icon {
+    margin: 25px 20px 0 0;
+}
+
+.md-list-item-text {
+    padding: 5px 0;
+}
+
+.md-list-item-text h3 {
+    font-size: 16px;
+    border: none;
+    padding-left: 0;
+}
+
+.usersLanguages .label {
+    padding-left: 20px;
+    font-size: 13px;
+    color: #AAAAAA;
 }

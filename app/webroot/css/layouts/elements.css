@@ -1700,18 +1700,14 @@ div.hideLink {
     padding: 5px;
 }
 
-.usersLanguages .languageLevel {
-    width: 100px;
-    height: 15px;
-    border: 1px solid #ddd;
+.languageLevel {
 }
 
-.usersLanguages .languageLevel.unknown {
-    text-align: center;
-    background: #F1F1F1;
+.languageLevel.unknown {
+    color: #AAAAAA;
 }
 
-.usersLanguages .languageLevel .level {
+.languageLevel .level {
     background: #06A;
     width: 20px;
     height: 100%;

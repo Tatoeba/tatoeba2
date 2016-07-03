@@ -101,17 +101,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
     if ($isDisplayed) {
         ?>
         <div class="section" md-whiteframe="1">
-            <?php
-            if ($username == $currentMember) {
-                $members->displayEditButton(
-                    array(
-                        'controller' => 'user',
-                        'action' => 'settings'
-                    )
-                ); 
-            }
-            ?>
-
             <h2><?php __('Settings'); ?></h2>
 
             <ul class="annexeMenu">
@@ -124,9 +113,9 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                     }
                     ?>
                 </li>
-                
+
                 <li class="item">
-                    <?php    
+                    <?php
                     if ($isPublic) {
                         __(
                             'Access to this profile is PUBLIC. '.
@@ -141,10 +130,10 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                     }
                     ?>
                 </li>
-                
+
                 <?php
                 if (!empty($languagesSettings)) {
-                    ?> 
+                    ?>
                     <li class="item">
                     <?php echo str_replace(',', ', ', $languagesSettings); ?>
                     </li>
@@ -152,7 +141,24 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                 }
                 ?>
             </ul>
-            
+
+            <?php
+            if ($username == $currentMember) {
+                $editSettingsUrl = $html->url(array(
+                    'controller' => 'user',
+                    'action' => 'settings'
+                ));
+                ?>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-primary md-raised"
+                               aria-label="<?= __('Edit') ?>"
+                               href="<?= $editSettingsUrl ?>">
+                        <?= __('Edit') ?>
+                    </md-button>
+                </div>
+            <?php
+            }
+            ?>
         </div>
     <?php
     }
@@ -160,7 +166,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 </div>
 
 <div id="main_content">
-    <div id="profile" class="section" layout="column" md-whiteframe="1">
+    <div id="profile" class="section with-title-button" layout="column" md-whiteframe="1">
 
         <div layout="row" class="header">
             <div>
@@ -199,10 +205,10 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                     }
                     if (!empty($editUrl)){
                         ?>
-                        <md-button class="md-icon-button"
+                        <md-button class="md-primary md-raised"
                                    aria-label="<?= __('Edit') ?>"
                                    href="<?= $editUrl ?>">
-                            <md-icon>edit</md-icon>
+                            <?= __('Edit') ?>
                         </md-button>
                         <?
                     }
@@ -294,20 +300,8 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         ?>
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section with-title-button" md-whiteframe="1">
         <?php
-        if ($username == $currentMember) {
-            echo $html->div('edit');
-            $members->displayEditButton(
-                array(
-                    'controller' => 'user',
-                    'action' => 'language'
-                ),
-                __('Add a language', true)
-            );
-            echo '</div>';
-        }
-
         if (empty($userLanguages))
         {
             echo '<p>';
@@ -327,49 +321,69 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         }
         else
         {
-            echo '<table class="usersLanguages">';
-            foreach($userLanguages as $userLanguage) {
-                $languageInfo = $userLanguage['UsersLanguages'];
-                $langCode = $languageInfo['language_code'];
-                $level = $languageInfo['level'];
-                $details = $languageInfo['details'];
-
-                echo '<tr class="languageInfo">';
-
-                // Icon
-                echo $html->tag('td', $languages->icon(
-                    $langCode,
-                    array(
-                        "width" => 30,
-                        "height" => 20
-                    )
-                ));
-
-                // Name
-                echo $html->tag('td', $languages->codeToNameAlone($langCode));
-
-                // Level
-                echo $html->tag('td', $members->displayLanguageLevel($level));
-
-                // Details
-                echo $html->tag('td', $details, array('escape' => true));
-
-                // Edit link
+            ?>
+            <div layout="row" layout-align="start center">
+                <h2 flex><? __('Languages'); ?></h2>
+                <?php
                 if ($username == $currentMember) {
-                    $editLink = $html->link(
-                        __('Edit', true),
-                        array(
-                            'controller' => 'user',
-                            'action' => 'language',
-                            $langCode
-                        )
-                    );
-                    echo $html->tag('td', $editLink);
-                }
+                    $addLangUrl = $html->url(array(
+                        'controller' => 'user',
+                        'action' => 'language'
+                    ));
+                    ?>
+                    <div layout="row" layout-align="end center">
+                        <md-button class="md-primary md-raised" href="<?= $addLangUrl ?>">
+                            <?__('Add a language') ?>
+                        </md-button>
+                    </div>
+                <? } ?>
+            </div>
 
-                echo '</tr>';
-            }
-            echo '</table>';
+
+            <md-list>
+                <? foreach($userLanguages as $userLanguage) {
+                    $languageInfo = $userLanguage['UsersLanguages'];
+                    $langCode = $languageInfo['language_code'];
+                    $level = $languageInfo['level'];
+                    $details = $languageInfo['details'];
+                    $editLangUrl = $html->url(array(
+                        'controller' => 'user',
+                        'action' => 'language',
+                        $langCode
+                    ));
+                    ?>
+                    <md-list-item class="md-2-line">
+                        <?
+                        // Icon
+                        echo $languages->icon(
+                            $langCode,
+                            array(
+                                'width' => 30,
+                                'height' => 20,
+                                'class' => 'language-icon'
+                            )
+                        );
+                        ?>
+                        <div class="md-list-item-text">
+                            <h3 flex>
+                                <?= $languages->codeToNameAlone($langCode) ?>
+                            </h3>
+                            <?= $members->displayLanguageLevel($level); ?>
+                            <p>
+                                <?= $details ?>
+                            </p>
+                        </div>
+                        <? if ($username == $currentMember) { ?>
+                            <md-button class="md-secondary md-icon-button"
+                                       aria-label="<?= __('Edit') ?>"
+                                       href="<?= $editLangUrl ?>">
+                                <md-icon>edit</md-icon>
+                            </md-button>
+                        <? } ?>
+                    </md-list-item>
+                <? } ?>
+            </md-list>
+            <?php
         }
         ?>
     </div>
