@@ -134,7 +134,7 @@ $vocabularyUrl = $html->url(array(
             <div layout="row" layout-align="center center">
                 <md-button href="<?= $vocabularyUrl ?>">
                     <md-icon>keyboard_arrow_right</md-icon>
-                    Check out the vocabulary for which we need sentences
+                    <? __('Check out the vocabulary for which we need sentences'); ?>
                 </md-button>
             </div>
         </div>
