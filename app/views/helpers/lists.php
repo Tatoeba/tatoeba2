@@ -624,8 +624,9 @@ class ListsHelper extends AppHelper
             echo '<ul class="annexeMenu">';
 
             echo '<li class="item">';
+            $listScope = __('All public lists', true);
             echo $this->Html->link(
-                __('All lists', true),
+                $listScope,
                 array(
                     'controller' => 'sentences_lists',
                     'action' => 'index'
