@@ -51,7 +51,7 @@ class PaginationHelper extends AppHelper
         // direction is given or no default is specified
         if(isset($this->params['direction']) 
             || !isset($options['defaultOrders'])
-            || !isset($options['defaultOders'][$key])){
+            || !isset($options['defaultOrders'][$key])){
             return $this->Paginator->sort($title, $key, $options);
         }
         
