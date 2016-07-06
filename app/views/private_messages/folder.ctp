@@ -70,20 +70,8 @@ echo $this->element('pmmenu');
                  echo '<tr class="messageHeader">';
             }
 
-            /* Used to display properly the name of the sender, or receiver
-             * while we are in Sent or other folder.
-             * NOTE: the caps to the word 'Sent' is IMPORTANT.
-             */
-            if ($folder == 'Sent') {
-                $user = $msg['Recipient'];
-                $label = format(__('to {recipient}', true), array('recipient' => $user['username']));
-            } elseif ($folder == 'Drafts' || $msg['PrivateMessage']["draft_recpts"] != '') {
-                $user = null;
-                $label = format(__('Draft', true));
-            } else {
-                $user = $msg['Sender'];
-                $label = format(__('from {sender}', true), array('sender' => $user['username']));
-            }
+            list($user, $label) = $messages->getUserAndLabel($msg, $folder);
+
             echo '<td class="senderImage">';
             if ($user) {
                 $messages->displayAvatar($user);

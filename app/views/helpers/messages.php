@@ -205,6 +205,69 @@ class MessagesHelper extends AppHelper
         <?php
     }
 
+    /**
+     * Get user and label of sender/receiver for current message.
+     *
+     * @param  array  $msg
+     * @param  string $folder
+     *
+     * @return array [user, label]
+     */
+    public function getUserAndLabel($msg, $folder)
+    {
+        $folder = $this->_getFolder($folder, $msg);
+
+        if ($folder == 'Sent') {
+            $user = $msg['Recipient'];
+            $label = format(
+                __('to {recipient}', true),
+                array('recipient' => $user['username'])
+            );
+        } elseif ($this->_isDraftMessage($folder, $msg)) {
+            $user = null;
+            $label = format(__('Draft', true));
+        } else {
+            $user = $msg['Sender'];
+            $label = format(
+                __('from {sender}', true),
+                array('sender' => $user['username'])
+            );
+        }
+
+        return [$user, $label];
+    }
+
+    /**
+     * If trash message, return msg's set origin index. Else, return folder.
+     *
+     * @param  string $folder
+     * @param  array  $msg
+     *
+     * @return string
+     */
+    private function _getFolder($folder, $msg)
+    {
+        if (isset($msg['PrivateMessage']['origin'])) {
+            return $msg['PrivateMessage']['origin'];
+        }
+
+        return $folder;
+    }
+
+    /**
+     * Message is a draft message or a deleted draft message.
+     *
+     * @param  string  $originalFolder
+     * @param  array   $msg
+     *
+     * @return boolean
+     */
+    private function _isDraftMessage($originalFolder, $msg)
+    {
+        return
+            $msg['PrivateMessage']["draft_recpts"] != '' ||
+            $originalFolder == 'Drafts';
+    }
 
     /**
      * Display author avatar.
@@ -540,5 +603,4 @@ class MessagesHelper extends AppHelper
 
         return $previewContent;
     }
-
 }

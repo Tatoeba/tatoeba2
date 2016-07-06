@@ -75,6 +75,7 @@ class PrivateMessagesController extends AppController
         $currentUserId = $this->Auth->user('id');
 
         $conditions = array('folder' => $folder);
+
         if ($folder == 'Inbox') {
             $conditions['recpt'] = $currentUserId;
         } else if ($folder == 'Sent' || $folder == 'Drafts') {
@@ -115,8 +116,26 @@ class PrivateMessagesController extends AppController
 
         $content = $this->paginate();
 
+        if ($folder == 'Trash') {
+            $content = array_map([$this, '_setOriginFolder'], $content);
+        }
+
         $this->set('folder', $folder);
         $this->set('content', $content);
+    }
+
+    /**
+     * Set the origin folder on the message array.
+     *
+     * @param array $message
+     *
+     * @return  array
+     */
+    private function _setOriginFolder($message)
+    {
+        $message['PrivateMessage']['origin'] = $this->_findOriginFolder($message);
+
+        return $message;
     }
 
     /**
@@ -458,18 +477,31 @@ class PrivateMessagesController extends AppController
 
         $message = $this->PrivateMessage->findById($messageId);
 
-        if ($message['PrivateMessage']['recpt'] == $this->Auth->user('id')) {
-            $folder = 'Inbox';
-        } elseif ($message['PrivateMessage']['sent'] == false) {
-            $folder = 'Drafts';
-        } else {
-            $folder = 'Sent';
-        }
+        $folder = $this->_findOriginFolder($message);
 
         $message['PrivateMessage']['folder'] = $folder;
 
         $this->PrivateMessage->save($message);
+
         $this->redirect(array('action' => 'folder', $folder));
+    }
+
+    /**
+     * Determine which folder trash messages originally belonged to.
+     *
+     * @param  array $message
+     *
+     * @return string
+     */
+    private function _findOriginFolder($message)
+    {
+        if ($message['PrivateMessage']['recpt'] == $this->Auth->user('id')) {
+            return 'Inbox';
+        } elseif ($message['PrivateMessage']['sent'] == false) {
+            return 'Drafts';
+        }
+
+        return 'Sent';
     }
 
     /**
