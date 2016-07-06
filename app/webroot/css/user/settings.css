@@ -16,31 +16,17 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-.module label {
-    font-weight: bold;
-    width: 100px;
-    padding-right: 10px;
+
+.settings-form{
+    padding: 20px;
+    margin: 20px auto;
 }
 
-.module .input {
-    margin: 10px;
+.settings-form h2{
+    margin: 0 0 40px 0;
 }
 
-.submit input {
-    margin: 10px 0;
-    padding: 3px 10px;
-    
+md-list-item{
+     border-top: 1px solid #f1f1f1;
 }
 
-#UserLang {
-    width: 300px;
-}
-
-.options fieldset {
-    border: 1px solid #cccccc;
-    margin-bottom: 10px;
-}
-.options .experimental-info {
-    margin: 5px;
-    color: #EE0000;
-}
