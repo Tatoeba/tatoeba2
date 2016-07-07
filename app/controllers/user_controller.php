@@ -282,12 +282,7 @@ class UserController extends AppController
             $this->redirect('/');
         }
 
-        $isEmailUnique
-            = $this->User->isEmailUnique(
-                $this->data['User']['email'],
-                $currentUserId
-            );
-        if (!$isEmailUnique) {
+        if (!$this->_isUniqueEmail($this->data, $currentUserId)) {
             $this->Session->setFlash(
                 __("That email address already exists. Please try another.", true)
             );
@@ -295,6 +290,18 @@ class UserController extends AppController
                 array(
                         'controller' => 'user',
                         'action' => 'settings'
+                    )
+            );
+        }
+
+        if (!$this->_isValidBirthday($this->data)) {
+            $this->Session->setFlash(
+                __("The entered birthday is an invalid date. Please try again.", true)
+            );
+            $this->redirect(
+                array(
+                        'controller' => 'user',
+                        'action' => 'edit_profile'
                     )
             );
         }
@@ -333,6 +340,48 @@ class UserController extends AppController
                 )
             );
         }
+    }
+
+    /**
+     * Return true if entered email address is unique in database.
+     *
+     * @param  array   $data
+     * @param  int     $currentUserId
+     *
+     * @return boolean
+     */
+    private function _isUniqueEmail($data, $currentUserId)
+    {
+        if (isset($data['User']['email'])) {
+            return $this->User->isEmailUnique(
+                $data['User']['email'],
+                $currentUserId
+            );
+        }
+
+        return true;
+    }
+
+    /**
+     * Return true if entered birthday is a valid date.
+     *
+     * @param  array  $data
+     *
+     * @return boolean
+     */
+    private function _isValidBirthday($data)
+    {
+        if (isset($data['User']['birthday'])) {
+            $day = $data['User']['birthday']['day'];
+
+            $month = $data['User']['birthday']['month'];
+
+            $year = $data['User']['birthday']['year'];
+
+            return checkdate($month, $day, $year);
+        }
+
+        return true;
     }
 
 
