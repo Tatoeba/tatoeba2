@@ -440,7 +440,7 @@
     border: 1px solid #ccc;
     border-bottom: none;
     border-left: none;
-    padding: 10px 10px 1px 10px;
+    padding: 10px 10px 3px 10px;
     background-color: #fff;
     margin-bottom: -1px;
     border-top-right-radius: 4px;
@@ -560,7 +560,6 @@
 .message .body {
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    line-height: 18px;
 }
 
 .message .body .sentence {
