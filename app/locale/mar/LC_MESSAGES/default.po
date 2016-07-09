@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-27 00:08+0000\n"
-"PO-Revision-Date: 2016-07-01 04:44+0000\n"
+"POT-Creation-Date: 2016-07-02 21:14+0000\n"
+"PO-Revision-Date: 2016-07-06 08:14+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -65,61 +65,57 @@ msgid ""
 "this."
 msgstr "दुवा जोडताना त्रुटी आढळली. पुन्हा प्रयत्न करून बघा, किंवा याचा अहवाल सादर करण्यासाठी आमच्याशी संपर्क साधा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L147
 msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at team@tatoeba.org."
 msgstr "संदेश पाठवायचा वाटा पूर्ण केला आहे. अजून संदेश पाठवता येईपर्यंत थांबावे. हा निरोप चुकून आला आहे असं वाटत असले तर team@tatoeba.org या पत्त्यावर प्रशासकांशी संपर्क साधा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L224
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "आपण ज्या प्रयोक्तांना हा संदेश पाठवू इच्छिता ({username}), ते अस्तित्वात नाहीत. कृपया एखादं दुसरं प्रयोक्तानाव घालून पहा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L213
-msgid "You must fill at least the \"To\" field and the content field."
-msgstr "कमीतकमी \"प्रती\" रकाना व मजकूर रकाना भरा."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L299
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L138
 msgid "restore"
 msgstr "पूर्वस्थितीत आणा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L307
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L149
 msgid "permanently delete"
 msgstr "कायमपणे काढून टाका"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L367
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L435
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L463
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L116
 msgid "Are you sure?"
 msgstr "नक्की का?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L371
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L457
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L152
 msgid "delete"
 msgstr "हटवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
 msgid "mark as unread"
 msgstr "'न वाचलेले' असे चिन्हित करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L471
 msgid "reply"
 msgstr "उत्तर द्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L415
 msgid "Folder \"{name}\" emptied."
 msgstr "\"{name}\" हा फोल्डर खाली केला गेला."
 
@@ -134,7 +130,7 @@ msgstr "ही टिप्पणी संपादित करण्याच
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L304
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L68
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " team@tatoeba.org."
@@ -276,7 +272,7 @@ msgid ""
 msgstr "हा टॅग कोणत्याही वाक्यावर लावला नाही. आपण जो टॅग शोधत आहात तो खोडून टाकला गेला आहे किंवा तो अस्तित्वात नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L111
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L482
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L489
 msgid "No user with this username: "
 msgstr "अश्या प्रयोक्तानावाचे कोणतेही प्रयोक्ता नाहीत: "
 
@@ -350,42 +346,42 @@ msgid ""
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "लॉगइन अपयशी झाले. कॅप्स लॉक व नम लॉक चालू नाही याची खात्री करावे. पासवर्ड केस-संवेदनशील आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L319
-msgid "You did not accept the terms of use."
-msgstr "वापरण्याच्या अटी आपण स्वीकारल्या नाहीत."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L330
-msgid "Wrong answer to the question."
-msgstr "प्रश्नाचं उत्तर चुकलं."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L350
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L336
 msgid "Password cannot be empty."
 msgstr "पासवर्ड ठेवणं आवश्यक आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L347
+msgid "Wrong answer to the question."
+msgstr "प्रश्नाचं उत्तर चुकलं."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L357
+msgid "You did not accept the terms of use."
+msgstr "वापरण्याच्या अटी आपण स्वीकारल्या नाहीत."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L399
 msgid "Welcome to Tatoeba!"
 msgstr "तातोएबावर आपले स्वागत आहे!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L403
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "सुरुवात करण्यास, आपल्याला ज्या भाषा येतात व ज्या भाषांमध्ये आपल्याला रस आहे, आपल्या <a href='{url}'>प्रोफाइलद्वारे</a> कळवा आम्हाला कळवा, असा आम्ही तुम्हाला सल्ला देतो."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L454
 msgid "Your new password has been sent to {email}."
 msgstr "आपला नवीन पासवर्ड {email} येथे पाठवला गेला आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L452
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L459
 msgid "You may need to check your spam folder to find this message."
 msgstr "हा संदेश आपल्याला कदाचित स्पॅम फोल्डर तपासून सापडू शकेल."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L467
 msgid "There is no registered user with this email address: "
 msgstr "कोणतेही नोंदणीकृत प्रयोक्ता या ईमेलशी संबंधित नाहीत: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L528
 msgid "No user with this id: "
 msgstr "या आय.डी.चे कोणतेही प्रयोक्ता नाहीत: "
 
@@ -597,7 +593,7 @@ msgstr "प्रश्नात्मक वाक्य दुरुस्त 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 msgid "Translate sentences"
-msgstr "वाक्यांचं भाषांतर करा"
+msgstr "वाक्यांचे भाषांतर करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L41
 msgid "How to add a translation"
@@ -619,7 +615,7 @@ msgstr "चांगली भाषांतरे"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L60
 msgid "We know it's difficult, but do NOT translate word for word!"
-msgstr "असं करणं कठीण आहे हे खरं, पण शब्दशः भाषांतर करू नका!"
+msgstr "कितीही कठीण पडलं तरी शब्दशः भाषांतर करू नका!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L64
 msgid "Multiple translations"
@@ -807,7 +803,7 @@ msgstr "शब्द:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L60
 msgid "Language:"
 msgstr "भाषा:"
@@ -1130,7 +1126,8 @@ msgstr "जितके योगदाता, तितक्याच उप�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L264
 msgid "Register"
 msgstr "नोंदणी करा"
 
@@ -1171,7 +1168,7 @@ msgstr "खाजगी संदेश"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid "New message"
 msgstr "नवीन संदेश पाठवा"
@@ -1192,13 +1189,18 @@ msgstr "आलेले संदेश"
 msgid "Unread"
 msgstr "न वाचलेले"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L36
+msgid "Drafts"
+msgstr "मसूदे"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L74
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L32
 msgid "Sent"
 msgstr "पाठवलेले"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L34
 msgid "Trash"
@@ -1249,6 +1251,7 @@ msgid "From"
 msgstr "या भाषेतून"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L89
 msgid "To"
 msgstr "या भाषेत"
 
@@ -1533,8 +1536,8 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "वाक्याशी असंबंधित गोष्टींची चर्चा करण्यासाठी खाजगी संदेशांचा वापर करा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L199
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L395
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L719
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L729
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L148
@@ -1824,7 +1827,6 @@ msgid "No one (list inactive)"
 msgstr "कोणीच नाही (निष्क्रीय यादी)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L397
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L121
 msgid "Delete this list"
 msgstr "यादी हटवा"
 
@@ -1843,7 +1845,7 @@ msgstr "या यादीत एक वाक्य जोडा : "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L499
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L382
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L718
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L728
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L134
@@ -1966,7 +1968,7 @@ msgstr "मालकी त्यागण्यास क्लिक करा
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L203
 msgid "Remove from favorites"
-msgstr "आवडीच्या वाक्यांमधून काढून टाका"
+msgstr "आवडलेले वाक्य असे अचिन्हांकित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L208
 msgid "Undo"
@@ -1974,7 +1976,7 @@ msgstr "पूर्ववत करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L211
 msgid "Add to favorites"
-msgstr "आवडीच्या वाक्यांच्या यादीत जोडा"
+msgstr "आवडलेले वाक्य असे चिन्हांकित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L267
 msgid "Link to another sentence"
@@ -2009,6 +2011,7 @@ msgstr "या वाक्यावर ऑडिओ असल्यामुळ
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L422
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L121
 msgid "Delete"
 msgstr "हटवा"
 
@@ -2041,7 +2044,6 @@ msgid "Unmark sentence"
 msgstr "वाक्य अचिन्हित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L147
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L245
 msgid "Former member"
 msgstr "माजी सदस्य"
 
@@ -2051,18 +2053,18 @@ msgstr "यांना खाजगी संदेश पाठवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L194
 msgid "edited"
-msgstr "संपादित केले"
+msgstr "संपादित केले:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L229
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L245
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L185
 msgid "View this user's profile"
 msgstr "या प्रयोक्ताचे प्रोफाइल पहा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L426
 msgid "sentence deleted"
 msgstr "वाक्य हटवले"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L443
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -2075,7 +2077,7 @@ msgstr "वाक्य क्र. दाखवा : "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L116
 msgid "Language for previous, next or random sentence"
-msgstr "मागच्या, नंतरच्या किंवा यादृच्छिक वाक्यांची भाषा"
+msgstr "मागच्या, पुढच्या वा यादृच्छिक वाक्यांची भाषा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L126
 msgid "previous"
@@ -2131,25 +2133,29 @@ msgstr "आधीचे पान [Ctrl+←]"
 msgid "Next page [Ctrl+→]"
 msgstr "पुढचे पान [Ctrl+→]"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L53
+msgid "Message"
+msgstr "संदेश"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L55
 msgid "Reply"
 msgstr "उत्तर द्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L85
-msgid "to"
-msgstr "प्रति"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L104
 msgid "Title"
 msgstr "शीर्षक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L132
+msgid "Save as draft"
+msgstr "मसूदा म्हणून सेव्ह करा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L58
 msgid "Send"
 msgstr "पाठवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L159
 msgid "{sender} wrote:"
 msgstr "{sender} यांनी लिहिले:"
 
@@ -2187,22 +2193,21 @@ msgstr "या वाक्याशी कोणतेही ऑडिओ स�
 msgid "Copy sentence"
 msgstr "वाक्याला कॉपी करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L202
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "अजून एक भाषांतर दाखवा"
 msgstr[1] "अजून {number} भाषांतरे दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L235
 msgid "Fewer translations"
 msgstr "कमी भाषांतरे दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L342
 msgid "Translation:"
 msgstr "भाषांतर:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L400
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L398
 msgid "Submit translation"
 msgstr "भाषांतर सादर करा"
 
@@ -2298,23 +2303,23 @@ msgstr "आपण हे प्रतिलेखन संपादित क�
 msgid ""
 "This alternative script may contain errors because it has been generated by "
 "a piece of software that is not perfect."
-msgstr ""
+msgstr "ही वैकल्पिक लिपी एका अपरिपूर्ण सॉफ्टवेअरद्वारे निर्माण केली असल्यामुळे यात त्रुट्या असू शकतात."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L267
 msgid ""
 "This transcription may contain errors because it has been generated by a "
 "piece of software that is not perfect."
-msgstr ""
+msgstr "हे प्रतिलेखन एका अपरिपूर्ण सॉफ्टवेअरद्वारे निर्माण केले असल्यामुळे यात त्रुट्या असू शकतात."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L281
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
-msgstr ""
+msgstr "याचे पुनरावलोकन केले आहे असे चिन्हांकित करा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L287
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
-msgstr ""
+msgstr "याचे पुनरावलोकन केले आहे असे चिन्हांकित करा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L74
 msgid "Add a message: "
@@ -2561,7 +2566,7 @@ msgstr "वाक्य आय.डी."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L88
 msgid "Rating"
-msgstr ""
+msgstr "मूल्यांकन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L181
@@ -2575,6 +2580,7 @@ msgstr "भाषा"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
 msgid "Username"
 msgstr "प्रयोक्ता नाव"
 
@@ -2710,14 +2716,14 @@ msgstr "यात प्रत्येक भाषेत सदस्यां
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L412
 msgid "Users' sentence ratings"
-msgstr ""
+msgstr "प्रयोक्त्यांनी वाक्यांना दिलेले मूल्यांकन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L440
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "या प्रयोक्त्यांनी मूल्यांकन केलेले वाक्य आहेत. मूल्यांकनाचे मूल्य असे असू शकतात: -1 (वाक्य बरोबर नाही), 0 (सुनिश्चित नाही), किंवा 1 (वाक्य बरोबर आहे). चेतावणी: हा डेटा अजूनही प्रायोगिक आहे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L451
 msgid "General information about the files"
@@ -2806,7 +2812,7 @@ msgstr "हा प्रकल्प झकास वाटत असेल व 
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
-msgstr "इतके म्हणून, तातोएबामध्ये आपले स्वागत आहे! या प्रकल्पाचा हिस्सा बनून आपल्याला खूप मजा यावी अशी आमची आशा आहे :)"
+msgstr "इतके म्हणून, तातोएबात आपले स्वागत आहे! या प्रकल्पात भाग घेऊन आपल्याला खूप मजा यावी अशी आमची आशा आहे :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L145
 msgid "Important links"
@@ -2952,7 +2958,7 @@ msgstr "आकडेवारी"
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
 msgstr[0] "{number} : आज केलेले योगदान"
-msgstr[1] "{number} : आज केलेले योगदान"
+msgstr[1] "{number}: आज केलेले योगदान"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L67
 msgid "{number} supported language"
@@ -3085,25 +3091,29 @@ msgstr "या साईटच्या अटींमध्ये परिव
 
 #. @translators: this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L42
 msgid "Private messages - {folderName}"
 msgstr "खाजगी संदेश - {folderName}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L52
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} ({n}&nbsp;संदेश)"
 msgstr[1] "{folderName} ({n}&nbsp;संदेश)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L77
-msgid "from {sender}"
-msgstr "{sender} पासून"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L79
 msgid "to {recipient}"
 msgstr "{recipient} यांना"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L82
+msgid "Draft"
+msgstr "मसूदा"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L85
+msgid "from {sender}"
+msgstr "{sender} पासून"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[विषय नाहीये]"
@@ -3120,13 +3130,13 @@ msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "आपण आज एक निरोप पाठवला आहे."
 msgstr[1] "आपण आज {n}&nbsp;निरोप पाठवले आहेत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L60
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
 msgstr "तातोएबाला स्पॅम व मत्सरी संदेशांपासून मुक्त ठेवण्यास नवीन प्रयोक्त्यांवर दर दिवशी फक्त ५ संदेश पाठवण्याची मर्यादा आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L65
 msgid "Please wait until you can send more messages. "
 msgstr "अजून संदेश पाठवण्याची परवानगी मिळेपर्यंत कृपया वाट पहा. "
 
@@ -3316,7 +3326,7 @@ msgid ""
 "Translating sentences one by one is too slow for you? You want to increase "
 "your rank in Tatoeba, or the rank of your language, at the speed of light? "
 "So this is for you!"
-msgstr "एक-एक करून वाक्यांचा भाषांतर करणे खूपच हळू वाटतंय का? तातोएबामध्ये आपला दर्जा किंवा आपल्या भाषेचा दर्जा प्रकाशाच्या वेगाने वाढवायचा आहे का? मग हे आपल्यासाठीच आहे!"
+msgstr "एक-एक करून वाक्यांचा भाषांतर करणे खूपच हळू वाटते का? तातोएबात आपला दर्जा किंवा आपल्या भाषेचा दर्जा प्रकाशाच्या वेगाने वाढवायचा आहे का? मग हे आपल्यासाठीच आहे!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L43
 msgid "Just keep in mind that our server is not as fast as you ;-)"
@@ -4085,6 +4095,7 @@ msgid "Change email address"
 msgstr "ईमेल पत्ता बदला"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
 msgid "Email address"
 msgstr "ईमेल पत्ता"
 
@@ -4145,6 +4156,7 @@ msgstr[0] "{lang} ({total} सदस्य)"
 msgstr[1] "{lang} ({total} सदस्य)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L120
 msgid "Password"
 msgstr "पासवर्ड"
 
@@ -4157,68 +4169,70 @@ msgstr "नवीन पासवर्ड पाठवा"
 msgid "Email"
 msgstr "ईमेल"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L48
-msgid "Username:"
-msgstr "प्रयोक्ता नाव:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L70
+msgid "I accept the <a href=\"{}\">terms of use</a>"
+msgstr "मी <a href=\"{}\">वापरण्याच्या अटी</a> कबूल करतो किंवा करते."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L60
-msgid "Username already taken."
-msgstr "प्रयोक्ता नाव आधीपासूनच वापरलं जात आहे"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L178
+msgid "Field required"
+msgstr "हा रकाना भरणे गरजेचे आहे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L101
 msgid "Username must be at least two characters long"
-msgstr "प्रयोक्ता नावात किमान दोन अक्षरं असायला हवी"
+msgstr "प्रयोक्ता नावात किमान दोन कॅरॅक्टर असायला हवे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L104
 msgid "Username can only contain letters, numbers, or underscore"
 msgstr "प्रयोक्ता नावात फक्त इंग्रजी अक्षरं, अंक किंवा अंडरस्कोर असू शकतात"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
-msgid "Password:"
-msgstr "पासवर्ड:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L107
+msgid "Username already taken."
+msgstr "प्रयोक्ता नाव आधीपासूनच वापरलं जात आहे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L139
+msgid "Password must be at least 6 characters long"
+msgstr "पासवर्डमध्ये किमान ६ कॅरॅक्टर असायला हवे"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L150
 msgid "unmask password"
 msgstr "पासवर्ड उघडपणे दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L102
-msgid "Email address:"
-msgstr "ईमेल पत्ता:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L181
 msgid "Invalid email address"
 msgstr "अवैध इमेल पत्ता"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L184
 msgid "Email address already used."
 msgstr "हा ईमेल पत्ता आधीच नोंदणीकृत आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L198
 msgid "Native language:"
 msgstr "मातृभाषा:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L219
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
 msgstr "जर आपल्याला आपली मातृभाषा या यादीत सापडली नाही, तर या पर्यायाला \"कोणतीही नाही\" वर राहू द्या."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L230
 msgid "We need to make sure you are human."
 msgstr "तुम्ही मानव असल्याची आम्हाला खात्री करायची आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L235
 msgid "What are the first five characters of your email address?"
 msgstr "आपल्या ईमेल पत्त्याचे पहिले पाच कॅरॅक्टर काय आहेत?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L243
+msgid "Answer"
+msgstr "उत्तर"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L250
 msgid ""
 "For instance, if your email address is a.b.cd@example.com, type a.b.c into "
 "the box."
 msgstr "उदाहरणार्थ, आपला ईमेल पत्ता a.b.cd@example.com असेल, तर \"a.b.c\" असं टाइप करा."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L177
-msgid "I accept the <a href=\"{}\">terms of use</a>"
-msgstr "मी <a href=\"{}\">वापरण्याच्या अटी</a> कबूल करतो किंवा करते."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L23
 msgid "Tatoeba user: {username}"
@@ -4254,11 +4268,11 @@ msgstr "जोडा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add.ctp#L97
 msgid "Vocabulary items added"
-msgstr "शब्दसंग्रहात बाबी जोडल्या गेल्या"
+msgstr "शब्दसंग्रहात जोडल्या गेलेल्या बाबी "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L31
 msgid "Vocabulary that needs sentences"
-msgstr "वाक्ये हवी आहेत असे शब्दसंग्रह"
+msgstr "हव्या असलेल्या वाक्यांचे शब्दसंग्रह"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L49
 msgid ""
@@ -4303,12 +4317,12 @@ msgstr "प्रश्न विचारण्याअगोदर, <a href=\
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L81
 msgid "{date}, by {author}"
-msgstr "{author} यांनी {date} ला लिहिले"
+msgstr "{date}, {author} यांनी लिहिले"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L107
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
-msgstr "आपण हव्या त्या भाषेत लिहू शकता. तातोएबामध्ये सर्व भाषा समान आहेत."
+msgstr "आपण हव्या त्या भाषेत लिहू शकता. तातोएबात सर्व भाषा समान आहेत."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
 msgid "Wall (one thread)"

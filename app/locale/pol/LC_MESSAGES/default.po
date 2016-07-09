@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-27 00:08+0000\n"
-"PO-Revision-Date: 2016-06-27 00:13+0000\n"
+"POT-Creation-Date: 2016-07-02 21:14+0000\n"
+"PO-Revision-Date: 2016-07-02 21:20+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Polish (http://www.transifex.com/tatoeba/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -64,61 +64,57 @@ msgid ""
 "this."
 msgstr "Podczas odłączania wystąpił błąd. Spróbuj ponownie albo skontaktuj się z nami, żeby to zgłosić."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L147
 msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at team@tatoeba.org."
 msgstr "Osiągnąłeś limit wiadomości na dzisiaj. Zaczekaj. Jeśli otrzymałeś tę wiadomość przez pomyłkę, skontaktuj się z administratorami: team@tatoeba.org."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L224
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "Użytkownik {username}, któremu chciałeś wysłać wiadomość, nie istnieje. Spróbuj inną nazwę użytkownika"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L213
-msgid "You must fill at least the \"To\" field and the content field."
-msgstr "Musisz wypełnić przynajmniej pole \"Do\" oraz pole treści."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L299
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L138
 msgid "restore"
 msgstr "przywróć"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L307
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L149
 msgid "permanently delete"
 msgstr "usuń bezpowrotnie"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L367
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L435
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L463
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L116
 msgid "Are you sure?"
 msgstr "Jesteś pewien?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L371
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L457
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L152
 msgid "delete"
 msgstr "usuń"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
 msgid "mark as unread"
 msgstr "oznacz jako przeczytane"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L471
 msgid "reply"
 msgstr "odpowiedz"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L415
 msgid "Folder \"{name}\" emptied."
 msgstr "Folder \"{name}\" został opróżniony."
 
@@ -133,7 +129,7 @@ msgstr "Nie masz uprawnień do zmiany tego komentarza. "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L304
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L68
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " team@tatoeba.org."
@@ -277,7 +273,7 @@ msgid ""
 msgstr "Nie ma zdań z takim tagiem. Poszukiwany tag został skasowany albo nie istnieje."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L111
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L482
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L489
 msgid "No user with this username: "
 msgstr "Brak użytkownika o loginie "
 
@@ -351,42 +347,42 @@ msgid ""
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Zalogowanie nie powiodło się. Upewnij się, czy przypadkiem nie został niepotrzebnie włączony Caps Lock lub Num Lock. W haśle są rozróżniane małe i duże litery."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L319
-msgid "You did not accept the terms of use."
-msgstr "Nie zaakceptowałeś warunków korzystania z serwisu."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L330
-msgid "Wrong answer to the question."
-msgstr "Zła odpowiedź na to pytanie"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L350
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L336
 msgid "Password cannot be empty."
 msgstr "Hasło nie może być puste."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L347
+msgid "Wrong answer to the question."
+msgstr "Zła odpowiedź na to pytanie"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L357
+msgid "You did not accept the terms of use."
+msgstr "Nie zaakceptowałeś warunków korzystania z serwisu."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L399
 msgid "Welcome to Tatoeba!"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L403
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L454
 msgid "Your new password has been sent to {email}."
 msgstr "Twoje nowe hasło zostało wysłane na adres {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L452
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L459
 msgid "You may need to check your spam folder to find this message."
 msgstr "Wiadomość może trafić do folderu ze spamem."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L467
 msgid "There is no registered user with this email address: "
 msgstr "Brak zarejestrowanego użytkownika o adresie "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L528
 msgid "No user with this id: "
 msgstr "Brak użytkownika o numerze ID "
 
@@ -812,7 +808,7 @@ msgstr "Słowa:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L60
 msgid "Language:"
 msgstr "Język:"
@@ -1137,7 +1133,8 @@ msgstr "Im więcej będzie użytkowników, tym Tatoeba będzie wartościowsza! A
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L264
 msgid "Register"
 msgstr "Zarejestruj się"
 
@@ -1178,7 +1175,7 @@ msgstr "Wiadomości prywatne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid "New message"
 msgstr "Nowa wiadomość"
@@ -1199,13 +1196,18 @@ msgstr "Skrzynka odbiorcza"
 msgid "Unread"
 msgstr "nieprzeczytana"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L36
+msgid "Drafts"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L74
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L32
 msgid "Sent"
 msgstr "Wysłane"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L34
 msgid "Trash"
@@ -1256,6 +1258,7 @@ msgid "From"
 msgstr "Z"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L89
 msgid "To"
 msgstr "na"
 
@@ -1541,8 +1544,8 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Do rozmów na tematy niezwiązane z tym zdaniem służą wiadomości prywatne."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L199
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L395
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L719
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L407
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L729
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L148
@@ -1835,7 +1838,6 @@ msgid "No one (list inactive)"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L397
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L121
 msgid "Delete this list"
 msgstr "Usuń tę listę"
 
@@ -1854,7 +1856,7 @@ msgstr "Dodaj zdanie do tej listy: "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L499
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L382
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L718
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L728
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L134
@@ -2020,6 +2022,7 @@ msgstr "Nie możesz usunąć tego zdania, ponieważ posiada nagranie."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L422
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L121
 msgid "Delete"
 msgstr "Usuń"
 
@@ -2052,7 +2055,6 @@ msgid "Unmark sentence"
 msgstr "Usuń oznaczenie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L147
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L245
 msgid "Former member"
 msgstr "Były członek"
 
@@ -2064,16 +2066,16 @@ msgstr "Wyślij prywatną wiadomość"
 msgid "edited"
 msgstr "edytowano"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L229
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L245
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L185
 msgid "View this user's profile"
 msgstr "Pokaż profil tego użytkownika"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L426
 msgid "sentence deleted"
 msgstr "zdanie usunięte"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L443
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -2144,25 +2146,29 @@ msgstr "Poprzednia strona [Ctrl+←]"
 msgid "Next page [Ctrl+→]"
 msgstr "Następna strona [Ctrl+→]"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L53
+msgid "Message"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L55
 msgid "Reply"
 msgstr "Odpowiedz"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L85
-msgid "to"
-msgstr "do"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L104
 msgid "Title"
 msgstr "Tytuł"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L132
+msgid "Save as draft"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L58
 msgid "Send"
 msgstr "Wyślij"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L159
 msgid "{sender} wrote:"
 msgstr "Użytkownik {sender} napisał:"
 
@@ -2200,23 +2206,22 @@ msgstr "Brak nagrania tego zdania. Kliknij, aby dowiedzieć się, jak je dodać.
 msgid "Copy sentence"
 msgstr "Kopiuj zdanie"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L202
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Pokaż kolejne tłumaczenie"
 msgstr[1] "Pokaż {number} kolejne tłumaczenia"
 msgstr[2] "Pokaż {number} kolejnych tłumaczeń"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L235
 msgid "Fewer translations"
 msgstr "Mniej tłumaczeń"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L342
 msgid "Translation:"
 msgstr "Tłumaczenie"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L400
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L398
 msgid "Submit translation"
 msgstr "Dodaj tłumaczenie"
 
@@ -2589,6 +2594,7 @@ msgstr "Kod języka"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
 msgid "Username"
 msgstr "Nazwa użytkownika"
 
@@ -3102,26 +3108,30 @@ msgstr "Tych warunków użytkowania serwisu nie można zmieniać. Jeśli jest ja
 
 #. @translators: this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L42
 msgid "Private messages - {folderName}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L52
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L77
-msgid "from {sender}"
-msgstr "od {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L79
 msgid "to {recipient}"
 msgstr "do {recipient}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L82
+msgid "Draft"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L85
+msgid "from {sender}"
+msgstr "od {sender}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[bez tematu]"
@@ -3139,13 +3149,13 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L60
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
 msgstr "By chronić Tatoebę przed spamem i innymi niepożądanymi treściami, nowi użytkownicy mogą wysłać tylko 5 wiadomości dziennie."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L65
 msgid "Please wait until you can send more messages. "
 msgstr "Musisz zaczekać, zanim będziesz mógł wysłać więcej wiadomości. "
 
@@ -4108,6 +4118,7 @@ msgid "Change email address"
 msgstr "Zmień adres email"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
 msgid "Email address"
 msgstr "Email address"
 
@@ -4170,6 +4181,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L120
 msgid "Password"
 msgstr ""
 
@@ -4182,68 +4194,70 @@ msgstr "Wyślij nowe hasło"
 msgid "Email"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L48
-msgid "Username:"
-msgstr "Nazwa użytkownika:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L70
+msgid "I accept the <a href=\"{}\">terms of use</a>"
+msgstr "Akceptuję <a href=\"{}\">warunki użytkowania</a>"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L60
-msgid "Username already taken."
-msgstr "Nazwa użytkownika zajęta."
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L178
+msgid "Field required"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L101
 msgid "Username must be at least two characters long"
 msgstr "Nazwa użytkownika musi zawierać przynajmniej dwie litery"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L104
 msgid "Username can only contain letters, numbers, or underscore"
 msgstr "Nazwa użytkownika może zawierać tylko litery, cyfry oraz podkreślnik"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
-msgid "Password:"
-msgstr "Hasło:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L107
+msgid "Username already taken."
+msgstr "Nazwa użytkownika zajęta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L139
+msgid "Password must be at least 6 characters long"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L150
 msgid "unmask password"
 msgstr "pokaż hasło"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L102
-msgid "Email address:"
-msgstr "E-mail:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L181
 msgid "Invalid email address"
 msgstr "Nieprawidłowy email"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L184
 msgid "Email address already used."
 msgstr "Email już raz użyty."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L198
 msgid "Native language:"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L219
 msgid ""
 "If you don't find your native language in the list, leave this as 'None'."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L230
 msgid "We need to make sure you are human."
 msgstr "Musimy się upewnić, że jesteś człowiekiem."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L235
 msgid "What are the first five characters of your email address?"
 msgstr "Jakie jest pięć pierwszych liter Twojego e-maila?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L243
+msgid "Answer"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L250
 msgid ""
 "For instance, if your email address is a.b.cd@example.com, type a.b.c into "
 "the box."
 msgstr "Na przykład, jeżeli twój e-mail to a.b.cd@example.com, to odpowiedź będzie brzmieć \"a.b.c\"."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L177
-msgid "I accept the <a href=\"{}\">terms of use</a>"
-msgstr "Akceptuję <a href=\"{}\">warunki użytkowania</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L23
 msgid "Tatoeba user: {username}"
