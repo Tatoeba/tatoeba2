@@ -49,13 +49,12 @@ class PrivateMessagesHelper extends AppHelper
     public function displayForm(
         $recipients = null, $title = null, $content = null, $messageId = null
     ) {
-        if ($messageId != null) {
-            $headerTitle = __('Message', true);
-        } elseif ($content != null) {
-            $headerTitle = __('Reply', true);
-        } else {
-            $headerTitle = __('New message', true);
-        }
+        $headerTitle = $this->Messages->getHeaderTitle(
+            $recipients,
+            $messageId,
+            $content,
+            $title
+        );
 
         echo $this->Form->create(
             'PrivateMessage', 
@@ -112,7 +111,7 @@ class PrivateMessagesHelper extends AppHelper
 
             <div class="textarea">
             <?php
-            if ($content != null && !$messageId) {
+            if ($this->Messages->isReply($recipients, $messageId, $content)) {
                 $content = $this->formatReplyMessage($content, $recipients);
             }
             echo $this->Form->input(

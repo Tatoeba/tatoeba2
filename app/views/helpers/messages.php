@@ -83,10 +83,55 @@ class MessagesHelper extends AppHelper
         echo "</div>";
     }
 
+    /**
+     * Get the message header title.
+     *
+     * @param  int     $messageId
+     * @param  string  $content
+     * @param  string  $title
+     *
+     * @return string
+     */
+    public function getHeaderTitle($recipients, $messageId, $content, $title)
+    {
+        if ($this->isDraft($messageId)) {
+            return __('Message', true);
+        } else if ($this->isReply($recipients, $messageId, $content)) {
+            return __('Reply', true);
+        }
+
+        return __('New message', true);
+    }
+
+    /**
+     * Message is a draft.
+     *
+     * @param  int  $messageId
+     *
+     * @return boolean
+     */
+    public function isDraft($messageId)
+    {
+        return $messageId != null;
+    }
+
+    /**
+     * Message is a reply.
+     *
+     * @param  string  $recipients
+     * @param  int     $messageId
+     * @param  string  $content
+     *
+     * @return boolean
+     */
+    public function isReply($recipients, $messageId, $content)
+    {
+        return $recipients && !$messageId && $content != null;
+    }
 
     /**
      *
-     * 
+     *
      *
      */
     public function displayHeader($author, $created, $modified, $menu)
