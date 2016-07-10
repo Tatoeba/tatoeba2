@@ -363,7 +363,7 @@ class UserController extends AppController
     }
 
     /**
-     * Return true if entered birthday is a valid date.
+     * Return true if entered birthday is a valid date or is not complete/set.
      *
      * @param  array  $data
      *
@@ -378,7 +378,9 @@ class UserController extends AppController
 
             $year = $data['User']['birthday']['year'];
 
-            return checkdate($month, $day, $year);
+            if ($day && $month && $year) {
+                return checkdate($month, $day, $year);
+            }
         }
 
         return true;
