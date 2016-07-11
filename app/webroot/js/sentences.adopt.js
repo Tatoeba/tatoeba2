@@ -18,25 +18,26 @@
 
 
 $(document).ready(function(){
+    $(document).watch("addrule", function() {
+        $(document).on("click", ".adopt-button", function () {
+            var adoptOption = $(this).parent();
+            var sentenceId = adoptOption.attr("data-sentence-id");
+            
+            var rootUrl = get_tatoeba_root_url();
 
-    $(document).on("click", ".adopt-button", function () {
-        var adoptOption = $(this).parent();
-        var sentenceId = adoptOption.attr("data-sentence-id");
-        
-        var rootUrl = get_tatoeba_root_url();
+            if (adoptOption.hasClass("add")) {
+                reqUrl = rootUrl + "/sentences/adopt/" + sentenceId;
+            } else if (adoptOption.hasClass("remove")) {
+                reqUrl = rootUrl + "/sentences/let_go/"+  sentenceId;
+            }
 
-        if (adoptOption.hasClass("add")) {
-            reqUrl = rootUrl + "/sentences/adopt/" + sentenceId;
-        } else if (adoptOption.hasClass("remove")) {
-            reqUrl = rootUrl + "/sentences/let_go/"+  sentenceId;
-        }
-
-        if (reqUrl) {
-            adoptOption.html("<div class='loader-small loader'></div>");
-            $.get(reqUrl, {}, function(data, textStatus, jqXHR) {
-                adoptOption.replaceWith(data);
-            });
-        }
+            if (reqUrl) {
+                adoptOption.html("<div class='loader-small loader'></div>");
+                $.get(reqUrl, {}, function(data, textStatus, jqXHR) {
+                    adoptOption.replaceWith(data);
+                });
+            }
+        });
     });
 });
 

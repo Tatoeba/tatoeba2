@@ -40,7 +40,7 @@ $(document).ready(function() {
         , function(data){
             $("#text").val("");
             $("#session_expired").remove();
-            $(".sentencesList").prepend(data);
+            $(".sentencesList").watch("prepend", data);
             $("#list_add_loader").hide();
         }
         , "html");        
