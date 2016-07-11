@@ -774,6 +774,7 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.play_audio.js', true);
         echo $this->Javascript->link('links.add_and_delete.js', true);
         echo $this->Javascript->link('sentences.logs.js', true);
+        echo $this->Javascript->link('transcriptions.js', true);
     }
 
 

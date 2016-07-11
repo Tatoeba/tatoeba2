@@ -19,71 +19,72 @@
 
 $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
+    $(document).watch("addrule", function() {
+        $('.editableSentence').each(function() {
+            var div = $(this);
 
-    $('.editableSentence').each(function() {
-        var div = $(this);
-
-        var sentenceId = div.parent().attr('data-sentence-id');
-        div.data('text', div.text());
-        div.editable(rootUrl + '/sentences/edit_sentence', {
-            type      : 'textarea',
-            submit    : div.attr('data-submit'),
-            onsubmit  : function () {
-                if($(this).find('textarea').val().trim().length == 0){
-                    return false;
-                } else {
-                    return true;
-                }
-            },
-            cancel    : div.attr('data-cancel'),
-            event     : 'edit_sentence',
-            data : function(value, settings) {
-                return $(this).data('text');
-            },
-            callback : function(result, settings) {
-                var text = $('<div>').html(result).text(); // fix html entities
-                $(this).data('text', text);
-                // Update transcriptions if any
-                var transcr = div.closest('.sentence').find('.transcriptions');
-                if (transcr.length) {
-                    transcr.html("<div class='sentence-loader loader'></div>");
-                    $.get(
-                        rootUrl + '/transcriptions/view/' + sentenceId,
-                        null,
-                        function(result, status) {
-                            transcr.html(result);
-                        }
-                    );
-                }
-            },
-            indicator : "<div class='sentence-loader loader'></div>",
-            cssclass  : 'editInPlaceForm',
-            onblur    : 'ignore'
-        }).bind('edit_sentence', function(e) {
-            $(this).find('textarea').keyup(function(event) {
-                var submitBtn = $(this).parent().find('button[type=submit]');
-                if($(this).val().trim().length == 0) {
-                    submitBtn.prop('disabled', true);
-                }
-                else {
-                    submitBtn.prop('disabled', false);
-                }
-                
-            }); 
-            $(this).find('textarea').keydown(function(event) {
-                if (event.which == 13){
-                    event.preventDefault();
-                    $(this).closest('form').submit();   
-                }
+            var sentenceId = div.parent().attr('data-sentence-id');
+            div.data('text', div.text());
+            div.editable(rootUrl + '/sentences/edit_sentence', {
+                type      : 'textarea',
+                submit    : div.attr('data-submit'),
+                onsubmit  : function () {
+                    if($(this).find('textarea').val().trim().length == 0){
+                        return false;
+                    } else {
+                        return true;
+                    }
+                },
+                cancel    : div.attr('data-cancel'),
+                event     : 'edit_sentence',
+                data : function(value, settings) {
+                    return $(this).data('text');
+                },
+                callback : function(result, settings) {
+                    var text = $('<div>').html(result).text(); // fix html entities
+                    $(this).data('text', text);
+                    // Update transcriptions if any
+                    var transcr = div.closest('.sentence').find('.transcriptions');
+                    if (transcr.length) {
+                        transcr.html("<div class='sentence-loader loader'></div>");
+                        $.get(
+                            rootUrl + '/transcriptions/view/' + sentenceId,
+                            null,
+                            function(result, status) {
+                                transcr.html(result);
+                            }
+                        );
+                    }
+                },
+                indicator : "<div class='sentence-loader loader'></div>",
+                cssclass  : 'editInPlaceForm',
+                onblur    : 'ignore'
+            }).bind('edit_sentence', function(e) {
+                $(this).find('textarea').keyup(function(event) {
+                    var submitBtn = $(this).parent().find('button[type=submit]');
+                    if($(this).val().trim().length == 0) {
+                        submitBtn.prop('disabled', true);
+                    }
+                    else {
+                        submitBtn.prop('disabled', false);
+                    }
+                    
+                }); 
+                $(this).find('textarea').keydown(function(event) {
+                    if (event.which == 13){
+                        event.preventDefault();
+                        $(this).closest('form').submit();   
+                    }
+                });
             });
         });
-    });
 
-    $(".edit").bind("click", function() {
-        $(this).parent().parent().find('.mainSentence .editableSentence').trigger("edit_sentence");
-    });
+        $(".edit").bind("click", function() {
+            $(this).parent().parent().find('.mainSentence .editableSentence').trigger("edit_sentence");
+        });
 
-    $(".editableTranslation .editableSentence").bind("click", function() {
-        $(this).trigger("edit_sentence");
+        $(".editableTranslation .editableSentence").bind("click", function() {
+            $(this).trigger("edit_sentence");
+        });
     });
 });
