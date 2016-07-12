@@ -604,6 +604,7 @@ class LanguagesLib
             "aii",
             "afb",
             "pus"
+            "snd"
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
