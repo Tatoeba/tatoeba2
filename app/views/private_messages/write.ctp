@@ -32,7 +32,22 @@ echo $this->element('pmmenu');
 <div id="main_content">
     <div class="module">
      <?php
-     if ($isNewUser && $canSend) {
+     if ($isNewUser && !$canSend) {
+         echo "<p>";
+             __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
+             );
+         echo "</p>";
+         echo "<p>";
+             __(
+                 "Please wait until you can send more messages. "
+             );
+             __(
+                 "If you have received this message in error, ".
+                 "please contact administrators at ".
+                 "team@tatoeba.org."
+             );
+         echo "</p>";
+     } else if ($isNewUser) {
          echo "<p>";
              __(
                  "To help keep Tatoeba free of spam and other malicious messages
@@ -50,29 +65,13 @@ echo $this->element('pmmenu');
          );
          echo "</p>";
          echo "<br/>";
+     }
+
+     if ($canSend) {
         if (isset($messageId)) {
             $privateMessages->displayForm($recipients, $title, $content, $messageId);
-        } else {
-            $privateMessages->displayForm($recipients);
-        }
-     } else if ($isNewUser) {
-         echo "<p>";
-             __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
-             );
-         echo "</p>";
-         echo "<p>";
-             __(
-                 "Please wait until you can send more messages. "
-             );
-             __(
-                 "If you have received this message in error, ".
-                 "please contact administrators at ".
-                 "team@tatoeba.org."
-             );
-         echo "</p>";
-     } else {
-        if (isset($messageId)) {
-            $privateMessages->displayForm($recipients, $title, $content, $messageId);
+        } else if (isset($hasRecoveredMessage)) {
+            $privateMessages->displayForm($recipients, $title, $content);
         } else {
             $privateMessages->displayForm($recipients);
         }

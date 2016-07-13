@@ -237,6 +237,8 @@ class PrivateMessagesController extends AppController
                 $this->PrivateMessage->save($message);
                 $this->PrivateMessage->id = null;
             } else {
+                $this->Session->write('unsent_message', $messageToSend);
+
                 $this->Session->setFlash(
                     format(
                         __(
@@ -534,13 +536,16 @@ class PrivateMessagesController extends AppController
      * @param string $recipients The login, or the string containing various login
      *                           separated by a comma, to which we have to send the
      *                           message.
+     * @param  int $messageId
      *
      * @return void
      */
     public function write($recipients = null, $messageId = null)
     {
         $this->helpers[] = "PrivateMessages";
-        
+
+        $recoveredMessage = $this->Session->read('unsent_message');
+
         $userId = CurrentUser::get('id');
         $isNewUser = CurrentUser::isNewUser();
 
@@ -551,14 +556,19 @@ class PrivateMessagesController extends AppController
             $messagesToday = $this->PrivateMessage->messagesTodayOfUser($userId);
             $canSend = $messagesToday < 5;
         }
+
+        if ($recipients == null) {
+            $recipients = '';
+        }
+
         $this->set('messagesToday', $messagesToday);
         $this->set('canSend', $canSend);
         $this->set('isNewUser', $isNewUser);
 
-        $pm = $this->PrivateMessage->getMessageWithId($messageId);
-
         if ($messageId) {
             $messageId = Sanitize::paranoid($messageId);
+
+            $pm = $this->PrivateMessage->getMessageWithId($messageId);
 
             $senderId = $pm['PrivateMessage']['sender'];
 
@@ -575,11 +585,14 @@ class PrivateMessagesController extends AppController
             $this->set('title', $pm['PrivateMessage']['title']);
             $this->set('content', $pm['PrivateMessage']['content']);
             $this->set('messageId', $messageId);
-        } else {
-            if ($recipients == null) {
-                $recipients = '';
-            }
+        } else if ($recoveredMessage) {
+            $this->Session->delete('unsent_message');
 
+            $this->set('recipients', $recipients);
+            $this->set('title', $recoveredMessage['title']);
+            $this->set('content', $recoveredMessage['content']);
+            $this->set('hasRecoveredMessage', true);
+        } else {
             $this->set('recipients', $recipients);
         }
     }
