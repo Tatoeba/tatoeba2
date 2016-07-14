@@ -201,8 +201,8 @@ class SphinxConfShell extends Shell {
     );
 
     public $regexpFilter = array(
-      '\$(\w+) => $ \1', 
-      '(\w+)\$ => \1 $' 
+      '\$(\d+) => $ \1', 
+      '(\d+)\$ => \1 $' 
     );
 
     public $indexExtraOptions = array();
