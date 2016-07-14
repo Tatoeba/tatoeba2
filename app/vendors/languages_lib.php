@@ -603,8 +603,8 @@ class LanguagesLib
             "ary",
             "aii",
             "afb",
-            "pus"
-            "snd"
+            "pus",
+            "snd",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
