@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-02 21:14+0000\n"
-"PO-Revision-Date: 2016-07-05 11:00+0000\n"
+"POT-Creation-Date: 2016-07-09 18:07+0000\n"
+"PO-Revision-Date: 2016-07-10 05:19+0000\n"
 "Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgid ""
 msgstr "La frazoj #{firstNumber} kaj #{secondNumber} estas nun rektaj tradukoj unu de la alia."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L420
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -68,57 +68,57 @@ msgid ""
 "this."
 msgstr "Okazis eraro dum la malligado. Bonvolu reprovi aŭ kontakti nin por raporti tion."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L166
 msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at team@tatoeba.org."
 msgstr "Vi atingis vian  mesaĝan tagolimon. Bonvolu atendi antaŭ ol sendi pliajn mesaĝojn. Se vi malprave ricevis ĉi tiun mesaĝon, bonvolu kontakti la administrantojn ĉe team@tatoeba.org."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L243
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "La uzanto {username}, al kiu vi volas sendi tiun mesaĝon, ne ekzistas. Bonvolu provi denove kun alia uzantnomo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L354
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L126
 msgid "restore"
 msgstr "restaŭri"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L362
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L137
 msgid "permanently delete"
 msgstr "forigu definitive"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L386
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L435
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L463
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L116
 msgid "Are you sure?"
 msgstr "Ĉu vi certas?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L457
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L140
 msgid "delete"
 msgstr "forigi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L400
 msgid "mark as unread"
 msgstr "marku kiel nelegitan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L409
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L471
 msgid "reply"
 msgstr "respondi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L434
 msgid "Folder \"{name}\" emptied."
 msgstr "Dosierujo \"{name}\" malplenigita."
 
@@ -216,12 +216,12 @@ msgid ""
 msgstr "\"posedata de iu, kiu nomas sin denaskulo\" ĉar la kriterio \"posedata de: {username}\" estas ŝaltita, kvankam li aŭ ŝi ne nomas sin denaskulo en la lingvo, kiun vi priserĉas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L103
-msgid "All lists ({total})"
-msgstr "Ĉiuj listoj ({total})"
+msgid "All public lists ({total})"
+msgstr "Ĉiuj publikaj listoj ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L108
-msgid "All lists containing \"{search}\" ({total})"
-msgstr "Ĉiuj listoj kun \"{search}\" ({total})"
+msgid "All public lists containing \"{search}\" ({total})"
+msgstr "Ĉiuj publikaj listoj kun \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L134
 msgid "Collaborative lists ({total})"
@@ -295,35 +295,39 @@ msgstr "Bonvolu elekti bildan formon GIF, JPEG aŭ PNG."
 msgid "Error while saving."
 msgstr "Eraro dum konservado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L287
 msgid "That email address already exists. Please try another."
 msgstr "Tiu retpoŝtadreso jam ekzistas. Provu alian."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L299
+msgid "The entered birthday is an invalid date. Please try again."
+msgstr "La dato, kiun vi indikis, estas nevalida. Bonvolu provi denove. "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L321
 msgid "Profile saved."
 msgstr "Biografio konservita."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L325
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L332
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Ŝanĝo de retpoŝtadreso malsukcesis. Enigu taŭgan retpoŝtadreson."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L417
 msgid "Your settings have been saved."
 msgstr "Viaj agordoj estas konservitaj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L487
 msgid "New password cannot be empty."
 msgstr "Nova pasvorto ne povas esti malplena."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L497
 msgid "New password has been saved."
 msgstr "Nova pasvorto konserviĝis."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L450
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L499
 msgid "An error occurred while saving."
 msgstr "Eraro okazis dum konservado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L504
 msgid "Password error. Please try again."
 msgstr "Pasvorta eraro. Bonvolu reprovi."
 
@@ -1335,7 +1339,7 @@ msgid "My collection"
 msgstr "Miaj markoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L649
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L650
 msgid "My lists"
 msgstr "Miaj listoj"
 
@@ -1761,8 +1765,8 @@ msgid "created"
 msgstr "kreita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L59
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L84
 msgid "last updated"
 msgstr "laste aktualigita"
 
@@ -1874,11 +1878,11 @@ msgstr "Nomo"
 msgid "create"
 msgstr "krei"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L628
-msgid "All lists"
-msgstr "Ĉiuj listoj"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L627
+msgid "All public lists"
+msgstr "Ĉiuj publikaj listoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L638
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L639
 msgid "Collaborative lists"
 msgstr "Kunlaboraj listoj"
 
@@ -2058,16 +2062,28 @@ msgstr "Sendi privatan mesaĝon"
 msgid "edited"
 msgstr "redaktita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L223
+msgid "to {recipient}"
+msgstr "al {recipient}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L228
+msgid "Draft"
+msgstr "Malneto"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L232
+msgid "from {sender}"
+msgstr "el {sender}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L308
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L185
 msgid "View this user's profile"
 msgstr "Vidi la biografion de tiu uzanto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L426
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L489
 msgid "sentence deleted"
 msgstr "frazo forigita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L506
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -2126,13 +2142,13 @@ msgstr[1] "{title} ({thousand}&nbsp;rezultoj el {n}&nbsp;trafoj)"
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L136
 msgid "Previous page [Ctrl+←]"
 msgstr "Antaŭa paĝo [Ctrl+←]"
 
 #. @translators Appears on “next page” links
 #. mouseover. Keyboard shortcut is between brackets.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L153
 msgid "Next page [Ctrl+→]"
 msgstr "Posta paĝo [Ctrl+→]"
 
@@ -3104,19 +3120,7 @@ msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} (unu mesaĝo)"
 msgstr[1] "{folderName} ({n}&nbsp;mesaĝoj)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L79
-msgid "to {recipient}"
-msgstr "al {recipient}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L82
-msgid "Draft"
-msgstr "Malneto"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L85
-msgid "from {sender}"
-msgstr "el {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[neniu temo]"
@@ -3223,6 +3227,10 @@ msgstr "Aldoni novajn frazojn"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L95
 msgid "Sentence: "
 msgstr "Frazo: "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L137
+msgid "Check out the vocabulary for which we need sentences"
+msgstr "Kontrolu la vortaron, por kiu ni bezonas frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L144
 msgid "Sentences added"
@@ -3485,7 +3493,7 @@ msgstr[0] "Enhavas {n}&nbsp;frazon"
 msgstr[1] "Enhavas {n}&nbsp;frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L41
 msgid "Options"
 msgstr "Agordoj"
 
@@ -3936,9 +3944,9 @@ msgstr "Priskribo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L283
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L306
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L371
 msgid "Save"
 msgstr "Konservi"
 
@@ -4020,35 +4028,39 @@ msgstr "RIM: Ni kuraĝigas vin indiki la lingvojn, kiujn vi scias."
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "RIM: Kuraĝigu tiun uzanton indiki la lingvojn, kiujn li scias."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L43
+msgid "Main options"
+msgstr "Ĉefaj ebloj "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L53
 msgid "Email notifications"
 msgstr "Retpoŝtaj sciigoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L74
 msgid "Set your profile public?"
 msgstr "Ĉu publikigi vian biografion?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L96
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default."
 msgstr "Memori la lastan liston al kiu vi aldonis frazon, kaj malfermi ĝin defaŭlte."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L120
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations."
 msgstr "Havigu ligilon por malmontri tradukojn, kiam estas tro da ili."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L142
 msgid "Always show transcriptions and alternative scripts"
 msgstr "Ĉiam montru transskribojn kaj alternativajn skribojn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L155
 msgid "Hide random sentence on the homepage"
 msgstr "Kaŝi la hazardan frazon de la ĉefpaĝo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L176
 msgid ""
 "Enter <a href=\"{url}\">ISO 639-3 codes</a>, separated with a comma (e.g.: "
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
@@ -4056,65 +4068,65 @@ msgid ""
 " all languages."
 msgstr "Entajpu <a href=\"{url}\">ISO 639-3 kodojn</a>, disigitaj per komoj (ekzemple: jpn,epo,ara,deu). Tatoeba poste montros tradukojn nur en la lingvoj, kiujn vi indikis. Vi povas lasi la lokon libera por montri la tradukojn en ĉiuj lingvoj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L191
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
 msgid "Languages"
 msgstr "Lingvoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L200
 msgid "Number of sentences per page"
 msgstr "Nombro de frazoj en unu paĝo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L209
 msgid "Experimental options"
 msgstr "Eksperimentaj ebloj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L214
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
 msgstr "Ebloj de tiu ĉi kategorio ne plene funkcias, eble ne por ĉiu kaj/aŭ estas en beta testa fazo. Ili povas ŝanĝiĝi aŭ esti forigitaj en la estonteco. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L231
 msgid ""
 "Activate the feature to rate sentences and build your collection of "
 "sentences."
 msgstr "Aktivigu la eblon taksi frazojn kaj krei vian frazkolekton."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L251
 msgid ""
 "Display \"(native)\" next to username on sentences when the owner indicated "
 "in their profile that they have a native level in the language of the "
 "sentence."
 msgstr "Montru \"(denaska nivelo)\" apud la uzanto-nomo ĉe frazoj, kies aŭtoro en sia biografio indikis havi denaskan nivelon en la lingvo de la frazo. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L273
 msgid "Display button to copy a sentence to the clipboard."
 msgstr "Montru butonon por kopii frazon al la tondejo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L302
 msgid "Change email address"
 msgstr "Ŝanĝi retpoŝtadreson"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L308
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
 msgid "Email address"
 msgstr "Retpoŝtadreso"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L335
 msgid "Change password"
 msgstr "Ŝanĝi pasvorton"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L341
 msgid "Old password"
 msgstr "Malnova pasvorto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L352
 msgid "New password"
 msgstr "Nova pasvorto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L363
 msgid "New password again"
 msgstr "Reenigu la novan pasvorton"
 

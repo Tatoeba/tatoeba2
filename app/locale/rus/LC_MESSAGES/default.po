@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-02 21:14+0000\n"
-"PO-Revision-Date: 2016-07-04 13:22+0000\n"
+"POT-Creation-Date: 2016-07-09 18:07+0000\n"
+"PO-Revision-Date: 2016-07-10 21:55+0000\n"
 "Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgid ""
 msgstr "Предложения №{firstNumber} и №{secondNumber} теперь прямые переводы друг друга."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L420
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -67,57 +67,57 @@ msgid ""
 "this."
 msgstr "Ошибка при отсоединении. Пожалуйста, попробуйте снова или сообщите нам об ошибке."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L166
 msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at team@tatoeba.org."
 msgstr "Вы превысили свой лимит сообщений на сегодня. Пожалуйста, дождитесь возможности отправлять больше сообщений. Если Вы получили данное сообщение по ошибке, пожалуйста свяжитесь с администраторами по адресу team@tatoeba.org."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L243
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "Пользователя {username}, которому вы хотите послать сообщение, не существует. Пожалуйста, введите другое имя."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L354
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L126
 msgid "restore"
 msgstr "восстановить"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L362
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L137
 msgid "permanently delete"
 msgstr "удалить окончательно"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L386
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L435
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L463
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L116
 msgid "Are you sure?"
 msgstr "Вы уверены?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L457
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L140
 msgid "delete"
 msgstr "удалить"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L400
 msgid "mark as unread"
 msgstr "пометить непрочитанным"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L409
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L471
 msgid "reply"
 msgstr "ответить"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L415
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L434
 msgid "Folder \"{name}\" emptied."
 msgstr "Папка «{name}» очищена."
 
@@ -215,12 +215,12 @@ msgid ""
 msgstr "«принадлежит самоидентифицированному носителю», так как выбран критерий «принадлежит: {username}», в то время как данный пользователь не является самоидентифицированным носителем языка, который вас интересует."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L103
-msgid "All lists ({total})"
-msgstr "Все списки ({total})"
+msgid "All public lists ({total})"
+msgstr "Все общие списки ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L108
-msgid "All lists containing \"{search}\" ({total})"
-msgstr "Все списки, содержащие \"{search}\" ({total})"
+msgid "All public lists containing \"{search}\" ({total})"
+msgstr "Все общие списки, содержащие \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L134
 msgid "Collaborative lists ({total})"
@@ -298,35 +298,39 @@ msgstr "Изображение должно быть в формате GIF, JPEG
 msgid "Error while saving."
 msgstr "При сохранении произошла ошибка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L287
 msgid "That email address already exists. Please try another."
 msgstr "Данный адрес электронной почты уже существует. Пожалуйста, попробуйте другой."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L299
+msgid "The entered birthday is an invalid date. Please try again."
+msgstr "Ошибка в дате дня рождения. Попробуйте ещё раз."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L321
 msgid "Profile saved."
 msgstr "Профиль сохранён."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L325
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L332
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Не удалось изменить адрес электронной почты. Пожалуйста, введите подходящий адрес электронной почты."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L417
 msgid "Your settings have been saved."
 msgstr "Настройки сохранены."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L487
 msgid "New password cannot be empty."
 msgstr "Новый пароль не может быть пустым."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L497
 msgid "New password has been saved."
 msgstr "Новый пароль сохранён."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L450
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L499
 msgid "An error occurred while saving."
 msgstr "При сохранении произошла ошибка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L455
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L504
 msgid "Password error. Please try again."
 msgstr "Неверный пароль. Попробуйте снова."
 
@@ -1352,7 +1356,7 @@ msgid "My collection"
 msgstr "Моя коллекция"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L649
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L650
 msgid "My lists"
 msgstr "Мои списки"
 
@@ -1784,8 +1788,8 @@ msgid "created"
 msgstr "создано"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L59
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L84
 msgid "last updated"
 msgstr "последнее обновление"
 
@@ -1897,11 +1901,11 @@ msgstr "Имя"
 msgid "create"
 msgstr "создать"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L628
-msgid "All lists"
-msgstr "Все списки"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L627
+msgid "All public lists"
+msgstr "Все общие списки"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L638
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L639
 msgid "Collaborative lists"
 msgstr "Общие списки"
 
@@ -2081,16 +2085,28 @@ msgstr "Послать личное сообщение"
 msgid "edited"
 msgstr "изменено"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L223
+msgid "to {recipient}"
+msgstr "для {recipient}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L228
+msgid "Draft"
+msgstr "Черновик"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L232
+msgid "from {sender}"
+msgstr "от {sender}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L308
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L185
 msgid "View this user's profile"
 msgstr "Профиль пользователя"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L426
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L489
 msgid "sentence deleted"
 msgstr "предложение удалено"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L506
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -2153,13 +2169,13 @@ msgstr[3] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхо�
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L136
 msgid "Previous page [Ctrl+←]"
 msgstr "Предыдущая страница [Ctrl+←]"
 
 #. @translators Appears on “next page” links
 #. mouseover. Keyboard shortcut is between brackets.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L153
 msgid "Next page [Ctrl+→]"
 msgstr "Следующая страница [Ctrl+→]"
 
@@ -3141,19 +3157,7 @@ msgstr[1] "{folderName} ({n}&nbsp;сообщения)"
 msgstr[2] "{folderName} ({n}&nbsp;сообщений)"
 msgstr[3] "{folderName} ({n}&nbsp;сообщений)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L79
-msgid "to {recipient}"
-msgstr "для {recipient}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L82
-msgid "Draft"
-msgstr "Черновик"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L85
-msgid "from {sender}"
-msgstr "от {sender}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[нет темы]"
@@ -3262,6 +3266,10 @@ msgstr "Добавить новое предложение"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L95
 msgid "Sentence: "
 msgstr "Предложение: "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L137
+msgid "Check out the vocabulary for which we need sentences"
+msgstr "Посмотреть словарь, для которого нам нужны предложения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L144
 msgid "Sentences added"
@@ -3526,7 +3534,7 @@ msgstr[2] "Содержит {n}&nbsp;предложений"
 msgstr[3] "Содержит {n}&nbsp;предложения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L41
 msgid "Options"
 msgstr "Настройки"
 
@@ -3983,9 +3991,9 @@ msgstr "Описание"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L283
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L306
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L371
 msgid "Save"
 msgstr "Сохранить"
 
@@ -4067,35 +4075,39 @@ msgstr "СОВЕТ: Рекомендуем указать, какими язык
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "СОВЕТ: Попросите этого пользователя указать, какими языками он владеет."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L43
+msgid "Main options"
+msgstr "Главные опции"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L53
 msgid "Email notifications"
 msgstr "Уведомления по электронной почте"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L74
 msgid "Set your profile public?"
 msgstr "Профиль виден всем"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L96
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default."
 msgstr "Запоминать последний список, в который вы включали предложения, и выбирать его по умолчанию."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L120
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations."
 msgstr "Показывать ссылку для сворачивания/разворачивания переводов, когда их слишком много"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L142
 msgid "Always show transcriptions and alternative scripts"
 msgstr "Всегда показывать транскрипции и альтернативные формы записи"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L155
 msgid "Hide random sentence on the homepage"
 msgstr "Не показывать случайное предложение на главной странице"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L176
 msgid ""
 "Enter <a href=\"{url}\">ISO 639-3 codes</a>, separated with a comma (e.g.: "
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
@@ -4103,65 +4115,65 @@ msgid ""
 " all languages."
 msgstr "Введите <a href=\"{url}\">коды ISO 639-3</a>, разделенные запятыми (например: jpn,epo,ara,deu). Tatoeba будет отображать переводы только на языки, которые вы указали. Вы можете оставить поле пустым для отображения переводов на все языки."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L191
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
 msgid "Languages"
 msgstr "Языки"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L200
 msgid "Number of sentences per page"
 msgstr "Количество предложений на странице"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L209
 msgid "Experimental options"
 msgstr "Экспериментальные опции"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L214
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
 msgstr "Опции в данной категории не полностью работоспособны, могут подходить не всем или находиться на стадии бета-тестирования. В будущем они могут быть изменены или удалены."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L231
 msgid ""
 "Activate the feature to rate sentences and build your collection of "
 "sentences."
 msgstr "Активировать функцию оценки предложений и создания собственной коллекции."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L251
 msgid ""
 "Display \"(native)\" next to username on sentences when the owner indicated "
 "in their profile that they have a native level in the language of the "
 "sentence."
 msgstr "Отображать «(носитель)» рядом с именами пользователей, указавших, что владеют языком предложения на уровне носителя."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L273
 msgid "Display button to copy a sentence to the clipboard."
 msgstr "Показывать кнопку копирования предложения в буфер обмена."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L302
 msgid "Change email address"
 msgstr "Изменить адрес"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L308
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L158
 msgid "Email address"
 msgstr "Почта"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L335
 msgid "Change password"
 msgstr "Изменить пароль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L341
 msgid "Old password"
 msgstr "Старый пароль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L352
 msgid "New password"
 msgstr "Новый пароль"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L363
 msgid "New password again"
 msgstr "Повторите новый пароль"
 
