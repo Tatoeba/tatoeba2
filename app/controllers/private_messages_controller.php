@@ -207,10 +207,12 @@ class PrivateMessagesController extends AppController
 
         $recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
 
+        $recptArray = array_map('trim', $recptArray);
+
+        $recptArray = array_unique($recptArray, SORT_REGULAR);
+
         // loop to send msg to different dest.
         foreach ($recptArray as $recpt) {
-
-            $recpt = trim($recpt);
             $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
             $recptSettings = $this->PrivateMessage->User->getSettings($recptId);
 
