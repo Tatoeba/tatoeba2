@@ -24,13 +24,30 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$lang = LanguagesLib::languageTag(Configure::read('Config.language'));
 ?>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php __('What is Tatoeba?'); ?></h2>
 
+        <p>
+            <?php
+            __(
+                'Tatoeba is a platform that aims to build a large database '.
+                'of sentences translated into as many languages as possible. '.
+                'The initial idea was to have a tool in which you could search '.
+                'certain words, and it would return sentences containing '.
+                'these words with their translations in the desired languages. '.
+                'The name Tatoeba resulted from this concept, because '.
+                '<em>tatoeba</em> means <em>for example</em> in Japanese.');
+            ?>
+        </p>
+
         <div class="amara-embed" data-height="450px" data-width="620px"
+             data-resizable="true" data-initial-language="<?= $lang ?>"
+             data-show-subtitles-default="true"
              data-url="https://www.youtube.com/watch?v=ac9SmJuwHqk">
         </div>
 
