@@ -26,6 +26,7 @@
  */
 
 $lang = LanguagesLib::languageTag(Configure::read('Config.language'));
+$this->set('title_for_layout', $pages->formatTitle(__('What is Tatoeba?', true)));
 ?>
 
 <div id="main_content">
@@ -35,13 +36,39 @@ $lang = LanguagesLib::languageTag(Configure::read('Config.language'));
         <p>
             <?php
             __(
-                'Tatoeba is a platform that aims to build a large database '.
-                'of sentences translated into as many languages as possible. '.
-                'The initial idea was to have a tool in which you could search '.
-                'certain words, and it would return sentences containing '.
-                'these words with their translations in the desired languages. '.
-                'The name Tatoeba resulted from this concept, because '.
-                '<em>tatoeba</em> means <em>for example</em> in Japanese.');
+                'Tatoeba is a large database of sentences and translations. '.
+                'Its content is ever-growing and results from the voluntary '.
+                'contributions of thousands of members.'
+            );
+            ?>
+        </p>
+        <p>
+            <?php
+            __(
+                'Tatoeba provides a tool for you to see examples of how words are '.
+                'used in the context of a sentence. You specify words that '.
+                'interest you, and it returns sentences containing these words '.
+                'with their translations in the desired languages. '.
+                'The name Tatoeba (<em>for example</em> in Japanese) captures '.
+                'this concept.'
+            );
+            ?>
+        </p>
+
+        <p>
+            <?php
+            __(
+                'The project was founded by Trang Ho in 2006, hosted on '.
+                'Sourceforge under the codename of <em>multilangdict</em>.'
+            );
+            ?>
+        </p>
+
+        <p>
+            <?php
+            __(
+                'The video below, made in 2010, presents the core ideas of Tatoeba.'
+            );
             ?>
         </p>
 
