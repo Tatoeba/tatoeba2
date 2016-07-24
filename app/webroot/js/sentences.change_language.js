@@ -33,7 +33,8 @@ $(document).ready(function() {
             var sentenceId = $(this).attr('data-sentence-id');
             
             $("#selectLangContainer_" + sentenceId).toggle();
-            
+
+            $("#selectLang_" + sentenceId).unbind('change');
             $("#selectLang_" + sentenceId).change(function(){
             
                 var newLang = $(this).val();
