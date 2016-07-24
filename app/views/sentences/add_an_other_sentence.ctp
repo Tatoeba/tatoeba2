@@ -39,8 +39,6 @@
  * @link     http://tatoeba.org
  */  
 if (isset($sentence)) {
-    $sentences->javascriptForAJAXSentencesGroup();
-    
     // sentence and translations
     $translation = array();
     $sentences->displaySentencesGroup(

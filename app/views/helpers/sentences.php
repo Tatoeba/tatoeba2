@@ -746,34 +746,41 @@ class SentencesHelper extends AppHelper
         }
     }
 
+    private function doEcho($arg, $inline) {
+      if ($inline) {
+        echo $arg;
+      }
+    }
+
     /**
      * Inline Javascript for AJAX loaded sentences group.
      *
      * @return void
      */
-    public function javascriptForAJAXSentencesGroup() {
-        echo $this->Javascript->link('sentences.add_translation.js', true);
-        echo $this->Javascript->link('favorites.add.js', true);
-        echo $this->Javascript->link('sentences_lists.menu.js', true);
-        echo $this->Javascript->link('sentences.adopt.js', true);
-        echo $this->Javascript->link('jquery.jeditable.js', true);
-        echo $this->Javascript->link('sentences.edit_in_place.js', true);
-        echo $this->Javascript->link('transcriptions.js', true);
-        echo $this->Javascript->link('sentences.change_language.js', true);
-        echo $this->Javascript->link('sentences.link.js', true);
-        echo $this->Javascript->link('sentences.collapse.js', true);
-        echo $this->Javascript->link('collections.add_remove.js', true);
+    public function javascriptForAJAXSentencesGroup($inline = true) {
+        $this->doEcho($this->Javascript->link('sentences.add_translation.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('favorites.add.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('sentences_lists.menu.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('sentences.adopt.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('jquery.jeditable.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('sentences.edit_in_place.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('transcriptions.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('sentences.change_language.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('sentences.link.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('sentences.collapse.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('collections.add_remove.js', $inline), $inline);
         if (CurrentUser::getSetting('copy_button')) {
-            echo $this->Javascript->link('clipboard.min.js', true);
-            echo $this->Javascript->link('sentences.copy.js', true);
+            $this->doEcho($this->Javascript->link('clipboard.min.js', $inline), $inline);
+            $this->doEcho($this->Javascript->link('sentences.copy.js', $inline), $inline);
         }
-        $this->javascriptForAJAXTranslationsGroup();
+        $this->javascriptForAJAXTranslationsGroup($inline);
     }
 
-    public function javascriptForAJAXTranslationsGroup() {
-        echo $this->Javascript->link('sentences.play_audio.js', true);
-        echo $this->Javascript->link('links.add_and_delete.js', true);
-        echo $this->Javascript->link('sentences.logs.js', true);
+    public function javascriptForAJAXTranslationsGroup($inline = true) {
+        $this->doEcho($this->Javascript->link('sentences.play_audio.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('links.add_and_delete.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('sentences.logs.js', $inline), $inline);
+        $this->doEcho($this->Javascript->link('transcriptions.js', $inline), $inline);
     }
 
 

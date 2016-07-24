@@ -27,6 +27,7 @@
 
 $this->set('title_for_layout', $pages->formatTitle(__('Add sentences', true)));
 
+$sentences->javascriptForAJAXSentencesGroup(false);
 $javascript->link(JS_PATH . 'sentences.contribute.js', false);
 
 $vocabularyUrl = $html->url(array(

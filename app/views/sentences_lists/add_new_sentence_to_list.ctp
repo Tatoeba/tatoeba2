@@ -27,10 +27,6 @@
 
 
 if (!empty($sentence)) {
-    echo $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', true);
-    
-    $sentences->javascriptForAJAXSentencesGroup();
-
     $sentence['Translations'] = array();
     $sentence['IndirectTranslations'] = array();
     $lists->displaySentence(

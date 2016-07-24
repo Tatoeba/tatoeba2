@@ -18,26 +18,27 @@
 
 
 $(document).ready(function(){
+    $(document).watch("addrule", function() {
+        $(document).on("click", ".add-to-corpus", function(){
 
-    $(document).on("click", ".add-to-corpus", function(){
+            var sentenceId = $(this).attr("data-sentence-id");
+            var correctness = $(this).attr("data-sentence-correctness");
+            var addToCorpusOption = $(this);
+            var action = "add";
 
-        var sentenceId = $(this).attr("data-sentence-id");
-        var correctness = $(this).attr("data-sentence-correctness");
-        var addToCorpusOption = $(this);
-        var action = "add";
+            var requestUrl = "/collections";
+            if ($(this).hasClass("selected")){
+                requestUrl += "/delete_sentence/" + sentenceId + "/" + correctness;
+            } else {
+                requestUrl += "/add_sentence/" + sentenceId + "/" + correctness;
+            }
 
-        var requestUrl = "/collections";
-        if ($(this).hasClass("selected")){
-            requestUrl += "/delete_sentence/" + sentenceId + "/" + correctness;
-        } else {
-            requestUrl += "/add_sentence/" + sentenceId + "/" + correctness;
-        }
+            addToCorpusOptionParent = addToCorpusOption.parent();
+            addToCorpusOption.html("<div class='loader-small loader'></div>");
 
-        addToCorpusOptionParent = addToCorpusOption.parent();
-        addToCorpusOption.html("<div class='loader-small loader'></div>");
-
-        $.post(requestUrl, {}, function(data){
-            addToCorpusOptionParent.replaceWith(data);
+            $.post(requestUrl, {}, function(data){
+                addToCorpusOptionParent.replaceWith(data);
+            });
         });
     });
 });

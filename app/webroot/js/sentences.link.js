@@ -17,16 +17,17 @@
  */
 
 $(document).ready(function() {
-    $('.linkTo')
-        .bind('dragover', function (event) {
-            event.preventDefault();
-            $(event.target).addClass('draggableLink');
-        })
-        .bind('dragleave', function (event) {
-            event.preventDefault();
-            $(event.target).removeClass('draggableLink');
-        })
-    ;
+    $(document).watch("addrule", function() {
+        $('.linkTo')
+            .bind('dragover', function (event) {
+                event.preventDefault();
+                $(event.target).addClass('draggableLink');
+            })
+            .bind('dragleave', function (event) {
+                event.preventDefault();
+                $(event.target).removeClass('draggableLink');
+            });
+    });
 });
 
 function URLToSentenceId(url) {

@@ -25,8 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+$sentences->javascriptForAJAXSentencesGroup(false);
 $javascript->link('jquery.scrollTo.min.js', false);
-$javascript->link('sentences.logs.js', false);
 
 if (!isset($searchProblem)) {
 if (isset($sentence)) {

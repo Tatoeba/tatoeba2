@@ -17,26 +17,28 @@
  */
 
 $(document).ready(function(){
-    $(".linkLog").each(function(){
-        var historyRecord = $(this);
-        var sentenceId = historyRecord.attr('data-translation-id');
-        var sentence = $(".directTranslation[data-sentence-id='" + sentenceId + "']");
-        if (sentence.length) { // we have this sentence displayed on the page
-            var updateHighlight = function() {
-                $(".directTranslation.highlighted").removeClass("highlighted");
-                $(".linkLog.historyHighlighted").removeClass("historyHighlighted");
-                sentence.addClass("highlighted");
-                historyRecord.addClass("historyHighlighted");
-                $.scrollTo(sentence, 500, {offset: -100});
-            };
-            var addHover = function() {
-                historyRecord.addClass("hovered");
-            };
-            var removeHover = function() {
-                $(".linkLog.hovered").removeClass("hovered");
+    $(document).watch("addrule", function() {
+        $(".linkLog").each(function(){
+            var historyRecord = $(this);
+            var sentenceId = historyRecord.attr('data-translation-id');
+            var sentence = $(".directTranslation[data-sentence-id='" + sentenceId + "']");
+            if (sentence.length) { // we have this sentence displayed on the page
+                var updateHighlight = function() {
+                    $(".directTranslation.highlighted").removeClass("highlighted");
+                    $(".linkLog.historyHighlighted").removeClass("historyHighlighted");
+                    sentence.addClass("highlighted");
+                    historyRecord.addClass("historyHighlighted");
+                    $.scrollTo(sentence, 500, {offset: -100});
+                };
+                var addHover = function() {
+                    historyRecord.addClass("hovered");
+                };
+                var removeHover = function() {
+                    $(".linkLog.hovered").removeClass("hovered");
+                }
+                historyRecord.hover(addHover, removeHover);
+                historyRecord.click(function() { updateHighlight() });
             }
-            historyRecord.hover(addHover, removeHover);
-            historyRecord.click(function() { updateHighlight() });
-        }
+        });
     });
 });
