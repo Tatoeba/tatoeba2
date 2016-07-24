@@ -185,10 +185,6 @@ class DateHelper extends AppHelper
      */
     private function _formatToYmd($dateArray)
     {
-        $dateArray = array_filter($dateArray, function ($item) {
-            return $this->_hasValue($item);
-        });
-
         return implode('-', $dateArray);
     }
 }
