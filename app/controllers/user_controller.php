@@ -393,9 +393,8 @@ class UserController extends AppController
             if ($year && $month && $day) {
                 return checkdate($month, $day, $year);
             } elseif ($month && $day) {
-                // Use 2015 because its not a leap year. Leap year dates without
-                // year fail when saving in mysql.
-                $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, 2015);
+                // Use 2016 because its a leap year.
+                $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, 2016);
 
                 if ($day > $daysInMonth) {
                     return false;
@@ -492,8 +491,14 @@ class UserController extends AppController
             }
         }
 
-        if (implode('', $birthday) == '00000000') {
+        $birthdayString = implode('', $birthday);
+
+        if ($birthdayString == '00000000') {
             return $this->data['User']['birthday'];
+        } elseif ($birthdayString == '02290000') {
+            // Mysql wont save a partial leap year date so change year to 1904
+            // and catch in date view helper.
+            $birthday['year'] = '1904';
         }
 
         return $birthday;

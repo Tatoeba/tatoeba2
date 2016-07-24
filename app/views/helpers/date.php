@@ -128,6 +128,11 @@ class DateHelper extends AppHelper
 
         $dateArray = explode('-', $date);
 
+        // Catch leap year dates with no year given
+        if ($date == '1904-02-29') {
+            $dateArray[0] = '0000';
+        }
+
         if ($this->_isCompleteDate($dateArray)) {
             return date($dateFormat, strtotime($dateTime));
         }
