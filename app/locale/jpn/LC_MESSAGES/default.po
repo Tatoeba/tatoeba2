@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 18:07+0000\n"
+"POT-Creation-Date: 2016-07-15 20:57+0000\n"
 "PO-Revision-Date: 2016-07-09 18:29+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Japanese (http://www.transifex.com/tatoeba/tatoeba_website/language/ja/)\n"
@@ -48,7 +48,7 @@ msgid ""
 msgstr "#{firstNumber}と#{secondNumber}がリンクされました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L420
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L422
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -73,23 +73,23 @@ msgid ""
 "contact administrators at team@tatoeba.org."
 msgstr "本日送信できるメッセージ数の限度に達しました。日を改めて再度ご送信ください。このエラーメッセージが誤って表示される場合は、team@tatoeba.org にご連絡ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L245
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "{username}というユーザー名は登録されていません。宛先を他のユーザー名にしてやり直してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L126
 msgid "restore"
 msgstr "復元"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L383
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L137
 msgid "permanently delete"
 msgstr "完全に削除"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L388
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L392
@@ -100,23 +100,23 @@ msgstr "完全に削除"
 msgid "Are you sure?"
 msgstr "本当に削除しますか？"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L457
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L140
 msgid "delete"
 msgstr "削除"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L402
 msgid "mark as unread"
 msgstr "未読にする"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L409
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L411
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L471
 msgid "reply"
 msgstr "返信"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L434
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L436
 msgid "Folder \"{name}\" emptied."
 msgstr "「{name}」が空になりました。"
 
@@ -131,7 +131,7 @@ msgstr "このコメントを編集する権限がありません。 "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L304
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " team@tatoeba.org."
@@ -307,23 +307,23 @@ msgstr "プロフィールを保存しました。"
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "メールアドレスの変更に失敗しました。正しいあドレスを入力してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L419
 msgid "Your settings have been saved."
 msgstr "設定を保存しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L487
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L489
 msgid "New password cannot be empty."
 msgstr "新しいパスワードを入力してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L497
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L499
 msgid "New password has been saved."
 msgstr "新しいパスワードを保存しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L499
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L501
 msgid "An error occurred while saving."
 msgstr "保存中にエラーが発生しました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L506
 msgid "Password error. Please try again."
 msgstr "パスワードが違います。もう一度入力してください。"
 
@@ -1165,7 +1165,7 @@ msgstr "プライベートメッセージ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid "New message"
 msgstr "新規メッセージ"
@@ -1248,7 +1248,7 @@ msgid "From"
 msgstr "翻訳元言語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L88
 msgid "To"
 msgstr "翻訳先言語"
 
@@ -2036,40 +2036,48 @@ msgstr ""
 msgid "Unmark sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L98
+msgid "Message"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L100
+msgid "Reply"
+msgstr "返信"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L192
 msgid "Former member"
 msgstr "退会したユーザー"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L221
 msgid "Send private message"
 msgstr "プライベートメッセージを送る"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L239
 msgid "edited"
 msgstr "編集："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L268
 msgid "to {recipient}"
 msgstr "宛先 {recipient}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L273
 msgid "Draft"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L277
 msgid "from {sender}"
 msgstr "差出人 {sender}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L353
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L185
 msgid "View this user's profile"
 msgstr "このユーザーのプロフィールを見る"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L534
 msgid "sentence deleted"
 msgstr "削除された文"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L506
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L551
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -2136,29 +2144,21 @@ msgstr "前のページ（Ctrl＋←）"
 msgid "Next page [Ctrl+→]"
 msgstr "次のページ（Ctrl＋→）"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L53
-msgid "Message"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L55
-msgid "Reply"
-msgstr "返信"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L103
 msgid "Title"
 msgstr "件名"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L131
 msgid "Save as draft"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L58
 msgid "Send"
 msgstr "送信"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L158
 msgid "{sender} wrote:"
 msgstr "{sender}さんのメッセージ:"
 
@@ -3104,26 +3104,26 @@ msgstr[0] "{folderName}（{n}件）"
 msgid "[no subject]"
 msgstr "無題"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L38
-msgid ""
-"To help keep Tatoeba free of spam and other malicious messages\n"
-"                 new users can send only 5 messages per day."
-msgstr "スパム等の悪質な行為を防ぐために、新規のユーザーのプライベートメッセージは一日5件までとさせていただいております。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
-msgid "You have sent one message today."
-msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] "本日送信したメッセージは{n}件です。 "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L37
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
 msgstr "Tatoebaをスパム等から守るために、新しいユーザーが送れるプライベートメッセージは一日5件に制限されています。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L42
 msgid "Please wait until you can send more messages. "
 msgstr "日を改めて再度ご送信ください。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L53
+msgid ""
+"To help keep Tatoeba free of spam and other malicious messages\n"
+"                 new users can send only 5 messages per day."
+msgstr "スパム等の悪質な行為を防ぐために、新規のユーザーのプライベートメッセージは一日5件までとさせていただいております。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L60
+msgid "You have sent one message today."
+msgid_plural "You have sent {n}&nbsp;messages today."
+msgstr[0] "本日送信したメッセージは{n}件です。 "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L43
 msgid ""

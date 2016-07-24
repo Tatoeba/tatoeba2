@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-09 18:07+0000\n"
+"POT-Creation-Date: 2016-07-15 20:57+0000\n"
 "PO-Revision-Date: 2016-07-09 18:29+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Lojban (http://www.transifex.com/tatoeba/tatoeba_website/language/jbo/)\n"
@@ -47,7 +47,7 @@ msgid ""
 msgstr "lo jufra poi du lo {firstNumber} moi jo'u lo {secondNumber} moi ca simxu lo ka traduce ce'u ce'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L420
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L422
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -72,23 +72,23 @@ msgid ""
 "contact administrators at team@tatoeba.org."
 msgstr "do mo'u benji lo klani be lo jimte pe lo cabdei i e'o do denpa lo nu do di'a ka'e mo'u benji i fau lo nu do mo'u se srera te benji lo dei notci vau do e'o jai gau sanji fai lo admine ta'i lo ka mrilu fi zoi net team@tatoeba.org net"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L245
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr ".i la'o zoi {username} zoi noi do djica lo ka fe ce'u benji di'u na zasti i e'o do troci tu'a lo se cmene be lo drata"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L126
 msgid "restore"
 msgstr "jai gau di'a"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L383
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L137
 msgid "permanently delete"
 msgstr "vimcu fi lo datni sorcu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L386
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L388
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L253
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L392
@@ -99,23 +99,23 @@ msgstr "vimcu fi lo datni sorcu"
 msgid "Are you sure?"
 msgstr "xu do birti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L392
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L457
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L140
 msgid "delete"
 msgstr "vimcu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L402
 msgid "mark as unread"
 msgstr "gau se tcita fi lo ka nu'o se tcidu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L409
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L411
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L471
 msgid "reply"
 msgstr "spusku"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L434
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L436
 msgid "Folder \"{name}\" emptied."
 msgstr "la'o gy.{name}.gy. noi bakfu co'a kunti"
 
@@ -130,7 +130,7 @@ msgstr "do na se krali lo ka stika lo dei pinka"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L304
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L258
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L287
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " team@tatoeba.org."
@@ -308,23 +308,23 @@ msgstr "lo jaspu mo'u se vreji"
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "fliba lo ka cnegau lo mrilu judri i e'o ciska lo drani ke mrilu judri"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L419
 msgid "Your settings have been saved."
 msgstr ".i lo do se cuxna mo'u se vreji"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L487
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L489
 msgid "New password cannot be empty."
 msgstr "e'a nai lo cnino ckiku cu se pagbu no lerfu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L497
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L499
 msgid "New password has been saved."
 msgstr ".i lo cnino ckiku mo'u se vreji"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L499
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L501
 msgid "An error occurred while saving."
 msgstr "da se srera fau lo nu jai gau zbasu lo vreji"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L506
 msgid "Password error. Please try again."
 msgstr "ckiku se srera i e'o do za'ure'u troci"
 
@@ -1172,7 +1172,7 @@ msgstr "sivni se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid "New message"
 msgstr "pa cnino se benji"
@@ -1255,7 +1255,7 @@ msgid "From"
 msgstr "i lo se traduki cu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L88
 msgid "To"
 msgstr "i lo te traduki cu"
 
@@ -2047,40 +2047,48 @@ msgstr "gau se tcita li i'enai"
 msgid "Unmark sentence"
 msgstr "lo jufra gau na se tcita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L98
+msgid "Message"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L100
+msgid "Reply"
+msgstr "spusku"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L192
 msgid "Former member"
 msgstr "ba'o cmima"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L221
 msgid "Send private message"
 msgstr "benji lo sivni"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L239
 msgid "edited"
 msgstr "mo'u se cnegau"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L268
 msgid "to {recipient}"
 msgstr "te be'i la'o zoi.{recipient}.zoi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L273
 msgid "Draft"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L277
 msgid "from {sender}"
 msgstr "be'i la'o zoi.{sender}.zoi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L353
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L185
 msgid "View this user's profile"
 msgstr "catlu lo jaspu be le pilno"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L534
 msgid "sentence deleted"
 msgstr "lo jufra cu se vimcu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L506
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L551
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -2149,29 +2157,21 @@ msgstr "lo lidne papri to la'o .gy.[Ctrl+←].gy. toi"
 msgid "Next page [Ctrl+→]"
 msgstr "lo se lidne papri to la'o .gy.[Ctrl+→].gy. toi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L53
-msgid "Message"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L55
-msgid "Reply"
-msgstr "spusku"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L103
 msgid "Title"
 msgstr "lo cmene"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L131
 msgid "Save as draft"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L58
 msgid "Send"
 msgstr "benji"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L158
 msgid "{sender} wrote:"
 msgstr "la'o zoi.{sender}.zoi pu ciska di'e"
 
@@ -3122,27 +3122,27 @@ msgstr[1] "{folderName} (to {n}&nbsp;da se benji toi)"
 msgid "[no subject]"
 msgstr "no da se casnu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L38
-msgid ""
-"To help keep Tatoeba free of spam and other malicious messages\n"
-"                 new users can send only 5 messages per day."
-msgstr "tezu'e lo nu la mupli cu mabla se mrilu jinsa vau\nlo cnino pilno ka'e benji su'e 5 da ca ro djedi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
-msgid "You have sent one message today."
-msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] "do mo'u benji {n}&nbsp;da ca lo cabdei"
-msgstr[1] "do mo'u benji {n}&nbsp;da ca lo cabdei"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L37
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
 msgstr "tezu'e lo nu la mupli cu mabla se mrilu jinsa vau lo cnino pilno ka'e benji su'e 5 da ca ro djedi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L42
 msgid "Please wait until you can send more messages. "
 msgstr "e'o do denpa fo lo ka benji za'u da"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L53
+msgid ""
+"To help keep Tatoeba free of spam and other malicious messages\n"
+"                 new users can send only 5 messages per day."
+msgstr "tezu'e lo nu la mupli cu mabla se mrilu jinsa vau\nlo cnino pilno ka'e benji su'e 5 da ca ro djedi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L60
+msgid "You have sent one message today."
+msgid_plural "You have sent {n}&nbsp;messages today."
+msgstr[0] "do mo'u benji {n}&nbsp;da ca lo cabdei"
+msgstr[1] "do mo'u benji {n}&nbsp;da ca lo cabdei"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L43
 msgid ""
