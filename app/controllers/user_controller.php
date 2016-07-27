@@ -278,35 +278,29 @@ class UserController extends AppController
     public function save_basic()
     {
         $currentUserId = CurrentUser::get('id');
+
         if (empty($currentUserId)) {
             $this->redirect('/');
         }
 
         if (!$this->_isUniqueEmail($this->data, $currentUserId)) {
-            $this->Session->setFlash(
-                __("That email address already exists. Please try another.", true)
-            );
-            $this->redirect(
-                array(
-                        'controller' => 'user',
-                        'action' => 'settings'
-                    )
-            );
+            $this->_redirectNonUniqueEmail();
         }
 
         if (!$this->_isValidBirthday($this->data)) {
-            $this->Session->setFlash(
-                __("The entered birthday is an invalid date. Please try again.", true)
-            );
-            $this->redirect(
-                array(
-                        'controller' => 'user',
-                        'action' => 'edit_profile'
-                    )
-            );
+            $this->_redirectInvalidBirthday();
+        }
+
+        if (!$this->_isAcceptedBirthday($this->data)) {
+            $this->_redirectUnacceptedBirthday();
+        }
+
+        if (isset($this->data['User']['birthday'])) {
+            $this->data['User']['birthday'] = $this->_fillEmptyBirthdayFields();
         }
 
         $saved = false;
+
         if (!empty($this->data)) {
             $allowedFields = array(
                 'name', 'country_id', 'birthday', 'homepage', 'email', 'description'
@@ -363,6 +357,24 @@ class UserController extends AppController
     }
 
     /**
+     * Redirect for non unique email address.
+     *
+     * @return void
+     */
+    private function _redirectNonUniqueEmail()
+    {
+        $this->Session->setFlash(
+            __("That email address already exists. Please try another.", true)
+        );
+        $this->redirect(
+            array(
+                    'controller' => 'user',
+                    'action' => 'settings'
+                )
+        );
+    }
+
+    /**
      * Return true if entered birthday is a valid date or is not complete/set.
      *
      * @param  array  $data
@@ -372,20 +384,125 @@ class UserController extends AppController
     private function _isValidBirthday($data)
     {
         if (isset($data['User']['birthday'])) {
-            $day = $data['User']['birthday']['day'];
+            $year = $data['User']['birthday']['year'];
 
             $month = $data['User']['birthday']['month'];
 
-            $year = $data['User']['birthday']['year'];
+            $day = $data['User']['birthday']['day'];
 
-            if ($day && $month && $year) {
+            if ($year && $month && $day) {
                 return checkdate($month, $day, $year);
+            } elseif ($month && $day) {
+                // Use 2016 because its a leap year.
+                $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $month, 2016);
+
+                if ($day > $daysInMonth) {
+                    return false;
+                }
             }
         }
 
         return true;
     }
 
+    /**
+     * Redirect for invalid birthday.
+     *
+     * @return void
+     */
+    private function _redirectInvalidBirthday()
+    {
+        $this->Session->setFlash(
+            __("The entered birthday is an invalid date. Please try again.", true)
+        );
+        $this->redirect(
+            array(
+                    'controller' => 'user',
+                    'action' => 'edit_profile'
+                )
+        );
+    }
+
+    /**
+     * Return true if birthday is an accepted birthday type.
+     *
+     * @param  array  $data
+     *
+     * @return boolean
+     */
+    private function _isAcceptedBirthday($data)
+    {
+         // Accepted birthday types. Each entry must be in reverse alphabetical
+         // order (year, month, day).
+        $acceptedBirthdays = [
+            ['year', 'month', 'day'],
+            ['year'],
+            ['month', 'day'],
+            ['year', 'month']
+        ];
+
+        if (isset($data['User']['birthday'])) {
+            $setValues = array_keys(array_filter($data['User']['birthday']));
+
+            rsort($setValues);
+
+            if (!empty($setValues) && !in_array($setValues, $acceptedBirthdays)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Redirect for unaccepted birthday type.
+     *
+     * @return void
+     */
+    private function _redirectUnacceptedBirthday()
+    {
+        $this->Session->setFlash(
+            __("The entered birthday is incomplete. ".
+                "Accepted birthdays: full date, month and day, year and month, only year.", true)
+        );
+        $this->redirect(
+            array(
+                    'controller' => 'user',
+                    'action' => 'edit_profile'
+                )
+        );
+    }
+
+    /**
+     * Fill unset birthday fields with zeros if birthday has at least one
+     * user-set field. If all fields empty, return original array.
+     *
+     * @return array
+     */
+    private function _fillEmptyBirthdayFields()
+    {
+        foreach ($this->data['User']['birthday'] as $key => $value) {
+            if ($value == '' && $key == 'year') {
+                $birthday[$key] = '0000';
+            } elseif ($value == '') {
+                $birthday[$key] = '00';
+            } else {
+                $birthday[$key] = $value;
+            }
+        }
+
+        $birthdayString = implode('', $birthday);
+
+        if ($birthdayString == '00000000') {
+            return $this->data['User']['birthday'];
+        } elseif ($birthdayString == '02290000') {
+            // Mysql wont save a partial leap year date so change year to 1904
+            // and catch in date view helper.
+            $birthday['year'] = '1904';
+        }
+
+        return $birthday;
+    }
 
     /**
      * Save option settings. Options are :

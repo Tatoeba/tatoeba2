@@ -113,5 +113,79 @@ class DateHelper extends AppHelper
 
         return $months[$mm];
     }
+
+    /**
+     * Format a user birthday. This method accepts incomplete dates.
+     *
+     * @param  string $dateTime   [mysql date|datetime format]
+     * @param  string $dateFormat [supported: 'Y-m-d']
+     *
+     * @return string             [formatted date string]
+     */
+    public function formatBirthday($dateTime, $dateFormat)
+    {
+        $date = explode(' ', $dateTime)[0];
+
+        $dateArray = explode('-', $date);
+
+        // Catch leap year dates with no year given
+        if ($date == '1904-02-29') {
+            $dateArray[0] = '0000';
+        }
+
+        if ($this->_isCompleteDate($dateArray)) {
+            return date($dateFormat, strtotime($dateTime));
+        }
+
+        $formatMethod = '_formatTo'.str_replace('-', '', $dateFormat);
+
+        return $this->{$formatMethod}($dateArray);
+    }
+
+    /**
+     * Date has year, month, and day fields set by user.
+     *
+     * @param  array  $dateArray
+     *
+     * @return boolean
+     */
+    private function _isCompleteDate($dateArray)
+    {
+        foreach ($dateArray as $item) {
+            if (!$this->_hasValue($item)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Date field contains a non-zero value.
+     *
+     * @param  string  $date
+     *
+     * @return boolean
+     */
+    private function _hasValue($date)
+    {
+        if ($date != '00' || $date != '0000') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Format date to Y-m-d.
+     *
+     * @param  array $dateArray
+     *
+     * @return string
+     */
+    private function _formatToYmd($dateArray)
+    {
+        return implode('-', $dateArray);
+    }
 }
 ?>

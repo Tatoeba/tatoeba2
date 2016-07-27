@@ -197,14 +197,14 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
             if ($isDisplayed) {
                 // For consistency, this format should match the first part of the format
                 // under app/views/helpers/date.php.
-                $date_format = 'Y-m-d';
+                $dateFormat = 'Y-m-d';
                 if (!empty($birthday)) {
-                    $birthday = date($date_format, strtotime($birthday));
+                    $birthday = $date->formatBirthday($birthday, $dateFormat);
                 }
                 if (!empty($homepage)) {
                     $homepage = $clickableLinks->clickableURL(Sanitize::html($homepage));
                 }
-                $userSince = date($date_format, strtotime($userSince));
+                $userSince = date($dateFormat, strtotime($userSince));
                 $fields = array(
                     __p('user', 'Name', true) => array($realName, true),
                     __('Country', true)       => array($countryName, false),
