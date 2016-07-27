@@ -157,23 +157,6 @@ class PrivateMessagesController extends AppController
 
         $currentUserId = $this->Auth->user('id');
 
-        //Remember new users are not allowed to send more than 5 messages per day
-        $messagesTodayOfUser
-            = $this->PrivateMessage->messagesTodayOfUser($currentUserId);
-        if (CurrentUser::isNewUser() && $messagesTodayOfUser >= 5) {
-            $this->Session->setFlash(
-                __(
-                    "You have reached your message limit for today. ".
-                    "Please wait until you can send more messages. ".
-                    "If you have received this message in error, ".
-                    "please contact administrators at ".
-                    "team@tatoeba.org.",
-                    true
-                )
-            );
-            $this->redirect(array('action' => 'folder', 'Sent'));
-        }
-
         $now = date("Y/m/d H:i:s", time());
 
         if ($this->data['PrivateMessage']['submitType'] === 'saveDraft') {
@@ -211,8 +194,14 @@ class PrivateMessagesController extends AppController
 
         $recptArray = array_unique($recptArray, SORT_REGULAR);
 
+        $sentToday = $this->PrivateMessage->messagesTodayOfUser($currentUserId);
+
         // loop to send msg to different dest.
         foreach ($recptArray as $recpt) {
+            if (CurrentUser::isNewUser() && $sentToday >= 5) {
+                $this->_redirectDailyLimitReached();
+            }
+
             $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
             $recptSettings = $this->PrivateMessage->User->getSettings($recptId);
 
@@ -238,6 +227,8 @@ class PrivateMessagesController extends AppController
                 $message['sent'] = 1;
                 $this->PrivateMessage->save($message);
                 $this->PrivateMessage->id = null;
+
+                $sentToday += 1;
             } else {
                 $this->Session->write('unsent_message', $messageToSend);
 
@@ -288,6 +279,8 @@ class PrivateMessagesController extends AppController
      * Set flash message with error and redirect back to write.
      *
      * @param  string $error [Flash message to set]
+     *
+     * @return void
      */
     private function _redirectIncomplete($error)
     {
@@ -296,6 +289,26 @@ class PrivateMessagesController extends AppController
         );
 
         $this->redirect(array('action' => 'write'));
+    }
+
+    /**
+     * Set flash message and redirect if new user has sent too many messages.
+     *
+     * @return void
+     */
+    private function _redirectDailyLimitReached()
+    {
+        $this->Session->setFlash(
+            __(
+                "You have reached your message limit for today. ".
+                "Please wait until you can send more messages. ".
+                "If you have received this message in error, ".
+                "please contact administrators at ".
+                "team@tatoeba.org.",
+                true
+            )
+        );
+        $this->redirect(array('action' => 'folder', 'Sent'));
     }
 
     /**
