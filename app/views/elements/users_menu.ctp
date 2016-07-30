@@ -26,7 +26,7 @@
  */
 ?>
 
-<div class="module">
+<div class="section" md-whiteframe="1">
     <h2><?php echo $username; ?></h2>
     
     <ul class="annexeMenu">

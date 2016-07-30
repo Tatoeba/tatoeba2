@@ -16,10 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.settings {
-    position: relative;
-}
-
 .profileSummary,
 .profileLanguages {
     border: 1px solid #CCC;
@@ -27,54 +23,48 @@
     padding-bottom: 10px;
 }
 
+
+.with-title-button h2 {
+    margin: 0;
+}
+
 /*
  * Summary
  */
-.profileSummary {
-    position: relative;
+
+#profile .header {
+    padding-bottom: 20px;
 }
 
-.profileSummary img {
-    display: inline-block;
-    margin-right: 10px;
-}
-
-.profileSummary .info {
-    display: inline-block;
-    vertical-align: top;
-    width: 465px;
-    min-height: 128px;
-    position: relative;
-}
-
-.profileSummary .username {
-    font-size: 1.7em;
-    margin-bottom: 2px;
-}
-
-.profileSummary .field {
-    font-weight: bold;
-    padding-right: 5px;
-}
-
-.profileSummary .status {
-    font-size: 1.2em;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-}
-
-.profileSummary .contributionsBlocked {
-    background: url(../../img/warning-small.svg) no-repeat 0px center;
+#profile .info {
     padding-left: 20px;
 }
 
+#profile .personal-info {
+    padding: 5px;
+}
+
+#profile .label {
+    font-weight: bold;
+    padding-right: 20px;
+    color: #9e9e9e;
+    text-transform: uppercase;
+}
+
+#profile .status {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#profile .contributionsBlocked {
+    background: url(../../img/warning-small.svg) no-repeat 0px center;
+    padding-left: 20px;
+}
 
 /*
  * Description
  */
 .profileDescription {
-    border-top: 1px dotted #CCCCCC;
     padding: 20px 20px 10px 20px;
     margin: 10px 0;
 }
@@ -88,25 +78,6 @@
     font-style: italic;
 }
 
-/*
- * Edit
- */
-.editOption {
-    display: inline-block;
-    position: absolute;
-    right: 0;
-    top: 2px;
-}
-
-.editOption a{
-    background: #4caf50;
-    padding: 3px 10px;
-    color: #FFF;
-    border: 1px solid #4caf50;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
 
 /*
  * Languages
@@ -114,4 +85,24 @@
 .profileLanguages .edit {
     position: relative;
     height: 20px;
+}
+
+.language-icon {
+    margin: 25px 20px 0 0;
+}
+
+.md-list-item-text {
+    padding: 5px 0;
+}
+
+.md-list-item-text h3 {
+    font-size: 16px;
+    border: none;
+    padding-left: 0;
+}
+
+.usersLanguages .label {
+    padding-left: 20px;
+    font-size: 13px;
+    color: #AAAAAA;
 }

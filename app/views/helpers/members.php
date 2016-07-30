@@ -177,13 +177,17 @@ class MembersHelper extends AppHelper
         $maxLanguageLevel = 5;
         if (isset($level)) {
             $result = '<div class="languageLevel">';
-            for ($i = 0; $i < $level; $i++) {
-                $opacity = 0.5 + 0.5 * ($i / $maxLanguageLevel);
-                $result .= '<div class="level" style="opacity: '.$opacity.'"></div>';
+            for ($i = 0; $i < $maxLanguageLevel; $i++) {
+                if ($i < $level) {
+                    $result .= '<md-icon class="md-primary">star</md-icon>';
+                } else {
+                    $result .= '<md-icon>star_border</md-icon>';
+                }
+
             }
         } else {
             $result = '<div class="languageLevel unknown">';
-            $result .= '?';
+            $result .= __('Unspecified', true);
         }
         $result .= '</div>';
 
