@@ -78,6 +78,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 <md-input-container flex>
                     <label><? __('Vocabulary item'); ?></label>
                     <input type="text" ng-model="ctrl.data.text"
+                           autocomplete="off"
                            ng-disabled="ctrl.isAdding">
                 </md-input-container>
             </div>
