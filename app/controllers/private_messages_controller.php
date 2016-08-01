@@ -45,8 +45,7 @@ class PrivateMessagesController extends AppController
 
 
     /**
-     * We don't use index at all : by default, we just display the
-     * inbox folder to the user
+     * Display the inbox folder to the user.
      *
      * @return void
      */
@@ -56,12 +55,11 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Function which will display the folders to the user.
-     * The folder name is given in parameters, as messages are stored by
-     * folder name in the database (SQL ENUM)
+     * Display folder to the user. Messages are stored by folder name in the
+     * database (SQL ENUM).
      *
-     * @param string $folder The folder we want to display
-     * @param string $status 'all', 'read', 'unread'.
+     * @param string $folder [The folder to display.]
+     * @param string $status [Message status: 'all', 'read', 'unread']
      *
      * @return void
      */
@@ -127,7 +125,7 @@ class PrivateMessagesController extends AppController
     /**
      * Set the origin folder on the message array.
      *
-     * @param array $message
+     * @param array $message [Private message array.]
      *
      * @return  array
      */
@@ -139,7 +137,7 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * This function has to send the message, then to display the sent folder
+     * Send the message, redirect to the sent folder.
      *
      * @return void
      */
@@ -213,9 +211,11 @@ class PrivateMessagesController extends AppController
                 $message['draft_recpts'] = '';
                 $message['sent'] = 1;
                 $this->PrivateMessage->save($message);
+
                 if ($recptSettings['User']['send_notifications']) {
                     $this->Mailer->sendPmNotification(
-                        $message, $this->PrivateMessage->id
+                        $message,
+                        $this->PrivateMessage->id
                     );
                 }
                 $this->PrivateMessage->id = null;
@@ -252,7 +252,7 @@ class PrivateMessagesController extends AppController
     /**
      * Private message is draft and content is empty.
      *
-     * @param  array  $message [Private message submitted by user]
+     * @param  array  $message [Private message submitted by user.]
      *
      * @return boolean
      */
@@ -265,7 +265,7 @@ class PrivateMessagesController extends AppController
     /**
      * Private message recipient or content are empty and message is not draft.
      *
-     * @param  array  $message [Private message submitted by user]
+     * @param  array  $message [Private message submitted by user.]
      *
      * @return boolean
      */
@@ -278,7 +278,7 @@ class PrivateMessagesController extends AppController
     /**
      * Set flash message with error and redirect back to write.
      *
-     * @param  string $error [Flash message to set]
+     * @param  string $error [Flash message to set.]
      *
      * @return void
      */
@@ -312,9 +312,9 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Function to show the content of a message
+     * Show a message.
      *
-     * @param int $messageId The identifiers of the message we want to read
+     * @param int $messageId [ID of message to show.]
      *
      * @return void
      */
@@ -361,7 +361,9 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * @param array $privateMessage Private message info.
+     * Get message details from the private message array.
+     *
+     * @param array $privateMessage [Private message array.]
      *
      * @return array
      */
@@ -373,11 +375,11 @@ class PrivateMessagesController extends AppController
         return $message;
     }
 
-
     /**
+     * Get menu for folder.
      *
-     * @param string $folder    Folder name: Inbox, Sent or Trash
-     * @param int    $messageId Id of private message.
+     * @param string $folder    [Folder name: 'Inbox', 'Sent', 'Trash']
+     * @param int    $messageId [Id of private message.]
      *
      * @return array
      */
@@ -404,7 +406,7 @@ class PrivateMessagesController extends AppController
             );
         } else {
             $menu[] = array(
-                'text' => __('delete', true), 
+                'text' => __('delete', true),
                 'url' => array(
                     'action' => 'delete',
                     $messageId
@@ -414,7 +416,7 @@ class PrivateMessagesController extends AppController
         
         if ($folder == 'Inbox') {
             $menu[] = array(
-                'text' => __('mark as unread', true), 
+                'text' => __('mark as unread', true),
                 'url' => array(
                     'action' => 'mark',
                     'Inbox',
@@ -423,7 +425,7 @@ class PrivateMessagesController extends AppController
             );
                         
             $menu[] = array(
-                'text' => __('reply', true), 
+                'text' => __('reply', true),
                 'url' => '#reply'
             );
         }
@@ -432,9 +434,9 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Empty folder
+     * Delete all messages in folder.
      *
-     * @param string $folder  The name of the folder to empty
+     * @param string $folder  [Name of the folder to empty.]
      *
      * @return void
      */
@@ -453,13 +455,14 @@ class PrivateMessagesController extends AppController
                 )
             );
         }
+
         $this->redirect(array('action' => 'folder', $folder));
     }
 
     /**
-     * Delete message function
+     * Delete message function.
      *
-     * @param int $messageId The identifier of the message we want to delete
+     * @param int $messageId [ID of message to delete.]
      *
      * @return void
      */
@@ -482,9 +485,9 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Restore message function
+     * Restore message from trash to original folder.
      *
-     * @param int $messageId The identifier of the message we want to restore
+     * @param int $messageId [ID of message to restore.]
      *
      * @return void
      */
@@ -504,9 +507,9 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Determine which folder trash messages originally belonged to.
+     * Determine which folder trash message originally belonged to.
      *
-     * @param  array $message
+     * @param  array $message [Private message array.]
      *
      * @return string
      */
@@ -546,12 +549,10 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Create a new message
+     * Create a new message.
      *
-     * @param string $recipients The login, or the string containing various login
-     *                           separated by a comma, to which we have to send the
-     *                           message.
-     * @param  int $messageId
+     * @param string $recipients [Username, or comma separated usernames.]
+     * @param int $messageId     [ID of message, if exists.]
      *
      * @return void
      */
@@ -613,10 +614,10 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * function called to add a list to a pm
+     * Add a list to a private message.
      *
-     * @param string $type         The type of object to join to the message
-     * @param int    $joinObjectId The identifier of the object to join
+     * @param string $type         [Type of object to join to the message.]
+     * @param int    $joinObjectId [ID object to join.]
      *
      * @return void
      */
