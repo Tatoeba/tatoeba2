@@ -16,32 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.form {
-    background: #F1F1F1;
-    border: 1px solid #DDDDDD;
-    padding: 15px;
-    font-size: 16px;
-}
-
-.form .buttons {
-    text-align: right;
-}
-
-.form input.button {
-    display: inline-block;
-    text-align: center;
-}
-
-.form textarea {
+.user-language textarea {
     width: 100%;
     margin-bottom: 15px;
 }
 
-.form fieldset {
+.user-language .info {
     margin: 20px 0;
-    padding: 0;
 }
 
-.form label {
-    margin-right: 10px;
+.user-language label {
+    padding-right: 20px;
+    font-weight: bold;
 }

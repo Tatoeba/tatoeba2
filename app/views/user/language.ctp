@@ -45,64 +45,87 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="user-language section" md-whiteframe="1">
         <?php
         echo $html->tag('h2', $title);
 
-        $languagesList = $languages->onlyLanguagesArray(false);
-
-        echo $form->create('UsersLanguages', array('action' => 'save', 'class' => 'form'));
-
+        echo $form->create('UsersLanguages', array('action' => 'save'));
         echo $form->hidden('id');
         echo $form->hidden('of_user_id', array('value' => $ofUserId));
+        ?>
 
-        // Language
-        echo $html->tag('label', __('Language:', true), array('for' => 'UsersLanguagesLanguageCode'));
-        if (empty($this->data)) {
-            echo $form->select(
-                'language_code',
-                $languagesList,
-                null,
-                array(
-                    'class' => 'language-selector',
-                    'empty' => false
-                ),
-                false
+        <!-- Language -->
+        <div class="info" layout="row" layout-align="start center">
+            <?php
+            $languagesList = $languages->onlyLanguagesArray(false);
+
+            echo $html->tag(
+                'label',
+                __('Language:', true),
+                array('for' => 'UsersLanguagesLanguageCode')
             );
-        } else {
-            $languageCode = $this->data['UsersLanguages']['language_code'];
-            echo $languages->codeToNameAlone($languageCode);
-        }
+            if (empty($this->data)) {
+                echo $form->select(
+                    'language_code',
+                    $languagesList,
+                    null,
+                    array(
+                        'class' => 'language-selector',
+                        'empty' => false
+                    ),
+                    false
+                );
+            } else {
+                $languageCode = $this->data['UsersLanguages']['language_code'];
+                echo $languages->codeToNameAlone($languageCode);
+            }
+            ?>
+        </div>
 
-        $selected = -1;
-        if (isset($this->data['UsersLanguages']['level'])) {
-            $selected = $this->data['UsersLanguages']['level'];
-        }
+        <md-divider></md-divider>
 
-        $radioLabels = $languages->getLevelsLabels();
-        ?>
-        
-        <input type="radio" name="data[UsersLanguages][level]" value="{{userLanguage.level}}" checked hidden ng-init="userLanguage.level = <?= $selected ?>"/>
-        <legend><?= __('What is your level?') ?></legend>
-        <md-radio-group ng-model='userLanguage.level'>
-        <?php foreach($radioLabels as $key => $radioLabel) { ?>
-            <md-radio-button value='<?= $key ?>' class='md-primary'>
-                <?= $radioLabel ?>
-            </md-radio-button>  
-        <?php } ?>
-        </md-radio-group>
-        
-        <?php
-        // Details
-        echo $html->tag(
-            'label',
-            __('Details (optional). For instance, which dialect or from which country.', true),
-            array('for' => 'AddUsersLanguagesDetails')
-        );
-        echo $form->textarea('details');
+        <!-- Level -->
+        <div class="info">
+            <?php
+            $selected = -1;
+            if (isset($this->data['UsersLanguages']['level'])) {
+                $selected = $this->data['UsersLanguages']['level'];
+            }
 
-        // Buttons
-        ?>
+            $radioLabels = $languages->getLevelsLabels();
+            ?>
+            <input type="radio"
+                   name="data[UsersLanguages][level]"
+                   value="{{userLanguage.level}}"
+                   ng-init="userLanguage.level = <?= $selected ?>"
+                   checked hidden/>
+            <label><?= __('What is your level?') ?></label>
+            <md-radio-group ng-model='userLanguage.level'>
+                <?php foreach($radioLabels as $key => $radioLabel) { ?>
+                    <md-radio-button value='<?= $key ?>' class='md-primary'>
+                        <?= $radioLabel ?>
+                    </md-radio-button>
+                <?php } ?>
+            </md-radio-group>
+        </div>
+
+        <md-divider></md-divider>
+
+        <!-- Details -->
+        <div class="info">
+            <?php
+            echo $html->tag(
+                'label',
+                __(
+                    'Details (optional). '.
+                    'For instance, which dialect or from which country.', true
+                ),
+                array('for' => 'AddUsersLanguagesDetails')
+            );
+            echo $form->textarea('details');
+            ?>
+        </div>
+
         <div layout="row" layout-align="end center">
             <?php
             if (!empty($this->data)) {
