@@ -227,5 +227,23 @@ class PrivateMessage extends AppModel
 
         $this->save($message);
     }
+
+    /**
+     * Mark a private message as read.
+     *
+     * @param  array $message [Private message.]
+     *
+     * @return array
+     */
+    public function markAsRead($message)
+    {
+        if ($message['PrivateMessage']['isnonread'] == 1) {
+            $message['PrivateMessage']['isnonread'] = 0;
+
+            $this->save($message);
+        }
+
+        return $message;
+    }
 }
 ?>

@@ -362,7 +362,7 @@ class PrivateMessagesController extends AppController
     /**
      * Show a message.
      *
-     * @param int $messageId [ID of message to show.]
+     * @param  int $messageId [ID of message to show.]
      *
      * @return void
      */
@@ -372,12 +372,36 @@ class PrivateMessagesController extends AppController
         $this->helpers[] = 'PrivateMessages';
 
         $messageId = Sanitize::paranoid($messageId);
-        $pm = $this->PrivateMessage->getMessageWithId($messageId);
+        $privateMessage = $this->PrivateMessage->getMessageWithId($messageId);
 
-        // Redirection to Inbox if the user tries to view a messages that
-        // is not theirs.
-        $recipientId = $pm['PrivateMessage']['recpt'];
-        $senderId = $pm['PrivateMessage']['sender'];
+        $this->_redirectMessageNotUsers($privateMessage);
+
+        $privateMessage = $this->PrivateMessage->markAsRead($privateMessage);
+
+        $author = $privateMessage['Sender'];
+        $folder =  $privateMessage['PrivateMessage']['folder'];
+        $message = $this->_getMessageFromPm($privateMessage['PrivateMessage']);
+        $messageMenu = $this->_getMenu($folder, $messageId);
+        $title = $privateMessage['PrivateMessage']['title'];
+
+        $this->set('author', $author);
+        $this->set('folder', $folder);
+        $this->set('message', $message);
+        $this->set('messageMenu', $messageMenu);
+        $this->set('title', $title);
+    }
+
+    /**
+     * Redirect to Inbox is user tries to view a message that is not theirs.
+     *
+     * @param  array $message [Private message.]
+     *
+     * @return void
+     */
+    private function _redirectMessageNotUsers($message)
+    {
+        $recipientId = $message['PrivateMessage']['recpt'];
+        $senderId = $message['PrivateMessage']['sender'];
         $currentUserId = CurrentUser::get('id');
 
         if ($recipientId != $currentUserId && $senderId != $currentUserId) {
@@ -388,24 +412,6 @@ class PrivateMessagesController extends AppController
                 )
             );
         }
-
-        // Setting message as read
-        if ($pm['PrivateMessage']['isnonread'] == 1) {
-            $pm['PrivateMessage']['isnonread'] = 0;
-            $this->PrivateMessage->save($pm);
-        }
-
-        $folder =  $pm['PrivateMessage']['folder'];
-        $title = $pm['PrivateMessage']['title'];
-        $message = $this->_getMessageFromPm($pm['PrivateMessage']);
-        $author = $pm['Sender'];
-        $messageMenu = $this->_getMenu($folder, $messageId);
-
-        $this->set('messageMenu', $messageMenu);
-        $this->set('title', $title);
-        $this->set('author', $author);
-        $this->set('message', $message);
-        $this->set('folder', $folder);
     }
 
     /**
@@ -417,10 +423,10 @@ class PrivateMessagesController extends AppController
      */
     private function _getMessageFromPm($privateMessage)
     {
-        $message['created'] = $privateMessage['date'];
-        $message['text'] = $privateMessage['content'];
-
-        return $message;
+        return [
+            'created' => $privateMessage['date'],
+            'text' => $privateMessage['content']
+        ];
     }
 
     /**
