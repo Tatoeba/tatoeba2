@@ -41,6 +41,7 @@ class PrivateMessage extends AppModel
     public $name = 'PrivateMessage';
 
     public $actsAs = array('Containable');
+
     public $belongsTo = array(
         'User',
         'Recipient' => array(
@@ -54,21 +55,21 @@ class PrivateMessage extends AppModel
     );
 
     /**
-     * function to retrieve private message by folder
+     * Get private messages by folder.
      *
-     * @param string $folderId Name of the folder we want the messages
-     * @param int    $userId   Id of the user we want the messages
+     * @param string $folder [Name of the folder we want the messages.]
+     * @param int    $userId [Id of the user.]
      *
-     * @return Array
+     * @return array
      */
-    public function getMessages($folderId, $userId)
+    public function getMessages($folder, $userId)
     {
         return $this->find(
             'all',
             array(
                 'conditions' => array(
                     'PrivateMessage.user_id' => $userId,
-                    'PrivateMessage.folder' => $folderId
+                    'PrivateMessage.folder' => $folder
                 ),
                 'order' => 'PrivateMessage.date DESC',
                 'contain' => array(
@@ -84,11 +85,11 @@ class PrivateMessage extends AppModel
     }
 
     /**
-     * Return message corresponding to given id.
+     * Get message by id.
      *
-     * @param int $messageId Id of the message to retrieve.
+     * @param int $messageId [ID of the message to retrieve.]
      *
-     * @return Array
+     * @return array
      */
     public function getMessageWithId($messageId)
     {
@@ -106,16 +107,14 @@ class PrivateMessage extends AppModel
     }
 
     /**
-     * Count how many unread messages a specific user has
+     * Get unread message count for user.
      *
-     * @param int $userId The user id.
+     * @param int $userId [ID for user.]
      *
      * @return int
      */
-
     public function numberOfUnreadMessages($userId)
     {
-
         return $this->find(
             'count',
             array(
@@ -129,15 +128,16 @@ class PrivateMessage extends AppModel
     }
 
     /**
-     * Returns count of messages sent by user in the last 24 hours
+     * Return count of messages sent by user in the last 24 hours.
      *
-     * @param int $userId The user id.
+     * @param  int $userId [ID for user.]
      *
      * @return int
      */
-    public function messagesTodayOfUser($userId)
+    public function todaysMessageCount($userId)
     {
         $yesterday = date_modify(new DateTime("now"), "-1 day");
+
         return $this->find(
             "count",
             array(
@@ -153,11 +153,11 @@ class PrivateMessage extends AppModel
     /**
      * Save a draft message.
      *
-     * @param  int      $currentUserId
-     * @param  string   $now            [Timestamp]
-     * @param  array    $data           [Form data from controller]
+     * @param  int      $currentUserId  [ID for current user.]
+     * @param  string   $now            [Timestamp.]
+     * @param  array    $data           [Form data from controller.]
      *
-     * @return array                    [Draft]
+     * @return array                    [Draft.]
      */
     public function saveDraft($currentUserId, $now, $data)
     {
@@ -192,13 +192,12 @@ class PrivateMessage extends AppModel
      */
     public function saveToInbox($message, $recptId)
     {
-        $message['recpt'] = $recptId;
-
-        $message['user_id'] = $recptId;
-
-        $message['draft_recpts'] = '';
-
-        $message['sent'] = 1;
+        $message = array_merge($message, array(
+            'recpt' => $recptId,
+            'user_id' => $recptId,
+            'draft_recpts' => '',
+            'sent' => 1
+        ));
 
         $this->save($message);
 
@@ -212,7 +211,7 @@ class PrivateMessage extends AppModel
      * @param  int   $recptId       [User id for recipient.]
      * @param  int   $currentUserId [User id for current user.]
      *
-     * @return void
+     * @return array
      */
     public function saveToOutbox($messageToSave, $recptId, $currentUserId)
     {
@@ -227,6 +226,8 @@ class PrivateMessage extends AppModel
         ));
 
         $this->save($message);
+
+        return $message;
     }
 
     /**

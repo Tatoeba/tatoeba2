@@ -159,7 +159,7 @@ class PrivateMessagesController extends AppController
 
         $recipients = $this->_buildRecipientsArray();
 
-        $sentToday = $this->PrivateMessage->messagesTodayOfUser($currentUserId);
+        $sentToday = $this->PrivateMessage->todaysMessageCount($currentUserId);
 
         foreach ($recipients as $recpt) {
             if (CurrentUser::isNewUser() && $sentToday >= 5) {
@@ -374,7 +374,7 @@ class PrivateMessagesController extends AppController
         $messageId = Sanitize::paranoid($messageId);
         $privateMessage = $this->PrivateMessage->getMessageWithId($messageId);
 
-        $this->_redirectMessageNotUsers($privateMessage);
+        $this->_authorizeUser($privateMessage);
 
         $privateMessage = $this->PrivateMessage->markAsRead($privateMessage);
 
@@ -398,7 +398,7 @@ class PrivateMessagesController extends AppController
      *
      * @return void
      */
-    private function _redirectMessageNotUsers($message)
+    private function _authorizeUser($message)
     {
         $recipientId = $message['PrivateMessage']['recpt'];
         $senderId = $message['PrivateMessage']['sender'];
@@ -501,7 +501,9 @@ class PrivateMessagesController extends AppController
                 'user_id' => CurrentUser::get('id'),
                 'folder' => $folder,
             );
+
             $this->PrivateMessage->deleteAll($conditions, false);
+
             $this->Session->setFlash(
                 format(
                     __('Folder "{name}" emptied.', true),
@@ -527,10 +529,12 @@ class PrivateMessagesController extends AppController
 
         if ($message['PrivateMessage']['user_id'] == CurrentUser::get('id')) {
             $deleteForever = $message['PrivateMessage']['folder'] == 'Trash';
+
             if ($deleteForever) {
                 $this->PrivateMessage->delete($messageId);
             } else {
                 $message['PrivateMessage']['folder'] = 'Trash';
+
                 $this->PrivateMessage->save($message);
             }
         }
@@ -601,11 +605,11 @@ class PrivateMessagesController extends AppController
      * Create a new message.
      *
      * @param string $recipients [Username, or comma separated usernames.]
-     * @param int $messageId     [ID of message, if exists.]
+     * @param int    $messageId  [ID of message, if exists.]
      *
      * @return void
      */
-    public function write($recipients = null, $messageId = null)
+    public function write($recipients = '', $messageId = null)
     {
         $this->helpers[] = "PrivateMessages";
 
@@ -613,18 +617,10 @@ class PrivateMessagesController extends AppController
 
         $userId = CurrentUser::get('id');
         $isNewUser = CurrentUser::isNewUser();
+        
+        $messagesToday = $this->PrivateMessage->todaysMessageCount($userId);
 
-        //For new users, check how many messages they have sent in the last 24hrs
-        $canSend = true;
-        $messagesToday = 0;
-        if ($isNewUser) {
-            $messagesToday = $this->PrivateMessage->messagesTodayOfUser($userId);
-            $canSend = $messagesToday < 5;
-        }
-
-        if ($recipients == null) {
-            $recipients = '';
-        }
+        $canSend = $this->_canSendMessage($userId, $isNewUser, $messagesToday);
 
         $this->set('messagesToday', $messagesToday);
         $this->set('canSend', $canSend);
@@ -660,6 +656,24 @@ class PrivateMessagesController extends AppController
         } else {
             $this->set('recipients', $recipients);
         }
+    }
+
+    /**
+     * Return true if user can send message. New users can only send 5/24 hours.
+     *
+     * @param  int  $userId        [ID of current user.]
+     * @param  bool $isNewUser     [True if user is new user.]
+     * @param  int  $messagesToday [Number of messages sent today.]
+     *
+     * @return bool
+     */
+    private function _canSendMessage($userId, $isNewUser, $messagesToday)
+    {
+        if ($isNewUser) {
+            return $messagesToday < 5;
+        }
+
+        return true;
     }
 
     /**
