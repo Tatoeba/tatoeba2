@@ -222,7 +222,8 @@ class PrivateMessage extends AppModel
             'isnonread' => 0,
             'recpt' => $recptId,
             'draft_recpts' => '',
-            'sent' => 1
+            'sent' => 1,
+            'id' => null
         ));
 
         $this->save($message);

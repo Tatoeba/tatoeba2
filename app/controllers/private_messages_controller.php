@@ -579,27 +579,22 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Generalistic read/unread marker function.
+     * Mark messages as read.
      *
-     * @param string $folderId  The folder identifier where we are while
-     * marking this message
-     * @param int    $messageId The identifier of the message we want to mark
+     * @param string $folder    [Folder where action takes place.]
+     * @param int    $messageId [ID of message to mark.]
      *
      * @return void
      */
-    public function mark($folderId, $messageId)
+    public function mark($folder, $messageId)
     {
-        $messageId = Sanitize:: paranoid($messageId);
+        $messageId = Sanitize::paranoid($messageId);
 
         $message = $this->PrivateMessage->findById($messageId);
-        switch ($message['PrivateMessage']['isnonread']) {
-            case 1 : $message['PrivateMessage']['isnonread'] = 0;
-                break;
-            case 0 : $message['PrivateMessage']['isnonread'] = 1;
-                break;
-        }
-        $this->PrivateMessage->save($message);
-        $this->redirect(array('action' => 'folder', $folderId));
+
+        $this->PrivateMessage->markAsRead($message);
+
+        $this->redirect(array('action' => 'folder', $folder));
     }
 
     /**
