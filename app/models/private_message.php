@@ -181,5 +181,51 @@ class PrivateMessage extends AppModel
 
         return $draft;
     }
+
+    /**
+     * Save message to recipients inbox.
+     *
+     * @param  array $message [Message to send.]
+     * @param  int   $recptId [User id for recipient.]
+     *
+     * @return array
+     */
+    public function saveToInbox($message, $recptId)
+    {
+        $message['recpt'] = $recptId;
+
+        $message['user_id'] = $recptId;
+
+        $message['draft_recpts'] = '';
+
+        $message['sent'] = 1;
+
+        $this->save($message);
+
+        return $message;
+    }
+
+    /**
+     * Save message to senders outbox.
+     *
+     * @param  array $messageToSave [Message to save to outbox.]
+     * @param  int   $recptId       [User id for recipient.]
+     * @param  int   $currentUserId [User id for current user.]
+     *
+     * @return void
+     */
+    public function saveToOutbox($messageToSave, $recptId, $currentUserId)
+    {
+        $message = array_merge($messageToSave, array(
+            'user_id'   => $currentUserId,
+            'folder'    => 'Sent',
+            'isnonread' => 0,
+            'recpt' => $recptId,
+            'draft_recpts' => '',
+            'sent' => 1
+        ));
+
+        $this->save($message);
+    }
 }
 ?>
