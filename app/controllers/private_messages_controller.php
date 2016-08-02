@@ -38,14 +38,11 @@
 class PrivateMessagesController extends AppController
 {
     public $name = 'PrivateMessages';
-
     public $helpers = array('Html', 'Date');
-
-    public $components = array ('Mailer');
-
+    public $components = array('Mailer');
 
     /**
-     * Display the inbox folder to the user.
+     * Display the inbox folder.
      *
      * @return void
      */
@@ -55,8 +52,7 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Display folder to the user. Messages are stored by folder name in the
-     * database (SQL ENUM).
+     * Display folder.
      *
      * @param string $folder [The folder to display.]
      * @param string $status [Message status: 'all', 'read', 'unread']
@@ -115,7 +111,7 @@ class PrivateMessagesController extends AppController
         $content = $this->paginate();
 
         if ($folder == 'Trash') {
-            $content = array_map([$this, '_setOriginFolder'], $content);
+            $content = array_map([$this, '_setToOrigin'], $content);
         }
 
         $this->set('folder', $folder);
@@ -123,15 +119,18 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Set the origin folder on the message array.
+     * Set PrivateMessage key to the message's origin folder.
      *
-     * @param array $message [Private message array.]
+     * @param array  $message [Private message array.]
+     * @param string $key     [PrivateMessage key to set to origin folder.]
      *
      * @return array
      */
-    private function _setOriginFolder($message)
+    private function _setToOrigin($message, $key = 'origin')
     {
-        $message['PrivateMessage']['origin'] = $this->_findOriginFolder($message);
+        $origin = $this->_findOriginFolder($message);
+
+        $message['PrivateMessage'][$key] = $origin;
 
         return $message;
     }
@@ -162,7 +161,7 @@ class PrivateMessagesController extends AppController
         $sentToday = $this->PrivateMessage->todaysMessageCount($currentUserId);
 
         foreach ($recipients as $recpt) {
-            if (CurrentUser::isNewUser() && $sentToday >= 5) {
+            if (!$this->_canSendMessage($sentToday)) {
                 $this->_redirectDailyLimitReached();
             }
 
@@ -279,14 +278,13 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Build array of recipients from recipents string.
+     * Build array of unique recipients from recipents string.
      *
      * @return array
      */
     private function _buildRecipientsArray()
     {
         $recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
-
         $recptArray = array_map('trim', $recptArray);
 
         return array_unique($recptArray, SORT_REGULAR);
@@ -304,11 +302,11 @@ class PrivateMessagesController extends AppController
                 "You have reached your message limit for today. ".
                 "Please wait until you can send more messages. ".
                 "If you have received this message in error, ".
-                "please contact administrators at ".
-                "team@tatoeba.org.",
+                "please contact administrators at team@tatoeba.org.",
                 true
             )
         );
+
         $this->redirect(array('action' => 'folder', 'Sent'));
     }
 
@@ -323,13 +321,11 @@ class PrivateMessagesController extends AppController
     private function _redirectInvalidUser($message, $recpt)
     {
         $this->Session->write('unsent_message', $message);
-
         $this->Session->setFlash(
             format(
                 __(
-                    'The user {username} to whom you want to send this message '.
-                    'does not exist. Please try with another '.
-                    'username.',
+                    'The user {username} to whom you want to send this '.
+                    'message does not exist. Please try with another username.',
                     true
                 ),
                 array('username' => $recpt)
@@ -371,24 +367,34 @@ class PrivateMessagesController extends AppController
         $this->helpers[] = 'Messages';
         $this->helpers[] = 'PrivateMessages';
 
-        $messageId = Sanitize::paranoid($messageId);
-        $privateMessage = $this->PrivateMessage->getMessageWithId($messageId);
+        $privateMessage = $this->_getMessageById($messageId);
 
         $this->_authorizeUser($privateMessage);
 
         $privateMessage = $this->PrivateMessage->markAsRead($privateMessage);
 
-        $author = $privateMessage['Sender'];
-        $folder =  $privateMessage['PrivateMessage']['folder'];
         $message = $this->_getMessageFromPm($privateMessage['PrivateMessage']);
-        $messageMenu = $this->_getMenu($folder, $messageId);
-        $title = $privateMessage['PrivateMessage']['title'];
+        $folder = $privateMessage['PrivateMessage']['folder'];
 
-        $this->set('author', $author);
-        $this->set('folder', $folder);
         $this->set('message', $message);
-        $this->set('messageMenu', $messageMenu);
-        $this->set('title', $title);
+        $this->set('author', $privateMessage['Sender']);
+        $this->set('folder', $folder);
+        $this->set('messageMenu', $this->_getMenu($folder, $messageId));
+        $this->set('title', $privateMessage['PrivateMessage']['title']);
+    }
+
+    /**
+     * Sanitize ID, fetch and return message.
+     *
+     * @param  int $messageId [ID for message.]
+     *
+     * @return array
+     */
+    private function _getMessageById($messageId)
+    {
+        $messageId = Sanitize::paranoid($messageId);
+
+        return $this->PrivateMessage->getMessageWithId($messageId);
     }
 
     /**
@@ -524,13 +530,10 @@ class PrivateMessagesController extends AppController
      */
     public function delete($messageId)
     {
-        $messageId = Sanitize::paranoid($messageId);
-        $message = $this->PrivateMessage->findById($messageId);
+        $message = $this->_getMessageById($messageId);
 
         if ($message['PrivateMessage']['user_id'] == CurrentUser::get('id')) {
-            $deleteForever = $message['PrivateMessage']['folder'] == 'Trash';
-
-            if ($deleteForever) {
+            if ($message['PrivateMessage']['folder'] == 'Trash') {
                 $this->PrivateMessage->delete($messageId);
             } else {
                 $message['PrivateMessage']['folder'] = 'Trash';
@@ -551,9 +554,7 @@ class PrivateMessagesController extends AppController
      */
     public function restore($messageId)
     {
-        $messageId = Sanitize::paranoid($messageId);
-
-        $message = $this->PrivateMessage->findById($messageId);
+        $message = $this->_getMessageById($messageId);
 
         $folder = $this->_findOriginFolder($message);
 
@@ -583,7 +584,7 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Mark messages as read.
+     * Toggle message read/unread field.
      *
      * @param string $folder    [Folder where action takes place.]
      * @param int    $messageId [ID of message to mark.]
@@ -592,11 +593,9 @@ class PrivateMessagesController extends AppController
      */
     public function mark($folder, $messageId)
     {
-        $messageId = Sanitize::paranoid($messageId);
+        $message = $this->_getMessageById($messageId);
 
-        $message = $this->PrivateMessage->findById($messageId);
-
-        $this->PrivateMessage->markAsRead($message);
+        $this->PrivateMessage->toggleUnread($message);
 
         $this->redirect(array('action' => 'folder', $folder));
     }
@@ -616,21 +615,15 @@ class PrivateMessagesController extends AppController
         $recoveredMessage = $this->Session->read('unsent_message');
 
         $userId = CurrentUser::get('id');
-        $isNewUser = CurrentUser::isNewUser();
         
         $messagesToday = $this->PrivateMessage->todaysMessageCount($userId);
 
-        $canSend = $this->_canSendMessage($userId, $isNewUser, $messagesToday);
-
         $this->set('messagesToday', $messagesToday);
-        $this->set('canSend', $canSend);
-        $this->set('isNewUser', $isNewUser);
+        $this->set('canSend', $this->_canSendMessage($messagesToday));
+        $this->set('isNewUser', CurrentUser::isNewUser());
 
         if ($messageId) {
-            $messageId = Sanitize::paranoid($messageId);
-
-            $pm = $this->PrivateMessage->getMessageWithId($messageId);
-
+            $pm = $this->_getMessageById($messageId);
             $senderId = $pm['PrivateMessage']['sender'];
 
             if ($senderId != $userId) {
@@ -661,15 +654,13 @@ class PrivateMessagesController extends AppController
     /**
      * Return true if user can send message. New users can only send 5/24 hours.
      *
-     * @param  int  $userId        [ID of current user.]
-     * @param  bool $isNewUser     [True if user is new user.]
      * @param  int  $messagesToday [Number of messages sent today.]
      *
      * @return bool
      */
-    private function _canSendMessage($userId, $isNewUser, $messagesToday)
+    private function _canSendMessage($messagesToday)
     {
-        if ($isNewUser) {
+        if (CurrentUser::isNewUser()) {
             return $messagesToday < 5;
         }
 

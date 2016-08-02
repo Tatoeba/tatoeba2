@@ -240,10 +240,26 @@ class PrivateMessage extends AppModel
     public function markAsRead($message)
     {
         if ($message['PrivateMessage']['isnonread'] == 1) {
-            $message['PrivateMessage']['isnonread'] = 0;
-
-            $this->save($message);
+            $message = $this->toggleUnread($message);
         }
+
+        return $message;
+    }
+
+    /**
+     * Toggle message isnonread column.
+     *
+     * @param  array $message [Private message.]
+     *
+     * @return array
+     */
+    public function toggleUnread($message)
+    {
+        $status = !! $message['PrivateMessage']['isnonread'];
+
+        $message['PrivateMessage']['isnonread'] = !$status;
+        
+        $this->save($message);
 
         return $message;
     }
