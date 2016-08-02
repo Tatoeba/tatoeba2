@@ -174,20 +174,16 @@ class MembersHelper extends AppHelper
 
     public function displayLanguageLevel($level)
     {
+        $result = '<div class="languageLevel">';
         $maxLanguageLevel = 5;
         if (isset($level)) {
-            $result = '<div class="languageLevel">';
             for ($i = 0; $i < $maxLanguageLevel; $i++) {
                 if ($i < $level) {
                     $result .= '<md-icon class="md-primary">star</md-icon>';
                 } else {
                     $result .= '<md-icon>star_border</md-icon>';
                 }
-
             }
-        } else {
-            $result = '<div class="languageLevel unknown">';
-            $result .= __('Unspecified', true);
         }
         $result .= '</div>';
 
