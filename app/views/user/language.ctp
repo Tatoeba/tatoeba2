@@ -128,24 +128,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 
         <div layout="row" layout-align="end center">
             <?php
-            if (!empty($this->data)) {
-                $deleteUrl = $html->url(
-                    array(
-                        'controller' => 'users_languages',
-                        'action' => 'delete',
-                        $this->data['UsersLanguages']['id']
-                    )
-                );
-                $confirmation = __('Are you sure?', true);
-                ?>
-                <md-button type="submit" class="md-raised md-warn"
-                           href="<?= $deleteUrl; ?>"
-                           onclick="return confirm('<?= $confirmation; ?>');">
-                    <?php __('Delete'); ?>
-                </md-button>
-                <?php
-            }
-
             $cancelUrl = $html->url(
                 array(
                     'controller' => 'user',
