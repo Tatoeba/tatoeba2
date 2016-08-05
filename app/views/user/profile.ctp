@@ -265,7 +265,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
             <div class="personal-info" layout-margin>
                 <? foreach ($personalInfo as $label => $value) { ?>
                     <div layout="row">
-                        <div flex="25" class="label"><?= $label ?></div>
+                        <div flex="33" class="label"><?= $label ?></div>
                         <div flex><?= $value ? $value : '-' ?></div>
                     </div>
                 <? } ?>
