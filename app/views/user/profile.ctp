@@ -373,11 +373,30 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                                 <?= $details ?>
                             </p>
                         </div>
-                        <? if ($username == $currentMember) { ?>
+                        <? if ($username == $currentMember) {
+                            $deleteUrl = $html->url(
+                                array(
+                                    'controller' => 'users_languages',
+                                    'action' => 'delete',
+                                    $languageInfo['id']
+                                )
+                            );
+                            $confirmation = __('Are you sure?', true);
+                            ?>
                             <md-button class="md-secondary md-icon-button"
                                        aria-label="<?= __('Edit') ?>"
                                        href="<?= $editLangUrl ?>">
-                                <md-icon>edit</md-icon>
+                                <md-icon aria-label="<?= __('Edit') ?>">
+                                    edit
+                                </md-icon>
+                            </md-button>
+
+                            <md-button type="submit" class="md-secondary md-icon-button"
+                                       href="<?= $deleteUrl; ?>"
+                                       onclick="return confirm('<?= $confirmation; ?>');">
+                                <md-icon aria-label="<?= __('Delete') ?>">
+                                    delete
+                                </md-icon>
                             </md-button>
                         <? } ?>
                     </md-list-item>
