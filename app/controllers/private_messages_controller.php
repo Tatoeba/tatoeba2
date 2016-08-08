@@ -54,8 +54,8 @@ class PrivateMessagesController extends AppController
     /**
      * Display folder.
      *
-     * @param string $folder [The folder to display.]
-     * @param string $status [Message status: 'all', 'read', 'unread']
+     * @param string $folder The folder to display.
+     * @param string $status Message status: 'all', 'read', 'unread'
      *
      * @return void
      */
@@ -121,8 +121,8 @@ class PrivateMessagesController extends AppController
     /**
      * Set PrivateMessage key to the message's origin folder.
      *
-     * @param array  $message [Private message array.]
-     * @param string $key     [PrivateMessage key to set to origin folder.]
+     * @param array  $message Private message array.
+     * @param string $key     PrivateMessage key to set to origin folder.
      *
      * @return array
      */
@@ -212,7 +212,7 @@ class PrivateMessagesController extends AppController
     /**
      * Private message is draft and content is empty.
      *
-     * @param  array $message [Private message submitted by user.]
+     * @param  array $message Private message submitted by user.
      *
      * @return boolean
      */
@@ -225,7 +225,7 @@ class PrivateMessagesController extends AppController
     /**
      * Private message recipient or content are empty and message is not draft.
      *
-     * @param  array $message [Private message submitted by user.]
+     * @param  array $message Private message submitted by user.
      *
      * @return boolean
      */
@@ -238,7 +238,7 @@ class PrivateMessagesController extends AppController
     /**
      * Set flash message with error and redirect back to write.
      *
-     * @param  string $error [Flash message to set.]
+     * @param  string $error Flash message to set.
      *
      * @return void
      */
@@ -254,8 +254,8 @@ class PrivateMessagesController extends AppController
     /**
      * Build message to send.
      *
-     * @param  int    $currentUserId [ID of current user.]
-     * @param  string $now           [Current timestamp.]
+     * @param  int    $currentUserId ID of current user.
+     * @param  string $now           Current timestamp.
      *
      * @return array
      */
@@ -313,8 +313,8 @@ class PrivateMessagesController extends AppController
     /**
      * Set flash message and redirect if user is invalid.
      *
-     * @param  array  $message [Message array.]
-     * @param  string $recpt   [Recipient username.]
+     * @param  array  $message Message array.
+     * @param  string $recpt   Recipient username.
      *
      * @return void
      */
@@ -338,8 +338,8 @@ class PrivateMessagesController extends AppController
     /**
      * Send email notification if user setting allows.
      *
-     * @param  array $message [Private message.]
-     * @param  int   $userId  [ID of user to send notification to.]
+     * @param  array $message Private message.
+     * @param  int   $userId  ID of user to send notification to.
      *
      * @return void
      */
@@ -358,7 +358,7 @@ class PrivateMessagesController extends AppController
     /**
      * Show a message.
      *
-     * @param  int $messageId [ID of message to show.]
+     * @param  int $messageId ID of message to show.
      *
      * @return void
      */
@@ -386,7 +386,7 @@ class PrivateMessagesController extends AppController
     /**
      * Sanitize ID, fetch and return message.
      *
-     * @param  int $messageId [ID for message.]
+     * @param  int $messageId ID for message.
      *
      * @return array
      */
@@ -400,7 +400,7 @@ class PrivateMessagesController extends AppController
     /**
      * Redirect to Inbox is user tries to view a message that is not theirs.
      *
-     * @param  array $message [Private message.]
+     * @param  array $message Private message.
      *
      * @return void
      */
@@ -423,7 +423,7 @@ class PrivateMessagesController extends AppController
     /**
      * Get message details from the private message array.
      *
-     * @param array $privateMessage [Private message array.]
+     * @param array $privateMessage Private message array.
      *
      * @return array
      */
@@ -438,8 +438,8 @@ class PrivateMessagesController extends AppController
     /**
      * Get menu for folder.
      *
-     * @param string $folder    [Folder name: 'Inbox', 'Sent', 'Trash']
-     * @param int    $messageId [Id of private message.]
+     * @param string $folder    Folder name: 'Inbox', 'Sent', 'Trash'
+     * @param int    $messageId Id of private message.
      *
      * @return array
      */
@@ -496,7 +496,7 @@ class PrivateMessagesController extends AppController
     /**
      * Delete all messages in folder.
      *
-     * @param string $folder  [Name of the folder to empty.]
+     * @param string $folder Name of the folder to empty.
      *
      * @return void
      */
@@ -524,7 +524,7 @@ class PrivateMessagesController extends AppController
     /**
      * Delete message function.
      *
-     * @param int $messageId [ID of message to delete.]
+     * @param int $messageId ID of message to delete.
      *
      * @return void
      */
@@ -548,7 +548,7 @@ class PrivateMessagesController extends AppController
     /**
      * Restore message from trash to original folder.
      *
-     * @param int $messageId [ID of message to restore.]
+     * @param int $messageId ID of message to restore.
      *
      * @return void
      */
@@ -568,7 +568,7 @@ class PrivateMessagesController extends AppController
     /**
      * Determine which folder trash message originally belonged to.
      *
-     * @param  array $message [Private message array.]
+     * @param  array $message Private message array.
      *
      * @return string
      */
@@ -586,8 +586,8 @@ class PrivateMessagesController extends AppController
     /**
      * Toggle message read/unread field.
      *
-     * @param string $folder    [Folder where action takes place.]
-     * @param int    $messageId [ID of message to mark.]
+     * @param string $folder    Folder where action takes place.
+     * @param int    $messageId ID of message to mark.
      *
      * @return void
      */
@@ -603,8 +603,8 @@ class PrivateMessagesController extends AppController
     /**
      * Create a new message.
      *
-     * @param string $recipients [Username, or comma separated usernames.]
-     * @param int    $messageId  [ID of message, if exists.]
+     * @param string $recipients Username, or comma separated usernames.
+     * @param int    $messageId  ID of message, if exists.
      *
      * @return void
      */
@@ -654,7 +654,7 @@ class PrivateMessagesController extends AppController
     /**
      * Return true if user can send message. New users can only send 5/24 hours.
      *
-     * @param  int  $messagesToday [Number of messages sent today.]
+     * @param  int  $messagesToday Number of messages sent today.
      *
      * @return bool
      */
@@ -670,8 +670,8 @@ class PrivateMessagesController extends AppController
     /**
      * Add a list to a private message.
      *
-     * @param string $type         [Type of object to join to the message.]
-     * @param int    $joinObjectId [ID object to join.]
+     * @param string $type         Type of object to join to the message.
+     * @param int    $joinObjectId ID object to join.
      *
      * @return void
      */

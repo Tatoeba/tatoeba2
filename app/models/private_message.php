@@ -57,8 +57,8 @@ class PrivateMessage extends AppModel
     /**
      * Get private messages by folder.
      *
-     * @param string $folder [Name of the folder we want the messages.]
-     * @param int    $userId [Id of the user.]
+     * @param string $folder Name of the folder we want the messages.
+     * @param int    $userId Id of the user.
      *
      * @return array
      */
@@ -87,7 +87,7 @@ class PrivateMessage extends AppModel
     /**
      * Get message by id.
      *
-     * @param int $messageId [ID of the message to retrieve.]
+     * @param int $messageId ID of the message to retrieve.
      *
      * @return array
      */
@@ -109,7 +109,7 @@ class PrivateMessage extends AppModel
     /**
      * Get unread message count for user.
      *
-     * @param int $userId [ID for user.]
+     * @param int $userId ID for user.
      *
      * @return int
      */
@@ -130,7 +130,7 @@ class PrivateMessage extends AppModel
     /**
      * Return count of messages sent by user in the last 24 hours.
      *
-     * @param  int $userId [ID for user.]
+     * @param  int $userId ID for user.
      *
      * @return int
      */
@@ -153,11 +153,11 @@ class PrivateMessage extends AppModel
     /**
      * Save a draft message.
      *
-     * @param  int      $currentUserId  [ID for current user.]
-     * @param  string   $now            [Timestamp.]
-     * @param  array    $data           [Form data from controller.]
+     * @param  int      $currentUserId ID for current user.
+     * @param  string   $now           Timestamp.
+     * @param  array    $data          Form data from controller.
      *
-     * @return array                    [Draft.]
+     * @return array                   Draft.
      */
     public function saveDraft($currentUserId, $now, $data)
     {
@@ -185,8 +185,8 @@ class PrivateMessage extends AppModel
     /**
      * Save message to recipients inbox.
      *
-     * @param  array $message [Message to send.]
-     * @param  int   $recptId [User id for recipient.]
+     * @param  array $message Message to send.
+     * @param  int   $recptId User id for recipient.
      *
      * @return array
      */
@@ -207,9 +207,9 @@ class PrivateMessage extends AppModel
     /**
      * Save message to senders outbox.
      *
-     * @param  array $messageToSave [Message to save to outbox.]
-     * @param  int   $recptId       [User id for recipient.]
-     * @param  int   $currentUserId [User id for current user.]
+     * @param  array $messageToSave Message to save to outbox.
+     * @param  int   $recptId       User id for recipient.
+     * @param  int   $currentUserId User id for current user.
      *
      * @return array
      */
@@ -233,7 +233,7 @@ class PrivateMessage extends AppModel
     /**
      * Mark a private message as read.
      *
-     * @param  array $message [Private message.]
+     * @param  array $message Private message.
      *
      * @return array
      */
@@ -249,7 +249,7 @@ class PrivateMessage extends AppModel
     /**
      * Toggle message isnonread column.
      *
-     * @param  array $message [Private message.]
+     * @param  array $message Private message.
      *
      * @return array
      */
