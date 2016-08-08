@@ -85,6 +85,58 @@ class PrivateMessage extends AppModel
     }
 
     /**
+     * Return query for paginated messages in specified folder.
+     *
+     * @param  int $userId    ID for current user.
+     * @param  string $folder Folder to get messages for.
+     * @param  string $status Type of messages to get: 'read' or 'unread'
+     *
+     * @return array
+     */
+    public function getPaginatedMessages($userId, $folder, $status)
+    {
+        $conditions = array('folder' => $folder);
+
+        if ($folder == 'Inbox') {
+            $conditions['recpt'] = $userId;
+        } else if ($folder == 'Sent' || $folder == 'Drafts') {
+            $conditions['sender'] = $userId;
+        } else if ($folder == 'Trash') {
+            $conditions['user_id'] = $userId;
+        }
+
+        if ($status == 'read') {
+            $conditions['isnonread'] = 0;
+        } else if ($status == 'unread') {
+            $conditions['isnonread'] = 1;
+        }
+
+        return array(
+            'PrivateMessage' => array(
+                'conditions' => $conditions,
+                'contain' => array(
+                    'Sender' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    ),
+                    'Recipient' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    )
+                ),
+                'order' => 'date DESC',
+                'limit' => 20
+            )
+        );
+    }
+
+    /**
      * Get message by id.
      *
      * @param int $messageId ID of the message to retrieve.
@@ -148,6 +200,33 @@ class PrivateMessage extends AppModel
                   )
             )
         );
+    }
+        
+    /**
+     * Build message to send.
+     *
+     * @param  array  $data          Private message data.
+     * @param  int    $currentUserId ID of current user.
+     * @param  string $now           Current timestamp.
+     *
+     * @return array
+     */
+    public function buildMessage($data, $currentUserId, $now)
+    {
+        $message = array(
+            'sender'    => $currentUserId,
+            'date'      => $now,
+            'folder'    => 'Inbox',
+            'title'     => $data['PrivateMessage']['title'],
+            'content'   => $data['PrivateMessage']['content'],
+            'isnonread' => 1,
+        );
+
+        if ($this->data['PrivateMessage']['messageId']) {
+            $message['id'] = $data['PrivateMessage']['messageId'];
+        }
+
+        return $message;
     }
 
     /**

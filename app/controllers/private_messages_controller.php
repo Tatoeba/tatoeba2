@@ -66,46 +66,10 @@ class PrivateMessagesController extends AppController
 
         $folder = Sanitize::paranoid($folder);
 
-        $currentUserId = $this->Auth->user('id');
-
-        $conditions = array('folder' => $folder);
-
-        if ($folder == 'Inbox') {
-            $conditions['recpt'] = $currentUserId;
-        } else if ($folder == 'Sent' || $folder == 'Drafts') {
-            $conditions['sender'] = $currentUserId;
-        } else if ($folder == 'Trash') {
-            $conditions['user_id'] = $currentUserId;
-        }
-
-        if ($status == 'read') {
-            $conditions['isnonread'] = 0;
-        } else if ($status == 'unread') {
-            $conditions['isnonread'] = 1;
-        }
-
-        $this->paginate = array(
-            'PrivateMessage' => array(
-                'conditions' => $conditions,
-                'contain' => array(
-                    'Sender' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image',
-                        )
-                    ),
-                    'Recipient' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image',
-                        )
-                    )
-                ),
-                'order' => 'date DESC',
-                'limit' => 20
-            )
+        $this->paginate = $this->PrivateMessage->getPaginatedMessages(
+            $this->Auth->user('id'),
+            $folder,
+            $status
         );
 
         $content = $this->paginate();
@@ -154,7 +118,11 @@ class PrivateMessagesController extends AppController
             $this->redirect(array('action' => 'folder', 'Drafts'));
         }
 
-        $toSend = $this->_buildMessage($currentUserId, $now);
+        $toSend = $this->PrivateMessage->buildMessage(
+            $this->data,
+            $currentUserId,
+            $now
+        );
 
         $recipients = $this->_buildRecipientsArray();
 
@@ -249,32 +217,6 @@ class PrivateMessagesController extends AppController
         );
 
         $this->redirect(array('action' => 'write'));
-    }
-
-    /**
-     * Build message to send.
-     *
-     * @param  int    $currentUserId ID of current user.
-     * @param  string $now           Current timestamp.
-     *
-     * @return array
-     */
-    private function _buildMessage($currentUserId, $now)
-    {
-        $message = array(
-            'sender'    => $currentUserId,
-            'date'      => $now,
-            'folder'    => 'Inbox',
-            'title'     => $this->data['PrivateMessage']['title'],
-            'content'   => $this->data['PrivateMessage']['content'],
-            'isnonread' => 1,
-        );
-
-        if ($this->data['PrivateMessage']['messageId']) {
-            $message['id'] = $this->data['PrivateMessage']['messageId'];
-        }
-
-        return $message;
     }
 
     /**
