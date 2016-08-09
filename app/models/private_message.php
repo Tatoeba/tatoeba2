@@ -41,6 +41,7 @@ class PrivateMessage extends AppModel
     public $name = 'PrivateMessage';
 
     public $actsAs = array('Containable');
+
     public $belongsTo = array(
         'User',
         'Recipient' => array(
@@ -54,21 +55,21 @@ class PrivateMessage extends AppModel
     );
 
     /**
-     * function to retrieve private message by folder
+     * Get private messages by folder.
      *
-     * @param string $folderId Name of the folder we want the messages
-     * @param int    $userId   Id of the user we want the messages
+     * @param string $folder Name of the folder we want the messages.
+     * @param int    $userId Id of the user.
      *
-     * @return Array
+     * @return array
      */
-    public function getMessages($folderId, $userId)
+    public function getMessages($folder, $userId)
     {
         return $this->find(
             'all',
             array(
                 'conditions' => array(
                     'PrivateMessage.user_id' => $userId,
-                    'PrivateMessage.folder' => $folderId
+                    'PrivateMessage.folder' => $folder
                 ),
                 'order' => 'PrivateMessage.date DESC',
                 'contain' => array(
@@ -84,11 +85,63 @@ class PrivateMessage extends AppModel
     }
 
     /**
-     * Return message corresponding to given id.
+     * Return query for paginated messages in specified folder.
      *
-     * @param int $messageId Id of the message to retrieve.
+     * @param  int $userId    ID for current user.
+     * @param  string $folder Folder to get messages for.
+     * @param  string $status Type of messages to get: 'read' or 'unread'
      *
-     * @return Array
+     * @return array
+     */
+    public function getPaginatedMessages($userId, $folder, $status)
+    {
+        $conditions = array('folder' => $folder);
+
+        if ($folder == 'Inbox') {
+            $conditions['recpt'] = $userId;
+        } else if ($folder == 'Sent' || $folder == 'Drafts') {
+            $conditions['sender'] = $userId;
+        } else if ($folder == 'Trash') {
+            $conditions['user_id'] = $userId;
+        }
+
+        if ($status == 'read') {
+            $conditions['isnonread'] = 0;
+        } else if ($status == 'unread') {
+            $conditions['isnonread'] = 1;
+        }
+
+        return array(
+            'PrivateMessage' => array(
+                'conditions' => $conditions,
+                'contain' => array(
+                    'Sender' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    ),
+                    'Recipient' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    )
+                ),
+                'order' => 'date DESC',
+                'limit' => 20
+            )
+        );
+    }
+
+    /**
+     * Get message by id.
+     *
+     * @param int $messageId ID of the message to retrieve.
+     *
+     * @return array
      */
     public function getMessageWithId($messageId)
     {
@@ -106,16 +159,14 @@ class PrivateMessage extends AppModel
     }
 
     /**
-     * Count how many unread messages a specific user has
+     * Get unread message count for user.
      *
-     * @param int $userId The user id.
+     * @param int $userId ID for user.
      *
      * @return int
      */
-
     public function numberOfUnreadMessages($userId)
     {
-
         return $this->find(
             'count',
             array(
@@ -129,15 +180,16 @@ class PrivateMessage extends AppModel
     }
 
     /**
-     * Returns count of messages sent by user in the last 24 hours
+     * Return count of messages sent by user in the last 24 hours.
      *
-     * @param int $userId The user id.
+     * @param  int $userId ID for user.
      *
      * @return int
      */
-    public function messagesTodayOfUser($userId)
+    public function todaysMessageCount($userId)
     {
         $yesterday = date_modify(new DateTime("now"), "-1 day");
+
         return $this->find(
             "count",
             array(
@@ -149,15 +201,42 @@ class PrivateMessage extends AppModel
             )
         );
     }
+        
+    /**
+     * Build message to send.
+     *
+     * @param  array  $data          Private message data.
+     * @param  int    $currentUserId ID of current user.
+     * @param  string $now           Current timestamp.
+     *
+     * @return array
+     */
+    public function buildMessage($data, $currentUserId, $now)
+    {
+        $message = array(
+            'sender'    => $currentUserId,
+            'date'      => $now,
+            'folder'    => 'Inbox',
+            'title'     => $data['PrivateMessage']['title'],
+            'content'   => $data['PrivateMessage']['content'],
+            'isnonread' => 1,
+        );
+
+        if ($this->data['PrivateMessage']['messageId']) {
+            $message['id'] = $data['PrivateMessage']['messageId'];
+        }
+
+        return $message;
+    }
 
     /**
      * Save a draft message.
      *
-     * @param  int      $currentUserId
-     * @param  string   $now            [Timestamp]
-     * @param  array    $data           [Form data from controller]
+     * @param  int      $currentUserId ID for current user.
+     * @param  string   $now           Timestamp.
+     * @param  array    $data          Form data from controller.
      *
-     * @return array                    [Draft]
+     * @return array                   Draft.
      */
     public function saveDraft($currentUserId, $now, $data)
     {
@@ -180,6 +259,88 @@ class PrivateMessage extends AppModel
         $this->save($draft);
 
         return $draft;
+    }
+
+    /**
+     * Save message to recipients inbox.
+     *
+     * @param  array $message Message to send.
+     * @param  int   $recptId User id for recipient.
+     *
+     * @return array
+     */
+    public function saveToInbox($message, $recptId)
+    {
+        $message = array_merge($message, array(
+            'recpt' => $recptId,
+            'user_id' => $recptId,
+            'draft_recpts' => '',
+            'sent' => 1
+        ));
+
+        $this->save($message);
+
+        return $message;
+    }
+
+    /**
+     * Save message to senders outbox.
+     *
+     * @param  array $messageToSave Message to save to outbox.
+     * @param  int   $recptId       User id for recipient.
+     * @param  int   $currentUserId User id for current user.
+     *
+     * @return array
+     */
+    public function saveToOutbox($messageToSave, $recptId, $currentUserId)
+    {
+        $message = array_merge($messageToSave, array(
+            'user_id'   => $currentUserId,
+            'folder'    => 'Sent',
+            'isnonread' => 0,
+            'recpt' => $recptId,
+            'draft_recpts' => '',
+            'sent' => 1,
+            'id' => null
+        ));
+
+        $this->save($message);
+
+        return $message;
+    }
+
+    /**
+     * Mark a private message as read.
+     *
+     * @param  array $message Private message.
+     *
+     * @return array
+     */
+    public function markAsRead($message)
+    {
+        if ($message['PrivateMessage']['isnonread'] == 1) {
+            $message = $this->toggleUnread($message);
+        }
+
+        return $message;
+    }
+
+    /**
+     * Toggle message isnonread column.
+     *
+     * @param  array $message Private message.
+     *
+     * @return array
+     */
+    public function toggleUnread($message)
+    {
+        $status = !! $message['PrivateMessage']['isnonread'];
+
+        $message['PrivateMessage']['isnonread'] = !$status;
+        
+        $this->save($message);
+
+        return $message;
     }
 }
 ?>
