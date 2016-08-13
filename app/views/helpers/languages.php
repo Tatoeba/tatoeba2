@@ -455,8 +455,6 @@ class LanguagesHelper extends AppHelper
 
     public function displayAddLanguageMessage($isNewSentence)
     {
-        echo '<div class="form warning-add-language">';
-
         if ($isNewSentence) {
             $warningMessage = __(
                 'You cannot add sentences because you did not add any '.
@@ -469,20 +467,19 @@ class LanguagesHelper extends AppHelper
             );
         }
 
-        echo $this->Html->div('text', $warningMessage);
-
-        echo $this->Html->link(
-            __('Add a language', true),
-            array(
-                'controller' => 'user',
-                'action' => 'language'
-            ),
-            array(
-                'class' => 'button submit'
-            )
-        );
-
-        echo '</div>';
+        $newLangUrl = $this->Html->url(array(
+            'controller' => 'user',
+            'action' => 'language'
+        ));
+        ?>
+        <p><?= $warningMessage ?></p>
+        
+        <div layout="row" layout-align="center center">
+            <md-button class="md-raised md-primary" href="<?= $newLangUrl ?>">
+                <? __('Add a language'); ?>
+            </md-button>
+        </div>
+        <?php
     }
 
 

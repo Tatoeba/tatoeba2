@@ -16,6 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/*
+ * Form
+ */
+
+.language-select label {
+    padding-left: 3px;
+    padding-right: 20px;
+}
+
+.language-select select {
+    min-width: 200px;
+}
 
 /*
  * Sentences added
@@ -23,3 +35,4 @@
 #sentencesAdded .sentences_set {
     margin: 40px 0;
 }
+

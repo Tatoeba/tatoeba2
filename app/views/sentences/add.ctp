@@ -37,18 +37,18 @@ $vocabularyUrl = $html->url(array(
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <h2><?php __('Important'); ?></h2>
-    <ol>
-    <li>
+    <p>
     <?php
     __(
         'Please do not forget <strong>capital letters</strong> '.
         'and <strong>punctuation</strong>! Thank you.'
     );
     ?>
-    </li>
-    <li>
+    </p>
+
+    <p>
     <?php
     echo format(
         __(
@@ -59,11 +59,10 @@ $vocabularyUrl = $html->url(array(
         'http://blog.tatoeba.org/2011/01/legally-valid-content.html'
     );
     ?>
-    </li>
-    </ol>
+    </p>
     </div>
     
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <h2><?php __('Tips'); ?></h2>
     <p>
         <?php
@@ -78,36 +77,27 @@ $vocabularyUrl = $html->url(array(
 
 <div id="main_content">
     
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php __('Add new sentences'); ?></h2>
-        <div class="sentences_set">
-            <div class="new">
-            <?php
-            $langArray = $this->Languages->profileLanguagesArray(true, false);
-            $currentUserLanguages = CurrentUser::getProfileLanguages();
-            if (empty($currentUserLanguages)) {
 
-                $this->Languages->displayAddLanguageMessage(true);
+        <?php
+        $langArray = $this->Languages->profileLanguagesArray(true, false);
+        $currentUserLanguages = CurrentUser::getProfileLanguages();
+        if (empty($currentUserLanguages)) {
 
-            } else {
-                echo $form->input(
-                    'text',
-                    array(
-                        "label" => __('Sentence: ', true),
-                        "id" => "SentenceText",
-                        "lang" => "",
-                        "dir" => "auto",
-                    )
-                );
+            $this->Languages->displayAddLanguageMessage(true);
 
-                $preSelectedLang = $session->read('contribute_lang');
+        } else {
+            $preSelectedLang = $session->read('contribute_lang');
 
-                if (!array_key_exists($preSelectedLang, $langArray)) {
-                    $preSelectedLang = key($langArray);
-                }
-                ?>
+            if (!array_key_exists($preSelectedLang, $langArray)) {
+                $preSelectedLang = key($langArray);
+            }
+            ?>
 
-                <div class="languageSelection">
+            <div layout="column">
+                <div class="language-select" layout="row" layout-align="start center">
+                    <label><? __('Language'); ?></label>
                     <?php
                     echo $form->select(
                         'contributionLang',
@@ -122,30 +112,32 @@ $vocabularyUrl = $html->url(array(
                     ?>
                 </div>
 
-                <?php
-                echo $form->button(
-                    __('OK', true),
-                    array("id" => "submitNewSentence")
-                );
+                <md-input-container flex>
+                    <label><? __('Sentence'); ?></label>
+                    <input id="SentenceText" type="text" ng-model="ctrl.data.text"
+                           autocomplete="off"
+                           ng-disabled="ctrl.isAdding">
+                </md-input-container>
 
-            }
-            ?>
-            </div>
 
-            <div layout="row" layout-align="center center">
-                <md-button href="<?= $vocabularyUrl ?>">
-                    <md-icon>keyboard_arrow_right</md-icon>
-                    <? __('Check out the vocabulary for which we need sentences'); ?>
-                </md-button>
+                <div layout="row" layout-align="center center">
+                    <md-button id="submitNewSentence" class="md-raised md-primary">
+                        <? __('OK') ?>
+                    </md-button>
+                </div>
             </div>
-        </div>
+            <?php
+        }
+        ?>
+
     </div>
     
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php __('Sentences added'); ?></h2>
         
         <div class="sentencesAddedloading" style="display:none">
-        <md-progress-circular md-mode="indeterminate" class="block-loader"></md-progress-circular>
+            <md-progress-circular md-mode="indeterminate" class="block-loader">
+            </md-progress-circular>
         </div>
         
         <div id="sentencesAdded">
@@ -160,6 +152,16 @@ $vocabularyUrl = $html->url(array(
             );
         }
         ?>
+        </div>
+    </div>
+
+    <div class="section" md-whiteframe="1">
+        <div layout="column" layout-align="center center">
+            <? __('Check out the vocabulary for which we need sentences'); ?>
+            <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
+                <? __('Sentences wanted') ?>
+                <md-icon>keyboard_arrow_right</md-icon>
+            </md-button>
         </div>
     </div>
 </div>
