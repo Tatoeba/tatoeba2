@@ -171,6 +171,8 @@ class VocabularyController extends AppController
     /**
      * Saves a sentence for vocabulary of given id and updates the count of
      * sentences for that vocabulary item.
+     *
+     * @param int $vocabularyId Hexadecimal value of the vocabulary id.
      */
     public function save_sentence($vocabularyId)
     {
@@ -189,18 +191,21 @@ class VocabularyController extends AppController
 
         $sentence = null;
         if ($isSaved) {
+            $numSentences = $this->Vocabulary->incrementNumSentences(
+                $vocabularyId,
+                $sentenceText
+            );
+
             $sentence = array(
                 'id' => $this->Sentence->id,
                 'text' => $sentenceText,
+                // 'numSentences' => $numSentences
             );
-
-            $this->Vocabulary->updateNumSentences($vocabularyId);
         }
 
         $this->set('sentence', $sentence);
 
         $this->layout = 'json';
     }
-
 }
 ?>

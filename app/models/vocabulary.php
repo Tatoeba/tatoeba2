@@ -126,7 +126,6 @@ class Vocabulary extends AppModel
         return $result;
     }
 
-
     /**
      * Updates the number of sentences for a vocabulary item.
      *
@@ -151,6 +150,52 @@ class Vocabulary extends AppModel
         if ($numSentences) {
             $this->save($data);
         }
+    }
+
+    /**
+     * Increment vocabulary numSentences value by one if sentence contains
+     * vocabulary.
+     *
+     * @param  int    $id       Hexadecimal value of the vocabulary id.
+     * @param  string $sentence Sentence which should contain vocabulary text.
+     *
+     * @return int              Vocaubualry numSentences value.
+     */
+    public function incrementNumSentences($id, $sentence)
+    {
+        $vocabularyId = hex2bin($id);
+        $vocabulary = $this->findById($vocabularyId);
+
+        $vocabularyText = $vocabulary['Vocabulary']['text'];
+        $numSentences = intval($vocabulary['Vocabulary']['numSentences']);
+
+        if ($this->_sentenceContainsText($sentence, $vocabularyText)) {
+            $numSentences ++;
+
+            $data = array(
+                'id' => $vocabularyId,
+                'numSentences' => $numSentences
+            );
+
+            if ($numSentences) {
+                $this->save($data);
+            }
+        }
+
+        return $numSentences;
+    }
+
+    /**
+     * Return true if sentence contains given text.
+     *
+     * @param  string $sentence Haystack to be searched.
+     * @param  string $text     Needle to be searched for.
+     *
+     * @return boolean
+     */
+    private function _sentenceContainsText($sentence, $text)
+    {
+        return mb_stripos($sentence, $text) !== false;
     }
 }
 ?>
