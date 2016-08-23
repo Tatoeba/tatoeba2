@@ -201,8 +201,7 @@ class VocabularyController extends AppController
 
             $sentence = array(
                 'id' => $this->Sentence->id,
-                'text' => $sentenceText,
-                'numSentences' => $numSentences
+                'text' => $sentenceText
             );
         }
 

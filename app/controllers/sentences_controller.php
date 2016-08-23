@@ -72,6 +72,7 @@ class SentencesController extends AppController
         'UsersLanguages',
         'Tag',
         'UsersSentences',
+        'Vocabulary'
     );
 
     private $defaultSearchCriteria = array(
@@ -811,7 +812,11 @@ class SentencesController extends AppController
                 $real_total
             );
         }
+        
+        $strippedQuery = preg_replace('/"|=/', '', $query);
+        $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
+        $this->set('vocabulary', $vocabulary);
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(

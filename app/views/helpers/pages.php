@@ -55,5 +55,28 @@ class PagesHelper extends AppHelper
         $params = array_diff_key($this->params, array_flip(array("_Token")));
         return Router::reverse($params);
     }
+
+    /**
+     * Display a message if a vocabulary item exists and its numSentences count
+     * is different than the Sphinx real total.
+     *
+     * @param  array $vocabulary Vocabulary item.
+     * @param  int   $real_total Total number of sentences found by Sphinx.
+     *
+     * @return string
+     */
+    public function sentencesMayNotAppear($vocabulary, $real_total)
+    {
+        if ($real_total == null) {
+            $real_total = 0;
+        }
+        
+        if (!empty($vocabulary) && $real_total != $vocabulary['Vocabulary']['numSentences']) {
+            echo format(__(
+                'Recently added sentences may not appear in search results.',
+                true
+            ));
+        }
+    }
 }
 ?>
