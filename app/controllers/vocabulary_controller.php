@@ -63,14 +63,27 @@ class VocabularyController extends AppController
     {
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
+
+        $username = Sanitize::paranoid($username, array('_'));
         
         $userId = $this->User->getIdFromUsername($username);
-        $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
-            $userId, $lang
-        );
-        $vocabulary = $this->paginate();
 
-        $this->set('vocabulary', $vocabulary);
+        if (!$userId) {
+            $this->Session->setFlash(
+                __('No user with this username: ', true).$username
+            );
+            $this->redirect(
+                array('controller'=>'users',
+                  'action' => 'all')
+            );
+        }
+
+        $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
+            $userId,
+            $lang
+        );
+
+        $this->set('vocabulary', $this->paginate());
         $this->set('username', $username);
         $this->set('canEdit', $username == CurrentUser::get('username'));
     }
