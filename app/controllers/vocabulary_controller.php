@@ -83,7 +83,9 @@ class VocabularyController extends AppController
             $lang
         );
 
-        $this->set('vocabulary', $this->paginate());
+        $vocabulary = $this->Vocabulary->syncNumSentences($this->paginate());
+
+        $this->set('vocabulary', $vocabulary);
         $this->set('username', $username);
         $this->set('canEdit', $username == CurrentUser::get('username'));
     }
@@ -190,6 +192,7 @@ class VocabularyController extends AppController
         );
 
         $sentence = null;
+
         if ($isSaved) {
             $numSentences = $this->Vocabulary->incrementNumSentences(
                 $vocabularyId,
@@ -199,7 +202,7 @@ class VocabularyController extends AppController
             $sentence = array(
                 'id' => $this->Sentence->id,
                 'text' => $sentenceText,
-                // 'numSentences' => $numSentences
+                'numSentences' => $numSentences
             );
         }
 

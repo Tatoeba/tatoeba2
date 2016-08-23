@@ -569,7 +569,7 @@ class SentencesController extends AppController
             );
             $native = '';
         }
-        
+
         // Session variables for search bar
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);

@@ -127,32 +127,6 @@ class Vocabulary extends AppModel
     }
 
     /**
-     * Updates the number of sentences for a vocabulary item.
-     *
-     * @param $id int Hexadecimal value of the vocabulary id.
-     *
-     * @return void
-     */
-    public function updateNumSentences($id) {
-        $vocabularyId = hex2bin($id);
-        $vocabulary = $this->findById($vocabularyId);
-
-        $numSentences = $this->_getNumberOfSentences(
-            $vocabulary['Vocabulary']['lang'],
-            $vocabulary['Vocabulary']['text']
-        );
-
-        $data = array(
-            'id' => $vocabularyId,
-            'numSentences' => $numSentences
-        );
-
-        if ($numSentences) {
-            $this->save($data);
-        }
-    }
-
-    /**
      * Increment vocabulary numSentences value by one if sentence contains
      * vocabulary.
      *
@@ -196,6 +170,56 @@ class Vocabulary extends AppModel
     private function _sentenceContainsText($sentence, $text)
     {
         return mb_stripos($sentence, $text) !== false;
+    }
+
+    /**
+     * Sync the numSentences column on vocabulary items with the Sphinx index.
+     *
+     * @param  array $vocabulary Single Vocabulary item or array of items.
+     *
+     * @return array Array of vocabulary items.
+     */
+    public function syncNumSentences($vocabulary)
+    {
+        if (!isset($vocabulary[0])) {
+            $vocabulary = array($vocabulary);
+        }
+
+        return array_map(function ($item) {
+            $numSentences = $this->_updateNumSentences($item['Vocabulary']);
+
+            $item['Vocabulary']['numSentences'] = $numSentences;
+
+            return $item;
+        }, $vocabulary);
+    }
+
+    /**
+     * Updates the number of sentences for a vocabulary item.
+     *
+     * @param array $vocabulary Vocabulary item.
+     *
+     * @return $int Number of sentences in Sphinx index.
+     */
+    private function _updateNumSentences($vocabulary)
+    {
+        $numSentences = $vocabulary['numSentences'];
+
+        $indexedNumSentences = $this->_getNumberOfSentences(
+            $vocabulary['lang'],
+            $vocabulary['text']
+        );
+
+        if ($numSentences != $indexedNumSentences) {
+            $data = array(
+                'id' => $vocabulary['id'],
+                'numSentences' => $indexedNumSentences
+            );
+
+            $this->save($data);
+        }
+
+        return $indexedNumSentences;
     }
 }
 ?>
