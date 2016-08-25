@@ -190,6 +190,7 @@
     border-bottom: 1px solid #f1f1f1;
     border-left-width: 12px;
     border-left-style: solid;
+    padding: 5px 15px;
 
 }
 
@@ -241,15 +242,13 @@
     background-color: #f7d6b2;
 }
 
-#logs .linkLog.added.hovered {
+#logs .link-insert.hovered {
     cursor: pointer;
-    border-right: 5px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #fafafa;
 }
 
-#logs .linkLog.added.historyHighlighted {
-    border-right: 5px solid #999;
-    background-color: #f1f1f1;
+#logs .link-insert.historyHighlighted {
+    background-color: #eeeeee;
 }
 
 

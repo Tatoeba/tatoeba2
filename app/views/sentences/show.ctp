@@ -135,14 +135,14 @@ $navigation->displaySentenceNavigation(
         
         //$contributions = $sentence['Contribution'];
         if (!empty($contributions)) {
-            echo '<div id="logs">';
+            echo '<md-list id="logs">';
             foreach ($contributions as $contribution) {
-                $logs->annexeEntry(
-                    $contribution['Contribution'], 
-                    $contribution['User']
+                echo $this->element(
+                    'logs/log_entry_annexe',
+                    array('log' => $contribution)
                 );
             }
-            echo '</div>';
+            echo '</md-list>';
         } else {
             echo '<em>'. __('There is no log for this sentence', true) .'</em>';
         }
