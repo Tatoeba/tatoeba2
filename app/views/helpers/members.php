@@ -124,6 +124,18 @@ class MembersHelper extends AppHelper
         );
     }
 
+    /**
+     *
+     */
+    public function imageUrl($imageName)
+    {
+        if (empty($imageName)) {
+            $imageName = 'unknown-avatar.png';
+        }
+
+        return '/img/profiles_36/'.$imageName;
+    }
+
 
     /**
      * Display "Edit" button in the profile.

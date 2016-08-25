@@ -186,51 +186,35 @@
  * Main content
  */
 
-#main_content #logs .contribution {
-    padding: 0 0 20px 0;
-    margin-left: 85px;
+#logs md-list-item {
+    border-bottom: 1px solid #f1f1f1;
+    border-left-width: 12px;
+    border-left-style: solid;
+
 }
 
-#main_content #logs .sentenceLog .contribution {
-    font-size: 14px;
+#logs md-list-item.sentence-insert {
+    border-left-color: #4CAF50;
 }
 
-#main_content #logs .sentenceId {
-    margin-left: 18px;
-    padding: 0 5px;
+#logs md-list-item.sentence-delete {
+    border-left-color: #F44336;
 }
 
-#main_content #logs .user {
-    float: right;
-    padding: 0 5px;
+#logs md-list-item.sentence-update {
+    border-left-color: #FFEB3B;
 }
 
-#main_content #logs .date {
-    float: left;
-    width: 70px;
-    text-align: right;
+#logs md-list-item.sentence-obsolete {
+    border-left-color: #e0e0e0;
 }
 
-#main_content #logs .date a {
-    color: #999;
+#logs md-list-item.link-insert {
+    border-left-color: #03a9f4;
 }
 
-#main_content #logs .sentenceLog:hover .date a {
-    color: #6A0;
-    text-decoration: underline;
-}
-
-#main_content #logs .sentenceLog:hover .date a:hover {
-    color: #DD8800;
-}
-
-#main_content #logs .lang img {
-    width: 24px;
-    height: 16px;
-}
-
-#main_content #logs .sentenceLog, #main_content #logs .linkLog {
-    background-position: 85px 0;
+#logs md-list-item.link-delete {
+    border-left-color: #ff9800;
 }
 
 /*

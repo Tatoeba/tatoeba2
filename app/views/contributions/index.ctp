@@ -52,15 +52,7 @@ $this->set('title_for_layout', $pages->formatTitle(__("Latest contributions", tr
         <div id="logs">
         <?php
         foreach ($contributions as $contribution) {
-            $userId = $contribution['Contribution']['user_id'];
-            $contribution['User'] = array(
-                'id' => $userId,
-                'username' => $users[$userId] 
-            );
-            $logs->entry(
-                $contribution['Contribution'],
-                $contribution['User']
-            );
+            echo $this->element('logs/log_entry', array('log' => $contribution));
         }
         ?>
         </div>

@@ -28,14 +28,12 @@ $contributions =  ClassRegistry::init('Contribution')->getLastContributions(10);
 if (isset($this->params['lang'])) { 
     Configure::write('Config.language', $this->params['lang']); 
 }
-
-echo '<div id="logs">';
+?>
+<md-list id="logs">
+<?php
 $logs->obsoletize($contributions);
 foreach ($contributions as $contribution) {
-    $logs->entry(
-        $contribution['Contribution'],
-        $contribution['User']
-    );
+    echo $this->element('logs/log_entry', array('log' => $contribution));
 }
-echo '</div>';
 ?>
+</md-list>

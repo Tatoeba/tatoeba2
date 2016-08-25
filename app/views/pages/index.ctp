@@ -86,7 +86,7 @@ $selectedLanguage = $session->read('random_lang_selected');
         </div>
     <?php } ?>
 
-    <div class="module">
+    <div class="section">
         <h2>
         <?php
         __('Latest contributions');

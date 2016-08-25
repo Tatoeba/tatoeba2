@@ -41,7 +41,7 @@ $this->set('title_for_layout', $pages->formatTitle(__("Latest contributions", tr
 <div id="annexe_content">
     <?php $commonModules->createFilterByLangMod(); ?> 
     
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php __('View all'); ?></h2>
         <p>
         <?php 
@@ -69,18 +69,18 @@ $this->set('title_for_layout', $pages->formatTitle(__("Latest contributions", tr
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php __('Latest contributions'); ?></h2>
-        <div id="logs">
+        <md-list id="logs">
         <?php
         $logs->obsoletize($contributions);
         foreach ($contributions as $contribution) {
-            $logs->entry(
-                $contribution['Contribution'],
-                $contribution['User']
-            );
+            echo $this->element('logs/log_entry', array(
+                'log' => $contribution,
+                'type' => 'sentence'
+            ));
         }
         ?>
-        </div>
+        </md-list>
     </div>
 </div>

@@ -321,10 +321,10 @@ class LogsHelper extends AppHelper
         $type = 'sentence';
         $css = $this->_getLogCss($type, $action, $isObsolete);
 
-        echo '<div class="'.$css.'">';
+        ?><md-list class="<?= $css ?>"><?
         $this->_displayInfos($type, $action, $sentenceId, $username, $datetime);
         $this->_displaySentence($sentenceLang, $sentenceScript, $sentenceText);
-        echo '</div>';
+        ?></md-list><?
     }
 
 
@@ -538,5 +538,40 @@ class LogsHelper extends AppHelper
         return $label;
     }
 
+
+    public function getInfoLabel($type, $action, $username, $date) {
+        $userProfileLink = $this->_linkToUserProfile($username);
+        $dateLabel = $this->Date->ago($date);
+
+        switch ($action) {
+            case 'insert' :
+                if ($type == 'sentence') {
+                    $label = __('added by {user}', true);
+                } else if ($type == 'link') {
+                    $label = __('linked by {user}', true);
+                }
+                break;
+            case 'update' :
+                $label = __('edited by {user}', true);
+                break;
+            case 'delete' :
+                if ($type == 'sentence') {
+                    $label = __('deleted by {user}', true);
+                } else if ($type == 'link') {
+                    $label = __('unlinked by {user}', true);
+                }
+                break;
+            default:
+                $status = null;
+                break;
+        }
+
+        $formatLabel = format($label, array('user' => $userProfileLink));
+
+        return format(__('{info}, {date}', true), array(
+            'info' => $formatLabel,
+            'date' => $dateLabel
+        ));
+    }
 }
 ?>
