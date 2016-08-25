@@ -65,7 +65,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             $pagination->display(array($username));
             ?>
 
-            <div id="logs">
+            <md-list id="logs">
             <?php
             $user = array(
                 'username' => $username
@@ -74,7 +74,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 echo $this->element('logs/log_entry', array('log' => $contribution));
             }
             ?>
-            </div>
+            </md-list>
 
             <?php
             $pagination->display(array($username));

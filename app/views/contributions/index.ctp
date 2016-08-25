@@ -43,19 +43,19 @@ $this->set('title_for_layout', $pages->formatTitle(__("Latest contributions", tr
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php __('Contributions'); ?></h2>
         <?php
         $pagination->display(array($langFilter));
         ?>
 
-        <div id="logs">
+        <md-list id="logs">
         <?php
         foreach ($contributions as $contribution) {
             echo $this->element('logs/log_entry', array('log' => $contribution));
         }
         ?>
-        </div>
+        </md-list>
 
         <?php
         $pagination->display(array($langFilter));
