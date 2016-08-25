@@ -131,6 +131,8 @@ if ($search_disabled) {
     }
     echo $this->Pages->formatTitleWithResultCount($paginator, $title, $real_total);
 
+    echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
+
     $pagination->display();
 
     foreach ($results as $sentence) {
@@ -150,6 +152,8 @@ if ($search_disabled) {
 
 } else {
     echo $this->element('search_with_no_result');
+
+    echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
 }
 ?>
 </div>

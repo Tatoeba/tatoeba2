@@ -83,7 +83,9 @@ class VocabularyController extends AppController
             $lang
         );
 
-        $this->set('vocabulary', $this->paginate());
+        $vocabulary = $this->Vocabulary->syncNumSentences($this->paginate());
+
+        $this->set('vocabulary', $vocabulary);
         $this->set('username', $username);
         $this->set('canEdit', $username == CurrentUser::get('username'));
     }
@@ -171,6 +173,8 @@ class VocabularyController extends AppController
     /**
      * Saves a sentence for vocabulary of given id and updates the count of
      * sentences for that vocabulary item.
+     *
+     * @param int $vocabularyId Hexadecimal value of the vocabulary id.
      */
     public function save_sentence($vocabularyId)
     {
@@ -188,19 +192,22 @@ class VocabularyController extends AppController
         );
 
         $sentence = null;
+
         if ($isSaved) {
-            $sentence = array(
-                'id' => $this->Sentence->id,
-                'text' => $sentenceText,
+            $numSentences = $this->Vocabulary->incrementNumSentences(
+                $vocabularyId,
+                $sentenceText
             );
 
-            $this->Vocabulary->updateNumSentences($vocabularyId);
+            $sentence = array(
+                'id' => $this->Sentence->id,
+                'text' => $sentenceText
+            );
         }
 
         $this->set('sentence', $sentence);
 
         $this->layout = 'json';
     }
-
 }
 ?>

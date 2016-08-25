@@ -126,31 +126,100 @@ class Vocabulary extends AppModel
         return $result;
     }
 
+    /**
+     * Increment vocabulary numSentences value by one if sentence contains
+     * vocabulary.
+     *
+     * @param  int    $id       Hexadecimal value of the vocabulary id.
+     * @param  string $sentence Sentence which should contain vocabulary text.
+     *
+     * @return int              Vocaubualry numSentences value.
+     */
+    public function incrementNumSentences($id, $sentence)
+    {
+        $vocabularyId = hex2bin($id);
+        $vocabulary = $this->findById($vocabularyId);
+
+        $vocabularyText = $vocabulary['Vocabulary']['text'];
+        $numSentences = intval($vocabulary['Vocabulary']['numSentences']);
+
+        if ($this->_sentenceContainsText($sentence, $vocabularyText)) {
+            $numSentences ++;
+
+            $data = array(
+                'id' => $vocabularyId,
+                'numSentences' => $numSentences
+            );
+
+            if ($numSentences) {
+                $this->save($data);
+            }
+        }
+
+        return $numSentences;
+    }
+
+    /**
+     * Return true if sentence contains given text.
+     *
+     * @param  string $sentence Haystack to be searched.
+     * @param  string $text     Needle to be searched for.
+     *
+     * @return boolean
+     */
+    private function _sentenceContainsText($sentence, $text)
+    {
+        return mb_stripos($sentence, $text) !== false;
+    }
+
+    /**
+     * Sync the numSentences column on vocabulary items with the Sphinx index.
+     *
+     * @param  array $vocabulary Single Vocabulary item or array of items.
+     *
+     * @return array Array of vocabulary items.
+     */
+    public function syncNumSentences($vocabulary)
+    {
+        if (!isset($vocabulary[0])) {
+            $vocabulary = array($vocabulary);
+        }
+
+        return array_map(function ($item) {
+            $numSentences = $this->_updateNumSentences($item['Vocabulary']);
+
+            $item['Vocabulary']['numSentences'] = $numSentences;
+
+            return $item;
+        }, $vocabulary);
+    }
 
     /**
      * Updates the number of sentences for a vocabulary item.
      *
-     * @param $id int Hexadecimal value of the vocabulary id.
+     * @param array $vocabulary Vocabulary item.
      *
-     * @return void
+     * @return $int Number of sentences in Sphinx index.
      */
-    public function updateNumSentences($id) {
-        $vocabularyId = hex2bin($id);
-        $vocabulary = $this->findById($vocabularyId);
+    private function _updateNumSentences($vocabulary)
+    {
+        $numSentences = $vocabulary['numSentences'];
 
-        $numSentences = $this->_getNumberOfSentences(
-            $vocabulary['Vocabulary']['lang'],
-            $vocabulary['Vocabulary']['text']
+        $indexedNumSentences = $this->_getNumberOfSentences(
+            $vocabulary['lang'],
+            $vocabulary['text']
         );
 
-        $data = array(
-            'id' => $vocabularyId,
-            'numSentences' => $numSentences
-        );
+        if ($numSentences != $indexedNumSentences) {
+            $data = array(
+                'id' => $vocabulary['id'],
+                'numSentences' => $indexedNumSentences
+            );
 
-        if ($numSentences) {
             $this->save($data);
         }
+
+        return $indexedNumSentences;
     }
 }
 ?>
