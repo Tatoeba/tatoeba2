@@ -543,6 +543,7 @@ class LanguagesLib
                 'vep' => __d('languages', 'Veps', true),
                 'rue' => __d('languages', 'Rusyn', true),
                 'tah' => __d('languages', 'Tahitian', true),
+                'tly' => __d('languages', 'Talysh', true),
             );
         }
         return $languages;
