@@ -33,15 +33,16 @@ if (isset($this->params['lang'])) {
 foreach ($sentenceComments as $i=>$comment) {
     $menu = $comments->getMenuForComment(
         $comment['SentenceComment'],
-        $comment['User'],
-        $commentsPermissions[$i]
+        $commentsPermissions[$i],
+        true
     );
 
-    $messages->displayMessage(
-        $comment['SentenceComment'],
-        $comment['User'],
-        $comment['Sentence'],
-        $menu
+    echo $this->element(
+        'messages/comment',
+        array(
+            'comment' => $comment,
+            'menu' => $menu
+        )
     );
 }
 ?>

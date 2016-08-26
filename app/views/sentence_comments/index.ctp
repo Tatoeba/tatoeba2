@@ -49,7 +49,7 @@ $paginator->options(
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section">
         <h2>
             <?php 
             echo $paginator->counter(
@@ -67,18 +67,19 @@ $paginator->options(
         $paginationUrl = array($langFilter);
         $pagination->display($paginationUrl);
 
-        foreach ($sentenceComments as $i=>$comment) {
+        foreach ($sentenceComments as $i => $comment) {
             $menu = $comments->getMenuForComment(
                 $comment['SentenceComment'],
-                $comment['User'],
-                $commentsPermissions[$i]
+                $commentsPermissions[$i],
+                true
             );
-            
-            $messages->displayMessage(
-                $comment['SentenceComment'],
-                $comment['User'],
-                $comment['Sentence'],
-                $menu
+
+            echo $this->element(
+                'messages/comment',
+                array(
+                    'comment' => $comment,
+                    'menu' => $menu
+                )
             );
         }
         

@@ -148,6 +148,7 @@ class SentencesController extends AppController
         $this->helpers[] = 'Tags';
         $this->helpers[] = 'Messages';
         $this->helpers[] = 'Lists';
+        $this->helpers[] = 'Members';
 
         $id = Sanitize::paranoid($id);
 

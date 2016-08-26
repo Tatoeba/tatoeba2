@@ -115,6 +115,7 @@ class SentenceCommentsController extends AppController
     public function index($langFilter = 'und')
     {
         $this->helpers[] = 'Messages';
+        $this->helpers[] = 'Members';
 
         $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers();
         if ($langFilter != 'und') {

@@ -190,49 +190,45 @@ $navigation->displaySentenceNavigation(
         ?>
     </div>
 
-    <?php
-    echo '<div class="module">';
+    <div class="section">
+        <h2><? __('Comments'); ?></h2>
+        <?php
+        if (!empty($sentenceComments)) {
+            echo '<div class="comments">';
+            foreach ($sentenceComments as $i=>$comment) {
+                $commentId = $comment['SentenceComment']['id'];
+                $menu = $comments->getMenuForComment(
+                    $comment['SentenceComment'],
+                    $commentsPermissions[$i],
+                    false
+                );
 
-    echo '<h2>';
-    __('Comments');
-    echo '</h2>';
+                echo '<a id="comment-'.$commentId.'"></a>';
 
-    if (!empty($sentenceComments)) {
-        echo '<div class="comments">';
-        foreach ($sentenceComments as $i=>$comment) {
-            $commentId = $comment['SentenceComment']['id'];
-            $menu = $comments->getMenuForComment(
-                $comment['SentenceComment'],
-                $comment['User'],
-                $commentsPermissions[$i]
-            );
+                echo $this->element(
+                    'messages/comment',
+                    array(
+                        'comment' => $comment,
+                        'menu' => $menu
+                    )
+                );
+            }
+            echo '</div>';
+        } else {
+            echo '<em>' . __('There are no comments for now.', true) .'</em>';
+        }
 
-            echo '<a id="comment-'.$commentId.'"></a>';
-
-            $messages->displayMessage(
-                $comment['SentenceComment'],
-                $comment['User'],
-                null,
-                $menu
+        if ($canComment) {
+            if(!isset($sentence['Sentence'])) {
+                $sentenceText = __('Sentence deleted', true);
+            }
+            $comments->displayCommentForm(
+                $sentenceId,
+                $sentenceText
             );
         }
-        echo '</div>';
-    } else {
-        echo '<em>' . __('There are no comments for now.', true) .'</em>';
-    }
-
-    if ($canComment) {
-        if(!isset($sentence['Sentence'])) {
-            $sentenceText = __('Sentence deleted', true);
-        }
-        $comments->displayCommentForm(
-            $sentenceId,
-            $sentenceText
-        );
-    }
-
-    echo '</div>';
-    ?>
+        ?>
+    </div>
 </div>
 <?php 
 } else {
