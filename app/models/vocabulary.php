@@ -181,7 +181,7 @@ class Vocabulary extends AppModel
      */
     public function syncNumSentences($vocabulary)
     {
-        if (!isset($vocabulary[0])) {
+        if (!empty($vocabulary) && !isset($vocabulary[0])) {
             $vocabulary = array($vocabulary);
         }
 
