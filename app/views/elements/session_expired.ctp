@@ -31,7 +31,7 @@
 __('Your session has expired.');
 echo ' ';
 echo format(
-    __('Please <a href="{}">click here</a> to log in again.', true),
+    __('Please <a href="{}">log in again</a>.', true),
     $html->url(array('controller' => 'users', 'action' => 'login'))
 );
 ?>
