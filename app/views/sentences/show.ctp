@@ -127,7 +127,7 @@ $navigation->displaySentenceNavigation(
     }
     ?>
     
-    <div class="module">
+    <div class="section">
         <?php
         echo '<h2>';
         __('Logs');

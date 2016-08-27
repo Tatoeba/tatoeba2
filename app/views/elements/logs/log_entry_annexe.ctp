@@ -43,7 +43,7 @@ $infoLabel = $logs->getInfoLabel($type, $action, $username, $sentenceDate);
         <? if ($type =='sentence') { ?>
             <div><?= $sentenceLink.' '.$sentenceText ?></div>
         <? } else { ?>
-            <h3><?= $sentenceLink ?> ➜ <?= $translationLink ?></h3>
+            <div><?= $sentenceLink ?> ➜ <?= $translationLink ?></div>
         <? } ?>
 
         <p><?= $infoLabel ?></p>
