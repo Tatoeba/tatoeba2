@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-24 16:56+0000\n"
-"PO-Revision-Date: 2016-08-12 22:12+0000\n"
+"PO-Revision-Date: 2016-08-14 12:25+0000\n"
 "Last-Translator: Martijn Dekker <mcdutchie@hotmail.com>\n"
 "Language-Team: Interlingua (http://www.transifex.com/tatoeba/tatoeba_website/language/ia/)\n"
 "MIME-Version: 1.0\n"
@@ -2998,20 +2998,20 @@ msgstr "Statisticas"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L60
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} contribution hodie"
+msgstr[1] "{number} contributiones hodie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L67
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} lingua supportate"
+msgstr[1] "{number} linguas supportate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L96
 msgid "{number} sentence in {lang}"
 msgid_plural "{number} sentences in {lang}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{number} phrase in {lang}"
+msgstr[1] "{number} phrases in {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
 msgid "Table of contents"
@@ -3732,106 +3732,106 @@ msgstr "NOTA: Le numero maxime de phrases monstrate insimul es limitate a 100."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
 msgid "Tagged '{tagName}' more than 2 weeks ago"
-msgstr ""
+msgstr "Etiquettate '{tagName}' plus de 2 septimanas retro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
-msgstr ""
+msgstr "Phrases con etiquetta {tagName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L53
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{tagName} ({n} phrase)"
+msgstr[1] "{tagName} ({n} phrases)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L60
 msgid "date of tag"
-msgstr ""
+msgstr "data del etiquetta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L98
 msgid "No tag with id {tagId}"
-msgstr ""
+msgstr "Nulle etiquetta con ID {tagId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L28
 msgid "All existing tags"
-msgstr ""
+msgstr "Tote le etiquettas existente"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L34
 msgid "Search tags"
-msgstr ""
+msgstr "Cercar etiquettas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L48
 msgid "Show all tags"
-msgstr ""
+msgstr "Monstrar tote le etiquettas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L66
 msgid "All tags (total %count%)"
-msgstr ""
+msgstr "Tote le etiquettas (total %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L72
 msgid "Tags containing: {search} (total %count%)"
-msgstr ""
+msgstr "Etiquettas que contine: {search} (total %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L84
 msgid "count"
-msgstr ""
+msgstr "numero"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L86
 msgid "name"
-msgstr ""
+msgstr "nomine"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L58
 msgid "Chinese traditional/simplified conversion"
-msgstr ""
+msgstr "Conversion chinese traditional/simplificate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L36
 msgid "Source code"
-msgstr ""
+msgstr "Codice-fonte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L81
 msgid "Enter either traditional or simplified Chinese"
-msgstr ""
+msgstr "Insere un texto in chinese traditional o simplificate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L106
 msgid "Convert"
-msgstr ""
+msgstr "Converter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L50
 msgid "Autogenerate furigana over Japanese"
-msgstr ""
+msgstr "Autogenerar furigana super japonese"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L82
 msgid "Autogenerate furigana"
-msgstr ""
+msgstr "Autogenerar furigana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L28
 msgid "Useful tools"
-msgstr ""
+msgstr "Instrumentos utile"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L32
 msgid "Tools"
-msgstr ""
+msgstr "Instrumentos"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "Autogeneration de furigana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "autogenerar furigana super japonese."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L51
 msgid "Sinogram search"
-msgstr ""
+msgstr "Recerca de sinogrammas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L58
 msgid "search all Chinese characters / kanjis by all possible methods."
-msgstr ""
+msgstr "cercar tote le characteres chinese / kanjis per tote le methodos possibile."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L28
