@@ -287,9 +287,11 @@ class SentenceCommentsController extends AppController
                     'User',
                 )
             ));
+            $sentenceId = $sentenceComment['SentenceComment']['sentence_id'];
             $authorId = $sentenceComment['SentenceComment']['user_id'];
         } else {
             $sentenceComment = $this->data['SentenceComment'];
+            $sentenceId = $this->data['SentenceComment']['sentence_id'];
             $authorId = $this->SentenceComment->getOwnerIdOfComment(
                 $this->data['SentenceComment']['id']
             );
@@ -297,20 +299,21 @@ class SentenceCommentsController extends AppController
 
         //check permissions now
         $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
-        $sentenceId = $this->data['SentenceComment']['sentence_id'];
         if (!$canEdit) {
-            $no_permission = __("You do not have permission to edit this comment. ",
-                true);
-            $wrongly = __("If you have received this message in error, ".
-                       "please contact administrators at ".
-                       "team@tatoeba.org.", true);
+            $no_permission = __(
+                "You do not have permission to edit this comment. ",
+                true
+            );
+            $wrongly = format(__(
+                "If you have received this message in error, ".
+                "please contact administrators at {email}.", true
+            ), array('email' => 'team@tatoeba.org'));
             $this->Session->setFlash($no_permission.$wrongly);
             $this->redirect(
                 array(
                     'controller' => "sentences",
                     'action'=> 'show',
-                    $sentenceId,
-                    "#" => "comment-".$commentId
+                    $sentenceId
                 )
             );
         } else {
