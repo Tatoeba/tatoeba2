@@ -525,7 +525,13 @@ class UsersController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
         } else {
             $this->Session->write('last_user_id', $id);
-            $this->flash(__('No user with this id: ', true).$id, '/users/all/');
+            $this->flash(
+                format(
+                    __('No user with this ID: {id}', true),
+                    array('id' => $id)
+                ),
+                '/users/all/'
+            );
         }
     }
 

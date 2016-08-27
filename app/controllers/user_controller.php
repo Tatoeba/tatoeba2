@@ -107,9 +107,10 @@ class UserController extends AppController
                   CurrentUser::get('username'))
             );
         } elseif (!( $infoOfUser = $this->User->getInformationOfUser($userName) )) {
-            $this->Session->setFlash(
-                __('No user with this username: ', true).$userName
-            );
+            $this->Session->setFlash(format(
+                __('No user with this username: {username}', true),
+                array('username' => $userName)
+            ));
             $this->redirect(
                 array('controller'=>'users',
                   'action' => 'all')
