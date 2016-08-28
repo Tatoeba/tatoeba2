@@ -76,7 +76,7 @@ echo $form->create(
             <input id="SentenceQuery"
                    type="text"
                    name="query"
-                   value="<?= $searchQuery ?>"
+                   value="<?= Sanitize::html($searchQuery) ?>"
                    accesskey="4"
                    lang=""
                    dir="auto"
