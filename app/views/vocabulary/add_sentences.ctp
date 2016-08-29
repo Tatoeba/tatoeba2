@@ -52,7 +52,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             ?>
         </p>
         <?php
-        $paginationUrl = array($lang);
+        $paginationUrl = array($langFilter);
         $pagination->display($paginationUrl);
         ?>
 
@@ -134,7 +134,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         </md-list>
 
         <?php
-        $paginationUrl = array($lang);
         $pagination->display($paginationUrl);
         ?>
     </div>

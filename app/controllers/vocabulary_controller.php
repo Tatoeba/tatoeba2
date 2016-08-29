@@ -114,7 +114,7 @@ class VocabularyController extends AppController
         $vocabulary = $this->paginate('Vocabulary');
 
         $this->set('vocabulary', $vocabulary);
-        $this->set('lang', $lang);
+        $this->set('langFilter', $lang);
     }
 
 
