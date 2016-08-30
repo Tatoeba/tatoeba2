@@ -140,35 +140,42 @@
  */
 
 #logs md-list-item {
-    border-bottom: 1px solid #f1f1f1;
-    border-left-width: 12px;
-    border-left-style: solid;
     padding: 5px 15px;
+    border-width: 12px;
+    border-left-style: solid;
+}
 
+html[dir="rtl"] #logs md-list-item {
+    border-right-style: solid;
+    border-left-style: none;
 }
 
 #logs md-list-item.sentence-insert {
-    border-left-color: #4CAF50;
+    border-color: #4CAF50;
 }
 
 #logs md-list-item.sentence-delete {
-    border-left-color: #F44336;
+    border-color: #F44336;
 }
 
 #logs md-list-item.sentence-update {
-    border-left-color: #FFEB3B;
+    border-color: #FFEB3B;
 }
 
 #logs md-list-item.sentence-obsolete {
-    border-left-color: #e0e0e0;
+    border-color: #e0e0e0;
 }
 
 #logs md-list-item.link-insert {
-    border-left-color: #03a9f4;
+    border-color: #03a9f4;
 }
 
 #logs md-list-item.link-delete {
-    border-left-color: #ff9800;
+    border-color: #ff9800;
+}
+
+#logs md-list-item.md-2-line {
+    border-bottom: 1px solid #f1f1f1;
 }
 
 
