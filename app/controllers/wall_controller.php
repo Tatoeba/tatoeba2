@@ -235,7 +235,6 @@ class WallController extends Appcontroller
      */
     public function edit($messageId)
     {
-        $this->log(print_r($this->data, true), "DEBUG2");
         $messageId = Sanitize::paranoid($messageId);
         $this->Wall->id = $messageId;
 
@@ -252,19 +251,7 @@ class WallController extends Appcontroller
             );
 
             if ($messagePermissions['canEdit'] == false) {
-                $this->Session->setFlash(
-                    __("You do not have permission to edit this message.", true).
-                    __(
-                        "If you have received this message in error, ".
-                        "please contact administrators at ".
-                        "team@tatoeba.org.", true
-                    )
-                );
-                $this->redirect(
-                    array(
-                        "action"=>"index",
-                    )
-                );
+                $this->_cannotEdit();
             } else {
                 $this->set("message", $message);
             }
@@ -281,19 +268,7 @@ class WallController extends Appcontroller
                 CurrentUser::get('group_id')
             );
             if ($messagePermissions['canEdit'] == false) {
-                $this->Session->setFlash(
-                    __("You do not have permission to edit this message.", true).
-                    __(
-                        "If you have received this message in error, ".
-                        "please contact administrators at ".
-                        "team@tatoeba.org.", true
-                    )
-                );
-                $this->redirect(
-                    array(
-                        "action"=>"index",
-                    )
-                );
+                $this->_cannotEdit();
             } else {
                 $editedPost = array(
                     'id' => $messageId,
@@ -341,6 +316,23 @@ class WallController extends Appcontroller
         }
 
     }
+
+    private function _cannotEdit() {
+        $noPermission = __(
+            'You do not have permission to edit this message.', true
+        );
+        $contactAdmin = format(__(
+            'If you have received this message in error, '.
+            'please contact administrators at {email}.'
+        ), array('email' => 'team@tatoeba.org'));
+
+        $this->Session->setFlash(
+            '<p>'.$noPermission.'</p>'.
+            '<p>'.$contactAdmin.'</p>'
+        );
+        $this->redirect(array('action' => 'index'));
+    }
+
 
     /**
      * use to delete a given message on the wall

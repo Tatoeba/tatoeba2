@@ -39,13 +39,14 @@ echo $this->element('pmmenu');
          echo "</p>";
          echo "<p>";
              __(
-                 "Please wait until you can send more messages. "
+                 "Please wait until you can send more messages."
              );
-             __(
-                 "If you have received this message in error, ".
-                 "please contact administrators at ".
-                 "team@tatoeba.org."
-             );
+         echo "</p>";
+         echo "<p>";
+             echo format(__(
+                 'If you have received this message in error, '.
+                 'please contact administrators at {email}.', true
+             ), array('email' => 'team@tatoeba.org'));
          echo "</p>";
      } else if ($isNewUser) {
          echo "<p>";

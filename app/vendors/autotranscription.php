@@ -222,7 +222,7 @@ class Autotranscription
                 $errors[] = format(
                     __(
                         'The provided sentence is shorter than the '.
-                        'orginial one.',
+                        'original one.',
                         true),
                     compact('character')
                 );

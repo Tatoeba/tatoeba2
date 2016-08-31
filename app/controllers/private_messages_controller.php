@@ -239,15 +239,16 @@ class PrivateMessagesController extends AppController
      */
     private function _redirectDailyLimitReached()
     {
-        $this->Session->setFlash(
+        $this->Session->setFlash(format(
             __(
                 "You have reached your message limit for today. ".
                 "Please wait until you can send more messages. ".
                 "If you have received this message in error, ".
-                "please contact administrators at team@tatoeba.org.",
+                "please contact administrators at {email}.",
                 true
-            )
-        );
+            ),
+            array('email' => 'team@tatoeba.org')
+        ));
 
         $this->redirect(array('action' => 'folder', 'Sent'));
     }
