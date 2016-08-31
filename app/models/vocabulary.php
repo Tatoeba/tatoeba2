@@ -54,19 +54,46 @@ class Vocabulary extends AppModel
         if (empty($text) || empty($lang)) {
             return null;
         }
-        $numSentences = $this->_getNumberOfSentences($lang, $text);
+        
         $hash = murmurhash3($lang.$text);
+
         $data = array(
             'id' => $hash,
             'lang' => $lang,
-            'text' => $text,
-            'numSentences' => $numSentences
+            'text' => $text
         );
 
-        $this->save($data);
-        $this->UsersVocabulary->add($hash, CurrentUser::get('id'));
+        if ($vocabulary = $this->itemExists($lang, $text)) {
+            $numSentences = $this->_updateNumSentences($vocabulary['Vocabulary']);
+
+            $data['numSentences'] = $numSentences;
+        } else {
+            $numSentences = $this->_getNumberOfSentences($lang, $text);
+
+            $data['numSentences'] = $numSentences;
+
+            $this->save($data);
+        }
+
+        return $this->UsersVocabulary->add($hash, CurrentUser::get('id'));
 
         return $data;
+    }
+
+    /**
+     * Return item if exists, false if it doesn't.
+     *
+     * @param  string $lang Item language.
+     * @param  string $text Item text.
+     *
+     * @return boolean|array
+     */
+    public function itemExists($lang, $text)
+    {
+        return $this->find([
+            'lang' => $lang,
+            'text' => $text
+        ]);
     }
 
 
