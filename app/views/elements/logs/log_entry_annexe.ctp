@@ -41,7 +41,7 @@ $infoLabel = $logs->getInfoLabel($type, $action, $username, $sentenceDate);
               data-translation-id="<?= $translationId ?>">
     <div class="md-list-item-text" layout="column">
         <? if ($type =='sentence') { ?>
-            <div><?= $sentenceLink.' '.$sentenceText ?></div>
+            <div><?= $sentenceLink.' '.Sanitize::html($sentenceText) ?></div>
         <? } else { ?>
             <div><?= $sentenceLink ?> ➜ <?= $translationLink ?></div>
         <? } ?>

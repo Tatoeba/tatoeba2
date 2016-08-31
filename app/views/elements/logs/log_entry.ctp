@@ -50,7 +50,7 @@ $infoLabel = $logs->getInfoLabel($type, $action, $username, $sentenceDate);
     ?>
     <div class="md-list-item-text" layout="column">
         <? if ($type == 'sentence') { ?>
-            <div><?= $sentenceText ?></div>
+            <div><?= Sanitize::html($sentenceText) ?></div>
         <? } else { ?>
             <h3><?= '#'.$sentenceId ?> ➜ <?= '#'.$translationId ?></h3>
         <? } ?>
