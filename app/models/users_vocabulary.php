@@ -48,13 +48,17 @@ class UsersVocabulary extends AppModel
      *
      */
     public function add($vocabularyId, $userId) {
+        if ($item = $this->findByBinary($vocabularyId)) {
+            return $item;
+        }
+
         $data = array(
             'vocabulary_id' => $vocabularyId,
             'user_id' => $userId
         );
+        
         return $this->save($data);
     }
-
 
     /**
      *
@@ -77,6 +81,36 @@ class UsersVocabulary extends AppModel
         );
 
         return $result;
+    }
+
+    /**
+     * Find a users_vocabulary record by a binary vocabulary_id value.
+     *
+     * @param  string $binary Binary vocabulary_id value.
+     *
+     * @return array
+     */
+    public function findByBinary($binary)
+    {
+        $binary = $this->_getPaddedBinary($binary);
+
+        return $this->find(['vocabulary_id' => $binary]);
+    }
+
+    /**
+     * Convert a binary id to a padded binary id.
+     *
+     * @param  string $binary Binary id value.
+     *
+     * @return string
+     */
+    private function _getPaddedBinary($binary)
+    {
+        $hex = bin2hex($binary);
+
+        $hex = str_pad($hex, 32, 0);
+
+        return hex2bin($hex);
     }
 }
 ?>
