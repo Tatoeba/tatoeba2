@@ -43,11 +43,16 @@ class UsersVocabulary extends AppModel
         'User' => array('foreignKey' => 'user_id')
     );
 
-
     /**
+     * Add a vocabulary item to users_vocabulary pivot table.
      *
+     * @param string $vocabularyId Binary version of vocabulary_id.
+     * @param int    $userId       Id of current user.
+     *
+     * @return array               UsersVocabulary item.
      */
-    public function add($vocabularyId, $userId) {
+    public function add($vocabularyId, $userId)
+    {
         if ($item = $this->findByBinary($vocabularyId)) {
             return $item;
         }
@@ -61,7 +66,12 @@ class UsersVocabulary extends AppModel
     }
 
     /**
+     * Get paginated vocabulary for user.
      *
+     * @param  int    $userId ID for user.
+     * @param  string $lang   Language.
+     *
+     * @return array
      */
     public function getPaginatedVocabularyOf($userId, $lang = null)
     {
