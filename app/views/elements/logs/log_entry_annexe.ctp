@@ -35,17 +35,21 @@ if (isset($log['Contribution']['translation_id'])) {
 }
 
 $infoLabel = $logs->getInfoLabel($type, $action, $username, $sentenceDate);
+$langDir = LanguagesLib::getLanguageDirection($langCode);
 ?>
 
 <md-list-item class="md-2-line <?= $type.'-'.$action ?>"
               data-translation-id="<?= $translationId ?>">
     <div class="md-list-item-text" layout="column">
-        <? if ($type =='sentence') { ?>
-            <div><?= $sentenceLink.' '.Sanitize::html($sentenceText) ?></div>
-        <? } else { ?>
-            <div><?= $sentenceLink ?> ➜ <?= $translationLink ?></div>
-        <? } ?>
-
+        <div class="content" dir="<?= $langDir ?>">
+            <?
+            if ($type =='sentence') {
+                echo $sentenceLink.' '.Sanitize::html($sentenceText);
+            } else {
+                echo $sentenceLink.' ➜ '.$translationLink;
+            }
+            ?>
+        </div>
         <p><?= $infoLabel ?></p>
     </div>
 </md-list-item>

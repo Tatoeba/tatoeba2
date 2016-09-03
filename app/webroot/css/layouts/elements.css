@@ -178,6 +178,17 @@ html[dir="rtl"] #logs md-list-item {
     border-bottom: 1px solid #f1f1f1;
 }
 
+#logs .lang {
+    margin: 0 10px;
+}
+
+#logs .content {
+    text-align: left;
+}
+
+html[dir="rtl"] #logs .content {
+    text-align: right;
+}
 
 /*
  * Logs hovering feature

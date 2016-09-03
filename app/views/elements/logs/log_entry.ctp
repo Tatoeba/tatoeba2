@@ -1,9 +1,25 @@
 <?php
 $langCode = $log['Contribution']['sentence_lang'];
 $sentenceId = $log['Contribution']['sentence_id'];
+$sentenceLink = $html->link(
+    '#'.$sentenceId,
+    array(
+        'controller' => 'sentences',
+        'action' => 'show',
+        $sentenceId
+    )
+);
 $translationId = null;
 if (isset($log['Contribution']['translation_id'])) {
     $translationId = $log['Contribution']['translation_id'];
+    $translationLink = $html->link(
+        '#'.$translationId,
+        array(
+            'controller' => 'sentences',
+            'action' => 'show',
+            $translationId
+        )
+    );
 }
 $sentenceText = $log['Contribution']['text'];
 $sentenceDate = $log['Contribution']['datetime'];
@@ -32,6 +48,7 @@ $sentenceUrl = $html->url(array(
     $sentenceId
 ));
 $infoLabel = $logs->getInfoLabel($type, $action, $username, $sentenceDate);
+$langDir = LanguagesLib::getLanguageDirection($langCode);
 ?>
 
 <md-list-item class="md-2-line <?= $type.'-'.$style ?>">
@@ -44,17 +61,20 @@ $infoLabel = $logs->getInfoLabel($type, $action, $username, $sentenceDate);
         array(
             'width' => 30,
             'height' => 20,
-            'class' => 'md-secondary'
+            'class' => 'md-secondary lang'
         )
     );
     ?>
     <div class="md-list-item-text" layout="column">
-        <? if ($type == 'sentence') { ?>
-            <div><?= Sanitize::html($sentenceText) ?></div>
-        <? } else { ?>
-            <h3><?= '#'.$sentenceId ?> ➜ <?= '#'.$translationId ?></h3>
-        <? } ?>
-        
+        <div class="content" dir="<?= $langDir ?>">
+            <?
+            if ($type =='sentence') {
+                echo Sanitize::html($sentenceText);
+            } else {
+                echo $sentenceLink.' ➜ '.$translationLink;
+            }
+            ?>
+        </div>
         <p><?= $infoLabel ?></p>
     </div>
     <md-button class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
