@@ -46,7 +46,8 @@ class ContributionsController extends AppController
         'Navigation',
         'Date',
         'languages',
-        'CommonModules'
+        'CommonModules',
+        'Members'
     );
     public $components = array('Permissions');
     public $uses = array('Contribution', 'ContributionsStats');
@@ -85,23 +86,18 @@ class ContributionsController extends AppController
         $this->paginate = array(
             'Contribution' => array(
                 'conditions' => $conditions,
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('username', 'image')
+                    )
+                ),
                 'limit' => 200,
                 'order' => 'id DESC',
             )
         );
         $contributions = $this->paginate();
-
-        $usersIds = array();
-        foreach($contributions as $contribution) {
-            $userId = $contribution['Contribution']['user_id'];
-            if (!in_array($userId, $usersIds)) {
-                $usersIds[] = $userId;
-            }
-        }
-        $users = $this->Contribution->User->getUsernamesFromIds($usersIds);
-
+        
         $this->set('contributions', $contributions);
-        $this->set('users', $users);
         $this->set('langFilter', $filter);
     }
 
@@ -115,8 +111,6 @@ class ContributionsController extends AppController
      */
     public function latest($filter = 'und')
     {
-        $this->helpers[] = 'Members';
-
         $this->loadModel('LastContribution');
         $currentContributors = $this->LastContribution->getCurrentContributors();
         $total = $this->LastContribution->getTotal($currentContributors);
@@ -198,6 +192,11 @@ class ContributionsController extends AppController
             'Contribution' => array(
                 'conditions' => array(
                     'user_id' => $userId
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('username', 'image')
+                    )
                 ),
                 'limit' => 200,
                 'order' => 'id DESC',

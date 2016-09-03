@@ -131,7 +131,8 @@ class Contribution extends AppModel
             'User' => array(
                 'fields' => array(
                     'id', 
-                    'username'
+                    'username',
+                    'image'
                 )
             )
         );

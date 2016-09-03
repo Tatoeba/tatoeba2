@@ -84,6 +84,8 @@ class PagesController extends AppController
     public function index()
     {
         $this->helpers[] = 'Sentences';
+        $this->helpers[] = 'Members';
+        $this->helpers[] = 'Logs';
 
         $userId = $this->Auth->user('id');
         $isLogged = !empty($userId);

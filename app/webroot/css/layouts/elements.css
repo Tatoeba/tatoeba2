@@ -134,119 +134,60 @@
 /*
  * --------------------------------------------------------------------
  *
- *   logs.css
+ *   Logs
  *
  * --------------------------------------------------------------------
  */
 
-/*
- * Logs main
- */
-
-
-#logs ul.info {
-    margin: 0;
-    padding: 0;
-    color: #999;
+#logs md-list-item {
+    padding: 5px 15px;
+    border-width: 12px;
+    border-left-style: solid;
 }
 
-#logs .info li {
-    padding: 0 3px;
-    display: inline-block;
+html[dir="rtl"] #logs md-list-item {
+    border-right-style: solid;
+    border-left-style: none;
 }
 
-#logs .date {
-
+#logs md-list-item.sentence-insert {
+    border-color: #4CAF50;
 }
 
-#logs img.flag {
-    vertical-align: middle;
-    padding-right: 7px;
-    margin-top: -1px;
+#logs md-list-item.sentence-delete {
+    border-color: #F44336;
 }
 
-#logs .contribution .lang {
-    float: left;
+#logs md-list-item.sentence-update {
+    border-color: #FFEB3B;
 }
 
-#logs .contribution .sentence-text {
-    padding-left: 30px;
+#logs md-list-item.sentence-obsolete {
+    border-color: #e0e0e0;
 }
 
-#logs .contribution .content {
-    padding: 3px 5px;
+#logs md-list-item.link-insert {
+    border-color: #03a9f4;
 }
 
-#logs .sentenceLog, #logs .linkLog {
-    padding-left: 8px;
+#logs md-list-item.link-delete {
+    border-color: #ff9800;
 }
 
-
-/*
- * Main content
- */
-
-#main_content #logs .contribution {
-    padding: 0 0 20px 0;
-    margin-left: 85px;
+#logs md-list-item.md-2-line {
+    border-bottom: 1px solid #f1f1f1;
 }
 
-#main_content #logs .sentenceLog .contribution {
-    font-size: 14px;
+#logs .lang {
+    margin: 0 10px;
 }
 
-#main_content #logs .sentenceId {
-    margin-left: 18px;
-    padding: 0 5px;
+#logs .content {
+    text-align: left;
 }
 
-#main_content #logs .user {
-    float: right;
-    padding: 0 5px;
-}
-
-#main_content #logs .date {
-    float: left;
-    width: 70px;
+html[dir="rtl"] #logs .content {
     text-align: right;
-}
-
-#main_content #logs .date a {
-    color: #999;
-}
-
-#main_content #logs .sentenceLog:hover .date a {
-    color: #6A0;
-    text-decoration: underline;
-}
-
-#main_content #logs .sentenceLog:hover .date a:hover {
-    color: #DD8800;
-}
-
-#main_content #logs .lang img {
-    width: 24px;
-    height: 16px;
-}
-
-#main_content #logs .sentenceLog, #main_content #logs .linkLog {
-    background-position: 85px 0;
-}
-
-/*
- * Annexe
- */
-
-#annexe_content #logs .contribution {
-    padding: 0 0 10px 0;
-}
-
-#annexe_content #logs ul.info {
-    padding-left: 12px;
-}
-
-#annexe_content #logs .date::before {
-    content: "- ";
 }
 
 /*
@@ -257,119 +198,13 @@
     background-color: #f7d6b2;
 }
 
-#logs .linkLog.added.hovered {
+#logs .link-insert.hovered {
     cursor: pointer;
-    border-right: 5px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #fafafa;
 }
 
-#logs .linkLog.added.historyHighlighted {
-    border-right: 5px solid #999;
-    background-color: #f1f1f1;
-}
-
-
-/* *************************
- *
- *   Colors
- *
- * ************************* */
-
-/*
- * Sentence added
- */
-
-#logs .sentenceLog.added {
-    background: url('../../img/logs-sentence-added.svg') no-repeat;
-}
-
-#logs .sentenceLog.added .contribution {
-    border-left: 4px solid #98CB4A;
-}
-
-#logs .sentenceLog.added .content {
-    background: rgba(152, 203, 74, 0.2);
-}
-
-
-/*
- * Sentence deleted
- */
-
-#logs .sentenceLog.deleted {
-    background: url('../../img/logs-sentence-deleted.svg') no-repeat;
-}
-
-#logs .sentenceLog.deleted .contribution {
-    border-left: 4px solid #F15F74;
-}
-
-#logs .sentenceLog.deleted .content {
-    background: rgba(241, 95, 74, 0.2);
-}
-
-
-/*
- * Sentence edited
- */
-
-#logs .sentenceLog.edited {
-    background: url('../../img/logs-sentence-edited.svg') no-repeat;
-}
-
-#logs .sentenceLog.edited .contribution {
-    border-left: 4px solid #F7D842;
-}
-
-#logs .sentenceLog.edited .content {
-    background: rgba(247, 216, 66, 0.2);
-}
-
-
-/*
- * Link added
- */
-
-#logs .linkLog.added {
-    background: url('../../img/logs-link-added.svg') no-repeat;
-}
-
-#logs .linkLog.added .contribution {
-    border-left: 4px solid #64C8E6;
-}
-
-#logs .linkLog.added .content {
-    background: rgba(100, 200, 230, 0.2);
-}
-
-/*
- * Sentence deleted
- */
-
-#logs .linkLog.deleted {
-    background: url('../../img/logs-link-deleted.svg') no-repeat;
-}
-
-#logs .linkLog.deleted .contribution {
-    border-left: 4px solid #F4AA64;
-}
-
-#logs .linkLog.deleted .content {
-    background: rgba(244, 170, 100, 0.2);
-}
-
-
-/*
- * Obsolete
- */
-
-#logs .sentenceLog.obsolete .contribution {
-    border-left: dotted #bbb;
-    opacity: 0.8;
-}
-
-#logs .sentenceLog.obsolete .contribution .content {
-    background: rgba(187, 187, 187, 0.2);
+#logs .link-insert.historyHighlighted {
+    background-color: #eeeeee;
 }
 
 

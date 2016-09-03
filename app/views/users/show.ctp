@@ -37,15 +37,22 @@ $this->set('title_for_layout', $pages->formatTitle(format(
     /* Latest contributions from the user */
     if (count($user['Contributions']) > 0) {
         ?>
-        <div class="module">
+        <div class="section" md-whiteframe="1">
             <h2><?php __('Latest contributions'); ?></h2>
-            <div id="logs">
+            <md-list id="logs">
             <?php
-            foreach ($user['Contributions'] as $contribution) {
-                $logs->annexeEntry($contribution);
+            foreach ($user['Contributions'] as $userContribution) {
+                $contribution = array(
+                    'Contribution' => $userContribution,
+                    'User' => $user['User']
+                );
+                echo $this->element(
+                    'logs/log_entry_annexe',
+                    array('log' => $contribution)
+                );
             }
             ?>
-            </div>
+            </md-list>
         </div>
         <?php
     }

@@ -148,6 +148,12 @@ a:hover {
     color: #fff;
 }
 
+h4 {
+    margin: 10px 0 5px 20px;
+    color: #555;
+    font-size: 1.1em;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -711,4 +717,11 @@ md-toolbar {
 .md-button {
     padding: 0 10px;
     font-size: 16px;
+}
+
+md-list-item.md-2-line .md-list-item-text h3,
+md-list-item.md-2-line > ._md-no-style .md-list-item-text h3,
+md-list-item.md-3-line .md-list-item-text h3,
+md-list-item.md-3-line > ._md-no-style .md-list-item-text h3 {
+    line-height: inherit;
 }

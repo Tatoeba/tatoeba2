@@ -53,7 +53,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <?php
     if (!$userExists) {
         $commonModules->displayNoSuchUser($username, $backLink);
@@ -65,19 +65,16 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             $pagination->display(array($username));
             ?>
 
-            <div id="logs">
+            <md-list id="logs">
             <?php
             $user = array(
                 'username' => $username
             );
             foreach ($contributions as $contribution) {
-                $logs->entry(
-                    $contribution['Contribution'],
-                    $user
-                );
+                echo $this->element('logs/log_entry', array('log' => $contribution));
             }
             ?>
-            </div>
+            </md-list>
 
             <?php
             $pagination->display(array($username));
