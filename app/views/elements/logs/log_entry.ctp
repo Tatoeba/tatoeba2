@@ -78,6 +78,6 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
         <p><?= $infoLabel ?></p>
     </div>
     <md-button class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
-        <md-icon>more_horiz</md-icon>
+        <md-icon>info</md-icon>
     </md-button>
 </md-list-item>
