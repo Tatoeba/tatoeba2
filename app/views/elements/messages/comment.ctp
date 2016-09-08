@@ -70,6 +70,20 @@ $replyUrl = $html->url(array(
     'action' => 'show',
     $sentenceId.'#comment-'.$commentId
 ));
+$dateLabel = format(
+    __('{createdDate}, edited {modifiedDate}', true),
+    array(
+        'createdDate' => $date->ago($createdDate),
+        'modifiedDate' => $date->ago($modifiedDate)
+    )
+);
+$fullDateLabel = format(
+    __('{createdDate}, edited {modifiedDate}', true),
+    array(
+        'createdDate' => $createdDate,
+        'modifiedDate' => $modifiedDate
+    )
+);
 ?>
 <? if ($sentence) { ?>
     <div class="comment sentence" md-whiteframe="2"
@@ -99,7 +113,9 @@ $replyUrl = $html->url(array(
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title"><?= $username ?></span>
-            <span class="md-subhead"><?= $createdDate ?>, <?= $modifiedDate ?></span>
+            <span class="md-subhead ellipsis" title="<?= $fullDateLabel ?>">
+                <?= $dateLabel ?>
+            </span>
         </md-card-header-text>
 
         <? foreach ($menu as $menuItem) {

@@ -681,6 +681,11 @@ rt {
     margin-right: 3px;
 }
 
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /*
  *
