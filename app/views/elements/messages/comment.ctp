@@ -71,7 +71,28 @@ $replyUrl = $html->url(array(
     $sentenceId.'#comment-'.$commentId
 ));
 ?>
-<md-card>
+<? if ($sentence) { ?>
+    <div class="comment sentence" md-whiteframe="2"
+         layout="row" layout-align="start center">
+        <div class="text" flex>
+            <?= $sentenceText ?>
+        </div>
+        <?php
+        echo $languages->icon(
+            $sentenceLang,
+            array(
+                'width' => 30,
+                'height' => 20,
+                'class' => 'lang'
+            )
+        );
+        ?>
+        <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+            <md-icon>info</md-icon>
+        </md-button>
+    </div>
+<? } ?>
+<md-card class="comment">
     <md-card-header>
         <md-card-avatar>
             <img class="md-user-avatar" src="<?= $avatarUrl ?>"/>
@@ -99,27 +120,6 @@ $replyUrl = $html->url(array(
     <md-divider></md-divider>
 
     <md-card-content>
-        <? if ($sentence) { ?>
-            <div class="sentence" layout="row" layout-align="start center">
-                <div class="text" flex>
-                    <?= $sentenceText ?>
-                </div>
-                <?php
-                echo $languages->icon(
-                    $sentenceLang,
-                    array(
-                        'width' => 30,
-                        'height' => 20,
-                        'class' => 'lang'
-                    )
-                );
-                ?>
-                <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
-                    <md-icon>info</md-icon>
-                </md-button>
-            </div>
-        <? } ?>
-
         <p><?= $messages->formatedContent($commentText) ?></p>
     </md-card-content>
 </md-card>
