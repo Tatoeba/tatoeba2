@@ -40,7 +40,6 @@ class Vocabulary extends AppModel
     public $useTable = 'vocabulary';
     public $belongsTo = array('UsersVocabulary', 'Sentence');
 
-
     /**
      * Adds an item into the vocabulary list of current user.
      *
@@ -49,26 +48,53 @@ class Vocabulary extends AppModel
      *
      * @return $data array
      */
-    public function addItem($lang, $text) {
+    public function addItem($lang, $text)
+    {
         $text = trim($text);
         if (empty($text) || empty($lang)) {
             return null;
         }
-        $numSentences = $this->_getNumberOfSentences($lang, $text);
+        
         $hash = murmurhash3($lang.$text);
+
         $data = array(
             'id' => $hash,
             'lang' => $lang,
-            'text' => $text,
-            'numSentences' => $numSentences
+            'text' => $text
         );
 
-        $this->save($data);
+        if ($vocabulary = $this->itemExists($lang, $text)) {
+            $numSentences = $this->_updateNumSentences($vocabulary['Vocabulary']);
+
+            $data['numSentences'] = $numSentences;
+        } else {
+            $numSentences = $this->_getNumberOfSentences($lang, $text);
+
+            $data['numSentences'] = $numSentences;
+
+            $this->save($data);
+        }
+
         $this->UsersVocabulary->add($hash, CurrentUser::get('id'));
 
         return $data;
     }
 
+    /**
+     * Return item if exists, false if it doesn't.
+     *
+     * @param  string $lang Item language.
+     * @param  string $text Item text.
+     *
+     * @return array
+     */
+    public function itemExists($lang, $text)
+    {
+        return $this->find([
+            'lang' => $lang,
+            'text' => $text
+        ]);
+    }
 
     /**
      * Returns the number of sentences for $text in language $lang.
@@ -81,7 +107,8 @@ class Vocabulary extends AppModel
      *
      * @return int
      */
-    private function _getNumberOfSentences($lang, $text) {
+    private function _getNumberOfSentences($lang, $text)
+    {
         $this->Behaviors->attach('Sphinx');
         $index = array($lang . '_main_index', $lang . '_delta_index');
         $sphinx = array(
@@ -95,7 +122,6 @@ class Vocabulary extends AppModel
         ));
     }
 
-
     /**
      * Returns array to use in $this->paginate, to retrieve all the vocabulary
      * items in language $lang for which sentences are needed.
@@ -107,7 +133,8 @@ class Vocabulary extends AppModel
      *
      * @return array
      */
-    public function getPaginatedVocabulary($lang = null) {
+    public function getPaginatedVocabulary($lang = null)
+    {
         $conditions = array(
             'numSentences <' => 10,
             'numAdded >' => 0

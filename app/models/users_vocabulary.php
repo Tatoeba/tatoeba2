@@ -43,21 +43,35 @@ class UsersVocabulary extends AppModel
         'User' => array('foreignKey' => 'user_id')
     );
 
-
     /**
+     * Add a vocabulary item to users_vocabulary pivot table.
      *
+     * @param string $vocabularyId Binary version of vocabulary_id.
+     * @param int    $userId       Id of current user.
+     *
+     * @return array               UsersVocabulary item.
      */
-    public function add($vocabularyId, $userId) {
+    public function add($vocabularyId, $userId)
+    {
+        if ($item = $this->findByBinary($vocabularyId)) {
+            return $item;
+        }
+
         $data = array(
             'vocabulary_id' => $vocabularyId,
             'user_id' => $userId
         );
+        
         return $this->save($data);
     }
 
-
     /**
+     * Get paginated vocabulary for user.
      *
+     * @param  int    $userId ID for user.
+     * @param  string $lang   Language.
+     *
+     * @return array
      */
     public function getPaginatedVocabularyOf($userId, $lang = null)
     {
@@ -77,6 +91,36 @@ class UsersVocabulary extends AppModel
         );
 
         return $result;
+    }
+
+    /**
+     * Find a users_vocabulary record by a binary vocabulary_id value.
+     *
+     * @param  string $binary Binary vocabulary_id value.
+     *
+     * @return array
+     */
+    public function findByBinary($binary)
+    {
+        $binary = $this->_getPaddedBinary($binary);
+
+        return $this->find(['vocabulary_id' => $binary]);
+    }
+
+    /**
+     * Convert a binary id to a padded binary id.
+     *
+     * @param  string $binary Binary id value.
+     *
+     * @return string
+     */
+    private function _getPaddedBinary($binary)
+    {
+        $hex = bin2hex($binary);
+
+        $hex = str_pad($hex, 32, 0);
+
+        return hex2bin($hex);
     }
 }
 ?>
