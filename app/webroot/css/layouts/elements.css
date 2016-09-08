@@ -244,6 +244,18 @@ html[dir="rtl"] #logs .content {
     margin: 0 10px;
 }
 
+.comment.inappropriate .warning-info p {
+    padding: 0 10px;
+}
+
+.comment.inappropriate {
+    opacity: 0.6;
+}
+
+.comment.inappropriate .content {
+    color: #d50000;
+}
+
 /*
  * --------------------------------------------------------------------
  *

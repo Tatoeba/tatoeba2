@@ -1,53 +1,21 @@
 <?php
-/*
- * Array
-(
-    [SentenceComment] => Array
-        (
-            [id] => 41850
-            [user_id] => 3746
-            [text] => test
-            [created] => 2016-06-20 23:41:51
-            [modified] => 2016-06-20 23:41:51
-            [sentence_id] => 9999
-            [hidden] => 0
-        )
-
-    [Sentence] => Array
-        (
-            [id] => 9999
-            [text] => D'une part je suis occupé, d'autre part, je ne suis pas intéressé.
-            [lang] => fra
-            [correctness] => 0
-            [user_id] => 5
-            [User] => Array
-                (
-                    [username] => TRANG
-                )
-
-        )
-
-    [User] => Array
-        (
-            [id] => 3746
-            [username] => trang124
-            [image] =>
-        )
-
-)
-*/
 $username = $comment['User']['username'];
 $avatarUrl = $members->imageUrl($comment['User']['image']);
 $createdDate = $comment['SentenceComment']['created'];
 $modifiedDate = $comment['SentenceComment']['modified'];
 $commentId = $comment['SentenceComment']['id'];
+$authorId = $comment['SentenceComment']['user_id'];
 $commentText = $comment['SentenceComment']['text'];
+$commentHidden = $comment['SentenceComment']['hidden'];
 $sentence = null;
 if (isset($comment['Sentence'])) {
     $sentence = $comment['Sentence'];
 }
 $sentenceId = $comment['SentenceComment']['sentence_id'];
-$sentenceText = $sentence['text'];
+$sentenceText = '<em>'.__('sentence deleted', true).'</em>';
+if (isset($sentence['text'])) {
+    $sentenceText = $sentence['text'];
+}
 $sentenceLang = $sentence['lang'];
 $sentenceOwner = null;
 if (!empty($sentence['User'])) {
@@ -84,6 +52,7 @@ $fullDateLabel = format(
         'modifiedDate' => $modifiedDate
     )
 );
+$canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
 ?>
 <? if ($sentence) { ?>
     <div class="comment sentence" md-whiteframe="2"
@@ -106,7 +75,7 @@ $fullDateLabel = format(
         </md-button>
     </div>
 <? } ?>
-<md-card class="comment">
+<md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>
             <img class="md-user-avatar" src="<?= $avatarUrl ?>"/>
@@ -136,6 +105,26 @@ $fullDateLabel = format(
     <md-divider></md-divider>
 
     <md-card-content>
-        <p><?= $messages->formatedContent($commentText) ?></p>
+        <? if ($commentHidden) { ?>
+            <div class="warning-info" layout="row" layout-align="start center">
+                <md-icon>warning</md-icon>
+                <p>
+                    <?= format(
+                        __(
+                            'The content of this message goes against '.
+                            '<a href="{}">our rules</a> and was therefore hidden. '.
+                            'It is displayed only to admins '.
+                            'and to the author of the message.',
+                            true
+                        ),
+                        'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+                    ); ?>
+                </p>
+            </div>
+        <? } ?>
+
+        <? if ($canViewContent) { ?>
+            <p class="content"><?= $messages->formatedContent($commentText) ?></p>
+        <? } ?>
     </md-card-content>
 </md-card>
