@@ -242,6 +242,11 @@ html[dir="rtl"] #logs .content {
 
 .comment.sentence .text {
     margin: 0 10px;
+    text-align: left;
+}
+
+html[dir="rtl"] .comment.sentence .text {
+    text-align: right;
 }
 
 .comment.inappropriate .warning-info p {

@@ -57,7 +57,7 @@ $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
 <? if ($sentence) { ?>
     <div class="comment sentence" md-whiteframe="2"
          layout="row" layout-align="start center">
-        <div class="text" flex>
+        <div class="text" dir="<?= $langDir ?>" flex>
             <?= $sentenceText ?>
         </div>
         <?php
@@ -124,7 +124,9 @@ $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
         <? } ?>
 
         <? if ($canViewContent) { ?>
-            <p class="content"><?= $messages->formatedContent($commentText) ?></p>
+            <p class="content" dir="auto">
+                <?= $messages->formatedContent($commentText) ?>
+            </p>
         <? } ?>
     </md-card-content>
 </md-card>
