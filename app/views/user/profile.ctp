@@ -241,8 +241,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
             </div>
         </div>
 
-        <md-divider></md-divider>
-
         <?php
         if ($isDisplayed) {
             // For consistency, this format should match the first part of the format
@@ -262,6 +260,8 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                 __('Homepage', true) => $homepage
             );
             ?>
+            <md-divider></md-divider>
+
             <div class="personal-info" layout-margin>
                 <? foreach ($personalInfo as $label => $value) { ?>
                     <div layout="row">
@@ -273,8 +273,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
             <?php
         }
         ?>
-
-        <md-divider></md-divider>
 
         <?php
         if (!empty($userDescription)) {
@@ -289,6 +287,9 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 
         <?php
         if ($isDisplayed) {
+            ?>
+            <md-divider></md-divider>
+            <?
             echo $languages->tagWithLang(
                 'div', '', $descriptionContent,
                 array(
@@ -317,7 +318,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                 </div>
             <? } ?>
         </div>
-        
+
         <?php
         if (empty($userLanguages))
         {
