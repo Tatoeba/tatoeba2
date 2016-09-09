@@ -34,7 +34,7 @@ foreach ($sentenceComments as $i=>$comment) {
     $menu = $comments->getMenuForComment(
         $comment['SentenceComment'],
         $commentsPermissions[$i],
-        true
+        CurrentUser::isMember()
     );
 
     echo $this->element(
