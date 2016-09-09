@@ -516,6 +516,7 @@ class UsersController extends AppController
         if ($user != null) {
             $this->helpers[] = 'Wall';
             $this->helpers[] = 'Messages';
+            $this->helpers[] = 'Members';
 
             $commentsPermissions = $this->Permissions->getCommentsOptions(
                 $user['SentenceComments']
