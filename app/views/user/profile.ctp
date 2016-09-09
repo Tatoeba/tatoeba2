@@ -301,6 +301,23 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
     </div>
 
     <div class="section with-title-button" md-whiteframe="1">
+        <div layout="row" layout-align="start center">
+            <h2 flex><? __('Languages'); ?></h2>
+            <?php
+            if ($username == $currentMember) {
+                $addLangUrl = $html->url(array(
+                    'controller' => 'user',
+                    'action' => 'language'
+                ));
+                ?>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-primary md-raised" href="<?= $addLangUrl ?>">
+                        <?__('Add a language') ?>
+                    </md-button>
+                </div>
+            <? } ?>
+        </div>
+        
         <?php
         if (empty($userLanguages))
         {
@@ -322,24 +339,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         else
         {
             ?>
-            <div layout="row" layout-align="start center">
-                <h2 flex><? __('Languages'); ?></h2>
-                <?php
-                if ($username == $currentMember) {
-                    $addLangUrl = $html->url(array(
-                        'controller' => 'user',
-                        'action' => 'language'
-                    ));
-                    ?>
-                    <div layout="row" layout-align="end center">
-                        <md-button class="md-primary md-raised" href="<?= $addLangUrl ?>">
-                            <?__('Add a language') ?>
-                        </md-button>
-                    </div>
-                <? } ?>
-            </div>
-
-
             <md-list>
                 <? foreach($userLanguages as $userLanguage) {
                     $languageInfo = $userLanguage['UsersLanguages'];
