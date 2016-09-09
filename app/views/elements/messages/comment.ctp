@@ -123,7 +123,7 @@ $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
             </div>
         <? } ?>
 
-        <? if ($canViewContent) { ?>
+        <? if (!$commentHidden || $canViewContent) { ?>
             <p class="content" dir="auto">
                 <?= $messages->formatedContent($commentText) ?>
             </p>
