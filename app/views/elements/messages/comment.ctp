@@ -88,16 +88,22 @@ $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
         </md-card-header-text>
 
         <? foreach ($menu as $menuItem) {
+            if ($menuItem['text'] == '#') {
+                $itemLabel = $replyIcon ? __('reply', true) : __('permalink', true);
+            } else {
+                $itemLabel = $menuItem['text'];
+            }
             $confirmation = '';
             if (isset($menuItem['confirm'])) {
                 $msg = $menuItem['confirm'];
                 $confirmation = 'onclick="return confirm(\''.$msg.'\');"';
             }
             ?>
-            <md-button class="md-icon-button"
-                <?= $confirmation ?>
-                       href="<?= $html->url($menuItem['url']) ?>">
+            <md-button class="md-icon-button" <?= $confirmation ?>
+                       href="<?= $html->url($menuItem['url']) ?>"
+                       aria-label="<?= $itemLabel ?>">
                 <md-icon><?= $menuItem['icon'] ?></md-icon>
+                <md-tooltip><?= $itemLabel ?></md-tooltip>
             </md-button>
         <? } ?>
     </md-card-header>

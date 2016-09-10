@@ -87,18 +87,20 @@ $this->set('title_for_layout', $pages->formatTitle(
         
         <div class="comments">
         <?php
+        $currentUserIsMember = CurrentUser::isMember();
         foreach ($userComments as $i => $comment) {
             $menu = $comments->getMenuForComment(
                 $comment['SentenceComment'],
                 $commentsPermissions[$i],
-                CurrentUser::isMember()
+                $currentUserIsMember
             );
 
             echo $this->element(
                 'messages/comment',
                 array(
                     'comment' => $comment,
-                    'menu' => $menu
+                    'menu' => $menu,
+                    'replyIcon' => $currentUserIsMember
                 )
             );
         }

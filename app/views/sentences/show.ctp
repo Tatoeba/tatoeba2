@@ -209,7 +209,8 @@ $navigation->displaySentenceNavigation(
                     'messages/comment',
                     array(
                         'comment' => $comment,
-                        'menu' => $menu
+                        'menu' => $menu,
+                        'replyIcon' => false
                     )
                 );
             }
