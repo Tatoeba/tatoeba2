@@ -545,6 +545,7 @@ class LanguagesLib
                 'tah' => __d('languages', 'Tahitian', true),
                 'tly' => __d('languages', 'Talysh', true),
                 'mic' => __d('languages', "Mi'kmaq", true),
+                'ext' => __d('languages', 'Extremaduran', true),
             );
         }
         return $languages;
