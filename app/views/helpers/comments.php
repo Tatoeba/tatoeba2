@@ -214,7 +214,7 @@ class CommentsHelper extends AppHelper
      *
      *
      */
-    public function getMenuForComment($comment, $user, $permissions)
+    public function getMenuForComment($comment, $permissions, $replyIcon)
     {
         $menu = array(); 
         $commentId = $comment['id'];
@@ -233,6 +233,7 @@ class CommentsHelper extends AppHelper
 
             $menu[] = array(
                 'text' => $hiddenLinkText,
+                'icon' => 'visibility_off',
                 'url' => array(
                     "controller" => "sentence_comments",
                     "action" => $hiddenLinkAction,
@@ -245,6 +246,7 @@ class CommentsHelper extends AppHelper
         if ($permissions['canDelete']) {
             $menu[] = array(
                 'text' => __('delete', true),
+                'icon' => 'delete',
                 'url' => array(
                     "controller" => "sentence_comments",
                     "action" => "delete_comment",
@@ -258,6 +260,7 @@ class CommentsHelper extends AppHelper
         if ($permissions['canEdit']) {
             $menu[] = array(
                 'text' => __('edit', true),
+                'icon' => 'edit',
                 'url' => array(
                     "controller" => "sentence_comments",
                     "action" => "edit",
@@ -268,8 +271,10 @@ class CommentsHelper extends AppHelper
         
         // view
         $sentenceId = $comment['sentence_id'];
+        $viewIcon = $replyIcon ? 'reply' : 'link';
         $menu[] = array(
             'text' => '#',
+            'icon' => $viewIcon,
             'url' => array(
                 "controller" => "sentences",
                 "action" => "show",

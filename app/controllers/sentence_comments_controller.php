@@ -115,6 +115,7 @@ class SentenceCommentsController extends AppController
     public function index($langFilter = 'und')
     {
         $this->helpers[] = 'Messages';
+        $this->helpers[] = 'Members';
 
         $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers();
         if ($langFilter != 'und') {
@@ -422,7 +423,8 @@ class SentenceCommentsController extends AppController
             return;
         }
 
-        $this->helpers[] = "Messages";
+        $this->helpers[] = 'Messages';
+        $this->helpers[] = 'Members';
 
         // in the same idea, we do not need to do extra request if the user
         // has no comment
@@ -500,7 +502,8 @@ class SentenceCommentsController extends AppController
             return;
         }
 
-        $this->helpers[] = "Messages";
+        $this->helpers[] = 'Messages';
+        $this->helpers[] = 'Members';
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 

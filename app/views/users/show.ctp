@@ -97,7 +97,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
 
     /* Latest comments from the user */
     if (count($user['SentenceComments']) > 0) {
-        echo '<div class="module">';
+        echo '<div class="section">';
             echo '<h2>';
             __('Latest comments');
 
@@ -115,18 +115,24 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             echo '</h2>';
 
             echo '<div class="comments">';
-            foreach ($user['SentenceComments'] as $i => $comment) {
+            foreach ($user['SentenceComments'] as $i => $sentenceComment) {
+                $comment['SentenceComment'] = $sentenceComment;
+                $comment['User'] = $user['User'];
+                $currentUserIsMember = CurrentUser::isMember();
+
                 $menu = $comments->getMenuForComment(
-                    $comment,
-                    $user['User'],
-                    $commentsPermissions[$i]
+                    $sentenceComment,
+                    $commentsPermissions[$i],
+                    $currentUserIsMember
                 );
 
-                $messages->displayMessage(
-                    $comment,
-                    $user['User'],
-                    null,
-                    $menu
+                echo $this->element(
+                    'messages/comment',
+                    array(
+                        'comment' => $comment,
+                        'menu' => $menu,
+                        'replyIcon' => $currentUserIsMember
+                    )
                 );
             }
             echo '</div>';

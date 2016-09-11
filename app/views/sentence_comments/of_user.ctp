@@ -51,7 +51,7 @@ $this->set('title_for_layout', $pages->formatTitle(
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section">
     <?php
     if ($userExists === false) {
         $commonModules->displayNoSuchUser($userName, $backLink);
@@ -87,18 +87,21 @@ $this->set('title_for_layout', $pages->formatTitle(
         
         <div class="comments">
         <?php
+        $currentUserIsMember = CurrentUser::isMember();
         foreach ($userComments as $i => $comment) {
             $menu = $comments->getMenuForComment(
                 $comment['SentenceComment'],
-                $comment['User'],
-                $commentsPermissions[$i]
+                $commentsPermissions[$i],
+                $currentUserIsMember
             );
 
-            $messages->displayMessage(
-                $comment['SentenceComment'],
-                $comment['User'],
-                $comment['Sentence'],
-                $menu
+            echo $this->element(
+                'messages/comment',
+                array(
+                    'comment' => $comment,
+                    'menu' => $menu,
+                    'replyIcon' => $currentUserIsMember
+                )
             );
         }
         ?>
