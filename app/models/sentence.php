@@ -751,42 +751,41 @@ class Sentence extends AppModel
                                // Never mind the links.
     }
 
-
     /**
      * Add a new sentence in the database
      *
-     * @param string $text   The text of the sentence
-     * @param string $lang   The lang of the sentence
-     * @param int    $userId The id of the user who added this sentence
+     * @param string $text        The text of the sentence.
+     * @param string $lang        The lang of the sentence.
+     * @param int    $userId      The id of the user who added this sentence.
+     * @param int    $correctness Correctness level of sentence.
      *
      * @return bool
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
         $this->create();
+
         $data['Sentence']['text'] = trim($text);
         if (!empty($lang)) {
             $data['Sentence']['lang'] = $lang;
         }
         $data['Sentence']['user_id'] = $userId;
         $data['Sentence']['correctness'] = $correctness;
-        $sentenceSaved = $this->save($data);
 
-        return $sentenceSaved;
+        return $this->save($data);
     }
 
     /**
-     * Add a new sentence and a translation in the database
+     * Add a new sentence and a translation in the database.
      *
-     * @param string $sentenceText    The text of the sentence
-     * @param string $sentenceLang    The lang of the sentence
-     * @param string $translationText The text of the translation
-     * @param string $translationLang The lang of the translation
-     * @param int    $userId          The id of the user who added them
+     * @param string $sentenceText    The text of the sentence.
+     * @param string $sentenceLang    The lang of the sentence.
+     * @param string $translationText The text of the translation.
+     * @param string $translationLang The lang of the translation.
+     * @param int    $userId          The id of the user who added them.
      *
      * @return bool
      */
-
     public function saveNewSentenceWithTranslation(
         $sentenceText,
         $sentenceLang,
@@ -811,8 +810,12 @@ class Sentence extends AppModel
         $translationId = $this->id;
         // saving links
         if ($sentenceSaved && $translationSaved) {
-            $this->Link->add($sentenceId, $translationId, 
-                             $sentenceLang, $translationLang);
+            $this->Link->add(
+                $sentenceId,
+                $translationId,
+                $sentenceLang,
+                $translationLang
+            );
         }
     }
 
