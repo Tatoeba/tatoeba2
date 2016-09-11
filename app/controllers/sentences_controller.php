@@ -349,6 +349,7 @@ class SentencesController extends AppController
             $sentenceId = $this->Sentence->id;
             $sentence = $this->Sentence->getSentenceWithId($sentenceId);
 
+            $this->set('duplicate', $this->Sentence->duplicate);
             $this->set('sentence', $sentence);
         }
 

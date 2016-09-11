@@ -50,4 +50,20 @@ class AppModel extends Model {
         }
         return $fieldValue;
     }
+
+    /**
+     * Convert a binary id to a padded binary id.
+     *
+     * @param  string $binary Binary id value.
+     *
+     * @return string
+     */
+    protected function _getPaddedBinary($binary)
+    {
+        $hex = bin2hex($binary);
+
+        $hex = str_pad($hex, 32, 0);
+
+        return hex2bin($hex);
+    }
 }

@@ -80,7 +80,8 @@ class SentencesHelper extends AppHelper
         $transcriptions,
         $translations,
         $user = null,
-        $options = array()
+        $options = array(),
+        $duplicate = false
     ) {
         $options = array_merge(
             array(
@@ -96,6 +97,20 @@ class SentencesHelper extends AppHelper
         ?>
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
+
+        if ($duplicate) {
+            $image = $this->Images->svgIcon(
+                'warning-small',
+                ['class' => 'sentences_duplicate_icon']
+            );
+
+            $message = $image.__(
+                'The sentence you tried to add already exists',
+                true
+            );
+
+            echo $this->Html->div('sentences_duplicate', $message);
+        }
 
         $this->displayMainSentence(
             $sentence,

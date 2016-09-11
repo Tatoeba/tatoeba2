@@ -106,21 +106,5 @@ class UsersVocabulary extends AppModel
 
         return $this->find(['vocabulary_id' => $binary]);
     }
-
-    /**
-     * Convert a binary id to a padded binary id.
-     *
-     * @param  string $binary Binary id value.
-     *
-     * @return string
-     */
-    private function _getPaddedBinary($binary)
-    {
-        $hex = bin2hex($binary);
-
-        $hex = str_pad($hex, 32, 0);
-
-        return hex2bin($hex);
-    }
 }
 ?>

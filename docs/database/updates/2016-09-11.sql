@@ -1,0 +1,1 @@
+ALTER table `sentences` ADD COLUMN `hash` BINARY(16) NOT NULL;
