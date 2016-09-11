@@ -38,20 +38,25 @@ $replyUrl = $html->url(array(
     'action' => 'show',
     $sentenceId.'#comment-'.$commentId
 ));
-$dateLabel = format(
-    __('{createdDate}, edited {modifiedDate}', true),
-    array(
-        'createdDate' => $date->ago($createdDate),
-        'modifiedDate' => $date->ago($modifiedDate)
-    )
-);
-$fullDateLabel = format(
-    __('{createdDate}, edited {modifiedDate}', true),
-    array(
-        'createdDate' => $createdDate,
-        'modifiedDate' => $modifiedDate
-    )
-);
+if ($createdDate == $modifiedDate) {
+    $dateLabel = $date->ago($createdDate);
+    $fullDateLabel = $createdDate;
+} else {
+    $dateLabel = format(
+        __('{createdDate}, edited {modifiedDate}', true),
+        array(
+            'createdDate' => $date->ago($createdDate),
+            'modifiedDate' => $date->ago($modifiedDate)
+        )
+    );
+    $fullDateLabel = format(
+        __('{createdDate}, edited {modifiedDate}', true),
+        array(
+            'createdDate' => $createdDate,
+            'modifiedDate' => $modifiedDate
+        )
+    );
+}
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
 ?>
 <? if ($sentence) { ?>
