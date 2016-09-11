@@ -41,12 +41,11 @@
 App::import('Model', 'CurrentUser');
 App::import('Sanitize');
 App::import('Vendor', 'LanguagesLib');
-App::import('Vendor', 'murmurhash3');
 
 class Sentence extends AppModel
 {
     public $name = 'Sentence';
-    public $actsAs = array('Containable', 'Transcriptable');
+    public $actsAs = array('Containable', 'Transcriptable', 'Hashable');
 
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
@@ -765,9 +764,9 @@ class Sentence extends AppModel
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
-        $hash = murmurhash3($lang.$text);
+        $hash = $this->makeHash($lang, $text);
 
-        if ($sentence = $this->findByBinary($hash)) {
+        if ($sentence = $this->findByBinary($hash, 'hash')) {
             $this->id = $sentence['Sentence']['id'];
 
             $this->duplicate = true;
@@ -789,20 +788,6 @@ class Sentence extends AppModel
         }
 
         return $this->save($data);
-    }
-
-    /**
-     * Find a users_vocabulary record by a binary vocabulary_id value.
-     *
-     * @param  string $binary Binary vocabulary_id value.
-     *
-     * @return array
-     */
-    public function findByBinary($binary)
-    {
-        $binary = $this->_getPaddedBinary($binary);
-
-        return $this->find(['hash' => $binary]);
     }
 
     /**
@@ -1147,9 +1132,9 @@ class Sentence extends AppModel
             return false;
         }
 
-        $hash = murmurhash3($lang.$text);
+        $hash = $this->makeHash($lang, $text);
 
-        if ($duplicate = $this->findByBinary($hash)) {
+        if ($duplicate = $this->findByBinary($hash, 'hash')) {
             return false;
         }
 
