@@ -743,6 +743,7 @@ class Sentence extends AppModel
             $userId,
             $translationCorrectness
         );
+
         // saving links
         if ($sentenceSaved) {
             $this->Link->add($sentenceId, $this->id, $sentenceLang, $translationLang);

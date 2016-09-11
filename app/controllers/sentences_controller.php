@@ -481,9 +481,7 @@ class SentencesController extends AppController
 
         $translationText = $_POST['value'];
         
-        // we store the selected language to be reused
-        // since users are likely to contribute in the 
-        // same language; they don't need to reselect each time
+        // Store selected lang in cookie as default language for drop-downs
         $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
 
         if (isset($translationText)
@@ -493,11 +491,9 @@ class SentencesController extends AppController
         ) {
             // Language detection
             if ($translationLang == 'auto') {
-
-                $ownerName = $this->Auth->user('username');
                 $translationLang = $this->LanguageDetection->detectLang(
                     $translationText,
-                    $ownerName
+                    $this->Auth->user('username')
                 );
             }
 
@@ -511,7 +507,7 @@ class SentencesController extends AppController
             );
 
             if ($isSaved) {
-                $translationId = $this->Sentence->getLastInsertID();
+                $translationId = $this->Sentence->id;
                 $translation = $this->Sentence->find('first', array(
                     'conditions' => array('Sentence.id' => $translationId),
                     'contain' => array('Transcription')
