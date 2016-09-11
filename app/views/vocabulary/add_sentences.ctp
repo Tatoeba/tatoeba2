@@ -98,7 +98,12 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                          layout="row" layout-align="start center">
                         <md-button class="md-icon-button"
                                    ng-href="{{sentence.url}}">
-                            <md-icon>forward</md-icon>
+                            <md-icon ng-hide="sentence.duplicate">forward</md-icon>
+                            <md-icon ng-show="sentence.duplicate">warning</md-icon>
+                            <md-tooltip md-direction="left" 
+                                        ng-show="sentence.duplicate">
+                                This sentence already exists.
+                            </md-tooltip>
                         </md-button>
                         <div class="text" flex>{{sentence.text}}</div>
                     </div>

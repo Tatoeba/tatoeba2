@@ -201,7 +201,8 @@ class VocabularyController extends AppController
 
             $sentence = array(
                 'id' => $this->Sentence->id,
-                'text' => $sentenceText
+                'text' => $sentenceText,
+                'duplicate' => $this->Sentence->duplicate
             );
         }
 
