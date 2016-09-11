@@ -356,59 +356,94 @@ class SentencesController extends AppController
     }
 
     /**
-     * Edit sentence.
-     * Used in AJAX request, in sentences.edit_in_place.js.
-     *
-     * @todo Need to have an editSentence() in the model, that will check if sentence 
-     * has audio, in which case it cannot be edited.
+     * Edit sentence. Used by AJAX request in sentences.edit_in_place.js.
      *
      * @return void
      */
     public function edit_sentence()
     {
-        $sentenceText = '';
-        $sentenceId = '';
-        if (isset($this->params['form']['value'])) {
-            $sentenceText = trim($this->params['form']['value']);
-        }
-        if (isset($this->params['form']['id'])) {
-            $sentenceId = $this->params['form']['id']; // NOTE: do not Sanitize::paranoid() this
-                                                       // ...because hack mentionned below
-        }
+        $text = $this->_getEditFormText($this->params);
 
-        if (!isset($sentenceText) || $sentenceText === '') {
-            // if the sentence contain no text (empty or only space)
-            // the we directly return without saving
+        $idLangArray = $this->_getEditFormIdLang($this->params);
+
+        if (!$text || !$idLangArray) {
             return;
         }
 
-        if (isset($sentenceId)) {
-            // TODO HACK SPOTTED $this->params['form']['id'] store 2 informations, lang and id
-            // related to HACK in edit in place.js
-            $hack_array = explode("_", $sentenceId);
+        // Set $id and $lang
+        extract($idLangArray);
 
-            $realSentenceId = Sanitize::paranoid($hack_array[1]);
-            $sentenceLang = Sanitize::paranoid($hack_array[0]);
+        $sentence = $this->Sentence->findById($id);
 
-            $sentence = $this->Sentence->findById($realSentenceId);
-            if (!$sentence || !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id'])) {
-                $this->redirect(array('controller' => 'pages', 'action' => 'home'));
-		return;
-            }
-
-            $this->Sentence->id = $realSentenceId;
-            if (!empty($sentenceLang)) {
-                $data['Sentence']['lang'] = $sentenceLang;
-            }
-            $data['Sentence']['text'] = $sentenceText;
-            $isSaved = $this->Sentence->save($data);
-
-            if ($isSaved) {
-                $this->layout = null;
-                $this->set('sentence_text', $sentenceText);
-            }
-
+        if ($this->_cantEditSentence($sentence)) {
+            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+            
+            return;
         }
+
+        $isSaved = $this->Sentence->editSentence($id, $text, $lang);
+
+        $this->layout = null;
+
+        if ($isSaved) {
+            $this->set('sentence_text', $text);
+        } else {
+            $this->set('sentence_text', $sentence['Sentence']['text']);
+        }
+    }
+
+    /**
+     * Get text from edit form params.
+     *
+     * @param  array $params Form parameters.
+     *
+     * @return string|boolean
+     */
+    private function _getEditFormText($params)
+    {
+        if (isset($params['form']['value'])) {
+            return trim($params['form']['value']);
+        }
+
+        return false;
+    }
+
+    /**
+     * Get id and lang from edit form params.
+     *
+     * @param  array $params Form parameters.
+     *
+     * @return array|boolean
+     */
+    private function _getEditFormIdLang($params)
+    {
+        if (isset($this->params['form']['id'])) {
+            // ['form']['id'] contains both the sentence id and its language.
+            // Do not sanitize it directly.
+            $sentenceId = $this->params['form']['id'];
+
+            $dirtyArray = explode("_", $sentenceId);
+
+            return [
+                'id' => Sanitize::paranoid($dirtyArray[1]),
+                'lang' => Sanitize::paranoid($dirtyArray[0])
+            ];
+        }
+
+        return false;
+    }
+
+    /**
+     * Return true if user can't edit sentence.
+     *
+     * @param  array $sentence Sentence to edit.
+     *
+     * @return boolean
+     */
+    private function _cantEditSentence($sentence)
+    {
+        return !$sentence ||
+            !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id']);
     }
 
     /**

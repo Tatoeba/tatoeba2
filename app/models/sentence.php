@@ -507,7 +507,7 @@ class Sentence extends AppModel
             return array_keys($results);
         }
     
-    return 1;
+        return 1;
     }
 
     /**
@@ -1128,6 +1128,55 @@ class Sentence extends AppModel
     {
         $this->id = $sentenceId;
         return $this->saveField('hasaudio', $hasaudio);
+    }
+
+    /**
+     * Edit the sentence.
+     *
+     * @param  int $id      Sentence id.
+     * @param  string $text New sentence text.
+     * @param  string $lang New sentnece lang.
+     *
+     * @return boolean
+     */
+    public function editSentence($id, $text, $lang)
+    {
+        $this->id = $id;
+
+        if ($this->hasAudio($id)) {
+            return false;
+        }
+
+        $hash = murmurhash3($lang.$text);
+
+        if ($duplicate = $this->findByBinary($hash)) {
+            return false;
+        }
+
+        $data['Sentence']['text'] = $text;
+        $data['Sentence']['hash'] = $hash;
+
+        if (!empty($lang)) {
+            $data['Sentence']['lang'] = $lang;
+        }
+        
+        return $this->save($data);
+    }
+
+    /**
+     * Return true if sentence has audio.
+     *
+     * @return boolean
+     */
+    public function hasAudio($id)
+    {
+        $sentence = $this->findById($id);
+
+        if ($sentence['Sentence']['hasaudio'] === 'yes') {
+            return true;
+        }
+
+        return false;
     }
 }
 ?>
