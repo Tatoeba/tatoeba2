@@ -194,15 +194,19 @@ class VocabularyController extends AppController
         $sentence = null;
 
         if ($isSaved) {
-            $numSentences = $this->Vocabulary->incrementNumSentences(
-                $vocabularyId,
-                $sentenceText
-            );
+            $isDuplicate = $this->Sentence->duplicate;
+
+            if (!$isDuplicate) {
+                $numSentences = $this->Vocabulary->incrementNumSentences(
+                    $vocabularyId,
+                    $sentenceText
+                );
+            }
 
             $sentence = array(
                 'id' => $this->Sentence->id,
                 'text' => $sentenceText,
-                'duplicate' => $this->Sentence->duplicate
+                'duplicate' => $isDuplicate
             );
         }
 

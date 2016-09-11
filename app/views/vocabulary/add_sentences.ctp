@@ -100,7 +100,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                                    ng-href="{{sentence.url}}">
                             <md-icon ng-hide="sentence.duplicate">forward</md-icon>
                             <md-icon ng-show="sentence.duplicate">warning</md-icon>
-                            <md-tooltip md-direction="left" 
+                            <md-tooltip md-direction="top" 
                                         ng-show="sentence.duplicate">
                                 This sentence already exists.
                             </md-tooltip>
