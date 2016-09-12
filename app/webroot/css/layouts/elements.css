@@ -224,6 +224,10 @@ html[dir="rtl"] #logs .content {
     font-weight: 700;
 }
 
+.comment .md-title a {
+    color: inherit;
+}
+
 .comment .md-subhead {
     max-width: 340px;
     cursor: help;

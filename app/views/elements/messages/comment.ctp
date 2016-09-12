@@ -58,6 +58,11 @@ if ($createdDate == $modifiedDate) {
     );
 }
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
+$userProfileUrl = $html->url(array(
+    'controller' => 'user',
+    'action' => 'profile',
+    $username
+));
 ?>
 <? if ($sentence) { ?>
     <div class="comment sentence" md-whiteframe="2"
@@ -83,10 +88,14 @@ $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>
-            <img class="md-user-avatar" src="<?= $avatarUrl ?>"/>
+            <a href="<?= $userProfileUrl ?>">
+                <img class="md-user-avatar" src="<?= $avatarUrl ?>"/>
+            </a>
         </md-card-avatar>
         <md-card-header-text>
-            <span class="md-title"><?= $username ?></span>
+            <span class="md-title">
+                <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+            </span>
             <span class="md-subhead ellipsis" title="<?= $fullDateLabel ?>">
                 <?= $dateLabel ?>
             </span>
