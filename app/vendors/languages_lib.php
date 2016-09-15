@@ -544,6 +544,7 @@ class LanguagesLib
                 'rue' => __d('languages', 'Rusyn', true),
                 'tah' => __d('languages', 'Tahitian', true),
                 'tly' => __d('languages', 'Talysh', true),
+                'swg' => __d('languages', 'Swabian', true),
             );
         }
         return $languages;
