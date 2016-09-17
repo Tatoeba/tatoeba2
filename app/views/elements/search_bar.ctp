@@ -30,7 +30,7 @@ if (isset($this->params['lang'])) {
 }
 ?>
 
-<md-toolbar class="search_bar md-whiteframe-1dp md-primary" ng-cloak>
+<md-toolbar class="search_bar md-whiteframe-1dp md-primary">
 <?php
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';

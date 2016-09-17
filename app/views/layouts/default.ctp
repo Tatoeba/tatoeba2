@@ -58,7 +58,7 @@
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
 </head>
-<body ng-app="app">
+<body ng-app="app" ng-cloak>
     <div id="audioPlayer"></div>
     
     <!--  TOP  -->
