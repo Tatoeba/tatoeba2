@@ -58,7 +58,7 @@ $replyUrl = $html->url(array(
     'action' => 'show',
     $sentenceId.'#comment-'.$commentId
 ));
-if ($createdDate == $modifiedDate) {
+if (empty($modifiedDate) || $createdDate == $modifiedDate) {
     $dateLabel = $date->ago($createdDate);
     $fullDateLabel = $createdDate;
 } else {
