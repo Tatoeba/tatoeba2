@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-11 18:53+0000\n"
+"POT-Creation-Date: 2016-09-18 18:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgid "mark as unread"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L431
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L471
 msgid "reply"
 msgstr ""
@@ -1087,21 +1087,29 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L15
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L534
 msgid "sentence deleted"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L73
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L87
+msgid "Sentence {number} — belongs to {username}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L89
+msgid "Sentence {number}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L142
 msgid "permalink"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/messages/comment.ctp#L170
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L551
 msgid "The content of this message goes against <a href=\"{}\">our rules</a> and was therefore hidden. It is displayed only to admins and to the author of the message."
 msgstr ""
