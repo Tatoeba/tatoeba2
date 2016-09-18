@@ -234,9 +234,14 @@ html[dir="rtl"] #logs .content {
 }
 
 .comment.sentence {
-    background: #f5f5f5;
+    background: #fafafa;
     padding: 10px 16px;
-    margin-bottom: -39px;
+    margin-bottom: -38px;
+}
+
+.comment.sentence .info {
+    font-size: 14px;
+    margin: 0 10px;
 }
 
 .comment.sentence .lang {
@@ -245,7 +250,7 @@ html[dir="rtl"] #logs .content {
 }
 
 .comment.sentence .text {
-    margin: 0 10px;
+    margin: 5px 10px;
     text-align: left;
 }
 
@@ -836,7 +841,7 @@ md-icon.disabled.material-icons {
     padding: 4px 0px;
 }
 
-.sentence:hover {
+.sentences_set .sentence:hover {
     background: #f1f1f1;
 }
 

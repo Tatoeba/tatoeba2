@@ -8,10 +8,30 @@ $authorId = $comment['SentenceComment']['user_id'];
 $commentText = $comment['SentenceComment']['text'];
 $commentHidden = $comment['SentenceComment']['hidden'];
 $sentence = null;
+$sentenceOwnerLink = null;
 if (isset($comment['Sentence'])) {
     $sentence = $comment['Sentence'];
 }
+if ($sentence && isset($sentence['User']['username'])) {
+    $sentenceOwner = $sentence['User']['username'];
+    $sentenceOwnerLink = $html->link(
+        $sentenceOwner,
+        array(
+            'controller' => 'user',
+            'action' => 'profile',
+            $sentenceOwner
+        )
+    );
+}
 $sentenceId = $comment['SentenceComment']['sentence_id'];
+$sentenceLink = $html->link(
+    '#'.$sentenceId,
+    array(
+        'controller' => 'sentences',
+        'action' => 'show',
+        $sentenceId
+    )
+);
 $sentenceText = '<em>'.__('sentence deleted', true).'</em>';
 if (isset($sentence['text'])) {
     $sentenceText = $sentence['text'];
@@ -38,7 +58,7 @@ $replyUrl = $html->url(array(
     'action' => 'show',
     $sentenceId.'#comment-'.$commentId
 ));
-if ($createdDate == $modifiedDate) {
+if (empty($modifiedDate) || $createdDate == $modifiedDate) {
     $dateLabel = $date->ago($createdDate);
     $fullDateLabel = $createdDate;
 } else {
@@ -63,26 +83,42 @@ $userProfileUrl = $html->url(array(
     'action' => 'profile',
     $username
 ));
+if ($sentenceOwnerLink) {
+    $sentenceInfoLabel = __('Sentence {number} — belongs to {username}', true);
+} else {
+    $sentenceInfoLabel = __('Sentence {number}', true);
+}
+
 ?>
 <? if ($sentence) { ?>
-    <div class="comment sentence" md-whiteframe="2"
-         layout="row" layout-align="start center">
-        <div class="text" dir="<?= $langDir ?>" flex>
-            <?= $sentenceText ?>
+    <div class="comment sentence" md-whiteframe="2">
+        <div class="info">
+            <?= format(
+                $sentenceInfoLabel,
+                array(
+                    'number' => $sentenceLink,
+                    'username' => $sentenceOwnerLink
+                )
+            ); ?>
         </div>
-        <?php
-        echo $languages->icon(
-            $sentenceLang,
-            array(
-                'width' => 30,
-                'height' => 20,
-                'class' => 'lang'
-            )
-        );
-        ?>
-        <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
-            <md-icon>info</md-icon>
-        </md-button>
+        <div layout="row" layout-align="start center">
+            <div class="text" dir="<?= $langDir ?>" flex>
+                <?= $sentenceText ?>
+            </div>
+            <?php
+            echo $languages->icon(
+                $sentenceLang,
+                array(
+                    'width' => 30,
+                    'height' => 20,
+                    'class' => 'lang'
+                )
+            );
+            ?>
+            <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+                <md-icon>info</md-icon>
+            </md-button>
+        </div>
     </div>
 <? } ?>
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
