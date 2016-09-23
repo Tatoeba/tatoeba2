@@ -1157,7 +1157,7 @@ class Sentence extends AppModel
     {
         $sentence = $this->findById($id);
 
-        if ($sentence['Sentence']['hasaudio'] === 'yes') {
+        if ($sentence['Sentence']['hasaudio'] !== 'no') {
             return true;
         }
 
