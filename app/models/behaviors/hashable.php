@@ -35,7 +35,9 @@ class HashableBehavior extends ModelBehavior
      */
     public function makeHash($model, $lang, $text)
     {
-        return murmurhash3($lang.$text);
+        $hash = murmurhash3_int($lang.$text);
+
+        return base_convert(sprintf("%u\n", $hash), 10, 32);
     }
 
     /**
