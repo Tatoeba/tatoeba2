@@ -987,18 +987,22 @@ class Sentence extends AppModel
      */
     public function getTotalNumberOfSentencesWithAudio()
     {
-        $results = $this->query(
-            "SELECT lang, COUNT(*) total FROM sentences AS `Sentence`
-              WHERE hasaudio IN ('shtooka', 'from_users')
-              GROUP BY lang ORDER BY total DESC;"
-        );
-
-        $stats = array();
-        foreach ($results as $result) {
-            $stats[] = array(
-                'lang' => $result['Sentence']['lang'],
-                'total' => $result[0]['total']
+        $key = 'audio_stats';
+        $stats = Cache::read($key);
+        if ($stats === false) {
+            $results = $this->query(
+                "SELECT lang, COUNT(*) total FROM sentences AS `Sentence`
+                  WHERE hasaudio IN ('shtooka', 'from_users')
+                  GROUP BY lang ORDER BY total DESC;"
             );
+            $stats = array();
+            foreach ($results as $result) {
+                $stats[] = array(
+                    'lang' => $result['Sentence']['lang'],
+                    'total' => $result[0]['total']
+                );
+            }
+            Cache::write($key, $stats);
         }
 
         return $stats;
