@@ -14,5 +14,7 @@ CREATE TABLE `sentences_sentences_lists` (
   `sentence_id` int(11) NOT NULL,
   `created` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `list_id` (`sentences_list_id`,`sentence_id`)
+  UNIQUE KEY `list_id` (`sentences_list_id`,`sentence_id`),
+  KEY `sentences_list_id` (`sentences_list_id`),
+  KEY `sentence_id` (`sentence_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
