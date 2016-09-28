@@ -63,7 +63,7 @@ $selectedLanguage = $session->read('random_lang_selected');
 
 <div id="main_content">
     <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
-        <div class="section">
+        <div class="module">
             <?php echo $this->element('random_sentence_header'); ?>
             <div class="random_sentences_set">
                 <md-progress-circular md-mode="indeterminate" class="block-loader" id="random-progress" style="display: none;"></md-progress-circular>
@@ -74,13 +74,11 @@ $selectedLanguage = $session->read('random_lang_selected');
                     $translations = $random['Translation'];
                     $sentenceOwner = $random['User'];
 
-                    echo $this->element(
-                        'sentences/sentence_and_translations',
-                        array(
-                            'sentence' => $sentence,
-                            'translations' => $translations,
-                            'user' => $sentenceOwner
-                        )
+                    $sentences->displaySentencesGroup(
+                        $sentence,
+                        $transcrs,
+                        $translations,
+                        $sentenceOwner
                     );
                     ?>
                 </div>

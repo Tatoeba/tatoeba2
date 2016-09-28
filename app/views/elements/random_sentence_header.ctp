@@ -34,34 +34,51 @@ if ($selectedLanguage == null) {
     $selectedLanguage == 'und';
 }
 ?>
-<div layout="row" layout-align="start center">
-    <h2 layout="row" layout-align="start center" flex>
-        <?php __('Random sentence'); ?>
-        <? if ($session->read('Auth.User.id')) {
-            $showMoreUrl = $html->url(array(
-                'controller' => 'sentences',
-                'action' => 'several_random_sentences'
-            ));
-            ?>
-            <md-button class="md-icon-button" href="<?= $showMoreUrl ?>">
-                <md-icon>more_horiz</md-icon>
-            </md-button>
-        <? } ?>
-    </h2>
-    <?php
-    echo $form->select(
-        "randomLangChoice",
-        $langArray,
-        $selectedLanguage,
-        array(
-            'class' => 'language-selector',
-            "empty" => false
-        ),
-        false
-    );
-    ?>
-    <md-button class="md-icon-button" id="showRandom" onclick="return false;">
-        <md-icon>refresh</md-icon>
-    </md-button>
-</div>
 
+<h2>
+    <?php __('Random sentence'); ?>
+    <span>
+        <?php
+        echo $form->select(
+            "randomLangChoice",
+            $langArray,
+            $selectedLanguage,
+            array(
+                'class' => 'language-selector',
+                "empty" => false
+            ),
+            false
+        );
+        echo ' ';
+        echo $html->link(
+            __('show another ', true),
+            array(),
+            array(
+                "id" => "showRandom",
+                "class" => "titleAnnexeLink",
+                "onclick" => "return false;"
+            )
+        );
+        ?>
+    </span>
+    <?php
+    if ($session->read('Auth.User.id')) {
+        ?>
+        <span>
+            <?php
+             echo $html->link(
+                 __('show more...', true),
+                 array(
+                     "controller" => "sentences",
+                     "action" => "several_random_sentences"
+                 ),
+                 array(
+                     "class" => "titleAnnexeLink"
+                 )
+             );
+             ?>
+        </span>
+    <?php
+    }
+    ?>
+</h2>
