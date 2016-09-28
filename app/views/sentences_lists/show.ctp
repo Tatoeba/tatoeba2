@@ -107,7 +107,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section">
     <?php
     $class = '';
     if ($belongsToUser) {
@@ -158,8 +158,24 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
-    foreach ($sentencesInList as $sentence) {
-        $lists->displaySentence($sentence['Sentence'], $canRemoveSentence);
+    if (CurrentUser::isMember()) {
+        foreach ($sentencesInList as $sentence) {
+            $lists->displaySentence($sentence['Sentence'], $canRemoveSentence);
+        }
+    } else {
+        foreach ($sentencesInList as $sentence) {
+            $translations = isset($sentence['Sentence']['Translation']) ?
+                $sentence['Sentence']['Translation'] :
+                array();
+            echo $this->element(
+                'sentences/sentence_and_translations',
+                array(
+                    'sentence' => $sentence['Sentence'],
+                    'translations' => $translations,
+                    'user' => $sentence['Sentence']['User']
+                )
+            );
+        }
     }
     ?>
     </div>

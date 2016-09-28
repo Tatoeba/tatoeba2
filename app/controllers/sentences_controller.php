@@ -827,10 +827,15 @@ class SentencesController extends AppController
         $search_disabled = !Configure::read('Search.enabled');
         if (!$search_disabled) {
             $model = 'Sentence';
+            if (CurrentUser::isMember()) {
+                $contain = $this->Sentence->contain();
+            } else {
+                $contain = $this->Sentence->minimalContain();
+            }
             $pagination = array(
                 'Sentence' => array(
                     'fields' => $this->Sentence->fields(),
-                    'contain' => $this->Sentence->contain(),
+                    'contain' => $contain,
                     'limit' => CurrentUser::getSetting('sentences_per_page'),
                     'sphinx' => $sphinx,
                     'search' => $query

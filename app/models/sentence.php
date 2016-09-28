@@ -555,11 +555,28 @@ class Sentence extends AppModel
 
     /**
      * Returns the appropriate value for the 'contain' parameter
+     * for the most basic display of the sentence groups.
+     */
+    public function minimalContain() {
+        return array(
+            'User' => array(
+                'fields' => array('id', 'username', 'group_id', 'level')
+            ),
+            'Translation' => array(),
+        );
+    }
+
+    /**
+     * Returns the appropriate value for the 'contain' parameter
      * of typical a pagination of sentences.
      */
     public function paginateContain()
     {
-        $params = $this->contain();
+        if (CurrentUser::isMember()) {
+            $params = $this->contain();
+        } else {
+            $params = $this->minimalContain();
+        }
         $params['fields'] = $this->fields();
         return $params;
     }
