@@ -53,7 +53,7 @@ class TagsHelper extends AppHelper
      *
      * @return void
      */
-    public function displayTagsModule($tagsArray, $sentenceId = null)
+    public function displayTagsModule($tagsArray, $sentenceId = null, $sentenceLang = null)
     {
         $this->Javascript->link(JS_PATH . 'autocompletion.js', false);
         ?>
@@ -72,7 +72,7 @@ class TagsHelper extends AppHelper
                     $date = $tagArray['TagsSentences']['added_time'];
 
                     $this->displayTag(
-                        $tagName, $tagId, $sentenceId, $userId, $username, $date
+                        $tagName, $tagId, $sentenceId, $userId, $username, $date, $sentenceLang
                     );
 
                 }
@@ -102,14 +102,14 @@ class TagsHelper extends AppHelper
      * @param null $date
      */
     public function displayTag(
-        $tagName, $tagId, $sentenceId, $userId, $username = null, $date = null
+        $tagName, $tagId, $sentenceId, $userId, $username = null, $date = null, $sentenceLang = null 
     ) {
         ?>
         <span class="tag">
         <?php
 
         $this->displayTagLink(
-            $tagName, $tagId, $username, $date
+            $tagName, $tagId, $username, $date, $sentenceLang
         );
 
         if (CurrentUser::canRemoveTagFromSentence($userId)) {
@@ -126,7 +126,7 @@ class TagsHelper extends AppHelper
      *
      */
     public function displayTagLink(
-        $tagName, $tagId, $username = null, $date = null
+        $tagName, $tagId, $username = null, $date = null, $sentenceLang = null 
     ) {
         $options = array(
             "class" => "tagName",
@@ -144,7 +144,7 @@ class TagsHelper extends AppHelper
             array(
                 "controller" => "tags",
                 "action" => "show_sentences_with_tag",
-                $tagId
+                $tagId, $sentenceLang
             ),
             $options
         );
