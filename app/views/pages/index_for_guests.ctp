@@ -122,22 +122,22 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
 </div>
 <div id="main_content">
     <?php if(!isset($searchProblem)) { ?>
-    <div class="module">
-        <?php echo $this->element('random_sentence_header'); ?>
+    <div class="section">
+        <h2><? __('Random sentence'); ?></h2>
         <div class="random_sentences_set">
-            <md-progress-circular md-mode="indeterminate" class="block-loader" id="random-progress" style="display: none;"></md-progress-circular>
             <div id="random_sentence_display">
                 <?php
                 $sentence = $random['Sentence'];
-                $transcrs = $random['Transcription'];
                 $translations = $random['Translation'];
                 $sentenceOwner = $random['User'];
 
-                $sentences->displaySentencesGroup(
-                    $sentence,
-                    $transcrs,
-                    $translations,
-                    $sentenceOwner
+                echo $this->element(
+                    'sentences/sentence_and_translations',
+                    array(
+                        'sentence' => $sentence,
+                        'translations' => $translations,
+                        'user' => $sentenceOwner
+                    )
                 );
                 ?>
             </div>

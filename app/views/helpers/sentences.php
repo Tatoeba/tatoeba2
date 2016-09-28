@@ -137,7 +137,7 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    private function segregateTranslations($translations) {
+    public function segregateTranslations($translations) {
         $result = array(0 => array(), 1 => array());
         foreach ($translations as $translation) {
             if (isset($translation['Translation'])) {
