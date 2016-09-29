@@ -101,7 +101,7 @@ $navigation->displaySentenceNavigation(
 
     <?php 
     if (isset($sentence)){
-        $tags->displayTagsModule($tagsArray, $sentenceId);
+        $tags->displayTagsModule($tagsArray, $sentenceId, $sentenceLang);
 
         $lists->displayListsModule($listsArray);
 
