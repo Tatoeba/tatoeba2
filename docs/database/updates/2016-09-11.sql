@@ -1,5 +1,7 @@
 ALTER table `sentences` ADD COLUMN `hash` BINARY(16) NOT NULL;
 
+source docs/database/procedures/murmur_hash_v3.sql;
+
 UPDATE sentences SET hash=LOWER(CONV(murmur_hash_v3(CONCAT(lang, text), 0), 10, 32));
 
 # Must update users_vocabulary before updating the vocabulary table!
