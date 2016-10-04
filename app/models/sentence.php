@@ -588,6 +588,11 @@ class Sentence extends AppModel
 
             $sql = "SELECT COUNT(*) AS `count` FROM `sentences` AS `Sentence`
                     WHERE `Sentence`.`lang` = '{$lang}'";
+        } else if (isset($conditions['Sentence.user_id'])) {
+            $id = $conditions['Sentence.user_id'];
+
+            $sql = "SELECT COUNT(*) AS `count` FROM `sentences` AS `Sentence`
+                    WHERE `Sentence`.`user_id` = '{$id}'";
         }
 
         $this->recursive = $recursive;
