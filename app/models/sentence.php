@@ -565,6 +565,39 @@ class Sentence extends AppModel
     }
 
     /**
+     * Override standard paginateCount method to eliminate unnecessary joins.
+     *
+     * @param  array   $conditions
+     * @param  integer $recursive
+     * @param  array   $extra
+     *
+     * @return integer
+     */
+    public function paginateCount(
+        $conditions = null,
+        $recursive = 0,
+        $extra = array()
+    ) {
+        if (isset($conditions['hasaudio'])) {
+            $sql = "SELECT COUNT(*) AS `count` FROM `sentences` AS `Sentence`
+                    WHERE `Sentence`.`hasaudio` != 'no'";
+        } else if (isset($conditions['Sentence.lang'])) {
+            $lang = $conditions['Sentence.lang'];
+
+            $lang = Sanitize::paranoid($lang);
+
+            $sql = "SELECT COUNT(*) AS `count` FROM `sentences` AS `Sentence`
+                    WHERE `Sentence`.`lang` = '{$lang}'";
+        }
+
+        $this->recursive = $recursive;
+
+        $results = $this->query($sql);
+
+        return $results[0][0]['count'];
+    }
+
+    /**
      * Get all the informations needed to display a sentences in show section.
      *
      * @param int $id Id of the sentence asked.
