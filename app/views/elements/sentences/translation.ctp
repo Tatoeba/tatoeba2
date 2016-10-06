@@ -8,9 +8,10 @@ $translationUrl = $this->Html->url(array(
     'action' => 'show',
     $translation['id']
 ));
+$notReliable = $translation['correctness'] == -1;
 ?>
 <div layout="row" layout-align="start center" <?= $showExtra ?>
-     class="translation">
+     class="translation <?= $notReliable ? 'not-reliable' : '' ?>">
     <md-icon class="chevron">chevron_right</md-icon>
     <div class="lang">
         <?
@@ -26,6 +27,12 @@ $translationUrl = $this->Html->url(array(
     <div class="text" flex>
         <?= $translation['text'] ?>
     </div>
+    <? if ($notReliable) { ?>
+        <md-icon class="md-warn">warning</md-icon>
+        <md-tooltip md-direction="top">
+            <? __('This sentence is not reliable.') ?>
+        </md-tooltip>
+    <? } ?>
     <md-button class="md-icon-button"
                href="<?= $translationUrl ?>">
         <md-icon>info</md-icon>

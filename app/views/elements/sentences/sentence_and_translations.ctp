@@ -27,6 +27,7 @@ $sentenceUrl = $html->url(array(
     'action' => 'show',
     $sentence['id']
 ));
+$notReliable = $sentence['correctness'] == -1;
 ?>
 <div class="sentence-and-translations" md-whiteframe="1" ng-cloak>
     <div layout="column">
@@ -41,7 +42,8 @@ $sentenceUrl = $html->url(array(
             );
             ?>
         </md-subheader>
-        <div class="sentence" layout="row" layout-align="start center">
+        <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
+             layout="row" layout-align="start center">
             <div class="lang">
                 <?
                 echo $languages->icon(
@@ -56,6 +58,12 @@ $sentenceUrl = $html->url(array(
             <div class="text" flex>
                 <?= $sentence['text'] ?>
             </div>
+            <? if ($notReliable) { ?>
+                <md-icon class="md-warn">warning</md-icon>
+                <md-tooltip md-direction="top">
+                    <? __('This sentence is not reliable.') ?>
+                </md-tooltip>
+            <? } ?>
             <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
                 <md-icon>info</md-icon>
             </md-button>
