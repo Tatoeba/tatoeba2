@@ -1134,10 +1134,6 @@ class Sentence extends AppModel
 
         $hash = $this->makeHash($lang, $text);
 
-        if ($duplicate = $this->findByBinary($hash, 'hash')) {
-            return false;
-        }
-
         $data['Sentence']['text'] = $text;
         $data['Sentence']['hash'] = $hash;
 
