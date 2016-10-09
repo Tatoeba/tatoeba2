@@ -565,6 +565,29 @@ class Sentence extends AppModel
     }
 
     /**
+     * Override standard paginateCount method to eliminate unnecessary joins.
+     *
+     * @param  array   $conditions
+     * @param  integer $recursive
+     * @param  array   $extra
+     *
+     * @return integer
+     */
+    public function paginateCount(
+        $conditions = null,
+        $recursive = 0,
+        $extra = array()
+    ) {
+        return $this->find(
+            'count',
+            array(
+                'contain' => [],
+                'conditions' => $conditions
+            )
+        );
+    }
+
+    /**
      * Get all the informations needed to display a sentences in show section.
      *
      * @param int $id Id of the sentence asked.
