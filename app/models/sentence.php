@@ -764,6 +764,8 @@ class Sentence extends AppModel
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
+        $text = $this->clean($text);
+
         $hash = $this->makeHash($lang, $text);
 
         if ($sentence = $this->findByBinary($hash, 'hash')) {
@@ -778,7 +780,7 @@ class Sentence extends AppModel
 
         $this->duplicate = false;
 
-        $data['Sentence']['text'] = trim($text);
+        $data['Sentence']['text'] = $text;
         $data['Sentence']['user_id'] = $userId;
         $data['Sentence']['correctness'] = $correctness;
         $data['Sentence']['hash'] = $hash;
