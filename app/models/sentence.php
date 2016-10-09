@@ -578,28 +578,13 @@ class Sentence extends AppModel
         $recursive = 0,
         $extra = array()
     ) {
-        if (isset($conditions['hasaudio'])) {
-            $sql = "SELECT COUNT(*) AS `count` FROM `sentences` AS `Sentence`
-                    WHERE `Sentence`.`hasaudio` != 'no'";
-        } else if (isset($conditions['Sentence.lang'])) {
-            $lang = $conditions['Sentence.lang'];
-
-            $lang = Sanitize::paranoid($lang);
-
-            $sql = "SELECT COUNT(*) AS `count` FROM `sentences` AS `Sentence`
-                    WHERE `Sentence`.`lang` = '{$lang}'";
-        } else if (isset($conditions['Sentence.user_id'])) {
-            $id = $conditions['Sentence.user_id'];
-
-            $sql = "SELECT COUNT(*) AS `count` FROM `sentences` AS `Sentence`
-                    WHERE `Sentence`.`user_id` = '{$id}'";
-        }
-
-        $this->recursive = $recursive;
-
-        $results = $this->query($sql);
-
-        return $results[0][0]['count'];
+        return $this->find(
+            'count',
+            array(
+                'contain' => [],
+                'conditions' => $conditions
+            )
+        );
     }
 
     /**
