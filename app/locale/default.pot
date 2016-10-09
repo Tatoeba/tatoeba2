@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-18 18:54+0000\n"
+"POT-Creation-Date: 2016-10-09 14:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,47 +145,47 @@ msgstr ""
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L568
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L599
 msgid "“owned by a self-identified native”, because “sentence language” is set to “any”"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L639
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L670
 msgid "“translation is orphan”, because “translation owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L648
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L679
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L689
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L720
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L698
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L729
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L734
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L765
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L772
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L803
 msgid "“owned by a self-identified native”, because the criterion “owned by: {username}” is set whereas he or she is not a self-identified native in the language you're searching into"
 msgstr ""
 
@@ -737,7 +737,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/advanced_search_form.ctp#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L377
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L64
 msgid "Language:"
 msgstr ""
@@ -1489,14 +1489,14 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L199
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L407
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L729
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L744
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L128
 msgid "Cancel"
 msgstr ""
 
@@ -1794,7 +1794,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L500
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L382
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L728
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L743
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/transcriptions.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L134
@@ -2136,21 +2136,25 @@ msgstr ""
 msgid "Copy sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L108
+msgid "Your sentence was not added because the following already exists."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L217
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L250
 msgid "Fewer translations"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L342
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L357
 msgid "Translation:"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L413
 msgid "Submit translation"
 msgstr ""
 
@@ -2995,7 +2999,7 @@ msgid "Add new sentences"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L116
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L120
 msgid "Sentence"
 msgstr ""
 
@@ -3986,7 +3990,11 @@ msgstr ""
 msgid "Only vocabulary items that have less than 10 sentences are displayed here."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L105
+msgid "This sentence already exists."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L132
 msgid "Submit"
 msgstr ""
 
