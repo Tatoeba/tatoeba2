@@ -565,6 +565,40 @@ class Sentence extends AppModel
     }
 
     /**
+     * Override standard paginateCount method to eliminate unnecessary joins.
+     * If $conditions is empty, as in Sphinx search, return default behavior.
+     *
+     * @param  array   $conditions
+     * @param  integer $recursive
+     * @param  array   $extra
+     *
+     * @return integer
+     */
+    public function paginateCount(
+        $conditions = null,
+        $recursive = 0,
+        $extra = array()
+    ) {
+        if (empty($conditions)) {
+            $parameters = compact('conditions');
+
+            if ($recursive != $this->recursive) {
+                $parameters['recursive'] = $recursive;
+            }
+
+            return $this->find('count', array_merge($parameters, $extra));
+        }
+
+        return $this->find(
+            'count',
+            array(
+                'contain' => [],
+                'conditions' => $conditions
+            )
+        );
+    }
+
+    /**
      * Get all the informations needed to display a sentences in show section.
      *
      * @param int $id Id of the sentence asked.
