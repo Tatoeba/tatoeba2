@@ -1,7 +1,7 @@
 <?php
 $showExtra = '';
 if ($isExtra) {
-    $showExtra = 'ng-if="sentence.showExtra['.$sentenceId.']"';
+    $showExtra = 'ng-if="vm.isExpanded"';
 }
 $translationUrl = $this->Html->url(array(
     'controller' => 'sentences',

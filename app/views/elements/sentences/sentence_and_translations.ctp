@@ -1,4 +1,6 @@
 <?php
+$javascript->link('/js/directives/sentence-and-translations.dir.js', false);
+
 list($directTranslations, $indirectTranslations) = $sentences->segregateTranslations(
     $translations
 );
@@ -29,7 +31,7 @@ $sentenceUrl = $html->url(array(
 ));
 $notReliable = $sentence['correctness'] == -1;
 ?>
-<div class="sentence-and-translations" md-whiteframe="1" ng-cloak>
+<div sentence-and-translations class="sentence-and-translations" md-whiteframe="1">
     <div layout="column">
         <md-subheader>
             <?=
@@ -92,7 +94,7 @@ $notReliable = $sentence['correctness'] == -1;
 
     <? if (count($indirectTranslations) > 0) {
         if ($numExtra > 1 && $displayedTranslations >= $maxDisplayed) {
-            $showExtra = 'ng-if="sentence.showExtra['.$sentence['id'].']"';
+            $showExtra = 'ng-if="vm.isExpanded"';
         }
         ?>
         <div layout="column" <?= $showExtra ?> class="indirect translations">
@@ -114,12 +116,9 @@ $notReliable = $sentence['correctness'] == -1;
 
     <? if ($numExtra > 1) { ?>
         <div layout="column">
-            <md-button ng-click="sentence.showExtra[<?= $sentence['id'] ?>]
-                              = !sentence.showExtra[<?= $sentence['id'] ?>]">
-                <md-icon ng-if="!sentence.showExtra[<?= $sentence['id'] ?>]">
-                    expand_more
-                </md-icon>
-                <span ng-if="!sentence.showExtra[<?= $sentence['id'] ?>]">
+            <md-button ng-click="vm.expandOrCollapse()">
+                <md-icon>{{vm.expandableIcon}}</md-icon>
+                <span ng-if="!vm.isExpanded">
                     <?php
                     echo format(__n(
                         'Show 1 more translation',
@@ -129,10 +128,7 @@ $notReliable = $sentence['correctness'] == -1;
                     ), array('number' => $numExtra))
                     ?>
                 </span>
-                <md-icon ng-if="sentence.showExtra[<?= $sentence['id'] ?>]">
-                    expand_less
-                </md-icon>
-                <span ng-if="sentence.showExtra[<?= $sentence['id'] ?>]">
+                <span ng-if="vm.isExpanded">
                     <?php __('Fewer translations') ?>
                 </span>
             </md-button>
