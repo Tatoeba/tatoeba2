@@ -1,4 +1,5 @@
-ALTER table `sentences` ADD COLUMN `hash` BINARY(16) NOT NULL;
+ALTER TABLE `sentences` ADD COLUMN `hash` BINARY(16) NOT NULL;
+ALTER TABLE `sentences` ADD KEY `hash` (`hash`);
 
 source docs/database/procedures/murmur_hash_v3.sql;
 

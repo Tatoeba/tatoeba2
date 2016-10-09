@@ -59,3 +59,5 @@ Whenever a change is made to the database, it is included in a script
 that is added to this folder. The file name is the date when the changes were made.
 This is useful for developers who already have a local Tatoeba and need to update 
 their database.
+
+**Important:** the update scripts must be executed from the Tatoeba root folder.
