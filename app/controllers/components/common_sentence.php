@@ -37,18 +37,14 @@
 
 class CommonSentenceComponent extends Object
 {
-
     public $components = array(
         'LanguageDetection',
         'Cookie'
     );
 
     /**
-     * all the stuff to save a sentence is made here
-     * whatever it is editing / saving a translation etc..
-     *
-     * this function is never called directly and is only here
-     * to factorize :)
+     * Stuff to do when saving a new sentence. This function is never called
+     * directly and is only here to factorize :)
      *
      * @param string $lang        The lang of the sentence to be saved,
      *                            if lang is 'auto' then we will try to
@@ -56,46 +52,49 @@ class CommonSentenceComponent extends Object
      * @param string $text        The sentence text.
      * @param int    $userId      The Id of the user who add/edit this
      *                            sentence.
-     * @param int    $sentenceId  If we edit the sentence, it's the id of
-     *                            the sentence.
-     * @param string $userName
-     * @param int    $correctness
+     * @param string $username    Username of user who added sentence.
+     * @param int    $correctness Correctness level of sentence.
      *
      * @return bool
      */
-    public function wrapper_save_sentence(
+    public function addNewSentence(
         $lang,
         $text,
         $userId,
-        $sentenceId = null,
-        $userName = "",
+        $username = "",
         $correctness = 0
     ) {
         $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
 
-        if ($lang === 'auto') {
-            $lang = $this->LanguageDetection->detectLang(
-                $text,
-                $userName
-            );
-        }
-
-        $sentenceData = array(
-            'id' => $sentenceId,
-            'user_id' => $userId,
-            'text' => $text,
-            'correctness' => $correctness,
-        );
-
-        if (!empty($lang)) {
-            $sentenceData['lang'] = $lang;
-        }
+        $lang = $this->_setLanguage($lang, $text, $username);
 
         $Sentence = ClassRegistry::init('Sentence');
 
-        $isSaved = $Sentence->save($sentenceData);
-
-        return $isSaved;
+        return $Sentence->saveNewSentence($text, $lang, $userId, $correctness);
     }
 
+    /**
+     * Set the language if auto or empty.
+     *
+     * @param string $lang     Language string.
+     * @param string $text     Text given by user.
+     * @param string $username Username.
+     *
+     * @return string
+     */
+    private function _setLanguage($lang, $text, $username)
+    {
+        if ($lang === 'auto') {
+            $lang = $this->LanguageDetection->detectLang(
+                $text,
+                $username
+            );
+        }
+
+        if (empty($lang)) {
+            $lang = null;
+        }
+
+        return $lang;
+    }
 }

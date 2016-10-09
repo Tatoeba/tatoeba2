@@ -45,7 +45,7 @@ App::import('Vendor', 'LanguagesLib');
 class Sentence extends AppModel
 {
     public $name = 'Sentence';
-    public $actsAs = array('Containable', 'Transcriptable');
+    public $actsAs = array('Containable', 'Transcriptable', 'Hashable');
 
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
@@ -506,7 +506,7 @@ class Sentence extends AppModel
             return array_keys($results);
         }
     
-    return 1;
+        return 1;
     }
 
     /**
@@ -742,6 +742,7 @@ class Sentence extends AppModel
             $userId,
             $translationCorrectness
         );
+
         // saving links
         if ($sentenceSaved) {
             $this->Link->add($sentenceId, $this->id, $sentenceLang, $translationLang);
@@ -751,42 +752,57 @@ class Sentence extends AppModel
                                // Never mind the links.
     }
 
-
     /**
      * Add a new sentence in the database
      *
-     * @param string $text   The text of the sentence
-     * @param string $lang   The lang of the sentence
-     * @param int    $userId The id of the user who added this sentence
+     * @param string $text        The text of the sentence.
+     * @param string $lang        The lang of the sentence.
+     * @param int    $userId      The id of the user who added this sentence.
+     * @param int    $correctness Correctness level of sentence.
      *
      * @return bool
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
+        $text = $this->clean($text);
+
+        $hash = $this->makeHash($lang, $text);
+
+        if ($sentence = $this->findByBinary($hash, 'hash')) {
+            $this->id = $sentence['Sentence']['id'];
+
+            $this->duplicate = true;
+
+            return true;
+        }
+
         $this->create();
-        $data['Sentence']['text'] = trim($text);
+
+        $this->duplicate = false;
+
+        $data['Sentence']['text'] = $text;
+        $data['Sentence']['user_id'] = $userId;
+        $data['Sentence']['correctness'] = $correctness;
+        $data['Sentence']['hash'] = $hash;
+
         if (!empty($lang)) {
             $data['Sentence']['lang'] = $lang;
         }
-        $data['Sentence']['user_id'] = $userId;
-        $data['Sentence']['correctness'] = $correctness;
-        $sentenceSaved = $this->save($data);
 
-        return $sentenceSaved;
+        return $this->save($data);
     }
 
     /**
-     * Add a new sentence and a translation in the database
+     * Add a new sentence and a translation in the database.
      *
-     * @param string $sentenceText    The text of the sentence
-     * @param string $sentenceLang    The lang of the sentence
-     * @param string $translationText The text of the translation
-     * @param string $translationLang The lang of the translation
-     * @param int    $userId          The id of the user who added them
+     * @param string $sentenceText    The text of the sentence.
+     * @param string $sentenceLang    The lang of the sentence.
+     * @param string $translationText The text of the translation.
+     * @param string $translationLang The lang of the translation.
+     * @param int    $userId          The id of the user who added them.
      *
      * @return bool
      */
-
     public function saveNewSentenceWithTranslation(
         $sentenceText,
         $sentenceLang,
@@ -811,8 +827,12 @@ class Sentence extends AppModel
         $translationId = $this->id;
         // saving links
         if ($sentenceSaved && $translationSaved) {
-            $this->Link->add($sentenceId, $translationId, 
-                             $sentenceLang, $translationLang);
+            $this->Link->add(
+                $sentenceId,
+                $translationId,
+                $sentenceLang,
+                $translationLang
+            );
         }
     }
 
@@ -1099,6 +1119,51 @@ class Sentence extends AppModel
     {
         $this->id = $sentenceId;
         return $this->saveField('hasaudio', $hasaudio);
+    }
+
+    /**
+     * Edit the sentence.
+     *
+     * @param  int $id      Sentence id.
+     * @param  string $text New sentence text.
+     * @param  string $lang New sentnece lang.
+     *
+     * @return boolean
+     */
+    public function editSentence($id, $text, $lang)
+    {
+        $this->id = $id;
+
+        if ($this->hasAudio($id)) {
+            return false;
+        }
+
+        $hash = $this->makeHash($lang, $text);
+
+        $data['Sentence']['text'] = $text;
+        $data['Sentence']['hash'] = $hash;
+
+        if (!empty($lang)) {
+            $data['Sentence']['lang'] = $lang;
+        }
+        
+        return $this->save($data);
+    }
+
+    /**
+     * Return true if sentence has audio.
+     *
+     * @return boolean
+     */
+    public function hasAudio($id)
+    {
+        $sentence = $this->findById($id);
+
+        if ($sentence['Sentence']['hasaudio'] !== 'no') {
+            return true;
+        }
+
+        return false;
     }
 }
 ?>

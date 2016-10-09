@@ -33,12 +33,12 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-App::import('Vendor', 'murmurhash3');
 
 class Vocabulary extends AppModel
 {
     public $useTable = 'vocabulary';
     public $belongsTo = array('UsersVocabulary', 'Sentence');
+    public $actsAs = array('Hashable');
 
     /**
      * Adds an item into the vocabulary list of current user.
@@ -55,7 +55,7 @@ class Vocabulary extends AppModel
             return null;
         }
         
-        $hash = murmurhash3($lang.$text);
+        $hash = $this->makeHash($lang, $text);
 
         $data = array(
             'id' => $hash,
@@ -63,7 +63,7 @@ class Vocabulary extends AppModel
             'text' => $text
         );
 
-        if ($vocabulary = $this->itemExists($lang, $text)) {
+        if ($vocabulary = $this->findByBinary($hash, 'id')) {
             $numSentences = $this->_updateNumSentences($vocabulary['Vocabulary']);
 
             $data['numSentences'] = $numSentences;
@@ -78,22 +78,6 @@ class Vocabulary extends AppModel
         $this->UsersVocabulary->add($hash, CurrentUser::get('id'));
 
         return $data;
-    }
-
-    /**
-     * Return item if exists, false if it doesn't.
-     *
-     * @param  string $lang Item language.
-     * @param  string $text Item text.
-     *
-     * @return array
-     */
-    public function itemExists($lang, $text)
-    {
-        return $this->find([
-            'lang' => $lang,
-            'text' => $text
-        ]);
     }
 
     /**
