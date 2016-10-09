@@ -105,7 +105,7 @@ class SentencesHelper extends AppHelper
             );
 
             $message = $image.__(
-                'This sentence already exists.',
+                'Your sentence was not added because the following already exists.',
                 true
             );
 

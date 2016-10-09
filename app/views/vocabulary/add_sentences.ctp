@@ -102,7 +102,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                             <md-icon ng-show="sentence.duplicate">warning</md-icon>
                             <md-tooltip md-direction="top" 
                                         ng-show="sentence.duplicate">
-                                This sentence already exists.
+                                <? __('This sentence already exists.') ?>
                             </md-tooltip>
                         </md-button>
                         <div class="text" flex>{{sentence.text}}</div>
