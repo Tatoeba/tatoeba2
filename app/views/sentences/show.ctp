@@ -92,7 +92,7 @@ $navigation->displaySentenceNavigation(
                     'title' => $correctness['UsersSentences']['modified']
                 )
             );
-            if ($correctness['UsersSentences']['dirty'] !== 0) {
+            if ($correctness['UsersSentences']['dirty'] != 0) {
                 echo ' <span class="info">(outdated)</span>';
             }
             echo '</div>';

@@ -71,7 +71,8 @@ class CollectionsController extends AppController
         } else {
             $data = array(
                 'id' => $currentUserSentence['UsersSentences']['id'],
-                'correctness' => $correctness
+                'correctness' => $correctness,
+                'dirty' => 0
             );
         }
 
