@@ -122,4 +122,16 @@ class UsersSentences extends AppModel
 
         return $result;
     }
+
+    /**
+     * Make all sentences with given id dirty.
+     *
+     * @param  int $sentenceId ID of sentence to dirty. Should be sanitized.
+     */
+    public function makeDirty($sentenceId)
+    {       
+        $sql = "UPDATE `users_sentences` SET `dirty` = 1 WHERE `sentence_id` = '{$sentenceId}'";
+
+        $this->query($sql);
+    }
 }

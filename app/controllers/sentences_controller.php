@@ -387,6 +387,8 @@ class SentencesController extends AppController
         $this->layout = null;
 
         if ($isSaved) {
+            $this->UsersSentences->makeDirty($id);
+            
             $this->set('sentence_text', $text);
         } else {
             $this->set('sentence_text', $sentence['Sentence']['text']);
