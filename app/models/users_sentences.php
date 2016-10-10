@@ -107,7 +107,7 @@ class UsersSentences extends AppModel
         $result = $this->find('all',
             array(
                 'fields' => array(
-                    'correctness', 'modified'
+                    'correctness', 'modified', 'dirty'
                 ),
                 'conditions' => array(
                     'sentence_id' => $sentenceId
