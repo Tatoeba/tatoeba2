@@ -45,6 +45,14 @@ class UsersSentences extends AppModel
     );
 
 
+    /**
+     * Get correctness for sentence as set by user.
+     *
+     * @param  int $sentenceId Sentence ID.
+     * @param  int $userId     User ID.
+     * 
+     * @return int
+     */
     public function correctnessForSentence($sentenceId, $userId)
     {
         $result = $this->find(
@@ -63,10 +71,19 @@ class UsersSentences extends AppModel
         }
     }
 
+    /**
+     * Get paginated user_sentneces for user.
+     *
+     * @param  int    $userId      User ID.
+     * @param  int    $correctness Correctness value.
+     * @param  string $lang        Language.
+     *
+     * @return array
+     */
     public function getPaginatedCorpusOf($userId, $correctness = null, $lang = null)
     {
         $conditions = array('UsersSentences.user_id' => $userId);
-        
+
         if (is_int($correctness)) {
             $conditions['UsersSentences.correctness'] = $correctness;
         } elseif ($correctness === 'outdated') {
@@ -88,7 +105,13 @@ class UsersSentences extends AppModel
         );
     }
 
-
+    /**
+     * Get correctness integer from label, if it exists.
+     *
+     * @param  string $label Correctness label used in route.
+     *
+     * @return int|string
+     */
     public function correctnessValueFromLabel($label)
     {
         $values = [
@@ -104,10 +127,16 @@ class UsersSentences extends AppModel
         return $label;
     }
 
-
+    /**
+     * Get correctness data for a sentence.
+     *
+     * @param  int $sentenceId Sentence ID.
+     *
+     * @return array
+     */
     public function getCorrectnessForSentence($sentenceId)
     {
-        $result = $this->find('all',
+        return $this->find('all',
             array(
                 'fields' => array(
                     'correctness', 'modified', 'dirty'
@@ -122,8 +151,6 @@ class UsersSentences extends AppModel
                 )
             )
         );
-
-        return $result;
     }
 
     /**
