@@ -29,7 +29,8 @@ $categories = array(
     'ok' => __('Sentences marked as "OK"', true),
     'unsure' => __('Sentences marked as "unsure"', true),
     'not-ok' => __('Sentences marked as "not OK"', true),
-    'all' => __("All sentences", true)
+    'all' => __("All sentences", true),
+    'outdated' => __("Outdated ratings", true)
 );
 
 if (!is_int($correctness)) {
