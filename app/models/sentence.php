@@ -768,7 +768,9 @@ class Sentence extends AppModel
 
         $hash = $this->makeHash($lang, $text);
 
-        if ($sentence = $this->findByBinary($hash, 'hash')) {
+        $sentence = $this->findByBinary($hash, 'hash');
+
+        if ($sentence && $this->_confirmDuplicate($text, $lang, $sentence)) {
             $this->id = $sentence['Sentence']['id'];
 
             $this->duplicate = true;
@@ -790,6 +792,28 @@ class Sentence extends AppModel
         }
 
         return $this->save($data);
+    }
+
+    /**
+     * Return true if text and lang match sentence text and lang.
+     * 
+     * @param  string $text     New sentence text.
+     * @param  string $lang     New sentence lang.
+     * @param  array  $sentence Existing sentence.
+     *
+     * @return Boolean
+     */
+    private function _confirmDuplicate($text, $lang, $sentence)
+    {
+        $sentenceText = $sentence['Sentence']['text'];
+
+        $sentenceLang = $sentence['Sentence']['lang'];
+
+        if ($sentenceText === $text && $sentenceLang === $lang) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
