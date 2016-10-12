@@ -579,23 +579,10 @@ class Sentence extends AppModel
         $recursive = 0,
         $extra = array()
     ) {
-        if (empty($conditions)) {
-            $parameters = compact('conditions');
+        $parameters = compact('conditions');
+        $extra['contain'] = [];
 
-            if ($recursive != $this->recursive) {
-                $parameters['recursive'] = $recursive;
-            }
-
-            return $this->find('count', array_merge($parameters, $extra));
-        }
-
-        return $this->find(
-            'count',
-            array(
-                'contain' => [],
-                'conditions' => $conditions
-            )
-        );
+        return $this->find('count', array_merge($parameters, $extra));
     }
 
     /**
