@@ -68,7 +68,21 @@ if ($tagExists) {
 
             <div class="sentencesList" id="sentencesList">
                 <?php
-                if (CurrentUser::isMember()) {
+                $useNewDesign = !CurrentUser::isMember()
+                    || CurrentUser::getSetting('use_new_design');
+                if ($useNewDesign) {
+                    foreach ($allSentences as $i=>$item) {
+                        $sentence = $item['Sentence'];
+                        echo $this->element(
+                            'sentences/sentence_and_translations',
+                            array(
+                                'sentence' => $sentence,
+                                'translations' => $sentence['Translation'],
+                                'user' => $sentence['User']
+                            )
+                        );
+                    }
+                } else {
                     foreach ($allSentences as $i=>$sentence) {
                         // this should be done in the controller but this way
                         // we avoid another full loop on the sentence Array
@@ -83,18 +97,6 @@ if ($tagExists) {
                             $sentence['Translation'],
                             $canUserRemove,
                             $tagId
-                        );
-                    }
-                } else {
-                    foreach ($allSentences as $i=>$item) {
-                        $sentence = $item['Sentence'];
-                        echo $this->element(
-                            'sentences/sentence_and_translations',
-                            array(
-                                'sentence' => $sentence,
-                                'translations' => $sentence['Translation'],
-                                'user' => $sentence['User']
-                            )
                         );
                     }
                 }

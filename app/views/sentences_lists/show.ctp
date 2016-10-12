@@ -158,11 +158,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
-    if (CurrentUser::isMember()) {
-        foreach ($sentencesInList as $sentence) {
-            $lists->displaySentence($sentence['Sentence'], $canRemoveSentence);
-        }
-    } else {
+    if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
         foreach ($sentencesInList as $sentence) {
             $translations = isset($sentence['Sentence']['Translation']) ?
                 $sentence['Sentence']['Translation'] :
@@ -175,6 +171,10 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
                     'user' => $sentence['Sentence']['User']
                 )
             );
+        }
+    } else {
+        foreach ($sentencesInList as $sentence) {
+            $lists->displaySentence($sentence['Sentence'], $canRemoveSentence);
         }
     }
     ?>

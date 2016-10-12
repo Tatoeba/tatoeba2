@@ -135,20 +135,7 @@ if ($search_disabled) {
 
     $pagination->display();
 
-    if (CurrentUser::isMember()) {
-        foreach ($results as $sentence) {
-            $translations = isset($sentence['Translation']) ?
-                $sentence['Translation'] :
-                array();
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $translations,
-                $sentence['User'],
-                array('langFilter' => $to)
-            );
-        }
-    } else {
+    if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
         foreach ($results as $sentence) {
             $translations = isset($sentence['Translation']) ?
                 $sentence['Translation'] :
@@ -160,6 +147,19 @@ if ($search_disabled) {
                     'translations' => $translations,
                     'user' => $sentence['User']
                 )
+            );
+        }
+    } else {
+        foreach ($results as $sentence) {
+            $translations = isset($sentence['Translation']) ?
+                $sentence['Translation'] :
+                array();
+            $sentences->displaySentencesGroup(
+                $sentence['Sentence'],
+                $sentence['Transcription'],
+                $translations,
+                $sentence['User'],
+                array('langFilter' => $to)
             );
         }
     }

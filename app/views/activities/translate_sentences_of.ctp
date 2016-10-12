@@ -66,16 +66,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         );
         $pagination->display($paginationUrl);
 
-        if (CurrentUser::isMember()) {
-            foreach ($results as $sentence) {
-                $sentences->displaySentencesGroup(
-                    $sentence['Sentence'],
-                    $sentence['Transcription'],
-                    $sentence['Translation'],
-                    $sentence['User']
-                );
-            }
-        } else {
+        if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
             foreach ($results as $sentence) {
                 echo $this->element(
                     'sentences/sentence_and_translations',
@@ -84,6 +75,15 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                         'translations' => $sentence['Translation'],
                         'user' => $sentence['User']
                     )
+                );
+            }
+        } else {
+            foreach ($results as $sentence) {
+                $sentences->displaySentencesGroup(
+                    $sentence['Sentence'],
+                    $sentence['Transcription'],
+                    $sentence['Translation'],
+                    $sentence['User']
                 );
             }
         }
