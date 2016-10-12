@@ -33,21 +33,12 @@ $categories = array(
     'outdated' => __("Outdated ratings", true)
 );
 
-if (!is_int($correctness)) {
-    $category = 'all';
+if ($correctnessLabel) {
+    $category = $correctnessLabel;
 } else {
-    switch($correctness) {
-        case -1:
-            $category = 'not-ok';
-            break;
-        case 0:
-            $category = 'unsure';
-            break;
-        default:
-            $category = 'ok';
-            break;
-    }
+    $category = 'all';
 }
+
 
 if ($userExists) {    
     $title = format(

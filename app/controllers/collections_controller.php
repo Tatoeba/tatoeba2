@@ -115,14 +115,17 @@ class CollectionsController extends AppController
         $correctness = $this->UsersSentences->correctnessValueFromLabel(
             $correctnessLabel
         );
+
         $backLink = $this->referer(array('action'=>'index'), true);
         $this->set('backLink', $backLink);
         $this->set('username', $username);
         $this->set('correctness', $correctness);
+
         if(empty($userId)) {
             $this->set("userExists", false);
             return;
         }
+        
         $this->paginate = $this->UsersSentences->getPaginatedCorpusOf(
             $userId, $correctness, $lang
         );

@@ -66,14 +66,18 @@ class UsersSentences extends AppModel
     public function getPaginatedCorpusOf($userId, $correctness = null, $lang = null)
     {
         $conditions = array('UsersSentences.user_id' => $userId);
+        
         if (is_int($correctness)) {
             $conditions['UsersSentences.correctness'] = $correctness;
+        } elseif ($correctness === 'outdated') {
+            $conditions['UsersSentences.dirty'] = true;
         }
+
         if (!empty($lang)) {
             $conditions['lang'] = $lang;
         }
 
-        $result = array(
+        return array(
             'conditions' => $conditions,
             'fields' => array('id', 'sentence_id', 'correctness', 'modified'),
             'contain' => array(
@@ -82,23 +86,22 @@ class UsersSentences extends AppModel
             'limit' => 50,
             'order' => 'modified DESC'
         );
-
-        return $result;
     }
 
 
     public function correctnessValueFromLabel($label)
     {
-        switch ($label) {
-            case "not-ok":
-                return -1;
-            case "unsure":
-                return 0;
-            case "ok":
-                return 1;
-            default:
-                return null;
+        $values = [
+            'not-ok' => -1,
+            'unsure' => 0,
+            'ok' => 1
+        ];
+
+        if (in_array($label, array_keys($values))) {
+            return $values[$label];
         }
+
+        return $label;
     }
 
 
