@@ -39,7 +39,6 @@ class CollectionsController extends AppController
     public $uses = array('UsersSentences', 'User');
     public $helpers = array('CommonModules');
 
-
     public function beforeFilter()
     {
         parent::beforeFilter();
@@ -49,7 +48,12 @@ class CollectionsController extends AppController
         );
     }
 
-
+    /**
+     * Add a sentence to the user's sentence collection.
+     *
+     * @param int $sentenceId  Sentence ID.
+     * @param int $correctness Correctness value.
+     */
     public function add_sentence($sentenceId, $correctness)
     {
         $currentUserSentence = $this->UsersSentences->find(
@@ -83,7 +87,11 @@ class CollectionsController extends AppController
         $this->render('add_delete');
     }
 
-
+    /**
+     * Delete a sentence from the user's sentence collection.
+     *
+     * @param int $sentenceId Sentence ID
+     */
     public function delete_sentence($sentenceId)
     {
         $data = $this->UsersSentences->find(
@@ -106,7 +114,15 @@ class CollectionsController extends AppController
         $this->render('add_delete');
     }
 
-
+    /**
+     * Get sentences of user for given correctness level.
+     *
+     * @param  string $username         Username of user to get sentences for.
+     * @param  string $correctnessLabel Label for correctness value.
+     * @param  string $lang             Language.
+     *
+     * @return void
+     */
     public function of($username, $correctnessLabel = null, $lang = null)
     {
         $this->helpers[] = 'Pagination';
@@ -125,7 +141,7 @@ class CollectionsController extends AppController
             $this->set("userExists", false);
             return;
         }
-        
+
         $this->paginate = $this->UsersSentences->getPaginatedCorpusOf(
             $userId, $correctness, $lang
         );
