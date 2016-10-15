@@ -57,6 +57,24 @@ class HashableBehavior extends ModelBehavior
     }
 
     /**
+     * Find all records by binary hash value.
+     *
+     * @param  object $model  Model
+     * @param  string $binary Binary id value.
+     * @param  string $column Column on table to search.
+     *
+     * @return array
+     */
+    public function findAllByBinary($model, $binary, $column)
+    {
+        $binary = $this->padHashBinary($model, $binary);
+
+        $method = 'findAllBy'.$column;
+
+        return $model->{$method}($binary);
+    }
+
+    /**
      * Convert a binary id to a padded binary id.
      *
      * @param  object $model  Model.

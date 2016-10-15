@@ -768,14 +768,14 @@ class Sentence extends AppModel
 
         $hash = $this->makeHash($lang, $text);
 
-        $sentence = $this->findByBinary($hash, 'hash');
+        $sentences = $this->findAllByBinary($hash, 'hash');
 
-        if ($sentence && $this->_confirmDuplicate($text, $lang, $sentence)) {
-            $this->id = $sentence['Sentence']['id'];
+        foreach ($sentences as $sentence) {
+            if ($this->_confirmDuplicate($text, $lang, $sentence)) {
+                $this->id = $sentence['Sentence']['id'];
 
-            $this->duplicate = true;
-
-            return true;
+                return $this->duplicate = true;
+            }
         }
 
         $this->create();
