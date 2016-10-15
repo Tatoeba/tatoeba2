@@ -58,7 +58,7 @@ $notReliable = $sentence['correctness'] == -1;
                 ?>
             </div>
             <div class="text" flex>
-                <?= $sentence['text'] ?>
+                <?= Sanitize::html($sentence['text']) ?>
             </div>
             <? if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>

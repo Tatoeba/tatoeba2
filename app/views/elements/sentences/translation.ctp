@@ -25,7 +25,7 @@ $notReliable = $translation['correctness'] == -1;
         ?>
     </div>
     <div class="text" flex>
-        <?= $translation['text'] ?>
+        <?= Sanitize::html($translation['text']) ?>
     </div>
     <? if ($notReliable) { ?>
         <md-icon class="md-warn">warning</md-icon>
