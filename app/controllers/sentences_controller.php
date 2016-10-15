@@ -827,10 +827,15 @@ class SentencesController extends AppController
         $search_disabled = !Configure::read('Search.enabled');
         if (!$search_disabled) {
             $model = 'Sentence';
+            if (CurrentUser::isMember()) {
+                $contain = $this->Sentence->contain();
+            } else {
+                $contain = $this->Sentence->minimalContain();
+            }
             $pagination = array(
                 'Sentence' => array(
                     'fields' => $this->Sentence->fields(),
-                    'contain' => $this->Sentence->contain(),
+                    'contain' => $contain,
                     'limit' => CurrentUser::getSetting('sentences_per_page'),
                     'sphinx' => $sphinx,
                     'search' => $query
@@ -905,10 +910,16 @@ class SentencesController extends AppController
         $this->addLastUsedLang($translationLang);
         $this->addLastUsedLang($notTranslatedInto);
 
+        if (CurrentUser::isMember()) {
+            $contain = $this->Sentence->contain();
+        } else {
+            $contain = $this->Sentence->minimalContain();
+        }
+
         $pagination = array(
             'Sentence' => array(
                 'fields' => $this->Sentence->fields(),
-                'contain' => $this->Sentence->contain(),
+                'contain' => $contain,
                 'conditions' => array(
                     'Sentence.lang' => $lang,
                 ),
@@ -926,7 +937,6 @@ class SentencesController extends AppController
 
 
         if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
-
             $model = 'SentenceNotTranslatedInto';
             $pagination = array(
                 'SentenceNotTranslatedInto' => array(
@@ -937,7 +947,7 @@ class SentencesController extends AppController
                         'notTranslatedInto' => $notTranslatedInto,
                         'audioOnly' => $audioOnly,
                     ),
-                    'contain' => $this->Sentence->contain(),
+                    'contain' => $contain,
                     'order' => 'Sentence.id DESC',
                     'limit' => 10,
                 )

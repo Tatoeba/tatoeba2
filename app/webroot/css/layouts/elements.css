@@ -760,6 +760,7 @@ md-icon.disabled.material-icons {
     height: 16px;
     margin: 2px;
     font-weight: bold;
+    font-size: 14px;
 }
 
 .sentences_set .menu .is-native {
@@ -824,7 +825,6 @@ md-icon.disabled.material-icons {
 /*
  * Sentence
  */
-
 .addTranslations .navigationIcon,
 .sentence .navigationIcon {
     width: 25px;
@@ -1084,10 +1084,6 @@ md-icon.disabled.material-icons {
  * Translations
  */
 
-.translations {
-    font-size: 15px;
-}
-
 .indirectTranslation {
     color: #998778;
 }
@@ -1337,6 +1333,55 @@ div.hideLink {
     color: #fff;
     padding: 3px 10px;
 }
+
+
+/*
+ *
+ */
+
+.sentence-and-translations {
+    padding: 10px;
+}
+
+.sentence-and-translations .text,
+.sentence-and-translations .lang {
+    margin: 3px 0;
+    padding: 0 10px;
+}
+
+.sentence-and-translations .sentence {
+    font-size: 24px;
+}
+
+.sentence-and-translations .md-subheader {
+    background: transparent;
+}
+
+.sentence-and-translations .md-subheader ._md-subheader-inner {
+    padding: 10px 5px;
+}
+
+.sentence-and-translations .direct.translations .chevron {
+    color: #000000;
+}
+
+.sentence-and-translations .indirect.translations .chevron {
+    color: #bdbdbd;
+}
+
+.sentence-and-translations .sentence:hover,
+.sentence-and-translations .translation:hover {
+    background-color: #f5f5f5;
+}
+
+.sentence-and-translations .lang img {
+    display: block;
+}
+
+.sentence-and-translations .not-reliable .text {
+    color: #D32F2F;
+}
+
 
 /*
  * --------------------------------------------------------------------

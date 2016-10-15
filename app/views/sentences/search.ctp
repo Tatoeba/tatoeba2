@@ -80,7 +80,7 @@ if ($ignored) {
 </div>
 
 <div id="main_content">
-<div class="module">
+<div class="section">
 <?php
 if ($search_disabled) {
 ?>
@@ -135,17 +135,33 @@ if ($search_disabled) {
 
     $pagination->display();
 
-    foreach ($results as $sentence) {
-        $translations = isset($sentence['Translation']) ?
-                        $sentence['Translation'] :
-                        array();
-        $sentences->displaySentencesGroup(
-            $sentence['Sentence'],
-            $sentence['Transcription'],
-            $translations,
-            $sentence['User'],
-            array('langFilter' => $to)
-        );
+    if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+        foreach ($results as $sentence) {
+            $translations = isset($sentence['Translation']) ?
+                $sentence['Translation'] :
+                array();
+            echo $this->element(
+                'sentences/sentence_and_translations',
+                array(
+                    'sentence' => $sentence['Sentence'],
+                    'translations' => $translations,
+                    'user' => $sentence['User']
+                )
+            );
+        }
+    } else {
+        foreach ($results as $sentence) {
+            $translations = isset($sentence['Translation']) ?
+                $sentence['Translation'] :
+                array();
+            $sentences->displaySentencesGroup(
+                $sentence['Sentence'],
+                $sentence['Transcription'],
+                $translations,
+                $sentence['User'],
+                array('langFilter' => $to)
+            );
+        }
     }
 
     $pagination->display();

@@ -46,7 +46,7 @@ if ($tagExists) {
     </div>
 
     <div id="main_content">
-        <div class="module">
+        <div class="section">
             <h2><?php 
             $n = $paginator->counter(array('format' => '%count%'));
             echo format(
@@ -68,21 +68,37 @@ if ($tagExists) {
 
             <div class="sentencesList" id="sentencesList">
                 <?php
-                foreach ($allSentences as $i=>$sentence) {
-                    // this should be done in the controller but this way
-                    // we avoid another full loop on the sentence Array
-                    $canUserRemove = CurrentUser::canRemoveTagFromSentence(
-                        $taggerIds[$i]
-                    );
-                    $sentence = $sentence['Sentence'];
-                    $tags->displaySentence(
-                        $sentence,
-                        $sentence['Transcription'],
-                        $sentence['User'],
-                        $sentence['Translation'],
-                        $canUserRemove,
-                        $tagId
-                    );
+                $useNewDesign = !CurrentUser::isMember()
+                    || CurrentUser::getSetting('use_new_design');
+                if ($useNewDesign) {
+                    foreach ($allSentences as $i=>$item) {
+                        $sentence = $item['Sentence'];
+                        echo $this->element(
+                            'sentences/sentence_and_translations',
+                            array(
+                                'sentence' => $sentence,
+                                'translations' => $sentence['Translation'],
+                                'user' => $sentence['User']
+                            )
+                        );
+                    }
+                } else {
+                    foreach ($allSentences as $i=>$sentence) {
+                        // this should be done in the controller but this way
+                        // we avoid another full loop on the sentence Array
+                        $canUserRemove = CurrentUser::canRemoveTagFromSentence(
+                            $taggerIds[$i]
+                        );
+                        $sentence = $sentence['Sentence'];
+                        $tags->displaySentence(
+                            $sentence,
+                            $sentence['Transcription'],
+                            $sentence['User'],
+                            $sentence['Translation'],
+                            $canUserRemove,
+                            $tagId
+                        );
+                    }
                 }
                 ?>
             </div>

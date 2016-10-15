@@ -55,7 +55,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 <div id="main_content">    
     
-    <div class="module">
+    <div class="section">
     <?php 
     echo $this->Pages->formatTitleWithResultCount($paginator, $title);
 
@@ -65,14 +65,27 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             $lang
         );
         $pagination->display($paginationUrl);
-        
-        foreach ($results as $sentence) {
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $sentence['Translation'],
-                $sentence['User']
-            );
+
+        if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+            foreach ($results as $sentence) {
+                echo $this->element(
+                    'sentences/sentence_and_translations',
+                    array(
+                        'sentence' => $sentence['Sentence'],
+                        'translations' => $sentence['Translation'],
+                        'user' => $sentence['User']
+                    )
+                );
+            }
+        } else {
+            foreach ($results as $sentence) {
+                $sentences->displaySentencesGroup(
+                    $sentence['Sentence'],
+                    $sentence['Transcription'],
+                    $sentence['Translation'],
+                    $sentence['User']
+                );
+            }
         }
         
         $pagination->display($paginationUrl);
