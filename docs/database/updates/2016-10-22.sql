@@ -1,0 +1,1 @@
+ALTER TABLE sentence_comments ADD KEY `user_id` (`user_id`);
