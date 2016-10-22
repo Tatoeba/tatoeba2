@@ -1205,6 +1205,7 @@ class SentencesController extends AppController
             $id = Sanitize::paranoid($this->params['form']['id']);
 
             $lang = $this->Sentence->changeLanguage($id, $newLang);
+            $this->UsersSentences->makeDirty($id);
             $this->set('lang', $lang);
         }
     }
