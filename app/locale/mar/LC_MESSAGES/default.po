@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-09 14:17+0000\n"
-"PO-Revision-Date: 2016-10-13 09:48+0000\n"
+"PO-Revision-Date: 2016-10-17 12:51+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at {email}."
-msgstr ""
+msgstr "संदेश पाठवायचा वाटा पूर्ण केला आहे. अजून संदेश पाठवता येईपर्यंत थांबावे. हा निरोप चुकून आला आहे असं वाटत असले तर {email} या पत्त्यावर प्रशासकांशी संपर्क साधा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L270
 msgid ""
@@ -134,7 +134,7 @@ msgstr "ही टिप्पणी संपादित करण्याच
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "हा निरोप चुकून आला आहे असं वाटत असले तर {email} या पत्त्यावर प्रशासकांशी संपर्क साधा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L331
 msgid "Comments cannot be empty."
@@ -274,7 +274,7 @@ msgstr "हा टॅग कोणत्याही वाक्यावर �
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L111
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/vocabulary_controller.php#L73
 msgid "No user with this username: {username}"
-msgstr ""
+msgstr "या प्रयोक्तानावाचे कोणतेही प्रयोक्ता नाही: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L160
 msgid "Failed to upload image"
@@ -312,7 +312,7 @@ msgstr "प्रविष्ट केलेल्या वाढदिवस�
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr ""
+msgstr "प्रविष्ठ केलेला वाढदिवस अपूर्ण आहे. आम्ही केवळ या स्वरूपांमध्ये वाढदिवस स्वीकार करतो: संपूर्ण दिनांक, महिना व दिवस, वर्ष आणि महिना, केवळ वर्ष."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L537
 msgid "Your settings have been saved."
@@ -397,7 +397,7 @@ msgstr "अश्या प्रयोक्तानावाचे कोण�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L531
 msgid "No user with this ID: {id}"
-msgstr ""
+msgstr "ही आय.डी. असणारे कोणतेही प्रयोक्ता नाही: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L64
 msgid "You cannot edit this language."
@@ -453,7 +453,7 @@ msgstr "प्रदान केलेले वाक्य मूळ वा�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/autotranscription.php#L224
 msgid "The provided sentence is shorter than the original one."
-msgstr ""
+msgstr "प्रदान केलेले वाक्य मूळ वाक्यापेक्षा छोटे आहे."
 
 #. @translators: This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this
@@ -1262,7 +1262,7 @@ msgstr "यादृच्छिक वाक्य"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L54
 msgid "show another "
-msgstr "दुसरे दाखवा "
+msgstr "दुसरे दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L70
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L95
@@ -1321,7 +1321,7 @@ msgstr "आपला सेशनची मुदत संपली आहे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L34
 msgid "Please <a href=\"{}\">log in again</a>."
-msgstr ""
+msgstr "कृपया पुन्हा <a href=\"{}\">लॉगइन करा</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L35
 msgid "Tatoeba is a collection of sentences and translations."
@@ -1837,7 +1837,7 @@ msgstr "ही यादी डाउनलोड करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L293
 msgid "Show translations :"
-msgstr "भाषांतरे दाखवा :"
+msgstr "भाषांतरे दाखवा:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L326
 msgid "List visibility"
@@ -2120,7 +2120,7 @@ msgstr "या प्रयोक्ताचे प्रोफाइल पह
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L83
 msgid "Show sentence #: "
-msgstr "वाक्य क्र. दाखवा : "
+msgstr "वाक्य क्र. दाखवा: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L116
 msgid "Language for previous, next or random sentence"
@@ -2170,7 +2170,7 @@ msgstr[1] "{title} ({n}&nbsp;उपस्थितींमधून {thousand}&
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L76
 msgid "Recently added sentences may not appear in search results."
-msgstr ""
+msgstr "अलीकडे जोडलेली वाक्ये शोध निकालात आढळतीलच असं नाही."
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
@@ -3187,7 +3187,7 @@ msgstr "तातोएबाला स्पॅम व मत्सरी स�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L42
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "अजून संदेश पाठवण्याची परवानगी मिळेपर्यंत कृपया वाट पहा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L54
 msgid ""

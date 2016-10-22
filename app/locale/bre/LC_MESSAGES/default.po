@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-10-09 14:17+0000\n"
-"PO-Revision-Date: 2016-10-11 10:46+0000\n"
+"PO-Revision-Date: 2016-10-22 00:20+0000\n"
 "Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -263,7 +263,7 @@ msgstr "{firstSentence} {secondSentence}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L145
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
-msgstr "Ar liketenn '{tagName}' a zo diouti endeo evit ar frazenn #{number}, pe n'hall ket bezañ ouzhpennet"
+msgstr "Al liketenn '{tagName}' a zo diouti endeo evit ar frazenn #{number}, pe n'hall ket bezañ ouzhpennet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L287
 msgid ""
@@ -516,7 +516,7 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr ""
+msgstr "Ma vez gwelet ganeoc'h un anv-implijer o tont war-wel goude bezañ bet advabet ur frazenn, talvezout a ra eo bet advabet ar frazenn un nebeudig amzer a-raok ne vefe bet graet ganeoc'h. E seurt-degouezhioù, gellout a rit klask advabañ frazennoù all a zo pell ac'hann eus ar bajenn m'emaoc'h warni da voanaat ar chañsoù e c'hoarvezfe kemend-all c'hoazh."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L99
@@ -572,26 +572,26 @@ msgstr "Rankout a rit bezañ ur <a href=\"{}\">advanced contributor</a>; a-hend-
 msgid ""
 "Whenever you notice a sentence that is wrong or sounds strange, add the tag "
 "{tagChange} and post a comment to suggest a correction or better phrasing."
-msgstr ""
+msgstr "Seul wezh ma vez gwelet ganeoc'h ez eus ur frazenn a zo fall pe a son gwall iskis, ouzhpennit al liketenn {tagChange} ha kinnigit ur reizhadenn pe ur frazennadur gwelloc'h."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L115
 msgid ""
 "Whenever you notice a possible mistake, add the tag {tagCheck} and post a "
 "comment explaining what you think the mistake may be."
-msgstr ""
+msgstr "Seul wezh ma vez gwelet ganeoc'h ez eus ur fazi posupl, ouzhpennit al liketenn {tagCheck} ha postit un evezhiadenn o tisplegañ petra 'vefe ar fazi hervezoc'h."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L121
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr ""
+msgstr "Seul wezh ma ouzhpennit ur frazenn en ur yezh estren ha n'hoc'h ket re sur ha reizh emañ, ouzhpennit al liketenn {tagNNC}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L126
 msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr ""
+msgstr "Seul wezh ha ma c'hellit, merdeit frazennoù hag a vez merket {tagChange}, {tag Check} ha {tagNNC} a-benn komz eus ar frazennoù gant an izili all evit dibab petra ober gant ar frazennoù-mañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L135
 msgid ""
@@ -599,7 +599,7 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr ""
+msgstr "Ur wezh m'eo bet abourzhet ur frazenn gudennek, liketennit {tagOK}. Hollekoc'h, gellout a rit merdeiñ ha gwiriañ frazennoù ar re all hag o liketenniñ gant {tagOK}. Nemet pa 'vezer sur da vat e vezont reizh, ha na implijit ket al liketennoù-mañ war ho frazennoù deoc'h c'hwi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L79
@@ -1133,7 +1133,7 @@ msgid ""
 "The more contributors there are, the more useful Tatoeba will become! "
 "Besides, by contributing, not only will you be helpful to the rest of the "
 "world, but you will also get to learn a lot."
-msgstr ""
+msgstr "Seul vuioc'h a implijerien a vo, seul dalvoudusoc'h e teuio da vezañ Tatoeba! Ouzhpenn-se a zo, en ur gemer-perzh,  talvoudus ez oc'h evit peurrest ar bed, met deskin a rafec'h ivez kement."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L44
@@ -1204,7 +1204,7 @@ msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr ""
+msgstr "Endalc'had ar gemennadenn-mañ az a a-enep d'hor <a href=\"{}\">reolennoù</a> setu m'eo bet kuzhet. Diskouezet eo hepken d'ar verourien ha da aozer ar gemennadenn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L36
@@ -2238,7 +2238,7 @@ msgstr "Eilañ ar frazenn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L108
 msgid "Your sentence was not added because the following already exists."
-msgstr ""
+msgstr "N'eo ket bet ouzhpennet ho frazenn peogwir an heul a zo anezhañ dija."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L217
 msgid "Show 1 more translation"
@@ -2393,7 +2393,7 @@ msgid ""
 "Tatoeba is a large database of sentences and translations. Its content is "
 "ever-growing and results from the voluntary contributions of thousands of "
 "members."
-msgstr ""
+msgstr "Tatoeba a zo ur pikol diazez roadennoù a frazennoù ha troidigezhioù. War-gresk ez a atav ar pezh a zo endalc'het warnañ hag a zo frouezh ul labour kaset da-benn gant miliadoù a izili."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L48
 msgid ""
@@ -2402,7 +2402,7 @@ msgid ""
 "sentences containing these words with their translations in the desired "
 "languages. The name Tatoeba (<em>for example</em> in Japanese) captures this"
 " concept."
-msgstr ""
+msgstr "Tatoeba a ro deoc'h un ostilh evit lakaat ac'hanoc'h da c'houzout penaos e vez graet gant ar gerioù e-barzh kenarroud ur frazenn. Termenniñ a rit ar gerioù a vezer dedennet ganto, hag e tiskouez deoc'h frazennoù hag a endalc'h ar gerioù-mañ hag o zroidigezh er yezhoù a blij deoc'h. An anv Tatoeba (<em>da skouer</ em> e japaneg) a arouez ar meziad-mañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L61
 msgid ""
@@ -2432,7 +2432,7 @@ msgstr "Blog Tatoeba"
 msgid ""
 "If you have any question, suggestion, or request (or if you would just like "
 "to say thank you), feel free to drop us an email at {emailAddress}."
-msgstr ""
+msgstr "M'ho peus goulennoù, kinnigoù, pe azkoulennoù (pe ma fellfe deoc'h lavaret trugarez tra ken), na chomit ket etra daou soñj ha kasit deomp ur postel da {emailAddress}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L82
 msgid "Post on the Wall"
@@ -2490,7 +2490,7 @@ msgid ""
 "But you don't have to be a polyglot in order to contribute! You can help us "
 "a lot simply by <strong>checking sentences</strong> and <strong>reporting "
 "mistakes</strong>. This is something everyone can do!"
-msgstr ""
+msgstr "Met n'ho peus ket da vezañ un den barrek da gomz meur a yezh a-benn reiñ an dorn! Gellout a rit reiñ deomp kalz a skoazell en ur  <strong>reizhañ frazennoù</strong> ken simpl ha tra hag <strong>kemenniñ ez eus fazioù</strong>. Kement hini 'zo a c'hall ober al labour-mañ!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L139
 msgid ""
@@ -2503,7 +2503,7 @@ msgid ""
 "You can help us promote the project. <strong>Tell people around you</strong>"
 " that Tatoeba exists. This is a very ambitious project, so we will need as "
 "much help as possible."
-msgstr ""
+msgstr "Gellout a rit reiñan dorn deomp da lakaat brud war hor raktres. <strong>Lavarit tro-dro deoc'h</strong> ez eus eus Tatoeba. Ur raktres c'hoantaus-kenañ eo, ezhomm hor bo skoazell ar muiañ ha ma vo tu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L158
 msgid ""
@@ -2526,7 +2526,7 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr ""
+msgstr "M'ho peus goulennoù da sevel war ar reiñ arc'hant pe ma fellfe deoc'h reiñ arc'hant e forzh peseurt doare all hag ar re menneget amañ, rankout a rit pe mont e darempred ouzh <a href=\"{trangEmail}\">Trang</a> pe ar <a href=\"{teamEmail}\">skipailh</a> klok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L50
 msgid "Latest donations"
@@ -2549,7 +2549,7 @@ msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr ""
+msgstr "<B>Treuzkasadenn IBAN.</ B> Gellout a rafe bezañ \nan doare gwellañ da reiñ arc'hant. Bank Tatoeba a zo e Frañs, ma vezer o tont eus ur vro eus an UE, posupl e vefe e vefe digoust an treuzkasadenn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L83
 msgid ""
@@ -2719,7 +2719,7 @@ msgid ""
 "second file (sentences_detailed.tar.bz2) contains additional fields for "
 "those who would like to filter the sentences based on the contributor who "
 "owns the sentence, or the date when it was added or last modified."
-msgstr ""
+msgstr "Ar restr kentañ (sentences.tar.bz2) a endalc'h an titour-mañ hepken. An eil restr (sentences_detailed.tar.bz2) a endalc'h maezennoù ouzhpenn evit an holl re a fell dezho silañ war ziazez ar skodenner hag a zo perc'henner war ar frazenn, pe war an deiziad eo bet ouzhpennet pe gemmet da ziwezhañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L162
 msgid "Links"
@@ -2731,14 +2731,14 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "A endalc'h al liammoù etre ar frazennoù. {sampleLinkLine} a dalvez ez eo #77 troidigezh ar frazenn #1. Al liamm daouduek a zo ivez anezhañ, ar restr a endalc'ho ivez ul linenn hag a lavar {sampleLinkLineReversed}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L240
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr ""
+msgstr "A endalc'h listenn al <a href=\"{url}\">liketennoù</a> kevredet gant pep frazenn. {sampleTagLine} a dalvez eo bet lakaet war ar frazenn #381279 al liketenn \"tro-lavar\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L281
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
@@ -2752,7 +2752,7 @@ msgstr "Frazennoù e-barzh listennoù"
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr ""
+msgstr "A ziskouez ar frazennoù a vez endalc'het gant al listennoù. {sampleListLine} a dalvez ez eo endalc'het ar frazenn-mañ #381279 gant ul listenn a zo hec'h ID 13 anezhi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L322
 msgid "Japanese indices"
@@ -2765,7 +2765,7 @@ msgid ""
 "format. Each entry is associated with a pair of Japanese/English sentences. "
 "{sentenceId} refers to the id of the Japanese sentence. {meaningId} refers "
 "to the id of the English sentence."
-msgstr ""
+msgstr "Oc'h enderc'hel kevatalderioù eus «linennoù B» er restr Tanaka Corpus roet gant Jim Breen. Gwelet <a href=\"{url}\">ar bajenn-mañ</a> evit ar stumm. Pep enankad a vez kevreded gant ur re frazennoù japanek/saoznek. {sentenceId} a vuk warID ar frazenn japanek. {meaningId} a vuk war ID ar frazenn saoznek."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L28
@@ -2796,7 +2796,7 @@ msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "Oc'h enderc'hel frazennoù notennet gant an implijerien. Talvoudegezh ar c'hot a c'hall bezañ -1 (frazenn fall), 0 (n'eo ket laket e soñj pe diasur), pe 1 (frazenn OKE). Da ziwall 'zo: ar roadennoù-mañ a vez c'hoazh er stad amproueel."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L451
 msgid "General information about the files"
@@ -2852,7 +2852,7 @@ msgstr "Penaos ober gant IRC"
 msgid ""
 "For those who are not familiar with IRC, it is pretty much like an instant "
 "messenger. You will be able to talk to us in real time, if we are there."
-msgstr ""
+msgstr "Evit an holl re na vezont ket kustummet gant an IRC, dammheñvel eo ouzh ur postelerezh prim. Gouest e vefec'h da gomz ganeomp en padelezh gwirion, m'emaomp amañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L83
 msgid "There are many ways to join our channel. One is to go to this website:"
@@ -2873,13 +2873,13 @@ msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{}\">Wall</a>, or join us on "
 "<strong>IRC</strong>. We will give you a purpose. :)"
-msgstr ""
+msgstr "Ma ne ouzit ket petra ober goude bezañenskrivet bremañ, gellout a rit mont war ar <a href=\"{}\">voger</a>, pe emezelit war an <strong>IRC</ strong>. Ur pal a vo roet deoc'h ganeomp. :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L121
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "Ma kav deoc'h ez eo ar raktres-mañ unan dedennus, setu ul liamm a <strong>RANKIT</ strong> lenn:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L133
 msgid ""
@@ -2915,7 +2915,7 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr ""
+msgstr "Daoust-ma vez ur bern frazennoù war Tatoeba, n'eo ket bet klokaet ur bern geriaoueg. Abalamour da-se eo e roomp kalon deoc'h da ouzhpennañ frazennoù nevez gant geriaoueg nevez, ha pa ne vefe ket gouezet ganeoc'h penaos treiñ anezhi e-barzh ur yezh all."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L215
 msgid "Translating sentences"
@@ -2942,13 +2942,13 @@ msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr ""
+msgstr "Ne c'hallit reizhañ nemet ar fazioù er frazennoù hag a zo deoc'h. Ma vez gwelet ganeoc'h ur fazi e-barzh frazenn unan all e c'hallit sevel un evezhiadenn da rebuziñ ar fazi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L254
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "E degouezhioù 'zo, ar frazenn n'en devez perc'henn ebet warni. Lennit ar rannbennad (diwar-benn an advabañ frazennoù) evit gouzout hirroc'h."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L263
 msgid "Adopting sentences"
@@ -2960,7 +2960,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr ""
+msgstr "Pa 'vez ouzhpennet ur frazeenn ganeoc'h, ar frazenn a vez \"perc'hennet\" ganeoc'h - hag a c'hellit kemmañ. Koulskoude, darn vuiañ ar frazennoù a vez kavet e Tatoeba a zo o tont eus ur c'horpus japanek-saonek anvet Tanaka Corpus. Ar frazennoù-mañ na vez perc'henn ebet warno peogwir ez eo bet dastumet darn-vrasañ ar frazennoù-mañ er maez eus Tatoeba."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L279
 msgid ""
@@ -2968,13 +2968,13 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "Ma vez gwelet ganoec'h ur fazi en ur frazenn \"minor\" anezhi, ne viot ket aotreet d'he reizhañ peogwir ne 'z oc'h ket perc'henn warni. Abalamour da-se eo ez eus un dibarzh \"advabañ\" ({adoptButton}). Ur wezh ma advaber ur frazenn, e teuiot da vezañ perc'henn warni hag diwar-se he c'hemm."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L297
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
-msgstr ""
+msgstr "Ul lodenn ez eo ivez an advabañ eus an «argerzh kalite». Gellout a rit kavout muioc'h a ditouroù amañ:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L309
 msgid "Sentence lists"
@@ -2985,13 +2985,13 @@ msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr ""
+msgstr "Gellout a rit krouiñ listennoù a frazennoù gant Tatoeba. Dre ziouer al listenn a zo <strong>personel</strong>, pezh a dalvez e c'hall bezañ kemmet gant an den en deus bet graet anezhi hepken (nemet hewel eo atav d'an holl)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L322
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr ""
+msgstr "Koulskoude, posupl eo ivez da lezel un ezel eus Tatoeba ouzhpennañ ha dilemmel frazennoù en ur dermenniñ ul listenn <strong>kenlabourus</ strong>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L30
@@ -3016,7 +3016,7 @@ msgstr "C'hoant ho peus da reiñ an dorn?"
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr ""
+msgstr "Dastum a reomp frazennoù hag o zroidigezh. Gellout a rit reiñ an dorn deomp en ur dreiñ pe en ur ouzhpennañ frazennoù nevez."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index_for_guests.ctp#L49
 msgid "Join the community"
@@ -3071,7 +3071,7 @@ msgid ""
 "Creative Commons Attribution License 2.0 (fr). Please note that this license"
 " does allow commercial uses of your contributions, as long as such uses are "
 "compliant with the terms. "
-msgstr ""
+msgstr "A-benn kreskiñ madoù-boutin ar ouiziegezh frank hag ar sevenadur frank, an holl implijerien a gemer-perzh e-barzh ar raktres Taoteba a rank reiñ aotreoù d'ar publik-bras da rannañ ha da ad-implijout o c'hendaolerezhioù en un doare frank, ken hir ha ma vez roet an implij. Dre-se, evit kement testenn a vezec'h perc'henn warni, en ur gas anezhi, e vezer a-du gant al lisañs Creative Commons Attribution 2.0 (fr). Notit mar-plij ne ro ket al lisañs-mañ d'an implijerien un aotree d'ober kenwerzh gant ho kendaolerezhioù, ken hir ha ma touj ouzh kenreizh implij an termennoù."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L69
 msgid ""
@@ -3083,7 +3083,7 @@ msgid ""
 "manner equivalent to the credit given on this website, or c) through a list "
 "of all authors. (Any list of authors may be filtered to exclude very small "
 "or irrelevant contributions.)"
-msgstr ""
+msgstr "Evideoc'h da vezañ un aozer, e savit a-du gant ar fed da vezañ atribuet ouzh unan eus ar modoù da-heul: a) gant ul gourliamm (ma vez tu) pe URL ar frazenn pe ar frazennoù ho peus kemeret-perzh, b) gant ur gourliamm (ma vez tu) pe un URL d'un eiladenn dazeilel, stabil e linenn hag a zo haezus en un doare frank, pezh a glot gant al lisañs, hag a ro kreditoù d'an aozerienn d'un doare kevatel ouzh ur c'hredit roet war al lec'hienn-mañ, pe c) gant ul listenn eus an holl aozerien. (Kement listenn aozerien a-c'hall bezañ silet a-benn berzhout ar c'hendaolerezhioù bihan pe ar re  ha n'int ket pertinant.)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L79
 msgid "Importing text:"
@@ -3094,7 +3094,7 @@ msgid ""
 "If you want to import text that you have found elsewhere or that you have "
 "co-authored with others, you can only do so if it is available under terms "
 "that are compatible with the CC-BY license."
-msgstr ""
+msgstr "Ma fellfe deoc'h emporzhañ testenn ho peus kavet e lec'h all pe ho ped ken-skrivet gant re all, gellout a rit ober hepken m'eo hegerzus gant ul lisañs CC-BY."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L88
 msgid ""
@@ -3160,7 +3160,7 @@ msgid ""
 "These site terms are not to be modified. If there is any inconsistency "
 "between the French terms and any translation into other languages, the "
 "French language version takes precedence."
-msgstr ""
+msgstr "Termennoù al lec'hienn na rankont ket bezañ kemmet. Ha pa vefe un dislavar etre an termennoù gallek hag o zroidigezh e yezhoù all, ar priorelezh a yafe gant ar stumm gallek."
 
 #. @translators: this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
@@ -3183,7 +3183,7 @@ msgstr "[sujed ebet]"
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr ""
+msgstr "Evit chom hep kaout a wallvaladoù war Tatoeba pe kemennadennoù all ken malizius all, an implijerien nevez a c'hall kas 5 kemennadenn an deiz hepken. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L42
 msgid "Please wait until you can send more messages."
@@ -3193,7 +3193,7 @@ msgstr "Gortozit mar-plij ma c'hellfec'h kas muioc'h a gemennadennoù."
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                 new users can send only 5 messages per day."
-msgstr ""
+msgstr "Evit chom hep kaout a wallvaladoù war Tatoeba pe kemennadennoù all ken malizius all, \nan implijerien nevez a c'hall kas 5 kemennadenn an deiz hepken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L61
 msgid "You have sent one message today."
@@ -3205,7 +3205,7 @@ msgstr[1] "Kaset ho peus {n}&nbsp; kemennadenn hiziv."
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr ""
+msgstr "Klikit eta war ar frazenn a zo e-krec'h da vont war tatoeba.org evit treiñ anezhi pe lezel un evezhiadenn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
@@ -3221,7 +3221,7 @@ msgstr "N'eus frazenn ebet gant an id {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/last_modified.ctp#L55
 msgid "Browse by last modified (total %count%)"
-msgstr ""
+msgstr "Diskouez ar re gemmet da ziwezhañ (hollad %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L28
 msgid "Edit Comment"
@@ -3273,7 +3273,7 @@ msgstr "N'ankouezhit ket ar <strong>pennlizherennoù</strong> hag ar <strong>poe
 msgid ""
 "Do not copy-paste sentences from elsewhere, except if the content is CC-BY "
 "compatible. <a href=\"{}\">Learn more...</a>"
-msgstr ""
+msgstr "Na eilit ket ar frazennoù eus forzh pelec'h, nemet e klotfe ar pezh 'zo endalc'het gant ar CC-BY. <a href=\"{}\">Gouzout hirroc'h...</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L70
 msgid ""
@@ -3318,7 +3318,7 @@ msgstr "{user} n'en/n'he deus frazenn ebet dezhañ/dezhi"
 msgid ""
 "An error occurred while fetching the random sentence. If this persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "C'hoarvezet ez eus bet ur fazi en ur glask ar frazenn dre-zegouezh. Ma kendalc'h, <a href=\"{}\">lavarit deomp</a> mar-plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L87
@@ -3362,7 +3362,7 @@ msgstr "Muioc'h a griterioù gant an enklask"
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
-msgstr ""
+msgstr "Evit abegoù teknikel, an arc'hweladur e oac'h o klask war e lec'h a zo diweredekaet evit bremañ. Nec'het omp gant an diaezamantoù. Ad-klaskit diwezhatoc'h mar-plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L108
@@ -3373,13 +3373,13 @@ msgstr "Fazi gant an enklask"
 msgid ""
 "An error occured while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "C'hoarvezet ez eus bet ur fazi gant an enklask. Ma kendalc'h, <a href=\"{}\">lavarit deomp</a> mar-plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L112
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
-msgstr ""
+msgstr "Goulenn fall. Kit da welet an <a href=\"{}\">titouroù enklask</a> evit muioc'h a vunudoù."
 
 #. @translators: title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L128
@@ -3399,7 +3399,7 @@ msgid ""
 "Translating sentences one by one is too slow for you? You want to increase "
 "your rank in Tatoeba, or the rank of your language, at the speed of light? "
 "So this is for you!"
-msgstr ""
+msgstr "Treiñ frazennoù unan hag unan a zo re c'horrek evideoc'h? Gellout a rit uhelaat ho renk e-barzh Tatoeba, pe renk ho yezh, gant tizh ar gouloù? Neuze an dra-mañ a zo evideoc'h!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L43
 msgid "Just keep in mind that our server is not as fast as you ;-)"
@@ -3409,14 +3409,14 @@ msgstr "Mirit mat en ho penn ne 'z a ket hor servijer ken fonnus ha na 'z it c'h
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L242
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
-msgstr ""
+msgstr "Diweredekaet eo ar frazenn dre-zegouezh bremañ, klaskit diwezhatoc'h mar-plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L244
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "C'hoarvezet ez eus bet ur fazi en ur glask frazennoù dre-zegouezh. Ma kendalc'h, <a href=\"{}\">lavrait deomp</a> mar-plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L40
 msgid "{language} example sentence: {sentence}"
@@ -3426,7 +3426,7 @@ msgstr "{language} frazenn skouer: {sentence}"
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
-msgstr ""
+msgstr "Merdeiñ troidigezhioù ar frazennoù skouer. Ar bajenn-mañ a ziskouez troidigezhioù ha titouroù diwar-benn ar frazenn: {sentenceText}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L59
 msgid "Sentence does not exist: "
@@ -3505,11 +3505,11 @@ msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
-msgstr ""
+msgstr "Ma tibabit ur yezh, troidigezh pep frazenn er yezh-mañ (ma 'z eus diouti) a vo skrivet en ho ec'handek. Gellout a rit neuze emporzhiañ ar restr da broduiñ ur c'hoari kartoù flash, oc'h implijout ar program {Anki}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L174
 msgid "Fields will be written out in the following sequence:"
-msgstr ""
+msgstr "Ar maeziennoù a vo skrivet er-maez eus ar frekañs da-heul:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L183
 msgid "Translation"
@@ -3519,7 +3519,7 @@ msgstr "Troidigezh"
 msgid ""
 "Optional fields that are not selected above will not be written to the "
 "output."
-msgstr ""
+msgstr "Maeziennoù diret ha n'int ket diuzet anezho uheloc'h na vo ket skrivet en ezvont."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L74
@@ -3614,7 +3614,7 @@ msgstr "Al labour-mañ a zo bet diazezet war <a href=\"{}\">al labour-mañ</a>."
 msgid ""
 "Please note that this tool is not complete and may contain errors (although "
 "it will be accurate for most searches)."
-msgstr ""
+msgstr "Notennit eta n'emañ ket an ostilh-mañ peurglok hag e c'hall ebarzhiñ fazioù (daoust m'emañ resis kennañ evit darn vrasañ an enklaskoù)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L116
 msgid "Hanzis - Kanjis search"
@@ -3624,17 +3624,17 @@ msgstr "Hanzis - Kanjis klask"
 msgid ""
 "This tool allows you to find information about kanjis/hanzis, especially "
 "when you don't know how to input them directly with IMEs. "
-msgstr ""
+msgstr "Aotreañ a ra an ostilh-mañ da gavout titouroù diwar-benn kanjis/hanzis, dreist-holl pa ne ouzit ket penaos avat ebarzhiñ anezho en un doare eeun gant IMEs. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L126
 msgid "The main way to do this is by submitting subglyphs of the character."
-msgstr ""
+msgstr "An doare pennañ d'ober gantañ a zo da ebarzhiñ an didan-glyphoù eus an arouez-mañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L134
 msgid ""
 "For example, for 蝴, you can enter 月虫 as subglyphs (you don't need to know "
 "every subglyph)."
-msgstr ""
+msgstr "Da skouer, evit 蝴, gellout a rit ebarzhiñ 月虫 evel dindan-glyphoù (n'eo ket ret deoc'h gouzout kement-tra 'zo diwar ar glyphoù dindan)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L142
 msgid ""
@@ -3755,7 +3755,7 @@ msgid ""
 "Corpus maintainers, this page was made for your convenience. It shows "
 "sentences that were tagged more than two weeks ago as {changeTag} or "
 "{deleteTag}."
-msgstr ""
+msgstr "Korpus ar ratreerien, savet eo bet ar bajenn-mañ evit hoc'h aezamant. Diskoouez a ra frazennoù a zo bet market ouhzpenn div sizhun 'zo {changeTag} pe {deleteTag}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L78
 msgid ""
@@ -3768,7 +3768,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L84
 msgid ""
 "NOTE: The maximum number of sentences displayed at a time is limited to 100."
-msgstr ""
+msgstr "Notenn: An niver a frazennoù a c'haller diskouez war an dro a zo bevennet da 100."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
 msgid "Tagged '{tagName}' more than 2 weeks ago"
@@ -3832,7 +3832,7 @@ msgstr "Kod mamenn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L81
 msgid "Enter either traditional or simplified Chinese"
-msgstr ""
+msgstr "Ebarzhit pe Sinaeg hengounel pe eeunaet."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L109
@@ -3843,11 +3843,11 @@ msgstr "Emdreiñ"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L50
 msgid "Autogenerate furigana over Japanese"
-msgstr ""
+msgstr "Krouadelezh emgefreek furigana betek Japaneg"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/furigana.ctp#L82
 msgid "Autogenerate furigana"
-msgstr ""
+msgstr "Krouadelezh emgefreek furigana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L28
 msgid "Useful tools"
@@ -3859,38 +3859,38 @@ msgstr "Ostilhioù"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "Furigana krouadelezh-emgefreek"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "krouadelezh emgefreek furigana betek Japaneg."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L51
 msgid "Sinogram search"
-msgstr ""
+msgstr "Klask war-lerc'h ur Sinogram"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L58
 msgid "search all Chinese characters / kanjis by all possible methods."
-msgstr ""
+msgstr "klask war-lerc'h an holl arouezioù Sinaek / kanjis gant an holl zoareoù."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L39
 msgid "Pinyin converter"
-msgstr ""
+msgstr "Pinyin emdroer"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L72
 msgid ""
 "convert Chinese to pinyin, numerical pinyin to diacritical pinyin, etc."
-msgstr ""
+msgstr "emdroit Sinaeg da pinyin, pinyin niverel da pinyin treadegel, hag-all hag-all. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L80
 msgid "Chinese simplified/traditional conversion"
-msgstr ""
+msgstr "Sinaeg eeunet/diviz hengounel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L88
 msgid "convert traditional Chinese to simplified and vice versa"
-msgstr ""
+msgstr "emdroit Sinaeg hengounel betek unan eeunet hag eilpennet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L95
 msgid "Shanghainese to IPA"
@@ -3900,7 +3900,7 @@ msgstr "Shanghaneg en IPA"
 msgid ""
 "Convert a Shanghainese text into its pronunciation using the International "
 "Phonetic Alphabet"
-msgstr ""
+msgstr "Emdroit un Shangaineg en e zistagadur oc'h implijout al Lizherennaoueg Fonegel Etrebroadel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L82
 msgid "Convert text from: "
@@ -3921,7 +3921,7 @@ msgstr "Emdreiñ an destenn e:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L105
 msgid "diacritical pinyin"
-msgstr ""
+msgstr "pinyin treadegel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L67
@@ -3942,7 +3942,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L90
 msgid "Enter a text in shanghainese dialect"
-msgstr ""
+msgstr "Ebarzhit un destenn er rannyezh Shangaineg"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
@@ -3955,8 +3955,8 @@ msgstr "{username} n'en/n'he deus treiskrivadennoù ebet dezhañ/dezhi"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."
 msgid_plural "Please fix the following errors or press the Cancel button."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ratreit mar-plij ar fazi da-heul pe pouezit war an nozelenn nullañ."
+msgstr[1] "Ratreit mar-plij ar fazioù da-heul pe pouezit war an nozelenn nullañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
@@ -4026,7 +4026,7 @@ msgstr "Peseurt live ho peus ?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L120
 msgid "Details (optional). For instance, which dialect or from which country."
-msgstr ""
+msgstr "Munudoù (diret). Da skouer, peseurt rannyezh eus peseurt bro."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L75
 msgid "Comments posted"
@@ -4056,13 +4056,13 @@ msgstr "Ar c'hemennoù dre bostel a zo DIWEREDEKAET."
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
-msgstr ""
+msgstr "PUBLIC eo an haezhiñ ouzh ar profil-mañ. Gant an holl e c'hall bezañ gwelet an titouroù."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L126
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr ""
+msgstr "Haeziñ ouzh ar profil-mañ a zo dindan STRISHADURIOU. N'eus nemet izili Tatoeba hag a c'hall gwelet an titouroù personel hag an diskrivadur."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L86
@@ -4112,13 +4112,13 @@ msgstr "Arventennit ho profil foran?"
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default."
-msgstr ""
+msgstr "Dalc'hit-soñj al listenn ziwezhañ ho peus ouzhpennet ur frazenn en enni, ha dibabit dre-ziouer."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L120
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations."
-msgstr ""
+msgstr "Diskouez ul liamm da zirulliañ an troidigezhioù/diskar pa vez re a droidigezhioù."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L142
 msgid "Always show transcriptions and alternative scripts"
@@ -4134,7 +4134,7 @@ msgid ""
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
 "languages you indicated. You can leave this empty to display translations in"
 " all languages."
-msgstr ""
+msgstr "Ebarzhit <a href=\"{url}\">Kodoù ISO 639-3</a>, skejet gant skejoù (d.sk.: jpn,epo,ara,deu). Tatoeba a ziskouezo neuze troidigezhioù er yezhoù ho peus menneget nemetken. Gellout a rit lezel an dra-mañ goullo a-benn diskouez frazennoù en holl yezhoù."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L200
 msgid "Number of sentences per page"
@@ -4142,31 +4142,31 @@ msgstr "Niver a frazennoù dre bajenn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L209
 msgid "Experimental options"
-msgstr ""
+msgstr "Dibarzhioù arnodel "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L214
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
-msgstr ""
+msgstr "N'eo ket hegerzus da vat an opsionoù-mañ a vez er rumm-mañ, gellout a reont chom hep mont en-dro gant an holl hag/pe a zo en un test beta. Gellout a reont bezañ pe cheñchet pe dilec'hiet en amzer da zont."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L231
 msgid ""
 "Activate the feature to rate sentences and build your collection of "
 "sentences."
-msgstr ""
+msgstr "Gweredekaat an arc'hweladur da notenniñ ar frazennoù ha sevel ho tastumad frazennoù."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L251
 msgid ""
 "Display \"(native)\" next to username on sentences when the owner indicated "
 "in their profile that they have a native level in the language of the "
 "sentence."
-msgstr ""
+msgstr "Diskouez \"(genidik)\" e-kichen d'an anv-implijer pe d'ar frazennoù p'en devez menneget ar perc'henner en e brofil e oa ul live genidik e yezh ar frazenn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L273
 msgid "Display button to copy a sentence to the clipboard."
-msgstr ""
+msgstr "Diskouez an nozelenn da eilañ ur frazenn er golvar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L302
 msgid "Change email address"
@@ -4310,7 +4310,7 @@ msgstr "Respont"
 msgid ""
 "For instance, if your email address is a.b.cd@example.com, type a.b.c into "
 "the box."
-msgstr ""
+msgstr "Da skouer, ma vez ho chomlec'h postel a.b.cd@example.com, skrivit a.b.c er maezienn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L23
 msgid "Tatoeba user: {username}"
@@ -4334,7 +4334,7 @@ msgstr "Kemennadennoù diwezhañ ar Voger"
 msgid ""
 "Add vocabulary that you are learning. If your vocabulary does not exist yet "
 "in Tatoeba, other contributors can add sentences for it."
-msgstr ""
+msgstr "Ouzhpennit geriaoueg emaoc'h o paouez deskiñ. Ma n'eus ket eus ar c'heriaoueg  e-barzh Tatoeba evit ar mare, kendaolerien all a c'hall ouzhpennañ frazennoù eviti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add.ctp#L79
 msgid "Vocabulary item"
@@ -4355,11 +4355,11 @@ msgstr "Geriaoueg a c'houlenn kaout frazennoù"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L49
 msgid ""
 "Only vocabulary items that have less than 10 sentences are displayed here."
-msgstr ""
+msgstr "An elfennoù geriaougel gant 10 frazenn da vihanañ enno a vez diskouezet amañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L105
 msgid "This sentence already exists."
-msgstr ""
+msgstr "Ar frazenn-mañ 'zo anezhi dija."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L132
 msgid "Submit"
@@ -4367,7 +4367,7 @@ msgstr "Kas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/of.ctp#L33
 msgid "{username}'s vocabulary items ({number})"
-msgstr ""
+msgstr "elfennoù geriaoueg {username} ({number})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
@@ -4387,11 +4387,11 @@ msgstr "Distreiñ d'ar Voger"
 msgid ""
 "Here you can ask general questions like how to use Tatoeba, report bugs or "
 "strange behavior, or simply socialize with the rest of the community."
-msgstr ""
+msgstr "Amañ e c'hallit sevel goulennoù hollek evel penaos e vez implijet Tatoeba, kemenniñ 'pa vez beugoù pe un doare iskis d'en em zerc'hel, pe en un doare eeun sosializañ gant peurest ar gumuniezh."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L62
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "A-raok sevel ur goulenn, bezit asur da lenn ar<a href=\"{}\">FAG</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L81
 msgid "{date}, by {author}"
@@ -4400,7 +4400,7 @@ msgstr "{date}, gant {author}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L107
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
-msgstr ""
+msgstr "Gellout a rit skrivañ er yezh a blij deoc'h. E Tatoeba, pep yezh 'zo par."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
 msgid "Wall (one thread)"
