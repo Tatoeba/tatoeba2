@@ -29,24 +29,16 @@ $categories = array(
     'ok' => __('Sentences marked as "OK"', true),
     'unsure' => __('Sentences marked as "unsure"', true),
     'not-ok' => __('Sentences marked as "not OK"', true),
-    'all' => __("All sentences", true)
+    'all' => __("All sentences", true),
+    'outdated' => __("Outdated ratings", true)
 );
 
-if (!is_int($correctness)) {
-    $category = 'all';
+if ($correctnessLabel) {
+    $category = $correctnessLabel;
 } else {
-    switch($correctness) {
-        case -1:
-            $category = 'not-ok';
-            break;
-        case 0:
-            $category = 'unsure';
-            break;
-        default:
-            $category = 'ok';
-            break;
-    }
+    $category = 'all';
 }
+
 
 if ($userExists) {    
     $title = format(

@@ -45,6 +45,14 @@ class UsersSentences extends AppModel
     );
 
 
+    /**
+     * Get correctness for sentence as set by user.
+     *
+     * @param  int $sentenceId Sentence ID.
+     * @param  int $userId     User ID.
+     * 
+     * @return int
+     */
     public function correctnessForSentence($sentenceId, $userId)
     {
         $result = $this->find(
@@ -63,17 +71,30 @@ class UsersSentences extends AppModel
         }
     }
 
+    /**
+     * Get paginated user_sentneces for user.
+     *
+     * @param  int    $userId      User ID.
+     * @param  int    $correctness Correctness value.
+     * @param  string $lang        Language.
+     *
+     * @return array
+     */
     public function getPaginatedCorpusOf($userId, $correctness = null, $lang = null)
     {
         $conditions = array('UsersSentences.user_id' => $userId);
+
         if (is_int($correctness)) {
             $conditions['UsersSentences.correctness'] = $correctness;
+        } elseif ($correctness === 'outdated') {
+            $conditions['UsersSentences.dirty'] = true;
         }
+
         if (!empty($lang)) {
             $conditions['lang'] = $lang;
         }
 
-        $result = array(
+        return array(
             'conditions' => $conditions,
             'fields' => array('id', 'sentence_id', 'correctness', 'modified'),
             'contain' => array(
@@ -82,32 +103,43 @@ class UsersSentences extends AppModel
             'limit' => 50,
             'order' => 'modified DESC'
         );
-
-        return $result;
     }
 
-
+    /**
+     * Get correctness integer from label, if it exists.
+     *
+     * @param  string $label Correctness label used in route.
+     *
+     * @return int|string
+     */
     public function correctnessValueFromLabel($label)
     {
-        switch ($label) {
-            case "not-ok":
-                return -1;
-            case "unsure":
-                return 0;
-            case "ok":
-                return 1;
-            default:
-                return null;
+        $values = [
+            'not-ok' => -1,
+            'unsure' => 0,
+            'ok' => 1
+        ];
+
+        if (in_array($label, array_keys($values))) {
+            return $values[$label];
         }
+
+        return $label;
     }
 
-
+    /**
+     * Get correctness data for a sentence.
+     *
+     * @param  int $sentenceId Sentence ID.
+     *
+     * @return array
+     */
     public function getCorrectnessForSentence($sentenceId)
     {
-        $result = $this->find('all',
+        return $this->find('all',
             array(
                 'fields' => array(
-                    'correctness', 'modified'
+                    'correctness', 'modified', 'dirty'
                 ),
                 'conditions' => array(
                     'sentence_id' => $sentenceId
@@ -119,7 +151,15 @@ class UsersSentences extends AppModel
                 )
             )
         );
+    }
 
-        return $result;
+    /**
+     * Make all sentences with given id dirty.
+     *
+     * @param  int $sentenceId ID of sentence to dirty. Should be sanitized.
+     */
+    public function makeDirty($sentenceId)
+    {
+        $this->updateAll(['dirty' => true], ['sentence_id' => $sentenceId]);
     }
 }
