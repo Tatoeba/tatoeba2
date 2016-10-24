@@ -144,15 +144,15 @@ class VocabularyController extends AppController
     /**
      * Removes vocabulary item of given id.
      *
-     * @param $id int Vocabulary item id.
+     * @param $vocabularyId int Vocabulary item id.
      */
-    public function remove($id)
+    public function remove($vocabularyId)
     {
         $data = $this->UsersVocabulary->find(
             'first',
             array(
                 'conditions' => array(
-                    'vocabulary_id' => $id,
+                    'vocabulary_id' => $vocabularyId,
                     'user_id' => CurrentUser::get('id')
                 )
             )
@@ -160,10 +160,11 @@ class VocabularyController extends AppController
 
         if ($data) {
             $id = $data['UsersVocabulary']['id'];
+
             $this->UsersVocabulary->delete($id, false);
         }
 
-        $this->set('vocabularyId', array('id' => $id));
+        $this->set('vocabularyId', array('id' => $vocabularyId, 'data' => $data));
 
         $this->layout = 'json';
     }

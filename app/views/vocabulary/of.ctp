@@ -55,8 +55,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         <md-list flex>
             <?php
             foreach($vocabulary as $item) {
-                $id = $item['Vocabulary']['id'];
-                $divId = bin2hex($id);
+                $divId = $item['Vocabulary']['id'];
                 $lang = $item['Vocabulary']['lang'];
                 $text = $item['Vocabulary']['text'];
                 $numSentences = $item['Vocabulary']['numSentences'];
