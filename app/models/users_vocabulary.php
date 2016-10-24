@@ -53,7 +53,7 @@ class UsersVocabulary extends AppModel
      */
     public function add($vocabularyId, $userId)
     {
-        if ($item = $this->findById($vocabularyId)) {
+        if ($item = $this->findFirst($vocabularyId, $userId)) {
             return $item;
         }
 
@@ -91,6 +91,27 @@ class UsersVocabulary extends AppModel
         );
 
         return $result;
+    }
+
+    /**
+     * Find and return the first item with given vocabularyId and userId.
+     *
+     * @param  int $vocabularyId Vocabulary item id.
+     * @param  int $userId       User id.
+     *
+     * @return array|boolean
+     */
+    public function findFirst($vocabularyId, $userId)
+    {
+        return $this->find(
+            'first',
+            array(
+                'conditions' => array(
+                    'vocabulary_id' => $vocabularyId,
+                    'user_id' => $userId
+                )
+            )
+        );
     }
 }
 ?>

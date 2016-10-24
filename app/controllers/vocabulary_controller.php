@@ -148,14 +148,9 @@ class VocabularyController extends AppController
      */
     public function remove($vocabularyId)
     {
-        $data = $this->UsersVocabulary->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'vocabulary_id' => $vocabularyId,
-                    'user_id' => CurrentUser::get('id')
-                )
-            )
+        $data = $this->UsersVocabulary->findFirst(
+            $vocabularyId,
+            CurrentUser::get('id')
         );
 
         if ($data) {

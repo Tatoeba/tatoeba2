@@ -66,6 +66,8 @@ class Vocabulary extends AppModel
         if ($vocabulary = $this->findByBinary($hash, 'hash')) {
             $numSentences = $this->_updateNumSentences($vocabulary['Vocabulary']);
 
+            $this->id = $vocabulary['Vocabulary']['id'];
+
             $data['numSentences'] = $numSentences;
         } else {
             $numSentences = $this->_getNumberOfSentences($lang, $text);
