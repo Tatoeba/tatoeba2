@@ -53,7 +53,7 @@ class UsersVocabulary extends AppModel
      */
     public function add($vocabularyId, $userId)
     {
-        if ($item = $this->findByBinary($vocabularyId, 'vocabulary_id')) {
+        if ($item = $this->findById($vocabularyId)) {
             return $item;
         }
 

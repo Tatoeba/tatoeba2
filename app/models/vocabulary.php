@@ -58,12 +58,12 @@ class Vocabulary extends AppModel
         $hash = $this->makeHash($lang, $text);
 
         $data = array(
-            'id' => $hash,
+            'hash' => $hash,
             'lang' => $lang,
             'text' => $text
         );
 
-        if ($vocabulary = $this->findByBinary($hash, 'id')) {
+        if ($vocabulary = $this->findByBinary($hash, 'hash')) {
             $numSentences = $this->_updateNumSentences($vocabulary['Vocabulary']);
 
             $data['numSentences'] = $numSentences;
@@ -75,7 +75,7 @@ class Vocabulary extends AppModel
             $this->save($data);
         }
 
-        $this->UsersVocabulary->add($hash, CurrentUser::get('id'));
+        $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
 
         return $data;
     }
@@ -141,15 +141,14 @@ class Vocabulary extends AppModel
      * Increment vocabulary numSentences value by one if sentence contains
      * vocabulary.
      *
-     * @param  int    $id       Hexadecimal value of the vocabulary id.
+     * @param  int    $id       Vocabulary item id.
      * @param  string $sentence Sentence which should contain vocabulary text.
      *
      * @return int              Vocaubualry numSentences value.
      */
     public function incrementNumSentences($id, $sentence)
     {
-        $vocabularyId = hex2bin($id);
-        $vocabulary = $this->findById($vocabularyId);
+        $vocabulary = $this->findById($id);
 
         $vocabularyText = $vocabulary['Vocabulary']['text'];
         $numSentences = intval($vocabulary['Vocabulary']['numSentences']);
@@ -158,7 +157,7 @@ class Vocabulary extends AppModel
             $numSentences ++;
 
             $data = array(
-                'id' => $vocabularyId,
+                'id' => $id,
                 'numSentences' => $numSentences
             );
 
