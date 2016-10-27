@@ -21,7 +21,7 @@ $(document).ready(function() {
     $(document).watch("addrule", function() {
         // Show the transcribe buttons if there are some
         // hidden transcriptions
-        $('.needsReview:hidden').each(function(index) {
+        $('.needsReview.hidden').each(function(index) {
             var transcr = $(this);
             var menu = transcr.closest('.mainSentence')
                               .closest('.sentences_set')

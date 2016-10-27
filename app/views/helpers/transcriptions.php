@@ -170,12 +170,14 @@ class TranscriptionsHelper extends AppHelper
             $class .= ' blend';
         }
         $hide = $needsReview && !CurrentUser::get('settings.show_transcriptions');
+        if ($hide) {
+            $class .= ' hidden';
+        }
         echo $this->Html->tag('div',
             $toggleButton.$buttonsDiv.$transcriptionDiv,
             array(
                 'escape' => false,
                 'class' => $class,
-                'style' => $hide ? 'display:none' : null,
             )
         );
     }
