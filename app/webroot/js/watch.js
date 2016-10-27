@@ -53,6 +53,11 @@
                     applyRules(this);
                     break;
 
+                case 'html':
+                    this.html($(obj));
+                    applyRules(this);
+                    break;
+
                 default:
                   throw 'Invalid action: "' + action + '"';
             }

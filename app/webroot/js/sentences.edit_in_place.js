@@ -50,7 +50,7 @@ $(document).ready(function() {
                             rootUrl + '/transcriptions/view/' + sentenceId,
                             null,
                             function(result, status) {
-                                transcr.html(result);
+                                transcr.watch('html', result);
                             }
                         );
                     }
