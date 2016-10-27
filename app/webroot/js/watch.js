@@ -48,6 +48,11 @@
                     applyRules(this);
                     break;
 
+                case 'replaceWith':
+                    this.replaceWith($(obj));
+                    applyRules(this);
+                    break;
+
                 default:
                   throw 'Invalid action: "' + action + '"';
             }

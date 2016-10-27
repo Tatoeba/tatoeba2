@@ -127,7 +127,7 @@ $(document).ready(function() {
                 ajaxoptions : {
                     success : function(result, status) {
                         div.editing = false;
-                        div.parent().replaceWith(result);
+                        div.parent().watch("replaceWith", result);
                     }
                 },
                 onsubmit  : function(settings, self) {
