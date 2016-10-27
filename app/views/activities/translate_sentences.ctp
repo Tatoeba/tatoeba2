@@ -37,7 +37,7 @@ if (empty($notTranslatedInto)) {
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php __("How to add a translation"); ?></h2>
         <p>
             <?php
@@ -52,7 +52,7 @@ if (empty($notTranslatedInto)) {
         </p>
     </div>
     
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <h2><?php __('About translations'); ?></h2>
     
     <h4><?php __("Good translations"); ?></h4>
@@ -74,10 +74,9 @@ if (empty($notTranslatedInto)) {
 </div>
 
 <div id="main_content">
+    <h2><?php __('Translate sentences'); ?></h2>
 
-    <div class="module">
-        <h2><?php __('Translate sentences'); ?></h2>
-
+    <div class="section" md-whiteframe="1">
         <h3><?php __('Search for untranslated sentences'); ?></h3>
         <div>
             <?php
@@ -133,8 +132,9 @@ if (empty($notTranslatedInto)) {
             </fieldset>
             <?php echo $form->end(); ?>
         </div>
+    </div>
 
-
+    <div class="section" md-whiteframe="1">
         <h3><?php __('Display random sentences'); ?></h3>
         <?php
         $numberOfSentencesWanted = array (10 => 10 , 20 => 20 , 50 => 50, 100 => 100);
