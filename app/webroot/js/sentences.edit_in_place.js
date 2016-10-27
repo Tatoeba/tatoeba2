@@ -24,7 +24,6 @@ $(document).ready(function() {
             var div = $(this);
 
             var sentenceId = div.parent().attr('data-sentence-id');
-            div.data('text', div.text());
             div.editable(rootUrl + '/sentences/edit_sentence', {
                 type      : 'textarea',
                 submit    : div.attr('data-submit'),
