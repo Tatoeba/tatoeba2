@@ -23,10 +23,12 @@ $(document).ready(function() {
         // hidden transcriptions
         $('.needsReview:hidden').each(function(index) {
             var transcr = $(this);
-            if (transcr.closest('.translations').length == 0) {
+            var menu = transcr.closest('.mainSentence')
+                              .closest('.sentences_set')
+                              .find('.transcribe-buttons');
+            if (menu.length) {
                 /* Transcription of the main sentence, not a translation */
                 /* Move the show button in the menu */
-                var menu = transcr.closest('.sentences_set').find('.transcribe-buttons');
                 var button = transcr.find('.transcribe.option');
                 button.click(function(event) {
                     button.remove();
