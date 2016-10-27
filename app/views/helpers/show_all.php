@@ -181,6 +181,8 @@ class ShowAllHelper extends AppHelper
      * Diplsay the module to filter main sentences with no direct translation in
      * the language specified by select
      *
+     * @todo This should be completely removed at some point.
+     *
      * @param string $selectedLanguage The default selected language
      *
      * @return void
@@ -192,17 +194,17 @@ class ShowAllHelper extends AppHelper
         <div class="module">
             <h2><?php __('Not directly translated into:'); ?></h2>
             <?php
-            $langs = $this->Languages->languagesArrayForNegativeLists();
-           
-            echo $this->_generateSelect(
-                $selectedLanguage,
-                $langs,
-                2
+            echo format(
+                __(
+                    'This option has been removed. '.
+                    'Please use the <a href={}>Translate sentences</a> page '.
+                    'to find untranslated sentences.', true
+                ),
+                $this->Html->url(array(
+                    'controller' => 'activities',
+                    'action' => 'translate_sentences'
+                ))
             );
-            ?>
-            <p>
-            <?php
-            __('NOTE: Sentences that have an indirect translation will be displayed.');
             ?>
             </p>
         </div>

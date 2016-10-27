@@ -35,25 +35,6 @@ if ($filterAudioOnly === 'only-with-audio') {
                 array('language' => $languageName));
 }
 
-if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
-    if ($notTranslatedInto == 'und') {
-        $notTranslatedIntoName = __('any language', true);
-    } else {
-        $notTranslatedIntoName = $languages->codeToNameToFormat($notTranslatedInto);
-    }
-    if ($filterAudioOnly === 'only-with-audio') {
-        $title = format(
-            __('Sentences in {language} with audio not translated into {translationLanguage}', true),
-            array('language' => $languageName, 'translationLanguage' => $notTranslatedIntoName)
-        );
-    } else {
-        $title = format(
-            __('Sentences in {language} not translated into {translationLanguage}', true),
-            array('language' => $languageName, 'translationLanguage' => $notTranslatedIntoName)
-        );
-    }
-}
-
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
@@ -61,7 +42,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <?php
     $showAll->displayShowAllInSelect($lang);
     $showAll->displayShowOnlyTranslationInSelect($translationLang);
-    $showAll->displayShowNotTranslatedInto($notTranslatedInto);
+    $showAll->displayShowNotTranslatedInto();
     $showAll->displayFilterOrNotAudioOnly($filterAudioOnly);
     ?>
 
@@ -77,7 +58,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         $paginationUrl = array(
             $lang,
             $translationLang,
-            $notTranslatedInto,
+            'none',
             $filterAudioOnly,
         );
         $pagination->display($paginationUrl);

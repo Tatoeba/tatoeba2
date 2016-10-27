@@ -910,7 +910,6 @@ class SentencesController extends AppController
 
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
-        $this->addLastUsedLang($notTranslatedInto);
 
         if (CurrentUser::isMember()) {
             $contain = $this->Sentence->contain();
@@ -931,29 +930,8 @@ class SentencesController extends AppController
         );
 
         // filter or not sentences-with-audio-only
-        $audioOnly = false ;
         if ($filterAudioOnly === "only-with-audio") {
-            $audioOnly = true ;
             $pagination['Sentence']['conditions']['hasaudio !='] = "no";
-        }
-
-
-        if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
-            $model = 'SentenceNotTranslatedInto';
-            $pagination = array(
-                'SentenceNotTranslatedInto' => array(
-                    'fields' => $this->Sentence->fields(),
-                    'conditions' => array(
-                        'source' => $lang,
-                        'translatedInto' => $translationLang,
-                        'notTranslatedInto' => $notTranslatedInto,
-                        'audioOnly' => $audioOnly,
-                    ),
-                    'contain' => $contain,
-                    'order' => 'Sentence.id DESC',
-                    'limit' => 10,
-                )
-            );
         }
 
         $allSentences = $this->_common_sentences_pagination(
@@ -968,13 +946,11 @@ class SentencesController extends AppController
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);
-        $this->set('notTranslatedInto', $notTranslatedInto);
         $this->set('filterAudioOnly', $filterAudioOnly);
         $this->set('results', $allSentences);
 
         $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
         $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
-        $this->Cookie->write('not_translated_into_lang', $notTranslatedInto, false, "+1 month");
         $this->Cookie->write('filter_audio_only', $filterAudioOnly, false, "+1 month");
     }
     /**
