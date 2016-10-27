@@ -63,6 +63,7 @@ $(document).ready(function() {
                 button.toggle(true);
                 menu.empty().append(button);
             }
+            container.removeClass('blend');
         });
 
         function escapeUnicodeChar(c) {
