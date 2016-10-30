@@ -30,12 +30,14 @@ $(document).ready(function() {
                 /* Transcription of the main sentence, not a translation */
                 /* Move the show button in the menu */
                 var button = transcr.find('.transcribe.option');
-                button.click(function(event) {
-                    button.remove();
-                    transcr.toggle(true);
-                });
-                button.toggle(true);
-                menu.empty().append(button);
+                if (button.length) {
+                    button.click(function(event) {
+                        button.remove();
+                        transcr.toggle(true);
+                    });
+                    button.toggle(true);
+                    menu.empty().append(button);
+                }
             }
         });
 
