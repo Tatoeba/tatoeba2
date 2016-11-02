@@ -240,7 +240,7 @@ class SphinxConfShell extends Shell {
          * to search if they are ignored. Since all the Russian diacritics
          * are not single characters but combining characters (e.g. и + ´ = и́)
          * we simply ignore the *´* combining char (U+301) so that characters
-         * are considered not having a diacritic. */
+         * are considered as not having a diacritic. We also ignore soft hyphen. */
         $this->indexExtraOptions['rus'] =
             "
         charset_table = ".implode(', ', array_merge(
@@ -251,6 +251,55 @@ class SphinxConfShell extends Shell {
             )
         ))."
         ignore_chars = U+AD, U+301\n";
+        
+        /* Turkish
+         *   Vowels:
+         *     Fold dotless capital I into lowercase dotless i ('I->U+131')
+         *     Fold dotted capital I into lowercase dotted i ('U+130->i')
+         *     Fold {A,a,U,u} + ^ (U+C2, U+E2, U+DB, U+FB) into letters without ^
+         *     Fold {I,i} + ^ (U+CE, U+EE) into lowercase dotless i without ^
+         *     Fold O + diaeresis (U+D6) into o + diaeresis (U+F6)
+         *   Consonants:
+         *     Fold C + cedilla (U+C7) into c + cedilla (U+E7)
+         *     Fold G + breve (U+11E) into g + breve (U+11F)
+         *     Fold S + cedilla (U+15E) into s + cedilla (U+15F)
+         *   Combining marks:
+         *     Ignore combining circumflex (U+302)
+         */
+        $this->indexExtraOptions['tur'] = 
+            "
+        charset_table = ".implode(', ', array_merge(
+            array(
+                'A->a', 'U+C2->a', 'U+E2->a', 'a', # case-folding: a with/without circumflex
+                'B->b', 'b',
+                'C->c', 'c',
+                'U+C7->U+E7', 'U+E7', # case-folding: c-cedilla
+                'D..H->d..h', 'd..h',
+                'I->U+0131', 'U+CE->U+0131', 'U+EE->U+0131', 'U+0131', # case-folding: dotless i
+                'U+CE->U+0131', 'U+EE->U+0131', # strip circumflex from I,i and map to dotless i
+                'U+0130->i', 'i', # case-folding: dotted i
+                'J..N->j..n', 'j..n',
+                'O->o', 'o',
+                'U+D6->U+F6', 'U+F6', # case-folding: o-umlaut
+                'P..T->p..t', 'p..t',
+                'U->u', 'U+DB->u', 'U+FB->u', 'u', # case-folding: u with/without circumflex
+                'U+DC->U+FC', 'U+FC',   # case-folding: u-umlaut
+                'V..Z->v..z', 'v..z',
+                'U+11E->U+11F', 'U+11F', # case-folding: g-breve
+                'U+15E->U+15F', 'U+15F' # case-folding: s-cedilla
+            ),
+            array_filter(
+                $this->charsetTable,
+                function($v) { 
+                    return $v != 'A..Z->a..z' && $v != 'a..z'
+                    && $v != 'U+C0..U+D6->U+E0..U+F6' && $v != 'U+E0..U+F6' # Latin-1 supplement
+                    && $v != 'U+D8..U+DE->U+F8..U+FE' && $v != 'U+F8..U+FF' # Latin-1 supplement
+                    && $v != 'U+100..U+177/2' # A-macron to y-circumflex
+                    && $v != 'U+300..U+36F'   # combining characters
+                ; }
+            )
+        ))."\n";
+        
     }
 
     // In the following, the characters U+5B0..U+5C5, U+5C7 within
