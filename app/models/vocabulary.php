@@ -63,17 +63,7 @@ class Vocabulary extends AppModel
             'text' => $text
         );
 
-        $vocabularyItems = $this->findAllByBinary($hash, 'hash');
-
-        $duplicate = false;
-
-        foreach ($vocabularyItems as $vocabularyItem) {
-            if ($this->confirmDuplicate($text, $lang, $vocabularyItem['Vocabulary'])) {
-                $duplicate = $vocabularyItem;
-
-                break;
-            }
-        }
+        $duplicate = $this->_hasDuplicate($hash, $lang, $text);
 
         if ($duplicate) {
             $numSentences = $this->_updateNumSentences($duplicate['Vocabulary']);
@@ -92,6 +82,28 @@ class Vocabulary extends AppModel
         $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
 
         return $data;
+    }
+
+    /**
+     * Return true if land and text have true duplicate.
+     *
+     * @param  string  $hash Vocabulary hash value.
+     * @param  string  $lang Vocabulary language.
+     * @param  string  $text Vocabulary text.
+     *
+     * @return boolean|array
+     */
+    private function _hasDuplicate($hash, $lang, $text)
+    {
+        $vocabularyItems = $this->findAllByBinary($hash, 'hash');
+
+        foreach ($vocabularyItems as $vocabularyItem) {
+            if ($this->confirmDuplicate($text, $lang, $vocabularyItem['Vocabulary'])) {
+                return $vocabularyItem;
+            }
+        }
+
+        return false;
     }
 
     /**
