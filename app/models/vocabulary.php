@@ -68,7 +68,7 @@ class Vocabulary extends AppModel
         $duplicate = false;
 
         foreach ($vocabularyItems as $vocabularyItem) {
-            if ($this->_confirmDuplicate($text, $lang, $vocabularyItem)) {
+            if ($this->confirmDuplicate($text, $lang, $vocabularyItem['Vocabulary'])) {
                 $duplicate = $vocabularyItem;
 
                 break;
@@ -92,19 +92,6 @@ class Vocabulary extends AppModel
         $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
 
         return $data;
-    }
-
-    private function _confirmDuplicate($text, $lang, $vocabularyItem)
-    {
-        $itemText = $vocabularyItem['Vocabulary']['text'];
-
-        $itemLang = $vocabularyItem['Vocabulary']['lang'];
-
-        if ($itemText === $text && $itemLang === $lang) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

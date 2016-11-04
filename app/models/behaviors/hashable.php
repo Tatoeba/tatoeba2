@@ -90,4 +90,17 @@ class HashableBehavior extends ModelBehavior
 
         return hex2bin($hex);
     }
+
+    public function confirmDuplicate($model, $text, $lang, $item)
+    {
+        $itemText = $item['text'];
+
+        $itemLang = $item['lang'];
+
+        if ($itemText === $text && $itemLang === $lang) {
+            return true;
+        }
+
+        return false;
+    }
 }
