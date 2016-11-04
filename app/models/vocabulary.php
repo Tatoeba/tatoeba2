@@ -63,10 +63,22 @@ class Vocabulary extends AppModel
             'text' => $text
         );
 
-        if ($vocabulary = $this->findByBinary($hash, 'hash')) {
-            $numSentences = $this->_updateNumSentences($vocabulary['Vocabulary']);
+        $vocabularyItems = $this->findAllByBinary($hash, 'hash');
 
-            $this->id = $vocabulary['Vocabulary']['id'];
+        $duplicate = false;
+
+        foreach ($vocabularyItems as $vocabularyItem) {
+            if ($this->_confirmDuplicate($text, $lang, $vocabularyItem)) {
+                $duplicate = $vocabularyItem;
+
+                break;
+            }
+        }
+
+        if ($duplicate) {
+            $numSentences = $this->_updateNumSentences($duplicate['Vocabulary']);
+
+            $this->id = $duplicate['Vocabulary']['id'];
 
             $data['numSentences'] = $numSentences;
         } else {
@@ -80,6 +92,19 @@ class Vocabulary extends AppModel
         $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
 
         return $data;
+    }
+
+    private function _confirmDuplicate($text, $lang, $vocabularyItem)
+    {
+        $itemText = $vocabularyItem['Vocabulary']['text'];
+
+        $itemLang = $vocabularyItem['Vocabulary']['lang'];
+
+        if ($itemText === $text && $itemLang === $lang) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
