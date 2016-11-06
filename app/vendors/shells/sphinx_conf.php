@@ -263,8 +263,6 @@ class SphinxConfShell extends Shell {
          *     Fold C + cedilla (U+C7) into c + cedilla (U+E7)
          *     Fold G + breve (U+11E) into g + breve (U+11F)
          *     Fold S + cedilla (U+15E) into s + cedilla (U+15F)
-         *   Combining marks:
-         *     Ignore combining circumflex (U+302)
          */
         $this->indexExtraOptions['tur'] = 
             "
