@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-22 15:38+0000\n"
-"PO-Revision-Date: 2016-10-26 00:37+0000\n"
+"POT-Creation-Date: 2016-10-29 12:36+0000\n"
+"PO-Revision-Date: 2016-10-31 18:32+0000\n"
 "Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "Ezhomm ho peus da vezañ kevreet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L177
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/of_user.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L39
@@ -602,7 +602,7 @@ msgid ""
 msgstr "Ur wezh m'eo bet abourzhet ur frazenn gudennek, lakait al liketenn {tagOK}. Hollekoc'h, gellout a rit merdeiñ ha gwiriañ frazennoù ar re all ha lakaat liketennoù warno gant {tagOK}. Nemet pa 'vezer sur da vat e vezont reizh, ha na implijit ket al liketennoù-mañ war ho frazennoù deoc'h c'hwi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 msgid "Translate sentences"
@@ -640,21 +640,21 @@ msgid ""
 "translations in the same language. "
 msgstr "Ma kav deoc'h ez eus meur a droidigezh, gellout a rit ouzhpennañ meur a droidigezh evit ar memes yezh."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L80
 msgid "Search for untranslated sentences"
 msgstr "Klask war-lerc'h frazennoù chomet hep troidigezh ebet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L135
 msgid "Sentences in:"
 msgstr "Frazennoù e-barzh:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L195
 msgid "Not directly translated into:"
 msgstr "N'eo ket bet troet war-eeun e:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L130
 msgid "show sentences"
 msgstr "diskouez frazennoù"
 
@@ -2280,23 +2280,25 @@ msgstr "Kas an droidigezh"
 msgid "NOTE: Both direct and indirect translations will be shown."
 msgstr "NOTENN : An div droidigezh eeun hag ameeun a vo diskouezet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L205
-msgid "NOTE: Sentences that have an indirect translation will be displayed."
-msgstr "NOTENN : Ar frazennoù o deus un droidigezh ameeun a vo diskouezet."
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L199
+msgid ""
+"This option has been removed. Please use the <a href={}>Translate "
+"sentences</a> page to find untranslated sentences."
+msgstr "An opsion-mañ a zo dilamet. Implijit mar-plij ar bajenn <a href={}>Treiñ frazennoù</a> a-benn kavout frazennoù chomet hep troidigezh ebet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L226
 msgid "Only sentences with audio:"
 msgstr "Frazennoù gant ar c'hlev hepken:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L229
 msgid "no"
 msgstr "ket"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L230
 msgid "yes"
 msgstr "ya"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L241
 msgid "NOTE: Not all languages have audio at the moment."
 msgstr "NOTENN : An holl yezhoù n'o deus ket atav klev-ioù evit ar poent."
 
@@ -3348,7 +3350,6 @@ msgid "Sentences with: {keywords}"
 msgstr "Frazennoù gant: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L51
 msgid "Sentences in {language} not translated into {translationLanguage}"
 msgstr "Frazennoù e {language} ha n'int ket troet e {translationLanguage}"
 
@@ -3454,6 +3455,10 @@ msgstr "N'eus ket eus ar frazenn:"
 msgid "Reviewed by"
 msgstr "Gwiriekaet gant"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L96
+msgid "(outdated)"
+msgstr "(diamzeriet)"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L150
 msgid "There is no log for this sentence"
 msgstr "N'eus klokaenn ebet evit ar frazenn-mañ"
@@ -3477,15 +3482,6 @@ msgstr "An holl frazennoù e {language} gant ar c'hlev"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
 msgstr "An holl frazennoù e {language}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L40
-msgid "any language"
-msgstr "forzh peseurt yezh"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L46
-msgid ""
-"Sentences in {language} with audio not translated into {translationLanguage}"
-msgstr "Frazennoù e {language} gant ar c'hlev ha n'int ket troet e {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L31
 msgid "Sentences in {language} with audio"
@@ -3764,18 +3760,22 @@ msgstr "Niver a frazennoù dre yezh"
 msgid "Tags for moderators"
 msgstr "Liketennoù evit ar verourien"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L48
+msgid "Workload ({number})"
+msgstr "Karg-labour ({number})"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L69
 msgid "Guidelines"
 msgstr "Red-amzer"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L78
 msgid ""
 "Corpus maintainers, this page was made for your convenience. It shows "
 "sentences that were tagged more than two weeks ago as {changeTag} or "
 "{deleteTag}."
 msgstr "Korpus ar ratreerien, savet eo bet ar bajenn-mañ evit hoc'h aezamant. Diskouez a ra frazennoù a zo bet market ouhzpenn div sizhun 'zo {changeTag} pe {deleteTag}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L83
 msgid ""
 "Aside from special situations where your common sense will tell you that it "
 "is better to react as soon as possible, it is best to use your corpus "
@@ -3783,12 +3783,12 @@ msgid ""
 "list, since the owners have had enough time to respond to comments."
 msgstr "Er-maez eus pep pleg ispisial ma ro ho polontez vat deoc'h da c'houzout ez eo gwelloc'h rebarbiñ ar buanañ posupl, gwelloc'h ez eo d'ober gant ho kalloudoù korpus ratreiñ <strong>NEMETKEN</ strong> war frazennoù 'zo hag a zeu war-wel el listenn-mañ, peogwir o devez bet perc'hennerien ar frazennoù amzer a-walc'h da respont d'an evezhiadennoù."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L89
 msgid ""
 "NOTE: The maximum number of sentences displayed at a time is limited to 100."
 msgstr "Notenn: An niver a frazennoù a c'haller diskouez war an dro a zo bevennet da 100."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L97
 msgid "Tagged '{tagName}' more than 2 weeks ago"
 msgstr "Liketennet '{tagName}' muioc'h evit 2/div sizhun 'zo"
 

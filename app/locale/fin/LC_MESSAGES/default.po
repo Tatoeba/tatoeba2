@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-22 15:38+0000\n"
-"PO-Revision-Date: 2016-10-22 19:48+0000\n"
-"Last-Translator: Trang Ho\n"
+"POT-Creation-Date: 2016-10-29 12:36+0000\n"
+"PO-Revision-Date: 2016-10-30 09:00+0000\n"
+"Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "Sinun täytyy kirjautua sisään."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/activities_controller.php#L177
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/of_user.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L39
@@ -602,7 +602,7 @@ msgid ""
 msgstr "Kun ongelmallinen lause on käsitelty, lisää siihen tunniste {tagOK}. Yleisemmällä tasolla voit selailla ja tarkistaa muiden lauseita ja lisätä niihin tunnisteen {tagOK}. Mutta tee näin vain silloin kun olet täysin varma, että lauseet ovat oikein, äläkä käytä tätä tunnistetta omissa lauseissasi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 msgid "Translate sentences"
@@ -640,21 +640,21 @@ msgid ""
 "translations in the same language. "
 msgstr "Jos sinusta tuntuu, että useat erilaiset käännökset ovat mahdollisia, voit lisätä useita käännöksiä samalla kielellä. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L80
 msgid "Search for untranslated sentences"
 msgstr "Etsi kääntämättömiä lauseita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L135
 msgid "Sentences in:"
 msgstr "Lauseet kielellä:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L195
 msgid "Not directly translated into:"
 msgstr "Ei suoraa käännöstä kielelle:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L130
 msgid "show sentences"
 msgstr "Näytä lauseet"
 
@@ -709,7 +709,7 @@ msgstr "Kaikki lauseet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L33
 msgid "Outdated ratings"
-msgstr ""
+msgstr "Vanhentuneet arvostelut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L45
 msgid "{user}'s collection - {category}"
@@ -1313,11 +1313,11 @@ msgstr "Tuloksia ei löytynyt haulle: {search}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/sentence_and_translations.ctp#L66
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/translation.ctp#L33
 msgid "This sentence is not reliable."
-msgstr ""
+msgstr "Tämä lause ei ole luotettava."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/sentence_and_translations.ctp#L101
 msgid "Translations of translations"
-msgstr ""
+msgstr "Käännösten käännökset"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/sentence_and_translations.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L217
@@ -2280,23 +2280,25 @@ msgstr "Lisää käännös"
 msgid "NOTE: Both direct and indirect translations will be shown."
 msgstr "HUOM: Sekä suorat että epäsuorat käännökset näytetään."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L205
-msgid "NOTE: Sentences that have an indirect translation will be displayed."
-msgstr "HUOM: Lauseet, joilla on epäsuora käännös, näytetään"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L199
+msgid ""
+"This option has been removed. Please use the <a href={}>Translate "
+"sentences</a> page to find untranslated sentences."
+msgstr "Tämä valinta on poistettu. Käytä <a href={}>Käännä lauseita</a> -sivua kääntämättömien lauseiden etsimiseen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L226
 msgid "Only sentences with audio:"
 msgstr "Vain lauseet äänitiedostoilla:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L229
 msgid "no"
 msgstr "ei"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L230
 msgid "yes"
 msgstr "kyllä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L241
 msgid "NOTE: Not all languages have audio at the moment."
 msgstr "HUOM: Vain muutamilla kielillä on äänitiedostoja tällä hetkellä."
 
@@ -3348,7 +3350,6 @@ msgid "Sentences with: {keywords}"
 msgstr "Hakusanan ”{keywords}” sisältävät lauseet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L51
 msgid "Sentences in {language} not translated into {translationLanguage}"
 msgstr "{language.genitive}kieliset lauseet, joita ei ole käännetty {translationLanguage.translative}"
 
@@ -3454,6 +3455,10 @@ msgstr "Lausetta ei ole olemassa: "
 msgid "Reviewed by"
 msgstr "Arvioinnit"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L96
+msgid "(outdated)"
+msgstr "(vanhentunut)"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L150
 msgid "There is no log for this sentence"
 msgstr "Tällä lauseella ei ole lokia"
@@ -3477,15 +3482,6 @@ msgstr "Kaikki äänitetyt {language.genitive}kieliset lauseet"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
 msgstr "Kaikki {language.genitive}kieliset lauseet"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L40
-msgid "any language"
-msgstr "; nominative: mikä tahansa kieli; genitive: minkä tahansa kielen; partitive: mitä tahansa kieltä; inessive: missä tahansa kielessä; elative: mistä tahansa kielestä; illative: mihin tahansa kieleen; translative: miksi tahansa kieleksi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L46
-msgid ""
-"Sentences in {language} with audio not translated into {translationLanguage}"
-msgstr "Äänitetyt {language.genitive}kieliset lauseet, joita ei ole käännetty {language.translative}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L31
 msgid "Sentences in {language} with audio"
@@ -3764,18 +3760,22 @@ msgstr "Lauseiden lukumäärä kielittäin"
 msgid "Tags for moderators"
 msgstr "Tunnisteet moderaattoreita varten"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L48
+msgid "Workload ({number})"
+msgstr "Työmäärä ({number})"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L69
 msgid "Guidelines"
 msgstr "Ohjesäännöt"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L78
 msgid ""
 "Corpus maintainers, this page was made for your convenience. It shows "
 "sentences that were tagged more than two weeks ago as {changeTag} or "
 "{deleteTag}."
 msgstr "Korpuksen ylläpitäjät: tämä sivu on tehty teitä varten. Se näyttää lauseet, joihin on lisätty yli kaksi viikkoa sitten tunniste, kuten {changeTag} tai {deleteTag}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L83
 msgid ""
 "Aside from special situations where your common sense will tell you that it "
 "is better to react as soon as possible, it is best to use your corpus "
@@ -3783,12 +3783,12 @@ msgid ""
 "list, since the owners have had enough time to respond to comments."
 msgstr "Sinun on parasta käyttää korpuksen ylläpitäjän oikeuksiasi <strong>VAIN</strong> lauseisiin, jotka ovat tällä listalla, koska silloin lauseiden omistajalla on ollut tarpeeksi aikaa reagoida kommentteihin, poislukien tilanteet, joissa maalaisjärki kertoo, että on parempi reagoida mahdollisimman nopeasti."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L89
 msgid ""
 "NOTE: The maximum number of sentences displayed at a time is limited to 100."
 msgstr "HUOM: kerrallaan näytettävien lauseiden enimmäismäärä on rajoitettu sataan lauseeseen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L97
 msgid "Tagged '{tagName}' more than 2 weeks ago"
 msgstr "Tunniste ”{tagName}” lisätty yli 2 viikkoa sitten"
 
@@ -4190,7 +4190,7 @@ msgstr "Näytä painike, jolla voit kopioida lauseen leikepöydälle."
 msgid ""
 "Display sentences with the new design. Note that you will not have all the "
 "features from the old design."
-msgstr ""
+msgstr "Näytä lauseet uudessa ulkoasussa. Huomaathan, että et voi käyttää kaikkia vanhan ulkoasun toiminnallisuuksia."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L325
 msgid "Change email address"
