@@ -126,8 +126,8 @@
     echo $javascript->link(JS_PATH . 'responsive/app.module.js');
 
 
-    echo $javascript->link(JS_PATH . 'generic_functions.js');
     echo $javascript->link(JS_PATH . 'watch.js', true);
+    echo $javascript->link(JS_PATH . 'generic_functions.js');
     // Source: https://github.com/jonathantneal/svg4everybody
     // This is needed to make "fill: currentColor" work on every browser.
     echo $javascript->link(JS_PATH . 'svg4everybody.min.js');

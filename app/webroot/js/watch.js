@@ -39,12 +39,10 @@
                     break;
 
                 case 'append':
-                    this.append($(obj));
-                    applyRules(this);
-                    break;
-
                 case 'prepend':
-                    this.prepend($(obj));
+                case 'replaceWith':
+                case 'html':
+                    this[action]($(obj));
                     applyRules(this);
                     break;
 
