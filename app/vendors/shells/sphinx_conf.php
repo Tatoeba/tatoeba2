@@ -220,6 +220,67 @@ class SphinxConfShell extends Shell {
             )
         );
 
+        $this->indexExtraOptions['lat'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array(
+                'A..H->a..h', 'a..h',
+                'I->i', 'J->i', 'j->i', 'i',
+                'K..T->k..t', 'k..t',
+                'U->v', 'u->v', 'V->v', 'W->v', 'w->v', 'v',
+                'X..Z->x..z', 'x..z',
+                'U+100->a',       # cap a + macron -> small a
+                'U+101->a',       # small a + macron -> small a
+                'U+102->a',       # cap a + breve -> small a
+                'U+103->a',       # small a + breve -> small a
+                'U+C1->a',        # cap a + acute -> small a
+                'U+E1->a',        # small a + acute -> small a
+                'U+112->e',       # same pattern as for a
+                'U+113->e',
+                'U+114->e',
+                'U+115->e',
+                'U+C9->e',
+                'U+E9->e',
+                'U+12A->i',       # same pattern as for a
+                'U+12B->i',
+                'U+12C->i',
+                'U+12D->i',
+                'U+CD->i',
+                'U+ED->i',
+                'U+14C->o',       # same pattern as for a
+                'U+14D->o',
+                'U+14E->o',
+                'U+14F->o',
+                'U+D3->o',
+                'U+F3->o',
+                'U+16A->v',       # cap u + macron -> small v
+                'U+16B->v',       # small u + macron -> small v
+                'U+16C->v',       # cap u + breve -> small v
+                'U+16D->v',       # small u + breve -> small v
+                'U+DA->v',        # cap u + acute -> small v
+                'U+FA->v',        # small u + acute -> small v
+                'U+1E2->U+E6',    # cap ae + macron -> small ae
+                'U+1E3->U+E6',    # small ae + macron -> small ae
+                'U+C6->U+E6',     # cap ae -> small ae
+                'U+E6'            # small ae
+                ),
+            array_filter(
+                $this->charsetTable,
+                function($v) { return 
+                    $v != 'A..Z->a..z' && 
+                    $v != 'a..z' &&
+                    $v != 'U+C0..U+D6->U+E0..U+F6' &&
+                    $v != 'U+D8..U+DE->U+F8..U+FE' &&
+                    $v != 'U+E0..U+F6' &&
+                    $v != 'U+F8..U+FF' &&
+                    $v != 'U+100..U+177/2' &&
+                    $v != 'U+01DE..U+01EF/2' &&
+                    $v != 'U+300..U+36F'
+                ; }
+            )
+        ))."
+        ignore_chars = U+AD, U+301\n";
+        
         /* Lojban uses apostrophe as a regular character
          * and sometimes replaces it with h */
         $this->indexExtraOptions['jbo'] = 
