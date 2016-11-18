@@ -14,7 +14,8 @@
 
 DROP TABLE IF EXISTS `vocabulary`;
 CREATE TABLE `vocabulary` (
-  `id` binary(16) PRIMARY KEY,
+  `id` id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `hash` binary(16) PRIMARY KEY,
   `lang` varchar(4) DEFAULT NULL,
   `text` varbinary(1500) NOT NULL,
   `numSentences` int(10) DEFAULT 0,
