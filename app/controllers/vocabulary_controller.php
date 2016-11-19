@@ -120,7 +120,7 @@ class VocabularyController extends AppController
 
 
     /**
-     * Saves a vocabulary item.
+     * Save a vocabulary item.
      */
     public function save()
     {
@@ -128,15 +128,15 @@ class VocabularyController extends AppController
         $text = $_POST['text'];
 
         $result = $this->Vocabulary->addItem($lang, $text);
-        $hexValue = unpack('H*', $result['id']);
-        $result['id'] = str_pad($hexValue[1], 32, '0');
+
         $numSentences = $result['numSentences'];
+
         $result['numSentencesLabel'] = format(
             __n('{number} sentence', '{number} sentences', $numSentences, true),
             array('number' => $numSentences)
         );
-        $this->set('result', $result);
 
+        $this->set('result', $result);
         $this->layout = 'json';
     }
 
@@ -144,28 +144,22 @@ class VocabularyController extends AppController
     /**
      * Removes vocabulary item of given id.
      *
-     * @param $id int Hexadecimal value of vocabulary id.
+     * @param $vocabularyId int Vocabulary item id.
      */
-    public function remove($id)
+    public function remove($vocabularyId)
     {
-        $vocabularyId = hex2bin($id);
-
-        $data = $this->UsersVocabulary->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'vocabulary_id' => $vocabularyId,
-                    'user_id' => CurrentUser::get('id')
-                )
-            )
+        $data = $this->UsersVocabulary->findFirst(
+            $vocabularyId,
+            CurrentUser::get('id')
         );
 
         if ($data) {
             $id = $data['UsersVocabulary']['id'];
+
             $this->UsersVocabulary->delete($id, false);
         }
 
-        $this->set('vocabularyId', array('id' => $id));
+        $this->set('vocabularyId', array('id' => $vocabularyId, 'data' => $data));
 
         $this->layout = 'json';
     }

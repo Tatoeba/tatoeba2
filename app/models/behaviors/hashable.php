@@ -90,4 +90,27 @@ class HashableBehavior extends ModelBehavior
 
         return hex2bin($hex);
     }
+
+    /**
+     * Return true if item is true duplicate.
+     *
+     * @param  object $model Model.
+     * @param  string $text  Item text.
+     * @param  string $lang  Item language.
+     * @param  array  $item  Item to be compared against.
+     *
+     * @return bool
+     */
+    public function confirmDuplicate($model, $text, $lang, $item)
+    {
+        $itemText = $item['text'];
+
+        $itemLang = $item['lang'];
+
+        if ($itemText === $text && $itemLang === $lang) {
+            return true;
+        }
+
+        return false;
+    }
 }
