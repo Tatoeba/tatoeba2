@@ -43,7 +43,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('Tags for moderators', tru
         }
         ?>
         <div class="module">            
-            <h2>Workload (<?php echo $workload; ?>)</h2>
+            <h2>
+                <?= format(
+                    __('Workload ({number})', true),
+                    array('number' => $workload)
+                ); ?>
+            </h2>
             
             <div class="workloadWrapper">
             <div 
