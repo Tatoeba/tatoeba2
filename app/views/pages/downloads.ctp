@@ -29,29 +29,54 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <h2><?php __('Warning'); ?></h2>
     <p>
-    <?php __(
+    <?php
+    __(
         'The data you will find here will NOT be useful unless you are coding a '.
         'language tool or processing data.'
-        ); 
+    );
     ?>
     </p>
     <p>
-    <?php 
-        echo format(__(
-                    'If you simply want sentences that you can use to learn a language, '.
-                    'check out the <a href="{}">sentence lists</a>. '.
-                    'You can build your own, or view the ones that others have created. '. 
-                    'The lists can be downloaded and printed.', true), 
-                    $html->url(array("controller"=>"sentences_lists"))
-                    );
+    <?php
+    echo format(__(
+        'If you simply want sentences that you can use to learn a language, '.
+        'check out the <a href="{}">sentence lists</a>. '.
+        'You can build your own, or view the ones that others have created. '.
+        'The lists can be downloaded and printed.', true),
+        $html->url(array("controller"=>"sentences_lists")
+    ));
     ?>
     </p>
     </div>
+
+    <div class="section" md-whiteframe="1">
+        <h2><?php __('General information about the files'); ?></h2>
+        <p>
+            <?php
+            __(
+                'The files provided here are updated every <strong>Saturday at 9 a.m.</strong> '.
+                '(GMT).'
+            );
+            ?>
+        </p>
+
+        <p>
+            <?php $tanaka_url2 = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus";
+            echo format(
+                __(
+                    'Many of the Japanese and English sentences are from the '.
+                    '<a href="{}">Tanaka Corpus</a>, which belongs to the public domain.', true
+                ),
+                $tanaka_url2
+            );
+            ?>
+        </p>
+    </div>
     
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <h2><?php __('Creative commons'); ?></h2>
     <p><?php __('These files are released under CC-BY.'); ?></p>
     <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">
@@ -60,19 +85,20 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
     </a>
     </div>
 
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <h2><?php __('Questions?'); ?></h2>
     <p>
     <?php
-        $firstSentence = format(
-            __(
-               'If you have questions or requests, feel free to '.
-               '<a href="{}">contact us</a>.' , true),
-                   $html->url(array("controller"=>"pages", "action"=>"contact"))
-        );
+        $firstSentence = format(__(
+           'If you have questions or requests, feel free to '.
+           '<a href="{}">contact us</a>.' , true),
+           $html->url(array("controller"=>"pages", "action"=>"contact")
+       ));
         $secondSentence = __('In general, we answer quickly.', true);
-        echo format(__('{firstSentence} {secondSentence}', true),
-                    compact('firstSentence', 'secondSentence'));
+        echo format(
+            __('{firstSentence} {secondSentence}', true),
+            compact('firstSentence', 'secondSentence')
+        );
     ?>
     </p>
     </div>
@@ -102,11 +128,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $details_str = __('Details', true);
         $tab_str = __('tab', true);
     ?>
-    <div class="module">
-        <h2><?php echo $downloads_str; ?></h2>
-        
+    <div>
+        <h1><?php echo $downloads_str; ?></h1>
+
         <!-- Sentences -->
-        <h3><?php __('Sentences'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Sentences'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -157,9 +184,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             ?>
             </dd>
         </dl>
-        
+        </div>
+
         <!-- Links -->
-        <h3><?php __('Links'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Links'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -204,10 +233,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 ?>
             </dd>
         </dl>
-        
-        
+        </div>
+
         <!-- Tags -->
-        <h3><?php __('Tags'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Tags'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -245,10 +275,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 ?>
             </dd>
         </dl>
-        
-        
+        </div>
+
         <!-- Lists -->
-        <h3><?php __('Lists'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Lists'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -283,8 +314,10 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 ?>
             </dd>
         </dl>
-          
-        <h3><?php __('Sentences in lists'); ?></h3>
+        </div>
+
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Sentences in lists'); ?></h2>
         <dl>       
             <dt><?php echo $download_str; ?></dt>   
             <dd>
@@ -316,10 +349,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 ?>
             </dd>
         </dl>
-            
-            
+        </div>
+
         <!-- Indices -->
-        <h3><?php __('Japanese indices'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Japanese indices'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -357,9 +391,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 ?>
             </dd>
         </dl>
-        
+        </div>
+
         <!-- Sentences with audio -->
-        <h3><?php __('Sentences with audio'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Sentences with audio'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -379,9 +415,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
              __('Contains the ids of the sentences, in all languages, for which audio is available.'); ?>
             </dd>  
         </dl>
+        </div>
 
         <!-- User skill level per language -->
-        <h3><?php __('User skill level per language'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('User skill level per language'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -407,9 +445,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
              __('Indicates the self-reported skill levels of members in individual languages.'); ?>
             </dd>  
         </dl>
-        
+        </div>
+
         <!-- Users' collections/ratings -->
-        <h3><?php __('Users\' sentence ratings'); ?></h3>
+        <div  class="section" md-whiteframe="1">
+        <h2><?php __('Users\' sentence ratings'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -444,22 +484,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             ?>
             </dd>  
         </dl>
-
-    </div>
-    
-    <div class="module">
-    <h2><?php __('General information about the files'); ?></h2>
-        <p>
-        <?php __('The files provided here are updated every <strong>Saturday at 9 a.m.</strong> '.
-        '(GMT).');
-        ?>
-        </p>
-        
-        <p>
-        <?php $tanaka_url2 = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus"; 
-        echo format( __('Many of the Japanese and English sentences are from the '.
-                        '<a href="{}">Tanaka Corpus</a>, which belongs to the public domain.', true), $tanaka_url2); 
-        ?>
-        </p>
+        </div>
     </div>
 </div>
