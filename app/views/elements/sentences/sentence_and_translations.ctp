@@ -57,7 +57,8 @@ $notReliable = $sentence['correctness'] == -1;
                 );
                 ?>
             </div>
-            <div class="text" flex>
+            <div class="text" flex
+                 dir="<?= LanguagesLib::getLanguageDirection($sentence['lang']) ?>">
                 <?= Sanitize::html($sentence['text']) ?>
             </div>
             <? if ($notReliable) { ?>

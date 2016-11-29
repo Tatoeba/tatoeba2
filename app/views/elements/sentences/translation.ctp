@@ -24,7 +24,8 @@ $notReliable = $translation['correctness'] == -1;
         );
         ?>
     </div>
-    <div class="text" flex>
+    <div class="text" flex
+         dir="<?= LanguagesLib::getLanguageDirection($translation['lang']) ?>">
         <?= Sanitize::html($translation['text']) ?>
     </div>
     <? if ($notReliable) { ?>
