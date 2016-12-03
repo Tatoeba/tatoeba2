@@ -668,6 +668,7 @@ class ListsHelper extends AppHelper
      */
     public function listsAsSelectable($lists)
     {
+        $unspecified = __('Unspecified', true);
         if (CurrentUser::isMember()) {
             $sortedLists = array(0 => array(), 1 => array());
             $currentUserId = CurrentUser::get('id');
@@ -680,12 +681,18 @@ class ListsHelper extends AppHelper
 
             $listsOfCurrentUser = __('Your lists', true);
             $othersLists        = __('Other lists', true);
-            $unspecified = __('Unspecified', true);
             return array(
                 '' => $unspecified,
                 $listsOfCurrentUser => $sortedLists[0],
                 $othersLists        => $sortedLists[1],
             );
+        } else {
+            $allLists = Set::combine(
+                $lists,
+                '{n}.SentencesList.id',
+                '{n}.SentencesList.name'
+            );
+            return array('' => $unspecified) + $allLists;
         }
     }
 }
