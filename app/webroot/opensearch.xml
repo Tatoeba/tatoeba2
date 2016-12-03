@@ -3,8 +3,8 @@
   <ShortName>Tatoeba project</ShortName>
   <Description>Collection of example sentences in many languages</Description>
   <Tags>languages, sentences, translations, multilingual, corpus</Tags>
- <Url type="text/html" method="get" template="http://tatoeba.org/sentences/search?from=und&amp;to=und&amp;query={searchTerms}"/>
- <Image height="16" width="16" type="image/png">http://tatoeba.org/favicon.ico</Image>
+ <Url type="text/html" method="get" template="https://tatoeba.org/sentences/search?from=und&amp;to=und&amp;query={searchTerms}"/>
+ <Image height="16" width="16" type="image/png">https://tatoeba.org/favicon.ico</Image>
  <Developer>Tatoeba Project</Developer>
  <Language>en-en</Language>
 </OpenSearchDescription>
