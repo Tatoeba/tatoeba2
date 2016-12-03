@@ -662,5 +662,31 @@ class ListsHelper extends AppHelper
         </div>
         <?php
     }
+
+    /**
+     * Returns the selectable lists for the current user
+     */
+    public function listsAsSelectable($lists)
+    {
+        if (CurrentUser::isMember()) {
+            $sortedLists = array(0 => array(), 1 => array());
+            $currentUserId = CurrentUser::get('id');
+            foreach ($lists as $list) {
+                $where = (int)($list['SentencesList']['user_id'] != $currentUserId);
+                $listId   = $list['SentencesList']['id'];
+                $listName = $list['SentencesList']['name'];
+                $sortedLists[$where][$listId] = $listName;
+            }
+
+            $listsOfCurrentUser = __('Your lists', true);
+            $othersLists        = __('Other lists', true);
+            $unspecified = __('Unspecified', true);
+            return array(
+                '' => $unspecified,
+                $listsOfCurrentUser => $sortedLists[0],
+                $othersLists        => $sortedLists[1],
+            );
+        }
+    }
 }
 ?>

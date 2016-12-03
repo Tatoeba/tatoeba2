@@ -75,7 +75,9 @@ if ($ignored) {
 <div id="annexe_content">
     <div class="module advanced-search">
     <h2><?php echo __('More search criteria'); ?></h2>
-    <?php echo $this->element('advanced_search_form'); ?>
+    <?php echo $this->element('advanced_search_form', array(
+                   'searchableLists' => $searchableLists,
+          )); ?>
     </div>
 </div>
 

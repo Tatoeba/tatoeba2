@@ -72,6 +72,21 @@ class SentencesList extends AppModel
         );
     }
 
+    /**
+     * Returns all the sentences lists that can be searched.
+     *
+     * @return array
+     */
+    public function getSearchableLists()
+    {
+        return $this->find('all', array(
+            'conditions' => array(
+                'NOT' => array('visibility' => 'private'),
+            ),
+            'fields' => array('id', 'name', 'user_id'),
+            'order' => 'name',
+        ));
+    }
 
     /**
      * Returns the sentences lists that the given user can add sentences to.

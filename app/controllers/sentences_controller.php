@@ -49,6 +49,7 @@ class SentencesController extends AppController
     public $helpers = array(
         'Sentences',
         'Menu',
+        'Lists',
         'SentenceButtons',
         'Html',
         'Logs',
@@ -68,6 +69,7 @@ class SentencesController extends AppController
         'Sentence',
         'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
+        'SentencesList',
         'User',
         'UsersLanguages',
         'Tag',
@@ -80,6 +82,7 @@ class SentencesController extends AppController
         'from' => 'und',
         'to' => 'und',
         'tags' => '',
+        'list' => '',
         'user' => '',
         'orphans' => 'no',
         'unapproved' => 'no',
@@ -856,6 +859,7 @@ class SentencesController extends AppController
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
         $this->set('vocabulary', $vocabulary);
+        $this->set('searchableLists', $this->SentencesList->getSearchableLists());
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
@@ -865,6 +869,7 @@ class SentencesController extends AppController
     }
 
     public function advanced_search() {
+        $this->set('searchableLists', $this->SentencesList->getSearchableLists());
         $this->set($this->defaultSearchCriteria);
     }
 
