@@ -668,7 +668,7 @@ class ListsHelper extends AppHelper
      */
     public function listsAsSelectable($lists)
     {
-        $unspecified = __('Unspecified', true);
+        $unspecified = __p('list', 'Unspecified', true);
         if (CurrentUser::isMember()) {
             $sortedLists = array(0 => array(), 1 => array());
             $currentUserId = CurrentUser::get('id');
