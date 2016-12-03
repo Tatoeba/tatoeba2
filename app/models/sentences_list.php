@@ -73,37 +73,44 @@ class SentencesList extends AppModel
     }
 
     /**
-     * Returns all the sentences lists that can be searched.
+     * Returns all the sentences lists that are displayed as searchable
+     * for the current user. Note that we don't display unlisted lists
+     * while they can actually be searched, for example if the owner of
+     * an unlisted list gives the search link to another user.
      *
      * @return array
      */
     public function getSearchableLists()
     {
-        return $this->findSearchableLists('all');
-    }
-
-    /**
-     * Check if a given sentence list is searchable.
-     *
-     * @return bool
-     */
-    public function isSearchableList($listId)
-    {
-        return (bool)$this->findSearchableLists('first', array(
-            'id' => $listId,
-        ));
-    }
-
-    private function findSearchableLists($type, $conditions = array())
-    {
-        return $this->find($type, array(
+        return $this->find('all', array(
             'conditions' => array(
-                $conditions + array(
-                    'NOT' => array('visibility' => 'private'),
+                'OR' => array(
+                    'user_id' => CurrentUser::get('id'),
+                    'visibility' => 'public',
                 )
             ),
             'fields' => array('id', 'name', 'user_id'),
             'order' => 'name',
+        ));
+    }
+
+    /**
+     * Check if the user is permitted to use the given list
+     * as search criterion.
+     *
+     * @return bool False if the list cannot be searched, the list otherwise.
+     */
+    public function isSearchableList($listId)
+    {
+        return $this->find('first', array(
+            'conditions' => array(
+                'id' => $listId,
+                'OR' => array(
+                    'user_id' => CurrentUser::get('id'),
+                    'NOT' => array('visibility' => 'private')
+                )
+            ),
+            'fields' => array('id', 'user_id', 'name'),
         ));
     }
 
