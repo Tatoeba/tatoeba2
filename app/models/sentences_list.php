@@ -79,9 +79,28 @@ class SentencesList extends AppModel
      */
     public function getSearchableLists()
     {
-        return $this->find('all', array(
+        return $this->findSearchableLists('all');
+    }
+
+    /**
+     * Check if a given sentence list is searchable.
+     *
+     * @return bool
+     */
+    public function isSearchableList($listId)
+    {
+        return (bool)$this->findSearchableLists('first', array(
+            'id' => $listId,
+        ));
+    }
+
+    private function findSearchableLists($type, $conditions = array())
+    {
+        return $this->find($type, array(
             'conditions' => array(
-                'NOT' => array('visibility' => 'private'),
+                $conditions + array(
+                    'NOT' => array('visibility' => 'private'),
+                )
             ),
             'fields' => array('id', 'name', 'user_id'),
             'order' => 'name',

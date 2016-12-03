@@ -776,6 +776,24 @@ class SentencesController extends AppController
             $tags = implode(',', $tagsArray);
         }
 
+        // filter by list
+        if (!empty($list)) {
+            $isSearchable = $this->SentencesList->isSearchableList($list);
+            if ($isSearchable) {
+                $sphinx['filter'][] = array('lists_id', $list);
+            } else {
+                $ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been
+                       ignored:” */
+                    __("“belongs to list number {listId}”, because this list does ".
+                       "not exist or cannot be searched", true),
+                    array('listId' => $list)
+                );
+                $list = '';
+            }
+        }
+
         // filter orphans
         if (!empty($orphans) && empty($user)) {
             $exclude_orphans = $orphans == 'no';
