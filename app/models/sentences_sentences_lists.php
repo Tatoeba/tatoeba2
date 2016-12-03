@@ -98,7 +98,7 @@ class SentencesSentencesLists extends AppModel
          * As there is no need to join the relations during the deletion, we
          * may skip them as well. Furthermore, this will be faster. 
          */
-        $this->belongsTo = null;
+        $this->belongsTo = array();
         $isDeleted = $this->deleteAll($conditions, false, true);
         $this->belongsTo = $tmp;
 
