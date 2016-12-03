@@ -46,6 +46,13 @@ class SentencesSentencesLists extends AppModel
         'SentencesList' => array('foreignKey' => 'sentences_list_id')
     );
 
+    public function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
+    }
+
     /**
      * Add sentence to list.
      *
@@ -92,7 +99,7 @@ class SentencesSentencesLists extends AppModel
          * may skip them as well. Furthermore, this will be faster. 
          */
         $this->belongsTo = null;
-        $isDeleted = $this->deleteAll($conditions, false);
+        $isDeleted = $this->deleteAll($conditions, false, true);
         $this->belongsTo = $tmp;
 
         return $isDeleted;
@@ -146,5 +153,17 @@ class SentencesSentencesLists extends AppModel
                 'order' => 'visibility, created DESC'
             )
         );
+    }
+
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        $isMVA = true;
+        $attributes[] = 'lists_id';
+        $sentenceId = $this->data['SentencesSentencesLists']['sentence_id'];
+        $records = $this->find('all', array(
+            'conditions' => array('sentence_id' => $sentenceId),
+            'fields' => 'sentences_list_id',
+        ));
+        $listsId = Set::classicExtract($records, '{n}.SentencesSentencesLists.sentences_list_id');
+        $values = array($sentenceId => array($listsId));
     }
 }
