@@ -777,10 +777,21 @@ class SentencesController extends AppController
         }
 
         // filter by list
+        $searchableLists = $this->SentencesList->getSearchableLists();
         if (!empty($list)) {
             $isSearchable = $this->SentencesList->isSearchableList($list);
             if ($isSearchable) {
                 $sphinx['filter'][] = array('lists_id', $list);
+                $found = false;
+                foreach ($searchableLists as $rec) {
+                    if ($list == $rec['SentencesList']['id']) {
+                        $found = true;
+                        break;
+                    }
+                }
+                if (!$found) {
+                    $searchableLists[] = $isSearchable;
+                }
             } else {
                 $ignored[] = format(
                     /* @translators: This string will be preceded by
@@ -877,7 +888,7 @@ class SentencesController extends AppController
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
         $this->set('vocabulary', $vocabulary);
-        $this->set('searchableLists', $this->SentencesList->getSearchableLists());
+        $this->set('searchableLists', $searchableLists);
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
