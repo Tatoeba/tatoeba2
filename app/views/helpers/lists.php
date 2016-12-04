@@ -679,7 +679,7 @@ class ListsHelper extends AppHelper
                 $sortedLists[$where][$listId] = $listName;
             }
 
-            $listsOfCurrentUser = __('Your lists', true);
+            $listsOfCurrentUser = __('My lists', true);
             $othersLists        = __('Other lists', true);
             return array(
                 '' => $unspecified,
