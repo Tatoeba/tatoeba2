@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-10 12:27+0000\n"
-"PO-Revision-Date: 2016-11-10 13:37+0000\n"
+"PO-Revision-Date: 2016-12-01 17:13+0000\n"
 "Last-Translator: Wanibzh29 <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -63,7 +63,7 @@ msgstr "N'eo ket ar frazennoù #{firstNumber} ha #{secondNumber} ken troidigezhi
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "C'hoarvezet ez eus bet ur fazi pa oa o tiliammañ. Klaskit ur wezh adarre pe kit e darempred ouzhomp evit kemenañ an dra-mañ."
+msgstr "C'hoarvezet ez eus bet ur fazi pa oa o tiliammañ. Klaskit ur wezh adarre pe kit e darempred ganeomp evit kemenañ an dra-mañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L244
 msgid ""
@@ -97,7 +97,7 @@ msgstr "lemel kuit da virviken"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L384
 msgid "Are you sure?"
-msgstr "Ha sur oc'h ?"
+msgstr "Ha sur oc'h?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L248
@@ -166,7 +166,7 @@ msgstr "Fazi : Ne c'hall ket bezañ lemmet kuit ar frazenn #{id}."
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr "\"perc'hennet gant un den a lavar ez eo genidik\" peogwir ez eo reoliet war \"forzh pehini\" \"yezh ar frazenn\". "
+msgstr "\"perc'hennet gant un den genidik empivelet\" peogwir ez eo reoliet war \"forzh pehini\" \"yezh ar frazenn\"."
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
@@ -230,7 +230,7 @@ msgstr "Listennoù kenlabourus oc'h enderc'hel \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L183
 msgid "You do not have permission to view this list."
-msgstr "N'hoc'h ket aotreet da welout ar listenn-mañ"
+msgstr "N'hoc'h ket aotreet da welout al listenn-mañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L232
 msgid ""
@@ -239,8 +239,8 @@ msgid ""
 msgid_plural ""
 "The download feature has been disabled for this list because it contains "
 "{n}&nbsp;sentences."
-msgstr[0] "Diweredekaet eo bet ar pellgargañ evit ar listenn-mañ dre ma endalc'h ur frazenn."
-msgstr[1] "Diweredekaet eo bet keweriuster ar pellgargañ evit ar listenn-mañ dre ma endalc'h {n}&nbsp;frazenn."
+msgstr[0] "Diweredekaet eo bet an arc'hweladur pellgargañ evit ar listenn-mañ dre ma endalc'h ur frazenn."
+msgstr[1] "Diweredekaet eo bet an arc'hweladur pellgargañ evit ar listenn-mañ dre ma endalc'h {n}&nbsp;frazenn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L238
 msgid ""
@@ -298,7 +298,7 @@ msgstr "Profil enrollet."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L327
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr "N'eo ket bet posupl da cheñch ar postel. Ebarzhit ur postel mat mar-plij."
+msgstr "N'eo ket bet posupl da cheñch ar postel. Ebarzhit ur postel a zere mar-plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L368
 msgid "That email address already exists. Please try another."
@@ -312,7 +312,7 @@ msgstr "An deiziad deiz-ha-bloaz ebarzhet 'zo fall. Klaskit ur wezh c'hoazh mar-
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr "N'eo ket klok an deiz-ha-bloaz ebarzhet. Degemeret e vez an devezhioù ha bloaz : deiziad klok, miz ha deiz, bloaz ha miz, bloaz nemetken."
+msgstr "N'eo ket klok an deiz-ha-bloaz ebarzhet. Degemeret e vez an devezhioù ha bloaz: deiziad klok, miz ha deiz, bloaz ha miz, bloaz nemetken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L537
 msgid "Your settings have been saved."
