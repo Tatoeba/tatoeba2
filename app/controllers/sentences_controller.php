@@ -797,8 +797,8 @@ class SentencesController extends AppController
                     /* @translators: This string will be preceded by
                        “Warning: the following criteria have been
                        ignored:” */
-                    __("“belongs to list number {listId}”, because this list does ".
-                       "not exist or cannot be searched", true),
+                    __("“belongs to list number {listId}”, because list ".
+                       "{listId} is private or does not exist", true),
                     array('listId' => $list)
                 );
                 $list = '';
