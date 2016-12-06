@@ -548,6 +548,7 @@ class LanguagesLib
                 'ext' => __d('languages', 'Extremaduran', true),
                 'swg' => __d('languages', 'Swabian', true),
                 'izh' => __d('languages', 'Ingrian', true),
+                'sma' => __d('languages', 'Southern Sami', true),
             );
         }
         return $languages;
