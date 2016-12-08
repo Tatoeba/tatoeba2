@@ -547,6 +547,7 @@ class LanguagesLib
                 'mic' => __d('languages', "Mi'kmaq", true),
                 'ext' => __d('languages', 'Extremaduran', true),
                 'swg' => __d('languages', 'Swabian', true),
+                'izh' => __d('languages', 'Ingrian', true),
             );
         }
         return $languages;
