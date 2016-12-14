@@ -124,4 +124,31 @@ class AudioTestCase extends CakeTestCase {
 
         $this->assertTrue($result);
     }
+
+    function testSentencesReindexedOnSentenceIdUpdate() {
+        $audioId = 1;
+        $prevAudio = $this->Audio->findById($audioId, 'sentence_id');
+        $data = array('id' => $audioId, 'sentence_id' => 7);
+        $expected = array(1, 2, 3, 4, 7);
+
+        $this->Audio->save($data);
+
+        $result = $this->Audio->Sentence->ReindexFlag->find('all', array(
+            'order' => 'sentence_id'
+        ));
+        $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+        $this->assertEqual($expected, $result);
+    }
+
+    function testSentencesReindexedOnCreate() {
+        $expected = array(4, 6, 10);
+
+        $this->_saveRecordWith(0, array('sentence_id' => 10));
+
+        $result = $this->Audio->Sentence->ReindexFlag->find('all', array(
+            'order' => 'sentence_id'
+        ));
+        $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+        $this->assertEqual($expected, $result);
+    }
 }

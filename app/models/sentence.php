@@ -181,7 +181,7 @@ class Sentence extends AppModel
         if (isset($this->data['Sentence']['modified'])) {
             $this->needsReindex($this->id);
         }
-        $transIndexedAttr = array('lang', 'user_id', 'hasaudio');
+        $transIndexedAttr = array('lang', 'user_id');
         $transNeedsReindex = array_intersect_key(
             $this->data['Sentence'],
             array_flip($transIndexedAttr)
@@ -189,6 +189,11 @@ class Sentence extends AppModel
         if ($transNeedsReindex) {
             $this->flagTranslationsToReindex($this->id);
         }
+    }
+
+    public function flagSentenceAndTranslationsToReindex($id) {
+        $this->needsReindex($id);
+        $this->flagTranslationsToReindex($id);
     }
 
     private function flagTranslationsToReindex($id)

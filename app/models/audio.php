@@ -54,6 +54,15 @@ class Audio extends AppModel
     );
 
     public function beforeSave() {
+        if (isset($this->data[$this->alias]['id']) &&
+            isset($this->data[$this->alias]['sentence_id'])) {
+            // save the previous sentence_id before updating it
+            $result = $this->findById($this->data[$this->alias]['id'], 'sentence_id');
+            if (isset($result[$this->alias]['sentence_id'])) {
+                $this->data['PrevSentenceId'] = $result[$this->alias]['sentence_id'];
+            }
+        }
+
         $ok = true;
         $user_id = $this->_getFieldFromDataOrDatabase('user_id');
         $author  = $this->_getFieldFromDataOrDatabase('author');
@@ -61,6 +70,21 @@ class Audio extends AppModel
             $ok = false;
         }
         return $ok;
+    }
+
+    public function afterSave($created) {
+        if (isset($this->data[$this->alias]['sentence_id'])) {
+            $this->Sentence->flagSentenceAndTranslationsToReindex(
+                $this->data[$this->alias]['sentence_id']
+            );
+            if (isset($this->data['PrevSentenceId']) &&
+                $this->data['PrevSentenceId'] != $this->data[$this->alias]['sentence_id']) {
+                $this->Sentence->flagSentenceAndTranslationsToReindex(
+                    $this->data['PrevSentenceId']
+                );
+                unset($this->data['PrevSentenceId']);
+            }
+        }
     }
 }
 ?>
