@@ -220,11 +220,7 @@ class TagsHelper extends AppHelper
     /**
      * Display sentence for a list of tagged sentences.
      *
-     * @param array $sentence             Sentence data.
-     * @param array $transcriptions       Sentence transcriptions.
-     * @param array $sentenceOwner        Array with Sentence owner info.
-     * @param array $translations         Array with translations of this sentence
-     *                                    (direct and indirect).
+     * @param array $sentence  Sentence, transcriptions, translations, audios, owner.
      * @param bool  $canCurrentUserRemove 'true' if user can remove tag from this
      *                                    sentence..
      * @param int   $tagId                Id of the tag.
@@ -233,9 +229,6 @@ class TagsHelper extends AppHelper
      */
     public function displaySentence(
         $sentence,
-        $transcriptions,
-        $sentenceOwner,
-        $translations = array(),
         $canCurrentUserRemove = false,
         $tagId = null
     ) {
@@ -256,9 +249,6 @@ class TagsHelper extends AppHelper
             // Sentences group
             $this->Sentences->displaySentencesGroup(
                 $sentence,
-                $transcriptions,
-                $translations,
-                $sentenceOwner,
                 array('withAudio' => true)
             );
             ?>

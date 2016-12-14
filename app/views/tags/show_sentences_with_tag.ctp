@@ -92,9 +92,6 @@ if ($tagExists) {
                         $sentence = $sentence['Sentence'];
                         $tags->displaySentence(
                             $sentence,
-                            $sentence['Transcription'],
-                            $sentence['User'],
-                            $sentence['Translation'],
                             $canUserRemove,
                             $tagId
                         );

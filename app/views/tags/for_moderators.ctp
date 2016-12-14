@@ -103,7 +103,6 @@ foreach ($results as $result) {
     $sentence = $result['Sentence'];
     $sentences->displayGenericSentence(
         $sentence,
-        $sentence['Transcription'],
         'mainSentence', 
         false
     );
