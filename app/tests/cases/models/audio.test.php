@@ -203,4 +203,16 @@ class AudioTestCase extends CakeTestCase {
         $this->assertEqual($expectedAttributes, $attributes);
         $this->assertEqual($expectedValues, $values);
     }
+
+    function testGetAudioStats() {
+        $expected = array(
+            array('lang' => 'fra', 'total' => 2),
+            array('lang' => 'spa', 'total' => 1),
+        );
+
+        $result = $this->Audio->getAudioStats();
+
+        $this->assertEqual($expected, $result);
+    }
+
 }

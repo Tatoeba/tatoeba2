@@ -1053,34 +1053,6 @@ class Sentence extends AppModel
         return $this->find('count');
     }
 
-
-    /**
-     * Return number of sentencse with audio.
-     *
-     * @return array
-     */
-    public function getTotalNumberOfSentencesWithAudio()
-    {
-        $key = 'audio_stats';
-        $stats = Cache::read($key);
-        if ($stats === false) {
-            $results = $this->find('all', array(
-                'fields' => array('Sentence.lang', 'COUNT(*) as total'),
-                'joins' => array('INNER JOIN `audios` as Audio ON `Audio`.`sentence_id` = `Sentence`.`id`'),
-                'group' => '`Sentence`.`lang`',
-                'order' => array('total' => 'DESC'),
-            ));
-            $stats = array();
-            foreach ($results as $result) {
-                $stats[] = array_merge($result['Sentence'], $result[0]);
-            }
-            Cache::write($key, $stats);
-        }
-
-        return $stats;
-    }
-
-
     /**
      * Return text of a sentence for given id.
      *

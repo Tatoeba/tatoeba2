@@ -36,7 +36,7 @@
  */
 class StatsController extends AppController
 {
-    public $uses = array('Language', 'Sentence');
+    public $uses = array('Language', 'Sentence', 'Audio');
 
     /**
      * Before filter.
@@ -56,7 +56,7 @@ class StatsController extends AppController
      */
     function sentences_by_language() {
         $stats = $this->Language->getSentencesStatistics();
-        $audioStats = $this->Sentence->getTotalNumberOfSentencesWithAudio();
+        $audioStats = $this->Audio->getAudioStats();
         $totalSentences = $this->Sentence->getTotalNumberOfSentences();
 
         $this->set('stats', $stats);

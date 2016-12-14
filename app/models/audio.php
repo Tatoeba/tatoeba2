@@ -128,5 +128,29 @@ class Audio extends AppModel
             $values[$sentenceId][] = intval($hasAudio);
         }
     }
+
+    public function getAudioStats()
+    {
+        $key = 'audio_stats';
+        $stats = Cache::read($key);
+        if ($stats === false) {
+            $results = $this->find('all', array(
+                'contain' => array('Sentence' => array('fields' => 'lang')),
+                'fields' => array('Sentence.lang', 'COUNT(*) as total'),
+                'group' => 'Sentence.lang',
+                'order' => array('total' => 'DESC'),
+            ));
+            $stats = array();
+            foreach ($results as $result) {
+                $stats[] = array(
+                    'lang' => $result['Sentence']['lang'],
+                    'total' => $result[0]['total']
+                );
+            }
+            Cache::write($key, $stats);
+        }
+
+        return $stats;
+    }
 }
 ?>
