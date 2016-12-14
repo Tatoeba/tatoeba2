@@ -65,6 +65,7 @@ class SentencesController extends AppController
     );
 
     public $uses = array(
+        'Audio',
         'Sentence',
         'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
@@ -1277,10 +1278,15 @@ class SentencesController extends AppController
     public function edit_audio()
     {
         $sentenceId = $this->data['Sentence']['id'];
+        $ownerName = $this->data['Sentence']['ownerName'];
         $hasaudio = $this->data['Sentence']['hasaudio'];
         
         if (CurrentUser::isAdmin()) {
-            $this->Sentence->editAudio($sentenceId, $hasaudio);
+            if ($hasaudio) {
+                $this->Audio->assignAudioTo($sentenceId, $ownerName);
+            } else {
+                $this->Audio->deleteAll(array('sentence_id' => $sentenceId), false);
+            }
             $this->redirect(
                 array(
                     "controller" => "sentences", 

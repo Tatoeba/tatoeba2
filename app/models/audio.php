@@ -152,5 +152,30 @@ class Audio extends AppModel
 
         return $stats;
     }
+
+    public function assignAudioTo($sentenceId, $ownerName) {
+        $data = array(
+            'sentence_id' => $sentenceId,
+            'licence_id' => 0,
+            'user_id' => null,
+            'author' => null,
+        );
+
+        $result = $this->User->findByUsername($ownerName);
+        if ($result) {
+            $data['user_id'] = $result[$this->User->alias]['id'];
+        } else {
+            $data['author'] = $ownerName;
+        }
+
+        $result = $this->findBySentenceId($sentenceId, 'id');
+        if ($result) { // reassign audio
+            $data['id'] = $result[$this->alias]['id'];
+        } else {
+            $this->create();
+        }
+
+        return $this->save($data);
+    }
 }
 ?>

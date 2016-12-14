@@ -43,7 +43,7 @@ class AppModel extends Model {
     public function _getFieldFromDataOrDatabase($fieldName) {
         $data = $this->data[$this->alias];
         $fieldValue = false;
-        if (isset($data[$fieldName])) {
+        if (array_key_exists($fieldName, $data)) {
             $fieldValue = $data[$fieldName];
         } elseif ($this->id) {
             $fieldValue = $this->field($fieldName);

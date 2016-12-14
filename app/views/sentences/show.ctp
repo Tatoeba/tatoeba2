@@ -34,7 +34,6 @@ if (isset($sentence)) {
     $sentenceLang = $sentence['Sentence']['lang'];
     $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
-    $sentenceHasAudio = count($sentence['Audio']) > 0;
     
     $languageName = $languages->codeToNameToFormat($sentenceLang);
     $title = format(__('{language} example sentence: {sentence}', true),
@@ -113,7 +112,7 @@ $navigation->displaySentenceNavigation(
                 'sentences/audio',
                 array(
                     'sentenceId' => $sentenceId,
-                    'hasaudio' => $sentenceHasAudio
+                    'audios' => $sentence['Audio']
                 )
             ); 
 

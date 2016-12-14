@@ -1134,12 +1134,6 @@ class Sentence extends AppModel
             unset($values[$sentenceId]);
     }
 
-    public function editAudio($sentenceId, $hasaudio)
-    {
-        $this->id = $sentenceId;
-        return $this->saveField('hasaudio', $hasaudio);
-    }
-
     /**
      * Edit the sentence.
      *
