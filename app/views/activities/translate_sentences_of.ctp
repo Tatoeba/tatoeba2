@@ -79,12 +79,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             }
         } else {
             foreach ($results as $sentence) {
-                $sentences->displaySentencesGroup(
-                    $sentence['Sentence'],
-                    $sentence['Transcription'],
-                    $sentence['Translation'],
-                    $sentence['User']
-                );
+                $sentences->displaySentencesGroup($sentence);
             }
         }
         

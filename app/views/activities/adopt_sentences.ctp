@@ -92,12 +92,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     $pagination->display(array($lang));
     
     foreach ($results as $sentence) {
-        $sentences->displaySentencesGroup(
-            $sentence['Sentence'], 
-            $sentence['Transcription'],
-            array(), 
-            null
-        );
+        $sentence['Translation'] = array();
+        $sentence['User'] = array();
+        $sentences->displaySentencesGroup($sentence);
     }
         
     $pagination->display(array($lang));
