@@ -525,7 +525,6 @@ class Sentence extends AppModel
             'text',
             'lang',
             'user_id',
-            'hasaudio',
             'correctness',
             'script',
         );

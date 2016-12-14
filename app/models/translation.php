@@ -174,7 +174,6 @@ class Translation extends AppModel
                 'Translation.user_id',
                 'Translation.lang',
                 'Translation.script',
-                'Translation.hasaudio',
                 'Translation.correctness',
             ),
             'order' => array('Translation.lang'),
