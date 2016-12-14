@@ -931,7 +931,12 @@ class SentencesController extends AppController
 
         // filter or not sentences-with-audio-only
         if ($filterAudioOnly === "only-with-audio") {
-            $pagination['Sentence']['conditions']['hasaudio !='] = "no";
+            $pagination['Sentence']['joins'] = array(array(
+                'type' => 'inner',
+                'table' => 'audios',
+                'alias' => 'Audio',
+                'conditions' => array('Sentence.id = Audio.sentence_id'),
+            ));
         }
 
         $allSentences = $this->_common_sentences_pagination(
