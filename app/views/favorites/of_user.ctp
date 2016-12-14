@@ -96,8 +96,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                         $favorite['Sentence'],
                         $favorite['Sentence']['Transcription'],
                         $type,
-                        $parentId,
-                        $withAudio
+                        $withAudio,
+                        $parentId
                     );
                 }
             }
