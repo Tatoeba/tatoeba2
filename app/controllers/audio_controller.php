@@ -31,6 +31,7 @@ class AudioController extends AppController
 
     public $helpers = array(
         'Pagination',
+        'Languages',
     );
 
     public $paginate = array(
@@ -45,7 +46,19 @@ class AudioController extends AppController
 
         $this->Auth->allowedActions = array(
             'of',
+            'index',
         );
+    }
+
+    public function index($lang = null) {
+        $conditions = array();
+        if (LanguagesLib::languageExists($lang)) {
+            $conditions['Sentence.lang'] = $lang;
+            $this->set(compact('lang'));
+        }
+        $sentencesWithAudio = $this->paginate('Audio', $conditions);
+        $this->set(compact('sentencesWithAudio'));
+        $this->set(array('stats' => $this->Audio->getAudioStats()));
     }
 
     public function of($username) {

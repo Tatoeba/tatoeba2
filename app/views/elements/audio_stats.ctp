@@ -34,8 +34,8 @@
         $langCode = $stat['lang'];
         $numberOfSentences = $stat['total'];
         $link = array(
-            "controller" => "sentences",
-            "action" => "with_audio",
+            'controller' => 'audio',
+            'action' => 'index',
             $langCode
         );
         
@@ -47,8 +47,8 @@
     echo $html->link(
         __('Browse audio for all languages', true),
         array(
-            'controller' => 'sentences',
-            'action' => 'with_audio'
+            'controller' => 'audio',
+            'action' => 'index'
         )
     );
     ?>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2016 Gilles Bedel
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,25 +15,16 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-if (empty($lang)){
-    $title = __('Sentences with audio', true);
-} else {
+
+if (isset($lang)){
     $title = format(
-        __('Sentences in {language} with audio', true), 
+        __('Sentences in {language} with audio', true),
         array('language' => $languages->codeToNameToFormat($lang))
     );
+} else {
+    $title = __('Sentences with audio', true);
 }
-
-$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
@@ -47,24 +38,40 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="module">
-    <?php
-    if (!empty($results)) {
-        
-        $this->Pages->formatTitleWithResultCount($paginator, $title);
+<div class="module">
+<?php
+if (isset($sentencesWithAudio)) {
+    if (count($sentencesWithAudio) == 0) {
+        echo $html->tag('h2', format(
+            __('There are no sentences with audio', true)
+        ));
+    } else {
+        $title = $paginator->counter(
+            array(
+                'format' => $title . ' ' . __("(total %count%)", true)
+            )
+        );
+        echo $html->tag('h2', $title);
 
-        $pagination->display(array($lang));
+        $paginationUrl = array();
+        $pagination->display($paginationUrl);
 
-        foreach ($results as $sentence) {
+        $type = 'mainSentence';
+        $parentId = null;
+        $withAudio = true;
+        foreach ($sentencesWithAudio as $sentence) {
             $sentences->displayGenericSentence(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                'mainSentence'
+                $sentence,
+                $type,
+                $withAudio,
+                $parentId
             );
         }
-        
-        $pagination->display(array($lang));
-    } 
-    ?>
-    </div>
+
+        $pagination->display($paginationUrl);
+    }
+} else {
+}
+?>
+</div>
 </div>

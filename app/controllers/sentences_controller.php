@@ -1237,31 +1237,11 @@ class SentencesController extends AppController
      */
     public function with_audio($lang = null)
     {
-        $this->paginate = array(
-            'Sentence' => array(
-                'contain' => array(
-                    'Transcription' => array(
-                        'User' => array('fields' => array('username')),
-                    ),
-                ),
-                'limit' => 50,
-                'conditions' => array(
-                    'hasaudio' => array('shtooka', 'from_users')
-                )
-            )
-        );
-
-        if ($lang != null) {
-            $this->paginate['Sentence']['conditions']['lang'] = $lang;
-        }
-
-        $results = $this->paginate();
-
-        $stats = $this->Sentence->getTotalNumberOfSentencesWithAudio();
-
-        $this->set('results', $results);
-        $this->set('lang', $lang);
-        $this->set('stats', $stats);
+        $this->redirect(array(
+            'controller' => 'audio',
+            'action' => 'index',
+            $lang
+        ));
     }
     
     /**
