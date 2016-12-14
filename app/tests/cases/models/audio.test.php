@@ -77,12 +77,12 @@ class AudioTestCase extends CakeTestCase {
     function testSentenceIdRequired() {
         $this->_assertInvalidRecordWithout(0, array('sentence_id'));
     }
-    function testSentenceIdCantBeUpdated() {
+    function testSentenceIdCanBeUpdated() {
         $data = array('id' => 1, 'sentence_id' => 10);
 
         $result = (bool)$this->Audio->save($data);
 
-        $this->assertFalse($result);
+        $this->assertTrue($result);
     }
 
     function testCreatedCantBeEmpty() {
@@ -116,5 +116,12 @@ class AudioTestCase extends CakeTestCase {
     }
     function testLicenceIdMustBeNumeric() {
         $this->_assertInvalidRecordWith(0, array('licence_id' => 'melon'));
+    }
+    function testLicenceIdCanBeUpdated() {
+        $data = array('id' => 1, 'licence_id' => 42);
+
+        $result = (bool)$this->Audio->save($data);
+
+        $this->assertTrue($result);
     }
 }

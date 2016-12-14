@@ -55,15 +55,9 @@ class Audio extends AppModel
 
     public function beforeSave() {
         $ok = true;
-        if (isset($this->data[$this->alias]['id'])) { // update
-            if ($this->isModifyingFields(array('sentence_id')))
-                $ok = false;
-        }
-
-        if (!isset($this->data[$this->alias]['user_id']) &&
-            (!isset($this->data[$this->alias]['author']) ||
-             empty($this->data[$this->alias]['author']))
-           ) {
+        $user_id = $this->_getFieldFromDataOrDatabase('user_id');
+        $author  = $this->_getFieldFromDataOrDatabase('author');
+        if (!($user_id xor !empty($author))) {
             $ok = false;
         }
         return $ok;
