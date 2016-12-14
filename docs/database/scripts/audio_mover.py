@@ -69,7 +69,7 @@ class AudioMover(PythonMySQLConnector):
 
     def sentence_has_audio_in_db(self, id):
         cursor = self.cnx.cursor()
-        stmt = "SELECT count(*) FROM sentences WHERE id='{0}' and hasaudio='shtooka';".format(
+        stmt = "SELECT count(*) FROM audios WHERE sentence_id='{0}';".format(
             self.parsed.old_id)
         cursor.execute(stmt)
         # Treat as a loop, even though there should be only one iteration.
@@ -112,12 +112,7 @@ class AudioMover(PythonMySQLConnector):
         if not self.parsed.dry_run:
             os.rename(old_file, new_file)
         cursor = self.cnx.cursor()
-        stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id = '{0}';".format(self.parsed.new_id)
-        print(stmt)
-        if not self.parsed.dry_run:
-            ret = cursor.execute(stmt)
-            #print('ret: {0}'.format(ret))
-        stmt = "UPDATE sentences SET hasaudio = 'no' WHERE id = '{0}';".format(self.parsed.old_id)
+        stmt = "UPDATE audios SET sentence_id = '{0}' WHERE sentence_id = '{1}';".format(self.parsed.new_id, self.parsed.old_id)
         print(stmt)
         if not self.parsed.dry_run:
             ret = cursor.execute(stmt)
