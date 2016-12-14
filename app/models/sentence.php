@@ -62,6 +62,7 @@ class Sentence extends AppModel
     );
 
     public $hasMany = array(
+        'Audio',
         'Contribution',
         'SentenceComment',
         'Favorites_users' => array (
@@ -266,11 +267,11 @@ class Sentence extends AppModel
             'first',
             array(
                 'conditions' => array('Sentence.id' => $this->id),
-                'contain' => array('Link', 'User')
+                'contain' => array('Link', 'User', 'Audio')
             )
         );
 
-        if ($this->data['Sentence']['hasaudio'] != 'no') {
+        if (count($this->data['Audio']) > 0) {
             return false;
         }
 

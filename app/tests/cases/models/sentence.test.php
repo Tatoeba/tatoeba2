@@ -242,9 +242,7 @@ class SentenceTestCase extends CakeTestCase {
 	}
 
 	function testReturnsFalseIfAudioOnDelete() {
-		$sentenceId = 1;
-		$this->Sentence->id = $sentenceId;
-		$this->Sentence->saveField('hasaudio', 'from_users');
+		$sentenceId = 3;
 
 		$result = $this->Sentence->delete($sentenceId, false);
 
