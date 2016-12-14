@@ -55,10 +55,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Edit Comment', true)));
         ?>" 
         class="sentenceSingle">
     <?php
-    $comments->displaySentence(
-        $sentenceComment['Sentence'],
-        $sentenceComment['Sentence']['Transcription']
-    );
+    $comments->displaySentence($sentenceComment);
     ?>
     </div>
     
