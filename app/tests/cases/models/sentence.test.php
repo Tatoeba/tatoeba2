@@ -292,7 +292,7 @@ class SentenceTestCase extends CakeTestCase {
 	}
 
 	function testLogsLinkDeletionOnDelete() {
-		$sentenceId = 3;
+		$sentenceId = 5;
 		$conditions = array('type' => 'link');
 		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
 
@@ -372,7 +372,7 @@ class SentenceTestCase extends CakeTestCase {
 	}
 
 	function testListsCleanedOnDelete() {
-		$sentenceId = 4;
+		$sentenceId = 8;
 		$inListBefore = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
 
 		$this->Sentence->delete($sentenceId, false);
