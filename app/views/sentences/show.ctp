@@ -34,7 +34,7 @@ if (isset($sentence)) {
     $sentenceLang = $sentence['Sentence']['lang'];
     $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
-    $sentenceHasAudio = $sentence['Sentence']['hasaudio'];
+    $sentenceHasAudio = count($sentence['Audio']) > 0;
     
     $languageName = $languages->codeToNameToFormat($sentenceLang);
     $title = format(__('{language} example sentence: {sentence}', true),
@@ -166,12 +166,7 @@ $navigation->displaySentenceNavigation(
             
             <?php
             // display sentence and translations
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $sentence['Translation'],
-                $sentence['User']
-            );
+            $sentences->displaySentencesGroup($sentence);
             
         } else {
             
