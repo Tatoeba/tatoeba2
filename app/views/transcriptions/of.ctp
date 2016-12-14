@@ -65,8 +65,8 @@ if (isset($sentencesWithTranscription)) {
                 $sentence['Sentence'],
                 $sentence['Transcription'],
                 $type,
-                $parentId,
-                $withAudio
+                $withAudio,
+                $parentId
             );
         }
 
