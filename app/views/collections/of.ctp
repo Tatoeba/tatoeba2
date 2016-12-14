@@ -144,7 +144,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 } else {
                     $sentences->displayGenericSentence(
                         $sentence['Sentence'],
-                        null,
                         $type,
                         $parentId,
                         $withAudio

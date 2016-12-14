@@ -94,7 +94,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 } else {
                     $sentences->displayGenericSentence(
                         $favorite['Sentence'],
-                        $favorite['Sentence']['Transcription'],
                         $type,
                         $withAudio,
                         $parentId

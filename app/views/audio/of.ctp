@@ -62,8 +62,7 @@ if (isset($sentencesWithAudio)) {
         $withAudio = true;
         foreach ($sentencesWithAudio as $sentence) {
             $sentences->displayGenericSentence(
-                $sentence['Sentence'],
-                $sentence['Sentence']['Transcription'],
+                $sentence,
                 $type,
                 $withAudio,
                 $parentId
