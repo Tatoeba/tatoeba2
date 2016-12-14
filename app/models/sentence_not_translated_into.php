@@ -112,12 +112,18 @@ class SentenceNotTranslatedInto extends AppModel
             'Sentence.lang' => $source,
             $notTranslatedInCondition,
         );
+        $joins = array();
         if ($audioOnly == true) {
-            $conditions['Sentence.hasaudio !='] = 'no';
+            $joins[] = array(
+                'type' => 'inner',
+                'table' => 'audios',
+                'alias' => 'Audio',
+                'conditions' => array('Sentence.id = Audio.sentence_id'),
+            );
         }
 
         $Sentence = ClassRegistry::init('Sentence');
-        $options = compact('fields', 'conditions', 'order', 'limit', 'page');
+        $options = compact('fields', 'conditions', 'joins', 'order', 'limit', 'page');
         $result = $Sentence->find('all', array_merge($options, $extra));
 
         return $result;
@@ -160,8 +166,10 @@ class SentenceNotTranslatedInto extends AppModel
         // Then subtract this result from the total number of sentences
         // in the source language
         if ($audioOnly == true) {
-            $sql = "SELECT count(Sentence.id) as Count FROM sentences as Sentence
-                    WHERE Sentence.lang = '$source' AND Sentence.hasaudio != 'no'";
+            $sql = "SELECT count(Sentence.id) as Count
+                    FROM sentences as Sentence
+                    JOIN audios ON (Sentence.id = audios.sentence_id)
+                    WHERE Sentence.lang = '$source'";
             $results = $this->query($sql);
             if (isset($results[0])) {
                 $total = $results[0][0]['Count'];
@@ -186,8 +194,8 @@ class SentenceNotTranslatedInto extends AppModel
             $sql = "SELECT count(distinct Sentence.id) as Count
             FROM sentences as Sentence
             JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
-            WHERE Sentence.lang = '$source'
-            AND Sentence.hasaudio != 'no'";
+            JOIN audios ON (Sentence.id = audios.sentence_id)
+            WHERE Sentence.lang = '$source'";
 
         } else {
 
@@ -195,9 +203,9 @@ class SentenceNotTranslatedInto extends AppModel
             FROM sentences as Sentence
             JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
             JOIN sentences t on ( st.translation_id = t.id )
+            JOIN audios ON (Sentence.id = audios.sentence_id)
             WHERE Sentence.lang = '$source'
-            AND t.lang = '$target'
-            AND Sentence.hasaudio != 'no'";
+            AND t.lang = '$target'";
         }
 
         return $sql;
