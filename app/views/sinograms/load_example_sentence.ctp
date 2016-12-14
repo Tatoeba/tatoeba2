@@ -44,16 +44,11 @@ if ($sentenceFound == false) {
         // TODO add a link to all result or a link to contribute
         // sentence menu (translate, edit, comment, etc)
         // TODO set up a better mechanism
-        $specialOptions['belongsTo'] = $sentenceOwner['username'];
-        $sentenceOwner['canEdit'] = $specialOptions['canEdit'];
-        $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink'];
+        $specialOptions['belongsTo'] = $sentence['User']['username'];
+        $sentence['User']['canEdit'] = $specialOptions['canEdit'];
+        $sentence['User']['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink'];
 
-        $sentences->displaySentencesGroup(
-            $sentence,
-            $transcrs,
-            $translations,
-            $sentenceOwner
-        );
+        $sentences->displaySentencesGroup($sentence);
         ?>
     </div>
     <p>
