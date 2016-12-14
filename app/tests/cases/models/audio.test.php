@@ -151,4 +151,16 @@ class AudioTestCase extends CakeTestCase {
         $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
         $this->assertEqual($expected, $result);
     }
+
+    function testSentencesReindexedOnDelete() {
+        $expected = array(1, 2, 3, 4);
+
+        $this->Audio->delete(1, false);
+
+        $result = $this->Audio->Sentence->ReindexFlag->find('all', array(
+            'order' => 'sentence_id'
+        ));
+        $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+        $this->assertEqual($expected, $result);
+    }
 }

@@ -86,5 +86,24 @@ class Audio extends AppModel
             }
         }
     }
+
+    public function beforeDelete($cascade = true) {
+        // remember the sentence id before deleting the record,
+        // so that we can get it from afterDelete()
+        $result = $this->findById($this->id, 'sentence_id');
+        if (isset($result[$this->alias]['sentence_id'])) {
+            $this->data['PrevSentenceId'] = $result[$this->alias]['sentence_id'];
+        }
+        return true;
+    }
+
+    public function afterDelete() {
+        if (isset($this->data['PrevSentenceId'])) {
+            $this->Sentence->flagSentenceAndTranslationsToReindex(
+                $this->data['PrevSentenceId']
+            );
+            unset($this->data['PrevSentenceId']);
+        }
+    }
 }
 ?>
