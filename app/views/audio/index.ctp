@@ -60,6 +60,8 @@ if (isset($sentencesWithAudio)) {
         $parentId = null;
         $withAudio = true;
         foreach ($sentencesWithAudio as $sentence) {
+            $sentence['Audio']['User'] = $sentence['User'];
+            unset($sentence['User']);
             $sentences->displayGenericSentence(
                 $sentence,
                 $type,

@@ -35,7 +35,10 @@ class AudioController extends AppController
     );
 
     public $paginate = array(
-        'contain' => array('Sentence' => array('Transcription')),
+        'contain' => array(
+            'User' => array('username'),
+            'Sentence' => array('Transcription')
+        ),
         'limit' => 100,
         'order' => 'Audio.modified DESC'
     );

@@ -177,7 +177,17 @@ class SentenceButtonsHelper extends AppHelper
             $path = Configure::read('Recordings.url')
                 .$sentenceLang.'/'.$sentenceId.'.mp3';
             $css = 'audioAvailable';
-            $title = __('Play audio', true);
+
+            $audio = isset($sentenceAudios[0]) ?
+                     $sentenceAudios[0] :
+                     $sentenceAudios;
+            $author = isset($audio['User']['username']) ?
+                      $audio['User']['username'] :
+                      $audio['author'];
+            $title = __(format(
+                'Play audio recorded by {author}',
+                array('author' => $author)
+            ), true);
             echo $this->Javascript->link('sentences.play_audio.js', false);
         } else {
             $onClick = 'return false';
