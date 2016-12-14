@@ -78,6 +78,11 @@ class SentencesHelper extends AppHelper
         $options = array(),
         $duplicate = false
     ) {
+        if (isset($sentenceData['Sentence'])) {
+            $sentence = $sentenceData['Sentence'];
+        } else {
+            $sentence = $sentenceData;
+        }
         $options = array_merge(
             array(
                 'withAudio' => true,
@@ -87,7 +92,7 @@ class SentencesHelper extends AppHelper
         );
         extract($options);
 
-        $id = $sentenceData['Sentence']['id'];
+        $id = $sentence['id'];
 
         ?>
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
@@ -432,8 +437,12 @@ class SentencesHelper extends AppHelper
         $withAudio,
         $langFilter = 'und'
     ) {
+        if (isset($sentenceData['Sentence'])) {
+            $sentence = $sentenceData['Sentence'];
+        } else {
+            $sentence = $sentenceData;
+        }
         $user = $sentenceData['User'];
-        $sentence = $sentenceData['Sentence'];
         $sentenceId = $sentence['id'];
         $canTranslate = $sentence['correctness'] >= 0;
         $hasAudio = isset($sentenceData['Audio']) && count($sentenceData['Audio']);

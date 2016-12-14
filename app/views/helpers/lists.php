@@ -432,15 +432,10 @@ class ListsHelper extends AppHelper
 
             // Sentences group
             $withAudio = true;
-            $translations = isset($sentence['Translation']) ?
-                            $sentence['Translation'] :
-                            array();
-            $this->Sentences->displaySentencesGroup(
-                $sentence,
-                $sentence['Transcription'],
-                $translations,
-                $sentence['User']
-            );
+            if (!isset($sentence['Translation'])) {
+                $sentence['Translation'] = array();
+            }
+            $this->Sentences->displaySentencesGroup($sentence);
             ?>
         </div>
         <?php
