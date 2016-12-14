@@ -555,6 +555,14 @@ class Sentence extends AppModel
                 'Transcription' => array(
                     'User' => array('fields' => array('username')),
                 ),
+                'Audio' => array(
+                    'User' => array('fields' => array('username')),
+                    'fields' => array('user_id', 'author'),
+                ),
+            ),
+            'Audio' => array(
+                'User' => array('fields' => array('username')),
+                'fields' => array('user_id', 'author'),
             ),
         );
     }
