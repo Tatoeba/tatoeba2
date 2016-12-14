@@ -53,6 +53,20 @@ class Audio extends AppModel
         'User',
     );
 
+    /**
+     * The constructor is here only to conditionally attach Sphinx.
+     *
+     * @return void
+     */
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
+    }
+
     public function beforeSave() {
         if (isset($this->data[$this->alias]['id']) &&
             isset($this->data[$this->alias]['sentence_id'])) {
@@ -103,6 +117,15 @@ class Audio extends AppModel
                 $this->data['PrevSentenceId']
             );
             unset($this->data['PrevSentenceId']);
+        }
+    }
+
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        if (array_key_exists('sentence_id', $this->data[$this->alias])) {
+            $attributes[] = 'has_audio';
+            $sentenceId = $this->data[$this->alias]['sentence_id'];
+            $hasAudio = (bool)$this->findBySentenceId($sentenceId, 'sentence_id');
+            $values[$sentenceId][] = intval($hasAudio);
         }
     }
 }

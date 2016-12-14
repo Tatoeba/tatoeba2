@@ -1150,11 +1150,6 @@ class Sentence extends AppModel
             $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
         }
-        if (array_key_exists('hasaudio', $this->data['Sentence'])) {
-            $attributes[] = 'has_audio';
-            $sentenceHasAudio = $this->data['Sentence']['hasaudio'] != 'no';
-            $values[$sentenceId][] = $sentenceHasAudio;
-	}
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);
     }

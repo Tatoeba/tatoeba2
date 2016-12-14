@@ -163,4 +163,44 @@ class AudioTestCase extends CakeTestCase {
         $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
         $this->assertEqual($expected, $result);
     }
+
+    function testSphinxAttributesChanged_onUpdate() {
+        $audioId = 1;
+        $sentenceId = 3;
+        $expectedAttributes = array('has_audio');
+        $expectedValues = array(
+            $sentenceId => array(1),
+        );
+
+        $this->Audio->id = $sentenceId;
+        $this->Audio->data['Audio'] = array(
+            'id' => $audioId,
+            'sentence_id' => $sentenceId,
+        );
+        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
+
+        $this->assertFalse($isMVA);
+        $this->assertEqual($expectedAttributes, $attributes);
+        $this->assertEqual($expectedValues, $values);
+    }
+
+    function testSphinxAttributesChanged_onDelete() {
+        $audioId = 1;
+        $sentenceId = 1;
+        $expectedAttributes = array('has_audio');
+        $expectedValues = array(
+            $sentenceId => array(0),
+        );
+
+        $this->Audio->id = $sentenceId;
+        $this->Audio->data['Audio'] = array(
+            'id' => $audioId,
+            'sentence_id' => $sentenceId,
+        );
+        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
+
+        $this->assertFalse($isMVA);
+        $this->assertEqual($expectedAttributes, $attributes);
+        $this->assertEqual($expectedValues, $values);
+    }
 }
