@@ -580,4 +580,15 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual($expectedAttributes, $attributes);
 		$this->assertEqual($expectedValues, $values);
 	}
+
+	function testGetTotalNumberOfSentencesWithAudio() {
+		$expected = array(
+			array('lang' => 'fra', 'total' => 2),
+			array('lang' => 'spa', 'total' => 1),
+		);
+
+		$result = $this->Sentence->getTotalNumberOfSentencesWithAudio();
+
+		$this->assertEqual($expected, $result);
+	}
 }

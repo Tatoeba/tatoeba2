@@ -1056,17 +1056,15 @@ class Sentence extends AppModel
         $key = 'audio_stats';
         $stats = Cache::read($key);
         if ($stats === false) {
-            $results = $this->query(
-                "SELECT lang, COUNT(*) total FROM sentences AS `Sentence`
-                  WHERE hasaudio IN ('shtooka', 'from_users')
-                  GROUP BY lang ORDER BY total DESC;"
-            );
+            $results = $this->find('all', array(
+                'fields' => array('Sentence.lang', 'COUNT(*) as total'),
+                'joins' => array('INNER JOIN `audios` as Audio ON `Audio`.`sentence_id` = `Sentence`.`id`'),
+                'group' => '`Sentence`.`lang`',
+                'order' => array('total' => 'DESC'),
+            ));
             $stats = array();
             foreach ($results as $result) {
-                $stats[] = array(
-                    'lang' => $result['Sentence']['lang'],
-                    'total' => $result[0]['total']
-                );
+                $stats[] = array_merge($result['Sentence'], $result[0]);
             }
             Cache::write($key, $stats);
         }

@@ -34,5 +34,14 @@ class AudioFixture extends CakeTestFixture {
             'created' => '2001-12-02 06:47:30',
             'modified' => '2001-12-12 06:47:30'
         ),
+        array(
+            'id' => '3',
+            'sentence_id' => '12',
+            'user_id' => NULL,
+            'licence_id' => 2,
+            'author' => 'Philippe Petit',
+            'created' => '2001-12-02 06:47:30',
+            'modified' => '2001-12-12 06:47:30'
+        ),
     );
 }
