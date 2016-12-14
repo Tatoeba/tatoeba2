@@ -32,8 +32,7 @@ if (isset($translation)) {
     $isEditable = true;
 
     $sentences->displayGenericSentence(
-        $translation['Sentence'],
-        $translation['Transcription'],
+        $translation,
         $type, 
         true,
         $parentId,

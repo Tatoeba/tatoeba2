@@ -548,7 +548,7 @@ class SentencesController extends AppController
                 $translationId = $this->Sentence->id;
                 $translation = $this->Sentence->find('first', array(
                     'conditions' => array('Sentence.id' => $translationId),
-                    'contain' => array('Transcription')
+                    'contain' => array('Transcription', 'Audio')
                 ));
 
                 $this->set('translation', $translation);
