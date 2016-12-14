@@ -143,13 +143,8 @@ $vocabularyUrl = $html->url(array(
         <div id="sentencesAdded">
         <?php
         if (isset($sentence)) {
-            $translation = array();            
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $translation,
-                $sentence['User']
-            );
+            $sentence['Translation'] = array();
+            $sentences->displaySentencesGroup($sentence);
         }
         ?>
         </div>
