@@ -249,6 +249,12 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertFalse($result);
 	}
 
+	function testReturnsFalseIfAudioOnEdit() {
+		$result = $this->Sentence->editSentence(3, 'spa', 'changing');
+
+		$this->assertFalse($result);
+	}
+
 	function testTranslationLinksFromSentenceRemovedOnDelete() {
 		$sentenceId = 1;
 

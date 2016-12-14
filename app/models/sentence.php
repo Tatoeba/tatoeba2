@@ -1196,13 +1196,7 @@ class Sentence extends AppModel
      */
     public function hasAudio($id)
     {
-        $sentence = $this->findById($id);
-
-        if ($sentence['Sentence']['hasaudio'] !== 'no') {
-            return true;
-        }
-
-        return false;
+        return $this->Audio->findBySentenceId($id, 'sentence_id');
     }
 }
 ?>
