@@ -50,16 +50,17 @@ class Recordings extends AppModel
         $sentences = $this->Sentence->find('all', array(
             'conditions' => array('Sentence.id' => $allSentenceIds),
             'fields' => array('id', 'lang', 'hasaudio'),
+            'contain' => array('Audio'),
         ));
-        $sentences = Set::combine($sentences, '{n}.Sentence.id', '{n}.Sentence');
+        $sentences = Set::combine($sentences, '{n}.Sentence.id', '{n}');
 
         foreach ($audioFiles as &$file) {
             if (isset($file['sentenceId'])) {
                 $id = $file['sentenceId'];
                 if (isset($sentences[$id])) {
-                    $file['lang'] = $sentences[$id]['lang'];
-                    $file['hasaudio'] = $sentences[$id]['hasaudio'] != 'no';
-                    $file['valid'] = !is_null($sentences[$id]['lang']);
+                    $file['lang'] = $sentences[$id]['Sentence']['lang'];
+                    $file['hasaudio'] = count($sentences[$id]['Audio']) > 0;
+                    $file['valid'] = !is_null($sentences[$id]['Sentence']['lang']);
                 }
             }
         }
@@ -86,7 +87,7 @@ class Recordings extends AppModel
         return $audioFiles;
     }
 
-    public function importFiles(&$errors) {
+    public function importFiles(&$errors, $author) {
         $recsBaseDir = Configure::read('Recordings.path');
         $errors = array();
         $filesImported = array('total' => 0);
@@ -121,14 +122,11 @@ class Recordings extends AppModel
                 continue;
             }
 
-            $ok = $this->Sentence->save(array(
-                'id' => $file['sentenceId'],
-                'hasaudio' => 'shtooka',
-            ));
+            $ok = $this->Sentence->Audio->assignAudioTo($file['sentenceId'], $author);
             if (!$ok) {
                 $errors[] = format(
-                    __d('admin', "Unable to set presence of audio for sentence {sentenceId} inside the database.", true),
-                    array('sentenceId' => $file['sentenceId'])
+                    __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database.", true),
+                    array('sentenceId' => $file['sentenceId'], 'author' => $author)
                 );
                 unlink($destFile); // cleaning up, no need to warn on error
                 continue;

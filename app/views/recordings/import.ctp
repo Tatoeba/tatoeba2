@@ -129,6 +129,7 @@ $this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import recordin
 <?php endif; ?>
 <?php
 echo $form->create();
+echo $form->input('audioAuthor');
 echo $form->end(__d('admin', 'Import', true));
 ?>
 </div>

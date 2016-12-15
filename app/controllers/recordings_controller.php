@@ -42,7 +42,8 @@ class RecordingsController extends AppController
     public function import() {
         $filesImported = $errors = false;
         if ($this->RequestHandler->isPost()) {
-            $filesImported = $this->Recordings->importFiles($errors);
+            $author = $this->data[$this->name]['audioAuthor'];
+            $filesImported = $this->Recordings->importFiles($errors, $author);
         }
         $filesToImport = $this->Recordings->getFilesToImport();
 
