@@ -53,6 +53,17 @@ class AudioController extends AppController
         );
     }
 
+    public function import() {
+        $filesImported = $errors = false;
+        if ($this->RequestHandler->isPost()) {
+            $author = $this->data[$this->name]['audioAuthor'];
+            $filesImported = $this->Audio->importFiles($errors, $author);
+        }
+        $filesToImport = $this->Audio->getFilesToImport();
+
+        $this->set(compact('filesToImport', 'errors', 'filesImported'));
+    }
+
     public function index($lang = null) {
         $conditions = array();
         if (LanguagesLib::languageExists($lang)) {
