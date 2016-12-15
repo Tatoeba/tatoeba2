@@ -72,7 +72,7 @@
                 '{ownerName} is a member of Tatoeba.',
                 array('ownerName' => $ownerUrl)
             ), true);
-        } else {
+        } elseif (!empty($audio['author'])) {
             $ownerName = $audio['author'];
             $note = __d('admin', format(
                 '<em>{ownerName}</em> is not a member of Tatoeba.',

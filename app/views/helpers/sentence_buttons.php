@@ -184,10 +184,14 @@ class SentenceButtonsHelper extends AppHelper
             $author = isset($audio['User']['username']) ?
                       $audio['User']['username'] :
                       $audio['author'];
-            $title = __(format(
-                'Play audio recorded by {author}',
-                array('author' => $author)
-            ), true);
+            if (empty($author)) {
+                $title = __('Play audio', true);
+            } else {
+                $title = __(format(
+                    'Play audio recorded by {author}',
+                    array('author' => $author)
+                ), true);
+            }
             echo $this->Javascript->link('sentences.play_audio.js', false);
         } else {
             $onClick = 'return false';
