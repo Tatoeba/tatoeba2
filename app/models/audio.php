@@ -31,9 +31,9 @@ class Audio extends AppModel
             'rule' => 'numeric',
             'allowEmpty' => true,
         ),
-        'licence_id' => array(
+        'licence' => array(
             'validateType' => array(
-                'rule' => 'numeric',
+                'rule' => 'notEmpty',
                 'required' => true,
                 'on' => 'create',
             ),
@@ -145,7 +145,7 @@ class Audio extends AppModel
     public function assignAudioTo($sentenceId, $ownerName) {
         $data = array(
             'sentence_id' => $sentenceId,
-            'licence_id' => 0,
+            'licence' => null,
             'user_id' => null,
             'author' => null,
         );

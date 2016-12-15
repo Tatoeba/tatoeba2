@@ -12,7 +12,7 @@ CREATE TABLE `audios` (
   `sentence_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `author` varchar(50) DEFAULT NULL, -- we use either user_id or author to identify the contributor of the recording
-  `licence_id` int(4) NOT NULL,
+  `licence` varchar(30) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)

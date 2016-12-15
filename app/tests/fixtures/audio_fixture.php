@@ -8,7 +8,7 @@ class AudioFixture extends CakeTestFixture {
         'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
         'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
         'author' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-        'licence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
+        'licence' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 30, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
         'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
         'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
         'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
@@ -20,7 +20,7 @@ class AudioFixture extends CakeTestFixture {
             'id' => '1',
             'sentence_id' => '3',
             'user_id' => '4',
-            'licence_id' => 1,
+            'licence' => 'CC BY-NC-ND 3.0',
             'author' => NULL,
             'created' => '2014-01-20 09:23:49',
             'modified' => '2014-01-21 21:01:21'
@@ -29,7 +29,7 @@ class AudioFixture extends CakeTestFixture {
             'id' => '2',
             'sentence_id' => '4',
             'user_id' => NULL,
-            'licence_id' => 2,
+            'licence' => '',
             'author' => 'Philippe Petit',
             'created' => '2001-12-02 06:47:30',
             'modified' => '2001-12-12 06:47:30'
@@ -38,7 +38,7 @@ class AudioFixture extends CakeTestFixture {
             'id' => '3',
             'sentence_id' => '12',
             'user_id' => NULL,
-            'licence_id' => 2,
+            'licence' => 'CC BY 4.0',
             'author' => 'Philippe Petit',
             'created' => '2001-12-02 06:47:30',
             'modified' => '2001-12-12 06:47:30'

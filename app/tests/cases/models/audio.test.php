@@ -111,14 +111,14 @@ class AudioTestCase extends CakeTestCase {
         $this->_assertInvalidRecordWith(1, array('author' => ''));
     }
 
-    function testLicenceIdRequired() {
-        $this->_assertInvalidRecordWithout(0, array('licence_id'));
+    function testLicenceRequired() {
+        $this->_assertInvalidRecordWithout(0, array('licence'));
     }
-    function testLicenceIdMustBeNumeric() {
-        $this->_assertInvalidRecordWith(0, array('licence_id' => 'melon'));
+    function testLicenceMustBeNonEmpty() {
+        $this->_assertInvalidRecordWith(0, array('licence' => ''));
     }
-    function testLicenceIdCanBeUpdated() {
-        $data = array('id' => 1, 'licence_id' => 42);
+    function testLicenceCanBeUpdated() {
+        $data = array('id' => 1, 'licence' => 'CC BY-NC 4.0');
 
         $result = (bool)$this->Audio->save($data);
 
