@@ -11,8 +11,7 @@ CREATE TABLE `audios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sentence_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `author` varchar(50) DEFAULT NULL, -- we use either user_id or author to identify the contributor of the recording
-  `licence` varchar(30) NOT NULL,
+  `external` varchar(500) DEFAULT NULL, -- we use either `user_id` or store metadata as JSON in `external`
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)

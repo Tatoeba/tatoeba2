@@ -31,13 +31,6 @@ class Audio extends AppModel
             'rule' => 'numeric',
             'allowEmpty' => true,
         ),
-        'licence' => array(
-            'validateType' => array(
-                'rule' => 'notEmpty',
-                'required' => true,
-                'on' => 'create',
-            ),
-        ),
         'created' => array(
             'rule' => 'notEmpty',
         ),
@@ -79,8 +72,8 @@ class Audio extends AppModel
 
         $ok = true;
         $user_id = $this->_getFieldFromDataOrDatabase('user_id');
-        $author  = $this->_getFieldFromDataOrDatabase('author');
-        if (!($user_id xor !empty($author))) {
+        $external = $this->_getFieldFromDataOrDatabase('external');
+        if (!($user_id xor !empty($external))) {
             $ok = false;
         }
         return $ok;
@@ -145,16 +138,15 @@ class Audio extends AppModel
     public function assignAudioTo($sentenceId, $ownerName) {
         $data = array(
             'sentence_id' => $sentenceId,
-            'licence' => null,
             'user_id' => null,
-            'author' => null,
+            'external' => null,
         );
 
         $result = $this->User->findByUsername($ownerName);
         if ($result) {
             $data['user_id'] = $result[$this->User->alias]['id'];
         } else {
-            $data['author'] = $ownerName;
+            $data['external'] = array('username' => $ownerName);
         }
 
         $result = $this->findBySentenceId($sentenceId, 'id');

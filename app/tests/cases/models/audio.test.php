@@ -103,26 +103,12 @@ class AudioTestCase extends CakeTestCase {
         $this->_assertInvalidRecordWith(0, array('user_id' => 'melon'));
     }
 
-    function testMustHaveEitherAuthorOrUserIdSet() {
+    function testMustHaveEitherExternalOrUserIdSet() {
         $this->_assertInvalidRecordWithout(0, array('user_id'));
-        $this->_assertInvalidRecordWithout(1, array('author'));
+        $this->_assertInvalidRecordWithout(1, array('external'));
     }
-    function testAuthorCantBeEmptyIfUserIdNotSet() {
-        $this->_assertInvalidRecordWith(1, array('author' => ''));
-    }
-
-    function testLicenceRequired() {
-        $this->_assertInvalidRecordWithout(0, array('licence'));
-    }
-    function testLicenceMustBeNonEmpty() {
-        $this->_assertInvalidRecordWith(0, array('licence' => ''));
-    }
-    function testLicenceCanBeUpdated() {
-        $data = array('id' => 1, 'licence' => 'CC BY-NC 4.0');
-
-        $result = (bool)$this->Audio->save($data);
-
-        $this->assertTrue($result);
+    function testExternalCantBeEmptyIfUserIdNotSet() {
+        $this->_assertInvalidRecordWith(1, array('external' => ''));
     }
 
     function testSentencesReindexedOnSentenceIdUpdate() {
