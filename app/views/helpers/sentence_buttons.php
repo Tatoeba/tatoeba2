@@ -183,7 +183,7 @@ class SentenceButtonsHelper extends AppHelper
                      $sentenceAudios;
             $author = isset($audio['User']['username']) ?
                       $audio['User']['username'] :
-                      $audio['author'];
+                      $audio['external']['username'];
             if (empty($author)) {
                 $title = __('Play audio', true);
             } else {

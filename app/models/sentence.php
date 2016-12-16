@@ -556,12 +556,12 @@ class Sentence extends AppModel
                 ),
                 'Audio' => array(
                     'User' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'author'),
+                    'fields' => array('user_id', 'external'),
                 ),
             ),
             'Audio' => array(
                 'User' => array('fields' => array('username')),
-                'fields' => array('user_id', 'author'),
+                'fields' => array('user_id', 'external'),
             ),
         );
     }

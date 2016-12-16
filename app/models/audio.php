@@ -46,6 +46,11 @@ class Audio extends AppModel
         'User',
     );
 
+    public $defaultExternal = array(
+        'username' => null,
+        'license' => null,
+    );
+
     /**
      * The constructor is here only to conditionally attach Sphinx.
      *
@@ -60,7 +65,34 @@ class Audio extends AppModel
         }
     }
 
+    public function afterFind($results, $primary = false) {
+        foreach ($results as &$result) {
+            if (isset($result[$this->alias]['external'])) {
+                $result[$this->alias]['external'] = (array)json_decode(
+                    $result[$this->alias]['external']
+                );
+                $result[$this->alias]['external'] = array_merge(
+                    $this->defaultExternal,
+                    $result[$this->alias]['external']
+                );
+            }
+        }
+        return $results;
+    }
+
+    private function encodeExternal() {
+        if (isset($this->data[$this->alias]['external'])
+            && is_array($this->data[$this->alias]['external'])) {
+            $external = $this->field('external', array('id' => $this->id));
+            $external = array_merge($external, $this->data[$this->alias]['external']);
+            $external = array_intersect_key($external, $this->defaultExternal);
+            $this->data[$this->alias]['external'] = json_encode($external);
+        }
+    }
+
     public function beforeSave() {
+        $this->encodeExternal();
+
         if (isset($this->data[$this->alias]['id']) &&
             isset($this->data[$this->alias]['sentence_id'])) {
             // save the previous sentence_id before updating it
