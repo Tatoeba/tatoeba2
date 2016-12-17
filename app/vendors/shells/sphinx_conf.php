@@ -451,6 +451,7 @@ EOT;
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
+                GROUP_CONCAT(distinct lists.sentences_list_id) as lists_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct r.trans),''), ']') as trans \
             from ( \
                 select \
@@ -490,6 +491,8 @@ EOT;
             ) r \
             left join \
                 tags_sentences tags on tags.sentence_id = r.id \
+            left join \
+                sentences_sentences_lists lists on lists.sentence_id = r.id \
             group by id
 
         sql_attr_timestamp = created
@@ -504,6 +507,7 @@ EOT;
         sql_attr_uint = ucorrectness
         sql_attr_bool = has_audio
         sql_attr_multi = uint tags_id from field; SELECT id FROM tags ;
+        sql_attr_multi = uint lists_id from field; SELECT id FROM sentences_lists ;
         sql_attr_json = trans
     }
 ";

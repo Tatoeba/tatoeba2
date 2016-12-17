@@ -49,6 +49,7 @@ class SentencesController extends AppController
     public $helpers = array(
         'Sentences',
         'Menu',
+        'Lists',
         'SentenceButtons',
         'Html',
         'Logs',
@@ -68,6 +69,7 @@ class SentencesController extends AppController
         'Sentence',
         'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
+        'SentencesList',
         'User',
         'UsersLanguages',
         'Tag',
@@ -80,6 +82,7 @@ class SentencesController extends AppController
         'from' => 'und',
         'to' => 'und',
         'tags' => '',
+        'list' => '',
         'user' => '',
         'orphans' => 'no',
         'unapproved' => 'no',
@@ -773,6 +776,35 @@ class SentencesController extends AppController
             $tags = implode(',', $tagsArray);
         }
 
+        // filter by list
+        $searchableLists = $this->SentencesList->getSearchableLists();
+        if (!empty($list)) {
+            $isSearchable = $this->SentencesList->isSearchableList($list);
+            if ($isSearchable) {
+                $sphinx['filter'][] = array('lists_id', $list);
+                $found = false;
+                foreach ($searchableLists as $rec) {
+                    if ($list == $rec['SentencesList']['id']) {
+                        $found = true;
+                        break;
+                    }
+                }
+                if (!$found) {
+                    $searchableLists[] = $isSearchable;
+                }
+            } else {
+                $ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been
+                       ignored:” */
+                    __("“belongs to list number {listId}”, because list ".
+                       "{listId} is private or does not exist", true),
+                    array('listId' => $list)
+                );
+                $list = '';
+            }
+        }
+
         // filter orphans
         if (!empty($orphans) && empty($user)) {
             $exclude_orphans = $orphans == 'no';
@@ -856,6 +888,7 @@ class SentencesController extends AppController
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
         $this->set('vocabulary', $vocabulary);
+        $this->set('searchableLists', $searchableLists);
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
@@ -865,6 +898,7 @@ class SentencesController extends AppController
     }
 
     public function advanced_search() {
+        $this->set('searchableLists', $this->SentencesList->getSearchableLists());
         $this->set($this->defaultSearchCriteria);
     }
 

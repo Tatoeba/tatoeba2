@@ -112,6 +112,13 @@ echo $this->Form->create(
         'after' => $tagsNote,
     ));
 
+    $listOptions = $this->Lists->listsAsSelectable($searchableLists);
+    echo $this->Form->input('list', array(
+        'label' => __('Belongs to list:', true),
+        'value' => $list,
+        'options' => $listOptions,
+    ));
+
     echo $this->Form->input('has_audio', array(
         'label' => __('Has audio:', true),
         'options' => array(
