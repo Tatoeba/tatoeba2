@@ -560,7 +560,11 @@ class Sentence extends AppModel
                 ),
             ),
             'Audio' => array(
-                'User' => array('fields' => array('username')),
+                'User' => array('fields' => array(
+                    'username',
+                    'audio_license',
+                    'audio_attribution_url',
+                )),
                 'fields' => array('user_id', 'external'),
             ),
         );

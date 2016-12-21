@@ -107,15 +107,15 @@ $navigation->displaySentenceNavigation(
 
         $lists->displayListsModule($listsArray);
 
-        if (CurrentUser::isAdmin()) {
-            echo $this->element(
-                'sentences/audio',
-                array(
-                    'sentenceId' => $sentenceId,
-                    'audios' => $sentence['Audio']
-                )
-            ); 
+        echo $this->element(
+            'sentences/audio',
+            array(
+                'sentenceId' => $sentenceId,
+                'audios' => $sentence['Audio']
+            )
+        );
 
+        if (CurrentUser::isAdmin()) {
             // TODO For the beginning we'll restrict this to admins.
             // Later we'll want CurrentUser::isModerator();
             echo $this->element(

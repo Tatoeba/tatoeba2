@@ -49,6 +49,7 @@ class Audio extends AppModel
     public $defaultExternal = array(
         'username' => null,
         'license' => null,
+        'attribution_url' => null,
     );
 
     /**

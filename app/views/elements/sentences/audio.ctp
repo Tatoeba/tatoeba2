@@ -24,11 +24,26 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-?>
  
+$hasaudio = count($audios) > 0;
+$shouldDisplayBlock = $hasaudio || CurrentUser::isAdmin();
+if (!$shouldDisplayBlock) {
+    return;
+}
+
+?>
 <div class="module">
-    <h2><?php __d('admin', 'Audio') ?></h2>
-    <?php
+    <h2><?php __('Audio') ?></h2>
+<?php
+
+if ($hasaudio) {
+    $audio->displayAudioInfo($audios[0]);
+}
+
+if (CurrentUser::isAdmin()) {
+    if ($hasaudio) {
+        echo "<hr>";
+    }
     echo $form->create(
         "Sentence",
         array(
@@ -40,7 +55,7 @@
         "id",
         array("value" => $sentenceId)
     );
-    $hasaudio = count($audios) > 0;
+    __d("admin", "Enable");
     echo $form->input(
         "hasaudio", 
         array(
@@ -89,5 +104,6 @@
         echo $html->tag('p', $note);
     }
     echo $form->end(__d('admin', 'Submit', true));
-    ?>
+}
+?>
 </div>
