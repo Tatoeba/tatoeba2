@@ -1286,7 +1286,7 @@ class SentencesController extends AppController
             if ($hasaudio) {
                 $this->Audio->assignAudioTo($sentenceId, $ownerName);
             } else {
-                $this->Audio->deleteAll(array('sentence_id' => $sentenceId), false);
+                $this->Audio->deleteAll(array('sentence_id' => $sentenceId), false, true);
             }
             $this->redirect(
                 array(
