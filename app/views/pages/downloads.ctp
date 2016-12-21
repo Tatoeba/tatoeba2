@@ -126,6 +126,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $meaning_id_str = __('Meaning id', true);
         $skill_level_str = __('Skill level', true);
         $details_str = __('Details', true);
+        $license_str = __('License', true);
+        $attribution_url_str = __('Attribution URL', true);
         $tab_str = __('tab', true);
     ?>
     <div>
@@ -407,12 +409,22 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dt><?php echo $field_struct_str; ?></dt>
             <dd>
             <span class="param"><?php echo $sent_id_str; ?></span>
+            <span class="symbol">[<?php echo $tab_str; ?>]</span>
+            <span class="param"><?php echo $username_str; ?></span>
+            <span class="symbol">[<?php echo $tab_str; ?>]</span>
+            <span class="param"><?php echo $license_str; ?></span>
+            <span class="symbol">[<?php echo $tab_str; ?>]</span>
+            <span class="param"><?php echo $attribution_url_str; ?></span>
             </dd>
                     
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
             <?php 
-             __('Contains the ids of the sentences, in all languages, for which audio is available.'); ?>
+             __('Contains the ids of the sentences, in all languages, for '.
+                'which audio is available. Other fields indicate who recorded '.
+                'the audio, its license and a URL to attribute the author. If '.
+                'the license field is empty, you may not reuse the audio '.
+                'outside the Tatoeba project.'); ?>
             </dd>  
         </dl>
         </div>
