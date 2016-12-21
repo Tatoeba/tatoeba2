@@ -44,7 +44,7 @@ if (isset($sentencesWithAudio)) {
                ));
                echo $form->input('audio_license', array(
                    'label' => __('License:', true),
-                   'options' => $audio->getLicenses(),
+                   'options' => $audio->getLicenseOptions(),
                    'value' => $audioSettings['User']['audio_license'],
                ));
             ?>
@@ -86,22 +86,11 @@ if (isset($sentencesWithAudio)) {
         );
         echo $html->tag('h2', $title);
 
-        $userLink = $html->link(
-            $username,
-            isset($audioSettings['User']['audio_attribution_url']) ?
-            $audioSettings['User']['audio_attribution_url'] :
-            array('controller' => 'user', 'action' => 'profile', $username)
-        );
-        $license = $audioSettings['User']['audio_license'];
-        $licenceMessage = __(
-            format(
-                'The following audio recordings, attributed to {userName}, '.
-                'are licensed under a {licenseName} licence.',
-                array('userName' => $userLink, 'licenseName' => $license)
-            ),
-            true
+        $licenceMessage = $this->Audio->formatLicenceMessage(
+            $audioSettings['User'], $username
         );
         echo $html->tag('p', $licenceMessage);
+
         $paginationUrl = array($username);
         $pagination->display($paginationUrl);
 

@@ -20,16 +20,60 @@
 class AudioHelper extends AppHelper
 {
     public $helpers = array(
+        'Html',
     );
 
-    public function getLicenses() {
-        return array(
+    private $licenses;
+
+    public function __construct() {
+        $this->licenses = array(
             /* @translators: refers to the license used for audio recordings */
-            '' => __('No license for offsite use', true),
-            /* @translators: refers to the license used for audio recordings */
-            'Public domain' => __('Public domain', true),
-            'CC BY-NC 4.0' => 'CC BY-NC 4.0',
+            'Public domain' => array('name' => __('Public domain', true)),
+            'CC BY-NC 4.0' => array(
+                'name' => 'CC BY-NC 4.0',
+                'url' => 'https://creativecommons.org/licenses/by-nc/4.0/',
+            ),
         );
+    }
+
+    public function getLicenseOptions() {
+        /* @translators: refers to the license used for audio recordings */
+        $keyToName = array('' => __('No license for offsite use', true));
+        foreach ($this->licenses as $key => $val) {
+            $keyToName[$key] = $val['name'];
+        }
+        return $keyToName;
+    }
+
+    public function formatLicenceMessage($audioSettings, $username) {
+        $url = isset($audioSettings['audio_attribution_url']) ?
+               $audioSettings['audio_attribution_url'] :
+               array('controller' => 'user', 'action' => 'profile', $username);
+        $userLink = $this->Html->link($username, $url);
+
+        $license = $audioSettings['audio_license'];
+        if (empty($license)) {
+            $msg = __('You may not reuse the following audio recordings '.
+                      'outside the Tatoeba project, because {userName} did '.
+                      'not chose any license for them yet.', true);
+        } elseif ($license == 'Public domain') {
+            $msg = __('The following audio recordings, attributed to '.
+                      '{userName}, are licensed under the public domain.',
+                      true);
+        } elseif (isset($this->licenses[$license])) {
+            $license = $this->Html->link($license, $this->licenses[$license]['url']);
+            $msg = __('The following audio recordings, attributed to '.
+                      '{userName}, are licensed under the {licenseName} '.
+                      'license.', true);
+        } else {
+            $msg = __('The following audio recordings, attributed to '.
+                      '{userName}, are licensed under an unknown license.',
+                      true);
+        }
+        return format($msg, array(
+            'userName' => $userLink,
+            'licenseName' => $license
+        ));
     }
 }
 ?>
