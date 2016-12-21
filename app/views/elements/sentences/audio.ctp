@@ -70,29 +70,11 @@ if (CurrentUser::isAdmin()) {
     );
 
     $ownerName = '';
-    $note = '';
     if ($hasaudio) {
-        $audio = $audios[0];
-        if ($audio['user_id'] && $audio['User']['username']) {
-            $ownerName = $audio['User']['username'];
-            $ownerUrl = $html->link(
-                $ownerName,
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $ownerName
-                )
-            );
-            $note = __d('admin', format(
-                '{ownerName} is a member of Tatoeba.',
-                array('ownerName' => $ownerUrl)
-            ), true);
-        } elseif (!empty($audio['external']['username'])) {
-            $ownerName = $audio['external']['username'];
-            $note = __d('admin', format(
-                '<em>{ownerName}</em> is not a member of Tatoeba.',
-                array('ownerName' => $ownerName)
-            ), true);
+        if ($audios[0]['user_id'] && $audios[0]['User']['username']) {
+            $ownerName = $audios[0]['User']['username'];
+        } else {
+            $ownerName = $audios[0]['external']['username'];
         }
     }
     echo $form->input("ownerName",
@@ -100,9 +82,6 @@ if (CurrentUser::isAdmin()) {
             "value" => $ownerName
         )
     );
-    if ($note) {
-        echo $html->tag('p', $note);
-    }
     echo $form->end(__d('admin', 'Submit', true));
 }
 ?>
