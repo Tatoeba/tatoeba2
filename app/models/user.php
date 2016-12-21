@@ -283,6 +283,28 @@ class User extends AppModel
 
 
     /**
+     * Get audio-related settings
+     *
+     * @param int $userId Id of the user.
+     *
+     * @return array
+     */
+    public function getAudioSettings($userId)
+    {
+        return $this->find(
+            'first',
+            array(
+                'conditions' => array('id' => $userId),
+                'fields' => array(
+                    'audio_license',
+                    'audio_attribution_url',
+                )
+            )
+        );
+    }
+
+
+    /**
      * get all the information about a user needed by the Wall
      *
      * @param integer $userId User Indentifiant

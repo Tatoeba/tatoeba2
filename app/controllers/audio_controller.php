@@ -32,6 +32,7 @@ class AudioController extends AppController
     public $helpers = array(
         'Pagination',
         'Languages',
+        'Audio',
     );
 
     public $paginate = array(
@@ -82,8 +83,35 @@ class AudioController extends AppController
                 'Audio.user_id' => $userId,
             ));
             $this->set(compact('sentencesWithAudio'));
+
+            $audioSettings = $this->User->getAudioSettings($userId);
+            $this->set(compact('audioSettings'));
         }
         $this->set(compact('username'));
+    }
+
+    public function save_settings() {
+        if (!empty($this->data)) {
+            $currentUserId = CurrentUser::get('id');
+            $allowedFields = array(
+                'audio_license',
+                'audio_attribution_url',
+            );
+            $dataToSave = $this->filterKeys($this->data[$this->name], $allowedFields);
+            $dataToSave['id'] = $currentUserId;
+            if ($this->User->save($dataToSave)) {
+                $flashMsg = __('Your audio settings have been saved.', true);
+            } else {
+                $flashMsg = __(
+                    'An error occurred while saving. Please try again or '.
+                    'contact us to report this.',
+                    true
+                );
+            }
+            $this->Session->setFlash($flashMsg);
+        }
+
+        $this->redirect(array('action' => 'of', CurrentUser::get('username')));
     }
 }
 ?>

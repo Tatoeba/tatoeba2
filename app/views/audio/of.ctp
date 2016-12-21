@@ -26,14 +26,46 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 <?php
 if (isset($sentencesWithAudio)) {
-    echo $html->div(
-        null,
-        $this->element(
-            'users_menu',
-            array('username' => $username)
-        ),
-        array('id' => 'annexe_content')
+?>
+    <div id="annexe_content">
+    <?php
+        echo $this->element(
+        'users_menu',
+        array('username' => $username)
     );
+
+    if (CurrentUser::get('username') == $username): ?>
+        <div class="section" md-whiteframe="1">
+            <h2><?php __('My audio'); ?></h2>
+            <?php
+               echo $form->create('Audio', array(
+                   'url' => array('controller' => 'audio', 'action' => 'save_settings'),
+                   'type' => 'post',
+               ));
+               echo $form->input('audio_license', array(
+                   'label' => __('License:', true),
+                   'options' => $audio->getLicenses(),
+                   'value' => $audioSettings['User']['audio_license'],
+               ));
+            ?>
+            <md-input-container class="md-block">
+            <?php
+               echo $form->input('audio_attribution_url', array(
+                   'label' => __('Attribution URL:', true),
+                   'value' => $audioSettings['User']['audio_attribution_url'],
+               ));
+            ?>
+            </md-input-container>
+            <div layout="row" layout-align="center center">
+                <md-button type="submit" class="md-raised md-primary">
+                    <?php __('Save'); ?>
+                </md-button>
+            </div>
+            <?php $form->end(); ?>
+        </div>
+    <?php endif; ?>
+    </div>
+<?php
 }
 ?>
 
@@ -54,6 +86,22 @@ if (isset($sentencesWithAudio)) {
         );
         echo $html->tag('h2', $title);
 
+        $userLink = $html->link(
+            $username,
+            isset($audioSettings['User']['audio_attribution_url']) ?
+            $audioSettings['User']['audio_attribution_url'] :
+            array('controller' => 'user', 'action' => 'profile', $username)
+        );
+        $license = $audioSettings['User']['audio_license'];
+        $licenceMessage = __(
+            format(
+                'The following audio recordings, attributed to {userName}, '.
+                'are licensed under a {licenseName} licence.',
+                array('userName' => $userLink, 'licenseName' => $license)
+            ),
+            true
+        );
+        echo $html->tag('p', $licenceMessage);
         $paginationUrl = array($username);
         $pagination->display($paginationUrl);
 

@@ -23,6 +23,8 @@
 -- homepage          User's personal website.
 -- image             User's profile picture.
 -- country_id        Country in which the user lives.
+-- audio_license     License of the user's audio recordings.
+-- audio_attribution_url Attribution URL of the user's audio recordings.
 --                     members of Tatoeba.
 --
 
@@ -44,6 +46,8 @@ CREATE TABLE `users` (
   `homepage` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `country_id` varchar(2) DEFAULT NULL,
+  `audio_license` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `audio_attribution_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`username`),
   UNIQUE KEY `email` (`email`)
