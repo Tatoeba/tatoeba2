@@ -108,6 +108,7 @@ class Audio extends AppModel
         $ok = true;
         $user_id = $this->_getFieldFromDataOrDatabase('user_id');
         $external = $this->_getFieldFromDataOrDatabase('external');
+        $external = array_filter($external);
         if (!($user_id xor !empty($external))) {
             $ok = false;
         }
