@@ -68,7 +68,8 @@ class Audio extends AppModel
 
     public function afterFind($results, $primary = false) {
         foreach ($results as &$result) {
-            if (isset($result[$this->alias]['external'])) {
+            if (isset($result[$this->alias])
+                && array_key_exists('external', $result[$this->alias])) {
                 $result[$this->alias]['external'] = (array)json_decode(
                     $result[$this->alias]['external']
                 );
@@ -86,6 +87,7 @@ class Audio extends AppModel
             && is_array($this->data[$this->alias]['external'])) {
             $external = $this->field('external', array('id' => $this->id));
             $external = array_merge($external, $this->data[$this->alias]['external']);
+
             $external = array_intersect_key($external, $this->defaultExternal);
             $this->data[$this->alias]['external'] = json_encode($external);
         }
@@ -178,7 +180,7 @@ class Audio extends AppModel
         $result = $this->User->findByUsername($ownerName);
         if ($result) {
             $data['user_id'] = $result[$this->User->alias]['id'];
-        } else {
+        } elseif (!empty($ownerName)) {
             $data['external'] = array('username' => $ownerName);
         }
 
