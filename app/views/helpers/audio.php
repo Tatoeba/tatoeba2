@@ -46,9 +46,9 @@ class AudioHelper extends AppHelper
     }
 
     public function formatLicenceMessage($audioSettings, $username) {
-        $url = isset($audioSettings['audio_attribution_url']) ?
-               $audioSettings['audio_attribution_url'] :
-               array('controller' => 'user', 'action' => 'profile', $username);
+        $url = empty($audioSettings['audio_attribution_url']) ?
+               array('controller' => 'user', 'action' => 'profile', $username) :
+               $audioSettings['audio_attribution_url'];
         $userLink = $this->Html->link($username, $url);
 
         $license = $audioSettings['audio_license'];
