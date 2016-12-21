@@ -29,9 +29,17 @@ class AudioHelper extends AppHelper
         $this->licenses = array(
             /* @translators: refers to the license used for audio recordings */
             'Public domain' => array('name' => __('Public domain', true)),
+            'CC BY 4.0' => array(
+                'url' => 'https://creativecommons.org/licenses/by/4.0/',
+            ),
             'CC BY-NC 4.0' => array(
-                'name' => 'CC BY-NC 4.0',
                 'url' => 'https://creativecommons.org/licenses/by-nc/4.0/',
+            ),
+            'CC BY-SA 4.0' => array(
+                'url' => 'https://creativecommons.org/licenses/by-sa/4.0/',
+            ),
+            'CC BY-NC-ND 3.0' => array(
+                'url' => 'https://creativecommons.org/licenses/by-nc-nd/3.0/',
             ),
         );
     }
@@ -40,7 +48,7 @@ class AudioHelper extends AppHelper
         /* @translators: refers to the license used for audio recordings */
         $keyToName = array('' => __('No license for offsite use', true));
         foreach ($this->licenses as $key => $val) {
-            $keyToName[$key] = $val['name'];
+            $keyToName[$key] = isset($val['name']) ? $val['name'] : $key;
         }
         return $keyToName;
     }
@@ -55,8 +63,11 @@ class AudioHelper extends AppHelper
     }
 
     private function licenseLink($license) {
+        $name = isset($this->licenses[$license]['name']) ?
+                $this->licenses[$license]['name'] :
+                $license;
         return $this->Html->link(
-            $this->licenses[$license]['name'],
+            $name,
             $this->licenses[$license]['url']
         );
     }
@@ -81,7 +92,7 @@ class AudioHelper extends AppHelper
             $license = __d('license', 'unknown', true);
         } elseif (isset($this->licenses[$license]['url'])) {
             $license = $this->licenseLink($license);
-        } else {
+        } elseif (isset($this->licenses[$license]['name'])) {
             $license = $this->licenses[$license]['name'];
         }
 ?>
