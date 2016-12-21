@@ -124,9 +124,9 @@
     <li class="item">
     <?php
     echo $html->link(
-        __('Audio', true),
+        __('Audios', true),
         array(
-            'controller' => 'audio',
+            'controller' => 'audios',
             'action' => 'of',
             $username
         )
