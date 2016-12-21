@@ -170,7 +170,7 @@ class Audio extends AppModel
         return $stats;
     }
 
-    public function assignAudioTo($sentenceId, $ownerName) {
+    public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {
         $data = array(
             'sentence_id' => $sentenceId,
             'user_id' => null,
@@ -180,7 +180,7 @@ class Audio extends AppModel
         $result = $this->User->findByUsername($ownerName);
         if ($result) {
             $data['user_id'] = $result[$this->User->alias]['id'];
-        } elseif (!empty($ownerName)) {
+        } elseif ($allowExternal && !empty($ownerName)) {
             $data['external'] = array('username' => $ownerName);
         }
 
@@ -291,10 +291,10 @@ class Audio extends AppModel
                 continue;
             }
 
-            $ok = $this->assignAudioTo($file['sentenceId'], $author);
+            $ok = $this->assignAudioTo($file['sentenceId'], $author, false);
             if (!$ok) {
                 $errors[] = format(
-                    __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database.", true),
+                    __d('admin', "Unable to assign audio to “{author}” for sentence {sentenceId} inside the database. Make sure it's a valid username.", true),
                     array('sentenceId' => $file['sentenceId'], 'author' => $author)
                 );
                 unlink($destFile); // cleaning up, no need to warn on error
