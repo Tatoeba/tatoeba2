@@ -50,9 +50,11 @@ if (isset($sentencesWithAudio)) {
             ?>
             <md-input-container class="md-block">
             <?php
+               $tip = __('Leave this field empty to use your profile page.', true);
                echo $form->input('audio_attribution_url', array(
                    'label' => __('Attribution URL:', true),
                    'value' => $audioSettings['User']['audio_attribution_url'],
+                   'after' => '<div class="hint">'.$tip.'</div>',
                ));
             ?>
             </md-input-container>
