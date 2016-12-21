@@ -146,6 +146,12 @@ class Audio extends AppModel
         }
     }
 
+    public function numberOfAudiosBy($userId) {
+        return $this->find('count', array(
+            'conditions' => array('user_id' => $userId),
+        ));
+    }
+
     public function getAudioStats()
     {
         $key = 'audio_stats';
