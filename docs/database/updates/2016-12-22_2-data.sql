@@ -59,7 +59,6 @@ DELIMITER ;
 CALL AssignAudioToUser(4000, 'CK');
 CALL AssignLicenseToUser('CK', 'CC BY-NC-ND 3.0', 'http://www.manythings.org/tatoeba');
 CALL AssignAudioToUser(4007, 'nava');
-CALL AssignAudioToUser(4008, 'pon00050');
 CALL AssignAudioToUser(4009, 'Dorenda');
 CALL AssignAudioToUser(4010, 'hurdsean');
 CALL AssignAudioToUser(4011, 'sysko');
