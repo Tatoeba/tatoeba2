@@ -18,7 +18,7 @@
  */
 
 $title = format(
-    __('Audios contributed by {username}', true),
+    __('Audio contributed by {username}', true),
     array('username' => $username)
 );
 $this->set('title_for_layout', $pages->formatTitle($title));
@@ -38,8 +38,8 @@ if (isset($sentencesWithAudio)) {
         <div class="section" md-whiteframe="1">
             <h2><?php __('My audio'); ?></h2>
             <?php
-               echo $form->create('Audios', array(
-                   'action' => 'save_settings',
+               echo $form->create('Audio', array(
+                   'url' => array('controller' => 'audio', 'action' => 'save_settings'),
                    'type' => 'post',
                ));
                echo $form->input('audio_license', array(

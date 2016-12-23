@@ -72,7 +72,7 @@ $menuElements = array(
                 "action" => "view_all"
             ),
             __('Browse audio', true) => array(
-                "controller" => "audios",
+                "controller" => "audio",
                 "action" => "index"
             )
         )

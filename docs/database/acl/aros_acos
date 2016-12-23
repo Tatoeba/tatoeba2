@@ -21,8 +21,8 @@ cake acl grant Group.2 Wall all
 cake acl deny  Group.2 Wall/hide_message all
 cake acl deny  Group.2 Wall/unhide_message all
 cake acl grant Group.2 Transcriptions all
-cake acl grant Group.2 Audios all
-cake acl deny  Group.2 Audios/import all
+cake acl grant Group.2 Audio all
+cake acl deny  Group.2 Audio/import all
 cake acl grant Group.2 Vocabulary all
 
 cake acl grant Group.3 Favorites all
@@ -46,8 +46,8 @@ cake acl grant Group.3 Wall all
 cake acl deny  Group.3 Wall/hide_message all
 cake acl deny  Group.3 Wall/unhide_message all
 cake acl grant Group.3 Transcriptions all
-cake acl grant Group.3 Audios all
-cake acl deny  Group.3 Audios/import all
+cake acl grant Group.3 Audio all
+cake acl deny  Group.3 Audio/import all
 cake acl grant Group.3 Vocabulary all
 
 cake acl grant Group.4 Favorites all
@@ -69,6 +69,6 @@ cake acl grant Group.4 Wall all
 cake acl deny  Group.4 Wall/hide_message all
 cake acl deny  Group.4 Wall/unhide_message all
 cake acl grant Group.4 Transcriptions all
-cake acl grant Group.4 Audios all
-cake acl deny  Group.4 Audios/import all
+cake acl grant Group.4 Audio all
+cake acl deny  Group.4 Audio/import all
 cake acl grant Group.4 Vocabulary all

@@ -17,9 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class AudiosController extends AppController
+class AudioController extends AppController
 {
-    public $name = 'Audios';
+    public $name = 'Audio';
 
     public $uses = array(
         'Audio',
