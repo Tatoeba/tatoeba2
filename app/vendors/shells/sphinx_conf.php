@@ -358,7 +358,13 @@ class SphinxConfShell extends Shell {
                 ; }
             )
         ))."\n";
-        
+
+        /* Remove the kanji part in Japanese readings. Note that this regexp
+           will also affect Japanese sentences, but hopefully it will have
+           no effect because they don’t use this [kanji|reading] syntax. */
+        $this->indexExtraOptions['jpn'] =
+            "
+        regexp_filter = \[[^|]*\| =>";
     }
 
     // In the following, the characters U+5B0..U+5C5, U+5C7 within
