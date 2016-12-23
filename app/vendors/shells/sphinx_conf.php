@@ -509,6 +509,10 @@ EOT;
         sql_attr_multi = uint tags_id from field; SELECT id FROM tags ;
         sql_attr_multi = uint lists_id from field; SELECT id FROM sentences_lists ;
         sql_attr_json = trans
+
+        sql_joined_field = \
+            transcription from query; \
+            select sentence_id, text from transcriptions order by sentence_id asc
     }
 ";
                 // generate index for this pair
