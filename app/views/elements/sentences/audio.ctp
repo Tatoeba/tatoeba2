@@ -55,7 +55,7 @@ if (CurrentUser::isAdmin()) {
         "id",
         array("value" => $sentenceId)
     );
-    __d("admin", "Enable");
+    __d("admin", "Enabled");
     echo $form->input(
         "hasaudio", 
         array(
