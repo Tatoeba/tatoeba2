@@ -27,6 +27,7 @@ class TranscriptionsHelper extends AppHelper
         'Javascript',
         'Languages',
         'Pinyin',
+        'Search',
     );
 
     /**
@@ -309,6 +310,9 @@ class TranscriptionsHelper extends AppHelper
     public function transcriptionAsHTML($lang, $transcr) {
         $text = Sanitize::html($transcr['text']);
 
+        if (isset($transcr['highlight'])) {
+            $text = $this->Search->highlightMatches($transcr['highlight'], $text);
+        }
         if ($transcr['script'] == 'Hrkt') {
             $ruby = $this->_rubify($transcr['text']);
             $bracketed = $this->_bracketify($text);

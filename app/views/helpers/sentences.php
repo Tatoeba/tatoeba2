@@ -59,6 +59,7 @@ class SentencesHelper extends AppHelper
         'Menu',
         'Images',
         'Transcriptions',
+        'Search',
     );
 
 
@@ -682,21 +683,6 @@ class SentencesHelper extends AppHelper
         echo $this->Html->tag('/div');
     }
 
-    private function highlightMatches($highlight, $text) {
-        list($markers, $excerpts) = $highlight;
-        foreach ($excerpts as $excerpt) {
-            $excerpt = h($excerpt);
-            $from = str_replace($markers, '', $excerpt);
-            $to = str_replace(
-                $markers,
-                array('<span class="match">', '</span>'),
-                $excerpt
-            );
-            $text = str_replace($from, $to, $text);
-        }
-        return $text;
-    }
-
     /**
      * Displays the text of a sentence. This text can be editable or not.
      *
@@ -723,7 +709,7 @@ class SentencesHelper extends AppHelper
         if ($highlight) {
             $sentenceText = h($sentenceText);
             $sentenceEscaped = true;
-            $sentenceText = $this->highlightMatches($highlight, $sentenceText);
+            $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);
         }
 
         if ($isEditable) {

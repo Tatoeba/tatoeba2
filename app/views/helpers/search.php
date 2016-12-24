@@ -56,5 +56,20 @@ class SearchHelper extends AppHelper
             $options
         );
     }
+
+    public function highlightMatches($highlight, $text) {
+        list($markers, $excerpts) = $highlight;
+        foreach ($excerpts as $excerpt) {
+            $excerpt = h($excerpt);
+            $from = str_replace($markers, '', $excerpt);
+            $to = str_replace(
+                $markers,
+                array('<span class="match">', '</span>'),
+                $excerpt
+            );
+            $text = str_replace($from, $to, $text);
+        }
+        return $text;
+    }
 }
 ?>
