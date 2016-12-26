@@ -79,6 +79,8 @@ class Vocabulary extends AppModel
             $this->save($data);
         }
 
+        $data['id'] = $this->id;
+
         $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
 
         return $data;
