@@ -35,7 +35,7 @@ $membersIcons = array(
 );
 ?>
 <div id="annexe_content">
-    <div class="module">
+    <div class="module usersLanguagesStats">
         <h2><?php __('Legend'); ?></h2>
         <?php
         foreach ($membersIcons as $iconClass => $tooltip) {
