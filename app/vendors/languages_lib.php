@@ -549,6 +549,7 @@ class LanguagesLib
                 'swg' => __d('languages', 'Swabian', true),
                 'izh' => __d('languages', 'Ingrian', true),
                 'sma' => __d('languages', 'Southern Sami', true),
+                'jam' => __d('languages', 'Jamaican Patois', true),
             );
         }
         return $languages;
