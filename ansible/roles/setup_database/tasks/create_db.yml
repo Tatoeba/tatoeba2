@@ -21,4 +21,4 @@
   - aros_acos
 - name: Install database triggers
 # This task requires mysql root for creating triggers
-  shell: find {{code_dir}}/docs/database/triggers -type f -exec cat {} \; | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
+  shell: cat {{code_dir}}/docs/database/triggers/*.sql | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
