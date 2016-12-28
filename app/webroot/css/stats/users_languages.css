@@ -30,22 +30,35 @@
     display: block;
 }
 
-.usersLanguagesStats .languageLevel {
+.usersLanguagesStats .languageLevel,
+.usersLanguagesLegend .languageLevel {
     display: inline-block;
     border: 1px solid #DDDDDD;
     height: 15px;
     width: 25px;
 }
 
-.usersLanguagesStats .languageLevel .level {
+.usersLanguagesStats .languageLevel .level,
+.usersLanguagesLegend .languageLevel .level {
     background-color: #06A;
     height: 100%;
 }
 
-.usersLanguagesStats .languageLevel .unknownLevel {
+.usersLanguagesStats .languageLevel .unknownLevel,
+.usersLanguagesLegend .languageLevel .unknownLevel {
     background: #F1F1F1;
     height: 100%;
     width: 100%;
     font-size: 12px;
     float: left;
+}
+
+.usersLanguagesLegend li {
+  margin: 5px 0;
+}
+
+.usersLanguagesLegend .languageLevel {
+  text-align: center;
+  margin-right: 10px;
+  vertical-align: middle;
 }

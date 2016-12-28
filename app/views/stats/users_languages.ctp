@@ -27,6 +27,25 @@
 $this->set('title_for_layout', $pages->formatTitle(__('Languages of members', true)));
 ?>
 
+<div id="annexe_content">
+    <div class="module">
+        <h2><?php __('Legend'); ?></h2>
+        <ul class="usersLanguagesLegend">
+            <?php
+            for ($i = Language::MAX_LEVEL; $i >= 0; $i--) {
+                $legend = $html->tag('span', $languages->getLevelsLabels($i));
+                echo $html->tag('li', $languages->smallLevelBar($i) . $legend);
+            }
+            ?>
+            <li>
+                <div class="languageLevel">
+                    <div class="unknownLevel key">?</div>
+                </div><span><?php __('Unspecified'); ?></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
 <div id="main_content">
     <div class="module">
         <h2><?php __('Languages of members'); ?></h2>
