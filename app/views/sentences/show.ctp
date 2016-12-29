@@ -45,11 +45,12 @@ if (isset($sentence)) {
         'description',
         format(
             __(
-                "Browse translated example sentences. ".
-                "This page shows translations and information about the sentence: {sentenceText}"
+                "\"{sentenceText}\" is part of the Tatoeba language corpus " .
+                "and has {translationsCount} translations available. " .
+                "Browse this and other translated example sentences. "
                 , true
             ),
-            compact('sentenceText')
+            array('sentenceText' => $sentenceText, 'translationsCount' => sizeof($sentence['Translation']))
         ),
         array('inline' => false)
     );
