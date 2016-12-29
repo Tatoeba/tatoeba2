@@ -63,8 +63,8 @@ $(document).ready(function() {
     $( "#arrow" ).click(function() {
         var langFrom = $('#SentenceFrom').val();
         var langTo = $('#SentenceTo').val();
-    $('#SentenceFrom').val(langTo);
-    $('#SentenceTo').val(langFrom);
+        $('#SentenceFrom').val(langTo);
+        $('#SentenceTo').val(langFrom);
     });
 
     $('#clearSearch').click(function() {

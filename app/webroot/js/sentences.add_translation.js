@@ -19,6 +19,7 @@
 
 $(document).ready(function() {
     $(document).watch("addrule", function() {
+        $(".translateLink:not(:has(a.disabled))").off();
         $(".translateLink:not(:has(a.disabled))").click(function(){
             var sentenceId = $(this).attr("data-sentence-id");
             // Controls
@@ -42,7 +43,7 @@ $(document).ready(function() {
             function save() {
                 var sentenceText = textArea.val();
                 var selectLang = langSelect.val();
-                
+
                 if ($.trim(sentenceText) != "") {
                     if (translating) {
                       return;
@@ -50,11 +51,11 @@ $(document).ready(function() {
                     translating = true;
 
                     sentenceText = normalized_sentence(sentenceText);
-                    
+
                     translations.show();
                     loadingIcon.show();
                     addTranslations.hide();
-                    
+
                     $.post(
                         rootUrl + "/sentences/save_translation",
                         {
@@ -78,7 +79,7 @@ $(document).ready(function() {
             }
 
             // TODO: Unbind only from the functions we have explicitly bound
-             
+
             // Displaying translation input and hiding translations
             translationFor.show();
             textArea.focus();
@@ -87,7 +88,7 @@ $(document).ready(function() {
             // Submitting translation by clicking on button
             submitButton.unbind("click");
             submitButton.click(save);
-            
+
             // Submitting translation by pressing enter
             // NOTE : this is annoying when entering Japanese or Chinese because
             // enter is used to validate the choice of kanjis
@@ -98,7 +99,7 @@ $(document).ready(function() {
                     save();
                 }
             });
-            
+
             // Cancel
             cancelButton.unbind("click");
             cancelButton.click(function(){
@@ -106,8 +107,8 @@ $(document).ready(function() {
                 addTranslations.hide();
             });
         });
-    	
-    	
+
+
       	/**
          * Changes Flag in Add Translation box on Changing Language
          */

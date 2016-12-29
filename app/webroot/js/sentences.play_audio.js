@@ -19,9 +19,10 @@
 
 $(document).ready(function() {
     $(document).watch("addrule", function() {
+        $('.audioAvailable').off();
         $('.audioAvailable').click(function() {
            var audioURL = $(this).attr('href');
-           
+
            $('#audioPlayer').html(
                 '<object data="'+ audioURL +'" type="audio/mpeg" data="'+ audioURL +'" width="0" height="0">'+
                     '<param name="src" value="'+ audioURL +'" />' +
