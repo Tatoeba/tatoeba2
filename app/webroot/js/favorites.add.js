@@ -27,8 +27,8 @@ $(document).ready(function(){
         });
 
         var successString = $("#favorites-list").attr("data-success");
-        
-        $(document).on("click", ".favorite", function(){
+        $('.favorite').off();
+        $('.favorite').click(function(){
             var favoriteId = $(this).attr("data-sentence-id");
             var favoriteOption = $(this);
             var action = 'remove_favorite';

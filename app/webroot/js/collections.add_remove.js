@@ -19,7 +19,7 @@
 
 $(document).ready(function(){
     $(document).watch("addrule", function() {
-        $(document).on("click", ".add-to-corpus", function(){
+        $(".add-to-corpus").click(function(){
 
             var sentenceId = $(this).attr("data-sentence-id");
             var correctness = $(this).attr("data-sentence-correctness");
