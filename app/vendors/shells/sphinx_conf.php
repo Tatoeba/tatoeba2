@@ -358,7 +358,13 @@ class SphinxConfShell extends Shell {
                 ; }
             )
         ))."\n";
-        
+
+        /* Remove the kanji part in Japanese readings. Note that this regexp
+           will also affect Japanese sentences, but hopefully it will have
+           no effect because they don’t use this [kanji|reading] syntax. */
+        $this->indexExtraOptions['jpn'] =
+            "
+        regexp_filter = \[[^|]*\| =>";
     }
 
     // In the following, the characters U+5B0..U+5C5, U+5C7 within
@@ -509,6 +515,10 @@ EOT;
         sql_attr_multi = uint tags_id from field; SELECT id FROM tags ;
         sql_attr_multi = uint lists_id from field; SELECT id FROM sentences_lists ;
         sql_attr_json = trans
+
+        sql_joined_field = \
+            transcription from query; \
+            select sentence_id, text from transcriptions order by sentence_id asc
     }
 ";
                 // generate index for this pair

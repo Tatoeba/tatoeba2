@@ -150,13 +150,23 @@ class SphinxBehavior extends ModelBehavior
         // Sort the results by lang, i.e. by index
         $docsByLang = array();
         $size = count($results);
-        foreach ($results as $i => $result) {
+        foreach ($results as $result) {
+            $size += count($result['Transcription']);
+        }
+        $i = 0;
+        foreach ($results as $result) {
             $lang = $result[$model->name]['lang'];
             $text = $result[$model->name]['text'];
             if (!array_key_exists($lang, $docsByLang)) {
                 $docsByLang[$lang] = array_fill(0, $size, '');
             }
-            $docsByLang[$lang][$i] = $text;
+            $docsByLang[$lang][$i++] = $text;
+        }
+        foreach ($results as $result) {
+            $lang = $result[$model->name]['lang'];
+            foreach ($result['Transcription'] as $transcResult) {
+                $docsByLang[$lang][$i++] = $transcResult['text'];
+            }
         }
 
         // Call BuildExcerpts() for each index and merge the results
@@ -183,12 +193,22 @@ class SphinxBehavior extends ModelBehavior
 
         // Insert highlight markers in $results
         foreach ($results as $i => $result) {
-            $excerpt = explode($options['chunk_separator'], $mergedExcerpts[$i]);
+            $excerpt = explode($options['chunk_separator'], array_shift($mergedExcerpts));
             $highlight = array(
                 array($options['before_match'], $options['after_match']),
                 $excerpt
             );
             $results[$i][$model->name]['highlight'] = $highlight;
+        }
+        foreach ($results as $i => $result) {
+            foreach ($result['Transcription'] as $j => $transcResult) {
+                $excerpt = explode($options['chunk_separator'], array_shift($mergedExcerpts));
+                $highlight = array(
+                    array($options['before_match'], $options['after_match']),
+                    $excerpt
+                );
+                $results[$i]['Transcription'][$j]['highlight'] = $highlight;
+            }
         }
     }
 
