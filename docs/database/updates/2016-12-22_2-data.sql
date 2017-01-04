@@ -153,6 +153,7 @@ CALL AssignLicenseToUser('peschiber', 'CC BY-NC 4.0', NULL);
 CALL AssignAudioToUser(6685, 'arh');
 CALL AssignLicenseToUser('arh', 'CC BY-NC-ND 3.0', NULL);
 CALL AssignAudioToUser(6706, 'juliastef');
+CALL AssignAudioToUser(6817, 'Cainntear');
 
 DROP PROCEDURE AssignAudioToUser;
 DROP PROCEDURE AssignLicenseToUser;
