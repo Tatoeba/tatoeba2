@@ -86,16 +86,16 @@ class Audio extends AppModel
         if (isset($this->data[$this->alias]['external'])
             && is_array($this->data[$this->alias]['external'])) {
             $external = $this->field('external', array('id' => $this->id));
+            if ($external === false) {
+                $external = array();
+            }
             $external = array_merge($external, $this->data[$this->alias]['external']);
-
             $external = array_intersect_key($external, $this->defaultExternal);
             $this->data[$this->alias]['external'] = json_encode($external);
         }
     }
 
     public function beforeSave() {
-        $this->encodeExternal();
-
         if (isset($this->data[$this->alias]['id']) &&
             isset($this->data[$this->alias]['sentence_id'])) {
             // save the previous sentence_id before updating it
@@ -112,6 +112,8 @@ class Audio extends AppModel
         if (!($user_id xor !empty($external))) {
             $ok = false;
         }
+
+        $this->encodeExternal();
         return $ok;
     }
 
