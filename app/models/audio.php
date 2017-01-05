@@ -225,7 +225,7 @@ class Audio extends AppModel
 
         $sentences = $this->Sentence->find('all', array(
             'conditions' => array('Sentence.id' => $allSentenceIds),
-            'fields' => array('id', 'lang', 'hasaudio'),
+            'fields' => array('id', 'lang'),
             'contain' => array('Audio'),
         ));
         $sentences = Set::combine($sentences, '{n}.Sentence.id', '{n}');
