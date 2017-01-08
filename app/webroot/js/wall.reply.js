@@ -96,6 +96,7 @@ $(document).ready(function(){
           //  alert ("has click on reply");
             var currentMessageBody = $('#messageBody_' + currentMessageId );
 
+
             // replace "reply"  by "close"
             messageToReplyTo.attr("class" ,"closeLink " + currentMessageId );
             // i know that's a bit "hacky" to retrieve the send message form
@@ -122,26 +123,34 @@ $(document).ready(function(){
             // focus on textarea
             $("#replyFormDiv_"+currentMessageId+" fieldset div textarea").focus();
         }
+
     }
 
-    $('.ajaxSubmit').click(function(){
-        saveMessage() ;
-        // this line is not in save message due to ajax's asynchronousity
-        // that way we're sure replyFormInMessageId will not be set to -1
-        // before the end of saveMessage
+
+    $(document).on('click', '.ajaxSubmit',
+        function(){
+            saveMessage() ;
+            // this line is not in save message due to ajax's asynchronousity
+            // that way we're sure replyFormInMessageId will not be set to -1
+            // before the end of saveMessage
     });
+
 
     $(".replyLink").click(function(){
         manageReplyForm( $(this) ) ;
     });
 
-    $('.cancelFormLink').click(function(){
-        closeThisReplyForm( $(this) );
-    });
+
+    $(document).on('click', '.cancelFormLink',
+        function(){
+           closeThisReplyForm( $(this) );
+        }
+    );
 
     $(".linkToMessage").click(function(){
-        var linkToMessageId =  $(this).attr("class").split(' ')[1];
-        $.scrollTo('#message_' + linkToMessageId , 800);
-    });
+            var linkToMessageId =  $(this).attr("class").split(' ')[1];
+            $.scrollTo('#message_' + linkToMessageId , 800);
+        }
+    );
 
 });
