@@ -14,6 +14,6 @@ CREATE TABLE `audios` (
   `external` varchar(500) DEFAULT NULL, -- we use either `user_id` or store metadata as JSON in `external`
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
   KEY `sentence_id` (`sentence_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
