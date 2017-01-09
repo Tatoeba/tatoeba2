@@ -35,22 +35,23 @@ if (isset($sentence)) {
     $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
     $sentenceHasAudio = $sentence['Sentence']['hasaudio'];
-    
+
     $languageName = $languages->codeToNameToFormat($sentenceLang);
-    $title = format(__('{language} example sentence: {sentence}', true),
+    $title = format(__('{sentence} - {language} example sentence', true),
                     array('language' => $languageName, 'sentence' => $sentenceText));
     $this->set('title_for_layout', $pages->formatTitle($title));
 
     $html->meta(
-        'description', 
+        'description',
         format(
             __(
-                "Browse translated example sentences. ".
-                "This page shows translations and information about the sentence: {sentenceText}"
+                "\"{sentenceText}\" is part of the Tatoeba language corpus " .
+                "and has {translationsCount} translations available. " .
+                "Browse this and other translated example sentences. "
                 , true
             ),
-            compact('sentenceText')
-        ), 
+            array('sentenceText' => $sentenceText, 'translationsCount' => sizeof($sentence['Translation']))
+        ),
         array('inline' => false)
     );
 } else {
@@ -102,7 +103,7 @@ $navigation->displaySentenceNavigation(
     }
     ?>
 
-    <?php 
+    <?php
     if (isset($sentence)){
         $tags->displayTagsModule($tagsArray, $sentenceId, $sentenceLang);
 
@@ -115,7 +116,7 @@ $navigation->displaySentenceNavigation(
                     'sentenceId' => $sentenceId,
                     'hasaudio' => $sentenceHasAudio
                 )
-            ); 
+            );
 
             // TODO For the beginning we'll restrict this to admins.
             // Later we'll want CurrentUser::isModerator();
@@ -125,17 +126,17 @@ $navigation->displaySentenceNavigation(
                     'sentenceId' => $sentenceId,
                     'sentenceCorrectness' => $sentenceCorrectness
                 )
-            ); 
+            );
         }
     }
     ?>
-    
+
     <div class="section">
         <?php
         echo '<h2>';
         __('Logs');
         echo '</h2>';
-        
+
         //$contributions = $sentence['Contribution'];
         if (!empty($contributions)) {
             echo '<md-list id="logs">';
@@ -159,11 +160,11 @@ $navigation->displaySentenceNavigation(
         if (isset($sentence)) {
         ?>
             <h2>
-            <?php 
+            <?php
             echo format(__('Sentence #{number}', true), array('number' => $sentenceId));
             ?>
-            </h2>            
-            
+            </h2>
+
             <?php
             // display sentence and translations
             $sentences->displaySentencesGroup(
@@ -172,9 +173,9 @@ $navigation->displaySentenceNavigation(
                 $sentence['Translation'],
                 $sentence['User']
             );
-            
+
         } else {
-            
+
             echo '<h2>' .
                 format(__('Sentence #{number}', true),
                        array('number' => $this->params['pass'][0])) .
@@ -185,7 +186,7 @@ $navigation->displaySentenceNavigation(
                     __(
                         'There is no sentence with id {number}',
                         true
-                    ), 
+                    ),
                     array('number' => $this->params['pass'][0])
                 );
             echo '</div>';
@@ -234,7 +235,7 @@ $navigation->displaySentenceNavigation(
         ?>
     </div>
 </div>
-<?php 
+<?php
 } else {
 ?>
     <div id="main_content">
@@ -244,7 +245,7 @@ $navigation->displaySentenceNavigation(
             if($searchProblem == 'disabled') {
                 echo $html->tag('p', __('The random sentence feature is currently disabled, please try again later.', true));
             } else if ($searchProblem == 'error') {
-                echo $html->tag('p', format(__('An error occurred while fetching random sentences. '. 
+                echo $html->tag('p', format(__('An error occurred while fetching random sentences. '.
                                                'If this persists, please <a href="{}">let us know</a>.', true),
                                      $html->url(array("controller"=>"pages", "action" => "contact"))
                 ));
@@ -253,4 +254,3 @@ $navigation->displaySentenceNavigation(
         </div>
     </div>
 <?php } ?>
-
