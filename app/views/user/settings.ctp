@@ -280,6 +280,29 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
                     );
                 ?>
             </md-list-item>
+            <md-list-item>
+                <?php $useNewDesign = $this->data['User']['settings']['use_new_design']; ?>
+                <md-checkbox
+                    ng-false-value="0"
+                    ng-true-value="1"
+                    ng-model="useNewDesign"
+                    ng-init="useNewDesign = <?= $useNewDesign ?>"
+                    class="md-primary">
+                </md-checkbox>
+                <p><?php __(
+                    'Display sentences with the new design. '.
+                    'Note that you will not have all the features '.
+                    'from the old design.'
+                ) ?></p>
+                <?php
+                echo $form->hidden(
+                    'settings.use_new_design',
+                    array(
+                        'value' => '{{useNewDesign}}'
+                    )
+                );
+                ?>
+            </md-list-item>
         </md-list>
 
         <div layout="row" layout-align="center center">

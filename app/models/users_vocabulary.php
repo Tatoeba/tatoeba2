@@ -37,7 +37,7 @@
 class UsersVocabulary extends AppModel
 {
     public $useTable = 'users_vocabulary';
-    public $actsAs = array('Containable');
+    public $actsAs = array('Containable', 'Hashable');
     public $belongsTo = array(
         'Vocabulary' => array('foreignKey' => 'vocabulary_id'),
         'User' => array('foreignKey' => 'user_id')
@@ -53,7 +53,7 @@ class UsersVocabulary extends AppModel
      */
     public function add($vocabularyId, $userId)
     {
-        if ($item = $this->findByBinary($vocabularyId)) {
+        if ($item = $this->findFirst($vocabularyId, $userId)) {
             return $item;
         }
 
@@ -94,33 +94,24 @@ class UsersVocabulary extends AppModel
     }
 
     /**
-     * Find a users_vocabulary record by a binary vocabulary_id value.
+     * Find and return the first item with given vocabularyId and userId.
      *
-     * @param  string $binary Binary vocabulary_id value.
+     * @param  int $vocabularyId Vocabulary item id.
+     * @param  int $userId       User id.
      *
-     * @return array
+     * @return array|boolean
      */
-    public function findByBinary($binary)
+    public function findFirst($vocabularyId, $userId)
     {
-        $binary = $this->_getPaddedBinary($binary);
-
-        return $this->find(['vocabulary_id' => $binary]);
-    }
-
-    /**
-     * Convert a binary id to a padded binary id.
-     *
-     * @param  string $binary Binary id value.
-     *
-     * @return string
-     */
-    private function _getPaddedBinary($binary)
-    {
-        $hex = bin2hex($binary);
-
-        $hex = str_pad($hex, 32, 0);
-
-        return hex2bin($hex);
+        return $this->find(
+            'first',
+            array(
+                'conditions' => array(
+                    'vocabulary_id' => $vocabularyId,
+                    'user_id' => $userId
+                )
+            )
+        );
     }
 }
 ?>

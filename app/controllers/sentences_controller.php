@@ -49,6 +49,7 @@ class SentencesController extends AppController
     public $helpers = array(
         'Sentences',
         'Menu',
+        'Lists',
         'SentenceButtons',
         'Html',
         'Logs',
@@ -68,6 +69,7 @@ class SentencesController extends AppController
         'Sentence',
         'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
+        'SentencesList',
         'User',
         'UsersLanguages',
         'Tag',
@@ -80,6 +82,7 @@ class SentencesController extends AppController
         'from' => 'und',
         'to' => 'und',
         'tags' => '',
+        'list' => '',
         'user' => '',
         'orphans' => 'no',
         'unapproved' => 'no',
@@ -336,11 +339,10 @@ class SentencesController extends AppController
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
 
-        $isSaved = $this->CommonSentence->wrapper_save_sentence(
+        $isSaved = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,
             $userId,
-            null,
             $userName
         );
 
@@ -351,65 +353,103 @@ class SentencesController extends AppController
             $sentenceId = $this->Sentence->id;
             $sentence = $this->Sentence->getSentenceWithId($sentenceId);
 
+            $this->set('duplicate', $this->Sentence->duplicate);
             $this->set('sentence', $sentence);
         }
 
     }
 
     /**
-     * Edit sentence.
-     * Used in AJAX request, in sentences.edit_in_place.js.
-     *
-     * @todo Need to have an editSentence() in the model, that will check if sentence 
-     * has audio, in which case it cannot be edited.
+     * Edit sentence. Used by AJAX request in sentences.edit_in_place.js.
      *
      * @return void
      */
     public function edit_sentence()
     {
-        $sentenceText = '';
-        $sentenceId = '';
-        if (isset($this->params['form']['value'])) {
-            $sentenceText = trim($this->params['form']['value']);
-        }
-        if (isset($this->params['form']['id'])) {
-            $sentenceId = $this->params['form']['id']; // NOTE: do not Sanitize::paranoid() this
-                                                       // ...because hack mentionned below
-        }
+        $text = $this->_getEditFormText($this->params);
 
-        if (!isset($sentenceText) || $sentenceText === '') {
-            // if the sentence contain no text (empty or only space)
-            // the we directly return without saving
+        $idLangArray = $this->_getEditFormIdLang($this->params);
+
+        if (!$text || !$idLangArray) {
             return;
         }
 
-        if (isset($sentenceId)) {
-            // TODO HACK SPOTTED $this->params['form']['id'] store 2 informations, lang and id
-            // related to HACK in edit in place.js
-            $hack_array = explode("_", $sentenceId);
+        // Set $id and $lang
+        extract($idLangArray);
 
-            $realSentenceId = Sanitize::paranoid($hack_array[1]);
-            $sentenceLang = Sanitize::paranoid($hack_array[0]);
+        $sentence = $this->Sentence->findById($id);
 
-            $sentence = $this->Sentence->findById($realSentenceId);
-            if (!$sentence || !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id'])) {
-                $this->redirect(array('controller' => 'pages', 'action' => 'home'));
-		return;
-            }
-
-            $this->Sentence->id = $realSentenceId;
-            if (!empty($sentenceLang)) {
-                $data['Sentence']['lang'] = $sentenceLang;
-            }
-            $data['Sentence']['text'] = $sentenceText;
-            $isSaved = $this->Sentence->save($data);
-
-            if ($isSaved) {
-                $this->layout = null;
-                $this->set('sentence_text', $sentenceText);
-            }
-
+        if ($this->_cantEditSentence($sentence)) {
+            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+            
+            return;
         }
+
+        $isSaved = $this->Sentence->editSentence($id, $text, $lang);
+
+        $this->layout = null;
+
+        if ($isSaved) {
+            $this->UsersSentences->makeDirty($id);
+            
+            $this->set('sentence_text', $text);
+        } else {
+            $this->set('sentence_text', $sentence['Sentence']['text']);
+        }
+    }
+
+    /**
+     * Get text from edit form params.
+     *
+     * @param  array $params Form parameters.
+     *
+     * @return string|boolean
+     */
+    private function _getEditFormText($params)
+    {
+        if (isset($params['form']['value'])) {
+            return trim($params['form']['value']);
+        }
+
+        return false;
+    }
+
+    /**
+     * Get id and lang from edit form params.
+     *
+     * @param  array $params Form parameters.
+     *
+     * @return array|boolean
+     */
+    private function _getEditFormIdLang($params)
+    {
+        if (isset($this->params['form']['id'])) {
+            // ['form']['id'] contains both the sentence id and its language.
+            // Do not sanitize it directly.
+            $sentenceId = $this->params['form']['id'];
+
+            $dirtyArray = explode("_", $sentenceId);
+
+            return [
+                'id' => Sanitize::paranoid($dirtyArray[1]),
+                'lang' => Sanitize::paranoid($dirtyArray[0])
+            ];
+        }
+
+        return false;
+    }
+
+    /**
+     * Return true if user can't edit sentence.
+     *
+     * @param  array $sentence Sentence to edit.
+     *
+     * @return boolean
+     */
+    private function _cantEditSentence($sentence)
+    {
+        return !$sentence ||
+            !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id']);
     }
 
     /**
@@ -482,9 +522,7 @@ class SentencesController extends AppController
 
         $translationText = $_POST['value'];
         
-        // we store the selected language to be reused
-        // since users are likely to contribute in the 
-        // same language; they don't need to reselect each time
+        // Store selected lang in cookie as default language for drop-downs
         $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
 
         if (isset($translationText)
@@ -494,11 +532,9 @@ class SentencesController extends AppController
         ) {
             // Language detection
             if ($translationLang == 'auto') {
-
-                $ownerName = $this->Auth->user('username');
                 $translationLang = $this->LanguageDetection->detectLang(
                     $translationText,
-                    $ownerName
+                    $this->Auth->user('username')
                 );
             }
 
@@ -512,7 +548,7 @@ class SentencesController extends AppController
             );
 
             if ($isSaved) {
-                $translationId = $this->Sentence->getLastInsertID();
+                $translationId = $this->Sentence->id;
                 $translation = $this->Sentence->find('first', array(
                     'conditions' => array('Sentence.id' => $translationId),
                     'contain' => array('Transcription')
@@ -740,6 +776,35 @@ class SentencesController extends AppController
             $tags = implode(',', $tagsArray);
         }
 
+        // filter by list
+        $searchableLists = $this->SentencesList->getSearchableLists();
+        if (!empty($list)) {
+            $isSearchable = $this->SentencesList->isSearchableList($list);
+            if ($isSearchable) {
+                $sphinx['filter'][] = array('lists_id', $list);
+                $found = false;
+                foreach ($searchableLists as $rec) {
+                    if ($list == $rec['SentencesList']['id']) {
+                        $found = true;
+                        break;
+                    }
+                }
+                if (!$found) {
+                    $searchableLists[] = $isSearchable;
+                }
+            } else {
+                $ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been
+                       ignored:” */
+                    __("“belongs to list number {listId}”, because list ".
+                       "{listId} is private or does not exist", true),
+                    array('listId' => $list)
+                );
+                $list = '';
+            }
+        }
+
         // filter orphans
         if (!empty($orphans) && empty($user)) {
             $exclude_orphans = $orphans == 'no';
@@ -796,10 +861,15 @@ class SentencesController extends AppController
         $search_disabled = !Configure::read('Search.enabled');
         if (!$search_disabled) {
             $model = 'Sentence';
+            if (CurrentUser::isMember()) {
+                $contain = $this->Sentence->contain();
+            } else {
+                $contain = $this->Sentence->minimalContain();
+            }
             $pagination = array(
                 'Sentence' => array(
                     'fields' => $this->Sentence->fields(),
-                    'contain' => $this->Sentence->contain(),
+                    'contain' => $contain,
                     'limit' => CurrentUser::getSetting('sentences_per_page'),
                     'sphinx' => $sphinx,
                     'search' => $query
@@ -818,6 +888,7 @@ class SentencesController extends AppController
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
         $this->set('vocabulary', $vocabulary);
+        $this->set('searchableLists', $searchableLists);
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
@@ -827,6 +898,7 @@ class SentencesController extends AppController
     }
 
     public function advanced_search() {
+        $this->set('searchableLists', $this->SentencesList->getSearchableLists());
         $this->set($this->defaultSearchCriteria);
     }
 
@@ -872,12 +944,17 @@ class SentencesController extends AppController
 
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
-        $this->addLastUsedLang($notTranslatedInto);
+
+        if (CurrentUser::isMember()) {
+            $contain = $this->Sentence->contain();
+        } else {
+            $contain = $this->Sentence->minimalContain();
+        }
 
         $pagination = array(
             'Sentence' => array(
                 'fields' => $this->Sentence->fields(),
-                'contain' => $this->Sentence->contain(),
+                'contain' => $contain,
                 'conditions' => array(
                     'Sentence.lang' => $lang,
                 ),
@@ -887,30 +964,8 @@ class SentencesController extends AppController
         );
 
         // filter or not sentences-with-audio-only
-        $audioOnly = false ;
         if ($filterAudioOnly === "only-with-audio") {
-            $audioOnly = true ;
             $pagination['Sentence']['conditions']['hasaudio !='] = "no";
-        }
-
-
-        if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
-
-            $model = 'SentenceNotTranslatedInto';
-            $pagination = array(
-                'SentenceNotTranslatedInto' => array(
-                    'fields' => $this->Sentence->fields(),
-                    'conditions' => array(
-                        'source' => $lang,
-                        'translatedInto' => $translationLang,
-                        'notTranslatedInto' => $notTranslatedInto,
-                        'audioOnly' => $audioOnly,
-                    ),
-                    'contain' => $this->Sentence->contain(),
-                    'order' => 'Sentence.id DESC',
-                    'limit' => 10,
-                )
-            );
         }
 
         $allSentences = $this->_common_sentences_pagination(
@@ -925,13 +980,11 @@ class SentencesController extends AppController
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);
-        $this->set('notTranslatedInto', $notTranslatedInto);
         $this->set('filterAudioOnly', $filterAudioOnly);
         $this->set('results', $allSentences);
 
         $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
         $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
-        $this->Cookie->write('not_translated_into_lang', $notTranslatedInto, false, "+1 month");
         $this->Cookie->write('filter_audio_only', $filterAudioOnly, false, "+1 month");
     }
     /**
@@ -1162,6 +1215,7 @@ class SentencesController extends AppController
             $id = Sanitize::paranoid($this->params['form']['id']);
 
             $lang = $this->Sentence->changeLanguage($id, $newLang);
+            $this->UsersSentences->makeDirty($id);
             $this->set('lang', $lang);
         }
     }

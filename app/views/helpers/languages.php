@@ -188,7 +188,7 @@ class LanguagesHelper extends AppHelper
      * to be used inside a format() call. You MUST use the return
      * value as a variable inside a format() call. If not,
      * use languagesArrayAlone() instead.
-     * 
+     *
      * @return array
      */
     public function languagesArrayToFormat()
@@ -253,7 +253,7 @@ class LanguagesHelper extends AppHelper
 
     /**
      * Return array of languages, with "None" and "All languages" options.
-     * Applies to a positive phrase (for example, "Show translations in"). 
+     * Applies to a positive phrase (for example, "Show translations in").
      *
      * @return array
      */
@@ -275,26 +275,26 @@ class LanguagesHelper extends AppHelper
 
     /**
     * Return array of languages, with "--" and "Any languages" options.
-    * Applies to a negative phrase (for example, "Not directly translated into"). 
+    * Applies to a negative phrase (for example, "Not directly translated into").
     *
     * @return array
     */
     public function languagesArrayForNegativeLists()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         array_unshift(
-            $languages, 
+            $languages,
             array(
                 'none' => '—',
                 'und' => __('Any language', true)
             )
         );
-        
+
         return $languages;
     }
-    
-    
+
+
     /**
      * Return array of languages with, "None" option.
      *
@@ -473,7 +473,7 @@ class LanguagesHelper extends AppHelper
         ));
         ?>
         <p><?= $warningMessage ?></p>
-        
+
         <div layout="row" layout-align="center center">
             <md-button class="md-raised md-primary" href="<?= $newLangUrl ?>">
                 <? __('Add a language'); ?>
@@ -487,7 +487,7 @@ class LanguagesHelper extends AppHelper
     {
         if (!isset($__languagesLevels)) {
             $__languagesLevels = array(
-                -1 => __('Unspecified', true),
+                -1 => __p('level', 'Unspecified', true),
                 0 => __('0: Almost no knowledge', true),
                 1 => __('1: Beginner', true),
                 2 => __('2: Intermediate', true),
@@ -511,7 +511,7 @@ class LanguagesHelper extends AppHelper
         $size = ($level / Language::MAX_LEVEL) * 100;
         $levelDiv = $this->Html->div(
             null,
-            null,
+            "",
             array(
                 'style' => 'opacity:'.$opacity.'; width:'.$size.'%;',
                 'class' => 'level'

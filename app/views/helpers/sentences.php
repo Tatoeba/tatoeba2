@@ -59,6 +59,7 @@ class SentencesHelper extends AppHelper
         'Menu',
         'Images',
         'Transcriptions',
+        'Search',
     );
 
 
@@ -80,7 +81,8 @@ class SentencesHelper extends AppHelper
         $transcriptions,
         $translations,
         $user = null,
-        $options = array()
+        $options = array(),
+        $duplicate = false
     ) {
         $options = array_merge(
             array(
@@ -96,6 +98,20 @@ class SentencesHelper extends AppHelper
         ?>
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
+
+        if ($duplicate) {
+            $image = $this->Images->svgIcon(
+                'warning-small',
+                ['class' => 'sentences_duplicate_icon']
+            );
+
+            $message = $image.__(
+                'Your sentence was not added because the following already exists.',
+                true
+            );
+
+            echo $this->Html->div('sentences_duplicate', $message);
+        }
 
         $this->displayMainSentence(
             $sentence,
@@ -122,7 +138,7 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    private function segregateTranslations($translations) {
+    public function segregateTranslations($translations) {
         $result = array(0 => array(), 1 => array());
         foreach ($translations as $translation) {
             if (isset($translation['Translation'])) {
@@ -667,21 +683,6 @@ class SentencesHelper extends AppHelper
         echo $this->Html->tag('/div');
     }
 
-    private function highlightMatches($highlight, $text) {
-        list($markers, $excerpts) = $highlight;
-        foreach ($excerpts as $excerpt) {
-            $excerpt = h($excerpt);
-            $from = str_replace($markers, '', $excerpt);
-            $to = str_replace(
-                $markers,
-                array('<span class="match">', '</span>'),
-                $excerpt
-            );
-            $text = str_replace($from, $to, $text);
-        }
-        return $text;
-    }
-
     /**
      * Displays the text of a sentence. This text can be editable or not.
      *
@@ -708,7 +709,7 @@ class SentencesHelper extends AppHelper
         if ($highlight) {
             $sentenceText = h($sentenceText);
             $sentenceEscaped = true;
-            $sentenceText = $this->highlightMatches($highlight, $sentenceText);
+            $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);
         }
 
         if ($isEditable) {

@@ -135,14 +135,24 @@ class ActivitiesController extends AppController
             $langFrom = Sanitize::paranoid($_GET['langFrom']);
             $langTo = Sanitize::paranoid($_GET['langTo']);
 
-            $this->redirect(
-                array(
-                    "controller" => "sentences",
-                    "action" => "show_all_in",
-                    /* REVISIT!!! */
-                    $langFrom, 'none', $langTo
-                )
+            $this->Cookie->write(
+                'not_translated_into_lang',
+                $langTo,
+                false,
+                '+1 month'
             );
+
+            $this->redirect(array(
+                'controller' => 'sentences',
+                'action' => 'search',
+                '?' => array(
+                    'from' => $langFrom,
+                    'to' => 'none',
+                    'trans_filter' => 'exclude',
+                    'trans_to' => $langTo,
+                    'sort' => 'modified'
+                )
+            ));
         }
     }
 
@@ -185,11 +195,16 @@ class ActivitiesController extends AppController
             $conditions['Sentence.lang'] = $lang;
         }
 
+        if (CurrentUser::isMember()) {
+            $contain = $this->Sentence->contain();
+        } else {
+            $contain = $this->Sentence->minimalContain();
+        }
         $this->paginate = array(
             'Sentence' => array(
                 'fields' => $this->Sentence->fields(),
                 'conditions' => $conditions,
-                'contain' => $this->Sentence->contain(),
+                'contain' => $contain,
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => 'created DESC'
             )

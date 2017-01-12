@@ -38,6 +38,10 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */  
+if (!isset($duplicate)) {
+    $duplicate = false;
+}
+
 if (isset($sentence)) {
     // sentence and translations
     $translation = array();
@@ -45,7 +49,9 @@ if (isset($sentence)) {
         $sentence['Sentence'], 
         $sentence['Transcription'],
         $translation, 
-        $sentence['User']
+        $sentence['User'],
+        array(),
+        $duplicate
     );
 }
 ?>

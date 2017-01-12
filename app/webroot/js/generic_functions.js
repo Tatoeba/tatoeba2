@@ -63,8 +63,8 @@ $(document).ready(function() {
     $( "#arrow" ).click(function() {
         var langFrom = $('#SentenceFrom').val();
         var langTo = $('#SentenceTo').val();
-    $('#SentenceFrom').val(langTo);
-    $('#SentenceTo').val(langFrom);
+        $('#SentenceFrom').val(langTo);
+        $('#SentenceTo').val(langFrom);
     });
 
     $('#clearSearch').click(function() {
@@ -95,4 +95,15 @@ $(document).ready(function() {
     if ($("div.paging").length > 0) {
         key_navigation();
     }
+});
+
+$(document).ready(function() {
+    $(document).watch("addrule", function() {
+        $('.sentenceContent .text').each(function() {
+            var sentence = $(this);
+            if (sentence.data('text') === undefined) {
+                sentence.data('text', sentence.text());
+            }
+        });
+    });
 });

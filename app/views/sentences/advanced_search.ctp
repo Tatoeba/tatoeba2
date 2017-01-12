@@ -24,7 +24,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">
     <div class="module advanced-search">
     <h2><?php echo $title; ?></h2>
-    <?php echo $this->element('advanced_search_form'); ?>
+    <?php echo $this->element('advanced_search_form', array(
+              'searchableLists' => $searchableLists,
+          )); ?>
     <div style="clear:both"></div>
     </div>
 </div>

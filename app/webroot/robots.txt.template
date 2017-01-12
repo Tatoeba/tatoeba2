@@ -1,36 +1,30 @@
 User-Agent: *
-Disallow: */users/*
 
-Disallow: */sentences/show_all_in/*
-
-Disallow: *private_messages/*
-
-Disallow: /*/sentences/search*
-
-Disallow: *sentences/of_user/*
-Disallow: */contributions/statistics
 Disallow: /*.css$
 Disallow: /*.js$
 
-Disallow: *contributions/of_user*
-Disallow: /*contributions/index/*
+Disallow: */page:*
 
-Disallow: */contributions/show/*
-Disallow: */sentences_comments/show/*
-Disallow: */sentences/get_translations/*
-
-Disallow: */sentences/with_audio*
-Disallow: */sentence_comments/on_sentences_of_user/*
-Disallow: */sentence_comments/of_user/*
 Disallow: */activities/*
 
-Disallow: */page:*
+Disallow: */contributions/*
+
+Disallow: */private_messages/*
+
+Disallow: */sentences/*
+Allow: */sentences/show/*
+
+Disallow: */sentence_comments/*
+
+Disallow: */users/*
+
+# Everything below still needs to be reviewed
 
 User-Agent: AhrefsBot
 Crawl-Delay: 40 
 
 User-agent: 008
-Disallow: /    
+Disallow: /
 
 User-agent: Baiduspider
 

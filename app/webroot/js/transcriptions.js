@@ -21,19 +21,23 @@ $(document).ready(function() {
     $(document).watch("addrule", function() {
         // Show the transcribe buttons if there are some
         // hidden transcriptions
-        $('.needsReview:hidden').each(function(index) {
+        $('.needsReview.hidden').each(function(index) {
             var transcr = $(this);
-            if (transcr.closest('.translations').length == 0) {
+            var menu = transcr.closest('.mainSentence')
+                              .closest('.sentences_set')
+                              .find('.transcribe-buttons');
+            if (menu.length) {
                 /* Transcription of the main sentence, not a translation */
                 /* Move the show button in the menu */
-                var menu = transcr.closest('.sentences_set').find('.transcribe-buttons');
                 var button = transcr.find('.transcribe.option');
-                button.click(function(event) {
-                    button.remove();
-                    transcr.toggle(true);
-                });
-                button.toggle(true);
-                menu.empty().append(button);
+                if (button.length) {
+                    button.click(function(event) {
+                        button.remove();
+                        transcr.toggle(true);
+                    });
+                    button.toggle(true);
+                    menu.empty().append(button);
+                }
             }
         });
 
@@ -43,7 +47,6 @@ $(document).ready(function() {
             var container = $(this);
             var transcr = container.find('.transcription');
             var sentence = container.closest('.sentence').find('.content .text');
-            sentence.data('text', sentence.text());
             sentence.html(transcr.html());
             container.toggle(false);
 
@@ -61,6 +64,7 @@ $(document).ready(function() {
                 button.toggle(true);
                 menu.empty().append(button);
             }
+            container.removeClass('blend');
         });
 
         function escapeUnicodeChar(c) {
@@ -125,7 +129,7 @@ $(document).ready(function() {
                 ajaxoptions : {
                     success : function(result, status) {
                         div.editing = false;
-                        div.parent().replaceWith(result);
+                        div.parent().watch("replaceWith", result);
                     }
                 },
                 onsubmit  : function(settings, self) {

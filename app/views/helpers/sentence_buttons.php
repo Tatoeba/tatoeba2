@@ -93,7 +93,6 @@ class SentenceButtonsHelper extends AppHelper
             'unlink',
             array(
                 "alt"=>__('Unlink', true),
-                "title" => __('Unlink this translation.', true),
                 "width" => 16,
                 "height" => 16
             )
@@ -111,6 +110,7 @@ class SentenceButtonsHelper extends AppHelper
                 "escape" => false,
                 "class" => "link button",
                 "id" => $elementId,
+                "title" => __('Unlink this translation.', true),
                 "onclick" => "translationLink('delete', $sentenceId, $translationId, $langFilter); return false"
             )
         );
@@ -136,7 +136,6 @@ class SentenceButtonsHelper extends AppHelper
             'link',
             array(
                 "alt"=>__('Link', true),
-                "title" => __('Make into direct translation.', true),
                 "width" => 16,
                 "height" => 16
             )
@@ -154,6 +153,7 @@ class SentenceButtonsHelper extends AppHelper
                 "escape" => false,
                 "class" => "link button",
                 "id" => $elementId,
+                "title" => __('Make into direct translation.', true),
                 "onclick" => "translationLink('add', $sentenceId, $translationId, $langFilter); return false"
             )
         );

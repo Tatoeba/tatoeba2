@@ -34,6 +34,7 @@ CREATE TABLE `sentences` (
   `hasaudio` enum('no','from_users','shtooka') NOT NULL DEFAULT 'no',
   `lang_id` tinyint(3) unsigned DEFAULT NULL,
   `script` varchar(4) DEFAULT NULL,
+  `hash` BINARY(16) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `dico_id` (`dico_id`),

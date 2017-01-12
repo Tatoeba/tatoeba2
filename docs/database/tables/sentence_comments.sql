@@ -28,5 +28,7 @@ CREATE TABLE `sentence_comments` (
   `modified` datetime DEFAULT NULL,
   `hidden` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `sentence_id_idx` (`sentence_id`)
+  KEY `sentence_id_idx` (`sentence_id`),
+  KEY `user_id` (`user_id`),
+  KEY `created` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

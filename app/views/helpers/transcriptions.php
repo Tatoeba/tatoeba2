@@ -27,6 +27,7 @@ class TranscriptionsHelper extends AppHelper
         'Javascript',
         'Languages',
         'Pinyin',
+        'Search',
     );
 
     /**
@@ -170,12 +171,14 @@ class TranscriptionsHelper extends AppHelper
             $class .= ' blend';
         }
         $hide = $needsReview && !CurrentUser::get('settings.show_transcriptions');
+        if ($hide) {
+            $class .= ' hidden';
+        }
         echo $this->Html->tag('div',
             $toggleButton.$buttonsDiv.$transcriptionDiv,
             array(
                 'escape' => false,
                 'class' => $class,
-                'style' => $hide ? 'display:none' : null,
             )
         );
     }
@@ -307,6 +310,9 @@ class TranscriptionsHelper extends AppHelper
     public function transcriptionAsHTML($lang, $transcr) {
         $text = Sanitize::html($transcr['text']);
 
+        if (isset($transcr['highlight'])) {
+            $text = $this->Search->highlightMatches($transcr['highlight'], $text);
+        }
         if ($transcr['script'] == 'Hrkt') {
             $ruby = $this->_rubify($transcr['text']);
             $bracketed = $this->_bracketify($text);

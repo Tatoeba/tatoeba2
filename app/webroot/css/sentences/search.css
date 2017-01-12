@@ -20,6 +20,7 @@
 /*
  * Search results
  */
+.sentence-and-translations,
 .sentences_set {
     margin: 40px 0;
 }
@@ -105,6 +106,7 @@ legend {
 #AdvancedSearchFrom,
 #AdvancedSearchTo,
 #AdvancedSearchTransTo,
+#AdvancedSearchList,
 #AdvancedSearchSort,
 #AdvancedSearchSearchForm input[type="text"] {
     width: 140px;
