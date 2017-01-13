@@ -21,5 +21,3 @@ SELECT
   0 as modified
 FROM sentences
 WHERE hasaudio != 'no';
-
-ALTER TABLE sentences DROP hasaudio;
