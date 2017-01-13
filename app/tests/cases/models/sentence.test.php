@@ -5,6 +5,7 @@ App::import('Behavior', 'Sphinx');
 
 class SentenceTestCase extends CakeTestCase {
 	var $fixtures = array(
+		'app.audio',
 		'app.sentence',
 		'app.user',
 		'app.group',
@@ -241,11 +242,15 @@ class SentenceTestCase extends CakeTestCase {
 	}
 
 	function testReturnsFalseIfAudioOnDelete() {
-		$sentenceId = 1;
-		$this->Sentence->id = $sentenceId;
-		$this->Sentence->saveField('hasaudio', 'from_users');
+		$sentenceId = 3;
 
 		$result = $this->Sentence->delete($sentenceId, false);
+
+		$this->assertFalse($result);
+	}
+
+	function testReturnsFalseIfAudioOnEdit() {
+		$result = $this->Sentence->editSentence(3, 'spa', 'changing');
 
 		$this->assertFalse($result);
 	}
@@ -293,7 +298,7 @@ class SentenceTestCase extends CakeTestCase {
 	}
 
 	function testLogsLinkDeletionOnDelete() {
-		$sentenceId = 3;
+		$sentenceId = 5;
 		$conditions = array('type' => 'link');
 		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
 
@@ -373,7 +378,7 @@ class SentenceTestCase extends CakeTestCase {
 	}
 
 	function testListsCleanedOnDelete() {
-		$sentenceId = 4;
+		$sentenceId = 8;
 		$inListBefore = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
 
 		$this->Sentence->delete($sentenceId, false);

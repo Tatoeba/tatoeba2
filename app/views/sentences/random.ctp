@@ -33,16 +33,6 @@ if (is_null($random)) {
                         $html->url(array("controller"=>"pages", "action" => "contact"))
    ));
 } else {
-	$sentence = $random['Sentence'];
-	$transcription = $random['Transcription'];
-	$sentenceOwner = $random['User'];
-	$translations = $random['Translation'];
-
-	$sentences->displaySentencesGroup(
-	    $sentence, 
-	    $transcription,
-	    $translations, 
-	    $sentenceOwner
-	);
+	$sentences->displaySentencesGroup($random);
 }
 ?>

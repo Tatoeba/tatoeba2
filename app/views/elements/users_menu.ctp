@@ -120,6 +120,19 @@
     );
     ?>
     </li>
+
+    <li class="item">
+    <?php
+    echo $html->link(
+        __('Audio', true),
+        array(
+            'controller' => 'audio',
+            'action' => 'of',
+            $username
+        )
+    );
+    ?>
+    </li>
     
     <li class="item">
     <?php

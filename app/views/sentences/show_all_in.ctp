@@ -79,14 +79,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             }
         } else {
             foreach ($results as $sentence) {
-                $translations = isset($sentence['Translation']) ?
-                    $sentence['Translation'] :
-                    array();
+                if (!isset($sentence['Translation'])) {
+                    $sentence['Translation'] = array();
+                }
                 $sentences->displaySentencesGroup(
-                    $sentence['Sentence'],
-                    $sentence['Transcription'],
-                    $translations,
-                    $sentence['User'],
+                    $sentence,
                     array('langFilter' => $translationLang)
                 );
             }

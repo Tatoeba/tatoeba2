@@ -76,6 +76,8 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
             <dd><?php echo $userStats['numberOfComments']; ?></dd>
             <dt><?php __('Sentences owned'); ?></dt>
             <dd><?php echo $userStats['numberOfSentences']; ?></dd>
+            <dt><?php __('Audio recordings'); ?></dt>
+            <dd><?php echo $userStats['numberOfAudios']; ?></dd>
             <dt><?php __('Sentences favorited'); ?></dt>
             <dd><?php echo $userStats['numberOfFavorites']; ?></dd>
             <dt><?php __('Contributions'); ?></dt>

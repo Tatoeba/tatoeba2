@@ -153,14 +153,11 @@ if ($search_disabled) {
         }
     } else {
         foreach ($results as $sentence) {
-            $translations = isset($sentence['Translation']) ?
-                $sentence['Translation'] :
-                array();
+            if (!isset($sentence['Translation'])) {
+                $sentence['Translation'] = array();
+            }
             $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $translations,
-                $sentence['User'],
+                $sentence,
                 array('langFilter' => $to)
             );
         }

@@ -641,6 +641,7 @@ class UserController extends AppController
      */
     private function _stats($userId)
     {
+        $this->loadModel('Audio');
         $numberOfSentences = $this->Sentence->numberOfSentencesOwnedBy($userId);
         $numberOfComments
             = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
@@ -648,14 +649,14 @@ class UserController extends AppController
         $numberOfContributions
             = $this->Contribution->numberOfContributionsBy($userId);
         $numberOfFavorites  = $this->Favorite->numberOfFavoritesOfUser($userId);
-
-        $userStats = array(
-            'numberOfComments'      => $numberOfComments ,
-            'numberOfSentences'     => $numberOfSentences ,
-            'numberOfContributions' => $numberOfContributions,
-            'numberOfFavorites'     => $numberOfFavorites
+        $numberOfAudios = $this->Audio->numberOfAudiosBy($userId);
+        return compact(
+            'numberOfComments',
+            'numberOfSentences',
+            'numberOfContributions',
+            'numberOfFavorites',
+            'numberOfAudios'
         );
-        return $userStats;
     }
 
 

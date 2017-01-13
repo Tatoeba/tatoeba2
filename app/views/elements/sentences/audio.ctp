@@ -24,11 +24,26 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-?>
  
+$hasaudio = count($audios) > 0;
+$shouldDisplayBlock = $hasaudio || CurrentUser::isAdmin();
+if (!$shouldDisplayBlock) {
+    return;
+}
+
+?>
 <div class="module">
-    <h2><?php __d('admin', 'Audio') ?></h2>
-    <?php
+    <h2><?php __('Audio') ?></h2>
+<?php
+
+if ($hasaudio) {
+    $audio->displayAudioInfo($audios[0]);
+}
+
+if (CurrentUser::isAdmin()) {
+    if ($hasaudio) {
+        echo "<hr>";
+    }
     echo $form->create(
         "Sentence",
         array(
@@ -40,18 +55,34 @@
         "id",
         array("value" => $sentenceId)
     );
+    __d("admin", "Enabled");
     echo $form->input(
         "hasaudio", 
         array(
             "legend" => false,
             "type" => "radio",
             "options" => array(
-                "shtooka" => "yes",
-                "no" => "no"
+                "yes" => "yes",
+                "" => "no"
             ),
             "value" => $hasaudio
         )
     );
+
+    $ownerName = '';
+    if ($hasaudio) {
+        if ($audios[0]['user_id'] && $audios[0]['User']['username']) {
+            $ownerName = $audios[0]['User']['username'];
+        } else {
+            $ownerName = $audios[0]['external']['username'];
+        }
+    }
+    echo $form->input("ownerName",
+        array(
+            "value" => $ownerName
+        )
+    );
     echo $form->end(__d('admin', 'Submit', true));
-    ?>
+}
+?>
 </div>

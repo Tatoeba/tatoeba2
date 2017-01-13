@@ -62,6 +62,7 @@ class Sentence extends AppModel
     );
 
     public $hasMany = array(
+        'Audio',
         'Contribution',
         'SentenceComment',
         'Favorites_users' => array (
@@ -181,7 +182,7 @@ class Sentence extends AppModel
         if (isset($this->data['Sentence']['modified'])) {
             $this->needsReindex($this->id);
         }
-        $transIndexedAttr = array('lang', 'user_id', 'hasaudio');
+        $transIndexedAttr = array('lang', 'user_id');
         $transNeedsReindex = array_intersect_key(
             $this->data['Sentence'],
             array_flip($transIndexedAttr)
@@ -189,6 +190,11 @@ class Sentence extends AppModel
         if ($transNeedsReindex) {
             $this->flagTranslationsToReindex($this->id);
         }
+    }
+
+    public function flagSentenceAndTranslationsToReindex($id) {
+        $this->needsReindex($id);
+        $this->flagTranslationsToReindex($id);
     }
 
     private function flagTranslationsToReindex($id)
@@ -261,11 +267,11 @@ class Sentence extends AppModel
             'first',
             array(
                 'conditions' => array('Sentence.id' => $this->id),
-                'contain' => array('Link', 'User')
+                'contain' => array('Link', 'User', 'Audio')
             )
         );
 
-        if ($this->data['Sentence']['hasaudio'] != 'no') {
+        if (count($this->data['Audio']) > 0) {
             return false;
         }
 
@@ -519,7 +525,6 @@ class Sentence extends AppModel
             'text',
             'lang',
             'user_id',
-            'hasaudio',
             'correctness',
             'script',
         );
@@ -549,6 +554,18 @@ class Sentence extends AppModel
                 'Transcription' => array(
                     'User' => array('fields' => array('username')),
                 ),
+                'Audio' => array(
+                    'User' => array('fields' => array('username')),
+                    'fields' => array('user_id', 'external'),
+                ),
+            ),
+            'Audio' => array(
+                'User' => array('fields' => array(
+                    'username',
+                    'audio_license',
+                    'audio_attribution_url',
+                )),
+                'fields' => array('user_id', 'external'),
             ),
         );
     }
@@ -1039,36 +1056,6 @@ class Sentence extends AppModel
         return $this->find('count');
     }
 
-
-    /**
-     * Return number of sentencse with audio.
-     *
-     * @return array
-     */
-    public function getTotalNumberOfSentencesWithAudio()
-    {
-        $key = 'audio_stats';
-        $stats = Cache::read($key);
-        if ($stats === false) {
-            $results = $this->query(
-                "SELECT lang, COUNT(*) total FROM sentences AS `Sentence`
-                  WHERE hasaudio IN ('shtooka', 'from_users')
-                  GROUP BY lang ORDER BY total DESC;"
-            );
-            $stats = array();
-            foreach ($results as $result) {
-                $stats[] = array(
-                    'lang' => $result['Sentence']['lang'],
-                    'total' => $result[0]['total']
-                );
-            }
-            Cache::write($key, $stats);
-        }
-
-        return $stats;
-    }
-
-
     /**
      * Return text of a sentence for given id.
      *
@@ -1146,19 +1133,8 @@ class Sentence extends AppModel
             $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
         }
-        if (array_key_exists('hasaudio', $this->data['Sentence'])) {
-            $attributes[] = 'has_audio';
-            $sentenceHasAudio = $this->data['Sentence']['hasaudio'] != 'no';
-            $values[$sentenceId][] = $sentenceHasAudio;
-	}
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);
-    }
-
-    public function editAudio($sentenceId, $hasaudio)
-    {
-        $this->id = $sentenceId;
-        return $this->saveField('hasaudio', $hasaudio);
     }
 
     /**
@@ -1197,13 +1173,7 @@ class Sentence extends AppModel
      */
     public function hasAudio($id)
     {
-        $sentence = $this->findById($id);
-
-        if ($sentence['Sentence']['hasaudio'] !== 'no') {
-            return true;
-        }
-
-        return false;
+        return $this->Audio->findBySentenceId($id, 'sentence_id');
     }
 }
 ?>

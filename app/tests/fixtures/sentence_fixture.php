@@ -12,12 +12,17 @@ class SentenceFixture extends CakeTestFixture {
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL, 'key' => 'index'),
 		'dico_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
-		'hasaudio' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'lang_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 3),
 		'script' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'dico_id' => array('column' => 'dico_id', 'unique' => 0), 'lang' => array('column' => 'lang', 'unique' => 0), 'hasaudio_idx' => array('column' => 'hasaudio', 'unique' => 0), 'modified_idx' => array('column' => 'modified', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
+		'hash' => array('type' => 'binary', 'null' => false, 'default' => NULL, 'length' => 16, 'key' => 'index'),
+		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'dico_id' => array('column' => 'dico_id', 'unique' => 0), 'lang' => array('column' => 'lang', 'unique' => 0), 'modified_idx' => array('column' => 'modified', 'unique' => 0), 'hash' => array('column' => 'hash', 'unique' => 0)),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
+
+	public function init() {
+		parent::init();
+		$dbo = ConnectionManager::getDataSource($this->Schema->connection);
+		$dbo->columns['binary'] = array('name' => 'binary');
+	}
 
 	var $records = array(
 		array(
@@ -29,8 +34,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:32:08',
 			'modified' => '2014-04-15 00:32:08',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '1',
 			'script' => null
 		),
 		array(
@@ -42,8 +45,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:32:43',
 			'modified' => '2014-04-15 00:32:43',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '2',
 			'script' => 'Hans'
 		),
 		array(
@@ -55,8 +56,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:33:18',
 			'modified' => '2014-04-15 00:33:18',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '3',
 			'script' => null
 		),
 		array(
@@ -68,8 +67,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:34:28',
 			'modified' => '2014-04-15 00:34:28',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '4'
 		),
 		array(
 			'id' => '5',
@@ -80,8 +77,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:35:03',
 			'modified' => '2014-04-15 00:35:03',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '5',
 			'script' => null
 		),
 		array(
@@ -93,8 +88,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:39:23',
 			'modified' => '2014-04-15 00:39:36',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '6',
 			'script' => null
 		),
 		array(
@@ -106,8 +99,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:49:21',
 			'modified' => '2014-04-15 00:49:21',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '1',
 			'script' => null
 		),
 		array(
@@ -119,8 +110,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 00:52:01',
 			'modified' => '2014-04-15 00:52:01',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '4',
 			'script' => null
 		),
 		array(
@@ -132,8 +121,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2014-04-15 21:12:03',
 			'modified' => '2014-04-15 21:12:03',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => NULL,
 			'script' => null
 		),
                 array(
@@ -145,8 +132,6 @@ class SentenceFixture extends CakeTestFixture {
                         'created' => '2014-04-15 21:13:23',
                         'modified' => '2014-04-15 21:13:36',
                         'dico_id' => NULL,
-                        'hasaudio' => 'no',
-                        'lang_id' => NULL,
                         'script' => null
                 ),
 		array(
@@ -158,8 +143,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2015-04-15 21:14:00',
 			'modified' => '2015-04-15 21:14:00',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => NULL,
 			'script' => 'Hant'
 		),
 		array(
@@ -171,8 +154,6 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2015-06-15 00:34:28',
 			'modified' => '2015-06-15 00:34:28',
 			'dico_id' => NULL,
-			'hasaudio' => 'no',
-			'lang_id' => '4',
                         'script' => null
 		),
 	);

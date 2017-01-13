@@ -467,14 +467,14 @@ EOT;
                     UNIX_TIMESTAMP(sent_start.modified) as modified, \
                     sent_start.user_id as user_id, \
                     (sent_start.correctness + 128) as ucorrectness, \
-                    (sent_start.hasaudio <> 'no') as has_audio, \
+                    (COUNT(audios_sent_start.id) > 0) as has_audio, \
                     \
                     CONCAT('{', \
                         'l:\"',sent_end.lang,'\",', \
                         'd:',MIN( IF(trans.sentence_id = transtrans.translation_id,1,2) ),',', \
                         'u:',COALESCE(sent_end.user_id, 0),',', \
                         'c:',sent_end.correctness + 1,',', \
-                        'a:',IF(sent_end.hasaudio = 'no',0,1), \
+                        'a:',COUNT(audios_sent_end.id) > 0, \
                     '}') as trans \
                 from \
                     sentences sent_start \
@@ -490,6 +490,10 @@ EOT;
                     IF(trans.sentence_id = transtrans.translation_id, \
                        trans.translation_id, \
                        transtrans.translation_id) \
+                left join \
+                    audios audios_sent_end ON sent_end.id = audios_sent_end.sentence_id \
+                left join \
+                    audios audios_sent_start ON sent_start.id = audios_sent_start.sentence_id \
                 where \
                     sent_start.lang = '$lang' \
                     and sent_start.id >= \$start and sent_start.id <= \$end \

@@ -163,37 +163,43 @@ class SentenceButtonsHelper extends AppHelper
     /**
      * Display audio button.
      *
-     * @param int   $sentenceId    Id of the sentence on which this button is
-     *                             displayed.
-     * @param int   $sentenceLang  Language of the sentence.
-     * @param sting $sentenceAudio Kind of audio related to this sentence
-     *                             (no audio, from shtooka etc.)
+     * @param int   $sentenceId     Id of the sentence on which this button is
+     *                              displayed.
+     * @param int   $sentenceLang   Language of the sentence.
+     * @param sting $sentenceAudios Array of audio recordings of the sentence.
      *
      * @return void
      */
-    public function audioButton($sentenceId, $sentenceLang, $sentenceAudio)
+    public function audioButton($sentenceId, $sentenceLang, $sentenceAudios)
     {
-        switch ($sentenceAudio) {
-            // sentence has audio
-            case 'shtooka' :
-                $onClick = 'return false';
-                $path = Configure::read('Recordings.url')
-                    .$sentenceLang.'/'.$sentenceId.'.mp3'; 
-                $css = 'audioAvailable';
-                $title = __('Play audio', true);
-                echo $this->Javascript->link('sentences.play_audio.js', false);
-                break;
+        if (count($sentenceAudios)) {
+            $onClick = 'return false';
+            $path = Configure::read('Recordings.url')
+                .$sentenceLang.'/'.$sentenceId.'.mp3';
+            $css = 'audioAvailable';
 
-            // sentence has no audio
-            case 'no' :
-            default:
-                $onClick = 'return false';
-                $css = 'audioUnavailable';
-                $path = 'http://en.wiki.tatoeba.org/articles/show/contribute-audio';
-                $title = __('No audio for this sentence. Click to learn how to contribute.', true);
-                $onClick = 'window.open(this.href); return false;';
-                break;
-        };
+            $audio = isset($sentenceAudios[0]) ?
+                     $sentenceAudios[0] :
+                     $sentenceAudios;
+            $author = isset($audio['User']['username']) ?
+                      $audio['User']['username'] :
+                      $audio['external']['username'];
+            if (empty($author)) {
+                $title = __('Play audio', true);
+            } else {
+                $title = __(format(
+                    'Play audio recorded by {author}',
+                    array('author' => $author)
+                ), true);
+            }
+            echo $this->Javascript->link('sentences.play_audio.js', false);
+        } else {
+            $onClick = 'return false';
+            $css = 'audioUnavailable';
+            $path = 'http://en.wiki.tatoeba.org/articles/show/contribute-audio';
+            $title = __('No audio for this sentence. Click to learn how to contribute.', true);
+            $onClick = 'window.open(this.href); return false;';
+        }
 
         echo $this->Html->Link(
             null, $path,

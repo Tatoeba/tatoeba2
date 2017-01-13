@@ -44,12 +44,9 @@ if (!isset($duplicate)) {
 
 if (isset($sentence)) {
     // sentence and translations
-    $translation = array();
+    $sentence['Translation'] = array();
     $sentences->displaySentencesGroup(
-        $sentence['Sentence'], 
-        $sentence['Transcription'],
-        $translation, 
-        $sentence['User'],
+        $sentence,
         array(),
         $duplicate
     );

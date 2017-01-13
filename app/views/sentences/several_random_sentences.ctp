@@ -95,12 +95,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
         $this->Html->tag('h2', 'Random sentences', null);
         if(!isset($searchProblem)) {
             foreach ($allSentences as $index=>$sentence) {
-                $sentences->displaySentencesGroup(
-                    $sentence['Sentence'],
-                    $sentence['Transcription'],
-                    $sentence['Translation'],
-                    $sentence['User']
-                );
+                $sentences->displaySentencesGroup($sentence);
             }
         } else if($searchProblem == 'disabled') {
             echo $html->tag('p', __('The random sentence feature is currently disabled, please try again later.', true));

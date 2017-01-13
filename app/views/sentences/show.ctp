@@ -34,7 +34,6 @@ if (isset($sentence)) {
     $sentenceLang = $sentence['Sentence']['lang'];
     $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
-    $sentenceHasAudio = $sentence['Sentence']['hasaudio'];
     
     $languageName = $languages->codeToNameToFormat($sentenceLang);
     $title = format(__('{language} example sentence: {sentence}', true),
@@ -108,15 +107,15 @@ $navigation->displaySentenceNavigation(
 
         $lists->displayListsModule($listsArray);
 
-        if (CurrentUser::isAdmin()) {
-            echo $this->element(
-                'sentences/audio',
-                array(
-                    'sentenceId' => $sentenceId,
-                    'hasaudio' => $sentenceHasAudio
-                )
-            ); 
+        echo $this->element(
+            'sentences/audio',
+            array(
+                'sentenceId' => $sentenceId,
+                'audios' => $sentence['Audio']
+            )
+        );
 
+        if (CurrentUser::isAdmin()) {
             // TODO For the beginning we'll restrict this to admins.
             // Later we'll want CurrentUser::isModerator();
             echo $this->element(
@@ -166,12 +165,7 @@ $navigation->displaySentenceNavigation(
             
             <?php
             // display sentence and translations
-            $sentences->displaySentencesGroup(
-                $sentence['Sentence'],
-                $sentence['Transcription'],
-                $sentence['Translation'],
-                $sentence['User']
-            );
+            $sentences->displaySentencesGroup($sentence);
             
         } else {
             

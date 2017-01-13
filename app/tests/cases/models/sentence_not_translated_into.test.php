@@ -4,6 +4,7 @@ App::import('Model', 'SentenceNotTranslatedInto');
 
 class SentenceNotTranslatedIntoTestCase extends CakeTestCase {
     var $fixtures = array(
+        'app.audio',
         'app.contribution',
         'app.group',
         'app.favorites_user',
@@ -51,9 +52,8 @@ class SentenceNotTranslatedIntoTestCase extends CakeTestCase {
     }
 
     public function testPaginateAllSentences_LonelyAndWithTranslation_WithAudio() {
-        $this->Sentence->save(array('id' => 1, 'hasaudio' => 'from_users'));
-        $expectedIds = array(1);
-        $returnedIds = $this->_runPaginate('eng', 'none', true);
+        $expectedIds = array(12, 4);
+        $returnedIds = $this->_runPaginate('fra', 'none', true);
         $this->assertEqual($expectedIds, $returnedIds);
     }
 
@@ -64,8 +64,7 @@ class SentenceNotTranslatedIntoTestCase extends CakeTestCase {
     }
 
     public function testPaginateAllSentences_Lonely_WithAudio() {
-        $this->Sentence->save(array('id' => 8, 'hasaudio' => 'from_users'));
-        $expectedIds = array(8);
+        $expectedIds = array(12);
         $returnedIds = $this->_runPaginate('fra', 'und', true);
         $this->assertEqual($expectedIds, $returnedIds);
     }

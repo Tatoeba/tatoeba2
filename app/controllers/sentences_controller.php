@@ -66,6 +66,7 @@ class SentencesController extends AppController
     );
 
     public $uses = array(
+        'Audio',
         'Sentence',
         'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
@@ -152,6 +153,7 @@ class SentencesController extends AppController
         $this->helpers[] = 'Messages';
         $this->helpers[] = 'Lists';
         $this->helpers[] = 'Members';
+        $this->helpers[] = 'Audio';
 
         $id = Sanitize::paranoid($id);
 
@@ -551,7 +553,7 @@ class SentencesController extends AppController
                 $translationId = $this->Sentence->id;
                 $translation = $this->Sentence->find('first', array(
                     'conditions' => array('Sentence.id' => $translationId),
-                    'contain' => array('Transcription')
+                    'contain' => array('Transcription', 'Audio')
                 ));
 
                 $this->set('translation', $translation);
@@ -965,7 +967,12 @@ class SentencesController extends AppController
 
         // filter or not sentences-with-audio-only
         if ($filterAudioOnly === "only-with-audio") {
-            $pagination['Sentence']['conditions']['hasaudio !='] = "no";
+            $pagination['Sentence']['joins'] = array(array(
+                'type' => 'inner',
+                'table' => 'audios',
+                'alias' => 'Audio',
+                'conditions' => array('Sentence.id = Audio.sentence_id'),
+            ));
         }
 
         $allSentences = $this->_common_sentences_pagination(
@@ -1266,31 +1273,11 @@ class SentencesController extends AppController
      */
     public function with_audio($lang = null)
     {
-        $this->paginate = array(
-            'Sentence' => array(
-                'contain' => array(
-                    'Transcription' => array(
-                        'User' => array('fields' => array('username')),
-                    ),
-                ),
-                'limit' => 50,
-                'conditions' => array(
-                    'hasaudio' => array('shtooka', 'from_users')
-                )
-            )
-        );
-
-        if ($lang != null) {
-            $this->paginate['Sentence']['conditions']['lang'] = $lang;
-        }
-
-        $results = $this->paginate();
-
-        $stats = $this->Sentence->getTotalNumberOfSentencesWithAudio();
-
-        $this->set('results', $results);
-        $this->set('lang', $lang);
-        $this->set('stats', $stats);
+        $this->redirect(array(
+            'controller' => 'audio',
+            'action' => 'index',
+            $lang
+        ));
     }
     
     /**
@@ -1326,10 +1313,15 @@ class SentencesController extends AppController
     public function edit_audio()
     {
         $sentenceId = $this->data['Sentence']['id'];
+        $ownerName = $this->data['Sentence']['ownerName'];
         $hasaudio = $this->data['Sentence']['hasaudio'];
         
         if (CurrentUser::isAdmin()) {
-            $this->Sentence->editAudio($sentenceId, $hasaudio);
+            if ($hasaudio) {
+                $this->Audio->assignAudioTo($sentenceId, $ownerName);
+            } else {
+                $this->Audio->deleteAll(array('sentence_id' => $sentenceId), false, true);
+            }
             $this->redirect(
                 array(
                     "controller" => "sentences", 

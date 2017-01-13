@@ -38,7 +38,7 @@ class Translation extends AppModel
 {
     public $actsAs = array('Containable', 'Transcriptable');
     public $useTable = 'sentences';
-    public $hasMany = array('Transcription');
+    public $hasMany = array('Transcription', 'Audio');
 
     public function __construct($id = false, $table = null, $ds = null)
     {
@@ -174,7 +174,6 @@ class Translation extends AppModel
                 'Translation.user_id',
                 'Translation.lang',
                 'Translation.script',
-                'Translation.hasaudio',
                 'Translation.correctness',
             ),
             'order' => array('Translation.lang'),
