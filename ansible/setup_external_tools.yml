@@ -2,7 +2,7 @@
 # Playbook to install all the external tools
 
 - hosts: all
-  sudo: yes
+  become: true
   gather_facts: yes
   roles:
   - { role: configure_sphinx, sphinx_create_indexes: no }

@@ -2,7 +2,7 @@
 # Playbook to set-up lemp - nginx, php and mysql
 
 - hosts: all
-  sudo: yes
+  become: true
   gather_facts: yes
   roles:
   - setup_nginx
