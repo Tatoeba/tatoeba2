@@ -68,13 +68,7 @@ echo $this->Form->create(
         'id' => "UserLoginForm"
     )
 );
-echo $this->Form->checkbox(
-    'rememberMe',
-    array(
-        'class' => 'ng-hide',
-        'value' => '{{login.rememberMe}}'
-    )
-);
+
 ?>
 <div md-whiteframe="1" id="login-form">
     <h2><? echo __('Log in'); ?></h2>
@@ -110,8 +104,8 @@ echo $this->Form->checkbox(
         'rememberMe',
         array(
         'value' => '{{rememberLogin}}',
-        'checked' => '',
-        'style' => 'display: none;'
+        'ng-checked' => 'rememberLogin == 1',
+        'class' => 'ng-hide'
         )
     );
     ?>
