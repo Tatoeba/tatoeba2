@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "http://bit.ly/debian-wheezy-32-box"
+  config.vm.box = "https://github.com/kraksoft/vagrant-box-debian/releases/download/7.7.0/debian-7.7.0-amd64.box"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
