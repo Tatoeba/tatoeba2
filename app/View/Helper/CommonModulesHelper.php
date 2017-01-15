@@ -91,25 +91,25 @@ class CommonModulesHelper extends AppHelper
             echo $this->Form->select(
                 'filterLanguageSelect',
                 $langs,
-                $lang,
                 array(
+                    "value" => $lang,
                     "onchange" => "
                         if (this.value == 'und') {
                             $(location).attr('href','$path');
-                        } else { 
+                        } else {
                             $(location).attr('href','$path' + this.value);
-                        }", 
+                        }",
                     // the if is to avoid a duplicate page (with and without "und")
                     "class" => "language-selector",
                     "empty" => false
                 ),
                 false
             );
-            ?> 
+            ?>
         </div>
-    <?php 
+    <?php
     }
-    
+
     /**
      * Display a module content which indicate the user does not exist
      *

@@ -68,7 +68,6 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                 echo $this->Form->select(
                     'language_code',
                     $languagesList,
-                    null,
                     array(
                         'class' => 'language-selector',
                         'empty' => false

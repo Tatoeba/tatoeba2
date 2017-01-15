@@ -96,12 +96,12 @@ class NavigationHelper extends AppHelper
 
             $langArray = $this->Languages->languagesArrayAlone();
             $selectedLanguage = $this->Session->read('random_lang_selected');
-            
+
             echo $this->Form->select(
-                "randomLangChoiceInBrowse", 
-                $langArray, 
-                $selectedLanguage, 
+                "randomLangChoiceInBrowse",
+                $langArray,
                 array(
+                    "value" => $selectedLanguage, 
                     'class' => 'language-selector',
                     'data-current-sentence-id' => $currentId,
                     'empty' => false
@@ -116,7 +116,7 @@ class NavigationHelper extends AppHelper
             ?>
             </span>
             </div>
-            
+
             <ul class="options">
 
             <?php

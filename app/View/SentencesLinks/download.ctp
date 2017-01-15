@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Page for people to export lists.
  *
@@ -33,7 +33,7 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */ 
+ */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') . $listName));
 ?>
@@ -43,8 +43,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <div class="module">
     <h2><?php echo __('Actions'); ?></h2>
     <ul class="sentencesListActions">
-    <?php       
-        $this->Lists->displayBackToListLink($listId); 
+    <?php
+        $this->Lists->displayBackToListLink($listId);
     ?>
     </ul>
     </div>
@@ -53,8 +53,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
 <div id="main_content">
     <div class="module">
     <h2><?php echo $listName; ?></h2>
-    
-    
+
+
     <h3><?php echo __('Download'); ?></h3>
     <?php
     // ------------- DOWNLOAD FORM -------------
@@ -66,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
         )
     );
     ?>
-    
+
     <div>
     <?php
     echo $this->Form->hidden(
@@ -75,19 +75,19 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     );
     ?>
     </div>
-    
+
     <table>
         <tr>
             <td><?php echo __('Id (optional)'); ?></td>
             <td>
-            <md-checkbox 
-                ng-true-value='1' 
-                ng-false-value='0' 
+            <md-checkbox
+                ng-true-value='1'
+                ng-false-value='0'
                 ng-model='showid'
-                ng-init="showid = 0;" 
+                ng-init="showid = 0;"
                 class="md-primary">
             </md-checkbox>
-            <?php 
+            <?php
             echo $this->Form->hidden(
                 'insertId',
                 array(
@@ -97,11 +97,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             ?>
             </td>
             <td>
-            <?php echo __('If you check this box, the id of each sentence will be written to the output.'); 
+            <?php echo __('If you check this box, the id of each sentence will be written to the output.');
             ?>
             </td>
         </tr>
-    
+
         <tr>
             <td><?php echo __('Translation (optional)'); ?></td>
             <td>
@@ -110,7 +110,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             echo $this->Form->select(
                 'TranslationsLang',
                 $langArray,
-                null,
                 array(
                     'class' => 'language-selector',
                     "empty" => false
@@ -146,16 +145,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             ?>
             </td>
         </tr>
-        
+
         <tr>
             <td></td>
-            
+
             <td>
                 <md-button type="submit" class="md-raised md-primary">
                     <?php echo __('Download'); ?>
                 </md-button>
             </td>
-            
+
             <td>
             </td>
         </tr>
@@ -164,8 +163,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     echo $this->Form->end();
     // -------------------------------------------
     ?>
-    
-    
+
+
     <h3><?php echo __('Fields and structure'); ?></h3>
     <p>
     <?php
@@ -181,7 +180,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <span class="symbol"><em>[<?php echo __('tab'); ?>]</em></span>
     <span class="param"><em><?php echo __('Translation'); ?></em></span>
     </p>
-    
+
     <p>
     <?php echo __("Optional fields that are not selected above will not be written to the output."); ?>
     </p>

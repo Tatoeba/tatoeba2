@@ -45,7 +45,7 @@ App::import('Model', 'User');
 class CurrentUser extends AppModel
 {
     public $useTable = false;
-    
+
     private static $_auth;
     private static $_profileLanguages;
 
@@ -348,7 +348,7 @@ class CurrentUser extends AppModel
      *
      * @return array
      */
-    public function getLanguages()
+    public static function getLanguages()
     {
         $lang = CurrentUser::get('settings.lang');
 
@@ -371,7 +371,7 @@ class CurrentUser extends AppModel
         return self::$_profileLanguages;
     }
 
-    private function _setProfileLanguages()
+    private static function _setProfileLanguages()
     {
         $UsersLanguages = ClassRegistry::init('UsersLanguages');
         $userId = self::get('id');

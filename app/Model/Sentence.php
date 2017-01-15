@@ -138,8 +138,8 @@ class Sentence extends AppModel
         $text = trim($text);
         // Strip out any byte-order mark that might be present.
         $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
-        // Replace any series of spaces, newlines, tabs, or other 
-        // ASCII whitespace characters with a single space. 
+        // Replace any series of spaces, newlines, tabs, or other
+        // ASCII whitespace characters with a single space.
         $text = preg_replace('/\s+/', ' ', $text);
         // MySQL will truncate to a byte length of 1500, which may split
         // a multibyte character. To avoid this, we preemptively
@@ -150,7 +150,7 @@ class Sentence extends AppModel
         return $text;
     }
 
-    public function beforeValidate()
+    public function beforeValidate($options = array())
     {
         // Set this array as late as possible, because languagesInTatoeba()
         // makes uses of __(), which relies on 'Config.language', which is set
@@ -175,7 +175,7 @@ class Sentence extends AppModel
      *
      * @return void
      */
-    public function afterSave($created)
+    public function afterSave($created, $options = array())
     {
         $this->logSentenceEdition($created);
         $this->updateTags($created);
@@ -429,7 +429,7 @@ class Sentence extends AppModel
         if(Configure::read('Search.enabled') == false) {
             return null;
         }
-        
+
         if(empty($lang)) {
             $lang = 'und';
         }
@@ -447,7 +447,7 @@ class Sentence extends AppModel
         if (!is_array($arrayRandom)) {
             $arrayRandom = $this->_getRandomsToCached($lang, 3);
         }
-        
+
         if(is_array($arrayRandom)){
             for ($i = 0; $i < $numberOfIdWanted; $i++) {
 
@@ -469,7 +469,7 @@ class Sentence extends AppModel
 
             return $returnIds;
         }
-        
+
         return null;
 
     }
@@ -511,7 +511,7 @@ class Sentence extends AppModel
         if(is_array($results)){
             return array_keys($results);
         }
-    
+
         return 1;
     }
 
@@ -789,7 +789,7 @@ class Sentence extends AppModel
         $translationCorrectness = 0
     ) {
         $userId = CurrentUser::get('id');
-        
+
         // saving translation
         $sentenceSaved = $this->saveNewSentence(
             $translationText,
@@ -1075,7 +1075,7 @@ class Sentence extends AppModel
 
         return $result['Sentence']['text'];
     }
-    
+
     /**
     * Return language code for sentence with given id.
     *
@@ -1092,18 +1092,18 @@ class Sentence extends AppModel
                 'conditions' => array('id' => $sentenceId),
             )
         );
-        
+
         return $result['Sentence']['lang'];
     }
-    
-    
+
+
     /**
      * Save the correctness of a sentence. Only corpus
      * maintainers or admins can change this value.
-     * 
+     *
      * @param int $sentenceId  Id of the sentence.
      * @param int $correctness Correctness of the sentence.
-     * 
+     *
      * @return bool
      */
     public function editCorrectness($sentenceId, $correctness)
@@ -1162,7 +1162,7 @@ class Sentence extends AppModel
         if (!empty($lang)) {
             $data['Sentence']['lang'] = $lang;
         }
-        
+
         return $this->save($data);
     }
 

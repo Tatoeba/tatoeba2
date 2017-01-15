@@ -36,7 +36,7 @@
 
 App::uses('Controller', 'Controller');
 
-App::import('Core', 'Sanitize');
+App::import('Utility', 'Sanitize');
 App::import('Model', 'CurrentUser');
 App::import('Vendor', 'LanguagesLib');
 

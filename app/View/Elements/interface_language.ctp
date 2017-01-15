@@ -52,10 +52,10 @@ usort(
 echo $this->Form->select(
     'languageSelection',
     $languages,
-    $lang,
     array(
         "onchange" => "changeInterfaceLang(this.value)",
-        "empty" => false
+        "empty" => false,
+        "value" => $lang
     )
 );
 ?>

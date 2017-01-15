@@ -63,7 +63,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     echo $this->Form->select(
                         null,
                         $langArray,
-                        null,
                         array(
                             'id' => 'lang-select',
                             'ng-model' => 'ctrl.data.lang',

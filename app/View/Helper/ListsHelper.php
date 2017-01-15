@@ -57,7 +57,7 @@ class ListsHelper extends AppHelper
     {
 		//Do not display the table if there is nothing to display
         if(count($arrayOfLists) == 0){
-	        return; 
+	        return;
         }
         ?>
         <table class="listIndex noNameMinLength">
@@ -170,7 +170,7 @@ class ListsHelper extends AppHelper
             );
             echo format(__('created by {listAuthor}'),
                          array('listAuthor' => $link));
-            
+
              ?>
              </div>
          </td>
@@ -185,7 +185,7 @@ class ListsHelper extends AppHelper
                         'class' => 'date'
                     )
                 );
-            ?> 
+            ?>
             </div>
         </td>
          <td class="date lastUpdatedDate">
@@ -298,13 +298,13 @@ class ListsHelper extends AppHelper
             $path .= $this->request->params['lang'] . '/';
         }
         $path .= 'sentences_lists/show/'. $listId.'/';
-        
+
         // TODO onChange should be defined in a separate js file
         echo $this->Form->select(
             "translationLangChoice",
             $this->Languages->languagesArrayForPositiveLists(),
-            $translationsLang,
             array(
+                "value" => $translationsLang,
                 "onchange" => "$(location).attr('href', '".$path."' + this.value);",
                 "class" => "language-selector",
                 "empty" => false
@@ -334,10 +334,10 @@ class ListsHelper extends AppHelper
                 </md-radio-button>
                 <md-radio-button value='unlisted' class='md-primary'>
                     <?=  __('Unlisted') ?>
-                </md-radio-button> 
+                </md-radio-button>
                 <md-radio-button value='private' class='md-primary'>
                     <?=  __('Private') ?>
-                </md-radio-button>                 
+                </md-radio-button>
             </md-radio-group>
         </dl>
         <?php
@@ -371,10 +371,10 @@ class ListsHelper extends AppHelper
                 </md-radio-button>
                 <md-radio-button value='creator' class='md-primary'>
                     <?= __('Only me') ?>
-                </md-radio-button> 
+                </md-radio-button>
                 <md-radio-button value='no_one' class='md-primary'>
                     <?= __('No one (list inactive)') ?>
-                </md-radio-button>                 
+                </md-radio-button>
             </md-radio-group>
         </dl>
         <?php

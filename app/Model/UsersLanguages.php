@@ -45,7 +45,7 @@ class UsersLanguages extends AppModel
     );
 
 
-    public function beforeSave()
+    public function beforeSave($options = array())
     {
         $data = $this->findById($this->id);
         $lang = $data['UsersLanguages']['language_code'];
@@ -67,7 +67,7 @@ class UsersLanguages extends AppModel
     }
 
 
-    public function afterSave($created)
+    public function afterSave($created, $options = array())
     {
         $lang = $this->data['UsersLanguages']['language_code'];
         $level = $this->data['UsersLanguages']['level'];
@@ -81,7 +81,7 @@ class UsersLanguages extends AppModel
     }
 
 
-    public function beforeDelete()
+    public function beforeDelete($options = array())
     {
         $data = $this->findById($this->id);
         $lang = $data['UsersLanguages']['language_code'];

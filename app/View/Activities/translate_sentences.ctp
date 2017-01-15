@@ -51,16 +51,16 @@ if (empty($notTranslatedInto)) {
             ?>
         </p>
     </div>
-    
+
     <div class="section" md-whiteframe="1">
     <h2><?php echo __('About translations'); ?></h2>
-    
+
     <h4><?php echo __("Good translations"); ?></h4>
     <p>
     <?php echo __("We know it's difficult, but do NOT translate word for word!"); ?>
     </p>
-    
-    
+
+
     <h4><?php echo __("Multiple translations"); ?></h4>
     <p>
     <?php
@@ -97,8 +97,8 @@ if (empty($notTranslatedInto)) {
                 echo $this->Form->select(
                     'langFrom',
                     $langsFrom,
-                    $currentLanguage,
                     array(
+                        'value' => $currentLanguage,
                         'class' => 'language-selector',
                         "empty" => false
                     ),
@@ -115,8 +115,8 @@ if (empty($notTranslatedInto)) {
                 echo $this->Form->select(
                     'langTo',
                     $langsTo,
-                    $notTranslatedInto,
                     array(
+                        'value' => $notTranslatedInto,
                         'class' => 'language-selector',
                         "empty" => false
                     ),
@@ -151,8 +151,8 @@ if (empty($notTranslatedInto)) {
         echo $this->Form->select(
             'numberWanted',
             $numberOfSentencesWanted,
-            5,
             array(
+                'value' => 5,
                 'empty' => false
             )
         );
@@ -165,8 +165,8 @@ if (empty($notTranslatedInto)) {
         echo $this->Form->select(
             'into',
             $this->Languages->languagesArrayAlone(),
-            $selectedLanguage,
             array(
+                'value' => $selectedLanguage,
                 'class' => 'language-selector',
                 "empty" => false
             ),

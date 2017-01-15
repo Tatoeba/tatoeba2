@@ -33,7 +33,7 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */ 
+ */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));
 
@@ -202,7 +202,6 @@ $label = format(
         echo $this->Form->select(
             'language',
             $languagesList,
-            null,
             array(
                 'class' => 'language-selector',
                 'empty' => false,

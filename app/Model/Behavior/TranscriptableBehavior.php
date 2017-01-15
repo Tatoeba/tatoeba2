@@ -30,7 +30,7 @@ class TranscriptableBehavior extends ModelBehavior
         $model->data[$model->alias]['script'] = $script;
     }
 
-    public function beforeSave(&$model) {
+    public function beforeSave(Model $model, $options = array()) {
         $isNewSentence = !$model->id;
         if ($isNewSentence) {
             if (!isset($model->data[$model->alias]['script']))
@@ -55,12 +55,12 @@ class TranscriptableBehavior extends ModelBehavior
         return $model->Transcription->isValidScriptForLanguage($lang, $script);
     }
 
-    public function afterDelete(&$model) {
+    public function afterDelete(Model $model) {
         $conditions = array('Transcription.sentence_id' => $model->id);
         $model->Transcription->deleteAll($conditions, false);
     }
 
-    public function afterSave(&$model, $created) {
+    public function afterSave(Model $model, $created, $options = array()) {
         if ($created) {
             $model->data[$model->alias]['id'] = $model->getLastInsertID();
             $this->createTranscriptions($model, $model->data);
@@ -92,7 +92,7 @@ class TranscriptableBehavior extends ModelBehavior
         );
     }
 
-    public function afterFind(&$model, $results, $primary) {
+    public function afterFind(Model $model, $results, $primary = false) {
         foreach ($results as &$result) {
             if ($primary) {
                 if (isset($result[$model->alias])) {

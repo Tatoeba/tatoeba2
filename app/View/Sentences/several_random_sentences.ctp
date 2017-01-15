@@ -30,7 +30,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Random sentences'))
 <div id="annexe_content">
     <div class="module">
         <h2><?php echo __("For serial translators"); ?></h2>
-        <?php 
+        <?php
         echo '<p>';
         __(
             'Translating sentences one by one is too slow for you? '.
@@ -38,16 +38,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Random sentences'))
             'your language, at the speed of light? So this is for you!'
         );
         echo '</p>';
-        
+
         echo '<p>';
         __("Just keep in mind that our server is not as fast as you ;-)");
         echo '</p>';
 
         $numberOfSentencesWanted = array (10 => 10 , 20 => 20 , 50 => 50, 100 => 100);
         $selectedLanguage = $this->Session->read('random_lang_selected');
-        
+
         echo $this->Form->create(
-            'Sentence', 
+            'Sentence',
             array(
                 "action" => "several_random_sentences",
                 "type" => "post"
@@ -57,10 +57,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Random sentences'))
         echo '<fieldset class="select">';
         echo '<label>' . __('Quantity') . '</label> ';
         echo $this->Form->select(
-            'numberWanted', 
-            $numberOfSentencesWanted, 
-            $lastNumberChosen,
+            'numberWanted',
+            $numberOfSentencesWanted,
             array(
+                "value" => $lastNumberChosen,
                 'empty'=>false
             )
         );
@@ -70,10 +70,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Random sentences'))
         echo '<fieldset class="select">';
         echo '<label>' . __('Language') . '</label> ';
         echo $this->Form->select(
-            'into', 
-            $this->Languages->languagesArrayAlone(), 
-            $selectedLanguage,
+            'into',
+            $this->Languages->languagesArrayAlone(),
             array(
+                "value" => $selectedLanguage,
                 'class' => 'language-selector',
                 "empty" => false
             ),
@@ -87,11 +87,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Random sentences'))
         echo $this->Form->end();
         ?>
     </div>
-</div>    
-      
+</div>
+
 <div id="main_content">
     <div class="module">
-    <?php  
+    <?php
         $this->Html->tag('h2', 'Random sentences', null);
         if(!isset($searchProblem)) {
             foreach ($allSentences as $index=>$sentence) {
@@ -109,4 +109,3 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Random sentences'))
 
     </div>
 </div>
-

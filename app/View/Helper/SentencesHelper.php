@@ -161,7 +161,7 @@ class SentencesHelper extends AppHelper
             = $this->segregateTranslations($translations);
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
-            
+
             <?php
             $this->Js->link('sentences.collapse.js', false);
 
@@ -183,19 +183,19 @@ class SentencesHelper extends AppHelper
                 $initiallyDisplayedTranslations = 5;
                 $displayed = $totalTranslations - $initiallyDisplayedTranslations;
             }
-            
-            //Split 'allTranslations' array into two, visible & hidden sets of sentences        
+
+            //Split 'allTranslations' array into two, visible & hidden sets of sentences
             $visibleTranslations = array_slice($allTranslations, 0, $initiallyDisplayedTranslations);
             $hiddenTranslations = array_slice($allTranslations, $initiallyDisplayedTranslations);
-            
-            $sentenceCount = 0;  
+
+            $sentenceCount = 0;
 
             //visible list of translations
             foreach ($visibleTranslations as $translation) {
 
                 if ($sentenceCount < $totalDirectTranslations)
                     $type = 'directTranslation';
-                else 
+                else
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
@@ -224,12 +224,12 @@ class SentencesHelper extends AppHelper
 
             //expanded list of translations
             echo $this->Html->tag('div', null, array('class' => 'more'));
-            
+
             foreach ($hiddenTranslations as $translation) {
 
                 if ($sentenceCount < $totalDirectTranslations)
                     $type = 'directTranslation';
-                else 
+                else
                     $type = 'indirectTranslation';
 
                 $this->displayGenericSentence(
@@ -249,7 +249,7 @@ class SentencesHelper extends AppHelper
                     array('class' => 'hideLink')
                 );
             ?>
-          </div>  
+          </div>
         </div>
         <?php
     }
@@ -373,8 +373,8 @@ class SentencesHelper extends AppHelper
         echo $this->Form->select(
             'translationLang_'.$id,
             $langArray,
-            $preSelectedLang,
             array(
+                "value" => $preSelectedLang,
                 "class" => "translationLang language-selector",
                 "empty" => false
             ),
@@ -535,7 +535,7 @@ class SentencesHelper extends AppHelper
         } else {
             echo '<div class="content column">';
         }
-        
+
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
             $this->_displayLinkOrUnlinkButton(
@@ -590,11 +590,11 @@ class SentencesHelper extends AppHelper
 
         <?php
     }
-    
-    
+
+
     /**
      * Returns the label for the correctness of a sentence.
-     * 
+     *
      * @param int $correctness Correctness of the sentence.
      *
      * @return String
@@ -602,7 +602,7 @@ class SentencesHelper extends AppHelper
     private function getCorrectnessLabel($correctness)
     {
         $result = 'correctness';
-        
+
         if ($correctness < 0) {
             $result .= 'Negative'.abs($correctness);
         } else if ($correctness == 0) {
@@ -610,11 +610,11 @@ class SentencesHelper extends AppHelper
         } else {
             $result .= 'Positive'.$correctness;
         }
-        
+
         return $result;
     }
 
-     
+
     /**
      * Display the link or unlink button.
      *

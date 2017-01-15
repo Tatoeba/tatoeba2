@@ -370,8 +370,8 @@ class MenuHelper extends AppHelper
         echo $this->Form->select(
             'listSelection'.$sentenceId,
             $selectItems,
-            $mostRecentList,
             array(
+                "value" => $mostRecentList,
                 "class" => "listOfLists",
                 "empty" => false
             )

@@ -61,7 +61,7 @@ $vocabularyUrl = $this->Html->url(array(
     ?>
     </p>
     </div>
-    
+
     <div class="section" md-whiteframe="1">
     <h2><?php echo __('Tips'); ?></h2>
     <p>
@@ -76,7 +76,7 @@ $vocabularyUrl = $this->Html->url(array(
 </div>
 
 <div id="main_content">
-    
+
     <div class="section" md-whiteframe="1">
         <h2><?php echo __('Add new sentences'); ?></h2>
 
@@ -102,8 +102,8 @@ $vocabularyUrl = $this->Html->url(array(
                     echo $this->Form->select(
                         'contributionLang',
                         $langArray,
-                        $preSelectedLang,
                         array(
+                            "value" => $preSelectedLang,
                             "class" => "language-selector",
                             "empty" => false
                         ),
@@ -131,15 +131,15 @@ $vocabularyUrl = $this->Html->url(array(
         ?>
 
     </div>
-    
+
     <div class="section" md-whiteframe="1">
         <h2><?php echo __('Sentences added'); ?></h2>
-        
+
         <div class="sentencesAddedloading" style="display:none">
             <md-progress-circular md-mode="indeterminate" class="block-loader">
             </md-progress-circular>
         </div>
-        
+
         <div id="sentencesAdded">
         <?php
         if (isset($sentence)) {

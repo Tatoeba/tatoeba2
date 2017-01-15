@@ -144,8 +144,10 @@ echo $this->Form->create(
                             that begins with {action} */
             'exclude' => __('Exclude'),
         ),
-        $trans_filter,
-        array('empty' => false)
+        array(
+            'value' => $trans_filter,
+            'empty' => false
+        )
     );
     $label = format(
         __('{action} sentences having translations that match'

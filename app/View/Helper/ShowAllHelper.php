@@ -107,8 +107,8 @@ class ShowAllHelper extends AppHelper
         return $this->Form->select(
             'filterLanguageSelect',
             $langs,
-            $selectedLanguage,
             array(
+                "value" => $selectedLanguage,
                 "id" => null,
                 "onchange" => "$(location).attr('href', $javascriptUrl);",
                 "class" => count($langs) > 2 ? 'language-selector' : null,
@@ -161,7 +161,7 @@ class ShowAllHelper extends AppHelper
             <h2><?php echo __('Show translations in:'); ?></h2>
             <?php
             $langs = $this->Languages->languagesArrayForPositiveLists();
-           
+
             echo $this->_generateSelect(
                 $selectedLanguage,
                 $langs,

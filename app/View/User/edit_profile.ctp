@@ -32,7 +32,7 @@ $this->Languages->localizedAsort($countries);
 <div id="annexe_content">
     <?php
     echo $this->element(
-        'users_menu', 
+        'users_menu',
         array('username' => CurrentUser::get('username'))
     );
     ?>
@@ -74,7 +74,7 @@ $this->Languages->localizedAsort($countries);
         echo $this->Form->end();
         ?>
     </div>
-    
+
     <div class="newPicture">
         <div class="title"><?php echo __('New picture'); ?></div>
         <?php
@@ -98,7 +98,7 @@ $this->Languages->localizedAsort($countries);
         ?>
     </div>
 
-    <?php 
+    <?php
     $dateOptions = array(
         'minYear' => date('Y') - 100,
         'maxYear' => date('Y') - 3,
@@ -110,12 +110,12 @@ $this->Languages->localizedAsort($countries);
     $selectedCountryId = $this->request->data['User']['country_id'];
 
     echo $this->Form->create(
-        false, 
+        false,
         array(
             'action' => 'save_basic'
         )
     );
-    
+
     echo $this->Form->input(
         'User.name',
         array(
@@ -124,23 +124,25 @@ $this->Languages->localizedAsort($countries);
             'dir' => 'auto',
         )
     );
-    
+
     echo '<div class="input">';
     echo '<label for="UserCountryId">';
      __('Country');
     echo '</label>';
     echo $this->Form->select(
-        'User.country_id', 
-        $countries, 
-        $selectedCountryId
+        'User.country_id',
+        $countries,
+        array(
+            "value" => $selectedCountryId
+        )
     );
     echo '</div>';
-    
+
     echo $this->Form->input(
-        'User.birthday', 
+        'User.birthday',
         $dateOptions
     );
-    
+
     echo $this->Form->input(
         'User.homepage',
         array(

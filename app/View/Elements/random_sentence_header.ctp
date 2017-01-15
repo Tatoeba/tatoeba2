@@ -42,8 +42,8 @@ if ($selectedLanguage == null) {
         echo $this->Form->select(
             "randomLangChoice",
             $langArray,
-            $selectedLanguage,
             array(
+                'value' => $selectedLanguage,
                 'class' => 'language-selector',
                 "empty" => false
             ),

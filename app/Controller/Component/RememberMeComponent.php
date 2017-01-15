@@ -53,7 +53,7 @@ class RememberMeComponent extends Component
      *
      * @return void
      */
-    public function startup(&$controller)
+    public function startup(Controller $controller)
     {
         $this->controller = &$controller;
     }

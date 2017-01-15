@@ -248,8 +248,8 @@ class SentenceButtonsHelper extends AppHelper
             echo $this->Form->select(
                 'selectLang_'.$id,
                 $langArray,
-                $preselectedLang,
                 array(
+                    "value" => $preselectedLang,
                     "class"=>"language-selector",
                     "empty" => false
                 ),
