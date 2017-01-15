@@ -26,7 +26,7 @@
  */
 ?>
 <?php
-$javascript->link('/js/vocabulary/add.ctrl.js', false);
+$this->Js->link('/js/vocabulary/add.ctrl.js', false);
 
 $title = __('Add vocabulary items');
 

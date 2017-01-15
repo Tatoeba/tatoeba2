@@ -40,9 +40,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__('Thread #{number}'), array('number' => $rootMessageId))
 ));
 
-$javascript->link('jquery.scrollTo.min.js', false);
-$javascript->link('wall.reply.js', false);
-$javascript->link('wall.show_and_hide_replies.js', false);
+$this->Js->link('jquery.scrollTo.min.js', false);
+$this->Js->link('wall.reply.js', false);
+$this->Js->link('wall.show_and_hide_replies.js', false);
 ?>
 <div id="annexe_content">
     <div class="module">

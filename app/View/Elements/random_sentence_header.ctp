@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
+echo $this->Js->link(JS_PATH . 'sentences.show_another.js', false);
 
 $langArray = $this->Languages->languagesArrayAlone();
 $selectedLanguage = $this->Session->read('random_lang_selected');

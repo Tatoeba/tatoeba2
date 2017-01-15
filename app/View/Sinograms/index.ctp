@@ -26,7 +26,7 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Search sinograms')));
-$javascript->link(JS_PATH . "sinograms.search.js", false);
+$this->Js->link(JS_PATH . "sinograms.search.js", false);
 
 ?>
 

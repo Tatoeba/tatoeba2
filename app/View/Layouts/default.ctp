@@ -33,20 +33,20 @@
     </title>
     <?php
         echo $this->Html->meta('icon');
-        
+
         // ---------------------- //
         //          CSS           //
         // ---------------------- //
         // Only two CSS files are loaded. One that is generic, and one that is
-        // specific to the view. The specific CSS file is auto-loaded. It must be 
-        // named with name of the view it is linked to, and put it in a folder with 
+        // specific to the view. The specific CSS file is auto-loaded. It must be
+        // named with name of the view it is linked to, and put it in a folder with
         // the name of the controller.
-        
+
         // Generic
         echo $this->Html->css(CSS_PATH . 'angular-material.min.css');
         echo $this->Html->css(CSS_PATH . 'layouts/default.css');
         echo $this->Html->css(CSS_PATH . 'layouts/elements.css');
-        
+
         // Specific
         $controller = $this->request->params["controller"];
         $action = $this->request->params["action"];
@@ -60,7 +60,7 @@
 </head>
 <body ng-app="app" ng-cloak>
     <div id="audioPlayer"></div>
-    
+
     <!--  TOP  -->
     <?php echo $this->element('top_menu'); ?>
 
@@ -91,7 +91,7 @@
         ));
     }
     ?>
-            
+
     <!--  CONTENT -->
     <div id="content">
         <div class="container">
@@ -117,29 +117,29 @@
     echo $this->element('foot');
     echo $this->element('sql_dump');
 
-    echo $javascript->link(JS_PATH . 'jquery-1.11.3.min.js');
-    echo $javascript->link(JS_PATH . 'angular/angular.min.js');
-    echo $javascript->link(JS_PATH . 'angular/angular-animate.min.js');
-    echo $javascript->link(JS_PATH . 'angular/angular-aria.min.js');
-    echo $javascript->link(JS_PATH . 'angular/angular-material.min.js');
-    echo $javascript->link(JS_PATH . 'angular/angular-messages.min.js');
-    echo $javascript->link(JS_PATH . 'responsive/app.module.js');
+    echo $this->Js->link(JS_PATH . 'jquery-1.11.3.min.js');
+    echo $this->Js->link(JS_PATH . 'angular/angular.min.js');
+    echo $this->Js->link(JS_PATH . 'angular/angular-animate.min.js');
+    echo $this->Js->link(JS_PATH . 'angular/angular-aria.min.js');
+    echo $this->Js->link(JS_PATH . 'angular/angular-material.min.js');
+    echo $this->Js->link(JS_PATH . 'angular/angular-messages.min.js');
+    echo $this->Js->link(JS_PATH . 'responsive/app.module.js');
 
 
-    echo $javascript->link(JS_PATH . 'watch.js', true);
-    echo $javascript->link(JS_PATH . 'generic_functions.js');
+    echo $this->Js->link(JS_PATH . 'watch.js', true);
+    echo $this->Js->link(JS_PATH . 'generic_functions.js');
     // Source: https://github.com/jonathantneal/svg4everybody
     // This is needed to make "fill: currentColor" work on every browser.
-    echo $javascript->link(JS_PATH . 'svg4everybody.min.js');
+    echo $this->Js->link(JS_PATH . 'svg4everybody.min.js');
 
     if (CurrentUser::getSetting('copy_button')) {
-        echo $javascript->link(JS_PATH . 'clipboard.min.js');
-        echo $javascript->link(JS_PATH . 'sentences.copy.js');
+        echo $this->Js->link(JS_PATH . 'clipboard.min.js');
+        echo $this->Js->link(JS_PATH . 'sentences.copy.js');
     }
 
     if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        echo $javascript->link(JS_PATH . 'jquery.cookie.js');
-        echo $javascript->link(JS_PATH . 'announcement.js');
+        echo $this->Js->link(JS_PATH . 'jquery.cookie.js');
+        echo $this->Js->link(JS_PATH . 'announcement.js');
     }
 
     echo $scripts_for_layout;
