@@ -131,7 +131,7 @@ if ($search_disabled) {
             compact('keywords')
         );
     }
-    echo $this->Pages->formatTitleWithResultCount($paginator, $title, $real_total);
+    echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total);
 
     echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
 

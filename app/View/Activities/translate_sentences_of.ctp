@@ -57,7 +57,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     
     <div class="section">
     <?php 
-    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+    echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 
     if ($results != null) {
         $paginationUrl = array(

@@ -746,33 +746,39 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function javascriptForAJAXSentencesGroup($inline = true) {
-        if ($inline) {
-            $this->Html->script('sentences.add_translation.js', array('block' => 'scriptBottom'));
-            $this->Html->script('favorites.add.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences_lists.menu.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.adopt.js', array('block' => 'scriptBottom'));
-            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
-            $this->Html->script('transcriptions.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.change_language.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.link.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.collapse.js', array('block' => 'scriptBottom'));
-            $this->Html->script('collections.add_remove.js', array('block' => 'scriptBottom'));
-            if (CurrentUser::getSetting('copy_button')) {
-                $this->Html->script('clipboard.min.js', array('block' => 'scriptBottom'));
-                $this->Html->script('sentences.copy.js', array('block' => 'scriptBottom'));
-            }
-            $this->javascriptForAJAXTranslationsGroup($inline);
+        if($inline) {
+            $options = array('inline' => true);
+        } else {
+            $options = array('block' => 'scriptBottom');
         }
+        $this->Html->script('sentences.add_translation.js', $options);
+        $this->Html->script('favorites.add.js', $options);
+        $this->Html->script('sentences_lists.menu.js', $options);
+        $this->Html->script('sentences.adopt.js', $options);
+        $this->Html->script('jquery.jeditable.js', $options);
+        $this->Html->script('sentences.edit_in_place.js', $options);
+        $this->Html->script('transcriptions.js', $options);
+        $this->Html->script('sentences.change_language.js', $options);
+        $this->Html->script('sentences.link.js', $options);
+        $this->Html->script('sentences.collapse.js', $options);
+        $this->Html->script('collections.add_remove.js', $options);
+        if (CurrentUser::getSetting('copy_button')) {
+            $this->Html->script('clipboard.min.js', $options);
+            $this->Html->script('sentences.copy.js', $options);
+        }
+        $this->javascriptForAJAXTranslationsGroup($inline);
     }
 
     public function javascriptForAJAXTranslationsGroup($inline = true) {
-        if ($inline) {
-            $this->Html->script('sentences.play_audio.js', array('block' => 'scriptBottom'));
-            $this->Html->script('links.add_and_delete.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.logs.js', array('block' => 'scriptBottom'));
-            $this->Html->script('transcriptions.js', array('block' => 'scriptBottom'));
+        if($inline) {
+            $options = array('inline' => true);
+        } else {
+            $options = array('block' => 'scriptBottom');
         }
+        $this->Html->script('sentences.play_audio.js', $options);
+        $this->Html->script('links.add_and_delete.js', $options);
+        $this->Html->script('sentences.logs.js', $options);
+        $this->Html->script('transcriptions.js', $options);
     }
 
 

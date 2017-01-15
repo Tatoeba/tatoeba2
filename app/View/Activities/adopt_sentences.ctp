@@ -87,7 +87,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 <div id="main_content">
     <div class="module">
     <?php 
-    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+    echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 
     $this->Pagination->display(array($lang));
     

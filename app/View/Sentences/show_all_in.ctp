@@ -47,13 +47,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     ?>
 
 
-</div> 
+</div>
 <div id="main_content">
     <div class="section">
     <?php
     if (!empty($results)) {
 
-        echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+        echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 
         $paginationUrl = array(
             $lang,
@@ -89,9 +89,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             }
         }
 
-        
+
         $this->Pagination->display($paginationUrl);
-    } 
+    }
     ?>
     </div>
 </div>
