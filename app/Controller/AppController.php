@@ -121,7 +121,7 @@ class AppController extends Controller
     {
         Security::setHash('md5');
         // only prevent CSRF for logins and registration in the users controller
-        $this->Security->validatePost = false;
+        $this->Security->csrfCheck = false;
 
         $this->Cookie->domain = TATOEBA_DOMAIN;
         // This line will call views/elements/session_expired.ctp.
