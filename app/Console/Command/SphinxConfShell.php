@@ -201,8 +201,8 @@ class SphinxConfShell extends Shell {
     );
 
     public $regexpFilter = array(
-      '\$(\d+) => $ \1', 
-      '(\d+)\$ => \1 $' 
+      '\$(\d+) => $ \1',
+      '(\d+)\$ => \1 $'
     );
 
     public $indexExtraOptions = array();
@@ -266,8 +266,8 @@ class SphinxConfShell extends Shell {
                 ),
             array_filter(
                 $this->charsetTable,
-                function($v) { return 
-                    $v != 'A..Z->a..z' && 
+                function($v) { return
+                    $v != 'A..Z->a..z' &&
                     $v != 'a..z' &&
                     $v != 'U+C0..U+D6->U+E0..U+F6' &&
                     $v != 'U+D8..U+DE->U+F8..U+FE' &&
@@ -280,10 +280,10 @@ class SphinxConfShell extends Shell {
             )
         ))."
         ignore_chars = U+AD, U+301\n";
-        
+
         /* Lojban uses apostrophe as a regular character
          * and sometimes replaces it with h */
-        $this->indexExtraOptions['jbo'] = 
+        $this->indexExtraOptions['jbo'] =
             "
         charset_table = ".implode(', ', array_merge(
                 array(
@@ -312,7 +312,7 @@ class SphinxConfShell extends Shell {
             )
         ))."
         ignore_chars = U+AD, U+301\n";
-        
+
         /* Turkish
          *   Vowels:
          *     Fold dotless capital I into lowercase dotless i ('I->U+131')
@@ -325,7 +325,7 @@ class SphinxConfShell extends Shell {
          *     Fold G + breve (U+11E) into g + breve (U+11F)
          *     Fold S + cedilla (U+15E) into s + cedilla (U+15F)
          */
-        $this->indexExtraOptions['tur'] = 
+        $this->indexExtraOptions['tur'] =
             "
         charset_table = ".implode(', ', array_merge(
             array(
@@ -349,7 +349,7 @@ class SphinxConfShell extends Shell {
             ),
             array_filter(
                 $this->charsetTable,
-                function($v) { 
+                function($v) {
                     return $v != 'A..Z->a..z' && $v != 'a..z'
                     && $v != 'U+C0..U+D6->U+E0..U+F6' && $v != 'U+E0..U+F6' # Latin-1 supplement
                     && $v != 'U+D8..U+DE->U+F8..U+FE' && $v != 'U+F8..U+FF' # Latin-1 supplement
@@ -383,10 +383,10 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = {$this->configs['default']['login']}
-    sql_pass                 = {$this->configs['default']['password']}
-    sql_db                   = {$this->configs['default']['database']}
-    sql_sock                 = {$this->configs['sphinx']['socket']}
+    sql_user                 = {$this->configs->default['login']}
+    sql_pass                 = {$this->configs->default['password']}
+    sql_db                   = {$this->configs->default['database']}
+    sql_sock                 = {$this->configs->sphinx['socket']}
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
 
@@ -417,7 +417,7 @@ EOT;
 
     private function conf_language_indexes($languages) {
         $conf = '';
-        $sourcePath = $this->configs['sphinx']['indexdir'];
+        $sourcePath = $this->configs->sphinx['indexdir'];
         foreach ($languages as $lang => $name) {
             foreach (array('main', 'delta') as $type) {
                 $parent = array(
@@ -432,7 +432,7 @@ EOT;
         sql_query_pre = SET NAMES utf8
         sql_query_pre = SET SESSION query_cache_type=OFF
         sql_query_pre = SET SESSION group_concat_max_len = 1024*1024";
-        
+
                 if ($type == 'main') {
                     $conf .= "
         sql_query_pre = DELETE FROM reindex_flags \
@@ -446,7 +446,7 @@ EOT;
                              WHERE lang = '$lang' \
                              AND indexed = 1";
                 }
-        
+
                 $delta_join = ($type == 'main') ?
                     '' :
                     'join reindex_flags on reindex_flags.sentence_id = sent_start.id and reindex_flags.indexed = 1';
@@ -530,7 +530,7 @@ EOT;
                 if (in_array($lang, $this->cjkLanguages)) {
                     $parent = "cjk_common_index";
                 }
-        
+
                 $index = ($type == 'main') ?
                     "${lang}_main_index : $parent" :
                     "${lang}_delta_index : ${lang}_main_index";
@@ -539,7 +539,7 @@ EOT;
     {
         source = $source
         path = " . $sourcePath . DIRECTORY_SEPARATOR . $lang . '_' . $type;
-        
+
                 if ($type == 'main') {
                     if (in_array($lang, $this->languageWithStemmer)) {
                         $conf .= "
@@ -563,7 +563,7 @@ EOT;
         }
 
         $conf .= "
-    
+
 index und_index : common_index
 {
     type = distributed
@@ -573,7 +573,7 @@ index und_index : common_index
             $conf .= "    local           = ${lang}_main_index\n";
             $conf .= "    local           = ${lang}_delta_index\n";
         }
-    
+
         $conf .= "
 }
 ";
@@ -581,7 +581,7 @@ index und_index : common_index
     }
 
     public function conf_ending() {
-        $sphinxLogDir = $this->configs['sphinx']['logdir'];
+        $sphinxLogDir = $this->configs->sphinx['logdir'];
         $log_opt = $sphinxLogDir . DIRECTORY_SEPARATOR . 'searchd.log';
         $query_log_opt = $sphinxLogDir . DIRECTORY_SEPARATOR . 'query.log';
 
@@ -594,14 +594,14 @@ indexer
 
 searchd
 {
-    listen                  = {$this->configs['sphinx']['port']}
+    listen                  = {$this->configs->sphinx['port']}
     log                     = $log_opt
     query_log               = $query_log_opt
-    binlog_path             = {$this->configs['sphinx']['binlog_path']}
+    binlog_path             = {$this->configs->sphinx['binlog_path']}
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = {$this->configs['sphinx']['pidfile']}
+    pid_file                = {$this->configs->sphinx['pidfile']}
     seamless_rotate         = 1
     preopen_indexes         = 1
     unlink_old              = 1
@@ -625,7 +625,10 @@ EOT;
     }
 
     public function startup() {
-        $this->configs = get_class_vars('DATABASE_CONFIG');
+        include_once APP . 'Config' . DS . 'database.php';
+		if (class_exists('DATABASE_CONFIG')) {
+			$this->configs = new DATABASE_CONFIG();
+		}
         /* Avoid printing welcome message */
     }
 
@@ -633,5 +636,3 @@ EOT;
         echo $this->conf($this->args);
     }
 }
-
-
