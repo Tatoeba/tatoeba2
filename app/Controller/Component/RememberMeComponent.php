@@ -49,13 +49,13 @@ class RememberMeComponent extends Component
     /**
      * ?
      *
-     * @param unknown &$controller ?
+     * @param unknown $controller ?
      *
      * @return void
      */
     public function startup(Controller $controller)
     {
-        $this->controller = &$controller;
+        $this->controller = $controller;
     }
 
     /**
@@ -69,9 +69,9 @@ class RememberMeComponent extends Component
     public function remember($username, $password)
     {
         $cookie = array();
-        $cookie[$this->Auth->fields['username']] = $username;
-        $cookie[$this->Auth->fields['password']] = $password;
-        $this->Cookie->write($this->_cookieName, $cookie, false, $this->_period);
+        $cookie['username'] = $username;
+        $cookie['password'] = $password;
+        $this->Cookie->write($this->_cookieName, $cookie, true, $this->_period);
     }
 
     /**
@@ -87,8 +87,16 @@ class RememberMeComponent extends Component
             return;
         }
 
-        if ($this->Auth->login()) {
-            $this->Cookie->write($this->_cookieName, $cookie, false, $this->_period);
+        $model = ClassRegistry::init('User');
+        $user = $model->find('first', array(
+            'conditions' => array(
+                'username' => $cookie['username'],
+                'password' => $this->Auth->password($cookie['password'])
+            )
+        ));
+
+        if (!empty($user) && $this->Auth->login($user['User'])) {
+            $this->Cookie->write($this->_cookieName, $cookie, true, $this->_period);
         } else {
             $this->delete();
         }
