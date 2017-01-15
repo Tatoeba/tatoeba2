@@ -124,9 +124,9 @@
     echo $this->Html->script(JS_PATH . 'angular/angular-material.min.js');
     echo $this->Html->script(JS_PATH . 'angular/angular-messages.min.js');
     echo $this->Html->script(JS_PATH . 'watch.js');
+    echo $this->Html->script(JS_PATH . 'responsive/app.module.js');
 
     $scriptOptions = array('block' => 'scriptBottom');
-    $this->Html->script(JS_PATH . 'responsive/app.module.js', $scriptOptions);
 
     $this->Html->script(JS_PATH . 'generic_functions.js', $scriptOptions);
     // Source: https://github.com/jonathantneal/svg4everybody

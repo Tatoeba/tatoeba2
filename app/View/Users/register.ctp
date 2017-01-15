@@ -37,7 +37,7 @@
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));
 
-$this->Html->script('/js/users/register.ctrl.js', false);
+$this->Html->script(JS_PATH . 'users/register.ctrl.js', array('block' => 'scriptBottom'));
 
 $this->Security->enableCSRFProtection();
 echo $this->Form->create('User', array(
