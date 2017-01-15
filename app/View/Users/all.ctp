@@ -33,7 +33,7 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */ 
+ */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
 ?>
@@ -43,41 +43,43 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
     <h2><?php echo __('Search user') ?></h2>
     <?php
     $this->Security->enableCSRFProtection();
-    echo $this->Form->create('User', array("action" => "search"));
+    echo $this->Form->create('User', array(
+        "url" => array("action" => "search")
+    ));
     echo $this->Form->input(
         'username',
         array(
             "id" => "usernameInput",
-            "label" => "", 
+            "label" => "",
         )
     );
     echo $this->Form->end(__('search'));
     $this->Security->disableCSRFProtection();
     ?>
     </div>
-    
+
     <div class="module">
-    <?php 
+    <?php
     echo $this->element(
-        'currently_active_members', 
+        'currently_active_members',
         array(
             'currentContributors' => $currentContributors
         )
-    ); 
-    ?> 
+    );
+    ?>
     </div>
 </div>
 
 <div id="main_content">
     <div class="module">
         <h2>
-        <?php 
+        <?php
         echo $this->Paginator->counter(
             array('format' => __('Members (total %count%)'))
-        ); 
+        );
         ?>
         </h2>
-        
+
         <div class="sortBy">
             <strong><?php echo __('Sort by:'); ?></strong>
             <?php
@@ -88,10 +90,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             echo $this->Paginator->sort(__('Member status'),'group_id');
             ?>
         </div>
-        
-        
+
+
         <?php $this->Pagination->display(); ?>
-        
+
         <div class="users">
         <?php
         foreach ($users as $i=>$user):
@@ -108,21 +110,21 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
                 <?php echo $this->Members->image($username, $userImage); ?>
             </div>
 
-            
+
             <div class="username">
                 <?php
                 echo $this->Html->link(
                     $user['User']['username'],
                     array(
-                        "controller"=>'user', 
-                        "action"=>'profile', 
+                        "controller"=>'user',
+                        "action"=>'profile',
                         $user['User']['username']
                     )
-                ); 
+                );
                 ?>
             </div>
 
-            
+
             <div class="memberSince" title="<?php echo __("Member since"); ?>">
                 <span class="date">
                 <?php echo $this->Date->ago($user['User']['since']); ?>
@@ -138,11 +140,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         </div>
         <?php endforeach; ?>
         </div>
-        
+
         <?php
         $this->Pagination->display();
         ?>
     </div>
 </div>
-
-

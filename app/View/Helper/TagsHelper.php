@@ -55,7 +55,7 @@ class TagsHelper extends AppHelper
      */
     public function displayTagsModule($tagsArray, $sentenceId = null, $sentenceLang = null)
     {
-        $this->Js->link(JS_PATH . 'autocompletion.js', false);
+        $this->Html->script(JS_PATH . 'autocompletion.js', false);
         ?>
 
         <div class="module">
@@ -102,7 +102,7 @@ class TagsHelper extends AppHelper
      * @param null $date
      */
     public function displayTag(
-        $tagName, $tagId, $sentenceId, $userId, $username = null, $date = null, $sentenceLang = null 
+        $tagName, $tagId, $sentenceId, $userId, $username = null, $date = null, $sentenceLang = null
     ) {
         ?>
         <span class="tag">
@@ -126,7 +126,7 @@ class TagsHelper extends AppHelper
      *
      */
     public function displayTagLink(
-        $tagName, $tagId, $username = null, $date = null, $sentenceLang = null 
+        $tagName, $tagId, $username = null, $date = null, $sentenceLang = null
     ) {
         $options = array(
             "class" => "tagName",
@@ -179,18 +179,18 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
-        $this->Js->link(JS_PATH . 'tags.add.js', false);
+        $this->Html->script(JS_PATH . 'tags.add.js', false);
 
         echo $this->Form->create(
             'Tag',
             array(
-                "action" => "add_tag_post",
+                "url" => array("action" => "add_tag_post"),
                 "type" => "post",
             )
         );
 
         // TODO replace me I'm dirty
-        // The idea is to mark a "dirty" tag (one not updated yet), 
+        // The idea is to mark a "dirty" tag (one not updated yet),
         // but this has not been implemented. See models/tag.php.
         echo '<div id="autocompletionDiv">';
         echo '</div>';

@@ -69,7 +69,9 @@ if (!isset($lastText)) {
         echo $this->Form->create(
             'Tool',
             array(
-                "action" => "conversion_simplified_traditional_chinese",
+                "url" => array(
+                    "action" => "conversion_simplified_traditional_chinese"
+                ),
                 "type" => "post"
             )
         );
@@ -98,4 +100,3 @@ if (!isset($lastText)) {
     </div>
 
 </div>
-

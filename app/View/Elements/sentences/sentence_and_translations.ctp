@@ -1,5 +1,5 @@
 <?php
-$this->Js->link('/js/directives/sentence-and-translations.dir.js', false);
+$this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom'));
 
 list($directTranslations, $indirectTranslations) = $this->Sentences->segregateTranslations(
     $translations

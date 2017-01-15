@@ -29,7 +29,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 <div id="annexe_content">
     <?php
         echo $this->element(
-        'users_menu', 
+        'users_menu',
         array('username' => CurrentUser::get('username'))
     );
     ?>
@@ -37,7 +37,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
 <div id="main_content">
     <div md-whiteframe="1" class="options settings-form">
-        <?php echo $this->Form->create(null, array('action' => 'save_settings')); ?>
+        <?php echo $this->Form->create(null, array('url' => array('action' => 'save_settings'))); ?>
         <h2><?php echo __('Options'); ?></h2>
         <md-list flex role="list" class="flex" >
             <md-subheader><?php echo __('Main options'); ?></md-subheader>
@@ -318,7 +318,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         echo $this->Form->create(
             null,
             array(
-                'action' => 'save_basic'
+                'url' => array('action' => 'save_basic')
             )
         );
         ?>
@@ -342,7 +342,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         echo $this->Form->end();
         ?>
     </div>
-    
+
     <div md-whiteframe="1" class="settings-form">
         <?php
         echo $this->Form->create(

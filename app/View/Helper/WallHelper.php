@@ -41,7 +41,7 @@ class WallHelper extends AppHelper
     public $helpers = array(
         'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages', 'Languages'
     );
-    
+
 
     /**
      * create the form to add a new message
@@ -55,14 +55,14 @@ class WallHelper extends AppHelper
            called "walls/save' which is not what we want
         */
         echo $this->Form->create(
-            '', 
+            '',
             array(
-                "action" => "save",
+                "url" => array("action" => "save"),
                 "class" => "message form"
             )
         );
         ?>
-        
+
         <div class="header">
             <div class="info">
             <?php
@@ -93,7 +93,7 @@ class WallHelper extends AppHelper
                 </md-button>
             </div>
         </div>
-        
+
         <?php
         echo $this->Form->end();
 
@@ -124,7 +124,7 @@ class WallHelper extends AppHelper
                 "class" => "message form"
             )
         );
-        
+
         echo $this->Form->hidden('id');
 
         $this->Messages->displayFormHeader(__("Edit Wall Message"));
@@ -154,7 +154,7 @@ class WallHelper extends AppHelper
             </div>
 
         </div>
-        
+
         <?php
         echo $this->Form->end();
         ?>
@@ -297,12 +297,12 @@ class WallHelper extends AppHelper
     private function _displayToggleButton($messageId)
     {
         echo '<div class="toggleRepliesButton hideReplies"
-                id="hide_replies_button_'.$messageId.'" 
+                id="hide_replies_button_'.$messageId.'"
                 onclick="toggleReplies('.$messageId.')">
                 '.__('hide replies').'</div>';
         echo '<div class="toggleRepliesButton showReplies"
                 style="display:none;"
-                id="show_replies_button_'.$messageId.'" 
+                id="show_replies_button_'.$messageId.'"
                 onclick="toggleReplies('.$messageId.')">
                 '.__('show replies').'</div>';
     }

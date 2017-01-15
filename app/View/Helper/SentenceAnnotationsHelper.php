@@ -49,7 +49,9 @@ class SentenceAnnotationsHelper extends AppHelper
         <div class="module">
         <h2>Go to...</h2>
         <?php
-            echo $this->Form->create('SentenceAnnotation', array("action" => "show"));
+            echo $this->Form->create('SentenceAnnotation', array(
+                'url' => array('action' => 'show')
+            ));
             echo $this->Form->input(
                 'sentence_id',
                 array(
@@ -76,7 +78,9 @@ class SentenceAnnotationsHelper extends AppHelper
         <div class="module">
         <h2>Search</h2>
         <?php
-            echo $this->Form->create('SentenceAnnotation', array("action" => "search"));
+            echo $this->Form->create('SentenceAnnotation', array(
+                'url' => array('action' => 'search')
+            ));
             echo $this->Form->input(
                 'text',
                 array(
@@ -105,7 +109,9 @@ class SentenceAnnotationsHelper extends AppHelper
         <h2>Add new index</h2>
         <?php
         echo $this->Form->create(
-            'SentenceAnnotation', array("action" => "save")
+            'SentenceAnnotation', array(
+                "url" => array("action" => "save")
+            )
         );
         echo $this->Form->hidden(
             'SentenceAnnotation.sentence_id',
@@ -141,9 +147,11 @@ class SentenceAnnotationsHelper extends AppHelper
         <?php
             echo '<h2>Replace</h2>';
 
-            echo $this->Js->link('sentence_annotations.preview.js', false);
+            $this->Html->script('sentence_annotations.preview.js', array('block' => 'scriptBottom'));
             echo $this->Form->create(
-                'SentenceAnnotation', array("action" => "replace")
+                'SentenceAnnotation', array(
+                    "url" => array("action" => "replace")
+                )
             );
             echo '<div>';
             echo $this->Form->hidden(
@@ -159,7 +167,7 @@ class SentenceAnnotationsHelper extends AppHelper
             );
             echo '<div>';
             echo $this->Form->button(
-                'Preview', 
+                'Preview',
                 array(
                     "id" => "previewButton",
                     "type" => "button"

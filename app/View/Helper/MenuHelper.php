@@ -92,7 +92,7 @@ class MenuHelper extends AppHelper
             echo '</a>';
 
         } else if ($isLogged) {
-            $this->Js->link('sentences.add_translation.js', false);
+            $this->Html->script('sentences.add_translation.js', array('block' => 'scriptBottom'));
             ?>
             <a><?php echo $translateButton;?></a>
            <?php
@@ -165,7 +165,7 @@ class MenuHelper extends AppHelper
             $svgIconOptions['class'] .= ' adopt-item uneditable';
             $contents = $this->Images->svgIcon($image, $svgIconOptions);
         } else {
-            $this->Js->link('sentences.adopt.js', false);
+            $this->Html->script('sentences.adopt.js', array('block' => 'scriptBottom'));
             $contents = $this->Images->svgIcon($image, $svgIconOptions);
             $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
@@ -230,7 +230,7 @@ class MenuHelper extends AppHelper
         ));
 
         if ($isLogged) {
-            $this->Js->link('favorites.add.js', false);
+            $this->Html->script('favorites.add.js', array('block' => 'scriptBottom'));
             ?>
             <a><?php echo $favoriteImage;?></a>
             <?php
@@ -293,7 +293,7 @@ class MenuHelper extends AppHelper
         ?>
         </li>
         <?php
-        $this->Js->link('sentences.link.js', false);
+        $this->Html->script('sentences.link.js', array('block' => 'scriptBottom'));
     }
 
     /**
@@ -351,7 +351,7 @@ class MenuHelper extends AppHelper
             return;
         }
 
-        $this->Js->link('sentences_lists.menu.js', false);
+        $this->Html->script('sentences_lists.menu.js', array('block' => 'scriptBottom'));
 
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
             CurrentUser::get('id')
@@ -531,7 +531,7 @@ class MenuHelper extends AppHelper
 
     public function correctnessButton($sentenceId)
     {
-        $this->Js->link('collections.add_remove.js', false);
+        $this->Html->script('collections.add_remove.js', array('block' => 'scriptBottom'));
 
         $userCorrectness = CurrentUser::correctnessForSentence($sentenceId);
 

@@ -90,8 +90,8 @@ class AppController extends Controller
      */
     private function fixL10nCatalog() {
         $to_iso3 = array_flip(LanguagesLib::get_Iso639_3_To_Iso639_1_Map());
-        $I18n =& I18n::getInstance();
-        foreach ($I18n->l10n->__l10nCatalog as $iso1_lang => &$info) {
+        $I18n = I18n::getInstance();
+        foreach ($I18n->l10n->map() as $iso1_lang => $info) {
             if (isset($to_iso3[$iso1_lang])) {
                 $info['localeFallback'] = $to_iso3[$iso1_lang];
             }

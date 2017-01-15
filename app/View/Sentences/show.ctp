@@ -26,7 +26,7 @@
  */
 
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
-$this->Js->link('jquery.scrollTo.min.js', false);
+$this->Html->script('jquery.scrollTo.min.js', false);
 
 if (!isset($searchProblem)) {
 if (isset($sentence)) {

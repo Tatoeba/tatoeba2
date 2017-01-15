@@ -20,7 +20,7 @@
  *
  * @category PHP
  * @package  Tatoeba
- * @author   Allan SIMON <allan.simon@supinfo.com> 
+ * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -32,7 +32,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
     <div class="module">
         <?php
         echo $this->Html->tag('h2', __('Search tags'));
-        echo $this->Form->create(array('action' => 'search'));
+        echo $this->Form->create(array(
+            'url' => array('action' => 'search'),
+        ));
         echo $this->Form->input(
             'search',
             array(
@@ -77,20 +79,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
         }
         echo $this->Html->tag('h2', $title, array('escape' => true));
         ?>
-        
+
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
-            <?php 
+            <?php
             echo $this->Paginator->sort(__("count"), 'nbrOfSentences');
             echo " | ";
             echo $this->Paginator->sort(__("name"), 'name');
             ?>
         </div>
-        
-        <?php 
+
+        <?php
             $this->Pagination->display();
         ?>
-        
+
         <div>
             <?php
             foreach( $allTags as $tag) {
@@ -107,9 +109,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
             }
             ?>
         </div>
-        
+
         <div>
-        <?php 
+        <?php
             $this->Pagination->display();
         ?>
         </div>

@@ -163,7 +163,7 @@ class SentencesHelper extends AppHelper
         <div id="_<?php echo $id; ?>_translations" class="translations">
 
             <?php
-            $this->Js->link('sentences.collapse.js', false);
+            $this->Html->script('sentences.collapse.js', array('block' => 'scriptBottom'));
 
             $totalDirectTranslations = count(array_keys($translations));
             $totalIndirectTranslations = count(array_keys($indirectTranslations));
@@ -708,8 +708,8 @@ class SentencesHelper extends AppHelper
         if ($isEditable) {
             $classes[] = 'editableSentence';
 
-            $this->Js->link('jquery.jeditable.js', false);
-            $this->Js->link('sentences.edit_in_place.js', false);
+            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
 
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
@@ -740,41 +740,39 @@ class SentencesHelper extends AppHelper
         }
     }
 
-    private function doEcho($arg, $inline) {
-      if ($inline) {
-        echo $arg;
-      }
-    }
-
     /**
      * Inline Javascript for AJAX loaded sentences group.
      *
      * @return void
      */
     public function javascriptForAJAXSentencesGroup($inline = true) {
-        $this->doEcho($this->Js->link('sentences.add_translation.js', $inline), $inline);
-        $this->doEcho($this->Js->link('favorites.add.js', $inline), $inline);
-        $this->doEcho($this->Js->link('sentences_lists.menu.js', $inline), $inline);
-        $this->doEcho($this->Js->link('sentences.adopt.js', $inline), $inline);
-        $this->doEcho($this->Js->link('jquery.jeditable.js', $inline), $inline);
-        $this->doEcho($this->Js->link('sentences.edit_in_place.js', $inline), $inline);
-        $this->doEcho($this->Js->link('transcriptions.js', $inline), $inline);
-        $this->doEcho($this->Js->link('sentences.change_language.js', $inline), $inline);
-        $this->doEcho($this->Js->link('sentences.link.js', $inline), $inline);
-        $this->doEcho($this->Js->link('sentences.collapse.js', $inline), $inline);
-        $this->doEcho($this->Js->link('collections.add_remove.js', $inline), $inline);
-        if (CurrentUser::getSetting('copy_button')) {
-            $this->doEcho($this->Js->link('clipboard.min.js', $inline), $inline);
-            $this->doEcho($this->Js->link('sentences.copy.js', $inline), $inline);
+        if ($inline) {
+            $this->Html->script('sentences.add_translation.js', array('block' => 'scriptBottom'));
+            $this->Html->script('favorites.add.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences_lists.menu.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.adopt.js', array('block' => 'scriptBottom'));
+            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
+            $this->Html->script('transcriptions.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.change_language.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.link.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.collapse.js', array('block' => 'scriptBottom'));
+            $this->Html->script('collections.add_remove.js', array('block' => 'scriptBottom'));
+            if (CurrentUser::getSetting('copy_button')) {
+                $this->Html->script('clipboard.min.js', array('block' => 'scriptBottom'));
+                $this->Html->script('sentences.copy.js', array('block' => 'scriptBottom'));
+            }
+            $this->javascriptForAJAXTranslationsGroup($inline);
         }
-        $this->javascriptForAJAXTranslationsGroup($inline);
     }
 
     public function javascriptForAJAXTranslationsGroup($inline = true) {
-        $this->doEcho($this->Js->link('sentences.play_audio.js', $inline), $inline);
-        $this->doEcho($this->Js->link('links.add_and_delete.js', $inline), $inline);
-        $this->doEcho($this->Js->link('sentences.logs.js', $inline), $inline);
-        $this->doEcho($this->Js->link('transcriptions.js', $inline), $inline);
+        if ($inline) {
+            $this->Html->script('sentences.play_audio.js', array('block' => 'scriptBottom'));
+            $this->Html->script('links.add_and_delete.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.logs.js', array('block' => 'scriptBottom'));
+            $this->Html->script('transcriptions.js', array('block' => 'scriptBottom'));
+        }
     }
 
 

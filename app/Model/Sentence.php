@@ -124,7 +124,7 @@ class Sentence extends AppModel
             $this->Behaviors->attach('Sphinx');
         }
 
-        $this->_findMethods['random'] = true;
+        $this->findMethods['random'] = true;
     }
 
     public function linkTranslationModel($conditions = array())

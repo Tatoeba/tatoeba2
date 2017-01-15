@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 $hasaudio = count($audios) > 0;
 $shouldDisplayBlock = $hasaudio || CurrentUser::isAdmin();
 if (!$shouldDisplayBlock) {
@@ -47,7 +47,7 @@ if (CurrentUser::isAdmin()) {
     echo $this->Form->create(
         "Sentence",
         array(
-            "action" => "edit_audio",
+            "url" => array("action" => "edit_audio"),
             "type" => "post",
         )
     );
@@ -57,7 +57,7 @@ if (CurrentUser::isAdmin()) {
     );
     __d("admin", "Enabled");
     echo $this->Form->input(
-        "hasaudio", 
+        "hasaudio",
         array(
             "legend" => false,
             "type" => "radio",

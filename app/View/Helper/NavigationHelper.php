@@ -72,7 +72,7 @@ class NavigationHelper extends AppHelper
             echo $this->Form->create(
                 'Sentence',
                 array(
-                    "action" => "go_to_sentence",
+                    "url" => array("action" => "go_to_sentence"),
                     "type" => "get"
                 )
             );
@@ -91,7 +91,7 @@ class NavigationHelper extends AppHelper
 
             <div class="languageSelect">
             <?php
-            $this->Js->link('sentences.random.js', false);
+            $this->Html->script('sentences.random.js', array('block' => 'scriptBottom'));
 
 
             $langArray = $this->Languages->languagesArrayAlone();
@@ -101,7 +101,7 @@ class NavigationHelper extends AppHelper
                 "randomLangChoiceInBrowse",
                 $langArray,
                 array(
-                    "value" => $selectedLanguage, 
+                    "value" => $selectedLanguage,
                     'class' => 'language-selector',
                     'data-current-sentence-id' => $currentId,
                     'empty' => false

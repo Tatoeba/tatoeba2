@@ -53,7 +53,7 @@ if (!isset($lastText)) {
         echo $this->Form->create(
             'Tool',
             array(
-                "action" => "pinyin_converter",
+                "url" => array("action" => "pinyin_converter"),
                 "type" => "post"
             )
         );
@@ -86,7 +86,7 @@ if (!isset($lastText)) {
                 </md-radio-button>
                 <md-radio-button value='numPinyin' class='md-primary'>
                     <?= __('numerical pinyin') ?>
-                </md-radio-button>  
+                </md-radio-button>
             </md-radio-group>
         </p>
         <p>
@@ -103,7 +103,7 @@ if (!isset($lastText)) {
                 </md-radio-button>
                 <md-radio-button value='diacPinyin' class='md-primary'>
                     <?=  __('diacritical pinyin') ?>
-                </md-radio-button>  
+                </md-radio-button>
             </md-radio-group>
         </p>
         <?php echo $this->Form->end(__('Convert')); ?>

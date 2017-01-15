@@ -26,7 +26,7 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Search sinograms')));
-$this->Js->link(JS_PATH . "sinograms.search.js", false);
+$this->Html->script(JS_PATH . "sinograms.search.js", false);
 
 ?>
 
@@ -69,7 +69,9 @@ $this->Js->link(JS_PATH . "sinograms.search.js", false);
         <?php
         echo $this->Form->create(
             "Sinogram",
-            array("action" => "explode")
+            array(
+                "url" => array("action" => "explode")
+            )
         );
         echo $this->Form->input(
             "toExplode",
@@ -170,7 +172,9 @@ $this->Js->link(JS_PATH . "sinograms.search.js", false);
                 <?php echo __("Search a character by describing it");
                 echo $this->Form->create(
                     "Sinogram",
-                    array("action" => "search")
+                    array(
+                        "url" => array("action" => "search")
+                    )
                 );
                 echo $this->Form->input(
                     "subglyphs",

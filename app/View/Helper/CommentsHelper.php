@@ -51,9 +51,9 @@ class CommentsHelper extends AppHelper
     public function displayCommentForm($sentenceId, $sentenceText)
     {
         echo $this->Form->create(
-            'SentenceComment', 
+            'SentenceComment',
             array(
-                "action" => "save",
+                "url" => array("action" => "save"),
                 "class" => "message form"
             )
         );
@@ -149,7 +149,7 @@ class CommentsHelper extends AppHelper
         if (isset($message['modified'])) {
             $modified = $message['modified'];
         }
-        
+
         $content = $message['text'];
         $authorId = $author['id'];
 
@@ -212,9 +212,9 @@ class CommentsHelper extends AppHelper
      */
     public function getMenuForComment($comment, $permissions, $replyIcon)
     {
-        $menu = array(); 
+        $menu = array();
         $commentId = $comment['id'];
-        
+
         // hide
         if ($permissions['canHide']) {
             $hidden = $comment['hidden'];
@@ -264,7 +264,7 @@ class CommentsHelper extends AppHelper
                 )
             );
         }
-        
+
         // view
         $sentenceId = $comment['sentence_id'];
         $viewIcon = $replyIcon ? 'reply' : 'link';

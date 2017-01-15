@@ -78,7 +78,7 @@ if (!isset($lastText)) {
         echo $this->Form->create(
             'Tool',
             array(
-                "action" => "shanghainese_to_ipa",
+                "url" => array("action" => "shanghainese_to_ipa"),
                 "type" => "post"
             )
         );
@@ -107,4 +107,3 @@ if (!isset($lastText)) {
     </div>
 
 </div>
-

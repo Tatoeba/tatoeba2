@@ -25,14 +25,14 @@
  * @link     http://tatoeba.org
  */
 ?>
- 
+
 <div class="module">
     <h2><?php echo __d('admin', 'Correctness') ?></h2>
     <?php
     echo $this->Form->create(
         "Sentence",
         array(
-            "action" => "edit_correctness",
+            "url" => array("action" => "edit_correctness"),
             "type" => "post",
         )
     );
@@ -41,12 +41,12 @@
         array("value" => $sentenceId)
     );
     echo $this->Form->input(
-        "correctness", 
+        "correctness",
         array(
             "legend" => false,
             "type" => "radio",
             "options" => array(
-                Sentence::MIN_CORRECTNESS => "-1", 
+                Sentence::MIN_CORRECTNESS => "-1",
                 Sentence::MAX_CORRECTNESS => "0"
             ),
             "value" => $sentenceCorrectness

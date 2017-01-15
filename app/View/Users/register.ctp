@@ -37,12 +37,12 @@
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));
 
-echo $this->Js->link('/js/users/register.ctrl.js', false);
+$this->Html->script('/js/users/register.ctrl.js', false);
 
 $this->Security->enableCSRFProtection();
 echo $this->Form->create('User', array(
     'name' => 'registrationForm',
-    'action' => 'register',
+    'url' => array('action' => 'register'),
     'class' => 'md-whiteframe-1dp',
     'ng-controller' => 'UsersRegisterController as ctrl'
 ));

@@ -33,12 +33,14 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */ 
+ */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Send new password')));
 
 $this->Security->enableCSRFProtection();
-echo $this->Form->create('User', array("action" => "new_password"));
+echo $this->Form->create('User', array(
+    "url" => array("action" => "new_password")
+));
 ?>
 
 <div md-whiteframe="1" id="reset-form">
@@ -52,7 +54,7 @@ echo $this->Form->create('User', array("action" => "new_password"));
         );
         ?>
      </md-input-container>
-    
+
     <div layout="column">
         <md-button type="submit" class="md-raised md-primary">
             <?php echo __('Send'); ?>

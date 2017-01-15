@@ -49,7 +49,9 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
         <?php
         echo $this->Html->tag('h2', $title);
 
-        echo $this->Form->create('UsersLanguages', array('action' => 'save'));
+        echo $this->Form->create('UsersLanguages', array(
+            'url' => array('action' => 'save')
+        ));
         echo $this->Form->hidden('id');
         echo $this->Form->hidden('of_user_id', array('value' => $ofUserId));
         ?>

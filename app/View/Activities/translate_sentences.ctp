@@ -82,7 +82,10 @@ if (empty($notTranslatedInto)) {
             <?php
             echo $this->Form->create(
                 'Activity',
-                array("action" => "translate_sentences", "type" => "get")
+                array(
+                    "url" => array("action" => "translate_sentences"),
+                    "type" => "get"
+                )
             );
 
             $langsFrom = $this->Languages->onlyLanguagesArray();
@@ -141,7 +144,10 @@ if (empty($notTranslatedInto)) {
         $selectedLanguage = $this->Session->read('random_lang_selected');
         echo $this->Form->create(
             'Sentence',
-            array("action" => "several_random_sentences", "type" => "post")
+            array(
+                "url" => array("action" => "several_random_sentences"),
+                "type" => "post"
+            )
         );
         ?>
 

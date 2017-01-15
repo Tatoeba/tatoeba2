@@ -27,17 +27,17 @@
 
 $uiLanguages = Configure::read('UI.languages');
 $currentLang = $this->request->params['lang'];
-$currentUrl = $this->request->params['url']['url'];
+$currentUrl = $this->request->url;
 
 foreach ($uiLanguages as $langs) {
-    
+
     $newUrl = $currentUrl;
     $pos = strpos($currentUrl, $currentLang);
     if ($pos !== false) {
         $newUrl = substr_replace(
-            $currentUrl, 
-            $langs[0], 
-            $pos, 
+            $currentUrl,
+            $langs[0],
+            $pos,
             strlen($currentLang)
         );
     }
@@ -47,10 +47,10 @@ foreach ($uiLanguages as $langs) {
     $alternateURL = '/'.$newUrl;
     $hreflang = LanguagesLib::languageTag($langs[0], $langs[1]);
     ?>
-    <link rel="alternate" 
-          hreflang="<?php echo $hreflang; ?>" 
+    <link rel="alternate"
+          hreflang="<?php echo $hreflang; ?>"
           href="<?php echo $alternateURL; ?>">
-    <?php   
+    <?php
 
 }
 ?>

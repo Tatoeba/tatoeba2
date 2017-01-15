@@ -117,32 +117,33 @@
     echo $this->element('foot');
     echo $this->element('sql_dump');
 
-    echo $this->Js->link(JS_PATH . 'jquery-1.11.3.min.js');
-    echo $this->Js->link(JS_PATH . 'angular/angular.min.js');
-    echo $this->Js->link(JS_PATH . 'angular/angular-animate.min.js');
-    echo $this->Js->link(JS_PATH . 'angular/angular-aria.min.js');
-    echo $this->Js->link(JS_PATH . 'angular/angular-material.min.js');
-    echo $this->Js->link(JS_PATH . 'angular/angular-messages.min.js');
-    echo $this->Js->link(JS_PATH . 'responsive/app.module.js');
+    $this->Html->script(JS_PATH . 'jquery-1.11.3.min.js', array('block' => 'scriptBottom'));
+    $this->Html->script(JS_PATH . 'angular/angular.min.js', array('block' => 'scriptBottom'));
+    $this->Html->script(JS_PATH . 'angular/angular-animate.min.js', array('block' => 'scriptBottom'));
+    $this->Html->script(JS_PATH . 'angular/angular-aria.min.js', array('block' => 'scriptBottom'));
+    $this->Html->script(JS_PATH . 'angular/angular-material.min.js', array('block' => 'scriptBottom'));
+    $this->Html->script(JS_PATH . 'angular/angular-messages.min.js', array('block' => 'scriptBottom'));
+    $this->Html->script(JS_PATH . 'responsive/app.module.js', array('block' => 'scriptBottom'));
 
 
-    echo $this->Js->link(JS_PATH . 'watch.js', true);
-    echo $this->Js->link(JS_PATH . 'generic_functions.js');
+    $this->Html->script(JS_PATH . 'watch.js', array('block' => 'scriptBottom'));
+    $this->Html->script(JS_PATH . 'generic_functions.js', array('block' => 'scriptBottom'));
     // Source: https://github.com/jonathantneal/svg4everybody
     // This is needed to make "fill: currentColor" work on every browser.
-    echo $this->Js->link(JS_PATH . 'svg4everybody.min.js');
+    $this->Html->script(JS_PATH . 'svg4everybody.min.js', array('block' => 'scriptBottom'));
 
     if (CurrentUser::getSetting('copy_button')) {
-        echo $this->Js->link(JS_PATH . 'clipboard.min.js');
-        echo $this->Js->link(JS_PATH . 'sentences.copy.js');
+        $this->Html->script(JS_PATH . 'clipboard.min.js', array('block' => 'scriptBottom'));
+        $this->Html->script(JS_PATH . 'sentences.copy.js', array('block' => 'scriptBottom'));
     }
 
     if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        echo $this->Js->link(JS_PATH . 'jquery.cookie.js');
-        echo $this->Js->link(JS_PATH . 'announcement.js');
+        $this->Html->script(JS_PATH . 'jquery.cookie.js', array('block' => 'scriptBottom'));
+        $this->Html->script(JS_PATH . 'announcement.js', array('block' => 'scriptBottom'));
     }
 
     echo $scripts_for_layout;
+    echo $this->fetch('scriptBottom');
 
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', array('cache' => true));

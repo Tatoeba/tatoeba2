@@ -111,8 +111,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     $class = '';
     if ($belongsToUser) {
-        $this->Js->link(JS_PATH . 'jquery.jeditable.js', false);
-        $this->Js->link(JS_PATH . 'sentences_lists.edit_name.js', false);
+        $this->Html->script(JS_PATH . 'jquery.jeditable.js', false);
+        $this->Html->script(JS_PATH . 'sentences_lists.edit_name.js', false);
 
         $class = 'editable-list-name';
 

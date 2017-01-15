@@ -21,9 +21,9 @@
 <div id="annexe_content">
     <?php
     $this->SentenceAnnotations->displayGoToBox();
-    
+
     $this->SentenceAnnotations->displaySearchBox();
-    
+
     if(isset($sentence)){
         $this->SentenceAnnotations->displayNewIndexBox($sentence['id']);
     }
@@ -40,24 +40,26 @@
         echo format(__('Sentence #{number}') , array('number' => $sentence['id']));
         ?>
         </h2>
-        
+
         <p class="original">
         <?php echo $sentence['text']; ?>
         </p>
-        
+
         <?php
-        
+
         foreach($annotations as $annotation){
             ?>
             <hr/>
-            
+
             <p>
             <?php echo Sanitize::html($annotation['text']); ?>
             </p>
-            
+
             <?php
-            echo $this->Form->create('SentenceAnnotation', array("action" => "save"));
-            
+            echo $this->Form->create('SentenceAnnotation', array(
+                "url" => array("action" => "save"))
+            );
+
             // hidden ids necessary for saving
             echo '<div>';
             echo $this->Form->hidden(
@@ -69,16 +71,16 @@
                 , array("value" => $annotation['sentence_id'])
             );
             echo '</div>';
-            
+
             // id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
             echo $this->Form->input(
-                'meaning_id', 
+                'meaning_id',
                 array(
                     "type" => "text",
                     "value" => $annotation['meaning_id']
                 )
             );
-            
+
             // annotations text
             echo $this->Form->textarea('text', array(
                 "label" => null
@@ -86,7 +88,7 @@
                 , "cols" => 60
                 , "rows" => 3
             ));
-            
+
             // delete link
             echo $this->Html->link(
                 'delete'
@@ -98,8 +100,8 @@
                 )
                 , array("style"=>"float:right")
                 , 'Are you sure?'
-            );          
-            
+            );
+
             // save button
             echo $this->Form->end('save');
         }

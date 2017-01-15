@@ -85,7 +85,7 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function unlinkButton($sentenceId, $translationId, $langFilter = 'und')
     {
-        echo $this->Js->link('links.add_and_delete.js', false);
+        $this->Html->script('links.add_and_delete.js', array('block' => 'scriptBottom'));
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
@@ -128,7 +128,7 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function linkButton($sentenceId, $translationId, $langFilter = 'und')
     {
-        echo $this->Js->link('links.add_and_delete.js', false);
+        $this->Html->script('links.add_and_delete.js', array('block' => 'scriptBottom'));
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
@@ -192,7 +192,7 @@ class SentenceButtonsHelper extends AppHelper
                     array('author' => $author)
                 ), true);
             }
-            echo $this->Js->link('sentences.play_audio.js', false);
+            $this->Html->script('sentences.play_audio.js', array('block' => 'scriptBottom'));
         } else {
             $onClick = 'return false';
             $css = 'audioUnavailable';
@@ -225,7 +225,7 @@ class SentenceButtonsHelper extends AppHelper
     {
         $class = '';
         if ($editable) {
-            $this->Js->link('sentences.change_language.js', false);
+            $this->Html->script('sentences.change_language.js', array('block' => 'scriptBottom'));
             $class = 'editableFlag';
 
             // language select
@@ -280,7 +280,7 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function displayCopyButton($text)
     {
-        $this->Js->link('clipboard.min.js', false);
+        $this->Html->script('clipboard.min.js', array('block' => 'scriptBottom'));
         $copyButton = $this->Images->svgIcon('copy');
         echo $this->Html->div('copy-btn', $copyButton,
             array(

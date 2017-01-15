@@ -57,9 +57,9 @@ class PrivateMessagesHelper extends AppHelper
         );
 
         echo $this->Form->create(
-            'PrivateMessage', 
+            'PrivateMessage',
             array(
-                'action' => 'send',
+                'url' => array('action' => 'send'),
                 'class' => 'message form'
             )
         );
@@ -72,7 +72,7 @@ class PrivateMessagesHelper extends AppHelper
             $this->Messages->displayAvatar($user['User']);
             ?>
             </div>
-            
+
             <div class="title">
             <?php echo $headerTitle ?>
             </div>
