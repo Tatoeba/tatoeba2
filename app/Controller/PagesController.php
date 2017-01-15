@@ -75,7 +75,7 @@ class PagesController extends AppController
         parent::beforeFilter();
         $this->_redirect_for_old_url();
         // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array("*");
+        $this->Auth->allow();
     }
 
     /**
@@ -92,7 +92,7 @@ class PagesController extends AppController
 
         // Random sentence part
         $hideRandomSentence = CurrentUser::getSetting('hide_random_sentence');
-        
+
         $this->set('hideRandomSentence', $hideRandomSentence);
 
         if (!$hideRandomSentence) {
@@ -325,8 +325,8 @@ class PagesController extends AppController
             301
         );
     }
-    
-    
+
+
     /**
      *
      *

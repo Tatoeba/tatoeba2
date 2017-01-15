@@ -60,7 +60,7 @@ echo $this->Form->create(
                 )
             );
             echo $this->Html->link(
-                __p('title', 'Advanced search'),
+                __('Advanced search'),
                 array(
                     'controller' => 'sentences',
                     'action' => 'advanced_search'

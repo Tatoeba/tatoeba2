@@ -41,11 +41,11 @@ echo $this->Form->create(
     ));
 
     echo $this->Search->selectLang('from', $from, array(
-        'label' => __('Language:'),
+        'empty' => __('Language:'),
     ));
 
     echo $this->Search->selectLang('to', $to, array(
-        'label' => __('Show translations in:'),
+        'empty' => __('Show translations in:'),
         'options' => $this->Languages->languagesArrayForPositiveLists(),
     ));
 
@@ -157,7 +157,7 @@ echo $this->Form->create(
     echo "<label>$label</label>";
 
     echo $this->Search->selectLang('trans_to', $trans_to, array(
-        'label' => __('Language:'),
+        'empty' => __('Language:'),
         'options' => $this->Languages->getSearchableLanguagesArray(),
     ));
     echo $this->Form->input('trans_link', array(

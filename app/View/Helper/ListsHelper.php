@@ -570,7 +570,7 @@ class ListsHelper extends AppHelper
                 'name',
                 array(
                     'type' => 'text',
-                    'label' => __p('list', 'Name')
+                    'empty' => __p('list', 'Name')
                 )
             );
             echo $this->Form->end(__('create'));

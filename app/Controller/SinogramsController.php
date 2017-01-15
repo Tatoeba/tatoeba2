@@ -52,7 +52,7 @@ class SinogramsController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        $this->Auth->allowedActions = array("*");
+        $this->Auth->allow();
     }
 
     /**

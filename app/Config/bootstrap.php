@@ -47,7 +47,7 @@
  * Inspired by http://php.net/manual/en/book.gettext.php#89975
  */
 if (!function_exists('__p')) {
-    function __p($context, $msgid, $return = false) {
+    function __p($context, $msgid, $return = true) {
          $contextMsgid = "{$context}\004{$msgid}";
          $translation = __($contextMsgid);
          $result = ($translation == $contextMsgid) ? $msgid : $translation;
@@ -55,7 +55,7 @@ if (!function_exists('__p')) {
              return $result;
          else
              echo $result;
-    } 
+    }
 }
 
 if (!function_exists('__np')) {
@@ -73,7 +73,7 @@ if (!function_exists('__np')) {
              return $result;
          else
              echo $result;
-    } 
+    }
 }
 
 /**

@@ -35,7 +35,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('What is Tatoeba?'))
 
         <p>
             <?php
-            __(
+            echo __(
                 'Tatoeba is a large database of sentences and translations. '.
                 'Its content is ever-growing and results from the voluntary '.
                 'contributions of thousands of members.'
@@ -44,7 +44,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('What is Tatoeba?'))
         </p>
         <p>
             <?php
-            __(
+            echo __(
                 'Tatoeba provides a tool for you to see examples of how words are '.
                 'used in the context of a sentence. You specify words that '.
                 'interest you, and it returns sentences containing these words '.
@@ -57,7 +57,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('What is Tatoeba?'))
 
         <p>
             <?php
-            __(
+            echo __(
                 'The project was founded by Trang Ho in 2006, hosted on '.
                 'Sourceforge under the codename of <em>multilangdict</em>.'
             );
@@ -66,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('What is Tatoeba?'))
 
         <p>
             <?php
-            __(
+            echo __(
                 'The video below, made in 2010, presents the core ideas of Tatoeba.'
             );
             ?>
