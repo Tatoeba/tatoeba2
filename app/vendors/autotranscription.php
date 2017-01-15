@@ -237,7 +237,7 @@ class Autotranscription
                joining each item with it. For instance, if you translate this
                string to “/” and the list is A, B, C, then the translated
                enumeration will be A/B/C. */
-            $charsEnumeration = implode(__(', ', true), $matches[0]);
+            $charsEnumeration = implode(__(', '), $matches[0]);
             $errors[] = format(
                 __n(
                     'The following character lacks furigana: {charsEnumeration}.',
@@ -321,7 +321,7 @@ class Autotranscription
 
     private function cmn_Latn_validate($sentenceText, $transcr, &$errors) {
         if (preg_match_all('/[\p{Han}]/u', $transcr, $matches)) {
-            $charsEnumeration = implode(__(', ', true), $matches[0]);
+            $charsEnumeration = implode(__(', '), $matches[0]);
             $errors[] = format(
                 __n(
                     'The following character is not transcribed: {charsEnumeration}.',

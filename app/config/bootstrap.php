@@ -49,7 +49,7 @@
 if (!function_exists('__p')) {
     function __p($context, $msgid, $return = false) {
          $contextMsgid = "{$context}\004{$msgid}";
-         $translation = __($contextMsgid, true);
+         $translation = __($contextMsgid);
          $result = ($translation == $contextMsgid) ? $msgid : $translation;
          if ($return)
              return $result;
@@ -62,7 +62,7 @@ if (!function_exists('__np')) {
     function __np($context, $singular, $plural, $count, $return = false) {
          $contextSingular = "{$context}\004{$singular}";
          $contextPlural = "{$context}\004{$plural}";
-         $translation = __n($contextSingular, $contextPlural, $count, true);
+         $translation = __n($contextSingular, $contextPlural, $count);
          if ($translation == $contextSingular)
              $result = $singular;
          elseif ($translation == $contextPlural)
