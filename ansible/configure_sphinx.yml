@@ -2,7 +2,7 @@
 #Playbook to configure sphinx and create indexes
 
 - hosts: all
-  sudo: yes
+  become: true
   gather_facts: yes
   pre_tasks:
   - name: Clean the index directory

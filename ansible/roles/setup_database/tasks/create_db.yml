@@ -7,7 +7,7 @@
 - name: Initialize database schema
   shell: find {{code_dir}}/docs/database/tables -type f -exec cat {} \; | mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}}
 - name: Fill database with initial values
-  shell: mysql -u {{mysql_user}} -p{{mysql_root_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/{{item}}
+  shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/{{item}}
   with_items:
   - import/users.sql
   - import/groups.sql

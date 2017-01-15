@@ -2,7 +2,7 @@
 # Playbook to backup the database, configs and other static files
 
 - hosts: all
-  sudo: yes
+  become: true
   gather_facts: yes
   vars:
   - timestamp: "{{ansible_date_time.date}}-{{ansible_date_time.hour}}.{{ansible_date_time.minute}}.{{ansible_date_time.second}}"

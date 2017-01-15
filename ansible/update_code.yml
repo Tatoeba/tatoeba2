@@ -2,7 +2,7 @@
 # Playbook to update the code from github
 
 - hosts: all
-  sudo: yes
+  become: true
   gather_facts: yes
   roles:
   - { role: update_code }

@@ -5,7 +5,7 @@
 #create indexes and start the search daemon (indexing takes 6-8 hours)
 
 - hosts: all
-  sudo: yes
+  become: true
   gather_facts: yes
   roles:
   - common

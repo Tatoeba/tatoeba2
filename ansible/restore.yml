@@ -2,7 +2,7 @@
 # Playbook to restore previously backed up data
 
 - hosts: all
-  sudo: yes
+  become: true
   gather_facts: yes
   roles:
   - restore
