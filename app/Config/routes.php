@@ -56,108 +56,102 @@ $interfaceLanguages = array(
     'lang' => join('|', $iso3LangArray)
 );
 
-
 /**
  * To route tools, in order to still have tools in the URL, which is
  * clearer for users IMHO
  * this rule appears first, that way /fre/tools/search_sinograms  is
  * not catch by the general rule for controllers
  */
+Router::connect(
+    '/tools/search_hanzi_kanji',
+    array(
+        'controller' => 'sinograms',
+        'action' =>'index'
+    )
+);
+Router::connect(
+    '/tools/search_hanzi_kanji/:action',
+    array(
+        'controller' => 'sinograms',
+    )
+);
 
-
-    Router::connect(
-        '/tools/search_hanzi_kanji',
-        array(
-            'controller' => 'sinograms',
-            'action' =>'index'
-        )
-    );
-    Router::connect(
-        '/tools/search_hanzi_kanji/:action',
-        array(
-            'controller' => 'sinograms',
-        )
-    );
-
-    Router::connect(
-        '/:lang/tools/search_hanzi_kanji',
-        array(
-            'lang'=>'eng',
-            'controller' => 'sinograms',
-            'action' =>'index'
-        ),
-        $interfaceLanguages
-    );
-    Router::connect(
-        '/:lang/tools/search_hanzi_kanji/:action',
-        array(
-            'lang'=>'eng',
-            'controller' => 'sinograms',
-        ),
-        $interfaceLanguages
-    );
+Router::connect(
+    '/:lang/tools/search_hanzi_kanji',
+    array(
+        'lang'=>'eng',
+        'controller' => 'sinograms',
+        'action' =>'index'
+    ),
+    $interfaceLanguages
+);
+Router::connect(
+    '/:lang/tools/search_hanzi_kanji/:action',
+    array(
+        'lang'=>'eng',
+        'controller' => 'sinograms',
+    ),
+    $interfaceLanguages
+);
 
 /**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/views/pages/home.thtml)...
  */
-    Router::connect(
-        '/',
-        array(
-            'controller' => 'pages',
-            'action' => 'index',
-        )
-    );
-    Router::connect(
-        '/:lang',
-        array(
-            'lang' => ':lang',
-            'controller' => 'pages',
-            'action' => 'index',
-        ),
-        $interfaceLanguages
-    );
-    // TODO : can we use directly "home" action instead of display ?
+Router::connect(
+    '/',
+    array(
+        'controller' => 'pages',
+        'action' => 'index',
+    )
+);
+Router::connect(
+    '/:lang',
+    array(
+        'lang' => ':lang',
+        'controller' => 'pages',
+        'action' => 'index',
+    ),
+    $interfaceLanguages
+);
+// TODO : can we use directly "home" action instead of display ?
 
-    Router::connect(
-        '/:action',
-        array(
-            'controller' => 'pages',
-        )
-    );
-    Router::connect(
-        '/:lang/:action',
-        array(
-            'lang' => ':lang',
-            'controller' => 'pages',
-        ),
-        $interfaceLanguages
-    );
-
-
+Router::connect(
+    '/:action',
+    array(
+        'controller' => 'pages',
+    )
+);
+Router::connect(
+    '/:lang/:action',
+    array(
+        'lang' => ':lang',
+        'controller' => 'pages',
+    ),
+    $interfaceLanguages
+);
 
 /**
  * Then we connect url '/test' to our test controller. This is helpful in
  * developement.
  */
-    Router::connect(
-        '/tests',
-        array(
-            'controller' => 'tests',
-            'action' => 'index'
-        )
-    );
+Router::connect(
+    '/tests',
+    array(
+        'controller' => 'tests',
+        'action' => 'index'
+    )
+);
 /**
  * La langue choisie sera maintenant disponible dans les contrôleurs
  * par la variable $this->params['lang'].
  */
-    Router::connect(
-        '/:lang/:controller/:action/*',
-        array(
-            'lang'=>'eng'
-        ),
-        $interfaceLanguages
-    );
-
+Router::connect(
+    '/:lang/:controller/:action/*',
+    array(
+        'lang'=>'eng'
+    ),
+    $interfaceLanguages
+);
 ?>

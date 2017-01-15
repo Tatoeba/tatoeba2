@@ -116,7 +116,6 @@
     <?php
     echo $this->element('foot');
     echo $this->element('sql_dump');
-    var_dump("PENIS", $this->request);
 
     $this->Html->script(JS_PATH . 'jquery-1.11.3.min.js', array('block' => 'scriptBottom'));
     $this->Html->script(JS_PATH . 'angular/angular.min.js', array('block' => 'scriptBottom'));

@@ -52,8 +52,7 @@ class PagesHelper extends AppHelper
     }
 
     public function currentPageUrl() {
-        $params = array_diff_key($this->request->params, array_flip(array("_Token")));
-        return Router::reverse($params);
+        return Router::reverse($this->request);
     }
 
     /**
@@ -70,7 +69,7 @@ class PagesHelper extends AppHelper
         if ($real_total == null) {
             $real_total = 0;
         }
-        
+
         if (!empty($vocabulary) && $real_total != $vocabulary['Vocabulary']['numSentences']) {
             echo format(__(
                 'Recently added sentences may not appear in search results.',

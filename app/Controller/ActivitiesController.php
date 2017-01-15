@@ -49,7 +49,7 @@ class ActivitiesController extends AppController
         parent::beforeFilter();
 
         // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array("*");
+        $this->Auth->allow();
     }
 
 
@@ -120,7 +120,7 @@ class ActivitiesController extends AppController
         $this->set('tagDeleteName', $tagDeleteName);
         $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName);
         $this->set('tagOKName', $tagOKName);
-      
+
         $this->set('tagChangeId', $tagChangeId);
         $this->set('tagCheckId', $tagCheckId);
         $this->set('tagDeleteId', $tagDeleteId);

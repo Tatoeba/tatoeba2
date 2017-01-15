@@ -58,7 +58,7 @@ class Tag extends AppModel
             'associationForeignKey' => 'tag_id'
         ),
     );
-  
+
     public function getChangeTagName()
     {
         return '@change';
@@ -86,7 +86,7 @@ class Tag extends AppModel
      *              False if we have to abort it
      */
 
-    public function beforeSave()
+    public function beforeSave($options = array())
     {
         $tagName = $this->data['Tag']['name'];
         $result = $this->getIdFromName($tagName);
@@ -107,7 +107,7 @@ class Tag extends AppModel
         // character would be split, the entire character will be
         // truncated.
         $tagName = mb_strcut($tagName, 0, 50, "UTF-8");
-        
+
         // Special case: don't allow the owner of a sentence to give it an OK tag.
         if ($tagName == 'OK') {
             $owner = $this->Sentence->getOwnerInfoOfSentence($sentenceId);
@@ -115,7 +115,7 @@ class Tag extends AppModel
                 return false;
             }
         }
-        
+
         $data = array(
             "Tag" => array(
                 "name" => $tagName,
@@ -123,7 +123,7 @@ class Tag extends AppModel
                 "created" => date("Y-m-d H:i:s")
             )
         );
-        // try to add it as a new tag 
+        // try to add it as a new tag
         $added = $this->save($data);
         if ($added) {
             $tagId = $this->id;
@@ -151,7 +151,7 @@ class Tag extends AppModel
             );
             return $tagId;
         }
-        
+
         return false;
     }
 
@@ -203,12 +203,12 @@ class Tag extends AppModel
 
     }
 
-    
+
     /**
      * Get tag id from tag internal name.
-     * 
+     *
      * @param string $tagInternalName Internal name of the tag.
-     * 
+     *
      * @return int Id of the tag
      */
     public function getIdFromInternalName($tagInternalName) {
@@ -221,8 +221,8 @@ class Tag extends AppModel
         );
         return $result['Tag']['id'];
     }
-    
-    
+
+
     /**
      *
      * TODO
@@ -238,7 +238,7 @@ class Tag extends AppModel
         );
         return $result['Tag']['id'];
     }
-    
+
 
     /**
      *
@@ -255,7 +255,7 @@ class Tag extends AppModel
         );
         return empty($result) ? false : true;
     }
-    
+
 
     /**
      *

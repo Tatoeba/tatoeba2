@@ -45,7 +45,7 @@ class ContributionsController extends AppController
         'Logs',
         'Navigation',
         'Date',
-        'languages',
+        'Languages',
         'CommonModules',
         'Members'
     );
@@ -61,7 +61,7 @@ class ContributionsController extends AppController
     {
         parent::beforeFilter();
 
-        $this->Auth->allowedActions = array('*');
+        $this->Auth->allow();
     }
 
     /**
@@ -96,7 +96,7 @@ class ContributionsController extends AppController
             )
         );
         $contributions = $this->paginate();
-        
+
         $this->set('contributions', $contributions);
         $this->set('langFilter', $filter);
     }

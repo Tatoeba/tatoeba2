@@ -632,7 +632,7 @@ class LanguagesLib
 
     public static function languageExists($code)
     {
-        $available =& self::languagesInTatoeba();
+        $available = self::languagesInTatoeba();
         return isset($available[$code]);
     }
 }

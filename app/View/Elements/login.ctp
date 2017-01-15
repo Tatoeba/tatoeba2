@@ -52,9 +52,9 @@
     );
     ?>
     </li>
-    
+
     <li>
-    <?php    
+    <?php
     echo $this->Html->link(
         __('Log in'),
         array(
@@ -74,7 +74,7 @@
 <?php
 $this->Security->enableCSRFProtection();
 echo $this->Form->create(
-    'User', 
+    'User',
     array(
         'url' => array(
             'action' => 'check_login',
@@ -95,13 +95,13 @@ echo $this->Form->input(
 );
 // Password
 echo $this->Form->input(
-    'password', 
+    'password',
     array(
         'label' => __('Password: ')
     )
 );
 // Checkbox
-echo $this->Form->checkbox('rememberMe'); 
+echo $this->Form->checkbox('rememberMe');
 echo '<label for="UserRememberMe" class="notInBlackBand">';
 echo __('Remember me');
 echo '</label>';

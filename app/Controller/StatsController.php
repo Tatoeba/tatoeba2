@@ -48,7 +48,7 @@ class StatsController extends AppController
         parent::beforeFilter();
 
         // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array("*");
+        $this->Auth->allow();
     }
 
     /**

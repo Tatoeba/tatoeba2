@@ -95,7 +95,7 @@ class Audio extends AppModel
         }
     }
 
-    public function beforeSave() {
+    public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['id']) &&
             isset($this->data[$this->alias]['sentence_id'])) {
             // save the previous sentence_id before updating it
@@ -117,7 +117,7 @@ class Audio extends AppModel
         return $ok;
     }
 
-    public function afterSave($created) {
+    public function afterSave($created, $options = array()) {
         if (isset($this->data[$this->alias]['sentence_id'])) {
             $this->Sentence->flagSentenceAndTranslationsToReindex(
                 $this->data[$this->alias]['sentence_id']

@@ -204,7 +204,7 @@ class Transcription extends AppModel
         return ($this->find('count', array('conditions' => $conditions)) == 0);
     }
 
-    public function beforeSave() {
+    public function beforeSave($options = array()) {
         $ok = true;
         if (isset($this->data[$this->alias]['id'])) { // update
             if ($this->isModifyingFields(array('sentence_id', 'script')))
