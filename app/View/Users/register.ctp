@@ -71,7 +71,7 @@ $label = format(
     $this->Html->url(array("controller"=>"pages", "action"=>"terms_of_use#$lang"))
 );
 ?>
-<h2><? __('Register'); ?></h2>
+<h2><? echo __('Register'); ?></h2>
 
 <div layout="row" layout-align="center center">
     <md-input-container class="md-icon-float md-icon-left md-block" flex>
@@ -95,16 +95,16 @@ $label = format(
         ?>
         <div ng-messages="registrationForm['data[User][username]'].$error">
             <div ng-message="required">
-                <? __('Field required') ?>
+                <? echo __('Field required') ?>
             </div>
             <div ng-message="minlength">
-                <? __('Username must be at least two characters long') ?>
+                <? echo __('Username must be at least two characters long') ?>
             </div>
             <div ng-message="pattern">
-                <? __('Username can only contain letters, numbers, or underscore') ?>
+                <? echo __('Username can only contain letters, numbers, or underscore') ?>
             </div>
             <div ng-message="uniqueUsername">
-                <? __('Username already taken.') ?>
+                <? echo __('Username already taken.') ?>
             </div>
         </div>
     </md-input-container>
@@ -133,10 +133,10 @@ $label = format(
         ?>
         <div ng-messages="registrationForm['data[User][password]'].$error">
             <div ng-message="required">
-                <? __('Field required') ?>
+                <? echo __('Field required') ?>
             </div>
             <div ng-message="minlength">
-                <? __('Password must be at least 6 characters long') ?>
+                <? echo __('Password must be at least 6 characters long') ?>
             </div>
         </div>
     </md-input-container>
@@ -147,7 +147,7 @@ $label = format(
             <md-icon ng-if="ctrl.isPasswordVisible">visibility</md-icon>
             <md-icon ng-if="!ctrl.isPasswordVisible">visibility_off</md-icon>
             <md-tooltip ng-if="!ctrl.isPasswordVisible">
-                <? __('unmask password') ?>
+                <? echo __('unmask password') ?>
             </md-tooltip>
         </md-button>
     </md-input-container>
@@ -175,13 +175,13 @@ $label = format(
         ?>
         <div ng-messages="registrationForm['data[User][email]'].$error">
             <div ng-message="required">
-                <? __('Field required') ?>
+                <? echo __('Field required') ?>
             </div>
             <div ng-message="pattern">
-                <? __('Invalid email address') ?>
+                <? echo __('Invalid email address') ?>
             </div>
             <div ng-message="uniqueEmail">
-                <? __('Email address already used.') ?>
+                <? echo __('Email address already used.') ?>
             </div>
         </div>
     </md-input-container>
@@ -195,7 +195,7 @@ $label = format(
 <div id="native-language" layout="column">
     <div class="input" layout="row">
         <md-icon>language</md-icon>
-        <label for="UserLanguage" flex><? __('Native language:'); ?></label>
+        <label for="UserLanguage" flex><? echo __('Native language:'); ?></label>
         <?
         $languagesList = $this->Languages->languagesArrayWithNone(false);
         $language = $language ? $language : 'none';
@@ -226,12 +226,12 @@ $label = format(
     <div layout="row" layout-align="center start">
         <md-icon>verified_user</md-icon>
         <div class="title" flex>
-            <? __('We need to make sure you are human.'); ?>
+            <? echo __('We need to make sure you are human.'); ?>
         </div>
     </div>
 
     <div class="instructions">
-        <? __('What are the first five characters of your email address?'); ?>
+        <? echo __('What are the first five characters of your email address?'); ?>
     </div>
 
     <md-input-container class="md-block">

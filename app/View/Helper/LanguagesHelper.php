@@ -476,7 +476,7 @@ class LanguagesHelper extends AppHelper
 
         <div layout="row" layout-align="center center">
             <md-button class="md-raised md-primary" href="<?= $newLangUrl ?>">
-                <? __('Add a language'); ?>
+                <? echo __('Add a language'); ?>
             </md-button>
         </div>
         <?php

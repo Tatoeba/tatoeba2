@@ -44,7 +44,7 @@ echo $this->Form->create('User', array(
 ?>
 
 <div md-whiteframe="1" id="reset-form">
-    <h2><? __('Send new password'); ?></h2>
+    <h2><? echo __('Send new password'); ?></h2>
         <md-input-container class="md-block">
         <?php
         echo $this->Form->input(

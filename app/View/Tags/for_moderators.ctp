@@ -80,7 +80,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Tags for moderators
                     array('changeTag' => $tagChangeLink, 'deleteTag' => $tagDeleteLink));
         ?>
         </p>
-        <p><?php __('Aside from special situations where your common sense will tell you that it is '. 
+        <p><?php echo __('Aside from special situations where your common sense will tell you that it is '. 
         'better to react as soon as possible, it is best to use your '.
         'corpus maintainer powers <strong>ONLY</strong> on sentences that appear '.
         'in this list, since the owners have had enough time to respond to comments.'); 

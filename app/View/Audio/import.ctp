@@ -124,7 +124,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     ?>
     </table>
 <?php else: ?>
-    <p><?php __('admin', 'No files have been detected '.
+    <p><?php echo __('admin', 'No files have been detected '.
                          'inside the import directory.'); ?></p>
 <?php endif; ?>
 <?php

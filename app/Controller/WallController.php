@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
 
-class WallController extends Appcontroller
+class WallController extends AppController
 {
 
     public $persistentModel = true;
@@ -86,7 +86,7 @@ class WallController extends Appcontroller
     public function index()
     {
         $tenLastMessages = $this->Wall->getLastMessages(10);
-        
+
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
@@ -279,14 +279,14 @@ class WallController extends Appcontroller
                     $this->Session->setFlash(
                         __('You cannot save an empty message.')
                     );
-                
+
                     $this->redirect(
                     array(
                             "action" => "edit",
                             $messageId
                         )
                     );
-                
+
                 } else  if ($this->Wall->save($editedPost)) {
                     $this->Session->setFlash(
                         __("Message saved.")
@@ -422,7 +422,7 @@ class WallController extends Appcontroller
             $userId,
             $groupId
         );
-        
+
         if (!empty($thread)) {
             $this->set("message", $thread[0]);
         } else {
@@ -433,8 +433,8 @@ class WallController extends Appcontroller
                 array('action' => 'index')
             );
         }
-        
-        
+
+
         $this->set("isAuthenticated", $this->Auth->user());
     }
 
@@ -455,7 +455,7 @@ class WallController extends Appcontroller
             "limit" => 20,
             "fields" => array (
                 "id", "date", "content", "hidden", "owner", "modified"
-            ), 
+            ),
             "conditions" => array (
                 "owner" => $userId,
             ),

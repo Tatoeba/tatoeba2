@@ -101,7 +101,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             <md-icon ng-show="sentence.duplicate">warning</md-icon>
                             <md-tooltip md-direction="top" 
                                         ng-show="sentence.duplicate">
-                                <? __('This sentence already exists.') ?>
+                                <? echo __('This sentence already exists.') ?>
                             </md-tooltip>
                         </md-button>
                         <div class="text" flex>{{sentence.text}}</div>
@@ -116,7 +116,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                       layout="column" flex ng-show="false"
                       ng-submit="ctrl.saveSentence('<?= $id ?>', '<?= $lang ?>')">
                     <md-input-container flex>
-                        <label><? __('Sentence'); ?></label>
+                        <label><? echo __('Sentence'); ?></label>
                         <input type="text" ng-disabled="ctrl.isAdding"
                                ng-model="ctrl.sentence['<?= $id ?>']">
                     </md-input-container>
@@ -124,11 +124,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         <md-button class="md-raised"
                                    ng-disabled="ctrl.isAdding"
                                    ng-click="ctrl.hideForm('<?= $id ?>')">
-                            <? __('Cancel') ?>
+                            <? echo __('Cancel') ?>
                         </md-button>
                         <md-button type="submit" class="md-raised md-primary"
                                    ng-disabled="ctrl.isAdding">
-                            <? __('Submit') ?>
+                            <? echo __('Submit') ?>
                         </md-button>
                     </div>
                 </form>

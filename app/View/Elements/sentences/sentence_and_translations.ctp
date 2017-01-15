@@ -64,7 +64,7 @@ $notReliable = $sentence['correctness'] == -1;
             <? if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>
                 <md-tooltip md-direction="top">
-                    <? __('This sentence is not reliable.') ?>
+                    <? echo __('This sentence is not reliable.') ?>
                 </md-tooltip>
             <? } ?>
             <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
@@ -76,7 +76,7 @@ $notReliable = $sentence['correctness'] == -1;
     <? if (count($directTranslations) > 0) { ?>
         <div layout="column" class="direct translations">
             <md-divider></md-divider>
-            <md-subheader><? __('Translations') ?></md-subheader>
+            <md-subheader><? echo __('Translations') ?></md-subheader>
             <? foreach ($directTranslations as $translation) {
                 $isExtra = $numExtra > 1 && $displayedTranslations >= $maxDisplayed;
                 echo $this->element(
@@ -99,7 +99,7 @@ $notReliable = $sentence['correctness'] == -1;
         }
         ?>
         <div layout="column" <?= $showExtra ?> class="indirect translations">
-            <md-subheader><? __('Translations of translations') ?></md-subheader>
+            <md-subheader><? echo __('Translations of translations') ?></md-subheader>
             <? foreach ($indirectTranslations as $translation) {
                 $isExtra = $numExtra > 1 && $displayedTranslations >= $maxDisplayed;
                 echo $this->element(

@@ -222,8 +222,8 @@ class UsersController extends AppController
         else
         {
             $redirectUrl = $this->Auth->redirect();
-            if (isset($this->request->params['url']['redirectTo'])) {
-                $redirectUrl = $this->request->params['url']['redirectTo'];
+            if (isset($this->request->query['redirectTo'])) {
+                $redirectUrl = $this->request->query['redirectTo'];
             }
             $failedUrl = array(
                 'action' => 'login',
@@ -236,7 +236,7 @@ class UsersController extends AppController
                              __(
                                 'You must fill in your '.
                                 'username and password.', true
-                                ), 
+                                ),
                              $failedUrl
                              );
             } else {

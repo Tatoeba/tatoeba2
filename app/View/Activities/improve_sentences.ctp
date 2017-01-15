@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Improve sentences')));
 $changeURL = $this->Html->url(
                        array(
@@ -68,11 +68,11 @@ $okURL = $this->Html->url(
 <div id="main_content">
     <div class="module">
     <h2><?php echo __('Tags you should know about'); ?></h2>
-    
-    <p><?php __('The community has come up with several "utility tags" to improve the quality and '.
+
+    <p><?php echo __('The community has come up with several "utility tags" to improve the quality and '.
     'reliability of sentences.'); ?></p>
     <ul>
-    <?php 
+    <?php
     $tagChangeLink = sprintf('<a href="%s">%s</a>', $changeURL, $tagChangeName);
     $tagCheckLink  = sprintf('<a href="%s">%s</a>', $checkURL, $tagCheckName);
     $tagNNCLink    = sprintf('<a href="%s">%s</a>', $nncURL, $tagNeedsNativeCheckName);
@@ -96,8 +96,8 @@ $okURL = $this->Html->url(
     ?>
     </ul>
     </div>
-    
-    
+
+
     <div class="module">
         <h2><?php echo __('How to help'); ?></h2>
     <ol><?php

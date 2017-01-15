@@ -116,7 +116,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
 
                 </md-checkbox>
-                <p><?php __(
+                <p><?php echo __(
                 'Display a link to expand/collapse translations ' .
                 'when there are too many translations.'
                 ) ?></p>
@@ -197,7 +197,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <p><? __('Number of sentences per page'); ?></p>
+                <p><? echo __('Number of sentences per page'); ?></p>
                 <?php echo $this->Form->input('settings.sentences_per_page', array(
                     'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
                     'label' => ''
@@ -247,7 +247,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="nativeIndicator = <?= $nativeIndicator ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php __(
+                <p><?php echo __(
                 'Display "(native)" next to username on sentences ' .
                 'when the owner indicated in their profile that they have a native '.
                 'level in the language of the sentence.'
@@ -289,7 +289,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="useNewDesign = <?= $useNewDesign ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php __(
+                <p><?php echo __(
                     'Display sentences with the new design. '.
                     'Note that you will not have all the features '.
                     'from the old design.'

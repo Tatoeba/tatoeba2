@@ -40,14 +40,14 @@
  */
 ?>
 <div class="section" md-whiteframe="1">
-    <h2><? __('Page temporarily disabled') ?></h2>
+    <h2><? echo __('Page temporarily disabled') ?></h2>
 
     <p>
-        <? __(
+        <? echo __(
             'This page is currently disabled due to technical issues: '.
             'it may be slowing down the website or is dysfunctional.'
         ) ?>
     </p>
 
-    <p><? __('We are sorry for the inconvenience.') ?></p>
+    <p><? echo __('We are sorry for the inconvenience.') ?></p>
 </div>

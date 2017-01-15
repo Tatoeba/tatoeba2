@@ -31,7 +31,7 @@ $notReliable = $translation['correctness'] == -1;
     <? if ($notReliable) { ?>
         <md-icon class="md-warn">warning</md-icon>
         <md-tooltip md-direction="top">
-            <? __('This sentence is not reliable.') ?>
+            <? echo __('This sentence is not reliable.') ?>
         </md-tooltip>
     <? } ?>
     <md-button class="md-icon-button"

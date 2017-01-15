@@ -220,7 +220,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
 
                 <div layout="column" flex layout-margin>
                     <div layout="row">
-                        <div class="label"><? __('Member since') ?></div>
+                        <div class="label"><? echo __('Member since') ?></div>
                         <div flex><?= $userSince ?></div>
                     </div>
 
@@ -305,7 +305,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
 
     <div class="section with-title-button" md-whiteframe="1">
         <div layout="row" layout-align="start center">
-            <h2 flex><? __('Languages'); ?></h2>
+            <h2 flex><? echo __('Languages'); ?></h2>
             <?php
             if ($username == $currentMember) {
                 $addLangUrl = $this->Html->url(array(

@@ -97,7 +97,7 @@ $vocabularyUrl = $this->Html->url(array(
 
             <div layout="column">
                 <div class="language-select" layout="row" layout-align="start center">
-                    <label><? __('Language'); ?></label>
+                    <label><? echo __('Language'); ?></label>
                     <?php
                     echo $this->Form->select(
                         'contributionLang',
@@ -113,7 +113,7 @@ $vocabularyUrl = $this->Html->url(array(
                 </div>
 
                 <md-input-container flex>
-                    <label><? __('Sentence'); ?></label>
+                    <label><? echo __('Sentence'); ?></label>
                     <input id="SentenceText" type="text" ng-model="ctrl.data.text"
                            autocomplete="off"
                            ng-disabled="ctrl.isAdding">
@@ -122,7 +122,7 @@ $vocabularyUrl = $this->Html->url(array(
 
                 <div layout="row" layout-align="center center">
                     <md-button id="submitNewSentence" class="md-raised md-primary">
-                        <? __('OK') ?>
+                        <? echo __('OK') ?>
                     </md-button>
                 </div>
             </div>
@@ -152,9 +152,9 @@ $vocabularyUrl = $this->Html->url(array(
 
     <div class="section" md-whiteframe="1">
         <div layout="column" layout-align="center center">
-            <? __('Check out the vocabulary for which we need sentences'); ?>
+            <? echo __('Check out the vocabulary for which we need sentences'); ?>
             <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
-                <? __('Sentences wanted') ?>
+                <? echo __('Sentences wanted') ?>
                 <md-icon>keyboard_arrow_right</md-icon>
             </md-button>
         </div>

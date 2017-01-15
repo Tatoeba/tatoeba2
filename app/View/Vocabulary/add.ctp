@@ -37,7 +37,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <div class="section" layout="column" md-whiteframe="1">
-        <h2><? __('Tips'); ?></h2>
+        <h2><? echo __('Tips'); ?></h2>
         <p><?
         __(
             'Add vocabulary that you are learning. If your vocabulary does not '.
@@ -54,7 +54,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <form ng-submit="ctrl.add()">
             <div layout="row">
                 <div class="language" layout="column">
-                    <label for="lang-select"><? __('Language'); ?></label>
+                    <label for="lang-select"><? echo __('Language'); ?></label>
                     <?php
                     $langArray = $this->Languages->profileLanguagesArray(
                         false, false
@@ -75,7 +75,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 </div>
 
                 <md-input-container flex>
-                    <label><? __('Vocabulary item'); ?></label>
+                    <label><? echo __('Vocabulary item'); ?></label>
                     <input type="text" ng-model="ctrl.data.text"
                            autocomplete="off"
                            ng-disabled="ctrl.isAdding">
@@ -85,7 +85,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary"
                            ng-disabled="ctrl.isAdding || !ctrl.data.text || !ctrl.data.lang">
-                    <? __('Add'); ?>
+                    <? echo __('Add'); ?>
                 </md-button>
             </div>
         </form>
@@ -94,7 +94,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     <div class="section" md-whiteframe="1">
         <div layout="row">
-            <h2 flex><? __('Vocabulary items added'); ?></h2>
+            <h2 flex><? echo __('Vocabulary items added'); ?></h2>
             <md-progress-circular md-mode="indeterminate"
                                   md-diameter="32"
                                   ng-show="ctrl.isAdding">

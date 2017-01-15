@@ -188,7 +188,7 @@ $this->Navigation->displaySentenceNavigation(
     </div>
 
     <div class="section">
-        <h2><? __('Comments'); ?></h2>
+        <h2><? echo __('Comments'); ?></h2>
         <?php
         if (!empty($sentenceComments)) {
             echo '<div class="comments">';

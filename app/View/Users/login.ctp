@@ -40,9 +40,10 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
 
 if  ($this->Session->check('Message.auth')) $this->Session->flash('auth');
 
-$formTarget = array('action' => 'check_login');
-if (isset($this->request->params['url']['redirectTo'])) {
-    $formTarget['?'] = array('redirectTo' => $this->request->params['url']['redirectTo']);
+$formTarget = array('controller' => 'users', 'action' => 'check_login');
+
+if (isset($this->request->query['redirectTo'])) {
+    $formTarget['?'] = array('redirectTo' => $this->request->query['redirectTo']);
 }
 
 $passwordUrl = $this->Html->url(
@@ -76,7 +77,7 @@ echo $this->Form->checkbox(
 );
 ?>
 <div md-whiteframe="1" id="login-form">
-    <h2><? __('Log in'); ?></h2>
+    <h2><? echo __('Log in'); ?></h2>
     <md-input-container class="md-block">
         <?php
         echo $this->Form->input(
@@ -102,7 +103,7 @@ echo $this->Form->checkbox(
         ng-false-value='0'
         ng-true-value='1' ng-init='rememberLogin = 0'
         class='md-primary'>
-        <label><? __('Remember me') ?></label>
+        <label><? echo __('Remember me') ?></label>
     </md-checkbox>
     <?php
     echo $this->Form->checkbox(
@@ -121,7 +122,7 @@ echo $this->Form->checkbox(
         </md-button>
 
         <md-button class="md-primary" href="<?= $passwordUrl ?>" flex>
-            <? __('Forgot your password?'); ?>
+            <? echo __('Forgot your password?'); ?>
         </md-button>
 
         <md-button href="<?= $registerUrl; ?>">

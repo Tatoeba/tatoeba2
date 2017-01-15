@@ -64,7 +64,7 @@ class Wall extends AppModel
      * @return void
      */
 
-    public function afterSave($created)
+    public function afterSave($created, $options = array())
     {
         if (isset($this->data['Wall']['content'])) {
             $data['newMessage']['owner'] = $this->data['Wall']['owner'] ;
