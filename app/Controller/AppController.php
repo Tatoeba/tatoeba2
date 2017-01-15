@@ -34,6 +34,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('Controller', 'Controller');
+
 App::import('Core', 'Sanitize');
 App::import('Model', 'CurrentUser');
 App::import('Vendor', 'LanguagesLib');
@@ -111,11 +113,11 @@ class AppController extends Controller
     }
 
     /**
-     * 
+     *
      *
      * @return void
      */
-    public function beforeFilter() 
+    public function beforeFilter()
     {
         Security::setHash('md5');
         // only prevent CSRF for logins and registration in the users controller
@@ -126,12 +128,12 @@ class AppController extends Controller
         // When one tries to do an AJAX action after the session is expired,
         // the action will return the content of this file instead of
         // the whole page.
-        $this->Auth->ajaxLogin = 'session_expired'; 
+        $this->Auth->ajaxLogin = 'session_expired';
         $this->Auth->allow('display');
         $this->Auth->authorize = 'actions';
-        $this->Auth->authError = __('You need to be logged in.');
+        $this->Auth->authError = __('You need to be logged in.', true);
         // very important for the "remember me" to work
-        $this->Auth->autoRedirect = false; 
+        $this->Auth->autoRedirect = false;
         $this->RememberMe->check();
 
         // So that we can access the current users info from models.
@@ -139,7 +141,7 @@ class AppController extends Controller
         CurrentUser::store($this->Auth->user());
 
         $this->linkSentenceAndTranslationModels();
-        
+
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the
         //   language of the browser is not supported).
@@ -150,8 +152,8 @@ class AppController extends Controller
         }
         $langInCookie = $this->Cookie->read('interfaceLanguage');
         $langInURL = null;
-        if (isset($this->request->params['lang'])) {
-            $langInURL = $this->request->params['lang'];
+        if (isset($this->params['lang'])) {
+            $langInURL = $this->params['lang'];
         }
 
         $langInURLAlias = $this->remapOldLangAlias($langInURL);
@@ -172,7 +174,7 @@ class AppController extends Controller
         Configure::write('Config.language', $lang);
 
         // Forcing the URL to have the (correct) language in it.
-        $url = Router::reverse($this->request->params);
+        $url = Router::reverse($this->params);
         if (!empty($langInURL) && (
               ($langInCookie && $langInURL != $langInCookie) ||
               ($langInURLAlias != $langInURL)
@@ -209,7 +211,7 @@ class AppController extends Controller
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
         }
-        
+
         // TODO
         // We're passing the value from the cookie to the session because it is
         // needed for the translation form (in helpers/sentences.php), but we
@@ -217,17 +219,17 @@ class AppController extends Controller
         // This is not optimized, but I'm too lazy to do otherwise.
         $preSelectedLang = $this->Cookie->read('contribute_lang');
         $this->Session->write('contribute_lang', $preSelectedLang);
-        
+
         // Same for these cookies, used in show_all_in.
         $lang = $this->Cookie->read('browse_sentences_in_lang');
         $this->Session->write('browse_sentences_in_lang', $lang);
-        
+
         $translationLang = $this->Cookie->read('show_translations_into_lang');
         $this->Session->write('show_translations_into_lang', $translationLang);
-        
+
         $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
         $this->Session->write('not_translated_into_lang', $notTranslatedInto);
-        
+
         $filterAudioOnly = $this->Cookie->read('filter_audio_only');
         $this->Session->write('filter_audio_only', $filterAudioOnly);
 
@@ -236,25 +238,25 @@ class AppController extends Controller
         $mostRecentList = $this->Cookie->read('most_recent_list');
         $this->Session->write('most_recent_list', $mostRecentList);
     }
-    
+
 
     /**
      * TODO This method smells
      *
      * @return void
      */
-    public function flash($msg,$to)
+    public function flash($msg, $to, $pause = 1, $layout = 'flash')
     {
         $this->Session->setFlash($msg);
         if (is_array($to)) {
-            $to = array_merge(array('lang' => $this->request->params['lang']), $to);
+            $to = array_merge(array('lang' => $this->params['lang']), $to);
         } else {
-            $to = '/'.$this->request->params['lang'].$to;
+            $to = '/'.$this->params['lang'].$to;
         }
         $this->redirect($to);
         $this->_stop();
     }
-    
+
 
     /**
      * Redirect to a given url, and specify the interface language
@@ -270,12 +272,12 @@ class AppController extends Controller
     {
         // if the developer has used "redirect" method without
         // specifying the lang param, then we add it
-        if (isset($this->request->params['lang']) && is_array($url)) {
-            $url['lang'] = $this->request->params['lang'];
+        if (isset($this->params['lang']) && is_array($url)) {
+            $url['lang'] = $this->params['lang'];
         }
         return parent::redirect($url, $status, $exit);
     }
-    
+
 
     /**
      * Returns the ISO code of the language in which we should set the interface,
@@ -292,18 +294,18 @@ class AppController extends Controller
             $supportedLanguages[$browserCompatibleCode] = $langs[0];
         }
 
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 
-            
+        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+
             $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-            
+
             foreach ($browserLanguages as $browserLang) {
                 $browserLangArray = explode(';', $browserLang);
                 $lang = $browserLangArray[0];
                 if (isset($supportedLanguages[$lang])) {
                     return $supportedLanguages[$lang];
-                } 
+                }
             }
-            
+
         }
         return 'eng';
     }

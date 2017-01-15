@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('Helper', 'View');
+
 /**
  * Controller for contributions.
  *

@@ -81,7 +81,7 @@
 class DATABASE_CONFIG {
 
 	var $default = array(
-		'driver' => 'mysql',
+		'datasource'  => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => '{{mysql_user}}',
@@ -92,7 +92,7 @@ class DATABASE_CONFIG {
 	);
 
 	var $test = array(
-		'driver' => 'mysql',
+		'datasource'  => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => '{{mysql_test_user}}',
