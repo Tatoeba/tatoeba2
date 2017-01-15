@@ -28,163 +28,163 @@
 
 <div class="section" md-whiteframe="1">
     <h2><?php echo $username; ?></h2>
-    
-    <ul class="annexeMenu">
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Profile'),
-        array(
-            'controller' => 'user',
-            'action' => 'profile',
-            $username
-        )
-    );
-    ?>
-    </li>
-    
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Sentences'),
-        array(
-            'controller' => 'sentences',
-            'action' => 'of_user',
-            $username
-        )
-    );
-    ?>
-    </li>
 
-    <li class="item">
+    <ul class="annexeMenu">
+        <li class="item">
         <?php
         echo $this->Html->link(
-            __('Vocabulary'),
+            __('Profile'),
             array(
-                'controller' => 'vocabulary',
+                'controller' => 'user',
+                'action' => 'profile',
+                $username
+            )
+        );
+        ?>
+        </li>
+
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Sentences'),
+            array(
+                'controller' => 'sentences',
+                'action' => 'of_user',
+                $username
+            )
+        );
+        ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $this->Html->link(
+                __('Vocabulary'),
+                array(
+                    'controller' => 'vocabulary',
+                    'action' => 'of',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Collection'),
+            array(
+                'controller' => 'collections',
                 'action' => 'of',
                 $username
             )
         );
         ?>
-    </li>
+        </li>
 
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Collection'),
-        array(
-            'controller' => 'collections',
-            'action' => 'of',
-            $username
-        )
-    );
-    ?>
-    </li>
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Transcriptions'),
+            array(
+                'controller' => 'transcriptions',
+                'action' => 'of',
+                $username
+            )
+        );
+        ?>
+        </li>
 
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Transcriptions'),
-        array(
-            'controller' => 'transcriptions',
-            'action' => 'of',
-            $username
-        )
-    );
-    ?>
-    </li>
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Lists'),
+            array(
+                'controller' => 'sentences_lists',
+                'action' => 'of_user',
+                $username
+            )
+        );
+        ?>
+        </li>
 
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Lists'),
-        array(
-            'controller' => 'sentences_lists',
-            'action' => 'of_user',
-            $username
-        )
-    );
-    ?>
-    </li>
-    
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Favorites'),
-        array(
-            'controller' => 'favorites',
-            'action' => 'of_user',
-            $username
-        )
-    );
-    ?>
-    </li>
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Favorites'),
+            array(
+                'controller' => 'favorites',
+                'action' => 'of_user',
+                $username
+            )
+        );
+        ?>
+        </li>
 
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Audio'),
-        array(
-            'controller' => 'audio',
-            'action' => 'of',
-            $username
-        )
-    );
-    ?>
-    </li>
-    
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Comments'),
-        array(
-            'controller' => 'sentence_comments',
-            'action' => 'of_user',
-            $username
-        )
-    );
-    ?>
-    </li>
-    
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        format(__("Comments on {user}'s sentences"), array('user' => $username)),
-        array(
-            'controller' => 'sentence_comments',
-            'action' => 'on_sentences_of_user',
-            $username
-        )
-    );
-    ?>
-    </li>
-    
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Wall messages'),
-        array(
-            'controller' => 'wall',
-            'action' => 'messages_of_user',
-            $username
-        )
-    );
-    ?>
-    </li>
-    
-    <li class="item">
-    <?php
-    echo $this->Html->link(
-        __('Logs'),
-        array(
-            'controller' => 'contributions',
-            'action' => 'of_user',
-            $username
-        )
-    );
-    ?>
-    </li>
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Audio'),
+            array(
+                'controller' => 'audio',
+                'action' => 'of',
+                $username
+            )
+        );
+        ?>
+        </li>
+
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Comments'),
+            array(
+                'controller' => 'sentence_comments',
+                'action' => 'of_user',
+                $username
+            )
+        );
+        ?>
+        </li>
+
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            format(__("Comments on {user}'s sentences"), array('user' => $username)),
+            array(
+                'controller' => 'sentence_comments',
+                'action' => 'on_sentences_of_user',
+                $username
+            )
+        );
+        ?>
+        </li>
+
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Wall messages'),
+            array(
+                'controller' => 'wall',
+                'action' => 'messages_of_user',
+                $username
+            )
+        );
+        ?>
+        </li>
+        
+        <li class="item">
+        <?php
+        echo $this->Html->link(
+            __('Logs'),
+            array(
+                'controller' => 'contributions',
+                'action' => 'of_user',
+                $username
+            )
+        );
+        ?>
+        </li>
     </ul>
 
     <div class="profile-actions">

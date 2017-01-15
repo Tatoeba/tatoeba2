@@ -109,9 +109,9 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                 <li class="item">
                     <?php
                     if ($notificationsEnabled) {
-                        __('Email notifications are ENABLED.');
+                        echo __('Email notifications are ENABLED.');
                     } else {
-                        __('Email notifications are DISABLED.');
+                        echo __('Email notifications are DISABLED.');
                     }
                     ?>
                 </li>
@@ -119,12 +119,12 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                 <li class="item">
                     <?php
                     if ($isPublic) {
-                        __(
+                        echo __(
                             'Access to this profile is PUBLIC. '.
                             'All the information can be seen by everyone.'
                         );
                     } else {
-                        __(
+                        echo __(
                             'Access to this profile is RESTRICTED. '.
                             'Only Tatoeba members can see the personal information '.
                             'and the description.'
@@ -314,8 +314,8 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                 ));
                 ?>
                 <div layout="row" layout-align="end center">
-                    <md-button class="md-primary md-raised" href="<?= $addLangUrl ?>">
-                        <?__('Add a language') ?>
+                    <md-button aria-label="<? echo __('Add a language') ?>" class="md-primary md-raised" href="<?= $addLangUrl ?>">
+                        <? echo __('Add a language') ?>
                     </md-button>
                 </div>
             <? } ?>

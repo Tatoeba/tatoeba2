@@ -143,6 +143,7 @@ $label = format(
     <md-input-container>
         <md-button class="md-icon-button"
                    ng-click="ctrl.togglePassword()"
+                   aria-label="<? echo __('unmask password') ?>"
                    tabindex="-1">
             <md-icon ng-if="ctrl.isPasswordVisible">visibility</md-icon>
             <md-icon ng-if="!ctrl.isPasswordVisible">visibility_off</md-icon>
