@@ -39,7 +39,7 @@ class TagsHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Form',
-        'Javascript',
+        'Js',
         'Sentences',
     );
 
@@ -55,7 +55,7 @@ class TagsHelper extends AppHelper
      */
     public function displayTagsModule($tagsArray, $sentenceId = null, $sentenceLang = null)
     {
-        $this->Javascript->link(JS_PATH . 'autocompletion.js', false);
+        $this->Js->link(JS_PATH . 'autocompletion.js', false);
         ?>
 
         <div class="module">
@@ -179,7 +179,7 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
-        $this->Javascript->link(JS_PATH . 'tags.add.js', false);
+        $this->Js->link(JS_PATH . 'tags.add.js', false);
 
         echo $this->Form->create(
             'Tag',

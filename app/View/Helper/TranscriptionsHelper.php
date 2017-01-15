@@ -24,7 +24,7 @@ class TranscriptionsHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Images',
-        'Javascript',
+        'Js',
         'Languages',
         'Pinyin',
         'Search',
@@ -102,8 +102,8 @@ class TranscriptionsHelper extends AppHelper
         $lang,
         $sentenceOwnerId
     ) {
-        $this->Javascript->link('jquery.jeditable.js', false);
-        $this->Javascript->link('transcriptions.js', false);
+        $this->Js->link('jquery.jeditable.js', false);
+        $this->Js->link('transcriptions.js', false);
 
         $canEdit = CurrentUser::canEditTranscription(
             $transcr['user_id'], $sentenceOwnerId

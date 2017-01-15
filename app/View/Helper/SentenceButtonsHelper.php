@@ -38,7 +38,7 @@ class SentenceButtonsHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
-        'Javascript',
+        'Js',
         'Languages',
         'Form',
         'Images'
@@ -85,7 +85,7 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function unlinkButton($sentenceId, $translationId, $langFilter = 'und')
     {
-        echo $this->Javascript->link('links.add_and_delete.js', false);
+        echo $this->Js->link('links.add_and_delete.js', false);
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
@@ -128,7 +128,7 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function linkButton($sentenceId, $translationId, $langFilter = 'und')
     {
-        echo $this->Javascript->link('links.add_and_delete.js', false);
+        echo $this->Js->link('links.add_and_delete.js', false);
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
@@ -192,7 +192,7 @@ class SentenceButtonsHelper extends AppHelper
                     array('author' => $author)
                 ), true);
             }
-            echo $this->Javascript->link('sentences.play_audio.js', false);
+            echo $this->Js->link('sentences.play_audio.js', false);
         } else {
             $onClick = 'return false';
             $css = 'audioUnavailable';
@@ -225,7 +225,7 @@ class SentenceButtonsHelper extends AppHelper
     {
         $class = '';
         if ($editable) {
-            $this->Javascript->link('sentences.change_language.js', false);
+            $this->Js->link('sentences.change_language.js', false);
             $class = 'editableFlag';
 
             // language select
@@ -280,7 +280,7 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function displayCopyButton($text)
     {
-        $this->Javascript->link('clipboard.min.js', false);
+        $this->Js->link('clipboard.min.js', false);
         $copyButton = $this->Images->svgIcon('copy');
         echo $this->Html->div('copy-btn', $copyButton,
             array(

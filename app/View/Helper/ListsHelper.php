@@ -38,7 +38,7 @@ class ListsHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
-        'Javascript',
+        'Js',
         'Form',
         'Languages',
         'Sentences',
@@ -317,7 +317,7 @@ class ListsHelper extends AppHelper
 
     public function displayVisibilityOption($listId, $value)
     {
-        $this->Javascript->link(
+        $this->Js->link(
             JS_PATH . 'sentences_lists.set_option.js', false
         );
         ?>
@@ -351,7 +351,7 @@ class ListsHelper extends AppHelper
      */
     public function displayEditableByOptions($listId, $value)
     {
-        $this->Javascript->link(
+        $this->Js->link(
             JS_PATH.'sentences_lists.set_option.js', false
         );
         ?>
@@ -444,7 +444,7 @@ class ListsHelper extends AppHelper
 
     private function _displayRemoveButton($sentenceId) {
         $this->Sentences->javascriptForAJAXSentencesGroup(false);
-        $this->Javascript->link(
+        $this->Js->link(
             JS_PATH . 'sentences_lists.remove_sentence_from_list.js', false
         );
         ?>
@@ -477,7 +477,7 @@ class ListsHelper extends AppHelper
      */
     public function displayAddSentenceForm($listId)
     {
-        $this->Javascript->link(
+        $this->Js->link(
             'sentences_lists.add_new_sentence_to_list.js', false
         );
         ?>

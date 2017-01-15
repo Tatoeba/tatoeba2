@@ -39,7 +39,7 @@ class MenuHelper extends AppHelper
 
     public $helpers = array(
         'Html',
-        'Javascript',
+        'Js',
         'Form',
         'Pages',
         'Session',
@@ -92,7 +92,7 @@ class MenuHelper extends AppHelper
             echo '</a>';
 
         } else if ($isLogged) {
-            $this->Javascript->link('sentences.add_translation.js', false);
+            $this->Js->link('sentences.add_translation.js', false);
             ?>
             <a><?php echo $translateButton;?></a>
            <?php
@@ -165,7 +165,7 @@ class MenuHelper extends AppHelper
             $svgIconOptions['class'] .= ' adopt-item uneditable';
             $contents = $this->Images->svgIcon($image, $svgIconOptions);
         } else {
-            $this->Javascript->link('sentences.adopt.js', false);
+            $this->Js->link('sentences.adopt.js', false);
             $contents = $this->Images->svgIcon($image, $svgIconOptions);
             $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
@@ -230,7 +230,7 @@ class MenuHelper extends AppHelper
         ));
 
         if ($isLogged) {
-            $this->Javascript->link('favorites.add.js', false);
+            $this->Js->link('favorites.add.js', false);
             ?>
             <a><?php echo $favoriteImage;?></a>
             <?php
@@ -293,7 +293,7 @@ class MenuHelper extends AppHelper
         ?>
         </li>
         <?php
-        $this->Javascript->link('sentences.link.js', false);
+        $this->Js->link('sentences.link.js', false);
     }
 
     /**
@@ -351,7 +351,7 @@ class MenuHelper extends AppHelper
             return;
         }
 
-        $this->Javascript->link('sentences_lists.menu.js', false);
+        $this->Js->link('sentences_lists.menu.js', false);
 
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
             CurrentUser::get('id')
@@ -531,7 +531,7 @@ class MenuHelper extends AppHelper
 
     public function correctnessButton($sentenceId)
     {
-        $this->Javascript->link('collections.add_remove.js', false);
+        $this->Js->link('collections.add_remove.js', false);
 
         $userCorrectness = CurrentUser::correctnessForSentence($sentenceId);
 

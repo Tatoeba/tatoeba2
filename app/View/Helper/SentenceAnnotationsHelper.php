@@ -36,7 +36,7 @@
  */
 class SentenceAnnotationsHelper extends AppHelper
 {
-    public $helpers = array('Form', 'Javascript', 'Html', 'Date');
+    public $helpers = array('Form', 'Js', 'Html', 'Date');
 
     /**
      * Displays the form that lets you search annotations of a specific sentence.
@@ -141,7 +141,7 @@ class SentenceAnnotationsHelper extends AppHelper
         <?php
             echo '<h2>Replace</h2>';
 
-            echo $this->Javascript->link('sentence_annotations.preview.js', false);
+            echo $this->Js->link('sentence_annotations.preview.js', false);
             echo $this->Form->create(
                 'SentenceAnnotation', array("action" => "replace")
             );

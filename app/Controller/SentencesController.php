@@ -57,7 +57,7 @@ class SentencesController extends AppController
         'Comments',
         'Navigation',
         'Languages',
-        'Javascript',
+        'Js',
         'CommonModules'
     );
     public $paginate = array(
