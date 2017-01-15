@@ -60,7 +60,7 @@ class CurrentUser extends AppModel
      */
     public static function store($user)
     {
-        self::$_auth = $user;
+        self::$_auth = array('User' => $user);
         self::_setProfileLanguages();
     }
 
@@ -366,7 +366,7 @@ class CurrentUser extends AppModel
      *
      * @return array
      */
-    public function getProfileLanguages()
+    public static function getProfileLanguages()
     {
         return self::$_profileLanguages;
     }

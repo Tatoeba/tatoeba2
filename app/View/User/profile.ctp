@@ -64,7 +64,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
 <div id="annexe_content">
     <?php
         echo $this->element(
-        'users_menu', 
+        'users_menu',
         array('username' => $username)
     );
     ?>
@@ -83,7 +83,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
             <dt><?php echo __('Contributions'); ?></dt>
             <dd><?php echo $userStats['numberOfContributions']; ?></dd>
         </dl>
-        
+
         <div>
         =>
         <?php
@@ -98,7 +98,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
         ?>
         </div>
     </div>
-    
+
     <?php
     if ($isDisplayed) {
         ?>

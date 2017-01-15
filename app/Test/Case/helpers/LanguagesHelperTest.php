@@ -20,7 +20,7 @@ class LanguagesHelperTest extends CakeTestCase {
 			'group_id' => 4,
 			'lang' => 'jpn,epo,ara,deu',
 		);
-		CurrentUser::store(array('User' => $admin));
+		CurrentUser::store($admin);
 	}
 
 	function testUserLanguagesArray_returnsManyManyLanguages() {

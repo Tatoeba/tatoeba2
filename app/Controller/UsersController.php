@@ -182,7 +182,6 @@ class UsersController extends AppController
         if (!$this->Auth->user()) {
             return;
         }
-
         $this->_common_login($this->Auth->redirect());
 
     }
@@ -195,7 +194,7 @@ class UsersController extends AppController
      */
     public function check_login()
     {
-        $this->Auth->login($this->request->data);
+        $this->Auth->login();
 
         // group_id 5 => users is inactive
         if ($this->Auth->user('group_id') == 5) {

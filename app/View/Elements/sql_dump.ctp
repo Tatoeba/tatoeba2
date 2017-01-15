@@ -1,6 +1,6 @@
 <?php
 /**
- * SQL Dump element.  Dumps out SQL log information 
+ * SQL Dump element.  Dumps out SQL log information
  *
  * PHP versions 4 and 5
  *
@@ -26,8 +26,8 @@ if ($noLogs):
 
     $sqlLogs = array();
     foreach ($sources as $source):
-        $db =& ConnectionManager::getDataSource($source);
-        if (!$db->isInterfaceSupported('getLog')):
+        $db = ConnectionManager::getDataSource($source);
+        if (!method_exists($db, 'getLog')):
             continue;
         endif;
         $sqlLogs[$source] = $db->getLog();
@@ -53,7 +53,7 @@ if ($noLogs || isset($_forced_from_dbo_)):
         endforeach;
     ?>
     </tbody></table>
-    <?php 
+    <?php
     endforeach;
 else:
     echo '<p>Encountered unexpected $sqlLogs cannot generate SQL log</p>';

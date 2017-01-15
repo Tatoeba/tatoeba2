@@ -130,7 +130,7 @@ class AppController extends Controller
         // the whole page.
         $this->Auth->ajaxLogin = 'session_expired';
         $this->Auth->allow('display');
-        $this->Auth->authorize = 'actions';
+        $this->Auth->authorize = 'Actions';
         $this->Auth->authError = __('You need to be logged in.', true);
         // very important for the "remember me" to work
         $this->Auth->autoRedirect = false;
