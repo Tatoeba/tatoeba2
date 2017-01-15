@@ -27,7 +27,7 @@ class SphinxBehavior extends ModelBehavior
      */
     var $sphinx = null;
 
-    function setup(&$model)
+    function setup(Model $model, $options = array())
     {
         $databases = get_class_vars('DATABASE_CONFIG');
         $config = array_merge(
@@ -52,7 +52,7 @@ class SphinxBehavior extends ModelBehavior
      * @return array Modified query
      * @access public
      */
-    function beforeFind(&$model, $query)
+    function beforeFind(Model $model, $query)
     {
         if (empty($query['sphinx'])) {
             return true;
@@ -92,7 +92,7 @@ class SphinxBehavior extends ModelBehavior
                 case 'fieldWeights':
                     $sphinx->SetFieldWeights($setting);
                     break;
-                case 'rankingMode': 
+                case 'rankingMode':
                     if (is_array($setting)) {
                         $sphinx->SetRankingMode(key($setting), reset($setting));
                     } else {
@@ -132,7 +132,7 @@ class SphinxBehavior extends ModelBehavior
         } else {
             $this->_cached_result = $result;
             $this->_cached_query = $query['search'];
-    
+
             if (isset($result['matches'])) {
                 $ids = array_keys($result['matches']);
             } else {
@@ -212,7 +212,7 @@ class SphinxBehavior extends ModelBehavior
         }
     }
 
-    public function afterFind(&$model, $results, $primary) {
+    public function afterFind(Model $model, $results, $primary = false) {
         if (!is_null($this->_cached_query)) {
             $search = $this->_cached_query;
             if ($search) {
@@ -229,10 +229,10 @@ class SphinxBehavior extends ModelBehavior
             $this->_cached_result = null;
         }
         return $results;
-        
+
     }
 
-    public function beforeDelete(&$model, $cascade = true) {
+    public function beforeDelete(Model $model, $cascade = true) {
         if (!$model->data)
             $model->read();
         if ($model->data)
@@ -240,7 +240,7 @@ class SphinxBehavior extends ModelBehavior
         return true;
     }
 
-    public function afterDelete(&$model) {
+    public function afterDelete(Model $model) {
         while ($data = array_shift($this->runtime[$model->alias]['deletedData'])) {
             $temp = $model->data;
             $model->data = $data;
@@ -249,7 +249,7 @@ class SphinxBehavior extends ModelBehavior
         }
     }
 
-    public function afterSave(&$model, $created) {
+    public function afterSave(Model $model, $created, $options = array()) {
         $this->_refreshSphinxAttributes($model);
     }
 
