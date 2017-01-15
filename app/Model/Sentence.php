@@ -1073,7 +1073,7 @@ class Sentence extends AppModel
             )
         );
 
-        return $result['Sentence']['text'];
+        return !empty($result) ? $result['Sentence']['text'] : "";
     }
 
     /**
