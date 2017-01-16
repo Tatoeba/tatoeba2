@@ -1,9 +1,9 @@
 <?php
 /* TagsSentence Fixture generated on: 2014-09-14 16:12:00 : 1410711120 */
 class TagsSentenceFixture extends CakeTestFixture {
-	var $name = 'TagsSentence';
+	public $name = 'TagsSentence';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'tag_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
@@ -13,7 +13,7 @@ class TagsSentenceFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'tag_id' => '1',
 			'user_id' => '1',

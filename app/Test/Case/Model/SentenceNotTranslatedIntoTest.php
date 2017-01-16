@@ -3,7 +3,7 @@
 App::import('Model', 'SentenceNotTranslatedInto');
 
 class SentenceNotTranslatedIntoTest extends CakeTestCase {
-    var $fixtures = array(
+    public $fixtures = array(
         'app.audio',
         'app.contribution',
         'app.group',

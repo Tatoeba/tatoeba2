@@ -2,7 +2,7 @@
 App::import('Model', 'Tag');
 
 class TagTest extends CakeTestCase {
-    var $fixtures = array(
+    public $fixtures = array(
         'app.sentence',
         'app.user',
         'app.group',

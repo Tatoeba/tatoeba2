@@ -4,7 +4,7 @@ App::import('Model', 'Sentence');
 App::import('Behavior', 'Sphinx');
 
 class SentenceTest extends CakeTestCase {
-	var $fixtures = array(
+	public $fixtures = array(
 		'app.audio',
 		'app.sentence',
 		'app.user',

@@ -1,10 +1,10 @@
 <?php
 /* SentencesTranslation Fixture generated on: 2014-04-15 01:02:28 : 1397516548 */
 class LinkFixture extends CakeTestFixture {
-	var $name = 'Link';
-	var $table = 'sentences_translations';
+	public $name = 'Link';
+	public $table = 'sentences_translations';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'translation_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
@@ -15,7 +15,7 @@ class LinkFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '1',
 			'sentence_id' => '1',

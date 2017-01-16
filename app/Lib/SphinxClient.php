@@ -385,42 +385,42 @@ function sphFixUint ( $value )
 /// sphinx searchd client class
 class SphinxClient
 {
-	var $_host;			///< searchd host (default is "localhost")
-	var $_port;			///< searchd port (default is 9312)
-	var $_offset;		///< how many records to seek from result-set start (default is 0)
-	var $_limit;		///< how many records to return from result-set starting at offset (default is 20)
-	var $_mode;			///< query matching mode (default is SPH_MATCH_ALL)
-	var $_weights;		///< per-field weights (default is 1 for all fields)
-	var $_sort;			///< match sorting mode (default is SPH_SORT_RELEVANCE)
-	var $_sortby;		///< attribute to sort by (defualt is "")
-	var $_min_id;		///< min ID to match (default is 0, which means no limit)
-	var $_max_id;		///< max ID to match (default is 0, which means no limit)
-	var $_filters;		///< search filters
-	var $_groupby;		///< group-by attribute name
-	var $_groupfunc;	///< group-by function (to pre-process group-by attribute value with)
-	var $_groupsort;	///< group-by sorting clause (to sort groups in result set with)
-	var $_groupdistinct;///< group-by count-distinct attribute
-	var $_maxmatches;	///< max matches to retrieve
-	var $_cutoff;		///< cutoff to stop searching at (default is 0)
-	var $_retrycount;	///< distributed retries count
-	var $_retrydelay;	///< distributed retries delay
-	var $_anchor;		///< geographical anchor point
-	var $_indexweights;	///< per-index weights
-	var $_ranker;		///< ranking mode (default is SPH_RANK_PROXIMITY_BM25)
-	var $_rankexpr;		///< ranking mode expression (for SPH_RANK_EXPR)
-	var $_maxquerytime;	///< max query time, milliseconds (default is 0, do not limit)
-	var $_fieldweights;	///< per-field-name weights
-	var $_overrides;	///< per-query attribute values overrides
-	var $_select;		///< select-list (attributes or expressions, with optional aliases)
+	public $_host;			///< searchd host (default is "localhost")
+	public $_port;			///< searchd port (default is 9312)
+	public $_offset;		///< how many records to seek from result-set start (default is 0)
+	public $_limit;		///< how many records to return from result-set starting at offset (default is 20)
+	public $_mode;			///< query matching mode (default is SPH_MATCH_ALL)
+	public $_weights;		///< per-field weights (default is 1 for all fields)
+	public $_sort;			///< match sorting mode (default is SPH_SORT_RELEVANCE)
+	public $_sortby;		///< attribute to sort by (defualt is "")
+	public $_min_id;		///< min ID to match (default is 0, which means no limit)
+	public $_max_id;		///< max ID to match (default is 0, which means no limit)
+	public $_filters;		///< search filters
+	public $_groupby;		///< group-by attribute name
+	public $_groupfunc;	///< group-by function (to pre-process group-by attribute value with)
+	public $_groupsort;	///< group-by sorting clause (to sort groups in result set with)
+	public $_groupdistinct;///< group-by count-distinct attribute
+	public $_maxmatches;	///< max matches to retrieve
+	public $_cutoff;		///< cutoff to stop searching at (default is 0)
+	public $_retrycount;	///< distributed retries count
+	public $_retrydelay;	///< distributed retries delay
+	public $_anchor;		///< geographical anchor point
+	public $_indexweights;	///< per-index weights
+	public $_ranker;		///< ranking mode (default is SPH_RANK_PROXIMITY_BM25)
+	public $_rankexpr;		///< ranking mode expression (for SPH_RANK_EXPR)
+	public $_maxquerytime;	///< max query time, milliseconds (default is 0, do not limit)
+	public $_fieldweights;	///< per-field-name weights
+	public $_overrides;	///< per-query attribute values overrides
+	public $_select;		///< select-list (attributes or expressions, with optional aliases)
 
-	var $_error;		///< last error message
-	var $_warning;		///< last warning message
-	var $_connerror;		///< connection error vs remote error flag
+	public $_error;		///< last error message
+	public $_warning;		///< last warning message
+	public $_connerror;		///< connection error vs remote error flag
 
-	var $_reqs;			///< requests array for multi-query
-	var $_mbenc;		///< stored mbstring encoding
-	var $_arrayresult;	///< whether $result["matches"] should be a hash or an array
-	var $_timeout;		///< connect timeout
+	public $_reqs;			///< requests array for multi-query
+	public $_mbenc;		///< stored mbstring encoding
+	public $_arrayresult;	///< whether $result["matches"] should be a hash or an array
+	public $_timeout;		///< connect timeout
 
 	/////////////////////////////////////////////////////////////////////////////
 	// common stuff

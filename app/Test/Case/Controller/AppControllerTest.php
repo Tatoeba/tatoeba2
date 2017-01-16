@@ -5,10 +5,10 @@ App::import('Component', 'Cookie');
 Mock::generate('CookieComponent');
 
 class TestAppController extends AppController {
-	var $uses = array();
+	public $uses = array();
 
-	var $redirectUrl;
-	var $stopped = false;
+	public $redirectUrl;
+	public $stopped = false;
 
 	function redirect($url, $status = null, $exit = true) {
 		$this->redirectUrl = $url;
@@ -25,7 +25,7 @@ class TestAppController extends AppController {
 }
 
 class AppControllerTest extends CakeTestCase {
-	var $fixtures = array();
+	public $fixtures = array();
 
 	function startTest($method) {
 		Configure::write('UI.languages', array(

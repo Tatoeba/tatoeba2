@@ -1,9 +1,9 @@
 <?php
 /* ReindexFlag Fixture generated on: 2015-11-27 23:54:27 : 1448668467 */
 class ReindexFlagFixture extends CakeTestFixture {
-	var $name = 'ReindexFlag';
+	public $name = 'ReindexFlag';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'lang_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 3),
@@ -11,6 +11,6 @@ class ReindexFlagFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
 	);
 
-	var $records = array(
+	public $records = array(
 	);
 }

@@ -2,7 +2,7 @@
 App::import('Model', 'Audio');
 
 class AudioTest extends CakeTestCase {
-    var $fixtures = array(
+    public $fixtures = array(
         'app.audio',
         'app.contribution',
         'app.favorites_user',

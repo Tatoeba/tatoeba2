@@ -1,9 +1,9 @@
 <?php
 /* Transcription Fixture generated on: 2014-10-26 15:19:49 : 1414336789 */
 class TranscriptionFixture extends CakeTestFixture {
-	var $name = 'Transcription';
+	public $name = 'Transcription';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'script' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
@@ -16,7 +16,7 @@ class TranscriptionFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => 1,
 			'sentence_id' => 6,

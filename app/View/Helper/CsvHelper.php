@@ -11,21 +11,21 @@
  */
 class CsvHelper extends Helper {
 
-    var $delimiter = ',';
-    var $enclosure = '"';
-    var $filename = null;
-    var $line = array();
-    var $buffer;
+    public $delimiter = ',';
+    public $enclosure = '"';
+    public $filename = null;
+    public $line = array();
+    public $buffer;
 
  /**
     * This option preserves leading zeros on numeric data when opened in Excel.
     * Use it ONLY when the csv file is going to be opened in Excel, as it uses
     * non-standard syntax, and will probably break in other systems.
     */
-    var $preserveLeadingZerosInExcel = false;
+    public $preserveLeadingZerosInExcel = false;
 
 
-    var $_tmpFile = false;
+    public $_tmpFile = false;
 
     function CsvHelper() {
         $this->clear();

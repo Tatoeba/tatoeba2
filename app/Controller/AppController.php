@@ -112,6 +112,10 @@ class AppController extends Controller
         $Sentence->linkTranslationModel($conditions);
     }
 
+    private function blackhole($type) {
+      var_dump("Blackholed: $type");
+    }
+
     /**
      *
      *
@@ -121,7 +125,8 @@ class AppController extends Controller
     {
         Security::setHash('md5');
         // only prevent CSRF for logins and registration in the users controller
-        $this->Security->csrfCheck = false;
+        $this->Security->csrfCheck = true;
+        $this->Security->blackHoleCallback = 'blackhole';
 
         $this->Cookie->domain = TATOEBA_DOMAIN;
         // This line will call views/elements/session_expired.ctp.

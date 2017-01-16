@@ -3,7 +3,7 @@
 App::import('Model', 'SentencesSentencesLists');
 
 class SentencesSentencesListsTest extends CakeTestCase {
-    var $fixtures = array(
+    public $fixtures = array(
         'app.sentences_sentences_lists',
         'app.sentence',
         'app.language',

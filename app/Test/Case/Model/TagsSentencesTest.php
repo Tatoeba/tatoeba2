@@ -3,7 +3,7 @@
 App::import('Model', 'TagsSentences');
 
 class TagsSentencesTest extends CakeTestCase {
-    var $fixtures = array(
+    public $fixtures = array(
         'app.tag_sentences',
         'app.user',
         'app.group',

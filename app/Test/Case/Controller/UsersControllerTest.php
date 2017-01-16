@@ -4,11 +4,11 @@
 App::import('Controller', 'Users');
 
 class TestUsers extends UsersController {
-	var $autoRender = false;
+	public $autoRender = false;
 }
 
 class UsersControllerTest extends CakeTestCase {
-	var $Users = null;
+	public $Users = null;
 
 	function setUp() {
 		$this->Users = new TestUsers();

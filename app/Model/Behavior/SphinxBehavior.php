@@ -14,18 +14,18 @@ class SphinxBehavior extends ModelBehavior
     /**
      * Used for runtime configuration of model
      */
-    var $runtime = array();
-    var $_defaults = array('host' => 'localhost', 'port' => 9312);
+    public $runtime = array();
+    public $_defaults = array('host' => 'localhost', 'port' => 9312);
 
-    var $_cached_result = null;
-    var $_cached_query = null;
+    public $_cached_result = null;
+    public $_cached_query = null;
 
     /**
      * Spinx client object
      *
      * @var SphinxClient
      */
-    var $sphinx = null;
+    public $sphinx = null;
 
     function setup(Model $model, $options = array())
     {

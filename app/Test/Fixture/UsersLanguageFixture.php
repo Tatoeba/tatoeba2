@@ -1,9 +1,9 @@
 <?php
 /* UsersLanguage Fixture generated on: 2015-05-02 14:16:52 : 1430576212 */
 class UsersLanguageFixture extends CakeTestFixture {
-	var $name = 'UsersLanguage';
+	public $name = 'UsersLanguage';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'of_user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'by_user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
@@ -16,6 +16,6 @@ class UsersLanguageFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
-	var $records = array(
+	public $records = array(
 	);
 }

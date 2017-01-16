@@ -1,9 +1,9 @@
 <?php
 /* Contribution Fixture generated on: 2014-09-14 16:11:46 : 1410711106 */
 class ContributionFixture extends CakeTestFixture {
-	var $name = 'Contribution';
+	public $name = 'Contribution';
 
-	var $fields = array(
+	public $fields = array(
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'sentence_lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'translation_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
@@ -18,7 +18,7 @@ class ContributionFixture extends CakeTestFixture {
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'id_desc' => array('column' => 'id', 'unique' => 1), 'sentence_id' => array('column' => 'sentence_id', 'unique' => 0), 'datetime' => array('column' => 'datetime', 'unique' => 0), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'sentence_lang' => array('column' => array('sentence_lang', 'type'), 'unique' => 0), 'translation_id_idx' => array('column' => 'translation_id', 'unique' => 0)),
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'sentence_id' => '1',
 			'sentence_lang' => 'eng',

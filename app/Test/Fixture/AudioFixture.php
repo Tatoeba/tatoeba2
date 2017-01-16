@@ -1,9 +1,9 @@
 <?php
 /* Audio Fixture generated on: 2016-12-13 06:51:54 : 1481611914 */
 class AudioFixture extends CakeTestFixture {
-    var $name = 'Audio';
+    public $name = 'Audio';
 
-    var $fields = array(
+    public $fields = array(
         'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
         'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
         'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
@@ -14,7 +14,7 @@ class AudioFixture extends CakeTestFixture {
         'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
     );
 
-    var $records = array(
+    public $records = array(
         array(
             'id' => '1',
             'sentence_id' => '3',

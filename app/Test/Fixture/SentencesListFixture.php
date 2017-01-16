@@ -1,10 +1,10 @@
 <?php
 /* SentencesList Fixture generated on: 2014-04-15 02:32:40 : 1397521960 */
 class SentencesListFixture extends CakeTestFixture {
-	var $name = 'SentencesList';
-	var $import = array('records' => true);
+	public $name = 'SentencesList';
+	public $import = array('records' => true);
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'is_public' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'name' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 450),
@@ -16,7 +16,7 @@ class SentencesListFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '1',
 			'is_public' => '1',

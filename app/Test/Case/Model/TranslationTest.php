@@ -2,7 +2,7 @@
 App::import('Model', 'Translation');
 
 class TranslationTest extends CakeTestCase {
-    var $fixtures = array(
+    public $fixtures = array(
         'app.sentence',
         'app.user',
         'app.group',

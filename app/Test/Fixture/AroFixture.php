@@ -1,9 +1,9 @@
 <?php
 /* Aro Fixture generated on: 2015-02-04 02:32:22 : 1423017142 */
 class AroFixture extends CakeTestFixture {
-	var $name = 'Aro';
+	public $name = 'Aro';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
 		'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
 		'model' => array('type' => 'string', 'null' => true, 'default' => NULL, 'key' => 'index', 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
@@ -15,7 +15,7 @@ class AroFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '1',
 			'parent_id' => NULL,

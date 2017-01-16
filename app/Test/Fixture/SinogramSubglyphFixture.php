@@ -1,9 +1,9 @@
 <?php
 /* SinogramSubglyph Fixture generated on: 2015-02-24 10:48:04 : 1424774884 */
 class SinogramSubglyphFixture extends CakeTestFixture {
-	var $name = 'SinogramSubglyph';
+	public $name = 'SinogramSubglyph';
 
-	var $fields = array(
+	public $fields = array(
 		'sinogram_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
 		'glyph' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 2, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'subglyph' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
@@ -11,7 +11,7 @@ class SinogramSubglyphFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'sinogram_id' => '21430',
 			'glyph' => '厶',

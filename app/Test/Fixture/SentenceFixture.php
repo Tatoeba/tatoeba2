@@ -1,9 +1,9 @@
 <?php
 /* Sentence Fixture generated on: 2014-10-26 16:46:13 : 1414341973 */
 class SentenceFixture extends CakeTestFixture {
-	var $name = 'Sentence';
+	public $name = 'Sentence';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 1500),
@@ -24,7 +24,7 @@ class SentenceFixture extends CakeTestFixture {
 		$dbo->columns['binary'] = array('name' => 'binary');
 	}
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '1',
 			'lang' => 'eng',

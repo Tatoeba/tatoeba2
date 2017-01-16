@@ -1,9 +1,9 @@
 <?php
 /* Sinogram Fixture generated on: 2015-02-24 10:49:31 : 1424774971 */
 class SinogramFixture extends CakeTestFixture {
-	var $name = 'Sinogram';
+	public $name = 'Sinogram';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'utf' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 8, 'collate' => 'utf8_unicode_ci', 'comment' => 'code utf8 du caractere', 'charset' => 'utf8'),
 		'glyph' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'index', 'collate' => 'utf8_unicode_ci', 'comment' => 'caractère en lui même', 'charset' => 'utf8'),
@@ -22,7 +22,7 @@ class SinogramFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '20008',
 			'utf' => '4E28',

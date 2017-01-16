@@ -32,7 +32,7 @@ class TestTagsController extends TagsController {
 }
 
 class TagsControllerTest extends CakeTestCase {
-    var $fixtures = array(
+    public $fixtures = array(
         'app.aro',
         'app.aco',
         'app.aros_aco',

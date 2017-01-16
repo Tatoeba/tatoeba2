@@ -1,9 +1,9 @@
 <?php
 /* Tag Fixture generated on: 2014-09-14 16:11:59 : 1410711119 */
 class TagFixture extends CakeTestFixture {
-	var $name = 'Tag';
+	public $name = 'Tag';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'internal_name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
@@ -15,7 +15,7 @@ class TagFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '1',
 			'internal_name' => '@needs_native_check',

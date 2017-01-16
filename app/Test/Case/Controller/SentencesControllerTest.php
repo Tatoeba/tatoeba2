@@ -6,11 +6,11 @@ App::import('Component', 'Cookie');
 Mock::generate('CookieComponent');
 
 class TestSentencesController extends SentencesController {
-	var $autoRender = false;
+	public $autoRender = false;
 
-	var $redirectUrl;
-	var $stopped = false;
-	var $rendered;
+	public $redirectUrl;
+	public $stopped = false;
+	public $rendered;
 
 	function redirect($url, $status = null, $exit = true) {
 		$this->redirectUrl = $url;
@@ -31,7 +31,7 @@ class TestSentencesController extends SentencesController {
 }
 
 class SentencesControllerTest extends CakeTestCase {
-	var $fixtures = array(
+	public $fixtures = array(
 		'app.sentence',
 		'app.user',
 		'app.group',

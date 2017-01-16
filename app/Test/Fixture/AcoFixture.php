@@ -1,9 +1,9 @@
 <?php
 /* Aco Fixture generated on: 2014-10-20 07:39:12 : 1413790752 */
 class AcoFixture extends CakeTestFixture {
-	var $name = 'Aco';
+	public $name = 'Aco';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
 		'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
 		'model' => array('type' => 'string', 'null' => true, 'default' => NULL, 'key' => 'index', 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
@@ -15,7 +15,7 @@ class AcoFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '314',
 			'parent_id' => NULL,

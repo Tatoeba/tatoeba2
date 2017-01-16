@@ -1,10 +1,10 @@
 <?php
 /* Wall Fixture generated on: 2014-04-15 16:50:14 : 1397573414 */
 class WallFixture extends CakeTestFixture {
-	var $name = 'Wall';
-	var $table = 'wall';
+	public $name = 'Wall';
+	public $table = 'wall';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'owner' => array('type' => 'integer', 'null' => false, 'default' => NULL),
 		'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
@@ -18,7 +18,7 @@ class WallFixture extends CakeTestFixture {
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '1',
 			'owner' => '7',

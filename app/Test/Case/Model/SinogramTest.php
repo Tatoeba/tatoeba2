@@ -3,7 +3,7 @@
 App::import('Model', 'Sinogram');
 
 class SinogramTest extends CakeTestCase {
-	var $fixtures = array('app.sinogram', 'app.sinogram_subglyph');
+	public $fixtures = array('app.sinogram', 'app.sinogram_subglyph');
 
 	function startTest($method) {
 		$this->Sinogram =& ClassRegistry::init('Sinogram');

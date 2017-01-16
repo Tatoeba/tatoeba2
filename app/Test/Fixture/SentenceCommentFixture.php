@@ -1,9 +1,9 @@
 <?php
 /* SentenceComment Fixture generated on: 2014-09-14 16:11:54 : 1410711114 */
 class SentenceCommentFixture extends CakeTestFixture {
-	var $name = 'SentenceComment';
+	public $name = 'SentenceComment';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
@@ -16,7 +16,7 @@ class SentenceCommentFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
 			'id' => '1',
 			'sentence_id' => '4',

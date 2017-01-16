@@ -1,9 +1,9 @@
 <?php
 /* SentenceAnnotation Fixture generated on: 2014-09-14 16:11:53 : 1410711113 */
 class SentenceAnnotationFixture extends CakeTestFixture {
-	var $name = 'SentenceAnnotation';
+	public $name = 'SentenceAnnotation';
 
-	var $fields = array(
+	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'meaning_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
@@ -14,7 +14,7 @@ class SentenceAnnotationFixture extends CakeTestFixture {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
-	var $records = array(
+	public $records = array(
 		/* Sentence annotations are yet to be tested (and it's not used on tatoeba.org) */
 	);
 }
