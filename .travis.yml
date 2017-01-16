@@ -1,0 +1,34 @@
+language: php
+
+php:
+  - 7.1
+  - 5.5
+  - 5.4
+
+services:
+  - memcached
+  - mysql
+
+cache:
+  directories:
+    - app/Vendor
+    - $HOME/.composer/cache
+
+before_script:
+  - composer install --prefer-dist --no-interaction
+  - sh -c "mysql -e 'CREATE DATABASE tatoeba_test;'"
+  - chmod -R 777 ./app/tmp
+  - cp app/Config/core.php.template app/Config/core.php
+  - echo "<?php
+    class DATABASE_CONFIG {
+    public \$test = array(
+      'datasource' => 'Database/Mysql',
+      'database' => 'tatoeba_test',
+      'host' => '0.0.0.0',
+      'login' => 'travis',
+      'persistent' => false,
+    );
+    }" > ./app/Config/database.php
+
+script:
+  - ./app/Console/cake test app AllTests --stderr
