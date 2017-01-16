@@ -40,7 +40,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Comments on sentenc
 $this->Paginator->options(
     array(
         'url' => $this->request->params['pass']
-    ) 
+    )
 );
 ?>
 
@@ -51,18 +51,17 @@ $this->Paginator->options(
 <div id="main_content">
     <div class="section">
         <h2>
-            <?php 
+            <?php
             echo $this->Paginator->counter(
                 array(
                     'format' => __(
-                        'Comments on sentences (total %count%)',
-                        true
+                        'Comments on sentences (total %count%)'
                     )
                 )
-            ); 
+            );
             ?>
         </h2>
-        
+
         <?php
         $paginationUrl = array($langFilter);
         $this->Pagination->display($paginationUrl);
@@ -84,9 +83,9 @@ $this->Paginator->options(
                 )
             );
         }
-        
+
         $this->Pagination->display($paginationUrl);
         ?>
-        
+
     </div>
 </div>
