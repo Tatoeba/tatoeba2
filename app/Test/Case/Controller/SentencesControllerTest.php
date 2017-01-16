@@ -61,7 +61,7 @@ class SentencesControllerTest extends CakeTestCase {
 		$this->users = Set::combine($users, '{n}.username', '{n}');
 	}
 
-	function startTest() {
+	function startTest($method) {
 		$this->Sentences =& new TestSentencesController();
 		$this->Sentences->constructClasses();
 		/* Replace the CookieComponent with a mock in order to prevent
@@ -70,7 +70,7 @@ class SentencesControllerTest extends CakeTestCase {
 		$this->Sentences->Cookie =& new MockCookieComponent();
 	}
 
-	function endTest() {
+	function endTest($method) {
 		$this->Sentences->Session->destroy();
 		unset($this->Sentences);
 		ClassRegistry::flush();

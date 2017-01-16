@@ -70,13 +70,13 @@ class TranscriptionsControllerTest extends CakeTestCase {
         Configure::write('Acl.database', 'test_suite');
     }
 
-    function startTest() {
+    function startTest($method) {
         $this->Transcriptions =& new TestTranscriptionsController();
         $this->Transcriptions->constructClasses();
         $this->User = ClassRegistry::init('User');
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->Transcriptions);
         unset($this->User);
     }

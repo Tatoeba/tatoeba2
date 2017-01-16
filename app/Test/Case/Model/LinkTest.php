@@ -3,7 +3,7 @@
 App::import('Model', 'Link');
 
 class LinkTest extends CakeTestCase {
-	var $fixtures = array(
+	public $fixtures = array(
 		'app.sentence',
 		'app.user',
 		'app.group',

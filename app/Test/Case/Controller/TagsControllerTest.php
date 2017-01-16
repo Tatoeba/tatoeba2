@@ -60,13 +60,13 @@ class TagsControllerTest extends CakeTestCase {
         Configure::write('Acl.database', 'test_suite');
     }
 
-    function startTest() {
+    function startTest($method) {
         $this->Tags =& new TestTagsController();
         $this->Tags->constructClasses();
         $this->User = ClassRegistry::init('User');
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->Tags);
         unset($this->User);
     }

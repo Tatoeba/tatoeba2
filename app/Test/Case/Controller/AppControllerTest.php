@@ -27,7 +27,7 @@ class TestAppController extends AppController {
 class AppControllerTest extends CakeTestCase {
 	var $fixtures = array();
 
-	function startTest() {
+	function startTest($method) {
 		Configure::write('UI.languages', array(
 			array('cmn', 'Hans', '中文', array('chi')),
 			array('eng', null, 'English'),

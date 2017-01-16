@@ -2,11 +2,11 @@
 App::import('Lib', 'Autotranscription');
 
 class AutotranscriptionTest extends CakeTestCase {
-    function startTest() {
-        $this->AT =& new Autotranscription();
+    function startTest($method) {
+        $this->AT = new Autotranscription();
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->AT);
     }
 

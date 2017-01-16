@@ -1,15 +1,19 @@
 <?php
-/* Languages Test cases generated on: 2014-04-23 06:57:18 : 1398229038*/
-App::import('Helper', 'Languages');
+App::uses('Controller', 'Controller');
+App::uses('View', 'View');
+App::uses('LanguagesHelper', 'View/Helper');
 
 class LanguagesHelperTest extends CakeTestCase {
-	function startTest() {
-		$this->Languages =& new LanguagesHelper();
+	function setUp() {
+        parent::setUp();
+        $Controller = new Controller();
+        $View = new View($Controller);
+        $this->Languages = new LanguagesHelper($View);
 		Configure::write('Config.language', 'eng');
 		CurrentUser::store(null);
 	}
 
-	function endTest() {
+	function endTest($method) {
 		unset($this->Languages);
 		ClassRegistry::flush();
 	}

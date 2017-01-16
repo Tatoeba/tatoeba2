@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Core', 'Sanitize');
+App::import('Utility', 'Sanitize');
 
 class TranscriptionsHelper extends AppHelper
 {

@@ -1,13 +1,43 @@
 <?php
-App::import('Helper', array('Transcriptions', 'Html'));
+App::uses('Controller', 'Controller');
+App::uses('View', 'View');
+App::uses('HtmlHelper', 'View/Helper');
+App::uses('TranscriptionsHelper', 'View/Helper');
 
 class TranscriptionsHelperTest extends CakeTestCase {
-    function startTest() {
-    	$this->T =& new TranscriptionsHelper();
-    	$this->T->Html =& new HtmlHelper();
+    public $fixtures = array(
+        'app.aro',
+        'app.aco',
+        'app.aros_aco',
+        'app.contribution',
+        'app.favorites_user',
+        'app.group',
+        'app.language',
+        'app.link',
+        'app.reindex_flag',
+        'app.sentence',
+        'app.sentence_comment',
+        'app.sentence_annotation',
+        'app.sentences_list',
+        'app.sentences_sentences_list',
+        'app.tag',
+        'app.tags_sentence',
+        'app.transcription',
+        'app.user',
+        'app.users_language',
+        'app.wall',
+        'app.wall_thread',
+    );
+
+    function setUp() {
+        parent::setUp();
+        $Controller = new Controller();
+        $View = new View($Controller);
+    	$this->T = new TranscriptionsHelper($View);
+    	$this->T->Html = new HtmlHelper($View);
     }
 
-    function endTest() {
+    function endTest($method) {
     	unset($this->T);
     	ClassRegistry::flush();
     }
