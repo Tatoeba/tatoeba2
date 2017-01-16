@@ -21,3 +21,28 @@
   service: name=nginx state=restarted enabled=yes
 - name: Restart php5-fpm
   service: name=php5-fpm state=restarted enabled=yes
+
+- name: Download composer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/installer
+  tags: composer
+
+- name: Install composer
+  shell: cat /tmp/installer | php -- --install-dir=/usr/local/bin
+  args:
+    creates: /usr/local/bin/composer
+  tags: composer
+
+- name: Rename composer.phar to composer
+  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer
+  args:
+    creates: /usr/local/bin/composer
+  tags: composer
+
+- name: Make composer executable
+  file:
+    path: /usr/local/bin/composer
+    mode: a+x
+    state: file
+  tags: composer
