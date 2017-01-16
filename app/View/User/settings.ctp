@@ -92,7 +92,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
 
                 </md-checkbox>
-                <p><?php  __(
+                <p><?php echo __(
                 'Remember the last list to which you assigned' .
                 ' a sentence, and select it by default.'
                 ) ?> </p>

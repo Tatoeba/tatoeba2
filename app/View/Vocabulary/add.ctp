@@ -39,7 +39,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <div class="section" layout="column" md-whiteframe="1">
         <h2><? echo __('Tips'); ?></h2>
         <p><?
-        __(
+        echo __(
             'Add vocabulary that you are learning. If your vocabulary does not '.
             'exist yet in Tatoeba, other contributors can add sentences for it.'
         );

@@ -141,7 +141,7 @@
 
                 <div class="tip">
                     <?php
-                    __(
+                    echo __(
                         "Tip: <em>=word</em> will search for ".
                         "an exact match on <em>word</em>"
                     );

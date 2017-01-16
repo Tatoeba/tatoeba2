@@ -33,7 +33,7 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */ 
+ */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Wall')));
 
@@ -47,14 +47,14 @@ $this->Html->script('wall.show_and_hide_replies.js', false);
         <h2><?php echo __('Tips'); ?></h2>
         <p>
         <?php
-        __(
+        echo __(
             'Here you can ask general questions like how to use Tatoeba, ' .
             'report bugs or strange behavior, or simply socialize with the'.
             ' rest of the community.'
         );
         ?>
         </p>
-        
+
         <p>
         <?php
         echo format(
@@ -73,7 +73,7 @@ $this->Html->script('wall.show_and_hide_replies.js', false);
         <ul>
             <?php
             $mesg = count($tenLastMessages);
-            
+
             for ($i = 0 ; $i < min(10, $mesg); $i++) {
                 $currentMessage = $tenLastMessages[$i] ;
                 echo '<li>';
@@ -83,7 +83,7 @@ $this->Html->script('wall.show_and_hide_replies.js', false);
                                    'date' => $this->Date->ago($currentMessage['Wall']['date']),
                                    'author' => $currentMessage['User']['username']
                                ));
-                
+
                 $path = array(
                     'controller' => 'wall',
                     'action' => 'index#message_'.$currentMessage['Wall']['id']
@@ -99,9 +99,9 @@ $this->Html->script('wall.show_and_hide_replies.js', false);
             ?>
         </ul>
     </div>
-        
+
     <div class="wallBanner">
-    <?php 
+    <?php
     echo $this->Html->link(
         __(
             'You may write in any language you want. '.
@@ -127,7 +127,7 @@ $this->Html->script('wall.show_and_hide_replies.js', false);
                         array('n' => $threadsCount));
             ?>
         </h2>
-        
+
         <?php
         // leave a comment part
         if ($isAuthenticated) {
@@ -136,11 +136,11 @@ $this->Html->script('wall.show_and_hide_replies.js', false);
             echo '</div>'."\n";
         }
         ?>
-        
+
         <?php
         $this->Pagination->display();
         ?>
-        
+
         <div class="wall">
         <?php
         // display comment part
@@ -154,7 +154,7 @@ $this->Html->script('wall.show_and_hide_replies.js', false);
         }
         ?>
         </div>
-        
+
         <?php
         $this->Pagination->display();
         ?>

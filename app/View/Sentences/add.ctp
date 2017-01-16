@@ -66,7 +66,7 @@ $vocabularyUrl = $this->Html->url(array(
     <h2><?php echo __('Tips'); ?></h2>
     <p>
         <?php
-        __(
+        echo __(
             "You can add sentences that you do not know how to translate. ".
             "Perhaps someone else will know!"
         );
