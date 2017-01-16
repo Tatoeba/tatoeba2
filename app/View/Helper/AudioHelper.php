@@ -17,15 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+App::uses('AppHelper', 'View/Helper');
+
 class AudioHelper extends AppHelper
 {
-    public $helpers = array(
-        'Html',
-    );
+    public $helpers = array('Html');
 
     private $licenses;
 
-    public function __construct() {
+    public function __construct(View $view, $settings = array()) {
+        parent::__construct($view, $settings);
         $this->licenses = array(
             /* @translators: refers to the license used for audio recordings */
             'Public domain' => array('name' => __('Public domain')),
@@ -113,20 +114,18 @@ class AudioHelper extends AppHelper
         if (empty($license)) {
             $msg = __('You may not reuse the following audio recordings '.
                       'outside the Tatoeba project, because {userName} did '.
-                      'not chose any license for them yet.', true);
+                      'not chose any license for them yet.');
         } elseif ($license == 'Public domain') {
             $msg = __('The following audio recordings, attributed to '.
-                      '{userName}, are licensed under the public domain.',
-                      true);
+                      '{userName}, are licensed under the public domain.');
         } elseif (isset($this->licenses[$license])) {
             $license = $this->licenseLink($license);
             $msg = __('The following audio recordings, attributed to '.
                       '{userName}, are licensed under the {licenseName} '.
-                      'license.', true);
+                      'license.');
         } else {
             $msg = __('The following audio recordings, attributed to '.
-                      '{userName}, are licensed under an unknown license.',
-                      true);
+                      '{userName}, are licensed under an unknown license.');
         }
         return format($msg, array(
             'userName' => $userLink,
