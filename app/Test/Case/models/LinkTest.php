@@ -23,11 +23,11 @@ class LinkTest extends CakeTestCase {
 		'app.reindex_flag',
 	);
 
-	function startTest() {
+	function startTest($method) {
 		$this->Link =& ClassRegistry::init('Link');
 	}
 
-	function endTest() {
+	function endTest($method) {
 		unset($this->Link);
 		ClassRegistry::flush();
 	}

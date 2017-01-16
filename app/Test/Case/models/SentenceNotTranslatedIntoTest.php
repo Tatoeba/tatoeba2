@@ -25,12 +25,12 @@ class SentenceNotTranslatedIntoTest extends CakeTestCase {
         'app.wall_thread',
     );
 
-    public function startTest() {
+    public function startTest($method) {
         $this->SNTI =& ClassRegistry::init('SentenceNotTranslatedInto');
         $this->Sentence =& ClassRegistry::init('Sentence');
     }
 
-    public function endTest() {
+    public function endTest($method) {
         unset($this->SNTI);
         ClassRegistry::flush();
     }

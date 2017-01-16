@@ -23,11 +23,11 @@ class AudioTest extends CakeTestCase {
         'app.wall_thread',
     );
 
-    function startTest() {
+    function startTest($method) {
         $this->Audio =& ClassRegistry::init('Audio');
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->Audio);
         ClassRegistry::flush();
     }

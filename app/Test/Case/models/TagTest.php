@@ -22,11 +22,11 @@ class TagTest extends CakeTestCase {
         'app.reindex_flag',
     );
 
-    function startTest() {
+    function startTest($method) {
         $this->Tag =& ClassRegistry::init('Tag');
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->Tag);
         ClassRegistry::flush();
     }

@@ -5,11 +5,11 @@ App::import('Model', 'Sinogram');
 class SinogramTest extends CakeTestCase {
 	var $fixtures = array('app.sinogram', 'app.sinogram_subglyph');
 
-	function startTest() {
+	function startTest($method) {
 		$this->Sinogram =& ClassRegistry::init('Sinogram');
 	}
 
-	function endTest() {
+	function endTest($method) {
 		unset($this->Sinogram);
 		ClassRegistry::flush();
 	}

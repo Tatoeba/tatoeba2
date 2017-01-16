@@ -25,7 +25,7 @@ class SentenceTest extends CakeTestCase {
 		'app.reindex_flag',
 	);
 
-	function startTest() {
+	function startTest($method) {
 		$this->Sentence =& ClassRegistry::init('Sentence');
 
 		Mock::generate('SphinxBehavior');
@@ -50,7 +50,7 @@ class SentenceTest extends CakeTestCase {
 		return $autotranscription;
 	}
 
-	function endTest() {
+	function endTest($method) {
 		unset($this->Sentence);
 		ClassRegistry::flush();
 	}

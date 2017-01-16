@@ -30,11 +30,11 @@ class SentencesSentencesListsTest extends CakeTestCase {
         'app.sentences_sentences_list'
     );
 
-    function startTest() {
+    function startTest($method) {
         $this->SentencesSentencesLists =& ClassRegistry::init('SentencesSentencesLists');
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->SentencesSentencesLists);
         ClassRegistry::flush();
     }

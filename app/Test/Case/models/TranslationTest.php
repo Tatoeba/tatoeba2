@@ -22,11 +22,11 @@ class TranslationTest extends CakeTestCase {
         'app.reindex_flag',
     );
 
-    function startTest() {
+    function startTest($method) {
         $this->Translation =& ClassRegistry::init('Translation');
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->Translation);
         ClassRegistry::flush();
     }

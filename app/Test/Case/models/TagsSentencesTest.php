@@ -33,11 +33,11 @@ class TagsSentencesTest extends CakeTestCase {
         'app.transcription',
     );
 
-    function startTest() {
+    function startTest($method) {
         $this->TagsSentences =& ClassRegistry::init('TagsSentences');
     }
 
-    function endTest() {
+    function endTest($method) {
         unset($this->TagsSentences);
         ClassRegistry::flush();
     }
