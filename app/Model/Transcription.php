@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Vendor', 'autotranscription');
+App::import('Lib, 'autotranscription');
 
 class Transcription extends AppModel
 {

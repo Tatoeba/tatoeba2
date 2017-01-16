@@ -26,7 +26,7 @@
  */
 
 App::import('Model', 'CurrentUser');
-App::import('Vendor', 'LanguagesLib');
+App::import('Lib, 'LanguagesLib');
 
 /**
  * Helper for languages

@@ -17,7 +17,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Vendor', array('CountriesList', 'LanguagesLib'));
+App::import('Lib, array('CountriesList', 'LanguagesLib'));
 
 class CLDRCountriesShell extends Shell {
     private $CLDR_copyright = '

@@ -1,5 +1,7 @@
 <?php
 
+App::uses('CakeTestCase', 'TestSuite');
+
 class BootstrapTest extends CakeTestCase {
     function testFormat() {
         # Basic {} functionality

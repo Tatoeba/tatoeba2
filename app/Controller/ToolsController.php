@@ -34,7 +34,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-App::import('Vendor', 'autotranscription');
+App::import('Lib, 'autotranscription');
 
 class ToolsController extends AppController
 {

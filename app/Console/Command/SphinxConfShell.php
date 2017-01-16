@@ -17,7 +17,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Vendor', 'LanguagesLib');
+App::import('Lib, 'LanguagesLib');
 App::import('Core', 'ConnectionManager');
 
 class SphinxConfShell extends Shell {

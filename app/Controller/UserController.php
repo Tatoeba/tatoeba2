@@ -564,7 +564,7 @@ class UserController extends AppController
      */
     private function _language_settings($userInput)
     {
-        App::import('Vendor', 'LanguagesLib');
+        App::import('Lib, 'LanguagesLib');
         $userInput = str_replace(' ', '', $userInput);
         $userLangs = explode(',', $userInput);
         $tmpLanguagesArray = array();
