@@ -4,9 +4,10 @@
         "cakephp/cakephp": "2.9.*"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "2.*"
+        "squizlabs/php_codesniffer": "2.*",
+        "phpunit/phpunit": "3.7.*"
     },
     "config": {
-        "vendor-dir": "Vendor/"
+        "vendor-dir": "app/Vendor/"
     }
 }
