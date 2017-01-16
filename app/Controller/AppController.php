@@ -38,7 +38,7 @@ App::uses('Controller', 'Controller');
 
 App::import('Utility', 'Sanitize');
 App::import('Model', 'CurrentUser');
-App::import('Lib, 'LanguagesLib');
+App::import('Lib', 'LanguagesLib');
 
 class AppController extends Controller
 {

@@ -38,7 +38,7 @@ class SphinxBehavior extends ModelBehavior
 
         $this->settings[$model->alias] = $settings;
 
-        App::import('Lib, 'sphinxapi');
+        App::import('Lib', 'SphinxClient');
         $this->runtime[$model->alias]['sphinx'] = new SphinxClient();
         $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['host'],
                                                            $this->settings[$model->alias]['port']);

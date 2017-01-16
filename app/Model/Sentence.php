@@ -40,7 +40,7 @@
 
 App::import('Model', 'CurrentUser');
 App::import('Sanitize');
-App::import('Lib, 'LanguagesLib');
+App::import('Lib', 'LanguagesLib');
 
 class Sentence extends AppModel
 {

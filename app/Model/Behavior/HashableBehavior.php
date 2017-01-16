@@ -20,7 +20,7 @@
 /**
  * Model behavior for murmurhash3 helper functions.
  */
-App::import('Lib, 'murmurhash3');
+App::import('Lib', 'murmurhash3');
 
 class HashableBehavior extends ModelBehavior
 {

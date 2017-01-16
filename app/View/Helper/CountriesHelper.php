@@ -23,7 +23,7 @@ class CountriesHelper extends AppHelper
 
     public function getAllCountries() {
         if (!$this->countries) {
-            App::import('Lib, 'CountriesList');
+            App::import('Lib', 'CountriesList');
             $CountriesList = new CountriesList();
             $this->countries = $CountriesList->list;
         }

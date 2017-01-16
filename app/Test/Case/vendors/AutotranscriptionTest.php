@@ -1,5 +1,5 @@
 <?php
-App::import('Lib, 'Autotranscription');
+App::import('Lib', 'Autotranscription');
 
 class AutotranscriptionTest extends CakeTestCase {
     function startTest() {

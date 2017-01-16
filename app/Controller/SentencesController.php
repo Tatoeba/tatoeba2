@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Lib, 'sphinxapi');
+App::import('Lib', 'SphinxClient');
 
 /**
  * Controller for sentences.
