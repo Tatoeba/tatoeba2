@@ -42,7 +42,7 @@ class Link extends AppModel
         'Sentence'
     );
 
-    public function beforeSave() {
+    public function beforeSave($options = array()) {
         if (   isset($this->data[$this->alias]['sentence_id'])
             && isset($this->data[$this->alias]['translation_id'])) {
             $duplicate = $this->find('first', array('conditions' => array(
@@ -63,7 +63,7 @@ class Link extends AppModel
      *
      * @return void
      */
-    public function afterSave($created)
+    public function afterSave($created, $options = array())
     {
         ClassRegistry::init('Contribution')->saveLinkContribution(
             $this->data['Link']['sentence_id'],
@@ -121,9 +121,9 @@ class Link extends AppModel
      * @return bool
      */
     public function add(
-        $sentenceId, 
-        $translationId, 
-        $sentenceLang = null, 
+        $sentenceId,
+        $translationId,
+        $sentenceLang = null,
         $translationLang = null
     ) {
         $sentenceId = intval($sentenceId);
@@ -133,15 +133,15 @@ class Link extends AppModel
         if ($sentenceId == $translationId) {
             return false;
         }
-        
-        
+
+
         if ($sentenceLang != null && $translationLang != null) {
             // Check whether the sentences exist.
             $result = $this->query("
-                SELECT COUNT(*) as count FROM sentences 
+                SELECT COUNT(*) as count FROM sentences
                 WHERE id IN ($sentenceId, $translationId)
             ");
-                    
+
             if ($result[0][0]['count'] < 2) {
                 return false;
             }
@@ -166,8 +166,8 @@ class Link extends AppModel
                 }
             }
         }
-        
-        
+
+
         // Saving links if sentences exist.
         $data[0]['sentence_id'] = $sentenceId;
         $data[0]['translation_id'] = $translationId;
