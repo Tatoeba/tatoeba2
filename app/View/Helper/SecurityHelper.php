@@ -27,23 +27,19 @@
  */
 class SecurityHelper extends AppHelper
 {
-    public $helpers = array(
-        'Form',
-    );
-
     private $token;
 
     public function beforeRender($viewFile) {
-        $this->token = $this->Form->params['_Token'];
+        $this->token = $this->request['_Token'];
         $this->disableCSRFProtection();
     }
 
     public function enableCSRFProtection() {
-        $this->Form->params['_Token'] = $this->token;
+        $this->request['_Token'] = $this->token;
     }
 
     public function disableCSRFProtection() {
-        unset($this->Form->params['_Token']);
+        unset($this->request['_Token']);
     }
 }
 ?>
