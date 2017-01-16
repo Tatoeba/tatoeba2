@@ -3,6 +3,9 @@
     "require": {
         "cakephp/cakephp": "2.9.*"
     },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "2.*"
+    },
     "config": {
         "vendor-dir": "Vendor/"
     }
