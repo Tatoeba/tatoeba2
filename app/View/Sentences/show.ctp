@@ -34,14 +34,14 @@ if (isset($sentence)) {
     $sentenceLang = $sentence['Sentence']['lang'];
     $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
-    
+
     $languageName = $this->Languages->codeToNameToFormat($sentenceLang);
     $title = format(__('{language} example sentence: {sentence}'),
                     array('language' => $languageName, 'sentence' => $sentenceText));
     $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     $this->Html->meta(
-        'description', 
+        'description',
         format(
             __(
                 "Browse translated example sentences. ".
@@ -49,7 +49,7 @@ if (isset($sentence)) {
                 , true
             ),
             compact('sentenceText')
-        ), 
+        ),
         array('inline' => false)
     );
 } else {
@@ -101,7 +101,7 @@ $this->Navigation->displaySentenceNavigation(
     }
     ?>
 
-    <?php 
+    <?php
     if (isset($sentence)){
         $this->Tags->displayTagsModule($tagsArray, $sentenceId, $sentenceLang);
 
@@ -124,17 +124,17 @@ $this->Navigation->displaySentenceNavigation(
                     'sentenceId' => $sentenceId,
                     'sentenceCorrectness' => $sentenceCorrectness
                 )
-            ); 
+            );
         }
     }
     ?>
-    
+
     <div class="section">
         <?php
         echo '<h2>';
-        __('Logs');
+        echo __('Logs');
         echo '</h2>';
-        
+
         //$contributions = $sentence['Contribution'];
         if (!empty($contributions)) {
             echo '<md-list id="logs">';
@@ -158,17 +158,17 @@ $this->Navigation->displaySentenceNavigation(
         if (isset($sentence)) {
         ?>
             <h2>
-            <?php 
+            <?php
             echo format(__('Sentence #{number}'), array('number' => $sentenceId));
             ?>
-            </h2>            
-            
+            </h2>
+
             <?php
             // display sentence and translations
             $this->Sentences->displaySentencesGroup($sentence);
-            
+
         } else {
-            
+
             echo '<h2>' .
                 format(__('Sentence #{number}'),
                        array('number' => $this->request->params['pass'][0])) .
@@ -179,7 +179,7 @@ $this->Navigation->displaySentenceNavigation(
                     __(
                         'There is no sentence with id {number}',
                         true
-                    ), 
+                    ),
                     array('number' => $this->request->params['pass'][0])
                 );
             echo '</div>';
@@ -228,7 +228,7 @@ $this->Navigation->displaySentenceNavigation(
         ?>
     </div>
 </div>
-<?php 
+<?php
 } else {
 ?>
     <div id="main_content">
@@ -238,7 +238,7 @@ $this->Navigation->displaySentenceNavigation(
             if($searchProblem == 'disabled') {
                 echo $this->Html->tag('p', __('The random sentence feature is currently disabled, please try again later.'));
             } else if ($searchProblem == 'error') {
-                echo $this->Html->tag('p', format(__('An error occurred while fetching random sentences. '. 
+                echo $this->Html->tag('p', format(__('An error occurred while fetching random sentences. '.
                                                'If this persists, please <a href="{}">let us know</a>.', true),
                                      $this->Html->url(array("controller"=>"pages", "action" => "contact"))
                 ));
@@ -247,4 +247,3 @@ $this->Navigation->displaySentenceNavigation(
         </div>
     </div>
 <?php } ?>
-
