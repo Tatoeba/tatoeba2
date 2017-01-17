@@ -41,7 +41,7 @@ $vocabularyUrl = $this->Html->url(array(
     <h2><?php echo __('Important'); ?></h2>
     <p>
     <?php
-    __(
+    echo __(
         'Please do not forget <strong>capital letters</strong> '.
         'and <strong>punctuation</strong>! Thank you.'
     );

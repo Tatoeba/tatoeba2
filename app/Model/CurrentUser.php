@@ -330,7 +330,7 @@ class CurrentUser extends AppModel
      *
      * @return IP
      */
-    public function getIp()
+    public static function getIp()
     {
         if (getenv("HTTP_CLIENT_IP")) {
             return getenv("HTTP_CLIENT_IP");

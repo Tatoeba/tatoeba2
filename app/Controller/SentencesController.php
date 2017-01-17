@@ -123,6 +123,8 @@ class SentencesController extends AppController
             'show_all_in',
             'with_audio'
         );
+
+        $this->Security->unlockedActions = array('add_an_other_sentence');
     }
 
     /**
@@ -383,7 +385,7 @@ class SentencesController extends AppController
 
         if ($this->_cantEditSentence($sentence)) {
             $this->redirect(array('controller' => 'pages', 'action' => 'home'));
-            
+
             return;
         }
 
@@ -393,7 +395,7 @@ class SentencesController extends AppController
 
         if ($isSaved) {
             $this->UsersSentences->makeDirty($id);
-            
+
             $this->set('sentence_text', $text);
         } else {
             $this->set('sentence_text', $sentence['Sentence']['text']);
@@ -523,7 +525,7 @@ class SentencesController extends AppController
         }
 
         $translationText = $_POST['value'];
-        
+
         // Store selected lang in cookie as default language for drop-downs
         $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
 
@@ -885,7 +887,7 @@ class SentencesController extends AppController
                 $real_total
             );
         }
-        
+
         $strippedQuery = preg_replace('/"|=/', '', $query);
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
@@ -1118,7 +1120,7 @@ class SentencesController extends AppController
         $this->set('lastNumberChosen', $number);
 
     }
-   
+
     /**
      * Show all the sentences of a given user
      *
@@ -1205,7 +1207,7 @@ class SentencesController extends AppController
 
         $this->set('user_sentences', $sentences);
     }
-    
+
 
     /**
      * Change language of a sentence.
@@ -1279,7 +1281,7 @@ class SentencesController extends AppController
             $lang
         ));
     }
-    
+
     /**
      * Edit correctness of a sentence.
      *
@@ -1289,21 +1291,21 @@ class SentencesController extends AppController
     {
         $sentenceId = $this->request->data['Sentence']['id'];
         $correctness = $this->request->data['Sentence']['correctness'];
-        
+
         if (CurrentUser::isModerator()) {
             $this->Sentence->editCorrectness($sentenceId, $correctness);
             $this->redirect(
                 array(
-                    "controller" => "sentences", 
-                    "action" => "show", 
+                    "controller" => "sentences",
+                    "action" => "show",
                     $sentenceId
                 )
             );
         } else {
             $this->redirect(
                 array(
-                    "controller" => "pages", 
-                    "action" => "home", 
+                    "controller" => "pages",
+                    "action" => "home",
                 )
             );
         }
@@ -1315,7 +1317,7 @@ class SentencesController extends AppController
         $sentenceId = $this->request->data['Sentence']['id'];
         $ownerName = $this->request->data['Sentence']['ownerName'];
         $hasaudio = $this->request->data['Sentence']['hasaudio'];
-        
+
         if (CurrentUser::isAdmin()) {
             if ($hasaudio) {
                 $this->Audio->assignAudioTo($sentenceId, $ownerName);
@@ -1324,16 +1326,16 @@ class SentencesController extends AppController
             }
             $this->redirect(
                 array(
-                    "controller" => "sentences", 
-                    "action" => "show", 
+                    "controller" => "sentences",
+                    "action" => "show",
                     $sentenceId
                 )
             );
         } else {
             $this->redirect(
                 array(
-                    "controller" => "pages", 
-                    "action" => "home", 
+                    "controller" => "pages",
+                    "action" => "home",
                 )
             );
         }

@@ -37,9 +37,9 @@
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Wall')));
 
-$this->Html->script('jquery.scrollTo.min.js', false);
-$this->Html->script('wall.reply.js', false);
-$this->Html->script('wall.show_and_hide_replies.js', false);
+echo $this->Html->script('jquery.scrollTo.min.js');
+echo $this->Html->script('wall.reply.js');
+echo $this->Html->script('wall.show_and_hide_replies.js');
 
 ?>
 <div id="annexe_content" >

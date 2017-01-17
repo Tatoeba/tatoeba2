@@ -125,7 +125,7 @@ class AppController extends Controller
     {
         Security::setHash('md5');
         // only prevent CSRF for logins and registration in the users controller
-        $this->Security->csrfCheck = true;
+        $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
 
         $this->Cookie->domain = TATOEBA_DOMAIN;

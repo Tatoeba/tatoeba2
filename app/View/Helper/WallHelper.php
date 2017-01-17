@@ -57,7 +57,7 @@ class WallHelper extends AppHelper
         echo $this->Form->create(
             '',
             array(
-                "url" => array("action" => "save"),
+                "url" => array("controller" => "wall", "action" => "save"),
                 "class" => "message form"
             )
         );

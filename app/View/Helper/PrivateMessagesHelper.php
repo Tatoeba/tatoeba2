@@ -82,6 +82,7 @@ class PrivateMessagesHelper extends AppHelper
             <div class="pmFields">
             <?php
             echo $this->Form->hidden('messageId', array('value' => $messageId));
+            echo $this->Form->hidden('submitType', array('value' => ''));
             echo $this->Form->input(
                 'recpt',
                 array(
