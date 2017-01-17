@@ -124,7 +124,10 @@ class SentencesController extends AppController
             'with_audio'
         );
 
-        $this->Security->unlockedActions = array('add_an_other_sentence');
+        $this->Security->unlockedActions = array(
+          'add_an_other_sentence',
+          'save_translation'
+        );
     }
 
     /**
