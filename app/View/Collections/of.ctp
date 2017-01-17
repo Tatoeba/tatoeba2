@@ -40,7 +40,7 @@ if ($correctnessLabel) {
 }
 
 
-if ($userExists) {    
+if ($userExists) {
     $title = format(
         __("{user}'s collection - {category}"),
         array('user' => $username, 'category' => $categories[$category])
@@ -106,12 +106,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         ?>
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
-            <?php 
-            echo $this->Paginator->sort(__("date modified"), 'modified');
+            <?php
+            echo $this->Paginator->sort('modified', __("date modified"));
             echo " | ";
-            echo $this->Paginator->sort(__("date created"), 'created');
+            echo $this->Paginator->sort('created', __("date created"));
             echo " | ";
-            echo $this->Paginator->sort(__("sentence id"), 'sentence_id');
+            echo $this->Paginator->sort('sentence_id', __("sentence id"));
             ?>
         </div>
         <?php

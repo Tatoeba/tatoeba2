@@ -103,7 +103,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         ?>
     </div>
     </div>
-    
+
 </div>
 
 <div id="main_content">
@@ -145,15 +145,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     $this->Pagination->display($url);
 
     ?>
-    
+
     <div class="sortBy" id="sortBy">
      <strong><?php echo __("Sort by:") ?> </strong>
-            <?php 
-            echo $this->Paginator->sort(__("date added"), 'created');
+            <?php
+            echo $this->Paginator->sort('created', __("date added"));
             echo " | ";
-            echo $this->Paginator->sort(__("sentence id"), 'sentence_id');
+            echo $this->Paginator->sort('sentence_id', __("sentence id"));
     ?>
-   
+
     </div>
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
@@ -179,10 +179,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     }
     ?>
     </div>
-    
+
     <?php
     $this->Pagination->display($url);
     ?>
-    
+
     </div>
 </div>

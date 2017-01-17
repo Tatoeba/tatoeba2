@@ -83,9 +83,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
-            echo $this->Paginator->sort(__("count"), 'nbrOfSentences');
+            echo $this->Paginator->sort('nbrOfSentences', __("count"));
             echo " | ";
-            echo $this->Paginator->sort(__("name"), 'name');
+            echo $this->Paginator->sort('name', __("name"));
             ?>
         </div>
 

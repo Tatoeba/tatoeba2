@@ -52,7 +52,7 @@ class PaginationHelper extends AppHelper
         if(isset($this->request->params['direction'])
             || !isset($options['defaultOrders'])
             || !isset($options['defaultOrders'][$key])){
-            return $this->Paginator->sort($title, $key, $options);
+            return $this->Paginator->sort($key, $title, $options);
         }
 
         $do = $options['defaultOrders'];
@@ -62,7 +62,7 @@ class PaginationHelper extends AppHelper
             $options['direction'] = $do[$key];
         }
 
-        return $this->Paginator->sort($title, $key, $options);
+        return $this->Paginator->sort($key, $title, $options);
     }
 
     /**

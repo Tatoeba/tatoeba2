@@ -47,13 +47,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
-            echo $this->Paginator->sort(__('list name'), 'name');
+            echo $this->Paginator->sort('name', __('list name'));
             echo " | ";
-            echo $this->Paginator->sort(__('date created'), 'created');
+            echo $this->Paginator->sort('created', __('date created'));
             echo " | ";
             echo $this->Paginator->sort(
-                __('number of sentences'),
-                'numberOfSentences'
+              'numberOfSentences',
+                __('number of sentences')
             );
             echo " | ";
             $options = array('defaultOrders' => array('modified' => 'desc'));

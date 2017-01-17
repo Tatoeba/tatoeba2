@@ -35,7 +35,7 @@ if ($userExists === true) {
     $this->Paginator->options(
         array(
             'url' => $this->request->params['pass']
-        ) 
+        )
     );
 
     if (empty($lang)) {
@@ -55,15 +55,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 <div id="annexe_content">
     <?php
     echo $this->element(
-        'users_menu', 
+        'users_menu',
         array('username' => $userName)
     );
-    
+
     $this->CommonModules->createFilterByLangMod(2);
     ?>
 </div>
-    
-    
+
+
 <div id="main_content">
     <div class="module">
 
@@ -92,29 +92,29 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         ?>
 
         <h2>
-            <?php 
+            <?php
             echo $this->Paginator->counter(
                 array(
                     'format' => $title . ' ' . __("(total %count%)")
                 )
-            ); 
+            );
             ?>
         </h2>
-        
+
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
-            echo $this->Paginator->sort(__('date modified'), 'modified');
+            echo $this->Paginator->sort('modified', __('date modified'));
             echo " | ";
-            echo $this->Paginator->sort(__('date created'), 'created');
+            echo $this->Paginator->sort('created', __('date created'));
             ?>
         </div>
-        
+
         <?php
         $paginationUrl = array($userName, $lang);
         $this->Pagination->display($paginationUrl);
-        
-        
+
+
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = false;
@@ -126,8 +126,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 $withAudio
             );
         }
-        
-        
+
+
         $this->Pagination->display($paginationUrl);
     }
     ?>

@@ -62,30 +62,30 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 <div id="main_content">
     <div class="module">
-        <?php 
+        <?php
         if (!$userExists) {
             $this->CommonModules->displayNoSuchUser($username, $backLink);
-        } else {    
+        } else {
             echo $this->Html->tag('h2', $title, array('escape' => true)); ?>
 
             <div class="sortBy">
                 <strong><?php echo __("Sort by:") ?> </strong>
                 <?php
-                echo $this->Paginator->sort(__('list name'), 'name');
+                echo $this->Paginator->sort('name', __('list name'));
                 echo " | ";
-                echo $this->Paginator->sort(__('date created'), 'created');
+                echo $this->Paginator->sort('created', __('date created'));
                 echo " | ";
                 echo $this->Paginator->sort(
-                    __('number of sentences'),
-                    'numberOfSentences'
+                  'numberOfSentences',
+                    __('number of sentences')
                 );
                 echo " | ";
                 $options = array('defaultOrders' => array('modified' => 'desc'));
                 echo $this->Pagination->sortDefaultOrder(__('last updated'), 'modified', $options);
                 ?>
-                
+
             </div>
-            
+
             <?php
             $this->Pagination->display(array($username, $filter));
 

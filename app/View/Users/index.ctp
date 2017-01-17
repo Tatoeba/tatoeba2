@@ -62,22 +62,21 @@ echo $this->Paginator->next(
 ?>
 </div>
 
-<!-- In CakePHP 1.2, the fields are in the order "title, key". In 2.x, they're in the opposite order. -->
 <table class="users">
 <tr>
-    <th><?php echo $this->Paginator->sort(__d('admin', 'ID'),'id'); ?></th>
-    <th><?php echo $this->Paginator->sort(__d('admin', 'Username'),'username'); ?></th>
-    <th><?php echo $this->Paginator->sort(__d('admin', 'Email'),'email'); ?></th>
-    <th><?php echo $this->Paginator->sort(__d('admin', 'Since'),'since'); ?></th>
-    <th><?php echo $this->Paginator->sort(__d('admin', 'Level'),'level'); ?></th>
-    <th><?php echo $this->Paginator->sort(__d('admin', 'Group'),'group_id'); ?></th>
+    <th><?php echo $this->Paginator->sort('id', __d('admin', 'ID')); ?></th>
+    <th><?php echo $this->Paginator->sort('username', __d('admin', 'Username')); ?></th>
+    <th><?php echo $this->Paginator->sort('email', __d('admin', 'Email')); ?></th>
+    <th><?php echo $this->Paginator->sort('since', __d('admin', 'Since')); ?></th>
+    <th><?php echo $this->Paginator->sort('level', __d('admin', 'Level')); ?></th>
+    <th><?php echo $this->Paginator->sort('group_id', __d('admin', 'Group')); ?></th>
     <th class="actions"></th>
 </tr>
 <?php
 $i = 0;
 foreach ($users as $user) {
     $class = null;
-    
+
     if ($i++ % 2 == 0) {
         $class = ' class="altrow"';
     }
@@ -87,14 +86,14 @@ foreach ($users as $user) {
             <?php echo $user['User']['id']; ?>
         </td>
         <td>
-            <?php 
+            <?php
             echo $this->Html->link(
-                $user['User']['username'], 
+                $user['User']['username'],
                 array(
-                    'action'=>'edit', 
+                    'action'=>'edit',
                     $user['User']['id']
                 )
-            ); 
+            );
             ?>
         </td>
         <td>

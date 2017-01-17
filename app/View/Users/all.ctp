@@ -83,11 +83,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         <div class="sortBy">
             <strong><?php echo __('Sort by:'); ?></strong>
             <?php
-            echo $this->Paginator->sort(__('Username'), 'username');
+            echo $this->Paginator->sort('username', __('Username'));
             echo ' | ';
-            echo $this->Paginator->sort(__('Member since'),'since');
+            echo $this->Paginator->sort('since', __('Member since'));
             echo ' | ';
-            echo $this->Paginator->sort(__('Member status'),'group_id');
+            echo $this->Paginator->sort('group_id', __('Member status'));
             ?>
         </div>
 

@@ -20,7 +20,7 @@
  *
  * @category PHP
  * @package  Tatoeba
- * @author   Allan SIMON <allan.simon@supinfo.com> 
+ * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -47,17 +47,17 @@ if ($tagExists) {
 
     <div id="main_content">
         <div class="section">
-            <h2><?php 
+            <h2><?php
             $n = $this->Paginator->counter(array('format' => '%count%'));
             echo format(
-                __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n), 
+                __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
                 compact('tagName', 'n')
             ); ?></h2>
-            
+
             <div class="sortBy">
                 <strong><?php echo __("Sort by:") ?></strong>
                 <?php
-                echo $this->Paginator->sort(__("date of tag"), 'added_time');
+                echo $this->Paginator->sort('added_time', __("date of tag"));
                 ?>
             </div>
 
