@@ -23,7 +23,7 @@ class TranslationTest extends CakeTestCase {
     );
 
     function startTest($method) {
-        $this->Translation =& ClassRegistry::init('Translation');
+        $this->Translation = ClassRegistry::init('Translation');
     }
 
     function endTest($method) {

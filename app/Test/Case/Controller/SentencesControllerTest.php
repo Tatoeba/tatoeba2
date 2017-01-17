@@ -3,8 +3,6 @@
 App::import('Controller', 'Sentences');
 App::import('Component', 'Cookie');
 
-Mock::generate('CookieComponent');
-
 class TestSentencesController extends SentencesController {
 	public $autoRender = false;
 
@@ -62,12 +60,12 @@ class SentencesControllerTest extends CakeTestCase {
 	}
 
 	function startTest($method) {
-		$this->Sentences =& new TestSentencesController();
+		$this->Sentences = new TestSentencesController();
 		$this->Sentences->constructClasses();
 		/* Replace the CookieComponent with a mock in order to prevent
 		   the 'headers already sent' error when a cookie is written.
 		*/
-		$this->Sentences->Cookie =& new MockCookieComponent();
+		$this->Sentences->Cookie = Mockery::mock('CookieComponent');
 	}
 
 	function endTest($method) {
@@ -102,7 +100,7 @@ class SentencesControllerTest extends CakeTestCase {
 
 	function testAdd_redirectsGuestsToLogin() {
 		$this->_testActionAsGuest('add');
-		$this->assertEqual('/users/login', $this->Sentences->redirectUrl);
+		$this->assertEquals('/users/login', $this->Sentences->redirectUrl);
 	}
 
 	function testAdd_doesNotRedirectsLoggedInUsers() {
@@ -123,7 +121,7 @@ class SentencesControllerTest extends CakeTestCase {
 			'form' => array('id' => 'eng_1', 'value' => 'Where are my…'),
 		));
 		$newSentence = $this->Sentences->Sentence->findById(1, 'text');
-		$this->assertNotEqual($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
+		$this->assertNotEquals($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
 	}
 
 	function testEditSentence_cantEditSentencesOfOtherUsers() {
@@ -132,7 +130,7 @@ class SentencesControllerTest extends CakeTestCase {
 			'form' => array('id' => 'eng_1', 'value' => 'Where are my…'),
 		));
 		$newSentence = $this->Sentences->Sentence->findById(1, 'text');
-		$this->assertEqual($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
+		$this->assertEquals($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
 	}
 
 	function testEditSentence_canEditSentencesOfOtherUsersIfModerator() {
@@ -141,21 +139,21 @@ class SentencesControllerTest extends CakeTestCase {
 			'form' => array('id' => 'eng_1', 'value' => 'Where are my…'),
 		));
 		$newSentence = $this->Sentences->Sentence->findById(1, 'text');
-		$this->assertNotEqual($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
+		$this->assertNotEquals($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
 	}
 
 	function testAdopt_cantAdoptSentenceIfNotOrphan() {
 		$oldSentence = $this->Sentences->Sentence->findById(1, 'user_id');
 		$this->_testActionAsUser('adopt', 'contributor', array(), array(1));
 		$newSentence = $this->Sentences->Sentence->findById(1, 'user_id');
-		$this->assertEqual($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
+		$this->assertEquals($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
 	}
 
 	function testAdopt_cantLetGoSentenceIfNotOwner() {
 		$oldSentence = $this->Sentences->Sentence->findById(1, 'user_id');
 		$this->_testActionAsUser('let_go', 'contributor', array(), array(1));
 		$newSentence = $this->Sentences->Sentence->findById(1, 'user_id');
-		$this->assertEqual($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
+		$this->assertEquals($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
 	}
 
 	function testDelete_cantDeleteOwnSentenceAsRegularUser() {

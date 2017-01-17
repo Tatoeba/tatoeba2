@@ -31,7 +31,7 @@ class SentencesSentencesListsTest extends CakeTestCase {
     );
 
     function startTest($method) {
-        $this->SentencesSentencesLists =& ClassRegistry::init('SentencesSentencesLists');
+        $this->SentencesSentencesLists = ClassRegistry::init('SentencesSentencesLists');
     }
 
     function endTest($method) {

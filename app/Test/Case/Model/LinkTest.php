@@ -24,7 +24,7 @@ class LinkTest extends CakeTestCase {
 	);
 
 	function startTest($method) {
-		$this->Link =& ClassRegistry::init('Link');
+		$this->Link = ClassRegistry::init('Link');
 	}
 
 	function endTest($method) {

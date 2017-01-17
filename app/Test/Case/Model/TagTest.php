@@ -23,7 +23,7 @@ class TagTest extends CakeTestCase {
     );
 
     function startTest($method) {
-        $this->Tag =& ClassRegistry::init('Tag');
+        $this->Tag = ClassRegistry::init('Tag');
     }
 
     function endTest($method) {

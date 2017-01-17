@@ -2,8 +2,6 @@
 App::import('Controller', 'App');
 App::import('Component', 'Cookie');
 
-Mock::generate('CookieComponent');
-
 class TestAppController extends AppController {
 	public $uses = array();
 
@@ -35,9 +33,9 @@ class AppControllerTest extends CakeTestCase {
 			array('jpn', null, '日本語'),
 			array('pt_BR', 'BR', 'Português (BR)'),
 		));
-		$this->App =& new TestAppController();
+		$this->App = new TestAppController();
 		$this->App->constructClasses();
-		$this->App->Cookie =& new MockCookieComponent();
+		$this->App->Cookie = Mockery::mock();
 	}
 
 	function tearDown() {
@@ -45,7 +43,7 @@ class AppControllerTest extends CakeTestCase {
 	}
 
 	function setInterfaceLanguageCookie($lang = null) {
-		$this->App->Cookie->setReturnValue('read', $lang, array('interfaceLanguage'));
+		$this->App->Cookie->shouldReceive('read')->andReturn($lang, array('interfaceLanguage'));
 	}
 
 	function _runBeforeFilter($url) {
@@ -63,11 +61,11 @@ class AppControllerTest extends CakeTestCase {
 
 	function expectLanguageCookie($lang) {
 		$this->App->Cookie->expect('write', array('interfaceLanguage', $lang, false, '+1 month'));
-		$this->App->Cookie->expectCallCount('write', 1);
+		$this->App->Cookie->shouldReceive('write')->times(1);;
 	}
 
 	function expectNoLanguageCookie() {
-		$this->App->Cookie->expectNever('write');
+		$this->App->Cookie->shouldReceive('write')->never();
 	}
 
 	function testBeforeFilter_redirectsToEnglishByDefault() {
@@ -75,7 +73,7 @@ class AppControllerTest extends CakeTestCase {
 		$this->_runBeforeFilter('/foo/bar');
 
 		$this->assertTrue($this->App->stopped);
-		$this->assertEqual('/eng/foo/bar', $this->App->redirectUrl);
+		$this->assertEquals('/eng/foo/bar', $this->App->redirectUrl);
 	}
 
 	function testBeforeFilter_redirectsToLanguageInCookie() {
@@ -85,7 +83,7 @@ class AppControllerTest extends CakeTestCase {
 		$this->_runBeforeFilter('/eng/foo/bar');
 
 		$this->assertTrue($this->App->stopped);
-		$this->assertEqual('/jpn/foo/bar', $this->App->redirectUrl);
+		$this->assertEquals('/jpn/foo/bar', $this->App->redirectUrl);
 	}
 
 	function testBeforeFilter_redirectsToLanguageInCookieWithoutLanguageInUrl() {
@@ -95,7 +93,7 @@ class AppControllerTest extends CakeTestCase {
 		$this->_runBeforeFilter('/foo/bar');
 
 		$this->assertTrue($this->App->stopped);
-		$this->assertEqual('/jpn/foo/bar', $this->App->redirectUrl);
+		$this->assertEquals('/jpn/foo/bar', $this->App->redirectUrl);
 	}
 
 	function testBeforeFilter_doesntRedirectIfLanguageInCookieEqualsLanguageInUrl() {
@@ -121,7 +119,7 @@ class AppControllerTest extends CakeTestCase {
 		$this->_runBeforeFilter('/chi/foo/bar');
 
 		$this->assertTrue($this->App->stopped);
-		$this->assertEqual('/cmn/foo/bar', $this->App->redirectUrl);
+		$this->assertEquals('/cmn/foo/bar', $this->App->redirectUrl);
 	}
 
 	function testBeforeFilter_redirectsFromOldAliasWithCookie() {
@@ -131,7 +129,7 @@ class AppControllerTest extends CakeTestCase {
 		$this->_runBeforeFilter('/foo/bar');
 
 		$this->assertTrue($this->App->stopped);
-		$this->assertEqual('/chi/foo/bar', $this->App->redirectUrl);
+		$this->assertEquals('/chi/foo/bar', $this->App->redirectUrl);
 	}
 
 	function testBeforeFilter_redirectsFromOldAliasWithCookieWithLangInUrl() {
@@ -141,7 +139,7 @@ class AppControllerTest extends CakeTestCase {
 		$this->_runBeforeFilter('/chi/foo/bar');
 
 		$this->assertTrue($this->App->stopped);
-		$this->assertEqual('/cmn/foo/bar', $this->App->redirectUrl);
+		$this->assertEquals('/cmn/foo/bar', $this->App->redirectUrl);
 	}
 
 	function testBeforeFilter_updatesCookieFromOldAlias() {

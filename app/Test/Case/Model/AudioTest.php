@@ -24,7 +24,7 @@ class AudioTest extends CakeTestCase {
     );
 
     function startTest($method) {
-        $this->Audio =& ClassRegistry::init('Audio');
+        $this->Audio = ClassRegistry::init('Audio');
     }
 
     function endTest($method) {

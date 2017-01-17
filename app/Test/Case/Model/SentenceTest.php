@@ -26,26 +26,22 @@ class SentenceTest extends CakeTestCase {
 	);
 
 	function startTest($method) {
-		$this->Sentence =& ClassRegistry::init('Sentence');
+		$this->Sentence = ClassRegistry::init('Sentence');
 
-		Mock::generate('SphinxBehavior');
-		$this->Sentence->Behaviors->Sphinx =& new MockSphinxBehavior();
+		$this->Sentence->Behaviors->Sphinx = Mockery::mock();
 
 		$autotranscription = $this->_installAutotranscriptionMock();
-		$autotranscription->setReturnValue('cmn_detectScript', 'Hans');
-		$autotranscription->setReturnValue(
-			'jpn_Jpan_to_Hrkt_generate',
-			'transcription in furigana'
+		$autotranscription->shouldReceive('cmn_detectScript')->andReturn('Hans');
+		$autotranscription->shouldReceive(
+			'jpn_Jpan_to_Hrkt_generate')->andReturn('transcription in furigana'
 		);
-		$autotranscription->setReturnValue(
-			'jpn_Jpan_to_Hrkt_validate',
-			true
+		$autotranscription->shouldReceive(
+			'jpn_Jpan_to_Hrkt_validate')->andReturn(true
 		);
 	}
 
 	function _installAutotranscriptionMock() {
-		Mock::generate('Autotranscription');
-		$autotranscription =& new MockAutotranscription();
+		$autotranscription = Mockery::mock();
 		$this->Sentence->Transcription->setAutotranscription($autotranscription);
 		return $autotranscription;
 	}
@@ -61,7 +57,7 @@ class SentenceTest extends CakeTestCase {
 		$newNumberOfSentences = $this->Sentence->find('count');
 		$sentencesAdded = $newNumberOfSentences - $oldNumberOfSentences;
 
-		$this->assertEqual($sentencesAdded, 1);
+		$this->assertEquals($sentencesAdded, 1);
 	}
 
 	function testSaveNewSentence_nullifiesEmptyLangs() {
@@ -82,15 +78,12 @@ class SentenceTest extends CakeTestCase {
 	}
 
 	function testSaveTranslation_links() {
-		Mock::generate('Link');
 		$translationFromSentenceId = 1;
 		$newlyCreatedSentenceId = (string)($this->Sentence->find('count') + 1);
-		$this->Sentence->Link =& new MockLink();
+		$this->Sentence->Link = Mockery::mock();
 
-		$this->Sentence->Link->expectOnce(
-			'add',
-			array($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng')
-		);
+		$this->Sentence->Link->shouldReceive(
+			'add')->with($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng')->once();
 
 		$this->Sentence->saveTranslation(
 			$translationFromSentenceId,
@@ -111,19 +104,19 @@ class SentenceTest extends CakeTestCase {
             'count',
             array('conditions' => array('sentence_id' => $newSentence))
         );
-        $this->assertEqual(1, $transcriptions);
+        $this->assertEquals(1, $transcriptions);
     }
 
 	function testSentenceTextEditionUpdatesScript() {
 		$autotranscription = $this->_installAutotranscriptionMock();
-		$autotranscription->setReturnValue('cmn_detectScript', 'Hant');
+		$autotranscription->shouldReceive('cmn_detectScript')->andReturn('Hant');
 		$cmnSentenceId = 2;
 		$this->Sentence->id = $cmnSentenceId;
 		$this->Sentence->save(array(
 			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
 		));
 		$result = $this->Sentence->findById($cmnSentenceId, 'script');
-		$this->assertEqual('Hant', $result['Sentence']['script']);
+		$this->assertEquals('Hant', $result['Sentence']['script']);
 	}
 
 	function testSentenceFlagEditionUpdatesScript() {
@@ -152,8 +145,8 @@ class SentenceTest extends CakeTestCase {
 		$transcrAfter = $this->Sentence->Transcription->find(
 			'all', compact('fields', 'conditions')
 		);
-		$this->assertEqual(count($transcrBefore), count($transcrAfter));
-		$this->assertNotEqual($transcrBefore, $transcrAfter);
+		$this->assertEquals(count($transcrBefore), count($transcrAfter));
+		$this->assertNotEquals($transcrBefore, $transcrAfter);
 	}
 
 	function testSentenceFlagEditionGeneratesTranscriptions() {
@@ -199,7 +192,7 @@ class SentenceTest extends CakeTestCase {
 		$transcrAfter = $this->Sentence->Transcription->find(
 			'all', compact('conditions')
 		);
-		$this->assertEqual($transcrBefore, $transcrAfter);
+		$this->assertEquals($transcrBefore, $transcrAfter);
 	}
 
 	function testSentenceDeletionDeletesTranscriptions() {
@@ -209,19 +202,19 @@ class SentenceTest extends CakeTestCase {
 		$transcr = $this->Sentence->Transcription->find('all', array(
 			'conditions' => array('sentence_id' => $jpnSentenceId),
 		));
-		$this->assertEqual(array(), $transcr);
+		$this->assertEquals(array(), $transcr);
 	}
 
 	function testGetSentencesLang_returnsLang() {
 		$result = $this->Sentence->getSentencesLang(array(3, 4, 8));
 		$expectedLangs = array(3 => 'spa', 4 => 'fra', 8 => 'fra');
-		$this->assertEqual($expectedLangs, $result);
+		$this->assertEquals($expectedLangs, $result);
 	}
 
 	function testGetSentencesLang_returnsNullForFlaglessSentences() {
 		$result = $this->Sentence->getSentencesLang(array(9));
 		$expectedLangs = array(9 => null);
-		$this->assertEqual($expectedLangs, $result);
+		$this->assertEquals($expectedLangs, $result);
 	}
 
 	function testSentenceRemovedOnDelete() {
@@ -261,7 +254,7 @@ class SentenceTest extends CakeTestCase {
 		$this->Sentence->delete($sentenceId, false);
 
 		$trans = $this->Sentence->Link->findDirectTranslationsIds($sentenceId);
-		$this->assertEqual(array(), $trans);
+		$this->assertEquals(array(), $trans);
 	}
 
 	function testLogsSentenceDeletionOnDelete() {
@@ -273,7 +266,7 @@ class SentenceTest extends CakeTestCase {
 
 		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
 		$added = $after - $before;
-		$this->assertEqual(1, $added);
+		$this->assertEquals(1, $added);
 	}
 
 	function testLogsSentenceDeletionWithFieldsOnDelete() {
@@ -294,7 +287,7 @@ class SentenceTest extends CakeTestCase {
 		$log = $this->Sentence->Contribution->find('all',
 			compact('conditions', 'fields')
 		);
-		$this->assertEqual($expected, $log[0]['Contribution']);
+		$this->assertEquals($expected, $log[0]['Contribution']);
 	}
 
 	function testLogsLinkDeletionOnDelete() {
@@ -306,7 +299,7 @@ class SentenceTest extends CakeTestCase {
 
 		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
 		$added = $after - $before;
-		$this->assertEqual(2, $added);
+		$this->assertEquals(2, $added);
 	}
 
 	function testLogsLinkDeletionWithFieldsOnDelete() {
@@ -347,7 +340,7 @@ class SentenceTest extends CakeTestCase {
 		$logs = $this->Sentence->Contribution->find('all',
 			compact('conditions', 'fields', 'contain')
 		);
-		$this->assertEqual($expected, $logs);
+		$this->assertEquals($expected, $logs);
 	}
 
 	function testTranslationLinksToSentenceRemovedOnDelete() {
@@ -374,7 +367,7 @@ class SentenceTest extends CakeTestCase {
 		$language = $this->Sentence->Language->findByCode($sentence['Sentence']['lang'], 'sentences');
 		$countAfter = $language['Language']['sentences'];
 		$delta = $countAfter - $countBefore;
-		$this->assertEqual(-1, $delta);
+		$this->assertEquals(-1, $delta);
 	}
 
 	function testListsCleanedOnDelete() {
@@ -385,7 +378,7 @@ class SentenceTest extends CakeTestCase {
 
 		$inListAfter = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
 		$delta = count($inListAfter) - count($inListBefore);
-		$this->assertEqual(-1, $delta);
+		$this->assertEquals(-1, $delta);
 	}
 
 	function testTagsAreRemovedOnDelete() {
@@ -395,8 +388,8 @@ class SentenceTest extends CakeTestCase {
 		$this->Sentence->delete($sentenceId, false);
 
 		$tagsAfter = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
-		$this->assertNotEqual(0, count($tagsBefore));
-		$this->assertEqual(0, count($tagsAfter));
+		$this->assertNotEquals(0, count($tagsBefore));
+		$this->assertEquals(0, count($tagsAfter));
 	}
 
 	function testScriptIsSetOnSentenceCreation() {
@@ -409,7 +402,7 @@ class SentenceTest extends CakeTestCase {
 
 		$id = $this->Sentence->getLastInsertID();
 		$savedSentence = $this->Sentence->findById($id, 'script');
-		$this->assertEqual('Hans', $savedSentence['Sentence']['script']);
+		$this->assertEquals('Hans', $savedSentence['Sentence']['script']);
 	}
 
 	function testScriptIsNotSetOnSentenceCreation() {
@@ -461,7 +454,7 @@ class SentenceTest extends CakeTestCase {
 		$reindex = array(2, 3);
 		$this->Sentence->needsReindex($reindex);
 		$result = $this->Sentence->ReindexFlag->findAllBySentenceId($reindex);
-		$this->assertEqual(2, count($result));
+		$this->assertEquals(2, count($result));
 	}
 
 	function testModifiedSentenceNeedsReindex() {
@@ -480,7 +473,7 @@ class SentenceTest extends CakeTestCase {
 			'order' => 'sentence_id'
 		));
 		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
-		$this->assertEqual($expected, $result);
+		$this->assertEquals($expected, $result);
 	}
 
 	function testRemovedSentenceNeedsItselfAndTranslationsReindex() {
@@ -490,7 +483,7 @@ class SentenceTest extends CakeTestCase {
 			'order' => 'sentence_id'
 		));
 		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
-		$this->assertEqual($expected, $result);
+		$this->assertEquals($expected, $result);
 	}
 
 	function testSentenceLoosesOKTagOnEdition() {
@@ -543,8 +536,8 @@ class SentenceTest extends CakeTestCase {
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
 
 		$this->assertFalse($isMVA);
-		$this->assertEqual($expectedAttributes, $attributes);
-		$this->assertEqual($expectedValues, $values);
+		$this->assertEquals($expectedAttributes, $attributes);
+		$this->assertEquals($expectedValues, $values);
 	}
 
 	function testSphinxAttributesChanged_onOwn() {
@@ -563,8 +556,8 @@ class SentenceTest extends CakeTestCase {
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
 
 		$this->assertFalse($isMVA);
-		$this->assertEqual($expectedAttributes, $attributes);
-		$this->assertEqual($expectedValues, $values);
+		$this->assertEquals($expectedAttributes, $attributes);
+		$this->assertEquals($expectedValues, $values);
 	}
 
 	function testSphinxAttributesChanged_correctness() {
@@ -583,7 +576,7 @@ class SentenceTest extends CakeTestCase {
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
 
 		$this->assertFalse($isMVA);
-		$this->assertEqual($expectedAttributes, $attributes);
-		$this->assertEqual($expectedValues, $values);
+		$this->assertEquals($expectedAttributes, $attributes);
+		$this->assertEquals($expectedValues, $values);
 	}
 }

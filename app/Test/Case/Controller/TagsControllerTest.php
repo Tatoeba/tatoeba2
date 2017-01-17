@@ -2,30 +2,26 @@
 App::import('Controller', 'Tags');
 
 App::import('Component', 'Cookie');
-Mock::generate('CookieComponent');
-
 App::import('Component', 'Auth');
-Mock::generate('AuthComponent');
-
 class TestTagsController extends TagsController {
     function beforeFilter() {
         /* Replace the CookieComponent with a mock in order to prevent
            the 'headers already sent' error when a cookie is written.
         */
-        $this->Cookie =& new MockCookieComponent();
+        $this->Cookie = Mockery::mock();
 
         /* Replace the AuthComponent to easily log anyone. */
-        $this->Auth =& new MockAuthComponent();
+        $this->Auth = Mockery::mock();
         if ($this->params['loggedInUserForTest']) {
             $user = $this->params['loggedInUserForTest'];
-            $this->Auth->setReturnValue('user', $user);
+            $this->Auth->shouldReceive('user')->andReturn($user);
             unset($this->params['loggedInUserForTest']);
         }
 
         parent::beforeFilter();
     }
 
-    function redirect() {
+    function redirect($url = NULL, $status = NULL, $exit = true) {
         /* Avoid redirecting for real since it causes the good old
            'Cannot modify header information' error. */
     }
@@ -61,7 +57,7 @@ class TagsControllerTest extends CakeTestCase {
     }
 
     function startTest($method) {
-        $this->Tags =& new TestTagsController();
+        $this->Tags = new TestTagsController();
         $this->Tags->constructClasses();
         $this->User = ClassRegistry::init('User');
     }
@@ -101,31 +97,31 @@ class TagsControllerTest extends CakeTestCase {
 
     function testGuestDoesntRemoveTag() {
         $delta = $this->_removeAsUser(null, 2, 2);
-        $this->assertEqual(0, $delta);
+        $this->assertEquals(0, $delta);
     }
 
     function testRegularUserDoesNotRemoveTag() {
         $delta = $this->_removeAsUser('contributor', 1, 8);
-        $this->assertEqual(0, $delta);
+        $this->assertEquals(0, $delta);
     }
 
     function testAdvancedUserAuthorDoesRemoveTag() {
         $delta = $this->_removeAsUser('advanced_contributor', 2, 2);
-        $this->assertEqual(-1, $delta);
+        $this->assertEquals(-1, $delta);
     }
 
     function testDifferentAdvancedUserDoesNotRemoveTag() {
         $delta = $this->_removeAsUser('advanced_contributor', 1, 8);
-        $this->assertEqual(0, $delta);
+        $this->assertEquals(0, $delta);
     }
 
     function testCorpusMaintainerDoesRemoveTag() {
         $delta = $this->_removeAsUser('corpus_maintainer', 2, 2);
-        $this->assertEqual(-1, $delta);
+        $this->assertEquals(-1, $delta);
     }
 
     function testAdminDoesRemoveTag() {
         $delta = $this->_removeAsUser('admin', 2, 2);
-        $this->assertEqual(-1, $delta);
+        $this->assertEquals(-1, $delta);
     }
 }

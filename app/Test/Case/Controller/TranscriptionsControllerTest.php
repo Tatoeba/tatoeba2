@@ -3,39 +3,34 @@
 App::import('Controller', 'Transcriptions');
 
 App::import('Component', 'Cookie');
-Mock::generate('CookieComponent');
-
 App::import('Component', 'Auth');
-Mock::generate('AuthComponent');
-
 class TestTranscriptionsController extends TranscriptionsController {
     function beforeFilter() {
         /* Replace the CookieComponent with a mock in order to prevent
            the 'headers already sent' error when a cookie is written.
         */
-        $this->Cookie =& new MockCookieComponent();
+        $this->Cookie = Mockery::mock('CookieComponent');
 
         /* Replace the AuthComponent to easily log anyone. */
-        $this->Auth =& new MockAuthComponent();
+        $this->Auth = Mockery::mock('AuthComponent');
         if ($this->params['loggedInUserForTest']) {
             $user = $this->params['loggedInUserForTest'];
-            $this->Auth->setReturnValue('user', $user);
+            $this->Auth->shouldReceive('user')->andReturn($user);
             unset($this->params['loggedInUserForTest']);
         }
 
         /* Replace Autotranscription to allow syntax errors */
-        Mock::generate('Autotranscription');
-        $autotranscription =& new MockAutotranscription;
-        $autotranscription->setReturnValue('jpn_Jpan_to_Hrkt_validate', true);
-        $autotranscription->setReturnValue('jpn_Jpan_to_Hrkt_generate', 'furi');
-        $autotranscription->setReturnValue('jpn_Hrkt_to_Latn_generate', 'roma');
-        $autotranscription->setReturnValue('yue_Hant_to_Latn_generate', 'yeah');
+        $autotranscription = Mockery::mock('Autotranscription');
+        $autotranscription->shouldReceive('jpn_Jpan_to_Hrkt_validate')->andReturn(true);
+        $autotranscription->shouldReceive('jpn_Jpan_to_Hrkt_generate')->andReturn('furi');
+        $autotranscription->shouldReceive('jpn_Hrkt_to_Latn_generate')->andReturn('roma');
+        $autotranscription->shouldReceive('yue_Hant_to_Latn_generate')->andReturn('yeah');
         $this->Transcription->setAutotranscription($autotranscription);
 
         parent::beforeFilter();
     }
 
-    function redirect() {
+    function redirect($url = NULL, $status = NULL, $exit = true) {
         /* Avoid redirecting for real since it causes the good old
            'Cannot modify header information' error. */
     }
@@ -71,7 +66,7 @@ class TranscriptionsControllerTest extends CakeTestCase {
     }
 
     function startTest($method) {
-        $this->Transcriptions =& new TestTranscriptionsController();
+        $this->Transcriptions = new TestTranscriptionsController();
         $this->Transcriptions->constructClasses();
         $this->User = ClassRegistry::init('User');
     }
@@ -190,7 +185,7 @@ class TranscriptionsControllerTest extends CakeTestCase {
         $result = $this->Transcriptions->Transcription->find('first', array(
             'conditions' => array('sentence_id' => 6, 'script' => 'Hrkt')
         ));
-        $this->assertEqual('furi', $result['Transcription']['text']);
+        $this->assertEquals('furi', $result['Transcription']['text']);
     }
 
     function testRegularUserCanResetNonExistingTranscription() {
@@ -198,6 +193,6 @@ class TranscriptionsControllerTest extends CakeTestCase {
         $result = $this->Transcriptions->Transcription->find('count', array(
             'conditions' => array('sentence_id' => 11, 'script' => 'Latn')
         ));
-        $this->assertEqual(1, $result);
+        $this->assertEquals(1, $result);
     }
 }
