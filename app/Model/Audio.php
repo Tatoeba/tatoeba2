@@ -32,10 +32,10 @@ class Audio extends AppModel
             'allowEmpty' => true,
         ),
         'created' => array(
-            'rule' => 'notEmpty',
+            'rule' => 'notBlank',
         ),
         'modified' => array(
-            'rule' => 'notEmpty',
+            'rule' => 'notBlank',
         ),
     );
 

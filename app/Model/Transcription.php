@@ -94,17 +94,17 @@ class Transcription extends AppModel
         ),
         'text' => array(
             'onCreation' => array(
-                'rule' => 'notEmpty',
+                'rule' => 'notBlank',
                 'required' => true,
                 'on' => 'create',
             ),
             'onUpdate' => array(
-                'rule' => 'notEmpty',
+                'rule' => 'notBlank',
                 'on' => 'update',
             ),
         ),
         'script' => array(
-            'rule' => 'notEmpty',
+            'rule' => 'notBlank',
             'required' => true,
             'on' => 'create',
         ),
@@ -113,10 +113,10 @@ class Transcription extends AppModel
             'allowEmpty' => true,
         ),
         'created' => array(
-            'rule' => 'notEmpty',
+            'rule' => 'notBlank',
         ),
         'modified' => array(
-            'rule' => 'notEmpty',
+            'rule' => 'notBlank',
         ),
     );
 

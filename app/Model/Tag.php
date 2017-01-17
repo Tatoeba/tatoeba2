@@ -236,7 +236,7 @@ class Tag extends AppModel
                 'fields' => 'id'
             )
         );
-        return $result['Tag']['id'];
+        return !empty($result) ? $result['Tag']['id'] : NULL;
     }
 
 
