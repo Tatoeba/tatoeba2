@@ -220,7 +220,8 @@ class Link extends AppModel
             'conditions' => array('sentence_id' => $sentenceId),
             'fields' => array('translation_id'),
         ));
-        return Set::classicExtract($links, '{n}.Link.translation_id');
+        $ids = Set::classicExtract($links, '{n}.Link.translation_id');
+        return !empty($ids) ? $ids : array();
     }
 
     public function findDirectAndIndirectTranslationsIds($sentenceId) {
