@@ -11,7 +11,7 @@ server {
 	rewrite_log	on;
 
   location / {
-    try_files $uri $uri/ /index.php?url=$args;
+    try_files $uri $uri/ /index.php?$args;
   }
 
 	location ~ \.php$ {
