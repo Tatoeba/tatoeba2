@@ -56,7 +56,7 @@ class User extends AppModel
     // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
 
-    // trustworthy vs. untrustworthy 
+    // trustworthy vs. untrustworthy
     const MIN_LEVEL = -1; // trustworthy
     const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
@@ -392,8 +392,8 @@ class User extends AppModel
         );
         return $user;
     }
-    
-    
+
+
     /**
      * Retrieves only the fields from users table, no joins.
      *
@@ -409,11 +409,11 @@ class User extends AppModel
                 'conditions' => array('User.id' => $id)
             )
         );
-        
+
         return $user;
     }
-    
-    
+
+
     /**
      * Return id of a user from the username.
      *
@@ -430,7 +430,7 @@ class User extends AppModel
                 'fields' => 'User.id'
             )
         );
-        return $user['User']['id'];
+        return !empty($user) ? $user['User']['id'] : null;
     }
 
 
@@ -450,7 +450,7 @@ class User extends AppModel
                 'fields' => 'User.username'
             )
         );
-        return $user['User']['username'];
+        return !empty($user) ? $user['User']['username'] : null;
     }
 
 
@@ -497,7 +497,7 @@ class User extends AppModel
                 'fields' => 'User.id'
             )
         );
-        return $user['User']['id'];
+        return !empty($user) ? $user['User']['id'] : null;
     }
 
     /**
@@ -516,7 +516,7 @@ class User extends AppModel
                 'fields' => 'User.email'
             )
         );
-        return $user['User']['email'];
+        return !empty($user) ? $user['User']['email'] : null;
     }
 
     /**
@@ -537,11 +537,7 @@ class User extends AppModel
                 )
            )
         );
-        if (empty($result)) {
-            return true;
-        } else {
-            return false;
-        }
+        return empty($result);
     }
 
     /**
@@ -560,7 +556,7 @@ class User extends AppModel
                 'fields' => 'User.password'
             )
         );
-        return $user['User']['password'];
+        return !empty($user) ? $user['User']['password'] : null;
     }
 
     /**
@@ -579,9 +575,9 @@ class User extends AppModel
                 )
             )
         );
-    }  
-    
-    
+    }
+
+
     /**
      * Return the level of the user of given id.
      *
