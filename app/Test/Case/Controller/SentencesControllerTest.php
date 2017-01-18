@@ -10,12 +10,12 @@ class TestSentencesController extends SentencesController {
 	public $stopped = false;
 	public $rendered;
 
-	function redirect($url, $status = null, $exit = true) {
+	function redirect($url = NULL, $status = NULL, $exit = true) {
 		$this->redirectUrl = $url;
 		return parent::redirect($url, $status, $exit);
 	}
 
-	function header() {
+	function header($status) {
 		// Don't call header() for real
 	}
 
