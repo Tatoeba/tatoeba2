@@ -46,7 +46,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('How to contribute')
         <?php
     }
     ?>
-    
+
     <div class="module">
         <h2><?php echo __('Important to read'); ?></h2>
         <ol>
@@ -55,7 +55,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('How to contribute')
             <?php echo __('Guide to being a good contributor'); ?>
             </a>
             </li>
-            
+
             <li>
             <a href="http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html">
             <?php echo __('Reliability of the sentences'); ?>
@@ -65,7 +65,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('How to contribute')
     </div>
 </div>
 
-<div id="main_content">  
+<div id="main_content">
     <div class="module">
         <h2><?php echo __("Contribute"); ?></h2>
         <?php
@@ -108,52 +108,52 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('How to contribute')
         ?>
         </ul>
     </div>
-    
-    
+
+
     <div class="module">
     <h2><?php echo __("How can you contribute?"); ?></h2>
     <p>
     <?php
-    __(
+    echo __(
         "Tatoeba is primarily about collecting sentences and translating them ".
         "into many, many languages. So one obvious thing you can do to contribute ".
         "is to <strong>translate sentences</strong>."
     );
     ?>
     </p>
-    
+
     <p>
     <?php
-    __(
+    echo __(
         "But you don't have to be a polyglot in order to contribute! You can help ".
         "us a lot simply by <strong>checking sentences</strong> and ".
         "<strong>reporting mistakes</strong>. This is something everyone can do!"
     );
     ?>
     </p>
-    
+
     <p>
     <?php
-    __(
+    echo __(
         "If you have a good microphone, you can also bring more audio to Tatoeba ".
         "by <strong>recording sentences</strong>."
     );
     ?>
     </p>
-    
+
     <p>
     <?php
-    __(
+    echo __(
         "You can help us promote the project. <strong>Tell people around ".
         "you</strong> that Tatoeba exists. This is a very ambitious project, so we ".
         "will need as much help as possible."
     );
     ?>
     </p>
-    
+
     <p>
     <?php
-    __(
+    echo __(
         "And finally, you can <strong>join the team</strong>. You can help us ".
         "code new features, improve usability, debug, optimize, keep ".
         "the site secure, and more."
