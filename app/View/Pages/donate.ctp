@@ -70,7 +70,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
         <ul>
             <li>
             <?php
-            __(
+            echo __(
                 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. ".
                 "Tatoeba's bank is based in France, so if you are from an EU ".
                 "country, it is likely that the transfer will be free of charge."
@@ -79,7 +79,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
             </li>
             <li>
             <?php
-            __(
+            echo __(
                 "<b>PayPal.</b> If you can't transfer money with IBAN, ".
                 "then you can donate with PayPal. You should ".
                 "know that PayPal takes a certain percentage of the donation."
