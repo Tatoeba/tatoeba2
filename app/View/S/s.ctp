@@ -30,31 +30,14 @@ $this->layout = 'light';
 ?>
 
 <?php
-if (isset($sentence)) {
-
-    // display sentence and translations
-    $this->Sentences->displaySGroup(
-        $sentence['Sentence'],
-        $sentence['Translation']
-    );
-    
-    ?>
-    <p><i>
-    <?php echo __('Click the top sentence to go to tatoeba.org to translate it or leave a comment.'); ?>
-    </i></p>
-    <?php
-    
-} else {
-    
-    $sentenceId = $this->request->params['pass'][0];
-    echo '<h2>' . format(__('Sentence #{number}'), array('number' => $sentenceId)) . '</h2>';
-    echo '<div class="error">';
-        echo format(
-            __('There is no sentence with id {number}'), 
-            array('number' => $sentenceId)
-        );
-    echo '</div>';
-    
-}
+  // display sentence and translations
+  $this->Sentences->displaySGroup(
+      $sentence['Sentence'],
+      $sentence['Translation']
+  );
 ?>
-
+<p>
+  <i>
+    <?php echo __('Click the top sentence to go to tatoeba.org to translate it or leave a comment.'); ?>
+  </i>
+</p>

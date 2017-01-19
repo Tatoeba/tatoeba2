@@ -81,28 +81,24 @@ class SController extends AppController
 
             // If no sentence, we don't need to go further.
             // We just set some variable so we don't get warnings.
-            if ($sentence == null) {
-                $this->set('sentenceId', $id);
-                return;
+            if (!$sentence) {
+                throw new NotFoundException(format(
+                    __('There is no sentence with id {number}'),
+                    array('number' => $id)
+                ));
             }
 
             $this->set('sentence', $sentence);
-
         } else {
-
             $max = $this->Sentence->getMaxId();
             $randId = rand(1, $max);
 
-            $this->redirect(
+            return $this->redirect(
                 array(
                     "action"=>"s",
                     $randId
                 )
             );
-
         }
     }
-
-
 }
-?>
