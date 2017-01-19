@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('CakeEmail', 'Network/Email');
+
 /**
  * Component for mails.
  *
@@ -36,15 +38,12 @@
  */
 class MailerComponent extends Component
 {
-    public $components = array('Email');
-
-
-    public function sendBlockedOrSuspendedUserNotif(
-        $username, $isSuspended
-    ) {
-        $this->Email->to = 'community-admins@tatoeba.org';
-        $this->Email->subject = '( ! ) ' . $username;
-        $this->Email->template = 'blocked_or_suspended_user';
+    public function sendBlockedOrSuspendedUserNotif($username, $isSuspended) {
+        $this->Email = new CakeEmail();
+        $this->Email
+            ->to('community-admins@tatoeba.org')
+            ->subject('( ! ) ' . $username)
+            ->template('blocked_or_suspended_user');
 
         $User = ClassRegistry::init('User');
         $Contribution = ClassRegistry::init('Contribution');
@@ -52,12 +51,14 @@ class MailerComponent extends Component
         $suspendedUsers = $User->getUsersWithSamePassword($userId);
         $ips = $Contribution->getLastContributionOf($userId);
 
-        $this->set('admin', CurrentUser::get('username'));
-        $this->set('user', $username);
-        $this->set('userId', $userId);
-        $this->set('isSuspended', $isSuspended);
-        $this->set('suspendedUsers', $suspendedUsers);
-        $this->set('ips', $ips);
+        $this->Email->viewVars(array(
+          'admin' => CurrentUser::get('username'),
+          'user' => $username,
+          'userId' => $userId,
+          'isSuspended' => $isSuspended,
+          'suspendedUsers' => $suspendedUsers,
+          'ips' => $ips
+        ));
 
         $this->_send();
     }
@@ -71,22 +72,23 @@ class MailerComponent extends Component
         $title = $pm['title'];
         $content = $pm['content'];
 
-        $this->Email->to = $recipientEmail;
-        $this->Email->subject = 'Tatoeba PM - ' . $title;
-        $this->Email->template = 'new_private_message';
-
-        $this->set('sender', $sender);
-        $this->set('title', $title);
-        $this->set('message', $content);
-        $this->set('messageId', $id);
+        $this->Email = new CakeEmail();
+        $this->Email
+            ->to($recipientEmail)
+            ->subject('Tatoeba PM - ' . $title)
+            ->template('new_private_message')
+            ->viewVars(array(
+              'sender' => $sender,
+              'title' => $title,
+              'message' => $content,
+              'messageId' => $id
+            ));
 
         $this->_send();
     }
 
 
-    public function sendSentenceCommentNotification(
-        $recipient, $comment, $sentenceOwner
-    ) {
+    public function sendSentenceCommentNotification($recipient, $comment, $sentenceOwner) {
         $author = CurrentUser::get('username');
         $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
         $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
@@ -96,17 +98,20 @@ class MailerComponent extends Component
         $recipientIsOwner = ($recipient == $sentenceOwner);
         $commentText = $comment['text'];
         $sentenceText = $comment['sentence_text'];
-        
-        $this->Email->to = $recipient;
-        $this->Email->subject = $subject;
-        $this->Email->template = 'comment_on_sentence';
 
-        $this->set('author', $author);
-        $this->set('linkToSentence', $linkToSentence);
-        $this->set('commentText', $commentText);
-        $this->set('recipientIsOwner', $recipientIsOwner);
-        $this->set('sentenceText', $sentenceText);
-        
+        $this->Email = new CakeEmail();
+        $this->Email
+            ->to($recipient)
+            ->subject($subject)
+            ->template('comment_on_sentence')
+            ->viewVars(array(
+              'author' => $author,
+              'linkToSentence' => $linkToSentence,
+              'commentText' => $commentText,
+              'recipientIsOwner' => $recipientIsOwner,
+              'sentenceText' => $sentenceText
+            ));
+
         $this->_send();
     }
 
@@ -121,13 +126,16 @@ class MailerComponent extends Component
             . '#message_'.$message['Wall']['id'];
         $messageContent = $message['Wall']['content'];
 
-        $this->Email->to = $recipient;
-        $this->Email->subject = $subject;
-        $this->Email->template = 'wall_reply';
-
-        $this->set('author', $author);
-        $this->set('linkToMessage', $linkToMessage);
-        $this->set('messageContent', $messageContent);
+        $this->Email = new CakeEmail();
+        $this->Email
+            ->to($recipient)
+            ->subject($subject)
+            ->template('wall_reply')
+            ->viewVars(array(
+              'author' => $author,
+              'linkToMessage' => $linkToMessage,
+              'messageContent' => $messageContent
+            ));
 
         $this->_send();
     }
@@ -135,39 +143,35 @@ class MailerComponent extends Component
 
     public function sendNewPassword($recipient, $username, $newPassword)
     {
-        $this->Email->to = $recipient;
-        $this->Email->subject = __('Tatoeba, new password');
-        $this->Email->template = 'new_password';
-
-        $this->set('username', $username);
-        $this->set('newPassword', $newPassword);
+        $this->Email = new CakeEmail();
+        $this->Email
+            ->to($recipient)
+            ->subject(__('Tatoeba, new password'))
+            ->template('new_password')
+            ->viewVars(array(
+              'username' => $username,
+              'newPassword' => $newPassword
+            ));
 
         $this->_send();
     }
-
-
-    private function set($key, $value)
-    {
-        $this->Email->Controller->set($key, $value);
-    }
-
 
     private function _send()
     {
         if (Configure::read('Mailer.enabled') == false) {
             return;
         }
-        
-        $this->Email->smtpOptions = array(
+
+        $this->Email->config(array(
             'port' => '465',
             'timeout' => '45',
             'host' => 'ssl://smtp.gmail.com',
             'username' => Configure::read('Mailer.username'),
             'password' => Configure::read('Mailer.password'),
-        );
-        $this->Email->delivery = 'smtp';
-        $this->Email->sendAs = 'html';
-        $this->Email->from = 'no-reply <'.Configure::read('Mailer.username').'>';
+            'transport' => 'Smtp'
+        ));
+        $this->Email->emailFormat('html');
+        $this->Email->from('no-reply <'.Configure::read('Mailer.username').'>');
         $this->Email->send();
     }
 }
