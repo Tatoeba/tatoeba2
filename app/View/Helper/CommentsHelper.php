@@ -106,7 +106,7 @@ class CommentsHelper extends AppHelper
         <ul>
             <li>
             <?php
-            __(
+            echo __(
                 'Say "welcome" to new users.'
             );
             ?>
@@ -114,7 +114,7 @@ class CommentsHelper extends AppHelper
 
             <li>
             <?php
-            __(
+            echo __(
                 'Use private messages to discuss things unrelated to the sentence.'
             );
             ?>
