@@ -32,7 +32,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
     <div class="module">
         <h2><?php echo __('Need more help?'); ?></h2>
         <p>
-        <?php 
+        <?php
         echo format(
             __('You can check out the <a href="{}">FAQ</a>.'),
             $this->Html->url(array('controller' => 'pages', 'action' => 'faq'))
@@ -40,14 +40,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         ?>
         </p>
         <p><?php
-           __(
+           echo __(
                'If you cannot find the answer to your question, do not hesitate '.
                'to contact us.'
            );
            ?>
         </p>
     </div>
-    
+
     <div class="module">
         <h2><?php echo __('Contact us'); ?></h2>
         <dl>
@@ -66,12 +66,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             <dd>irc://freenode/tatoeba</dd>
         </dl>
     </div>
-    
+
     <div class="module">
         <h2><?php echo __('How to use IRC'); ?></h2>
         <p>
         <?php
-        __(
+        echo __(
             'For those who are not familiar with IRC, it is pretty much like an '.
             'instant messenger. You will be able to talk to us in real time, '.
             'if we are there.'
@@ -84,7 +84,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         <a href="http://webchat.freenode.net/">http://webchat.freenode.net/</a>
         </p>
         <?php
-        __(
+        echo __(
             'Enter a nickname, enter "#tatoeba" for the channel, and click '.
             'on "connect". That\'s it!'
         );
@@ -93,14 +93,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
 </div>
 
 <div id="main_content">
-    
+
     <?php
     if ($this->Session->read('Auth.User.id')) {
         ?>
         <div class="module">
             <h2><?php echo __('Getting started'); ?></h2>
-            
-            
+
+
             <p>
             <?php
             echo format(
@@ -116,7 +116,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             </p>
             <p>
             <?php
-            __(
+            echo __(
                 'If you think this project is awesome and would like to help '.
                 'actively, here is a link you <strong>MUST</strong> read:'
             );
@@ -125,10 +125,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html
             </a>
             </p>
-            
+
             <p>
             <?php
-                __(
+                echo __(
                     "That being said, welcome to Tatoeba! We hope you'll enjoy being ".
                     "part of this project :)"
                 );
@@ -138,8 +138,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         <?php
     }
     ?>
-    
-    
+
+
     <div class="module">
         <h2><?php echo __('Important links'); ?></h2>
         <ul>
@@ -161,26 +161,26 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             </li>
         </ul>
     </div>
-        
-    <div class="module">    
+
+    <div class="module">
         <h2><?php echo __('Adding new sentences'); ?></h2>
         <p><?php echo __('There are two ways to add new sentences.'); ?></p>
         <ul>
             <li>
-                <?php 
+                <?php
                 echo format(
                     __('From the <a href="{}">Contribute</a> section'),
                     $this->Html->url(
                         array(
-                            'controller' => 'pages', 
+                            'controller' => 'pages',
                             'action' => 'contribute'
                         )
                     )
-                ); 
+                );
                 ?>
             </li>
             <li>
-                <?php 
+                <?php
                 echo format(
                     __(
                         'By creating a new <a href="{}">list</a>, and going to '.
@@ -188,7 +188,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                     ),
                     $this->Html->url(
                         array(
-                            'controller' => 'sentences_lists', 
+                            'controller' => 'sentences_lists',
                             'action' => 'index'
                         )
                     )
@@ -196,10 +196,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                 ?>
             </li>
         </ul>
-        
+
         <p>
             <?php
-            __(
+            echo __(
                 'Even though there are many sentences in Tatoeba, there '.
                 'is still a lot of vocabulary that is not covered. This is why '.
                 'we encourage you to add new sentences with new vocabulary, even '.
@@ -208,13 +208,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             ?>
         </p>
     </div>
-    
-    
+
+
     <div class="module">
         <h2><?php echo __('Translating sentences'); ?></h2>
         <p>
             <?php
-            __(
+            echo __(
                 'Translating is one of the most important tasks in Tatoeba, since '.
                 'the main goal of the project is to gather sentences translated '.
                 'into many languages.'
@@ -234,13 +234,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             ?>
         </p>
     </div>
-    
-    
+
+
     <div class="module">
         <h2><?php echo __('Correcting mistakes'); ?></h2>
         <p>
-            <?php            
-            __(
+            <?php
+            echo __(
                 'You can only correct mistakes in sentences that belong to you. '.
                 'If you see a mistake in someone else\'s sentence, you can '.
                 'post a comment to notify him or her of the mistake.'
@@ -249,20 +249,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
         <p>
             <?php
-            __(
+            echo __(
                 'In certain cases, the sentence does not have an owner. Read the '.
                 'paragraph below (on adopting sentences) to learn more.'
             );
             ?>
         </p>
     </div>
-    
-    
+
+
     <div class="module">
         <h2><?php echo __('Adopting sentences'); ?></h2>
         <p>
             <?php
-            __(
+            echo __(
                 'When you add a sentence, this sentence "belongs" to you - only '.
                 'you can edit it. However, many of the sentences in Tatoeba come '.
                 'from a Japanese-English corpus called the Tanaka Corpus. '.
@@ -292,7 +292,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
         <p>
             <?php
-            __(
+            echo __(
                 'Adopting a sentence is also part of the "quality process". '.
                 'You can find more information about it here:'
             );
@@ -302,13 +302,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             </a>
         </p>
     </div>
-    
-    
+
+
     <div id="sentences_lists_help" class="module">
         <h2><?php echo __('Sentence lists'); ?></h2>
         <p>
             <?php
-            __(
+            echo __(
                 'You can create lists of sentences in Tatoeba. By default the list '.
                 'is <strong>personal</strong>, which means it can only be edited by '.
                 'the person who created it (but it is still visible to everyone).'
@@ -317,7 +317,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
         <p>
             <?php
-            __(
+            echo __(
                 'However it is also possible to let any member in Tatoeba add and '.
                 'remove sentences by setting a list as <strong>collaborative</strong>.'
             );
