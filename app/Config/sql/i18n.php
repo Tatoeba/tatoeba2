@@ -55,4 +55,3 @@ class i18nSchema extends CakeSchema {
 		);
 
 }
-?>

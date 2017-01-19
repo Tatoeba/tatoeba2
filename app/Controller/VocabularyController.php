@@ -65,7 +65,7 @@ class VocabularyController extends AppController
         $this->helpers[] = 'CommonModules';
 
         $username = Sanitize::paranoid($username, array('_'));
-        
+
         $userId = $this->User->getIdFromUsername($username);
 
         if (!$userId) {
@@ -209,4 +209,3 @@ class VocabularyController extends AppController
         $this->layout = 'json';
     }
 }
-?>

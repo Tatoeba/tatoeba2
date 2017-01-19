@@ -175,4 +175,3 @@ class MailerComponent extends Component
         $this->Email->send();
     }
 }
-?>

@@ -78,4 +78,3 @@ class Visitor extends AppModel
     }
 
 }
-?>

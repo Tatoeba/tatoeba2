@@ -84,4 +84,3 @@ class StatsController extends AppController
         $this->set('stats', $stats);
     }
 }
-?>

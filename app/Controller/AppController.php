@@ -48,7 +48,6 @@ class AppController extends Controller
         'Permissions',
         'RememberMe',
         'Cookie',
-        'RequestHandler',
         'Session',
         'Security',
     );
@@ -191,15 +190,15 @@ class AppController extends Controller
             $langInURL = null;
         }
         if (empty($langInURL)
-            && !$this->RequestHandler->isPost()   // Avoid throwing away POST or
-            && !$this->RequestHandler->isPut()) { // PUT data by redirecting
+            && !$this->request->is('post')   // Avoid throwing away POST or
+            && !$this->request->is('put')) { // PUT data by redirecting
             $redirectPage = "/".$lang.$url;
             // Redirection of Ajax requests will be handled internally and all in
             // one request thanks to RequestHandlerComponent::beforeRedirect().
             // However, this function sets the HTTP return code and we don't want
             // that. Instead, we want to hide the fact a redirection happened and
             // let the sub-request return its own return code.
-            $redirectCode = $this->RequestHandler->isAjax() ? null : 301;
+            $redirectCode = $this->request->is('ajax') ? null : 301;
             $this->redirect($redirectPage, $redirectCode);
         }
     }
@@ -213,7 +212,7 @@ class AppController extends Controller
     public function beforeRender()
     {
         // without these 3 lines, html sent by AJAX will have the whole layout
-        if ($this->RequestHandler->isAjax()) {
+        if ($this->request->is('ajax')) {
             $this->layout = null;
         }
 
@@ -343,4 +342,3 @@ class AppController extends Controller
         }
     }
 }
-?>

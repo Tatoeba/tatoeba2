@@ -222,4 +222,3 @@ class ActivitiesController extends AppController
         $this->set('lang', $lang);
     }
 }
-?>

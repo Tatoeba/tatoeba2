@@ -153,4 +153,3 @@ class CollectionsController extends AppController
         $this->set('lang', $lang);
     }
 }
-?>

@@ -51,4 +51,3 @@ class WallThread extends AppModel
     );
 
 }
-?>

@@ -97,4 +97,3 @@ class LastContribution extends AppModel
     }
 
 }
-?>

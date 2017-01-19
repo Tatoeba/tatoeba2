@@ -104,7 +104,7 @@ class ToolsController extends AppController
     {
         $query = '';
         $result = '';
-        
+
         if (isset($_GET['query'])) {
             $query = $_GET['query'];
         }
@@ -117,7 +117,7 @@ class ToolsController extends AppController
         if (!empty($query)) {
             $result = $this->Transcription->generateTranscription($sentence, 'Hrkt');
         }
-        
+
         $this->set('query', $query);
         $this->set('result', $result);
     }
@@ -136,7 +136,7 @@ class ToolsController extends AppController
         }
 
         $text = $this->request->data['Tool']['query'];
-        
+
         if (!empty($text)) {
             $script = $this->Transcription->detectScript('cmn', $text);
             $sentence = array(
@@ -222,4 +222,3 @@ class ToolsController extends AppController
         }
     }
 }
-?>

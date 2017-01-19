@@ -69,4 +69,3 @@
  * $irregularSingular = array('atlases' => 'atlas', 'beefs' => 'beef', 'brothers' => 'brother')
  */
 	$irregularSingular = array_flip($irregularPlural);
-?>

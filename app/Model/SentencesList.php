@@ -564,4 +564,3 @@ class SentencesList extends AppModel
         return $count;
     }
 }
-?>

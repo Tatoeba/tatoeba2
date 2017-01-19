@@ -490,4 +490,3 @@ class Transcription extends AppModel
         return $transcriptions;
     }
 }
-?>

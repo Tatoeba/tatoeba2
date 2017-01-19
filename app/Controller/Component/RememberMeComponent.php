@@ -112,4 +112,3 @@ class RememberMeComponent extends Component
         $this->Cookie->delete($this->_cookieName);
     }
 }
-?>

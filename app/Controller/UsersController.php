@@ -620,4 +620,3 @@ class UsersController extends AppController
         $this->set('lang', $lang);
     }
 }
-?>

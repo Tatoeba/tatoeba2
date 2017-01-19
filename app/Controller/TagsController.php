@@ -67,18 +67,17 @@ class TagsController extends AppController
 
     /**
      * Add a tag to a sentence
-     * 
+     *
      * @return void
      */
 
     public function add_tag_post()
     {
-        if ($this->RequestHandler->isAjax()) {
-
+        if ($this->request->is('ajax')) {
             $this->helpers[] = 'Tags';
 
-            $tagName = $this->request->params['form']['tag_name'];
-            $sentenceId = Sanitize::paranoid($this->request->params['form']['sentence_id']);
+            $tagName = $this->request->data['tag_name'];
+            $sentenceId = Sanitize::paranoid($this->request->data['sentence_id']);
             $userId = CurrentUser::get("id");
             $username = CurrentUser::get("username");
             $tagId = $this->Tag->addTag($tagName, $userId, $sentenceId);
@@ -93,13 +92,10 @@ class TagsController extends AppController
                 $this->set('sentenceId', $sentenceId);
                 $this->set('date', date("Y-m-d H:i:s"));
             }
-
         } else {
-
             $tagName = $this->request->data['Tag']['tag_name'];
             $sentenceId = Sanitize::paranoid($this->request->data['Tag']['sentence_id']);
             $this->add_tag($tagName, $sentenceId);
-
         }
     }
 
@@ -180,7 +176,7 @@ class TagsController extends AppController
                 'name LIKE' => "%$filter%"
             );
         }
-        
+
         $allTags = $this->paginate('Tag');
         $this->set("allTags", $allTags);
         $this->set("filter", $filter);
@@ -253,11 +249,11 @@ class TagsController extends AppController
                 301
             );
         }
-            
+
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Tags';
-        
+
         $tagName = $this->Tag->getNameFromId($tagId);
         $tagExists = !empty($tagName);
         $this->set('tagExists', $tagExists);
@@ -303,7 +299,7 @@ class TagsController extends AppController
      * @return void
      */
     public function for_moderators($tagId = null, $lang = null) {
-        // If no tag name was specified, assume that the name "@change" (the most 
+        // If no tag name was specified, assume that the name "@change" (the most
         // generic tag indicating attention from moderators) was intended.
         $tagChangeName = $this->Tag->getChangeTagName();
         $tagCheckName = $this->Tag->getCheckTagName();
@@ -322,13 +318,13 @@ class TagsController extends AppController
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Sentences';
-        
+
         // Get sentences that have been tagged longer ago than the grace period.
         $results = $this->Tag->TagsSentences->getSentencesWithNonNewTag(
             $tagId, $lang
         );
 
-        $tagName = $this->Tag->getNameFromId($tagId);    
+        $tagName = $this->Tag->getNameFromId($tagId);
         $this->set('tagId', $tagId);
         $this->set('tagName', $tagName);
         $this->set('results', $results);
@@ -356,4 +352,3 @@ class TagsController extends AppController
         );
     }
 }
-?>

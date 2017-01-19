@@ -228,7 +228,7 @@ class SentenceComment extends AppModel
     }
 
     /**
-     * 
+     *
      */
     function getQueryConditionWithExcludedUsers($conditions = null)
     {
@@ -243,10 +243,9 @@ class SentenceComment extends AppModel
             } else {
                 $conditions["SentenceComment.user_id !="] = $botsIds[0];
             }
-            
+
         }
 
         return $conditions;
     }
 }
-?>

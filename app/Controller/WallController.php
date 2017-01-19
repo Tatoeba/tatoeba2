@@ -169,13 +169,13 @@ class WallController extends AppController
     {
 
         $idTemp = $this->Auth->user('id');
-        if (isset($this->request->params['form']['content'])
-            && trim($this->request->params['form']['content']) != ''
-            && isset($this->request->params['form']['replyTo'])
+        if (isset($this->request->data['content'])
+            && trim($this->request->data['content']) != ''
+            && isset($this->request->data['replyTo'])
             && !(empty($idTemp))
         ) {
-            $content = Sanitize::stripScripts($this->request->params['form']['content']);
-            $parentId = Sanitize::paranoid($this->request->params['form']['replyTo']);
+            $content = Sanitize::stripScripts($this->request->data['content']);
+            $parentId = Sanitize::paranoid($this->request->data['replyTo']);
             $now = date("Y-m-d H:i:s");
 
             $newPost = array(
@@ -518,6 +518,3 @@ class WallController extends AppController
     }
 
 }
-
-
-?>

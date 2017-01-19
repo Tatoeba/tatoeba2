@@ -78,4 +78,3 @@ class DbAclSchema extends CakeSchema {
 		);
 
 }
-?>

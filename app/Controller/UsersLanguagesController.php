@@ -96,4 +96,3 @@ class UsersLanguagesController extends AppController
         );
     }
 }
-?>

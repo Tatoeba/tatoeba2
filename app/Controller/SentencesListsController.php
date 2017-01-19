@@ -48,16 +48,16 @@ class SentencesListsController extends AppController
         'Pagination'
     );
     public $components = array(
-        'LanguageDetection', 
+        'LanguageDetection',
         'Cookie',
         'CommonSentence'
     );
     // We want to make sure that people don't download long lists, which can slow down the server.
-    // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
+    // This is an arbitrary but easy to remember value, and most lists are shorter than this.
     const MAX_COUNT_FOR_DOWNLOAD = 100;
 
     public $uses = array('SentencesList', 'SentencesSentencesLists', 'User');
-    
+
     /**
      * Before filter.
      *
@@ -209,18 +209,18 @@ class SentencesListsController extends AppController
 
 
     /**
-     * Returns array of two elements: a bool (index = 'can_download') indicating 
-     * whether list can be downloaded, and a string (index = 'message') containing 
-     * an empty string (if the bool is true) or a message with details (if the 
+     * Returns array of two elements: a bool (index = 'can_download') indicating
+     * whether list can be downloaded, and a string (index = 'message') containing
+     * an empty string (if the bool is true) or a message with details (if the
      * bool is false).
-     * 
+     *
      * @param int $count length of list
      *
      * @return string
      */
     protected function _get_downloadability_info($count)
     {
-        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD) 
+        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD)
         {
             $ret['can_download'] = true;
             $ret['message'] = "";
@@ -228,13 +228,13 @@ class SentencesListsController extends AppController
         else
         {
             $ret['can_download'] = false;
-            
+
             $firstSentence = __n('The download feature has been disabled for '.
                                  'this list because it contains a sentence.',
                                  'The download feature has been disabled for '.
                                  'this list because it contains {n}&nbsp;sentences.',
                                  $count, true);
-            
+
             $secondSentence = __n('Only lists containing one sentence or fewer can be '.
                                   'downloaded. If you can edit the list, you may want '.
                                   'to split it into multiple lists.',
@@ -251,7 +251,7 @@ class SentencesListsController extends AppController
                 __('{firstSentence} {secondSentence}'),
                 compact('firstSentence', 'secondSentence')
             );
-        } 
+        }
         return $ret;
     }
 
@@ -514,7 +514,7 @@ class SentencesListsController extends AppController
         $this->header('Content-Type: application/json');
         $this->set('result', json_encode($result['SentencesList']));
     }
-    
+
     /**
      * Page to export a list.
      *
@@ -535,7 +535,7 @@ class SentencesListsController extends AppController
             $message = $downloadability_info['message'];
             $this->flash($message, '/sentences_lists/show/'.$listId);
         }
-                
+
         $listId = Sanitize::paranoid($listId);
 
         $listName = $this->SentencesList->getNameForListWithId($listId);
@@ -577,10 +577,10 @@ class SentencesListsController extends AppController
         $results = $this->SentencesList->getSentencesAndTranslationsOnly(
             $listId, $translationsLang
         );
-  
+
         // We specify which fields will be present in the csv.
-        // Order is important. 
-        $fieldsList = array(); 
+        // Order is important.
+        $fieldsList = array();
         if ($exportId === true) {
             array_push($fieldsList, "Sentence.id");
         }
@@ -596,4 +596,3 @@ class SentencesListsController extends AppController
         $this->set("sentencesWithTranslation", $results);
     }
 }
-?>

@@ -163,4 +163,3 @@ class Sinogram extends AppModel
     }
 
 }
-?>

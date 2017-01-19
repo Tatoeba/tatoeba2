@@ -116,7 +116,7 @@ class Contribution extends AppModel
         if (!is_numeric($limit)) {
             return array();
         }
-        
+
         $conditions = array('type' => 'sentence');
 
         if ($lang == 'und'|| empty($lang)) {
@@ -130,7 +130,7 @@ class Contribution extends AppModel
         $contain = array(
             'User' => array(
                 'fields' => array(
-                    'id', 
+                    'id',
                     'username',
                     'image'
                 )
@@ -138,10 +138,10 @@ class Contribution extends AppModel
         );
 
         $results = $this->find(
-            'all', 
+            'all',
             array(
                 'fields' => array(
-                    'sentence_id', 
+                    'sentence_id',
                     'sentence_lang',
                     'script',
                     'text',
@@ -154,7 +154,7 @@ class Contribution extends AppModel
                 'contain' => $contain
             )
         );
-        
+
         return $results;
     }
 
@@ -259,7 +259,7 @@ class Contribution extends AppModel
 
     /**
      *
-     * 
+     *
      */
     public function getQueryConditionsWithExcludedUsers($conditions)
     {
@@ -294,4 +294,3 @@ class Contribution extends AppModel
         );
     }
 }
-?>

@@ -1,6 +1,5 @@
 <?php
 class DATABASE_CONFIG {
-
 	public $default = array(
 		'datasource'  => 'Database/Mysql',
 		'persistent' => false,
@@ -23,14 +22,13 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8'
 	);
 
-    public $sphinx = array(
-        'host' => 'localhost',
-        'port' => 9312,
-        'indexdir' => '{{sphinx_index_dir}}',
-        'socket' => '{{sphinx_sql_socket}}',
-        'logdir' => '{{sphinx_log_dir}}',
-        'pidfile' => '{{sphinx_pid_file}}',
-        'binlog_path' => '{{sphinx_binlog_path}}',
-    );
+  public $sphinx = array(
+    'host' => 'localhost',
+    'port' => 9312,
+    'indexdir' => '{{sphinx_index_dir}}',
+    'socket' => '{{sphinx_sql_socket}}',
+    'logdir' => '{{sphinx_log_dir}}',
+    'pidfile' => '{{sphinx_pid_file}}',
+    'binlog_path' => '{{sphinx_binlog_path}}',
+  );
 }
-?>

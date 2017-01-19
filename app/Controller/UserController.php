@@ -706,4 +706,3 @@ class UserController extends AppController
         $this->set('username', $username);
     }
 }
-?>

@@ -229,4 +229,3 @@ class SentenceAnnotationsController extends AppController
         $this->set('annotations', $results);
     }
 }
-?>

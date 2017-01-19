@@ -154,4 +154,3 @@ Router::connect(
     ),
     $interfaceLanguages
 );
-?>

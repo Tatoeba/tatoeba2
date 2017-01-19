@@ -100,7 +100,7 @@ class TranscriptionsController extends AppController
             $data = array(
                 'sentence_id' => $sentenceId,
                 'script' => $script,
-                'text' => $this->request->params['form']['value'],
+                'text' => $this->request->data['value'],
                 'user_id' => CurrentUser::get('id'),
             );
             if ($transcr) { // Modifying existing transcription
@@ -169,4 +169,3 @@ class TranscriptionsController extends AppController
         $this->layout = null;
     }
 }
-?>

@@ -260,4 +260,3 @@ class Link extends AppModel
         );
     }
 }
-?>

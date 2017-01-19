@@ -54,7 +54,7 @@ class Vocabulary extends AppModel
         if (empty($text) || empty($lang)) {
             return null;
         }
-        
+
         $hash = $this->makeHash($lang, $text);
 
         $data = array(
@@ -260,4 +260,3 @@ class Vocabulary extends AppModel
         return $indexedNumSentences;
     }
 }
-?>

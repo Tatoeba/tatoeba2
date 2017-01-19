@@ -57,7 +57,7 @@ class SentenceCommentsController extends AppController
         'Tags'
     );
     public $components = array ('LanguageDetection', 'Permissions', 'Mailer');
-    
+
     public $paginate = array(
         'SentenceComment' => array(
             'fields' => array(
@@ -133,7 +133,7 @@ class SentenceCommentsController extends AppController
         $this->set('langFilter', $langFilter);
 
     }
-    
+
 
     /**
      * Display comments for given sentence.
@@ -223,7 +223,7 @@ class SentenceCommentsController extends AppController
                 $participants[] = $email;
             }
             $participants = array_unique($participants);
-            
+
             // send message to the other participants of the thread
             foreach ($participants as $participant) {
                 if ($participant != $userEmail) {
@@ -235,7 +235,7 @@ class SentenceCommentsController extends AppController
                 }
             }
 
-            
+
             $this->flash(
                 __('Your comment has been saved.'),
                 '/sentence_comments/show/'
@@ -262,7 +262,7 @@ class SentenceCommentsController extends AppController
                 $emails[] = $user['User']['email'];
             }
         }
-        
+
         return $emails;
     }
 
@@ -559,4 +559,3 @@ class SentenceCommentsController extends AppController
 
     }
 }
-?>

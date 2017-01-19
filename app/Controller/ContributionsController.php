@@ -207,4 +207,3 @@ class ContributionsController extends AppController
         $this->set('userExists', true);
     }
 }
-?>

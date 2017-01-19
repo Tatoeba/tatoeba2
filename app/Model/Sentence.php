@@ -1176,4 +1176,3 @@ class Sentence extends AppModel
         return $this->Audio->findBySentenceId($id, 'sentence_id');
     }
 }
-?>

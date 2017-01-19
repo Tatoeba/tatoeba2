@@ -98,5 +98,3 @@ if (!function_exists('__format_decompose_list')) {
         return $result;
     }
 }
-
-?>

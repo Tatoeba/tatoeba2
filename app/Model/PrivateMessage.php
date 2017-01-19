@@ -201,7 +201,7 @@ class PrivateMessage extends AppModel
             )
         );
     }
-        
+
     /**
      * Build message to send.
      *
@@ -337,10 +337,9 @@ class PrivateMessage extends AppModel
         $status = !! $message['PrivateMessage']['isnonread'];
 
         $message['PrivateMessage']['isnonread'] = !$status;
-        
+
         $this->save($message);
 
         return $message;
     }
 }
-?>

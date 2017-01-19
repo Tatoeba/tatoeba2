@@ -126,7 +126,8 @@ class SentencesController extends AppController
 
         $this->Security->unlockedActions = array(
           'add_an_other_sentence',
-          'save_translation'
+          'save_translation',
+          'change_language'
         );
     }
 
@@ -373,9 +374,9 @@ class SentencesController extends AppController
      */
     public function edit_sentence()
     {
-        $text = $this->_getEditFormText($this->request->params);
+        $text = $this->_getEditFormText($this->request->data);
 
-        $idLangArray = $this->_getEditFormIdLang($this->request->params);
+        $idLangArray = $this->_getEditFormIdLang($this->request->data);
 
         if (!$text || !$idLangArray) {
             return;
@@ -414,8 +415,8 @@ class SentencesController extends AppController
      */
     private function _getEditFormText($params)
     {
-        if (isset($params['form']['value'])) {
-            return trim($params['form']['value']);
+        if (isset($params['value'])) {
+            return trim($params['value']);
         }
 
         return false;
@@ -430,10 +431,10 @@ class SentencesController extends AppController
      */
     private function _getEditFormIdLang($params)
     {
-        if (isset($this->request->params['form']['id'])) {
+        if (isset($params['id'])) {
             // ['form']['id'] contains both the sentence id and its language.
             // Do not sanitize it directly.
-            $sentenceId = $this->request->params['form']['id'];
+            $sentenceId = $params['id'];
 
             $dirtyArray = explode("_", $sentenceId);
 
@@ -1220,11 +1221,11 @@ class SentencesController extends AppController
      */
     public function change_language()
     {
-        if (isset($this->request->params['form']['id'])
-            && isset($this->request->params['form']['newLang'])
+        if (isset($this->request->data['id'])
+            && isset($this->request->data['newLang'])
         ) {
-            $newLang = Sanitize::paranoid($this->request->params['form']['newLang']);
-            $id = Sanitize::paranoid($this->request->params['form']['id']);
+            $newLang = Sanitize::paranoid($this->request->data['newLang']);
+            $id = Sanitize::paranoid($this->request->data['id']);
 
             $lang = $this->Sentence->changeLanguage($id, $newLang);
             $this->UsersSentences->makeDirty($id);
@@ -1344,4 +1345,3 @@ class SentencesController extends AppController
         }
     }
 }
-?>

@@ -416,7 +416,7 @@ class PrivateMessagesController extends AppController
                 )
             );
         }
-        
+
         if ($folder == 'Inbox') {
             $menu[] = array(
                 'text' => __('mark as unread'),
@@ -426,7 +426,7 @@ class PrivateMessagesController extends AppController
                     $messageId
                 )
             );
-                        
+
             $menu[] = array(
                 'text' => __('reply'),
                 'url' => '#reply'
@@ -558,7 +558,7 @@ class PrivateMessagesController extends AppController
         $recoveredMessage = $this->Session->read('unsent_message');
 
         $userId = CurrentUser::get('id');
-        
+
         $messagesToday = $this->PrivateMessage->todaysMessageCount($userId);
 
         $this->set('messagesToday', $messagesToday);
@@ -632,4 +632,3 @@ class PrivateMessagesController extends AppController
         }
     }
 }
-?>

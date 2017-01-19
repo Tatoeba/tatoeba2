@@ -57,7 +57,7 @@ class AudioController extends AppController
 
     public function import() {
         $filesImported = $errors = false;
-        if ($this->RequestHandler->isPost()) {
+        if ($this->request->is('post')) {
             $author = $this->request->data[$this->name]['audioAuthor'];
             $filesImported = $this->Audio->importFiles($errors, $author);
         }
@@ -115,4 +115,3 @@ class AudioController extends AppController
         $this->redirect(array('action' => 'of', CurrentUser::get('username')));
     }
 }
-?>

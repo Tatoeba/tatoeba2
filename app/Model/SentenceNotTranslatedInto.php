@@ -232,4 +232,3 @@ class SentenceNotTranslatedInto extends AppModel
         return $sql;
     }
 }
-?>

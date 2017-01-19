@@ -22,4 +22,3 @@ class UsersControllerTest extends CakeTestCase {
 		unset($this->Users);
 	}
 }
-?>

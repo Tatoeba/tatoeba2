@@ -384,4 +384,3 @@ class CurrentUser extends AppModel
         self::$_profileLanguages = $languageCodes;
     }
 }
-?>

@@ -144,4 +144,3 @@ class SentenceAnnotation extends AppModel
         return $newAnnotations;
     }
 }
-?>

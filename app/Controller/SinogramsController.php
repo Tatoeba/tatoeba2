@@ -263,4 +263,3 @@ class SinogramsController extends AppController
 
     }
 }
-?>

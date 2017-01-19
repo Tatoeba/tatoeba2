@@ -54,7 +54,7 @@ class LinksController extends AppController
     private function _renderTranslationsOf($sentenceId, $message)
     {
         $this->loadModel('Sentence');
-        $langFilter = isset($this->request->params['form']['langFilter']) ? $this->request->params['form']['langFilter'] : 'und';
+        $langFilter = isset($this->request->data['langFilter']) ? $this->request->data['langFilter'] : 'und';
         $translations = $this->Sentence->getTranslationsOf($sentenceId, $langFilter);
 
         $this->set('sentenceId', $sentenceId);
@@ -98,9 +98,9 @@ class LinksController extends AppController
 
         $this->set('saved', $saved);
 
-        if ($this->RequestHandler->isAjax()) {
-            if (isset($this->request->params['form']['returnTranslations'])
-                && (bool)$this->request->params['form']['returnTranslations'])
+        if ($this->request->is('ajax')) {
+            if (isset($this->request->data['returnTranslations'])
+                && (bool)$this->request->data['returnTranslations'])
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
@@ -142,14 +142,12 @@ class LinksController extends AppController
 
         $this->set('saved', $saved);
 
-        if ($this->RequestHandler->isAjax()) {
-            if (isset($this->request->params['form']['returnTranslations'])
-                && (bool)$this->request->params['form']['returnTranslations'])
+        if ($this->request->is('ajax')) {
+            if (isset($this->request->data['returnTranslations'])
+                && (bool)$this->request->data['returnTranslations'])
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
         } else {
             $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
         }
     }
-
 }
-?>

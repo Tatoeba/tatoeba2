@@ -385,8 +385,6 @@ class Wall extends AppModel
 
     private function _getRootMessageIdLftRghtOfReply($replyId)
     {
-
-
         $replyLftRght  = $this->_getLftRghtOfMessage($replyId);
 
         $replyLft = $replyLftRght['lft'];
@@ -405,7 +403,4 @@ class Wall extends AppModel
 
         return $result['Wall'];
     }
-
-
 }
-?>

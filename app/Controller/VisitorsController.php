@@ -62,4 +62,3 @@ class VisitorsController extends AppController
     }
 
 }
-?>

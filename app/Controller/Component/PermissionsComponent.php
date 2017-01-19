@@ -173,7 +173,7 @@ class PermissionsComponent extends Component
             $rightsOnComment['canEdit'] = true;
             $rightsOnComment['canHide'] = true;
         }
-        
+
         if ($ownerId === CurrentUser::get('id')) {
             $rightsOnComment['canDelete'] = true;
             $rightsOnComment['canEdit'] = true;
@@ -269,4 +269,3 @@ class PermissionsComponent extends Component
         return $messages;
     }
 }
-?>

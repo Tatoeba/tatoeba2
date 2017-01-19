@@ -217,4 +217,3 @@ class Translation extends AppModel
         return $this->find('all', $query);
     }
 }
-?>

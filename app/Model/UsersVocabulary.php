@@ -61,7 +61,7 @@ class UsersVocabulary extends AppModel
             'vocabulary_id' => $vocabularyId,
             'user_id' => $userId
         );
-        
+
         return $this->save($data);
     }
 
@@ -114,4 +114,3 @@ class UsersVocabulary extends AppModel
         );
     }
 }
-?>

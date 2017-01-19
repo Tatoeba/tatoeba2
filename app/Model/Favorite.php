@@ -165,4 +165,3 @@ class Favorite extends AppModel
         return !empty($result);
     }
 }
-?>
