@@ -112,7 +112,7 @@ $this->Languages->localizedAsort($countries);
     echo $this->Form->create(
         false,
         array(
-            "url" => array('action' => 'save_basic')
+            "url" => array('controller' => 'user', 'action' => 'save_basic')
         )
     );
 
