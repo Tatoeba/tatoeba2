@@ -24,6 +24,7 @@ class AudioController extends AppController
     public $uses = array(
         'Audio',
         'User',
+        'CurrentUser'
     );
 
     public $components = array(

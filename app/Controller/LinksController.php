@@ -37,6 +37,19 @@
  */
 class LinksController extends AppController
 {
+    /**
+     * Before filter.
+     *
+     * @return void
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        // setting actions that are available to everyone, even guests
+        if($this->request->is('ajax')) {
+          $this->Security->unlockedActions = array('add', 'delete');
+        }
+    }
 
     private function _renderTranslationsOf($sentenceId, $message)
     {
@@ -59,13 +72,13 @@ class LinksController extends AppController
      *
      * @return void
      */
-    public function add($sentenceId, $translationId) 
+    public function add($sentenceId, $translationId)
     {
         $sentenceId = Sanitize::paranoid($sentenceId);
         $translationId = Sanitize::paranoid($translationId);
-        
+
         $saved = $this->Link->add($sentenceId, $translationId);
-        
+
         if ($saved) {
             $flashMessage = format(
                 __(

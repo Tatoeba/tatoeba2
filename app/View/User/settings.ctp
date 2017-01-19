@@ -37,7 +37,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
 <div id="main_content">
     <div md-whiteframe="1" class="options settings-form">
-        <?php echo $this->Form->create(null, array('url' => array('action' => 'save_settings'))); ?>
+        <?php echo $this->Form->create(null, array('url' => array('controller' => 'user', 'action' => 'save_settings'))); ?>
         <h2><?php echo __('Options'); ?></h2>
         <md-list flex role="list" class="flex" >
             <md-subheader><?php echo __('Main options'); ?></md-subheader>
@@ -100,7 +100,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     echo $this->Form->hidden(
                         'settings.use_most_recent_list',
                         array(
-                        'value' => '{{useRecent}}'
+                            'value' => '{{useRecent}}'
                         )
                     );
                 ?>
@@ -124,7 +124,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     echo $this->Form->hidden(
                         'settings.collapsible_translations',
                         array(
-                        'value' => '{{collapsibleTranslations}}'
+                            'value' => '{{collapsibleTranslations}}'
                         )
                     );
                 ?>
@@ -157,7 +157,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     echo $this->Form->hidden(
                         'settings.hide_random_sentence',
                         array(
-                        'value' => '{{hideRandomSentence}}'
+                            'value' => '{{hideRandomSentence}}'
                         )
                     );
                 ?>
@@ -275,7 +275,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     echo $this->Form->hidden(
                         'settings.copy_button',
                         array(
-                        'value' => '{{copyButton}}'
+                          'value' => '{{copyButton}}'
                         )
                     );
                 ?>
@@ -318,7 +318,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         echo $this->Form->create(
             null,
             array(
-                'url' => array('action' => 'save_basic')
+                'url' => array('controller' => 'user', 'action' => 'save_basic')
             )
         );
         ?>
