@@ -45,7 +45,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 <div id="annexe_content">
     <?php
         echo $this->element(
-        'users_menu', 
+        'users_menu',
         array('username' => $username)
     );
     ?>
@@ -53,7 +53,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 <div id="main_content">
     <div class="module" id="favorites-list" data-success="<?php echo __("Favorite successfully removed."); ?>" >
-    
+
     <?php
     if (!$userExists) {
         $this->CommonModules->displayNoSuchUser($username, $backLink);

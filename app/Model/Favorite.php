@@ -89,6 +89,9 @@ class Favorite extends AppModel
             ),
             'contain' => array(
                 'Sentence' => array(
+                    'text',
+                    'lang',
+                    'correctness',
                     'Transcription' => array(
                         'User' => array('fields' => 'username'),
                     ),
@@ -96,7 +99,7 @@ class Favorite extends AppModel
             )
         );
 
-        return $favorites ;
+        return $favorites;
     }
 
     /**
