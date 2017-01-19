@@ -127,7 +127,8 @@ class SentencesController extends AppController
         $this->Security->unlockedActions = array(
           'add_an_other_sentence',
           'save_translation',
-          'change_language'
+          'change_language',
+          'edit_sentence'
         );
     }
 
