@@ -51,14 +51,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
                 </md-checkbox>
                 <p> <?php echo __('Email notifications') ?></p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
+                    echo $this->Form->text(
                         'send_notifications',
                         array(
                         'value' => '{{sendNotifications}}'
                         )
                     );
                 ?>
+                </div>
             </md-list-item>
 
             <md-list-item>
@@ -72,14 +74,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
 
                 <p><?php echo __('Set your profile public?') ?></p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
-                        'settings.is_public',
+                    echo $this->Form->input(
+                        'User.settings.is_public',
                         array(
                         'value' => '{{isPublic}}'
                         )
                     );
                 ?>
+                </div>
+                </p>
             </md-list-item>
 
             <md-list-item>
@@ -96,14 +101,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 'Remember the last list to which you assigned' .
                 ' a sentence, and select it by default.'
                 ) ?> </p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
-                        'settings.use_most_recent_list',
+                    echo $this->Form->input(
+                        'User.settings.use_most_recent_list',
                         array(
                             'value' => '{{useRecent}}'
                         )
                     );
                 ?>
+                </div>
             </md-list-item>
 
             <md-list-item>
@@ -120,14 +127,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 'Display a link to expand/collapse translations ' .
                 'when there are too many translations.'
                 ) ?></p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
-                        'settings.collapsible_translations',
+                    echo $this->Form->input(
+                        'User.settings.collapsible_translations',
                         array(
                             'value' => '{{collapsibleTranslations}}'
                         )
                     );
                 ?>
+                </div>
             </md-list-item>
 
             <md-list-item>
@@ -140,7 +149,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Always show transcriptions and alternative scripts') ?> </p>
-                <input type="checkbox" name="data[User][settings][show_transcriptions]" value="{{showTranscriptions}}" style="display: none;" checked/>
+                <div ng-hide="true">
+                <?php
+                    echo $this->Form->input(
+                        'User.settings.show_transcriptions',
+                        array(
+                            'value' => '{{showTranscriptions}}'
+                        )
+                    );
+                ?>
+                </div>
             </md-list-item>
 
             <md-list-item>
@@ -153,14 +171,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Hide random sentence on the homepage') ?> </p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
-                        'settings.hide_random_sentence',
+                    echo $this->Form->input(
+                        'User.settings.hide_random_sentence',
                         array(
                             'value' => '{{hideRandomSentence}}'
                         )
                     );
                 ?>
+                </div>
             </md-list-item>
 
             <md-list-item>
@@ -186,7 +206,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <md-input-container class="md-block">
                     <?php
                     echo $this->Form->input(
-                        'settings.lang',
+                        'User.settings.lang',
                         array(
                             'label' => __('Languages'),
                             'after' => '<div class="hint">'.$tip.'</div>'
@@ -198,7 +218,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
             <md-list-item>
                 <p><? echo __('Number of sentences per page'); ?></p>
-                <?php echo $this->Form->input('settings.sentences_per_page', array(
+                <?php echo $this->Form->input('User.settings.sentences_per_page', array(
                     'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
                     'label' => ''
                 )); ?>
@@ -229,14 +249,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Activate the feature to rate sentences and build your collection of sentences.') ?></p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
-                        'settings.users_collections_ratings',
+                    echo $this->Form->input(
+                        'User.settings.users_collections_ratings',
                         array(
                         'value' => '{{collectionRatings}}'
                         )
                     );
                 ?>
+                </div>
             </md-list-item>
             <md-list-item>
                 <?php $nativeIndicator = $this->request->data['User']['settings']['native_indicator']; ?>
@@ -252,14 +274,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 'when the owner indicated in their profile that they have a native '.
                 'level in the language of the sentence.'
                 ) ?></p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
-                        'settings.native_indicator',
+                    echo $this->Form->input(
+                        'User.settings.native_indicator',
                         array(
                         'value' => '{{nativeIndicator}}'
                         )
                     );
                 ?>
+                </div>
             </md-list-item>
             <md-list-item>
                 <?php $copyButton = $this->request->data['User']['settings']['copy_button']; ?>
@@ -271,14 +295,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Display button to copy a sentence to the clipboard.') ?></p>
+                <div ng-hide="true">
                 <?php
-                    echo $this->Form->hidden(
-                        'settings.copy_button',
+                    echo $this->Form->input(
+                        'User.settings.copy_button',
                         array(
                           'value' => '{{copyButton}}'
                         )
                     );
                 ?>
+                </div>
             </md-list-item>
             <md-list-item>
                 <?php $useNewDesign = $this->request->data['User']['settings']['use_new_design']; ?>
@@ -294,14 +320,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     'Note that you will not have all the features '.
                     'from the old design.'
                 ) ?></p>
+                <div ng-hide="true">
                 <?php
-                echo $this->Form->hidden(
-                    'settings.use_new_design',
+                echo $this->Form->input(
+                    'User.settings.use_new_design',
                     array(
                         'value' => '{{useNewDesign}}'
                     )
                 );
                 ?>
+                </div>
             </md-list-item>
         </md-list>
 
