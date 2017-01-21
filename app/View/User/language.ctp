@@ -95,13 +95,12 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
 
             $radioLabels = $this->Languages->getLevelsLabels();
             ?>
-            <input type="radio"
-                   name="data[UsersLanguages][level]"
-                   value="{{userLanguage.level}}"
-                   ng-init="userLanguage.level = <?= $selected ?>"
-                   checked hidden/>
+            <div ng-hide="true">
+            <? echo $this->Form->input('level', array('value' => '{{userLanguage.level}}')); ?>
+            </div>
+
             <label><?= __('What is your level?') ?></label>
-            <md-radio-group ng-model='userLanguage.level'>
+            <md-radio-group ng-model='userLanguage.level' ng-init="userLanguage.level = <?= $selected ?>">
                 <?php foreach($radioLabels as $key => $radioLabel) { ?>
                     <md-radio-button value='<?= $key ?>' class='md-primary'>
                         <?= $radioLabel ?>
