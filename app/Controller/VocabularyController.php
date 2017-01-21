@@ -73,7 +73,7 @@ class VocabularyController extends AppController
         $userId = $this->User->getIdFromUsername($username);
 
         if (!$userId) {
-            $this->Session->setFlash(format(
+            $this->Flash->set(format(
                 __('No user with this username: {username}'),
                 array('username' => $username)
             ));

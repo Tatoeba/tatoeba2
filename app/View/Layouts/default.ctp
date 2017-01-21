@@ -97,9 +97,7 @@
         <div class="container">
         <?php
         echo $this->element('announcement');
-        if($this->Session->check('Message.flash')){
-            echo $this->Session->flash();
-        }
+        echo $this->Flash->render();
 
         echo $content_for_layout;
         ?>

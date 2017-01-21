@@ -107,7 +107,7 @@ class UserController extends AppController
                   CurrentUser::get('username'))
             );
         } elseif (!( $infoOfUser = $this->User->getInformationOfUser($userName) )) {
-            $this->Session->setFlash(format(
+            $this->Flash->set(format(
                 __('No user with this username: {username}'),
                 array('username' => $userName)
             ));
@@ -156,7 +156,7 @@ class UserController extends AppController
                     ($image['error'] != UPLOAD_ERR_OK) ||
                     !is_uploaded_file($image['tmp_name']);
         if ($redirect) {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('Failed to upload image')
             );
             $this->redirect($redirectURL);
@@ -165,7 +165,7 @@ class UserController extends AppController
         // The file size must be < 1mb
         $fileSize = (int) $image['size'] / 1024;
         if ($fileSize > 1024) {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('Please choose an image that does not exceed 1 MB.')
             );
             $this->redirect($redirectURL);
@@ -176,7 +176,7 @@ class UserController extends AppController
         $validExtensions = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
 
         if (!in_array($fileExtension, $validExtensions)) {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('Please choose GIF, JPEG or PNG image format.')
             );
             $this->redirect($redirectURL);
@@ -205,7 +205,7 @@ class UserController extends AppController
             $this->User->id = $this->Auth->user('id');
             $this->User->saveField('image', $newFileName);
         } else {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __("Error while saving.")
             );
         }
@@ -312,7 +312,7 @@ class UserController extends AppController
         }
 
         if ($saved) {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __("Profile saved.")
             );
             $this->redirect(
@@ -322,7 +322,7 @@ class UserController extends AppController
                 )
             );
         } else {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __(
                     "Failed to change email address. Please enter a proper email address.",
                     true
@@ -364,7 +364,7 @@ class UserController extends AppController
      */
     private function _redirectNonUniqueEmail()
     {
-        $this->Session->setFlash(
+        $this->Flash->set(
             __("That email address already exists. Please try another.")
         );
         $this->redirect(
@@ -413,7 +413,7 @@ class UserController extends AppController
      */
     private function _redirectInvalidBirthday()
     {
-        $this->Session->setFlash(
+        $this->Flash->set(
             __("The entered birthday is an invalid date. Please try again.")
         );
         $this->redirect(
@@ -462,7 +462,7 @@ class UserController extends AppController
      */
     private function _redirectUnacceptedBirthday()
     {
-        $this->Session->setFlash(
+        $this->Flash->set(
             __("The entered birthday is incomplete. ".
                 "Accepted birthdays: full date, month and day, year and month, only year.", true)
         );
@@ -543,7 +543,7 @@ class UserController extends AppController
                 );
             }
 
-            $this->Session->setFlash($flashMsg);
+            $this->Flash->set($flashMsg);
         }
 
         $this->redirect(array('action' => 'settings'));
@@ -625,7 +625,7 @@ class UserController extends AppController
 
             }
 
-            $this->Session->setFlash($flashMsg);
+            $this->Flash->set($flashMsg);
         }
 
         $this->redirect(array('action' => 'settings'));

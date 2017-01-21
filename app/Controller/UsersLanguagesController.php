@@ -61,7 +61,7 @@ class UsersLanguagesController extends AppController
             }
             $this->UsersLanguages->save($language);
         } else {
-            $this->Session->setFlash(__('You cannot edit this language.'));
+            $this->Flash->set(__('You cannot edit this language.'));
         }
 
         $this->redirect(
@@ -82,9 +82,9 @@ class UsersLanguagesController extends AppController
 
         if ($canDelete) {
             $this->UsersLanguages->delete($id, false);
-            $this->Session->setFlash(__('Language deleted'));
+            $this->Flash->set(__('Language deleted'));
         } else {
-            $this->Session->setFlash(__('You cannot delete this language.'));
+            $this->Flash->set(__('You cannot delete this language.'));
         }
 
         $this->redirect(

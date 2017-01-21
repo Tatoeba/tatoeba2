@@ -251,7 +251,7 @@ class AppController extends Controller
      */
     public function flash($msg, $to, $pause = 1, $layout = 'flash')
     {
-        $this->Session->setFlash($msg);
+        $this->Flash->set($msg);
         if (is_array($to)) {
             $to = array_merge(array('lang' => $this->params['lang']), $to);
         } else {

@@ -212,7 +212,7 @@ class PrivateMessagesController extends AppController
      */
     private function _redirectIncomplete($error)
     {
-        $this->Session->setFlash(
+        $this->Flash->set(
             __($error)
         );
 
@@ -239,7 +239,7 @@ class PrivateMessagesController extends AppController
      */
     private function _redirectDailyLimitReached()
     {
-        $this->Session->setFlash(format(
+        $this->Flash->set(format(
             __(
                 "You have reached your message limit for today. ".
                 "Please wait until you can send more messages. ".
@@ -264,7 +264,7 @@ class PrivateMessagesController extends AppController
     private function _redirectInvalidUser($message, $recpt)
     {
         $this->Session->write('unsent_message', $message);
-        $this->Session->setFlash(
+        $this->Flash->set(
             format(
                 __(
                     'The user {username} to whom you want to send this '.
@@ -453,7 +453,7 @@ class PrivateMessagesController extends AppController
 
             $this->PrivateMessage->deleteAll($conditions, false);
 
-            $this->Session->setFlash(
+            $this->Flash->set(
                 format(
                     __('Folder "{name}" emptied.'),
                     array('name' => $folder)

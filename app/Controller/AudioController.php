@@ -109,7 +109,7 @@ class AudioController extends AppController
                     true
                 );
             }
-            $this->Session->setFlash($flashMsg);
+            $this->Flash->set($flashMsg);
         }
 
         $this->redirect(array('action' => 'of', CurrentUser::get('username')));

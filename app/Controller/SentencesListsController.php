@@ -179,7 +179,7 @@ class SentencesListsController extends AppController
         $belongsToUser = CurrentUser::get('id') == $list['SentencesList']['user_id'];
 
         if ($listVisibility == 'private' && !$belongsToUser) {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('You do not have permission to view this list.')
             );
             $this->redirect(array("action"=>"index"));

@@ -277,7 +277,7 @@ class WallController extends AppController
                 );
 
                 if (empty($editedPost['content'])) {
-                    $this->Session->setFlash(
+                    $this->Flash->set(
                         __('You cannot save an empty message.')
                     );
 
@@ -289,7 +289,7 @@ class WallController extends AppController
                     );
 
                 } else  if ($this->Wall->save($editedPost)) {
-                    $this->Session->setFlash(
+                    $this->Flash->set(
                         __("Message saved.")
                     );
                     $this->redirect(
@@ -299,7 +299,7 @@ class WallController extends AppController
                         )
                     );
                 } else {
-                    $this->Session->setFlash(
+                    $this->Flash->set(
                         __(
                             "We apologize, but we could not save your data.
                              Please try again", true
@@ -327,7 +327,7 @@ class WallController extends AppController
             'please contact administrators at {email}.'
         ), array('email' => 'team@tatoeba.org'));
 
-        $this->Session->setFlash(
+        $this->Flash->set(
             '<p>'.$noPermission.'</p>'.
             '<p>'.$contactAdmin.'</p>'
         );
@@ -427,7 +427,7 @@ class WallController extends AppController
         if (!empty($thread)) {
             $this->set("message", $thread[0]);
         } else {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('The message you are trying to view does not exist or has been deleted.')
             );
             $this->redirect(

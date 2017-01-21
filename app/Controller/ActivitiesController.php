@@ -183,7 +183,7 @@ class ActivitiesController extends AppController
                 __("There's no user called {username}"),
                 array('username' => $username)
             );
-            $this->Session->setFlash($flashMessage);
+            $this->Flash->set($flashMessage);
             $this->redirect(
                 array(
                     'controller' => 'users',

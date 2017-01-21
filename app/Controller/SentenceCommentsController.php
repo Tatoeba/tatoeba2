@@ -309,7 +309,7 @@ class SentenceCommentsController extends AppController
                 "If you have received this message in error, ".
                 "please contact administrators at {email}.", true
             ), array('email' => 'team@tatoeba.org'));
-            $this->Session->setFlash($no_permission.$wrongly);
+            $this->Flash->set($no_permission.$wrongly);
             $this->redirect(
                 array(
                     'controller' => "sentences",
@@ -327,7 +327,7 @@ class SentenceCommentsController extends AppController
                 $commentId = $this->request->data['SentenceComment']['id'];
                 //check for empty text
                 if (empty($this->request->data['SentenceComment']['text'])) {
-                    $this->Session->setFlash(
+                    $this->Flash->set(
                         __("Comments cannot be empty.")
                     );
                     $this->redirect(
@@ -344,7 +344,7 @@ class SentenceCommentsController extends AppController
                     'text' => $this->request->data['SentenceComment']['text'],
                 );
                 if ($this->SentenceComment->save($commentUpdate)) {
-                    $this->Session->setFlash(
+                    $this->Flash->set(
                         __("Changes to your comment have been saved.")
                     );
                     $this->redirect(
@@ -356,7 +356,7 @@ class SentenceCommentsController extends AppController
                         )
                     );
                 } else {
-                    $this->Session->setFlash(
+                    $this->Flash->set(
                         __("We could not save your changes.")
                     );
                     $this->redirect(

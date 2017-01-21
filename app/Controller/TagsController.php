@@ -143,7 +143,7 @@ class TagsController extends AppController
                 ),
                 array('tagName' => $tagName, 'number' => $sentenceId)
             );
-            $this->Session->setFlash($infoMessage);
+            $this->Flash->set($infoMessage);
         }
 
         $this->redirect(
@@ -278,7 +278,7 @@ class TagsController extends AppController
             $this->set('tagName', $tagName);
             $this->set('taggerIds', $taggerIds);
         } else {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __(
                     'There are no sentences for this tag. The tag you are looking '.
                     'for has been deleted or does not exist.', true
