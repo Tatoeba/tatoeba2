@@ -97,7 +97,7 @@
         <div class="container">
         <?php
         echo $this->element('announcement');
-        echo $this->Flash->render();
+        echo $this->Flash->render('flash', array('element' => 'flash_message'));
 
         echo $content_for_layout;
         ?>
