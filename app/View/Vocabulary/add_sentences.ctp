@@ -45,7 +45,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         <p>
             <?
-            __(
+            echo __(
                 'Only vocabulary items that have less than 10 sentences are '.
                 'displayed here.'
             )
@@ -99,7 +99,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                                    ng-href="{{sentence.url}}">
                             <md-icon ng-hide="sentence.duplicate">forward</md-icon>
                             <md-icon ng-show="sentence.duplicate">warning</md-icon>
-                            <md-tooltip md-direction="top" 
+                            <md-tooltip md-direction="top"
                                         ng-show="sentence.duplicate">
                                 <? echo __('This sentence already exists.') ?>
                             </md-tooltip>

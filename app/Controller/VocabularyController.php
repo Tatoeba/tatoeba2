@@ -50,6 +50,10 @@ class VocabularyController extends AppController
 
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array('of');
+
+        if($this->request->is('ajax')) {
+          $this->Security->unlockedActions = array('save', 'save_sentence');
+        }
     }
 
 

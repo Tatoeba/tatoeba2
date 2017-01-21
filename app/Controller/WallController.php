@@ -76,6 +76,8 @@ class WallController extends AppController
             'show_message',
             'messages_of_user'
         );
+
+        $this->Security->unlockedActions = array('save_inside');
     }
 
     /**
@@ -167,7 +169,6 @@ class WallController extends AppController
 
     public function save_inside()
     {
-
         $idTemp = $this->Auth->user('id');
         if (isset($this->request->data['content'])
             && trim($this->request->data['content']) != ''

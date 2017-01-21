@@ -262,6 +262,7 @@ class UsersController extends AppController
     private function _common_login($redirectUrl)
     {
         // update the last login time
+        var_dump($this->Auth);
         $data['User']['id'] = $this->Auth->user('id');
         $data['User']['last_time_active'] = time();
         $this->User->save($data);
@@ -367,6 +368,7 @@ class UsersController extends AppController
         $this->User->create();
         $allowedFields = array('username', 'password', 'email');
         $newUser = $this->filterKeys($this->request->data['User'], $allowedFields);
+        $newUser['password'] = Security::hash('password', 'md5', Configure::read('Security.salt'));
         $newUser['since']    = date("Y-m-d H:i:s");
         $newUser['group_id'] = 4;
 
