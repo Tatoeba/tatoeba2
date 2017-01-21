@@ -47,7 +47,7 @@ class UsersController extends AppController
         'Navigation',
         'Pagination'
     );
-    public $components = array ('Mailer', 'RememberMe');
+    public $components = array('Flash', 'Mailer', 'RememberMe');
 
     public $uses = array("User","Contribution","UsersLanguages");
 
@@ -182,7 +182,7 @@ class UsersController extends AppController
         if (!$this->Auth->user()) {
             return;
         }
-        $this->_common_login($this->Auth->redirect());
+        $this->_common_login($this->Auth->redirectUrl());
 
     }
 
@@ -220,7 +220,7 @@ class UsersController extends AppController
         }
         else
         {
-            $redirectUrl = $this->Auth->redirect();
+            $redirectUrl = $this->Auth->redirectUrl();
             if (isset($this->request->query['redirectTo'])) {
                 $redirectUrl = $this->request->query['redirectTo'];
             }
@@ -232,21 +232,21 @@ class UsersController extends AppController
                 $this->_common_login($redirectUrl);
             } elseif (empty($this->request->data["User"]['username'])) {
                 $this->flash(
-                             __(
-                                'You must fill in your '.
-                                'username and password.', true
-                                ),
-                             $failedUrl
-                             );
+                    __(
+                        'You must fill in your '.
+                        'username and password.', true
+                    ),
+                    $failedUrl
+                );
             } else {
                 $this->flash(
-                             __(
-                                'Login failed. Make sure that your Caps Lock '.
-                                'and Num Lock are not unintentionally turned on. '.
-                                'Your password is case-sensitive.', true
-                                ),
-                             $failedUrl
-                             );
+                    __(
+                        'Login failed. Make sure that your Caps Lock '.
+                        'and Num Lock are not unintentionally turned on. '.
+                        'Your password is case-sensitive.', true
+                    ),
+                    $failedUrl
+                );
             }
         }
     }
@@ -262,8 +262,7 @@ class UsersController extends AppController
     private function _common_login($redirectUrl)
     {
         // update the last login time
-        var_dump($this->Auth);
-        $data['User']['id'] = $this->Auth->user('id');
+        $data['User']['username'] = $this->Auth->user('username');
         $data['User']['last_time_active'] = time();
         $this->User->save($data);
 
@@ -395,7 +394,7 @@ class UsersController extends AppController
                     $this->Auth->user('username')
                 )
             );
-            $this->Session->setFlash(
+            $this->Flash->set(
                 '<p><strong>'
                 .__("Welcome to Tatoeba!")
                 .'</strong></p><p>'

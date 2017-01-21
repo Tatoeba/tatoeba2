@@ -62,6 +62,8 @@ class UserController extends AppController
 
     public $helpers = array('Html', 'Date', 'Languages', 'Countries');
 
+    public $components = array('Flash');
+
     /**
      * ?
      *

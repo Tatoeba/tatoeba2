@@ -28,6 +28,7 @@ class AudioController extends AppController
     );
 
     public $components = array(
+        'Flash'
     );
 
     public $helpers = array(

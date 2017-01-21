@@ -39,7 +39,7 @@ class PrivateMessagesController extends AppController
 {
     public $name = 'PrivateMessages';
     public $helpers = array('Html', 'Date');
-    public $components = array('Mailer');
+    public $components = array('Flash', 'Mailer');
 
     /**
      * Display the inbox folder.

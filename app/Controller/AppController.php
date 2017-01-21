@@ -45,6 +45,7 @@ class AppController extends Controller
     public $components = array(
         'Acl',
         'Auth',
+        'Flash',
         'Permissions',
         'RememberMe',
         'Cookie',

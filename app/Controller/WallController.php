@@ -60,7 +60,7 @@ class WallController extends AppController
         'Date',
         'Pagination'
     );
-    public $components = array ('Mailer');
+    public $components = array ('Flash', 'Mailer');
     /**
      * to know who can do what
      *

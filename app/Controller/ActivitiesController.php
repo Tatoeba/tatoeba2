@@ -36,7 +36,7 @@
  */
 class ActivitiesController extends AppController
 {
-    public $components = array ('CommonSentence');
+    public $components = array ('CommonSentence', 'Flash');
     public $uses = array('Sentence', 'Tag', 'User');
 
     /**

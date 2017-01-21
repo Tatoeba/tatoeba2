@@ -56,7 +56,7 @@ class SentenceCommentsController extends AppController
         'Pagination',
         'Tags'
     );
-    public $components = array ('LanguageDetection', 'Permissions', 'Mailer');
+    public $components = array ('Flash', 'LanguageDetection', 'Permissions', 'Mailer');
 
     public $paginate = array(
         'SentenceComment' => array(

@@ -48,6 +48,7 @@ class SentencesListsController extends AppController
         'Pagination'
     );
     public $components = array(
+        'Flash',
         'LanguageDetection',
         'Cookie',
         'CommonSentence'

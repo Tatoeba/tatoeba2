@@ -37,6 +37,7 @@
 class UsersLanguagesController extends AppController
 {
     public $uses = array('User', 'UsersLanguages');
+    public $components = array('Flash');
 
     public function save()
     {

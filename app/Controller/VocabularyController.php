@@ -37,7 +37,7 @@
 class VocabularyController extends AppController
 {
     public $uses = array('UsersVocabulary', 'User', 'Sentence', 'Vocabulary');
-    public $components = array ('CommonSentence');
+    public $components = array ('CommonSentence', 'Flash');
 
     /**
      * Before filter.
