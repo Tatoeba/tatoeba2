@@ -61,7 +61,7 @@ class LinksController extends AppController
         $this->set('translations', $translations);
         $this->set('message', $message);
         $this->set('langFilter', $langFilter);
-        $this->render('/sentences/translations_group');
+        $this->render('/Sentences/translations_group');
     }
 
     /**

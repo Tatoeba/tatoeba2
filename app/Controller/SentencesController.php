@@ -254,7 +254,7 @@ class SentencesController extends AppController
 
     public function go_to_sentence()
     {
-        $id = intval($this->request->params['sentence_id']);
+        $id = intval($this->request->query['sentence_id']);
         if ($id == 0) {
             $id = 'random';
         }

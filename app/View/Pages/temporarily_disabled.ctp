@@ -34,7 +34,7 @@
  * action method of a controller:
  *
  * ```
- * $this->render('/pages/temporarily_disabled');
+ * $this->render('/Pages/temporarily_disabled');
  * return;
  * ```
  */
