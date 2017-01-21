@@ -367,7 +367,7 @@ class UsersController extends AppController
         $this->User->create();
         $allowedFields = array('username', 'password', 'email');
         $newUser = $this->filterKeys($this->request->data['User'], $allowedFields);
-        $newUser['password'] = Security::hash('password', 'md5', Configure::read('Security.salt'));
+        $newUser['password'] = Security::hash($newUser['password'], 'md5', Configure::read('Security.salt'));
         $newUser['since']    = date("Y-m-d H:i:s");
         $newUser['group_id'] = 4;
 
