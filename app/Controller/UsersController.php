@@ -385,7 +385,7 @@ class UsersController extends AppController
                 $this->UsersLanguages->save($userLanguage);
             }
 
-            $this->Auth->login($newUser);
+            $this->Auth->login();
 
             $profileUrl = Router::url(
                 array(
