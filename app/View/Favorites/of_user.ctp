@@ -103,7 +103,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $this->Pagination->display($paginationUrl);
 
         } else {
-            __('This user does not have any favorites.');
+            echo __('This user does not have any favorites.');
         }
     }
     ?>

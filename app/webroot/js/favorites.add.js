@@ -27,8 +27,7 @@ $(document).ready(function(){
         });
 
         var successString = $("#favorites-list").attr("data-success");
-        $('.favorite').off();
-        $('.favorite').click(function(){
+        var clickHandler = function() {
             var favoriteId = $(this).attr("data-sentence-id");
             var favoriteOption = $(this);
             var action = 'remove_favorite';
@@ -58,7 +57,11 @@ $(document).ready(function(){
                     }
                 }
                 favoriteOption.replaceWith(data);
+                $('.favorite').off();
+                $('.favorite').click(clickHandler);
             });
-        });
+        };
+        $('.favorite').off();
+        $('.favorite').click(clickHandler);
     });
 });
