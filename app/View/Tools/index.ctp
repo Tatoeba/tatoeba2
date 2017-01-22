@@ -42,7 +42,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Useful tools')));
                     )
                 );
                 echo ': ';
-                __("autogenerate furigana over Japanese.");
+                echo __("autogenerate furigana over Japanese.");
                 ?>
             </li>
             <li>
@@ -55,7 +55,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Useful tools')));
                     )
                 );
                 echo ': ';
-                __("search all Chinese characters / kanjis by all possible methods.");
+                echo __("search all Chinese characters / kanjis by all possible methods.");
                 ?>
             </li>
             <li>
@@ -68,7 +68,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Useful tools')));
                     )
                 );
                 echo ': ';
-                __(
+                echo __(
                     "convert Chinese to pinyin, numerical pinyin ".
                     "to diacritical pinyin, etc."
                 );
@@ -84,7 +84,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Useful tools')));
                     )
                 );
                 echo ': ';
-                __(
+                echo __(
                     "convert traditional Chinese to simplified and vice versa"
                 );
                 ?>
@@ -99,7 +99,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Useful tools')));
                     )
                 );
                 echo ': ';
-                __(
+                echo __(
                     "Convert a Shanghainese text into its pronunciation ".
                     "using the International Phonetic Alphabet"
                 );

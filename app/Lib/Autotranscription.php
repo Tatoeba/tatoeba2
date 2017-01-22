@@ -172,7 +172,8 @@ class Autotranscription
         if ($response === false) {
             return false;
         }
-        $xml = DOMDocument::loadXML($response, LIBXML_NOBLANKS|LIBXML_NOCDATA);
+        $xml = new DOMDocument();
+        $xml->loadXML($response, LIBXML_NOBLANKS|LIBXML_NOCDATA);
 
         $furiganas = '';
         $parse = $xml->firstChild->firstChild;
