@@ -49,7 +49,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Random sentences'))
         echo $this->Form->create(
             'Sentence',
             array(
-                "action" => "several_random_sentences",
+                "url" => array("action" => "several_random_sentences"),
                 "type" => "post"
             )
         );

@@ -131,102 +131,102 @@ echo $this->Form->create(
 ?>
 </fieldset>
 
-<fieldset id="advsearch-translations">
-<legend><?php echo __('Translations'); ?></legend>
-<?php
-    $filterOption = $this->Form->select(
-        'trans_filter',
-        array(
-            /* @translators This is inserted into another sentence
-                            that begins with {action} */
-            'limit' => __('Limit to'),
-            /* @translators This is inserted into another sentence
-                            that begins with {action} */
-            'exclude' => __('Exclude'),
-        ),
-        array(
-            'value' => $trans_filter,
-            'empty' => false
-        )
-    );
-    $label = format(
-        __('{action} sentences having translations that match'
-          .' all the following criteria.', true),
-        array('action' => $filterOption)
-    );
-    echo "<label>$label</label>";
+<div class="right-side">
+  <fieldset id="advsearch-translations">
+  <legend><?php echo __('Translations'); ?></legend>
+  <?php
+      $filterOption = $this->Form->select(
+          'trans_filter',
+          array(
+              /* @translators This is inserted into another sentence
+                              that begins with {action} */
+              'limit' => __('Limit to'),
+              /* @translators This is inserted into another sentence
+                              that begins with {action} */
+              'exclude' => __('Exclude'),
+          ),
+          array(
+              'value' => $trans_filter,
+              'empty' => false
+          )
+      );
+      $label = format(
+          __('{action} sentences having translations that match'
+            .' all the following criteria.', true),
+          array('action' => $filterOption)
+      );
+      echo "<label>$label</label>";
 
-    echo $this->Search->selectLang('trans_to', $trans_to, array(
-        'empty' => __('Language:'),
-        'options' => $this->Languages->getSearchableLanguagesArray(),
-    ));
-    echo $this->Form->input('trans_link', array(
-        'label' => __('Link:'),
-        'options' => array(
-            '' => __p('link', 'Any'),
-            'direct' => __('Direct'),
-            'indirect' => __('Indirect'),
-        ),
-        'value' => $trans_link,
-    ));
-    echo $this->Form->input('trans_user', array(
-        'label' => __('Owner:'),
-        'placeholder' => __('Enter a username'),
-        'value' => $trans_user,
-    ));
-    echo $this->Form->input('trans_orphan', array(
-        'label' => __('Is orphan:'),
-        'options' => array(
-            '' => __p('orphan', 'Any'),
-            'no' => __('No'),
-            'yes' => __('Yes'),
-        ),
-        'value' => $trans_orphan,
-    ));
-    echo $this->Form->input('trans_unapproved', array(
-        'label' => __('Is unapproved:'),
-        'options' => array(
-            '' => __p('unapproved', 'Any'),
-            'no' => __('No'),
-            'yes' => __('Yes'),
-        ),
-        'value' => $trans_unapproved,
-    ));
-    echo $this->Form->input('trans_has_audio', array(
-        'label' => __('Has audio:'),
-        'options' => array(
-            '' => __p('audio', 'Any'),
-            'no' => __('No'),
-            'yes' => __('Yes'),
-        ),
-        'value' => $trans_has_audio,
-    ));
-?>
-</fieldset>
+      echo $this->Search->selectLang('trans_to', $trans_to, array(
+          'label' => __('Language:'),
+          'options' => $this->Languages->getSearchableLanguagesArray(),
+      ));
+      echo $this->Form->input('trans_link', array(
+          'label' => __('Link:'),
+          'options' => array(
+              '' => __p('link', 'Any'),
+              'direct' => __('Direct'),
+              'indirect' => __('Indirect'),
+          ),
+          'value' => $trans_link,
+      ));
+      echo $this->Form->input('trans_user', array(
+          'label' => __('Owner:'),
+          'placeholder' => __('Enter a username'),
+          'value' => $trans_user,
+      ));
+      echo $this->Form->input('trans_orphan', array(
+          'label' => __('Is orphan:'),
+          'options' => array(
+              '' => __p('orphan', 'Any'),
+              'no' => __('No'),
+              'yes' => __('Yes'),
+          ),
+          'value' => $trans_orphan,
+      ));
+      echo $this->Form->input('trans_unapproved', array(
+          'label' => __('Is unapproved:'),
+          'options' => array(
+              '' => __p('unapproved', 'Any'),
+              'no' => __('No'),
+              'yes' => __('Yes'),
+          ),
+          'value' => $trans_unapproved,
+      ));
+      echo $this->Form->input('trans_has_audio', array(
+          'label' => __('Has audio:'),
+          'options' => array(
+              '' => __p('audio', 'Any'),
+              'no' => __('No'),
+              'yes' => __('Yes'),
+          ),
+          'value' => $trans_has_audio,
+      ));
+  ?>
+  </fieldset>
 
-<fieldset id="advsearch-sort">
-<legend><?php echo __('Sort'); ?></legend>
-<?php
-    echo $this->Form->input('sort', array(
-        'label' => __('Order:'),
-        'options' => array(
-            'words' => __('Fewest words first'),
-            'created' => __('Last created first'),
-            'modified' => __('Last modified first'),
-            'random' => __('Random'),
-        ),
-        'value' => $sort,
-    ));
-    echo $this->Form->input('sort_reverse', array(
-        'type' => 'checkbox',
-        'hiddenField' => false,
-        'label' => __('Reverse order'),
-        'value' => 'yes',
-        'checked' => $sort_reverse,
-    ));
-?>
-</fieldset>
-
+  <fieldset id="advsearch-sort">
+  <legend><?php echo __('Sort'); ?></legend>
+  <?php
+      echo $this->Form->input('sort', array(
+          'label' => __('Order:'),
+          'options' => array(
+              'words' => __('Fewest words first'),
+              'created' => __('Last created first'),
+              'modified' => __('Last modified first'),
+              'random' => __('Random'),
+          ),
+          'value' => $sort,
+      ));
+      echo $this->Form->input('sort_reverse', array(
+          'type' => 'checkbox',
+          'hiddenField' => false,
+          'label' => __('Reverse order'),
+          'value' => 'yes',
+          'checked' => $sort_reverse,
+      ));
+  ?>
+  </fieldset>
 <?php
 echo '<p>';
 echo $this->Html->link(
@@ -242,5 +242,7 @@ echo $this->Form->button(
     __p('button', 'Advanced search'),
     array('class' => 'button submit')
 );
-
+?>
+</div>
+<?php
 echo $this->Form->end();
