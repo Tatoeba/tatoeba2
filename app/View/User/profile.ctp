@@ -85,7 +85,6 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
         </dl>
 
         <div>
-        =>
         <?php
         echo $this->Html->link(
             __("Show latest activity"),

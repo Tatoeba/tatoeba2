@@ -34,17 +34,17 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contributions")));
 ?>
 
 <div id="annexe_content">
-    <?php $this->CommonModules->createFilterByLangMod(); ?> 
-    
+    <?php $this->CommonModules->createFilterByLangMod(); ?>
+
     <div class="section" md-whiteframe="1">
         <h2><?php echo __('View all'); ?></h2>
         <p>
-        <?php 
+        <?php
         echo $this->Html->link(
             __('Browse all contributions'),
             array(
@@ -56,15 +56,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
         </p>
     </div>
 
-    <div class="module">
-    <?php 
+    <div class="section" md-whiteframe="1">
+    <?php
     echo $this->element(
-        'currently_active_members', 
+        'currently_active_members',
         array(
             'currentContributors' => $currentContributors
         )
-    ); 
-    ?> 
+    );
+    ?>
     </div>
 </div>
 

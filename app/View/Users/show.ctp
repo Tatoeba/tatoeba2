@@ -28,11 +28,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 
     <?php
         echo $this->element(
-        'users_menu', 
+        'users_menu',
         array('username' => $username)
     );
     ?>
-    
+
     <?php
     /* Latest contributions from the user */
     if (count($user['Contributions']) > 0) {
@@ -62,10 +62,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 <div id="main_content">
     <?php
     /* Latest sentences, translations or adoptions from the user */
-    if (count($user['Sentence']) > 0) {
+    if (count($user['Sentences']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            __('Latest sentences');
+            echo __('Latest sentences');
 
             echo $this->Html->link(
                 __('view all'),
@@ -79,11 +79,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
                 )
             );
             echo '</h2>';
-            
+
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            foreach ($user['Sentence'] as $sentence) {
+            foreach ($user['Sentences'] as $sentence) {
                 $this->Sentences->displayGenericSentence(
                     $sentence,
                     $type,
@@ -96,9 +96,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 
     /* Latest comments from the user */
     if (count($user['SentenceComments']) > 0) {
-        echo '<div class="section">';
+        echo '<div class="module">';
             echo '<h2>';
-            __('Latest comments');
+            echo __('Latest comments');
 
             echo $this->Html->link(
                 __('view all'),
@@ -137,13 +137,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             echo '</div>';
         echo '</div>';
     }
-    
-    
+
+
     /* Latest messages on the Wall */
     if (count($user['Wall']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            __('Latest Wall messages');
+            echo __('Latest Wall messages');
 
             echo $this->Html->link(
                 __('view all'),
@@ -173,4 +173,3 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
     ?>
 
 </div>
-

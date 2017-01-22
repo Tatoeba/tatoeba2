@@ -18,7 +18,7 @@
 
 
 $(document).ready(function(){
-    
+
     function loadSinogramInformations(sinogram){
         var rootUrl = get_tatoeba_root_url();
         $.post(
@@ -37,7 +37,7 @@ $(document).ready(function(){
         $("#example_part").html("<div class='block-loader loader'></div>");
         $.post(
             rootUrl + "/sinograms/load_example_sentence"
-            , { "sinogram" : sinogram  } 
+            , { "sinogram" : sinogram  }
             , function(data){
                 $("#example_part").empty();
                 $("#example_part").html(data);
@@ -45,18 +45,18 @@ $(document).ready(function(){
             , "html"
         );
 
- 
+
     }
 
     /*
-    ** load radicals with the given number of strokes 
+    ** load radicals with the given number of strokes
     */
     function loadRadicals(numberOfStroke){
-          
+
         var rootUrl = get_tatoeba_root_url();
         $.post(
             rootUrl + "/sinograms/load_radicals"
-            , { "number" : numberOfStroke  } 
+            , { "number" : numberOfStroke  }
             , function(data){
                 $("#radicalsList").empty();
                 $("#radicalsList").html(data);
@@ -83,21 +83,21 @@ $(document).ready(function(){
 
 
     }
- 
+
 
     /*
     ** send a post request to search characters matching research parameters
     **
     */
-    
+
     function sendSearchInformations(){
         var subglyphs = $("#SinogramSubglyphs").val() ;
-        
+
         if (subglyphs != ''){
             var rootUrl = get_tatoeba_root_url();
             $.post(
                 rootUrl + "/sinograms/search"
-                , { "data[Sinogram][subglyphs]" : subglyphs } 
+                , { "data[Sinogram][subglyphs]" : subglyphs }
                 , function(data){
                     $("#searchResults").remove();
                     $("#search_part").append(data);
@@ -109,17 +109,17 @@ $(document).ready(function(){
         }
         return false;
     }
-   
+
     /*
     ** send a post request to retrieve decomposition of some characters
     */
     function sendExplodeInformations(){
         var toExplode = $("#SinogramToExplode").val()
         var rootUrl = get_tatoeba_root_url();
-        
+
         $.post(
             rootUrl + "/sinograms/explode"
-            , { "data[Sinogram][toExplode]" : toExplode } 
+            , { "data[Sinogram][toExplode]" : toExplode }
             , function(data){
                 $("#explosionResults").empty();
                 $("#explosionResults").html(data);
@@ -161,7 +161,7 @@ $(document).ready(function(){
     );
 
     $('.radicalStrokesNumber').click(function(){
-            loadRadicals($(this).html()); 
+            loadRadicals($(this).html());
         }
     );
 });

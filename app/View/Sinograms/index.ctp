@@ -103,7 +103,7 @@ $this->Html->script(JS_PATH . "sinograms.search.js", false);
 
             <p>
             <?php
-            __(
+            echo __(
                 'Please note that this tool is not complete and may '.
                 'contain errors (although it will be accurate for most searches).'
             );
@@ -119,12 +119,12 @@ $this->Html->script(JS_PATH . "sinograms.search.js", false);
 
         <p class="introduction" >
             <?php
-            __(
+            echo __(
                 'This tool allows you to find information about kanjis/hanzis, '.
                 'especially when you don\'t know how to input them directly with'.
                 ' IMEs. '
             );
-            __(
+            echo __(
                 'The main way to do this is by submitting subglyphs of the'.
                 ' character.'
             );
@@ -132,7 +132,7 @@ $this->Html->script(JS_PATH . "sinograms.search.js", false);
         </p>
         <p class="introduction" >
             <?php
-            __(
+            echo __(
                 'For example, for 蝴, you can enter 月虫 as subglyphs (you'.
                 ' don\'t need to know every subglyph).'
             );
@@ -140,7 +140,7 @@ $this->Html->script(JS_PATH . "sinograms.search.js", false);
         </p>
         <p class="introduction" >
             <?php
-            __(
+            echo __(
                 'If you don\'t know how to input subglyphs either, but you know'.
                 ' a character that also contains this subglyph, then you can'.
                 ' use the explode form.'
@@ -149,7 +149,7 @@ $this->Html->script(JS_PATH . "sinograms.search.js", false);
         </p>
         <p class="introduction" >
             <?php
-            __(
+            echo __(
                 'For example, say you want to search 瞧, but you don\'t know how to'.
                 ' input 隹 in order to make the search more accurate. If you'.
                 ' know 推, you can just explode it. Clicking on a subglyph will'.
@@ -159,7 +159,7 @@ $this->Html->script(JS_PATH . "sinograms.search.js", false);
         </p>
         <p class="introduction" >
             <?php
-            __(
+            echo __(
                 'On the right you also have the most common radicals grouped by'.
                 ' strokes, in case you don\'t have any way to type hanzis/kanjis.'
             );

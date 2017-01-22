@@ -102,7 +102,7 @@ class User extends AppModel
     public $hasMany = array(
         'SentenceComments',
         'Contributions',
-        'Sentence',
+        'Sentences',
         'SentencesLists',
         'Wall' => array('foreignKey' => 'owner')
     );

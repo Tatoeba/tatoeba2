@@ -53,6 +53,14 @@ class SinogramsController extends AppController
     {
         parent::beforeFilter();
         $this->Auth->allow();
+
+        $this->Security->unlockedActions = array(
+          'search',
+          'explode',
+          'load_sinogram_informations',
+          'load_example_sentence',
+          'load_radicals'
+        );
     }
 
     /**
@@ -76,7 +84,6 @@ class SinogramsController extends AppController
 
     public function search()
     {
-
         $inputSubglyphs = $_POST["data"]["Sinogram"]["subglyphs"] ;
         /*use preg_match instead of str_split as we're working with utf8 characters*/
         preg_match_all('/./u', $inputSubglyphs, $array);

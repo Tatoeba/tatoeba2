@@ -369,7 +369,7 @@ class Sentence extends AppModel
             "
         );
 
-        return $results[0]['Sentence']['id'];
+        return !empty($results) ? $results[0]['Sentence']['id'] : null;
     }
 
     /**
