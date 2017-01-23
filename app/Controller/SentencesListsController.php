@@ -77,6 +77,12 @@ class SentencesListsController extends AppController
             'search',
             'collaborative'
         );
+
+        $this->Security->unlockedActions = array(
+            'set_option',
+            'save_name',
+            'add_new_sentence_to_list'
+        );
     }
 
 
