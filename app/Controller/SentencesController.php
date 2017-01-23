@@ -592,16 +592,16 @@ class SentencesController extends AppController
         $criteriaVars = array();
         foreach ($this->defaultSearchCriteria as $name => $default) {
             $criteriaVars[$name] = $default;
-            if (isset($this->request->params[$name])) {
-                $criteriaVars[$name] = $this->request->params[$name];
+            if (isset($this->request->query[$name])) {
+                $criteriaVars[$name] = $this->request->query[$name];
             }
         }
         extract($criteriaVars);
         $ignored = array();
 
         /* Convert simple search to advanced search parameters */
-        if (isset($this->request->params['to'])
-            && !isset($this->request->params['trans_to'])) {
+        if (isset($this->request->query['to'])
+            && !isset($this->request->query['trans_to'])) {
             $trans_to = $to;
         }
 
@@ -902,7 +902,7 @@ class SentencesController extends AppController
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
             'is_advanced_search',
-            isset($this->request->params['trans_to'])
+            isset($this->request->query['trans_to'])
         );
     }
 
