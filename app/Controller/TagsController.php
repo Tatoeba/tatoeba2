@@ -63,6 +63,9 @@ class TagsController extends AppController
             'search'
         );
 
+        $this->Security->unlockedActions = array(
+            'add_tag_post'
+        );
     }
 
     /**
