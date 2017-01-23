@@ -62,7 +62,7 @@ class UserController extends AppController
 
     public $helpers = array('Html', 'Date', 'Languages', 'Countries');
 
-    public $components = array('Flash');
+    public $components = array('Auth', 'Flash');
 
     /**
      * ?
@@ -534,7 +534,7 @@ class UserController extends AppController
             if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
                 $user = $this->User->read(null, $currentUserId);
-                $this->Session->write($this->Auth->sessionKey, $user['User']);
+                $this->Session->write(AuthComponent::$sessionKey, $user['User']);
 
                 $flashMsg = __('Your settings have been saved.');
             } else {
