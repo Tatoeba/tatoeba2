@@ -49,6 +49,10 @@ class TranscriptionsController extends AppController
             'view',
             'of',
         );
+
+        $this->Security->unlockedActions = array(
+            'save'
+        );
     }
 
     public function view($sentenceId) {
