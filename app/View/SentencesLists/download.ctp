@@ -88,6 +88,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
                 class="md-primary">
             </md-checkbox>
             <?php
+            $this->Form->unlockField('insertId');
             echo $this->Form->hidden(
                 'insertId',
                 array(
