@@ -181,7 +181,7 @@ if (isset($this->request->params['lang'])) {
         </a>
         <div class="text">
             <?php
-            __(
+            echo __(
                 'Our sentences and translations can be used under the '.
                 'Creative Commons Attribution 2.0 license (CC-BY 2.0).'
             );

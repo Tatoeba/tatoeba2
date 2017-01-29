@@ -198,7 +198,6 @@ class Tag extends AppModel
                 'contain' => $contain
             )
         );
-        var_dump($params);
 
         return $params;
 
