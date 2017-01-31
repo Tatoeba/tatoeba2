@@ -1,7 +1,7 @@
 from tatoeba2.models import (
     Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences,
     SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions,
-    Wall, UsersSentences, Transcriptions
+    Wall, UsersSentences, Transcriptions, Audios
     )
 from datetime import datetime
 from dedup.management.commands.deduplicate import Dedup
@@ -31,9 +31,11 @@ def sents(db, request):
     Sentences(text='Has owner, duplicated.', lang='eng', user_id=1, modified=datetime(2014, 1, 2)).save()
 
     # has audio 9-12
-    Sentences(text='Has audio, not duplicated.', lang='eng', hasaudio='shtooka', modified=datetime(2014, 1, 3)).save()
+    Sentences(text='Has audio, not duplicated.', lang='eng', modified=datetime(2014, 1, 3)).save()
+    Audios(sentence_id=9, user_id=1, created=datetime(2016, 1, 1), modified=datetime(2016, 1, 1)).save()
     for i in xrange(2): Sentences(text='Has audio, duplicated.', lang='eng', modified=datetime(2014, 1, 3)).save()
-    Sentences(text='Has audio, duplicated.', lang='eng', hasaudio='shtooka', modified=datetime(2014, 1, 3)).save()
+    Sentences(text='Has audio, duplicated.', lang='eng', modified=datetime(2014, 1, 3)).save()
+    Audios(sentence_id=12, user_id=1, created=datetime(2016, 1, 1), modified=datetime(2016, 1, 1)).save()
 
     # correctness -1  13-16
     Sentences(text='Correctness -1, not duplicated.', lang='eng', correctness=-1, modified=datetime(2014, 1, 4)).save()
@@ -41,10 +43,12 @@ def sents(db, request):
     Sentences(text='Correctness -1, duplicated.', lang='eng', correctness=-1, modified=datetime(2014, 1, 4)).save()
 
     # has owner, has audio, correctness -1  17-21
-    Sentences(text='Has owner, Has audio, Correctness -1, not duplicated.', lang='eng', user_id=1, hasaudio='shtooka', correctness=-1, modified=datetime(2014, 1, 5)).save()
+    Sentences(text='Has owner, Has audio, Correctness -1, not duplicated.', lang='eng', user_id=1, correctness=-1, modified=datetime(2014, 1, 5)).save()
+    Audios(sentence_id=17, user_id=1, created=datetime(2016, 1, 1), modified=datetime(2016, 1, 1)).save()
     Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', modified=datetime(2014, 1, 5)).save()
     Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', user_id=1, modified=datetime(2014, 1, 5)).save()
-    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', hasaudio='shtooka', modified=datetime(2014, 1, 5)).save()
+    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', modified=datetime(2014, 1, 5)).save()
+    Audios(sentence_id=20, user_id=1, created=datetime(2016, 1, 1), modified=datetime(2016, 1, 1)).save()
     Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', correctness=-1, modified=datetime(2014, 1, 5)).save()
 
     for i in xrange(6, 8+1): SentenceComments(sentence_id=i, text='Comment on '+str(i), user_id=1, created=datetime.now(), hidden=0).save()
@@ -86,9 +90,9 @@ def sents(db, request):
     UsersSentences(user_id=1, sentence_id=6, correctness=0, modified=datetime.now()).save()
     UsersSentences(user_id=1, sentence_id=7, correctness=-1, modified=datetime.now()).save()
 
-    Transcriptions(user_id=1, sentence_id=5, script='Hrkt', text='transcription 1', created=datetime.now(), modified=datetime.now()).save()
-    Transcriptions(user_id=1, sentence_id=6, script='Hrkt', text='transcription 2', created=datetime.now(), modified=datetime.now()).save()
-    Transcriptions(user_id=1, sentence_id=7, script='Hrkt', text='transcription 3', created=datetime.now(), modified=datetime.now()).save()
+    Transcriptions(user_id=1, sentence_id=5, script='Hrkt', text='transcription 1', needsreview=1, created=datetime.now(), modified=datetime.now()).save()
+    Transcriptions(user_id=1, sentence_id=6, script='Hrkt', text='transcription 2', needsreview=1, created=datetime.now(), modified=datetime.now()).save()
+    Transcriptions(user_id=1, sentence_id=7, script='Hrkt', text='transcription 3', needsreview=1, created=datetime.now(), modified=datetime.now()).save()
 
     if request.config.option.mysql:
         def fin():
