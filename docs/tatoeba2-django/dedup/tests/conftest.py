@@ -116,6 +116,7 @@ def sents(db, request):
             clean_up('SentenceAnnotations')
             clean_up('UsersSentences')
             clean_up('Transcriptions')
+            clean_up('Audios')
 
         request.addfinalizer(fin)
 
