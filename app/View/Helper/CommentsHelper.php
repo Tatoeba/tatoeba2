@@ -274,7 +274,8 @@ class CommentsHelper extends AppHelper
             'url' => array(
                 "controller" => "sentences",
                 "action" => "show",
-                $sentenceId."#comment-".$commentId
+                '#' => 'comment-'.$commentId,
+                $sentenceId
             )
         );
 
