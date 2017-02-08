@@ -94,8 +94,8 @@ class SentencesListsController extends AppController
      */
     public function index($filter = null)
     {
-        if (isset($this->request->params['search'])) {
-            $filter = $this->request->params['search'];
+        if (isset($this->request->query['search'])) {
+            $filter = $this->request->query['search'];
             $this->redirect(array('action' => 'index', $filter));
         }
 
@@ -125,8 +125,8 @@ class SentencesListsController extends AppController
 
     public function collaborative($filter = null)
     {
-        if (isset($this->request->params['search'])) {
-            $filter = $this->request->params['search'];
+        if (isset($this->request->query['search'])) {
+            $filter = $this->request->query['search'];
             $this->redirect(array('action' => 'collaborative', $filter));
         }
 
@@ -401,11 +401,11 @@ class SentencesListsController extends AppController
      */
     public function of_user($username=null, $filter = null)
     {
-        if (isset($this->request->params['username'])) {
-            $usernameParam = $this->request->params['username'];
+        if (isset($this->request->query['username'])) {
+            $usernameParam = $this->request->query['username'];
         }
-        if (isset($this->request->params['search'])) {
-            $searchParam = $this->request->params['search'];
+        if (isset($this->request->query['search'])) {
+            $searchParam = $this->request->query['search'];
         }
 
         if (!empty($usernameParam)) {

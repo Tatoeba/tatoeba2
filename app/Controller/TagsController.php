@@ -169,16 +169,17 @@ class TagsController extends AppController
     {
         $this->helpers[] = 'Tags';
 
-        $this->paginate = array(
-            'limit' => 50,
-            'fields' => array('name', 'id', 'nbrOfSentences'),
-            'order' => 'nbrOfSentences DESC'
-        );
         if (!empty($filter)) {
-            $this->paginate['conditions'] = array(
+            $conditions = array(
                 'name LIKE' => "%$filter%"
             );
         }
+        $this->paginate = array(
+            'limit' => 50,
+            'fields' => array('name', 'id', 'nbrOfSentences'),
+            'order' => 'nbrOfSentences DESC',
+            'conditions' => $conditions
+        );
 
         $allTags = $this->paginate('Tag');
         $this->set("allTags", $allTags);
@@ -346,6 +347,7 @@ class TagsController extends AppController
     public function search()
     {
         $search = $this->request->data['Tag']['search'];
+        pr($this->request->data);
         $this->redirect(
             array(
                 'controller' => 'tags',
