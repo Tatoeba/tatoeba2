@@ -51,7 +51,8 @@ class TranscriptionsController extends AppController
         );
 
         $this->Security->unlockedActions = array(
-            'save'
+            'save',
+            'reset'
         );
     }
 
