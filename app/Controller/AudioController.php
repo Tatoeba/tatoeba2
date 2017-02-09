@@ -54,6 +54,10 @@ class AudioController extends AppController
             'of',
             'index',
         );
+
+        $this->Security->unlockedActions = array(
+            'save_settings' // can't figure out why this is blackholed
+        );
     }
 
     public function import() {
