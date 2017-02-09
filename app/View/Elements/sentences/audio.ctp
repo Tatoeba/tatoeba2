@@ -62,8 +62,8 @@ if (CurrentUser::isAdmin()) {
             "legend" => false,
             "type" => "radio",
             "options" => array(
-                "yes" => "yes",
-                "" => "no"
+                1 => "yes",
+                0 => "no"
             ),
             "value" => $hasaudio
         )
