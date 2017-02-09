@@ -47,10 +47,10 @@ code_dir: /home/{{ansible_ssh_user}}/Tatoeba
 # Number of revisions to keep in verions directory (for later restore); should be greater than 0
 revision_limit: 3
 git_temp_dir: .temp_repo
-repo_version: cakephp29
+repo_version: HEAD
 git_remote: origin
 # change the repository to your own fork to contribute
-git_rep: https://github.com/halfdan/tatoeba2.git
+git_rep: https://github.com/Tatoeba/tatoeba2.git
 
 # Variables for test server (leave unchanged if you don't need them or don't know what they mean)
 mysql_test_user: tatouser
