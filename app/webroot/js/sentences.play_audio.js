@@ -16,26 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-$(document).ready(function() {
-    $(document).watch("addrule", function() {
-        $('.audioAvailable').off();
-        $('.audioAvailable').click(function() {
-           var audioURL = $(this).attr('href');
-
-           $('#audioPlayer').html(
-                '<object data="'+ audioURL +'" type="audio/mpeg" data="'+ audioURL +'" width="0" height="0">'+
-                    '<param name="src" value="'+ audioURL +'" />' +
-                    '<object '+
-                        'type="application/x-shockwave-flash" '+
-                        'data="https://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" '+
-                        'width="0" '+
-                        'height="0" '+
-                    '>'+
-                        '<param name="movie" value="https://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" />'+
-                    '</object>'+
-                '</object>'
-           );
-        });
+$(document).ready(function () {
+  $(document).watch('addrule', function () {
+    $('.audioAvailable').off();
+    $('.audioAvailable').click(function () {
+      var audioURL = $(this).attr('href');
+      var audio = new Audio(audioURL);
+      audio.play();
     });
+  });
 });

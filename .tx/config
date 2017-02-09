@@ -3,19 +3,19 @@ host = https://www.transifex.com
 lang_map = ar:ara, az:aze, be:bel, bn:ben, br:bre, ca:cat, cs:ces, cy:cym, da:dan, de:deu, el:ell, eo:epo, es:spa, et:est, eu:eus, fi:fin, fr:fra, fy:fry, ga:gle, gl:glg, he:heb, hi:hin, hu:hun, ia:ina, id:ind, io:ido, it:ita, ja:jpn, jbo:jbo, ka:kat, ko:kor, la:lat, lt:lit, mr:mar, ms:zsm, nds:nds, nl:nld, oc:oci, pl:pol, pt_BR:por, ro:ron, ru:rus, sv:swe, tl:tgl, tr:tur, tzl:tzl, uk:ukr, uz:uzb, vi:vie, zh_CN:cmn
 
 [tatoeba_website.tatoebaResource]
-source_file = app/locale/default.pot
+source_file = app/Locale/default.pot
 source_lang = en
 type = PO
-file_filter = app/locale/<lang>/LC_MESSAGES/default.po
+file_filter = app/Locale/<lang>/LC_MESSAGES/default.po
 
 [tatoeba_website.countries]
-source_file = app/locale/countries.pot
+source_file = app/Locale/countries.pot
 source_lang = en
 type = PO
-file_filter = app/locale/<lang>/LC_MESSAGES/countries.po
+file_filter = app/Locale/<lang>/LC_MESSAGES/countries.po
 
 [tatoeba_website.tatoeba-languages]
-source_file = app/locale/languages.pot
+source_file = app/Locale/languages.pot
 source_lang = en
 type = PO
-file_filter = app/locale/<lang>/LC_MESSAGES/languages.po
+file_filter = app/Locale/<lang>/LC_MESSAGES/languages.po
