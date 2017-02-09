@@ -14,7 +14,7 @@
   - import/sinograms.sql
   - import/sinogram_subglyphs.sql
 - name: Set up ACLs
-  shell: sed 's,cake,{{code_dir}}/cake/console/cake -app {{code_dir}}/app,' {{code_dir}}/docs/database/acl/{{item}} | sh
+  shell: sed 's,cake,{{code_dir}}/app/Console/cake -app {{code_dir}}/app,' {{code_dir}}/docs/database/acl/{{item}} | sh
   with_items:
   - acos
   - aros

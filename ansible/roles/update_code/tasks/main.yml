@@ -2,19 +2,26 @@
 # Tasks to fetch latest tatoeba-php code and optionally update cakephp configs
 
 - name: Fetch the code from github repository
-  git: repo={{git_rep}} dest={{code_dir}} version={{repo_version}} remote={{git_remote}}
+  git:
+    repo={{git_rep}}
+    dest={{code_dir}}
+    version={{repo_version}}
+    remote={{git_remote}}
 
 - name: Copy CakePHP config files from remote host
-  fetch: src={{code_dir}}/app/config/{{item}}.template dest=roles/update_code/templates/{{item}}.template flat=yes
+  fetch: src={{code_dir}}/app/Config/{{item}}.template dest=roles/update_code/templates/{{item}}.template flat=yes
   with_items:
   - database.php
   - core.php
 
 - name: Template out CakePHP config files
-  template: src={{item}}.template dest={{code_dir}}/app/config/{{item}}
+  template: src={{item}}.template dest={{code_dir}}/app/Config/{{item}}
   with_items:
   - database.php
   - core.php
+
+- name: Fetch composer dependencies
+  shell: composer install chdir={{code_dir}}
 
 - name: Set ownership of the repository
   file: path={{code_dir}} state=directory recurse=yes owner={{ansible_ssh_user}} group={{ansible_ssh_user}}

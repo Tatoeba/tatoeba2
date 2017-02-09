@@ -8,9 +8,9 @@
   apt: name={{item}} state=present
   with_items:
   - make
-  - cmake 
-  - g++ 
-  - libevent-dev 
+  - cmake
+  - g++
+  - libevent-dev
   - libexpat1-dev
   - libgmm++-dev
   - libmecab-dev
@@ -38,4 +38,4 @@
 - name: Remove temporary files
   command: rm -rf /tmp/nihongoparserd
 - name: Enable auto-transcriptions
-  command: sed -i 's/\(Configure::write(.AutoTranscriptions.enabled.,\).*)/\1 true)/' {{code_dir}}/app/config/core.php
+  command: sed -i 's/\(Configure::write(.AutoTranscriptions.enabled.,\).*)/\1 true)/' {{code_dir}}/app/Config/core.php

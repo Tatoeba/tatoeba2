@@ -2,7 +2,7 @@
 # Tasks to create the database, install updates and import sentences in it
 
 - name: Check whether tatoeba's code is present or not
-  shell: ' [ -d  {{code_dir}} ] '
+  shell: 'test -d {{code_dir}}'
   register: code_status
   ignore_errors: yes
 - name: Database import/update fail message

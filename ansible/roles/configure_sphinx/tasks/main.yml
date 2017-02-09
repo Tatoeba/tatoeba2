@@ -16,7 +16,7 @@
   - "{{sphinx_log_dir}}"
   - "{{sphinx_binlog_path}}"
 - name: Generate sphinx.conf
-  shell: ./cake/console/cake sphinx_conf > /etc/sphinxsearch/sphinx.conf chdir={{code_dir}}
+  shell: ./app/Console/cake sphinx_conf > /etc/sphinxsearch/sphinx.conf chdir={{code_dir}}
 - name: Create indexes
   command: indexer --all
   when: sphinx_create_indexes == true

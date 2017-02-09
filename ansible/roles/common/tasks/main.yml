@@ -22,7 +22,7 @@
   template: src=bash_aliases dest=/home/{{ansible_ssh_user}}/.bash_aliases owner={{ansible_ssh_user}}
 
 - name: Ensure git is installed
-  apt: name=git state=present
+  apt: name=git state=present force=yes
 - name: Install pip on remote machine
   apt: name=python-pip state=present force=yes
 - name: Ensure python MySQLdb module is present
