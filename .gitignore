@@ -1,9 +1,9 @@
 info.php
-
+app-backup/
 
 # config
-app/config/core.php
-app/config/database.php
+app/Config/core.php
+app/Config/database.php
 
 # audio files
 app/webroot/files/audio
@@ -17,8 +17,9 @@ app/tmp/cache/models
 app/tmp/cache/persistent
 app/tmp/cache/views
 
-# unit test
-app/vendors/simpletest
+# Composer / Vendor
+composer.phar
+app/Vendor/
 
 ## python related files
 

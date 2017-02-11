@@ -5,7 +5,8 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from tatoeba2.models import (
     Sentences, SentencesTranslations, Contributions, Users, Wall,
-    SentenceComments, WallThreadsLastMessage, UsersSentences, Transcriptions
+    SentenceComments, WallThreadsLastMessage, UsersSentences, Transcriptions,
+    Audios
     )
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -86,7 +87,7 @@ class Dedup(object):
         for sent in sents:
 
             # filter sents with audio
-            if sent.hasaudio == 'from_users' or sent.hasaudio == 'shtooka':
+            if Audios.objects.filter(sentence_id=sent.id).count() > 0:
                 cls.has_audio.add(sent)
 
             # filter sents with owners
@@ -657,7 +658,7 @@ class Command(Dedup, BaseCommand):
 
         # all audio should exist
         self.log_report('All audio intact? ')
-        self.ver_audio = Sentences.objects.filter(id__in=self.all_mains, hasaudio__in=['shtooka', 'from_users']).count() == len(self.all_audio)
+        self.ver_audio = Audios.objects.filter(sentence_id__in=self.all_mains).distinct().count() == len(self.all_audio)
         msg = 'YES' if self.ver_audio else 'NO'
         self.log_report(msg)
 

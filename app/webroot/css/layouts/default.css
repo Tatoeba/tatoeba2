@@ -6,7 +6,7 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -126,7 +126,7 @@ a {
 }
 
 md-radio-button{
-    margin: 16px 0px; 
+    margin: 16px 0px;
 }
 
 a:hover {
@@ -292,7 +292,7 @@ rt {
 }
 
 
-/* 
+/*
  * Interface Language Selector
  */
 
@@ -301,8 +301,8 @@ rt {
     margin-top: 2px;
 }
 
-/* 
- * User Menu 
+/*
+ * User Menu
  */
 #languageSelectionContainer,
 #user_menu {
@@ -454,7 +454,7 @@ rt {
 }
 
 /*
- * Content 
+ * Content
  */
 
 #content {
@@ -485,9 +485,9 @@ rt {
     padding: 10px 10px 5px 10px;
     margin: 0 0 20px 0;
     font-size: 14px;
-    border-bottom: 1px solid #ededed;
     background: linear-gradient(to top, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 0) 100px, rgba(255, 255, 255, 0) 100%);
 }
+
 #annexe_content .module {
     margin-left: 5px;
 }
@@ -503,7 +503,7 @@ rt {
 
 
 /*
- * Footer 
+ * Footer
  */
 #footer {
     padding-bottom: 10px;
@@ -583,12 +583,12 @@ rt {
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #FFC1B5;
-    background-color: #FFDDD6; 
+    background-color: #FFDDD6;
     color: #D1523C;
 }
 
-/* 
- * Important 
+/*
+ * Important
  */
 .important {
     color: red;
@@ -602,7 +602,7 @@ rt {
 }
 
 /*
- * Login Form 
+ * Login Form
  */
 #UserLoginForm_FromBar {
     position: absolute;

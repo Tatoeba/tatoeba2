@@ -105,8 +105,9 @@ cake acl create aco Transcriptions save
 cake acl create aco Transcriptions view
 cake acl create aco Transcriptions reset
 
-cake acl create aco controllers Recordings
-cake acl create aco Recordings import
+cake acl create aco controllers Audio
+cake acl create aco Audio import
+cake acl create aco Audio save_settings
 
 cake acl create aco controllers Vocabulary
 cake acl create aco Vocabulary add
