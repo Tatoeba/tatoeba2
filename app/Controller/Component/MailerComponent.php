@@ -89,6 +89,9 @@ class MailerComponent extends Component
 
 
     public function sendSentenceCommentNotification($recipient, $comment, $sentenceOwner) {
+        if (empty($recipient)) {
+            return;
+        }
         $author = CurrentUser::get('username');
         $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
         $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
