@@ -128,7 +128,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                          'inside the import directory.'); ?></p>
 <?php endif; ?>
 <?php
-echo $this->Form->create('Audios');
+echo $this->Form->create();
 echo $this->Form->input('audioAuthor');
 echo $this->Form->end(__d('admin', 'Import'));
 ?>
