@@ -174,7 +174,7 @@ class MailerComponent extends Component
             'transport' => 'Smtp'
         ));
         $this->Email->emailFormat('html');
-        $this->Email->from('no-reply <'.Configure::read('Mailer.username').'>');
+        $this->Email->from(array(Configure::read('Mailer.username') => 'noreply'));
         $this->Email->send();
     }
 }
