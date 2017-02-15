@@ -550,6 +550,7 @@ class LanguagesLib
                 'izh' => __d('languages', 'Ingrian'),
                 'sma' => __d('languages', 'Southern Sami'),
                 'jam' => __d('languages', 'Jamaican Patois'),
+                'mwl' => __d('languages', 'Mirandese'),
             );
         }
         return $languages;
