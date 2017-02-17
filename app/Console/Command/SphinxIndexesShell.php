@@ -17,8 +17,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Helper');
-App::import('Helper', 'Languages');
+App::import('Lib', 'LanguagesLib');
 App::import('Model', 'ReindexFlag');
 
 define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
@@ -31,8 +30,7 @@ class SphinxIndexesShell extends Shell {
 
     private function get_tatoeba_languages() {
         Configure::write('Config.language', 'eng');
-        $languagesHelper = new LanguagesHelper();
-        $this->tatoeba_languages = $languagesHelper->onlyLanguagesArray(false);
+        $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
     }
 
     private function die_usage($message = '') {
