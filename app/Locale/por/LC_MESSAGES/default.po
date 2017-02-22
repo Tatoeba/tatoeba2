@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 14:12+0000\n"
-"PO-Revision-Date: 2017-02-15 17:58+0000\n"
+"PO-Revision-Date: 2017-02-22 19:06+0000\n"
 "Last-Translator: Ricardo <rvj1444@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/tatoeba/tatoeba_website/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -76,7 +76,7 @@ msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at {email}."
-msgstr ""
+msgstr "Você atingiu o seu limite de envio de mensagens por hoje. Por favor, espere até que você esteja apto a enviar mais mensagens. Se você recebeu essa mensagem por engano, contate os administradores em {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L270
 msgid ""
@@ -140,7 +140,7 @@ msgstr "Você não tem permissão para editar este comentário. "
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "Se você recebeu esta mensagem por engano, por favor, entre em contato com os administradores pelo e-mail {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L331
 msgid "Comments cannot be empty."
@@ -321,13 +321,13 @@ msgstr "Este endereço de e-mail já existe. Por favor, tente com algum outro."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L417
 msgid "The entered birthday is an invalid date. Please try again."
-msgstr ""
+msgstr "Essa data de aniversário contem uma data inválida. Por favor, tente novamente."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L466
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr ""
+msgstr "A data de aniversário está incompleta. São aceitos a data completa, mês e o dia, mês e o ano e somente o ano."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L537
 msgid "Your settings have been saved."
@@ -724,7 +724,7 @@ msgstr "Todas as frases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L33
 msgid "Outdated ratings"
-msgstr ""
+msgstr "Desatualizado"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/collections/of.ctp#L45
 msgid "{user}'s collection - {category}"
@@ -1602,7 +1602,7 @@ msgstr "Frases favoritas de {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L55
 msgid "Favorite successfully removed."
-msgstr ""
+msgstr "Sentença favorita removida com sucesso."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L107
 msgid "This user does not have any favorites."
@@ -2443,7 +2443,7 @@ msgid ""
 "Tatoeba is a large database of sentences and translations. Its content is "
 "ever-growing and results from the voluntary contributions of thousands of "
 "members."
-msgstr ""
+msgstr "Tatoeba é um grande banco de dados de sentenças e traduções cujo conteúdo expandido continuamente que são resultados de contribuições voluntárias de milhares de membros."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L48
 msgid ""
@@ -2452,7 +2452,7 @@ msgid ""
 "sentences containing these words with their translations in the desired "
 "languages. The name Tatoeba (<em>for example</em> in Japanese) captures this"
 " concept."
-msgstr ""
+msgstr "O Tatoeba dispõe de uma ferramenta para que você veja exemplos de como as palavras são usadas no contexto de uma frase. Você especifica palavras que lhe interessam e ele retorna sentenças que as contenham com suas traduções nos idiomas desejados. O nome Tatoeba (<em>, por exemplo </ em> em japonês) captura esse conceito."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L61
 msgid ""
@@ -3103,7 +3103,7 @@ msgstr "Página temporariamente desabilitada"
 msgid ""
 "This page is currently disabled due to technical issues: it may be slowing "
 "down the website or is dysfunctional."
-msgstr ""
+msgstr "Essa página está indisponível momentaneamente devido à razões técnicas uma vez que ela pode estar deixando o site mais devagar ou não está funcionando."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/temporarily_disabled.ctp#L52
 msgid "We are sorry for the inconvenience."
@@ -3360,7 +3360,7 @@ msgstr "Frases adicionadas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L160
 msgid "Check out the vocabulary for which we need sentences"
-msgstr ""
+msgstr "Verifique o vocabulário para o qual precisamos de sentenças"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L42
 msgid "{user}'s sentences"
@@ -3442,7 +3442,7 @@ msgstr "Ocorreu um erro ao realizar a busca. Se o problema persistir, por favor,
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
-msgstr ""
+msgstr "Pesquisa inválida. Por favor, verifique a <a href=\"{}\">documentação de pesquisa</a> para mais detalhes."
 
 #. @translators: title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L130
@@ -3501,7 +3501,7 @@ msgstr "Revisado por"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L96
 msgid "(outdated)"
-msgstr ""
+msgstr "(desatualizado)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L150
 msgid "There is no log for this sentence"
@@ -3811,7 +3811,7 @@ msgstr "Etiquetas para moderadores"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L48
 msgid "Workload ({number})"
-msgstr ""
+msgstr "Tópico n.º {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L69
 msgid "Guidelines"
@@ -3848,8 +3848,8 @@ msgstr "Frases com a etiqueta {tagName}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L53
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{tagName} ({n} sentença)"
+msgstr[1] "{tagName} ({n} sentenças)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L60
 msgid "date of tag"
@@ -4193,7 +4193,7 @@ msgstr "Sempre mostrar transcrições e sistemas de escrita alternativos."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L155
 msgid "Hide random sentence on the homepage"
-msgstr ""
+msgstr "Remover a sentença aleatória da homepage."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L176
 msgid ""
@@ -4201,7 +4201,7 @@ msgid ""
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
 "languages you indicated. You can leave this empty to display translations in"
 " all languages."
-msgstr ""
+msgstr "Digite os códigos <a href=\"{url}\">ISO 639-3</a> separados por vírgula (ex.: por,deu,fra,esp,ing). O Tatoeba irá, assim, mostrar apenas as traduções nos idiomas indicados por você. Caso deseje, deixe esse campo em branco para que sejam mostradas as traduções em todos os idiomas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L200
 msgid "Number of sentences per page"
@@ -4239,7 +4239,7 @@ msgstr "Exibir botão para copiar uma frase para a área de transferência."
 msgid ""
 "Display sentences with the new design. Note that you will not have all the "
 "features from the old design."
-msgstr ""
+msgstr "Mostrar sentenças usando o novo visual. Algumas ferramentas, porém, não estarão disponíveis."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L325
 msgid "Change email address"
@@ -4407,11 +4407,11 @@ msgstr "Últimas mensagens do Mural"
 msgid ""
 "Add vocabulary that you are learning. If your vocabulary does not exist yet "
 "in Tatoeba, other contributors can add sentences for it."
-msgstr ""
+msgstr "Adicione uma palavra, um vocábulo que você esteja aprendendo. Caso não esteja disponível ainda no Tatoeba, outros membros podem adicionar sentenças que a contenham. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add.ctp#L79
 msgid "Vocabulary item"
-msgstr ""
+msgstr "Item do Vocabulário"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add.ctp#L89
 msgid "Add"
@@ -4419,7 +4419,7 @@ msgstr "Adicionar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add.ctp#L98
 msgid "Vocabulary items added"
-msgstr ""
+msgstr "Items do Vocabulário adicionados"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L31
 msgid "Vocabulary that needs sentences"
@@ -4428,7 +4428,7 @@ msgstr "Vocabulário que precisa de sentenças"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L49
 msgid ""
 "Only vocabulary items that have less than 10 sentences are displayed here."
-msgstr ""
+msgstr "Apenas vocabulários que contenham menos de 10 sentenças são exibidas aqui."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/vocabulary/add_sentences.ctp#L104
 msgid "This sentence already exists."
