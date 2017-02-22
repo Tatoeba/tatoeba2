@@ -8,7 +8,10 @@ POT_TMP=$(mktemp --suffix=.po)
 trap "rm -f $POT_TMP; exit" SIGHUP SIGINT SIGTERM
 
 list_source_files() {
-    find app/ -iname '*.ctp' -o -iname '*.php' | LC_ALL=C sort
+    find app/ -path app/Vendor/cakephp -prune \
+        -o -iname '*.ctp' -print \
+        -o -iname '*.php' -print \
+        | LC_ALL=C sort
 }
 
 throw_to_gettext() {
