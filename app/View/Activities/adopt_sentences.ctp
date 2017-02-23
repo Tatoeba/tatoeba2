@@ -43,7 +43,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <h2><?php echo __('About adoption'); ?></h2>
         <p>
         <?php
-        __(
+        echo __(
             'Adopting is a way to vote "this sentence is correct". It is also an '.
             'occasion to check the sentence and correct it if there is a mistake.'
         );
@@ -72,7 +72,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <h2><?php echo __('Tips'); ?></h2>
         <p>
         <?php 
-        __(
+        echo __(
             'If you see another username appear after adopting a sentence, it '.
             'means that someone else adopted the sentence very shortly before '.
             'you did. In such cases, you can try adopting sentences that are '.
