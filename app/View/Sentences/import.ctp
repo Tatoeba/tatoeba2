@@ -37,10 +37,9 @@ $langArray = $this->Languages->onlyLanguagesArray();
         
         <?php 
         echo $this->Form->create(
-            null,
+            'Import',
             array(
                 'url' => array(
-                    'controller' => 'imports',
                     'action' => 'import_single_sentences'
                 ),
                 'type' => 'file',
@@ -76,10 +75,9 @@ $langArray = $this->Languages->onlyLanguagesArray();
         <h2><?php echo __d('admin', 'Sentences and translations'); ?></h2>
         <?php 
         echo $this->Form->create(
-            null,    
+            'Import',
             array(
                 'url' => array(
-                    'controller' => 'imports',
                     'action' => 'import_sentences_with_translation'
                 ),
                 'type' => 'file',

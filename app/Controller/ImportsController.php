@@ -62,9 +62,9 @@ class ImportsController extends AppController
      */
     public function import_single_sentences()
     {
-        $sentenceLang = $this->request->data['Sentence']['sentences_lang'];
-        $userId = $this->request->data['Sentence']['user_id'];
-        $sentencesListFile = $this->request->data['Sentence']['file'];
+        $sentenceLang = $this->request->data['Import']['sentences_lang'];
+        $userId = $this->request->data['Import']['user_id'];
+        $sentencesListFile = $this->request->data['Import']['file'];
         if ( !$this->_common_upload_check($sentencesListFile)) {
             $this->redirect(
                 array(
@@ -99,10 +99,10 @@ class ImportsController extends AppController
      */
     public function import_sentences_with_translation()
     {
-        $sentenceLang = $this->request->data['Sentence']['sentences_lang'];
-        $translationLang = $this->request->data['Sentence']['translations_lang'];
-        $userId = $this->request->data['Sentence']['user_id'];
-        $sentencesListFile = $this->request->data['Sentence']['file'];
+        $sentenceLang = $this->request->data['Import']['sentences_lang'];
+        $translationLang = $this->request->data['Import']['translations_lang'];
+        $userId = $this->request->data['Import']['user_id'];
+        $sentencesListFile = $this->request->data['Import']['file'];
 
         if ( !$this->_common_upload_check($sentencesListFile)) {
             $this->redirect(
