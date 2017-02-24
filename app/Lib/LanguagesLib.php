@@ -550,6 +550,7 @@ class LanguagesLib
                 'izh' => __d('languages', 'Ingrian'),
                 'sma' => __d('languages', 'Southern Sami'),
                 'jam' => __d('languages', 'Jamaican Patois'),
+                'mwl' => __d('languages', 'Mirandese'),
                 'kpv' => __d('languages', 'Komi-Zyrian'),
                 'cmo' => __d('languages', 'Mnong, Central'),
             );
