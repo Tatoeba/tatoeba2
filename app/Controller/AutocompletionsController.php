@@ -38,6 +38,8 @@ class AutocompletionsController extends AppController
 {
     public $name = 'Autocompletions';
     public $uses = '';
+    public $components = array('RequestHandler');
+
     /**
      * Before filter.
      *
@@ -56,6 +58,7 @@ class AutocompletionsController extends AppController
      */
     public function request($searchString) {
         $this->layout = '';
+        $this->RequestHandler->respondAs('xml');
         $this->set("searchString", $searchString);
     }
 }

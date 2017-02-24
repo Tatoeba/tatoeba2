@@ -90,7 +90,7 @@ class AudioHelper extends AppHelper
             $username = $this->Html->link($username, $attribUrl);
         }
         if (empty($license) || !isset($this->licenses[$license])) {
-            $license = __d('license', 'unknown');
+            $license = __p('license', 'unknown');
         } elseif (isset($this->licenses[$license]['url'])) {
             $license = $this->licenseLink($license);
         } elseif (isset($this->licenses[$license]['name'])) {

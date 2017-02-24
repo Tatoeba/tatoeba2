@@ -290,7 +290,7 @@ class ListsHelper extends AppHelper
      * @return void
      */
     public function displayTranslationsDropdown($listId, $translationsLang = null) {
-        __('Show translations :'); echo ' ';
+        echo __('Show translations :') . ' ';
 
         // TODO User $this->Html->url()
         $path = '/';
