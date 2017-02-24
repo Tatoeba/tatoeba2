@@ -80,6 +80,7 @@ class AudioController extends AppController
         $sentencesWithAudio = $this->paginate('Audio', $conditions);
         $this->set(compact('sentencesWithAudio'));
         $this->set(array('stats' => $this->Audio->getAudioStats()));
+        $this->set('lang', $lang);
     }
 
     public function of($username) {

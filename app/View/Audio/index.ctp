@@ -53,7 +53,7 @@ if (isset($sentencesWithAudio)) {
         );
         echo $this->Html->tag('h2', $title);
 
-        $paginationUrl = array();
+        $paginationUrl = array($lang);
         $this->Pagination->display($paginationUrl);
 
         $type = 'mainSentence';
