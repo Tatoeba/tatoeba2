@@ -46,7 +46,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <p>
             <?
             echo __(
-                'Only vocabulary items that have less than 10 sentences are '.
+                'Only vocabulary items that match fewer than 10 sentences are '.
                 'displayed here.'
             )
             ?>

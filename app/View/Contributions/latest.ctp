@@ -56,7 +56,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
         </p>
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div class="module">
     <?php
     echo $this->element(
         'currently_active_members',
