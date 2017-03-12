@@ -90,7 +90,7 @@ class AudioHelper extends AppHelper
             $username = $this->Html->link($username, $attribUrl);
         }
         if (empty($license) || !isset($this->licenses[$license])) {
-            $license = __p('license', 'unknown');
+            $license = __p('license', 'for Tatoeba only');
         } elseif (isset($this->licenses[$license]['url'])) {
             $license = $this->licenseLink($license);
         } elseif (isset($this->licenses[$license]['name'])) {
@@ -99,7 +99,7 @@ class AudioHelper extends AppHelper
 ?>
 <ul>
   <li><?php echo format(__('Recorded by: {username}'), compact('username')); ?></li>
-  <li><?php echo format(__('Licensed under: {license}'), compact('license')); ?></li>
+  <li><?php echo format(__('License: {license}'), compact('license')); ?></li>
 </ul>
 <?php
     }
@@ -116,15 +116,15 @@ class AudioHelper extends AppHelper
                       'outside the Tatoeba project, because {userName} did '.
                       'not chose any license for them yet.');
         } elseif ($license == 'Public domain') {
-            $msg = __('The following audio recordings, attributed to '.
+            $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under the public domain.');
         } elseif (isset($this->licenses[$license])) {
             $license = $this->licenseLink($license);
-            $msg = __('The following audio recordings, attributed to '.
+            $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under the {licenseName} '.
                       'license.');
         } else {
-            $msg = __('The following audio recordings, attributed to '.
+            $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under an unknown license.');
         }
         return format($msg, array(

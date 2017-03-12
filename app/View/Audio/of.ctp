@@ -77,7 +77,7 @@ if (isset($sentencesWithAudio)) {
 if (isset($sentencesWithAudio)) {
     if (count($sentencesWithAudio) == 0) {
         echo $this->Html->tag('h2', format(
-            __('{username} does not have contributed any audio'),
+            __('{username} has not contributed any audio'),
             array('username' => $username)
         ));
     } else {
