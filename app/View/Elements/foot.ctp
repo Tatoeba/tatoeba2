@@ -182,8 +182,18 @@ if (isset($this->request->params['lang'])) {
         <div class="text">
             <?php
             echo __(
-                'Our sentences and translations can be used under the '.
+                'Our written sentences and translations can be used under the '.
                 'Creative Commons Attribution 2.0 license (CC-BY 2.0).'
+            );
+            echo $this->Html->link(
+                __('More information'),
+                array(
+                    'controller' => 'pages',
+                    'action' => 'downloads'
+                ),
+                array(
+                    'class' => 'more-info'
+                )
             );
             ?>
             <br/>

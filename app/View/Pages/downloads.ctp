@@ -85,6 +85,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
     </a>
     </div>
 
+
+    <div class="section" md-whiteframe="1">
+        <h2><?= __('Licenses covering audio') ?></h2>
+        <p>
+            <?= __(
+                'The license covering an audio file is chosen by the '.
+                'contributor, and is indicated on the page that lists '.
+                'the audio files that he or she has contributed.'
+            ); ?>
+        </p>
+    </div>
+
     <div class="section" md-whiteframe="1">
     <h2><?php echo __('Questions?'); ?></h2>
     <p>
