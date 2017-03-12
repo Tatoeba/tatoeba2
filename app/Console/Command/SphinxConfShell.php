@@ -209,8 +209,8 @@ class SphinxConfShell extends Shell {
 
     private $configs;
 
-    public function __construct(&$dispatch) {
-        parent::__construct($dispatch);
+    public function __construct() {
+        parent::__construct();
 
         $this->charsetTable = array_merge(
             $this->charsetTable,
@@ -452,7 +452,7 @@ EOT;
                     'join reindex_flags on reindex_flags.sentence_id = sent_start.id and reindex_flags.indexed = 1';
                 $conf .= "
         sql_query_range = select min(id), max(id) from sentences
-        sql_range_step = 500000
+        sql_range_step = 100000
         sql_query = \
             select \
                 r.id, r.text, r.created, r.modified, r.user_id, r.ucorrectness, r.has_audio, \
