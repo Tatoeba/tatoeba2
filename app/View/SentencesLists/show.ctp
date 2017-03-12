@@ -149,9 +149,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div class="sortBy" id="sortBy">
      <strong><?php echo __("Sort by:") ?> </strong>
             <?php
-            echo $this->Paginator->sort('created', __("date added"));
-            echo " | ";
-            echo $this->Paginator->sort('sentence_id', __("sentence id"));
+            echo $this->Paginator->sort('created', __('date added to list'));
+            echo ' | ';
+            echo $this->Paginator->sort('sentence_id', __('date created'));
     ?>
 
     </div>
