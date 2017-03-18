@@ -570,7 +570,7 @@ class ListsHelper extends AppHelper
                 'name',
                 array(
                     'type' => 'text',
-                    'empty' => __p('list', 'Name')
+                    'empty' => __x('list', 'Name')
                 )
             );
             echo $this->Form->end(__('create'));
@@ -663,7 +663,7 @@ class ListsHelper extends AppHelper
      */
     public function listsAsSelectable($lists)
     {
-        $unspecified = __p('list', 'Unspecified');
+        $unspecified = __x('list', 'Unspecified');
         if (CurrentUser::isMember()) {
             $sortedLists = array(0 => array(), 1 => array());
             $currentUserId = CurrentUser::get('id');

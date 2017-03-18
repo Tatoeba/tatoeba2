@@ -59,7 +59,7 @@ echo $this->Form->create(
     echo $this->Form->input('orphans', array(
         'label' => __('Is orphan:'),
         'options' => array(
-            '' => __p('orphan', 'Any'),
+            '' => __x('orphan', 'Any'),
             'no' => __('No'),
             'yes' => __('Yes'),
         ),
@@ -77,7 +77,7 @@ echo $this->Form->create(
     echo $this->Form->input('unapproved', array(
         'label' => __('Is unapproved:'),
         'options' => array(
-            '' => __p('unapproved', 'Any'),
+            '' => __x('unapproved', 'Any'),
             'no' => __('No'),
             'yes' => __('Yes'),
         ),
@@ -122,7 +122,7 @@ echo $this->Form->create(
     echo $this->Form->input('has_audio', array(
         'label' => __('Has audio:'),
         'options' => array(
-            '' => __p('audio', 'Any'),
+            '' => __x('audio', 'Any'),
             'no' => __('No'),
             'yes' => __('Yes'),
         ),
@@ -164,7 +164,7 @@ echo $this->Form->create(
       echo $this->Form->input('trans_link', array(
           'label' => __('Link:'),
           'options' => array(
-              '' => __p('link', 'Any'),
+              '' => __x('link', 'Any'),
               'direct' => __('Direct'),
               'indirect' => __('Indirect'),
           ),
@@ -178,7 +178,7 @@ echo $this->Form->create(
       echo $this->Form->input('trans_orphan', array(
           'label' => __('Is orphan:'),
           'options' => array(
-              '' => __p('orphan', 'Any'),
+              '' => __x('orphan', 'Any'),
               'no' => __('No'),
               'yes' => __('Yes'),
           ),
@@ -187,7 +187,7 @@ echo $this->Form->create(
       echo $this->Form->input('trans_unapproved', array(
           'label' => __('Is unapproved:'),
           'options' => array(
-              '' => __p('unapproved', 'Any'),
+              '' => __x('unapproved', 'Any'),
               'no' => __('No'),
               'yes' => __('Yes'),
           ),
@@ -196,7 +196,7 @@ echo $this->Form->create(
       echo $this->Form->input('trans_has_audio', array(
           'label' => __('Has audio:'),
           'options' => array(
-              '' => __p('audio', 'Any'),
+              '' => __x('audio', 'Any'),
               'no' => __('No'),
               'yes' => __('Yes'),
           ),
@@ -239,7 +239,7 @@ echo $this->Html->link(
 echo '</p>';
 
 echo $this->Form->button(
-    __p('button', 'Advanced search'),
+    __x('button', 'Advanced search'),
     array('class' => 'button submit')
 );
 ?>

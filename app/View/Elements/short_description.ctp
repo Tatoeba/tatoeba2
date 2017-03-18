@@ -130,7 +130,7 @@
                 <div class="advanced-search">
                     <?php
                     echo $this->Html->link(
-                        __p('title', 'Advanced search'),
+                        __x('title', 'Advanced search'),
                         array(
                             'controller' => 'sentences',
                             'action' => 'advanced_search'

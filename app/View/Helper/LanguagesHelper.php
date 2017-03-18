@@ -210,7 +210,7 @@ class LanguagesHelper extends AppHelper
         $languages = $this->onlyLanguagesArray();
 
         array_push($languages, array(
-            'unknown' => __p('dropdown-list', 'Unknown language')
+            'unknown' => __x('dropdown-list', 'Unknown language')
         ));
 
         return $languages;
@@ -324,7 +324,7 @@ class LanguagesHelper extends AppHelper
     {
         $languages = $this->onlyLanguagesArray();
         array_unshift(
-            $languages, array('und' => __p('searchbar', 'Any language'))
+            $languages, array('und' => __x('searchbar', 'Any language'))
         );
 
         return $languages;
@@ -487,7 +487,7 @@ class LanguagesHelper extends AppHelper
     {
         if (!isset($__languagesLevels)) {
             $__languagesLevels = array(
-                -1 => __p('level', 'Unspecified'),
+                -1 => __x('level', 'Unspecified'),
                 0 => __('0: Almost no knowledge'),
                 1 => __('1: Beginner'),
                 2 => __('2: Intermediate'),

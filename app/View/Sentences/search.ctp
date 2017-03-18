@@ -28,7 +28,7 @@
 if ($search_disabled) {
     $title = __('Search disabled');
 } else if ($is_advanced_search) {
-    $title = __p('title', 'Advanced search');
+    $title = __x('title', 'Advanced search');
 } else if (!empty($query)) {
     $title = format(__('Sentences with: {keywords}'), array('keywords' => Sanitize::html($query)));
 } else {

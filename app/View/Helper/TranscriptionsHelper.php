@@ -279,13 +279,13 @@ class TranscriptionsHelper extends AppHelper
                 ));
                 $title .= "\n";
                 if ($type == 'altscript') {
-                    $title .= __p(
+                    $title .= __x(
                         'alternative script',
                         'Click to mark it as reviewed.',
                         true
                     );
                 } else {
-                    $title .= __p(
+                    $title .= __x(
                         'transcription',
                         'Click to mark it as reviewed.',
                         true

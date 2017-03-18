@@ -119,7 +119,7 @@ $this->Languages->localizedAsort($countries);
     echo $this->Form->input(
         'User.name',
         array(
-            'label' => __p('user', 'Name'),
+            'label' => __x('user', 'Name'),
             'lang' => '',
             'dir' => 'auto',
         )

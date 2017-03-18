@@ -255,7 +255,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
             }
 
             $personalInfo = array(
-                __p('user', 'Name') => $realName,
+                __x('user', 'Name') => $realName,
                 __('Country') => $countryName,
                 __('Birthday') => $birthday,
                 __('Homepage') => $homepage
