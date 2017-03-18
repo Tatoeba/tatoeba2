@@ -553,6 +553,7 @@ class LanguagesLib
                 'mwl' => __d('languages', 'Mirandese'),
                 'kpv' => __d('languages', 'Komi-Zyrian'),
                 'cmo' => __d('languages', 'Mnong, Central'),
+                'koi' => __d('languages', 'Komi-Permyak'),
             );
         }
         return $languages;
