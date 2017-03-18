@@ -41,11 +41,11 @@ echo $this->Form->create(
     ));
 
     echo $this->Search->selectLang('from', $from, array(
-        'empty' => __('Language:'),
+        'label' => __('Language:'),
     ));
 
     echo $this->Search->selectLang('to', $to, array(
-        'empty' => __('Show translations in:'),
+        'label' => __('Show translations in:'),
         'options' => $this->Languages->languagesArrayForPositiveLists(),
     ));
 
