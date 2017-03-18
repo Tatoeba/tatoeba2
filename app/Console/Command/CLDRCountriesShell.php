@@ -212,7 +212,7 @@ class CountriesList {
         exec("msgmerge -o '$po_file' '$tmp_po_file' '$pot_file'", $output, $retval);
         unlink($tmp_po_file);
         if ($retval != 0) {
-            die("Error: a problem occured while generating '$po_file'.\n");
+            die("Error: a problem occurred while generating '$po_file'.\n");
         }
         print("Wrote $po_file.\n");
     }

@@ -56,7 +56,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     </div>
 
     <?php if ($errors) : ?>
-        <p><?php echo __d('admin', 'The following errors occured during import.'); ?></p>
+        <p><?php echo __d('admin', 'The following errors occurred during import.'); ?></p>
         <div id="import-report">
             <?php echo join('<br/>', $errors); ?>
         </div>

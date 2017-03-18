@@ -98,7 +98,7 @@ if ($search_disabled) {
     <p><?php
         echo format(
             __(
-                'An error occured while performing the search. '.
+                'An error occurred while performing the search. '.
                 'If the problem persists, please '.
                 '<a href="{}">let us know</a>.', true),
             $this->Html->url(array('controller' => 'pages', 'action' => 'contact'))
