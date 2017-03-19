@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-22 23:39+0000\n"
-"PO-Revision-Date: 2017-02-24 01:13+0000\n"
+"POT-Creation-Date: 2017-03-12 12:46+0000\n"
+"PO-Revision-Date: 2017-03-12 13:08+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Czech (http://www.transifex.com/tatoeba/tatoeba_website/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -35,11 +35,11 @@ msgstr "Uživatel s&nbsp;přezdívkou {username} neexistuje."
 msgid "You need to be logged in."
 msgstr "Musíte být přihlášeni."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
 msgid "Your audio settings have been saved."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
 msgid ""
@@ -276,7 +276,7 @@ msgstr[2] "Stahovány mohou být pouze seznamy obsahující {max} nebo méně v�
 #. You typically want to change this to {firstSentence}{secondSentence}
 #. if your language don't use space as a word separator.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L258
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L111
 msgid "{firstSentence} {secondSentence}"
 msgstr "{firstSentence} {secondSentence}"
 
@@ -740,7 +740,7 @@ msgid "Sentences in {language} with audio"
 msgstr "Věty v&nbsp;jazyce {language} s&nbsp;audionahrávkami"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L26
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L412
 msgid "Sentences with audio"
 msgstr "Věty s&nbsp;nahrávkami"
 
@@ -787,7 +787,7 @@ msgid "Save"
 msgstr "Uložit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L80
-msgid "{username} does not have contributed any audio"
+msgid "{username} has not contributed any audio"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L29
@@ -849,11 +849,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/index.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/of_user.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L154
 msgid "date created"
 msgstr "data vytvoření"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L154
 msgid "sentence id"
 msgstr ""
 
@@ -904,7 +904,7 @@ msgstr "Záznamy o&nbsp;příspěvcích uživatele {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/users_menu.ctp#L49
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L150
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Stats/sentences_by_language.ctp#L57
 msgid "Sentences"
 msgstr "Věty"
@@ -1137,7 +1137,7 @@ msgid "Developers"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L122
 msgid "Downloads"
 msgstr "Ke stažení"
 
@@ -1187,11 +1187,15 @@ msgstr "Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L185
 msgid ""
-"Our sentences and translations can be used under the Creative Commons "
-"Attribution 2.0 license (CC-BY 2.0)."
+"Our written sentences and translations can be used under the Creative "
+"Commons Attribution 2.0 license (CC-BY 2.0)."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L189
+msgid "More information"
+msgstr "Více informací"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L203
 msgid "If you love this content, please consider a <a href={}>donation</a>."
 msgstr ""
 
@@ -1604,7 +1608,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/users_menu.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L531
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L619
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L296
 msgid "Lists"
 msgstr "Seznamy"
 
@@ -1689,15 +1693,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
 msgctxt "license"
-msgid "unknown"
-msgstr "neznámý"
+msgid "for Tatoeba only"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L102
-msgid "Licensed under: {license}"
+msgid "License: {license}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
@@ -1708,20 +1712,20 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
-"The following audio recordings, attributed to {userName}, are licensed under"
-" the public domain."
+"The following audio recordings by {userName}, are licensed under the public "
+"domain."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L123
 msgid ""
-"The following audio recordings, attributed to {userName}, are licensed under"
-" the {licenseName} license."
+"The following audio recordings by {userName}, are licensed under the "
+"{licenseName} license."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L127
 msgid ""
-"The following audio recordings, attributed to {userName}, are licensed under"
-" an unknown license."
+"The following audio recordings by {userName}, are licensed under an unknown "
+"license."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L76
@@ -2454,7 +2458,7 @@ msgid "NOTE: Not all languages have audio at the moment."
 msgstr "POZNÁMKA: Ne všechny jazyky mají v&nbsp;tuto chvíli audionahrávky."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TagsHelper.php#L62
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L254
 msgid "Tags"
 msgstr "Štítky"
 
@@ -2790,125 +2794,136 @@ msgstr "Creative commons"
 msgid "These files are released under CC-BY."
 msgstr "Tyto soubory jsou distribuovány pod licencí CC-BY."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L90
+msgid "Licenses covering audio"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L93
+msgid ""
+"The license covering an audio file is chosen by the contributor, and is "
+"indicated on the page that lists the audio files that he or she has "
+"contributed."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L101
 msgid "Questions?"
 msgstr "Dotazy?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L105
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>."
 msgstr "Máte-li otázky nebo připomínky, neváhejte a&nbsp;<a href=\"{}\">napište nám<a/>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L109
 msgid "In general, we answer quickly."
 msgstr "Měli bychom odpovědět rychle."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L155
 msgid "Download"
 msgstr "Stáhnout"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L169
 msgid "Fields and structure"
 msgstr "Pole a&nbsp;struktura"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L124
 msgid "File description"
 msgstr "Popis souboru"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L178
 msgid "Sentence id"
 msgstr "Číslo věty"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L126
 msgid "Rating"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L180
 msgid "Text"
 msgstr "Text"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L128
 msgid "Lang"
 msgstr "Jazyk"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/all.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L78
 msgid "Username"
 msgstr "Přezdívka"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L130
 msgid "Date added"
 msgstr "Datum přidání"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L131
 msgid "Date created"
 msgstr "Datum vytvoření"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L132
 msgid "Date last modified"
 msgstr "Datum poslední úpravy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L133
 msgid "Translation id"
 msgstr "Číslo překladu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L134
 msgid "Tag name"
 msgstr "Název štítku"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L135
 msgid "List id"
 msgstr "Číslo seznamu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L136
 msgid "List name"
 msgstr "Název seznamu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L137
 msgid "Editable by"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L138
 msgid "Meaning id"
 msgstr "Číslo významu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L139
 msgid "Skill level"
 msgstr "Úroveň znalosti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L140
 msgid "Details"
 msgstr "Podrobnosti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L141
 msgid "License"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L142
 msgid "Attribution URL"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L179
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L181
 msgid "tab"
 msgstr "tab"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L191
 msgid ""
 "Contains all the sentences. Each sentence is associated with a unique id and"
 " an <a href=\"{}\">ISO 639-3</a> language code. "
 msgstr "Obsahuje všechny věty. Každá věta má přiřazeno jedinečné identifikační číslo a&nbsp;jazykový kód dle <a href=\"{}\">ISO 639-3<a/>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L194
 msgid ""
 "The first file (sentences.tar.bz2) contains this information alone. The "
 "second file (sentences_detailed.tar.bz2) contains additional fields for "
@@ -2916,11 +2931,11 @@ msgid ""
 "owns the sentence, or the date when it was added or last modified."
 msgstr "První soubor (sentences.tar.bz2) obsahuje pouze tuto informaci. Druhý soubor (sentences_detailed.tar.bz2) zahrnuje navíc i&nbsp;pole pro ty, kdo chtějí filtrovat věty podle přispěvatelů, kteří je vlastní, nebo podle dat přidání či posledních úprav."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L205
 msgid "Links"
 msgstr "Spoje"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L238
 msgid ""
 "Contains the links between the sentences. {sampleLinkLine} means that "
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
@@ -2928,32 +2943,32 @@ msgid ""
 "{sampleLinkLineReversed}."
 msgstr "Pokrývá spoje mezi větami. {sampleLinkLine} znamená, že věta č.&nbsp;77 je překladem věty č.&nbsp;1. Zahrnuty jsou i&nbsp;vzájemné spoje, takže soubor bude obsahovat i&nbsp;řádky říkající {sampleLinkLineReversed}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L284
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
 msgstr "Obsahue seznam <a href=\"{url}\">štítků</a> náležících jednotlivým větám. {sampleTagLine} znamená, že k&nbsp;větě č.&nbsp;381279 byl přidán štítek „proverb“."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L326
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
 msgstr "Obsahuje výpis <a href=\"{}\">seznamů vět</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L334
 msgid "Sentences in lists"
 msgstr "Věty v&nbsp;seznamech"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L359
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
 msgstr "Označuje věty, které jsou zahrnuty v&nbsp;seznamech. {sampleListLine} znamená, že věta č.&nbsp;381279 je zahrnuta v&nbsp;seznamu s&nbsp;identifikačním číslem&nbsp;13."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L370
 msgid "Japanese indices"
 msgstr "Indexy pro japonštinu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L394
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"{url}\">this page</a> for the "
@@ -2962,7 +2977,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Obsahuje ekvivalent takzvaných „B lines“ v&nbsp;korpusu Tanaka, distribuovaném Jimem Breenem. Pro informace o&nbsp;formátu vizte <a href=\"{}\">tuto stránku</a>. Každý údaj náleží k&nbsp;nějakému páru japonské a&nbsp;anglické věty. {sentenceId} značí identifikační číslo japonské věty, {meaningId} pak číslo anglického protějšku."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L423
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L435
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -2970,20 +2985,20 @@ msgid ""
 "reuse the audio outside the Tatoeba project."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L434
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
 msgid "User skill level per language"
 msgstr "Uživatelské úrovně znalostí dle jazyka"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L468
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Naznačuje u&nbsp;uživatelů jejich úrovně znalostí v&nbsp;jednotlivých jazycích. (Úrovně znalostí si uživatelé přiřazují sami.)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L463
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L475
 msgid "Users' sentence ratings"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L491
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L503
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
@@ -3748,7 +3763,7 @@ msgid "Click to edit..."
 msgstr "Pro upravení klikněte..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L152
-msgid "date added"
+msgid "date added to list"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/explode.ctp#L27
@@ -4551,7 +4566,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L49
 msgid ""
-"Only vocabulary items that have less than 10 sentences are displayed here."
+"Only vocabulary items that match fewer than 10 sentences are displayed here."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L104
