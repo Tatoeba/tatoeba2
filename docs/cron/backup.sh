@@ -8,14 +8,19 @@ BACKUP_LIST=(
     "/home/debian/dump/db.sql.gz"
 )
 
-GDRIVE="/home/debian/gdrive/gdrive"
+CONFIG_DIR="/home/debian/.gdrive/"
+AUTH_JSON="tatoeba-backup.json"
+GDRIVE_BIN="/home/debian/gdrive/gdrive"
+GDRIVE(){
+    $GDRIVE_BIN --config "$CONFIG_DIR" --service-account "$AUTH_JSON" "$@"
+}
 
 BACKUP_DIR="backupdir"
 mkdir -p $BACKUP_DIR
 
 # in Mbs
 CHUNK_SIZE=32
-CHUNK_SIZE=$(echo "$CHUNK_SIZE*1024*1024" | bc)
+CHUNK_SIZE=$(($CHUNK_SIZE*1024*1024))
 
 KEEP_NUM=2
 
@@ -25,7 +30,7 @@ prune(){
     search_name=$1
     keep_num=$2
 
-    flst=$($GDRIVE list --query "name contains '$search_name'" --order "createdTime desc" | tail -n +2);
+    flst=$(GDRIVE list --query "name contains '$search_name'" --order "createdTime desc" | tail -n +2);
     curr_num=$(echo "$flst" | wc -l)
     if [[ $curr_num -gt $keep_num ]]; then
         dlst=$(diff <(echo "$flst") <(echo "$flst" | head -n $keep_num) |\
@@ -34,9 +39,9 @@ prune(){
 
         echo "Pruning $(echo "$dlst" | wc -l) files related to $search_name ..."
         IFS=$'\n' dlst=($dlst)
-        for d in ${dlst[@]}; do
+        for d in "${dlst[@]}"; do
             echo "Deleting $d"
-            $GDRIVE delete "$d"
+            GDRIVE delete "$d"
         done
     fi
 }
@@ -45,7 +50,7 @@ echo "Starting gdrive backup script at $DATE ..."
 
 for i in "${BACKUP_LIST[@]}"; do
     # check for file or dir
-    if [[ "$(echo $i | grep -o '\.' | uniq)" == "." ]]; then
+    if [[ -f "$i" ]]; then
         f=$(echo "$i" | sed 's/^\///g; s/\//-/g')
 
         ext=$(echo "$f" | grep -Po "\..*")
@@ -56,8 +61,8 @@ for i in "${BACKUP_LIST[@]}"; do
 
         f="$f""_""$DATE$ext"
         echo "Uploading file $f ..."
-        $GDRIVE upload --name "$f" --chunksize "$CHUNK_SIZE" "$i"
-    else
+        GDRIVE upload --name "$f" --chunksize "$CHUNK_SIZE" "$i"
+    elif [[ -d "$i" ]]; then
         f=$(echo "$i" | sed 's/^\///g; s/\//-/g')
 
         search_name="$f"
@@ -67,6 +72,6 @@ for i in "${BACKUP_LIST[@]}"; do
         echo "Tarring dir $i into $f ..."
         tar -cf "$BACKUP_DIR/$f" "$i"
         echo "Uploading Tarred dir file $f"
-        $GDRIVE upload --delete --chunksize "$CHUNK_SIZE" "$BACKUP_DIR/$f"
+        GDRIVE upload --delete --chunksize "$CHUNK_SIZE" "$BACKUP_DIR/$f"
     fi
 done
