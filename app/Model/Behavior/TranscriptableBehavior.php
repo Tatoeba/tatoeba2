@@ -103,6 +103,19 @@ class TranscriptableBehavior extends ModelBehavior
             } else {
                 $sentence = $result;
             }
+
+            /* Add script on the fly if missing */
+            if (isset($result['Sentence'])
+                && !isset($sentence['script'])
+                && isset($sentence['lang'])
+                && isset($sentence['text'])) {
+                $sentence['script'] = $model->Transcription->detectScript(
+                    $sentence['lang'],
+                    $sentence['text']
+                );
+            }
+
+            /* Add transcriptions on the fly if missing */
             if (isset($result['Transcription'])
                 && isset($sentence['lang'])
                 && isset($sentence['text'])) {
