@@ -103,7 +103,7 @@ class TranscriptableBehavior extends ModelBehavior
             } else {
                 $sentence = $result;
             }
-            if (isset($result['Transcription']) && !empty($result['Transciption'])
+            if (isset($result['Transcription'])
                 && isset($sentence['lang'])
                 && isset($sentence['text'])) {
                 $result['Transcription'] =
