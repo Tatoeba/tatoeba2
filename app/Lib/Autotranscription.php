@@ -255,7 +255,7 @@ class Autotranscription
     private function _sino_detectScript($text) {
         $map = array('simplified' => 'Hans', 'traditional' => 'Hant');
         $guessed = $this->_call_sinoparserd('guess_script', $text);
-        return isset($map[$guessed]) ? $map[$guessed] : false;
+        return isset($map[$guessed]) ? $map[$guessed] : null;
     }
 
     private function _call_sinoparserd($action, $text) {
@@ -360,7 +360,7 @@ class Autotranscription
      */
     public function uzb_detectScript($text) {
         if (empty($text)) {
-            return false;
+            return null;
         }
 
         $needles = array(
