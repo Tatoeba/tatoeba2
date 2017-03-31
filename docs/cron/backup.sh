@@ -15,6 +15,7 @@ GDRIVE(){
     $GDRIVE_BIN --config "$CONFIG_DIR" --service-account "$AUTH_JSON" "$@"
 }
 
+GDRIVE_FOLDER="0B3fWO5pH-xU1bFQ0aEFSQmNsMzA"
 BACKUP_DIR="backupdir"
 mkdir -p $BACKUP_DIR
 
@@ -61,7 +62,7 @@ for i in "${BACKUP_LIST[@]}"; do
 
         f="$f""_""$DATE$ext"
         echo "Uploading file $f ..."
-        GDRIVE upload --name "$f" --chunksize "$CHUNK_SIZE" "$i"
+        GDRIVE upload --name "$f" --chunksize "$CHUNK_SIZE" "$i" -p "$GDRIVE_FOLDER"
     elif [[ -d "$i" ]]; then
         f=$(echo "$i" | sed 's/^\///g; s/\//-/g')
 
@@ -72,6 +73,6 @@ for i in "${BACKUP_LIST[@]}"; do
         echo "Tarring dir $i into $f ..."
         tar -cf "$BACKUP_DIR/$f" "$i"
         echo "Uploading Tarred dir file $f"
-        GDRIVE upload --delete --chunksize "$CHUNK_SIZE" "$BACKUP_DIR/$f"
+        GDRIVE upload --delete --chunksize "$CHUNK_SIZE" "$BACKUP_DIR/$f" -p "$GDRIVE_FOLDER"
     fi
 done
