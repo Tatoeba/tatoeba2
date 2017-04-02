@@ -30,7 +30,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
 
 <div id="annexe_content">
     <div class="section" md-whiteframe="1">
-    <h2><?php echo __('Warning'); ?></h2>
+    <h2><?php echo __('Note'); ?></h2>
     <p>
     <?php
     __(
