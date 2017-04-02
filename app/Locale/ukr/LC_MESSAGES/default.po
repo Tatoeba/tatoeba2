@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-12 12:46+0000\n"
-"PO-Revision-Date: 2017-03-15 14:25+0000\n"
+"PO-Revision-Date: 2017-03-22 11:08+0000\n"
 "Last-Translator: older\n"
 "Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -508,7 +508,7 @@ msgstr "Речення без власника"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L32
 msgid "Orphan sentences in {language}"
-msgstr "Речення без власника мовою '{language.ins}'"
+msgstr "Речення без власника {language.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L43
 msgid "About adoption"
@@ -709,7 +709,7 @@ msgstr "показати випадкові речення"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L32
 msgid "Translate {language} sentences that belong to {user}"
-msgstr "Перекласти речення мовою {language.pl} що належать користувачу {user} "
+msgstr "Перекласти {language.pl} речення що належать користувачу {user} "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L38
 msgid "Translate sentences that belong to {user}"
@@ -739,7 +739,7 @@ msgstr "Ні"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L22
 msgid "Sentences in {language} with audio"
-msgstr "Речення зі звуком мовою: {language.ins}"
+msgstr "Речення зі звуком {language.ins}: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L412
@@ -1440,7 +1440,7 @@ msgstr "Це відкрита, вільна та, навіть, така, що �
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L93
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
-msgstr "Знайти речення мовою {langFrom} перекладені мовою {langTo} що містять:"
+msgstr "Знайти речення мовою {langFrom.ins} перекладені мовою {langTo.ins} що містять:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L105
 msgid "Clear search"
@@ -3239,7 +3239,7 @@ msgid "{number} sentence in {lang}"
 msgid_plural "{number} sentences in {lang}"
 msgstr[0] "{number} речення мовою {lang}"
 msgstr[1] "{number} речення мовою {lang}"
-msgstr[2] "{number} речень мовою {lang}"
+msgstr[2] "{number} речень {lang.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -3510,11 +3510,11 @@ msgstr "Речення користувача {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L45
 msgid "{user}'s sentences in {language}"
-msgstr "Речення користувача {user}' мовою: {language.ins}"
+msgstr "Речення {language.ins} користувача {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L78
 msgid "{user} does not have any sentence in {language}"
-msgstr "Користувач {user} не має жодного речення мовою: {language.ins}"
+msgstr "Користувач {user} не має жодного речення {language.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L83
 msgid "{user} does not have any sentence"
@@ -3537,23 +3537,23 @@ msgstr "Речення що містять: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L37
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr "Речення мовою: {language.ins} що не перекладені мовою: {translationLanguage.ins}"
+msgstr "Речення {language.ins} що не перекладені {translationLanguage.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L41
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr "Речення мовою: {language.ins} перекладені мовою: {translationLanguage.ins}"
+msgstr "Речення {language.ins} перекладені {translationLanguage.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L46
 msgid "Sentences in {language}"
-msgstr "Речення мовою: {language.ins}"
+msgstr "Речення {language.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L50
 msgid "Sentences not translated into {language}"
-msgstr "Речення не перекладені мовою: {language.ins}"
+msgstr "Речення не перекладені {language.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L53
 msgid "Sentences translated into {language}"
-msgstr "Речення перекладені мовою: {language.ins}"
+msgstr "Речення перекладені {language.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L65
 msgid "Warning: the following criteria have been ignored:{list}"
@@ -3625,7 +3625,7 @@ msgstr "Під час пошука випадкових речень виник�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L39
 msgid "{language} example sentence: {sentence}"
-msgstr "Приклад речення мовою {language.ins}: {sentence}"
+msgstr "Приклад речення {language.ins}: {sentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L47
 msgid ""
@@ -3663,11 +3663,11 @@ msgstr "Випадкове речення"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L31
 msgid "All sentences in {language} with audio"
-msgstr "Всі речення мовою {language.ins} зі звуком."
+msgstr "Всі речення {language.ins} зі звуком."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
-msgstr "Всі речення мовою: {language.ins}"
+msgstr "Всі речення {language.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/add_new_sentence_to_list.ctp#L41
 msgid "Problem while saving"
