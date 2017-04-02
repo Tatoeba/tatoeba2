@@ -480,7 +480,7 @@ class Transcription extends AppModel
 
     public function addGeneratedTranscriptions($transcriptions, $sentence) {
         $possibleScripts = $this->transcriptableToWhat($sentence);
-        $existingScripts = Set::classicExtract($transcriptions, '{n}.script');
+        $existingScripts = (array)Set::classicExtract($transcriptions, '{n}.script');
         $scriptsToGenerate = array_diff_key($possibleScripts, array_flip($existingScripts));
 
         foreach ($scriptsToGenerate as $script => $process) {
