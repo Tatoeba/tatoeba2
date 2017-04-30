@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-12 12:46+0000\n"
-"PO-Revision-Date: 2017-03-12 13:08+0000\n"
+"POT-Creation-Date: 2017-04-02 12:45+0000\n"
+"PO-Revision-Date: 2017-04-02 12:53+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Japanese (http://www.transifex.com/tatoeba/tatoeba_website/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -925,12 +925,6 @@ msgstr "野良文（所有者のいない文）は正しくない可能性があ
 msgid "Is orphan:"
 msgstr "野良文："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
-msgctxt "orphan"
-msgid "Any"
-msgstr "不問"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "非承認の文は正しくない可能性があります。"
@@ -939,12 +933,6 @@ msgstr "非承認の文は正しくない可能性があります。"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
 msgstr "非承認："
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
-msgctxt "unapproved"
-msgid "Any"
-msgstr "不問"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -977,12 +965,6 @@ msgstr ""
 msgid "Has audio:"
 msgstr "録音あり："
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L199
-msgctxt "audio"
-msgid "Any"
-msgstr "不問"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L79
 msgid "Translations"
@@ -1009,11 +991,6 @@ msgstr "以下の条件を満たす文{action}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L165
 msgid "Link:"
 msgstr "リンク："
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L167
-msgctxt "link"
-msgid "Any"
-msgstr "直接訳・間接訳"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L168
 msgid "Direct"
@@ -1054,11 +1031,6 @@ msgstr "逆順にする"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L233
 msgid "More search options"
 msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L242
-msgctxt "button"
-msgid "Advanced search"
-msgstr "詳細検索"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/announcement.ctp#L55
 msgid ""
@@ -1431,13 +1403,6 @@ msgstr ""
 msgid "Enter a word or a phrase"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
-msgctxt "title"
-msgid "Advanced search"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr ""
@@ -1674,11 +1639,6 @@ msgstr ""
 msgid "No license for offsite use"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
-msgctxt "license"
-msgid "for Tatoeba only"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr ""
@@ -1738,7 +1698,7 @@ msgstr "例文に関係のない話題にはプライベートメッセージを
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L135
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L127
 msgid "Cancel"
 msgstr "キャンセル"
@@ -1877,22 +1837,12 @@ msgstr "その他の言語"
 msgid "All languages"
 msgstr "すべての言語"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L213
-msgctxt "dropdown-list"
-msgid "Unknown language"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L310
 msgid "None"
 msgstr "なし"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L290
-msgid "Any language"
-msgstr "すべての言語"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L327
-msgctxt "searchbar"
 msgid "Any language"
 msgstr "すべての言語"
 
@@ -1918,11 +1868,6 @@ msgstr "翻訳を投稿するには、プロフィールで言語を登録する
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L317
 msgid "Add a language"
 msgstr "言語を追加する"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L490
-msgctxt "level"
-msgid "Unspecified"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L491
 msgid "0: Almost no knowledge"
@@ -2057,11 +2002,6 @@ msgstr "※リストに文を追加するには、{addToListButton}ボタンを�
 msgid "Create a new list"
 msgstr "新しいリストを作る"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
-msgctxt "list"
-msgid "Name"
-msgstr "名前"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
 msgid "create"
 msgstr "OK"
@@ -2073,11 +2013,6 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
 msgid "Collaborative lists"
 msgstr "共有リスト"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
-msgctxt "list"
-msgid "Unspecified"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
 msgid "Other lists"
@@ -2506,16 +2441,6 @@ msgid ""
 "piece of software that is not perfect."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L284
-msgctxt "alternative script"
-msgid "Click to mark it as reviewed."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L290
-msgctxt "transcription"
-msgid "Click to mark it as reviewed."
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L74
 msgid "Add a message: "
 msgstr "投稿する "
@@ -2727,8 +2652,8 @@ msgid "Download sentences"
 msgstr "ダウンロード"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L33
-msgid "Warning"
-msgstr "注意"
+msgid "Note"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L37
 msgid ""
@@ -3537,7 +3462,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L101
 msgid ""
-"An error occured while performing the search. If the problem persists, "
+"An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
 msgstr ""
 
@@ -4146,12 +4071,6 @@ msgstr "アップロード"
 msgid "Birthday"
 msgstr "誕生日"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L258
-msgctxt "user"
-msgid "Name"
-msgstr "名前"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L259
 msgid "Country"
@@ -4174,11 +4093,11 @@ msgstr "言語を追加する"
 msgid "Edit language"
 msgstr "語学レベルを編集する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L104
 msgid "What is your level?"
 msgstr "レベルを選択してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L122
 msgid "Details (optional). For instance, which dialect or from which country."
 msgstr ""
 

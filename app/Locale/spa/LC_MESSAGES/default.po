@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-12 12:46+0000\n"
-"PO-Revision-Date: 2017-03-12 13:08+0000\n"
+"POT-Creation-Date: 2017-04-02 12:45+0000\n"
+"PO-Revision-Date: 2017-04-02 12:54+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Spanish (http://www.transifex.com/tatoeba/tatoeba_website/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -934,12 +934,6 @@ msgstr "Las oraciones huérfanas tienen mayor probabilidad de contener errores."
 msgid "Is orphan:"
 msgstr "Es huérfana:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
-msgctxt "orphan"
-msgid "Any"
-msgstr "Es indistinto"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Las oraciones reprobadas tienen mayor probabilidad de contener errores."
@@ -948,12 +942,6 @@ msgstr "Las oraciones reprobadas tienen mayor probabilidad de contener errores."
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
 msgstr "Está reprobada:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
-msgctxt "unapproved"
-msgid "Any"
-msgstr "Es indistinto"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -986,12 +974,6 @@ msgstr ""
 msgid "Has audio:"
 msgstr "Tiene audio:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L199
-msgctxt "audio"
-msgid "Any"
-msgstr "Es indistinto"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L79
 msgid "Translations"
@@ -1018,11 +1000,6 @@ msgstr "{action} oraciones con traducciones que cumplen todos los criterios sigu
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L165
 msgid "Link:"
 msgstr "Enlace:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L167
-msgctxt "link"
-msgid "Any"
-msgstr "Cualquier"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L168
 msgid "Direct"
@@ -1063,11 +1040,6 @@ msgstr "En orden inverso"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L233
 msgid "More search options"
 msgstr "Más opciones de búsqueda"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L242
-msgctxt "button"
-msgid "Advanced search"
-msgstr "Búsqueda avanzada"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/announcement.ctp#L55
 msgid ""
@@ -1444,13 +1416,6 @@ msgstr "Borrar términos de búsqueda"
 msgid "Enter a word or a phrase"
 msgstr "Escriba una palabra o una frase"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
-msgctxt "title"
-msgid "Advanced search"
-msgstr "Búsqueda avanzada"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr "Consejo: <em>=palabra</em> buscará el resultado que encaje exactamente con <em>palabra</em>"
@@ -1687,11 +1652,6 @@ msgstr ""
 msgid "No license for offsite use"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
-msgctxt "license"
-msgid "for Tatoeba only"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr ""
@@ -1751,7 +1711,7 @@ msgstr "Utilice los mensajes privados para discutir temas que no estén relacion
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L135
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L127
 msgid "Cancel"
 msgstr "Cancelar"
@@ -1893,22 +1853,12 @@ msgstr "otro idioma"
 msgid "All languages"
 msgstr "Todos los idiomas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L213
-msgctxt "dropdown-list"
-msgid "Unknown language"
-msgstr "Idioma desconocido"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L310
 msgid "None"
 msgstr "Ninguno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L290
-msgid "Any language"
-msgstr "Cualquier idioma"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L327
-msgctxt "searchbar"
 msgid "Any language"
 msgstr "Cualquier idioma"
 
@@ -1934,11 +1884,6 @@ msgstr "No puedes traducir oraciones porque no has indicado ningún idioma en tu
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L317
 msgid "Add a language"
 msgstr "Agregue un idioma"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L490
-msgctxt "level"
-msgid "Unspecified"
-msgstr "Sin especificar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L491
 msgid "0: Almost no knowledge"
@@ -2073,11 +2018,6 @@ msgstr "NOTA : también puede agregar oraciones existentes con este ícono {addT
 msgid "Create a new list"
 msgstr "Crear una lista nueva"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
-msgctxt "list"
-msgid "Name"
-msgstr "Nombre"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
 msgid "create"
 msgstr "crear"
@@ -2089,11 +2029,6 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
 msgid "Collaborative lists"
 msgstr "Listas colaborativas"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
-msgctxt "list"
-msgid "Unspecified"
-msgstr "Sin especificar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
 msgid "Other lists"
@@ -2524,16 +2459,6 @@ msgid ""
 "piece of software that is not perfect."
 msgstr "Esta transcripción puede contener errores porque ha sido generada por un programa informático que no es perfecto."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L284
-msgctxt "alternative script"
-msgid "Click to mark it as reviewed."
-msgstr "Haga clic para marcarlo como revisado."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L290
-msgctxt "transcription"
-msgid "Click to mark it as reviewed."
-msgstr "Haga clic para marcarlo como revisado."
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L74
 msgid "Add a message: "
 msgstr "Agregar un mensaje : "
@@ -2745,8 +2670,8 @@ msgid "Download sentences"
 msgstr "Descargar oraciones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L33
-msgid "Warning"
-msgstr "Advertencia"
+msgid "Note"
+msgstr "Nota"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L37
 msgid ""
@@ -3560,9 +3485,9 @@ msgstr "Error en la búsqueda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L101
 msgid ""
-"An error occured while performing the search. If the problem persists, "
+"An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr "Ocurrió un error mientras se realizaba la búsqueda. Si el problema persiste, <a href=\"{}\">póngase en contacto</a> con nosotros."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L114
 msgid ""
@@ -4173,12 +4098,6 @@ msgstr "Subir"
 msgid "Birthday"
 msgstr "Fecha de nacimiento"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L258
-msgctxt "user"
-msgid "Name"
-msgstr "Nombre"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L259
 msgid "Country"
@@ -4201,11 +4120,11 @@ msgstr "Agregar idioma"
 msgid "Edit language"
 msgstr "Editar idioma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L104
 msgid "What is your level?"
 msgstr "¿Cuál es su nivel?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L122
 msgid "Details (optional). For instance, which dialect or from which country."
 msgstr "Detalles (opcional). Por ejemplo, qué dialecto o de qué país."
 

@@ -8,16 +8,16 @@
 # M. <zeurniet1989@gmail.com>, 2015
 # Paul Peeraerts <paul2711@gmail.com>, 2014-2015
 # Robin van der Vliet <info@robinvandervliet.nl>, 2016
-# Spencer, 2015-2016
+# Spencer, 2015-2017
 # Spencer, 2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-12 12:46+0000\n"
-"PO-Revision-Date: 2017-03-12 13:08+0000\n"
-"Last-Translator: Trang Ho\n"
+"POT-Creation-Date: 2017-04-02 12:45+0000\n"
+"PO-Revision-Date: 2017-04-16 20:14+0000\n"
+"Last-Translator: Spencer\n"
 "Language-Team: Dutch (http://www.transifex.com/tatoeba/tatoeba_website/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +44,7 @@ msgstr "Je moet ingelogd zijn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
 msgid "Your audio settings have been saved."
-msgstr ""
+msgstr "Je audioinstellingen zijn opgeslagen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
@@ -239,11 +239,11 @@ msgstr "\"Eigendom van een moedertaalspreker (naar eigen zeggen)\", omdat het cr
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L110
 msgid "All public lists ({total})"
-msgstr ""
+msgstr "Alle openbare lijsten ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L115
 msgid "All public lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Alle openbare lijsten met \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L141
 msgid "Collaborative lists ({total})"
@@ -299,7 +299,7 @@ msgstr "Er zijn geen zinnen met deze tag. De tag waar je op zoekt is verwijderd 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L77
 msgid "No user with this username: {username}"
-msgstr ""
+msgstr "Geen gebruiker met deze gebruikersnaam: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L162
 msgid "Failed to upload image"
@@ -331,7 +331,7 @@ msgstr "Dat e-mailadres bestaat al. Probeer een ander."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L419
 msgid "The entered birthday is an invalid date. Please try again."
-msgstr ""
+msgstr "De ingevulde geboortedatum is geen geldige datum. Probeer het nog eens."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L468
 msgid ""
@@ -422,7 +422,7 @@ msgstr "Geen gebruiker met deze gebruikersnaam: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L531
 msgid "No user with this ID: {id}"
-msgstr ""
+msgstr "Geen gebruiker met dit ID: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L65
 msgid "You cannot edit this language."
@@ -935,12 +935,6 @@ msgstr "Weeszinnen hebben een hoge kans fout te zijn."
 msgid "Is orphan:"
 msgstr "Is een wees:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
-msgctxt "orphan"
-msgid "Any"
-msgstr "Maakt niet uit"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Afgekeurde zinnen hebben een hoge kans fout te zijn."
@@ -949,12 +943,6 @@ msgstr "Afgekeurde zinnen hebben een hoge kans fout te zijn."
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
 msgstr "Is afgekeurd:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
-msgctxt "unapproved"
-msgid "Any"
-msgstr "Maakt niet uit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -987,12 +975,6 @@ msgstr ""
 msgid "Has audio:"
 msgstr "Heeft audio:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L199
-msgctxt "audio"
-msgid "Any"
-msgstr "Maakt niet uit"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L79
 msgid "Translations"
@@ -1019,11 +1001,6 @@ msgstr "Toon {action} zinnen met vertalingen die overeenkomen met alle onderstaa
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L165
 msgid "Link:"
 msgstr "Koppeling:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L167
-msgctxt "link"
-msgid "Any"
-msgstr "Allebei mag"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L168
 msgid "Direct"
@@ -1064,11 +1041,6 @@ msgstr "Omgekeerde volgorde"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L233
 msgid "More search options"
 msgstr "Meer zoekopties"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L242
-msgctxt "button"
-msgid "Advanced search"
-msgstr "Geavanceerd zoeken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/announcement.ctp#L55
 msgid ""
@@ -1445,13 +1417,6 @@ msgstr "Zoekveld leegmaken"
 msgid "Enter a word or a phrase"
 msgstr "Vul een woord of zinsdeel in"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
-msgctxt "title"
-msgid "Advanced search"
-msgstr "Geavanceerde zoekopdracht"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr "Tip: als je <em>=woord</em> invult, zoekt het systeem naar woorden die precies overeenkomen met <em>woord</em>"
@@ -1688,11 +1653,6 @@ msgstr ""
 msgid "No license for offsite use"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
-msgctxt "license"
-msgid "for Tatoeba only"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr ""
@@ -1752,7 +1712,7 @@ msgstr "Gebruik privéberichten om zaken te bespreken die niet met de zin te mak
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L135
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L127
 msgid "Cancel"
 msgstr "Annuleren"
@@ -1894,22 +1854,12 @@ msgstr "andere taal"
 msgid "All languages"
 msgstr "Alle talen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L213
-msgctxt "dropdown-list"
-msgid "Unknown language"
-msgstr "Onbekende taal"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L310
 msgid "None"
 msgstr "Geen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L290
-msgid "Any language"
-msgstr "Taal maakt niet uit"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L327
-msgctxt "searchbar"
 msgid "Any language"
 msgstr "Taal maakt niet uit"
 
@@ -1935,11 +1885,6 @@ msgstr "Je kunt geen zinnen vertalen omdat je geen talen aan je profiel hebt toe
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L317
 msgid "Add a language"
 msgstr "Voeg een taal toe"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L490
-msgctxt "level"
-msgid "Unspecified"
-msgstr "Niet gespecificeerd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L491
 msgid "0: Almost no knowledge"
@@ -2074,11 +2019,6 @@ msgstr "NB: Je kan ook bestaande zinnen toevoegen door te klikken op dit pictogr
 msgid "Create a new list"
 msgstr "Een nieuwe lijst maken"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
-msgctxt "list"
-msgid "Name"
-msgstr "Naam"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
 msgid "create"
 msgstr "maken"
@@ -2090,11 +2030,6 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
 msgid "Collaborative lists"
 msgstr "Gezamelijke lijsten"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
-msgctxt "list"
-msgid "Unspecified"
-msgstr "Niet gespecificeerd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
 msgid "Other lists"
@@ -2525,16 +2460,6 @@ msgid ""
 "piece of software that is not perfect."
 msgstr "Deze transcriptie kan fouten bevatten, omdat hij is gegenereerd door een computerprogramma dat niet zonder fouten is."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L284
-msgctxt "alternative script"
-msgid "Click to mark it as reviewed."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L290
-msgctxt "transcription"
-msgid "Click to mark it as reviewed."
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L74
 msgid "Add a message: "
 msgstr "Voeg een bericht toe: "
@@ -2746,8 +2671,8 @@ msgid "Download sentences"
 msgstr "Zinnen downloaden"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L33
-msgid "Warning"
-msgstr "Waarschuwing"
+msgid "Note"
+msgstr "Opmerking"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L37
 msgid ""
@@ -3561,7 +3486,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L101
 msgid ""
-"An error occured while performing the search. If the problem persists, "
+"An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
 msgstr ""
 
@@ -4174,12 +4099,6 @@ msgstr "Uploaden"
 msgid "Birthday"
 msgstr "Verjaardag"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L258
-msgctxt "user"
-msgid "Name"
-msgstr "Naam"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L259
 msgid "Country"
@@ -4202,11 +4121,11 @@ msgstr "Voeg taal toe"
 msgid "Edit language"
 msgstr "Bewerk taal"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L104
 msgid "What is your level?"
 msgstr "Wat is je niveau?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L122
 msgid "Details (optional). For instance, which dialect or from which country."
 msgstr "Details (optioneel). Bijvoorbeeld welk dialect of uit welk land."
 
