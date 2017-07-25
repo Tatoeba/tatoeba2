@@ -1,6 +1,11 @@
 ---
 # Tasks for setting up mysql
 
+- name: Ensure python-mysqldb is installed
+  apt:
+    name: python-mysqldb
+    state: latest
+
 - name: Install mysql-server
   apt: name=mysql-server update_cache=yes cache_valid_time=36000 state=present
 - name: Update mysql root password for all root accounts

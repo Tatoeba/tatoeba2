@@ -9,6 +9,7 @@
   gather_facts: yes
   roles:
   - common
+  - common_debian
   - setup_nginx
   - setup_php
   - setup_mysql

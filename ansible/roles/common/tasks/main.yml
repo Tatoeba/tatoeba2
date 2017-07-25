@@ -1,33 +1,8 @@
 ---
 # Tasks specyfing commom tasks for all servers
 
-- name: Copy sources list for apt
-  copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=644 backup=yes
-- name: Update apt cache
-  apt: update_cache=yes cache_valid_time=3600
-- name: Clear up home directory
-  command: rm -rf {{item}} removes=/home/{{ansible_ssh_user}}/{{item}} chdir=/home/{{ansible_ssh_user}}/
-  with_items:
-  - base.sh
-  - chef.sh
-  - cleanup.sh
-  - puppetlabs-release-wheezy.deb
-  - puppet.sh
-  - ruby.sh
-  - vagrant.sh
-  - virtualbox.sh
-  - zerodisk.sh
-
-- name: Install .bash_aliases
-  template: src=bash_aliases dest=/home/{{ansible_ssh_user}}/.bash_aliases owner={{ansible_ssh_user}}
-
 - name: Ensure git is installed
-  apt: name=git state=present force=yes
-- name: Install pip on remote machine
-  apt: name=python-pip state=present force=yes
-- name: Ensure python MySQLdb module is present
-  apt: name=python-mysqldb state=present
-- name: Install some basic python modules
-  pip: name={{item}} state=present
-  with_items: python_modules
-  when: python_modules is defined
+  apt:
+    name: git
+    state: latest
+    force: yes
