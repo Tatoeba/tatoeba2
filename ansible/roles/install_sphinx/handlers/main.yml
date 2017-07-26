@@ -1,0 +1,7 @@
+---
+
+- name: restart sphinxsearch
+  service:
+    name: sphinxsearch
+    state: restarted
+    daemon_reload: yes
