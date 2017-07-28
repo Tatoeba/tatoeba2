@@ -135,6 +135,14 @@ if (isset($this->request->params['lang'])) {
             <li>
                 <?php
                 echo $this->Html->link(
+                    __('Status'),
+                    'https://status.tatoeba.org'
+                );
+                ?>
+            </li>
+            <li>
+                <?php
+                echo $this->Html->link(
                     __('Terms of use'),
                     array(
                         "controller" => 'pages',
