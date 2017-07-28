@@ -169,6 +169,7 @@ class TagsController extends AppController
     {
         $this->helpers[] = 'Tags';
 
+        $conditions = [];
         if (!empty($filter)) {
             $conditions = array(
                 'name LIKE' => "%$filter%"
