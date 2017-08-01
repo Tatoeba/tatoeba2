@@ -38,7 +38,7 @@ mysql_db_name: tatoeba
 # Set this to 'local' if the csv's are already present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
 # Set this to 'no' if you don't want to import data
 import_csv: 'download'
-download_url: http://tatoeba.org/files/downloads/
+download_url: http://downloads.tatoeba.org/exports/
 
 # Variables for Tatoeba's code and Cakephp
 # ----------------------------------------
