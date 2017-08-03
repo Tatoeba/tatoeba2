@@ -5,11 +5,15 @@
   shell: which suggestd
   register: install_state
   ignore_errors: yes
+
 - name: Installation skip message
-  debug: msg="suggestd already installed and force_install == false; skipping installation"
+  debug:
+    msg: "suggestd already installed and force_install == false; skipping installation"
   when: install_state|success and force_install == false
+
 - name: Force install message
-  debug: msg="suggestd already installed; reinstalling it (force_intall == true)"
+  debug:
+    msg: "suggestd already installed; reinstalling it (force_intall == true)"
   when: install_state|success and force_install == true
 
 - include: install_suggestd.yml
