@@ -1,22 +1,20 @@
 ---
-# Playbook to install sphinx search
-- name: Download Sphinx package
-  get_url: url={{sphinx_deb_url}} dest=/tmp/sphinx.deb
+
 - name: Install Sphinx package
-  apt: deb=/tmp/sphinx.deb
-- name: Remove downloaded package
-  command: rm -f /tmp/sphinx.deb
+  apt:
+    name: sphinxsearch
+    state: present
 
-- name: Create sphinsearch group
-  group: name=sphinxsearch state=present
-- name: Create sphinsearch user
-  user: name=sphinxsearch state=present group=sphinxsearch comment="Sphinx fulltext search service" system=yes
+- name: Install additional systemd.unit file
+  copy:
+    src: sphinxsearch.service
+    dest: /etc/systemd/systemd/sphinxsearch.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: Reload demons
 
-- name: Set the location of pid file in Sphinx's init.d script
-  command: sed -i 's|^PIDFILE=.*|PIDFILE={{sphinx_pid_file}}|' /etc/init.d/sphinxsearch
-- name: Set the location of log directory in Sphinx's init.d script
-  command: sed -i 's|^LOGDIR=.*|LOGDIR={{sphinx_log_dir}}|' /etc/init.d/sphinxsearch
-- name: Make Sphinx to be run by the sphinxsearch user
-  command: sed -i '/start-stop-daemon .*--stop/ s/start-stop-daemon/start-stop-daemon --chuid sphinxsearch/;/start-stop-daemon .*--start/ s/start-stop-daemon/start-stop-daemon --user sphinxsearch/' /etc/init.d/sphinxsearch
-- name: Allow Sphinx to open more than 1024 files
-  command: sed -i '/start-stop-daemon .*--start/i ulimit -n 2048' /etc/init.d/sphinxsearch
+- name: Remove init.d file
+  file:
+    path: /etc/init.d/sphinxsearch
+    state: absent

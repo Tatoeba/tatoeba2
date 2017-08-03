@@ -1,0 +1,11 @@
+[Unit]
+Description=Sphinxsearch
+
+[Service]
+User=sphinxsearch
+ExecStart=/usr/bin/searchd --nodetach --console --logdebug
+LimitNOFILE=4096
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
