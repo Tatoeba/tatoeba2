@@ -115,11 +115,7 @@ class PermissionsComponent extends Component
             }
 
             // -- adopt --
-            if ($sentenceOwnerId == null OR $sentenceOwnerId == 0) {
-
-                $specialOptions['canAdopt'] = true;
-
-            }
+            $specialOptions['canAdopt'] = $sentenceOwnerId === null || $sentenceOwnerId === 0;
         }
 
         return $specialOptions;
