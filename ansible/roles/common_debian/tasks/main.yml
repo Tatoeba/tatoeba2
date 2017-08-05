@@ -8,3 +8,9 @@
     group: root
     mode: 644
     backup: yes
+  register: result
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  when: result|changed
