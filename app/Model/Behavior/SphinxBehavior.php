@@ -164,7 +164,7 @@ class SphinxBehavior extends ModelBehavior
         }
         foreach ($results as $result) {
             $lang = $result[$model->name]['lang'];
-            if (isset($result['Transcription']) {
+            if (isset($result['Transcription'])) {
                 foreach ($result['Transcription'] as $transcResult) {
                     $docsByLang[$lang][$i++] = $transcResult['text'];
                 }
@@ -203,7 +203,7 @@ class SphinxBehavior extends ModelBehavior
             $results[$i][$model->name]['highlight'] = $highlight;
         }
         foreach ($results as $i => $result) {
-            if (isset($result['Transcription']) {
+            if (isset($result['Transcription'])) {
                 foreach ($result['Transcription'] as $j => $transcResult) {
                     $excerpt = explode($options['chunk_separator'], array_shift($mergedExcerpts));
                     $highlight = array(
