@@ -9,5 +9,5 @@
   apt: name=newrelic-php5 state=present
 - name: Restart nginx
   service: name=nginx state=restarted
-- name: Restart php5-fpm
-  service: name=php5-fpm state=restarted
+- name: Restart php7.0-fpm
+  service: name=php7.0-fpm state=restarted
