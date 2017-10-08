@@ -94,7 +94,7 @@ class UserController extends AppController
      *
      * @return void
      */
-    public function profile($userName)
+    public function profile($userName = null)
     {
         $this->helpers[] = 'ClickableLinks';
         $this->helpers[] = 'Members';
