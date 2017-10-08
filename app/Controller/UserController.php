@@ -99,16 +99,19 @@ class UserController extends AppController
         $this->helpers[] = 'ClickableLinks';
         $this->helpers[] = 'Members';
 
-        $userName = Sanitize::paranoid($userName, array('_'));
+        if (empty($userName)) {
+            if (!CurrentUser::isMember()) {
+                $this->redirect(array('controller'=>'pages','action' => 'home'));
+            } else {
+                $this->redirect(
+                    array('action' => 'profile',
+                    CurrentUser::get('username'))
+              );
+            }
+        }
 
-        if (empty($userName) && !CurrentUser::isMember()) {
-            $this->redirect(array('controller'=>'pages','action' => 'home'));
-        } elseif (empty($userName)) {
-            $this->redirect(
-                array('action' => 'profile',
-                  CurrentUser::get('username'))
-            );
-        } elseif (!( $infoOfUser = $this->User->getInformationOfUser($userName) )) {
+        $userName = Sanitize::paranoid($userName, array('_'));
+        if (!( $infoOfUser = $this->User->getInformationOfUser($userName) )) {
             $this->Flash->set(format(
                 __('No user with this username: {username}'),
                 array('username' => $userName)
