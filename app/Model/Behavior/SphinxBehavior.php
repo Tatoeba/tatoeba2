@@ -151,7 +151,7 @@ class SphinxBehavior extends ModelBehavior
         $docsByLang = array();
         $size = count($results);
         foreach ($results as $result) {
-            $size += count($result['Transcription']);
+            $size += count ($result['Transcription'] ?? 0);
         }
         $i = 0;
         foreach ($results as $result) {
@@ -164,9 +164,11 @@ class SphinxBehavior extends ModelBehavior
         }
         foreach ($results as $result) {
             $lang = $result[$model->name]['lang'];
-            foreach ($result['Transcription'] as $transcResult) {
-                $docsByLang[$lang][$i++] = $transcResult['text'];
-            }
+            if (isset($result['Transcription']) {
+                foreach ($result['Transcription'] as $transcResult) {
+                    $docsByLang[$lang][$i++] = $transcResult['text'];
+                }
+           }
         }
 
         // Call BuildExcerpts() for each index and merge the results
@@ -201,13 +203,15 @@ class SphinxBehavior extends ModelBehavior
             $results[$i][$model->name]['highlight'] = $highlight;
         }
         foreach ($results as $i => $result) {
-            foreach ($result['Transcription'] as $j => $transcResult) {
-                $excerpt = explode($options['chunk_separator'], array_shift($mergedExcerpts));
-                $highlight = array(
-                    array($options['before_match'], $options['after_match']),
-                    $excerpt
-                );
-                $results[$i]['Transcription'][$j]['highlight'] = $highlight;
+            if (isset($result['Transcription']) {
+                foreach ($result['Transcription'] as $j => $transcResult) {
+                    $excerpt = explode($options['chunk_separator'], array_shift($mergedExcerpts));
+                    $highlight = array(
+                        array($options['before_match'], $options['after_match']),
+                        $excerpt
+                    );
+                    $results[$i]['Transcription'][$j]['highlight'] = $highlight;
+                }
             }
         }
     }
