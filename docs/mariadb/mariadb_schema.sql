@@ -632,20 +632,6 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `visitors`
---
-
-DROP TABLE IF EXISTS `visitors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `visitors` (
-  `ip` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `timestamp` int(11) NOT NULL DEFAULT '0',
-  UNIQUE KEY `ip` (`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
 -- Table structure for table `wall`
 --
 

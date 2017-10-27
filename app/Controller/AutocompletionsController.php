@@ -26,9 +26,9 @@
  */
 
 /**
- * Controller for visitors.
+ * Controller for Autocompletion.
  *
- * @category Visitors
+ * @category Autocomplete
  * @package  Controllers
  * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License

@@ -209,18 +209,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `visitors`
---
-
-CREATE TABLE IF NOT EXISTS `visitors` (
-  `ip` varchar(15) collate utf8_unicode_ci NOT NULL default '',
-  `timestamp` int(11) NOT NULL default '0',
-  UNIQUE KEY `ip` (`ip`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure for table `users_statistics`
 --
 
