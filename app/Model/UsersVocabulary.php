@@ -48,10 +48,11 @@ class UsersVocabulary extends AppModel
      *
      * @param string $vocabularyId Binary version of vocabulary_id.
      * @param int    $userId       Id of current user.
+     * @param string $hash         Vocabulary hash
      *
      * @return array               UsersVocabulary item.
      */
-    public function add($vocabularyId, $userId)
+    public function add($vocabularyId, $userId, $hash)
     {
         if ($item = $this->findFirst($vocabularyId, $userId)) {
             return $item;
@@ -59,7 +60,8 @@ class UsersVocabulary extends AppModel
 
         $data = array(
             'vocabulary_id' => $vocabularyId,
-            'user_id' => $userId
+            'user_id' => $userId,
+            'hash' => $hash,
         );
 
         return $this->save($data);
