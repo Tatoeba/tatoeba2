@@ -1,11 +1,14 @@
 ---
 #Tasks for setting up nginx
 
-- name: Stop apache2 service if running
-  service: name=apache2 state=stopped enabled=no pattern=apache2
+- name: Purge apache2
+  apt:
+    name: apache2
+    purge: yes
   ignore_errors: yes
+
 - name: Install nginx
-  apt: name=nginx state=present
+  apt: name=nginx state=latest
 
 - name: Remove default nginx configurations
   command: rm -rf /etc/nginx/sites-available /etc/nginx/sites-enabled
@@ -18,7 +21,3 @@
 
 - name: Restart nginx
   service: name=nginx state=restarted enabled=yes
-- name: Remove apache2 from init list
-  command: update-rc.d -f apache2 remove
-- name: Set defaults in init script for nginx
-  command: update-rc.d nginx defaults
