@@ -19,3 +19,26 @@
   - php-mbstring
   - memcached
   - composer
+
+- name: Remove default fpm pool
+  file:
+    path: /etc/php/7.0/fpm/pool.d/www.conf
+    state: absent
+  notify: reload php-fpm
+
+- name: Drop php-fpm configuration
+  copy:
+    src: tatoeba.conf
+    dest: /etc/php/7.0/fpm/pool.d
+    owner: root
+    group: root
+    mode: 0640
+  notify: reload php-fpm
+
+# Desired state
+
+- name: Start/Enable php-fpm
+  service:
+    name: php7.0-fpm
+    state: started
+    enabled: yes
