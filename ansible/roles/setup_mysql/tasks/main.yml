@@ -7,47 +7,87 @@
     state: latest
 
 - name: Install mysql-server
-  apt: name=mysql-server update_cache=yes cache_valid_time=36000 state=present
+  apt:
+    name: default-mysql-server
+    update_cache: yes
+    state: latest
+
 - name: Update mysql root password for all root accounts
-  mysql_user: name=root host=localhost password={{mysql_root_password}}
+  mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mysql_root_password }}"
+
 - name: Copy .my.cnf file with root password credentials
-  template: src=templates/root/.my.cnf dest=/root/.my.cnf owner=root mode=0600
+  template:
+    src: templates/root/.my.cnf
+    dest: /root/.my.cnf
+    owner: root
+    mode: 0600
+
 - name: Update mysql root password for all root accounts
-  mysql_user: name=root host={{ item }} password={{mysql_root_password}}
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_password }}"
   with_items:
-    - "{{ansible_hostname}}"
+    - "{{ ansible_hostname }}"
     - 127.0.0.1
     - ::1
+
 - name: Create the tatoeba database
-  mysql_db: name={{mysql_db_name}} login_user=root login_password={{mysql_root_password}} state=present
+  mysql_db:
+    name: "{{ mysql_db_name }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    state: present
+
+- debug:
+    var: mysql_password
+
 - name: Create and give privileges to mysql_user to the tatoeba database
-  mysql_user: login_user=root
-              login_password={{mysql_root_password}}
-              name={{mysql_user}}
-              password={{mysql_password}}
-              priv={{mysql_db_name}}.*:ALL,GRANT state=present append_privs=yes
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    priv: "{{ mysql_db_name }}.*:ALL"
+    state: present
   when: mysql_user != "root"
+
 - name: Give FILE privileges to the mysql_user
-  mysql_user: login_user=root
-              login_password={{mysql_root_password}}
-              name={{mysql_user}}
-              password={{mysql_password}}
-              priv=*.*:FILE state=present append_privs=yes
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    priv: "*.*:FILE"
+    state: present
   when: mysql_user != "root"
 
 - name: Create the tatoeba test database
-  mysql_db: name={{mysql_test_db_name}} login_user=root login_password={{mysql_root_password}} state=present
+  mysql_db:
+    name: "{{ mysql_test_db_name }}"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    state: present
+
 - name: Create and give privileges to mysql_test_user to the tatoeba test database
-  mysql_user: login_user=root
-              login_password={{mysql_root_password}}
-              name={{mysql_test_user}}
-              password={{mysql_test_password}}
-              priv={{mysql_test_db_name}}.*:ALL,GRANT state=present append_privs=yes
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_test_user }}"
+    password: "{{ mysql_test_password }}"
+    priv: "{{ mysql_test_db_name }}.*:ALL,GRANT"
+    state: present
   when: mysql_test_user != "root"
+
 - name: Give FILE privileges to the mysql_test_user
-  mysql_user: login_user=root
-              login_password={{mysql_root_password}}
-              name={{mysql_test_user}}
-              password={{mysql_test_password}}
-              priv=*.*:FILE state=present append_privs=yes
+  mysql_user:
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    name: "{{ mysql_test_user }}"
+    password: "{{ mysql_test_password }}"
+    priv: "*.*:FILE"
+    state: present
   when: mysql_test_user != "root"
