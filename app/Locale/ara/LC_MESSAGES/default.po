@@ -6,15 +6,15 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # محمد أحمد <mohamedstarwars@gmail.com>, 2017
 # Samer <mmmnnn333@gmail.com>, 2014-2016
-# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2016
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014-2018
 # محمد أحمد <mohamedstarwars@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-04-02 12:54+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2018-03-03 12:19+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/tatoeba/tatoeba_website/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +41,7 @@ msgstr "عليك الولوج."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
 msgid "Your audio settings have been saved."
-msgstr "إعدادات الصوت الخاصة بك حُفظت."
+msgstr "حُفظت إعدادات الصوت."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
@@ -78,7 +78,7 @@ msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at {email}."
-msgstr ""
+msgstr "وصلت إلى حد الرسائل اليوم. من فضلك انتظر حتى يمكنك إرسال المزيد من الرسائل. إن كنتَ قد تلقيتَ هذه الرسالة بالخطأ، فتواصل من فضلك مع المشرفين عبر {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L270
 msgid ""
@@ -171,7 +171,7 @@ msgstr "حُذفت الجملة رقم {id}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L317
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr "خطأ: الجملة رقم {id} لم يمكن حذفها."
+msgstr "خطأ: تعذر حذف الجملة رقم {id}."
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -179,7 +179,7 @@ msgstr "خطأ: الجملة رقم {id} لم يمكن حذفها."
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr "\"يملكها شخص أعلن أنه متحدث أصلي\"، لأن خانة لغة الجملة عُيّنت على \"أيّ\""
+msgstr "”يملكها شخص أعلن أنه متحدث أصلي“، لأن خانة لغة الجملة ضُبطت على ”أيّ"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
@@ -407,7 +407,7 @@ msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
-msgstr "بادئ ذي بدء، نحثك على الذهاب إلى <a href='{url}'>ملفك الشخصي</a> وإخبارنا عن اللغات التي تتحدث بها والتي تهتم بها."
+msgstr "بادئ ذي بدء، نحثك على الانتقال إلى <a href='{url}'>ملفك الشخصي</a> وإخبارنا عن اللغات التي تتحدث بها والتي تهتم بها."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L454
 msgid "Your new password has been sent to {email}."
@@ -525,7 +525,7 @@ msgstr "جمل يتيمة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L32
 msgid "Orphan sentences in {language}"
-msgstr "جمل يتيمة ب{language.معرفة}"
+msgstr "الجمل {language.معرفة} اليتيمة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L43
 msgid "About adoption"
@@ -543,7 +543,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr "فإن كنت تريد مساعدتنا على تفقُّد الجمل وتصحيحها، فتَتَنَّ ({adoptButton}) أي جملة \"يتيمة\" تراها مكتوبةً <strong>بلغتك الأم</strong>، وصححها إن كانت هناك حاجة. اقرأ <a href=\"{url}\">هذا</a> لمزيد توضيح."
+msgstr "فإن كنت تريد مساعدتنا على تفقُّد الجمل وتصحيحها، فَتَبنّ ({adoptButton}) أي جملة \"يتيمة\" تراها مكتوبةً <strong>بلغتك الأم</strong>، وصححها إن كانت هناك حاجة. اقرأ <a href=\"{url}\">هذا</a> لمزيد من التوضيح."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L66
@@ -726,7 +726,7 @@ msgstr "اعرض جملا عشوائية"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L32
 msgid "Translate {language} sentences that belong to {user}"
-msgstr "ترجم الجمل ب{language.معرفة} التي يملكها {user}"
+msgstr "ترجم الجمل {language.معرفة} التي يملكها {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L38
 msgid "Translate sentences that belong to {user}"
@@ -756,7 +756,7 @@ msgstr "لا"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L22
 msgid "Sentences in {language} with audio"
-msgstr "الجمل ب{language.معرفة} مع الصوت"
+msgstr "الجمل {language.معرفة} المسجّلة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L412
@@ -1432,7 +1432,7 @@ msgstr "جلستك انتهت."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/session_expired.ctp#L33
 msgid "Please <a href=\"{}\">log in again</a>."
-msgstr "يرجى <a href=\"{}\">تسجيل الدخول مرة أخرى</a>."
+msgstr "من فضلك <a href=\"{}\">الولوج مرة أخرى</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L34
 msgid "Tatoeba is a collection of sentences and translations."
@@ -3501,7 +3501,7 @@ msgstr "جمل {user}‏ {language.معرفة}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L78
 msgid "{user} does not have any sentence in {language}"
-msgstr "لا يملك {user} جملًا ب{language.معرفة}"
+msgstr "لا يملك {user} جملًا {language.نكرة}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L83
 msgid "{user} does not have any sentence"
@@ -3524,7 +3524,7 @@ msgstr "الجمل التي تحتوي على: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L37
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr "جمل ب{language.معرفة} غير مترجمة إلى {translationLanguage.معرفة}"
+msgstr "الجمل {language.معرفة} غير المترجمة إلى {translationLanguage.معرفة}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L41
 msgid "Sentences in {language} translated into {translationLanguage}"
@@ -3532,7 +3532,7 @@ msgstr "الجمل {language.معرفة} المترجمة إلى {translationLan
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L46
 msgid "Sentences in {language}"
-msgstr "الجمل ب{language.معرفة}"
+msgstr "الجمل {language.معرفة}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L50
 msgid "Sentences not translated into {language}"
@@ -3650,11 +3650,11 @@ msgstr "جملة عشوائية"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L31
 msgid "All sentences in {language} with audio"
-msgstr "كل الجمل ب{language.معرفة} مع صوت"
+msgstr "كل الجمل {language.معرفة} المسجّلة"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
-msgstr "كل الجمل ب{language.معرفة}"
+msgstr "كل الجمل {language.معرفة}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/add_new_sentence_to_list.ctp#L41
 msgid "Problem while saving"

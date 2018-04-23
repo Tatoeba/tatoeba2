@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-04-03 06:25+0000\n"
+"PO-Revision-Date: 2017-11-03 11:48+0000\n"
 "Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -507,7 +507,7 @@ msgstr "Orfaj frazoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L32
 msgid "Orphan sentences in {language}"
-msgstr "Orfaj frazoj en la {language}"
+msgstr "Orfaj frazoj en  {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L43
 msgid "About adoption"
@@ -708,7 +708,7 @@ msgstr "montri hazardajn frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L32
 msgid "Translate {language} sentences that belong to {user}"
-msgstr "Traduki {language}jn frazojn apartenantajn al {user}"
+msgstr "Traduki frazojn en {language} apartenantajn al {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L38
 msgid "Translate sentences that belong to {user}"
@@ -738,7 +738,7 @@ msgstr "Ne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L22
 msgid "Sentences in {language} with audio"
-msgstr "Frazoj en la {language} kun sonregistraĵo"
+msgstr "Frazoj en {language} kun sonregistraĵo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L412
@@ -801,7 +801,7 @@ msgstr "Frazoj markitaj kiel \"mi ne certas\" "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L31
 msgid "Sentences marked as \"not OK\""
-msgstr "Frazoj markitaj kiel \"erara\""
+msgstr "Frazoj markitaj kiel \"eraraj\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L57
@@ -3411,7 +3411,7 @@ msgstr "Aldonitaj frazoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L155
 msgid "Check out the vocabulary for which we need sentences"
-msgstr "Kontrolu la vortaron, por kiu ni bezonas frazojn"
+msgstr "Kontrolu la vortojn, por kiuj ni bezonas frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L42
 msgid "{user}'s sentences"
@@ -3419,11 +3419,11 @@ msgstr "Frazoj de {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L45
 msgid "{user}'s sentences in {language}"
-msgstr "La frazoj de {user} en la {language}"
+msgstr "La frazoj de {user} en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L78
 msgid "{user} does not have any sentence in {language}"
-msgstr "{user} ne havas iun ajn frazon en la {language}"
+msgstr "{user} ne havas iun ajn frazon en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L83
 msgid "{user} does not have any sentence"
@@ -3450,19 +3450,19 @@ msgstr "Frazoj en {language} ne tradukitaj al {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L41
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr "Frazoj en la {language} tradukitaj al la {translationLanguage}"
+msgstr "Frazoj en {language} tradukitaj al {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L46
 msgid "Sentences in {language}"
-msgstr "Frazoj en la {language}"
+msgstr "Frazoj en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L50
 msgid "Sentences not translated into {language}"
-msgstr "Frazoj ne tradukitaj en la {language}"
+msgstr "Frazoj ne tradukitaj en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L53
 msgid "Sentences translated into {language}"
-msgstr "Frazoj tradukitaj al la {language}"
+msgstr "Frazoj tradukitaj al {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L65
 msgid "Warning: the following criteria have been ignored:{list}"
@@ -3534,7 +3534,7 @@ msgstr "Okazis eraro dum la serĉado de hazarda frazo. Se la problemo persistas,
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L39
 msgid "{language} example sentence: {sentence}"
-msgstr "Ekzempla frazo en la {language}: {sentence}"
+msgstr "Ekzempla frazo en {language}: {sentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L47
 msgid ""
@@ -3572,11 +3572,11 @@ msgstr "Hazarda frazo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L31
 msgid "All sentences in {language} with audio"
-msgstr "Ĉiuj frazoj en la {language} kun sono"
+msgstr "Ĉiuj frazoj en {language} kun sono"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
-msgstr "Ĉiuj frazoj en la {language}"
+msgstr "Ĉiuj frazoj en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/add_new_sentence_to_list.ctp#L41
 msgid "Problem while saving"
@@ -4230,7 +4230,7 @@ msgstr "Ĉiam montru transskribojn kaj alternativajn skribojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/settings.ctp#L173
 msgid "Hide random sentence on the homepage"
-msgstr "Kaŝi la hazardan frazon de la ĉefpaĝo"
+msgstr "Kaŝi la „mesaĝon de la tago” de la ĉefpaĝo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/settings.ctp#L196
 msgid ""

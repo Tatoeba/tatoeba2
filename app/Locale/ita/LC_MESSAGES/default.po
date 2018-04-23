@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-04-02 12:54+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2017-12-30 10:33+0000\n"
+"Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -282,13 +282,13 @@ msgstr "{firstSentence} {secondSentence}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L144
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
-msgstr "L'etichetta '{tagName}' esiste già per la frase n° {number} o non può essere aggiunta"
+msgstr "L'etichetta '{tagName}' esiste già per la frase n° {number}, oppure non può essere aggiunta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L287
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr "Non ci sono frasi per questa etichetta. L'etichetta che stai cercando è stata eliminata, oppure non esiste."
+msgstr "Non ci sono frasi con questa etichetta. L'etichetta che stai cercando è stata eliminata, oppure non esiste."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L77
@@ -535,7 +535,7 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr "Se vedi che appare un altro nome utente dopo aver adottato una frase, significa che qualcun altro ha adottato la frase appena prima di te. In questo caso puoi provare ad adottare frasi che sono in varie pagine più avanti della tua pagina corrente per ridurre le possibilità che accada di nuovo."
+msgstr "Se vedi che appare un altro nome utente dopo avere adottato una frase, vuole dire che qualcun altro ha adottato la frase appena prima di te. In questo caso, puoi provare ad adottare delle frasi che si trovano in varie pagine più avanti della tua pagina corrente per ridurre le possibilità che accada di nuovo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L99
@@ -1659,7 +1659,7 @@ msgstr "Licenza: {license}"
 msgid ""
 "You may not reuse the following audio recordings outside the Tatoeba "
 "project, because {userName} did not chose any license for them yet."
-msgstr ""
+msgstr "Non è possibile riutilizzare le seguenti registrazioni audio al di fuori di Tatoeba perché {userName} non ha ancora scelto una licenza per esse."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
@@ -1671,7 +1671,7 @@ msgstr "Le seguenti registrazioni audio di {userName} sono di pubblico dominio."
 msgid ""
 "The following audio recordings by {userName}, are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "Le seguenti registrazioni audio di {userName} sono sotto la licenza {licenseName}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L127
 msgid ""
@@ -2714,7 +2714,7 @@ msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr ""
+msgstr "La licenza che ricopre un file audio è scelta dal contributore, ed è indicata nella pagina che elenca i file audio che lui o lei ha contribuito."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L101
 msgid "Questions?"
@@ -2852,14 +2852,14 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr "Contiene i collegamenti tra le frasi. {sampleLinkLine} significa che la frase n° 77 è la traduzione della frase n° 1. Anche il collegamento reciproco è presente, per cui il file conterrà anche una riga che dice {sampleLinkLineReversed}."
+msgstr "Contiene i collegamenti tra le frasi. {sampleLinkLine} vuole dire che la frase n° 77 è la traduzione della frase n° 1. Anche il collegamento reciproco è presente, per cui il file conterrà anche una riga che dice {sampleLinkLineReversed}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L284
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr "Contiene l'elenco delle <a href=\"{url}\">etichette</a> associate ad ogni frase. {sampleTagLine} significa che alla frase n° 381279 è stata aggiunta l'etichetta con \"proverb\"."
+msgstr "Contiene l'elenco delle <a href=\"{url}\">etichette</a> associate ad ogni frase. {sampleTagLine} vuole dire che alla frase n° 381279 è stata aggiunta l'etichetta \"proverb\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L326
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
@@ -2873,7 +2873,7 @@ msgstr "Frasi negli elenchi"
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr "Indica le frasi che sono contenute in qualunque elenco. {sampleListLine} significa che la frase n° 381279 è contenuta nell'elenco che ha come ID 13."
+msgstr "Indica le frasi che sono contenute in qualunque elenco. {sampleListLine} vuole dire che la frase n° 381279 è contenuta nell'elenco che ha come ID 13."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L370
 msgid "Japanese indices"
@@ -2894,7 +2894,7 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr ""
+msgstr "Contiene gli ID delle frasi, in tutte le lingue, per cui è disponibile l'audio. Gli altri campi indicano chi ha registrato l'audio, la sua licenza e un URL per attribuire l'autore. Se il campo della licenza è vuoto, non è possibile riutilizzare l'audio al di fuori di Tatoeba."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
 msgid "User skill level per language"
@@ -3087,7 +3087,7 @@ msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr "È possibile creare degli elenchi di frasi su Tatoeba. Per impostazione predefinita, l'elenco è <strong>personale</strong>, il che significa che può essere modificato solo dalla persona che lo ha creato (ma è ancora visibile a tutti)."
+msgstr "È possibile creare degli elenchi di frasi su Tatoeba. Per impostazione predefinita, l'elenco è <strong>personale</strong>, il che vuole dire che può essere modificato solamente dalla persona che lo ha creato (però è ancora visibile a tutti)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/help.ctp#L321
 msgid ""
@@ -3482,7 +3482,7 @@ msgstr "Errore di ricerca"
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "È avvenuto un errore durante l'esecuzione della ricerca. Se il problema persiste, <a href=\"{}\">faccelo sapere</a>, per favore."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L114
 msgid ""

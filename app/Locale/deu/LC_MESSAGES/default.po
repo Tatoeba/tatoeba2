@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-04-02 12:54+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2017-11-14 10:13+0000\n"
+"Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -772,11 +772,11 @@ msgstr "Lizenz:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L53
 msgid "Leave this field empty to use your profile page."
-msgstr ""
+msgstr "Zur Verwendung der Profilseite dieses Feld leer lassen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L55
 msgid "Attribution URL:"
-msgstr ""
+msgstr "Adresse zur Namensnennung:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L170
@@ -789,19 +789,19 @@ msgstr "Speichern"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L80
 msgid "{username} has not contributed any audio"
-msgstr ""
+msgstr "{username} hat noch keine Vertonungen vorgenommen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L29
 msgid "Sentences marked as \"OK\""
-msgstr "Als richtig markierte Sätze"
+msgstr "als richtig markierte Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L30
 msgid "Sentences marked as \"unsure\""
-msgstr "Als zweifelhaft markierte Sätze"
+msgstr "als zweifelhaft markierte Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L31
 msgid "Sentences marked as \"not OK\""
-msgstr "Als falsch markierte Sätze"
+msgstr "als falsch markierte Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L57
@@ -810,7 +810,7 @@ msgstr "Alle Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L33
 msgid "Outdated ratings"
-msgstr "Obsolete Bewertungen"
+msgstr "veraltete Bewertungen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L45
 msgid "{user}'s collection - {category}"
@@ -1159,7 +1159,7 @@ msgstr "Facebook"
 msgid ""
 "Our written sentences and translations can be used under the Creative "
 "Commons Attribution 2.0 license (CC-BY 2.0)."
-msgstr ""
+msgstr "Unsere geschriebenen Sätze und Übersetzungen dürfen gemäß der Creative-Commons-Lizenz der Namensnennung 2.0 (CC-BY 2.0) verwendet werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L189
 msgid "More information"
@@ -1353,7 +1353,7 @@ msgstr "Suche nach „{search}“ ergebnislos."
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/users_menu.ctp#L127
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/translation.ctp#L34
@@ -1645,44 +1645,44 @@ msgstr "Dieser Benutzer hat keine Lieblingssätze."
 #. @translators: refers to the license used for audio recordings
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L32
 msgid "Public domain"
-msgstr ""
+msgstr "Gemeinfrei"
 
 #. @translators: refers to the license used for audio recordings
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L50
 msgid "No license for offsite use"
-msgstr ""
+msgstr "Nicht zur auswärtigen Verwendung freigegeben"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
-msgstr ""
+msgstr "Aufgenommen von: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L102
 msgid "License: {license}"
-msgstr ""
+msgstr "Lizenz: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
 msgid ""
 "You may not reuse the following audio recordings outside the Tatoeba "
 "project, because {userName} did not chose any license for them yet."
-msgstr ""
+msgstr "Da noch keine Lizenz festgelegt wurde, dürfen die folgenden Audiobeiträge von {userName} außerhalb des Tatoebaprojektes nicht verwendet werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
 "The following audio recordings by {userName}, are licensed under the public "
 "domain."
-msgstr ""
+msgstr "Für die folgenden Audiobeiträge von {userName} sind gemeinfrei."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L123
 msgid ""
 "The following audio recordings by {userName}, are licensed under the "
 "{licenseName} license."
-msgstr ""
+msgstr "Für die folgenden Audiobeiträge von {userName} unterliegen der Lizenz {licenseName}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L127
 msgid ""
 "The following audio recordings by {userName}, are licensed under an unknown "
 "license."
-msgstr ""
+msgstr "Für die folgenden Audiobeiträge von {userName} wurde keine Lizenz angegeben. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L76
 msgid "Add a comment"
@@ -2712,14 +2712,14 @@ msgstr "Die Dateien stehen unter der Lizenz CC-BY zur Verfügung."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L90
 msgid "Licenses covering audio"
-msgstr ""
+msgstr "Lizenzen der Audiobeiträge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L93
 msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr ""
+msgstr "Die Wahl der Lizenz, unter welcher eine Audiodatei zur Verfügung gestellt wird, obliegt dem Urheber; sie kann auf der Seite seiner sämlichen Audiobeiträge eingesehen werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L101
 msgid "Questions?"
@@ -2821,11 +2821,11 @@ msgstr "Details"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L141
 msgid "License"
-msgstr ""
+msgstr "Lizenz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L142
 msgid "Attribution URL"
-msgstr ""
+msgstr "Urheberprofil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L179
@@ -2899,7 +2899,7 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr ""
+msgstr "Enthält die Nummern sämtlicher vertonter Sätze. Die anderen Felder geben den Urheber der Vertonung, deren Lizenz sowie eine Adresse zur Namensnennung an. Ist keine Lizenz angegeben, so darf die Vertonung außerhalb von Tatoeba nicht verwendet werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
 msgid "User skill level per language"
@@ -3476,7 +3476,7 @@ msgstr "Weitere Suchkriterien"
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
-msgstr "Die Suchfunktion steht zur Zeit aus technischem Grunde nicht zur Verfügung. Versuche es bitte später erneut! Wir bitten, diese Unannehmlichkeit zu entschuldigen."
+msgstr "Die Suchfunktion steht zur Zeit aus technischem Grunde nicht zur Verfügung. Bitte entschuldige die Unannehmlichkeit und versuche es später erneut."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L110
@@ -3487,7 +3487,7 @@ msgstr "Fehler bei der Suche."
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "Während der Suche ist ein Fehler aufgetreten.  <a href=\"{}\">Benachrichtige uns</a>, wenn dies bestehen bleibt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L114
 msgid ""
@@ -3523,7 +3523,7 @@ msgstr "Bedenke nur, dass unser Server nicht so schnell ist wie du! ;-)"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L239
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
-msgstr "Zufallssätze sind derzeit ausgeschaltet. Bitte später erneut versuchen."
+msgstr "Die Zufallssätze sind zur Zeit deaktiviert. Bitte versuche es später erneut."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/several_random_sentences.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L241
@@ -3674,7 +3674,7 @@ msgstr "Zum Bearbeiten anklicken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L152
 msgid "date added to list"
-msgstr ""
+msgstr "Datum des Eintrags in die Liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/explode.ctp#L27
 msgid "Result"
@@ -4466,7 +4466,7 @@ msgstr "Vokabular, das noch mit Beispielsätzen versehen werden muss"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L49
 msgid ""
 "Only vocabulary items that match fewer than 10 sentences are displayed here."
-msgstr ""
+msgstr "Hier wird nur Vokabular mit weniger als zehn Beispielsätzen angezeigt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L104
 msgid "This sentence already exists."

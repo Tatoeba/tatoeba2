@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-04-02 12:54+0000\n"
+"PO-Revision-Date: 2017-09-20 17:06+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Lojban (http://www.transifex.com/tatoeba/tatoeba_website/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -260,7 +260,6 @@ msgid_plural ""
 "The download feature has been disabled for this list because it contains "
 "{n}&nbsp;sentences."
 msgstr[0] "e'anai diklo cpacu le liste i ki'u bo ri vasru {n} du'e jufra"
-msgstr[1] "e'anai diklo cpacu le liste i ki'u bo ri vasru {n} du'e jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L245
 msgid ""
@@ -269,8 +268,7 @@ msgid ""
 msgid_plural ""
 "Only lists containing {max} or fewer sentences can be downloaded. If you can"
 " edit the list, you may want to split it into multiple lists."
-msgstr[0] "fa po'o lo liste be su'e 1 jufra ka'e se cpacu i fau lo nu do se krali lo ka cnegau lo liste vau do ka'e katna ly so'i liste"
-msgstr[1] "fa po'o lo liste be su'e {max} jufra ka'e se cpacu i fau lo nu do se krali lo ka cnegau lo liste vau do ka'e katna ly so'i liste"
+msgstr[0] "fa po'o lo liste be su'e {max} jufra ka'e se cpacu i fau lo nu do se krali lo ka cnegau lo liste vau do ka'e katna ly so'i liste"
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
@@ -438,7 +436,6 @@ msgstr "do na ka'e vimcu le bangu"
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
 msgstr[0] "{number} jufra"
-msgstr[1] "{number} jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/WallController.php#L281
 msgid "You cannot save an empty message."
@@ -484,14 +481,12 @@ msgstr " ce'o "
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
 msgstr[0] ""
-msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/Autotranscription.php#L328
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
 msgstr[0] ""
-msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/SentencesList.php#L153
 msgid "unnamed list"
@@ -871,7 +866,6 @@ msgstr "de'i li my xi {month} jo'u li ny xi {year}"
 msgid "Daily Average: {n} sentence"
 msgid_plural "Daily Average: {n} sentences"
 msgstr[0] ""
-msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Contributions/latest.ctp#L38
@@ -1066,14 +1060,12 @@ msgstr "ca'o dunda"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/currently_active_members.ctp#L34
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] "lo pilno poi pu participe lo {n} boi romoi nu dunda"
-msgstr[1] "lo pilno poi pu participe lo {n}boi romoi nu dunda"
+msgstr[0] "lo pilno poi pu participe lo {n}boi romoi nu dunda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/currently_active_members.ctp#L75
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
 msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
 msgstr[0] "#{rank} i {n}&nbsp;jufra i {percentage} ce'i"
-msgstr[1] "#{rank} i {n}&nbsp;jufra i {percentage} ce'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L36
 msgid "Need some help?"
@@ -1365,7 +1357,6 @@ msgstr ""
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "zgana fe ji'a {number} te traduki"
-msgstr[1] "zgana fe ji'a {number} te traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L248
@@ -1377,7 +1368,6 @@ msgstr "mipri lo te traduki"
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "{n} da jufra"
-msgstr[1] "{n} da jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences_statistics.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L112
@@ -1750,19 +1740,16 @@ msgstr "lo detri na jai se djuno"
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
 msgstr[0] "pu za lo djedi be li {n}"
-msgstr[1] "pu za lo djedi be li {n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/DateHelper.php#L76
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
 msgstr[0] "pu za lo cacra be li {n}"
-msgstr[1] "pu za lo cacra be li {n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/DateHelper.php#L78
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
 msgstr[0] "pu za lo mentu be li {n}"
-msgstr[1] "pu za lo mentu be li {n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/DateHelper.php#L87
 msgid "January"
@@ -2260,7 +2247,6 @@ msgstr " (to la mupli toi)"
 msgid "{title} (one result)"
 msgid_plural "{title} ({n}&nbsp;results)"
 msgstr[0] "{title} zo'u {n} da se mitysisku"
-msgstr[1] "{title} zo'u {n} da se mitysisku"
 
 #. @translators: this formats the title at the top of the search
 #. page by appending the number of results. Tatoeba is only able
@@ -2271,7 +2257,6 @@ msgstr[1] "{title} zo'u {n} da se mitysisku"
 msgid "{title} ({thousand}&nbsp;results out of one occurrence)"
 msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
 msgstr[0] "{title} zo'u {thousand}&nbsp; ka'e se zgana i je {n}&nbsp;da se tolcri"
-msgstr[1] "{title} zo'u {thousand}&nbsp; ka'e se zgana i je {n}&nbsp;da se tolcri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PagesHelper.php#L75
 msgid "Recently added sentences may not appear in search results."
@@ -3134,19 +3119,16 @@ msgstr "loi datni"
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
 msgstr[0] ""
-msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L67
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
 msgstr[0] ""
-msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L96
 msgid "{number} sentence in {lang}"
 msgid_plural "{number} sentences in {lang}"
 msgstr[0] "{number} jufra je te gerna be lo {lang}"
-msgstr[1] "{number} jufra je te gerna be lo {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -3289,7 +3271,6 @@ msgstr "lo sivni se benji zo'u {folderName}"
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} (to {n}&nbsp;da se benji toi)"
-msgstr[1] "{folderName} (to {n}&nbsp;da se benji toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/show.ctp#L29
@@ -3316,7 +3297,6 @@ msgstr "tezu'e lo nu la mupli cu mabla se mrilu jinsa vau\nlo cnino pilno ka'e b
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "do mo'u benji {n}&nbsp;da ca lo cabdei"
-msgstr[1] "do mo'u benji {n}&nbsp;da ca lo cabdei"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/S/s.ctp#L41
 msgid ""
@@ -3652,8 +3632,7 @@ msgstr "le liste cu mo"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L55
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
-msgstr[0] "se pagbu 1&nbsp;jufra"
-msgstr[1] "se pagbu {n}&nbsp;jufra"
+msgstr[0] "se pagbu {n}&nbsp;jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/settings.ctp#L41
@@ -3689,7 +3668,6 @@ msgstr "catlu lo pagbu be lo anji"
 msgid "1 stroke"
 msgid_plural "{n}&nbsp;strokes"
 msgstr[0] "{n}&nbsp;se ciska selci"
-msgstr[1] "{n}&nbsp;se ciska selci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/index.ctp#L67
 msgid "Explode a character"
@@ -3892,7 +3870,6 @@ msgstr "lo jufra poi se tcita zo'oi {tagName}"
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
 msgstr[0] ""
-msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Tags/show_sentences_with_tag.ctp#L60
 msgid "date of tag"
@@ -4066,7 +4043,6 @@ msgstr ""
 msgid "Please fix the following error or press the Cancel button."
 msgid_plural "Please fix the following errors or press the Cancel button."
 msgstr[0] ""
-msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L43
@@ -4331,13 +4307,11 @@ msgstr "volve lo kampu datni"
 msgid "{total} member"
 msgid_plural "{total} members"
 msgstr[0] "{total} da cmima"
-msgstr[1] "{total} da cmima"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/for_language.ctp#L99
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
 msgstr[0] "{lang} (to {total} da cmima toi)"
-msgstr[1] "{lang} (to {total} da cmima toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L120
@@ -4513,7 +4487,6 @@ msgstr "do zifre lo ka ciska lo te gerna be lo jai se djica be do i ma'i la mupl
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "bitmu (to {n} boxna toi)"
-msgstr[1] "bitmu (to {n} boxna toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
