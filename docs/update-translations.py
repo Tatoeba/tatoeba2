@@ -147,6 +147,7 @@ def main():
     
     getResourcesFiles(languagesTable, 'tatoebaResource', 'default', TRANSLATIONS_LOCAL, MAIN_LOCAL)
     getResourcesFiles(languagesTable, 'tatoeba-languages', 'languages', TRANSLATIONS_LOCAL, MAIN_LOCAL)
+    getResourcesFiles(languagesTable, 'admin', 'admin', TRANSLATIONS_LOCAL, MAIN_LOCAL)
     
     if executeCommand('cd %s && git status'%MAIN_LOCAL,True) == '':
         print('git status: nothing has changed. will not commit.')

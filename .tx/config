@@ -19,3 +19,9 @@ source_file = app/Locale/languages.pot
 source_lang = en
 type = PO
 file_filter = app/Locale/<lang>/LC_MESSAGES/languages.po
+
+[tatoeba_website.admin]
+source_file = app/Locale/admin.pot
+source_lang = en
+type = PO
+file_filter = app/Locale/<lang>/LC_MESSAGES/admin.po
