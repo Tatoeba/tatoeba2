@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-09-20 17:06+0000\n"
+"POT-Creation-Date: 2018-05-16 13:41+0000\n"
+"PO-Revision-Date: 2018-05-16 13:47+0000\n"
 "Last-Translator: older\n"
 "Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/ActivitiesController.php#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L115
@@ -43,7 +43,7 @@ msgstr "Ваші налаштування звука збережено."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L545
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -262,6 +262,7 @@ msgid_plural ""
 msgstr[0] "Можливість завантаження заблоковано для цього списка тому що він містить речення."
 msgstr[1] "Можливість завантаження заблоковано для цього списка тому що він містить {n}&nbsp;речення."
 msgstr[2] "Можливість завантаження заблоковано для цього списка тому що він містить {n}&nbsp;речень."
+msgstr[3] "Можливість завантаження заблоковано для цього списка тому що він містить {n}&nbsp;речень."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L245
 msgid ""
@@ -273,6 +274,7 @@ msgid_plural ""
 msgstr[0] "Тільки списки що містять одне речення можуть бути завантажені. Якщо ви можете змінювати список, спробуйте розділити його на кілька списків."
 msgstr[1] "Тільки списки що містять {max} або менше речень можуть бути завантажені. Якщо ви можете змінювати список, спробуйте розділити його на кілька списків."
 msgstr[2] "Тільки списки що містять {max} або менше речень можуть бути завантажені. Якщо ви можете змінювати список, спробуйте розділити його на кілька списків."
+msgstr[3] "Тільки списки що містять {max} або менше речень можуть бути завантажені. Якщо ви можете змінювати список, спробуйте розділити його на кілька списків."
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
@@ -287,137 +289,137 @@ msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
 msgstr "Теґ '{tagName}' був доданий раніше до речення #{number}, або не може бути доданий"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L288
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
 msgstr "Речень з цим теґом не існує. Цей теґ було видалено або він не існує."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L77
 msgid "No user with this username: {username}"
 msgstr "Не знайдено користувача з ім'ям: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L165
 msgid "Failed to upload image"
 msgstr "Помилка завантаження зображення"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L174
 msgid "Please choose an image that does not exceed 1 MB."
 msgstr "Будь ласка, оберуть зображення, розмір якого не перевищує Будь ласка, оберуть зображення, розмір якого не перевищує 1 Мб"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L185
 msgid "Please choose GIF, JPEG or PNG image format."
 msgstr "Будь ласка, оберіть GIF, JPEG або PNG формат для зображення"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L214
 msgid "Error while saving."
 msgstr "Помилка збереження."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L321
 msgid "Profile saved."
 msgstr "Профіль збережено."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L332
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Помилка зміни адреси електронної пошти. Введіть правильну адресу електронної пошти."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L373
 msgid "That email address already exists. Please try another."
 msgstr "Ця адреса електронної пошти вже існує. Спробуйте іншу, будь ласка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L419
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L422
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "Введено неправильну дату народження. Спробуйте знов."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L471
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "Введено неповну дату народження. Прийнятні дати народження: повна дата, місяць і день, рік і місяць, тільки рік."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
 msgid "Your settings have been saved."
 msgstr "Ваші налаштування збережено."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L609
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L612
 msgid "New password cannot be empty."
 msgstr "Новий пароль не може бути порожнім."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L622
 msgid "New password has been saved."
 msgstr "Новий пароль збережено."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L621
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L624
 msgid "An error occurred while saving."
 msgstr "При збереженні виникла помилка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L626
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L629
 msgid "Password error. Please try again."
 msgstr "Помилковий пароль. Спробуйте ще."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L205
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Цей обліковий запис було позначено як неактивний. Тепер ви не можете їм користуватись. Будь ласка зв'яжіться з адміністратором якщо ви вважаєте що це помилка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L216
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Цей обліковий запис було позначено як той що розповсюджує спам. Тепер ви не можете їм користуватись. Будь ласка зв'яжіться з адміністратором якщо ви вважаєте що це помилка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L238
 msgid "You must fill in your username and password."
 msgstr "Ви маєте ввести ім'я користувача і пароль."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L246
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Помилка логіну. Перевірте стан перемикачів Caps Lock та Num Lock. Пароль є чутливим до регістру."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L337
 msgid "Password cannot be empty."
 msgstr "Пароль не може бути порожнім."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L348
 msgid "Wrong answer to the question."
 msgstr "Невірна відповідь на питання."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L358
 msgid "You did not accept the terms of use."
 msgstr "Ви не погодились з Умовами Використання.Ви не погодились з Умовами Використання."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L401
 msgid "Welcome to Tatoeba!"
 msgstr "Ласкаво просимо до Tatoeba!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L405
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "Для початку ми закликаємо вас зайти до власного <a href='{url}'>профіля</a> та зазначити мови якими ви володієте або якими цікавитесь."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L456
 msgid "Your new password has been sent to {email}."
 msgstr "Ваш новий пароль надіслано на адресу {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L459
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L461
 msgid "You may need to check your spam folder to find this message."
 msgstr "Вам може знадобитись перевірити теку зі спамом щоб знайти це повідомлення."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L469
 msgid "There is no registered user with this email address: "
 msgstr "Користувач с цією адресою електронної пошти не зареєстрований:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L491
 msgid "No user with this username: "
 msgstr "Не знайдено користувача з ім'ям:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L533
 msgid "No user with this ID: {id}"
 msgstr "Не існує користувача з ідентифікатором:  {id}"
 
@@ -442,6 +444,7 @@ msgid_plural "{number} sentences"
 msgstr[0] "{number} речення"
 msgstr[1] "{number} речення"
 msgstr[2] "{number} речень"
+msgstr[3] "{number} речень"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/WallController.php#L281
 msgid "You cannot save an empty message."
@@ -489,6 +492,7 @@ msgid_plural "The following characters lack furigana: {charsEnumeration}."
 msgstr[0] "До цього знака бракує фуріґани: {charsEnumeration}."
 msgstr[1] "До наступніх знаків бракує фуріґани: {charsEnumeration}."
 msgstr[2] "До наступніх знаків бракує фуріґани: {charsEnumeration}."
+msgstr[3] "До наступніх знаків бракує фуріґани: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/Autotranscription.php#L328
 msgid "The following character is not transcribed: {charsEnumeration}."
@@ -497,6 +501,7 @@ msgid_plural ""
 msgstr[0] "Цей знак не транскрибовано: {charsEnumeration}."
 msgstr[1] "Наступні знаки не транскрибовано: {charsEnumeration}."
 msgstr[2] "Наступні знаки не транскрибовано: {charsEnumeration}."
+msgstr[3] "Наступні знаки не транскрибовано: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/SentencesList.php#L153
 msgid "unnamed list"
@@ -878,6 +883,7 @@ msgid_plural "Daily Average: {n} sentences"
 msgstr[0] "В середньому за день: {n} речення"
 msgstr[1] "В середньому за день: {n} речення"
 msgstr[2] "В середньому за день: {n} речень"
+msgstr[3] "В середньому за день: {n} речень"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Contributions/latest.ctp#L38
@@ -936,6 +942,12 @@ msgstr "Речення що не мають власника вірогідно 
 msgid "Is orphan:"
 msgstr "Не має власника:"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
+msgctxt "orphan"
+msgid "Any"
+msgstr "Будь-які"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Речення що не схвалені вірогідно є неправильними"
@@ -944,6 +956,12 @@ msgstr "Речення що не схвалені вірогідно є непр
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
 msgstr "Не схвалені:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
+msgctxt "unapproved"
+msgid "Any"
+msgstr "Будь-які"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -976,6 +994,12 @@ msgstr "Належить до списка:"
 msgid "Has audio:"
 msgstr "Зі звуком:"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L199
+msgctxt "audio"
+msgid "Any"
+msgstr "Будь-які"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L79
 msgid "Translations"
@@ -1002,6 +1026,11 @@ msgstr "{action} речення що мають переклади які від
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L165
 msgid "Link:"
 msgstr "Посилання:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L167
+msgctxt "link"
+msgid "Any"
+msgstr "Будь-які"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L168
 msgid "Direct"
@@ -1043,6 +1072,11 @@ msgstr "У зворотньому порядку"
 msgid "More search options"
 msgstr "Додаткові опції пошука"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L242
+msgctxt "button"
+msgid "Advanced search"
+msgstr "Розширений пошук"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/announcement.ctp#L55
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
@@ -1075,6 +1109,7 @@ msgid_plural "Users who participated in the last {n}&nbsp;contributions."
 msgstr[0] "Користувачі що зробив останню дію."
 msgstr[1] "Користувачі що взяли участь в останніх {n}&nbsp;діях."
 msgstr[2] "Користувачі що взяли участь в останніх {n}&nbsp;діях."
+msgstr[3] "Користувачі що взяли участь в останніх {n}&nbsp;діях."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/currently_active_members.ctp#L75
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
@@ -1082,6 +1117,7 @@ msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
 msgstr[0] "#{rank} - {n}&nbsp;речення - {percentage}%"
 msgstr[1] "#{rank} - {n}&nbsp;речення - {percentage}%"
 msgstr[2] "#{rank} - {n}&nbsp;речень - {percentage}%"
+msgstr[3] "#{rank} - {n}&nbsp;речень - {percentage}%"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L36
 msgid "Need some help?"
@@ -1141,35 +1177,39 @@ msgid "Contact us"
 msgstr "Зв'язатись з нами"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L138
+msgid "Status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L28
 msgid "Terms of use"
 msgstr "Умови використання"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L157
 msgid "Blog"
 msgstr "Блог"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L59
 msgid "Twitter"
 msgstr "Twitter"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L61
 msgid "Facebook"
 msgstr "Facebook"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L193
 msgid ""
 "Our written sentences and translations can be used under the Creative "
 "Commons Attribution 2.0 license (CC-BY 2.0)."
 msgstr "Нашими реченнями і перекладами можна користуватись на умовах ліцензії Creative Commons Attribution 2.0 (CC-BY 2.0)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L197
 msgid "More information"
 msgstr "Докладніше"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L211
 msgid "If you love this content, please consider a <a href={}>donation</a>."
 msgstr "Якщо вам подобається те що ми робимо, розгляньте можливість зробити <a href={}>пожертву</a>."
 
@@ -1375,6 +1415,7 @@ msgid_plural "Show {number} more translations"
 msgstr[0] "Показати ще 1 переклад"
 msgstr[1] "Показати ще {number} переклада"
 msgstr[2] "Показати ще {number} перекладів"
+msgstr[3] "Показати ще {number} перекладів"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L133
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L248
@@ -1388,6 +1429,7 @@ msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "Одне речення"
 msgstr[1] "{n}&nbsp;речення"
 msgstr[2] "{n}&nbsp;речень"
+msgstr[3] "{n}&nbsp;речень"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences_statistics.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L112
@@ -1421,6 +1463,13 @@ msgstr "Очистити пошук"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L116
 msgid "Enter a word or a phrase"
 msgstr "Введіть слово або фразу"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
+msgctxt "title"
+msgid "Advanced search"
+msgstr "Розширений пошук"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
@@ -1658,6 +1707,11 @@ msgstr "Загальне користування"
 msgid "No license for offsite use"
 msgstr "Ліцензії для використання поза сайтом не надано"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
+msgctxt "license"
+msgid "for Tatoeba only"
+msgstr "виключно для Tatoeba"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr "Записав користувач: {username}"
@@ -1762,6 +1816,7 @@ msgid_plural "{n}&nbsp;days ago"
 msgstr[0] "вчора"
 msgstr[1] "{n}&nbsp;дня тому"
 msgstr[2] "{n}&nbsp;днів тому"
+msgstr[3] "{n}&nbsp;днів тому"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/DateHelper.php#L76
 msgid "an hour ago"
@@ -1769,6 +1824,7 @@ msgid_plural "{n}&nbsp;hours ago"
 msgstr[0] "годину тому"
 msgstr[1] "{n}&nbsp;години тому"
 msgstr[2] "{n}&nbsp;годин тому"
+msgstr[3] "{n}&nbsp;годин тому"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/DateHelper.php#L78
 msgid "a minute ago"
@@ -1776,6 +1832,7 @@ msgid_plural "{n}&nbsp;minutes ago"
 msgstr[0] "хвилину тому"
 msgstr[1] "{n}&nbsp;хвилини тому"
 msgstr[2] "{n}&nbsp;хвилин тому"
+msgstr[3] "{n}&nbsp;хвилин тому"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/DateHelper.php#L87
 msgid "January"
@@ -1862,12 +1919,22 @@ msgstr "інша мова"
 msgid "All languages"
 msgstr "Всі мови"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L213
+msgctxt "dropdown-list"
+msgid "Unknown language"
+msgstr "Невідома мова"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L310
 msgid "None"
 msgstr "Жодна мова"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L290
+msgid "Any language"
+msgstr "Будь-яка мова"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L327
+msgctxt "searchbar"
 msgid "Any language"
 msgstr "Будь-яка мова"
 
@@ -1893,6 +1960,11 @@ msgstr "Ви не можете перекладати речення тому щ
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L317
 msgid "Add a language"
 msgstr "Додати мову"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L490
+msgctxt "level"
+msgid "Unspecified"
+msgstr "Незазначені"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L491
 msgid "0: Almost no knowledge"
@@ -2027,6 +2099,11 @@ msgstr "УВАГА: Ви також можете додавати існуючі
 msgid "Create a new list"
 msgstr "Створити новий список"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
+msgctxt "list"
+msgid "Name"
+msgstr "Ім'я"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
 msgid "create"
 msgstr "створити"
@@ -2038,6 +2115,11 @@ msgstr "Всі публічні списки"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
 msgid "Collaborative lists"
 msgstr "Спільні списки"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
+msgctxt "list"
+msgid "Unspecified"
+msgstr "Незазначені"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
 msgid "Other lists"
@@ -2275,6 +2357,7 @@ msgid_plural "{title} ({n}&nbsp;results)"
 msgstr[0] "{title} (один результат)"
 msgstr[1] "{title} ({n}&nbsp;результата)"
 msgstr[2] "{title} ({n}&nbsp;результатів)"
+msgstr[3] "{title} ({n}&nbsp;результатів)"
 
 #. @translators: this formats the title at the top of the search
 #. page by appending the number of results. Tatoeba is only able
@@ -2287,6 +2370,7 @@ msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
 msgstr[0] "{title} ({thousand}&nbsp;результатів із одного у наявності)"
 msgstr[1] "{title} ({thousand}&nbsp;результата із {n}&nbsp;у наявності)"
 msgstr[2] "{title} ({thousand}&nbsp;результатів із {n}&nbsp;у наявності)"
+msgstr[3] "{title} ({thousand}&nbsp;результатів із {n}&nbsp;у наявності)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PagesHelper.php#L75
 msgid "Recently added sentences may not appear in search results."
@@ -2469,6 +2553,16 @@ msgid ""
 "This transcription may contain errors because it has been generated by a "
 "piece of software that is not perfect."
 msgstr "Ця транскрипція містить помилки тому що її було згенеровано програмою яка не є досконалою"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L284
+msgctxt "alternative script"
+msgid "Click to mark it as reviewed."
+msgstr "Натисніть аби позначити як рецензоване"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L290
+msgctxt "transcription"
+msgid "Click to mark it as reviewed."
+msgstr "Натисніть аби позначити як рецензоване"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L74
 msgid "Add a message: "
@@ -3151,6 +3245,7 @@ msgid_plural "{number} contributions today"
 msgstr[0] "{number} внесок сьогодні"
 msgstr[1] "{number} внески сьогодні"
 msgstr[2] "{number} внесків сьогодні"
+msgstr[3] "{number} внесків сьогодні"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L67
 msgid "{number} supported language"
@@ -3158,6 +3253,7 @@ msgid_plural "{number} supported languages"
 msgstr[0] "{number} мова що підтримується"
 msgstr[1] "{number} мови що підтримуються"
 msgstr[2] "{number} мов що підтримуються"
+msgstr[3] "{number} мов що підтримуються"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L96
 msgid "{number} sentence in {lang}"
@@ -3165,6 +3261,7 @@ msgid_plural "{number} sentences in {lang}"
 msgstr[0] "{number} речення {lang.ins}"
 msgstr[1] "{number} речення {lang.ins}"
 msgstr[2] "{number} речень {lang.ins}"
+msgstr[3] "{number} речень {lang.ins}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -3309,6 +3406,7 @@ msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} ({n}&nbsp;повідомлення)"
 msgstr[1] "{folderName} ({n}&nbsp;повідомлення)"
 msgstr[2] "{folderName} ({n}&nbsp;повідомлень)"
+msgstr[3] "{folderName} ({n}&nbsp;повідомлень)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/show.ctp#L29
@@ -3337,6 +3435,7 @@ msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "Ви надіслали одне повідомлення сьогодні."
 msgstr[1] "Ви надіслали {n}&nbsp;повідомлення сьогодні."
 msgstr[2] "Ви надіслали {n}&nbsp;повідомлень сьогодні."
+msgstr[3] "Ви надіслали {n}&nbsp;повідомлень сьогодні."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/S/s.ctp#L41
 msgid ""
@@ -3675,6 +3774,7 @@ msgid_plural "Contains {n}&nbsp;sentences"
 msgstr[0] "Містить {n}&nbsp;речення"
 msgstr[1] "Містить {n}&nbsp;речення"
 msgstr[2] "Містить {n}&nbsp;речень"
+msgstr[3] "Містить {n}&nbsp;речень"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/settings.ctp#L41
@@ -3712,6 +3812,7 @@ msgid_plural "{n}&nbsp;strokes"
 msgstr[0] "1 риска"
 msgstr[1] "{n}&nbsp;риски"
 msgstr[2] "{n}&nbsp;рисок"
+msgstr[3] "{n}&nbsp;рисок"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/index.ctp#L67
 msgid "Explode a character"
@@ -3916,6 +4017,7 @@ msgid_plural "{tagName} ({n} sentences)"
 msgstr[0] "{tagName} ({n} речення)"
 msgstr[1] "{tagName} ({n} речення)"
 msgstr[2] "{tagName} ({n} речень)"
+msgstr[3] "{tagName} ({n} речень)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Tags/show_sentences_with_tag.ctp#L60
 msgid "date of tag"
@@ -4091,6 +4193,7 @@ msgid_plural "Please fix the following errors or press the Cancel button."
 msgstr[0] "Будь ласка, виправте наступну помилку та натисніть кнопку Скасувати"
 msgstr[1] "Будь ласка, виправте наступні помилки та натисніть кнопку Скасувати"
 msgstr[2] "Будь ласка, виправте наступні помилки та натисніть кнопку Скасувати"
+msgstr[3] "Будь ласка, виправте наступні помилки та натисніть кнопку Скасувати"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L43
@@ -4117,6 +4220,12 @@ msgstr "Завантажити"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L260
 msgid "Birthday"
 msgstr "День народження"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L258
+msgctxt "user"
+msgid "Name"
+msgstr "Ім'я"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L259
@@ -4357,6 +4466,7 @@ msgid_plural "{total} members"
 msgstr[0] "{total} учасник"
 msgstr[1] "{total} учасника"
 msgstr[2] "{total} учасників"
+msgstr[3] "{total} учасників"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/for_language.ctp#L99
 msgid "{lang} ({total} member)"
@@ -4364,6 +4474,7 @@ msgid_plural "{lang} ({total} members)"
 msgstr[0] "{lang} ({total} учасник)"
 msgstr[1] "{lang} ({total} учасника)"
 msgstr[2] "{lang} ({total} учасників)"
+msgstr[3] "{lang} ({total} учасників)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L120
@@ -4541,6 +4652,7 @@ msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "Стіна (одне обговорення)"
 msgstr[1] "Стіна ({n}&nbsp;обговорення)"
 msgstr[2] "Стіна ({n}&nbsp;обговорень)"
+msgstr[3] "Стіна ({n}&nbsp;обговорень)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-12-08 08:48+0000\n"
+"POT-Creation-Date: 2018-05-16 13:41+0000\n"
+"PO-Revision-Date: 2018-05-16 13:47+0000\n"
 "Last-Translator: Gorka Azkarate Zubiaur <gorkaazkarate@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/tatoeba/tatoeba_website/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Zure audio ezarpenak gorde egin dira."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L545
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -286,137 +286,137 @@ msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
 msgstr "'{tagName}' etiketa hori dagoeneko badago #{number} esaldirako edo ezin da gehitu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L288
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
 msgstr "Etiketa honekin ez dago esaldirik. Bilatzen ari zaren etiketa hori edo ez da inoiz existitu, edo ezabatu egin da, edo beste nolabait idazten da."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L77
 msgid "No user with this username: {username}"
 msgstr "Erabiltzailerik ez izen honekin: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L165
 msgid "Failed to upload image"
 msgstr "Akatsa irudia igotzerakoan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L174
 msgid "Please choose an image that does not exceed 1 MB."
 msgstr "Mesedez, aukera ezazu 1 MB-etatik gora ez duen irudi bat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L185
 msgid "Please choose GIF, JPEG or PNG image format."
 msgstr "Mesedez, aukeratu GIF, JPEG edo PNG irudi formatua."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L214
 msgid "Error while saving."
 msgstr "Errorea gordetzerakoan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L321
 msgid "Profile saved."
 msgstr "Profila gorde egin da."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L332
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Huts egin du posta helbidea aldatzerakoan. Mesedez sar ezazu posta helbide zuzen bat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L373
 msgid "That email address already exists. Please try another."
 msgstr "Posta-e helbide hori dagoeneko erregistraturik dago. Mesedez, saia zaitez beste batekin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L419
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L422
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "Sartutako jaiotze data ezinezkoa da. Saiatu berriro."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L471
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
 msgid "Your settings have been saved."
 msgstr "Zure ezarpenak gorde egin dira."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L609
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L612
 msgid "New password cannot be empty."
 msgstr "Pasahitz berria ezin da hutsik utzi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L622
 msgid "New password has been saved."
 msgstr "Pasahitza berria gorde egin da."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L621
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L624
 msgid "An error occurred while saving."
 msgstr "Akats bat sortu da gordetzerakoan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L626
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L629
 msgid "Password error. Please try again."
 msgstr "Errorea pasahitzean. Mesedez, saia zaitez berriro."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L205
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Kontu hau 'ez aktibo' bezala ezarri da. Aurrerantzean, ezin izango duzu kontu honekin saioa hasi. Mesedez, jar zaitez harremanetan administratzailearekin huts egiterik balego."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L216
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Kontu hau spammer etiketarekin markatu da. Aurrerantzean, ezin izango duzu kontu honekin saioa hasi. Mesedez, jar zaitez harremanetan administratzailearekin huts egiterik balego."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L238
 msgid "You must fill in your username and password."
 msgstr "Bete beharrekoak: erabiltzaile izena eta pasahitza."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L246
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Ezin saioa hasi. Begiratu ondo ea Letra Larrien blokeo giltza eta zenbakien blokeo giltzak ez ote dauden piztuta. Zure pasahitza letra xeheekin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L337
 msgid "Password cannot be empty."
 msgstr "Pasahitza ezin da hutsik egon."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L348
 msgid "Wrong answer to the question."
 msgstr "Galderari erantzun okerra."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L358
 msgid "You did not accept the terms of use."
 msgstr "Ez dituzu erabiltzeko arauak onartu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L401
 msgid "Welcome to Tatoeba!"
 msgstr "Ongi etorri Tatoeba honetara!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L405
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L456
 msgid "Your new password has been sent to {email}."
 msgstr "Zure pasahitz berria horra bidali da: {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L459
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L461
 msgid "You may need to check your spam folder to find this message."
 msgstr "Agian zure spam karpetan begiratu beharko duzu mezua aurkitzeko."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L469
 msgid "There is no registered user with this email address: "
 msgstr "Ez dago e-posta helbide honekin inolako erabiltzailerik: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L491
 msgid "No user with this username: "
 msgstr "Ez dago inongo erabiltzailerik izen honekin: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L533
 msgid "No user with this ID: {id}"
 msgstr "Erabiltzailerik ez dago ID honekin: {id}"
 
@@ -931,6 +931,12 @@ msgstr "'Umezurtz' utzitako esaldiak, okertzat hartuko dira"
 msgid "Is orphan:"
 msgstr "Umezurtz dago:"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
+msgctxt "orphan"
+msgid "Any"
+msgstr "Edozein"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Onartu ez diren esaldiak, okertzat hartuko dira"
@@ -939,6 +945,12 @@ msgstr "Onartu ez diren esaldiak, okertzat hartuko dira"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
 msgstr "Ez-onartua:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
+msgctxt "unapproved"
+msgid "Any"
+msgstr "Edozein"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -971,6 +983,12 @@ msgstr "Zerrenda honi dagokio:"
 msgid "Has audio:"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L199
+msgctxt "audio"
+msgid "Any"
+msgstr "Edozein"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L79
 msgid "Translations"
@@ -997,6 +1015,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L165
 msgid "Link:"
 msgstr "Esteka:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L167
+msgctxt "link"
+msgid "Any"
+msgstr "Edozein"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L168
 msgid "Direct"
@@ -1037,6 +1060,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L233
 msgid "More search options"
 msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L242
+msgctxt "button"
+msgid "Advanced search"
+msgstr "Bilaketa aurreratua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/announcement.ctp#L55
 msgid ""
@@ -1134,35 +1162,39 @@ msgid "Contact us"
 msgstr "Jar zaitez harremanetan gurekin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L138
+msgid "Status"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L28
 msgid "Terms of use"
 msgstr "Erabiltzeko arauak"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L157
 msgid "Blog"
 msgstr "Bloga"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L59
 msgid "Twitter"
 msgstr "Twitter"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L61
 msgid "Facebook"
 msgstr "Facebook"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L193
 msgid ""
 "Our written sentences and translations can be used under the Creative "
 "Commons Attribution 2.0 license (CC-BY 2.0)."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L197
 msgid "More information"
 msgstr "Informazio gehiago"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L211
 msgid "If you love this content, please consider a <a href={}>donation</a>."
 msgstr "Gure edukiak gustuko baldin badituzu, mesedez egin <a href={}>diru-emaitza</a> bat."
 
@@ -1413,6 +1445,13 @@ msgstr "Garbitu bilaketa"
 msgid "Enter a word or a phrase"
 msgstr "Sartu hitz bat edo esaldi bat"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
+msgctxt "title"
+msgid "Advanced search"
+msgstr "Bilaketa aurreratua"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr "Aholkua: <em>=hitza</em> bilatuko du erabateko zehaztasunez <em>hitza</em>"
@@ -1649,6 +1688,11 @@ msgstr ""
 msgid "No license for offsite use"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
+msgctxt "license"
+msgid "for Tatoeba only"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr ""
@@ -1850,12 +1894,22 @@ msgstr "beste hizkuntza bat"
 msgid "All languages"
 msgstr "Hizkuntza guztiak"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L213
+msgctxt "dropdown-list"
+msgid "Unknown language"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L310
 msgid "None"
 msgstr "Bat ere ez"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L290
+msgid "Any language"
+msgstr "Edozein hizkuntza"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L327
+msgctxt "searchbar"
 msgid "Any language"
 msgstr "Edozein hizkuntza"
 
@@ -1880,6 +1934,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L316
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L317
 msgid "Add a language"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L490
+msgctxt "level"
+msgid "Unspecified"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L491
@@ -2015,6 +2074,11 @@ msgstr "OHARRA: dagoeneko existitzen diren esaldiak ere gehi ditzakezu {addToLis
 msgid "Create a new list"
 msgstr "Sortu zerrenda berri bat"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
+msgctxt "list"
+msgid "Name"
+msgstr "Izena"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
 msgid "create"
 msgstr "sortu"
@@ -2026,6 +2090,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
 msgid "Collaborative lists"
 msgstr "Auzolanean egindako zerrendak"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
+msgctxt "list"
+msgid "Unspecified"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
 msgid "Other lists"
@@ -2454,6 +2523,16 @@ msgstr ""
 msgid ""
 "This transcription may contain errors because it has been generated by a "
 "piece of software that is not perfect."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L284
+msgctxt "alternative script"
+msgid "Click to mark it as reviewed."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L290
+msgctxt "transcription"
+msgid "Click to mark it as reviewed."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L74
@@ -4094,6 +4173,12 @@ msgstr "Kargatu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L260
 msgid "Birthday"
 msgstr "Urtebetetzea"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L258
+msgctxt "user"
+msgid "Name"
+msgstr "Izena"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L259
