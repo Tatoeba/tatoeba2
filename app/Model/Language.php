@@ -66,6 +66,28 @@ class Language extends AppModel
         return $results ;
     }
 
+    /**
+     * Return stats for number of audio per language.
+     *
+     * @return array
+     */
+    public function getAudioStatistics()
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'conditions' => array('audio >' => 0),
+                'fields' => array(
+                    'code',
+                    'audio',
+                ),
+                'order' => array('audio DESC')
+            )
+        );
+
+        return $results ;
+    }
+
 
     /**
      * Return stats for number of members who speak the language in each group of

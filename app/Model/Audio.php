@@ -42,6 +42,7 @@ class Audio extends AppModel
     public $actsAs = array('Containable');
 
     public $belongsTo = array(
+        'Language',
         'Sentence',
         'User',
     );
@@ -157,23 +158,13 @@ class Audio extends AppModel
 
     public function getAudioStats()
     {
-        $key = 'audio_stats';
-        $stats = Cache::read($key);
-        if ($stats === false) {
-            $results = $this->find('all', array(
-                'contain' => array('Sentence' => array('fields' => 'lang')),
-                'fields' => array('Sentence.lang', 'COUNT(*) as total'),
-                'group' => 'Sentence.lang',
-                'order' => array('total' => 'DESC'),
-            ));
-            $stats = array();
-            foreach ($results as $result) {
-                $stats[] = array(
-                    'lang' => $result['Sentence']['lang'],
-                    'total' => $result[0]['total']
-                );
-            }
-            Cache::write($key, $stats);
+        $results = $this->Language->getAudioStatistics();
+        $stats = array();
+        foreach ($results as $result) {
+            $stats[] = array(
+                'lang' => $result['Language']['code'],
+                'total' => $result['Language']['audio']
+            );
         }
 
         return $stats;
