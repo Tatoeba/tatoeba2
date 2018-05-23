@@ -113,8 +113,8 @@ class AudioHelper extends AppHelper
         $license = $audioSettings['audio_license'];
         if (empty($license)) {
             $msg = __('You may not reuse the following audio recordings '.
-                      'outside the Tatoeba project, because {userName} did '.
-                      'not chose any license for them yet.');
+                      'outside the Tatoeba project because {userName} has '.
+                      'not chosen any license for them.');
         } elseif ($license == 'Public domain') {
             $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under the public domain.');
