@@ -313,7 +313,26 @@ class Audio extends AppModel
             $filesImported[$file['lang']]++;
             $filesImported['total']++;
         }
-
+        
         return $filesImported;
+    }
+
+    /**
+     * Update audio count.
+     *
+     * @return void
+     */
+    public function updateCount()
+    {
+        $query = "
+            UPDATE `languages` l,
+                (SELECT count(distinct sentence_id) as count, lang
+                FROM audios JOIN sentences ON audios.sentence_id = sentences.id
+                GROUP BY lang
+                ) as s
+            SET audio = s.count
+            WHERE l.code = s.lang;
+        ";
+        $this->query($query);
     }
 }
