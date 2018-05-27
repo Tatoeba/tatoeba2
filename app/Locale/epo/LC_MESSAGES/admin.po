@@ -20,48 +20,53 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "Nevalida dosiero \"{file}\" ignorita."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
+"Ne sukcesis krei la dosierujon “{dir}” por importi la dosieron “{file}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "Ne sukcesis kopii la dosieron “{file}” al dosierujo “{dir}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"Ne eblis atribui la sondosieron al “{author}” por frazo {sentenceId} en la "
+"datumbazo. Certiĝu, ke temas pri valida uzantnomo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L315
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"Dosiero “{file}” estis sukcese importita sed ne povis esti viŝita de la "
+"import-dosierujo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L25
 msgid "Import recordings"
-msgstr ""
+msgstr "Importi registraĵojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L28
 msgid "Import report"
-msgstr ""
+msgstr "Importi raporton"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L59
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "La jenaj eraroj aperis dum la importado."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L66
 msgid "Files detected"
-msgstr ""
+msgstr "Trovitaj dosieroj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L84
 msgid "File name"
-msgstr ""
+msgstr "Dosiernomo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L85
 msgid "Sentence id"
@@ -73,32 +78,32 @@ msgstr "Lingvo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L87
 msgid "Already has audio"
-msgstr ""
+msgstr "Jam havas sondosieron."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L88
 msgid "May be imported"
-msgstr ""
+msgstr "Eble grava."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L109
 msgid "N/A"
-msgstr ""
+msgstr "Ne aplikas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L103
 msgid "Invalid"
-msgstr ""
+msgstr "Nevalida"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L127
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "Neniu dosiero trovita en la import-dosierujo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L133
 msgid "Import"
-msgstr ""
+msgstr "Importi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L58
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiva"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L55
@@ -160,7 +165,7 @@ msgstr "Forigi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L52
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "Ĉu vi certas, ke vi volas forigi uzanton n-ro {number}?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L58
 msgid "List Users"
@@ -176,7 +181,7 @@ msgstr "Redakti uzanton"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L81
 msgid "Id"
-msgstr ""
+msgstr "id."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L52
@@ -204,7 +209,7 @@ msgstr "Nivelo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L98
 msgid "Send notifications"
-msgstr ""
+msgstr "Sendi avertojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L41
 msgid "Users"
