@@ -125,6 +125,14 @@ class User extends AppModel
         'sentences_per_page' => array(10, 20, 50, 100),
     );
 
+    public function beforeFind($queryData) {
+        if (is_array($queryData['order'])) {
+            $queryData['order'][] = 'User.id';
+        }
+    
+        return $queryData;
+    }
+
     public function afterFind($results, $primary = false) {
         foreach ($results as &$result) {
             if (isset($result['User']) && array_key_exists('settings', $result['User'])) {

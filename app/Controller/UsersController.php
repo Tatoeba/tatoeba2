@@ -556,8 +556,8 @@ class UsersController extends AppController
 
         $this->paginate = array(
             'limit' => 20,
-            'order' => 'group_id',
-            'fields' => array('username', 'since', 'image', 'group_id'),
+            'order' => array('group_id'),
+            'fields' => array('id', 'username', 'since', 'image', 'group_id'),
         );
 
         $users = $this->paginate(array('User.group_id < 5'));
