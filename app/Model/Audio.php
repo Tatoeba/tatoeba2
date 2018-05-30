@@ -42,7 +42,6 @@ class Audio extends AppModel
     public $actsAs = array('Containable');
 
     public $belongsTo = array(
-        'Language',
         'Sentence',
         'User',
     );
@@ -154,20 +153,6 @@ class Audio extends AppModel
         return $this->find('count', array(
             'conditions' => array('user_id' => $userId),
         ));
-    }
-
-    public function getAudioStats()
-    {
-        $results = $this->Language->getAudioStatistics();
-        $stats = array();
-        foreach ($results as $result) {
-            $stats[] = array(
-                'lang' => $result['Language']['code'],
-                'total' => $result['Language']['audio']
-            );
-        }
-
-        return $stats;
     }
 
     public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {

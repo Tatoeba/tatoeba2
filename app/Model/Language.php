@@ -71,7 +71,7 @@ class Language extends AppModel
      *
      * @return array
      */
-    public function getAudioStatistics()
+    public function getAudioStats()
     {
         $results = $this->find(
             'all',
@@ -85,7 +85,15 @@ class Language extends AppModel
             )
         );
 
-        return $results ;
+        $stats = array();
+        foreach ($results as $result) {
+            $stats[] = array(
+                'lang' => $result['Language']['code'],
+                'total' => $result['Language']['audio']
+            );
+        }
+
+        return $stats;
     }
 
 

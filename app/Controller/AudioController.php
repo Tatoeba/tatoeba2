@@ -22,6 +22,7 @@ class AudioController extends AppController
     public $name = 'Audio';
 
     public $uses = array(
+        'Language',
         'Audio',
         'User',
         'CurrentUser'
@@ -80,7 +81,7 @@ class AudioController extends AppController
         }
         $sentencesWithAudio = $this->paginate('Audio', $conditions);
         $this->set(compact('sentencesWithAudio'));
-        $this->set(array('stats' => $this->Audio->getAudioStats()));
+        $this->set(array('stats' => $this->Language->getAudioStats()));
         $this->set('lang', $lang);
     }
 
