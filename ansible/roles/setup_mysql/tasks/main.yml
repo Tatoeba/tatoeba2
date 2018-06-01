@@ -62,6 +62,7 @@
     name: "{{ mysql_user }}"
     password: "{{ mysql_password }}"
     priv: "*.*:FILE"
+    append_privs: yes
     state: present
   when: mysql_user != "root"
 
@@ -89,5 +90,6 @@
     name: "{{ mysql_test_user }}"
     password: "{{ mysql_test_password }}"
     priv: "*.*:FILE"
+    append_privs: yes
     state: present
   when: mysql_test_user != "root"
