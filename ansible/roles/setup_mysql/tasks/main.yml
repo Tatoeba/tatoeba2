@@ -80,6 +80,7 @@
     name: "{{ mysql_test_user }}"
     password: "{{ mysql_test_password }}"
     priv: "{{ mysql_test_db_name }}.*:ALL,GRANT"
+    append_privs: yes
     state: present
   when: mysql_test_user != "root"
 
