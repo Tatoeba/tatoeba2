@@ -51,18 +51,7 @@
     login_password: "{{ mysql_root_password }}"
     name: "{{ mysql_user }}"
     password: "{{ mysql_password }}"
-    priv: "{{ mysql_db_name }}.*:ALL"
-    state: present
-  when: mysql_user != "root"
-
-- name: Give FILE privileges to the mysql_user
-  mysql_user:
-    login_user: root
-    login_password: "{{ mysql_root_password }}"
-    name: "{{ mysql_user }}"
-    password: "{{ mysql_password }}"
-    priv: "*.*:FILE"
-    append_privs: yes
+    priv: "{{ mysql_db_name }}.*:ALL/*.*:FILE"
     state: present
   when: mysql_user != "root"
 
@@ -79,18 +68,7 @@
     login_password: "{{ mysql_root_password }}"
     name: "{{ mysql_test_user }}"
     password: "{{ mysql_test_password }}"
-    priv: "{{ mysql_test_db_name }}.*:ALL"
-    append_privs: yes
-    state: present
-  when: mysql_test_user != "root"
-
-- name: Give FILE privileges to the mysql_test_user
-  mysql_user:
-    login_user: root
-    login_password: "{{ mysql_root_password }}"
-    name: "{{ mysql_test_user }}"
-    password: "{{ mysql_test_password }}"
-    priv: "*.*:FILE"
+    priv: "{{ mysql_test_db_name }}.*:ALL/*.*:FILE"
     append_privs: yes
     state: present
   when: mysql_test_user != "root"
