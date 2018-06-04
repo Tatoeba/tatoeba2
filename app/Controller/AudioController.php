@@ -22,8 +22,8 @@ class AudioController extends AppController
     public $name = 'Audio';
 
     public $uses = array(
-        'Language',
         'Audio',
+        'Language',
         'User',
         'CurrentUser'
     );
