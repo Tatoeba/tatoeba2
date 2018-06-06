@@ -1,24 +1,51 @@
 <?php
-/* SVN FILE: $Id$ */
-/* UsersController Test cases generated on: 2008-11-12 01:11:55 : 1226448115*/
 App::import('Controller', 'Users');
 
-class TestUsers extends UsersController {
-	public $autoRender = false;
-}
-
-class UsersControllerTest extends CakeTestCase {
-	public $Users = null;
+class UsersControllerTest extends ControllerTestCase {
+	public $fixtures = array(
+		'app.sentence',
+		'app.user',
+		'app.group',
+	);
 
 	function setUp() {
-		$this->Users = new TestUsers();
-	}
-
-	function testUsersControllerInstance() {
-		$this->assertTrue(is_a($this->Users, 'UsersController'));
+		Configure::write('Security.salt', 'ze@9422#5dS?!99xx');
 	}
 
 	function tearDown() {
-		unset($this->Users);
+		$this->controller->Auth->Session->destroy();
+	}
+
+	function testCheckLogin_correctLoginAndPassword() {
+		$this->testAction('/users/check_login', array(
+			'data' => array('User' => array(
+				'username' => 'contributor',
+				'password' => '123456',
+				'rememberMe' => 0,
+			))
+		));
+		$this->assertTrue($this->controller->Auth->loggedIn());
+	}
+
+	function testCheckLogin_correctLoginAndincorrectPassword() {
+		$this->testAction('/users/check_login', array(
+			'data' => array('User' => array(
+				'username' => 'contributor',
+				'password' => 'this_is_incorrect',
+				'rememberMe' => 0,
+			))
+		));
+		$this->assertFalse($this->controller->Auth->loggedIn());
+	}
+
+	function testCheckLogin_incorrectLoginAndPassword() {
+		$this->testAction('/users/check_login', array(
+			'data' => array('User' => array(
+				'username' => 'this_user_does_not_exist',
+				'password' => 'this_is_incorrect',
+				'rememberMe' => 0,
+			))
+		));
+		$this->assertFalse($this->controller->Auth->loggedIn());
 	}
 }
