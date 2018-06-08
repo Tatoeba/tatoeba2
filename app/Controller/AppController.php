@@ -44,7 +44,11 @@ class AppController extends Controller
 {
     public $components = array(
         'Acl',
-        'Auth',
+        'Auth' => array(
+		'authenticate' => array(
+			'Form' => array('passwordHasher' => 'Versioned')
+		)
+	),
         'Flash',
         'Permissions',
         'RememberMe',
