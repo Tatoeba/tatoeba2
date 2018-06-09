@@ -81,4 +81,18 @@ class UsersControllerTest extends ControllerTestCase {
 		));
 		$this->assertFalse($this->controller->Auth->loggedIn());
 	}
+
+	function testCheckLogin_cannotRegisterWithEmptyPassword() {
+		$this->testAction('/users/register', array(
+			'data' => array('User' => array(
+				'username' => 'polochon',
+				'password' => '',
+				'language' => 'none',
+				'acceptation_terms_of_use' => '1',
+				'email' => 'polochon@example.net',
+				'quiz' => 'poloc',
+			))
+		));
+		$this->assertFalse($this->controller->Auth->loggedIn());
+	}
 }

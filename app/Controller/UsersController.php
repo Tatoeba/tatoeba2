@@ -329,10 +329,7 @@ class UsersController extends AppController
         }
 
         // Password is empty
-        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
-        if ($this->request->data['User']['password'] == ''
-            || $this->request->data['User']['password'] == $emptyPasswordMd5
-        ) {
+        if ($this->request->data['User']['password'] == '') {
             $this->Session->setFlash(
                 __('Password cannot be empty.')
             );
