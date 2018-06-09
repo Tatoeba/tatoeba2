@@ -127,7 +127,6 @@ class AppController extends Controller
      */
     public function beforeFilter()
     {
-        Security::setHash('md5');
         // only prevent CSRF for logins and registration in the users controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
