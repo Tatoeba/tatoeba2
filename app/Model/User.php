@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('VersionedPasswordHasher', 'Controller/Component/Auth');
+
 /**
  * Model for users.
  *
@@ -150,6 +152,12 @@ class User extends AppModel
     }
 
     public function beforeSave($options = array()) {
+        if (isset($this->data['User']['password'])) {
+            $passwordHasher = new VersionedPasswordHasher();
+            $this->data['User']['password'] = $passwordHasher->hash(
+                $this->data['User']['password']
+            );
+        }
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
             $settings = $this->field('settings', array('id' => $this->id));
