@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 13:41+0000\n"
-"PO-Revision-Date: 2018-05-16 13:47+0000\n"
-"Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
+"POT-Creation-Date: 2018-05-27 15:29+0000\n"
+"PO-Revision-Date: 2018-05-27 15:55+0000\n"
+"Last-Translator: Trang\n"
 "Language-Team: German (http://www.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,11 +41,11 @@ msgstr "Es existiert kein Benutzer mit dem Namen {username}"
 msgid "You need to be logged in."
 msgstr "Du musst angemeldet sein."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L111
 msgid "Your audio settings have been saved."
 msgstr "Audioeinstellungen gespeichert."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L545
 msgid ""
@@ -544,7 +544,6 @@ msgstr "Wenn bei der Adoption eines Satzes nicht deiner, sondern der Name eines 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L99
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L91
 msgid "Improve sentences"
 msgstr "Sätze verbessern"
 
@@ -628,7 +627,6 @@ msgstr "Wenn ein problematischer Satz berichtigt wurde und du dir sicher bist, d
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L82
 msgid "Translate sentences"
 msgstr "Sätze übersetzen"
 
@@ -1218,8 +1216,6 @@ msgstr "Denn je mehr mitmachen, desto nützlicher wird Tatoeba! Durch deine Mita
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L44
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L74
@@ -1545,23 +1541,19 @@ msgid "Browse audio"
 msgstr "Audiodateien durchsuchen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L70
 msgid "Contribute"
 msgstr "Mitarbeiten"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "Sätze hinzufügen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L86
 msgid "Adopt sentences"
 msgstr "Sätze adoptieren"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L95
 msgid "Discuss sentences"
 msgstr "Sätze diskutieren"
 
@@ -1706,9 +1698,9 @@ msgstr "Lizenz: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
 msgid ""
-"You may not reuse the following audio recordings outside the Tatoeba "
-"project, because {userName} did not chose any license for them yet."
-msgstr "Da noch keine Lizenz festgelegt wurde, dürfen die folgenden Audiobeiträge von {userName} außerhalb des Tatoebaprojektes nicht verwendet werden."
+"You may not reuse the following audio recordings outside the Tatoeba project"
+" because {userName} has not chosen any license for them."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
@@ -2624,64 +2616,6 @@ msgid ""
 "with IRC, you can read the <a href=\"{}\">Help</a>."
 msgstr "Zudem haben wir einen IRC-Kanal auf freenode, #tatoeba. Wenn du nicht weißt, worum es sich bei IRC handelt, so findest du <a href=\"{}\">hier</a> eine Anleitung."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L28
-msgid "How to contribute"
-msgstr "Wie man mitarbeiten kann"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L38
-msgid "If you are interested, please register."
-msgstr "Wenn du Interesse hast, registriere dich!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L51
-msgid "Important to read"
-msgstr "Bitte lesen"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L55
-msgid "Guide to being a good contributor"
-msgstr "Leitfaden für den guten Mitarbeiter"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L61
-msgid "Reliability of the sentences"
-msgstr "Zuverlässigkeit der Sätze"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L114
-msgid "How can you contribute?"
-msgstr "Wie kann man mitarbeiten?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L118
-msgid ""
-"Tatoeba is primarily about collecting sentences and translating them into "
-"many, many languages. So one obvious thing you can do to contribute is to "
-"<strong>translate sentences</strong>."
-msgstr "Der Ziel des Tatoeba-Projektes ist es, Sätze zu sammeln und diese in möglichst viele Sprache zu übersetzen. Eine wichtige Form der Mitarbeit ist also die <strong>Übersetzung</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L128
-msgid ""
-"But you don't have to be a polyglot in order to contribute! You can help us "
-"a lot simply by <strong>checking sentences</strong> and <strong>reporting "
-"mistakes</strong>. This is something everyone can do!"
-msgstr "Aber du musst kein Sprachgenie sein, um mitzumachen! Du hilfst uns auch sehr, wenn du <strong>Sätze überprüfst</strong> und <strong>Fehler meldest</strong>. Das kann jeder tun!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L138
-msgid ""
-"If you have a good microphone, you can also bring more audio to Tatoeba by "
-"<strong>recording sentences</strong>."
-msgstr "Wenn du ein gutes Mikrofon hast, kannst du auch <strong>Sätze aufnehmen</strong> und die Audiodateien beitragen."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L147
-msgid ""
-"You can help us promote the project. <strong>Tell people around you</strong>"
-" that Tatoeba exists. This is a very ambitious project, so we will need as "
-"much help as possible."
-msgstr "Du kannst uns helfen, für Tatoeba zu werben. <strong>Erzähle Freunden und Bekannten</strong> von uns! Es ist ein sehr ehrgeiziges Projekt; daher brauchen wir alle Hilfe, die wir kriegen können!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L157
-msgid ""
-"And finally, you can <strong>join the team</strong>. You can help us code "
-"new features, improve usability, debug, optimize, keep the site secure, and "
-"more."
-msgstr "Schließlich kannst du dich auch <strong>an der Entwicklung beteiligen</strong>. Du kannst uns helfen, neue Funktionalitäten zu erstellen, die Benutzer- und Behindertenfreundlichkeit zu steigern, Fehler zu beseitigen, Sicherheitslücken zu stopfen und generell alles zu verbessern."
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Spenden"
@@ -2972,7 +2906,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Beinhaltet das Äquivalent der \"B-Linien\" in der Tanaka-Korpusdatei von Jim Breen. Siehe <a href=\"{url}\">this page</a> für das Format. Jeder Eintrag entspricht einem englisch-japanischen Satzpaar. {sentenceId} ist die Nummer des japanischen Satzes, {meaningId} diejenige des englischen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L436
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -2980,20 +2914,20 @@ msgid ""
 "reuse the audio outside the Tatoeba project."
 msgstr "Enthält die Nummern sämtlicher vertonter Sätze. Die anderen Felder geben den Urheber der Vertonung, deren Lizenz sowie eine Adresse zur Namensnennung an. Ist keine Lizenz angegeben, so darf die Vertonung außerhalb von Tatoeba nicht verwendet werden."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L449
 msgid "User skill level per language"
 msgstr "Benutzerqualifikationsniveau pro Sprache"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L471
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Zeigt das selbstberichtete Qualifikationsniveau der Mitglieder in einzelnen Sprachen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L478
 msgid "Users' sentence ratings"
 msgstr "Bewertete Sätze"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L506
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "

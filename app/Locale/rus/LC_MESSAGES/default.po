@@ -5,6 +5,7 @@
 # Translators:
 # Dmitry K, 2014
 # Dmitry K, 2014-2018
+# Dmytro Kushnariov <rabina@insiberia.net>, 2018
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Igor Aleksandrovich Ivanov <tovarishivanov1917@mail.ru>, 2014
 # Nikolay Korotkiy <sikmir@gmail.com>, 2016
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 13:41+0000\n"
-"PO-Revision-Date: 2018-05-16 17:08+0000\n"
-"Last-Translator: Dmitry K\n"
+"POT-Creation-Date: 2018-05-27 15:29+0000\n"
+"PO-Revision-Date: 2018-06-02 19:51+0000\n"
+"Last-Translator: Dmytro Kushnariov <rabina@insiberia.net>\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,11 +41,11 @@ msgstr "Пользователя {username} не существует"
 msgid "You need to be logged in."
 msgstr "Вы должны войти."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L111
 msgid "Your audio settings have been saved."
 msgstr "Настройки аудио сохранены."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L545
 msgid ""
@@ -188,7 +189,7 @@ msgstr "«принадлежит самоидентифицированному 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L684
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr "«перевод никому не принадлежит», так как указан «владелец перевода»"
+msgstr "«перевод без владельца», так как указан «владелец перевода»"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
@@ -201,7 +202,7 @@ msgstr "«владелец перевода», так как имя «{username}
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L734
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr "«предложение никому не принадлежит», так как указан «владелец предложения»"
+msgstr "«предложение без владельца», так как указан «владелец предложения»"
 
 #. @translators: This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
@@ -553,7 +554,6 @@ msgstr "Если после того, как вы присвоили предл�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L99
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L91
 msgid "Improve sentences"
 msgstr "Совершенствовать предложения"
 
@@ -637,7 +637,6 @@ msgstr "Как только проблемы с сомнительным пре�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L82
 msgid "Translate sentences"
 msgstr "Перевод предложений"
 
@@ -943,7 +942,7 @@ msgstr "Предложения без владельца, возможно, со
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L179
 msgid "Is orphan:"
-msgstr "Не имеет владельца:"
+msgstr "Без владельца:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
@@ -958,7 +957,7 @@ msgstr "Неодобренные предложения, возможно, со�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
-msgstr "Не одобрено:"
+msgstr "Неодобренные:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
@@ -1233,8 +1232,6 @@ msgstr "Чем больше будет участников, тем полезн
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L44
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L74
@@ -1564,23 +1561,19 @@ msgid "Browse audio"
 msgstr "Обзор аудио"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L70
 msgid "Contribute"
 msgstr "Участвовать"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "Добавить предложение"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L86
 msgid "Adopt sentences"
 msgstr "Присвоить предложение"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L95
 msgid "Discuss sentences"
 msgstr "Обсуждение предложений"
 
@@ -1725,9 +1718,9 @@ msgstr "Лицензия: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
 msgid ""
-"You may not reuse the following audio recordings outside the Tatoeba "
-"project, because {userName} did not chose any license for them yet."
-msgstr "Вы не можете повторно использовать следующие аудиозаписи вне проекта Tatoeba, так как пользователь {userName} пока не выбрал для них лицензию."
+"You may not reuse the following audio recordings outside the Tatoeba project"
+" because {userName} has not chosen any license for them."
+msgstr "Вы не можете использовать следующие аудиозаписи за пределами проекта Tatoeba, так как пользователь {userName} не выбрал для них лицензию."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
@@ -2653,64 +2646,6 @@ msgid ""
 "with IRC, you can read the <a href=\"{}\">Help</a>."
 msgstr "У нас также есть IRC-канал #tatoeba в сети freenode. Если вы не знакомы с IRC, можете почитать <a href=\"{}\">справку</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L28
-msgid "How to contribute"
-msgstr "Как добавить предложения"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L38
-msgid "If you are interested, please register."
-msgstr "Если вы заинтересовались, зарегистрируйтесь."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L51
-msgid "Important to read"
-msgstr "Это важно"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L55
-msgid "Guide to being a good contributor"
-msgstr "Как быть хорошим участником"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L61
-msgid "Reliability of the sentences"
-msgstr "Качество перевода"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L114
-msgid "How can you contribute?"
-msgstr "Как вы можете сделать свой вклад?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L118
-msgid ""
-"Tatoeba is primarily about collecting sentences and translating them into "
-"many, many languages. So one obvious thing you can do to contribute is to "
-"<strong>translate sentences</strong>."
-msgstr "Проект Tatoeba предлагает собирать предложения и переводить их на многие и многие языки. Так что первая очевидная вещь, которую вы можете сделать, — это <strong>перевод</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L128
-msgid ""
-"But you don't have to be a polyglot in order to contribute! You can help us "
-"a lot simply by <strong>checking sentences</strong> and <strong>reporting "
-"mistakes</strong>. This is something everyone can do!"
-msgstr "Но вам не нужно быть полиглотом, чтобы вносить свой вклад! Вы очень поможете нам, просто <strong>добавляя предложения</strong> и <strong>указывая на ошибки</strong>. Это то, что может делать каждый!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L138
-msgid ""
-"If you have a good microphone, you can also bring more audio to Tatoeba by "
-"<strong>recording sentences</strong>."
-msgstr "А если у вас есть хороший микрофон, можете <strong>записать звучание</strong> предложений!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L147
-msgid ""
-"You can help us promote the project. <strong>Tell people around you</strong>"
-" that Tatoeba exists. This is a very ambitious project, so we will need as "
-"much help as possible."
-msgstr "Вы можете помочь нам в продвижении проекта. <strong>Расскажите тем, кто Вас окружает</strong>, о его существовании. Проект Tatoeba очень масштабный, поэтому мы будем рады всем, кто готов помочь."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L157
-msgid ""
-"And finally, you can <strong>join the team</strong>. You can help us code "
-"new features, improve usability, debug, optimize, keep the site secure, and "
-"more."
-msgstr "И, наконец, вы можете <strong>присоединиться к команде</strong>, чтобы помочь нам реализовывать новые возможности, улучшать интерфейс, отлаживать и оптимизировать код, обеспечивать безопасность и т.д."
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Пожертвования"
@@ -3001,7 +2936,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Содержит эквиваленты так называемых «B lines» корпуса Танаки, распространяемых Джимом Брином. С форматом можно ознакомиться на <a href=\"{url}\">этой странице</a>. Каждая запись ассоциирована с японско-английской парой предложений. {sentenceId} ссылается на идентификатор японского предложения, а {meaningId} — на идентификатор английского."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L436
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -3009,20 +2944,20 @@ msgid ""
 "reuse the audio outside the Tatoeba project."
 msgstr "Содержит идентификаторы предложений, для которых доступно аудио. Другие поля показывают, кто записал аудио, лицензию и ссылку, с помощью которой можно сослаться на автора. Если поле лицензии пусто, вы не можете повторно использовать данное аудио вне проекта Tatoeba."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L449
 msgid "User skill level per language"
 msgstr "Уровень владения языками"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L471
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Содержит данные об уровнях владения языками, указанными пользователями в профилях."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L478
 msgid "Users' sentence ratings"
 msgstr "Пользовательские рейтинги предложений"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L506
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "

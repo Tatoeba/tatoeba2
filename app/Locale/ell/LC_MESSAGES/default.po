@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 13:41+0000\n"
-"PO-Revision-Date: 2018-05-16 13:47+0000\n"
-"Last-Translator: Nikos Papadimoulis <glavkos@gmail.com>\n"
+"POT-Creation-Date: 2018-05-27 15:29+0000\n"
+"PO-Revision-Date: 2018-05-27 15:55+0000\n"
+"Last-Translator: Trang\n"
 "Language-Team: Greek (http://www.transifex.com/tatoeba/tatoeba_website/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,11 +42,11 @@ msgstr "Δεν υπάρχει χρήστης που να ονομάζεται {u
 msgid "You need to be logged in."
 msgstr "Χρειάζεται να συνδεθείτε."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L111
 msgid "Your audio settings have been saved."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L545
 msgid ""
@@ -545,7 +545,6 @@ msgstr "Αν δείτε ένα άλλο όνομα χρήστη αφού υιο�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L99
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L91
 msgid "Improve sentences"
 msgstr "Βελτίωση φράσεων"
 
@@ -629,7 +628,6 @@ msgstr "Μόλις έχει αντιμετωπιστεί μια προβλημα
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L82
 msgid "Translate sentences"
 msgstr "Μετάφραση φράσεων"
 
@@ -1219,8 +1217,6 @@ msgstr "Όσο περισσότεροι συνεισφέροντες υπάρχ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L44
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L74
@@ -1546,23 +1542,19 @@ msgid "Browse audio"
 msgstr "Εξερεύνηση ηχητικών αρχείων"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L70
 msgid "Contribute"
 msgstr "Συνεισφέρετε"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "Προσθήκη φράσεων"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L86
 msgid "Adopt sentences"
 msgstr "Υιοθέτηση φράσεων"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L95
 msgid "Discuss sentences"
 msgstr "Συζήτηση φράσεων"
 
@@ -1707,8 +1699,8 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
 msgid ""
-"You may not reuse the following audio recordings outside the Tatoeba "
-"project, because {userName} did not chose any license for them yet."
+"You may not reuse the following audio recordings outside the Tatoeba project"
+" because {userName} has not chosen any license for them."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
@@ -2625,64 +2617,6 @@ msgid ""
 "with IRC, you can read the <a href=\"{}\">Help</a>."
 msgstr "Έχουμε επίσης   κανάλι στο IRC στο freenode , το  #tatoeba. Αν δεν είστε εξοικειωμένος με το IRC μπορείτε να διαβάσετε τη <a href=\"{}\">Βοήθεια</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L28
-msgid "How to contribute"
-msgstr "Πως να συνεισφέρετε"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L38
-msgid "If you are interested, please register."
-msgstr "Εάν ενδιαφέρεστε, παρακαλούμε να εγγραφείτε."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L51
-msgid "Important to read"
-msgstr "Σημαντικό να διαβάσετε"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L55
-msgid "Guide to being a good contributor"
-msgstr "Οδηγός του καλού συντάκτη"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L61
-msgid "Reliability of the sentences"
-msgstr "Αξιοπιστία των φράσεων"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L114
-msgid "How can you contribute?"
-msgstr "Πως μπορείτε να συνεισφέρετε;"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L118
-msgid ""
-"Tatoeba is primarily about collecting sentences and translating them into "
-"many, many languages. So one obvious thing you can do to contribute is to "
-"<strong>translate sentences</strong>."
-msgstr "Η Tatoebe έχει να κάνει με τη συλλογή φράσεων και την μετάφρασή τους σε πολλές πολλές γλώσσες. Έτσι κάτι που προφανώς μπορείτε να κάνετε για να συνεισφέρετε είναι να  <strong>μεταφράσετε φράσεις</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L128
-msgid ""
-"But you don't have to be a polyglot in order to contribute! You can help us "
-"a lot simply by <strong>checking sentences</strong> and <strong>reporting "
-"mistakes</strong>. This is something everyone can do!"
-msgstr "Αλλά δεν χρειάζεται να είστε πολύγλωσσος προκειμένου να συνεισφέρετε! Μπορείτε να μας βοηθήσετε αρκετά απλά  <strong>ελέγχοντας φράσεις</strong> και  and <strong>αναφέροντας σφάλματα</strong>. Αυτό είναι κάτι που ο καθένας μπορεί να κάνει!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L138
-msgid ""
-"If you have a good microphone, you can also bring more audio to Tatoeba by "
-"<strong>recording sentences</strong>."
-msgstr "Αν έχεις ένα καλό μικρόφωνο, μπορείς επίσης να φέρεις περισσότερο ήχο στο Tatoeba με την <strong>ηχογράφηση φράσεων</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L147
-msgid ""
-"You can help us promote the project. <strong>Tell people around you</strong>"
-" that Tatoeba exists. This is a very ambitious project, so we will need as "
-"much help as possible."
-msgstr "Μπορείτε να μας βοηθήσετε να προωθήσουμε το εγχείρημα. <strong>Πείτε στους ανθρώπους γύρω σας</strong> ότι το  Tatoeba υπάρχει.  Αυτό είναι ένα πολύ φιλόδοξο εγχείρημα  και θα χρειαστούμε όσο το δυνατόν μεγαλύτερη βοήθεια."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L157
-msgid ""
-"And finally, you can <strong>join the team</strong>. You can help us code "
-"new features, improve usability, debug, optimize, keep the site secure, and "
-"more."
-msgstr "Και σε τελική ανάλυση, μορείτε να  <strong>μπείτε στην ομάδα </strong>. Μπορείτε να μας βοηθήσετε με κώδικα για νέα χαρακτηριστικά,  βελτίωση χρηστικότητας, αποσφαλμάτωσης, βελτιστοποίησης,  διαφάλιση ότι δεν υπάρχουν ελαττώματα ασφαλείας, κλπ."
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Δωρεά"
@@ -2973,7 +2907,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Περιέχει το ισοδύναμο των «γραμμών Β» στο αρχείο Tanaka Corpus που διανέμεται από τον Jim Breen. Δείτε <a href=\"{url}\">αυτή τη σελίδα</a> για την μορφή. Κάθε είσοδος συνδέεται με ένα ζευγάρι των ιαπωνικών/αγγλικων προτάσεων. {sentenceId} αναφέρεται στην ταυτότητα της ιαπωνικής πρότασης. {meaningId} σημαίνει οτι αναφέρεται στην ταυτότητα της αγγλικής φράσης."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L436
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -2981,20 +2915,20 @@ msgid ""
 "reuse the audio outside the Tatoeba project."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L449
 msgid "User skill level per language"
 msgstr "Επίπεδο εμπειρίας του χρήστη, ανά γλώσσα"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L471
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Υποδεικνύει τα αυτο-αναφερόμενα επίπεδα εμπειρίας των μελών σε επιμέρους γλώσσες."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L478
 msgid "Users' sentence ratings"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L506
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "

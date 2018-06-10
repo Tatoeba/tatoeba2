@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 13:41+0000\n"
-"PO-Revision-Date: 2018-05-16 16:50+0000\n"
+"POT-Creation-Date: 2018-05-27 15:29+0000\n"
+"PO-Revision-Date: 2018-05-28 06:48+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -38,11 +38,11 @@ msgstr "N'eus implijer ebet anvet {username}"
 msgid "You need to be logged in."
 msgstr "Ezhomm ho peus da vezañ kevreet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L111
 msgid "Your audio settings have been saved."
 msgstr "Enrollet eo bet hoc'h arventennoù aodio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L545
 msgid ""
@@ -556,7 +556,6 @@ msgstr "Ma vez gwelet ganeoc'h un anv-implijer o tont war-wel goude bezañ bet a
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L99
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L91
 msgid "Improve sentences"
 msgstr "Gwellaat ar frazennoù"
 
@@ -640,7 +639,6 @@ msgstr "Ur wech m'eo bet abourzhet ur frazenn gudennek, lakait al liketenn {tagO
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L82
 msgid "Translate sentences"
 msgstr "Treiñ frazennoù"
 
@@ -1239,8 +1237,6 @@ msgstr "Seul vuioc'h a zegaserien a vo, seul dalvoudusoc'h e teuio da vezañ Tat
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L44
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L74
@@ -1572,23 +1568,19 @@ msgid "Browse audio"
 msgstr "Diskouez an aodio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L70
 msgid "Contribute"
 msgstr "Kemer-perzh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "Ouzhpennañ frazennoù"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L86
 msgid "Adopt sentences"
 msgstr "Advabañ frazennoù"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L95
 msgid "Discuss sentences"
 msgstr "Komz eus ar frazennoù"
 
@@ -1733,9 +1725,9 @@ msgstr "Lisañs: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
 msgid ""
-"You may not reuse the following audio recordings outside the Tatoeba "
-"project, because {userName} did not chose any license for them yet."
-msgstr "Ne c'hallit ket adimplij an enrolladennoù da-heul en diavaez eus ar raktres Tatoeba, dre ma n'en deus ket dibabet {userName} aotre-implijout ebet evito evit ar mare."
+"You may not reuse the following audio recordings outside the Tatoeba project"
+" because {userName} has not chosen any license for them."
+msgstr "Ne c'hallit ket adimplij an enrolladennoù da-heul en diavaez eus ar raktres Tatoeba, dre ma n'en deus dibabet {userName} aotre-implijout ebet evito evit ar mare."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
@@ -2666,64 +2658,6 @@ msgid ""
 "with IRC, you can read the <a href=\"{}\">Help</a>."
 msgstr "Bez hon eus ivez ur chadenn IRC war freenode, #tatoeba. Ma n'hoc'h ket kustumet gant IRC, gellout a reoc'h lenn ar <a href=\"{}\">Skoazell</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L28
-msgid "How to contribute"
-msgstr "Penaos kemer-perzh"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L38
-msgid "If you are interested, please register."
-msgstr "Ma 'z oc'h intereset, en em enskrivit mar plij."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L51
-msgid "Important to read"
-msgstr "Da lenn"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L55
-msgid "Guide to being a good contributor"
-msgstr "An hentenn da vezañ ur c'henlabourer a zoare"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L61
-msgid "Reliability of the sentences"
-msgstr "Fiziusted ar frazennoù"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L114
-msgid "How can you contribute?"
-msgstr "Penaos e c'hallit kemer-perzh?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L118
-msgid ""
-"Tatoeba is primarily about collecting sentences and translating them into "
-"many, many languages. So one obvious thing you can do to contribute is to "
-"<strong>translate sentences</strong>."
-msgstr "Tatoeba a zo da gentañ-penn troet war-zu an dastum frazennoù ha treiñ anezho en ur bern, bern yezhoù. Neuze un dra anat a c'hellit ober evit kemeret perzh a zo <strong>treiñ frazennoù</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L128
-msgid ""
-"But you don't have to be a polyglot in order to contribute! You can help us "
-"a lot simply by <strong>checking sentences</strong> and <strong>reporting "
-"mistakes</strong>. This is something everyone can do!"
-msgstr "Met n'ho peus ket da vezañ un den barrek da gomz meur a yezh a-benn reiñ an dorn! Gellout a rit reiñ deomp kalz a skoazell en ur <strong>reizhañ frazennoù</strong> ken simpl ha tra ha <strong>kemenniñ ez eus fazioù</strong>. Kement hini 'zo a c'hall ober al labour-mañ!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L138
-msgid ""
-"If you have a good microphone, you can also bring more audio to Tatoeba by "
-"<strong>recording sentences</strong>."
-msgstr "M'ho peus ur mikro a zoare, gellout a rit kas muioc'h a aodio-où war Tatoeba en ur <strong>enrollañ frazennoù</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L147
-msgid ""
-"You can help us promote the project. <strong>Tell people around you</strong>"
-" that Tatoeba exists. This is a very ambitious project, so we will need as "
-"much help as possible."
-msgstr "Gellout a rit reiñ an dorn deomp da lakaat brud war hor raktres. <strong>Lavarit tro-dro deoc'h</strong> ez eus eus Tatoeba. Ur raktres c'hoantaus-kenañ eo, ezhomm hor bo skoazell ar muiañ ha ma vo tu."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L157
-msgid ""
-"And finally, you can <strong>join the team</strong>. You can help us code "
-"new features, improve usability, debug, optimize, keep the site secure, and "
-"more."
-msgstr "Hag er fin, gellout a rit <strong>emezelañ er skipailh</strong>. Gellout a rit reiñ an dorn da godiñ arc'hweladurioù nevez, gwellaat ar bouraplded, divugiñ, gwellaat, derc'hel war surentez al lec'hienn, ha muioc'h c'hoazh."
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Reiñ arc'hant"
@@ -3014,7 +2948,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Enderc'hel a ra kevatalderioù eus al «linennoù B» er restr Tanaka Corpus roet gant Jim Breen. Gwelet <a href=\"{url}\">ar bajenn-mañ</a> evit ar stumm. Pep antre a vez kevreded gant ur re frazennoù japanek/saoznek. {sentenceId} a vuk war ID ar frazenn japanek. {meaningId} a vuk war ID ar frazenn Saoznek."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L436
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -3022,20 +2956,20 @@ msgid ""
 "reuse the audio outside the Tatoeba project."
 msgstr "A ebarzh id-ioù ar frazennoù, en holl yezhoù, a zo an aodio ganto. Maeziennoù all a c'hall spisaat gant piv eo bet enrollet an aodio, al lisañs hag un URL da dereiñ an aozer. M'eo goullo ar vaezienn, ne c'hallit ket adimplijout an aodio en diavaez eus ar raktres Tatoeba."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L449
 msgid "User skill level per language"
 msgstr "Live mestroniañ an implijer dre yezh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L471
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Diskouez a ra liveoù an izili em-ziskleriet e-barzh yezhoù disheñvel."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L478
 msgid "Users' sentence ratings"
 msgstr "Notennoù frazennoù an implijerien"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L506
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
