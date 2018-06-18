@@ -186,7 +186,8 @@ class CommentsHelper extends AppHelper
                 array(
                     "controller" => "sentences",
                     "action" => "show",
-                    $message['sentence_id']."#comment-".$message['id']
+                    $message['sentence_id'],
+                    "#" => "comment-".$message['id'],
                 )
             );
             ?>
