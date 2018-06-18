@@ -53,11 +53,6 @@ $sentenceUrl = $this->Html->url(array(
     'action' => 'show',
     $sentenceId
 ));
-$replyUrl = $this->Html->url(array(
-    'controller' => 'sentences',
-    'action' => 'show',
-    $sentenceId.'#comment-'.$commentId
-));
 if (empty($modifiedDate) || $createdDate == $modifiedDate) {
     $dateLabel = $this->Date->ago($createdDate);
     $fullDateLabel = $createdDate;
