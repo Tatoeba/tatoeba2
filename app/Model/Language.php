@@ -34,6 +34,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::uses('Sanitize', 'Utility');
+
 class Language extends AppModel
 {
     public $name = 'Language';
