@@ -4,17 +4,25 @@ class SentenceFixture extends CakeTestFixture {
 	public $name = 'Sentence';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
+		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'unsigned' => false, 'key' => 'primary'),
 		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 1500),
-		'correctness' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2),
-		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
+		'correctness' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2, 'unsigned' => false),
+		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false, 'key' => 'index'),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL, 'key' => 'index'),
-		'dico_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
+		'dico_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false, 'key' => 'index'),
 		'script' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'hash' => array('type' => 'binary', 'null' => false, 'default' => NULL, 'length' => 16, 'key' => 'index'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'dico_id' => array('column' => 'dico_id', 'unique' => 0), 'lang' => array('column' => 'lang', 'unique' => 0), 'modified_idx' => array('column' => 'modified', 'unique' => 0), 'hash' => array('column' => 'hash', 'unique' => 0)),
+		'license' => array('type' => 'string', 'null' => true, 'default' => 'CC BY 2.0 FR', 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1),
+			'user_id' => array('column' => 'user_id', 'unique' => 0),
+			'dico_id' => array('column' => 'dico_id', 'unique' => 0),
+			'lang' => array('column' => 'lang', 'unique' => 0),
+			'modified_idx' => array('column' => 'modified', 'unique' => 0),
+			'hash' => array('column' => 'hash', 'unique' => 0)
+		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
