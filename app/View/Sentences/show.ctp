@@ -108,6 +108,13 @@ $this->Navigation->displaySentenceNavigation(
         $this->Lists->displayListsModule($listsArray);
 
         echo $this->element(
+            'sentences/license',
+            array(
+                'license' => $sentence['Sentence']['license'],
+            )
+        );
+
+        echo $this->element(
             'sentences/audio',
             array(
                 'sentenceId' => $sentenceId,

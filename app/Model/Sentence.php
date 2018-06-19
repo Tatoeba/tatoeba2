@@ -533,6 +533,7 @@ class Sentence extends AppModel
             'user_id',
             'correctness',
             'script',
+            'license',
         );
     }
 
