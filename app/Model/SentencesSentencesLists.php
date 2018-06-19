@@ -163,7 +163,7 @@ class SentencesSentencesLists extends AppModel
             'conditions' => array('sentence_id' => $sentenceId),
             'fields' => 'sentences_list_id',
         ));
-        $listsId = Set::classicExtract($records, '{n}.SentencesSentencesLists.sentences_list_id');
+        $listsId = (array)Set::classicExtract($records, '{n}.SentencesSentencesLists.sentences_list_id');
         $values = array($sentenceId => array($listsId));
     }
 }
