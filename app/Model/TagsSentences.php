@@ -192,7 +192,7 @@ class TagsSentences extends AppModel
             'conditions' => array('sentence_id' => $sentenceId),
             'fields' => 'tag_id',
         ));
-        $tagsId = Set::classicExtract($records, '{n}.TagsSentences.tag_id');
+        $tagsId = (array)Set::classicExtract($records, '{n}.TagsSentences.tag_id');
         $values = array($sentenceId => array($tagsId));
     }
 }
