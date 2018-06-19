@@ -105,6 +105,23 @@ class SentenceTest extends CakeTestCase {
 		);
 	}
 
+	function testSave_validSentence() {
+		$data = array(
+			'text' => 'Hi there!',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertTrue((bool)$result);
+	}
+
+	function testSave_checksValidLicense() {
+		$data = array(
+			'text' => 'Trying to save a sentence with an invalid license.',
+			'license' => 'some-strange-thing',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
     function testSentenceAdditionAddsTranscription() {
         $result = $this->Sentence->save(array(
             'text' => '歌舞伎ってご存知ですか？',

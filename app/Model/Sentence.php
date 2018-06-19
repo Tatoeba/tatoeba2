@@ -58,7 +58,13 @@ class Sentence extends AppModel
         ),
         'text' => array(
             'rule' => array('minLength', '1')
-        )
+        ),
+        'license' => array(
+            'rule' => array('inList', array(
+                'CC0 1.0',
+                'CC BY 2.0 FR',
+            )),
+        ),
     );
 
     public $hasMany = array(
