@@ -21,38 +21,10 @@ App::uses('AppHelper', 'View/Helper');
 
 class AudioHelper extends AppHelper
 {
-    public $helpers = array('Html');
-
-    private $licenses;
-
-    public function __construct(View $view, $settings = array()) {
-        parent::__construct($view, $settings);
-        $this->licenses = array(
-            /* @translators: refers to the license used for audio recordings */
-            'Public domain' => array('name' => __('Public domain')),
-            'CC BY 4.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by/4.0/',
-            ),
-            'CC BY-NC 4.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by-nc/4.0/',
-            ),
-            'CC BY-SA 4.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by-sa/4.0/',
-            ),
-            'CC BY-NC-ND 3.0' => array(
-                'url' => 'https://creativecommons.org/licenses/by-nc-nd/3.0/',
-            ),
-        );
-    }
-
-    public function getLicenseOptions() {
-        /* @translators: refers to the license used for audio recordings */
-        $keyToName = array('' => __('No license for offsite use'));
-        foreach ($this->licenses as $key => $val) {
-            $keyToName[$key] = isset($val['name']) ? $val['name'] : $key;
-        }
-        return $keyToName;
-    }
+    public $helpers = array(
+        'Html',
+        'License',
+    );
 
     private function defaultAttribUrl($username) {
         return array(
@@ -60,16 +32,6 @@ class AudioHelper extends AppHelper
             'controller' => 'user',
             'action' => 'profile',
             $username
-        );
-    }
-
-    private function licenseLink($license) {
-        $name = isset($this->licenses[$license]['name']) ?
-                $this->licenses[$license]['name'] :
-                $license;
-        return $this->Html->link(
-            $name,
-            $this->licenses[$license]['url']
         );
     }
 
@@ -89,13 +51,7 @@ class AudioHelper extends AppHelper
         if (!empty($attribUrl)) {
             $username = $this->Html->link($username, $attribUrl);
         }
-        if (empty($license) || !isset($this->licenses[$license])) {
-            $license = __x('license', 'for Tatoeba only');
-        } elseif (isset($this->licenses[$license]['url'])) {
-            $license = $this->licenseLink($license);
-        } elseif (isset($this->licenses[$license]['name'])) {
-            $license = $this->licenses[$license]['name'];
-        }
+        $license = $this->License->getLicenseName($license);
 ?>
 <ul>
   <li><?php echo format(__('Recorded by: {username}'), compact('username')); ?></li>
@@ -119,7 +75,7 @@ class AudioHelper extends AppHelper
             $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under the public domain.');
         } elseif (isset($this->licenses[$license])) {
-            $license = $this->licenseLink($license);
+            $license = $this->License->licenseLink($license);
             $msg = __('The following audio recordings by '.
                       '{userName}, are licensed under the {licenseName} '.
                       'license.');

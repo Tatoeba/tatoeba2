@@ -44,7 +44,7 @@ if (isset($sentencesWithAudio)) {
                ));
                echo $this->Form->input('audio_license', array(
                    'label' => __('License:'),
-                   'options' => $this->Audio->getLicenseOptions(),
+                   'options' => $this->License->getLicenseOptions(),
                    'value' => $audioSettings['User']['audio_license'],
                ));
             ?>
