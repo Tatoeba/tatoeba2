@@ -110,7 +110,9 @@ $this->Navigation->displaySentenceNavigation(
         echo $this->element(
             'sentences/license',
             array(
+                'sentenceId' => $sentenceId,
                 'license' => $sentence['Sentence']['license'],
+                'canEdit' => CurrentUser::get('id') == $sentence['Sentence']['user_id'],
             )
         );
 

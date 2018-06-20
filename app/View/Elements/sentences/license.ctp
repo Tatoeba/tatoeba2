@@ -29,6 +29,30 @@
 <div class="module">
     <h2><?php echo __('License') ?></h2>
 <?php
-echo $this->License->getLicenseName($license);
+if ($canEdit) {
+
+    echo $this->Form->create(
+        'Sentence',
+        array(
+            'url' => array('action' => 'edit_license'),
+            'type' => 'post',
+        )
+    );
+    echo $this->Form->input(
+        'id',
+        array('value' => $sentenceId)
+    );
+    echo $this->Form->input('audio_license', array(
+        'label' => __('Current license:'),
+        'options' => $this->License->getLicenseOptions(),
+        'value' => $license,
+    ));
+    echo $this->Form->end();
+
+} else {
+
+    echo $this->License->getLicenseName($license);
+
+}
 ?>
 </div>
