@@ -60,6 +60,7 @@ class SentencesHelper extends AppHelper
         'Images',
         'Transcriptions',
         'Search',
+        'License',
     );
 
 

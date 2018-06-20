@@ -29,6 +29,6 @@
 <div class="module">
     <h2><?php echo __('License') ?></h2>
 <?php
-echo $license;
+echo $this->License->getLicenseName($license);
 ?>
 </div>
