@@ -33,6 +33,12 @@ class LicenseHelper extends AppHelper
             '' => array('name' => __('No license for offsite use')),
             /* @translators: refers to the license used for sentence or audio recordings */
             'Public domain' => array('name' => __('Public domain')),
+            'CC0 1.0' => array(
+                'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
+            ),
+            'CC BY 2.0 FR' => array(
+                'url' => 'https://creativecommons.org/licenses/by/2.0/fr/',
+            ),
             'CC BY 4.0' => array(
                 'url' => 'https://creativecommons.org/licenses/by/4.0/',
             ),
