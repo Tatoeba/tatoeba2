@@ -7,8 +7,6 @@ class AppControllerTest extends ControllerTestCase {
 		'app.sentence',
 	);
 
-	private $interfaceLangCookie = false;
-
 	function startTest($method) {
 		Configure::write('UI.languages', array(
 			array('cmn', 'Hans', '中文', array('chi')),
@@ -35,15 +33,14 @@ class AppControllerTest extends ControllerTestCase {
 		$this->controller->Cookie
 			->expects($this->any())
 			->method('read')
-			->will($this->returnCallback(array($this, '_Cookie_read')));
-		$this->interfaceLangCookie = $lang;
-	}
-
-	function _Cookie_read() {
-		$args = func_get_args();
-		if (isset($args[0]) && $args[0] == 'interfaceLanguage') {
-			return $this->interfaceLangCookie;
-		}
+			->will($this->returnCallback(
+				function () use ($lang) {
+					$args = func_get_args();
+					if (isset($args[0]) && $args[0] == 'interfaceLanguage') {
+						return $lang;
+					}
+				}
+			));
 	}
 
 	function expectLanguageCookie($lang) {
