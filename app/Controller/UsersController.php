@@ -437,7 +437,7 @@ class UsersController extends AppController
                 // data to save
                 $updatePasswordData = array(
                     'id' => $user['User']['id'],
-                    'password' => $this->Auth->password($newPassword)
+                    'password' => $newPassword,
                 );
 
                 if ($this->User->save($updatePasswordData)) { // if saved
