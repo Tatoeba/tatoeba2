@@ -25,6 +25,9 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('AppController', 'Controller');
+App::uses('VersionedPasswordHasher', 'Controller/Component/Auth');
+
 /**
  * Controller for sentence comments.
  *
@@ -600,9 +603,8 @@ class UserController extends AppController
 
             $userId = $this->Auth->user('id');
 
-            $submittedPassword = $this->Auth->password(
-                $this->request->data['User']['old_password']
-            );
+            $passwordHasher = new VersionedPasswordHasher();
+            $submittedPassword = $this->request->data['User']['old_password'];
             $actualPassword = $this->User->getPassword($userId);
 
             $newPassword1 = $this->request->data['User']['new_password'];
@@ -611,11 +613,9 @@ class UserController extends AppController
             if (empty($newPassword1) || empty($newPassword2)) {
                 $flashMsg = __('New password cannot be empty.');
             }
-            elseif ($submittedPassword == $actualPassword
+            elseif ($passwordHasher->check($submittedPassword, $actualPassword)
                 && $newPassword1 == $newPassword2
             ) {
-
-                $newPassword1 = $this->Auth->password($newPassword1);
 
                 $this->User->id = $userId;
                 if ($this->User->saveField('password', $newPassword1)) {
