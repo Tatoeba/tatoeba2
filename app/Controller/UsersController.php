@@ -272,7 +272,7 @@ class UsersController extends AppController
             $this->RememberMe->delete();
         } else {
             $this->RememberMe->remember(
-                $this->request->data['User']['username'], $this->request->data['User']['password']
+                $this->request->data['User']['username'], $this->User->field('password')
             );
         }
 

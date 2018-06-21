@@ -31,6 +31,7 @@ class AppControllerTest extends ControllerTestCase {
 	}
 
 	function tearDown() {
+		$this->controller->Auth->Session->destroy();
 		unset($this->controller);
 	}
 
@@ -156,11 +157,19 @@ class AppControllerTest extends ControllerTestCase {
 	}
 
 	function testRememberMeAutomaticallyLogsInUser() {
-		$this->controller->RememberMe->remember('contributor', '123456');
+		$this->controller->RememberMe->remember('contributor', '0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l6');
 		$this->assertFalse($this->controller->Auth->loggedIn());
 
 		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
 
 		$this->assertTrue($this->controller->Auth->loggedIn());
+	}
+
+	function testRememberMeFailsIfIncorrectPassword() {
+		$this->controller->RememberMe->remember('contributor', '0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l4');
+
+		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
+
+		$this->assertFalse($this->controller->Auth->loggedIn());
 	}
 }
