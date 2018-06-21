@@ -109,4 +109,18 @@ class UsersControllerTest extends ControllerTestCase {
 		));
 		$this->assertFalse($this->controller->Auth->loggedIn());
 	}
+
+	function testCheckLogin_loginUpdatedPasswordVersion() {
+		$this->testAction('/users/check_login', array(
+			'data' => array('User' => array(
+				'username' => 'contributor',
+				'password' => '123456',
+				'rememberMe' => 0,
+			))
+		));
+
+		$user = $this->controller->User->findByUsername('contributor');
+		list($version, $hash) = explode(' ', $user['User']['password'], 2);
+		$this->assertEquals(1, $version);
+	}
 }

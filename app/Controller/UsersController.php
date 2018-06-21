@@ -268,6 +268,10 @@ class UsersController extends AppController
         $data['User']['last_time_active'] = time();
         $this->User->save($data);
 
+        $this->User->updatePasswordVersion(
+            $this->Auth->user('id'),
+            $this->request->data['User']['password']
+        );
         if (empty($this->request->data['User']['rememberMe'])) {
             $this->RememberMe->delete();
         } else {
