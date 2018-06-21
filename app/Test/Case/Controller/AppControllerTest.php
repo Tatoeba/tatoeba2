@@ -5,6 +5,7 @@ App::import('Component', 'Cookie');
 class AppControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.sentence',
+		'app.user',
 	);
 
 	private $interfaceLangCookie = false;
@@ -18,11 +19,13 @@ class AppControllerTest extends ControllerTestCase {
 			array('pt_BR', 'BR', 'Português (BR)'),
 		));
 		Configure::write('App.base', ''); // prevent using the filesystem path as base
+		$mockedComponents = array();
+		if (strpos($method, "testBeforeFilter_") !== false) {
+			$mockedComponents = array('Cookie' => array('read', 'write'));
+		}
 		$this->controller = $this->generate('App', array(
 			'methods' => array('redirect', 'bar'),
-			'components' => array(
-				'Cookie' => array('read', 'write')
-			)
+			'components' => $mockedComponents,
 		));
 		$this->controller->Auth->allowedActions = array('bar');
 	}
@@ -150,5 +153,14 @@ class AppControllerTest extends ControllerTestCase {
 			->method('redirect');
 
 		$this->testAction('/cmn/foo/bar', array('method' => 'GET'));
+	}
+
+	function testRememberMeAutomaticallyLogsInUser() {
+		$this->controller->RememberMe->remember('contributor', '123456');
+		$this->assertFalse($this->controller->Auth->loggedIn());
+
+		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
+
+		$this->assertTrue($this->controller->Auth->loggedIn());
 	}
 }
