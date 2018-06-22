@@ -42,7 +42,7 @@ class Audio extends AppModel
     public $actsAs = array('Containable');
 
     public $belongsTo = array(
-        'Sentence',
+        'Sentence' => array('type' => 'inner'),
         'User',
     );
 
