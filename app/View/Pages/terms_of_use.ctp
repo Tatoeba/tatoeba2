@@ -26,6 +26,9 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Terms of use')));
+
+$frenchUI = ($this->request->params['lang'] == 'fra');
+if (!$frenchUI):
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -45,9 +48,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Terms of use')));
     </div>
 </div>
 
+<? endif; ?>
+
 <div id="main_content">
 
 
+<? if (!$frenchUI): ?>
 <div class="main_module" id="translated-version">
 <?php
 echo '<h2>' . __('Information for contributors of text to the Tatoeba project') .
@@ -166,6 +172,7 @@ echo '</p>';
 
 <hr/>
 
+<? endif; // !$frenchUI ?>
 
 <div class="main_module" id="fre-version">
     <h2>
