@@ -96,20 +96,38 @@ $vocabularyUrl = $this->Html->url(array(
             ?>
 
             <div layout="column">
-                <div class="language-select" layout="row" layout-align="start center">
-                    <label><? echo __('Language'); ?></label>
-                    <?php
-                    echo $this->Form->select(
-                        'contributionLang',
-                        $langArray,
-                        array(
-                            "value" => $preSelectedLang,
-                            "class" => "language-selector",
-                            "empty" => false
-                        ),
-                        false
-                    );
-                    ?>
+                <div layout="row">
+                    <div class="language-select" layout="row" layout-align="start center" flex>
+                        <label><? echo __('Language'); ?></label>
+                        <?php
+                        echo $this->Form->select(
+                            'contributionLang',
+                            $langArray,
+                            array(
+                                "value" => $preSelectedLang,
+                                "class" => "language-selector",
+                                "empty" => false
+                            ),
+                            false
+                        );
+                        ?>
+                    </div>
+
+                    <div class="license-select" layout="row" layout-align="end center" flex>
+                        <label><? echo __('License'); ?></label>
+                        <?php
+                        echo $this->Form->select(
+                            'sentenceLicense',
+                            $this->License->getLicenseOptions(),
+                            array(
+                                "value" => CurrentUser::getSetting('default_license'),
+                                "class" => "license-selector",
+                                "empty" => false
+                            ),
+                            false
+                        );
+                        ?>
+                    </div>
                 </div>
 
                 <md-input-container flex>

@@ -118,7 +118,8 @@ class User extends AppModel
         'native_indicator' => false,
         'copy_button' => false,
         'hide_random_sentence' => false,
-        'use_new_design' => false
+        'use_new_design' => false,
+        'default_license' => 'CC BY 2.0 FR',
     );
 
     private $settingsValidation = array(
