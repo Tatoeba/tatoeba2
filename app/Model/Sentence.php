@@ -171,6 +171,9 @@ class Sentence extends AppModel
             $text = $this->data['Sentence']['text'];
             $this->data['Sentence']['text'] = $this->clean($text);
         }
+        if (!isset($this->data['Sentence']['license'])) {
+            $this->data['Sentence']['license'] = CurrentUser::getSetting('default_license');
+        }
     }
 
     /**
@@ -821,10 +824,11 @@ class Sentence extends AppModel
      * @param string $lang        The lang of the sentence.
      * @param int    $userId      The id of the user who added this sentence.
      * @param int    $correctness Correctness level of sentence.
+     * @param string $license     The license of the sentence.
      *
      * @return bool
      */
-    public function saveNewSentence($text, $lang, $userId, $correctness = 0)
+    public function saveNewSentence($text, $lang, $userId, $correctness = 0, $license = null)
     {
         $text = $this->clean($text);
 
@@ -848,6 +852,7 @@ class Sentence extends AppModel
         $data['Sentence']['user_id'] = $userId;
         $data['Sentence']['correctness'] = $correctness;
         $data['Sentence']['hash'] = $hash;
+        $data['Sentence']['license'] = $license;
 
         if (!empty($lang)) {
             $data['Sentence']['lang'] = $lang;

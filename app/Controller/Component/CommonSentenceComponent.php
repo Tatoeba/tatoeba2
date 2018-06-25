@@ -54,6 +54,7 @@ class CommonSentenceComponent extends Component
      *                            sentence.
      * @param string $username    Username of user who added sentence.
      * @param int    $correctness Correctness level of sentence.
+     * @param string $license     License of sentence.
      *
      * @return bool
      */
@@ -62,7 +63,8 @@ class CommonSentenceComponent extends Component
         $text,
         $userId,
         $username = "",
-        $correctness = 0
+        $correctness = 0,
+        $license = null
     ) {
         $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
 
@@ -70,7 +72,7 @@ class CommonSentenceComponent extends Component
 
         $Sentence = ClassRegistry::init('Sentence');
 
-        return $Sentence->saveNewSentence($text, $lang, $userId, $correctness);
+        return $Sentence->saveNewSentence($text, $lang, $userId, $correctness, $license);
     }
 
     /**
