@@ -93,12 +93,13 @@ class MailerComponent extends Component
             return;
         }
         $author = CurrentUser::get('username');
-        $sentenceIsDeleted = $sentenceOwner == null;
+        $sentenceText = $comment['sentence_text'];
+        $sentenceIsDeleted = $sentenceText === false;
         $sentenceId = $comment['sentence_id'];
         if ($sentenceIsDeleted) {
             $subject = 'Tatoeba - Comment on deleted sentence #' . $sentenceId;
         } else {
-            $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
+            $subject = 'Tatoeba - Comment on sentence : ' . $sentenceText;
         }
         $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
             . '/sentence_comments/show/'
@@ -106,7 +107,6 @@ class MailerComponent extends Component
             . '#comments';
         $recipientIsOwner = ($recipient == $sentenceOwner);
         $commentText = $comment['text'];
-        $sentenceText = $comment['sentence_text'];
 
         $this->Email = new CakeEmail();
         $this->Email

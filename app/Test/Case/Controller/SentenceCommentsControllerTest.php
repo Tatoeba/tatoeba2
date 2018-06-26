@@ -84,7 +84,7 @@ class SentenceCommentsControllerTest extends ControllerTestCase {
         $this->logInAs('kazuki');
         $comment = array(
             'sentence_id' => '13',
-            'sentence_text' => 'Sentence deleted',
+            'sentence_text' => false,
             'text' => 'Thank you for deleting that sentence!',
         );
 

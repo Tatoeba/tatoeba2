@@ -37,5 +37,15 @@ class SentenceCommentFixture extends CakeTestFixture {
 			'modified' => '2014-09-02 05:29:12',
 			'hidden' => 0
 		),
+		array(
+			'id' => '3',
+			'sentence_id' => '14',
+			'lang' => NULL,
+			'text' => 'Please, someone adopt this sentence!',
+			'user_id' => '7',
+			'created' => '2015-08-17 22:12:02',
+			'modified' => '2015-08-17 22:12:02',
+			'hidden' => 0
+		),
 	);
 }

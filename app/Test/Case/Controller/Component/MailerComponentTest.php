@@ -66,13 +66,30 @@ class MailerComponentTest extends CakeTestCase {
         $this->assertNotContains('Emails/html', $sentMessage);
     }
 
+    public function testSendSentenceCommentNotification_onOrphanSentence() {
+        $this->behaveAsUser('contributor');
+        $sentenceOwner = null;
+        $recipient = 'kazuki@example.com';
+        $comment = array(
+            'sentence_id' => '14',
+            'sentence_text' => 'An orphan sentence.',
+            'text' => 'Okay, I’m going to adopt it.',
+        );
+
+        $this->Mailer->sendSentenceCommentNotification($recipient, $comment, $sentenceOwner);
+
+        $this->assertEquals('Tatoeba - Comment on sentence : An orphan sentence.', $this->Mailer->Email->subject());
+        $sentMessage = implode($this->Mailer->Email->message());
+        $this->assertContains('<strong>contributor</strong> has posted a comment on sentence', $sentMessage);
+    }
+
     public function testSendSentenceCommentNotification_onDeletedSentence() {
         $this->behaveAsUser('kazuki');
         $sentenceOwner = null;
         $recipient = 'advanced_contributor@example.com';
         $comment = array(
             'sentence_id' => '13',
-            'sentence_text' => 'Sentence deleted',
+            'sentence_text' => false,
             'text' => 'Thank you for deleting that sentence!',
         );
 

@@ -162,5 +162,16 @@ class SentenceFixture extends CakeTestFixture {
 		//    'id' => '13',
 		//    ...
 		//),
+		array(
+			'id' => '14',
+			'lang' => 'eng',
+			'text' => 'An orphan sentence.',
+			'correctness' => NULL,
+			'user_id' => NULL,
+			'created' => '2015-08-17 21:56:27',
+			'modified' => '2015-08-17 21:56:27',
+			'dico_id' => NULL,
+			'script' => NULL
+		),
 	);
 }
