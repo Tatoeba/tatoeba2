@@ -613,8 +613,8 @@ class UserController extends AppController
             if (empty($newPassword1) || empty($newPassword2)) {
                 $flashMsg = __('New password cannot be empty.');
             }
-            elseif ($passwordHasher->check($submittedPassword, $actualPassword)
-                && $newPassword1 == $newPassword2
+            elseif ($newPassword1 == $newPassword2
+                && $passwordHasher->check($submittedPassword, $actualPassword)
             ) {
 
                 $this->User->id = $userId;
