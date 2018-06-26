@@ -171,10 +171,15 @@ class MailerComponent extends Component
             'host' => 'ssl://smtp.gmail.com',
             'username' => Configure::read('Mailer.username'),
             'password' => Configure::read('Mailer.password'),
-            'transport' => 'Smtp'
+            'transport' => $this->getTransport(),
         ));
         $this->Email->emailFormat('html');
         $this->Email->from(array(Configure::read('Mailer.username') => 'noreply'));
         $this->Email->send();
+    }
+
+    public function getTransport()
+    {
+        return 'Smtp';
     }
 }

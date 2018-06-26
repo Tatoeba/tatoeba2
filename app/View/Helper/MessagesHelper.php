@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::import('Utility', 'Sanitize');
+
 /**
  * Helper for messages.
  *
