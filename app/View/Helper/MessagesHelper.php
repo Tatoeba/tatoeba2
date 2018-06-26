@@ -25,6 +25,7 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('AppHelper', 'View/Helper');
 App::import('Utility', 'Sanitize');
 
 /**
