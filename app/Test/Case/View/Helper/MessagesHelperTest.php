@@ -27,6 +27,8 @@ class MessagesHelperTest extends CakeTestCase {
                 => 'with entity <a href="http://example.com/foo?bar=1&amp;baz=2" target="_blank">http://example.com/foo?bar=1&amp;baz=2</a>',
             'long link http://example.com/some-page-there?p=yesAndThisParam23=no'
                 => 'long link <a href="http://example.com/some-page-there?p=yesAndThisParam23=no" target="_blank">http://example.com/some-page-th...ThisParam23=no</a>',
+            'long link with entities http://example.com/some-page-there?p=yes&&&&&&&Param23=no'
+                => 'long link with entities <a href="http://example.com/some-page-there?p=yes&amp;&amp;&amp;&amp;&amp;&amp;&amp;Param23=no" target="_blank">http://example.com/some-page-th...&amp;&amp;&amp;&amp;Param23=no</a>',
         );
         foreach ($tests as $text => $formatedHTML) {
             $result = $this->Messages->formatedContent($text);
