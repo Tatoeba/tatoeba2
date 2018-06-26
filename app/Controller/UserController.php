@@ -610,7 +610,7 @@ class UserController extends AppController
             $newPassword1 = $this->request->data['User']['new_password'];
             $newPassword2 = $this->request->data['User']['new_password2'];
 
-            if (empty($newPassword1) || empty($newPassword2)) {
+            if (empty($newPassword1)) {
                 $flashMsg = __('New password cannot be empty.');
             }
             elseif ($newPassword1 == $newPassword2
