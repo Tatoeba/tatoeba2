@@ -5,6 +5,7 @@ class UserControllerTest extends ControllerTestCase {
 
     public $fixtures = array(
         'app.user',
+        'app.sentence',
     );
 
     private $oldPasswords = array();
@@ -78,6 +79,23 @@ class UserControllerTest extends ControllerTestCase {
             )
         ));
         $this->assertPassword('changed', $username);
+    }
+
+    public function testSavePassword_failsIfNewPasswordIsEmpty() {
+        $username = 'contributor';
+        $oldPassword = '123456';
+        $newPassword = '';
+        $this->logInAs($username);
+        $this->testAction('/eng/save_password', array(
+            'data' => array(
+                'User' => array(
+                    'old_password' => $oldPassword,
+                    'new_password' => $newPassword,
+                    'new_password2' => $newPassword,
+                )
+            )
+        ));
+        $this->assertPassword("didn't change", $username);
     }
 
     public function testSavePassword_failsIfOldPasswordDoesntMatch() {
