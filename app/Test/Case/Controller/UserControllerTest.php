@@ -122,4 +122,20 @@ class UserControllerTest extends ControllerTestCase {
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New passwords do not match.');
     }
+
+    public function testSaveBasic_changingEmailUpdatesAuthData() {
+        $username = 'contributor';
+        $newEmail = 'contributor_newemail@example.org';
+        $this->logInAs($username);
+        $oldEmail = $this->controller->Auth->user('email');
+        $this->testAction('/eng/save_basic', array(
+            'data' => array(
+                'User' => array(
+                    'email' => $newEmail,
+                )
+            )
+        ));
+        $this->assertEquals($this->controller->Auth->user('username'), $username);
+        $this->assertEquals($this->controller->Auth->user('email'), $newEmail);
+    }
 }

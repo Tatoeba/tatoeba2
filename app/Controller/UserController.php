@@ -83,6 +83,11 @@ class UserController extends AppController
         );
     }
 
+    public function updateAuthData($userId)
+    {
+        $userData = $this->User->read(null, $userId);
+        $this->Session->write(AuthComponent::$sessionKey, $userData['User']);
+    }
 
     /**
      * Display profile of given user.
@@ -317,6 +322,7 @@ class UserController extends AppController
             $basicInfos = $this->filterKeys($this->request->data['User'], $allowedFields);
             $basicInfos['id'] = $currentUserId;
             $saved = $this->User->save($basicInfos);
+            $this->updateAuthData($currentUserId);
         }
 
         if ($saved) {
