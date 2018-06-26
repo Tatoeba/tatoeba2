@@ -100,7 +100,6 @@ class UserControllerTest extends ControllerTestCase {
     public function testSavePassword_failsIfNewPasswordDoesntMatch() {
         $username = 'contributor';
         $oldPassword = '123456';
-        $newPassword = '9{FA0E;pL#R(5JllB{wHWTO;6';
         $this->logInAs($username);
         $this->testAction('/eng/save_password', array(
             'data' => array(
