@@ -5,6 +5,10 @@ App::uses('MailerComponent', 'Controller/Component');
 
 class MailerComponentTest extends CakeTestCase {
 
+    public $fixtures = array(
+        'app.user',
+    );
+
     public function setUp() {
         parent::setUp();
 
