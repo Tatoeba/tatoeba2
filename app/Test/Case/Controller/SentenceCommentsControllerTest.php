@@ -57,6 +57,29 @@ class SentenceCommentsControllerTest extends ControllerTestCase {
         ));
     }
 
+    public function testSave_onOrphanSentence() {
+        $this->logInAs('contributor');
+        $expectedArg = array(
+            'sentence_id' => '14',
+            'sentence_text' => 'An orphan sentence.',
+            'text' => 'Okay, I’m going to adopt it.',
+        );
+
+        $this->controller->Mailer
+            ->expects($this->once())
+            ->method('sendSentenceCommentNotification')
+            ->with('kazuki@example.net', $expectedArg, null);
+
+        $this->testAction('/eng/sentence_comments/save', array(
+            'data' => array(
+                'SentenceComment' => array(
+                    'sentence_id' => '14',
+                    'text' => 'Okay, I’m going to adopt it.',
+                ),
+            )
+        ));
+    }
+
     public function testSave_onDeletedSentence() {
         $this->logInAs('kazuki');
         $expectedArg = array(
