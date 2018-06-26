@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('VersionedPasswordHasher', 'Controller/Component/Auth');
+
 /**
  * Model for users.
  *
@@ -125,6 +127,13 @@ class User extends AppModel
         'sentences_per_page' => array(10, 20, 50, 100),
     );
 
+    private $passwordHasher;
+
+    public function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+        $this->passwordHasher = new VersionedPasswordHasher();
+    }
+
     public function beforeFind($queryData) {
         if (is_array($queryData['order'])) {
             $queryData['order'][] = 'User.id';
@@ -150,6 +159,11 @@ class User extends AppModel
     }
 
     public function beforeSave($options = array()) {
+        if (isset($this->data['User']['password'])) {
+            $this->data['User']['password'] = $this->passwordHasher->hash(
+                $this->data['User']['password']
+            );
+        }
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
             $settings = $this->field('settings', array('id' => $this->id));
@@ -653,5 +667,14 @@ class User extends AppModel
         );
 
         return $result;
+    }
+
+    public function updatePasswordVersion($userId, $plainTextPassword)
+    {
+        $this->id = $userId;
+        $storedHash = $this->field('password');
+        if ($this->passwordHasher->isOutdated($storedHash)) {
+            $this->saveField('password', $plainTextPassword);
+        }
     }
 }

@@ -6,7 +6,7 @@ class UserFixture extends CakeTestFixture {
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'username' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 20, 'key' => 'unique', 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'password' => array('type' => 'string', 'null' => false, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'password' => array('type' => 'string', 'null' => false, 'length' => 62, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'email' => array('type' => 'string', 'null' => false, 'length' => 100, 'key' => 'unique', 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'since' => array('type' => 'datetime', 'null' => false, 'default' => '0000-00-00 00:00:00'),
@@ -29,7 +29,7 @@ class UserFixture extends CakeTestFixture {
 		array(
 			'id' => '1',
 			'username' => 'admin',
-			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'password' => '0 $2a$10$C9HUn1u98XMMV/J2DP9F.eSPrJY0UiX7Z1PsDiWoGakXsSzwpUQ/e', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
 			'email' => 'admin@example.com',
 			'lang' => NULL,
 			'since' => '2013-04-07 12:15:16',
@@ -48,7 +48,7 @@ class UserFixture extends CakeTestFixture {
 		array(
 			'id' => '2',
 			'username' => 'corpus_maintainer',
-			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'password' => '0 $2a$10$si98GpL3psq5k1EKh/koVup8GfGoB1.hjdRCbgKlzofvUbRkRBwjC', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
 			'email' => 'corpus_maintainer@example.com',
 			'lang' => NULL,
 			'since' => '2013-04-07 12:15:50',
@@ -67,7 +67,7 @@ class UserFixture extends CakeTestFixture {
 		array(
 			'id' => '3',
 			'username' => 'advanced_contributor',
-			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'password' => '0 $2a$10$YeMYysi2Wkiu1LPdm2SAEeD7tfYsXKoAKDGKutQvOPcKKcdpte.3K', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
 			'email' => 'advanced_contributor@example.com',
 			'lang' => NULL,
 			'since' => '2013-04-07 12:16:37',
@@ -86,7 +86,7 @@ class UserFixture extends CakeTestFixture {
 		array(
 			'id' => '4',
 			'username' => 'contributor',
-			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'password' => '0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l6', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
 			'email' => 'contributor@example.com',
 			'lang' => NULL,
 			'since' => '2013-04-07 12:17:02',
@@ -105,7 +105,7 @@ class UserFixture extends CakeTestFixture {
 		array(
 			'id' => '5',
 			'username' => 'inactive',
-			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'password' => '0 $2a$10$k4WEM.b.68FriHgL3TbOpOrEWb35kMSwzkjvrLd5bzLExnFpVxAQa', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
 			'email' => 'inactive@example.com',
 			'lang' => NULL,
 			'since' => '2013-04-07 12:17:29',
@@ -124,7 +124,7 @@ class UserFixture extends CakeTestFixture {
 		array(
 			'id' => '6',
 			'username' => 'spammer',
-			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'password' => '0 $2a$10$p6lW5xX5OXliZixaywnbjOj8Ye0cTGvfw2peMcqLNrisnydCjQnL', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
 			'email' => 'spammer@example.com',
 			'lang' => NULL,
 			'since' => '2013-04-07 12:17:54',
@@ -143,8 +143,27 @@ class UserFixture extends CakeTestFixture {
 		array(
 			'id' => '7',
 			'username' => 'kazuki',
-			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'password' => '1 $2a$10$eSfvBiKsuMQsKq0B2sGyuukXNBNPwXXqSZJfzFUu/6b4vZYnehn/2', // blowfish('myAwesomePassword')
 			'email' => 'kazuki@example.net',
+			'lang' => NULL,
+			'since' => '2013-04-22 19:20:11',
+			'last_time_active' => '1397514924',
+			'level' => '1',
+			'group_id' => '4',
+			'send_notifications' => 1,
+			'name' => '',
+			'birthday' => NULL,
+			'description' => '',
+			'homepage' => '',
+			'image' => '',
+			'country_id' => NULL,
+			'is_public' => 0
+		),
+		array(
+			'id' => '8',
+			'username' => 'mr_old_style_passwd',
+			'password' => 'dc59e60a5353bf329d0c961185055226',
+			'email' => 'mr_old_style_passwd@example.net',
 			'lang' => NULL,
 			'since' => '2013-04-22 19:20:11',
 			'last_time_active' => '1397514924',

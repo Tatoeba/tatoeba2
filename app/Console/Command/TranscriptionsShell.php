@@ -20,7 +20,7 @@
 App::import('Model', 'Sentence');
 App::import('Model', 'Transcription');
 
-class TranscriptionsShell extends Shell {
+class TranscriptionsShell extends AppShell {
 
     public $uses = array('Sentence', 'Transcription', 'Contribution');
 
@@ -58,7 +58,7 @@ class TranscriptionsShell extends Shell {
         }
     }
 
-    private function _autogen($sentences) {
+    protected function _autogen($sentences) {
         $sentenceIds = Set::classicExtract($sentences, '{n}.Sentence.id');
         $this->Transcription->deleteAll(
             array(
@@ -102,7 +102,7 @@ class TranscriptionsShell extends Shell {
         echo "\nScript set for $proceeded sentences in lang(s) $lang.\n";
     }
 
-    private function _setScript($rows, $model) {
+    protected function _setScript($rows, $model) {
         $proceeded = 0;
         $data = $this->detectTranscriptionsFor($rows);
         $options = array(
@@ -120,27 +120,6 @@ class TranscriptionsShell extends Shell {
             'conditions' => $conditions,
             'fields' => array('id', 'lang', 'script', 'text'),
         ));
-    }
-
-    private function batchOperation($model, $operation, $options) {
-        $batchSize = 1000;
-        $proceeded = 0;
-        $options = array_merge(
-            array(
-                'contain' => array(),
-                'limit' => $batchSize,
-                'offset' => 0,
-            ),
-            $options
-        );
-
-        do {
-            $data = $this->{$model}->find('all', $options);
-            $proceeded += $this->{$operation}($data, $model);
-            echo ".";
-            $options['offset'] += $batchSize;
-        } while ($data);
-        return $proceeded;
     }
 
     private function die_usage() {
