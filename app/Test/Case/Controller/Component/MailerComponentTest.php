@@ -34,7 +34,7 @@ class MailerComponentTest extends CakeTestCase {
         parent::tearDown();
     }
 
-    public function testSendWallReplyNotification_doesntIncludeFooter() {
+    public function testSendWallReplyNotification_noUnwantedHeaderAndFooter() {
         $recipient = 'kazuki@example.net';
         $message = array(
             'Wall' => array(
@@ -49,7 +49,11 @@ class MailerComponentTest extends CakeTestCase {
                 'username' => 'admin',
             ),
         );
+
         $this->Mailer->sendWallReplyNotification($recipient, $message);
-        var_dump($this->Mailer->Email->message());
+
+        $sentMessage = implode($this->Mailer->Email->message());
+        $this->assertNotContains('CakePHP Framework', $sentMessage);
+        $this->assertNotContains('Emails/html', $sentMessage);
     }
 }
