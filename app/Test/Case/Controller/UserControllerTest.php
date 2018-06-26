@@ -11,12 +11,7 @@ class UserControllerTest extends ControllerTestCase {
     private $oldPasswords = array();
 
     public function startTest($method) {
-        $this->controller = $this->generate('User', array(
-            'components' => array(
-                'Auth' => array('user')
-            )
-        ));
-
+        $this->controller = $this->generate('User');
         $users = $this->controller->User->find('all', array(
             'fields' => array('username', 'password'),
         ));
@@ -24,6 +19,7 @@ class UserControllerTest extends ControllerTestCase {
     }
 
     public function tearDown() {
+        $this->controller->Auth->Session->destroy();
         unset($this->controller);
     }
 
@@ -31,19 +27,7 @@ class UserControllerTest extends ControllerTestCase {
         $user = $this->controller->User->find('first', array(
             'conditions' => array('username' => $username),
         ));
-        $this->controller->Auth
-            ->staticExpects($this->any())
-            ->method('user')
-            ->will($this->returnCallback(
-                function () use ($user) {
-                    $args = func_get_args();
-                    if (isset($args[0])) {
-                        return $user['User'][ $args[0] ];
-                    } else {
-                        return $user['User'];
-                    }
-                }
-            ));
+        $this->controller->Auth->login($user['User']);
     }
 
     private function assertPassword($what, $username) {
