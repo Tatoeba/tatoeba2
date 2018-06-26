@@ -4,11 +4,18 @@ App::uses('UserController', 'Controller');
 class UserControllerTest extends ControllerTestCase {
 
     public $fixtures = array(
+        'app.aco',
+        'app.aro',
+        'app.aros_aco',
         'app.user',
         'app.sentence',
     );
 
     private $oldPasswords = array();
+
+    public function setUp() {
+        Configure::write('Acl.database', 'test');
+    }
 
     public function startTest($method) {
         $this->controller = $this->generate('User');
