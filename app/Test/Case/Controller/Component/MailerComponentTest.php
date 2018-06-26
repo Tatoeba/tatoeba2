@@ -28,6 +28,11 @@ class MailerComponentTest extends CakeTestCase {
             ->will($this->returnValue('Debug'));
     }
 
+    private function behaveAsUser($username) {
+        $user = ClassRegistry::init('User')->findByUsername($username);
+        CurrentUser::store($user['User']);
+    }
+
     public function tearDown() {
         unset($this->Mailer);
 
@@ -55,5 +60,22 @@ class MailerComponentTest extends CakeTestCase {
         $sentMessage = implode($this->Mailer->Email->message());
         $this->assertNotContains('CakePHP Framework', $sentMessage);
         $this->assertNotContains('Emails/html', $sentMessage);
+    }
+
+    public function testSendSentenceCommentNotification_onDeletedSentence() {
+        $this->behaveAsUser('kazuki');
+        $sentenceOwner = null;
+        $recipient = 'advanced_contributor@example.com';
+        $comment = array(
+            'sentence_id' => '13',
+            'sentence_text' => 'Sentence deleted',
+            'text' => 'Thank you for deleting that sentence!',
+        );
+
+        $this->Mailer->sendSentenceCommentNotification($recipient, $comment, $sentenceOwner);
+
+        $this->assertEquals('Tatoeba - Comment on deleted sentence #13', $this->Mailer->Email->subject());
+        $sentMessage = implode($this->Mailer->Email->message());
+        $this->assertContains('<strong>kazuki</strong> has posted a comment on deleted sentence #13', $sentMessage);
     }
 }

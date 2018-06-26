@@ -93,7 +93,13 @@ class MailerComponent extends Component
             return;
         }
         $author = CurrentUser::get('username');
-        $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
+        $sentenceIsDeleted = $sentenceOwner == null;
+        $sentenceId = $comment['sentence_id'];
+        if ($sentenceIsDeleted) {
+            $subject = 'Tatoeba - Comment on deleted sentence #' . $sentenceId;
+        } else {
+            $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
+        }
         $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
             . '/sentence_comments/show/'
             . $comment['sentence_id']
@@ -112,7 +118,9 @@ class MailerComponent extends Component
               'linkToSentence' => $linkToSentence,
               'commentText' => $commentText,
               'recipientIsOwner' => $recipientIsOwner,
-              'sentenceText' => $sentenceText
+              'sentenceIsDeleted' => $sentenceIsDeleted,
+              'sentenceText' => $sentenceText,
+              'sentenceId' => $sentenceId,
             ));
 
         $this->_send();
