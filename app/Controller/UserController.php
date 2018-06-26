@@ -613,10 +613,10 @@ class UserController extends AppController
             if (empty($newPassword1)) {
                 $flashMsg = __('New password cannot be empty.');
             }
-            elseif ($newPassword1 == $newPassword2
-                && $passwordHasher->check($submittedPassword, $actualPassword)
-            ) {
-
+            elseif ($newPassword1 != $newPassword2) {
+                $flashMsg = __("New passwords do not match.");
+            }
+            elseif ($passwordHasher->check($submittedPassword, $actualPassword)) {
                 $this->User->id = $userId;
                 if ($this->User->saveField('password', $newPassword1)) {
                     $flashMsg = __('New password has been saved.');

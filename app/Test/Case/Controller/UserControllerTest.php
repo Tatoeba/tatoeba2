@@ -64,6 +64,11 @@ class UserControllerTest extends ControllerTestCase {
         $this->fail("Failed to assert that password of user '$username' $what");
     }
 
+    private function assertFlashMessage($message) {
+        $flash = $this->controller->Session->read('Message.flash');
+        $this->assertEquals($message, $flash['message'], "Flash message equals '$message'");
+    }
+
     public function testSavePassword_changesPassword() {
         $username = 'contributor';
         $oldPassword = '123456';
@@ -96,6 +101,7 @@ class UserControllerTest extends ControllerTestCase {
             )
         ));
         $this->assertPassword("didn't change", $username);
+        $this->assertFlashMessage('New password cannot be empty.');
     }
 
     public function testSavePassword_failsIfOldPasswordDoesntMatch() {
@@ -113,6 +119,7 @@ class UserControllerTest extends ControllerTestCase {
             )
         ));
         $this->assertPassword("didn't change", $username);
+        $this->assertFlashMessage('Password error. Please try again.');
     }
 
     public function testSavePassword_failsIfNewPasswordDoesntMatch() {
@@ -129,5 +136,6 @@ class UserControllerTest extends ControllerTestCase {
             )
         ));
         $this->assertPassword("didn't change", $username);
+        $this->assertFlashMessage('New passwords do not match.');
     }
 }
