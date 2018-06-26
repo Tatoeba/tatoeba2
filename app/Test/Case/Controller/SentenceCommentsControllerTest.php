@@ -54,6 +54,32 @@ class SentenceCommentsControllerTest extends ControllerTestCase {
         ));
     }
 
+    public function testSave_sendsNotifWithRealSentenceText() {
+        $this->logInAs('contributor');
+        $comment = array(
+            'sentence_id' => '1',
+            'sentence_text' => 'The fundamental cause of the problem is that in'
+                              .' the modern world, idiots are full of confidence,'
+                              .' while the intelligent are full of doubt.',
+            'text' => 'Very well said!',
+        );
+
+        $this->controller->Mailer
+            ->expects($this->once())
+            ->method('sendSentenceCommentNotification')
+            ->with('kazuki@example.net', $comment, 'kazuki@example.net');
+
+        $this->testAction('/eng/sentence_comments/save', array(
+            'data' => array(
+                'SentenceComment' => array(
+                    'sentence_id' => '1',
+                    'sentence_text' => 'Some random text sent by the client',
+                    'text' => 'Very well said!',
+                )
+            )
+        ));
+    }
+
     public function testSave_onDeletedSentence() {
         $this->logInAs('kazuki');
         $comment = array(

@@ -219,6 +219,8 @@ class SentenceCommentsController extends AppController
                 $participants[] = $sentenceOwner;
             }
 
+            $this->Sentence->id = $sentenceId;
+            $sentenceText = $this->Sentence->field('text');
             $commentId = $this->SentenceComment->id;
             $mentionEmails = $this->_getMentionedEmails($comment, $commentId);
             foreach($mentionEmails as $email) {
@@ -231,7 +233,11 @@ class SentenceCommentsController extends AppController
                 if ($participant != $userEmail) {
                     $this->Mailer->sendSentenceCommentNotification(
                         $participant,
-                        $this->request->data['SentenceComment'],
+                        array(
+                            'sentence_id' => $sentenceId,
+                            'sentence_text' => $sentenceText,
+                            'text' => $comment['text'],
+                        ),
                         $sentenceOwner
                     );
                 }
