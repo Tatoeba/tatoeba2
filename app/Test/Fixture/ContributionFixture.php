@@ -342,5 +342,33 @@ class ContributionFixture extends CakeTestFixture {
 			'type' => 'sentence',
 			'id' => '23'
 		),
+		array(
+			'sentence_id' => '13',
+			'sentence_lang' => 'fra',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => 'Une phrase qui n’est déjà plus.',
+			'action' => 'insert',
+			'user_id' => '4',
+			'datetime' => '2014-09-02 05:28:14',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '24'
+		),
+		array(
+			'sentence_id' => '13',
+			'sentence_lang' => 'fra',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => 'Une phrase qui n’est déjà plus.',
+			'action' => 'delete',
+			'user_id' => '4',
+			'datetime' => '2014-09-02 05:30:14',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '25'
+		),
 	);
 }

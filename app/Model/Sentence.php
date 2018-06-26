@@ -753,7 +753,7 @@ class Sentence extends AppModel
             )
         );
 
-        return $sentence['User']['email'];
+        return $sentence ? $sentence['User']['email'] : null;
     }
 
 

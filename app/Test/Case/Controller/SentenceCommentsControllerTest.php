@@ -53,4 +53,24 @@ class SentenceCommentsControllerTest extends ControllerTestCase {
             )
         ));
     }
+
+    public function testSave_onDeletedSentence() {
+        $this->logInAs('kazuki');
+        $comment = array(
+            'sentence_id' => '13',
+            'sentence_text' => 'Sentence deleted',
+            'text' => 'Thank you for deleting that sentence!',
+        );
+
+        $this->controller->Mailer
+            ->expects($this->once())
+            ->method('sendSentenceCommentNotification')
+            ->with('advanced_contributor@example.com', $comment, null);
+
+        $this->testAction('/eng/sentence_comments/save', array(
+            'data' => array(
+                'SentenceComment' => $comment,
+            )
+        ));
+    }
 }

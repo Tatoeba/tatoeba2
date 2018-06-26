@@ -156,5 +156,11 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
                         'script' => null
 		),
+		// Intentionally nonexistant. It has been deleted.
+		// See ContributionFixture.php.
+		//array(
+		//    'id' => '13',
+		//    ...
+		//),
 	);
 }
