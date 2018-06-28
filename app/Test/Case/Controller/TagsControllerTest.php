@@ -16,6 +16,7 @@ class TagsControllerTest extends ControllerTestCase {
     public function setUp() {
         Configure::write('Acl.database', 'test');
         $this->controller = $this->generate('Tags');
+        $this->controller->Auth->Session->destroy();
     }
 
     public function endTest($method) {
