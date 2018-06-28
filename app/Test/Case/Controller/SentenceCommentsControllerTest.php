@@ -22,9 +22,11 @@ class SentenceCommentsControllerTest extends ControllerTestCase {
         $this->controller = $this->generate('SentenceComments', array(
             'components' => array('Mailer' => array('sendSentenceCommentNotification'))
         ));
+        $this->controller->Auth->Session->destroy();
     }
 
     public function tearDown() {
+        $this->controller->Auth->Session->destroy();
         unset($this->controller);
     }
 
