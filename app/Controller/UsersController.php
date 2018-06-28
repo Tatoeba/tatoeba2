@@ -268,11 +268,15 @@ class UsersController extends AppController
         $data['User']['last_time_active'] = time();
         $this->User->save($data);
 
+        $this->User->updatePasswordVersion(
+            $this->Auth->user('id'),
+            $this->request->data['User']['password']
+        );
         if (empty($this->request->data['User']['rememberMe'])) {
             $this->RememberMe->delete();
         } else {
             $this->RememberMe->remember(
-                $this->request->data['User']['username'], $this->request->data['User']['password']
+                $this->request->data['User']['username'], $this->User->field('password')
             );
         }
 
@@ -329,10 +333,7 @@ class UsersController extends AppController
         }
 
         // Password is empty
-        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
-        if ($this->request->data['User']['password'] == ''
-            || $this->request->data['User']['password'] == $emptyPasswordMd5
-        ) {
+        if ($this->request->data['User']['password'] == '') {
             $this->Session->setFlash(
                 __('Password cannot be empty.')
             );
@@ -369,7 +370,6 @@ class UsersController extends AppController
         $this->User->create();
         $allowedFields = array('username', 'password', 'email');
         $newUser = $this->filterKeys($this->request->data['User'], $allowedFields);
-        $newUser['password'] = Security::hash($newUser['password'], 'md5', Configure::read('Security.salt'));
         $newUser['since']    = date("Y-m-d H:i:s");
         $newUser['group_id'] = 4;
 
@@ -441,7 +441,7 @@ class UsersController extends AppController
                 // data to save
                 $updatePasswordData = array(
                     'id' => $user['User']['id'],
-                    'password' => $this->Auth->password($newPassword)
+                    'password' => $newPassword,
                 );
 
                 if ($this->User->save($updatePasswordData)) { // if saved
