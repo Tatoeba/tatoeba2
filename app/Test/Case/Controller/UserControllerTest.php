@@ -4,8 +4,8 @@ App::uses('UserController', 'Controller');
 class UserControllerTest extends ControllerTestCase {
 
     public $fixtures = array(
-        'app.aco',
         'app.aro',
+        'app.aco',
         'app.aros_aco',
         'app.user',
         'app.sentence',
@@ -14,6 +14,7 @@ class UserControllerTest extends ControllerTestCase {
     private $oldPasswords = array();
 
     public function setUp() {
+        $_COOKIE = array();
         Configure::write('Acl.database', 'test');
     }
 
