@@ -14,6 +14,7 @@ class UserControllerTest extends ControllerTestCase {
     private $oldPasswords = array();
 
     public function setUp() {
+        $_COOKIE = array();
         Configure::write('Acl.database', 'test');
     }
 
