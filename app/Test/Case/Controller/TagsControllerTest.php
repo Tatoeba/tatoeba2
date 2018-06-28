@@ -10,6 +10,7 @@ class TagsControllerTest extends ControllerTestCase {
         'app.tag',
         'app.tags_sentence',
         'app.user',
+        'app.users_language',
     );
 
     public function setUp() {

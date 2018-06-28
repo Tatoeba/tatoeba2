@@ -11,6 +11,7 @@ class SentenceCommentsControllerTest extends ControllerTestCase {
         'app.sentence_comment',
         'app.sentence',
         'app.user',
+        'app.users_language',
     );
 
     public function setUp() {

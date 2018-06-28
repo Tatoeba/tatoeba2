@@ -9,6 +9,7 @@ class UserControllerTest extends ControllerTestCase {
         'app.aros_aco',
         'app.user',
         'app.sentence',
+        'app.users_language',
     );
 
     private $oldPasswords = array();

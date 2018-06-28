@@ -7,6 +7,7 @@ class MailerComponentTest extends CakeTestCase {
 
     public $fixtures = array(
         'app.user',
+        'app.users_language',
     );
 
     public function setUp() {
