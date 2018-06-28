@@ -1,6 +1,6 @@
 
 Delimiter |
-DROP PROCEDURE create_nbr_sentences_of_list | 
+DROP PROCEDURE IF EXISTS create_nbr_sentences_of_list |
 CREATE PROCEDURE create_nbr_sentences_of_list()
 BEGIN
 
@@ -35,5 +35,4 @@ BEGIN
     END REPEAT;
 
 END |
-CALL create_nbr_sentences_of_list() |
 Delimiter ;
