@@ -3,12 +3,16 @@ App::import('Controller', 'Users');
 
 class UsersControllerTest extends ControllerTestCase {
 	public $fixtures = array(
+		'app.aro',
+		'app.aco',
+		'app.aros_aco',
 		'app.sentence',
 		'app.user',
 		'app.group',
 	);
 
 	function setUp() {
+		Configure::write('Acl.database', 'test');
 		Configure::write('Security.salt', 'ze@9422#5dS?!99xx');
 	}
 
