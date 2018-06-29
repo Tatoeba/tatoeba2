@@ -195,8 +195,7 @@ class Tag extends AppModel
                 'limit' => $limit,
                 'fields' => array('user_id','sentence_id'),
                 'conditions' => $conditions,
-                'contain' => $contain,
-                'group' => 'sentence_id',
+                'contain' => $contain
             )
         );
 
