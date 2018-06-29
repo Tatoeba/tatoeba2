@@ -9,6 +9,7 @@ class UserControllerTest extends ControllerTestCase {
         'app.aros_aco',
         'app.user',
         'app.sentence',
+        'app.users_language',
     );
 
     private $oldPasswords = array();
@@ -19,12 +20,7 @@ class UserControllerTest extends ControllerTestCase {
     }
 
     public function startTest($method) {
-        $this->controller = $this->generate('User', array(
-            'components' => array(
-                'Auth' => array('user')
-            )
-        ));
-
+        $this->controller = $this->generate('User');
         $users = $this->controller->User->find('all', array(
             'fields' => array('username', 'password'),
         ));
@@ -32,6 +28,7 @@ class UserControllerTest extends ControllerTestCase {
     }
 
     public function tearDown() {
+        $this->controller->Auth->Session->destroy();
         unset($this->controller);
     }
 
@@ -39,19 +36,7 @@ class UserControllerTest extends ControllerTestCase {
         $user = $this->controller->User->find('first', array(
             'conditions' => array('username' => $username),
         ));
-        $this->controller->Auth
-            ->staticExpects($this->any())
-            ->method('user')
-            ->will($this->returnCallback(
-                function () use ($user) {
-                    $args = func_get_args();
-                    if (isset($args[0])) {
-                        return $user['User'][ $args[0] ];
-                    } else {
-                        return $user['User'];
-                    }
-                }
-            ));
+        $this->controller->Auth->login($user['User']);
     }
 
     private function assertPassword($what, $username) {
@@ -145,5 +130,21 @@ class UserControllerTest extends ControllerTestCase {
         ));
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New passwords do not match.');
+    }
+
+    public function testSaveBasic_changingEmailUpdatesAuthData() {
+        $username = 'contributor';
+        $newEmail = 'contributor_newemail@example.org';
+        $this->logInAs($username);
+        $oldEmail = $this->controller->Auth->user('email');
+        $this->testAction('/eng/save_basic', array(
+            'data' => array(
+                'User' => array(
+                    'email' => $newEmail,
+                )
+            )
+        ));
+        $this->assertEquals($this->controller->Auth->user('username'), $username);
+        $this->assertEquals($this->controller->Auth->user('email'), $newEmail);
     }
 }

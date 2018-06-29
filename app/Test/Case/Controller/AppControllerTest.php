@@ -6,6 +6,7 @@ class AppControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.sentence',
 		'app.user',
+		'app.users_language',
 	);
 
 	function startTest($method) {

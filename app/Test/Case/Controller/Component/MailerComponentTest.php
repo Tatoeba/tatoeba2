@@ -5,6 +5,11 @@ App::uses('MailerComponent', 'Controller/Component');
 
 class MailerComponentTest extends CakeTestCase {
 
+    public $fixtures = array(
+        'app.user',
+        'app.users_language',
+    );
+
     public function setUp() {
         parent::setUp();
 
@@ -26,6 +31,11 @@ class MailerComponentTest extends CakeTestCase {
             ->expects($this->any())
             ->method('getTransport')
             ->will($this->returnValue('Debug'));
+    }
+
+    private function behaveAsUser($username) {
+        $user = ClassRegistry::init('User')->findByUsername($username);
+        CurrentUser::store($user['User']);
     }
 
     public function tearDown() {
@@ -55,5 +65,39 @@ class MailerComponentTest extends CakeTestCase {
         $sentMessage = implode($this->Mailer->Email->message());
         $this->assertNotContains('CakePHP Framework', $sentMessage);
         $this->assertNotContains('Emails/html', $sentMessage);
+    }
+
+    public function testSendSentenceCommentNotification_onOrphanSentence() {
+        $this->behaveAsUser('contributor');
+        $sentenceOwner = null;
+        $recipient = 'kazuki@example.com';
+        $comment = array(
+            'sentence_id' => '14',
+            'sentence_text' => 'An orphan sentence.',
+            'text' => 'Okay, I’m going to adopt it.',
+        );
+
+        $this->Mailer->sendSentenceCommentNotification($recipient, $comment, $sentenceOwner);
+
+        $this->assertEquals('Tatoeba - Comment on sentence : An orphan sentence.', $this->Mailer->Email->subject());
+        $sentMessage = implode($this->Mailer->Email->message());
+        $this->assertContains('<strong>contributor</strong> has posted a comment on sentence', $sentMessage);
+    }
+
+    public function testSendSentenceCommentNotification_onDeletedSentence() {
+        $this->behaveAsUser('kazuki');
+        $sentenceOwner = null;
+        $recipient = 'advanced_contributor@example.com';
+        $comment = array(
+            'sentence_id' => '13',
+            'sentence_text' => false,
+            'text' => 'Thank you for deleting that sentence!',
+        );
+
+        $this->Mailer->sendSentenceCommentNotification($recipient, $comment, $sentenceOwner);
+
+        $this->assertEquals('Tatoeba - Comment on deleted sentence #13', $this->Mailer->Email->subject());
+        $sentMessage = implode($this->Mailer->Email->message());
+        $this->assertContains('<strong>kazuki</strong> has posted a comment on deleted sentence #13', $sentMessage);
     }
 }

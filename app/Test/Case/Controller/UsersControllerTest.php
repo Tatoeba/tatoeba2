@@ -9,6 +9,7 @@ class UsersControllerTest extends ControllerTestCase {
 		'app.sentence',
 		'app.user',
 		'app.group',
+		'app.users_language',
 	);
 
 	function setUp() {

@@ -10,11 +10,13 @@ class TagsControllerTest extends ControllerTestCase {
         'app.tag',
         'app.tags_sentence',
         'app.user',
+        'app.users_language',
     );
 
     public function setUp() {
         Configure::write('Acl.database', 'test');
         $this->controller = $this->generate('Tags');
+        $this->controller->Auth->Session->destroy();
     }
 
     public function endTest($method) {
