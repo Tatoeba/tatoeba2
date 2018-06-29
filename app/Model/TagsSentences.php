@@ -54,6 +54,14 @@ class TagsSentences extends AppModel
         }
     }
 
+    protected function _findCount($state, $query, $results = array()) {
+        if ($state === 'before') {
+            // Filter out duplicate tags
+            $query['fields'] = 'DISTINCT sentence_id';
+        }
+        return parent::_findCount($state, $query, $results);
+    }
+
     public function tagSentence($sentenceId, $tagId, $userId)
     {
         $isTagged = $this->isSentenceTagged($sentenceId, $tagId);
