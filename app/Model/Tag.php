@@ -193,7 +193,7 @@ class Tag extends AppModel
         $params = array(
             'TagsSentences' => array(
                 'limit' => $limit,
-                'fields' => array('user_id','sentence_id'),
+                'fields' => array('DISTINCT sentence_id', 'user_id'),
                 'conditions' => $conditions,
                 'contain' => $contain
             )
