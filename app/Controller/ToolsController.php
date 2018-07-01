@@ -161,45 +161,6 @@ class ToolsController extends AppController
         $this->set('lastText', $text);
     }
 
-
-    /**
-     * Different converters chinese/pinyin
-     *
-     * @return void
-     */
-    public function pinyin_converter()
-    {
-        if (empty($this->request->data['Tool'])) {
-            return;
-        }
-
-        $text = $this->request->data['Tool']['query'];
-        $from = Sanitize::paranoid($this->request->data['Tool']['from']);
-        $to = Sanitize::paranoid($this->request->data['Tool']['to']);
-
-        if (!empty($text)) {
-            $this->set('lastText', $text);
-
-            if ($from === 'chinese') {
-                $script = $this->Transcription->detectScript('cmn', $text);
-                $sentence = array(
-                    'id' => null,
-                    'lang' => 'cmn',
-                    'text' => $text,
-                    'script' => $script,
-                );
-                $transcr = $this->Transcription->generateTranscription(
-                    $sentence,
-                    'Latn'
-                );
-                if ($transcr)
-                    $this->set('convertedText', $transcr['text']);
-            } else {
-                $this->set('convertedText', $text);
-            }
-        }
-    }
-
     /**
      * Convert a text in shanghainese into ipa
      *
