@@ -12,7 +12,6 @@ class UpdatePasswordVersionShell extends AppShell {
             'User',
             '_updateHash',
             array(
-                'conditions' => array('CHAR_LENGTH(password) = 32'),
                 'fields' => array('id', 'password')
             )
         );
@@ -22,12 +21,14 @@ class UpdatePasswordVersionShell extends AppShell {
     private function updateHashesFor($data, $model) {
         $result = array();
         foreach ($data as $row) {
-            $newHash = '0 '.Security::hash($row[$model]['password'], 'blowfish');
+            if (strlen($row[$model]['password']) == 32) {
+                $newHash = '0 '.Security::hash($row[$model]['password'], 'blowfish');
 
-            $result[] = array(
-                'id' => $row[$model]['id'],
-                'password' => $newHash,
-            );
+                $result[] = array(
+                    'id' => $row[$model]['id'],
+                    'password' => $newHash,
+                );
+            }
         }
         return $result;
     }
