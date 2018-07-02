@@ -24,6 +24,9 @@ class AudioHelper extends AppHelper
     public $helpers = array('Html');
 
     private $licenses;
+    private $availableLicences = array(
+        'CC BY 4.0', 'CC BY-NC 4.0', 'CC BY-SA 4.0', 'CC BY-NC-ND 3.0'
+    );
 
     public function __construct(View $view, $settings = array()) {
         parent::__construct($view, $settings);
@@ -48,8 +51,8 @@ class AudioHelper extends AppHelper
     public function getLicenseOptions() {
         /* @translators: refers to the license used for audio recordings */
         $keyToName = array('' => __('No license for offsite use'));
-        foreach ($this->licenses as $key => $val) {
-            $keyToName[$key] = isset($val['name']) ? $val['name'] : $key;
+        foreach ($this->availableLicences as $license) {
+            $keyToName[$license] = isset($this->licenses[$license]['name']) ? $this->licenses[$license]['name'] : $license;
         }
         return $keyToName;
     }
