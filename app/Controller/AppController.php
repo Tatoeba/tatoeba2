@@ -245,6 +245,9 @@ class AppController extends Controller
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
         $mostRecentList = $this->Cookie->read('most_recent_list');
         $this->Session->write('most_recent_list', $mostRecentList);
+
+        // Set view variables for the search bar
+        $this->set('query', '');
     }
 
 

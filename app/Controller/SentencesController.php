@@ -618,7 +618,6 @@ class SentencesController extends AppController
         }
 
         // Session variables for search bar
-        $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
         $this->Session->write('search_to', $to);
         $this->addLastUsedLang($from);
