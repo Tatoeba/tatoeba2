@@ -295,7 +295,8 @@ class WallController extends AppController
                     $this->redirect(
                         array(
                             "action"=>"index",
-                            "$messageId#message_$messageId"
+                            $messageId,
+                            "#" => "message_$messageId"
                         )
                     );
                 } else {

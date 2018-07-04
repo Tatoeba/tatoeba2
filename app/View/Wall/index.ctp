@@ -86,7 +86,8 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
 
                 $path = array(
                     'controller' => 'wall',
-                    'action' => 'index#message_'.$currentMessage['Wall']['id']
+                    'action' => 'index',
+                    '#' => 'message_'.$currentMessage['Wall']['id']
                     );
                 // link
                 $isInitialPost = $currentMessage['Wall']['parent_id'] == null;
