@@ -126,7 +126,7 @@ class TranscriptionsShell extends AppShell {
         $me = basename(__FILE__, '.php');
         die(
             "\nWrites transcription-related information to the database.\n\n".
-            "  Usage: $me script {sentences|contrubution} [lang]\n".
+            "  Usage: $me script {sentences|contributions} [lang]\n".
             "         $me autogen [lang]\n".
             "Example: $me script sentences\n\n".
             "Parameters:\n".
