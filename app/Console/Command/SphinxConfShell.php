@@ -594,7 +594,7 @@ indexer
 
 searchd
 {
-    listen                  = {$this->configs->sphinx['port']}
+    listen                  = {$this->configs->sphinx['host']}:{$this->configs->sphinx['port']}
     log                     = $log_opt
     query_log               = $query_log_opt
     binlog_path             = {$this->configs->sphinx['binlog_path']}
