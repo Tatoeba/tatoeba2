@@ -31,6 +31,7 @@ CREATE TABLE `sentences` (
   `script` varchar(4) DEFAULT NULL,
   `hash` BINARY(16) NOT NULL,
   `license` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'CC BY 2.0 FR',
+  `based_on_id` int(11) DEFAULT -1,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `dico_id` (`dico_id`),
