@@ -44,6 +44,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:32:08',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "316iri9\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -56,6 +57,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:32:43',
 			'dico_id' => NULL,
 			'script' => 'Hans',
+			'hash' => "lpq7hv\0\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -68,6 +70,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:33:18',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "2hfhma4\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -80,6 +83,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:34:28',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "1ufg349\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -92,6 +96,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:35:03',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "p7gnh5\0\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -104,6 +109,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:39:36',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "3pn2l5o\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -116,6 +122,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:49:21',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "2s5ig1i\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -128,6 +135,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:52:01',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "3oob3mm\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -140,6 +148,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 21:12:03',
 			'dico_id' => NULL,
 			'script' => null,
+			'hash' => "g14gos\0\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
                 array(
@@ -152,6 +161,7 @@ class SentenceFixture extends CakeTestFixture {
                         'modified' => '2014-04-15 21:13:36',
                         'dico_id' => NULL,
                         'script' => null,
+			'hash' => "3cekb1u\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
                 ),
 		array(
@@ -164,6 +174,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2015-04-15 21:14:00',
 			'dico_id' => NULL,
 			'script' => 'Hant',
+			'hash' => "1d04e4e\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
@@ -176,6 +187,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2015-06-15 00:34:28',
 			'dico_id' => NULL,
                         'script' => null,
+			'hash' => "223h6bm\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		// Intentionally nonexistant. It has been deleted.
@@ -194,6 +206,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2015-08-17 21:56:27',
 			'dico_id' => NULL,
 			'script' => NULL,
+			'hash' => "1nvs6as\0\0\0\0\0\0\0\0\0",
 			'based_on_id' => '-1',
 		),
 		array(
