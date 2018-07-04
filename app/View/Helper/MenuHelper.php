@@ -93,6 +93,8 @@ class MenuHelper extends AppHelper
 
         } else if ($isLogged) {
             $this->Html->script('sentences.add_translation.js', array('block' => 'scriptBottom'));
+            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
+            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
             ?>
             <a><?php echo $translateButton;?></a>
            <?php

@@ -64,10 +64,15 @@ class ClickableLinksHelper extends AppHelper
 
 
             foreach (array_unique($urls[1]) as $url) {
-                if (mb_strlen($url) > $maxUrlLength) {
-                    $urlText = mb_substr($url, 0, $offset1)
-                        . '...'
-                        . mb_substr($url, -$offset2);
+                $displayedChars = preg_split(
+                    '/(&[^;]+;|.)/u',
+                    $url,
+                    -1,
+                    PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+                );
+                if (count($displayedChars) > $maxUrlLength) {
+                    array_splice($displayedChars, $offset1, -$offset2, array('.', '.', '.'));
+                    $urlText = implode($displayedChars);
                 } else {
                     $urlText = $url;
                 }

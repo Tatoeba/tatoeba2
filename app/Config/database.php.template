@@ -25,6 +25,7 @@ class DATABASE_CONFIG {
   public $sphinx = array(
     'host' => 'localhost',
     'port' => 9312,
+    'sphinxql_port' => 9306,
     'indexdir' => '{{sphinx_index_dir}}',
     'socket' => '{{sphinx_sql_socket}}',
     'logdir' => '{{sphinx_log_dir}}',

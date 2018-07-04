@@ -5,9 +5,9 @@ App::import('Component', 'Cookie');
 class AppControllerTest extends ControllerTestCase {
 	public $fixtures = array(
 		'app.sentence',
+		'app.user',
+		'app.users_language',
 	);
-
-	private $interfaceLangCookie = false;
 
 	function startTest($method) {
 		Configure::write('UI.languages', array(
@@ -18,16 +18,19 @@ class AppControllerTest extends ControllerTestCase {
 			array('pt_BR', 'BR', 'Português (BR)'),
 		));
 		Configure::write('App.base', ''); // prevent using the filesystem path as base
+		$mockedComponents = array();
+		if (strpos($method, "testBeforeFilter_") !== false) {
+			$mockedComponents = array('Cookie' => array('read', 'write'));
+		}
 		$this->controller = $this->generate('App', array(
 			'methods' => array('redirect', 'bar'),
-			'components' => array(
-				'Cookie' => array('read', 'write')
-			)
+			'components' => $mockedComponents,
 		));
 		$this->controller->Auth->allowedActions = array('bar');
 	}
 
 	function tearDown() {
+		$this->controller->Auth->Session->destroy();
 		unset($this->controller);
 	}
 
@@ -35,15 +38,14 @@ class AppControllerTest extends ControllerTestCase {
 		$this->controller->Cookie
 			->expects($this->any())
 			->method('read')
-			->will($this->returnCallback(array($this, '_Cookie_read')));
-		$this->interfaceLangCookie = $lang;
-	}
-
-	function _Cookie_read() {
-		$args = func_get_args();
-		if (isset($args[0]) && $args[0] == 'interfaceLanguage') {
-			return $this->interfaceLangCookie;
-		}
+			->will($this->returnCallback(
+				function () use ($lang) {
+					$args = func_get_args();
+					if (isset($args[0]) && $args[0] == 'interfaceLanguage') {
+						return $lang;
+					}
+				}
+			));
 	}
 
 	function expectLanguageCookie($lang) {
@@ -150,5 +152,22 @@ class AppControllerTest extends ControllerTestCase {
 			->method('redirect');
 
 		$this->testAction('/cmn/foo/bar', array('method' => 'GET'));
+	}
+
+	function testRememberMeAutomaticallyLogsInUser() {
+		$this->controller->RememberMe->remember('contributor', '0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l6');
+		$this->assertFalse($this->controller->Auth->loggedIn());
+
+		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
+
+		$this->assertTrue($this->controller->Auth->loggedIn());
+	}
+
+	function testRememberMeFailsIfIncorrectPassword() {
+		$this->controller->RememberMe->remember('contributor', '0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l4');
+
+		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
+
+		$this->assertFalse($this->controller->Auth->loggedIn());
 	}
 }

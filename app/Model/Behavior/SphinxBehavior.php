@@ -29,7 +29,7 @@ class SphinxBehavior extends ModelBehavior
 
     function setup(Model $model, $options = array())
     {
-        $databases = get_class_vars('DATABASE_CONFIG');
+        $databases = ConnectionManager::enumConnectionObjects();
         $config = array_merge(
             $this->_defaults,
             $databases['sphinx']

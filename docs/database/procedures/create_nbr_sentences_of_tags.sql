@@ -1,6 +1,6 @@
 
 Delimiter |
-DROP PROCEDURE create_nbr_sentences_of_tag | 
+DROP PROCEDURE IF EXISTS create_nbr_sentences_of_tag |
 CREATE PROCEDURE create_nbr_sentences_of_tag()
 BEGIN
 
@@ -35,5 +35,4 @@ BEGIN
     END REPEAT;
 
 END |
-CALL create_nbr_sentences_of_tag() |
 Delimiter ;

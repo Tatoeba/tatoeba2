@@ -59,10 +59,6 @@ class CommentsHelper extends AppHelper
         );
 
         echo $this->Form->hidden('sentence_id', array("value"=>$sentenceId));
-
-        // Text of the sentence is used for notification email, to avoid doing
-        // another query.
-        echo $this->Form->hidden('sentence_text', array("value"=>$sentenceText));
         ?>
 
         <div class="header">

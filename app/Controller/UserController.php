@@ -25,6 +25,9 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('AppController', 'Controller');
+App::uses('VersionedPasswordHasher', 'Controller/Component/Auth');
+
 /**
  * Controller for sentence comments.
  *
@@ -80,6 +83,11 @@ class UserController extends AppController
         );
     }
 
+    public function updateAuthData($userId)
+    {
+        $userData = $this->User->read(null, $userId);
+        $this->Session->write(AuthComponent::$sessionKey, $userData['User']);
+    }
 
     /**
      * Display profile of given user.
@@ -314,6 +322,7 @@ class UserController extends AppController
             $basicInfos = $this->filterKeys($this->request->data['User'], $allowedFields);
             $basicInfos['id'] = $currentUserId;
             $saved = $this->User->save($basicInfos);
+            $this->updateAuthData($currentUserId);
         }
 
         if ($saved) {
@@ -600,23 +609,20 @@ class UserController extends AppController
 
             $userId = $this->Auth->user('id');
 
-            $submittedPassword = $this->Auth->password(
-                $this->request->data['User']['old_password']
-            );
+            $passwordHasher = new VersionedPasswordHasher();
+            $submittedPassword = $this->request->data['User']['old_password'];
             $actualPassword = $this->User->getPassword($userId);
 
             $newPassword1 = $this->request->data['User']['new_password'];
             $newPassword2 = $this->request->data['User']['new_password2'];
 
-            if (empty($newPassword1) || empty($newPassword2)) {
+            if (empty($newPassword1)) {
                 $flashMsg = __('New password cannot be empty.');
             }
-            elseif ($submittedPassword == $actualPassword
-                && $newPassword1 == $newPassword2
-            ) {
-
-                $newPassword1 = $this->Auth->password($newPassword1);
-
+            elseif ($newPassword1 != $newPassword2) {
+                $flashMsg = __("New passwords do not match.");
+            }
+            elseif ($passwordHasher->check($submittedPassword, $actualPassword)) {
                 $this->User->id = $userId;
                 if ($this->User->saveField('password', $newPassword1)) {
                     $flashMsg = __('New password has been saved.');

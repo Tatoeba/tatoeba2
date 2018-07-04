@@ -42,7 +42,7 @@ class Audio extends AppModel
     public $actsAs = array('Containable');
 
     public $belongsTo = array(
-        'Sentence',
+        'Sentence' => array('type' => 'inner'),
         'User',
     );
 
@@ -108,7 +108,9 @@ class Audio extends AppModel
         $ok = true;
         $user_id = $this->_getFieldFromDataOrDatabase('user_id');
         $external = $this->_getFieldFromDataOrDatabase('external');
-        $external = array_filter($external);
+        if ($external) {
+            $external = array_filter($external);
+        }
         if (!($user_id xor !empty($external))) {
             $ok = false;
         }

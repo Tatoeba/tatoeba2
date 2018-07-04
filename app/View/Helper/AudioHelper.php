@@ -26,6 +26,40 @@ class AudioHelper extends AppHelper
         'License',
     );
 
+    private $licenses;
+    private $availableLicences = array(
+        'CC BY 4.0', 'CC BY-NC 4.0', 'CC BY-SA 4.0', 'CC BY-NC-ND 3.0'
+    );
+
+    public function __construct(View $view, $settings = array()) {
+        parent::__construct($view, $settings);
+        $this->licenses = array(
+            /* @translators: refers to the license used for audio recordings */
+            'Public domain' => array('name' => __('Public domain')),
+            'CC BY 4.0' => array(
+                'url' => 'https://creativecommons.org/licenses/by/4.0/',
+            ),
+            'CC BY-NC 4.0' => array(
+                'url' => 'https://creativecommons.org/licenses/by-nc/4.0/',
+            ),
+            'CC BY-SA 4.0' => array(
+                'url' => 'https://creativecommons.org/licenses/by-sa/4.0/',
+            ),
+            'CC BY-NC-ND 3.0' => array(
+                'url' => 'https://creativecommons.org/licenses/by-nc-nd/3.0/',
+            ),
+        );
+    }
+
+    public function getLicenseOptions() {
+        /* @translators: refers to the license used for audio recordings */
+        $keyToName = array('' => __('No license for offsite use'));
+        foreach ($this->availableLicences as $license) {
+            $keyToName[$license] = isset($this->licenses[$license]['name']) ? $this->licenses[$license]['name'] : $license;
+        }
+        return $keyToName;
+    }
+
     private function defaultAttribUrl($username) {
         return array(
             'lang' => '',

@@ -61,22 +61,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Useful tools')));
             <li>
                 <?php
                 echo $this->Html->link(
-                    __('Pinyin converter'),
-                    array(
-                        "controller" => "tools",
-                        "action" => "pinyin_converter"
-                    )
-                );
-                echo ': ';
-                echo __(
-                    "convert Chinese to pinyin, numerical pinyin ".
-                    "to diacritical pinyin, etc."
-                );
-                ?>
-            </li>
-            <li>
-                <?php
-                echo $this->Html->link(
                     __('Chinese simplified/traditional conversion'),
                     array(
                         "controller" => "tools",
