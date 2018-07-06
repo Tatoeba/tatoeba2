@@ -45,6 +45,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "316iri9\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -58,6 +59,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => 'Hans',
 			'hash' => "lpq7hv\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -71,6 +73,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "2hfhma4\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -84,6 +87,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "1ufg349\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -97,6 +101,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "p7gnh5\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -110,6 +115,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "3pn2l5o\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -123,6 +129,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "2s5ig1i\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -136,6 +143,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "3oob3mm\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -149,6 +157,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null,
 			'hash' => "g14gos\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
                 array(
@@ -162,6 +171,7 @@ class SentenceFixture extends CakeTestFixture {
                         'dico_id' => NULL,
                         'script' => null,
 			'hash' => "3cekb1u\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
                 ),
 		array(
@@ -175,6 +185,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => 'Hant',
 			'hash' => "1d04e4e\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -188,6 +199,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
                         'script' => null,
 			'hash' => "223h6bm\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		// Intentionally nonexistant. It has been deleted.
@@ -207,6 +219,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => NULL,
 			'hash' => "1nvs6as\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -220,6 +233,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => '29008',
 			'script' => null,
 			'hash' => "3al20v9\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -233,6 +247,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => '139275',
 			'script' => null,
 			'hash' => "3ncj5ov\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -246,6 +261,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => '136593',
 			'script' => null,
 			'hash' => "2i992fp\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -259,6 +275,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => '95546',
 			'script' => null,
 			'hash' => "embpt2\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -272,6 +289,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => '132138',
 			'script' => null,
 			'hash' => "15a909e\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -285,6 +303,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => null,
 			'hash' => "26ec6h2\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -298,6 +317,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => null,
 			'hash' => "4qtmdb\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -311,6 +331,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => null,
 			'hash' => "2q30etf\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -324,6 +345,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => null,
 			'hash' => "36dmbge\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -337,6 +359,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => 'Hans',
 			'hash' => "1ek6f1h\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -350,6 +373,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => 'Hans',
 			'hash' => "1m1ktg\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -363,6 +387,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => null,
 			'hash' => "vrhq7n\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -376,6 +401,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => '59738',
 			'script' => null,
 			'hash' => "11o3n4g\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 		array(
@@ -389,6 +415,7 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => null,
 			'script' => null,
 			'hash' => "l812a2\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '-1',
 		),
 	);
