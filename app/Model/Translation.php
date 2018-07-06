@@ -174,7 +174,8 @@ class Translation extends AppModel
                 'Translation.lang',
                 'Translation.script',
                 'Translation.correctness',
-            )
+            ),
+            'order' => array('Translation.lang')
         );
     }
 
