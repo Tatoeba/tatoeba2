@@ -122,6 +122,19 @@ class SentenceTest extends CakeTestCase {
 		$this->assertFalse((bool)$result);
 	}
 
+	function testSave_setsDefaultLicenseSettingOnCreation() {
+		User::$defaultSettings['default_license'] = 'CC0 1.0';
+		$data = array(
+			'text' => 'This sentence should get a default licence.'
+		);
+
+		$this->Sentence->create();
+		$this->Sentence->save($data);
+
+		$savedSentence = $this->Sentence->findById($this->Sentence->id);
+		$this->assertEquals('CC0 1.0', $savedSentence['Sentence']['license']);
+	}
+
     function testSentenceAdditionAddsTranscription() {
         $result = $this->Sentence->save(array(
             'text' => '歌舞伎ってご存知ですか？',

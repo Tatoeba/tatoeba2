@@ -30,7 +30,7 @@ CREATE TABLE `sentences` (
   `lang_id` tinyint(3) unsigned DEFAULT NULL,
   `script` varchar(4) DEFAULT NULL,
   `hash` BINARY(16) NOT NULL,
-  `license` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT 'CC BY 2.0 FR',
+  `license` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `based_on_id` int(11) DEFAULT -1,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),

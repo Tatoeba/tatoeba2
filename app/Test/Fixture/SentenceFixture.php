@@ -14,7 +14,7 @@ class SentenceFixture extends CakeTestFixture {
 		'dico_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false, 'key' => 'index'),
 		'script' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'hash' => array('type' => 'binary', 'null' => false, 'default' => NULL, 'length' => 16, 'key' => 'index'),
-		'license' => array('type' => 'string', 'null' => true, 'default' => 'CC BY 2.0 FR', 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
+		'license' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'based_on_id' => array('type' => 'integer', 'null' => true, 'default' => '-1', 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
