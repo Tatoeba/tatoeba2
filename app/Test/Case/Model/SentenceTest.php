@@ -88,7 +88,8 @@ class SentenceTest extends CakeTestCase {
 
 	function testSaveTranslation_links() {
 		$translationFromSentenceId = 1;
-		$newlyCreatedSentenceId = (string)($this->Sentence->find('count') + 1);
+		$lastId = $this->Sentence->find('first', array('fields' => array('MAX(id)+1 AS v')));
+		$newlyCreatedSentenceId = $lastId[0]['v'];
 		$this->Sentence->Link = $this->getMockForModel('Link', array('add'));
 
 		$this->Sentence->Link
