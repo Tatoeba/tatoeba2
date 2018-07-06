@@ -135,6 +135,19 @@ class SentenceTest extends CakeTestCase {
 		$this->assertEquals('CC0 1.0', $savedSentence['Sentence']['license']);
 	}
 
+	function testSave_doesNotChangeLicenseOnUpdate() {
+		User::$defaultSettings['default_license'] = 'CC0 1.0';
+		$data = array(
+			'id' => 1,
+			'text' => 'Updating sentence #1.'
+		);
+
+		$this->Sentence->save($data);
+
+		$savedSentence = $this->Sentence->findById($this->Sentence->id);
+		$this->assertEquals('CC BY 2.0 FR', $savedSentence['Sentence']['license']);
+	}
+
     function testSentenceAdditionAddsTranscription() {
         $result = $this->Sentence->save(array(
             'text' => '歌舞伎ってご存知ですか？',

@@ -171,8 +171,10 @@ class Sentence extends AppModel
             $text = $this->data['Sentence']['text'];
             $this->data['Sentence']['text'] = $this->clean($text);
         }
-        if (!isset($this->data['Sentence']['license'])) {
-            $this->data['Sentence']['license'] = CurrentUser::getSetting('default_license');
+        if (!isset($this->data['Sentence']['id'])) { // creating a new sentence
+            if (!isset($this->data['Sentence']['license'])) {
+                $this->data['Sentence']['license'] = CurrentUser::getSetting('default_license');
+            }
         }
     }
 
