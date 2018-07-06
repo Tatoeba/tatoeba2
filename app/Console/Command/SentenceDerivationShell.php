@@ -42,6 +42,13 @@ class Walker {
         return $next;
     }
 
+    public function findAround($range, $matchFunction) {
+        return array_merge(
+            $this->findBefore($range, $matchFunction),
+            $this->findAfter($range, $matchFunction)
+        );
+    }
+
     public function findAfter($range, $matchFunction) {
         $matches = array();
         for ($i = 0; $i < $range; $i++) {

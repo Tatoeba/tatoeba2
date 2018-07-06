@@ -100,6 +100,22 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testWalkerFindAround() {
+        $model = $this->SentenceDerivationShell->Contribution;
+        $expected = $model->find('all', array(
+            'conditions' => array(
+                'id' => array(1, 3, 5, 7),
+            ),
+        ));
+        $walker = new Walker($model);
+        $walker->next(); $walker->next();
+        $walker->next(); $walker->next(); // set pointer on id 4
+        $actual = $walker->findAround(3, function ($row) {
+            return $row['Contribution']['id'] != 2 && $row['Contribution']['id'] != 6;
+        });
+
+        $this->assertEquals($expected, $actual);
+    }
     public function testSetSentenceBasedOnId_findsOriginalSentence()
     {
         $expectedOriginalSentences = array(1, 7, 8, 9, 11, 12, 14, 18);
