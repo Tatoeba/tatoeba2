@@ -128,5 +128,85 @@ class LinkFixture extends CakeTestFixture {
 			'translation_lang' => NULL,
 			'distance' => '1'
 		),
+		array(
+			'id' => '15',
+			'sentence_id' => '15',
+			'translation_id' => '16',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '16',
+			'sentence_id' => '16',
+			'translation_id' => '15',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '17',
+			'sentence_id' => '15',
+			'translation_id' => '17',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '18',
+			'sentence_id' => '17',
+			'translation_id' => '15',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '19',
+			'sentence_id' => '15',
+			'translation_id' => '18',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '20',
+			'sentence_id' => '18',
+			'translation_id' => '15',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '21',
+			'sentence_id' => '15',
+			'translation_id' => '19',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '22',
+			'sentence_id' => '19',
+			'translation_id' => '15',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '23',
+			'sentence_id' => '15',
+			'translation_id' => '20',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '24',
+			'sentence_id' => '20',
+			'translation_id' => '15',
+			'sentence_lang' => NULL,
+			'translation_lang' => NULL,
+			'distance' => '1'
+		),
 	);
 }

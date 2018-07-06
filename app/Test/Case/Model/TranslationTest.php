@@ -136,4 +136,22 @@ class TranslationTest extends CakeTestCase {
         );
         $this->_assertFind($checkIf, array());
     }
+
+    function testGetTranslationsOfCheckLangOrder() {
+        $this->Translation->unbindModel(
+            array('hasMany' => array('Transcription'))
+        );
+        $result = $this->Translation->getTranslationsOf(15, array());
+
+        $languages = array_map(function($item) {
+            return $item['Translation']['lang'];
+        }, $result);
+
+        $expected = $languages;
+        usort($expected, function($a, $b) {
+            return strcmp($a, $b);
+        });
+
+        $this->assertEquals($expected, $languages);
+    }
 }
