@@ -5,22 +5,15 @@ App::import('Behavior', 'Sphinx');
 
 class SentenceTest extends CakeTestCase {
 	public $fixtures = array(
-		'app.audio',
 		'app.sentence',
 		'app.user',
-		'app.group',
-		'app.sentence_comment',
 		'app.contribution',
 		'app.sentences_list',
 		'app.sentences_sentences_list',
-		'app.wall',
-		'app.wall_thread',
-		'app.favorites_user',
 		'app.tag',
 		'app.tags_sentence',
 		'app.language',
 		'app.link',
-		'app.sentence_annotation',
 		'app.transcription',
 		'app.reindex_flag',
 	);
