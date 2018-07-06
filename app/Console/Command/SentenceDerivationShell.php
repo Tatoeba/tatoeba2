@@ -58,8 +58,14 @@ class Walker {
 
     public function findBefore($range, $matchFunction) {
         $matches = array();
-        for ($i = 0; $i < $range; $i++) {
-           prev($this->buffer);
+        $max = $range;
+        for ($i = 0; $i < $max; $i++) {
+           if (prev($this->buffer) === false) {
+              $range--;
+           }
+        }
+        if ($range != $max) {
+           reset($this->buffer);
         }
         for ($i = 0; $i < $range; $i++) {
            $row = current($this->buffer);
