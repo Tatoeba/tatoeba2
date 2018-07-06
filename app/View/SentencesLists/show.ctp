@@ -26,6 +26,7 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle($listName));
+$this->Sentences->javascriptForAJAXSentencesGroup(false);
 ?>
 
 <div id="annexe_content">
