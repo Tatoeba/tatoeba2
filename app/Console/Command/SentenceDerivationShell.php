@@ -55,6 +55,21 @@ class Walker {
         }
         return $matches;
     }
+
+    public function findBefore($range, $matchFunction) {
+        $matches = array();
+        for ($i = 0; $i < $range; $i++) {
+           prev($this->buffer);
+        }
+        for ($i = 0; $i < $range; $i++) {
+           $row = current($this->buffer);
+           if ($matchFunction($row)) {
+               $matches[] = $row;
+           }
+           $this->next($this->buffer);
+        }
+        return $matches;
+    }
 }
 
 class SentenceDerivationShell extends AppShell {
