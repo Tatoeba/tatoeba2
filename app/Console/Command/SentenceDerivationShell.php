@@ -41,6 +41,20 @@ class Walker {
         }
         return $next;
     }
+
+    public function findAfter($range, $matchFunction) {
+        $matches = array();
+        for ($i = 0; $i < $range; $i++) {
+           $row = $this->next($this->buffer);
+           if ($matchFunction($row)) {
+               $matches[] = $row;
+           }
+        }
+        for ($i = 0; $i < $range; $i++) {
+           prev($this->buffer);
+        }
+        return $matches;
+    }
 }
 
 class SentenceDerivationShell extends AppShell {
