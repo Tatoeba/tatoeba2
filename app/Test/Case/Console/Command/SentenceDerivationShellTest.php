@@ -31,6 +31,21 @@ class SentenceDerivationShellTest extends CakeTestCase
         unset($this->SentenceDerivationShell);
     }
 
+    public function testWalkerLoops() {
+        $model = $this->SentenceDerivationShell->Contribution;
+        $expected = $model->find('all');
+
+        $walker = new Walker($model);
+        $walker->bufferSize = 10;
+        $walker->allowRewindSize = 4;
+        $actual = array();
+        while ($row = $walker->next()) {
+            $actual[] = $row;
+        }
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testSetSentenceBasedOnId_findsOriginalSentence()
     {
         $expectedOriginalSentences = array(1, 7, 8, 9, 11, 12, 14, 18);
