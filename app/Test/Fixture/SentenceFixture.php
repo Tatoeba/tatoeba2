@@ -123,17 +123,17 @@ class SentenceFixture extends CakeTestFixture {
 			'dico_id' => NULL,
 			'script' => null
 		),
-                array(
-                        'id' => '10',
-                        'lang' => 'jpn',
-                        'text' => 'ちょっと待って。',
-                        'correctness' => NULL,
-                        'user_id' => '7',
-                        'created' => '2014-04-15 21:13:23',
-                        'modified' => '2014-04-15 21:13:36',
-                        'dico_id' => NULL,
-                        'script' => null
-                ),
+		array(
+				'id' => '10',
+				'lang' => 'jpn',
+				'text' => 'ちょっと待って。',
+				'correctness' => NULL,
+				'user_id' => '7',
+				'created' => '2014-04-15 21:13:23',
+				'modified' => '2014-04-15 21:13:36',
+				'dico_id' => NULL,
+				'script' => null
+		),
 		array(
 			'id' => '11',
 			'lang' => 'yue',
@@ -166,83 +166,6 @@ class SentenceFixture extends CakeTestFixture {
 			'id' => '14',
 			'lang' => 'eng',
 			'text' => 'An orphan sentence.',
-			'correctness' => NULL,
-			'user_id' => NULL,
-			'created' => '2015-08-17 21:56:27',
-			'modified' => '2015-08-17 21:56:27',
-			'dico_id' => NULL,
-			'script' => NULL
-		),
-		array(
-			'id' => '15',
-			'lang' => 'eng',
-			'text' => 'Hello. Testing translation order.',
-			'correctness' => NULL,
-			'user_id' => NULL,
-			'created' => '2018-07-06 10:56:27',
-			'modified' => '2015-07-06 10:56:27',
-			'dico_id' => NULL,
-			'script' => NULL
-		),
-		array(
-			'id' => '16',
-			'lang' => 'fra',
-			'text' => 'Bonjour. Je test l\'ordre des traductions',
-			'correctness' => NULL,
-			'user_id' => NULL,
-			'created' => '2015-08-17 21:56:27',
-			'modified' => '2015-08-17 21:56:27',
-			'dico_id' => NULL,
-			'script' => NULL
-		),
-		array(
-			'id' => '17',
-			'lang' => 'deu',
-			'text' => 'Hallo. Ich teste die Reihenfolge der Übersetzungen.',
-			'correctness' => NULL,
-			'user_id' => NULL,
-			'created' => '2015-08-17 21:56:27',
-			'modified' => '2015-08-17 21:56:27',
-			'dico_id' => NULL,
-			'script' => NULL
-		),
-		array(
-			'id' => '18',
-			'lang' => 'deu',
-			'text' => 'Hallo. Wir testen die Reihenfolge der Übersetzungen.',
-			'correctness' => NULL,
-			'user_id' => NULL,
-			'created' => '2015-08-17 21:56:27',
-			'modified' => '2015-08-17 21:56:27',
-			'dico_id' => NULL,
-			'script' => NULL
-		),
-		array(
-			'id' => '19',
-			'lang' => 'ita',
-			'text' => 'Ciao. Stiamo testando l\'ordine delle traduzioni.',
-			'correctness' => NULL,
-			'user_id' => NULL,
-			'created' => '2015-08-17 21:56:27',
-			'modified' => '2015-08-17 21:56:27',
-			'dico_id' => NULL,
-			'script' => NULL
-		),
-		array(
-			'id' => '20',
-			'lang' => 'fra',
-			'text' => 'Salut. Je test l\'ordre des traductions',
-			'correctness' => NULL,
-			'user_id' => NULL,
-			'created' => '2015-08-17 21:56:27',
-			'modified' => '2015-08-17 21:56:27',
-			'dico_id' => NULL,
-			'script' => NULL
-		),
-		array(
-			'id' => '21',
-			'lang' => 'spa',
-			'text' => 'Hola. Estamos probando el orden de las traducciones.',
 			'correctness' => NULL,
 			'user_id' => NULL,
 			'created' => '2015-08-17 21:56:27',

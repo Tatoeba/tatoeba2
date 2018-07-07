@@ -138,19 +138,10 @@ class TranslationTest extends CakeTestCase {
     }
 
     function testGetTranslationsOfCheckLangOrder() {
-        $this->Translation->unbindModel(
-            array('hasMany' => array('Transcription'))
-        );
-        $result = $this->Translation->getTranslationsOf(15, array());
+        $result = $this->Translation->getTranslationsOf(1, array());
 
-        $languages = array_map(function($item) {
-            return $item['Translation']['lang'];
-        }, $result);
-
-        $expected = $languages;
-        usort($expected, function($a, $b) {
-            return strcmp($a, $b);
-        });
+        $languages = $languages = Set::classicExtract($result, '{n}.Translation.lang');
+        $expected = array('cmn', 'deu', 'fra', 'jpn', 'spa');
 
         $this->assertEquals($expected, $languages);
     }
