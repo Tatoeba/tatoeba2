@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-27 15:29+0000\n"
-"PO-Revision-Date: 2018-05-27 15:55+0000\n"
+"POT-Creation-Date: 2018-07-01 14:16+0000\n"
+"PO-Revision-Date: 2018-07-01 14:22+0000\n"
 "Last-Translator: Trang\n"
 "Language-Team: Romanian (http://www.transifex.com/tatoeba/tatoeba_website/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -32,23 +32,23 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "Nu există niciun utilizator numit {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L142
 msgid "You need to be logged in."
 msgstr "Este necesar să fiţi autentificat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L112
 msgid "Your audio settings have been saved."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L554
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
 msgstr "O eroare s-a produs în timpul salvării. Vă rugăm reîncercaţi sau contactaţi-ne pentru a raporta problema."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/Component/MailerComponent.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/Component/MailerComponent.php#L160
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, parolă nouă"
 
@@ -95,9 +95,9 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L408
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L248
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L392
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L437
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L463
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L385
@@ -105,7 +105,7 @@ msgid "Are you sure?"
 msgstr "Sunteţi sigur?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L412
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L241
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L457
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L140
 msgid "delete"
@@ -116,7 +116,7 @@ msgid "mark as unread"
 msgstr "marcat ca necitit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L431
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L471
 msgid "reply"
 msgstr "răspuns"
@@ -130,15 +130,15 @@ msgstr ""
 msgid "There is no sentence with id {number}"
 msgstr "Nu există nicio propoziţie cu numărul de ordine {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L248
 msgid "Your comment has been saved."
 msgstr "Comentariul dvs. a fost salvat."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L313
 msgid "You do not have permission to edit this comment. "
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L317
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/WallController.php#L326
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/write.ctp#L47
 msgid ""
@@ -146,15 +146,15 @@ msgid ""
 " {email}."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L339
 msgid "Comments cannot be empty."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L356
 msgid "Changes to your comment have been saved."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L368
 msgid "We could not save your changes."
 msgstr ""
 
@@ -281,77 +281,81 @@ msgstr[2] ""
 msgid "{firstSentence} {secondSentence}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L146
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
 msgstr "Eticheta '{tagName}' există deja pentru propoziția #{number} sau nu poate fi adăugată."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L290
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L77
 msgid "No user with this username: {username}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L173
 msgid "Failed to upload image"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L182
 msgid "Please choose an image that does not exceed 1 MB."
 msgstr "Vă rugăm alegeţi o imagine care nu depăşeşte 1 MB."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L193
 msgid "Please choose GIF, JPEG or PNG image format."
 msgstr "Vă rugăm alegeţi formatele de imagini GIF, JPEG sau PNG."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L222
 msgid "Error while saving."
 msgstr "Eroare în timpul salvării."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L330
 msgid "Profile saved."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L341
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L373
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L382
 msgid "That email address already exists. Please try another."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L431
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L480
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L551
 msgid "Your settings have been saved."
 msgstr "Opţiunile dvs. au fost salvate."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L612
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L620
 msgid "New password cannot be empty."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L622
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L623
+msgid "New passwords do not match."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L628
 msgid "New password has been saved."
 msgstr "Noua parolă a fost salvată."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L624
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L630
 msgid "An error occurred while saving."
 msgstr "O eroare s-a produs în timpul salvării."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L629
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L635
 msgid "Password error. Please try again."
 msgstr "Eroare parolă. Vă rugăm reîncercaţi."
 
@@ -377,15 +381,15 @@ msgid ""
 "unintentionally turned on. Your password is case-sensitive."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L338
 msgid "Password cannot be empty."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L349
 msgid "Wrong answer to the question."
 msgstr "Răspuns eronat la întrebare."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L359
 msgid "You did not accept the terms of use."
 msgstr "Nu aţi acceptat termenii de utilizare."
 
@@ -1257,30 +1261,30 @@ msgid "Close"
 msgstr "Închidere"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L534
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L537
 msgid "sentence deleted"
 msgstr "propoziţie ştearsă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L68
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L39
 msgid "Sentence {number} — belongs to {username}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L84
 msgid "Sentence {number}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L137
 msgid "permalink"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L170
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L551
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L554
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -1294,7 +1298,7 @@ msgstr "Mesaj privat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmtoolbox.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/write.ctp#L28
 msgid "New message"
 msgstr "Mesaj nou"
@@ -1725,27 +1729,27 @@ msgid ""
 "license."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L72
 msgid "Add a comment"
 msgstr "Adăugare comentariu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L92
 msgid "Submit comment"
 msgstr "Trimiteţi comentariu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L101
 msgid "Good practices"
 msgstr "Bune practici"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L106
 msgid "Say \"welcome\" to new users."
 msgstr "Spuneţi \"bine aţi venit\" noilor utilizatori."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L114
 msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Folosiţi mesajele private pentru a discuta chestiuni nelegate de propoziţii."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L192
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L723
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L158
@@ -1757,20 +1761,20 @@ msgstr "Folosiţi mesajele private pentru a discuta chestiuni nelegate de propoz
 msgid "Cancel"
 msgstr "Anulare"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L196
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L152
 msgid "Save changes"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L220
 msgid "unhide"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L223
 msgid "hide"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L255
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L444
 msgid "edit"
 msgstr ""
@@ -2058,7 +2062,7 @@ msgid "Add a sentence to this list : "
 msgstr "Adăugare propoziţie la această listă: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L495
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L384
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/NavigationHelper.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L722
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L157
@@ -2128,7 +2132,7 @@ msgid "{info}, {date}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MembersHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L472
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L474
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L157
@@ -2174,124 +2178,124 @@ msgid ""
 " be translated."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L148
 msgid "Click to adopt"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L155
 msgid "Click to unadopt"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L205
 msgid "Remove from favorites"
 msgstr "Ştergere de la favorite"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L210
 msgid "Undo"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L213
 msgid "Add to favorites"
 msgstr "Adăugare la favorite"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L269
 msgid "Link to another sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L280
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L282
 msgid "Sentence number"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentenceButtonsHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Links/delete.ctp#L8
 msgid "Link"
 msgstr "Legătură"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L328
 msgid "Add to list"
 msgstr "Adăugare la listă"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L362
 msgid "Add to one of your lists"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L363
 msgid "Add to a collaborative list"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L416
 msgid "You cannot delete this sentence because it has audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L422
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L398
 msgid "Delete"
 msgstr "Ştergere"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L469
 msgid "You cannot edit this sentence because it has audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L505
 msgid "belongs to {user}"
 msgstr "aparţine lui {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L525
 msgid "(native)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L544
 msgid "Mark as \"OK\""
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L547
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L549
 msgid "Mark as \"unsure\""
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L552
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L554
 msgid "Mark as \"not OK\""
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L564
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L566
 msgid "Unmark sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L101
 msgid "Message"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L103
 msgid "Reply"
 msgstr "Răspuns"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L195
 msgid "Former member"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L224
 msgid "Send private message"
 msgstr "Trimitere mesaj privat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L242
 msgid "edited"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L271
 msgid "to {recipient}"
 msgstr "la {recipient}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L273
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L276
 msgid "Draft"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L280
 msgid "from {sender}"
 msgstr "de la {sender}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L356
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L185
 msgid "View this user's profile"
 msgstr "Vizualizaţi profilul acestui utilizator"
@@ -3192,23 +3196,23 @@ msgstr ""
 msgid "We are sorry for the inconvenience."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L35
 msgid "Table of contents"
 msgstr "Cuprins"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L36
-msgid "English version"
-msgstr "Versiunea în engleză"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L39
+msgid "Translated version"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L41
-msgid "Version française"
-msgstr "Versiunea în franceză"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L44
+msgid "Original version (French)"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L59
 msgid "Information for contributors of text to the Tatoeba project"
 msgstr "Informaţii pentru contribuitorii de text la proiectul Tatoeba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L63
 msgid ""
 "To grow the commons of free knowledge and free culture, all users "
 "contributing to the Tatoeba project are required to grant broad permissions "
@@ -3220,7 +3224,7 @@ msgid ""
 "compliant with the terms. "
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L75
 msgid ""
 "As an author, you agree to be attributed in any of the following fashions: "
 "a) through a hyperlink (where possible) or URL to the sentence or sentences "
@@ -3232,18 +3236,18 @@ msgid ""
 "or irrelevant contributions.)"
 msgstr "Ca autor, sunteţi de acord să fie atribuite în oricare dintre următoarele modalităţi: a) printr-un hyperlink (unde este posibil) sau URL la propoziţia sau propoziţiile cu care aţi contribuit, b) printr-un hyperlink (unde este posibil) sau URL la o copie online stabilă alternativă care este accesibilă gratuit, care este în conformitate cu licenţa şi care dă credit autorilor într-o manieră echivalentă cu creditele acordate pe acest site web, sau c) printr-o listă a tuturor autorilor. (Orice listă de autori poate fi filtrată pentru a exclude contribuţii reduse sau irelevante)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L85
 msgid "Importing text:"
 msgstr "Importarea textului:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L88
 msgid ""
 "If you want to import text that you have found elsewhere or that you have "
 "co-authored with others, you can only do so if it is available under terms "
 "that are compatible with the CC-BY license."
 msgstr "Dacă doriţi să importaţi text pe care l-aţi găsit în altă parte sau la care sunteţi co-autor împreună cu alţii, puteţi face acest lucru doar dacă este disponibil sub termeni compatibili cu licenţa CC-BY."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L94
 msgid ""
 "If you import text under a compatible license which requires attribution, "
 "you must, in a reasonable fashion, credit the author(s). Where such credit "
@@ -3253,15 +3257,15 @@ msgid ""
 "be rejected if the required attribution is deemed too intrusive."
 msgstr "Dacă importaţi text sub o licenţă compatibilă care necesită atribuire, dvs. trebuie, într-o manieră rezonabilă, să acordaţi credit autorului/autorilor. Acolo unde astfel de credite sunt în mod obişnuit acordate prin comentarii la propoziţii; este suficientă atribuirea în sumarul modificat, care este înregistrat în istoria propoziţiei, când se importă textul. Indiferent de licenţă, textul pe care îl importaţi poate fi respins dacă atribuirea este considerată prea intruzivă."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L102
 msgid "Information for re-users:"
 msgstr "Informaţii pentru re-utilizatori:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L105
 msgid "Re-use of text:"
 msgstr "Refolosirea textului:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L111
 msgid ""
 "Attribution: To re-distribute a text page in any form, provide credit to the"
 " authors either by including a) a hyperlink (where possible) or URL to the "
@@ -3275,7 +3279,7 @@ msgid ""
 "requirements to the work, which we will strive to indicate clearly to you."
 msgstr "Atribuirea: Pentru a redistribui o pagină de text în orice formă, acordaţi credit autorilor fie incluzând un hyperlink (unde este posibil) sau URL la pagina sau paginile pe care le refolosiţi, b) un hyperlink (unde este posibil) sau URL la o copie online stabilă alternativă care este accesibilă gratuit, care este în conformitate cu licenţa şi care dă credit autorilor într-o manieră echivalentă cu creditele acordate pe acest site web, sau c) o listă a tuturor autorilor. (Orice listă de autori poate fi filtrată pentru a exclude contribuţii reduse sau irelevante). Aceasta se aplică textului dezvoltat de comunitatea proiectului Tatoeba. Textului din surse externe i se pot ataşa atribuiri suplimentare operei, iar noi ne vom strădui să le facem să indice clar către dvs."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L130
 msgid ""
 "Indicate changes: If you make modifications or additions, you must indicate "
 "in a reasonable fashion that the original work has been modified. If you are"
@@ -3283,7 +3287,7 @@ msgid ""
 "history is sufficient."
 msgstr "Indicaţi schimbările: Dacă faceţi modificări sau adăugări, este necesar să indicaţi într-un mod rezonabil că textul original a fost modificat. Dacă refolosiţi propoziţia în wiki, de exemplu, indicând acest lucru în istoria paginii este suficient."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L142
 msgid ""
 "  Licensing notice: Each copy or modified version that you distribute must "
 "include a licensing notice stating that the work is released under CC-BY and"
@@ -3292,17 +3296,17 @@ msgid ""
 "http://creativecommons.org/licenses/by/2.0/fr/"
 msgstr "  Notă de licenţiere: Fiecare copie sau versiune modificată pe care o distribuiţi trebuie să includă o notă de licenţiere precizând că opera este pusă în circulaţie sub CC-BY şi fie a) un hyperlink sau URL către textul licenţei sau b) o copie a licenţei. În acest scop, un URL potrivit este: http://creativecommons.org/licenses/by/2.0/fr/"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L154
 msgid ""
 "For further information, please refer to the legal code of the CC-BY "
 "License."
 msgstr "Pentru informaţii suplimentare, vă rugăm să consultaţi textul legal al licenţei CC-BY (Creative Commons Atribuire)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L161
 msgid "Precedence of French terms"
 msgstr "Întâietatea versiunii franceze"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L165
 msgid ""
 "These site terms are not to be modified. If there is any inconsistency "
 "between the French terms and any translation into other languages, the "

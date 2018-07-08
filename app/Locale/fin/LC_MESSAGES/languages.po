@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Nikolay Korotkiy <sikmir@gmail.com>, 2016-2018
+# Silja Ijas, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-03-12 12:46+0000\n"
-"PO-Revision-Date: 2018-03-15 13:12+0000\n"
-"Last-Translator: Nikolay Korotkiy <sikmir@gmail.com>\n"
+"PO-Revision-Date: 2018-07-05 07:53+0000\n"
+"Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -216,7 +217,7 @@ msgstr "; nominative: persia/farsi; genitive: persian; partitive: persiaa; iness
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L285
 msgid "Min Nan Chinese"
-msgstr "; nominative: min nan -kiina; genitive: min nan -kiinan; partitive: min nan -kiinaa; inessive: min nan -kiinassa; elative: min nan -kiinasta; illative: min nan -kiinaan; translative: min nan -kiinaksi"
+msgstr "; nominative: kiina (min nan); genitive: min nan -kiinan; partitive: min nan -kiinaa; inessive: min nan -kiinassa; elative: min nan -kiinasta; illative: min nan -kiinaan; translative: min nan -kiinaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L286
 msgid "Basque"
@@ -352,7 +353,7 @@ msgstr "; nominative: thai; genitive: thain; partitive: thaita; inessive: thaiss
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L319
 msgid "Literary Chinese"
-msgstr "; nominative: kirjallinen kiina; genitive: kirjallisen kiinan; partitive: kirjallista kiinaa; inessive: kirjallisessa kiinassa; elative: kirjallisesta kiinasta; illative: kirjalliseen kiinaan; translative: kirjalliseksi kiinaksi"
+msgstr "; nominative: kiina (kirjallinen); genitive: kirjallisen kiinan; partitive: kirjallista kiinaa; inessive: kirjallisessa kiinassa; elative: kirjallisesta kiinasta; illative: kirjalliseen kiinaan; translative: kirjalliseksi kiinaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L320
 msgid "Ossetian"
@@ -1012,7 +1013,7 @@ msgstr "; nominative: ganda; genitive: gandan; partitive: gandaa; inessive: gand
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L484
 msgid "Hakka Chinese"
-msgstr "; nominative: hakka-kiina; genitive: hakka-kiinan; partitive: hakka-kiinaa; inessive: hakka-kiinassa; elative: hakka-kiinasta; illative: hakka-kiinaan; translative: hakka-kiinaksi"
+msgstr "; nominative: kiina (hakka); genitive: hakka-kiinan; partitive: hakka-kiinaa; inessive: hakka-kiinassa; elative: hakka-kiinasta; illative: hakka-kiinaan; translative: hakka-kiinaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L485
 msgid "Bambara"
@@ -1072,7 +1073,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L499
 msgid "Moroccan Arabic"
-msgstr ""
+msgstr "; nominative: marokonarabia; genitive: marokonarabian; partitive: marokonarabiaa; inessive: marokonarabiassa; elative: marokonarabiasta; illative: marokonarabiaan; translative: marokonarabiaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L500
 msgid "Cuyonon"
@@ -1192,7 +1193,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L529
 msgid "Chinese (Jin)"
-msgstr ""
+msgstr "; nominative: kiina (jin); genitive: jin-kiinan; partitive: jin-kiinaa; inessive: jin-kiinassa; elative: jin-kiinasta; illative: jin-kiinaan; translative: jin-kiinaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L530
 msgid "Maithili"
@@ -1212,11 +1213,11 @@ msgstr "; nominative: gootti; genitive: gootin; partitive: goottia; inessive: go
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L534
 msgid "Xiang Chinese"
-msgstr ""
+msgstr "; nominative: kiina (xiang); genitive: xiang-kiinan; partitive: xiang-kiinaa; inessive: xiang-kiinassa; elative: xiang-kiinasta; illative: xiang-kiinaan; translative: xiang-kiinaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L535
 msgid "Gan Chinese"
-msgstr ""
+msgstr "; nominative: kiina (gan); genitive: gan-kiinan; partitive: gan-kiinaa; inessive: gan-kiinassa; elative: gan-kiinasta; illative: gan-kiinaan; translative: gan-kiinaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L536
 msgid "Bavarian"
@@ -1280,19 +1281,19 @@ msgstr "; nominative: inkeroinen; genitive: inkeroisen; partitive: inkeroista; i
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L551
 msgid "Southern Sami"
-msgstr ""
+msgstr "; nominative: eteläsaame; genitive: eteläsaamen; partitive: eteläsaamea; inessive: eteläsaamessa; elative: eteläsaamesta; illative: eteläsaameen; translative: eteläsaameksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L552
 msgid "Jamaican Patois"
-msgstr ""
+msgstr "; nominative: jamaikankreoli/patois; genitive: jamaikankreolin; partitive: jamaikankreolia; inessive: jamaikankreolissa; elative: jamaikankreolista; illative: jamaikankreoliin; translative: jamaikankreoliksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L553
 msgid "Mirandese"
-msgstr ""
+msgstr "; nominative: mirandeesi; genitive: mirandeesin; partitive: mirandeesia; inessive: mirandeesissa; elative: mirandeesista; illative: mirandeesiin; translative: mirandeesiksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L554
 msgid "Komi-Zyrian"
-msgstr "Komi-Syrjääni"
+msgstr "; nominative: komi-syrjääni; genitive: komin; partitive: komia; inessive: komissa; elative: komista; illative: komiin; translative: komiksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/LanguagesLib.php#L555
 msgid "Mnong, Central"
