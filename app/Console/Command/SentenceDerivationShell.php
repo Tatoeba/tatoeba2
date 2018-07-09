@@ -112,7 +112,8 @@ class SentenceDerivationShell extends AppShell {
         while ($log = $walker->next()) {
             $log = $log['Contribution'];
             if ($log['action']   == 'insert' &&
-                $log['type']     == 'sentence')
+                $log['type']     == 'sentence' &&
+                $log['datetime'] != '0000-00-00 00:00:00')
             {
                 $sentenceId = $log['sentence_id'];
                 if (!$this->Sentence->findById($sentenceId)) {

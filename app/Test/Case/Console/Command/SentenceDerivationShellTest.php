@@ -182,4 +182,17 @@ class SentenceDerivationShellTest extends CakeTestCase
         $result = $this->SentenceDerivationShell->Sentence->findById($removedSentenceId);
         $this->assertEmpty($result);
     }
+
+    public function testSetSentenceBasedOnId_doesNotTouchSentencesCreatedWithDatetimeZero()
+    {
+        $this->SentenceDerivationShell->Contribution->deleteAll(
+            array('Contribution.sentence_id !=' => 18),
+            false
+        );
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $result = $this->findSentencesWithKnownDerivation();
+        $this->assertEmpty($result);
+    }
 }
