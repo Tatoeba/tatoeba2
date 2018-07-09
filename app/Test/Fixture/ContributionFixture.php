@@ -239,7 +239,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '7',
-			'datetime' => '2014-04-15 00:39:24',
+			'datetime' => '2014-04-15 00:39:23',
 			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '16'
@@ -685,6 +685,7 @@ class ContributionFixture extends CakeTestFixture {
 			'id' => '47'
 		),
 		// translation inserted with pattern: create A, link A-B, link B-A
+		// with 4 seconds time difference (like sentence #386311)
 		array(
 			'sentence_id' => '28',
 			'sentence_lang' => 'ara',
@@ -694,7 +695,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => 'ماذا تفعل؟',
 			'action' => 'insert',
 			'user_id' => '2',
-			'datetime' => '2017-04-06 19:39:48',
+			'datetime' => '2017-04-06 18:40:26',
 			'ip' => '172.28.54.205',
 			'type' => 'sentence',
 			'id' => '48'
@@ -708,7 +709,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '2',
-			'datetime' => '2017-04-06 19:39:48',
+			'datetime' => '2017-04-06 18:40:29',
 			'ip' => '172.28.54.205',
 			'type' => 'link',
 			'id' => '49'
@@ -722,7 +723,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '2',
-			'datetime' => '2017-04-06 19:39:48',
+			'datetime' => '2017-04-06 18:40:30',
 			'ip' => '172.28.54.205',
 			'type' => 'link',
 			'id' => '50'

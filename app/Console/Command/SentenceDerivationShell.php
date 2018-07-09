@@ -63,9 +63,9 @@ class Walker {
            }
         }
         if ($range != $max) {
-           reset($this->buffer);
+           end($this->buffer);
         }
-        for ($i = 0; $i < $max; $i++) {
+        for ($i = 0; $i < $range; $i++) {
            prev($this->buffer);
         }
         return $matches;
@@ -124,7 +124,7 @@ class SentenceDerivationShell extends AppShell {
                     $elem = $elem['Contribution'];
                     $creatDate = strtotime($log['datetime']);
                     $otherDate = strtotime($elem['datetime']);
-                    $closeDatetime = abs($otherDate - $creatDate) <= 1;
+                    $closeDatetime = abs($otherDate - $creatDate) <= 4;
 
                     $isRelated = $elem['translation_id'] == $log['sentence_id']
                                  || $elem['sentence_id'] == $log['sentence_id'];

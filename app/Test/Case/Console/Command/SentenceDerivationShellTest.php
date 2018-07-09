@@ -240,9 +240,21 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEquals($expectedDerivation, $result);
     }
 
+    public function testSetSentenceBasedOnId_longDatetimeDifference()
+    {
+        $expectedDerivation = array(
+            28 => 27,
+        );
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
+
     public function testSetSentenceBasedOnId_returnsNumberOfSentencesProceeded()
     {
-        $expected = 19;
+        $expected = 20;
         $actual = $this->SentenceDerivationShell->setSentenceBasedOnId();
         $this->assertEquals($expected, $actual);
     }
