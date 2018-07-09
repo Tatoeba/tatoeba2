@@ -100,6 +100,22 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testWalkerFindAfterHitsBufferEnd() {
+        $model = $this->SentenceDerivationShell->Contribution;
+        $all = $model->find('all');
+        $expected = array(end($all));
+
+        $walker = new Walker($model);
+        for ($i = 0; $i < count($all) - 1; $i++) {
+            $walker->next();
+        }
+        $actual = $walker->findAfter(3, function ($row) {
+            return true;
+        });
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testWalkerFindAround() {
         $model = $this->SentenceDerivationShell->Contribution;
         $expected = $model->find('all', array(

@@ -51,13 +51,21 @@ class Walker {
 
     public function findAfter($range, $matchFunction) {
         $matches = array();
-        for ($i = 0; $i < $range; $i++) {
+        $max = $range;
+        for ($i = 0; $i < $max; $i++) {
            $row = $this->next($this->buffer);
-           if ($matchFunction($row)) {
-               $matches[] = $row;
+           if ($row === false) {
+              $range--;
+           } else {
+               if ($matchFunction($row)) {
+                   $matches[] = $row;
+               }
            }
         }
-        for ($i = 0; $i < $range; $i++) {
+        if ($range != $max) {
+           reset($this->buffer);
+        }
+        for ($i = 0; $i < $max; $i++) {
            prev($this->buffer);
         }
         return $matches;
