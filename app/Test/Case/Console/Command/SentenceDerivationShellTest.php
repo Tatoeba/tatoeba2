@@ -135,6 +135,7 @@ class SentenceDerivationShellTest extends CakeTestCase
 
     private function findSentencesDerivation($ids = array())
     {
+        $ids = array_keys($ids);
         $result = $this->SentenceDerivationShell->Sentence->findAllById($ids, array('id', 'based_on_id'));
         return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.based_on_id');
     }
@@ -155,7 +156,7 @@ class SentenceDerivationShellTest extends CakeTestCase
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
 
-        $actualDerivation = $this->findSentencesDerivation(array_keys($expectedDerivation));
+        $actualDerivation = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
 
@@ -177,7 +178,7 @@ class SentenceDerivationShellTest extends CakeTestCase
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
 
-        $result = $this->findSentencesDerivation(array_keys($expectedDerivation));
+        $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 }
