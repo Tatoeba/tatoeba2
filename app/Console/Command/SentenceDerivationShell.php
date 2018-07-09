@@ -103,6 +103,7 @@ class SentenceDerivationShell extends AppShell {
     }
 
     public function setSentenceBasedOnId() {
+        $total = 0;
         $derivations = array();
         $saveExtraOptions = array(
             'modified' => false,
@@ -148,6 +149,9 @@ class SentenceDerivationShell extends AppShell {
                 }
             }
         }
-        $this->Sentence->saveAll($derivations);
+        if ($this->Sentence->saveAll($derivations)) {
+            $total += count($derivations);
+        }
+        return $total;
     }
 }

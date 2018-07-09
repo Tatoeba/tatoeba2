@@ -236,4 +236,12 @@ class SentenceDerivationShellTest extends CakeTestCase
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
+
+    public function testSetSentenceBasedOnId_returnsNumberOfSentencesProceeded()
+    {
+        $expected = 19;
+        $actual = $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->assertEquals($expected, $actual);
+    }
+
 }
