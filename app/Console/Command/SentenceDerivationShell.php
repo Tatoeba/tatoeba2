@@ -119,10 +119,16 @@ class SentenceDerivationShell extends AppShell {
                 if (!$this->Sentence->findById($sentenceId)) {
                     continue;
                 }
-                $matches = $walker->findAround(3, function ($elem) use ($log) {
+                $matches = $walker->findAround(4, function ($elem) use ($log) {
+                    $elem = $elem['Contribution'];
                     $creatDate = strtotime($log['datetime']);
-                    $otherDate = strtotime($elem['Contribution']['datetime']);
-                    return abs($otherDate - $creatDate) <= 1;
+                    $otherDate = strtotime($elem['datetime']);
+                    $closeDatetime = abs($otherDate - $creatDate) <= 1;
+
+                    $isRelated = $elem['translation_id'] == $log['sentence_id']
+                                 || $elem['sentence_id'] == $log['sentence_id'];
+
+                    return $isRelated && $closeDatetime;
                 });
                 $basedOnId = -1;
                 if (count($matches) == 0) {

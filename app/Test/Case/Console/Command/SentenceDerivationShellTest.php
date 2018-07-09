@@ -221,4 +221,19 @@ class SentenceDerivationShellTest extends CakeTestCase
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
+
+    public function testSetSentenceBasedOnId_twoPairsAddedAtTheSameTime()
+    {
+        $expectedDerivation = array(
+            23 => 15,
+            24 => 22,
+            25 => 17,
+            26 => 16,
+        );
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
 }
