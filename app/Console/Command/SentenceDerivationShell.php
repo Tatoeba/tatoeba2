@@ -115,6 +115,9 @@ class SentenceDerivationShell extends AppShell {
                 $log['type']     == 'sentence')
             {
                 $sentenceId = $log['sentence_id'];
+                if (!$this->Sentence->findById($sentenceId)) {
+                    continue;
+                }
                 $matches = $walker->findAround(3, function ($elem) use ($log) {
                     $creatDate = strtotime($log['datetime']);
                     $otherDate = strtotime($elem['Contribution']['datetime']);

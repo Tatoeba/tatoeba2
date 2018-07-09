@@ -168,4 +168,18 @@ class SentenceDerivationShellTest extends CakeTestCase
         $actualDerivation = $this->findSentencesWithKnownDerivation();
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
+
+    public function testSetSentenceBasedOnId_doesNotRecreateRemovedSentences()
+    {
+        $removedSentenceId = 13;
+        $this->SentenceDerivationShell->Contribution->deleteAll(
+            array('Contribution.sentence_id !=' => $removedSentenceId),
+            false
+        );
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $result = $this->SentenceDerivationShell->Sentence->findById($removedSentenceId);
+        $this->assertEmpty($result);
+    }
 }
