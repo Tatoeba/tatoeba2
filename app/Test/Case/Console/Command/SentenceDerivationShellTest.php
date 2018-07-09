@@ -209,4 +209,16 @@ class SentenceDerivationShellTest extends CakeTestCase
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
+
+    public function testSetSentenceBasedOnId_pattern_linkBA_linkAB_createA()
+    {
+        $expectedDerivation = array(
+            21 => 19
+        );
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
 }
