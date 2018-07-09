@@ -103,8 +103,41 @@ class SentenceDerivationShell extends AppShell {
     }
 
     public function setSentenceBasedOnId() {
+        $derivations = array();
+        $saveExtraOptions = array(
+            'modified' => false,
+            'callbacks' => false
+        );
         $walker = new Walker($this->Contribution);
         while ($log = $walker->next()) {
+            $log = $log['Contribution'];
+            if ($log['action']   == 'insert' &&
+                $log['type']     == 'sentence')
+            {
+                $sentenceId = $log['sentence_id'];
+                $matches = $walker->findAround(3, function ($elem) use ($log) {
+                    $creatDate = strtotime($log['datetime']);
+                    $otherDate = strtotime($elem['Contribution']['datetime']);
+                    return abs($otherDate - $creatDate) <= 1;
+                });
+                $basedOnId = -1;
+                if (count($matches) == 0) {
+                    $basedOnId = null;
+                } elseif (count($matches) == 2) {
+                    foreach ($matches as $match) {
+                        $match = $match['Contribution'];
+                        if ($match['sentence_id'] == $sentenceId &&
+                            $match['translation_id'] != null) {
+                            $basedOnId = $match['translation_id'];
+                        }
+                    }
+                }
+                if ($basedOnId != -1) {
+                    $update = array('id' => $sentenceId, 'based_on_id' => $basedOnId);
+                    $derivations[] = array_merge($update, $saveExtraOptions);
+                }
+            }
         }
+        $this->Sentence->saveAll($derivations);
     }
 }

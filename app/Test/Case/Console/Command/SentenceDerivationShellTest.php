@@ -132,16 +132,40 @@ class SentenceDerivationShellTest extends CakeTestCase
 
         $this->assertEquals($expected, $actual);
     }
-    public function testSetSentenceBasedOnId_findsOriginalSentence()
+
+    private function findSentencesWithKnownDerivation()
     {
-        $expectedOriginalSentences = array(1, 7, 8, 9, 11, 12, 14, 18);
+        $actualDerivation = $this->SentenceDerivationShell->Sentence->find(
+            'all',
+            array('conditions' => array('OR' => array(
+                'based_on_id' => null,
+                'based_on_id >' => 0,
+            )))
+        );
+        return Set::combine($actualDerivation, '{n}.Sentence.id', '{n}.Sentence.based_on_id');
+    }
+
+    public function testSetSentenceBasedOnId_findsBasicDerivation()
+    {
+        $this->SentenceDerivationShell->Contribution->deleteAll(
+            array('Contribution.id >' => 23),
+            false
+        );
+        $expectedDerivation = array(
+            1 => null, /* sentence 1 is original */
+            2 => 1,    /* sentence 2 is based on sentence 1 */
+            3 => 1,    /* sentence 3 is based on sentence 1 */
+            4 => 2,    /* and so on */
+            5 => 2,
+            6 => 4,
+            7 => null,
+            8 => null,
+            9 => null,
+        );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
 
-        $actualOriginals = $this->SentenceDerivationShell
-                                ->Sentence
-                                ->findAllByBasedOnId(null);
-        $actualOriginals = Set::classicExtract($actualOriginals, '{n}.Sentence.id');
-        $this->assertEquals($expectedOriginalSentences, $actualOriginals);
+        $actualDerivation = $this->findSentencesWithKnownDerivation();
+        $this->assertEquals($expectedDerivation, $actualDerivation);
     }
 }
