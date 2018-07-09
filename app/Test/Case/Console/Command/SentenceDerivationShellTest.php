@@ -133,21 +133,14 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEquals($expected, $actual);
     }
 
-    private function findSentencesWithKnownDerivation()
+    private function findSentencesDerivation($ids = array())
     {
-        $actualDerivation = $this->SentenceDerivationShell->Sentence->find(
-            'all',
-            array('conditions' => array('not' => array('based_on_id' => null)))
-        );
-        return Set::combine($actualDerivation, '{n}.Sentence.id', '{n}.Sentence.based_on_id');
+        $result = $this->SentenceDerivationShell->Sentence->findAllById($ids, array('id', 'based_on_id'));
+        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.based_on_id');
     }
 
     public function testSetSentenceBasedOnId_findsBasicDerivation()
     {
-        $this->SentenceDerivationShell->Contribution->deleteAll(
-            array('Contribution.id >' => 23),
-            false
-        );
         $expectedDerivation = array(
             1 => 0,    /* sentence 1 is original */
             2 => 1,    /* sentence 2 is based on sentence 1 */
@@ -162,17 +155,13 @@ class SentenceDerivationShellTest extends CakeTestCase
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
 
-        $actualDerivation = $this->findSentencesWithKnownDerivation();
+        $actualDerivation = $this->findSentencesDerivation(array_keys($expectedDerivation));
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
 
     public function testSetSentenceBasedOnId_doesNotRecreateRemovedSentences()
     {
         $removedSentenceId = 13;
-        $this->SentenceDerivationShell->Contribution->deleteAll(
-            array('Contribution.sentence_id !=' => $removedSentenceId),
-            false
-        );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
 
@@ -182,14 +171,13 @@ class SentenceDerivationShellTest extends CakeTestCase
 
     public function testSetSentenceBasedOnId_doesNotTouchSentencesCreatedWithDatetimeZero()
     {
-        $this->SentenceDerivationShell->Contribution->deleteAll(
-            array('Contribution.sentence_id !=' => 18),
-            false
+        $expectedDerivation = array(
+            18 => null,
         );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
 
-        $result = $this->findSentencesWithKnownDerivation();
-        $this->assertEmpty($result);
+        $result = $this->findSentencesDerivation(array_keys($expectedDerivation));
+        $this->assertEquals($expectedDerivation, $result);
     }
 }
