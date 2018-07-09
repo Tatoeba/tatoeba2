@@ -174,6 +174,7 @@ class SentenceDerivationShellTest extends CakeTestCase
     {
         $expectedDerivation = array(
             18 => null,
+            19 => null,
         );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
