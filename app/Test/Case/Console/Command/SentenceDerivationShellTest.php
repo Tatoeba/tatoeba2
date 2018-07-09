@@ -154,6 +154,7 @@ class SentenceDerivationShellTest extends CakeTestCase
             9 => 0,
             11 => 0,
             12 => 0,
+            14 => 0,
         );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
@@ -185,6 +186,7 @@ class SentenceDerivationShellTest extends CakeTestCase
         $actualDerivation = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
+
     public function testSetSentenceBasedOnId_doesNotTouchSentencesCreatedWithDatetimeZero()
     {
         $expectedDerivation = array(
@@ -225,6 +227,7 @@ class SentenceDerivationShellTest extends CakeTestCase
     public function testSetSentenceBasedOnId_twoPairsAddedAtTheSameTime()
     {
         $expectedDerivation = array(
+            22 => 0,
             23 => 15,
             24 => 22,
             25 => 17,
