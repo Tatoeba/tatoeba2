@@ -152,6 +152,8 @@ class SentenceDerivationShellTest extends CakeTestCase
             7 => 0,
             8 => 0,
             9 => 0,
+            11 => 0,
+            12 => 0,
         );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
@@ -170,11 +172,36 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEmpty($result);
     }
 
+    public function testSetSentenceBasedOnId_doesNotTouchSentencesWithoutLog()
+    {
+        $expectedDerivation = array(
+            15 => null,
+            16 => null,
+            17 => null,
+        );
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $actualDerivation = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $actualDerivation);
+    }
     public function testSetSentenceBasedOnId_doesNotTouchSentencesCreatedWithDatetimeZero()
     {
         $expectedDerivation = array(
             18 => null,
             19 => null,
+        );
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
+
+    public function testSetSentenceBasedOnId_pattern_createA_linkBA_linkAB()
+    {
+        $expectedDerivation = array(
+            20 => 18
         );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();
