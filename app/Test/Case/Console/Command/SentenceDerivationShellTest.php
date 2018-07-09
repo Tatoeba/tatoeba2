@@ -137,10 +137,7 @@ class SentenceDerivationShellTest extends CakeTestCase
     {
         $actualDerivation = $this->SentenceDerivationShell->Sentence->find(
             'all',
-            array('conditions' => array('OR' => array(
-                'based_on_id' => null,
-                'based_on_id >' => 0,
-            )))
+            array('conditions' => array('not' => array('based_on_id' => null)))
         );
         return Set::combine($actualDerivation, '{n}.Sentence.id', '{n}.Sentence.based_on_id');
     }
@@ -152,15 +149,15 @@ class SentenceDerivationShellTest extends CakeTestCase
             false
         );
         $expectedDerivation = array(
-            1 => null, /* sentence 1 is original */
+            1 => 0,    /* sentence 1 is original */
             2 => 1,    /* sentence 2 is based on sentence 1 */
             3 => 1,    /* sentence 3 is based on sentence 1 */
             4 => 2,    /* and so on */
             5 => 2,
             6 => 4,
-            7 => null,
-            8 => null,
-            9 => null,
+            7 => 0,
+            8 => 0,
+            9 => 0,
         );
 
         $this->SentenceDerivationShell->setSentenceBasedOnId();

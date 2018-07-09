@@ -126,7 +126,7 @@ class SentenceDerivationShell extends AppShell {
                 });
                 $basedOnId = -1;
                 if (count($matches) == 0) {
-                    $basedOnId = null;
+                    $basedOnId = 0;
                 } elseif (count($matches) == 2) {
                     foreach ($matches as $match) {
                         $match = $match['Contribution'];

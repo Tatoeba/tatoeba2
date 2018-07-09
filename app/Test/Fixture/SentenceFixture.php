@@ -15,7 +15,7 @@ class SentenceFixture extends CakeTestFixture {
 		'script' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'hash' => array('type' => 'binary', 'null' => false, 'default' => NULL, 'length' => 16, 'key' => 'index'),
 		'license' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'based_on_id' => array('type' => 'integer', 'null' => true, 'default' => '-1', 'unsigned' => false),
+		'based_on_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1),
 			'user_id' => array('column' => 'user_id', 'unique' => 0),
@@ -46,7 +46,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "316iri9\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '2',
@@ -60,7 +60,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => 'Hans',
 			'hash' => "lpq7hv\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '3',
@@ -74,7 +74,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "2hfhma4\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '4',
@@ -88,7 +88,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "1ufg349\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '5',
@@ -102,7 +102,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "p7gnh5\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '6',
@@ -116,7 +116,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "3pn2l5o\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '7',
@@ -130,7 +130,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "2s5ig1i\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '8',
@@ -144,7 +144,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "3oob3mm\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '9',
@@ -158,7 +158,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "g14gos\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
                 array(
                         'id' => '10',
@@ -172,7 +172,7 @@ class SentenceFixture extends CakeTestFixture {
                         'script' => null,
 			'hash' => "3cekb1u\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
                 ),
 		array(
 			'id' => '11',
@@ -186,7 +186,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => 'Hant',
 			'hash' => "1d04e4e\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '12',
@@ -200,7 +200,7 @@ class SentenceFixture extends CakeTestFixture {
                         'script' => null,
 			'hash' => "223h6bm\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		// Intentionally nonexistant. It has been deleted.
 		// See ContributionFixture.php.
@@ -220,7 +220,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => NULL,
 			'hash' => "1nvs6as\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '15',
@@ -234,7 +234,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "3al20v9\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '16',
@@ -248,7 +248,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "3ncj5ov\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '17',
@@ -262,7 +262,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "2i992fp\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '18',
@@ -276,7 +276,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "embpt2\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '19',
@@ -290,7 +290,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "15a909e\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '20',
@@ -304,7 +304,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "26ec6h2\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '21',
@@ -318,7 +318,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "4qtmdb\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '22',
@@ -332,7 +332,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "2q30etf\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '23',
@@ -346,7 +346,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "36dmbge\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '24',
@@ -360,7 +360,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => 'Hans',
 			'hash' => "1ek6f1h\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '25',
@@ -374,7 +374,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => 'Hans',
 			'hash' => "1m1ktg\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '26',
@@ -388,7 +388,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "vrhq7n\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '27',
@@ -402,7 +402,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "11o3n4g\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '28',
@@ -416,7 +416,7 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "l812a2\0\0\0\0\0\0\0\0\0\0",
 			'license' => 'CC BY 2.0 FR',
-			'based_on_id' => '-1',
+			'based_on_id' => NULL,
 		),
 	);
 }
