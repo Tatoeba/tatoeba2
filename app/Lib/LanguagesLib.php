@@ -555,6 +555,7 @@ class LanguagesLib
                 'cmo' => __d('languages', 'Mnong, Central'),
                 'koi' => __d('languages', 'Komi-Permyak'),
                 'ike' => __d('languages', 'Inuktitut'), 
+                'akl' => __d('languages', 'Aklanon'),
             );
         }
         return $languages;
