@@ -23,6 +23,7 @@ class SentenceDerivationShellTest extends CakeTestCase
             array('in', 'err', 'createFile', '_stop', 'clear'),
             array($out, $out, $in)
         );
+        $this->SentenceDerivationShell->batchSize = 10;
     }
     
     public function tearDown()

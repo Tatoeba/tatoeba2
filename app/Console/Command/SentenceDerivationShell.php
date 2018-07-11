@@ -96,6 +96,7 @@ class Walker {
 class SentenceDerivationShell extends AppShell {
 
     public $uses = array('Sentence', 'Contribution');
+    public $batchSize = 1000;
 
     public function main() {
         $proceeded = $this->setSentenceBasedOnId();
@@ -146,6 +147,12 @@ class SentenceDerivationShell extends AppShell {
                 if ($basedOnId != -1) {
                     $update = array('id' => $sentenceId, 'based_on_id' => $basedOnId);
                     $derivations[] = array_merge($update, $saveExtraOptions);
+                }
+                if (count($derivations) >= $this->batchSize) {
+                    if ($this->Sentence->saveAll($derivations)) {
+                        $total += count($derivations);
+                    }
+                    $derivations = array();
                 }
             }
         }
