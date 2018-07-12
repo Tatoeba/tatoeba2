@@ -42,6 +42,15 @@ class ClickableLinksHelper extends AppHelper
     const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n"\'<]+)/siu';
     const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
 
+    private function splitWithEntities($string) {
+        return preg_split(
+            '/(&[^;]+;|.)/u',
+            $string,
+            -1,
+            PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+        );
+    }
+
     /**
      * Replace URLs by clickable URLs.
      * Inspired from :
@@ -64,12 +73,7 @@ class ClickableLinksHelper extends AppHelper
 
 
             foreach (array_unique($urls[1]) as $url) {
-                $displayedChars = preg_split(
-                    '/(&[^;]+;|.)/u',
-                    $url,
-                    -1,
-                    PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
-                );
+                $displayedChars = $this->splitWithEntities($url);
                 if (count($displayedChars) > $maxUrlLength) {
                     array_splice($displayedChars, $offset1, -$offset2, array('.', '.', '.'));
                     $urlText = implode($displayedChars);
