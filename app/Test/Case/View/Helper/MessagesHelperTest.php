@@ -35,6 +35,10 @@ class MessagesHelperTest extends CakeTestCase {
                 => 'link <a href="http://example.com/parenthesis)" target="_blank">http://example.com/parenthesis)</a>',
             'link http://example.com/parenthesis http://example.com/parenthesis)'
                 => 'link <a href="http://example.com/parenthesis" target="_blank">http://example.com/parenthesis</a> <a href="http://example.com/parenthesis)" target="_blank">http://example.com/parenthesis)</a>',
+            'link http://example.com/page&'
+                => 'link <a href="http://example.com/page&amp;" target="_blank">http://example.com/page&amp;</a>',
+            'link http://example.com/page;'
+                => 'link <a href="http://example.com/page" target="_blank">http://example.com/page</a>;',
         );
         foreach ($tests as $text => $formatedHTML) {
             $result = $this->Messages->formatedContent($text);
