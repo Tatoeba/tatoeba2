@@ -94,7 +94,8 @@ class ClickableLinksHelper extends AppHelper
                 $escapedUrl = quotemeta($url);  // meta characters
                 $escapedUrl = str_replace('/', '\/', $escapedUrl); // identifier
                 $escapedUrl = str_replace('|', '\|', $escapedUrl); // pipe
-                $pattern2 = '/('.$escapedUrl.'([!\.,;:< \n]))|('.$escapedUrl.'$)/u';
+                $stopChars = quotemeta(implode($unwantedLastCharacters));
+                $pattern2 = '/('.$escapedUrl.'(['.$stopChars.'< \n]))|('.$escapedUrl.'$)/u';
                 $text = preg_replace(
                     $pattern2,
                     "<a href=\"$url\" target=\"_blank\">$urlText</a>$2",
