@@ -78,7 +78,7 @@ class ClickableLinksHelper extends AppHelper
                 }
 
                 // Checking last character and taking it out if it's punctuation
-                $unwantedLastCharacters = array('?', '!', '.', ',', ';', ':');
+                $unwantedLastCharacters = array('!', '.', ',', ';', ':');
                 $lastCharacter = mb_substr($url, -1, 1);
                 if (in_array($lastCharacter, $unwantedLastCharacters)) {
                     $url = mb_substr($url, 0, -1);
