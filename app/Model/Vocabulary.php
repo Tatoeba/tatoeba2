@@ -44,7 +44,9 @@ class Vocabulary extends AppModel
     {
         parent::__construct($id, $table, $ds);
 
-        $this->Behaviors->attach('Sphinx');
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
     }
 
     /**
@@ -128,6 +130,9 @@ class Vocabulary extends AppModel
      */
     private function _getNumberOfSentences($lang, $text)
     {
+        if (!Configure::read('Search.enabled')) {
+            return null;
+        }
         $index = array($lang . '_main_index', $lang . '_delta_index');
         $sphinx = array(
             'index' => $index,
@@ -267,7 +272,9 @@ class Vocabulary extends AppModel
     }
 
     public function afterFind($results, $primary = false) {
-        $this->_setQueryString($results);
+        if (Configure::read('Search.enabled')) {
+            $this->_setQueryString($results);
+        }
         return $results;
     }
 

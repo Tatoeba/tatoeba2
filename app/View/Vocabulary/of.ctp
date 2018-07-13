@@ -58,31 +58,39 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 $divId = $item['Vocabulary']['id'];
                 $lang = $item['Vocabulary']['lang'];
                 $text = $item['Vocabulary']['text'];
-                $query = $item['Vocabulary']['query'];
                 $numSentences = $item['Vocabulary']['numSentences'];
-                $numSentencesLabel = $numSentences == 1000 ? '1000+' : $numSentences;
-                $url = $this->Html->url(array(
-                    'controller' => 'sentences',
-                    'action' => 'search',
-                    '?' => array(
-                        'query' => $query,
-                        'from' => $lang
-                    )
-                ));
+                if (!is_null($numSentences)) {
+                    $query = $item['Vocabulary']['query'];
+                    $numSentencesLabel = $numSentences == 1000 ? '1000+' : $numSentences;
+                    $url = $this->Html->url(array(
+                        'controller' => 'sentences',
+                        'action' => 'search',
+                        '?' => array(
+                            'query' => $query,
+                            'from' => $lang
+                        )
+                    ));
+                }
                 ?>
                 <md-list-item id="vocabulary_<?= $divId ?>">
                     <img class="vocabulary-lang" src="/img/flags/<?= $lang ?>.png"/>
                     <div class="vocabulary-text" flex><?= $text ?></div>
-                    <md-button class="md-primary" href="<?= $url ?>">
-                        <?= format(
-                            __n(
-                                '{number} sentence', '{number} sentences',
-                                $numSentences,
-                                true
-                            ),
-                            array('number' => $numSentencesLabel)
-                        ); ?>
-                    </md-button>
+                    <? if (is_null($numSentences)) { ?>
+                        <md-button class="md-primary" ng-disabled="1">
+                            <?= __('Unknown number of sentences'); ?>
+                        </md-button>
+                    <? } else { ?>
+                        <md-button class="md-primary" href="<?= $url ?>">
+                            <?= format(
+                                __n(
+                                    '{number} sentence', '{number} sentences',
+                                    $numSentences,
+                                    true
+                                ),
+                                array('number' => $numSentencesLabel)
+                            ); ?>
+                        </md-button>
+                    <? } ?>
                     <? if ($canEdit) { ?>
                         <md-button ng-click="ctrl.remove('<?= $divId ?>')"
                                    class="md-icon-button">
