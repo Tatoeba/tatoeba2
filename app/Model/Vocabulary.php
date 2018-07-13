@@ -125,11 +125,12 @@ class Vocabulary extends AppModel
         $index = array($lang . '_main_index', $lang . '_delta_index');
         $sphinx = array(
             'index' => $index,
-            'matchMode' => SPH_MATCH_PHRASE,
+            'matchMode' => SPH_MATCH_EXTENDED2
         );
+        $query = '="'.$text.'"';
         return $this->Sentence->find('count', array(
             'sphinx' => $sphinx,
-            'search' => $text,
+            'search' => $query
         ));
     }
 
