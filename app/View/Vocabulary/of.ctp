@@ -58,13 +58,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 $divId = $item['Vocabulary']['id'];
                 $lang = $item['Vocabulary']['lang'];
                 $text = $item['Vocabulary']['text'];
+                $query = $item['Vocabulary']['query'];
                 $numSentences = $item['Vocabulary']['numSentences'];
                 $numSentencesLabel = $numSentences == 1000 ? '1000+' : $numSentences;
                 $url = $this->Html->url(array(
                     'controller' => 'sentences',
                     'action' => 'search',
                     '?' => array(
-                        'query' => '="' . $text . '"',
+                        'query' => $query,
                         'from' => $lang
                     )
                 ));

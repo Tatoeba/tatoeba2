@@ -127,7 +127,7 @@ class Vocabulary extends AppModel
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2
         );
-        $query = '="'.$text.'"';
+        $query = $this->buildSphinxPhraseSearchQuery($text);
         return $this->Sentence->find('count', array(
             'sphinx' => $sphinx,
             'search' => $query
@@ -258,5 +258,21 @@ class Vocabulary extends AppModel
         }
 
         return $indexedNumSentences;
+    }
+
+    public function afterFind($results, $primary = false) {
+        $this->Behaviors->attach('Sphinx');
+        $this->_setQueryString($results);
+        return $results;
+    }
+
+    private function _setQueryString(&$results) {
+        foreach ($results as &$result) {
+            if (isset($result[$this->alias])
+                && array_key_exists('text', $result[$this->alias])) {
+                $text = $result[$this->alias]['text'];
+                $result[$this->alias]['query'] = $this->buildSphinxPhraseSearchQuery($text);
+            }
+        }
     }
 }
