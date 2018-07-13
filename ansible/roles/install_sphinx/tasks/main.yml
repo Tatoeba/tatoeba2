@@ -14,10 +14,13 @@
     mode: 0644
   notify: restart sphinxsearch
 
-- name: Remove init.d file
+- name: Remove init.d files
   file:
-    path: /etc/init.d/sphinxsearch
+    path: "{{ item }}"
     state: absent
+  with_items:
+    - /etc/init.d/sphinxsearch
+    - /etc/default/sphinxsearch
 
 - name: Start and Enable sphinxsearch
   service:

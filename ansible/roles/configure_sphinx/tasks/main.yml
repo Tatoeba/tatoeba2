@@ -22,7 +22,5 @@
   become_user: sphinxsearch
   command: indexer --all
   when: sphinx_create_indexes == true
-- name: Set sphinxsearch to start with system startup
-  command: sed -i 's/START=no/START=yes/' /etc/default/sphinxsearch
 - name: Start the search daemon
   service: name=sphinxsearch state=started enabled=yes
