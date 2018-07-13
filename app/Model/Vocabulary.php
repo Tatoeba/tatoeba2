@@ -259,16 +259,19 @@ class Vocabulary extends AppModel
             $vocabulary['text']
         );
 
-        if ($numSentences != $indexedNumSentences) {
-            $data = array(
-                'id' => $vocabulary['id'],
-                'numSentences' => $indexedNumSentences
-            );
+        if (is_null($indexedNumSentences)) {
+            return $numSentences;
+        } else {
+            if ($numSentences !== $indexedNumSentences) {
+                $data = array(
+                    'id' => $vocabulary['id'],
+                    'numSentences' => $indexedNumSentences
+                );
 
-            $this->save($data);
+                $this->save($data);
+            }
+            return $indexedNumSentences;
         }
-
-        return $indexedNumSentences;
     }
 
     public function afterFind($results, $primary = false) {
