@@ -21,10 +21,3 @@
   with_items:
     - /etc/init.d/sphinxsearch
     - /etc/default/sphinxsearch
-
-- name: Start and Enable sphinxsearch
-  service:
-    name: sphinxsearch
-    state: started
-    enabled: yes
-    daemon_reload: yes
