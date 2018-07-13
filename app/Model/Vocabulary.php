@@ -89,6 +89,9 @@ class Vocabulary extends AppModel
         }
 
         $data['id'] = $this->id;
+        if (Configure::read('Search.enabled')) {
+            $data['query'] = $this->buildSphinxPhraseSearchQuery($text);
+        }
 
         $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
 

@@ -106,7 +106,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                           ng-repeat="item in ctrl.vocabularyAdded">
                 <img class="vocabulary-lang" ng-src="/img/flags/{{item.lang}}.png"/>
                 <div class="vocabulary-text" flex>{{item.text}}</div>
-                <md-button class="md-primary" href="{{item.url}}">
+                <md-button class="md-primary" href="{{item.url}}" ng-disabled="!item.url">
                     {{item.numSentencesLabel}}
                 </md-button>
                 <md-button ng-click="ctrl.remove(item.id)" class="md-icon-button">

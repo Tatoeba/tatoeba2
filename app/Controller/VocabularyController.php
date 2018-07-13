@@ -138,10 +138,20 @@ class VocabularyController extends AppController
 
         $numSentences = $result['numSentences'];
 
-        $result['numSentencesLabel'] = format(
-            __n('{number} sentence', '{number} sentences', $numSentences),
-            array('number' => $numSentences)
-        );
+        if (is_null($numSentences)) {
+            $numSentencesLabel = __('Unknown number of sentences');
+        } else {
+            $numSentences = $numSentences == 1000 ? '1000+' : $numSentences;
+            $numSentencesLabel = format(
+                __n(
+                    '{number} sentence', '{number} sentences',
+                    $numSentences,
+                    true
+                ),
+                array('number' => $numSentences)
+            );
+        }
+        $result['numSentencesLabel'] = $numSentencesLabel;
 
         $this->set('result', $result);
         $this->layout = 'json';
