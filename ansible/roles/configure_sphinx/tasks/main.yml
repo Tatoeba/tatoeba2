@@ -18,6 +18,8 @@
 - name: Generate sphinx.conf
   shell: ./app/Console/cake sphinx_conf > /etc/sphinxsearch/sphinx.conf chdir={{code_dir}}
 - name: Create indexes
+  become: true
+  become_user: sphinxsearch
   command: indexer --all
   when: sphinx_create_indexes == true
 - name: Set sphinxsearch to start with system startup
