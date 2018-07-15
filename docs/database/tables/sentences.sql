@@ -10,9 +10,6 @@
 -- user_id     Id of the owner of the sentence.
 -- created     Date and time when the sentence was added.
 -- modified    Date and time when the sentence was modified.
--- dico_id     Id of the sentence in the previous version of Tatoeba (v1). It was
---               kept here due to some dependancy with the Tanaka Corpus but it will
---               soon not be needed anymore.
 --
 
 DROP TABLE IF EXISTS `sentences`;
@@ -26,13 +23,11 @@ CREATE TABLE `sentences` (
   `user_id` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `dico_id` int(11) DEFAULT NULL,
   `lang_id` tinyint(3) unsigned DEFAULT NULL,
   `script` varchar(4) DEFAULT NULL,
   `hash` BINARY(16) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
-  KEY `dico_id` (`dico_id`),
   KEY `lang` (`lang`),
   KEY `modified_idx` (`modified`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

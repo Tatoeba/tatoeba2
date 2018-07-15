@@ -11,10 +11,15 @@ class SentenceFixture extends CakeTestFixture {
 		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL, 'key' => 'index'),
-		'dico_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
 		'script' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'hash' => array('type' => 'binary', 'null' => false, 'default' => NULL, 'length' => 16, 'key' => 'index'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'dico_id' => array('column' => 'dico_id', 'unique' => 0), 'lang' => array('column' => 'lang', 'unique' => 0), 'modified_idx' => array('column' => 'modified', 'unique' => 0), 'hash' => array('column' => 'hash', 'unique' => 0)),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1), 
+			'user_id' => array('column' => 'user_id', 'unique' => 0), 
+			'lang' => array('column' => 'lang', 'unique' => 0), 
+			'modified_idx' => array('column' => 'modified', 'unique' => 0),
+			'hash' => array('column' => 'hash', 'unique' => 0)
+		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
@@ -33,7 +38,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:32:08',
 			'modified' => '2014-04-15 00:32:08',
-			'dico_id' => NULL,
 			'script' => null
 		),
 		array(
@@ -44,7 +48,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:32:43',
 			'modified' => '2014-04-15 00:32:43',
-			'dico_id' => NULL,
 			'script' => 'Hans'
 		),
 		array(
@@ -55,7 +58,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:33:18',
 			'modified' => '2014-04-15 00:33:18',
-			'dico_id' => NULL,
 			'script' => null
 		),
 		array(
@@ -66,7 +68,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:34:28',
 			'modified' => '2014-04-15 00:34:28',
-			'dico_id' => NULL,
 		),
 		array(
 			'id' => '5',
@@ -76,7 +77,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:35:03',
 			'modified' => '2014-04-15 00:35:03',
-			'dico_id' => NULL,
 			'script' => null
 		),
 		array(
@@ -87,7 +87,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:39:23',
 			'modified' => '2014-04-15 00:39:36',
-			'dico_id' => NULL,
 			'script' => null
 		),
 		array(
@@ -98,7 +97,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:49:21',
 			'modified' => '2014-04-15 00:49:21',
-			'dico_id' => NULL,
 			'script' => null
 		),
 		array(
@@ -109,7 +107,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2014-04-15 00:52:01',
 			'modified' => '2014-04-15 00:52:01',
-			'dico_id' => NULL,
 			'script' => null
 		),
 		array(
@@ -120,7 +117,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '3',
 			'created' => '2014-04-15 21:12:03',
 			'modified' => '2014-04-15 21:12:03',
-			'dico_id' => NULL,
 			'script' => null
 		),
 		array(
@@ -131,7 +127,6 @@ class SentenceFixture extends CakeTestFixture {
 				'user_id' => '7',
 				'created' => '2014-04-15 21:13:23',
 				'modified' => '2014-04-15 21:13:36',
-				'dico_id' => NULL,
 				'script' => null
 		),
 		array(
@@ -142,7 +137,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2015-04-15 21:14:00',
 			'modified' => '2015-04-15 21:14:00',
-			'dico_id' => NULL,
 			'script' => 'Hant'
 		),
 		array(
@@ -153,7 +147,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => '7',
 			'created' => '2015-06-15 00:34:28',
 			'modified' => '2015-06-15 00:34:28',
-			'dico_id' => NULL,
                         'script' => null
 		),
 		// Intentionally nonexistant. It has been deleted.
@@ -170,7 +163,6 @@ class SentenceFixture extends CakeTestFixture {
 			'user_id' => NULL,
 			'created' => '2015-08-17 21:56:27',
 			'modified' => '2015-08-17 21:56:27',
-			'dico_id' => NULL,
 			'script' => NULL
 		),
 	);
