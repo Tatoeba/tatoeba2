@@ -269,11 +269,7 @@ class Contribution extends AppModel
             $conditions = array();
         }
         if (!empty($botsIds)) {
-            if (count($botsIds) > 1) {
-                $conditions["user_id NOT"] = $botsIds;
-            } else {
-                $conditions["user_id !="] = $botsIds[0];
-            }
+            $conditions['NOT'] = array('user_id' => $botsIds);
         }
 
         return $conditions;
