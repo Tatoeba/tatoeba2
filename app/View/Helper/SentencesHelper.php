@@ -864,5 +864,30 @@ class SentencesHelper extends AppHelper
         echo $this->Html->tag('/div');
     }
 
+    public function originText($sentence) {
+        $baseId = $sentence['Sentence']['based_on_id'];
+        if (!is_null($baseId) && $baseId == 0) {
+            $msg = __('This sentence is original and '
+                     .'was not derived from translation.');
+        } elseif ($baseId > 0) {
+            $baseLink = $this->Html->link(
+                $baseId,
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $baseId
+                )
+            );
+            $msg = format(
+                __('This sentence was initially added as a '
+                  .'translation of sentence #{n}.'),
+                array('n' => $baseLink)
+            );
+        } else {
+            $msg = __('We cannot determine yet whether this sentence was '
+                     .'initially derived from translation or not.');
+        }
+        return $this->Html->tag('p', $msg, array('class' => 'derivation'));
+    }
 }
 ?>

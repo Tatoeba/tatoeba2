@@ -144,7 +144,8 @@ $this->Navigation->displaySentenceNavigation(
         echo __('Logs');
         echo '</h2>';
 
-        //$contributions = $sentence['Contribution'];
+        echo $this->Sentences->originText($sentence);
+
         if (!empty($contributions)) {
             echo '<md-list id="logs">';
             foreach ($contributions as $contribution) {
