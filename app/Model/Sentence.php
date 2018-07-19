@@ -173,7 +173,14 @@ class Sentence extends AppModel
         }
         if (!isset($this->data['Sentence']['id'])) { // creating a new sentence
             if (!isset($this->data['Sentence']['license'])) {
-                $this->data['Sentence']['license'] = CurrentUser::getSetting('default_license');
+                if (isset($this->data['Sentence']['user_id'])) {
+                    $userId = $this->data['Sentence']['user_id'];
+                    $user = $this->User->findById($userId, 'settings');
+                    if ($user) {
+                        $userDefaultLicense = $user['User']['settings']['default_license'];
+                        $this->data['Sentence']['license'] = $userDefaultLicense;
+                    }
+                }
             }
         }
     }

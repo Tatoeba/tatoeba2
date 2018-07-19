@@ -123,9 +123,9 @@ class SentenceTest extends CakeTestCase {
 	}
 
 	function testSave_setsDefaultLicenseSettingOnCreation() {
-		User::$defaultSettings['default_license'] = 'CC0 1.0';
 		$data = array(
-			'text' => 'This sentence should get a default licence.'
+			'text' => 'This sentence should get a default licence.',
+			'user_id' => 7,
 		);
 
 		$this->Sentence->create();
@@ -136,10 +136,10 @@ class SentenceTest extends CakeTestCase {
 	}
 
 	function testSave_doesNotChangeLicenseOnUpdate() {
-		User::$defaultSettings['default_license'] = 'CC0 1.0';
 		$data = array(
 			'id' => 1,
-			'text' => 'Updating sentence #1.'
+			'text' => 'Updating sentence #1.',
+			'user_id' => 7,
 		);
 
 		$this->Sentence->save($data);
