@@ -808,7 +808,8 @@ class Sentence extends AppModel
             $translationText,
             $translationLang,
             $userId,
-            $translationCorrectness
+            $translationCorrectness,
+            $sentenceId
         );
 
         // saving links
@@ -827,11 +828,13 @@ class Sentence extends AppModel
      * @param string $lang        The lang of the sentence.
      * @param int    $userId      The id of the user who added this sentence.
      * @param int    $correctness Correctness level of sentence.
+     * @param in     $basedOnId   The ID of the sentence this sentence is translated from,
+     *                            or 0 if it's an original sentence, or null if unknown.
      * @param string $license     The license of the sentence.
      *
      * @return bool
      */
-    public function saveNewSentence($text, $lang, $userId, $correctness = 0, $license = null)
+    public function saveNewSentence($text, $lang, $userId, $correctness = 0, $basedOnId = 0, $license = null)
     {
         $text = $this->clean($text);
 
@@ -856,6 +859,7 @@ class Sentence extends AppModel
         $data['Sentence']['correctness'] = $correctness;
         $data['Sentence']['hash'] = $hash;
         $data['Sentence']['license'] = $license;
+        $data['Sentence']['based_on_id'] = $basedOnId;
 
         if (!empty($lang)) {
             $data['Sentence']['lang'] = $lang;
@@ -893,7 +897,9 @@ class Sentence extends AppModel
         $translationSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            $userId
+            $userId,
+            0,
+            $sentenceId
         );
 
         $translationId = $this->id;

@@ -72,7 +72,7 @@ class CommonSentenceComponent extends Component
 
         $Sentence = ClassRegistry::init('Sentence');
 
-        return $Sentence->saveNewSentence($text, $lang, $userId, $correctness, $license);
+        return $Sentence->saveNewSentence($text, $lang, $userId, $correctness, 0, $license);
     }
 
     /**
