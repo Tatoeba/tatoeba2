@@ -144,7 +144,9 @@ $this->Navigation->displaySentenceNavigation(
         echo __('Logs');
         echo '</h2>';
 
-        echo $this->Sentences->originText($sentence);
+        if (isset($sentence)) {
+            echo $this->Sentences->originText($sentence);
+        }
 
         if (!empty($contributions)) {
             echo '<md-list id="logs">';
