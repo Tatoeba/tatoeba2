@@ -48,7 +48,6 @@ class MailerComponent extends Component
         $User = ClassRegistry::init('User');
         $Contribution = ClassRegistry::init('Contribution');
         $userId = $User->getIdFromUsername($username);
-        $suspendedUsers = $User->getUsersWithSamePassword($userId);
         $ips = $Contribution->getLastContributionOf($userId);
 
         $this->Email->viewVars(array(
@@ -56,7 +55,6 @@ class MailerComponent extends Component
           'user' => $username,
           'userId' => $userId,
           'isSuspended' => $isSuspended,
-          'suspendedUsers' => $suspendedUsers,
           'ips' => $ips
         ));
 
