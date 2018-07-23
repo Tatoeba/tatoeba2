@@ -88,6 +88,26 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testWalkerFindBefore_justAfterBufferRefill() {
+        $model = $this->SentenceDerivationShell->Contribution;
+        $walker = new Walker($model);
+        $walker->bufferSize = 10; // make buffer refill occur when loading fixture with id = 11
+        $walker->allowRewindSize = 2;
+        $expected = $model->find('all', array(
+            'conditions' => array(
+                'id' => array(9, 10)
+            )
+        ));
+
+        // position pointer just after a buffer refill
+        for ($i = 0; $i < $walker->bufferSize + 1; $i++) {
+            $walker->next();
+        }
+        $actual = $walker->findBefore(2, function ($row) { return true; });
+
+        $this->assertEquals($expected, $actual);
+    }
+
     public function testWalkerFindBeforeHitsBufferStart() {
         $model = $this->SentenceDerivationShell->Contribution;
         $expected = $model->find('all', array('conditions' => array('id' => 1)));

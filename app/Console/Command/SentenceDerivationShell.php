@@ -101,6 +101,7 @@ class SentenceDerivationShell extends AppShell {
     public $uses = array('Sentence', 'Contribution');
     public $batchSize = 1000;
     public $linkEraFirstId = 330930;
+    private $maxFindAroundRange = 4;
 
     public function main() {
         $proceeded = $this->setSentenceBasedOnId();
@@ -108,7 +109,7 @@ class SentenceDerivationShell extends AppShell {
     }
 
     private function calcBasedOnId($walker, $log) {
-        $matches = $walker->findAround(4, function ($elem) use ($log) {
+        $matches = $walker->findAround($this->maxFindAroundRange, function ($elem) use ($log) {
             $elem = $elem['Contribution'];
             $creatDate = strtotime($log['datetime']);
             $otherDate = strtotime($elem['datetime']);
@@ -143,6 +144,7 @@ class SentenceDerivationShell extends AppShell {
         );
         $this->out("Setting 'based_on_id' field for all sentences", 0);
         $walker = new Walker($this->Contribution, $this->linkEraFirstId);
+        $walker->allowRewindSize = $this->maxFindAroundRange;
         while ($log = $walker->next()) {
             $log = $log['Contribution'];
             if ($log['action']   == 'insert' &&
