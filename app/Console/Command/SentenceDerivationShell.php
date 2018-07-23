@@ -24,11 +24,12 @@ class Walker {
         if ($next === false) {
             if (empty($this->buffer)) {
                 $lastId = $this->startAtId - 1;
+                $fetchSize = $this->bufferSize;
             } else {
                 $last = end($this->buffer);
                 $lastId = $last[$this->model->alias][$this->model->primaryKey];
+                $fetchSize = $this->bufferSize - $this->allowRewindSize;
             }
-            $fetchSize = $this->bufferSize - $this->allowRewindSize;
             $rows = $this->model->find('all', array(
                 'conditions' => array('id > ' => $lastId),
                 'limit' => $fetchSize,
