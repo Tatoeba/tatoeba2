@@ -2,12 +2,14 @@
 
 class Walker {
     private $model;
+    private $startAtId;
     private $buffer = array();
     public $bufferSize = 1000;
     public $allowRewindSize = 20;
 
-    public function __construct($model) {
+    public function __construct($model, $startAtId = 1) {
         $this->model = $model;
+        $this->startAtId = $startAtId;
     }
 
     private function setBufferPointerAt($i) {
@@ -21,7 +23,7 @@ class Walker {
         $next = next($this->buffer);
         if ($next === false) {
             if (empty($this->buffer)) {
-                $lastId = 0;
+                $lastId = $this->startAtId - 1;
             } else {
                 $last = end($this->buffer);
                 $lastId = $last[$this->model->alias][$this->model->primaryKey];
@@ -97,6 +99,7 @@ class SentenceDerivationShell extends AppShell {
 
     public $uses = array('Sentence', 'Contribution');
     public $batchSize = 1000;
+    public $linkEraFirstId = 330930;
 
     public function main() {
         $proceeded = $this->setSentenceBasedOnId();
@@ -138,7 +141,7 @@ class SentenceDerivationShell extends AppShell {
             'callbacks' => false
         );
         $this->out("Setting 'based_on_id' field for all sentences", 0);
-        $walker = new Walker($this->Contribution);
+        $walker = new Walker($this->Contribution, $this->linkEraFirstId);
         while ($log = $walker->next()) {
             $log = $log['Contribution'];
             if ($log['action']   == 'insert' &&

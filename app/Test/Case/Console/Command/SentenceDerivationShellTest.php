@@ -24,6 +24,7 @@ class SentenceDerivationShellTest extends CakeTestCase
             array($out, $out, $in)
         );
         $this->SentenceDerivationShell->batchSize = 10;
+        $this->SentenceDerivationShell->linkEraFirstId = 1;
     }
     
     public function tearDown()
@@ -260,4 +261,22 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEquals($expected, $actual);
     }
 
+    public function testSetSentenceBasedOnId_honorsLinkEra()
+    {
+        $expectedDerivation = array(
+            1 => null,
+            2 => null,
+            3 => null,
+            4 => null,
+            5 => 2,
+            6 => 4,
+            7 => 0,
+        );
+        $this->SentenceDerivationShell->linkEraFirstId = 11;
+
+        $this->SentenceDerivationShell->setSentenceBasedOnId();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
 }
