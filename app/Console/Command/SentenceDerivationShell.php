@@ -100,7 +100,7 @@ class SentenceDerivationShell extends AppShell {
 
     public function main() {
         $proceeded = $this->setSentenceBasedOnId();
-        $this->out("\n$proceeded sentences proceeded.\n");
+        $this->out("\n$proceeded sentences proceeded.");
     }
 
     private function calcBasedOnId($walker, $log) {
@@ -137,6 +137,7 @@ class SentenceDerivationShell extends AppShell {
             'modified' => false,
             'callbacks' => false
         );
+        $this->out("Setting 'based_on_id' field for all sentences", 0);
         $walker = new Walker($this->Contribution);
         while ($log = $walker->next()) {
             $log = $log['Contribution'];
@@ -162,6 +163,7 @@ class SentenceDerivationShell extends AppShell {
             }
         }
         if ($this->Sentence->saveAll($derivations)) {
+            $this->out('.', 0);
             $total += count($derivations);
         }
         return $total;
