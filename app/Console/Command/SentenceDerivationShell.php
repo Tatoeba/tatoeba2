@@ -103,6 +103,33 @@ class SentenceDerivationShell extends AppShell {
         $this->out("\n$proceeded sentences proceeded.\n");
     }
 
+    private function calcBasedOnId($walker, $log) {
+        $matches = $walker->findAround(4, function ($elem) use ($log) {
+            $elem = $elem['Contribution'];
+            $creatDate = strtotime($log['datetime']);
+            $otherDate = strtotime($elem['datetime']);
+            $closeDatetime = abs($otherDate - $creatDate) <= 4;
+
+            $isRelated = $elem['translation_id'] == $log['sentence_id']
+                         || $elem['sentence_id'] == $log['sentence_id'];
+
+            return $isRelated && $closeDatetime;
+        });
+        if (count($matches) == 0) {
+            return 0;
+        } elseif (count($matches) == 2) {
+            foreach ($matches as $match) {
+                $match = $match['Contribution'];
+                if ($match['sentence_id'] == $log['sentence_id'] &&
+                    $match['translation_id'] != null) {
+                    return $match['translation_id'];
+                }
+            }
+        } else {
+            return -1;
+        }
+    }
+
     public function setSentenceBasedOnId() {
         $total = 0;
         $derivations = array();
@@ -121,29 +148,7 @@ class SentenceDerivationShell extends AppShell {
                 if (!$this->Sentence->findById($sentenceId)) {
                     continue;
                 }
-                $matches = $walker->findAround(4, function ($elem) use ($log) {
-                    $elem = $elem['Contribution'];
-                    $creatDate = strtotime($log['datetime']);
-                    $otherDate = strtotime($elem['datetime']);
-                    $closeDatetime = abs($otherDate - $creatDate) <= 4;
-
-                    $isRelated = $elem['translation_id'] == $log['sentence_id']
-                                 || $elem['sentence_id'] == $log['sentence_id'];
-
-                    return $isRelated && $closeDatetime;
-                });
-                $basedOnId = -1;
-                if (count($matches) == 0) {
-                    $basedOnId = 0;
-                } elseif (count($matches) == 2) {
-                    foreach ($matches as $match) {
-                        $match = $match['Contribution'];
-                        if ($match['sentence_id'] == $sentenceId &&
-                            $match['translation_id'] != null) {
-                            $basedOnId = $match['translation_id'];
-                        }
-                    }
-                }
+                $basedOnId = $this->calcBasedOnId($walker, $log);
                 if ($basedOnId != -1) {
                     $update = array('id' => $sentenceId, 'based_on_id' => $basedOnId);
                     $derivations[] = array_merge($update, $saveExtraOptions);
