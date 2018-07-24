@@ -24,3 +24,5 @@
   when: sphinx_create_indexes == true
 - name: Start the search daemon
   service: name=sphinxsearch state=started enabled=yes
+- name: Enable search
+  command: sed -i 's/\(Configure::write(.Search.enabled.,\).*)/\1 true)/' {{code_dir}}/app/Config/core.php
