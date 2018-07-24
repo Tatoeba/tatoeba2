@@ -162,6 +162,7 @@ class SentenceDerivationShell extends AppShell {
                 }
                 if (count($derivations) >= $this->batchSize) {
                     if ($this->Sentence->saveAll($derivations)) {
+                        $this->out('.', 0);
                         $total += count($derivations);
                     }
                     $derivations = array();
