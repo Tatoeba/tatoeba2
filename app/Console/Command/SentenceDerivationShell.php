@@ -135,6 +135,15 @@ class SentenceDerivationShell extends AppShell {
         }
     }
 
+    private function saveDerivations($derivations) {
+        if ($this->Sentence->saveAll($derivations)) {
+            $this->out('.', 0);
+            return count($derivations);
+        } else {
+            return 0;
+        }
+    }
+
     public function setSentenceBasedOnId() {
         $total = 0;
         $derivations = array();
@@ -161,18 +170,12 @@ class SentenceDerivationShell extends AppShell {
                     $derivations[] = array_merge($update, $saveExtraOptions);
                 }
                 if (count($derivations) >= $this->batchSize) {
-                    if ($this->Sentence->saveAll($derivations)) {
-                        $this->out('.', 0);
-                        $total += count($derivations);
-                    }
+                    $total += $this->saveDerivations($derivations);
                     $derivations = array();
                 }
             }
         }
-        if ($this->Sentence->saveAll($derivations)) {
-            $this->out('.', 0);
-            $total += count($derivations);
-        }
+        $total += $this->saveDerivations($derivations);
         return $total;
     }
 }
