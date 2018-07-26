@@ -144,7 +144,24 @@ class SentenceDerivationShell extends AppShell {
         }
     }
 
+    public function findDuplicateCreationRecords() {
+        $this->out("Finding duplicate creation records... ", 0);
+        $result = $this->Contribution->find('all', array(
+            'fields' => array('min(id)' => 'id', 'sentence_id'),
+            'conditions' => array('action' => 'insert', 'type' => 'sentence'),
+            'group' => array('sentence_id having count(sentence_id) > 1'),
+        ));
+        $result = Set::combine($result, '{n}.Contribution.sentence_id', '{n}.Contribution.id');
+        $this->out('done ('.count($result).' sentences affected)');
+        return $result;
+    }
+
     public function setSentenceBasedOnId() {
+        $dataSource = $this->Sentence->getDataSource();
+        $dataSource->begin();
+
+        $creationDups = $this->findDuplicateCreationRecords();
+
         $total = 0;
         $derivations = array();
         $saveExtraOptions = array(
@@ -161,13 +178,15 @@ class SentenceDerivationShell extends AppShell {
                 $log['datetime'] != '0000-00-00 00:00:00')
             {
                 $sentenceId = $log['sentence_id'];
-                if (!$this->Sentence->findById($sentenceId)) {
+                if (!$this->Sentence->findById($sentenceId) ||
+                    (isset($creationDups[$sentenceId]) && $creationDups[$sentenceId] != $log['id'])
+                   ) {
                     continue;
                 }
                 $basedOnId = $this->calcBasedOnId($walker, $log);
                 if ($basedOnId != -1) {
                     $update = array('id' => $sentenceId, 'based_on_id' => $basedOnId);
-                    $derivations[] = array_merge($update, $saveExtraOptions);
+                    $derivations[$sentenceId] = array_merge($update, $saveExtraOptions);
                 }
                 if (count($derivations) >= $this->batchSize) {
                     $total += $this->saveDerivations($derivations);
@@ -176,6 +195,8 @@ class SentenceDerivationShell extends AppShell {
             }
         }
         $total += $this->saveDerivations($derivations);
+
+        $dataSource->commit();
         return $total;
     }
 }
