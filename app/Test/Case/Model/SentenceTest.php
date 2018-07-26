@@ -5,22 +5,15 @@ App::import('Behavior', 'Sphinx');
 
 class SentenceTest extends CakeTestCase {
 	public $fixtures = array(
-		'app.audio',
 		'app.sentence',
 		'app.user',
-		'app.group',
-		'app.sentence_comment',
 		'app.contribution',
 		'app.sentences_list',
 		'app.sentences_sentences_list',
-		'app.wall',
-		'app.wall_thread',
-		'app.favorites_user',
 		'app.tag',
 		'app.tags_sentence',
 		'app.language',
 		'app.link',
-		'app.sentence_annotation',
 		'app.transcription',
 		'app.reindex_flag',
 	);
@@ -88,7 +81,8 @@ class SentenceTest extends CakeTestCase {
 
 	function testSaveTranslation_links() {
 		$translationFromSentenceId = 1;
-		$newlyCreatedSentenceId = (string)($this->Sentence->find('count') + 1);
+		$lastId = $this->Sentence->find('first', array('fields' => array('MAX(id)+1 AS v')));
+		$newlyCreatedSentenceId = $lastId[0]['v'];
 		$this->Sentence->Link = $this->getMockForModel('Link', array('add'));
 
 		$this->Sentence->Link

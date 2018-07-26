@@ -42,6 +42,15 @@ class ClickableLinksHelper extends AppHelper
     const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n"\'<]+)/siu';
     const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
 
+    private function splitWithEntities($string) {
+        return preg_split(
+            '/(&[^;]+;|.)/u',
+            $string,
+            -1,
+            PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
+        );
+    }
+
     /**
      * Replace URLs by clickable URLs.
      * Inspired from :
@@ -64,12 +73,7 @@ class ClickableLinksHelper extends AppHelper
 
 
             foreach (array_unique($urls[1]) as $url) {
-                $displayedChars = preg_split(
-                    '/(&[^;]+;|.)/u',
-                    $url,
-                    -1,
-                    PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY
-                );
+                $displayedChars = $this->splitWithEntities($url);
                 if (count($displayedChars) > $maxUrlLength) {
                     array_splice($displayedChars, $offset1, -$offset2, array('.', '.', '.'));
                     $urlText = implode($displayedChars);
@@ -78,8 +82,8 @@ class ClickableLinksHelper extends AppHelper
                 }
 
                 // Checking last character and taking it out if it's punctuation
-                $unwantedLastCharacters = array('?', '!', '.', ',', ';', ':');
-                $lastCharacter = mb_substr($url, -1, 1);
+                $unwantedLastCharacters = array('!', '.', ',', ';', ':');
+                $lastCharacter = end($displayedChars);
                 if (in_array($lastCharacter, $unwantedLastCharacters)) {
                     $url = mb_substr($url, 0, -1);
                     $urlText = mb_substr($urlText, 0, -1);
@@ -94,10 +98,11 @@ class ClickableLinksHelper extends AppHelper
                 $escapedUrl = quotemeta($url);  // meta characters
                 $escapedUrl = str_replace('/', '\/', $escapedUrl); // identifier
                 $escapedUrl = str_replace('|', '\|', $escapedUrl); // pipe
-                $pattern2 = '/('.$escapedUrl.'([!\.,\);:< \n]))|('.$escapedUrl.'$)/u';
+                $stopChars = quotemeta(implode($unwantedLastCharacters));
+                $pattern2 = '/'.$escapedUrl.'(['.$stopChars.'< \n])|'.$escapedUrl.'$/u';
                 $text = preg_replace(
                     $pattern2,
-                    "<a href=\"$url\" target=\"_blank\">$urlText</a>$2",
+                    "<a href=\"$url\" target=\"_blank\">$urlText</a>$1",
                     $text
                 );
             }

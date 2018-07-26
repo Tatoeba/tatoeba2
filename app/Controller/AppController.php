@@ -205,6 +205,9 @@ class AppController extends Controller
             $redirectCode = $this->request->is('ajax') ? null : 301;
             $this->redirect($redirectPage, $redirectCode);
         }
+
+        // Set view variables for the search bar
+        $this->set('query', '');
     }
 
     /**

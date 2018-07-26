@@ -70,10 +70,11 @@ class PaginationHelper extends AppHelper
      *
      * @param array $extramParams Array containing the extra params that should
      *                            appear in the pagination URL.
+     * @param   int $numberLastLinks Custrom values passed to PaginatorHelper::numbers()
      *
      * @return void
      */
-    public function display($extramParams = array())
+    public function display($extramParams = array(), $extraNumbersOptions = array())
     {
         $paging = $this->request->params['paging'];
         $pagingInfo = array_pop($paging); // In the hope that there's only always
@@ -120,6 +121,7 @@ class PaginationHelper extends AppHelper
             'first' => $numberFirstLinks,
             'last' => $numberLastLinks,
         );
+        $numbersOptions = array_merge($numbersOptions, $extraNumbersOptions);
         ?>
         <div class="paging">
 
