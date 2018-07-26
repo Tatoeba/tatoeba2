@@ -131,7 +131,7 @@ class SentenceDerivationShell extends AppShell {
                 }
             }
         } else {
-            return -1;
+            return null;
         }
     }
 
@@ -179,7 +179,7 @@ class SentenceDerivationShell extends AppShell {
                     continue;
                 }
                 $basedOnId = $this->calcBasedOnId($walker, $log);
-                if ($basedOnId != -1) {
+                if (!is_null($basedOnId)) {
                     $update = array('id' => $sentenceId, 'based_on_id' => $basedOnId);
                     $derivations[$sentenceId] = array_merge($update, $saveExtraOptions);
                 }
