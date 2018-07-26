@@ -7,6 +7,7 @@ class SentenceTest extends CakeTestCase {
 	public $fixtures = array(
 		'app.sentence',
 		'app.user',
+		'app.users_language',
 		'app.contribution',
 		'app.sentences_list',
 		'app.sentences_sentences_list',
@@ -81,6 +82,9 @@ class SentenceTest extends CakeTestCase {
 	}
 
 	function testSaveTranslation_links() {
+		$user = $this->Sentence->User->findByUsername('kazuki');
+		CurrentUser::store($user['User']);
+
 		$translationFromSentenceId = 1;
 		$lastId = $this->Sentence->find('first', array('fields' => array('MAX(id)+1 AS v')));
 		$newlyCreatedSentenceId = $lastId[0]['v'];
