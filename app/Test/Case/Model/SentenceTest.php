@@ -16,6 +16,7 @@ class SentenceTest extends CakeTestCase {
 		'app.link',
 		'app.transcription',
 		'app.reindex_flag',
+		'app.audio',
 	);
 
 	function startTest($method) {
