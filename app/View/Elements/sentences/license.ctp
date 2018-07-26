@@ -45,7 +45,7 @@ if ($canEdit) {
     );
     echo $this->Form->input('audio_license', array(
         'label' => __('Current license:'),
-        'options' => $this->License->getLicenseOptions(),
+        'options' => $this->Sentences->License->getLicenseOptions(),
         'value' => $license,
     ));
     echo $this->Form->end();

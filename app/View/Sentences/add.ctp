@@ -119,7 +119,7 @@ $vocabularyUrl = $this->Html->url(array(
                         <?php
                         echo $this->Form->select(
                             'sentenceLicense',
-                            $this->License->getLicenseOptions(),
+                            $this->Sentences->License->getLicenseOptions(),
                             array(
                                 "value" => CurrentUser::getSetting('default_license'),
                                 "class" => "license-selector",
