@@ -104,7 +104,7 @@ class SentenceDerivationShell extends AppShell {
     private $maxFindAroundRange = 4;
 
     public function main() {
-        $proceeded = $this->setSentenceBasedOnId();
+        $proceeded = $this->run();
         $this->out("\n$proceeded sentences proceeded.");
     }
 
@@ -156,12 +156,7 @@ class SentenceDerivationShell extends AppShell {
         return $result;
     }
 
-    public function setSentenceBasedOnId() {
-        $dataSource = $this->Sentence->getDataSource();
-        $dataSource->begin();
-
-        $creationDups = $this->findDuplicateCreationRecords();
-
+    public function setSentenceBasedOnId($creationDups) {
         $total = 0;
         $derivations = array();
         $saveExtraOptions = array(
@@ -195,6 +190,15 @@ class SentenceDerivationShell extends AppShell {
             }
         }
         $total += $this->saveDerivations($derivations);
+        return $total;
+    }
+
+    public function run() {
+        $dataSource = $this->Sentence->getDataSource();
+        $dataSource->begin();
+
+        $creationDups = $this->findDuplicateCreationRecords();
+        $total = $this->setSentenceBasedOnId($creationDups);
 
         $dataSource->commit();
         return $total;

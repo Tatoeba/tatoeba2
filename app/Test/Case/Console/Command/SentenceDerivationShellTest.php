@@ -162,7 +162,7 @@ class SentenceDerivationShellTest extends CakeTestCase
         return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.based_on_id');
     }
 
-    public function testSetSentenceBasedOnId_findsBasicDerivation()
+    public function testRun_findsBasicDerivation()
     {
         $expectedDerivation = array(
             1 => 0,    /* sentence 1 is original */
@@ -179,23 +179,23 @@ class SentenceDerivationShellTest extends CakeTestCase
             14 => 0,
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $actualDerivation = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
 
-    public function testSetSentenceBasedOnId_doesNotRecreateRemovedSentences()
+    public function testRun_doesNotRecreateRemovedSentences()
     {
         $removedSentenceId = 13;
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->SentenceDerivationShell->Sentence->findById($removedSentenceId);
         $this->assertEmpty($result);
     }
 
-    public function testSetSentenceBasedOnId_doesNotTouchSentencesWithoutLog()
+    public function testRun_doesNotTouchSentencesWithoutLog()
     {
         $expectedDerivation = array(
             15 => null,
@@ -203,50 +203,50 @@ class SentenceDerivationShellTest extends CakeTestCase
             17 => null,
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $actualDerivation = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $actualDerivation);
     }
 
-    public function testSetSentenceBasedOnId_doesNotTouchSentencesCreatedWithDatetimeZero()
+    public function testRun_doesNotTouchSentencesCreatedWithDatetimeZero()
     {
         $expectedDerivation = array(
             18 => null,
             19 => null,
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testSetSentenceBasedOnId_pattern_createA_linkBA_linkAB()
+    public function testRun_pattern_createA_linkBA_linkAB()
     {
         $expectedDerivation = array(
             20 => 18
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testSetSentenceBasedOnId_pattern_linkBA_linkAB_createA()
+    public function testRun_pattern_linkBA_linkAB_createA()
     {
         $expectedDerivation = array(
             21 => 19
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testSetSentenceBasedOnId_twoPairsAddedAtTheSameTime()
+    public function testRun_twoPairsAddedAtTheSameTime()
     {
         $expectedDerivation = array(
             22 => 0,
@@ -256,32 +256,32 @@ class SentenceDerivationShellTest extends CakeTestCase
             26 => 16,
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testSetSentenceBasedOnId_longDatetimeDifference()
+    public function testRun_longDatetimeDifference()
     {
         $expectedDerivation = array(
             28 => 27,
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testSetSentenceBasedOnId_returnsNumberOfSentencesProceeded()
+    public function testRun_returnsNumberOfSentencesProceeded()
     {
         $expected = 22;
-        $actual = $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }
 
-    public function testSetSentenceBasedOnId_honorsLinkEra()
+    public function testRun_honorsLinkEra()
     {
         $expectedDerivation = array(
             1 => null,
@@ -294,20 +294,20 @@ class SentenceDerivationShellTest extends CakeTestCase
         );
         $this->SentenceDerivationShell->linkEraFirstId = 11;
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    public function testSetSentenceBasedOnId_multipleCreationRecords()
+    public function testRun_multipleCreationRecords()
     {
         $expectedDerivation = array(
             29 => 0,
             30 => 29,
         );
 
-        $this->SentenceDerivationShell->setSentenceBasedOnId();
+        $this->SentenceDerivationShell->run();
 
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
