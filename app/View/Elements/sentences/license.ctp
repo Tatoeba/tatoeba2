@@ -25,6 +25,7 @@
  * @link     http://tatoeba.org
  */
 
+if (CurrentUser::isAdmin()) :
 ?>
 <div class="module">
     <h2><?php echo __('License') ?></h2>
@@ -56,3 +57,4 @@ if ($canEdit) {
 }
 ?>
 </div>
+<? endif ; ?>

@@ -113,6 +113,7 @@ $vocabularyUrl = $this->Html->url(array(
                         ?>
                     </div>
 
+                    <? if (CurrentUser::isAdmin()) : ?>
                     <div class="license-select" layout="row" layout-align="end center" flex>
                         <label><? echo __('License'); ?></label>
                         <?php
@@ -128,6 +129,7 @@ $vocabularyUrl = $this->Html->url(array(
                         );
                         ?>
                     </div>
+                    <? endif; ?>
                 </div>
 
                 <md-input-container flex>
