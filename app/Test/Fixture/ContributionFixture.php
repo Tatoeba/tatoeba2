@@ -529,20 +529,6 @@ class ContributionFixture extends CakeTestFixture {
 			'id' => '36'
 		),
 		array(
-			'sentence_id' => '23',
-			'sentence_lang' => 'fra',
-			'translation_id' => '15',
-			'translation_lang' => 'eng',
-			'script' => null,
-			'text' => '',
-			'action' => 'insert',
-			'user_id' => '5',
-			'datetime' => '2016-06-19 22:56:52',
-			'ip' => '172.20.159.118',
-			'type' => 'link',
-			'id' => '37'
-		),
-		array(
 			'sentence_id' => '24',
 			'sentence_lang' => 'cmn',
 			'translation_id' => '22',
@@ -554,21 +540,21 @@ class ContributionFixture extends CakeTestFixture {
 			'datetime' => '2016-06-19 22:56:52',
 			'ip' => '172.17.183.151',
 			'type' => 'link',
-			'id' => '38'
+			'id' => '37'
 		),
 		array(
 			'sentence_id' => '23',
 			'sentence_lang' => 'fra',
-			'translation_id' => null,
-			'translation_lang' => null,
+			'translation_id' => '15',
+			'translation_lang' => 'eng',
 			'script' => null,
-			'text' => 'La piscine est utilisée en commun par tous les enfants du voisinage.',
+			'text' => '',
 			'action' => 'insert',
 			'user_id' => '5',
 			'datetime' => '2016-06-19 22:56:52',
 			'ip' => '172.20.159.118',
-			'type' => 'sentence',
-			'id' => '39'
+			'type' => 'link',
+			'id' => '38'
 		),
 		array(
 			'sentence_id' => '24',
@@ -581,6 +567,20 @@ class ContributionFixture extends CakeTestFixture {
 			'user_id' => '4',
 			'datetime' => '2016-06-19 22:56:52',
 			'ip' => '172.17.183.151',
+			'type' => 'sentence',
+			'id' => '39'
+		),
+		array(
+			'sentence_id' => '23',
+			'sentence_lang' => 'fra',
+			'translation_id' => null,
+			'translation_lang' => null,
+			'script' => null,
+			'text' => 'La piscine est utilisée en commun par tous les enfants du voisinage.',
+			'action' => 'insert',
+			'user_id' => '5',
+			'datetime' => '2016-06-19 22:56:52',
+			'ip' => '172.20.159.118',
 			'type' => 'sentence',
 			'id' => '40'
 		),
