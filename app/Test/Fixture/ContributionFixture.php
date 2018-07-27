@@ -827,5 +827,76 @@ class ContributionFixture extends CakeTestFixture {
 			'type' => 'link',
 			'id' => '57'
 		),
+		array(
+			'sentence_id' => '31',
+			'sentence_lang' => 'eng',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => 'This sentence will be linked twice shortly after being created.',
+			'action' => 'insert',
+			'user_id' => '3',
+			'datetime' => '2017-04-08 03:10:00',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '58'
+		),
+		array(
+			'sentence_id' => '28',
+			'sentence_lang' => 'ara',
+			'translation_id' => '31',
+			'translation_lang' => 'eng',
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '3',
+			'datetime' => '2017-04-08 03:10:00',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '59'
+		),
+		array(
+			'sentence_id' => '31',
+			'sentence_lang' => 'eng',
+			'translation_id' => '28',
+			'translation_lang' => 'ara',
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '3',
+			'datetime' => '2017-04-08 03:10:00',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '60'
+		),
+		// new link to #29 created within 4 seconds
+		array(
+			'sentence_id' => '31',
+			'sentence_lang' => 'eng',
+			'translation_id' => '29',
+			'translation_lang' => 'eng',
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '3',
+			'datetime' => '2017-04-08 03:10:04',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '61'
+		),
+		array(
+			'sentence_id' => '29',
+			'sentence_lang' => 'eng',
+			'translation_id' => '31',
+			'translation_lang' => 'eng',
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '3',
+			'datetime' => '2017-04-08 03:10:04',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '62'
+		),
 	);
 }

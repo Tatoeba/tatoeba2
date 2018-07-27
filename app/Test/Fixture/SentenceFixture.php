@@ -415,5 +415,18 @@ class SentenceFixture extends CakeTestFixture {
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => NULL,
 		),
+		array(
+			'id' => '31',
+			'lang' => 'eng',
+			'text' => 'This sentence will be linked twice shortly after being created.',
+			'correctness' => '0',
+			'user_id' => '3',
+			'created' => '2017-04-08 03:10:00',
+			'modified' => '2017-04-08 03:10:00',
+			'script' => null,
+			'hash' => "1s0obfo\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
+		),
 	);
 }

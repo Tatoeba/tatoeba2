@@ -122,7 +122,7 @@ class SentenceDerivationShell extends AppShell {
         });
         if (count($matches) == 0) {
             return 0;
-        } elseif (count($matches) == 2) {
+        } elseif (count($matches) >= 2) {
             foreach ($matches as $match) {
                 $match = $match['Contribution'];
                 if ($match['sentence_id'] == $log['sentence_id'] &&
