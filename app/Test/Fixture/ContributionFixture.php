@@ -1025,5 +1025,33 @@ class ContributionFixture extends CakeTestFixture {
 			'type' => 'sentence',
 			'id' => '71'
 		),
+		array(
+			'sentence_id' => '35',
+			'sentence_lang' => 'fra',
+			'translation_id' => null,
+			'translation_lang' => null,
+			'script' => null,
+			'text' => 'Soyez exigent envers vous-même.',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-08 04:00:00',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '72'
+		),
+		array(
+			'sentence_id' => '35',
+			'sentence_lang' => 'fra',
+			'translation_id' => null,
+			'translation_lang' => null,
+			'script' => null,
+			'text' => 'Soyez exigeant envers vous-même.',
+			'action' => 'update',
+			'user_id' => '7',
+			'datetime' => '2017-04-08 04:00:04',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '73'
+		),
 	);
 }

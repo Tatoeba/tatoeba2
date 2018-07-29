@@ -461,5 +461,16 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "10gv9hj\0\0\0\0\0\0\0\0\0"
 		),
+		array(
+			'id' => '35',
+			'lang' => 'fra',
+			'text' => 'Soyez exigeant envers vous-même.',
+			'correctness' => '0',
+			'user_id' => '7',
+			'created' => '2017-04-08 04:00:00',
+			'modified' => '2017-04-08 04:00:04',
+			'script' => null,
+			'hash' => "2n2cpvv\0\0\0\0\0\0\0\0\0"
+		),
 	);
 }

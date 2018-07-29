@@ -111,14 +111,14 @@ class SentenceDerivationShell extends AppShell {
     private function calcBasedOnId($walker, $log) {
         $matches = $walker->findAround($this->maxFindAroundRange, function ($elem) use ($log) {
             $elem = $elem['Contribution'];
+            $isInsert = $elem['action'] == 'insert';
             $creatDate = strtotime($log['datetime']);
             $otherDate = strtotime($elem['datetime']);
             $closeDatetime = abs($otherDate - $creatDate) <= 27;
 
             $isRelated = $elem['translation_id'] == $log['sentence_id']
                          || $elem['sentence_id'] == $log['sentence_id'];
-
-            return $isRelated && $closeDatetime;
+            return $isInsert && $isRelated && $closeDatetime;
         });
         if (count($matches) == 0) {
             return 0;
