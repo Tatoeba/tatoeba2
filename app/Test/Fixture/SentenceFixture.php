@@ -428,5 +428,38 @@ class SentenceFixture extends CakeTestFixture {
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => NULL,
 		),
+		array(
+			'id' => '32',
+			'lang' => 'pol',
+			'text' => 'Aktorka pozdrowiła fanów ze sceny.',
+			'correctness' => '0',
+			'user_id' => '3',
+			'created' => '2010-02-14 21:05:54',
+			'modified' => '2010-02-14 21:05:54',
+			'script' => null,
+			'hash' => "2vshapt\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '33',
+			'lang' => 'pol',
+			'text' => 'Czas i rozmyślania łagodzą nawet największą rozpacz.',
+			'correctness' => '0',
+			'user_id' => '3',
+			'created' => '2010-02-14 21:05:54',
+			'modified' => '2010-02-14 21:05:54',
+			'script' => null,
+			'hash' => "3rhic3o\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '34',
+			'lang' => 'pol',
+			'text' => 'Niezbyt ufam tłumaczeniom.',
+			'correctness' => '0',
+			'user_id' => '3',
+			'created' => '2010-02-14 21:05:54',
+			'modified' => '2010-02-14 21:05:54',
+			'script' => null,
+			'hash' => "10gv9hj\0\0\0\0\0\0\0\0\0"
+		),
 	);
 }
