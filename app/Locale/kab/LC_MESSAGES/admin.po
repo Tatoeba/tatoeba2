@@ -36,12 +36,16 @@ msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"Ur izmir ara ad ifek imesli i “{author}” i tefyirt {sentenceId} deg taffa n "
+"isefka. Walli isem n useqdac ma yella d ameɣtu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L315
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"Afaylu “{file}” ittwakter akken iwata maca ur izmir ara ad ittwasenkez seg "
+"ukaram itwwaketren."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L25
@@ -91,7 +95,7 @@ msgstr "Arameγtu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L127
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "Ulac ifuyla ittwafen deg ukaram ittwaketren."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L133
 msgid "Import"
@@ -109,7 +113,7 @@ msgstr "Sumer"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L30
 msgid "Correctness"
-msgstr ""
+msgstr "igerrez"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L424
 msgid "unhide"
