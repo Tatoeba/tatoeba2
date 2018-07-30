@@ -303,7 +303,7 @@ class SentenceDerivationShellTest extends CakeTestCase
     public function testRun_multipleCreationRecords()
     {
         $expectedDerivation = array(
-            29 => 0,
+            29 => '0',
             30 => 29,
         );
 

@@ -752,7 +752,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => 'L’historique de cette phrase fait apparaître deux créations.',
 			'action' => 'insert',
 			'user_id' => '1',
-			'datetime' => '2017-04-07 18:51:00',
+			'datetime' => '2017-04-07 18:50:08',
 			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '52'
@@ -766,7 +766,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '1',
-			'datetime' => '2017-04-07 18:51:00',
+			'datetime' => '2017-04-07 18:50:08',
 			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '53'
@@ -780,7 +780,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '1',
-			'datetime' => '2017-04-07 18:51:00',
+			'datetime' => '2017-04-07 18:50:08',
 			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '54'
@@ -794,7 +794,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => 'The log of this sentence shows two creation records.',
 			'action' => 'insert',
 			'user_id' => '3',
-			'datetime' => '2017-04-07 18:52:00',
+			'datetime' => '2017-04-07 18:50:13',
 			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '55'
@@ -808,7 +808,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '3',
-			'datetime' => '2017-04-07 18:52:00',
+			'datetime' => '2017-04-07 18:50:13',
 			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '56'
@@ -822,7 +822,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '3',
-			'datetime' => '2017-04-07 18:52:00',
+			'datetime' => '2017-04-07 18:50:13',
 			'ip' => '127.0.0.1',
 			'type' => 'link',
 			'id' => '57'
