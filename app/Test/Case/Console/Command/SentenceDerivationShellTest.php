@@ -276,7 +276,7 @@ class SentenceDerivationShellTest extends CakeTestCase
 
     public function testRun_returnsNumberOfSentencesProceeded()
     {
-        $expected = 27;
+        $expected = 34;
         $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }
@@ -343,6 +343,24 @@ class SentenceDerivationShellTest extends CakeTestCase
     {
         $expectedDerivation = array(
             35 => '0',
+        );
+
+        $this->SentenceDerivationShell->run();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
+
+    public function testRun_fivePairsAddedAtTheSameTime()
+    {
+        $expectedDerivation = array(
+            36 => '0',
+            37 => '0',
+            38 => 1,
+            39 => 4,
+            40 => 3,
+            41 => 5,
+            42 => 2,
         );
 
         $this->SentenceDerivationShell->run();

@@ -472,5 +472,82 @@ class SentenceFixture extends CakeTestFixture {
 			'script' => null,
 			'hash' => "2n2cpvv\0\0\0\0\0\0\0\0\0"
 		),
+		array(
+			'id' => '36',
+			'lang' => 'eng',
+			'text' => 'He\'s not in the least interested in what is happening in the world.',
+			'correctness' => '0',
+			'user_id' => '1',
+			'created' => '2017-04-09 09:00:00',
+			'modified' => '2017-04-09 09:00:00',
+			'script' => null,
+			'hash' => "2ecgfs\0\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '37',
+			'lang' => 'ukr',
+			'text' => 'Він зовсім не цікавиться тим, що відбувається у світі.',
+			'correctness' => '0',
+			'user_id' => '2',
+			'created' => '2017-04-09 11:28:49',
+			'modified' => '2017-04-09 11:28:49',
+			'script' => null,
+			'hash' => "36hp9qe\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '38',
+			'lang' => 'wuu',
+			'text' => '侬老快就会欢喜上搿个城市。',
+			'correctness' => '0',
+			'user_id' => '3',
+			'created' => '2017-04-09 11:38:30',
+			'modified' => '2017-04-09 11:38:30',
+			'script' => null,
+			'hash' => "298ghmi\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '39',
+			'lang' => 'rus',
+			'text' => 'Слишком темно, чтобы ясно видеть.',
+			'correctness' => '0',
+			'user_id' => '4',
+			'created' => '2017-04-09 11:38:44',
+			'modified' => '2017-04-09 11:38:44',
+			'script' => null,
+			'hash' => "3fisnpv\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '40',
+			'lang' => 'fra',
+			'text' => 'J\'ai incité mes étudiants à travailler davantage.',
+			'correctness' => '0',
+			'user_id' => '5',
+			'created' => '2017-04-09 11:38:51',
+			'modified' => '2017-04-09 11:38:51',
+			'script' => null,
+			'hash' => "29umd5v\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '41',
+			'lang' => 'tur',
+			'text' => 'Bana ne önerirsin?',
+			'correctness' => '0',
+			'user_id' => '6',
+			'created' => '2017-04-09 11:38:58',
+			'modified' => '2017-04-09 11:38:58',
+			'script' => null,
+			'hash' => "3tmgmdi\0\0\0\0\0\0\0\0\0"
+		),
+		array(
+			'id' => '42',
+			'lang' => 'tur',
+			'text' => 'Hava nasıl?',
+			'correctness' => '0',
+			'user_id' => '7',
+			'created' => '2017-04-09 11:39:02',
+			'modified' => '2017-04-09 11:39:02',
+			'script' => null,
+			'hash' => "23jek2o\0\0\0\0\0\0\0\0\0"
+		),
 	);
 }

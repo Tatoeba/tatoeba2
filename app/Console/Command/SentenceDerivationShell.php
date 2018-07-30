@@ -101,7 +101,7 @@ class SentenceDerivationShell extends AppShell {
     public $uses = array('Sentence', 'Contribution');
     public $batchSize = 1000;
     public $linkEraFirstId = 330930;
-    private $maxFindAroundRange = 7;
+    private $maxFindAroundRange = 15;
 
     public function main() {
         $proceeded = $this->run();
