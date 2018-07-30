@@ -52,7 +52,7 @@ if ($canEdit) {
 
 } else {
 
-    echo $this->License->getLicenseName($license);
+    echo $this->Sentences->License->getLicenseName($license);
 
 }
 ?>
