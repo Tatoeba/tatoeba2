@@ -29,7 +29,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => 'The fundamental cause of the problem is that in the modern world, idiots are full of confidence, while the intelligent are full of doubt.',
 			'action' => 'insert',
 			'user_id' => '7',
-			'datetime' => '2014-04-15 00:32:08',
+			'datetime' => '2014-04-15 00:33:20',
 			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '1'

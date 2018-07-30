@@ -116,8 +116,8 @@ class SentenceDerivationShell extends AppShell {
             $otherDate = strtotime($elem['datetime']);
             $closeDatetime = abs($otherDate - $creatDate) <= 27;
 
-            $isRelated = $elem['translation_id'] == $log['sentence_id']
-                         || $elem['sentence_id'] == $log['sentence_id'];
+            $isRelated = ($elem['translation_id'] == $log['sentence_id'] && $elem['sentence_id'] < $log['sentence_id'])
+                         || ($elem['sentence_id'] == $log['sentence_id'] && $elem['translation_id'] < $log['sentence_id']);
             return $isInsert && $isRelated && $closeDatetime;
         });
         if (count($matches) == 0) {
