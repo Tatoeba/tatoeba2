@@ -43,11 +43,15 @@ if ($canEdit) {
         'id',
         array('value' => $sentenceId)
     );
-    echo $this->Form->input('audio_license', array(
+    $options = array(
         'label' => __('Current license:'),
         'options' => $this->Sentences->License->getLicenseOptions(),
         'value' => $license,
-    ));
+    );
+    if (is_null($license)) {
+        $options['empty'] = true;
+    }
+    echo $this->Form->input('license', $options);
     echo $this->Form->end();
 
 } else {
