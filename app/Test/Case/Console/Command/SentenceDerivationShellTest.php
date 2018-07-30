@@ -368,4 +368,16 @@ class SentenceDerivationShellTest extends CakeTestCase
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
+
+    public function testRun_doesntUpdateIfBasedOnIdAlreadySet()
+    {
+        $expectedDerivation = array(
+            43 => 42424242,
+        );
+
+        $this->SentenceDerivationShell->run();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
 }

@@ -173,7 +173,8 @@ class SentenceDerivationShell extends AppShell {
                 $log['datetime'] != '0000-00-00 00:00:00')
             {
                 $sentenceId = $log['sentence_id'];
-                if (!$this->Sentence->findById($sentenceId) ||
+                $sentence = $this->Sentence->findById($sentenceId, 'based_on_id');
+                if (!$sentence || !is_null($sentence['Sentence']['based_on_id']) ||
                     (isset($creationDups[$sentenceId]) && $creationDups[$sentenceId] != $log['id'])
                    ) {
                     continue;
