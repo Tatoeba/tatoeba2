@@ -437,7 +437,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2010-02-14 21:05:54',
 			'modified' => '2010-02-14 21:05:54',
 			'script' => null,
-			'hash' => "2vshapt\0\0\0\0\0\0\0\0\0"
+			'hash' => "2vshapt\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '33',
@@ -448,7 +450,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2010-02-14 21:05:54',
 			'modified' => '2010-02-14 21:05:54',
 			'script' => null,
-			'hash' => "3rhic3o\0\0\0\0\0\0\0\0\0"
+			'hash' => "3rhic3o\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '34',
@@ -459,7 +463,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2010-02-14 21:05:54',
 			'modified' => '2010-02-14 21:05:54',
 			'script' => null,
-			'hash' => "10gv9hj\0\0\0\0\0\0\0\0\0"
+			'hash' => "10gv9hj\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '35',
@@ -470,7 +476,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-08 04:00:00',
 			'modified' => '2017-04-08 04:00:04',
 			'script' => null,
-			'hash' => "2n2cpvv\0\0\0\0\0\0\0\0\0"
+			'hash' => "2n2cpvv\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '36',
@@ -481,7 +489,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-09 09:00:00',
 			'modified' => '2017-04-09 09:00:00',
 			'script' => null,
-			'hash' => "2ecgfs\0\0\0\0\0\0\0\0\0\0"
+			'hash' => "2ecgfs\0\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '37',
@@ -492,7 +502,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-09 11:28:49',
 			'modified' => '2017-04-09 11:28:49',
 			'script' => null,
-			'hash' => "36hp9qe\0\0\0\0\0\0\0\0\0"
+			'hash' => "36hp9qe\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '38',
@@ -503,7 +515,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-09 11:38:30',
 			'modified' => '2017-04-09 11:38:30',
 			'script' => null,
-			'hash' => "298ghmi\0\0\0\0\0\0\0\0\0"
+			'hash' => "298ghmi\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '39',
@@ -514,7 +528,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-09 11:38:44',
 			'modified' => '2017-04-09 11:38:44',
 			'script' => null,
-			'hash' => "3fisnpv\0\0\0\0\0\0\0\0\0"
+			'hash' => "3fisnpv\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '40',
@@ -525,7 +541,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-09 11:38:51',
 			'modified' => '2017-04-09 11:38:51',
 			'script' => null,
-			'hash' => "29umd5v\0\0\0\0\0\0\0\0\0"
+			'hash' => "29umd5v\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '41',
@@ -536,7 +554,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-09 11:38:58',
 			'modified' => '2017-04-09 11:38:58',
 			'script' => null,
-			'hash' => "3tmgmdi\0\0\0\0\0\0\0\0\0"
+			'hash' => "3tmgmdi\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 		array(
 			'id' => '42',
@@ -547,7 +567,9 @@ class SentenceFixture extends CakeTestFixture {
 			'created' => '2017-04-09 11:39:02',
 			'modified' => '2017-04-09 11:39:02',
 			'script' => null,
-			'hash' => "23jek2o\0\0\0\0\0\0\0\0\0"
+			'hash' => "23jek2o\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => NULL,
 		),
 	);
 }
