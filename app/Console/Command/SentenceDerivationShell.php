@@ -194,13 +194,8 @@ class SentenceDerivationShell extends AppShell {
     }
 
     public function run() {
-        $dataSource = $this->Sentence->getDataSource();
-        $dataSource->begin();
-
         $creationDups = $this->findDuplicateCreationRecords();
         $total = $this->setSentenceBasedOnId($creationDups);
-
-        $dataSource->commit();
         return $total;
     }
 }
