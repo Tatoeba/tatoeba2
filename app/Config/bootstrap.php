@@ -1,5 +1,7 @@
 <?php
 
+CakePlugin::load('Queue');
+
 /**
  * Printf-like function that supports:
  *   {n} params, n integer starting at zero
