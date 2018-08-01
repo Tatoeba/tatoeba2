@@ -25,6 +25,7 @@ class SentenceDerivationShellTest extends CakeTestCase
         );
         $this->SentenceDerivationShell->batchSize = 10;
         $this->SentenceDerivationShell->linkEraFirstId = 1;
+        $this->SentenceDerivationShell->linkABrange = array(29, 31);
     }
     
     public function tearDown()
@@ -276,7 +277,7 @@ class SentenceDerivationShellTest extends CakeTestCase
 
     public function testRun_returnsNumberOfSentencesProceeded()
     {
-        $expected = 34;
+        $expected = 36;
         $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }
@@ -373,6 +374,19 @@ class SentenceDerivationShellTest extends CakeTestCase
     {
         $expectedDerivation = array(
             43 => 42424242,
+        );
+
+        $this->SentenceDerivationShell->run();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
+
+    public function testRun_multipleCreationRecordsWithConfusingLogs()
+    {
+        $expectedDerivation = array(
+            44 => '0',
+            45 => '0',
         );
 
         $this->SentenceDerivationShell->run();

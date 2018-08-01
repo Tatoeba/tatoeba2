@@ -412,7 +412,7 @@ class ContributionFixture extends CakeTestFixture {
 			'type' => 'sentence',
 			'id' => '28'
 		),
-		// translation inserted with pattern: create A, link B-A, link A-B
+		// translation inserted with pattern: create A, link A-B, link B-A
 		array(
 			'sentence_id' => '20',
 			'sentence_lang' => 'fra',
@@ -428,10 +428,10 @@ class ContributionFixture extends CakeTestFixture {
 			'id' => '29'
 		),
 		array(
-			'sentence_id' => '18',
-			'sentence_lang' => 'eng',
-			'translation_id' => '20',
-			'translation_lang' => 'fra',
+			'sentence_id' => '20',
+			'sentence_lang' => 'fra',
+			'translation_id' => '18',
+			'translation_lang' => 'eng',
 			'script' => null,
 			'text' => '',
 			'action' => 'insert',
@@ -442,10 +442,10 @@ class ContributionFixture extends CakeTestFixture {
 			'id' => '30'
 		),
 		array(
-			'sentence_id' => '20',
-			'sentence_lang' => 'fra',
-			'translation_id' => '18',
-			'translation_lang' => 'eng',
+			'sentence_id' => '18',
+			'sentence_lang' => 'eng',
+			'translation_id' => '20',
+			'translation_lang' => 'fra',
 			'script' => null,
 			'text' => '',
 			'action' => 'insert',
@@ -1348,6 +1348,78 @@ class ContributionFixture extends CakeTestFixture {
 			'ip' => '127.0.0.1',
 			'type' => 'sentence',
 			'id' => '94'
+		),
+		// multiple creation records with confusing logs
+		array(
+			'sentence_id' => '44',
+			'sentence_lang' => 'eng',
+			'translation_id' => null,
+			'translation_lang' => null,
+			'script' => null,
+			'text' => 'Original sentence C.',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-09 13:00:00',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '95'
+		),
+		array(
+			'sentence_id' => '45',
+			'sentence_lang' => 'eng',
+			'translation_id' => null,
+			'translation_lang' => null,
+			'script' => null,
+			'text' => 'Original sentence A.',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-09 14:00:00',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '96'
+		),
+		array(
+			// Sentence B (later changed to C by the old deduplication script) created as translation of A
+			'sentence_id' => '44',
+			'sentence_lang' => 'eng',
+			'translation_id' => null,
+			'translation_lang' => null,
+			'script' => null,
+			'text' => 'Original sentence C.',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-09 14:00:04',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '97'
+		),
+		array(
+			'sentence_id' => '45',
+			'sentence_lang' => 'eng',
+			'translation_id' => '44',
+			'translation_lang' => 'eng',
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-09 14:00:04',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '98'
+		),
+		array(
+			'sentence_id' => '44',
+			'sentence_lang' => 'eng',
+			'translation_id' => '45',
+			'translation_lang' => 'eng',
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-09 14:00:04',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '99'
 		),
 	);
 }

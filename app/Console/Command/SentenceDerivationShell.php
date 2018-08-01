@@ -101,11 +101,29 @@ class SentenceDerivationShell extends AppShell {
     public $uses = array('Sentence', 'Contribution');
     public $batchSize = 1000;
     public $linkEraFirstId = 330930;
+    public $linkABrange = array(890774, 909052);
     private $maxFindAroundRange = 15;
 
     public function main() {
         $proceeded = $this->run();
         $this->out("\n$proceeded sentences proceeded.");
+    }
+
+    private function findLinkedSentence($sentenceId, $matches) {
+        // pattern link B-A, link A-B
+        $linkBA = $matches[0]['Contribution'];
+        $linkAB = $matches[1]['Contribution'];
+        if ($linkAB['id'] >= $this->linkABrange[0] && $linkAB['id'] <= $this->linkABrange[1]) {
+            // pattern link A-B, link B-A
+            $tmp = $linkBA;
+            $linkBA = $linkAB;
+            $linkAB = $tmp;
+        }
+        if ($sentenceId == $linkAB['sentence_id'] && $sentenceId == $linkBA['translation_id']) {
+           return $linkAB['translation_id'];
+        } else {
+           return 0;
+        }
     }
 
     private function calcBasedOnId($walker, $log) {
@@ -123,13 +141,7 @@ class SentenceDerivationShell extends AppShell {
         if (count($matches) == 0) {
             return 0;
         } elseif (count($matches) >= 2) {
-            foreach ($matches as $match) {
-                $match = $match['Contribution'];
-                if ($match['sentence_id'] == $log['sentence_id'] &&
-                    $match['translation_id'] != null) {
-                    return $match['translation_id'];
-                }
-            }
+            return $this->findLinkedSentence($log['sentence_id'], $matches);
         } else {
             return null;
         }
