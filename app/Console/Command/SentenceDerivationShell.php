@@ -132,7 +132,7 @@ class SentenceDerivationShell extends AppShell {
             $isInsertLink = $elem['action'] == 'insert' && $elem['type'] == 'link';
             $creatDate = strtotime($log['datetime']);
             $otherDate = strtotime($elem['datetime']);
-            $closeDatetime = abs($otherDate - $creatDate) <= 27;
+            $closeDatetime = abs($otherDate - $creatDate) <= 97;
 
             $isRelated = ($elem['translation_id'] == $log['sentence_id'] && $elem['sentence_id'] < $log['sentence_id'])
                          || ($elem['sentence_id'] == $log['sentence_id'] && $elem['translation_id'] < $log['sentence_id']);

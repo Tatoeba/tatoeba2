@@ -685,7 +685,7 @@ class ContributionFixture extends CakeTestFixture {
 			'id' => '47'
 		),
 		// translation inserted with pattern: create A, link B-A, link A-B
-		// with 27 seconds time difference (like sentence #625045)
+		// with 97 seconds time difference (like sentence #1403279)
 		array(
 			'sentence_id' => '28',
 			'sentence_lang' => 'ara',
@@ -695,7 +695,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => 'ماذا تفعل؟',
 			'action' => 'insert',
 			'user_id' => '2',
-			'datetime' => '2017-04-06 19:45:54',
+			'datetime' => '2017-04-06 19:26:46',
 			'ip' => '172.28.54.205',
 			'type' => 'sentence',
 			'id' => '48'
@@ -709,7 +709,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '2',
-			'datetime' => '2017-04-06 19:45:55',
+			'datetime' => '2017-04-06 19:27:10',
 			'ip' => '172.28.54.205',
 			'type' => 'link',
 			'id' => '49'
@@ -723,7 +723,7 @@ class ContributionFixture extends CakeTestFixture {
 			'text' => '',
 			'action' => 'insert',
 			'user_id' => '2',
-			'datetime' => '2017-04-06 19:46:21',
+			'datetime' => '2017-04-06 19:28:23',
 			'ip' => '172.28.54.205',
 			'type' => 'link',
 			'id' => '50'
