@@ -10,6 +10,7 @@ class SentenceDerivationShellTest extends CakeTestCase
         'app.contribution',
         'app.sentence',
         'app.reindex_flag',
+        'app.link',
     );
 
     public function setUp()
@@ -387,6 +388,40 @@ class SentenceDerivationShellTest extends CakeTestCase
         $expectedDerivation = array(
             44 => '0',
             45 => '0',
+        );
+
+        $this->SentenceDerivationShell->run();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
+
+    private function stuffLogs()
+    {
+        // Stuff the logs with 85 concurrent entries
+        $this->SentenceDerivationShell->Sentence->saveNewSentence(
+            'Some random sentence.', 'eng', 1, 0, 0, 'CC BY 2.0 FR'
+        );
+        for ($i = 0; $i < 21; $i++) {
+            for (array('delete', 'insert') as $action) {
+                $this->SentenceDerivationShell->Contribution->saveLinkContribution(1, 2, $action);
+                $this->SentenceDerivationShell->Contribution->saveLinkContribution(2, 1, $action);
+            }
+        }
+    }
+
+    public function testRun_hugeNumberOfRowsBetweenCreationAndLink()
+    {
+        $linkTo = 1;
+        $sent = $this->SentenceDerivationShell->Sentence->saveNewSentence(
+            'I am terrible.', 'eng', 7, 0, null, 'CC BY 2.0 FR'
+        );
+        $id = $sent['Sentence']['id'];
+        $this->stuffLogs();
+        $this->SentenceDerivationShell->Sentence->Link->add($linkTo, $id);
+
+        $expectedDerivation = array(
+            $id => $linkTo,
         );
 
         $this->SentenceDerivationShell->run();
