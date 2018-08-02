@@ -110,19 +110,40 @@ class SentenceDerivationShell extends AppShell {
     }
 
     private function findLinkedSentence($sentenceId, $matches) {
-        // pattern link B-A, link A-B
-        $linkBA = $matches[0]['Contribution'];
-        $linkAB = $matches[1]['Contribution'];
-        if ($linkAB['id'] >= $this->linkABrange[0] && $linkAB['id'] <= $this->linkABrange[1]) {
-            // pattern link A-B, link B-A
-            $tmp = $linkBA;
-            $linkBA = $linkAB;
-            $linkAB = $tmp;
-        }
-        if ($sentenceId == $linkAB['sentence_id'] && $sentenceId == $linkBA['translation_id']) {
-           return $linkAB['translation_id'];
+        if (count($matches) == 0) {
+            return 0;
+        } elseif (count($matches) == 1) {
+            $link = $matches[0]['Contribution'];
+            // pattern link B-A (with following link A-B missing)
+            $linkA = $link['sentence_id'];
+            $linkB = $link['translation_id'];
+            if ($link['id'] >= $this->linkABrange[0] && $link['id'] <= $this->linkABrange[1]) {
+                // pattern link A-B (with following link B-A missing)
+                $tmp = $linkB;
+                $linkB = $linkA;
+                $linkA = $tmp;
+            }
+            if ($sentenceId == $linkB) {
+                return null;//$linkA;
+            } else {
+                $this->out("\nAssuming sentence {$sentenceId} is original");
+                return 0;
+            }
         } else {
-           return 0;
+            // pattern link B-A, link A-B
+            $linkBA = $matches[0]['Contribution'];
+            $linkAB = $matches[1]['Contribution'];
+            if ($linkAB['id'] >= $this->linkABrange[0] && $linkAB['id'] <= $this->linkABrange[1]) {
+                // pattern link A-B, link B-A
+                $tmp = $linkBA;
+                $linkBA = $linkAB;
+                $linkAB = $tmp;
+            }
+            if ($sentenceId == $linkAB['sentence_id'] && $sentenceId == $linkBA['translation_id']) {
+               return $linkAB['translation_id'];
+            } else {
+               return 0;
+            }
         }
     }
 
@@ -138,13 +159,7 @@ class SentenceDerivationShell extends AppShell {
                          || ($elem['sentence_id'] == $log['sentence_id'] && $elem['translation_id'] < $log['sentence_id']);
             return $isInsertLink && $isRelated && $closeDatetime;
         });
-        if (count($matches) == 0) {
-            return 0;
-        } elseif (count($matches) >= 2) {
-            return $this->findLinkedSentence($log['sentence_id'], $matches);
-        } else {
-            return null;
-        }
+        return $this->findLinkedSentence($log['sentence_id'], $matches);
     }
 
     private function saveDerivations($derivations) {

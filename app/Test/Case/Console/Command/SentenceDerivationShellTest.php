@@ -11,6 +11,7 @@ class SentenceDerivationShellTest extends CakeTestCase
         'app.sentence',
         'app.reindex_flag',
         'app.link',
+        'app.user',
     );
 
     public function setUp()
@@ -424,6 +425,27 @@ class SentenceDerivationShellTest extends CakeTestCase
 
         $expectedDerivation = array(
             $id => $linkTo,
+        );
+
+        $this->SentenceDerivationShell->run();
+
+        $result = $this->findSentencesDerivation($expectedDerivation);
+        $this->assertEquals($expectedDerivation, $result);
+    }
+
+    public function testRun_lookAheadStepsOnOneLinkOfUnrelatedPair()
+    {
+        $sent = $this->SentenceDerivationShell->Sentence->saveNewSentence(
+            'I am terrible too.', 'eng', 7, 0, null, 'CC BY 2.0 FR'
+        );
+        $id = $sent['Sentence']['id'];
+        $this->stuffLogs(85);
+        $this->SentenceDerivationShell->Sentence->saveTranslation(
+            $id, 'eng', 'Unrelated translation', 'eng'
+        );
+
+        $expectedDerivation = array(
+            $id => '0',
         );
 
         $this->SentenceDerivationShell->run();
