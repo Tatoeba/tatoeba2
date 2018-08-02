@@ -62,31 +62,30 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             );
             ?>
             </dd>
-            <dt><?php echo __('On IRC'); ?></dt>
-            <dd>irc://freenode/tatoeba</dd>
+            <dt><?php echo __('On XMPP'); ?></dt>
+            <dd><a href="xmpp:tatoeba@chat.tatoeba.org?join">tatoeba@chat.tatoeba.org</a></dd>
         </dl>
     </div>
 
     <div class="module">
-        <h2><?php echo __('How to use IRC'); ?></h2>
+        <h2><?php echo __('How to use XMPP'); ?></h2>
         <p>
         <?php
         echo __(
-            'For those who are not familiar with IRC, it is pretty much like an '.
-            'instant messenger. You will be able to talk to us in real time, '.
-            'if we are there.'
+            'For those who are not familiar with XMPP, it is pretty much like an '.
+            'instant messenger. You will be able to talk with us in real time, '.
+            'if we are here.'
         );
         ?>
         </p>
         <p>
-        <?php echo __('There are many ways to join our channel. One is to go to this website:');
+        <?php echo __('There are many ways to join our room. One is to go to this website:');
         ?>
-        <a href="http://webchat.freenode.net/">http://webchat.freenode.net/</a>
+        <a href="https://candy.linkmauve.fr/tatoeba@chat.tatoeba.org">https://candy.linkmauve.fr/tatoeba@chat.tatoeba.org</a>
         </p>
         <?php
         echo __(
-            'Enter a nickname, enter "#tatoeba" for the channel, and click '.
-            'on "connect". That\'s it!'
+            'Enter a nickname, and click on “Enter groupchat”. That\'s it!'
         );
         ?>
     </div>
@@ -107,7 +106,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                 __(
                     'If you have no idea what to do now that you are registered, '.
                     'you can introduce yourself on the <a href="{}">Wall</a>, or '.
-                    'join us on <strong>IRC</strong>. We will give you a purpose. :)',
+                    'join us on <strong>XMPP</strong>. We will give you a purpose. :)',
                     true
                 ),
                 $this->Html->url(array('controller' => 'wall'))
