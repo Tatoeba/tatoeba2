@@ -396,14 +396,16 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->assertEquals($expectedDerivation, $result);
     }
 
-    private function stuffLogs()
+    // Stuff the logs with $n concurrent entries
+    private function stuffLogs($n)
     {
-        // Stuff the logs with 85 concurrent entries
-        $this->SentenceDerivationShell->Sentence->saveNewSentence(
-            'Some random sentence.', 'eng', 1, 0, 0, 'CC BY 2.0 FR'
-        );
-        for ($i = 0; $i < 21; $i++) {
-            for (array('delete', 'insert') as $action) {
+        for ($i = 0; $i < $n%4; $i++) {
+            $this->SentenceDerivationShell->Sentence->saveNewSentence(
+                "Some random sentence $i.", 'eng', 1, 0, 0, 'CC BY 2.0 FR'
+            );
+        }
+        for ($i = 0; $i < (int)($n/4); $i++) {
+            foreach (array('delete', 'insert') as $action) {
                 $this->SentenceDerivationShell->Contribution->saveLinkContribution(1, 2, $action);
                 $this->SentenceDerivationShell->Contribution->saveLinkContribution(2, 1, $action);
             }
@@ -417,7 +419,7 @@ class SentenceDerivationShellTest extends CakeTestCase
             'I am terrible.', 'eng', 7, 0, null, 'CC BY 2.0 FR'
         );
         $id = $sent['Sentence']['id'];
-        $this->stuffLogs();
+        $this->stuffLogs(85);
         $this->SentenceDerivationShell->Sentence->Link->add($linkTo, $id);
 
         $expectedDerivation = array(
