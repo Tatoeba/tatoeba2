@@ -435,14 +435,14 @@ class SentenceDerivationShellTest extends CakeTestCase
 
     public function testRun_lookAheadStepsOnOneLinkOfUnrelatedPair()
     {
+        $linkTo = 1;
+        $this->SentenceDerivationShell->Contribution->deleteAll(array('1=1'));
         $sent = $this->SentenceDerivationShell->Sentence->saveNewSentence(
             'I am terrible too.', 'eng', 7, 0, null, 'CC BY 2.0 FR'
         );
         $id = $sent['Sentence']['id'];
-        $this->stuffLogs(85);
-        $this->SentenceDerivationShell->Sentence->saveTranslation(
-            $id, 'eng', 'Unrelated translation', 'eng'
-        );
+        $this->stuffLogs(86);
+        $this->SentenceDerivationShell->Sentence->Link->add($id, $linkTo);
 
         $expectedDerivation = array(
             $id => '0',
