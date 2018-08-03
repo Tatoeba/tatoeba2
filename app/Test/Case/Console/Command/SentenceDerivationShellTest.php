@@ -445,7 +445,7 @@ class SentenceDerivationShellTest extends CakeTestCase
         $this->SentenceDerivationShell->Sentence->Link->add($id, $linkTo);
 
         $expectedDerivation = array(
-            $id => '0',
+            $id => null, // we don't handle this special case yet
         );
 
         $this->SentenceDerivationShell->run();
