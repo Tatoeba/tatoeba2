@@ -135,6 +135,7 @@ class SentenceDerivationShell extends AppShell {
     private function calcBasedOnId($walker, $log) {
         $matches = $walker->findAround($this->maxFindAroundRange, function ($elem) use ($log) {
             $elem = $elem['Contribution'];
+            $isSameAuthor = $elem['user_id'] == $log['user_id'];
             $isInsertLink = $elem['action'] == 'insert' && $elem['type'] == 'link';
             $creatDate = strtotime($log['datetime']);
             $otherDate = strtotime($elem['datetime']);
@@ -142,7 +143,7 @@ class SentenceDerivationShell extends AppShell {
 
             $isRelated = ($elem['translation_id'] == $log['sentence_id'] && $elem['sentence_id'] < $log['sentence_id'])
                          || ($elem['sentence_id'] == $log['sentence_id'] && $elem['translation_id'] < $log['sentence_id']);
-            return $isInsertLink && $isRelated && $closeDatetime;
+            return $isInsertLink && $isRelated && $closeDatetime && $isSameAuthor;
         });
         return $this->findLinkedSentence($log['sentence_id'], $matches);
     }

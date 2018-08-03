@@ -1449,5 +1449,47 @@ class ContributionFixture extends CakeTestFixture {
 			'type' => 'link',
 			'id' => '101'
 		),
+		array(
+			'sentence_id' => '47',
+			'sentence_lang' => 'eng',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => 'This sentence was linked by someone else.',
+			'action' => 'insert',
+			'user_id' => '1',
+			'datetime' => '2017-04-09 15:10:00',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '102'
+		),
+		array(
+			'sentence_id' => '1',
+			'sentence_lang' => NULL,
+			'translation_id' => '47',
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-09 15:10:10',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '103'
+		),
+		array(
+			'sentence_id' => '47',
+			'sentence_lang' => NULL,
+			'translation_id' => '1',
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-09 15:10:10',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '104'
+		),
 	);
 }
