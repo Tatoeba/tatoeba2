@@ -108,6 +108,15 @@ $this->Navigation->displaySentenceNavigation(
         $this->Lists->displayListsModule($listsArray);
 
         echo $this->element(
+            'sentences/license',
+            array(
+                'sentenceId' => $sentenceId,
+                'license' => $sentence['Sentence']['license'],
+                'canEdit' => CurrentUser::get('id') == $sentence['Sentence']['user_id'],
+            )
+        );
+
+        echo $this->element(
             'sentences/audio',
             array(
                 'sentenceId' => $sentenceId,
@@ -135,7 +144,10 @@ $this->Navigation->displaySentenceNavigation(
         echo __('Logs');
         echo '</h2>';
 
-        //$contributions = $sentence['Contribution'];
+        if (isset($sentence)) {
+            echo $this->Sentences->originText($sentence);
+        }
+
         if (!empty($contributions)) {
             echo '<md-list id="logs">';
             foreach ($contributions as $contribution) {

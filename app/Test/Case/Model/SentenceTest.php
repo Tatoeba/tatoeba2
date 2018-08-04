@@ -7,6 +7,7 @@ class SentenceTest extends CakeTestCase {
 	public $fixtures = array(
 		'app.sentence',
 		'app.user',
+		'app.users_language',
 		'app.contribution',
 		'app.sentences_list',
 		'app.sentences_sentences_list',
@@ -16,6 +17,7 @@ class SentenceTest extends CakeTestCase {
 		'app.link',
 		'app.transcription',
 		'app.reindex_flag',
+		'app.audio',
 	);
 
 	function startTest($method) {
@@ -80,6 +82,9 @@ class SentenceTest extends CakeTestCase {
 	}
 
 	function testSaveTranslation_links() {
+		$user = $this->Sentence->User->findByUsername('kazuki');
+		CurrentUser::store($user['User']);
+
 		$translationFromSentenceId = 1;
 		$lastId = $this->Sentence->find('first', array('fields' => array('MAX(id)+1 AS v')));
 		$newlyCreatedSentenceId = $lastId[0]['v'];
@@ -97,6 +102,49 @@ class SentenceTest extends CakeTestCase {
 			'eng',
 			Sentence::MAX_CORRECTNESS
 		);
+	}
+
+	function testSave_validSentence() {
+		$data = array(
+			'text' => 'Hi there!',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertTrue((bool)$result);
+	}
+
+	function testSave_checksValidLicense() {
+		$data = array(
+			'text' => 'Trying to save a sentence with an invalid license.',
+			'license' => 'some-strange-thing',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
+	function testSave_setsDefaultLicenseSettingOnCreation() {
+		$data = array(
+			'text' => 'This sentence should get a default licence.',
+			'user_id' => 7,
+		);
+
+		$this->Sentence->create();
+		$this->Sentence->save($data);
+
+		$savedSentence = $this->Sentence->findById($this->Sentence->id);
+		$this->assertEquals('CC0 1.0', $savedSentence['Sentence']['license']);
+	}
+
+	function testSave_doesNotChangeLicenseOnUpdate() {
+		$data = array(
+			'id' => 1,
+			'text' => 'Updating sentence #1.',
+			'user_id' => 7,
+		);
+
+		$this->Sentence->save($data);
+
+		$savedSentence = $this->Sentence->findById($this->Sentence->id);
+		$this->assertEquals('CC BY 2.0 FR', $savedSentence['Sentence']['license']);
 	}
 
     function testSentenceAdditionAddsTranscription() {

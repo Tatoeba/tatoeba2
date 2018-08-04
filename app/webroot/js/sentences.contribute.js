@@ -36,6 +36,7 @@ $(document).ready(function() {
         var rootUrl = get_tatoeba_root_url();
         var sentenceText = $("#SentenceText").val();
         var selectedLang = $("#contributionLang").val();
+        var sentenceLicense = $("#sentenceLicense").val();
         
         sentenceText = normalized_sentence(sentenceText);
         
@@ -46,7 +47,8 @@ $(document).ready(function() {
                 rootUrl + "/sentences/add_an_other_sentence",
                 {
                     "value": sentenceText,
-                    "selectedLang": selectedLang
+                    "selectedLang": selectedLang,
+                    "sentenceLicense": sentenceLicense
                 },
                 function(data){
                     $("#SentenceText").val("");
