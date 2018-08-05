@@ -20,7 +20,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "Arquivo inválido “{file}” ignorado."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
 msgid "Failed to create directory “{dir}” to import file “{file}”."
@@ -28,7 +28,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "Falha ao copiar o arquivo “{file}” para o diretório “{dir}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
 msgid ""
@@ -41,6 +41,8 @@ msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"O arquivo “{file}” foi importado com sucesso mas não pôde ser removido do "
+"diretório de importação."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L25
@@ -49,19 +51,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L28
 msgid "Import report"
-msgstr ""
+msgstr "Report da importação"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L59
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "Os seguintes erros ocorreram durante a importação"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L66
 msgid "Files detected"
-msgstr ""
+msgstr "Arquivos detectados"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L84
 msgid "File name"
-msgstr ""
+msgstr "Nome do arquivo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L85
 msgid "Sentence id"
@@ -108,7 +110,7 @@ msgstr "Submeter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L30
 msgid "Correctness"
-msgstr ""
+msgstr "Exatidão"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L424
 msgid "unhide"
@@ -139,7 +141,7 @@ msgstr "Arquivo"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "ID numérico do usuário"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L112

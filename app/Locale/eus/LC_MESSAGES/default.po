@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-07-01 14:16+0000\n"
-"PO-Revision-Date: 2018-07-27 19:28+0000\n"
+"PO-Revision-Date: 2018-07-31 10:28+0000\n"
 "Last-Translator: Gorka Azkarate Zubiaur <gorkaazkarate@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/tatoeba/tatoeba_website/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -2871,7 +2871,7 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "Esaldien arteko estekak gordetzen ditu. {sampleLinkLine} horrek esan nahi du #77 zenbakia duen esaldia  #1 zenbakia duen esaldiaren itzulpena dela. Alderantzizko esteka ere hortxe dago, beraz fitxategiak lerro bat izango dut honako hau esaten: {sampleLinkLineReversed}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L284
 msgid ""
@@ -2913,7 +2913,7 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr ""
+msgstr "Audioa eskuragarri daukaten hizkuntza guztietako esaldien ID helbideak gordetzen ditu. Beste eremuek zera adierazten dute, nork grabatu zuen audioa, zein lizentziapean argitara eman zuen eta egilea nor den jakiteko URL helbidea. Lizentziaren eremua hutsik baldin badago, agian lege arazoren bat egon liteke audio hori Tatoeba proiektutik kanpo erabiltzeko."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L449
 msgid "User skill level per language"
@@ -2933,7 +2933,7 @@ msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "Erabiltzaileek kalifikatutako esaldiak gordetzen ditu. Kalifikazioaren balioa izan daiteke: -1 (okertzat jo den esaldia), 0 (zalantzak sortzen dituen esaldia), edo 1 (ontzat eman den esaldia). Oharra: kalifikazioaren kontu hau oraindik beta fasean dago."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/help.ctp#L33
 msgid "Need more help?"
@@ -3624,7 +3624,7 @@ msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
-msgstr ""
+msgstr "Hizkuntza bat hautatzen baduzu, hizkuntza horretara egiten duzun itzulpen bakoitza, zure produkzio bildumara gehituko da. Horrelakoetan, inportatu ahal duzu fitxategi bat flash karten multzo bat sortzeko, {Anki} programa erabiliz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/download.ctp#L173
 msgid "Fields will be written out in the following sequence:"
@@ -3891,7 +3891,7 @@ msgid ""
 "is better to react as soon as possible, it is best to use your corpus "
 "maintainer powers <strong>ONLY</strong> on sentences that appear in this "
 "list, since the owners have had enough time to respond to comments."
-msgstr ""
+msgstr "Egoera edo gertaera bereziak albo batera utziko; zure senak esaten badizu ahalik eta azkarren erreakzionatzea hobe dela, hobe da zure corpus-kudeatzaile botereak mantentzea  <strong>BAKARRIK</strong> zerrenda honetan agertzen diren esaldietan, jabeak nahiko denbora izan duenean egindako iruzkinei erantzuteko."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Tags/for_moderators.ctp#L89
 msgid ""
@@ -4273,7 +4273,7 @@ msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
-msgstr ""
+msgstr "Kategoria honetako aukerak agian ez dira erabat funtzionalak, behar bada ez dute erabiltzaile guztiekin funtzionatuko edota beta fasean, proba fasean, egon daitezke. Etorkizunean alda daitezke."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/settings.ctp#L251
 msgid ""
