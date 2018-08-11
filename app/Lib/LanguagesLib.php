@@ -557,6 +557,12 @@ class LanguagesLib
                 'ike' => __d('languages', 'Inuktitut'), 
                 'kab' => __d('languages', 'Kabyle'), 
                 'run' => __d('languages', 'Kirundi'), 
+                'aln' => __d('languages', 'Albanian (Gheg)'),
+                'akl' => __d('languages', 'Aklanon'),
+                'mnc' => __d('languages', 'Manchu'), 
+                'kas' => __d('languages', 'Kashmiri'),
+                'otk' => __d('languages', 'Old Turkish'),
+		            'aoz' => __d('languages', 'Uab Meto'), 
             );
         }
         return $languages;
