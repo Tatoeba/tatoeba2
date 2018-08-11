@@ -555,6 +555,7 @@ class LanguagesLib
                 'cmo' => __d('languages', 'Mnong, Central'),
                 'koi' => __d('languages', 'Komi-Permyak'),
                 'ike' => __d('languages', 'Inuktitut'), 
+                'kas' => __d('languages', 'Kashmiri'),
                 'otk' => __d('languages', 'Old Turkish'),
 		            'aoz' => __d('languages', 'Uab Meto'), 
 		            'kab' => __d('languages', 'Kabyle'),
