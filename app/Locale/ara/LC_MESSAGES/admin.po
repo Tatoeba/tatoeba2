@@ -20,15 +20,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "تجاهلتُ الملف ”{file}“ غير الصحيح."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
 msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
+msgstr "فشل إنشاء الدليل ”{dir}“ لاستيراد الملف ”{file}“."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "فشل نسخ الملف ”{file}“ إلى الدليل ”{dir}“."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
 msgid ""
@@ -40,7 +40,7 @@ msgstr ""
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
-msgstr ""
+msgstr "استوردتُ الملف ”{file}“ بنجاح ولكن لم أستطع إزالته من دليل الاستيراد."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L25
@@ -53,7 +53,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L59
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "حدثت الأخطاء الآتية أثناء الاستيراد."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L66
 msgid "Files detected"
@@ -61,7 +61,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L84
 msgid "File name"
-msgstr ""
+msgstr "اسم الملف"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L85
 msgid "Sentence id"
@@ -90,7 +90,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L127
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "لم أكتشف أيّة ملفات في دليل الاستيراد."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L133
 msgid "Import"
@@ -160,7 +160,7 @@ msgstr "احذف"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L52
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "أمتأكّد من حذف المستخدم رقم {number}؟"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L58
 msgid "List Users"

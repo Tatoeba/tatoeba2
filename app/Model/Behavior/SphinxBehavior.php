@@ -151,7 +151,9 @@ class SphinxBehavior extends ModelBehavior
         $docsByLang = array();
         $size = count($results);
         foreach ($results as $result) {
-            $size += count ($result['Transcription'] ?? 0);
+            if (isset($result['Transcription'])) {
+                $size += count($result['Transcription']);
+            }
         }
         $i = 0;
         foreach ($results as $result) {
@@ -186,9 +188,11 @@ class SphinxBehavior extends ModelBehavior
                 $search,
                 $options
             );
-            foreach ($excerpts as $i => $excerpt) {
-                if (!empty($excerpt)) {
-                    $mergedExcerpts[$i] = $excerpt;
+            if ($excerpts) {
+                foreach ($excerpts as $i => $excerpt) {
+                    if (!empty($excerpt)) {
+                        $mergedExcerpts[$i] = $excerpt;
+                    }
                 }
             }
         }
@@ -299,5 +303,10 @@ class SphinxBehavior extends ModelBehavior
                 trigger_error('Unable to update Sphinx attribute(s) (' . implode(', ', $attributes).'): '.$error);
             }
         }
+    }
+
+    public function buildSphinxPhraseSearchQuery($model, $text) {
+        $escaped = $this->runtime[$model->alias]['sphinx']->EscapeString($text);
+        return '="'.$escaped.'"';
     }
 }

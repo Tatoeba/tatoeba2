@@ -56,32 +56,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <?php
             foreach($vocabulary as $item) {
                 $divId = $item['Vocabulary']['id'];
-                $lang = $item['Vocabulary']['lang'];
-                $text = $item['Vocabulary']['text'];
-                $numSentences = $item['Vocabulary']['numSentences'];
-                $numSentencesLabel = $numSentences == 1000 ? '1000+' : $numSentences;
-                $url = $this->Html->url(array(
-                    'controller' => 'sentences',
-                    'action' => 'search',
-                    '?' => array(
-                        'query' => '="' . $text . '"',
-                        'from' => $lang
-                    )
-                ));
                 ?>
                 <md-list-item id="vocabulary_<?= $divId ?>">
-                    <img class="vocabulary-lang" src="/img/flags/<?= $lang ?>.png"/>
-                    <div class="vocabulary-text" flex><?= $text ?></div>
-                    <md-button class="md-primary" href="<?= $url ?>">
-                        <?= format(
-                            __n(
-                                '{number} sentence', '{number} sentences',
-                                $numSentences,
-                                true
-                            ),
-                            array('number' => $numSentencesLabel)
-                        ); ?>
-                    </md-button>
+                    <?= $this->Vocabulary->vocabulary($item['Vocabulary']); ?>
                     <? if ($canEdit) { ?>
                         <md-button ng-click="ctrl.remove('<?= $divId ?>')"
                                    class="md-icon-button">
