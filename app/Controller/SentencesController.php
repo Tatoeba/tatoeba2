@@ -347,12 +347,16 @@ class SentencesController extends AppController
 
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
+        $sentenceLicense = isset($this->data['sentenceLicense']) ?
+                           $this->data['sentenceLicense'] : null;
 
         $isSaved = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,
             $userId,
-            $userName
+            $userName,
+            0,
+            $sentenceLicense
         );
 
         // saving

@@ -20,48 +20,53 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "Le file invalide “{file}” ha essite ignorate."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
+"Impossibile crear le directorio “{dir}” pro importar le file “{file}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "Impossibile copiar le “{file}” al directorio “{dir}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
+"Impossibile assignar audio a “{author}” pro le phrase {sentenceId} in le "
+"base de datos. Assecura te que le nomine de usator es valide."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L315
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
 msgstr ""
+"Le file “{file}” ha essite importate, ma non esseva possibile remover lo del"
+" directorio de files a importar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L25
 msgid "Import recordings"
-msgstr ""
+msgstr "Importar registrationes"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L28
 msgid "Import report"
-msgstr ""
+msgstr "Reporto de importation"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L59
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "Le sequente errores ha occurrite durante le importation."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L66
 msgid "Files detected"
-msgstr ""
+msgstr "Files detegite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L84
 msgid "File name"
-msgstr ""
+msgstr "Nomine del file"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L85
 msgid "Sentence id"
@@ -73,32 +78,32 @@ msgstr "Lingua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L87
 msgid "Already has audio"
-msgstr ""
+msgstr "Jam ha audio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L88
 msgid "May be imported"
-msgstr ""
+msgstr "Pote esser importate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L109
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L103
 msgid "Invalid"
-msgstr ""
+msgstr "Invalide"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L127
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "Nulle file ha essite detegite in le directorio de files a importar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L133
 msgid "Import"
-msgstr ""
+msgstr "Importar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L58
 msgid "Enabled"
-msgstr ""
+msgstr "Activate"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L55
@@ -108,7 +113,7 @@ msgstr "Submitter"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L30
 msgid "Correctness"
-msgstr ""
+msgstr "Correctessa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L424
 msgid "unhide"
@@ -120,39 +125,39 @@ msgstr "celar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L28
 msgid "Import sentences"
-msgstr ""
+msgstr "Importar phrases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L36
 msgid "Single sentences"
-msgstr ""
+msgstr "Phrases individual"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
-msgstr ""
+msgstr "Lingua del phrases:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L56
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L99
 msgid "File:"
-msgstr ""
+msgstr "File:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr ""
+msgstr "ID numeric del usator:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L112
 msgid "import"
-msgstr ""
+msgstr "importar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr ""
+msgstr "Phrases e traductiones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L94
 msgid "Language of the translations:"
-msgstr ""
+msgstr "Lingua del traductiones:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L46
 msgid "Delete"
@@ -160,11 +165,11 @@ msgstr "Deler"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L52
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "Es tu secur de voler deler le usator #{number}?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L58
 msgid "List Users"
-msgstr ""
+msgstr "Listar usatores"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L62
 msgid "Profile"
@@ -172,11 +177,11 @@ msgstr "Profilo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L79
 msgid "Edit User"
-msgstr ""
+msgstr "Modificar usator"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L81
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L52
@@ -195,29 +200,29 @@ msgstr "Lingua"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L56
 msgid "Group"
-msgstr ""
+msgstr "Gruppo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L55
 msgid "Level"
-msgstr ""
+msgstr "Nivello"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L98
 msgid "Send notifications"
-msgstr ""
+msgstr "Inviar notificationes"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L41
 msgid "Users"
-msgstr ""
+msgstr "Usatores"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L41
 msgid "total"
-msgstr ""
+msgstr "total"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L51
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L54
 msgid "Since"
-msgstr ""
+msgstr "Depost"

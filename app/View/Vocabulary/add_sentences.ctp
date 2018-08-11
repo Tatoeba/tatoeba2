@@ -61,30 +61,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             foreach($vocabulary as $item) {
                 $id = $item['Vocabulary']['id'];
                 $lang = $item['Vocabulary']['lang'];
-                $text = $item['Vocabulary']['text'];
-                $numSentences = $item['Vocabulary']['numSentences'];
-                $url = $this->Html->url(array(
-                    'controller' => 'sentences',
-                    'action' => 'search',
-                    '?' => array(
-                        'query' => '="' . $text . '"',
-                        'from' => $lang
-                    )
-                ));
                 ?>
                 <md-list-item id="vocabulary_<?= $id ?>">
-                    <img class="vocabulary-lang" src="/img/flags/<?= $lang ?>.png"/>
-                    <div class="vocabulary-text" flex><?= $text ?></div>
-                    <md-button class="md-primary" href="<?= $url ?>">
-                        <?= format(
-                            __n(
-                                '{number} sentence', '{number} sentences',
-                                $numSentences,
-                                true
-                            ),
-                            array('number' => $numSentences)
-                        ); ?>
-                    </md-button>
+                    <?= $this->Vocabulary->vocabulary($item['Vocabulary']); ?>
                     <md-button ng-click="ctrl.showForm('<?= $id ?>')"
                                class="md-icon-button">
                         <md-icon aria-label="Add">add</md-icon>

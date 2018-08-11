@@ -120,7 +120,8 @@ class User extends AppModel
         'native_indicator' => false,
         'copy_button' => false,
         'hide_random_sentence' => false,
-        'use_new_design' => false
+        'use_new_design' => false,
+        'default_license' => 'CC BY 2.0 FR',
     );
 
     private $settingsValidation = array(
@@ -646,27 +647,6 @@ class User extends AppModel
         $result = $this->findById($userId, 'group_id');
 
         return $result['User']['group_id'];
-    }
-
-
-    public function getUsersWithSamePassword($userId)
-    {
-        $userPassword = $this->getPassword($userId);
-
-        $result = $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'password' => $userPassword,
-                    'group_id' => 6,
-                    'id !=' => $userId
-                ),
-                'fields' => array('username'),
-                'limit' => 10
-            )
-        );
-
-        return $result;
     }
 
     public function updatePasswordVersion($userId, $plainTextPassword)
