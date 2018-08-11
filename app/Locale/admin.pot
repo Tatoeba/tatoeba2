@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-12 12:46+0000\n"
+"POT-Creation-Date: 2018-07-01 14:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,25 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L255
 msgid "Invalid file “{file}” ignored."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L265
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L275
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L284
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L293
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -51,7 +51,7 @@ msgid "Import report"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L59
-msgid "The following errors occured during import."
+msgid "The following errors occurred during import."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L66

@@ -5,24 +5,19 @@ App::import('Behavior', 'Sphinx');
 
 class SentenceTest extends CakeTestCase {
 	public $fixtures = array(
-		'app.audio',
 		'app.sentence',
 		'app.user',
-		'app.group',
-		'app.sentence_comment',
+		'app.users_language',
 		'app.contribution',
 		'app.sentences_list',
 		'app.sentences_sentences_list',
-		'app.wall',
-		'app.wall_thread',
-		'app.favorites_user',
 		'app.tag',
 		'app.tags_sentence',
 		'app.language',
 		'app.link',
-		'app.sentence_annotation',
 		'app.transcription',
 		'app.reindex_flag',
+		'app.audio',
 	);
 
 	function startTest($method) {
@@ -31,17 +26,26 @@ class SentenceTest extends CakeTestCase {
 		$this->Sentence->Behaviors->Sphinx = Mockery::mock();
 
 		$autotranscription = $this->_installAutotranscriptionMock();
-		$autotranscription->shouldReceive('cmn_detectScript')->andReturn('Hans');
-		$autotranscription->shouldReceive(
-			'jpn_Jpan_to_Hrkt_generate')->andReturn('transcription in furigana'
-		);
-		$autotranscription->shouldReceive(
-			'jpn_Jpan_to_Hrkt_validate')->andReturn(true
-		);
+		$autotranscription
+			->expects($this->any())
+			->method('cmn_detectScript')
+			->will($this->returnValue('Hans'));
+		$autotranscription
+			->expects($this->any())
+			->method('jpn_Jpan_to_Hrkt_generate')
+			->will($this->returnValue('transcription in furigana'));
+		$autotranscription
+			->expects($this->any())
+			->method('jpn_Jpan_to_Hrkt_validate')
+			->will($this->returnValue(true));
 	}
 
 	function _installAutotranscriptionMock() {
-		$autotranscription = Mockery::mock();
+		$autotranscription = $this->getMock('Autotranscription', array(
+			'cmn_detectScript',
+			'jpn_Jpan_to_Hrkt_generate',
+			'jpn_Jpan_to_Hrkt_validate',
+		));
 		$this->Sentence->Transcription->setAutotranscription($autotranscription);
 		return $autotranscription;
 	}
@@ -74,16 +78,22 @@ class SentenceTest extends CakeTestCase {
 
 	function testSaveNewSentence_returnsTrueWhenSaved() {
 		$returnValue = $this->Sentence->saveNewSentence('Hello world.', 'eng', 1);
-		$this->assertTrue($returnValue);
+		$this->assertTrue((bool)$returnValue);
 	}
 
 	function testSaveTranslation_links() {
-		$translationFromSentenceId = 1;
-		$newlyCreatedSentenceId = (string)($this->Sentence->find('count') + 1);
-		$this->Sentence->Link = Mockery::mock();
+		$user = $this->Sentence->User->findByUsername('kazuki');
+		CurrentUser::store($user['User']);
 
-		$this->Sentence->Link->shouldReceive(
-			'add')->with($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng')->once();
+		$translationFromSentenceId = 1;
+		$lastId = $this->Sentence->find('first', array('fields' => array('MAX(id)+1 AS v')));
+		$newlyCreatedSentenceId = $lastId[0]['v'];
+		$this->Sentence->Link = $this->getMockForModel('Link', array('add'));
+
+		$this->Sentence->Link
+			->expects($this->once())
+			->method('add')
+			->with($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng');
 
 		$this->Sentence->saveTranslation(
 			$translationFromSentenceId,
@@ -92,6 +102,49 @@ class SentenceTest extends CakeTestCase {
 			'eng',
 			Sentence::MAX_CORRECTNESS
 		);
+	}
+
+	function testSave_validSentence() {
+		$data = array(
+			'text' => 'Hi there!',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertTrue((bool)$result);
+	}
+
+	function testSave_checksValidLicense() {
+		$data = array(
+			'text' => 'Trying to save a sentence with an invalid license.',
+			'license' => 'some-strange-thing',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
+	function testSave_setsDefaultLicenseSettingOnCreation() {
+		$data = array(
+			'text' => 'This sentence should get a default licence.',
+			'user_id' => 7,
+		);
+
+		$this->Sentence->create();
+		$this->Sentence->save($data);
+
+		$savedSentence = $this->Sentence->findById($this->Sentence->id);
+		$this->assertEquals('CC0 1.0', $savedSentence['Sentence']['license']);
+	}
+
+	function testSave_doesNotChangeLicenseOnUpdate() {
+		$data = array(
+			'id' => 1,
+			'text' => 'Updating sentence #1.',
+			'user_id' => 7,
+		);
+
+		$this->Sentence->save($data);
+
+		$savedSentence = $this->Sentence->findById($this->Sentence->id);
+		$this->assertEquals('CC BY 2.0 FR', $savedSentence['Sentence']['license']);
 	}
 
     function testSentenceAdditionAddsTranscription() {
@@ -109,7 +162,10 @@ class SentenceTest extends CakeTestCase {
 
 	function testSentenceTextEditionUpdatesScript() {
 		$autotranscription = $this->_installAutotranscriptionMock();
-		$autotranscription->shouldReceive('cmn_detectScript')->andReturn('Hant');
+		$autotranscription
+			->expects($this->once())
+			->method('cmn_detectScript')
+			->will($this->returnValue('Hant'));
 		$cmnSentenceId = 2;
 		$this->Sentence->id = $cmnSentenceId;
 		$this->Sentence->save(array(
@@ -535,7 +591,6 @@ class SentenceTest extends CakeTestCase {
 		);
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
 
-		$this->assertFalse($isMVA);
 		$this->assertEquals($expectedAttributes, $attributes);
 		$this->assertEquals($expectedValues, $values);
 	}
@@ -555,7 +610,6 @@ class SentenceTest extends CakeTestCase {
 		);
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
 
-		$this->assertFalse($isMVA);
 		$this->assertEquals($expectedAttributes, $attributes);
 		$this->assertEquals($expectedValues, $values);
 	}
@@ -575,7 +629,6 @@ class SentenceTest extends CakeTestCase {
 		);
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
 
-		$this->assertFalse($isMVA);
 		$this->assertEquals($expectedAttributes, $attributes);
 		$this->assertEquals($expectedValues, $values);
 	}

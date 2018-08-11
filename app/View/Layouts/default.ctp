@@ -71,12 +71,12 @@
         echo $this->element('search_bar', array(
             'selectedLanguageFrom' => $this->Session->read('search_from'),
             'selectedLanguageTo' => $this->Session->read('search_to'),
-            'searchQuery' => $this->Session->read('search_query'),
+            'searchQuery' => $query,
             'cache' => array(
                 // Only use cache when search fields are not prefilled
                 'time' => is_null($this->Session->read('search_from'))
                 && is_null($this->Session->read('search_to'))
-                && is_null($this->Session->read('search_query'))
+                && empty($query)
                 && !$this->Languages->preferredLanguageFilter()
                     ? '+1 day' : false,
                 'key' => Configure::read('Config.language')

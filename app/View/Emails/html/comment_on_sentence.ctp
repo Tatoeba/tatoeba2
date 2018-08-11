@@ -1,11 +1,19 @@
 <?php
 $author = "<strong>$author</strong>";
 
-echo $this->Html->tag('p', sprintf(
-    "%s has posted a comment on sentence '%s'.",
-    $author,
-    $sentenceText
-));
+if ($sentenceIsDeleted) {
+    echo $this->Html->tag('p', sprintf(
+        "%s has posted a comment on deleted sentence #%d.",
+        $author,
+        $sentenceId
+    ));
+} else {
+    echo $this->Html->tag('p', sprintf(
+        "%s has posted a comment on sentence '%s'.",
+        $author,
+        $sentenceText
+    ));
+}
 
 
 echo $this->Html->div(null, $this->Messages->formatedContent($commentText),

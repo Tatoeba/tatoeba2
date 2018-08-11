@@ -23,6 +23,7 @@ class AudioController extends AppController
 
     public $uses = array(
         'Audio',
+        'Language',
         'User',
         'CurrentUser'
     );
@@ -67,6 +68,7 @@ class AudioController extends AppController
             $filesImported = $this->Audio->importFiles($errors, $author);
         }
         $filesToImport = $this->Audio->getFilesToImport();
+        $this->Audio->updateCount();
 
         $this->set(compact('filesToImport', 'errors', 'filesImported'));
     }
@@ -79,7 +81,7 @@ class AudioController extends AppController
         }
         $sentencesWithAudio = $this->paginate('Audio', $conditions);
         $this->set(compact('sentencesWithAudio'));
-        $this->set(array('stats' => $this->Audio->getAudioStats()));
+        $this->set(array('stats' => $this->Language->getAudioStats()));
         $this->set('lang', $lang);
     }
 

@@ -64,7 +64,7 @@ if (empty($notTranslatedInto)) {
     <h4><?php echo __("Multiple translations"); ?></h4>
     <p>
     <?php
-    __(
+    echo __(
         "If you feel there are several possible translations, ".
         "you can add several translations in the same language. "
     );

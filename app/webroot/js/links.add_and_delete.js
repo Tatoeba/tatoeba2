@@ -33,7 +33,11 @@ function translationLink(action, sentenceId, translationId, langFilter)
             'langFilter' : langFilter
         },
         function(data){
+            var wasExpanded = !$("#_" + sentenceId + "_translations .showLink").is(":visible");
             $("#_" + sentenceId + "_translations").replaceWith(data).show();
+            if (wasExpanded) {
+                $("#_" + sentenceId + "_translations .showLink").trigger("click");
+            }
         },
         'html'
     );

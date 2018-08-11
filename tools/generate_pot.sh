@@ -55,7 +55,7 @@ xgettext --version >/dev/null 2>&1 || {
 }
 
 # Extract strings to default.pot
-DEFAULT_DOMAIN_K='--keyword=__ --keyword=__p:1c,2 --keyword=__n:1,2 --keyword=__np:1c,2,3'
+DEFAULT_DOMAIN_K='--keyword=__ --keyword=__x:1c,2 --keyword=__n:1,2 --keyword=__xn:1c,2,3'
 list_source_files | \
     throw_to_gettext $DEFAULT_DOMAIN_K | \
     adjust_file_refs > "$POT" \

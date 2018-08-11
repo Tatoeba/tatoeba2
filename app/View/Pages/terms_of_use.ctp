@@ -26,6 +26,9 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Terms of use')));
+
+$frenchUI = ($this->request->params['lang'] == 'fra');
+if (!$frenchUI):
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -33,22 +36,25 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Terms of use')));
         <ul>
             <li>
                 <?php
-                echo $this->Html->link(__('English version'), '#eng-version');
+                echo $this->Html->link(__('Translated version'), '#translated-version');
                 ?>
             </li>
             <li>
                 <?php
-                echo $this->Html->link(__('Version française'), '#fre-version');
+                echo $this->Html->link(__('Original version (French)'), '#fre-version');
                 ?>
             </li>
         </ul>
     </div>
 </div>
 
+<? endif; ?>
+
 <div id="main_content">
 
 
-<div class="main_module" id="eng-version">
+<? if (!$frenchUI): ?>
+<div class="main_module" id="translated-version">
 <?php
 echo '<h2>' . __('Information for contributors of text to the Tatoeba project') .
     '</h2>';
@@ -166,6 +172,7 @@ echo '</p>';
 
 <hr/>
 
+<? endif; // !$frenchUI ?>
 
 <div class="main_module" id="fre-version">
     <h2>
