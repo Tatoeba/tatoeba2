@@ -39,11 +39,12 @@
             $http.post('/vocabulary/save', vm.data).then(
                 function(response) {
                     var data = response.data;
-                    var query = encodeURIComponent('="' + data.text + '"');
-                    data.url = '/sentences/search?' +
-                        'query=' + query + '&' +
-                        'from=' + data.lang;
-
+                    if (data.query) {
+                        var query = encodeURIComponent(data.query);
+                        data.url = '/sentences/search?' +
+                            'query=' + query + '&' +
+                            'from=' + data.lang;
+                    }
                     vm.vocabularyAdded.unshift(data);
                     vm.data.text = '';
                     vm.isAdding = false;

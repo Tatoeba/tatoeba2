@@ -58,7 +58,13 @@ class Sentence extends AppModel
         ),
         'text' => array(
             'rule' => array('minLength', '1')
-        )
+        ),
+        'license' => array(
+            'rule' => array('inList', array(
+                'CC0 1.0',
+                'CC BY 2.0 FR',
+            )),
+        ),
     );
 
     public $hasMany = array(
@@ -164,6 +170,18 @@ class Sentence extends AppModel
         {
             $text = $this->data['Sentence']['text'];
             $this->data['Sentence']['text'] = $this->clean($text);
+        }
+        if (!isset($this->data['Sentence']['id'])) { // creating a new sentence
+            if (!isset($this->data['Sentence']['license'])) {
+                if (isset($this->data['Sentence']['user_id'])) {
+                    $userId = $this->data['Sentence']['user_id'];
+                    $user = $this->User->findById($userId, 'settings');
+                    if ($user) {
+                        $userDefaultLicense = $user['User']['settings']['default_license'];
+                        $this->data['Sentence']['license'] = $userDefaultLicense;
+                    }
+                }
+            }
         }
     }
 
@@ -527,6 +545,8 @@ class Sentence extends AppModel
             'user_id',
             'correctness',
             'script',
+            'license',
+            'based_on_id',
         );
     }
 
@@ -753,7 +773,7 @@ class Sentence extends AppModel
             )
         );
 
-        return $sentence['User']['email'];
+        return $sentence ? $sentence['User']['email'] : null;
     }
 
 
@@ -795,7 +815,8 @@ class Sentence extends AppModel
             $translationText,
             $translationLang,
             $userId,
-            $translationCorrectness
+            $translationCorrectness,
+            $sentenceId
         );
 
         // saving links
@@ -814,10 +835,13 @@ class Sentence extends AppModel
      * @param string $lang        The lang of the sentence.
      * @param int    $userId      The id of the user who added this sentence.
      * @param int    $correctness Correctness level of sentence.
+     * @param in     $basedOnId   The ID of the sentence this sentence is translated from,
+     *                            or 0 if it's an original sentence, or null if unknown.
+     * @param string $license     The license of the sentence.
      *
      * @return bool
      */
-    public function saveNewSentence($text, $lang, $userId, $correctness = 0)
+    public function saveNewSentence($text, $lang, $userId, $correctness = 0, $basedOnId = 0, $license = null)
     {
         $text = $this->clean($text);
 
@@ -841,6 +865,8 @@ class Sentence extends AppModel
         $data['Sentence']['user_id'] = $userId;
         $data['Sentence']['correctness'] = $correctness;
         $data['Sentence']['hash'] = $hash;
+        $data['Sentence']['license'] = $license;
+        $data['Sentence']['based_on_id'] = $basedOnId;
 
         if (!empty($lang)) {
             $data['Sentence']['lang'] = $lang;
@@ -878,7 +904,9 @@ class Sentence extends AppModel
         $translationSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            $userId
+            $userId,
+            0,
+            $sentenceId
         );
 
         $translationId = $this->id;

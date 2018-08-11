@@ -40,6 +40,15 @@ class Vocabulary extends AppModel
     public $belongsTo = array('UsersVocabulary', 'Sentence');
     public $actsAs = array('Hashable');
 
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
+    }
+
     /**
      * Adds an item into the vocabulary list of current user.
      *
@@ -80,6 +89,9 @@ class Vocabulary extends AppModel
         }
 
         $data['id'] = $this->id;
+        if (Configure::read('Search.enabled')) {
+            $data['query'] = $this->buildSphinxPhraseSearchQuery($text);
+        }
 
         $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
 
@@ -121,13 +133,15 @@ class Vocabulary extends AppModel
      */
     private function _getNumberOfSentences($lang, $text)
     {
-        $this->Behaviors->attach('Sphinx');
+        if (!Configure::read('Search.enabled')) {
+            return null;
+        }
         $index = array($lang . '_main_index', $lang . '_delta_index');
         $sphinx = array(
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2
         );
-        $query = '="'.$text.'"';
+        $query = $this->buildSphinxPhraseSearchQuery($text);
         return $this->Sentence->find('count', array(
             'sphinx' => $sphinx,
             'search' => $query
@@ -248,15 +262,35 @@ class Vocabulary extends AppModel
             $vocabulary['text']
         );
 
-        if ($numSentences != $indexedNumSentences) {
-            $data = array(
-                'id' => $vocabulary['id'],
-                'numSentences' => $indexedNumSentences
-            );
+        if (is_null($indexedNumSentences)) {
+            return $numSentences;
+        } else {
+            if ($numSentences !== $indexedNumSentences) {
+                $data = array(
+                    'id' => $vocabulary['id'],
+                    'numSentences' => $indexedNumSentences
+                );
 
-            $this->save($data);
+                $this->save($data);
+            }
+            return $indexedNumSentences;
         }
+    }
 
-        return $indexedNumSentences;
+    public function afterFind($results, $primary = false) {
+        if (Configure::read('Search.enabled')) {
+            $this->_setQueryString($results);
+        }
+        return $results;
+    }
+
+    private function _setQueryString(&$results) {
+        foreach ($results as &$result) {
+            if (isset($result[$this->alias])
+                && array_key_exists('text', $result[$this->alias])) {
+                $text = $result[$this->alias]['text'];
+                $result[$this->alias]['query'] = $this->buildSphinxPhraseSearchQuery($text);
+            }
+        }
     }
 }

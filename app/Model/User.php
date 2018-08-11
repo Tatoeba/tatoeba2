@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('VersionedPasswordHasher', 'Controller/Component/Auth');
+
 /**
  * Model for users.
  *
@@ -118,12 +120,28 @@ class User extends AppModel
         'native_indicator' => false,
         'copy_button' => false,
         'hide_random_sentence' => false,
-        'use_new_design' => false
+        'use_new_design' => false,
+        'default_license' => 'CC BY 2.0 FR',
     );
 
     private $settingsValidation = array(
         'sentences_per_page' => array(10, 20, 50, 100),
     );
+
+    private $passwordHasher;
+
+    public function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+        $this->passwordHasher = new VersionedPasswordHasher();
+    }
+
+    public function beforeFind($queryData) {
+        if (is_array($queryData['order'])) {
+            $queryData['order'][] = 'User.id';
+        }
+    
+        return $queryData;
+    }
 
     public function afterFind($results, $primary = false) {
         foreach ($results as &$result) {
@@ -142,6 +160,11 @@ class User extends AppModel
     }
 
     public function beforeSave($options = array()) {
+        if (isset($this->data['User']['password'])) {
+            $this->data['User']['password'] = $this->passwordHasher->hash(
+                $this->data['User']['password']
+            );
+        }
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
             $settings = $this->field('settings', array('id' => $this->id));
@@ -626,24 +649,12 @@ class User extends AppModel
         return $result['User']['group_id'];
     }
 
-
-    public function getUsersWithSamePassword($userId)
+    public function updatePasswordVersion($userId, $plainTextPassword)
     {
-        $userPassword = $this->getPassword($userId);
-
-        $result = $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'password' => $userPassword,
-                    'group_id' => 6,
-                    'id !=' => $userId
-                ),
-                'fields' => array('username'),
-                'limit' => 10
-            )
-        );
-
-        return $result;
+        $this->id = $userId;
+        $storedHash = $this->field('password');
+        if ($this->passwordHasher->isOutdated($storedHash)) {
+            $this->saveField('password', $plainTextPassword);
+        }
     }
 }

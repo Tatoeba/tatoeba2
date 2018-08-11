@@ -91,7 +91,7 @@ class RememberMeComponent extends Component
         $user = $model->find('first', array(
             'conditions' => array(
                 'username' => $cookie['username'],
-                'password' => $this->Auth->password($cookie['password'])
+                'password' => $cookie['password'],
             )
         ));
 

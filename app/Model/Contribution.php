@@ -41,6 +41,44 @@ class Contribution extends AppModel
     );
     public $belongsTo = array('Sentence', 'User');
 
+
+    public function paginateCount($conditions = null, $recursive = 0, $extra = array())
+    {
+        $botsCondition = array('user_id' => Configure::read('Bots.userIds'));
+        if (is_null($conditions)
+            || (isset($conditions['NOT']) && $conditions['NOT'] == $botsCondition))
+        {
+            return $this->estimateRowCount($this->table);
+        }
+        else
+        {
+            $parameters = compact('conditions');
+            if ($recursive != $this->recursive) {
+                $parameters['recursive'] = $recursive;
+            }
+            return $this->find('count', array_merge($parameters, $extra));
+        }
+    }
+
+    private function estimateRowCount($tableName)
+    {
+        $db = $this->getDataSource();
+        $alias = 'TABLES';
+        $rowName = 'TABLE_ROWS';
+        $query = array(
+            'table' => 'INFORMATION_SCHEMA.TABLES',
+            'alias' => $alias,
+            'conditions' => array(
+                'TABLE_NAME' => $tableName,
+                'TABLE_SCHEMA' => $db->config['database'],
+            ),
+            'fields' => array($rowName),
+        );
+        $sql = $db->buildStatement($query, $this);
+        $result = $this->query($sql);
+        return $result[0][$alias][$rowName];
+    }
+
     /**
      * Get number of contributions made by a given user
      *
@@ -269,11 +307,7 @@ class Contribution extends AppModel
             $conditions = array();
         }
         if (!empty($botsIds)) {
-            if (count($botsIds) > 1) {
-                $conditions["user_id NOT"] = $botsIds;
-            } else {
-                $conditions["user_id !="] = $botsIds[0];
-            }
+            $conditions['NOT'] = array('user_id' => $botsIds);
         }
 
         return $conditions;

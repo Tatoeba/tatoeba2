@@ -62,7 +62,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     
         if (isset($contributions)) {
             
-            $this->Pagination->display(array($username));
+            $this->Pagination->display(array($username), array('last' => false));
             ?>
 
             <md-list id="logs">
@@ -77,7 +77,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </md-list>
 
             <?php
-            $this->Pagination->display(array($username));
+            $this->Pagination->display(array($username), array('last' => false));
         }
     }
     ?>
