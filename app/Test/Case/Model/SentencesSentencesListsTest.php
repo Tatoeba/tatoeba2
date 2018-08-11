@@ -4,30 +4,9 @@ App::import('Model', 'SentencesSentencesLists');
 
 class SentencesSentencesListsTest extends CakeTestCase {
     public $fixtures = array(
-        'app.sentences_sentences_lists',
-        'app.sentence',
-        'app.language',
-        'app.user',
-        'app.group',
-        'app.wall',
-        'app.wall_thread',
-        'app.sentence_comments',
-        'app.contributions',
-        'app.sentences_lists',
-        'app.favorites_user',
-        'app.translation',
-        'app.transcription',
-        'app.contribution',
-        'app.sentence_comment',
-        'app.sentence_annotation',
-        'app.reindex_flag',
-        'app.link',
-        'app.sentences_translation',
-        'app.tag',
-        'app.tag_sentences',
-        'app.tags_sentence',
+        'app.sentences_sentences_list',
         'app.sentences_list',
-        'app.sentences_sentences_list'
+        'app.sentence',
     );
 
     function startTest($method) {
@@ -37,6 +16,23 @@ class SentencesSentencesListsTest extends CakeTestCase {
     function endTest($method) {
         unset($this->SentencesSentencesLists);
         ClassRegistry::flush();
+    }
+
+    function testRemoveSentenceFromList() {
+        $sentenceId = 4;
+        $listId = 1;
+        $before = $this->SentencesSentencesLists->find('count',
+		array('conditions' => array(
+			'sentence_id' => $sentenceId,
+		)
+	));
+        $this->SentencesSentencesLists->removeSentenceFromList($sentenceId, $listId);
+        $after = $this->SentencesSentencesLists->find('count',
+		array('conditions' => array(
+			'sentence_id' => $sentenceId,
+		)
+	));
+	$this->assertEqual(1, $before - $after);
     }
 
     function testSphinxAttributesChanged() {

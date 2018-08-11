@@ -6,7 +6,7 @@
 # Erik Pedersen <erik.pedersen@shaw.ca>, 2015
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Nikolay Korotkiy <sikmir@gmail.com>, 2017
-# Paul Peeraerts <paul2711@gmail.com>, 2014-2017
+# Paul Peeraerts <paul2711@gmail.com>, 2014-2018
 # Robin van der Vliet <info@robinvandervliet.nl>, 2016
 # Spencer, 2015-2016
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-04-03 06:25+0000\n"
+"POT-Creation-Date: 2018-07-01 14:16+0000\n"
+"PO-Revision-Date: 2018-07-01 21:03+0000\n"
 "Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -37,23 +37,23 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "Estas neniu uzanto kun la nomo {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L142
 msgid "You need to be logged in."
 msgstr "Vi devas esti ensalutinta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L112
 msgid "Your audio settings have been saved."
 msgstr "Viaj sonagordoj estis registritaj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L554
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
 msgstr "Eraro okazis dum konservado. Bonvolu provi denove aŭ kontakti nin por raporti tion."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/Component/MailerComponent.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/Component/MailerComponent.php#L160
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, nova pasvorto"
 
@@ -100,9 +100,9 @@ msgstr "forigu definitive"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L408
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L248
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L392
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L437
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L463
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L385
@@ -110,7 +110,7 @@ msgid "Are you sure?"
 msgstr "Ĉu vi certas?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L412
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L241
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L457
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L140
 msgid "delete"
@@ -121,7 +121,7 @@ msgid "mark as unread"
 msgstr "marku kiel nelegitan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L431
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L471
 msgid "reply"
 msgstr "respondi"
@@ -135,15 +135,15 @@ msgstr "Dosierujo \"{name}\" malplenigita."
 msgid "There is no sentence with id {number}"
 msgstr "Ne ekzistas frazo kun identigilo {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L248
 msgid "Your comment has been saved."
 msgstr "Via komento estis konservita."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L313
 msgid "You do not have permission to edit this comment. "
 msgstr "Vi ne havas la permeson redakti tiun komenton. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L317
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/WallController.php#L326
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/write.ctp#L47
 msgid ""
@@ -151,15 +151,15 @@ msgid ""
 " {email}."
 msgstr "Se vi malprave ricevis ĉi tiun mesaĝon, bonvolu kontakti la administrantojn ĉe {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L339
 msgid "Comments cannot be empty."
 msgstr "Komentoj ne povas esti malplenaj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L356
 msgid "Changes to your comment have been saved."
 msgstr "Via ŝanĝita komento estas konservita."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L368
 msgid "We could not save your changes."
 msgstr "Ni ne sukcesis konservi viajn ŝanĝojn."
 
@@ -284,142 +284,146 @@ msgstr[1] "Nur listoj kun {max} aŭ malpli da frazoj povas esti alŝutitaj. Se v
 msgid "{firstSentence} {secondSentence}"
 msgstr "{firstSentence} {secondSentence}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L146
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
 msgstr "Etikedo '{tagName}' jam ekzistas por la frazo #{number}, aŭ ne povas aldoniĝi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L290
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
 msgstr "Ne estas frazoj kun tiu etikedo. La etikedo, kiun vi serĉas, estas viŝita aŭ ne ekzistas."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L77
 msgid "No user with this username: {username}"
 msgstr "Neniu uzanto kun tiu uzantnomo: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L173
 msgid "Failed to upload image"
 msgstr "Bildalŝuto malsukcesis"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L182
 msgid "Please choose an image that does not exceed 1 MB."
 msgstr "Bonvolu elekti bildon, kiu ne superas 1 MB."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L193
 msgid "Please choose GIF, JPEG or PNG image format."
 msgstr "Bonvolu elekti bildan formon GIF, JPEG aŭ PNG."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L222
 msgid "Error while saving."
 msgstr "Eraro dum konservado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L330
 msgid "Profile saved."
 msgstr "Biografio konservita."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L341
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Ŝanĝo de retpoŝtadreso malsukcesis. Enigu taŭgan retpoŝtadreson."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L382
 msgid "That email address already exists. Please try another."
 msgstr "Tiu retpoŝtadreso jam ekzistas. Provu alian."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L419
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L431
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "La dato, kiun vi indikis, estas nevalida. Bonvolu provi denove. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L480
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "La tajpita naskiĝodato estas nekompleta. Akceptitaj datoj: kompleta dato, monato kaj tago, jaro kaj monato, nur jaro. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L551
 msgid "Your settings have been saved."
 msgstr "Viaj agordoj estas konservitaj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L609
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L620
 msgid "New password cannot be empty."
 msgstr "Nova pasvorto ne povas esti malplena."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L623
+msgid "New passwords do not match."
+msgstr "La novaj pasvortoj ne kongruas. "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L628
 msgid "New password has been saved."
 msgstr "Nova pasvorto konserviĝis."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L621
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L630
 msgid "An error occurred while saving."
 msgstr "Eraro okazis dum konservado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L626
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L635
 msgid "Password error. Please try again."
 msgstr "Pasvorta eraro. Bonvolu reprovi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L205
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Tiu konto estas markita kiel neaktiva. Vi ne plu povas ensaluti per ĝi. Kontaktu administranton, se tio okazis malprave."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L216
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Tiu konto estas markita kiel altrudista. Vi ne plu povas ensaluti per ĝi. Kontaktu administranton, se tio okazis malprave."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L238
 msgid "You must fill in your username and password."
 msgstr "Vi enigu viajn uzantonomon kaj pasvorton."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L246
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Ensaluto malsukcesis. Kontrolu, ĉu la majuskliga aŭ ciferiga klavo ne estas senintence ŝaltita. Via pasvorto estas usklosenta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L338
 msgid "Password cannot be empty."
 msgstr "Pasvorto ne povas esti malplena."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L349
 msgid "Wrong answer to the question."
 msgstr "Neĝusta respondo al la demando."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L359
 msgid "You did not accept the terms of use."
 msgstr "Vi ankoraŭ ne akceptis la kondiĉojn de uzo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L401
 msgid "Welcome to Tatoeba!"
 msgstr "Bonvenon al Tatoeba!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L405
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "Komence ni kuraĝigas vin iri al via  <a href='{url}'>biografio</a> kaj sciigi al ni, kiujn lingvojn vi parolas aŭ pri kiuj vi interesiĝas."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L456
 msgid "Your new password has been sent to {email}."
 msgstr "Via nova pasvorto estis sendita al {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L459
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L461
 msgid "You may need to check your spam folder to find this message."
 msgstr "Se necese, kontrolu vian trudpoŝtan keston por trovi tiun ĉi mesaĝon."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L469
 msgid "There is no registered user with this email address: "
 msgstr "Estas neniu registrita uzanto kun tiu retpoŝtadreso: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L491
 msgid "No user with this username: "
 msgstr "Neniu uzanto kun tiu uzantnomo: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L533
 msgid "No user with this ID: {id}"
 msgstr "Neniu uzanto kun ĉi tiu identigilo: {id}"
 
@@ -507,7 +511,7 @@ msgstr "Orfaj frazoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L32
 msgid "Orphan sentences in {language}"
-msgstr "Orfaj frazoj en la {language}"
+msgstr "Orfaj frazoj en  {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L43
 msgid "About adoption"
@@ -544,7 +548,6 @@ msgstr "Se vi vidas alian uzantnomon aperi post adopto de frazo, tio signifas, k
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L99
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L91
 msgid "Improve sentences"
 msgstr "Plibonigi frazojn"
 
@@ -628,7 +631,6 @@ msgstr "Tiuj kiam problema frazo estas traktita, etikedu ĝin per {tagOK}. Pli �
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L82
 msgid "Translate sentences"
 msgstr "Traduki frazojn"
 
@@ -708,7 +710,7 @@ msgstr "montri hazardajn frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L32
 msgid "Translate {language} sentences that belong to {user}"
-msgstr "Traduki {language}jn frazojn apartenantajn al {user}"
+msgstr "Traduki frazojn en {language} apartenantajn al {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences_of.ctp#L38
 msgid "Translate sentences that belong to {user}"
@@ -738,7 +740,7 @@ msgstr "Ne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L22
 msgid "Sentences in {language} with audio"
-msgstr "Frazoj en la {language} kun sonregistraĵo"
+msgstr "Frazoj en {language} kun sonregistraĵo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/index.ctp#L26
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L412
@@ -801,7 +803,7 @@ msgstr "Frazoj markitaj kiel \"mi ne certas\" "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L31
 msgid "Sentences marked as \"not OK\""
-msgstr "Frazoj markitaj kiel \"erara\""
+msgstr "Frazoj markitaj kiel \"eraraj\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Collections/of.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L57
@@ -934,6 +936,12 @@ msgstr "Orfaj frazoj probable enhavas erarojn. "
 msgid "Is orphan:"
 msgstr "Estas orfaj: "
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
+msgctxt "orphan"
+msgid "Any"
+msgstr "ajne"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Neaprobitaj frazoj probable enhavas erarojn. "
@@ -942,6 +950,12 @@ msgstr "Neaprobitaj frazoj probable enhavas erarojn. "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
 msgstr "Estas neaprobitaj:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
+msgctxt "unapproved"
+msgid "Any"
+msgstr "ajne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -974,6 +988,12 @@ msgstr "Apatenas al listo:"
 msgid "Has audio:"
 msgstr "Havas sondosieron:"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L199
+msgctxt "audio"
+msgid "Any"
+msgstr "ajne"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L79
 msgid "Translations"
@@ -1000,6 +1020,11 @@ msgstr "{action} frazojn kun tradukoj, kiuj plenumas ĉiujn tiujn kriteriojn."
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L165
 msgid "Link:"
 msgstr "Ligilo:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L167
+msgctxt "link"
+msgid "Any"
+msgstr "ajne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L168
 msgid "Direct"
@@ -1040,6 +1065,11 @@ msgstr "Kontraŭa sinsekvo"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L233
 msgid "More search options"
 msgstr "Pliaj serĉ-ebloj"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L242
+msgctxt "button"
+msgid "Advanced search"
+msgstr "Progresinta serĉo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/announcement.ctp#L55
 msgid ""
@@ -1137,35 +1167,39 @@ msgid "Contact us"
 msgstr "Kontakti nin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L138
+msgid "Status"
+msgstr "Stato"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L28
 msgid "Terms of use"
 msgstr "Kondiĉoj de uzo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L157
 msgid "Blog"
 msgstr "Rettaglibro"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L59
 msgid "Twitter"
 msgstr "Twitter"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L61
 msgid "Facebook"
 msgstr "Facebook"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L193
 msgid ""
 "Our written sentences and translations can be used under the Creative "
 "Commons Attribution 2.0 license (CC-BY 2.0)."
 msgstr "Niaj skribitaj frazoj kaj tradukoj povas esti uzataj sub la permesilo Krea Komunaĵo Atribuo 2.0 (CC-BY 2.0)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L197
 msgid "More information"
 msgstr "Pliaj informoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L211
 msgid "If you love this content, please consider a <a href={}>donation</a>."
 msgstr "Se vi ŝatas nian retejon, bonvolu konsideri <a href={}>donacon</a>."
 
@@ -1186,8 +1220,6 @@ msgstr "Ju pli da kontribuantoj, des pli utila iĝos Tatoeba! Krome, kontribuant
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L44
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L74
@@ -1226,30 +1258,30 @@ msgid "Close"
 msgstr "Fermi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L534
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L537
 msgid "sentence deleted"
 msgstr "frazo forigita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L68
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, modifita {modifiedDate}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L39
 msgid "Sentence {number} — belongs to {username}"
 msgstr "Frazo {number} — apartenas al {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L84
 msgid "Sentence {number}"
 msgstr "Frazo {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L137
 msgid "permalink"
 msgstr "konstanta ligilo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L170
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L551
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L554
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -1263,7 +1295,7 @@ msgstr "Privataj mesaĝoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmtoolbox.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/write.ctp#L28
 msgid "New message"
 msgstr "Nova mesaĝo"
@@ -1416,6 +1448,13 @@ msgstr "Nuligi la serĉon"
 msgid "Enter a word or a phrase"
 msgstr "Entajpu vorton aŭ frazon"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
+msgctxt "title"
+msgid "Advanced search"
+msgstr "Progresinta serĉo"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr "Notu: <em>=vorto</em> serĉos precize la vorton <em>vorto</em> sen modifoj. "
@@ -1506,23 +1545,19 @@ msgid "Browse audio"
 msgstr "Foliumi sonregistraĵojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L70
 msgid "Contribute"
 msgstr "Kontribui"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "Aldoni frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L86
 msgid "Adopt sentences"
 msgstr "Adopti frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L95
 msgid "Discuss sentences"
 msgstr "Diskuti frazojn"
 
@@ -1624,7 +1659,7 @@ msgstr "Dezirataj frazoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Emails/html/new_password.ctp#L2
 msgid "Your login: "
-msgstr "Via uzanta nomo: "
+msgstr "Via uzanto-nomo: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Emails/html/new_password.ctp#L3
 msgid "Your new password: "
@@ -1652,6 +1687,11 @@ msgstr "Nekopirajta"
 msgid "No license for offsite use"
 msgstr "Sen permesilo por uzado eksterreteja"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
+msgctxt "license"
+msgid "for Tatoeba only"
+msgstr "nur por Tatoeba"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr "Registrita de: {username}"
@@ -1662,9 +1702,9 @@ msgstr "Permesilo: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
 msgid ""
-"You may not reuse the following audio recordings outside the Tatoeba "
-"project, because {userName} did not chose any license for them yet."
-msgstr "Vi ne rajtas uzi la jenajn sonregistraĵojn ekster la projekto Tatoeba, ĉar {username} ankoraŭ ne elektis permesilon por ili. "
+"You may not reuse the following audio recordings outside the Tatoeba project"
+" because {userName} has not chosen any license for them."
+msgstr "Vi ne rajtas uzi la jenajn sonregistraĵojn ekster la projekto Tatoeba, ĉar uzanto {userName}  ankoraŭ ne elektis permesilon por ili."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
@@ -1684,27 +1724,27 @@ msgid ""
 "license."
 msgstr "La jenaj sonregistraĵoj de {userName} troviĝas sub nekonata permesilo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L72
 msgid "Add a comment"
 msgstr "Aldoni komenton"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L92
 msgid "Submit comment"
 msgstr "Aldoni komenton"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L101
 msgid "Good practices"
 msgstr "Bonaj praktikoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L106
 msgid "Say \"welcome\" to new users."
 msgstr "Diru \"bonvenon\" al novaj uzantoj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L114
 msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Uzu privatajn mesaĝojn por diskuti nerilate al la frazo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L192
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L723
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L158
@@ -1716,20 +1756,20 @@ msgstr "Uzu privatajn mesaĝojn por diskuti nerilate al la frazo."
 msgid "Cancel"
 msgstr "Nuligi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L196
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L152
 msgid "Save changes"
 msgstr "Konservi ŝanĝojn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L220
 msgid "unhide"
 msgstr "malkaŝi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L223
 msgid "hide"
 msgstr "kaŝi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L255
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L444
 msgid "edit"
 msgstr "redakti"
@@ -1853,12 +1893,22 @@ msgstr "Alia lingvo"
 msgid "All languages"
 msgstr "Ĉiuj lingvoj"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L213
+msgctxt "dropdown-list"
+msgid "Unknown language"
+msgstr "Lingvo nekonata"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L310
 msgid "None"
 msgstr "Nenio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L290
+msgid "Any language"
+msgstr "Ajna lingvo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L327
+msgctxt "searchbar"
 msgid "Any language"
 msgstr "Ajna lingvo"
 
@@ -1884,6 +1934,11 @@ msgstr "Vi ne povas traduki frazojn, ĉar vi ne aldonis iun lingvon al via parof
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L317
 msgid "Add a language"
 msgstr "Aldoni lingvon"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L490
+msgctxt "level"
+msgid "Unspecified"
+msgstr "Nedifinita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L491
 msgid "0: Almost no knowledge"
@@ -1999,7 +2054,7 @@ msgid "Add a sentence to this list : "
 msgstr "Aldoni frazon al ĉi tiu listo "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L495
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L384
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/NavigationHelper.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L722
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L157
@@ -2018,6 +2073,11 @@ msgstr "RIMARKO: Vi povas aldoni ankaŭ ekzistantajn frazojn per tiu bildsimbolo
 msgid "Create a new list"
 msgstr "Krei novan liston"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
+msgctxt "list"
+msgid "Name"
+msgstr "Nomo"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
 msgid "create"
 msgstr "krei"
@@ -2029,6 +2089,11 @@ msgstr "Ĉiuj publikaj listoj"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
 msgid "Collaborative lists"
 msgstr "Kunlaboraj listoj"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
+msgctxt "list"
+msgid "Unspecified"
+msgstr "Nedifinita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
 msgid "Other lists"
@@ -2059,7 +2124,7 @@ msgid "{info}, {date}"
 msgstr "{info}, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MembersHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L472
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L474
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L157
@@ -2105,124 +2170,124 @@ msgid ""
 " be translated."
 msgstr "La frazo estas nun markita kiel neaprobita. Neaprobitaj frazoj ne povas esti tradukitaj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L148
 msgid "Click to adopt"
 msgstr "Alklaku por adopti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L155
 msgid "Click to unadopt"
 msgstr "Alklaku por maladopti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L205
 msgid "Remove from favorites"
 msgstr "Forigi el la plej ŝatataj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L210
 msgid "Undo"
 msgstr "Nuligi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L213
 msgid "Add to favorites"
 msgstr "Aldoni al miaj plej ŝatataj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L269
 msgid "Link to another sentence"
 msgstr "Ligi al alia frazo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L280
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L282
 msgid "Sentence number"
 msgstr "Frazo numero"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentenceButtonsHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Links/delete.ctp#L8
 msgid "Link"
 msgstr "Ligi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L328
 msgid "Add to list"
 msgstr "Aldoni al listo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L362
 msgid "Add to one of your lists"
 msgstr "Aldoni al iu el viaj listoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L363
 msgid "Add to a collaborative list"
 msgstr "Aldoni al la kunlabora listo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L416
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Vi ne povas forigi tiun ĉi frazon, ĉar estas ligita son-dosiero al ĝi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L422
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L398
 msgid "Delete"
 msgstr "Forigi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L469
 msgid "You cannot edit this sentence because it has audio."
 msgstr "Vi ne povas adapti tiun ĉi frazon, ĉar ĝi ekzistas en sona formo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L505
 msgid "belongs to {user}"
 msgstr "apartenas al {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L525
 msgid "(native)"
 msgstr "(denaska nivelo)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L544
 msgid "Mark as \"OK\""
 msgstr "Marku kiel \"en ordo\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L547
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L549
 msgid "Mark as \"unsure\""
 msgstr "Marku kiel \"mi ne certas\" "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L552
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L554
 msgid "Mark as \"not OK\""
 msgstr "Marku kiel \"erara\" "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L564
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L566
 msgid "Unmark sentence"
 msgstr "Malmarku la frazon"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L101
 msgid "Message"
 msgstr "Mesaĝo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L103
 msgid "Reply"
 msgstr "Respondi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L195
 msgid "Former member"
 msgstr "Iama membro"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L224
 msgid "Send private message"
 msgstr "Sendi privatan mesaĝon"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L242
 msgid "edited"
 msgstr "redaktita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L271
 msgid "to {recipient}"
 msgstr "al {recipient}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L273
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L276
 msgid "Draft"
 msgstr "Malneto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L280
 msgid "from {sender}"
 msgstr "el {sender}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L356
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L185
 msgid "View this user's profile"
 msgstr "Vidi la biografion de tiu uzanto"
@@ -2459,6 +2524,16 @@ msgid ""
 "piece of software that is not perfect."
 msgstr "La transskribo povas enhavi erarojn, ĉar ĝi estis kreita de programo, kiu ne estas perfekta. "
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L284
+msgctxt "alternative script"
+msgid "Click to mark it as reviewed."
+msgstr "Alklaku por marki ĝin reviziita."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L290
+msgctxt "transcription"
+msgid "Click to mark it as reviewed."
+msgstr "Alklaku por marki ĝin reviziita."
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L74
 msgid "Add a message: "
 msgstr "Aldoni mesaĝon: "
@@ -2544,64 +2619,6 @@ msgid ""
 "We also have an IRC channel on freenode, #tatoeba. If you are not familiar "
 "with IRC, you can read the <a href=\"{}\">Help</a>."
 msgstr "Ni ankaŭ havas interretan babilejon ĉe freenode, #tatoeba. Se vi ne konas interretan babilejon IRC, vi povas legi <a href=\"{}\">Helpon</a>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L28
-msgid "How to contribute"
-msgstr "Kiel kontribui"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L38
-msgid "If you are interested, please register."
-msgstr "Se vi interesiĝas, bonvolu registriĝi."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L51
-msgid "Important to read"
-msgstr "Gravas legi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L55
-msgid "Guide to being a good contributor"
-msgstr "Gvidilo por bone kontribui"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L61
-msgid "Reliability of the sentences"
-msgstr "Fidindeco de la frazoj"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L114
-msgid "How can you contribute?"
-msgstr "Kiel vi povas kontribui?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L118
-msgid ""
-"Tatoeba is primarily about collecting sentences and translating them into "
-"many, many languages. So one obvious thing you can do to contribute is to "
-"<strong>translate sentences</strong>."
-msgstr "Tatoeba ĉefe celas kolekti frazojn kaj traduki ilin en multajn, multajn lingvojn. Do unu evidenta afero, kiun vi povas fari por kontribui, estas <strong>traduki frazojn</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L128
-msgid ""
-"But you don't have to be a polyglot in order to contribute! You can help us "
-"a lot simply by <strong>checking sentences</strong> and <strong>reporting "
-"mistakes</strong>. This is something everyone can do!"
-msgstr "Sed vi ne nepre estu multlingva por kontribui! Vi povas multe helpi nin simple <strong>kontrolante frazojn</strong> kaj <strong>raportante erarojn</strong>. Jen io, kion ĉiu kapablas fari!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L138
-msgid ""
-"If you have a good microphone, you can also bring more audio to Tatoeba by "
-"<strong>recording sentences</strong>."
-msgstr "Se vi havas bonan mikrofonon, vi ankaŭ povas aldoni pli da sono al Tatoeba per <strong>sonregistrado de frazoj</strong>."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L147
-msgid ""
-"You can help us promote the project. <strong>Tell people around you</strong>"
-" that Tatoeba exists. This is a very ambitious project, so we will need as "
-"much help as possible."
-msgstr "Vi povas helpi nin antaŭenigi la projekton. <strong>Rakontu al homoj ĉirkaŭ vi</strong> pri la ekzisto de Tatoeba. Ĝi estas ambiciega projekto, tial ni bezonos laŭeble plej multan helpon."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L157
-msgid ""
-"And finally, you can <strong>join the team</strong>. You can help us code "
-"new features, improve usability, debug, optimize, keep the site secure, and "
-"more."
-msgstr "Kaj fine vi povas <strong>aliĝi al la teamo</strong>. Vi povas helpi nin kodi novajn programerojn, plibonigi la uzeblon, sencimigi, optimumigi, certigi sekurecon ktp."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/donate.ctp#L28
 msgid "Donate"
@@ -2893,7 +2910,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Enhavas la ekvivalenton de la \"B-frazoj\" en la Tanaka Korpuso distribuita de Jim Breen. Vidu <a href=\"{url}\">tiun ĉi paĝon</a> por la formo. Ĉiu ero estas asociita kun paro de japanaj/anglaj frazoj. {sentenceId} referencas al la identigilo de la japanaj frazoj. {meaningId}  referencas al la identigilo de la anglaj frazoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L436
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -2901,20 +2918,20 @@ msgid ""
 "reuse the audio outside the Tatoeba project."
 msgstr "Enhavas la identigilojn de la frazoj, en ĉiuj lingvoj, por kiuj sonregistraĵo estas havebla. La aliaj kampoj indikas, kiu registris la sonaĵon, ĝian permesilon kaj retadreson kiu ligas al la aŭtoro. Se la kampo „permesilo” estas malplena, vi ne rajtas uzi la registraĵon ekster la projekto Tatoeba."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L449
 msgid "User skill level per language"
 msgstr "Kompetentec-nivelo laŭ lingvo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L471
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Indikas la kompetentecnivelon de la membroj en difinitaj lingvoj, laŭ ilia propra juĝo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L478
 msgid "Users' sentence ratings"
 msgstr "Juĝoj de la uzanto. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L506
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
@@ -3166,23 +3183,23 @@ msgstr "Tiu ĉi paĝo estas provizore kaŝita pro teknikaj kialoj: ĝi povus mal
 msgid "We are sorry for the inconvenience."
 msgstr "Ni pardonpetas pro la ĝeno. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L35
 msgid "Table of contents"
 msgstr "Enhavolisto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L36
-msgid "English version"
-msgstr "Angla versio"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L39
+msgid "Translated version"
+msgstr "Tradukita versio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L41
-msgid "Version française"
-msgstr "Franca versio"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L44
+msgid "Original version (French)"
+msgstr "Origina versio (franca)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L59
 msgid "Information for contributors of text to the Tatoeba project"
 msgstr "Informo por tekstokontribuantoj en la Tatoeba-projekto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L63
 msgid ""
 "To grow the commons of free knowledge and free culture, all users "
 "contributing to the Tatoeba project are required to grant broad permissions "
@@ -3194,7 +3211,7 @@ msgid ""
 "compliant with the terms. "
 msgstr "Por kreskigi la Komunumon de libera scio kaj libera kulturo, ĉiuj uzantoj kontribuantaj al la Tatoeba projekto bezonas doni larĝajn permesojn al la ĝenerala publiko pri libera redisdonado kaj reuzado de siaj kontribuoj, tiel longe, kiel la uzo estas atribuita. Tial, pri ajna teksto, kies kopirajton vi posedas, sendante ĝin, vi konsentas publikigi ĝin sub la permesilo Permesilo Atribuita de Krea Komunaĵo 2.0 (fr). Bonvolu noti, ke tiu permesilo permesas komercajn uzojn de viaj kontribuoj, se tiaj uzoj kongruas kun la kondiĉoj. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L75
 msgid ""
 "As an author, you agree to be attributed in any of the following fashions: "
 "a) through a hyperlink (where possible) or URL to the sentence or sentences "
@@ -3206,18 +3223,18 @@ msgid ""
 "or irrelevant contributions.)"
 msgstr "Kiel aŭtoro vi konsentas esti atribuata per iuj ajn el la sekvaj manieroj: a) per hiperligo (kie eblas) aŭ TTT-adreso al la frazo aŭ frazoj, per kiuj vi kontribuis, b) per hiperligo (kie eblas) aŭ TTT-adreso al alternativa, stabila enreta kopio, kiu estas libere alirebla, kiu estas konforma al la licenco, kaj kiu provizas krediton al la aŭtoroj en maniero responda al la kredito donata en ĉi tiu retejo, aŭ c) per listo de ĉiuj aŭtoroj. (Iu listo de aŭtoroj povus esti filtrita por ekskluzivi tre malgrandajn aŭ senrilatajn kontribuojn.)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L85
 msgid "Importing text:"
 msgstr "Importi tekston:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L88
 msgid ""
 "If you want to import text that you have found elsewhere or that you have "
 "co-authored with others, you can only do so if it is available under terms "
 "that are compatible with the CC-BY license."
 msgstr "Se vi volas importi tekston, kiun vi trovis aliloke aŭ kiun vi kunverkis kun aliaj, vi povas fari tion nur se ĝi haveblas sub kondiĉoj kongruantaj kun la  CC-BY-licenco."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L94
 msgid ""
 "If you import text under a compatible license which requires attribution, "
 "you must, in a reasonable fashion, credit the author(s). Where such credit "
@@ -3227,15 +3244,15 @@ msgid ""
 "be rejected if the required attribution is deemed too intrusive."
 msgstr "Se vi importas tekston sub kongrua licenco, kiu bezonas atribuon, vin devas,, en akceptebla maniero, krediti la aŭtoro(j)n. Kie tia kredito estas kutime farata per frazaj rimarkoj, sufiĉas doni atribuon en la redaktan resumon, kiu estas registrita en la fraza historio, importante la tekston. Sen konsidero de la licenco, la teksto, kiun vi importas povas esti malakceptata, se la postulata atribuo juĝatas tro truda."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L102
 msgid "Information for re-users:"
 msgstr "Informo por reuzantoj:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L105
 msgid "Re-use of text:"
 msgstr "Reuzo de teksto:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L111
 msgid ""
 "Attribution: To re-distribute a text page in any form, provide credit to the"
 " authors either by including a) a hyperlink (where possible) or URL to the "
@@ -3249,7 +3266,7 @@ msgid ""
 "requirements to the work, which we will strive to indicate clearly to you."
 msgstr "Atribuo:  Por reatribui tekstopaĝon en iu formo, provizi krediton al la aŭtoroj aŭ per inkluzivo de a)  hiperligo (kie eblas) aŭ TTT-adreso al la paĝo aŭ paĝoj, kiu(j)n vi estas reuzanta(j),  b)  hiperligo (kie eblas) aŭ TTT-adreso al alternativa, stabila enreta kopio, kiu estas libere alirebla, kiu est konforma kun la licenco, kaj kiu provizas krediton al la aŭtoroj laŭ maniero responda al la kredito donata sur ĉi tiu retejo, aŭ c)  listo de ĉiuj aŭtoroj. (Iu listo de aŭtoroj povus esti filtrita por ekskludi tre malgranda(j)n aŭ senrilata(j)n kontribuo(j)n.)  Ĉi tio koncernas tekston evoluigitan de la Tatoeba-projekta komunumo. Teksto de eksteraj fontoj povus aldoni suplementajn atribuajn postulojn al la laboro, kiu ni penas klare indiki al vi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L130
 msgid ""
 "Indicate changes: If you make modifications or additions, you must indicate "
 "in a reasonable fashion that the original work has been modified. If you are"
@@ -3257,7 +3274,7 @@ msgid ""
 "history is sufficient."
 msgstr "Indiki ŝanĝojn: Se vi faras modifojn aŭ aldonoj, vi devas indiki en akceptebla maniero, ke la originala laboro  estas modifita. Se vi reuzas la frazon en vikio, ekzemple, sufiĉas indiki ĉi tiun en la paĝa historio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L142
 msgid ""
 "  Licensing notice: Each copy or modified version that you distribute must "
 "include a licensing notice stating that the work is released under CC-BY and"
@@ -3266,17 +3283,17 @@ msgid ""
 "http://creativecommons.org/licenses/by/2.0/fr/"
 msgstr "  Licenca rimarko: Ĉiu kopio aŭ modifita versio, kiun vi disdonas, devas inkluzivi licencan rimarkon deklarantan, ke la laboro estas liberigita sub CC-BY kaj aŭ  a)  hiperligon aŭ TTT-adreson al la teksto de la licenco aŭ   b)  kopion de la licenco. Tiucele taŭga TTT-adreso estas: http://creativecommons.org/licenses/by/2.0/fr/"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L154
 msgid ""
 "For further information, please refer to the legal code of the CC-BY "
 "License."
 msgstr "Por plia informo bonvolu referenci al la leĝa kodo aŭ la CC-BY-licenco."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L161
 msgid "Precedence of French terms"
 msgstr "Prioritato de la francaj terminoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L165
 msgid ""
 "These site terms are not to be modified. If there is any inconsistency "
 "between the French terms and any translation into other languages, the "
@@ -3411,7 +3428,7 @@ msgstr "Aldonitaj frazoj"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L155
 msgid "Check out the vocabulary for which we need sentences"
-msgstr "Kontrolu la vortaron, por kiu ni bezonas frazojn"
+msgstr "Kontrolu la vortojn, por kiuj ni bezonas frazojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L42
 msgid "{user}'s sentences"
@@ -3419,11 +3436,11 @@ msgstr "Frazoj de {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L45
 msgid "{user}'s sentences in {language}"
-msgstr "La frazoj de {user} en la {language}"
+msgstr "La frazoj de {user} en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L78
 msgid "{user} does not have any sentence in {language}"
-msgstr "{user} ne havas iun ajn frazon en la {language}"
+msgstr "{user} ne havas iun ajn frazon en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/of_user.ctp#L83
 msgid "{user} does not have any sentence"
@@ -3450,19 +3467,19 @@ msgstr "Frazoj en {language} ne tradukitaj al {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L41
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr "Frazoj en la {language} tradukitaj al la {translationLanguage}"
+msgstr "Frazoj en {language} tradukitaj al {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L46
 msgid "Sentences in {language}"
-msgstr "Frazoj en la {language}"
+msgstr "Frazoj en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L50
 msgid "Sentences not translated into {language}"
-msgstr "Frazoj ne tradukitaj en la {language}"
+msgstr "Frazoj ne tradukitaj en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L53
 msgid "Sentences translated into {language}"
-msgstr "Frazoj tradukitaj al la {language}"
+msgstr "Frazoj tradukitaj al {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L65
 msgid "Warning: the following criteria have been ignored:{list}"
@@ -3534,7 +3551,7 @@ msgstr "Okazis eraro dum la serĉado de hazarda frazo. Se la problemo persistas,
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L39
 msgid "{language} example sentence: {sentence}"
-msgstr "Ekzempla frazo en la {language}: {sentence}"
+msgstr "Ekzempla frazo en {language}: {sentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show.ctp#L47
 msgid ""
@@ -3572,11 +3589,11 @@ msgstr "Hazarda frazo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L31
 msgid "All sentences in {language} with audio"
-msgstr "Ĉiuj frazoj en la {language} kun sono"
+msgstr "Ĉiuj frazoj en {language} kun sono"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/show_all_in.ctp#L34
 msgid "All sentences in {language}"
-msgstr "Ĉiuj frazoj en la {language}"
+msgstr "Ĉiuj frazoj en {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/add_new_sentence_to_list.ctp#L41
 msgid "Problem while saving"
@@ -4098,6 +4115,12 @@ msgstr "Alŝuti"
 msgid "Birthday"
 msgstr "Naskiĝtago"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L258
+msgctxt "user"
+msgid "Name"
+msgstr "Nomo"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L259
 msgid "Country"
@@ -4230,7 +4253,7 @@ msgstr "Ĉiam montru transskribojn kaj alternativajn skribojn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/settings.ctp#L173
 msgid "Hide random sentence on the homepage"
-msgstr "Kaŝi la hazardan frazon de la ĉefpaĝo"
+msgstr "Kaŝi la „mesaĝon de la tago” de la ĉefpaĝo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/settings.ctp#L196
 msgid ""

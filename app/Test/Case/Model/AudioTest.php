@@ -1,5 +1,5 @@
 <?php
-App::import('Model', 'Audio');
+App::uses('Model', 'Audio');
 
 class AudioTest extends CakeTestCase {
     public $fixtures = array(
@@ -23,17 +23,21 @@ class AudioTest extends CakeTestCase {
         'app.wall_thread',
     );
 
-    function startTest($method) {
+    function setUp() {
+        parent::setUp();
         $this->Audio = ClassRegistry::init('Audio');
+        $this->AudioFixture = ClassRegistry::init('AudioFixture');
     }
 
-    function endTest($method) {
+    function tearDown() {
+        parent::tearDown();
         unset($this->Audio);
+        unset($this->AudioFixture);
         ClassRegistry::flush();
     }
 
     function _getRecord($record) {
-        return $this->_fixtures['app.audio']->records[$record];
+        return $this->AudioFixture->records[$record];
     }
 
     function _saveRecordWith($record, $changedFields) {
@@ -188,17 +192,6 @@ class AudioTest extends CakeTestCase {
         $this->assertFalse($isMVA);
         $this->assertEqual($expectedAttributes, $attributes);
         $this->assertEqual($expectedValues, $values);
-    }
-
-    function testGetAudioStats() {
-        $expected = array(
-            array('lang' => 'fra', 'total' => 2),
-            array('lang' => 'spa', 'total' => 1),
-        );
-
-        $result = $this->Audio->getAudioStats();
-
-        $this->assertEqual($expected, $result);
     }
 
 }

@@ -84,13 +84,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             $sentenceId
                         )
                     );
+                    ?>
 
-                    echo $this->Html->div('sentence deleted',
-                        format(
-                            __('Sentence {id} has been deleted.'),
-                            array('id' => $linkToSentence)
-                        )
-                    );
+                    <div layout="row" layout-align="center" class="sentence deleted">
+                        <div class="content column remove" flex>
+                            <div class="sentenceContent" data-sentence-id="<?= $sentenceId ?>">
+                                <? echo format(
+                                    __('Sentence {id} has been deleted.'),
+                                    array('id' => $linkToSentence)
+                                ); ?>
+                            </div>
+                        </div>
+                        <div class="favorite-page column" layout="row" layout-align="bottom">
+                        <? $this->Menu->favoriteButton($sentenceId, true, true, true); ?>
+                        </div>
+                    </div>
+                <?
                 } else {
                     $this->Sentences->displayGenericSentence(
                         $favorite['Sentence'],

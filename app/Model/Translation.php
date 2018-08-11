@@ -76,7 +76,7 @@ class Translation extends AppModel
                 'alias' => 'Translation',
                 'conditions' => array(),
                 'group' => null,
-                'order' => null,
+                'order' => 'Translation.lang',
                 'limit' => null,
             ),
             $this
@@ -152,7 +152,6 @@ class Translation extends AppModel
                     ),
                 )),
                 'conditions' => $conditions,
-                'order' => null,
                 'group' => array('sentence_id', 'translation_id'),
             ),
             $this
@@ -176,7 +175,7 @@ class Translation extends AppModel
                 'Translation.script',
                 'Translation.correctness',
             ),
-            'order' => array('Translation.lang'),
+            'order' => array('Translation.lang')
         );
     }
 

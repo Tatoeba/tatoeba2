@@ -31,7 +31,9 @@ REPEAT
         temp_id, temp_name, temp_nbr_of_sentences;
 
     IF NOT done THEN
-        SELECT COUNT(*) INTO new_nbr_of_sentences FROM tags_sentences WHERE tag_id = temp_id;
+        SELECT COUNT(DISTINCT sentence_id) INTO new_nbr_of_sentences
+        FROM tags_sentences
+        WHERE tag_id = temp_id;
         -- Tags whose names begin with "@" are "attention" tags and should not be
         -- deleted automatically when they are no longer attached to any sentences.
         -- The idea is that we might temporarily bring the number of sentences marked,

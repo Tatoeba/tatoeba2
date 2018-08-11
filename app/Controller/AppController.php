@@ -44,7 +44,11 @@ class AppController extends Controller
 {
     public $components = array(
         'Acl',
-        'Auth',
+        'Auth' => array(
+		'authenticate' => array(
+			'Form' => array('passwordHasher' => 'Versioned')
+		)
+	),
         'Flash',
         'Permissions',
         'RememberMe',
@@ -123,7 +127,6 @@ class AppController extends Controller
      */
     public function beforeFilter()
     {
-        Security::setHash('md5');
         // only prevent CSRF for logins and registration in the users controller
         $this->Security->csrfCheck = false;
         $this->Security->blackHoleCallback = 'blackhole';
@@ -202,6 +205,9 @@ class AppController extends Controller
             $redirectCode = $this->request->is('ajax') ? null : 301;
             $this->redirect($redirectPage, $redirectCode);
         }
+
+        // Set view variables for the search bar
+        $this->set('query', '');
     }
 
     /**
