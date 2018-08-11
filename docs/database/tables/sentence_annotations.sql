@@ -10,8 +10,6 @@
 -- sentence_id Id of the sentence annotated.
 -- meaning_id  Id of the sentence used to disambiguate the meaning of the annotated
 --               sentence.
--- dico_id     Id of the annotated sentence in the old version of Tatoeba. This is
---                not in use anymore, and can potentially be deleted.
 -- text        Text of the annotation.
 --
 

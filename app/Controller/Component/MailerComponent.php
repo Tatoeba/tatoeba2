@@ -48,7 +48,6 @@ class MailerComponent extends Component
         $User = ClassRegistry::init('User');
         $Contribution = ClassRegistry::init('Contribution');
         $userId = $User->getIdFromUsername($username);
-        $suspendedUsers = $User->getUsersWithSamePassword($userId);
         $ips = $Contribution->getLastContributionOf($userId);
 
         $this->Email->viewVars(array(
@@ -56,7 +55,6 @@ class MailerComponent extends Component
           'user' => $username,
           'userId' => $userId,
           'isSuspended' => $isSuspended,
-          'suspendedUsers' => $suspendedUsers,
           'ips' => $ips
         ));
 
@@ -93,14 +91,20 @@ class MailerComponent extends Component
             return;
         }
         $author = CurrentUser::get('username');
-        $subject = 'Tatoeba - Comment on sentence : ' . $comment['sentence_text'];
+        $sentenceText = $comment['sentence_text'];
+        $sentenceIsDeleted = $sentenceText === false;
+        $sentenceId = $comment['sentence_id'];
+        if ($sentenceIsDeleted) {
+            $subject = 'Tatoeba - Comment on deleted sentence #' . $sentenceId;
+        } else {
+            $subject = 'Tatoeba - Comment on sentence : ' . $sentenceText;
+        }
         $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
             . '/sentence_comments/show/'
             . $comment['sentence_id']
             . '#comments';
         $recipientIsOwner = ($recipient == $sentenceOwner);
         $commentText = $comment['text'];
-        $sentenceText = $comment['sentence_text'];
 
         $this->Email = new CakeEmail();
         $this->Email
@@ -112,7 +116,9 @@ class MailerComponent extends Component
               'linkToSentence' => $linkToSentence,
               'commentText' => $commentText,
               'recipientIsOwner' => $recipientIsOwner,
-              'sentenceText' => $sentenceText
+              'sentenceIsDeleted' => $sentenceIsDeleted,
+              'sentenceText' => $sentenceText,
+              'sentenceId' => $sentenceId,
             ));
 
         $this->_send();
@@ -171,10 +177,15 @@ class MailerComponent extends Component
             'host' => 'ssl://smtp.gmail.com',
             'username' => Configure::read('Mailer.username'),
             'password' => Configure::read('Mailer.password'),
-            'transport' => 'Smtp'
+            'transport' => $this->getTransport(),
         ));
         $this->Email->emailFormat('html');
         $this->Email->from(array(Configure::read('Mailer.username') => 'noreply'));
         $this->Email->send();
+    }
+
+    public function getTransport()
+    {
+        return 'Smtp';
     }
 }

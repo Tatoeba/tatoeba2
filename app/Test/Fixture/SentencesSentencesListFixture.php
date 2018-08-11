@@ -4,20 +4,29 @@ class SentencesSentencesListFixture extends CakeTestFixture {
 	public $name = 'SentencesSentencesLists';
 
 	public $fields = array(
-		'sentences_list_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-		'indexes' => array('list_id' => array('column' => array('sentences_list_id', 'sentence_id'), 'unique' => 1)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
+		'sentences_list_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'index'),
+		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
+		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1),
+			'list_id' => array('column' => array('sentences_list_id', 'sentence_id'), 'unique' => 1)
+		),
+		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
 	);
 
 	public $records = array(
 		array(
+			'id' => '1',
 			'sentences_list_id' => '1',
-			'sentence_id' => '4'
+			'sentence_id' => '4',
+			'created' => '2018-03-14 12:15:13',
 		),
 		array(
+			'id' => '2',
 			'sentences_list_id' => '1',
-			'sentence_id' => '8'
+			'sentence_id' => '8',
+			'created' => '2018-03-14 12:15:18',
 		),
 	);
 }

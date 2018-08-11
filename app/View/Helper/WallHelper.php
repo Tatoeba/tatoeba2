@@ -139,7 +139,8 @@ class WallHelper extends AppHelper
             $cancelUrl = $this->Html->url(
                 array(
                     "action" => "show_message",
-                    "{$message['Wall']['id']}#message_{$message['Wall']['id']}"
+                    $message['Wall']['id'],
+                    "#" => "message_".$message['Wall']['id']
                 )
             );
             ?>
@@ -402,7 +403,8 @@ class WallHelper extends AppHelper
         <?php
         $pathToWallMessage = array(
             'controller' => 'wall',
-            'action' => 'index#message_'.$id
+            'action' => 'index',
+            '#' => 'message_'.$id
         );
         echo $this->Html->link('>>>', $pathToWallMessage);
         ?>

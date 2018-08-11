@@ -4,14 +4,14 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009
-# İlker Yürüyen <i.ilker.yuruyen@gmail.com>, 2014-2017
+# İlker Yürüyen <i.ilker.yuruyen@gmail.com>, 2014-2018
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-02 12:45+0000\n"
-"PO-Revision-Date: 2017-04-02 15:15+0000\n"
+"POT-Creation-Date: 2018-07-01 14:16+0000\n"
+"PO-Revision-Date: 2018-07-02 17:51+0000\n"
 "Last-Translator: İlker Yürüyen <i.ilker.yuruyen@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/tatoeba/tatoeba_website/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -33,23 +33,23 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "{username} adında bir kullanıcı yok"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L142
 msgid "You need to be logged in."
 msgstr "Oturum açmış olmanız gerekiyor."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L112
 msgid "Your audio settings have been saved."
 msgstr "Ses ayarlarınız kaydedildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L554
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
 msgstr "Kaydetme sırasında hata oluştu. Lütfen tekrar deneyin veya sorunu bildirmek için bize ulaşın."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/Component/MailerComponent.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/Component/MailerComponent.php#L160
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, yeni şifre"
 
@@ -96,9 +96,9 @@ msgstr "kalıcı olarak sil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L408
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L248
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L392
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L437
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L463
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L385
@@ -106,7 +106,7 @@ msgid "Are you sure?"
 msgstr "Emin misiniz?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L412
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L241
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L457
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L140
 msgid "delete"
@@ -117,7 +117,7 @@ msgid "mark as unread"
 msgstr "okunmamış olarak işaretle"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L431
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L471
 msgid "reply"
 msgstr "cevapla"
@@ -131,15 +131,15 @@ msgstr "\"{name}\" klasörü boşaltıldı."
 msgid "There is no sentence with id {number}"
 msgstr "{number} numaralı bir cümle yok."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L248
 msgid "Your comment has been saved."
 msgstr "Yorumunuz kaydedildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L313
 msgid "You do not have permission to edit this comment. "
 msgstr "Bu yorumu düzenlemeye yetkiniz yok. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L317
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/WallController.php#L326
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/write.ctp#L47
 msgid ""
@@ -147,15 +147,15 @@ msgid ""
 " {email}."
 msgstr "Bu mesajın hata olduğunu düşünüyorsanız lütfen yöneticilerle {email} üzerinden iletişime geçin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L339
 msgid "Comments cannot be empty."
 msgstr "Boş yorum gönderilemez."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L356
 msgid "Changes to your comment have been saved."
 msgstr "Yorumunuza yaptığınız değişiklikler kaydedildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L368
 msgid "We could not save your changes."
 msgstr "Değişikliklerinizi kaydedemedik."
 
@@ -280,142 +280,146 @@ msgstr[1] "Sadece {max} veya daha az cümle içeren listeler indirilebilir. List
 msgid "{firstSentence} {secondSentence}"
 msgstr "{firstSentence} {secondSentence}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L146
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
 msgstr "'{tagName}' etiketi zaten #{number} cümlesinde var ya da eklenemez"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L290
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
 msgstr "Bu etiketi içeren cümle yok. Aradığınız etiket ya silinmiş ya da oluşturulmamış."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L77
 msgid "No user with this username: {username}"
 msgstr "{username} adında bir kullanıcı yok"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L173
 msgid "Failed to upload image"
 msgstr "Resim yüklenirken hata oluştu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L182
 msgid "Please choose an image that does not exceed 1 MB."
 msgstr "Lütfen 1 megabaytı aşmayan bir resim seçin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L193
 msgid "Please choose GIF, JPEG or PNG image format."
 msgstr "Lütfen GIF, JPEG veya PNG resim biçimini seçin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L222
 msgid "Error while saving."
 msgstr "Kaydetme sırasında hata."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L318
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L330
 msgid "Profile saved."
 msgstr "Profil kaydedildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L341
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "E-posta adresi değiştirilemedi. Lütfen geçerli bir e-posta adresi girin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L382
 msgid "That email address already exists. Please try another."
 msgstr "Bu e-posta zaten mevcut. Lütfen başka bir tane deneyin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L419
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L431
 msgid "The entered birthday is an invalid date. Please try again."
 msgstr "Girmiş olduğunuz doğum tarihi geçersiz. Lütfen tekrar deneyin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L480
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
 msgstr "Girmiş olduğunuz doğum tarihi eksik. Tam tarih, ay ve gün, yıl ve ay veya sadece yıl şeklinde girebilirsiniz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L551
 msgid "Your settings have been saved."
 msgstr "Ayarlarınız kaydedildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L609
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L620
 msgid "New password cannot be empty."
 msgstr "Yeni şifre boş bırakılamaz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L623
+msgid "New passwords do not match."
+msgstr "Yeni şifreler uyuşmamaktadır."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L628
 msgid "New password has been saved."
 msgstr "Yeni şifre kaydedildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L621
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L630
 msgid "An error occurred while saving."
 msgstr "Kaydetme sırasında hata oluştu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L626
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L635
 msgid "Password error. Please try again."
 msgstr "Şifre hatası. Lütfen yeniden deneyin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L205
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Bu hesap pasif hale getirildi. Artık giriş yapamazsınız. Hata olduğunu düşünüyorsanız bir yöneticiyle iletişime geçin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L216
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Bu hesap spamci durumuna getirildi. Artık giriş yapamazsınız. Hata olduğunu düşünüyorsanız bir yöneticiyle iletişime geçin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L238
 msgid "You must fill in your username and password."
 msgstr "Kullanıcı adı ve şifre yerini doldurmak zorundasınız."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L246
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Giriş yapılamadı. Caps Lock ve Num Lock tuşlarının açık olup olmadığını kontrol edin. Şifreniz büyük ve küçük harflere duyarlıdır."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L338
 msgid "Password cannot be empty."
 msgstr "Şifre boş bırakılamaz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L349
 msgid "Wrong answer to the question."
 msgstr "Soruya yanlış cevap verildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L359
 msgid "You did not accept the terms of use."
 msgstr "Kullanım koşullarını kabul etmediniz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L399
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L401
 msgid "Welcome to Tatoeba!"
 msgstr "Tatoeba'ya Hoş Geldiniz!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L405
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "Tam olarak başlamadan önce, <a href='{url}'>profilinize</a> gidip hangi dilleri bildiğinizi veya hangi dillere ilgili olduğunuzu belirtmenizi istiyoruz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L454
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L456
 msgid "Your new password has been sent to {email}."
 msgstr "Yeni şifreniz {email} adresine gönderildi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L459
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L461
 msgid "You may need to check your spam folder to find this message."
 msgstr "Bu mesajı bulabilmek için istenmeyenler klasörüne bakmanız gerekebilir."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L469
 msgid "There is no registered user with this email address: "
 msgstr "Bu e-postayı kullanan kayıtlı bir kullanıcı yok: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L491
 msgid "No user with this username: "
 msgstr "Bu kullanıcı adını kullanan bir kullanıcı yok: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L533
 msgid "No user with this ID: {id}"
 msgstr "{id} numaralı bir kullanıcı yok."
 
@@ -503,7 +507,7 @@ msgstr "Sahipsiz cümleler"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L32
 msgid "Orphan sentences in {language}"
-msgstr "{language} sahipsiz cümleler"
+msgstr "Sahipsiz {language} cümleler"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/adopt_sentences.ctp#L43
 msgid "About adoption"
@@ -540,7 +544,6 @@ msgstr "Bir cümleyi sahiplendikten sonra başka bir kullanıcının adını gö
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L99
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L91
 msgid "Improve sentences"
 msgstr "Cümleleri geliştir"
 
@@ -624,7 +627,6 @@ msgstr "Sorunlu bir cümle düzeltildiğinde cümleye {tagOK} etiketini ekleyin.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L82
 msgid "Translate sentences"
 msgstr "Cümle çevir"
 
@@ -930,6 +932,12 @@ msgstr "Sahipsiz cümleler genelde yanlış olur."
 msgid "Is orphan:"
 msgstr "Sahipsiz mi:"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L181
+msgctxt "orphan"
+msgid "Any"
+msgstr "Hepsi"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L72
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Onaylanmamış cümleler genelde yanlış olur."
@@ -938,6 +946,12 @@ msgstr "Onaylanmamış cümleler genelde yanlış olur."
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L188
 msgid "Is unapproved:"
 msgstr "Onaylanmamış mı:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L190
+msgctxt "unapproved"
+msgid "Any"
+msgstr "Hepsi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L91
 msgid "Owned by a self-identified native"
@@ -970,6 +984,12 @@ msgstr "Ait olduğu liste:"
 msgid "Has audio:"
 msgstr "Sesli mi:"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L199
+msgctxt "audio"
+msgid "Any"
+msgstr "Hepsi"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L136
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L79
 msgid "Translations"
@@ -996,6 +1016,11 @@ msgstr "Belirtilen kriterlere uyan çevirileri içeren cümleleri {action}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L165
 msgid "Link:"
 msgstr "Bağlantı:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L167
+msgctxt "link"
+msgid "Any"
+msgstr "Hepsi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L168
 msgid "Direct"
@@ -1036,6 +1061,11 @@ msgstr "Sıralamayı ters çevir"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L233
 msgid "More search options"
 msgstr "Diğer seçenekler"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L242
+msgctxt "button"
+msgid "Advanced search"
+msgstr "Gelişmiş arama"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/announcement.ctp#L55
 msgid ""
@@ -1133,35 +1163,39 @@ msgid "Contact us"
 msgstr "Bize ulaşın"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L138
+msgid "Status"
+msgstr "Durum"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L28
 msgid "Terms of use"
 msgstr "Kullanım koşulları"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L157
 msgid "Blog"
 msgstr "Blog"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L59
 msgid "Twitter"
 msgstr "Twitter"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L61
 msgid "Facebook"
 msgstr "Facebook"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L193
 msgid ""
 "Our written sentences and translations can be used under the Creative "
 "Commons Attribution 2.0 license (CC-BY 2.0)."
 msgstr "Yazılı cümle ve çevirilerimiz,  Creative Commons 2.0 Atıf Lisansı (CC-BY 2.0) altında kullanılabilir."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L197
 msgid "More information"
 msgstr "Daha fazla bilgi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L211
 msgid "If you love this content, please consider a <a href={}>donation</a>."
 msgstr "Bu içeriği sevdiyseniz lütfen  <a href={}>bağışta</a> bulunun."
 
@@ -1182,8 +1216,6 @@ msgstr "Ne kadar fazla katılımcı olursa Tatoeba o kadar faydalı olur! Üstel
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L44
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/register.ctp#L74
@@ -1222,30 +1254,30 @@ msgid "Close"
 msgstr "Kapat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L534
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L537
 msgid "sentence deleted"
 msgstr "cümle silindi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L68
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, {modifiedDate} düzenlendi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L39
 msgid "Sentence {number} — belongs to {username}"
 msgstr "{number} cümlesi — {username} kullanıcısına ait"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L84
 msgid "Sentence {number}"
 msgstr "{number} cümlesi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L137
 msgid "permalink"
 msgstr "kalıcı bağlantı"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L170
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L551
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L554
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -1259,7 +1291,7 @@ msgstr "Özel mesajlar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmtoolbox.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/write.ctp#L28
 msgid "New message"
 msgstr "Yeni mesaj"
@@ -1412,6 +1444,13 @@ msgstr "Aramayı temizle"
 msgid "Enter a word or a phrase"
 msgstr "Kelime veya cümle girin"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
+msgctxt "title"
+msgid "Advanced search"
+msgstr "Gelişmiş arama"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr "İpucu: <em>=kelime</em>  diye aratmak, birebir <em>kelime</em> sonucunu verecektir."
@@ -1502,23 +1541,19 @@ msgid "Browse audio"
 msgstr "Ses ara"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L80
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L70
 msgid "Contribute"
 msgstr "Katkıda Bulun"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "Cümle ekle"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L86
 msgid "Adopt sentences"
 msgstr "Cümle sahiplen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/top_menu.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L95
 msgid "Discuss sentences"
 msgstr "Cümleleri tartış"
 
@@ -1648,6 +1683,11 @@ msgstr "Kamu malı"
 msgid "No license for offsite use"
 msgstr "Harici kullanım yasak"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L93
+msgctxt "license"
+msgid "for Tatoeba only"
+msgstr "Sadece Tatoeba için"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L101
 msgid "Recorded by: {username}"
 msgstr "Kaydeden: {username}"
@@ -1658,9 +1698,9 @@ msgstr "Lisans: {license}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L115
 msgid ""
-"You may not reuse the following audio recordings outside the Tatoeba "
-"project, because {userName} did not chose any license for them yet."
-msgstr "İşbu ses kayıtlarını Tatoeba projesinden başka yerde kullanamayabilirsiniz çünkü {userName} sesler için henüz bir lisans seçmemiş."
+"You may not reuse the following audio recordings outside the Tatoeba project"
+" because {userName} has not chosen any license for them."
+msgstr "Belirtilen ses kaydını Tatoeba projesi dışında kullanamayabilirsiniz çünkü {userName} kullanıcı, sesler için bir lisans seçmemiş."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/AudioHelper.php#L119
 msgid ""
@@ -1680,27 +1720,27 @@ msgid ""
 "license."
 msgstr "İşbu ses dosyaları, {userName} tarafından bilinmeyen bir lisansla lisanslanmıştır."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L72
 msgid "Add a comment"
 msgstr "Yorum ekle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L92
 msgid "Submit comment"
 msgstr "Yorumu gönder"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L101
 msgid "Good practices"
 msgstr "Tavsiyeler"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L106
 msgid "Say \"welcome\" to new users."
 msgstr "Yeni kullanıcılara \"Hoş geldiniz.\" diyin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L114
 msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Cümleyle alakası olmayan şeyleri konuşmak için özel mesajlaşmayı kullanın."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L192
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L723
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L158
@@ -1712,20 +1752,20 @@ msgstr "Cümleyle alakası olmayan şeyleri konuşmak için özel mesajlaşmayı
 msgid "Cancel"
 msgstr "Vazgeç"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L196
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L152
 msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L220
 msgid "unhide"
 msgstr "göster"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L223
 msgid "hide"
 msgstr "gizle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L255
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L444
 msgid "edit"
 msgstr "düzenle"
@@ -1849,12 +1889,22 @@ msgstr "diğer dil"
 msgid "All languages"
 msgstr "Tüm diller"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L213
+msgctxt "dropdown-list"
+msgid "Unknown language"
+msgstr "Bilinmeyen dil"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L267
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L310
 msgid "None"
 msgstr "Yok"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L290
+msgid "Any language"
+msgstr "Herhangi bir dil"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L327
+msgctxt "searchbar"
 msgid "Any language"
 msgstr "Herhangi bir dil"
 
@@ -1880,6 +1930,11 @@ msgstr "Cümle çeviremezsiniz çünkü profilinize herhangi bir dil eklemediniz
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L317
 msgid "Add a language"
 msgstr "Dil ekle"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L490
+msgctxt "level"
+msgid "Unspecified"
+msgstr "Belirtilmemiş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LanguagesHelper.php#L491
 msgid "0: Almost no knowledge"
@@ -1995,7 +2050,7 @@ msgid "Add a sentence to this list : "
 msgstr "Bu listeye bir cümle ekle: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L495
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L384
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/NavigationHelper.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentencesHelper.php#L722
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L157
@@ -2014,6 +2069,11 @@ msgstr "NOT: {addToListButton} simgesini kullanarak gördüğünüz cümleleri d
 msgid "Create a new list"
 msgstr "Yeni bir liste oluştur"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
+msgctxt "list"
+msgid "Name"
+msgstr "İsim"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
 msgid "create"
 msgstr "oluştur"
@@ -2025,6 +2085,11 @@ msgstr "Tüm açık listeler"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
 msgid "Collaborative lists"
 msgstr "Ortak listeler"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
+msgctxt "list"
+msgid "Unspecified"
+msgstr "Belirtilmemiş"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
 msgid "Other lists"
@@ -2055,7 +2120,7 @@ msgid "{info}, {date}"
 msgstr "{info}, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MembersHelper.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L472
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L474
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L157
@@ -2101,124 +2166,124 @@ msgid ""
 " be translated."
 msgstr "Bu cümle şu anda onaylanmamış durumda. Onaylanmamış cümleler çevrilemez."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L148
 msgid "Click to adopt"
 msgstr "Sahiplenmek için tıklayın"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L155
 msgid "Click to unadopt"
 msgstr "Bırakmak için tıklayın"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L205
 msgid "Remove from favorites"
 msgstr "Favorilerden kaldır"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L210
 msgid "Undo"
 msgstr "Geri al"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L213
 msgid "Add to favorites"
 msgstr "Favorilere ekle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L269
 msgid "Link to another sentence"
 msgstr "Başka cümleye bağla"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L280
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L282
 msgid "Sentence number"
 msgstr "Cümle numarası"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/SentenceButtonsHelper.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Links/delete.ctp#L8
 msgid "Link"
 msgstr "Bağlantı"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L328
 msgid "Add to list"
 msgstr "Listeye ekle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L360
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L362
 msgid "Add to one of your lists"
 msgstr "Listelerinizden birine ekleyin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L363
 msgid "Add to a collaborative list"
 msgstr "Ortak listeye ekle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L416
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Bu cümleyi silemezsiniz çünkü sese sahip."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L422
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L432
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L398
 msgid "Delete"
 msgstr "Sil"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L469
 msgid "You cannot edit this sentence because it has audio."
 msgstr "Bu cümleyi düzenleyemezsiniz çünkü sese sahip."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L505
 msgid "belongs to {user}"
 msgstr "{user} kullanıcısına ait"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L525
 msgid "(native)"
 msgstr "(ana dili)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L542
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L544
 msgid "Mark as \"OK\""
 msgstr "\"OK\" olarak işaretle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L547
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L549
 msgid "Mark as \"unsure\""
 msgstr "\"unsure\" olarak işaretle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L552
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L554
 msgid "Mark as \"not OK\""
 msgstr "\"not OK\" olarak işaretle"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L564
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MenuHelper.php#L566
 msgid "Unmark sentence"
 msgstr "İşareti kaldır"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L101
 msgid "Message"
 msgstr "Mesaj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L103
 msgid "Reply"
 msgstr "Cevapla"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L195
 msgid "Former member"
 msgstr "Eski üye"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L224
 msgid "Send private message"
 msgstr "Özel mesaj gönder"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L242
 msgid "edited"
 msgstr "düzenlendi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L271
 msgid "to {recipient}"
 msgstr "alıcı: {recipient}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L273
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L276
 msgid "Draft"
 msgstr "Taslak"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L280
 msgid "from {sender}"
 msgstr "gönderici: {sender}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L356
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L185
 msgid "View this user's profile"
 msgstr "Bu kullanıcının profilini görüntüle"
@@ -2455,6 +2520,16 @@ msgid ""
 "piece of software that is not perfect."
 msgstr "Bu transkripsiyon hatalı olabilir çünkü mükemmel olmayan bir program tarafından oluşturuldu."
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L284
+msgctxt "alternative script"
+msgid "Click to mark it as reviewed."
+msgstr "İncelendi olarak işaretlemek için tıklayın."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/TranscriptionsHelper.php#L290
+msgctxt "transcription"
+msgid "Click to mark it as reviewed."
+msgstr "İncelendi olarak işaretlemek için tıklayın."
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L74
 msgid "Add a message: "
 msgstr "Bir mesaj ekle: "
@@ -2540,64 +2615,6 @@ msgid ""
 "We also have an IRC channel on freenode, #tatoeba. If you are not familiar "
 "with IRC, you can read the <a href=\"{}\">Help</a>."
 msgstr "Ayrıca freenode'da #tatoeba adında bir IRC kanalımız var. IRC'yi bilmiyorsanız <a href=\"{}\">Yardım</a>'ı okuyabilirsiniz."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L28
-msgid "How to contribute"
-msgstr "Nasıl katkıda bulunulur"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L38
-msgid "If you are interested, please register."
-msgstr "İlginizi çektiyse lütfen kaydolun."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L51
-msgid "Important to read"
-msgstr "Okunması önemli"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L55
-msgid "Guide to being a good contributor"
-msgstr "İyi bir katılımcı olma rehberi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L61
-msgid "Reliability of the sentences"
-msgstr "Cümlelerin güvenilirliği"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L114
-msgid "How can you contribute?"
-msgstr "Nasıl katkıda bulunabilirsiniz?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L118
-msgid ""
-"Tatoeba is primarily about collecting sentences and translating them into "
-"many, many languages. So one obvious thing you can do to contribute is to "
-"<strong>translate sentences</strong>."
-msgstr "Tatoeba, temelde cümle derlemek ve bunları birçok dile çevirmekle ilgilidir. Yani katkıda bulunabileceğiniz en bariz şey <strong>cümleleri çevirmektir</strong> diyebiliriz."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L128
-msgid ""
-"But you don't have to be a polyglot in order to contribute! You can help us "
-"a lot simply by <strong>checking sentences</strong> and <strong>reporting "
-"mistakes</strong>. This is something everyone can do!"
-msgstr "Fakat katkıda bulunmanız için poliglot olmanıza gerek yok! En basitinden <strong>cümleleri kontrol ederek</strong> ve <strong>hataları bildirerek</strong> bize çok yardımcı olabilirsiniz. Bu herkesin yapabileceği bir şey!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L138
-msgid ""
-"If you have a good microphone, you can also bring more audio to Tatoeba by "
-"<strong>recording sentences</strong>."
-msgstr "İyi bir mikrofonunuz varsa cümleler için <strong>ses kaydederek</strong> Tatoeba'ya daha fazla ses verebilirsiniz."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L147
-msgid ""
-"You can help us promote the project. <strong>Tell people around you</strong>"
-" that Tatoeba exists. This is a very ambitious project, so we will need as "
-"much help as possible."
-msgstr "Projeyi ilerletmemize yardımcı olabilirsiniz. <strong>Yakınlarınıza</strong> Tatoeba'nın varlığından bahsedin. Bu çok hızlı büyüyen bir projedir. Bu yüzden elinizden gelebilecek her yardıma ihtiyacımız var."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contribute.ctp#L157
-msgid ""
-"And finally, you can <strong>join the team</strong>. You can help us code "
-"new features, improve usability, debug, optimize, keep the site secure, and "
-"more."
-msgstr "Son olarak, <strong>takımımıza katılabilirsiniz</strong>. Yeni özellikleri kodlamada, kullanılabilirliği geliştirmede, hataları gidermede, siteyi en iyi hale getirmede ve güvenlik açıklarını gidermede bize yardımcı olabilirsiniz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/donate.ctp#L28
 msgid "Donate"
@@ -2889,7 +2906,7 @@ msgid ""
 "to the id of the English sentence."
 msgstr "Jim Breen tarafından dağıtılan Tanaka Korpus dosyalarındaki \"B hatları\"nın dengini içerir. Biçim için <a href=\"{url}\">bu sayfaya</a> bakınız. Her öğe bir çift Japonca/İngilizce cümleyle bağlantılıdır. {sentenceId}, Japonca cümlenin numarası demektir. {meaningId} ise İngilizce cümlenin numarasıdır."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L436
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available. Other fields indicate who recorded the audio, its license and a "
@@ -2897,20 +2914,20 @@ msgid ""
 "reuse the audio outside the Tatoeba project."
 msgstr "Ses dosyası bulunan tüm dillerdeki cümlelerin numaralarını içerir. Diğer alanlar da sesi kimin kaydettiğini, lisansını ve ekleyen kişiye atıf yapılan URL'yi belirtir. Lisans alanı boşsa ses dosyasını Tatoeba projesinden başka yerde kullanamayabilirsiniz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L449
 msgid "User skill level per language"
 msgstr "Dile göre kullanıcının bilgi seviyesi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L471
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
 msgstr "Üyelerin kendi dillerindeki kendi belirttikleri bilgi seviyelerini gösterir."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L478
 msgid "Users' sentence ratings"
 msgstr "Kullanıcıların cümle oylamaları"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L503
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L506
 msgid ""
 "Contains sentences rated by users. The value of the rating can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
@@ -3162,23 +3179,23 @@ msgstr "Teknik sebeplerden ötürü bu sayfa geçici olarak kullanım dışı. W
 msgid "We are sorry for the inconvenience."
 msgstr "Bu sorundan dolayı özür dileriz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L35
 msgid "Table of contents"
 msgstr "İçerik"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L36
-msgid "English version"
-msgstr "Türkçe metin"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L39
+msgid "Translated version"
+msgstr "Çeviri metin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L41
-msgid "Version française"
-msgstr "Version française"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L44
+msgid "Original version (French)"
+msgstr "Özgün metin (Fransızca)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L59
 msgid "Information for contributors of text to the Tatoeba project"
 msgstr "Tatoeba projesine metin ekleyenler için bilgi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L63
 msgid ""
 "To grow the commons of free knowledge and free culture, all users "
 "contributing to the Tatoeba project are required to grant broad permissions "
@@ -3190,7 +3207,7 @@ msgid ""
 "compliant with the terms. "
 msgstr "Özgür bilginin ve özgür kültürün yaygınlığını artırma amacıyla Tatoeba projesine katkıda bulunan tüm kullanıcıların kendilerine atıfta bulunulduğu sürece katkılarının başkaları tarafından tekrar dağıtımına veya tekrar kullanımına izin vermeleri gerekmektedir. Bu nedenle, telif hakkına sahip olduğunuz bir metni buraya ekleyerek metni Creative Commons 2.0 Atıf Lisansı (fr) altına aldığınızı kabul etmiş oluyorsunuz. Kullanım koşullarına uyduğu sürece bu lisansın katkılarınızın ticari amaçla kullanılmasına olanak sağladığını lütfen unutmayın."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L75
 msgid ""
 "As an author, you agree to be attributed in any of the following fashions: "
 "a) through a hyperlink (where possible) or URL to the sentence or sentences "
@@ -3200,20 +3217,20 @@ msgid ""
 "manner equivalent to the credit given on this website, or c) through a list "
 "of all authors. (Any list of authors may be filtered to exclude very small "
 "or irrelevant contributions.)"
-msgstr "Bir yazar olarak aşağıdaki yöntemlerden birisine göre atıfta bulunulmayı kabul etmektesiniz: a) katkı sağladığınız cümle ya da cümlelere bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, b) serbestçe erişilebilen, lisansa uyumlu ve bu sitede verilene muadil yazar bilgileri sağlayan sabit bir alternatif çevrimiçi kopyaya bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, c) bütün yazarları kapsayan bir liste ile. (Yazar listeleri çok küçük ya da alakasız katkıları hariç tutacak biçimde filtrelenebilir.)"
+msgstr "Bir yazar olarak aşağıdaki yöntemlerden birisine göre atıfta bulunulmayı kabul etmektesiniz: a) katkı sağladığınız cümle ya da cümlelere bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, b) serbestçe erişilebilen, lisansa uyumlu ve bu sitede verilene muadil yazar bilgileri sağlayan sabit bir alternatif çevrimiçi kopyaya bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, c) tüm yazarları kapsayan bir liste ile. (Yazar listeleri çok küçük ya da alakasız katkıları hariç tutacak biçimde filtrelenebilir.)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L85
 msgid "Importing text:"
 msgstr "Metin aktarma:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L88
 msgid ""
 "If you want to import text that you have found elsewhere or that you have "
 "co-authored with others, you can only do so if it is available under terms "
 "that are compatible with the CC-BY license."
 msgstr "Herhangi bir yerden bulduğunuz veya başkalarıyla ortaklaşa sahip olduğunuz bir metni aktarmak istiyorsanız bunu sadece CC-BY lisansına uyan şartlarda yapabilirsiniz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L94
 msgid ""
 "If you import text under a compatible license which requires attribution, "
 "you must, in a reasonable fashion, credit the author(s). Where such credit "
@@ -3223,15 +3240,15 @@ msgid ""
 "be rejected if the required attribution is deemed too intrusive."
 msgstr "Atıf gerektiren uyumlu bir lisans altındaki bir metni aktarıyorsanız uygun bir şekilde yazar(lar)ını belirtmeniz gerekir. Genellikle cümle yorumlarında belirtilse de ilgili atıf ifadesini, metni alırken cümle tarihçesinde kaydedilen değişiklik özetinde vermek de yeterlidir. Aktarmaya çalıştığınız metin gerekli atıf kurallarımıza uymuyorsa lisansına bakılmaksızın reddedilebilir."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L102
 msgid "Information for re-users:"
 msgstr "Yeniden kullananlar için bilgi:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L105
 msgid "Re-use of text:"
 msgstr "Metnin yeniden kullanılması:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L111
 msgid ""
 "Attribution: To re-distribute a text page in any form, provide credit to the"
 " authors either by including a) a hyperlink (where possible) or URL to the "
@@ -3243,9 +3260,9 @@ msgid ""
 "contributions.) This applies to text developed by the Tatoeba project "
 "community. Text from external sources may attach additional attribution "
 "requirements to the work, which we will strive to indicate clearly to you."
-msgstr "Atıflar: Bir metin sayfasını herhangi bir biçimde yeniden dağıtmak için şu yöntemlerden birisine göre yazarları belirtmek zorundasınız: a) yeniden kullandığınız cümle ya da cümlelere bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, b) serbestçe erişilebilen, lisansa uyumlu ve bu sitede verilene muadil yazar bilgileri sağlayan sabit bir alternatif çevrimiçi kopyaya bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, c) bütün yazarları kapsayan bir liste ile. (Yazar listeleri çok küçük ya da alakasız katkıları hariç tutacak biçimde filtrelenebilir.) Bu, Tatoeba projesi topluluğu tarafından geliştirilen metni kapsar. Harici kaynaklardan gelen metinler ilave atıf gereksinimleri içeriyor olabilir. Zira bunu size açık biçimde ifade edebilmek için çabalayacağız."
+msgstr "Atıflar: Bir metin sayfasını herhangi bir biçimde yeniden dağıtmak için şu yöntemlerden birisine göre yazarları belirtmek zorundasınız: a) yeniden kullandığınız cümle ya da cümlelere bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, b) serbestçe erişilebilen, lisansa uyumlu ve bu sitede verilene muadil yazar bilgileri sağlayan sabit bir alternatif çevrimiçi kopyaya bağlantı veren bir hiperlink (mümkün olan durumlarda) veya URL ile, c) tüm yazarları kapsayan bir liste ile. (Yazar listeleri çok küçük ya da alakasız katkıları hariç tutacak biçimde filtrelenebilir.) Bu, Tatoeba projesi topluluğu tarafından geliştirilen metni kapsar. Harici kaynaklardan gelen metinler ilave atıf gereksinimleri içeriyor olabilir. Zira bunu size açık biçimde ifade edebilmek için çabalayacağız."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L130
 msgid ""
 "Indicate changes: If you make modifications or additions, you must indicate "
 "in a reasonable fashion that the original work has been modified. If you are"
@@ -3253,7 +3270,7 @@ msgid ""
 "history is sufficient."
 msgstr "Değişiklikleri belirtin: Değişiklik ya da ekleme yapıyorsanız esas çalışmanın değiştirildiğini uygun bir şekilde belirtmeniz gerekir. Örnek olarak, cümleyi bir vikide yeniden kullanıyorsanız bunu sayfa tarihçesinde belirtmek yeterlidir."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L142
 msgid ""
 "  Licensing notice: Each copy or modified version that you distribute must "
 "include a licensing notice stating that the work is released under CC-BY and"
@@ -3262,17 +3279,17 @@ msgid ""
 "http://creativecommons.org/licenses/by/2.0/fr/"
 msgstr "Lisans için not: Dağıttığınız her kopya veya değiştirilmiş sürüm, CC-BY altında yayınlandığını belirten bir not ve a) lisans yazısının bir hiperlink veya URL'sini ya da b) lisansın bir kopyasını içermelidir. Bu amaç için uygun bir URL: http://creativecommons.org/licenses/by/2.0/fr/"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L154
 msgid ""
 "For further information, please refer to the legal code of the CC-BY "
 "License."
 msgstr "Daha fazla bilgi için lütfen CC-BY lisans sözleşmesine bakın."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L161
 msgid "Precedence of French terms"
 msgstr "Fransızca terimlerin önceliği"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L165
 msgid ""
 "These site terms are not to be modified. If there is any inconsistency "
 "between the French terms and any translation into other languages, the "
@@ -3772,7 +3789,7 @@ msgstr "Bu karakteri kullanan cümle bulunamadı. <a href=\"{}\">Buradan</a> bir
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/load_example_sentence.ctp#L58
 msgid "View all sentences using this character <a href=\"{}\">here</a>"
-msgstr "Bu karakteri kullanan bütün cümleleri <a href=\"{}\">burada</a> göster"
+msgstr "Bu karakteri kullanan tüm cümleleri <a href=\"{}\">burada</a> göster"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/load_radicals.ctp#L31
 msgid "10 or more strokes"
@@ -4093,6 +4110,12 @@ msgstr "Yükle"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L260
 msgid "Birthday"
 msgstr "Doğum günü"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L258
+msgctxt "user"
+msgid "Name"
+msgstr "İsim"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/edit_profile.ctp#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/profile.ctp#L259

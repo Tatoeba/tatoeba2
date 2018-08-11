@@ -42,7 +42,7 @@ class Audio extends AppModel
     public $actsAs = array('Containable');
 
     public $belongsTo = array(
-        'Sentence',
+        'Sentence' => array('type' => 'inner'),
         'User',
     );
 
@@ -108,7 +108,9 @@ class Audio extends AppModel
         $ok = true;
         $user_id = $this->_getFieldFromDataOrDatabase('user_id');
         $external = $this->_getFieldFromDataOrDatabase('external');
-        $external = array_filter($external);
+        if ($external) {
+            $external = array_filter($external);
+        }
         if (!($user_id xor !empty($external))) {
             $ok = false;
         }
@@ -153,30 +155,6 @@ class Audio extends AppModel
         return $this->find('count', array(
             'conditions' => array('user_id' => $userId),
         ));
-    }
-
-    public function getAudioStats()
-    {
-        $key = 'audio_stats';
-        $stats = Cache::read($key);
-        if ($stats === false) {
-            $results = $this->find('all', array(
-                'contain' => array('Sentence' => array('fields' => 'lang')),
-                'fields' => array('Sentence.lang', 'COUNT(*) as total'),
-                'group' => 'Sentence.lang',
-                'order' => array('total' => 'DESC'),
-            ));
-            $stats = array();
-            foreach ($results as $result) {
-                $stats[] = array(
-                    'lang' => $result['Sentence']['lang'],
-                    'total' => $result[0]['total']
-                );
-            }
-            Cache::write($key, $stats);
-        }
-
-        return $stats;
     }
 
     public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {
@@ -322,7 +300,26 @@ class Audio extends AppModel
             $filesImported[$file['lang']]++;
             $filesImported['total']++;
         }
-
+        
         return $filesImported;
+    }
+
+    /**
+     * Update audio count.
+     *
+     * @return void
+     */
+    public function updateCount()
+    {
+        $query = "
+            UPDATE `languages` l,
+                (SELECT count(distinct sentence_id) as count, lang
+                FROM audios JOIN sentences ON audios.sentence_id = sentences.id
+                GROUP BY lang
+                ) as s
+            SET audio = s.count
+            WHERE l.code = s.lang;
+        ";
+        $this->query($query);
     }
 }

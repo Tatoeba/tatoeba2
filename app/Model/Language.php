@@ -34,6 +34,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::uses('Sanitize', 'Utility');
+
 class Language extends AppModel
 {
     public $name = 'Language';
@@ -64,6 +67,36 @@ class Language extends AppModel
         );
 
         return $results ;
+    }
+
+    /**
+     * Return stats for number of audio per language.
+     *
+     * @return array
+     */
+    public function getAudioStats()
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'conditions' => array('audio >' => 0),
+                'fields' => array(
+                    'code',
+                    'audio',
+                ),
+                'order' => array('audio DESC')
+            )
+        );
+
+        $stats = array();
+        foreach ($results as $result) {
+            $stats[] = array(
+                'lang' => $result['Language']['code'],
+                'total' => $result['Language']['audio']
+            );
+        }
+
+        return $stats;
     }
 
 

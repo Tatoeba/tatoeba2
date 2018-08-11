@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('AppController', 'Controller');
+
 /**
  * Controller for tags
  *
@@ -59,7 +61,6 @@ class TagsController extends AppController
         $this->Auth->allowedActions = array(
             'show_sentences_with_tag',
             'view_all',
-            'for_moderators',
             'search'
         );
 
@@ -290,59 +291,6 @@ class TagsController extends AppController
                 )
             );
         }
-    }
-
-
-    /**
-     * List sentences with a certain id that were tagged logger ago than
-     * the grace (warning) period within which sentence owners are supposed to respond to comments.
-     * A "moderator" is known on the site as a "corpus maintainer".
-     *
-     * @param string $tagId Id of the tag.
-     * @param string $lang  Language of the sentences.
-     *
-     * @return void
-     */
-    public function for_moderators($tagId = null, $lang = null) {
-        // If no tag name was specified, assume that the name "@change" (the most
-        // generic tag indicating attention from moderators) was intended.
-        $tagChangeName = $this->Tag->getChangeTagName();
-        $tagCheckName = $this->Tag->getCheckTagName();
-        $tagDeleteName = $this->Tag->getDeleteTagName();
-        $tagNeedsNativeCheckName = $this->Tag->getNeedsNativeCheckTagName();
-        $tagOKName = $this->Tag->getOKTagName();
-        $tagChangeId = $this->Tag->getIdFromName($tagChangeName);
-        $tagCheckId = $this->Tag->getIdFromName($tagCheckName);
-        $tagDeleteId = $this->Tag->getIdFromName($tagDeleteName);
-        $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName);
-        $tagOKId = $this->Tag->getIdFromName($tagOKName);
-        if (empty($tagId)) {
-            $tagId = $tagChangeId;
-        }
-
-        $this->helpers[] = 'Pagination';
-        $this->helpers[] = 'CommonModules';
-        $this->helpers[] = 'Sentences';
-
-        // Get sentences that have been tagged longer ago than the grace period.
-        $results = $this->Tag->TagsSentences->getSentencesWithNonNewTag(
-            $tagId, $lang
-        );
-
-        $tagName = $this->Tag->getNameFromId($tagId);
-        $this->set('tagId', $tagId);
-        $this->set('tagName', $tagName);
-        $this->set('results', $results);
-        $this->set('tagChangeName', $tagChangeName);
-        $this->set('tagCheckName', $tagCheckName);
-        $this->set('tagDeleteName', $tagDeleteName);
-        $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName);
-        $this->set('tagOKName', $tagOKName);
-        $this->set('tagChangeId', $tagChangeId);
-        $this->set('tagCheckId', $tagCheckId);
-        $this->set('tagDeleteId', $tagDeleteId);
-        $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
-        $this->set('tagOKId', $tagOKId);
     }
 
     public function search()

@@ -432,11 +432,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
             <?php 
-             __('Contains the ids of the sentences, in all languages, for '.
+            echo __(
+                'Contains the ids of the sentences, in all languages, for '.
                 'which audio is available. Other fields indicate who recorded '.
                 'the audio, its license and a URL to attribute the author. If '.
                 'the license field is empty, you may not reuse the audio '.
-                'outside the Tatoeba project.'); ?>
+                'outside the Tatoeba project.'
+            ); 
+            ?>
             </dd>  
         </dl>
         </div>
@@ -499,7 +502,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
             <?php 
-            __(
+            echo __(
                 'Contains sentences rated by users. The value of the rating ' .
                 'can be -1 (sentence not OK), 0 (undecided or unsure), ' .
                 'or 1 (sentence OK). Warning: this data is still experimental.'

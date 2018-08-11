@@ -79,8 +79,8 @@ $menuElements = array(
     ),
     __('Contribute') => array(
         "route" => array(
-            "controller" => "pages",
-            "action" => "contribute"
+            "controller" => null,
+            "action" => null
         ),
         "sub-menu" => array(
             __('Add sentences') => array(
