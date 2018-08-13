@@ -52,7 +52,7 @@ if ($canEdit) {
         $options['empty'] = true;
     }
     echo $this->Form->input('license', $options);
-    echo $this->Form->end();
+    echo $this->Form->end(__d('admin', 'Change'));
 
 } else {
 

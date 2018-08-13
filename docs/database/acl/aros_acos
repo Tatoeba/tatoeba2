@@ -10,6 +10,7 @@ cake acl deny  Group.2 SentenceComments/unhide_message all
 cake acl grant Group.2 Sentences all
 cake acl deny  Group.2 Sentences/edit_correctness all
 cake acl deny  Group.2 Sentences/edit_audio all
+cake acl deny  Group.2 Sentences/edit_license all
 cake acl grant Group.2 SentencesLists all
 cake acl grant Group.2 Tags all
 cake acl grant Group.2 User all
@@ -35,6 +36,7 @@ cake acl deny  Group.3 SentenceComments/unhide_message all
 cake acl grant Group.3 Sentences all
 cake acl deny  Group.3 Sentences/edit_correctness all
 cake acl deny  Group.3 Sentences/edit_audio all
+cake acl deny  Group.3 Sentences/edit_license all
 cake acl grant Group.3 SentencesLists all
 cake acl grant Group.3 Tags all
 cake acl grant Group.3 User all
@@ -59,6 +61,7 @@ cake acl deny  Group.4 SentenceComments/unhide_message all
 cake acl grant Group.4 Sentences all
 cake acl deny  Group.4 Sentences/edit_correctness all
 cake acl deny  Group.4 Sentences/edit_audio all
+cake acl deny  Group.4 Sentences/edit_license all
 cake acl grant Group.4 SentencesLists all
 cake acl grant Group.4 User all
 cake acl grant Group.4 Users all

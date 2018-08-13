@@ -1348,4 +1348,19 @@ class SentencesController extends AppController
             );
         }
     }
+
+    public function edit_license()
+    {
+        if (isset($this->request->data['Sentence']['id']) &&
+            isset($this->request->data['Sentence']['license'])) {
+            $sentenceId = $this->request->data['Sentence']['id'];
+            $newLicense = $this->request->data['Sentence']['license'];
+            $this->Sentence->id = $sentenceId;
+            $this->Sentence->save(array('license' => $newLicense));
+        }
+        $this->redirect(array(
+            'action' => 'show',
+            $sentenceId
+        ));
+    }
 }
