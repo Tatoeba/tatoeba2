@@ -95,7 +95,6 @@ class AppShell extends Shell {
                 $lastValue2 = $lastRow[ $o2parts[0] ][ $o2parts[1] ];
                 $options['conditions'][$conditionKey] = $this->_orderCondition($order1, $lastValue1, $order2, $lastValue2);
             }
-            echo ".";
         } while ($data);
         return $proceeded;
     }

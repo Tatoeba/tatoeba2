@@ -42,6 +42,7 @@ class UpdatePasswordVersionShell extends AppShell {
         );
         if ($data && $this->{$model}->saveAll($data, $options))
             $proceeded += count($data);
+        $this->out('.', 0);
         return $proceeded;
     }
 }
