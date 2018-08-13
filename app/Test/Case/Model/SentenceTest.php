@@ -121,6 +121,33 @@ class SentenceTest extends CakeTestCase {
 		$this->assertFalse((bool)$result);
 	}
 
+	function testSave_checksLicenseUpdatesFine() {
+		$this->Sentence->id = 48;
+		$data = array(
+			'license' => 'CC0 1.0',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertTrue((bool)$result);
+	}
+
+	function testSave_checksLicenseDoesntUpdateIfBasedOnIdIsNull() {
+		$this->Sentence->id = 1;
+		$data = array(
+			'license' => 'CC0 1.0',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
+	function testSave_checksLicenseDoesntUpdateIfAddedAsTranslation() {
+		$this->Sentence->id = 49;
+		$data = array(
+			'license' => 'CC0 1.0',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
 	function testSave_setsDefaultLicenseSettingOnCreation() {
 		$data = array(
 			'text' => 'This sentence should get a default licence.',

@@ -60,10 +60,17 @@ class Sentence extends AppModel
             'rule' => array('minLength', '1')
         ),
         'license' => array(
-            'rule' => array('inList', array(
-                'CC0 1.0',
-                'CC BY 2.0 FR',
-            )),
+            'validLicense' => array(
+                'rule' => array('inList', array(
+                    'CC0 1.0',
+                    'CC BY 2.0 FR',
+                )),
+            ),
+            'isOriginal' => array(
+                'rule' => array('isOriginal'),
+                'on' => 'update',
+                'message' => 'The sentence needs to be original (not initially derived from translation).',
+            ),
         ),
     );
 
@@ -183,6 +190,11 @@ class Sentence extends AppModel
                 }
             }
         }
+    }
+
+    public function isOriginal() {
+        $basedOnId = $this->field('based_on_id');
+        return !is_null($basedOnId) && $basedOnId == 0;
     }
 
     /**
