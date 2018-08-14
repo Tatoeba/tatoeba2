@@ -132,6 +132,7 @@ class Sentence extends AppModel
                     'CC0 1.0',
                     'CC BY 2.0 FR',
                 )),
+                'message' => __('This is not a valid license.'),
             ),
             'canSwitchLicense' => array(
                 'rule' => array('canSwitchLicense'),
