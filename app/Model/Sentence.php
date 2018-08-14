@@ -133,12 +133,9 @@ class Sentence extends AppModel
                     'CC BY 2.0 FR',
                 )),
             ),
-            'isOriginal' => array(
-                'rule' => array('isOriginal'),
+            'canSwitchLicense' => array(
+                'rule' => array('canSwitchLicense'),
                 'on' => 'update',
-                /* @translators: This string will be preceded by "Unable to
-                   change the license to “{newLicense}” because:" */
-                'message' => __('The sentence needs to be original (not initially derived from translation).'),
             ),
         );
 
@@ -210,9 +207,17 @@ class Sentence extends AppModel
         }
     }
 
-    public function isOriginal() {
-        $basedOnId = $this->field('based_on_id');
-        return !is_null($basedOnId) && $basedOnId == 0;
+    public function canSwitchLicense() {
+        $sentenceId = $this->id;
+        $sentence = $this->findById($sentenceId, array('based_on_id'));
+        $isOriginal = !is_null($sentence['Sentence']['based_on_id']) && $sentence['Sentence']['based_on_id'] == 0;
+        if (!$isOriginal) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('The sentence needs to be original (not initially derived from translation).'));
+        }
+
+        return true;
     }
 
     /**
