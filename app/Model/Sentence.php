@@ -41,6 +41,7 @@
 App::import('Model', 'CurrentUser');
 App::import('Sanitize');
 App::import('Lib', 'LanguagesLib');
+App::uses('CakeEvent', 'Event');
 
 class Sentence extends AppModel
 {
@@ -252,6 +253,13 @@ class Sentence extends AppModel
      */
     public function afterSave($created, $options = array())
     {
+        if (!$created) {
+            $event = new CakeEvent('Model.Sentence.updated', $this, array(
+                'id' => $this->id,
+                'data' => $this->data[$this->alias]
+            ));
+            $this->getEventManager()->dispatch($event);
+        }
         $this->logSentenceEdition($created);
         $this->updateTags($created);
         if (isset($this->data['Sentence']['modified'])) {

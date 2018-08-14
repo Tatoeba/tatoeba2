@@ -55,6 +55,35 @@ class SentenceTest extends CakeTestCase {
 		ClassRegistry::flush();
 	}
 
+	function testSave_firesEventOnUpdate() {
+		$dispatched = false;
+		$id = 1;
+		$data = array(
+			'text' => 'Changing text of sentence #1.',
+		);
+		$model = $this->Sentence;
+		$model->getEventManager()->attach(
+			function (CakeEvent $event) use ($model, &$dispatched, $id, $data) {
+				$this->assertSame($model, $event->subject());
+				// filter out unpredictable keys like 'modified' => now()
+				// from $event->data['data']
+				$event->data['data'] = array_intersect_key(
+					$event->data['data'],
+					$data
+				);
+				$expectedEventData = compact('id', 'data');
+				$this->assertEquals($expectedEventData, $event->data);
+				$dispatched = true;
+			},
+			'Model.Sentence.updated'
+		);
+
+		$this->Sentence->id = $id;
+		$this->Sentence->save($data);
+
+		$this->assertTrue($dispatched);
+	}
+
 	function testSaveNewSentence_addsOneSentence() {
 		$oldNumberOfSentences = $this->Sentence->find('count');
 		$this->Sentence->saveNewSentence('Hello world.', 'eng', 1);
