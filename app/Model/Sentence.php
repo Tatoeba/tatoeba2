@@ -59,21 +59,6 @@ class Sentence extends AppModel
         'text' => array(
             'rule' => array('minLength', '1')
         ),
-        'license' => array(
-            'validLicense' => array(
-                'rule' => array('inList', array(
-                    'CC0 1.0',
-                    'CC BY 2.0 FR',
-                )),
-            ),
-            'isOriginal' => array(
-                'rule' => array('isOriginal'),
-                'on' => 'update',
-                /* @translators: This string will be preceded by "Unable to
-                   change the license to “{newLicense}” because:" */
-                'message' => 'The sentence needs to be original (not initially derived from translation).',
-            ),
-        ),
     );
 
     public $hasMany = array(
@@ -140,6 +125,22 @@ class Sentence extends AppModel
         }
 
         $this->findMethods['random'] = true;
+
+        $this->validate['license'] = array(
+            'validLicense' => array(
+                'rule' => array('inList', array(
+                    'CC0 1.0',
+                    'CC BY 2.0 FR',
+                )),
+            ),
+            'isOriginal' => array(
+                'rule' => array('isOriginal'),
+                'on' => 'update',
+                /* @translators: This string will be preceded by "Unable to
+                   change the license to “{newLicense}” because:" */
+                'message' => __('The sentence needs to be original (not initially derived from translation).'),
+            ),
+        );
 
         $this->linkWithTranslationModel();
     }
