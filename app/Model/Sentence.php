@@ -207,9 +207,9 @@ class Sentence extends AppModel
         }
     }
 
-    public function canSwitchLicense() {
+    public function canSwitchLicense($check) {
         $sentenceId = $this->id;
-        $sentence = $this->findById($sentenceId, array('based_on_id', 'user_id'));
+        $sentence = $this->findById($sentenceId, array('based_on_id', 'user_id', 'license'));
         $isOriginal = !is_null($sentence['Sentence']['based_on_id']) && $sentence['Sentence']['based_on_id'] == 0;
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to
@@ -224,6 +224,20 @@ class Sentence extends AppModel
                change the license to “{newLicense}” because:" */
             $this->invalidate('license', __('The owner of the sentence needs to be its original creator.'));
         }
+
+        $newLicense = $check['license'];
+        $currentLicense = $sentence['Sentence']['license'];
+        $perms = array(null, 'CC BY 2.0 FR', 'CC0 1.0');
+        $currentPermissiveness = array_search($currentLicense, $perms);
+        $newPermissiveness = array_search($newLicense, $perms);
+        if ($currentPermissiveness === false ||
+            $newPermissiveness === false ||
+            $newPermissiveness < $currentPermissiveness) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('You can only switch to a more permissive license.'));
+        }
+
         return true;
     }
 

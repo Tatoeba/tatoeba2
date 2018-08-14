@@ -675,5 +675,18 @@ class SentenceFixture extends CakeTestFixture {
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '0',
 		),
+		array(
+			'id' => '51',
+			'lang' => 'eng',
+			'text' => 'An original sentence added under CC0.',
+			'correctness' => '0',
+			'user_id' => '3',
+			'created' => '2017-04-10 01:26:00',
+			'modified' => '2017-04-10 01:26:00',
+			'script' => null,
+			'hash' => "1nkk5e4\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC0 1.0',
+			'based_on_id' => '0',
+		),
 	);
 }
