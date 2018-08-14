@@ -29,8 +29,12 @@ if (CurrentUser::isAdmin()) :
 ?>
 <div class="module">
     <h2><?php echo __('License') ?></h2>
+
 <?php
+echo $this->Sentences->License->getLicenseName($license);
+
 if ($canEdit) {
+    echo "<hr>";
 
     echo $this->Form->create(
         'Sentence',
@@ -44,7 +48,7 @@ if ($canEdit) {
         array('value' => $sentenceId)
     );
     $options = array(
-        'label' => __('Current license:'),
+        'label' => __('License:'),
         'options' => $this->Sentences->License->getLicenseOptions(),
         'value' => $license,
     );
@@ -53,11 +57,6 @@ if ($canEdit) {
     }
     echo $this->Form->input('license', $options);
     echo $this->Form->end(__d('admin', 'Change'));
-
-} else {
-
-    echo $this->Sentences->License->getLicenseName($license);
-
 }
 ?>
 </div>
