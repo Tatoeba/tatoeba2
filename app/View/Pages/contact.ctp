@@ -93,34 +93,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Contact us')));
     
     
     <div class="module">
-        <h2><?php echo __('Join us on XMPP'); ?></h2>
+        <h2><?php echo __('Join our chatroom'); ?></h2>
         <p>
         <?php
         echo format(
             __(
-                'We also have an XMPP room, <a href="{room}">'.
-                'tatoeba@chat.tatoeba.org</a>, also available with the web '.
-                'client below.  If you are not familiar with XMPP, you '.
-                'can read the <a href="{help}">Help</a>.', true
+                'We have an <strong>XMPP room</strong>: <a href="{room}">'.
+                'tatoeba@chat.tatoeba.org</a>.  You can join with your '.
+                'favorite XMPP client or <a href="{webclient}">from your '.
+                'browser</a>.', true
             ),
             array(
-                'room' => "xmpp:tatoeba@chat.tatoeba.org?join"
-                'help' => $this->Html->url(
-                    array(
-                        "controller" => "pages",
-                        "action" => "help"
-                    )
-                )
+                'room' => "xmpp:tatoeba@chat.tatoeba.org?join",
+                'webclient' => "https://chat.tatoeba.org"
             )
         );
         ?>
         </p>
-        <iframe src="https://candy.linkmauve.fr/tatoeba@chat.tatoeba.org" width="100%" height="600px">
-            <p>
-            <?php
-            __('Sorry, your browser doesn’t support iframes.')
-            ?>
-            </p>
-        </iframe>
     </div>
 </div>

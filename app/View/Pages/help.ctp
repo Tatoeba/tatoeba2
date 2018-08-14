@@ -40,54 +40,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         ?>
         </p>
         <p><?php
-           echo __(
-               'If you cannot find the answer to your question, do not hesitate '.
-               'to contact us.'
-           );
-           ?>
-        </p>
-    </div>
-
-    <div class="module">
-        <h2><?php echo __('Contact us'); ?></h2>
-        <dl>
-            <dt><?php echo __('By email'); ?></dt>
-            <dd>team@tatoeba.org</dd>
-            <dt><?php echo __('From the Wall'); ?></dt>
-            <dd>
-            <?php
-            echo $this->Html->link(
-                __('Click here to go to the Wall.'),
-                array("controller"=>"wall")
-            );
-            ?>
-            </dd>
-            <dt><?php echo __('On XMPP'); ?></dt>
-            <dd><a href="xmpp:tatoeba@chat.tatoeba.org?join">tatoeba@chat.tatoeba.org</a></dd>
-        </dl>
-    </div>
-
-    <div class="module">
-        <h2><?php echo __('How to use XMPP'); ?></h2>
-        <p>
-        <?php
-        echo __(
-            'For those who are not familiar with XMPP, it is pretty much like an '.
-            'instant messenger. You will be able to talk with us in real time, '.
-            'if we are here.'
+        echo format(
+            __(
+                'If you cannot find the answer to your question, do not hesitate '.
+                'to <a href="{}">contact us</a>.'
+            ),
+            $this->Html->url(array('controller' => 'contact'))
         );
         ?>
         </p>
-        <p>
-        <?php echo __('There are many ways to join our room. One is to go to this website:');
-        ?>
-        <a href="https://candy.linkmauve.fr/tatoeba@chat.tatoeba.org">https://candy.linkmauve.fr/tatoeba@chat.tatoeba.org</a>
-        </p>
-        <?php
-        echo __(
-            'Enter a nickname, and click on “Enter groupchat”. That\'s it!'
-        );
-        ?>
     </div>
 </div>
 
@@ -106,10 +67,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                 __(
                     'If you have no idea what to do now that you are registered, '.
                     'you can introduce yourself on the <a href="{}">Wall</a>, or '.
-                    'join us on <strong>XMPP</strong>. We will give you a purpose. :)',
+                    'join our <a href="{chatroom}">chatroom</strong>. We will '.
+                    'give you a purpose. :)',
                     true
                 ),
-                $this->Html->url(array('controller' => 'wall'))
+                $this->Html->url(
+                    array(
+                        'controller' => 'wall',
+                        'chatroom' => 'https://chat.tatoeba.org'
+                    )
+                )
             );
             ?>
             </p>
