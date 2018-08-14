@@ -140,6 +140,21 @@ class Sentence extends AppModel
         }
 
         $this->findMethods['random'] = true;
+
+        $this->linkWithTranslationModel();
+    }
+
+    /**
+     * Links the Sentence and Translation models with restrictions
+     * on the language of translated sentences according to the
+     * profile setting 'lang'.
+     */
+    private function linkWithTranslationModel() {
+        $userLangs = CurrentUser::getLanguages();
+        $conditions = $userLangs ?
+                      array('Translation.lang' => $userLangs) :
+                      array();
+        $this->linkTranslationModel($conditions);
     }
 
     public function linkTranslationModel($conditions = array())
