@@ -40,7 +40,7 @@ CREATE TABLE `contributions` (
   `user_id` int(11) DEFAULT NULL,
   `datetime` datetime NOT NULL,
   `ip` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
-  `type` enum('link','sentence') CHARACTER SET latin1 NOT NULL,
+  `type` enum('link','sentence','license') CHARACTER SET latin1 NOT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_desc` (`id`),

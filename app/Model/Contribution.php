@@ -55,6 +55,18 @@ class Contribution extends AppModel implements CakeEventListener
     }
 
     public function logSentenceUpdate($event) {
+        if (isset($event->data['data']['license'])) {
+            $this->create();
+            $this->save(array(
+                'sentence_id' => $event->data['id'],
+                'user_id' => CurrentUser::get('id'),
+                'datetime' => date("Y-m-d H:i:s"),
+                'ip' => CurrentUser::getIp(),
+                'action' => 'update',
+                'type' => 'license',
+                'text' => $event->data['data']['license'],
+            ));
+        };
     }
 
     public function paginateCount($conditions = null, $recursive = 0, $extra = array())
