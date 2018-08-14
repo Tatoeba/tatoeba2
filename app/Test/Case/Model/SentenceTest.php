@@ -158,6 +158,15 @@ class SentenceTest extends CakeTestCase {
 		$this->assertFalse((bool)$result);
 	}
 
+	function testSave_checksLicenseUpdatesFromNullLicense() {
+		$this->Sentence->id = 52;
+		$data = array(
+			'license' => 'CC BY 2.0 FR',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertTrue((bool)$result);
+	}
+
 	function testSave_checksLicenseDoesntUpdateIfOwnerIsNotTheOriginalCreator() {
 		$this->Sentence->id = 50;
 		$data = array(
