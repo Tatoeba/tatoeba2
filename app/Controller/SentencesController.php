@@ -1356,7 +1356,17 @@ class SentencesController extends AppController
             $sentenceId = $this->request->data['Sentence']['id'];
             $newLicense = $this->request->data['Sentence']['license'];
             $this->Sentence->id = $sentenceId;
-            $this->Sentence->save(array('license' => $newLicense));
+            if (!$this->Sentence->save(array('license' => $newLicense))) {
+                if (isset($this->Sentence->validationErrors['license'])) {
+                    $message = format(
+                        __('Unable to change the license to “{newLicense}” because:'),
+                        compact('newLicense')
+                    );
+                    $errors = $this->Sentence->validationErrors['license'];
+                    $params = compact('errors');
+                    $this->Flash->set($message, compact('params'));
+                }
+            }
         }
         $this->redirect(array(
             'action' => 'show',

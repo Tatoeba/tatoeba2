@@ -69,6 +69,8 @@ class Sentence extends AppModel
             'isOriginal' => array(
                 'rule' => array('isOriginal'),
                 'on' => 'update',
+                /* @translators: This string will be preceded by "Unable to
+                   change the license to “{newLicense}” because:" */
                 'message' => 'The sentence needs to be original (not initially derived from translation).',
             ),
         ),
