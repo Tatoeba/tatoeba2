@@ -327,4 +327,23 @@ class Contribution extends AppModel
             )
         );
     }
+
+
+    public function getOriginalCreatorOf($sentenceId)
+    {
+        $log = $this->find('first', array(
+            'fields' => array('user_id'),
+            'conditions' => array(
+                'sentence_id' => $sentenceId,
+                'action' => 'insert',
+                'type' => 'sentence',
+            ),
+            'order' => 'datetime',
+        ));
+        if ($log) {
+            return $log['Contribution']['user_id'];
+        } else {
+            return false;
+        }
+    }
 }

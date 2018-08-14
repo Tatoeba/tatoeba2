@@ -209,7 +209,7 @@ class Sentence extends AppModel
 
     public function canSwitchLicense() {
         $sentenceId = $this->id;
-        $sentence = $this->findById($sentenceId, array('based_on_id'));
+        $sentence = $this->findById($sentenceId, array('based_on_id', 'user_id'));
         $isOriginal = !is_null($sentence['Sentence']['based_on_id']) && $sentence['Sentence']['based_on_id'] == 0;
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to
@@ -217,6 +217,13 @@ class Sentence extends AppModel
             $this->invalidate('license', __('The sentence needs to be original (not initially derived from translation).'));
         }
 
+        $currentOwner = $sentence['Sentence']['user_id'];
+        $originalCreator = $this->Contribution->getOriginalCreatorOf($sentenceId);
+        if ($originalCreator !== $currentOwner) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('The owner of the sentence needs to be its original creator.'));
+        }
         return true;
     }
 

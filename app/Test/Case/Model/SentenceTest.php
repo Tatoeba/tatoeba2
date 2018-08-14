@@ -127,6 +127,7 @@ class SentenceTest extends CakeTestCase {
 			'license' => 'CC0 1.0',
 		);
 		$result = $this->Sentence->save($data);
+
 		$this->assertTrue((bool)$result);
 	}
 
@@ -141,6 +142,15 @@ class SentenceTest extends CakeTestCase {
 
 	function testSave_checksLicenseDoesntUpdateIfAddedAsTranslation() {
 		$this->Sentence->id = 49;
+		$data = array(
+			'license' => 'CC0 1.0',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
+	function testSave_checksLicenseDoesntUpdateIfOwnerIsNotTheOriginalCreator() {
+		$this->Sentence->id = 50;
 		$data = array(
 			'license' => 'CC0 1.0',
 		);
