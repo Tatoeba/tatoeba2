@@ -146,6 +146,7 @@ class Contribution extends AppModel implements CakeEventListener
                     'Contribution.action',
                     'Contribution.id',
                     'Contribution.datetime',
+                    'Contribution.type',
                     'User.username',
                     'User.id'
                 ),

@@ -404,6 +404,7 @@ class User extends AppModel
                             'translation_id',
                             'action',
                             'datetime',
+                            'type',
                             'text',
                         ),
                         'order' => 'datetime DESC '
