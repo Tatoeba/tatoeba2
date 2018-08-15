@@ -1357,7 +1357,12 @@ class SentencesController extends AppController
             $sentenceId = $this->request->data['Sentence']['id'];
             $newLicense = $this->request->data['Sentence']['license'];
             $this->Sentence->id = $sentenceId;
-            if ($this->Sentence->save(array('license' => $newLicense))) {
+
+            $currentOwner = $this->Sentence->field('user_id');
+            if ($currentOwner !== CurrentUser::get('id')) {
+                $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
+            }
+            elseif ($this->Sentence->save(array('license' => $newLicense))) {
                 $this->Flash->set(format(
                     __('The license of the sentence has been changed to “{newLicense}”.'),
                     compact('newLicense')
