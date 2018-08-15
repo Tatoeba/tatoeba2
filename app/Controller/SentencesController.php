@@ -1360,6 +1360,10 @@ class SentencesController extends AppController
             throw new BadRequestException();
         }
 
+        if (CurrentUser::isModerator()) {
+            unset($this->Sentence->validate['license']['canSwitchLicense']);
+        }
+
         $this->Sentence->id = $sentenceId;
 
         $currentOwner = $this->Sentence->field('user_id');
