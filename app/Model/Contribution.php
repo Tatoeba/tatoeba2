@@ -43,11 +43,6 @@ class Contribution extends AppModel implements CakeEventListener
     );
     public $belongsTo = array('Sentence', 'User');
 
-    public function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
-        $this->Sentence->getEventManager()->attach($this);
-    }
-
     public function implementedEvents() {
         return array(
             'Model.Sentence.updated' => array('callable' => 'logSentenceUpdate'),

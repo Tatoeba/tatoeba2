@@ -142,6 +142,8 @@ class Sentence extends AppModel
         );
 
         $this->linkWithTranslationModel();
+
+        $this->getEventManager()->attach($this->Contribution);
     }
 
     /**
