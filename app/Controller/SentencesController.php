@@ -26,6 +26,7 @@
  */
 
 App::import('Lib', 'SphinxClient');
+App::uses('AppController', 'Controller');
 
 /**
  * Controller for sentences.
