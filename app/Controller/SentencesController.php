@@ -1356,29 +1356,33 @@ class SentencesController extends AppController
             isset($this->request->data['Sentence']['license'])) {
             $sentenceId = $this->request->data['Sentence']['id'];
             $newLicense = $this->request->data['Sentence']['license'];
-            $this->Sentence->id = $sentenceId;
+        } else {
+            throw new BadRequestException();
+        }
 
-            $currentOwner = $this->Sentence->field('user_id');
-            if ($currentOwner !== CurrentUser::get('id')) {
-                $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
-            }
-            elseif ($this->Sentence->save(array('license' => $newLicense))) {
-                $this->Flash->set(format(
-                    __('The license of the sentence has been changed to “{newLicense}”.'),
+        $this->Sentence->id = $sentenceId;
+
+        $currentOwner = $this->Sentence->field('user_id');
+        if ($currentOwner !== CurrentUser::get('id')) {
+            $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
+        }
+        elseif ($this->Sentence->save(array('license' => $newLicense))) {
+            $this->Flash->set(format(
+                __('The license of the sentence has been changed to “{newLicense}”.'),
+                compact('newLicense')
+            ));
+        } else {
+            if (isset($this->Sentence->validationErrors['license'])) {
+                $message = format(
+                    __('Unable to change the license to “{newLicense}” because:'),
                     compact('newLicense')
-                ));
-            } else {
-                if (isset($this->Sentence->validationErrors['license'])) {
-                    $message = format(
-                        __('Unable to change the license to “{newLicense}” because:'),
-                        compact('newLicense')
-                    );
-                    $errors = $this->Sentence->validationErrors['license'];
-                    $params = compact('errors');
-                    $this->Flash->set($message, compact('params'));
-                }
+                );
+                $errors = $this->Sentence->validationErrors['license'];
+                $params = compact('errors');
+                $this->Flash->set($message, compact('params'));
             }
         }
+
         $this->redirect(array(
             'action' => 'show',
             $sentenceId

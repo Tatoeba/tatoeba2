@@ -157,6 +157,26 @@ class SentencesControllerTest extends ControllerTestCase {
 		$this->assertCount(1, $this->controller->Sentence->findById($lonelySentenceId));
 	}
 
+	public function testEditLicense_returnsHTTP400IfNoId() {
+		$this->logInAs('contributor');
+		$this->expectException('BadRequestException');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'license' => 'CC0 1.0',
+			)),
+		));
+	}
+
+	public function testEditLicense_returnsHTTP400IfNoLicense() {
+		$this->logInAs('contributor');
+		$this->expectException('BadRequestException');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'id' => 48,
+			)),
+		));
+	}
+
 	public function testEditLicense_canEdit() {
 		$sentenceId = 48;
 		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
