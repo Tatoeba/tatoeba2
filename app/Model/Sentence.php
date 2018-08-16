@@ -237,6 +237,13 @@ class Sentence extends AppModel
         }
 
         $currentOwner = $sentence['Sentence']['user_id'];
+        $currentUser = CurrentUser::get('id');
+        if ($currentUser != $currentOwner) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('You\'re not the owner of this sentence.'));
+        }
+
         $originalCreator = $this->Contribution->getOriginalCreatorOf($sentenceId);
         if ($originalCreator !== $currentOwner) {
             /* @translators: This string will be preceded by "Unable to

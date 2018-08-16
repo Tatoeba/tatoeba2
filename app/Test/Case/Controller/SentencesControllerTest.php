@@ -177,25 +177,10 @@ class SentencesControllerTest extends ControllerTestCase {
 		));
 	}
 
-	public function testEditLicense_canEdit() {
+	public function testEditLicense_cannotEditAsUser() {
 		$sentenceId = 48;
 		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
 		$this->logInAs('contributor');
-		$this->testAction('/jpn/sentences/edit_license', array(
-			'data' => array('Sentence' => array(
-				'id' => $sentenceId,
-				'license' => 'CC0 1.0',
-			)),
-		));
-		$newSentence = $this->controller->Sentence->findById($sentenceId, 'license');
-		$this->assertNotEquals($oldSentence, $newSentence);
-		$this->assertEquals('CC0 1.0', $newSentence['Sentence']['license']);
-	}
-
-	public function testEditLicense_cannotIfNotOwner() {
-		$sentenceId = 48;
-		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
-		$this->logInAs('kazuki');
 		$this->testAction('/jpn/sentences/edit_license', array(
 			'data' => array('Sentence' => array(
 				'id' => $sentenceId,

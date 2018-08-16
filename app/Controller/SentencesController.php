@@ -1366,8 +1366,7 @@ class SentencesController extends AppController
 
         $this->Sentence->id = $sentenceId;
 
-        $currentOwner = $this->Sentence->field('user_id');
-        if ($currentOwner !== CurrentUser::get('id') && !CurrentUser::isModerator()) {
+        if (!CurrentUser::isModerator()) {
             $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
         }
         elseif ($this->Sentence->save(array('license' => $newLicense))) {

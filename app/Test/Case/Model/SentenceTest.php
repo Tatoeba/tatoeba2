@@ -55,6 +55,11 @@ class SentenceTest extends CakeTestCase {
 		ClassRegistry::flush();
 	}
 
+	function beOwnerOfCurrentSentence() {
+		$owner = $this->Sentence->field('user_id');
+		CurrentUser::store(array('id' => $owner));
+	}
+
 	function testSave_firesEventOnUpdate() {
 		$dispatched = false;
 		$id = 1;
@@ -152,6 +157,7 @@ class SentenceTest extends CakeTestCase {
 
 	function testSave_checksLicenseUpdatesFine() {
 		$this->Sentence->id = 48;
+		$this->beOwnerOfCurrentSentence();
 		$data = array(
 			'license' => 'CC0 1.0',
 		);
@@ -160,8 +166,19 @@ class SentenceTest extends CakeTestCase {
 		$this->assertTrue((bool)$result);
 	}
 
+	function testSave_checksLicenseDoesntUpdateIfCurrentUserIsNotOwner() {
+		$this->Sentence->id = 48;
+		CurrentUser::store(array('id' => 3));
+		$data = array(
+			'license' => 'CC0 1.0',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
 	function testSave_checksLicenseDoesntUpdateIfBasedOnIdIsNull() {
 		$this->Sentence->id = 1;
+		$this->beOwnerOfCurrentSentence();
 		$data = array(
 			'license' => 'CC0 1.0',
 		);
@@ -171,6 +188,7 @@ class SentenceTest extends CakeTestCase {
 
 	function testSave_checksLicenseDoesntUpdateIfAddedAsTranslation() {
 		$this->Sentence->id = 49;
+		$this->beOwnerOfCurrentSentence();
 		$data = array(
 			'license' => 'CC0 1.0',
 		);
@@ -180,6 +198,7 @@ class SentenceTest extends CakeTestCase {
 
 	function testSave_checksLicenseDoesntUpdateToAMoreRestrictiveLicense() {
 		$this->Sentence->id = 51;
+		$this->beOwnerOfCurrentSentence();
 		$data = array(
 			'license' => 'CC BY 2.0 FR',
 		);
@@ -189,6 +208,7 @@ class SentenceTest extends CakeTestCase {
 
 	function testSave_checksLicenseUpdatesFromNullLicense() {
 		$this->Sentence->id = 52;
+		$this->beOwnerOfCurrentSentence();
 		$data = array(
 			'license' => 'CC BY 2.0 FR',
 		);
@@ -198,6 +218,7 @@ class SentenceTest extends CakeTestCase {
 
 	function testSave_checksLicenseDoesntUpdateToTheSameLicense() {
 		$this->Sentence->id = 48;
+		$this->beOwnerOfCurrentSentence();
 		$data = array(
 			'license' => 'CC BY 2.0 FR',
 		);
@@ -207,6 +228,7 @@ class SentenceTest extends CakeTestCase {
 
 	function testSave_checksLicenseDoesntUpdateIfOwnerIsNotTheOriginalCreator() {
 		$this->Sentence->id = 50;
+		$this->beOwnerOfCurrentSentence();
 		$data = array(
 			'license' => 'CC0 1.0',
 		);
