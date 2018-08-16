@@ -196,6 +196,15 @@ class SentenceTest extends CakeTestCase {
 		$this->assertTrue((bool)$result);
 	}
 
+	function testSave_checksLicenseDoesntUpdateToTheSameLicense() {
+		$this->Sentence->id = 48;
+		$data = array(
+			'license' => 'CC BY 2.0 FR',
+		);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
 	function testSave_checksLicenseDoesntUpdateIfOwnerIsNotTheOriginalCreator() {
 		$this->Sentence->id = 50;
 		$data = array(

@@ -133,7 +133,16 @@ class Sentence extends AppModel
                     'CC0 1.0',
                     'CC BY 2.0 FR',
                 )),
+                /* @translators: This string will be preceded by "Unable to
+                   change the license to “{newLicense}” because:" */
                 'message' => __('This is not a valid license.'),
+            ),
+            'isChanging' => array(
+                'rule' => array('isChanging', 'license'),
+                'on' => 'update',
+                /* @translators: This string will be preceded by "Unable to
+                   change the license to “{newLicense}” because:" */
+                'message' => __('This sentence is already under that license.'),
             ),
             'canSwitchLicense' => array(
                 'rule' => array('canSwitchLicense'),
@@ -209,6 +218,12 @@ class Sentence extends AppModel
                 }
             }
         }
+    }
+
+    public function isChanging($check, $what) {
+        $newValue = $check[$what];
+        $currentValue = $this->field($what);
+        return $newValue !== $currentValue;
     }
 
     public function canSwitchLicense($check) {
