@@ -45,7 +45,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                 'If you cannot find the answer to your question, do not hesitate '.
                 'to <a href="{}">contact us</a>.'
             ),
-            $this->Html->url(array('controller' => 'contact'))
+            $this->Html->url(array('controller' => 'pages', 'action' => 'contact'))
         );
         ?>
         </p>
@@ -66,16 +66,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             echo format(
                 __(
                     'If you have no idea what to do now that you are registered, '.
-                    'you can introduce yourself on the <a href="{}">Wall</a>, or '.
-                    'join our <a href="{chatroom}">chatroom</strong>. We will '.
+                    'you can introduce yourself on the <a href="{wall}">Wall</a>, '.
+                    'or join our <a href="{chatroom}">chatroom</a>. We will '.
                     'give you a purpose. :)',
                     true
                 ),
-                $this->Html->url(
-                    array(
-                        'controller' => 'wall',
-                        'chatroom' => 'https://chat.tatoeba.org'
-                    )
+                array(
+                    $this->Html->url(array('controller' => 'wall')),
+                    'chatroom' => 'https://chat.tatoeba.org'
                 )
             );
             ?>
