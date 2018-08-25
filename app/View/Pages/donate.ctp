@@ -29,7 +29,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __("Any question?"); ?></h2>
         <p>
         <?php
@@ -46,14 +46,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
         </p>
     </div>
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __("Latest donations"); ?></h2>
         <ol>
-            <li>Alexander - 10€</li>
-            <li>Stefanello - 20 €</li>
-            <li>Roberto  - 5 €</li>
-            <li>William - 40 €</li>
-            <li>Xung - 100 €</li>
+            <li>Hamzah  - 15 €</li>
+            <li>Michael  - 5 €</li>
+            <li>EDRDG - 50 €</li>
+            <li>Zdenek - 20 €</li>
+            <li>Jane - 10 €</li>
         </ol>
         <?php echo $this->Html->link(
             __("All donations"),
@@ -64,7 +64,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
 
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __("How to donate"); ?></h2>
         <p><?php echo __("You have two possible ways to make a donation:"); ?></p>
         <ul>
@@ -89,14 +89,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
         </ul>
     </div>
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __("IBAN transfer"); ?></h2>
         <b><?php echo __("Titular:"); ?></b> ASSOCIATION TATOEBA<br/>
         <b><?php echo __("IBAN:"); ?></b> FR76 3000 3013 8100 0506 7048 647<br/>
         <b><?php echo __("BIC/SWIFT:"); ?></b> SOGEFRPP<br/>
     </div>
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2>Paypal</h2>
 
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
