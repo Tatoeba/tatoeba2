@@ -35,7 +35,7 @@ $membersIcons = array(
 );
 ?>
 <div id="annexe_content">
-    <div class="module usersLanguagesStats">
+    <div class="section md-whiteframe-1dp usersLanguagesStats">
         <h2><?php echo __('Legend'); ?></h2>
         <?php
         foreach ($membersIcons as $iconClass => $tooltip) {
@@ -55,7 +55,7 @@ $membersIcons = array(
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo $title ?></h2>
 
         <table class="languages-stats">

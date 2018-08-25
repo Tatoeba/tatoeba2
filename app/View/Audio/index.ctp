@@ -38,7 +38,7 @@ if (isset($lang)){
 </div>
 
 <div id="main_content">
-<div class="module">
+<div class="section md-whiteframe-1dp">
 <?php
 if (isset($sentencesWithAudio)) {
     if (count($sentencesWithAudio) == 0) {

@@ -39,7 +39,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     
     <?php $this->CommonModules->createFilterByLangMod(); ?>
     
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('About adoption'); ?></h2>
         <p>
         <?php
@@ -68,7 +68,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         </p>
     </div>
     
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Tips'); ?></h2>
         <p>
         <?php 
@@ -85,7 +85,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div>
     <?php 
     echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 

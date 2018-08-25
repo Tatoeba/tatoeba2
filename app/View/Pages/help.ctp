@@ -29,7 +29,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Need more help?'); ?></h2>
         <p>
         <?php
@@ -57,7 +57,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
     <?php
     if ($this->Session->read('Auth.User.id')) {
         ?>
-        <div class="module">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Getting started'); ?></h2>
 
 
@@ -103,8 +103,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
     }
     ?>
 
-
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Important links'); ?></h2>
         <ul>
             <li>
@@ -126,7 +125,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </ul>
     </div>
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Adding new sentences'); ?></h2>
         <p><?php echo __('There are two ways to add new sentences.'); ?></p>
         <ul>
@@ -173,8 +172,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
     </div>
 
-
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Translating sentences'); ?></h2>
         <p>
             <?php
@@ -199,8 +197,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
     </div>
 
-
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Correcting mistakes'); ?></h2>
         <p>
             <?php
@@ -222,7 +219,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
     </div>
 
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Adopting sentences'); ?></h2>
         <p>
             <?php
@@ -267,8 +264,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
     </div>
 
-
-    <div id="sentences_lists_help" class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentence lists'); ?></h2>
         <p>
             <?php

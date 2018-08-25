@@ -42,7 +42,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Languages'); ?></h2>
 
         <p>
@@ -70,10 +70,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 )
             );
             $total = $language[0]['total'];
-            $numberOfMembers = format(
-                __n('{total} member', '{total} members', $total),
-                array('total' => $total)
-            );
             $selected = '';
             if ($lang == $langCode) {
                 $selected = 'selected';
@@ -82,7 +78,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             echo '<tr class="'.$selected.'">';
             echo $this->Html->tag('td', $this->Languages->icon($langCode, array()));
             echo $this->Html->tag('td', $langName);
-            echo $this->Html->tag('td', $numberOfMembers);
+            echo $this->Html->tag('td', $total);
             echo '</tr>';
         }
         ?>
@@ -92,7 +88,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <?php
         $total = $this->Paginator->counter("%count%");
         $title = format(

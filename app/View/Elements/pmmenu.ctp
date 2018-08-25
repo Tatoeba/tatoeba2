@@ -27,7 +27,7 @@
 
 ?>
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Private messages'); ?></h2>
         <ul>
             <li>

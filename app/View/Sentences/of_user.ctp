@@ -65,7 +65,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
 
     <?php
     if ($userExists === false) {

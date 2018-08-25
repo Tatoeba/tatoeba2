@@ -31,7 +31,7 @@ $frenchUI = ($this->request->params['lang'] == 'fra');
 if (!$frenchUI):
 ?>
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Table of contents'); ?></h2>
         <ul>
             <li>
@@ -54,7 +54,7 @@ if (!$frenchUI):
 
 
 <? if (!$frenchUI): ?>
-<div class="main_module" id="translated-version">
+<div class="section md-whiteframe-1dp">
 <?php
 echo '<h2>' . __('Information for contributors of text to the Tatoeba project') .
     '</h2>';
@@ -170,11 +170,9 @@ echo '</p>';
 ?>
 </div>
 
-<hr/>
-
 <? endif; // !$frenchUI ?>
 
-<div class="main_module" id="fre-version">
+<div class="section md-whiteframe-1dp">
     <h2>
         Information destinée aux contributeurs d'informations textuelles au 
         projet Tatoeba
