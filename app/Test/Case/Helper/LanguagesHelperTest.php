@@ -4,6 +4,10 @@ App::uses('View', 'View');
 App::uses('LanguagesHelper', 'View/Helper');
 
 class LanguagesHelperTest extends CakeTestCase {
+	public $fixtures = array(
+		'app.users_language',
+	);
+
 	function setUp() {
         parent::setUp();
         $Controller = new Controller();
@@ -13,7 +17,8 @@ class LanguagesHelperTest extends CakeTestCase {
 		CurrentUser::store(null);
 	}
 
-	function endTest($method) {
+	function tearDown() {
+		parent::tearDown();
 		unset($this->Languages);
 		ClassRegistry::flush();
 	}
@@ -22,7 +27,9 @@ class LanguagesHelperTest extends CakeTestCase {
 		$admin = array(
 			'id' => 7,
 			'group_id' => 4,
-			'lang' => 'jpn,epo,ara,deu',
+			'settings' => array(
+				'lang' => 'jpn,epo,ara,deu'
+			)
 		);
 		CurrentUser::store($admin);
 	}
