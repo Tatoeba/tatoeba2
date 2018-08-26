@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 13:41+0000\n"
+"POT-Creation-Date: 2018-08-12 15:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2018\n"
 "Language-Team: Breton (https://www.transifex.com/tatoeba/teams/28284/br/)\n"
@@ -18,21 +18,21 @@ msgstr ""
 "Language: br\n"
 "Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L255
 msgid "Invalid file “{file}” ignored."
 msgstr "Restr direizh “{file}” laosket a-gostez."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L265
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "C'hwitet war grouadur ar c'havlec'h “{dir}” evit enporzhiañ ar restr "
 "“{file}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L275
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "C'hwitet war eiladur ar restr “{file}” betek ar c'havlec'h “{dir}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L284
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -40,7 +40,7 @@ msgstr ""
 "Divarrek da asign aodio da “{author}\" evit ar frazenn {sentenceId} e-barzh "
 "an diaz-roadennoù. Bezit sur ez eo un implijer gwiriek."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L293
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -116,11 +116,11 @@ msgstr "Kas"
 msgid "Correctness"
 msgstr "Reizhted"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L426
 msgid "unhide"
 msgstr "diguzhañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L429
 msgid "hide"
 msgstr "kuzhañ"
 

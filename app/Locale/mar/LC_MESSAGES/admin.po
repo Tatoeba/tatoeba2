@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 13:41+0000\n"
+"POT-Creation-Date: 2018-08-12 15:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2018\n"
 "Language-Team: Marathi (https://www.transifex.com/tatoeba/teams/28284/mr/)\n"
@@ -18,25 +18,25 @@ msgstr ""
 "Language: mr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L255
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "“{file}” ही अवैध फाईल दुर्लक्ष करण्यात आली."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L265
 msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
+msgstr "“{file}” ही फाईल आयात करण्यास “{dir}” ही डिरेक्टरी बनवता आली नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L275
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "“{file}” ही फाईल “{dir}” या डिरेक्टरीत कॉपी करता आली नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L284
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L293
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -45,19 +45,19 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L25
 msgid "Import recordings"
-msgstr ""
+msgstr "रेकॉर्डिंग आयात करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L28
 msgid "Import report"
-msgstr ""
+msgstr "अहवाल आयात करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L59
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "आयात करताना खालील त्रुटी आढळल्या."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L66
 msgid "Files detected"
-msgstr ""
+msgstr "फायली आढळल्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L84
 msgid "File name"
@@ -90,7 +90,7 @@ msgstr "अवैध"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L127
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "आयात डिरेक्टरीच्या आत कोणत्याही फायली आढळल्या नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L133
 msgid "Import"
@@ -98,7 +98,7 @@ msgstr "आयात करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L58
 msgid "Enabled"
-msgstr ""
+msgstr "सक्षम"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L55
@@ -110,11 +110,11 @@ msgstr "सबमिट करा"
 msgid "Correctness"
 msgstr "अचूकपणा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L426
 msgid "unhide"
 msgstr "दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L429
 msgid "hide"
 msgstr "लपवा"
 
@@ -160,7 +160,7 @@ msgstr "हटवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L52
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "आपल्याला प्रयोक्ता क्र. {number} नक्की हटवायचा आहे का?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L58
 msgid "List Users"
@@ -176,7 +176,7 @@ msgstr "सदस्य संपादित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L81
 msgid "Id"
-msgstr ""
+msgstr "आय.डी."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L52
@@ -204,7 +204,7 @@ msgstr "स्तर"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L98
 msgid "Send notifications"
-msgstr ""
+msgstr "अधिसूचना पाठवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L41
 msgid "Users"
