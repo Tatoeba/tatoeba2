@@ -9,6 +9,7 @@ class SentenceDerivationShellTest extends CakeTestCase
     public $fixtures = array(
         'app.contribution',
         'app.sentence',
+        'app.language',
         'app.reindex_flag',
         'app.link',
         'app.user',
@@ -276,10 +277,22 @@ class SentenceDerivationShellTest extends CakeTestCase
         $result = $this->findSentencesDerivation($expectedDerivation);
         $this->assertEquals($expectedDerivation, $result);
     }
-
     public function testRun_returnsNumberOfSentencesProceeded()
     {
-        $expected = 36;
+        /* 
+        47 sentences, 10 of them are skipped:
+            #10: doesn't have logs
+            #13: has been deleted
+            #15: no log of type 'sentence'
+            #16: no log of type 'sentence'
+            #17: no log of type 'sentence'
+            #18: date 0000-00-00
+            #19: date 0000-00-00
+            #22: no log of type 'sentence' 
+            #43: Already has based_on_id
+            #46: Only has one link logged
+        */
+        $expected = 37;
         $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }
