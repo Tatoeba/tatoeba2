@@ -569,8 +569,7 @@ class ListsHelper extends AppHelper
             echo $this->Form->input(
                 'name',
                 array(
-                    'type' => 'text',
-                    'empty' => __x('list', 'Name')
+                    'label' => __x('list', 'Name')
                 )
             );
             echo $this->Form->end(__('create'));
