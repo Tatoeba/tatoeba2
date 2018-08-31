@@ -25,6 +25,7 @@ cake acl grant Group.2 Transcriptions all
 cake acl grant Group.2 Audio all
 cake acl deny  Group.2 Audio/import all
 cake acl grant Group.2 Vocabulary all
+cake acl deny  Group.2 Licensing/switch_my_sentences all
 
 cake acl grant Group.3 Favorites all
 cake acl grant Group.3 Links all
@@ -51,6 +52,7 @@ cake acl grant Group.3 Transcriptions all
 cake acl grant Group.3 Audio all
 cake acl deny  Group.3 Audio/import all
 cake acl grant Group.3 Vocabulary all
+cake acl deny  Group.3 Licensing/switch_my_sentences all
 
 cake acl grant Group.4 Favorites all
 cake acl grant Group.4 PrivateMessages all
@@ -75,3 +77,4 @@ cake acl grant Group.4 Transcriptions all
 cake acl grant Group.4 Audio all
 cake acl deny  Group.4 Audio/import all
 cake acl grant Group.4 Vocabulary all
+cake acl deny  Group.4 Licensing/switch_my_sentences all
