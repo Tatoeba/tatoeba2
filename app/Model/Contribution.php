@@ -130,6 +130,13 @@ class Contribution extends AppModel implements CakeEventListener
      */
     public function getContributionsRelatedToSentence($sentenceId)
     {
+        $conditions = array(
+            'Contribution.sentence_id' => $sentenceId,
+        );
+        if (!CurrentUser::isAdmin()) {
+            $conditions['Contribution.type !='] = 'license';
+        }
+
         $result = $this->find(
             'all',
             array(
@@ -145,9 +152,7 @@ class Contribution extends AppModel implements CakeEventListener
                     'User.username',
                     'User.id'
                 ),
-                'conditions' => array(
-                    'Contribution.sentence_id' => $sentenceId
-                ),
+                'conditions' => $conditions,
                 'contain' => array(
                     'User'=> array(
                         'fields' => array('User.username','User.id')
@@ -234,7 +239,8 @@ class Contribution extends AppModel implements CakeEventListener
                 'conditions' => array(
                     $currentDate,
                     'Contribution.translation_id' => null,
-                    'Contribution.action' => 'insert'
+                    'Contribution.action' => 'insert',
+                    'Contribution.type !=' => 'license'
                 ),
             )
         );
