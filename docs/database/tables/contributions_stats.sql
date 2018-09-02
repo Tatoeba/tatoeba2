@@ -9,6 +9,6 @@ CREATE TABLE `contributions_stats` (
   `lang` VARCHAR(4) DEFAULT NULL,
   `sentences` INT(11) DEFAULT NULL,
   `action` ENUM('insert','update','delete') CHARACTER SET latin1 NOT NULL,
-  `type` ENUM('link','sentence') CHARACTER SET latin1 NOT NULL,
+  `type` ENUM('link','sentence','license') CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;

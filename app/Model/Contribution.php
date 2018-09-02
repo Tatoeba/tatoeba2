@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('CakeEventManager', 'Event');
+
 /**
  * Model for contributions.
  *
@@ -34,13 +36,33 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-class Contribution extends AppModel
+class Contribution extends AppModel implements CakeEventListener
 {
     public $actsAs = array(
         "Containable"
     );
     public $belongsTo = array('Sentence', 'User');
 
+    public function implementedEvents() {
+        return array(
+            'Model.Sentence.updated' => array('callable' => 'logSentenceUpdate'),
+        ) + parent::implementedEvents();
+    }
+
+    public function logSentenceUpdate($event) {
+        if (isset($event->data['data']['license'])) {
+            $this->create();
+            $this->save(array(
+                'sentence_id' => $event->data['id'],
+                'user_id' => CurrentUser::get('id'),
+                'datetime' => date("Y-m-d H:i:s"),
+                'ip' => CurrentUser::getIp(),
+                'action' => 'update',
+                'type' => 'license',
+                'text' => $event->data['data']['license'],
+            ));
+        };
+    }
 
     public function paginateCount($conditions = null, $recursive = 0, $extra = array())
     {
@@ -119,6 +141,7 @@ class Contribution extends AppModel
                     'Contribution.action',
                     'Contribution.id',
                     'Contribution.datetime',
+                    'Contribution.type',
                     'User.username',
                     'User.id'
                 ),
@@ -326,5 +349,24 @@ class Contribution extends AppModel
                 'limit' => 10
             )
         );
+    }
+
+
+    public function getOriginalCreatorOf($sentenceId)
+    {
+        $log = $this->find('first', array(
+            'fields' => array('user_id'),
+            'conditions' => array(
+                'sentence_id' => $sentenceId,
+                'action' => 'insert',
+                'type' => 'sentence',
+            ),
+            'order' => 'datetime',
+        ));
+        if ($log) {
+            return $log['Contribution']['user_id'];
+        } else {
+            return false;
+        }
     }
 }

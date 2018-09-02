@@ -1349,4 +1349,46 @@ class SentencesController extends AppController
             );
         }
     }
+
+    public function edit_license()
+    {
+        if (isset($this->request->data['Sentence']['id']) &&
+            isset($this->request->data['Sentence']['license'])) {
+            $sentenceId = $this->request->data['Sentence']['id'];
+            $newLicense = $this->request->data['Sentence']['license'];
+        } else {
+            throw new BadRequestException();
+        }
+
+        if (CurrentUser::isModerator()) {
+            unset($this->Sentence->validate['license']['canSwitchLicense']);
+        }
+
+        $this->Sentence->id = $sentenceId;
+
+        if (!CurrentUser::isModerator()) {
+            $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
+        }
+        elseif ($this->Sentence->save(array('license' => $newLicense))) {
+            $this->Flash->set(format(
+                __('The license of the sentence has been changed to “{newLicense}”.'),
+                compact('newLicense')
+            ));
+        } else {
+            if (isset($this->Sentence->validationErrors['license'])) {
+                $message = format(
+                    __('Unable to change the license to “{newLicense}” because:'),
+                    compact('newLicense')
+                );
+                $errors = $this->Sentence->validationErrors['license'];
+                $params = compact('errors');
+                $this->Flash->set($message, compact('params'));
+            }
+        }
+
+        $this->redirect(array(
+            'action' => 'show',
+            $sentenceId
+        ));
+    }
 }

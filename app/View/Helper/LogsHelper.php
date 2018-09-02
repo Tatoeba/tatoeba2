@@ -111,7 +111,11 @@ class LogsHelper extends AppHelper
                 }
                 break;
             case 'update' :
-                $label = __('edited by {user}');
+                if ($type == 'sentence') {
+                    $label = __('edited by {user}');
+                } else if ($type == 'license') {
+                    $label = __('license changed by {user}');
+                }
                 break;
             case 'delete' :
                 if ($type == 'sentence') {

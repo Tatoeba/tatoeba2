@@ -157,4 +157,94 @@ class SentencesControllerTest extends ControllerTestCase {
 		$this->testAction("/jpn/sentences/delete/$lonelySentenceId");
 		$this->assertCount(1, $this->controller->Sentence->findById($lonelySentenceId));
 	}
+
+	public function testEditLicense_returnsHTTP400IfNoId() {
+		$this->logInAs('contributor');
+		$this->expectException('BadRequestException');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'license' => 'CC0 1.0',
+			)),
+		));
+	}
+
+	public function testEditLicense_returnsHTTP400IfNoLicense() {
+		$this->logInAs('contributor');
+		$this->expectException('BadRequestException');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'id' => 48,
+			)),
+		));
+	}
+
+	public function testEditLicense_cannotEditAsUser() {
+		$sentenceId = 48;
+		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->logInAs('contributor');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'id' => $sentenceId,
+				'license' => 'CC0 1.0',
+			)),
+		));
+		$newSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->assertEquals($oldSentence, $newSentence);
+	}
+
+	public function testEditLicense_canEditIfCorpusMaintainer() {
+		$sentenceId = 48;
+		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->logInAs('corpus_maintainer');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'id' => $sentenceId,
+				'license' => 'CC0 1.0',
+			)),
+		));
+		$newSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->assertNotEquals($oldSentence, $newSentence);
+	}
+
+	public function testEditLicense_canEditIfAdmin() {
+		$sentenceId = 48;
+		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->logInAs('admin');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'id' => $sentenceId,
+				'license' => 'CC0 1.0',
+			)),
+		));
+		$newSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->assertNotEquals($oldSentence, $newSentence);
+	}
+
+	public function testEditLicense_bypassValidationIfCorpusMaintainer() {
+		$sentenceId = 50;
+		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->logInAs('corpus_maintainer');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'id' => $sentenceId,
+				'license' => 'CC0 1.0',
+			)),
+		));
+		$newSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->assertNotEquals($oldSentence, $newSentence);
+	}
+
+	public function testEditLicense_bypassValidationIfAdmin() {
+		$sentenceId = 50;
+		$oldSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->logInAs('admin');
+		$this->testAction('/jpn/sentences/edit_license', array(
+			'data' => array('Sentence' => array(
+				'id' => $sentenceId,
+				'license' => 'CC0 1.0',
+			)),
+		));
+		$newSentence = $this->controller->Sentence->findById($sentenceId, 'license');
+		$this->assertNotEquals($oldSentence, $newSentence);
+	}
 }

@@ -102,20 +102,6 @@ class AppController extends Controller
         }
     }
 
-    /**
-     * Links the Sentence and Translation models with restrictions
-     * on the language of translated sentences according to the
-     * profile setting 'lang'.
-     */
-    private function linkSentenceAndTranslationModels() {
-        $Sentence = ClassRegistry::init('Sentence');
-        $userLangs = CurrentUser::getLanguages();
-        $conditions = $userLangs ?
-                      array('Translation.lang' => $userLangs) :
-                      array();
-        $Sentence->linkTranslationModel($conditions);
-    }
-
     private function blackhole($type) {
       var_dump("Blackholed: $type");
     }
@@ -147,8 +133,6 @@ class AppController extends Controller
         // So that we can access the current users info from models.
         // Important: needs to be done after RememberMe->check().
         CurrentUser::store($this->Auth->user());
-
-        $this->linkSentenceAndTranslationModels();
 
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the

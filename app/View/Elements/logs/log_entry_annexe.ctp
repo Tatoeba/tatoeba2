@@ -6,7 +6,7 @@ $sentenceText = $log['Contribution']['text'];
 $sentenceDate = $log['Contribution']['datetime'];
 $username = $log['User']['username'];
 $action =  $log['Contribution']['action'];
-$type = 'sentence';
+$type = $log['Contribution']['type'];
 $sentenceLink = null;
 $translationLink = null;
 
@@ -31,7 +31,6 @@ if (isset($log['Contribution']['translation_id'])) {
             $translationId
         )
     );
-    $type = 'link';
 }
 
 $infoLabel = $this->Logs->getInfoLabel($type, $action, $username, $sentenceDate);
@@ -45,7 +44,9 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
             <?
             if ($type =='sentence') {
                 echo $sentenceLink.' '.Sanitize::html($sentenceText);
-            } else {
+            } elseif ($type == 'license') {
+                echo $sentenceLink.' ➜ '.$this->Html->tag('span', $sentenceText, array('class' => 'license'));
+            } else { // link
                 echo $sentenceLink.' ➜ '.$translationLink;
             }
             ?>

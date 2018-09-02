@@ -70,7 +70,9 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
             <?
             if ($type =='sentence') {
                 echo Sanitize::html($sentenceText);
-            } else {
+            } elseif ($type == 'license') {
+                echo ' ➜ '.$this->Html->tag('span', $sentenceText, array('class' => 'license'));
+            } else { // link
                 echo $sentenceLink.' ➜ '.$translationLink;
             }
             ?>

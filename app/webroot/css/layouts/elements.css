@@ -166,6 +166,14 @@ html[dir="rtl"] #logs md-list-item {
     border-color: #e0e0e0;
 }
 
+#logs md-list-item.license-update {
+    border-color: #FF69B4;
+}
+
+#logs span.license {
+    font-style: italic;
+}
+
 #logs md-list-item.link-insert {
     border-color: #03a9f4;
 }

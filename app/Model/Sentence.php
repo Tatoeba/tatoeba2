@@ -41,6 +41,7 @@
 App::import('Model', 'CurrentUser');
 App::import('Sanitize');
 App::import('Lib', 'LanguagesLib');
+App::uses('CakeEvent', 'Event');
 
 class Sentence extends AppModel
 {
@@ -58,12 +59,6 @@ class Sentence extends AppModel
         ),
         'text' => array(
             'rule' => array('minLength', '1')
-        ),
-        'license' => array(
-            'rule' => array('inList', array(
-                'CC0 1.0',
-                'CC BY 2.0 FR',
-            )),
         ),
     );
 
@@ -131,6 +126,46 @@ class Sentence extends AppModel
         }
 
         $this->findMethods['random'] = true;
+
+        $this->validate['license'] = array(
+            'validLicense' => array(
+                'rule' => array('inList', array(
+                    'CC0 1.0',
+                    'CC BY 2.0 FR',
+                )),
+                /* @translators: This string will be preceded by "Unable to
+                   change the license to “{newLicense}” because:" */
+                'message' => __('This is not a valid license.'),
+            ),
+            'isChanging' => array(
+                'rule' => array('isChanging', 'license'),
+                'on' => 'update',
+                /* @translators: This string will be preceded by "Unable to
+                   change the license to “{newLicense}” because:" */
+                'message' => __('This sentence is already under that license.'),
+            ),
+            'canSwitchLicense' => array(
+                'rule' => array('canSwitchLicense'),
+                'on' => 'update',
+            ),
+        );
+
+        $this->linkWithTranslationModel();
+
+        $this->getEventManager()->attach($this->Contribution);
+    }
+
+    /**
+     * Links the Sentence and Translation models with restrictions
+     * on the language of translated sentences according to the
+     * profile setting 'lang'.
+     */
+    private function linkWithTranslationModel() {
+        $userLangs = CurrentUser::getLanguages();
+        $conditions = $userLangs ?
+                      array('Translation.lang' => $userLangs) :
+                      array();
+        $this->linkTranslationModel($conditions);
     }
 
     public function linkTranslationModel($conditions = array())
@@ -185,6 +220,53 @@ class Sentence extends AppModel
         }
     }
 
+    public function isChanging($check, $what) {
+        $newValue = $check[$what];
+        $currentValue = $this->field($what);
+        return $newValue !== $currentValue;
+    }
+
+    public function canSwitchLicense($check) {
+        $sentenceId = $this->id;
+        $sentence = $this->findById($sentenceId, array('based_on_id', 'user_id', 'license'));
+        $isOriginal = !is_null($sentence['Sentence']['based_on_id']) && $sentence['Sentence']['based_on_id'] == 0;
+        if (!$isOriginal) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('The sentence needs to be original (not initially derived from translation).'));
+        }
+
+        $currentOwner = $sentence['Sentence']['user_id'];
+        $currentUser = CurrentUser::get('id');
+        if ($currentUser != $currentOwner) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('You\'re not the owner of this sentence.'));
+        }
+
+        $originalCreator = $this->Contribution->getOriginalCreatorOf($sentenceId);
+        if ($originalCreator !== $currentOwner) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('The owner of the sentence needs to be its original creator.'));
+        }
+
+        $newLicense = $check['license'];
+        $currentLicense = $sentence['Sentence']['license'];
+        $perms = array(null, 'CC BY 2.0 FR', 'CC0 1.0');
+        $currentPermissiveness = array_search($currentLicense, $perms);
+        $newPermissiveness = array_search($newLicense, $perms);
+        if ($currentPermissiveness === false ||
+            $newPermissiveness === false ||
+            $newPermissiveness < $currentPermissiveness) {
+            /* @translators: This string will be preceded by "Unable to
+               change the license to “{newLicense}” because:" */
+            $this->invalidate('license', __('You can only switch to a more permissive license.'));
+        }
+
+        return true;
+    }
+
     /**
      * Called after a sentence is saved.
      *
@@ -195,6 +277,13 @@ class Sentence extends AppModel
      */
     public function afterSave($created, $options = array())
     {
+        if (!$created) {
+            $event = new CakeEvent('Model.Sentence.updated', $this, array(
+                'id' => $this->id,
+                'data' => $this->data[$this->alias]
+            ));
+            $this->getEventManager()->dispatch($event);
+        }
         $this->logSentenceEdition($created);
         $this->updateTags($created);
         if (isset($this->data['Sentence']['modified'])) {
