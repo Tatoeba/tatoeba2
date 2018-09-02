@@ -45,11 +45,11 @@ class Contribution extends AppModel implements CakeEventListener
 
     public function implementedEvents() {
         return array(
-            'Model.Sentence.updated' => array('callable' => 'logSentenceUpdate'),
+            'Model.Sentence.saved' => array('callable' => 'logSentence'),
         ) + parent::implementedEvents();
     }
 
-    public function logSentenceUpdate($event) {
+    public function logSentence($event) {
         if (isset($event->data['data']['license'])) {
             $this->create();
             $this->save(array(
@@ -57,7 +57,7 @@ class Contribution extends AppModel implements CakeEventListener
                 'user_id' => CurrentUser::get('id'),
                 'datetime' => date("Y-m-d H:i:s"),
                 'ip' => CurrentUser::getIp(),
-                'action' => 'update',
+                'action' => $event->data['created'] ? 'insert' : 'update',
                 'type' => 'license',
                 'text' => $event->data['data']['license'],
             ));
