@@ -48,10 +48,10 @@ class AppShell extends Shell {
         if (!isset($options['conditions'])) {
             $options['conditions'] = array();
         }
-        $options['conditions'] = array_merge(
-            array("$pKey >" => 0),
-            $options['conditions']
-        );
+        $options['conditions'][] = array();
+        end($options['conditions']);
+        $conditionKey = key($options['conditions']);
+        reset($options['conditions']);
 
         $data = array();
         do {
@@ -62,7 +62,7 @@ class AppShell extends Shell {
             $lastRow = end($data);
             if ($lastRow) {
                 $lastId = isset($lastRow[$model][$pKey]) ? $lastRow[$model][$pKey] : $lastRow[$model][$pKeyShort];
-                $options['conditions']["$pKey >"] = $lastId;
+                $options['conditions'][$conditionKey] = array("$pKey >" => $lastId);
             }
             echo ".";
         } while ($data);
