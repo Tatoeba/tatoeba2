@@ -29,9 +29,10 @@ class AppShell extends Shell {
     public $batchOperationSize = 1000;
 
     protected function batchOperation($model, $operation, $options) {
-        $pKey = $this->{$model}->primaryKey;
+        $pKey = $this->{$model}->alias.'.'.$this->{$model}->primaryKey;
+        $pKeyShort = $this->{$model}->primaryKey;
         if (isset($options['fields'])) {
-            assert(in_array($pKey, $options['fields']));
+            assert(in_array($pKey, $options['fields']) || in_array($pKeyShort, $options['fields']));
         }
 
         $proceeded = 0;
@@ -58,7 +59,8 @@ class AppShell extends Shell {
             $proceeded += $this->{$operation}($data, $model);
             $lastRow = end($data);
             if ($lastRow) {
-                $options['conditions']["$pKey >"] = $lastRow[$model][$pKey];
+                $lastId = isset($lastRow[$model][$pKey]) ? $lastRow[$model][$pKey] : $lastRow[$model][$pKeyShort];
+                $options['conditions']["$pKey >"] = $lastId;
             }
             echo ".";
         } while ($data);
