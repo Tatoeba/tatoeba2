@@ -29,18 +29,23 @@ class AppShell extends Shell {
     public $batchOperationSize = 1000;
 
     protected function batchOperation($model, $operation, $options) {
-        $pKey = $this->{$model}->alias.'.'.$this->{$model}->primaryKey;
-        $pKeyShort = $this->{$model}->primaryKey;
+        if (!isset($options['order'])) {
+            $options['order'] = $this->{$model}->alias.'.'.$this->{$model}->primaryKey;
+        }
+        if (is_string($options['order'])) {
+            $options['order'] = array($options['order']);
+        }
+        $order = $options['order'][0];
         if (isset($options['fields'])) {
-            assert(in_array($pKey, $options['fields']) || in_array($pKeyShort, $options['fields']));
+            $options['fields'][] = $order;
         }
 
+        $oparts = explode('.', $order);
         $proceeded = 0;
         $options = array_merge(
             array(
                 'contain' => array(),
                 'limit' => $this->batchOperationSize,
-                'order' => "$pKey ASC",
             ),
             $options
         );
@@ -61,7 +66,7 @@ class AppShell extends Shell {
             $proceeded += call_user_func_array(array($this, $operation), $args);
             $lastRow = end($data);
             if ($lastRow) {
-                $lastId = isset($lastRow[$model][$pKey]) ? $lastRow[$model][$pKey] : $lastRow[$model][$pKeyShort];
+                $lastId = $lastRow[ $oparts[0] ][ $oparts[1] ];
                 $options['conditions'][$conditionKey] = array("$pKey >" => $lastId);
             }
             echo ".";
