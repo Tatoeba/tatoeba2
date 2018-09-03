@@ -28,6 +28,23 @@ App::uses('Shell', 'Console');
 class AppShell extends Shell {
     public $batchOperationSize = 1000;
 
+    private function _orderCondition($nonUniqueField, $lastValue, $pKey, $lastId) {
+        if ($nonUniqueField == $pKey) {
+            return array("$pKey >" => $lastId);
+        } else {
+            return array('AND' => array(
+                "$nonUniqueField >=" => $lastValue,
+                array('OR' => array(
+                    "$nonUniqueField >" => $lastValue,
+                    array('AND' => array(
+                        $nonUniqueField => $lastValue,
+                        "$pKey >" => $lastId,
+                    )),
+                )),
+            ));
+        }
+    }
+
     protected function batchOperation($model, $operation, $options) {
         if (!isset($options['order'])) {
             $options['order'] = $this->{$model}->alias.'.'.$this->{$model}->primaryKey;
@@ -35,12 +52,20 @@ class AppShell extends Shell {
         if (is_string($options['order'])) {
             $options['order'] = array($options['order']);
         }
-        $order = $options['order'][0];
+        $order1 = $options['order'][0];
+        if (count($options['order']) == 2) {
+            $order2 = $options['order'][1];
+        } else {
+            $order2 = $order1;
+        }
         if (isset($options['fields'])) {
-            $options['fields'][] = $order;
+            foreach ($options['order'] as $field) {
+                $options['fields'][] = $field;
+            }
         }
 
-        $oparts = explode('.', $order);
+        $o1parts = explode('.', $order1);
+        $o2parts = explode('.', $order2);
         $proceeded = 0;
         $options = array_merge(
             array(
@@ -66,8 +91,9 @@ class AppShell extends Shell {
             $proceeded += call_user_func_array(array($this, $operation), $args);
             $lastRow = end($data);
             if ($lastRow) {
-                $lastId = $lastRow[ $oparts[0] ][ $oparts[1] ];
-                $options['conditions'][$conditionKey] = array("$pKey >" => $lastId);
+                $lastValue1 = $lastRow[ $o1parts[0] ][ $o1parts[1] ];
+                $lastValue2 = $lastRow[ $o2parts[0] ][ $o2parts[1] ];
+                $options['conditions'][$conditionKey] = $this->_orderCondition($order1, $lastValue1, $order2, $lastValue2);
             }
             echo ".";
         } while ($data);
