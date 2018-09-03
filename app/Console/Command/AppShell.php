@@ -56,7 +56,9 @@ class AppShell extends Shell {
         $data = array();
         do {
             $data = $this->{$model}->find('all', $options);
-            $proceeded += $this->{$operation}($data, $model);
+            $args = func_get_args();
+            array_splice($args, 0, 3, array($data, $model));
+            $proceeded += call_user_func_array(array($this, $operation), $args);
             $lastRow = end($data);
             if ($lastRow) {
                 $lastId = isset($lastRow[$model][$pKey]) ? $lastRow[$model][$pKey] : $lastRow[$model][$pKeyShort];
