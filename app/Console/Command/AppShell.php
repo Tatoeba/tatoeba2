@@ -29,21 +29,38 @@ class AppShell extends Shell {
     public $batchOperationSize = 1000;
 
     protected function batchOperation($model, $operation, $options) {
+        $pKey = $this->{$model}->primaryKey;
+        if (isset($options['fields'])) {
+            assert(in_array($pKey, $options['fields']));
+        }
+
         $proceeded = 0;
         $options = array_merge(
             array(
                 'contain' => array(),
                 'limit' => $this->batchOperationSize,
-                'offset' => 0,
+                'order' => "$pKey ASC",
             ),
             $options
         );
 
+        if (!isset($options['conditions'])) {
+            $options['conditions'] = array();
+        }
+        $options['conditions'] = array_merge(
+            array("$pKey >" => 0),
+            $options['conditions']
+        );
+
+        $data = array();
         do {
             $data = $this->{$model}->find('all', $options);
             $proceeded += $this->{$operation}($data, $model);
+            $lastRow = end($data);
+            if ($lastRow) {
+                $options['conditions']["$pKey >"] = $lastRow[$model][$pKey];
+            }
             echo ".";
-            $options['offset'] += $this->batchOperationSize;
         } while ($data);
         return $proceeded;
     }
