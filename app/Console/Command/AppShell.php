@@ -26,13 +26,14 @@ App::uses('Shell', 'Console');
  * @package       app.Console.Command
  */
 class AppShell extends Shell {
+    public $batchOperationSize = 1000;
+
     protected function batchOperation($model, $operation, $options) {
-        $batchSize = 1000;
         $proceeded = 0;
         $options = array_merge(
             array(
                 'contain' => array(),
-                'limit' => $batchSize,
+                'limit' => $this->batchOperationSize,
                 'offset' => 0,
             ),
             $options
@@ -42,7 +43,7 @@ class AppShell extends Shell {
             $data = $this->{$model}->find('all', $options);
             $proceeded += $this->{$operation}($data, $model);
             echo ".";
-            $options['offset'] += $batchSize;
+            $options['offset'] += $this->batchOperationSize;
         } while ($data);
         return $proceeded;
     }
