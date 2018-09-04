@@ -1,5 +1,7 @@
 <?php
+
 App::uses('QueueTask', 'Queue.Console/Command/Task');
+App::uses('Model', 'CurrentUser');
 
 class QueueSwitchSentencesLicenseTask extends QueueTask {
 
@@ -117,6 +119,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             )),
         );
 
+        CurrentUser::store(array('id' => $options['userId']));
         $proceeded = $this->batchOperation(
             'Sentence',
             'switchLicense',
