@@ -21,6 +21,10 @@ App::uses('AppController', 'Controller');
 
 class LicensingController extends AppController {
 
+    public $uses = array(
+        'Queue.QueuedTask',
+    );
+
     public function beforeFilter()
     {
         parent::beforeFilter();
@@ -31,5 +35,28 @@ class LicensingController extends AppController {
     }
 
     public function switch_my_sentences() {
+        $currentUserId = CurrentUser::get('id');
+
+        if ($this->request->is('post')) {
+            $options = array(
+                'userId' => $currentUserId,
+                'dryRun' => true,
+            );
+            $currentJob = $this->QueuedTask->createJob(
+                'SwithSentencesLicense',
+                $options,
+                $currentUserId
+            );
+            if ($currentJob) {
+                $currentJob = $this->QueuedTask->read();
+            }
+        } else {
+            $currentJob = $this->QueuedTask->find('all', array(
+                'jobtype' => 'SwitchSentencesLicense',
+                'group' => $currentUserId,
+            ));
+        }
+
+        $this->set(compact('currentJob'));
     }
 }
