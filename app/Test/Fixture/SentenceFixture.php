@@ -701,5 +701,18 @@ class SentenceFixture extends CakeTestFixture {
 			'license' => null,
 			'based_on_id' => '0',
 		),
+		array(
+			'id' => '53',
+			'lang' => 'eng',
+			'text' => 'Another original sentence (not initially added as a translation).',
+			'correctness' => '0',
+			'user_id' => '4',
+			'created' => '2017-04-11 13:49:10',
+			'modified' => '2017-04-11 13:49:10',
+			'script' => null,
+			'hash' => "29a5rjn\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => '0',
+		),
 	);
 }
