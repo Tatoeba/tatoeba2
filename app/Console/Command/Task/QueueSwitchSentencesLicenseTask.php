@@ -126,6 +126,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             $findOptions,
             $options['dryRun']
         );
+        CurrentUser::store(null);
         $this->out("Changed the license of $proceeded sentence(s).");
 
         return true;
