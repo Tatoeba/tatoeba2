@@ -37,27 +37,32 @@ class LicensingController extends AppController {
     public function switch_my_sentences() {
         $currentUserId = CurrentUser::get('id');
 
+        $currentJob = $this->QueuedTask->find('first', array(
+            'conditions' => array(
+                'jobtype' => 'SwitchSentencesLicense',
+                'group' => $currentUserId,
+            )
+        ));
         if ($this->request->is('post')) {
-            $options = array(
-                'userId' => $currentUserId,
-                'dryRun' => true,
-            );
-            $currentJob = $this->QueuedTask->createJob(
-                'SwitchSentencesLicense',
-                $options,
-                null,
-                $currentUserId
-            );
             if ($currentJob) {
-                $currentJob = $this->QueuedTask->read();
+                $this->Flash->set(__(
+                    'A license switch is already in progress.'
+                ));
+            } else {
+                $options = array(
+                    'userId' => $currentUserId,
+                    'dryRun' => true,
+                );
+                $currentJob = $this->QueuedTask->createJob(
+                    'SwitchSentencesLicense',
+                    $options,
+                    null,
+                    $currentUserId
+                );
+                if ($currentJob) {
+                    $currentJob = $this->QueuedTask->read();
+                }
             }
-        } else {
-            $currentJob = $this->QueuedTask->find('first', array(
-                'conditions' => array(
-                    'jobtype' => 'SwitchSentencesLicense',
-                    'group' => $currentUserId,
-                )
-            ));
         }
 
         $this->set(compact('currentJob'));
