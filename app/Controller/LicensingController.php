@@ -51,7 +51,7 @@ class LicensingController extends AppController {
                 $currentJob = $this->QueuedTask->read();
             }
         } else {
-            $currentJob = $this->QueuedTask->find('all', array(
+            $currentJob = $this->QueuedTask->find('first', array(
                 'jobtype' => 'SwitchSentencesLicense',
                 'group' => $currentUserId,
             ));

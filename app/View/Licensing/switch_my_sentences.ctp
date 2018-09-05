@@ -18,9 +18,48 @@
  */
 
 $this->set('title_for_layout', __("Switch my sentences' license"));
-var_dump($currentJob);
 
-echo $this->Form->create();
-echo $this->Form->end(__('Switch license'));
-?>
+if ($currentJob) {
+    $status = $currentJob['QueuedTask']['status'];
+    switch ($status) {
+    /* Possible values for 'status' are defined
+     * in __construct() in app/Plugin/Queue/Model/QueuedTask.php */
+    case 'NOT_READY':
+    case 'NOT_STARTED':
+        $message = __('The license switch of your sentences will be started soon.');
+        break;
+    case 'IN_PROGRESS':
+        $message = __('The license switch of your sentences is in progress.');
+        break;
+    case 'COMPLETED':
+        $message = __('The license switch of your sentences is completed.');
+        break;
+    case 'UNKNOWN':
+    case 'FAILED':
+    default:
+        $message = __('A problem occured while switching the license of your sentences.');
+    }
+    echo $this->Html->tag('p', $message);
+} else {
+    echo $this->Html->tag('p', format(
+        __('This page allows you to massively switch the license of your sentences to {CC0-link}. Among all your sentences, only the ones that meet the following conditions will be affected.'),
+       array('CC0-link' => $this->Sentences->License->licenseLink('CC0 1.0'))
+    ));
+    echo $this->Html->nestedList(array(
+        __('The current license of the sentence must be CC BY 2.0 FR.'),
+        __('You must be the original creator of the sentence.'),
+        __('The sentence must be original and not derived from translation.'),
+    ));
+
+    echo $this->Html->tag('p', __(
+        'Press the following button to initiate the license switch.'
+    ));
+    echo $this->Html->tag(
+        'p',
+        __('Be careful, this operation can not be undone. Switching from CC BY to CC0 is possible, but not the opposite.'),
+        array('class' => 'warning')
+    );
+    echo $this->Form->create();
+    echo $this->Form->end(__('Switch license to CC0 1.0'));
+}
 
