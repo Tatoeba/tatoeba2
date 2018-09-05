@@ -33,9 +33,10 @@
         };
     }
 
-    function LanguageDropdownController() {
+    function LanguageDropdownController($scope) {
         var vm = this;
         var languages = [];
+        var name = '';
 
         vm.selectedItem = null;
         vm.searchText = '';
@@ -45,7 +46,17 @@
 
         /////////////////////////////////////////////////////////////////////////
 
-        function init(data, selectedLang) {
+        $scope.$on('setLang', function(event, data){
+            if (data.name && data.name === name) {
+                setLang(data.lang);
+            }
+        });
+
+        /////////////////////////////////////////////////////////////////////////
+
+        function init(data, selectedLang, dropdownName) {
+            name = dropdownName;
+
             Object.keys(data).forEach((key1) => {
                 if (typeof data[key1] === 'object'){
                     var items = data[key1];
@@ -58,9 +69,7 @@
             });
 
             if (selectedLang) {
-                vm.selectedItem = languages.find((item) => {
-                    return item.code === selectedLang;
-                });
+                setLang(selectedLang);
             }
         }
 
@@ -74,6 +83,13 @@
             } else {
                 return languages;
             }
+        }
+
+        function setLang(lang) {
+            vm.selectedItem = languages.find((item) => {
+                return item.code === lang;
+            });
+            $scope.$parent.$broadcast('languageChange', {name: name, lang: lang});
         }
     }
 

@@ -53,25 +53,6 @@ function changeInterfaceLang(newLang) {
     location.reload();
 }
 
-
-/**
- * Swaps languages of both drop down on clicking arrow in search box
- */
-
-
-$(document).ready(function() {
-    $( "#arrow" ).click(function() {
-        var langFrom = $('#SentenceFrom').val();
-        var langTo = $('#SentenceTo').val();
-        $('#SentenceFrom').val(langTo);
-        $('#SentenceTo').val(langFrom);
-    });
-
-    $('#clearSearch').click(function() {
-        $('#SentenceQuery').val('').focus();
-    });
-});
-
 /**
  * Traverses through paginated pages on Ctrl + Left/Right arrow
  * Only activated when focus is not on a textbox.
