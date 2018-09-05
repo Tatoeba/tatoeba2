@@ -87,13 +87,14 @@ echo $this->Form->create(
 
     <div layout="row" layout-align="center end">
         <div layout="column">
+            <label for="SentenceTo"><?= __('From') ?></label>
             <?php
-            echo $this->Search->selectLang(
-                'from',
-                $selectedLanguageFrom,
+            echo $this->element(
+                'language_dropdown', 
                 array(
-                    'div' => false,
-                    'label' => __('From'),
+                    'name' => 'from',
+                    'selectedLanguage' => $selectedLanguageFrom,
+                    'languages' => $this->Search->getLangs()
                 )
             );
             ?>
@@ -104,13 +105,16 @@ echo $this->Form->create(
         </div>
 
         <div layout="column">
+            <label for="SentenceTo">
+                <?= __x('language', 'To') ?>
+            </label>
             <?php
-            echo $this->Search->selectLang(
-                'to',
-                $selectedLanguageTo,
+            echo $this->element(
+                'language_dropdown', 
                 array(
-                    'div' => false,
-                    'label' => __x('language', 'To'),
+                    'name' => 'to',
+                    'selectedLanguage' => $selectedLanguageTo,
+                    'languages' => $this->Search->getLangs()
                 )
             );
             ?>

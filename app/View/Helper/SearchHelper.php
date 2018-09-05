@@ -23,7 +23,7 @@ class SearchHelper extends AppHelper
 
     private $langs;
 
-    private function getLangs() {
+    public function getLangs() {
         $restrictSearchLangsEnabled = $this->Session->read('restrict_search_langs_enabled');
         if ($restrictSearchLangsEnabled) {
             $langArray = $this->Languages->profileLanguagesArray(false, false, true);
