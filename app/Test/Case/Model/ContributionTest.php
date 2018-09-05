@@ -24,7 +24,7 @@ class ContributionTest extends CakeTestCase {
         parent::tearDown();
     }
 
-    public function testLogSentence_logsLicense() {
+    public function testLogSentenceUpdate_logsLicenseInsert() {
         CurrentUser::store(array('id' => 7));
         $expectedLog = array(
             'sentence_id' => '48',
@@ -33,28 +33,44 @@ class ContributionTest extends CakeTestCase {
             'translation_lang' => null,
             'script' => null,
             'text' => 'CC0 1.0',
+            'action' => 'insert',
             'user_id' => '7',
             'type' => 'license',
         );
-
-        $expectedLog['action'] = 'insert';
         $event = new CakeEvent('Model.Sentence.saved', $this, array(
             'id' => 48,
             'created' => true,
             'data' => array('license' => 'CC0 1.0'),
         ));
+
         $this->Contribution->Sentence->getEventManager()->dispatch($event);
+
         $newLog = $this->Contribution->findById($this->Contribution->getLastInsertID());
         $newLog = array_intersect_key($newLog['Contribution'], $expectedLog);
         $this->assertEquals($expectedLog, $newLog);
+    }
 
-        $expectedLog['action'] = 'update';
+    public function testLogSentenceUpdate_logsLicenseUpdate() {
+        CurrentUser::store(array('id' => 7));
+        $expectedLog = array(
+            'sentence_id' => '48',
+            'sentence_lang' => null,
+            'translation_id' => null,
+            'translation_lang' => null,
+            'script' => null,
+            'text' => 'CC0 1.0',
+            'action' => 'update',
+            'user_id' => '7',
+            'type' => 'license',
+        );
         $event = new CakeEvent('Model.Sentence.saved', $this, array(
             'id' => 48,
             'created' => false,
             'data' => array('license' => 'CC0 1.0'),
         ));
+
         $this->Contribution->Sentence->getEventManager()->dispatch($event);
+
         $newLog = $this->Contribution->findById($this->Contribution->getLastInsertID());
         $newLog = array_intersect_key($newLog['Contribution'], $expectedLog);
         $this->assertEquals($expectedLog, $newLog);
