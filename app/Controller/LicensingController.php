@@ -43,8 +43,9 @@ class LicensingController extends AppController {
                 'dryRun' => true,
             );
             $currentJob = $this->QueuedTask->createJob(
-                'SwithSentencesLicense',
+                'SwitchSentencesLicense',
                 $options,
+                null,
                 $currentUserId
             );
             if ($currentJob) {
@@ -52,8 +53,10 @@ class LicensingController extends AppController {
             }
         } else {
             $currentJob = $this->QueuedTask->find('first', array(
-                'jobtype' => 'SwitchSentencesLicense',
-                'group' => $currentUserId,
+                'conditions' => array(
+                    'jobtype' => 'SwitchSentencesLicense',
+                    'group' => $currentUserId,
+                )
             ));
         }
 
