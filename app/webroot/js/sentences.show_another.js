@@ -37,7 +37,7 @@ function loadRandom(lang){
       type: "GET",
       url: "/sentences/random/" + lang,
       success: function (data){ 
-          $("#random_sentence_display").html(data);
+          $("#random_sentence_display").watch("html", data);
           $("#random-progress").hide();
           $("#random_sentence_display").show();
           }
