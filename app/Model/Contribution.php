@@ -45,11 +45,11 @@ class Contribution extends AppModel implements CakeEventListener
 
     public function implementedEvents() {
         return array(
-            'Model.Sentence.updated' => array('callable' => 'logSentenceUpdate'),
+            'Model.Sentence.saved' => array('callable' => 'logSentence'),
         ) + parent::implementedEvents();
     }
 
-    public function logSentenceUpdate($event) {
+    public function logSentence($event) {
         if (isset($event->data['data']['license'])) {
             $this->create();
             $this->save(array(
@@ -57,7 +57,7 @@ class Contribution extends AppModel implements CakeEventListener
                 'user_id' => CurrentUser::get('id'),
                 'datetime' => date("Y-m-d H:i:s"),
                 'ip' => CurrentUser::getIp(),
-                'action' => 'update',
+                'action' => $event->data['created'] ? 'insert' : 'update',
                 'type' => 'license',
                 'text' => $event->data['data']['license'],
             ));
@@ -130,6 +130,13 @@ class Contribution extends AppModel implements CakeEventListener
      */
     public function getContributionsRelatedToSentence($sentenceId)
     {
+        $conditions = array(
+            'Contribution.sentence_id' => $sentenceId,
+        );
+        if (!CurrentUser::isAdmin()) {
+            $conditions['Contribution.type !='] = 'license';
+        }
+
         $result = $this->find(
             'all',
             array(
@@ -145,9 +152,7 @@ class Contribution extends AppModel implements CakeEventListener
                     'User.username',
                     'User.id'
                 ),
-                'conditions' => array(
-                    'Contribution.sentence_id' => $sentenceId
-                ),
+                'conditions' => $conditions,
                 'contain' => array(
                     'User'=> array(
                         'fields' => array('User.username','User.id')
@@ -234,7 +239,8 @@ class Contribution extends AppModel implements CakeEventListener
                 'conditions' => array(
                     $currentDate,
                     'Contribution.translation_id' => null,
-                    'Contribution.action' => 'insert'
+                    'Contribution.action' => 'insert',
+                    'Contribution.type !=' => 'license'
                 ),
             )
         );
