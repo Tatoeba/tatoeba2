@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-26 11:19+0000\n"
-"PO-Revision-Date: 2018-08-26 12:05+0000\n"
+"POT-Creation-Date: 2018-09-02 16:55+0000\n"
+"PO-Revision-Date: 2018-09-02 18:52+0000\n"
 "Last-Translator: Trang\n"
 "Language-Team: French (http://www.transifex.com/tatoeba/tatoeba_website/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "Il n'y a aucun utilisateur du nom de {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L128
 msgid "You need to be logged in."
 msgstr "Vous devez être connecté(e)"
 
@@ -236,6 +236,18 @@ msgid ""
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr "«&nbsp;détenues par un locuteur affirmant que c'est sa langue natale&nbsp;», car le critère «&nbsp;propriétaire&nbsp;: {username}&nbsp;» est présent mais ce membre n'est pas un locuteur affirmant que la langue dans laquelle vous recherchez est sa langue natale"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1370
+msgid "You are not allowed to change the license of this sentence."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1374
+msgid "The license of the sentence has been changed to “{newLicense}”."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1380
+msgid "Unable to change the license to “{newLicense}” because:"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L110
 msgid "All public lists ({total})"
@@ -505,6 +517,43 @@ msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
 msgstr[0] "Le caractère suivant n'est pas transcrit&nbsp: {charsEnumeration}."
 msgstr[1] "Les caractères suivants ne sont pas transcrits&nbsp: {charsEnumeration}."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L138
+msgid "This is not a valid license."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L145
+msgid "This sentence is already under that license."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L236
+msgid ""
+"The sentence needs to be original (not initially derived from translation)."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L244
+msgid "You're not the owner of this sentence."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L251
+msgid "The owner of the sentence needs to be its original creator."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L264
+msgid "You can only switch to a more permissive license."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/SentencesList.php#L153
 msgid "unnamed list"
@@ -778,6 +827,7 @@ msgid "My audio"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L51
 msgid "License:"
 msgstr ""
 
@@ -1366,8 +1416,8 @@ msgid "Advanced search"
 msgstr "Recherche avancée"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L588
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L606
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L587
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L605
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/index.ctp#L184
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Tags/view_all.ctp#L45
 msgid "Search"
@@ -1399,10 +1449,6 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L118
 msgid "License"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L47
-msgid "Current license:"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L67
@@ -1506,8 +1552,8 @@ msgid "My collection"
 msgstr "Ma collection"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/space.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L646
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L677
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L645
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L676
 msgid "My lists"
 msgstr "Mes listes"
 
@@ -1621,7 +1667,7 @@ msgstr "Transcriptions"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/users_menu.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L531
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L618
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L296
 msgid "Lists"
 msgstr "Listes"
@@ -2090,29 +2136,29 @@ msgstr "NOTE : Vous pouvez aussi ajouter des phrases existantes avec cette icôn
 msgid "Create a new list"
 msgstr "Créer une nouvelle liste"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L572
 msgctxt "list"
 msgid "Name"
 msgstr "Nom"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L575
 msgid "create"
 msgstr "créer"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L623
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L622
 msgid "All public lists"
 msgstr "Toutes les listes publiques"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L634
 msgid "Collaborative lists"
 msgstr "Listes collaboratives"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L665
 msgctxt "list"
 msgid "Unspecified"
 msgstr "Non précisé"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L677
 msgid "Other lists"
 msgstr "Autres listes"
 
@@ -2124,19 +2170,23 @@ msgstr "ajoutée par {user}"
 msgid "linked by {user}"
 msgstr "liée par {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L115
 msgid "edited by {user}"
 msgstr "modifiée par {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L117
+msgid "license changed by {user}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L122
 msgid "deleted by {user}"
 msgstr "supprimée par {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L124
 msgid "unlinked by {user}"
 msgstr "déliée par {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L134
 msgid "{info}, {date}"
 msgstr "{info}, {date}"
 

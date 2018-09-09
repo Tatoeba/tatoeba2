@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-26 11:19+0000\n"
-"PO-Revision-Date: 2018-08-26 12:05+0000\n"
-"Last-Translator: sabretou <sabretou@gmail.com>\n"
+"POT-Creation-Date: 2018-09-02 16:55+0000\n"
+"PO-Revision-Date: 2018-09-02 18:52+0000\n"
+"Last-Translator: Trang\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "{username} या नावाचे कोणतेही प्रयोक्ता नाही आहेत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L128
 msgid "You need to be logged in."
 msgstr "यासाठी लॉग-इन करणे आवश्यक आहे."
 
@@ -231,6 +231,18 @@ msgid ""
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr "\"स्वयंघोषित मातृभाषिकेच्या मालकीचे\", कारण \"यांच्या मालकीचे: {username}\" हा निकष सेट केला गेला आहे, परंतु आपण ज्या भाषेत शोध घेत आहात त्यात हा सदस्य स्वयंघोषित मातृभाषिक नाही"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1370
+msgid "You are not allowed to change the license of this sentence."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1374
+msgid "The license of the sentence has been changed to “{newLicense}”."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1380
+msgid "Unable to change the license to “{newLicense}” because:"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L110
 msgid "All public lists ({total})"
@@ -500,6 +512,43 @@ msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
 msgstr[0] "खालील कान्जीचे प्रतिलेखन केले नाही: {charsEnumeration}."
 msgstr[1] "खालील कान्जींचे प्रतिलेखन केले नाही: {charsEnumeration}."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L138
+msgid "This is not a valid license."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L145
+msgid "This sentence is already under that license."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L236
+msgid ""
+"The sentence needs to be original (not initially derived from translation)."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L244
+msgid "You're not the owner of this sentence."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L251
+msgid "The owner of the sentence needs to be its original creator."
+msgstr ""
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L264
+msgid "You can only switch to a more permissive license."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/SentencesList.php#L153
 msgid "unnamed list"
@@ -773,6 +822,7 @@ msgid "My audio"
 msgstr "माझे ऑडिओ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L51
 msgid "License:"
 msgstr "परवाना:"
 
@@ -1361,8 +1411,8 @@ msgid "Advanced search"
 msgstr "प्रगत शोध"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L588
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L606
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L587
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L605
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/index.ctp#L184
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Tags/view_all.ctp#L45
 msgid "Search"
@@ -1395,10 +1445,6 @@ msgstr "ऑडिओ"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L118
 msgid "License"
 msgstr "परवाना"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L47
-msgid "Current license:"
-msgstr "वर्तमान परवाना:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/translation.ctp#L34
@@ -1501,8 +1547,8 @@ msgid "My collection"
 msgstr "माझा वाक्यसंग्रह"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/space.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L646
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L677
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L645
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L676
 msgid "My lists"
 msgstr "माझ्या याद्या"
 
@@ -1616,7 +1662,7 @@ msgstr "प्रतिलेखन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/users_menu.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L531
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L618
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L296
 msgid "Lists"
 msgstr "याद्या"
@@ -2085,29 +2131,29 @@ msgstr "टिपण: नवीन वाक्ये जोडण्यास �
 msgid "Create a new list"
 msgstr "नवीन यादी तयार करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L572
 msgctxt "list"
 msgid "Name"
 msgstr "नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L575
 msgid "create"
 msgstr "बनवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L623
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L622
 msgid "All public lists"
 msgstr "सर्व सार्वजनिक याद्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L634
 msgid "Collaborative lists"
 msgstr "सहयोगी याद्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L665
 msgctxt "list"
 msgid "Unspecified"
 msgstr "अनिर्दिष्ट"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L677
 msgid "Other lists"
 msgstr "इतर याद्या"
 
@@ -2119,19 +2165,23 @@ msgstr "{user} यांनी जोडले"
 msgid "linked by {user}"
 msgstr "{user} यांनी दुवा जोडला"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L115
 msgid "edited by {user}"
 msgstr "{user} यांनी संपादित केले"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L117
+msgid "license changed by {user}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L122
 msgid "deleted by {user}"
 msgstr "{user} यांनी हटवले"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L124
 msgid "unlinked by {user}"
 msgstr "{user} यांनी दुवा मोडला"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L134
 msgid "{info}, {date}"
 msgstr "{info}, {date}"
 

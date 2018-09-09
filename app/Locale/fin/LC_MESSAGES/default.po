@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-26 11:19+0000\n"
-"PO-Revision-Date: 2018-08-27 04:56+0000\n"
+"POT-Creation-Date: 2018-09-02 16:55+0000\n"
+"PO-Revision-Date: 2018-09-03 03:44+0000\n"
 "Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid "There's no user called {username}"
 msgstr "{username}-nimistä käyttäjää ei ole"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AppController.php#L128
 msgid "You need to be logged in."
 msgstr "Sinun täytyy kirjautua sisään."
 
@@ -232,6 +232,18 @@ msgid ""
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr "”Omistaja määrittelee itsensä äidinkieliseksi puhujaksi”, koska kenttään ”Omistaja” on kirjoitettu hakukriteeri ”{username}”, mutta kyseinen henkilö ei ole määritellyt itseään hakemasi kielen äidinkieliseksi puhujaksi."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1370
+msgid "You are not allowed to change the license of this sentence."
+msgstr "Et voi vaihtaa tämän lauseen lisenssiä."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1374
+msgid "The license of the sentence has been changed to “{newLicense}”."
+msgstr "Tämän lauseen lisenssi on vaihdettu lisenssiksi “{newLicense}”."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1380
+msgid "Unable to change the license to “{newLicense}” because:"
+msgstr "Nykyistä linsenssiä ei voida vaihtaa lisenssiin “{newLicense}” koska: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L110
 msgid "All public lists ({total})"
@@ -501,6 +513,43 @@ msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
 msgstr[0] "Seuraavaa merkkiä ei ole transkriboitu: {charsEnumeration}."
 msgstr[1] "Seuraavia merkkejä ei ole transkriboitu: {charsEnumeration}."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L138
+msgid "This is not a valid license."
+msgstr "Se ei ole voimassa oleva lisenssi."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L145
+msgid "This sentence is already under that license."
+msgstr "Tämä lause on jo lisenssoitu kyseisellä lisenssillä."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L236
+msgid ""
+"The sentence needs to be original (not initially derived from translation)."
+msgstr "Lauseen täytyy olla alkuperäisversio (ei käännös)."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L244
+msgid "You're not the owner of this sentence."
+msgstr "Et ole tämän lauseen omistaja."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L251
+msgid "The owner of the sentence needs to be its original creator."
+msgstr "Lauseen omistajan täytyy olla sen alkuperäinen tekijä."
+
+#. @translators: This string will be preceded by "Unable to
+#. change the license to “{newLicense}” because:"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L264
+msgid "You can only switch to a more permissive license."
+msgstr "Voit vaihtaa vain sallivampaan lisenssiin."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/SentencesList.php#L153
 msgid "unnamed list"
@@ -774,6 +823,7 @@ msgid "My audio"
 msgstr "Minun äänitteeni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L51
 msgid "License:"
 msgstr "Lisenssi:"
 
@@ -1362,8 +1412,8 @@ msgid "Advanced search"
 msgstr "Tarkennettu haku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L588
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L606
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L587
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L605
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/index.ctp#L184
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Tags/view_all.ctp#L45
 msgid "Search"
@@ -1396,10 +1446,6 @@ msgstr "Äänite"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/add.ctp#L118
 msgid "License"
 msgstr "Lisenssi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L47
-msgid "Current license:"
-msgstr "Nykyinen lisenssi:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/sentence_and_translations.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/translation.ctp#L34
@@ -1502,8 +1548,8 @@ msgid "My collection"
 msgstr "Minun kokoelmani"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/space.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L646
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L677
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L645
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L676
 msgid "My lists"
 msgstr "Minun listani"
 
@@ -1617,7 +1663,7 @@ msgstr "Transkriptiot"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/users_menu.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L531
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L618
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/downloads.ctp#L296
 msgid "Lists"
 msgstr "Listat"
@@ -2086,29 +2132,29 @@ msgstr "HUOM: Voi myös lisätä olemassa olevia lauseita käyttämällä tätä
 msgid "Create a new list"
 msgstr "Luo uusi lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L573
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L572
 msgctxt "list"
 msgid "Name"
 msgstr "Nimi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L576
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L575
 msgid "create"
 msgstr "Luo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L623
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L622
 msgid "All public lists"
 msgstr "Kaikki julkiset listat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L635
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L634
 msgid "Collaborative lists"
 msgstr "Yhteistyölistat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L666
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L665
 msgctxt "list"
 msgid "Unspecified"
 msgstr "Määrittelemätön"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L678
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L677
 msgid "Other lists"
 msgstr "Muut listat"
 
@@ -2120,19 +2166,23 @@ msgstr "käyttäjän {user} lisäämä"
 msgid "linked by {user}"
 msgstr "käyttäjän {user} linkittämä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L115
 msgid "edited by {user}"
 msgstr "käyttäjän {user} muokkaama"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L117
+msgid "license changed by {user}"
+msgstr "Käyttäjän {user} vaihtama lisenssi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L122
 msgid "deleted by {user}"
 msgstr "käyttäjän {user} poistama"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L124
 msgid "unlinked by {user}"
 msgstr "käyttäjän {user} poistama linkitys"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L134
 msgid "{info}, {date}"
 msgstr "{info}, {date}"
 
