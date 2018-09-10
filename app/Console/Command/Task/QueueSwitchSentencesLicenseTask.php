@@ -84,7 +84,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         $this->PrivateMessage->saveToInbox($message, $recipientId);
     }
 
-    protected function switchLicense($rows, $modelName, $dryRun) {
+    protected function _switchLicense($rows, $modelName, $dryRun) {
         $total = 0;
         $saveParams = array(
             'validate' => true,
@@ -114,25 +114,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         return $total;
     }
 
-/**
- * Example run function.
- * This function is executed, when a worker is executing a task.
- * The return parameter will determine, if the task will be marked completed, or be requeued.
- *
- * @param array $data The array passed to QueuedTask->createJob()
- * @param int $id The id of the QueuedTask
- * @return bool Success
- */
-    public function run($options, $id = null) {
-        if (isset($options['UIlang'])) {
-            $prevLang = Configure::read('Config.language');
-            Configure::write('Config.language', $options['UIlang']);
-        }
-
-        if (isset($options['sendReport'])) {
-            $this->sendReport = $options['sendReport'];
-        }
-
+    private function switchLicense($options) {
         $findOptions = array(
             'fields' => array('Sentence.id'),
             'conditions' => array(
@@ -153,8 +135,6 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             )),
         );
 
-        CurrentUser::store(array('id' => $options['userId']));
-
         $selected = $this->Sentence->find('count', $findOptions);
         $this->out(format(
             __n('Found {n} sentence that can be switched to {newLicense}.',
@@ -166,7 +146,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
 
         $proceeded = $this->batchOperation(
             'Sentence',
-            'switchLicense',
+            '_switchLicense',
             $findOptions,
             $options['dryRun']
         );
@@ -176,6 +156,29 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                 $proceeded),
             array('n' => $proceeded)
         ));
+    }
+
+/**
+ * Example run function.
+ * This function is executed, when a worker is executing a task.
+ * The return parameter will determine, if the task will be marked completed, or be requeued.
+ *
+ * @param array $data The array passed to QueuedTask->createJob()
+ * @param int $id The id of the QueuedTask
+ * @return bool Success
+ */
+    public function run($options, $id = null) {
+        if (isset($options['UIlang'])) {
+            $prevLang = Configure::read('Config.language');
+            Configure::write('Config.language', $options['UIlang']);
+        }
+
+        if (isset($options['sendReport'])) {
+            $this->sendReport = $options['sendReport'];
+        }
+
+        CurrentUser::store(array('id' => $options['userId']));
+        $this->switchLicense($options);
         CurrentUser::store(null);
 
         if ($this->sendReport) {
