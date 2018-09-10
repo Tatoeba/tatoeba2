@@ -22,7 +22,7 @@ $config['Queue'] = [
 	'defaultworkerretries' => 4,
 
 	// seconds of running time after which the worker will terminate (0 = unlimited)
-	'workermaxruntime' => 20,
+	'workermaxruntime' => 20*60,
 
 	// minimum time (in seconds) which a task remains in the database before being cleaned up.
 	'cleanuptimeout' => 2000,
