@@ -52,6 +52,7 @@ class LicensingController extends AppController {
                 $options = array(
                     'userId' => $currentUserId,
                     'dryRun' => true,
+                    'UIlang' => Configure::read('Config.language'),
                 );
                 $currentJob = $this->QueuedTask->createJob(
                     'SwitchSentencesLicense',

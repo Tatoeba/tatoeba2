@@ -115,6 +115,11 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
  * @return bool Success
  */
     public function run($options, $id = null) {
+        if (isset($options['UIlang'])) {
+            $prevLang = Configure::read('Config.language');
+            Configure::write('Config.language', $options['UIlang']);
+        }
+
         $findOptions = array(
             'fields' => array('Sentence.id'),
             'conditions' => array(
@@ -146,6 +151,9 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         $this->sendResult($proceeded, $options['userId']);
         $this->out("Changed the license of $proceeded sentence(s).");
 
+        if (isset($prevLang)) {
+            Configure::write('Config.language', $prevLang);
+        }
         return true;
     }
 }
