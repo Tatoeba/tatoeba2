@@ -222,7 +222,7 @@ class PrivateMessage extends AppModel
             'isnonread' => 1,
         );
 
-        if ($this->data['PrivateMessage']['messageId']) {
+        if ($data['PrivateMessage']['messageId']) {
             $message['id'] = $data['PrivateMessage']['messageId'];
         }
 

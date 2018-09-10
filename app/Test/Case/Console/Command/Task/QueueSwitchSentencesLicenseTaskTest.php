@@ -10,6 +10,7 @@ class QueueSwitchSentencesLicenseTaskTest extends CakeTestCase
         'app.contribution',
         'app.reindex_flag',
         'app.users_language',
+        'app.private_message',
     );
 
     public function setUp()
@@ -65,5 +66,29 @@ class QueueSwitchSentencesLicenseTaskTest extends CakeTestCase
 
         $after = $this->task->Sentence->findAllByLicense('CC0 1.0');
         $this->assertEquals($before, $after);
+    }
+
+    public function testSwitchLicense_sendsResultByPM()
+    {
+        $expectedPM = array(
+            'recpt' => '4',
+            'sender' => '0',
+            'user_id' => '4',
+            'folder' => 'Inbox',
+            'isnonread' => '1',
+            'draft_recpts' => '',
+            'sent' => '1',
+        );
+        $options = array(
+            'userId' => 4,
+            'dryRun' => false,
+        );
+
+        $this->task->run($options);
+
+        $lastPMId = $this->task->PrivateMessage->getLastInsertID();
+        $lastPM = $this->task->PrivateMessage->findById($lastPMId);
+        $lastPM = array_intersect_key($lastPM['PrivateMessage'], $expectedPM);
+        $this->assertEquals($expectedPM, $lastPM);
     }
 }

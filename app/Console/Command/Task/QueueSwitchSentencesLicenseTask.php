@@ -8,6 +8,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
     public $uses = array(
         'Sentence',
         'User',
+        'PrivateMessage',
     );
 
 /**
@@ -57,6 +58,21 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         } else {
             $this->err('Could not create Job');
         }
+    }
+
+    private function sendResult($n, $recipientId) {
+        $now = date("Y/m/d H:i:s", time());
+        $result = format(__n('Changed the license of {n} sentence.',
+                             'Changed the license of {n} sentences.',
+                             $n),
+                         compact('n'));
+        $data = array('PrivateMessage' => array(
+            'title' => __('Result of license switch to CC0 1.0'),
+            'content' => $result,
+            'messageId' => '',
+        ));
+        $message = $this->PrivateMessage->buildMessage($data, 0, $now);
+        $this->PrivateMessage->saveToInbox($message, $recipientId);
     }
 
     protected function switchLicense($rows, $modelName, $dryRun) {
@@ -127,6 +143,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             $options['dryRun']
         );
         CurrentUser::store(null);
+        $this->sendResult($proceeded, $options['userId']);
         $this->out("Changed the license of $proceeded sentence(s).");
 
         return true;
