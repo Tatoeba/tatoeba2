@@ -318,11 +318,12 @@ class PrivateMessagesController extends AppController
 
         $message = $this->_getMessageFromPm($privateMessage['PrivateMessage']);
         $folder = $privateMessage['PrivateMessage']['folder'];
+        $type = $privateMessage['Sender']['type'];
 
         $this->set('message', $message);
         $this->set('author', $privateMessage['Sender']);
         $this->set('folder', $folder);
-        $this->set('messageMenu', $this->_getMenu($folder, $messageId));
+        $this->set('messageMenu', $this->_getMenu($folder, $messageId, $type));
         $this->set('title', $privateMessage['PrivateMessage']['title']);
     }
 
@@ -383,10 +384,11 @@ class PrivateMessagesController extends AppController
      *
      * @param string $folder    Folder name: 'Inbox', 'Sent', 'Trash'
      * @param int    $messageId Id of private message.
+     * @param string $type      Message type: 'human', 'machine'
      *
      * @return array
      */
-    private function _getMenu($folder, $messageId)
+    private function _getMenu($folder, $messageId, $type)
     {
         $menu = array();
 
@@ -427,10 +429,12 @@ class PrivateMessagesController extends AppController
                 )
             );
 
-            $menu[] = array(
-                'text' => __('reply'),
-                'url' => '#reply'
-            );
+            if ($type == 'human') {
+                $menu[] = array(
+                    'text' => __('reply'),
+                    'url' => '#reply'
+                );
+            }
         }
 
         return $menu;
