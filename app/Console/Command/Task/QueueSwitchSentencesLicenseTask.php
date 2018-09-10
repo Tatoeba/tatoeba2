@@ -154,6 +154,16 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         );
 
         CurrentUser::store(array('id' => $options['userId']));
+
+        $selected = $this->Sentence->find('count', $findOptions);
+        $this->out(format(
+            __n('Found {n} sentence that can be switched to {newLicense}.',
+                'Found {n} sentences that can be switched to {newLicense}.',
+                $selected),
+            array('n' => $selected,
+                  'newLicense' => 'CC0 1.0')
+        ));
+
         $proceeded = $this->batchOperation(
             'Sentence',
             'switchLicense',
