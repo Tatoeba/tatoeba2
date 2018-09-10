@@ -82,6 +82,7 @@ class QueueSwitchSentencesLicenseTaskTest extends CakeTestCase
         $options = array(
             'userId' => 4,
             'dryRun' => false,
+            'sendReport' => true,
         );
 
         $this->task->run($options);

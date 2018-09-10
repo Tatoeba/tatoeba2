@@ -39,6 +39,19 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
  */
     public $failureMessage = '';
 
+    private $sendReport = false;
+    private $report = '';
+
+    public function out($message = null, $newlines = 1, $level = Shell::NORMAL) {
+        if ($this->sendReport) {
+            $this->report .= $message;
+            if ($newlines) {
+                $this->report .= PHP_EOL;
+            }
+        }
+        return parent::out($message, $newlines, $level);
+    }
+
     public function add() {
         $username = isset($this->args[1]) ? $this->args[1] : '';
         $dryRun = isset($this->args[2]) && $this->args[2] == 'dryrun';
@@ -60,15 +73,11 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         }
     }
 
-    private function sendResult($n, $recipientId) {
+    private function sendReport($recipientId) {
         $now = date("Y/m/d H:i:s", time());
-        $result = format(__n('Changed the license of {n} sentence.',
-                             'Changed the license of {n} sentences.',
-                             $n),
-                         compact('n'));
         $data = array('PrivateMessage' => array(
             'title' => __('Result of license switch to CC0 1.0'),
-            'content' => $result,
+            'content' => $this->report,
             'messageId' => '',
         ));
         $message = $this->PrivateMessage->buildMessage($data, 0, $now);
@@ -95,7 +104,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                 $total++;
             } else {
                 $message = format(
-                    "Unable to change the license of sentence {id} to “{newLicense}” because:",
+                    __("Unable to change the license of sentence {id} to “{newLicense}” because:"),
                     compact('id', 'newLicense')
                 );
                 $errors = $this->Sentence->validationErrors['license'];
@@ -118,6 +127,10 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         if (isset($options['UIlang'])) {
             $prevLang = Configure::read('Config.language');
             Configure::write('Config.language', $options['UIlang']);
+        }
+
+        if (isset($options['sendReport'])) {
+            $this->sendReport = $options['sendReport'];
         }
 
         $findOptions = array(
@@ -147,9 +160,17 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             $findOptions,
             $options['dryRun']
         );
+        $this->out(format(
+            __n('Changed the license of {n} sentence.',
+                'Changed the license of {n} sentences.',
+                $proceeded),
+            array('n' => $proceeded)
+        ));
         CurrentUser::store(null);
-        $this->sendResult($proceeded, $options['userId']);
-        $this->out("Changed the license of $proceeded sentence(s).");
+
+        if ($this->sendReport) {
+            $this->sendReport($options['userId']);
+        }
 
         if (isset($prevLang)) {
             Configure::write('Config.language', $prevLang);
