@@ -110,7 +110,7 @@ echo $this->Form->create(
                 $selectedLanguageTo,
                 array(
                     'div' => false,
-                    'label' => __('To'),
+                    'label' => __x('language', 'To'),
                 )
             );
             ?>
