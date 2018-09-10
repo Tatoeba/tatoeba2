@@ -84,6 +84,23 @@ class PrivateMessage extends AppModel
         );
     }
 
+    private function _setSenderType(&$results) {
+        foreach ($results as &$result) {
+            if (isset($result['PrivateMessage']) &&
+                isset($result['PrivateMessage']['sender']) &&
+                isset($result['Sender'])
+               ) {
+                $type = $result['PrivateMessage']['sender'] == 0 ? 'machine' : 'human';
+                $result['Sender']['type'] = $type;
+            }
+        }
+    }
+
+    public function afterFind($results, $primary = false) {
+        $this->_setSenderType($results);
+        return $results;
+    }
+
     /**
      * Return query for paginated messages in specified folder.
      *

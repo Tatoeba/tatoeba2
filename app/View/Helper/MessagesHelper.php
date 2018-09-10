@@ -190,8 +190,10 @@ class MessagesHelper extends AppHelper
             --><div class="other">
 
                 <div class="username">
-                <?php 
-                if (!$author['username']) {
+                <?php
+                if ($author['type'] == 'machine') {
+                    echo $this->Html->tag('i', __('Notification from Tatoeba'));
+                } elseif (!$author['username']) {
                     echo $this->Html->tag('i', __('Former member'));
                 } else {
                     echo $this->Html->link(
@@ -273,7 +275,10 @@ class MessagesHelper extends AppHelper
             );
         } elseif ($this->_isDraftMessage($folder, $msg)) {
             $user = null;
-            $label = format(__('Draft'));
+            $label = __('Draft');
+        } elseif ($msg['Sender']['type'] == 'machine') {
+            $user = null;
+            $label = __('notification from Tatoeba');
         } else {
             $user = $msg['Sender'];
             $label = format(
