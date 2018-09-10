@@ -26,13 +26,13 @@ if ($currentJob) {
      * in __construct() in app/Plugin/Queue/Model/QueuedTask.php */
     case 'NOT_READY':
     case 'NOT_STARTED':
-        $message = __('The license switch of your sentences will be started soon.');
+        $message = __('The license switch of your sentences will be started soon. You will receive a private message when it will be completed.');
         break;
     case 'IN_PROGRESS':
-        $message = __('The license switch of your sentences is in progress.');
+        $message = __('The license switch of your sentences is in progress. You will receive a private message when it will be completed.');
         break;
     case 'COMPLETED':
-        $message = __('The license switch of your sentences is completed.');
+        $message = __('The license switch of your sentences is completed. A report has been sent to you by private message.');
         break;
     case 'UNKNOWN':
     case 'FAILED':
