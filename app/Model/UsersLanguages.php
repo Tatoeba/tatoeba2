@@ -206,20 +206,4 @@ class UsersLanguages extends AppModel
 
         return $result;
     }
-
-    public function isUserNative($userId, $lang)
-    {
-        $result = false;
-        $userLanguages = $this->getLanguagesOfUser($userId);
-
-        foreach($userLanguages as $userLanguage) {
-            $language = $userLanguage['UsersLanguages'];
-            if ($language['language_code'] == $lang) {
-                $result = $language['level'] == 5;
-                break;
-            }
-        }
-
-        return $result;
-    }
 }

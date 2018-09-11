@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-App::uses('CakeEventManager', 'Event');
-
 /**
  * Model for contributions.
  *
@@ -36,18 +34,12 @@ App::uses('CakeEventManager', 'Event');
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-class Contribution extends AppModel implements CakeEventListener
+class Contribution extends AppModel
 {
     public $actsAs = array(
         "Containable"
     );
     public $belongsTo = array('Sentence', 'User');
-
-    public function implementedEvents() {
-        return array(
-            'Model.Sentence.saved' => array('callable' => 'logSentence'),
-        ) + parent::implementedEvents();
-    }
 
     public function logSentence($event) {
         if (isset($event->data['data']['license'])) {
