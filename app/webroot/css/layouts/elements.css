@@ -1648,8 +1648,10 @@ div.hideLink {
  * --------------------------------------------------------------------
  */
 
-#SentenceSearchForm .language-dropdown-container {
+.language-dropdown-container {
     width: 200px;
+    display: inline-block;
+    vertical-align: bottom;
 }
 
 .usersLanguages .languageInfo {

@@ -70,23 +70,23 @@
             }
 
             ?>
-            <fieldset class="input text languages">
+            <fieldset class="input text languages" style="line-height: 40px">
                 <?php
-                $langFrom = $this->Search->selectLang(
-                    'from',
-                    $selectedLanguageFrom,
+                $langFrom = $this->element(
+                    'language_dropdown', 
                     array(
-                        'div' => false,
-                        'label' => '',
+                        'name' => 'from',
+                        'selectedLanguage' => $selectedLanguageFrom,
+                        'languages' => $this->Search->getLangs()
                     )
                 );
 
-                $langTo = $this->Search->selectLang(
-                    'to',
-                    $selectedLanguageTo,
+                $langTo = $this->element(
+                    'language_dropdown', 
                     array(
-                        'div' => false,
-                        'label' => '',
+                        'name' => 'to',
+                        'selectedLanguage' => $selectedLanguageTo,
+                        'languages' => $this->Search->getLangs()
                     )
                 );
                 echo format(
