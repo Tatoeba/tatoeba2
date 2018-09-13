@@ -12,6 +12,7 @@ $this->Form->unlockField($name);
     <md-autocomplete md-select-on-focus
         md-menu-class="language-dropdown"
         md-selected-item="vm.selectedItem"
+        md-selected-item-change="vm.onSelectedItemChange()"
         md-search-text="vm.searchText"
         md-items="language in vm.querySearch(vm.searchText)"
         md-item-text="language.name"

@@ -43,6 +43,7 @@
 
         vm.init = init;
         vm.querySearch = querySearch;
+        vm.onSelectedItemChange = onSelectedItemChange;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -83,6 +84,12 @@
             } else {
                 return languages;
             }
+        }
+
+        function onSelectedItemChange(item) {
+            if (vm.selectedItem) {
+                $scope.$parent.$broadcast('languageChange', {name: name, lang: vm.selectedItem.code});
+            }            
         }
 
         function setLang(lang) {
