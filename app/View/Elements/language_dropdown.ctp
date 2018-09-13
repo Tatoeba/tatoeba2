@@ -2,12 +2,13 @@
 $this->Html->script(JS_PATH . 'directives/language-dropdown.dir.js', array('block' => 'scriptBottom'));
 $languagesJSON = htmlspecialchars(json_encode($languages), ENT_QUOTES, 'UTF-8');
 $selectedLanguage = isset($selectedLanguage) ? $selectedLanguage : '';
+$this->Form->unlockField($name);
 ?>
 <div language-dropdown 
      ng-init="vm.init(<?= $languagesJSON ?>, '<?= $selectedLanguage ?>', '<?= $name ?>')" 
      class="language-dropdown-container"
      title="{{vm.selectedItem.name}}">
-    <input name="<?= $name ?>" type="hidden" value="{{vm.selectedItem.code}}">
+     <?= $this->Form->hidden($name, array('value' => '{{vm.selectedItem.code}}')); ?>
     <md-autocomplete md-select-on-focus
         md-menu-class="language-dropdown"
         md-selected-item="vm.selectedItem"

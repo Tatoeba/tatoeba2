@@ -41,6 +41,16 @@ class UsersLanguagesController extends AppController
 
     public function save()
     {
+        if (empty($this->request->data['UsersLanguages']['language_code'])) {
+            $this->Flash->set(__('No language selected.'));
+            $this->redirect(
+                array(
+                    'controller' => 'user',
+                    'action' => 'language'
+                )
+            );
+        }
+
         $userId = $this->request->data['UsersLanguages']['of_user_id'];
         $username = $this->User->getUserNameFromId($userId);
 

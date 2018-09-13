@@ -67,14 +67,12 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                 array('for' => 'UsersLanguagesLanguageCode')
             );
             if (empty($this->request->data)) {
-                echo $this->Form->select(
-                    'language_code',
-                    $languagesList,
+                echo $this->element(
+                    'language_dropdown', 
                     array(
-                        'class' => 'language-selector',
-                        'empty' => false
-                    ),
-                    false
+                        'name' => 'language_code',
+                        'languages' => $languagesList
+                    )
                 );
             } else {
                 $languageCode = $this->request->data['UsersLanguages']['language_code'];
@@ -82,6 +80,16 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
             }
             ?>
         </div>
+
+        <?
+        if (empty($this->request->data)) {
+            $hintText = format(
+                __('If your language is missing, please read our article on how to <a href={}>request a new language</a>.'),
+                'https://wiki.tatoeba.org/articles/show/new-language-request'
+            );
+            echo $this->Html->para('hint', $hintText);
+        }
+        ?>
 
         <md-divider></md-divider>
 
