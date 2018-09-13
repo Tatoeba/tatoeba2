@@ -24,6 +24,8 @@
 * @license  Affero General Public License
 * @link     http://tatoeba.org
 */
+
+$this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 'scriptBottom'));
 ?>
 
 <div class="topContent">
@@ -50,7 +52,7 @@
         }
         ?>
 
-        <div class="search-bar">
+        <div class="search-bar" ng-controller="SearchBarController as ctrl">
             <?php
             echo $this->Form->create(
                 'Sentence',
@@ -103,6 +105,7 @@
                     'id' => 'clearSearch',
                     'type' => 'button',
                     'title' => __('Clear search'),
+                    'ng-click' => 'ctrl.clearSearch()'
                 ));
                 echo $this->Form->input(
                     'query',
@@ -113,6 +116,7 @@
                         'lang' => '',
                         'dir' => 'auto',
                         'after' => $clearButton,
+                        'ng-model' => 'ctrl.searchQuery',
                         'placeholder' => __('Enter a word or a phrase')
                     )
                 );
