@@ -156,18 +156,20 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                   'newLicense' => 'CC0 1.0')
         ));
 
-        $proceeded = $this->batchOperation(
-            'Sentence',
-            '_switchLicense',
-            $findOptions,
-            $options['dryRun']
-        );
-        $this->out(format(
-            __n('Successfully changed the license of {n} sentence.',
-                'Successfully changed the license of {n} sentences.',
-                $proceeded),
-            array('n' => $proceeded)
-        ));
+        if ($selected > 0) {
+            $proceeded = $this->batchOperation(
+                'Sentence',
+                '_switchLicense',
+                $findOptions,
+                $options['dryRun']
+            );
+            $this->out(format(
+                __n('Successfully changed the license of {n} sentence.',
+                    'Successfully changed the license of {n} sentences.',
+                    $proceeded),
+                array('n' => $proceeded)
+            ));
+        }
         $this->out(format(
             __('License switch completed on {date} at {time} UTC.'),
             $this->dateAndTime()
