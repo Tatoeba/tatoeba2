@@ -80,6 +80,10 @@
                 return languages.filter((item) => {
                     var language = item.name.toLowerCase();
                     return language.indexOf(search) > -1;
+                }).sort(function(itemA, itemB) {
+                    var nameA = itemA.name.toLowerCase();
+                    var nameB = itemB.name.toLowerCase();
+                    return nameA.indexOf(search) > nameB.indexOf(search);
                 });
             } else {
                 return languages;
