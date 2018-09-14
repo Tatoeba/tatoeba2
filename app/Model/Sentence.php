@@ -43,6 +43,7 @@ App::import('Sanitize');
 App::import('Lib', 'LanguagesLib');
 App::uses('CakeEvent', 'Event');
 App::uses('ContributionListener', 'Lib/Event');
+App::uses('UsersLanguagesListener', 'Lib/Event');
 
 class Sentence extends AppModel
 {
@@ -154,6 +155,7 @@ class Sentence extends AppModel
         $this->linkWithTranslationModel();
 
         $this->getEventManager()->attach(new ContributionListener());
+        $this->getEventManager()->attach(new UsersLanguagesListener());
     }
 
     /**
@@ -752,31 +754,6 @@ class Sentence extends AppModel
         }
 
         return $result;
-    }
-
-    public function beforeFind($query) {
-        if (CurrentUser::getSetting('native_indicator')) {
-            if (is_array($query['fields']) &&
-                in_array('lang', $query['fields']) &&
-                in_array('user_id', $query['fields']) &&
-                in_array('User.level', $query['fields']) &&
-                in_array('User.group_id', $query['fields'])
-               ) {
-                $this->User->virtualFields['is_native'] = 0;
-                $query['fields'][] = '`UsersLanguages`.`id` IS NOT NULL AND User.group_id != 6 AND User.level > -1 AS User__is_native';
-                $query['joins'][] = array(
-                    'alias' => 'UsersLanguages',
-                    'table' => 'users_languages',
-                    'type' => 'left',
-                    'conditions' => array(
-                        'Sentence.user_id = UsersLanguages.of_user_id',
-                        'Sentence.lang = UsersLanguages.language_code',
-                        'UsersLanguages.level' => 5,
-                    )
-                );
-            }
-        }
-        return $query;
     }
 
     /**
