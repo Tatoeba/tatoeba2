@@ -38,12 +38,15 @@
         var languages = [];
         var name = '';
 
+        vm.previousSelectedItem = languages[0];
         vm.selectedItem = null;
         vm.searchText = '';
 
         vm.init = init;
         vm.querySearch = querySearch;
         vm.onSelectedItemChange = onSelectedItemChange;
+        vm.onBlur = onBlur;
+        vm.onFocus = onFocus;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -101,6 +104,19 @@
                 return item.code === lang;
             });
             $scope.$parent.$broadcast('languageChange', {name: name, lang: lang});
+        }
+
+        function onBlur() {
+            if (!vm.selectedItem) {
+                vm.selectedItem = vm.previousSelectedItem;
+            }
+        }
+
+        function onFocus() {
+            if (vm.selectedItem) {
+                vm.previousSelectedItem = vm.selectedItem;
+                vm.searchText = '';
+            }
         }
     }
 

@@ -17,7 +17,9 @@ $this->Form->unlockField($name);
         md-items="language in vm.querySearch(vm.searchText)"
         md-item-text="language.name"
         md-min-length="0"
-        placeholder="<?= __('Enter a language') ?>">
+        ng-blur="vm.onBlur()"
+        ng-focus="vm.onFocus()"
+        placeholder="<?= __('Select a language') ?>">
         <md-item-template>
             <span md-highlight-text="vm.searchText" 
                   md-highlight-flags="ig">{{language.name}}</span>
