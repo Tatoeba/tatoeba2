@@ -20,7 +20,7 @@ $this->Form->unlockField($name);
         placeholder="<?= __('Enter a language') ?>">
         <md-item-template>
             <span md-highlight-text="vm.searchText" 
-                  md-highlight-flags="^i">{{language.name}}</span>
+                  md-highlight-flags="ig">{{language.name}}</span>
         </md-item-template>
         <md-not-found>
         <?= __('No language found.') ?>
