@@ -163,8 +163,8 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             $options['dryRun']
         );
         $this->out(format(
-            __n('Changed the license of {n} sentence.',
-                'Changed the license of {n} sentences.',
+            __n('Successfully changed the license of {n} sentence.',
+                'Successfully changed the license of {n} sentences.',
                 $proceeded),
             array('n' => $proceeded)
         ));
