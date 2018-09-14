@@ -114,6 +114,14 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         return $total;
     }
 
+    private function dateAndTime() {
+        $now = time();
+        return array(
+            'date' => gmdate('Y-m-d', $now),
+            'time' => gmdate('H:i:s', $now),
+        );
+    }
+
     private function switchLicense($options) {
         $findOptions = array(
             'fields' => array('Sentence.id'),
@@ -135,6 +143,10 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             )),
         );
 
+        $this->out(format(
+            __('License switch started on {date} at {time} UTC.'),
+            $this->dateAndTime()
+        ));
         $selected = $this->Sentence->find('count', $findOptions);
         $this->out(format(
             __n('Found {n} sentence that can be switched to {newLicense}.',
@@ -155,6 +167,10 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                 'Changed the license of {n} sentences.',
                 $proceeded),
             array('n' => $proceeded)
+        ));
+        $this->out(format(
+            __('License switch completed on {date} at {time} UTC.'),
+            $this->dateAndTime()
         ));
     }
 
