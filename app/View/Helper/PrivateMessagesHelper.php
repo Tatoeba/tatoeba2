@@ -90,7 +90,7 @@ class PrivateMessagesHelper extends AppHelper
             echo $this->Form->input(
                 'recpt',
                 array(
-                    'label' => __('To'),
+                    'label' => __x('message', 'To'),
                     'default' => $recipients,
                     'type' => 'text',
                     'maxlength' => 250,

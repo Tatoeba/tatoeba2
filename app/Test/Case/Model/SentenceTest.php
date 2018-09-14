@@ -76,11 +76,12 @@ class SentenceTest extends CakeTestCase {
 					$event->data['data'],
 					$data
 				);
-				$expectedEventData = compact('id', 'data');
+				$created = $event->data['created'];
+				$expectedEventData = compact('id', 'created', 'data');
 				$this->assertEquals($expectedEventData, $event->data);
 				$dispatched = true;
 			},
-			'Model.Sentence.updated'
+			'Model.Sentence.saved'
 		);
 
 		$this->Sentence->id = $id;

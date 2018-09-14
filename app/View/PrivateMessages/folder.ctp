@@ -45,7 +45,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-    <div class="module pm_module">
+    <div class="section md-whiteframe-1dp pm_module">
         <h2>
             <?php 
             $n = $this->Paginator->counter(array('format' => '%count%'));

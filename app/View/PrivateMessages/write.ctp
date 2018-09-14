@@ -30,7 +30,7 @@ $this->set('title_for_layout', __('New message') . __(' - Tatoeba'));
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-    <div class="module">
+    <div>
      <?php
      if ($isNewUser && !$canSend) {
          echo "<p>";

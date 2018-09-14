@@ -22,6 +22,7 @@ class SentencesControllerTest extends ControllerTestCase {
 	);
 
 	public function setUp() {
+		$_COOKIE = array();
 		Configure::write('Acl.database', 'test');
 		$this->controller = $this->generate('Sentences', array(
 			'methods' => array('redirect'),

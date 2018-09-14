@@ -40,7 +40,7 @@ $years = range(2007, date('Y'));
 $months = $this->Date->months();
 ?>
 
-<div class="module months">
+<div class="section md-whiteframe-1dp month">
     <h2><?php echo __('Month'); ?></h2>
     <ul>
     <?php
@@ -66,7 +66,7 @@ $months = $this->Date->months();
     </ul>
 </div>
 
-<div class="module years"> 
+<div class="section md-whiteframe-1dp years">
     <h2><?php echo __('Year'); ?></h2>
     <ul>
     <?php

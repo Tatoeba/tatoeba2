@@ -42,6 +42,8 @@ App::import('Model', 'CurrentUser');
 App::import('Sanitize');
 App::import('Lib', 'LanguagesLib');
 App::uses('CakeEvent', 'Event');
+App::uses('ContributionListener', 'Lib/Event');
+App::uses('UsersLanguagesListener', 'Lib/Event');
 
 class Sentence extends AppModel
 {
@@ -152,7 +154,8 @@ class Sentence extends AppModel
 
         $this->linkWithTranslationModel();
 
-        $this->getEventManager()->attach($this->Contribution);
+        $this->getEventManager()->attach(new ContributionListener());
+        $this->getEventManager()->attach(new UsersLanguagesListener());
     }
 
     /**
@@ -277,13 +280,13 @@ class Sentence extends AppModel
      */
     public function afterSave($created, $options = array())
     {
-        if (!$created) {
-            $event = new CakeEvent('Model.Sentence.updated', $this, array(
-                'id' => $this->id,
-                'data' => $this->data[$this->alias]
-            ));
-            $this->getEventManager()->dispatch($event);
-        }
+        $event = new CakeEvent('Model.Sentence.saved', $this, array(
+            'id' => $this->id,
+            'created' => $created,
+            'data' => $this->data[$this->alias]
+        ));
+        $this->getEventManager()->dispatch($event);
+        
         $this->logSentenceEdition($created);
         $this->updateTags($created);
         if (isset($this->data['Sentence']['modified'])) {
@@ -748,14 +751,6 @@ class Sentence extends AppModel
 
         if ($result == null) {
             return;
-        } else if (CurrentUser::getSetting('native_indicator')) {
-            $UsersLanguages = ClassRegistry::init('UsersLanguages');
-            $isUserLevelNative = $UsersLanguages->isUserNative(
-                $result['User']['id'], $result['Sentence']['lang']
-            );
-            $isUserReliable = $result['User']['group_id'] != 6
-                && $result['User']['level'] > -1;
-            $result['User']['is_native'] = $isUserLevelNative && $isUserReliable;
         }
 
         return $result;

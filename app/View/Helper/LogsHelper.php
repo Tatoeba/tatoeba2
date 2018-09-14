@@ -108,6 +108,8 @@ class LogsHelper extends AppHelper
                     $label = __('added by {user}');
                 } else if ($type == 'link') {
                     $label = __('linked by {user}');
+                } else if ($type == 'license') {
+                    $label = __('license chosen by {user}');
                 }
                 break;
             case 'update' :

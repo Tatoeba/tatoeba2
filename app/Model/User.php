@@ -398,6 +398,7 @@ class User extends AppModel
                     ),
                     'Contributions' => array(
                         'limit' => 10,
+                        'conditions' => array('type !=' => 'license'),
                         'fields' => array(
                             'sentence_id',
                             'sentence_lang',

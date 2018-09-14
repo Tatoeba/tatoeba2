@@ -57,7 +57,7 @@ $okURL = $this->Html->url(
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Related links'); ?></h2>
     <ul>
     <li><a href="http://blog.tatoeba.org/2010/11/tags-guidelines.html"><?php echo __('Tag guidelines'); ?></a></li>
@@ -66,7 +66,7 @@ $okURL = $this->Html->url(
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Tags you should know about'); ?></h2>
 
     <p><?php echo __('The community has come up with several "utility tags" to improve the quality and '.
@@ -98,7 +98,7 @@ $okURL = $this->Html->url(
     </div>
 
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('How to help'); ?></h2>
     <ol><?php
         $str = format(__('You need to be an <a href="{}">advanced contributor</a>; '.

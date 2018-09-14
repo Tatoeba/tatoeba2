@@ -45,13 +45,9 @@ if (isset($this->request->params['lang'])) {
             "height" => 14
         )
     );
-    echo $this->Html->link(
+    echo $this->Html->tag(
+        'a',
         $profileIcon . $username,
-        array(
-            'controller' => 'user',
-            'action' => 'profile',
-            $username
-        ),
         array(
             'escape' => false,
             'class' => 'menuSection'

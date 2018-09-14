@@ -15,7 +15,7 @@ except ImportError:
 class UiLanguagesCheck(Project):
     def get_ui_langs(self):
         our_path = os.path.dirname(os.path.realpath(__file__))
-        core_file = our_path + '/../app/config/core.php'
+        core_file = our_path + '/../app/Config/core.php'
         php_script = ('class Cache {'
                       '    function Config() {}'
                       '}'

@@ -29,7 +29,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Need more help?'); ?></h2>
         <p>
         <?php
@@ -40,55 +40,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         ?>
         </p>
         <p><?php
-           echo __(
-               'If you cannot find the answer to your question, do not hesitate '.
-               'to contact us.'
-           );
-           ?>
-        </p>
-    </div>
-
-    <div class="module">
-        <h2><?php echo __('Contact us'); ?></h2>
-        <dl>
-            <dt><?php echo __('By email'); ?></dt>
-            <dd>team@tatoeba.org</dd>
-            <dt><?php echo __('From the Wall'); ?></dt>
-            <dd>
-            <?php
-            echo $this->Html->link(
-                __('Click here to go to the Wall.'),
-                array("controller"=>"wall")
-            );
-            ?>
-            </dd>
-            <dt><?php echo __('On IRC'); ?></dt>
-            <dd>irc://freenode/tatoeba</dd>
-        </dl>
-    </div>
-
-    <div class="module">
-        <h2><?php echo __('How to use IRC'); ?></h2>
-        <p>
-        <?php
-        echo __(
-            'For those who are not familiar with IRC, it is pretty much like an '.
-            'instant messenger. You will be able to talk to us in real time, '.
-            'if we are there.'
+        echo format(
+            __(
+                'If you cannot find the answer to your question, do not hesitate '.
+                'to <a href="{}">contact us</a>.'
+            ),
+            $this->Html->url(array('controller' => 'pages', 'action' => 'contact'))
         );
         ?>
         </p>
-        <p>
-        <?php echo __('There are many ways to join our channel. One is to go to this website:');
-        ?>
-        <a href="http://webchat.freenode.net/">http://webchat.freenode.net/</a>
-        </p>
-        <?php
-        echo __(
-            'Enter a nickname, enter "#tatoeba" for the channel, and click '.
-            'on "connect". That\'s it!'
-        );
-        ?>
     </div>
 </div>
 
@@ -97,7 +57,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
     <?php
     if ($this->Session->read('Auth.User.id')) {
         ?>
-        <div class="module">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Getting started'); ?></h2>
 
 
@@ -106,11 +66,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             echo format(
                 __(
                     'If you have no idea what to do now that you are registered, '.
-                    'you can introduce yourself on the <a href="{}">Wall</a>, or '.
-                    'join us on <strong>IRC</strong>. We will give you a purpose. :)',
+                    'you can introduce yourself on the <a href="{wall}">Wall</a>, '.
+                    'or join our <a href="{chatroom}">chatroom</a>. We will '.
+                    'give you a purpose. :)',
                     true
                 ),
-                $this->Html->url(array('controller' => 'wall'))
+                array(
+                    $this->Html->url(array('controller' => 'wall')),
+                    'chatroom' => 'https://chat.tatoeba.org'
+                )
             );
             ?>
             </p>
@@ -139,8 +103,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
     }
     ?>
 
-
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Important links'); ?></h2>
         <ul>
             <li>
@@ -162,7 +125,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </ul>
     </div>
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Adding new sentences'); ?></h2>
         <p><?php echo __('There are two ways to add new sentences.'); ?></p>
         <ul>
@@ -209,8 +172,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
     </div>
 
-
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Translating sentences'); ?></h2>
         <p>
             <?php
@@ -235,8 +197,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
     </div>
 
-
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Correcting mistakes'); ?></h2>
         <p>
             <?php
@@ -258,7 +219,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
     </div>
 
 
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Adopting sentences'); ?></h2>
         <p>
             <?php
@@ -303,8 +264,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         </p>
     </div>
 
-
-    <div id="sentences_lists_help" class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentence lists'); ?></h2>
         <p>
             <?php

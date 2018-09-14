@@ -28,7 +28,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Legend'); ?></h2>
         <ul class="usersLanguagesLegend">
             <?php
@@ -47,7 +47,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Languages of members'); ?></h2>
         <table class="usersLanguagesStats">
             <tr>

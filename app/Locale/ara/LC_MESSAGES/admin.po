@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 13:41+0000\n"
+"POT-Creation-Date: 2018-09-02 16:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>, 2018\n"
 "Language-Team: Arabic (https://www.transifex.com/tatoeba/teams/28284/ar/)\n"
@@ -18,25 +18,25 @@ msgstr ""
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L255
 msgid "Invalid file “{file}” ignored."
 msgstr "تجاهلتُ الملف ”{file}“ غير الصحيح."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L265
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "فشل إنشاء الدليل ”{dir}“ لاستيراد الملف ”{file}“."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L275
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "فشل نسخ الملف ”{file}“ إلى الدليل ”{dir}“."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L284
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L293
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -110,11 +110,15 @@ msgstr "أرسل"
 msgid "Correctness"
 msgstr "الدقة"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L424
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L59
+msgid "Change"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L426
 msgid "unhide"
 msgstr "أظهر"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L427
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L429
 msgid "hide"
 msgstr "أخفِ"
 

@@ -191,7 +191,8 @@ class ContributionsController extends AppController
         $this->paginate = array(
             'Contribution' => array(
                 'conditions' => array(
-                    'user_id' => $userId
+                    'user_id' => $userId,
+                    'type !=' => 'license'
                 ),
                 'contain' => array(
                     'User' => array(

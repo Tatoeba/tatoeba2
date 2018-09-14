@@ -39,9 +39,8 @@ WHERE sl.visibility != 'private'
 ORDER BY sl.id ASC, s_sl.sentence_id
 INTO OUTFILE '/var/tmp/sentences_in_lists.csv';
 
--- User profiles
-SELECT u.username, g.name, u.since, u.name, u.birthday, u.homepage,
-       u.description 
+-- Users
+SELECT u.id, u.username, g.name
 FROM users u JOIN groups g ON u.group_id = g.id
 WHERE g.id BETWEEN 1 AND 5  -- no spammers, who have id = 6
 ORDER BY u.id ASC
