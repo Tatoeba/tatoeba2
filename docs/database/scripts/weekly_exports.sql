@@ -94,3 +94,9 @@ INTO OUTFILE '/var/tmp/user_languages.csv';
 SELECT u.username, us.sentence_id, us.correctness, us.created, us.modified
 FROM users_sentences us LEFT JOIN users u ON us.user_id = u.id
 INTO OUTFILE '/var/tmp/users_sentences.csv';
+
+-- Sentences under CC0
+SELECT s.id, s.lang, s.text, s.modified
+FROM sentences s
+WHERE correctness > -1 AND license = 'CC0 1.0'
+INTO OUTFILE '/var/tmp/sentences_CC0.csv';
