@@ -84,8 +84,8 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
         <?
         if (empty($this->request->data)) {
             $hintText = format(
-                __('If your language is missing, please read our article on how to <a href={}>request a new language</a>.'),
-                'https://wiki.tatoeba.org/articles/show/new-language-request'
+                __('If your language is missing, please read our article on how to <a href="{}">request a new language</a>.'),
+                'https://en.wiki.tatoeba.org/articles/show/new-language-request'
             );
             echo $this->Html->para('hint', $hintText);
         }
