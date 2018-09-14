@@ -51,7 +51,7 @@ class LicensingController extends AppController {
             } else {
                 $options = array(
                     'userId' => $currentUserId,
-                    'dryRun' => true,
+                    'dryRun' => false,
                     'UIlang' => Configure::read('Config.language'),
                     'sendReport' => true,
                 );
