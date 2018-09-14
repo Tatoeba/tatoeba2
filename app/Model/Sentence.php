@@ -42,6 +42,7 @@ App::import('Model', 'CurrentUser');
 App::import('Sanitize');
 App::import('Lib', 'LanguagesLib');
 App::uses('CakeEvent', 'Event');
+App::uses('ContributionListener', 'Lib/Event');
 
 class Sentence extends AppModel
 {
@@ -152,7 +153,7 @@ class Sentence extends AppModel
 
         $this->linkWithTranslationModel();
 
-        $this->getEventManager()->attach(array($this->Contribution, 'logSentence'), 'Model.Sentence.saved');
+        $this->getEventManager()->attach(new ContributionListener());
     }
 
     /**
