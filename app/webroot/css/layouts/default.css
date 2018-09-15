@@ -366,9 +366,8 @@ rt {
 #SentenceQuery {
     width: 400px;
     font-size: 20px;
-    padding: 2px 5px;
+    padding: 5px;
     padding-right: 30px;
-    height: 36px;
     border: 1px solid #DDDDDD;
     background-color: #FFFFFF;
 }
@@ -398,6 +397,8 @@ rt {
 .search_bar .search-submit-button {
     width: 70px;
     min-width: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 .search_bar .search-submit-button.md-raised:hover {
