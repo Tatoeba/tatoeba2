@@ -45,6 +45,7 @@
         vm.init = init;
         vm.querySearch = querySearch;
         vm.onSelectedItemChange = onSelectedItemChange;
+        vm.onSearchTextChange = onSearchTextChange;
         vm.onBlur = onBlur;
         vm.onFocus = onFocus;
 
@@ -104,6 +105,11 @@
                 return item.code === lang;
             });
             $scope.$parent.$broadcast('languageChange', {name: name, lang: lang});
+        }
+
+        function onSearchTextChange() {
+            console.log(vm.searchText);
+            vm.searchText = vm.searchText.replace(/\t/, ' ');
         }
 
         function onBlur() {

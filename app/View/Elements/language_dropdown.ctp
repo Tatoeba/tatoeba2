@@ -14,6 +14,7 @@ $this->Form->unlockField($name);
         md-selected-item="vm.selectedItem"
         md-selected-item-change="vm.onSelectedItemChange()"
         md-search-text="vm.searchText"
+        md-search-text-change="vm.onSearchTextChange()"
         md-items="language in vm.querySearch(vm.searchText)"
         md-item-text="language.name"
         md-min-length="0"
