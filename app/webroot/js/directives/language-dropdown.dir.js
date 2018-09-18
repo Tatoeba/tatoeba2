@@ -60,13 +60,15 @@
         /////////////////////////////////////////////////////////////////////////
 
         function init(data, selectedLang, dropdownName) {
+            var isPriority;
             name = dropdownName;
-
+            
             Object.keys(data).forEach((key1) => {
                 if (typeof data[key1] === 'object'){
                     var items = data[key1];
+                    isPriority = !isPriority && key1 !== '0';
                     Object.keys(items).forEach((key2) => {
-                        languages.push({code: key2, name: items[key2]});
+                        languages.push({code: key2, name: items[key2], isPriority: isPriority});
                     });
                 } else {
                     languages.push({code: key1, name: data[key1]});

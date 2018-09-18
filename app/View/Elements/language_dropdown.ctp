@@ -9,7 +9,7 @@ $this->Form->unlockField($name);
      class="language-dropdown-container"
      title="{{vm.selectedItem.name}}">
      <?= $this->Form->hidden($name, array('value' => '{{vm.selectedItem.code}}')); ?>
-    <md-autocomplete md-select-on-focus
+    <md-autocomplete
         md-menu-class="language-dropdown"
         md-selected-item="vm.selectedItem"
         md-selected-item-change="vm.onSelectedItemChange()"
@@ -23,7 +23,8 @@ $this->Form->unlockField($name);
         placeholder="<?= __('Select a language') ?>">
         <md-item-template>
             <span md-highlight-text="vm.searchText" 
-                  md-highlight-flags="ig">{{language.name}}</span>
+                  md-highlight-flags="ig"
+                  ng-class="{'priority-language': language.isPriority}">{{language.name}}</span>
         </md-item-template>
         <md-not-found>
         <?= __('No language found.') ?>
