@@ -16,8 +16,10 @@
 - name: Fetch sinoparserd source
   git: repo=https://github.com/Tatoeba/sinoparserd.git dest=/tmp/sinoparserd
 - name: Fix to import the correct file in Index.h
-  command: sed -i 's/tree_str/TatoTreeStr/' src/Index.h chdir=/tmp/sinoparserd
-  ignore_errors: yes
+  replace:
+    path: /tmp/sinoparserd/src/Index.h
+    regexp: 'tree_str'
+    replace: 'TatoTreeStr'
 - name: Generate Makefile
   command: cmake . chdir=/tmp/sinoparserd
 - name: Compile
@@ -39,7 +41,9 @@
 - name: Add startup entry
   command: update-rc.d sinoparserd defaults
 - name: Remove temporary files
-  command: rm -rf /tmp/sinoparserd
+  file:
+    path: /tmp/sinoparserd
+    state: absent
 - name: Enable auto-transcriptions
   replace:
     path: '{{code_dir}}/app/Config/core.php'

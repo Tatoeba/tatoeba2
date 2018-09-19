@@ -83,4 +83,6 @@
   command: update-rc.d suggestd defaults
 
 - name: Remove temporary files
-  command: rm -rf /tmp/suggestd
+  file:
+    path: /tmp/suggestd
+    state: absent
