@@ -12,7 +12,7 @@
   register: sources_status
 - name: Update apt-cache
   apt: update_cache=yes
-  when: sources_status|changed
+  when: sources_status is changed
 
 - include: system-monitor.yml
 - include: php-agent.yml

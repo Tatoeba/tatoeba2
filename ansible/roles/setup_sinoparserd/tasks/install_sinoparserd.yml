@@ -2,7 +2,7 @@
 
 - name: Stop nihongoparserd daemon if started
   command: service sinoparserd stop
-  when: install_state|success and force_install == true
+  when: install_state is success and force_install == true
   ignore_errors: yes
 - name: Install dependencies for sinoparserd
   apt: name={{item}} state=present
