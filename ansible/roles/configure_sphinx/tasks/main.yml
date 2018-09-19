@@ -7,7 +7,7 @@
   ignore_errors: yes
 - name: Database import/update fail message
   fail: msg="The code directory is not present in {{code_dir}}. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
-  when: code_status|failed
+  when: code_status is failed
 
 - name: Create directories for sphinx
   file: path={{item}} state=directory recurse=yes mode=744 owner=sphinxsearch group=sphinxsearch
