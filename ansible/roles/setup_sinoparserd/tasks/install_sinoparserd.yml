@@ -41,4 +41,8 @@
 - name: Remove temporary files
   command: rm -rf /tmp/sinoparserd
 - name: Enable auto-transcriptions
-  command: sed -i 's/\(Configure::write(.AutoTranscriptions.enabled.,\).*)/\1 true)/' {{code_dir}}/app/Config/core.php
+  replace:
+    path: '{{code_dir}}/app/Config/core.php'
+    regexp: 'Configure::write\(.AutoTranscriptions\.enabled.,[^)]+\)'
+    replace: 'Configure::write(''AutoTranscriptions.enabled'', true)'
+    validate: 'php -l %s'
