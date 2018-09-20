@@ -17,7 +17,7 @@
   - { role: update_code, become: false }
   - { role: setup_database, import_csv: 'no' }
   - install_sphinx
-  - { role: configure_sphinx, sphinx_create_indexes: no }
+  - { role: configure_sphinx, sphinx_create_indexes: true }
   - { role: setup_nihongoparserd, force_install: no }
   - { role: setup_sinoparserd, force_install: no }
   - { role: setup_suggestd, force_install: no }
