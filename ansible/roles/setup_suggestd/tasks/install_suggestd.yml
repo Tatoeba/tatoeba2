@@ -57,19 +57,21 @@
   copy:
     src: init.d
     dest: /etc/init.d/suggestd
-    mode: 555
+    mode: 755
 
 - name: Copy default options file to system-wide location
   copy:
     src: default
     dest: /etc/default/suggestd
-    mode: 555
+    mode: 644
 
 - name: Copy config file to system-wide location
   template:
     src: suggestd.xml.j2
     dest: /etc/suggestd.xml
-    mode: 555
+    owner: root
+    group: suggestd
+    mode: 640
 
 - name: Create user suggestd
   user:

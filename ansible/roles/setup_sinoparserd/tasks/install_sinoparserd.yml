@@ -27,9 +27,9 @@
 - name: Copy Binaries
   command: cp sinoparserd /usr/local/bin/sinoparserd chdir=/tmp/sinoparserd
 - name: Copy init file to system-wide location
-  copy: src=init.d dest=/etc/init.d/sinoparserd mode=555
+  copy: src=init.d dest=/etc/init.d/sinoparserd mode=755
 - name: Copy default file to system-wide location
-  copy: src=default dest=/etc/default/sinoparserd mode=555
+  copy: src=default dest=/etc/default/sinoparserd mode=644
 - name: Copy dictionary files to a system wide location - 1
   command: cp doc/cantonese.xml /etc/cantonese.xml chdir=/tmp/sinoparserd
 - name: Copy dictionary files to a system wide location - 2
