@@ -64,7 +64,7 @@ sphinx_deb_url: "http://sphinxsearch.com/files/sphinxsearch_2.2.10-release-1~whe
 sphinx_index_dir: /var/sphinx/indices
 sphinx_log_dir: /var/sphinx/log
 sphinx_sql_socket: /run/mysqld/mysqld.sock
-sphinx_pid_file: /var/run/sphinxsearch/searchd.pid
+sphinx_pid_file: /run/sphinxsearch/searchd.pid
 sphinx_binlog_path: /var/lib/sphinxsearch/data
 
 # Variables for tatodetect

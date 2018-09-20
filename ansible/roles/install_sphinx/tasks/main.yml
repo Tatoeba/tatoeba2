@@ -13,6 +13,14 @@
     group: root
     mode: 0644
 
+- name: Install additional tmpfiles.d file
+  copy:
+    src: tmpfiles.d.sphinxsearch.conf
+    dest: /usr/lib/tmpfiles.d/sphinxsearch.conf
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Remove init.d files
   file:
     path: "{{ item }}"
