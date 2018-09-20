@@ -64,9 +64,11 @@
   command: /etc/init.d/tatodetect start
 - name: Add startup entry
   command: update-rc.d tatodetect defaults
-- name: Remove temporary files - 1
-  command: rm -rf /tmp/tatodetect
-- name: Remove temporary files - 2
-  command: rm -rf /tmp/cppcms*
-- name: Remove temporary files - 3
-  command: rm -rf /tmp/cppdb*
+- name: Remove temporary files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+  - /tmp/tatodetect
+  - /tmp/cppcms-1.0.5
+  - /tmp/cppdb-0.3.1
