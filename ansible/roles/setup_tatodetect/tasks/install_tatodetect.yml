@@ -49,14 +49,14 @@
 - name: Copy the binary to system-wide location
   command: cp tatodetect /usr/local/bin/tatodetect chdir=/tmp/tatodetect
 - name: Copy init file to system-wide location
-  copy: src=init.d dest=/etc/init.d/tatodetect mode=755
+  copy: src=init.d dest=/etc/init.d/tatodetect mode=0755
 - name: Copy config file to system-wide location
-  template: src=tatodetect.js.j2 dest=/etc/tatodetect.js mode=644
+  template: src=tatodetect.js.j2 dest=/etc/tatodetect.js mode=0644
 - name: Copy default options file to system-wide location
-  copy: src=default dest=/etc/default/tatodetect mode=644
+  copy: src=default dest=/etc/default/tatodetect mode=0644
 
 - name: Download ngrams.db file
-  get_url: url={{ngrams_db_download_url}} dest={{ngrams_db_file}} mode=777
+  get_url: url={{ngrams_db_download_url}} dest={{ngrams_db_file}} mode=0777
   when: ngrams_create_mode == "download"
 
 - include: generate_ngrams_db.yml

@@ -4,7 +4,7 @@
   copy:
     src: "{{ item }}"
     dest: "/tmp/{{ item }}"
-    mode: 777
+    mode: 0777
     owner: mysql
     group: mysql
   with_items:
@@ -30,7 +30,7 @@
     src: "/tmp/{{ item }}"
     dest: /tmp/
     copy: no
-    mode: 777
+    mode: 0777
     owner: mysql
     group: mysql
   with_items:

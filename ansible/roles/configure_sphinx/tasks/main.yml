@@ -10,7 +10,7 @@
   when: code_status is failed
 
 - name: Create directories for sphinx
-  file: path={{item}} state=directory recurse=yes mode=744 owner=sphinxsearch group=sphinxsearch
+  file: path={{item}} state=directory recurse=yes mode=0744 owner=sphinxsearch group=sphinxsearch
   with_items:
   - "{{sphinx_index_dir}}"
   - "{{sphinx_log_dir}}"

@@ -38,7 +38,7 @@
     dest: /etc/nginx/sites-available/tatoeba.org
     owner: www-data
     group: root
-    mode: 644
+    mode: 0644
     backup: yes
 
 - name: Enable Tatoeba vhost
