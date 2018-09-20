@@ -3,7 +3,7 @@ Description=Sphinxsearch
 
 [Service]
 User=sphinxsearch
-ExecStart=/usr/bin/searchd --nodetach --console --logdebug
+ExecStart=/usr/bin/searchd --nodetach --logdebug
 LimitNOFILE=4096
 Restart=always
 
