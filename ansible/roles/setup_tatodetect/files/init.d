@@ -1,4 +1,14 @@
 #! /bin/sh
+### BEGIN INIT INFO
+# Provides:          tatodetect
+# Required-Start:    $local_fs $remote_fs $network $syslog $named
+# Required-Stop:     $local_fs $remote_fs $network $syslog $named
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop tatodetect web server
+### END INIT INFO
+
+
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 DAEMON=/usr/local/bin/tatodetect

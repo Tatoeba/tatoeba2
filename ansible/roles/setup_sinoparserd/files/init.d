@@ -1,4 +1,14 @@
 #! /bin/sh
+### BEGIN INIT INFO
+# Provides:          sinoparserd
+# Required-Start:    $local_fs $remote_fs $network $syslog $named
+# Required-Stop:     $local_fs $remote_fs $network $syslog $named
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop sinoparserd web server
+### END INIT INFO
+
+
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/local/bin/sinoparserd
 NAME=sinoparserd
