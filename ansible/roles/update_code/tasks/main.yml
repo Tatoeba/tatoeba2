@@ -31,22 +31,12 @@
     global_command: no
     working_dir: "{{ code_dir }}"
 
-- name: Set ownership of the repository
-  file:
-    path: "{{ code_dir }}"
-    state: directory
-    recurse: yes
-    owner: root
-    group: root
-    mode: u+w,a+rX
-
-- name: Give proper permissions to avatar, logs and cache directories
+- name: Allow www-data to write avatars, logs and cache
   file:
     path: "{{ code_dir }}/{{ item }}"
     state: directory
     recurse: yes
-    owner: www-data
-    group: www-data
+    mode: 777
   with_items:
   - app/webroot/img/profiles_128
   - app/webroot/img/profiles_36
