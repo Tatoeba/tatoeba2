@@ -36,6 +36,8 @@
   command: make chdir=/tmp/cppdb-0.3.1
 - name: Install
   command: make install chdir=/tmp/cppdb-0.3.1
+- name: Run ldconfig
+  command: ldconfig
 - name: Install dependencies for tatodetect
   apt: name=libsqlite3-dev state=present
 - name: Fetch tatodetect source
