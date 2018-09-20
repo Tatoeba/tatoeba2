@@ -15,16 +15,16 @@
   - libgcrypt11-dev
   - libicu-dev
 - name: Fetch cppcms source
-  get_url: url=http://downloads.sourceforge.net/project/cppcms/cppcms/1.0.4/cppcms-1.0.4.tar.bz2 dest=/tmp/
+  get_url: url=http://downloads.sourceforge.net/project/cppcms/cppcms/1.0.5/cppcms-1.0.5.tar.bz2 dest=/tmp/
 - name: Extract source from the archive
-  command: tar -jxvf cppcms-1.0.4.tar.bz2 chdir=/tmp/
+  command: tar -jxvf cppcms-1.0.5.tar.bz2 chdir=/tmp/
   when: install_state is failed or force_install == true
 - name: Generate makefile
-  command: cmake . chdir=/tmp/cppcms-1.0.4
+  command: cmake . chdir=/tmp/cppcms-1.0.5
 - name: Compile
-  command: make chdir=/tmp/cppcms-1.0.4
+  command: make chdir=/tmp/cppcms-1.0.5
 - name: Install
-  command: make install chdir=/tmp/cppcms-1.0.4
+  command: make install chdir=/tmp/cppcms-1.0.5
 - name: Fetch cppdb source
   get_url: url=http://downloads.sourceforge.net/project/cppcms/cppdb/0.3.1/cppdb-0.3.1.tar.bz2 dest=/tmp/
   when: install_state is failed or force_install == true
