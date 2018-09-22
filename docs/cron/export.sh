@@ -26,3 +26,4 @@ tar -cjf jpn_indices.tar.bz2 jpn_indices.csv
 tar -cjf sentences_with_audio.tar.bz2 sentences_with_audio.csv
 tar -cjf user_languages.tar.bz2 user_languages.csv
 tar -cjf tags_detailed.tar.bz2 tags_detailed.csv
+tar -cjf sentences_CC0.tar.bz2 sentences_CC0.csv

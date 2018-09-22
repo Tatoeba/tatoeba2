@@ -116,3 +116,6 @@ cake acl create aco Vocabulary add_sentences
 cake acl create aco Vocabulary save
 cake acl create aco Vocabulary remove
 cake acl create aco Vocabulary save_sentence
+
+cake acl create aco controllers Licensing
+cake acl create aco Licensing switch_my_sentences

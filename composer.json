@@ -1,7 +1,8 @@
 {
     "name": "tatoeba",
     "require": {
-        "cakephp/cakephp": "2.9.*"
+        "cakephp/cakephp": "2.9.*",
+        "dereuromark/cakephp-queue": "2.*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "2.*",
@@ -10,5 +11,10 @@
     },
     "config": {
         "vendor-dir": "app/Vendor/"
+    },
+    "extra": {
+        "installer-paths": {
+            "app/Plugin/Queue/": ["dereuromark/cakephp-queue"]
+        }
     }
 }

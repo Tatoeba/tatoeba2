@@ -12,6 +12,7 @@ app/webroot/files/audio
 app/webroot/robots.txt
 
 # cache
+app/tmp/queue
 app/tmp/cache
 app/tmp/cache/models
 app/tmp/cache/persistent
@@ -20,6 +21,7 @@ app/tmp/cache/views
 # Composer / Vendor
 composer.phar
 app/Vendor/
+app/Plugin/
 
 ## python related files
 

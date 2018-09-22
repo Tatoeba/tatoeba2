@@ -72,6 +72,7 @@ class TranscriptionsShell extends AppShell {
         foreach ($sentences as $sentence) {
            $generated += $this->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
         }
+        $this->out('.', 0);
         return $generated;
     }
 
@@ -112,6 +113,7 @@ class TranscriptionsShell extends AppShell {
         );
         if ($data && $this->{$model}->saveAll($data, $options))
             $proceeded += count($data);
+        $this->out('.', 0);
         return $proceeded;
     }
 

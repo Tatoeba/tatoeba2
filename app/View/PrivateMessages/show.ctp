@@ -57,7 +57,7 @@ echo $this->element('pmmenu');
     
     <a name="reply"></a>
     <?php
-    if ($folder == 'Inbox') {
+    if ($folder == 'Inbox' && $author['type'] == 'human') {
         $this->PrivateMessages->displayForm(
             $author['username'], 
             $messageTitle, 
