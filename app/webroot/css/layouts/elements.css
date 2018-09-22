@@ -1648,6 +1648,30 @@ div.hideLink {
  * --------------------------------------------------------------------
  */
 
+.language-dropdown-container {
+    width: 200px;
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.language-dropdown li {
+    line-height: 42px;
+    height: 42px;
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    min-height: 300px;
+}
+
+.md-autocomplete-suggestions-container li .highlight{
+    color: #222222;
+    background-color: #ffff8d;
+}
+
+.priority-language {
+    font-weight: bold;
+}
+
 .usersLanguages .languageInfo {
     margin: 0;
     padding: 0;

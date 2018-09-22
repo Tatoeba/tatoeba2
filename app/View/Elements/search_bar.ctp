@@ -25,12 +25,16 @@
  * @link     http://tatoeba.org
  */
 
+$this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 'scriptBottom'));
+
+$searchQuery = Sanitize::html($searchQuery);
+
 if (isset($this->request->params['lang'])) {
     Configure::write('Config.language', $this->request->params['lang']);
 }
 ?>
 
-<md-toolbar class="search_bar md-whiteframe-1dp md-primary">
+<md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
 <?php
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
@@ -76,41 +80,48 @@ echo $this->Form->create(
             <input id="SentenceQuery"
                    type="text"
                    name="query"
-                   value="<?= Sanitize::html($searchQuery) ?>"
+                   ng-model="ctrl.searchQuery"
                    accesskey="4"
                    lang=""
                    dir="auto"
+                   data-query="<?= $searchQuery ?>"
                    flex>
-            <md-icon id="clearSearch">clear</md-icon>
+            <md-icon id="clearSearch" ng-click="ctrl.clearSearch()">clear</md-icon>       
         </div>
     </div>
 
     <div layout="row" layout-align="center end">
         <div layout="column">
+            <label for="SentenceTo"><?= __('From') ?></label>
             <?php
-            echo $this->Search->selectLang(
-                'from',
-                $selectedLanguageFrom,
+            echo $this->element(
+                'language_dropdown', 
                 array(
-                    'div' => false,
-                    'label' => __('From'),
+                    'name' => 'from',
+                    'selectedLanguage' => $selectedLanguageFrom,
+                    'languages' => $this->Search->getLangs(),
+                    'setLanguage' => 'ctrl.langFromApi'
                 )
             );
             ?>
         </div>
 
-        <div id="arrow">
+        <div id="arrow" ng-click="ctrl.swapLanguages()">
             <md-icon>swap_horiz</md-icon>
         </div>
 
         <div layout="column">
+            <label for="SentenceTo">
+                <?= __x('language', 'To') ?>
+            </label>
             <?php
-            echo $this->Search->selectLang(
-                'to',
-                $selectedLanguageTo,
+            echo $this->element(
+                'language_dropdown', 
                 array(
-                    'div' => false,
-                    'label' => __x('language', 'To'),
+                    'name' => 'to',
+                    'selectedLanguage' => $selectedLanguageTo,
+                    'languages' => $this->Search->getLangs(),
+                    'setLanguage' => 'ctrl.langToApi'
                 )
             );
             ?>
