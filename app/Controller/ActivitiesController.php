@@ -212,7 +212,7 @@ class ActivitiesController extends AppController
                 'conditions' => $conditions,
                 'contain' => $contain,
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => 'created DESC'
+                'order' => 'Sentence.created DESC'
             )
         );
 
