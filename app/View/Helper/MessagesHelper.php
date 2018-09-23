@@ -191,7 +191,7 @@ class MessagesHelper extends AppHelper
 
                 <div class="username">
                 <?php
-                if ($author['type'] == 'machine') {
+                if (isset($author['type']) && $author['type'] == 'machine') {
                     echo $this->Html->tag('i', __('Notification from Tatoeba'));
                 } elseif (!$author['username']) {
                     echo $this->Html->tag('i', __('Former member'));
