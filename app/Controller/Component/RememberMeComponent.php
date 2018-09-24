@@ -82,8 +82,11 @@ class RememberMeComponent extends Component
     public function check()
     {
         $cookie = $this->Cookie->read($this->_cookieName);
+        $validCookie = is_array($cookie) &&
+                       isset($cookie['username']) &&
+                       isset($cookie['password']);
 
-        if (!is_array($cookie) || $this->Auth->user()) {
+        if (!$validCookie || $this->Auth->user()) {
             return;
         }
 
