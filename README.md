@@ -51,5 +51,5 @@ message in our [Google group][5], ask in our [Gitter chatroom][6] or in our
 [3]: https://github.com/Tatoeba/imouto/blob/master/README.md#imouto-for-development
 [4]: https://github.com/Tatoeba/tatoeba2/wiki/How-to-install-Tatoeba
 [5]: http://groups.google.com/group/tatoebaproject
-[6]: https://gitter.im/Tatoeba/tatoeba2?utm_source=share-link&utm_medium=link&utm_campaign=share-link
+[6]: https://gitter.im/Tatoeba/tatoeba2
 [7]: https://chat.tatoeba.org/
