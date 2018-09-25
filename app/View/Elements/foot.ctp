@@ -185,7 +185,7 @@ if (isset($this->request->params['lang'])) {
         <a class="cc-by-icon" rel="license"
            href="https://creativecommons.org/licenses/by/2.0/">
             <img alt="Creative Commons License" style="border-width:0"
-                 src="https://licensebuttons.net/l/by/2.0/88x31.png" />
+                 src="/img/cc-by-2.0-88x31.png" />
         </a>
         <div class="text">
             <?php
