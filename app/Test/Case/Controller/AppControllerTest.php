@@ -23,10 +23,10 @@ class AppControllerTest extends ControllerTestCase {
 			$mockedComponents = array('Cookie' => array('read', 'write'));
 		}
 		$this->controller = $this->generate('App', array(
-			'methods' => array('redirect', 'bar'),
+			'methods' => array('redirect', 'bar', 'index'),
 			'components' => $mockedComponents,
 		));
-		$this->controller->Auth->allowedActions = array('bar');
+		$this->controller->Auth->allowedActions = array('bar', 'index');
 	}
 
 	function tearDown() {
@@ -69,6 +69,16 @@ class AppControllerTest extends ControllerTestCase {
 			->with('/eng/foo/bar');
 
 		$this->testAction('/foo/bar', array('method' => 'GET'));
+	}
+
+	function testBeforeFilter_redirectsToEnglishByDefaultWithIndexAction() {
+		$this->expectNoLanguageCookie();
+		$this->controller
+			->expects($this->once())
+			->method('redirect')
+			->with('/eng/foo/index');
+
+		$this->testAction('/foo/index', array('method' => 'GET'));
 	}
 
 	function testBeforeFilter_redirectsToLanguageInCookie() {
