@@ -180,6 +180,11 @@ class SphinxConfShell extends Shell {
         'U+2D30..U+2D67', 'U+2D6F',
         # Syriac (script of Assyrian)
         'U+0710..U+074A', 'U+074D..U+074F',
+        # Odia/Oriya
+        'U+0B01..U+0B03', 'U+0B05..U+0B0C', 'U+0B0F..U+0B10', 'U+0B13..U+0B28',
+        'U+0B2A..U+0B30', 'U+0B32..U+0B33', 'U+0B35..U+0B39', 'U+0B3C..U+0B44',
+        'U+0B47..U+0B48', 'U+0B4B..U+0B4D', 'U+0B56..U+0B57', 'U+0B5C..U+0B5D',
+        'U+0B5F..U+0B63', 'U+0B66..U+0B77',
     );
 
     public $languagesWithoutWordBoundaries = array(
