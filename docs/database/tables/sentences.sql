@@ -23,7 +23,6 @@ CREATE TABLE `sentences` (
   `user_id` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
-  `lang_id` tinyint(3) unsigned DEFAULT NULL,
   `script` varchar(4) DEFAULT NULL,
   `hash` BINARY(16) NOT NULL,
   `license` enum('CC BY 2.0 FR', 'CC0 1.0') DEFAULT NULL,

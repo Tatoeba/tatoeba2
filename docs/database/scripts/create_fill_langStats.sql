@@ -26,13 +26,3 @@ UPDATE sentences SET lang = NULL WHERE lang = '';
 -- Inserting the stats into 'languages'
 INSERT INTO languages (code, numberOfSentences)
     SELECT lang , count(*) FROM sentences GROUP BY lang;
-    
--- We need to Update the sentences.lang_id, because re-creating the table will 
--- assign a different id to a code. For instance if the id for 'eng' was 11,
--- and we create again the table, then the new id for 'eng' could be 23. 
--- So the older sentences in the table sentences would have lang_id = 11 while 
--- the newer sentences would have lang_id = 23.
---
--- NOTE: It seems that this doesn't update properly the count for lang = NULL
--- I don't have time to debug that.
-UPDATE sentences s JOIN languages ls ON s.lang = ls.code SET s.lang_id = ls.id;
