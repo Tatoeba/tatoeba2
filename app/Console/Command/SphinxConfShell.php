@@ -185,6 +185,10 @@ class SphinxConfShell extends Shell {
         'U+0B2A..U+0B30', 'U+0B32..U+0B33', 'U+0B35..U+0B39', 'U+0B3C..U+0B44',
         'U+0B47..U+0B48', 'U+0B4B..U+0B4D', 'U+0B56..U+0B57', 'U+0B5C..U+0B5D',
         'U+0B5F..U+0B63', 'U+0B66..U+0B77',
+        # Kannada
+        'U+0C80..U+0C8C', 'U+0C8E..U+0C90', 'U+0C92..U+0CA8', 'U+0CAA..U+0CB3',
+        'U+0CB5..U+0CB9', 'U+0CBC..U+0CC4', 'U+0CC6..U+0CC8', 'U+0CCA..U+0CCD',
+        'U+0CD5..U+0CD6', 'U+0CDE', 'U+0CE0..U+0CE3', 'U+0CE6..U+0CEF', 'U+0CF1..U+0CF2',
     );
 
     public $languagesWithoutWordBoundaries = array(
