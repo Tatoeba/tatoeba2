@@ -3,6 +3,6 @@
 - name: Download sentences_detailed.csv from tatoeba.org
   get_url: url=http://downloads.tatoeba.org/exports/sentences_detailed.tar.bz2 dest=/tmp/tatodetect/
 - name: Decompress sentences_detailed.csv
-  unarchive: src=/tmp/tatodetect/sentences_detailed.tar.bz2 dest=/tmp/tatodetect/ copy=no
+  unarchive: src=/tmp/sentences_detailed.tar.bz2 dest=/tmp/ copy=no
 - name: Run the ngrams.db generation script
-  command: python /tmp/tatodetect/tools/generate.py /tmp/tatodetect/sentences_detailed.csv {{ngrams_db_file}}
+  command: tatodetect-generate-ngrams.py /tmp/sentences_detailed.csv {{ngrams_db_file}}

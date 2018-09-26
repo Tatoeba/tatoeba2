@@ -48,6 +48,12 @@
   command: make chdir=/tmp/tatodetect
 - name: Copy the binary to system-wide location
   command: cp tatodetect /usr/local/bin/tatodetect chdir=/tmp/tatodetect
+- name: Copy the ngrams generation tool to system-wide location
+  copy:
+    remote_src: yes
+    src: /tmp/tatodetect/tools/generate.py
+    dest: /usr/local/bin/tatodetect-generate-ngrams.py
+    mode: 0755
 - name: Copy init file to system-wide location
   copy: src=init.d dest=/etc/init.d/tatodetect mode=0755
 - name: Copy config file to system-wide location
