@@ -63,11 +63,11 @@
             var isPriority;
             name = dropdownName;
             
-            Object.keys(data).forEach((key1) => {
+            Object.keys(data).forEach(function (key1) {
                 if (typeof data[key1] === 'object'){
                     var items = data[key1];
                     isPriority = !isPriority && key1 !== '0';
-                    Object.keys(items).forEach((key2) => {
+                    Object.keys(items).forEach(function (key2) {
                         languages.push({code: key2, name: items[key2], isPriority: isPriority});
                     });
                 } else {
@@ -83,7 +83,7 @@
         function querySearch(value) {
             if (value) {
                 var search = value.toLowerCase();
-                return languages.filter((item) => {
+                return languages.filter(function (item) {
                     var language = item.name.toLowerCase();
                     return language.indexOf(search) > -1;
                 }).sort(function(itemA, itemB) {
@@ -103,7 +103,7 @@
         }
 
         function setLang(lang) {
-            vm.selectedItem = languages.find((item) => {
+            vm.selectedItem = languages.find(function (item) {
                 return item.code === lang;
             });
             $scope.$parent.$broadcast('languageChange', {name: name, lang: lang});
