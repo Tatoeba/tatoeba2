@@ -70,7 +70,7 @@ sphinx_binlog_path: /var/lib/sphinxsearch/data
 # Variables for tatodetect
 # ------------------------
 # How do you want ngrams.db file be created? Options: [generate, download, skip]
-ngrams_create_mode: skip
+ngrams_create_mode: download
 ngrams_db_download_url: http://downloads.tatoeba.org/tatodetect/ngrams.db
 ngrams_db_file: /etc/ngrams.db
 
