@@ -6,3 +6,10 @@
   unarchive: src=/tmp/sentences_detailed.tar.bz2 dest=/tmp/ copy=no
 - name: Run the ngrams.db generation script
   command: tatodetect-generate-ngrams.py /tmp/sentences_detailed.csv {{ngrams_db_file}}
+- name: Remove sentences files
+  file:
+    path: /tmp/{{ item }}
+    state: absent
+  with_items:
+  - sentences_detailed.csv
+  - sentences_detailed.tar.bz2
