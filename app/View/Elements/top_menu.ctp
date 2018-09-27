@@ -48,8 +48,8 @@ if (empty($notTranslatedInto)) {
 $menuElements = array(
     __('Browse') => array(
         "route" => array(
-            "controller" => null,
-            "action" => null
+            "controller" => false,
+            "action" => false
         ),
         "sub-menu" => array(
             __('Random sentence') => array(
@@ -79,8 +79,8 @@ $menuElements = array(
     ),
     __('Contribute') => array(
         "route" => array(
-            "controller" => null,
-            "action" => null
+            "controller" => false,
+            "action" => false
         ),
         "sub-menu" => array(
             __('Add sentences') => array(
@@ -112,8 +112,8 @@ $menuElements = array(
     ),
     __('Community') => array(
         "route" => array(
-            "controller" => null,
-            "action" => null
+            "controller" => false,
+            "action" => false
         ),
         "sub-menu" => array(
             __('Wall') => array(
@@ -165,7 +165,7 @@ $menuElements = array(
             $cssClass = 'menuSection ';
             
             // General case
-            if ($controller == $route['controller'] && $action == $route['action']) {
+            if ($controller === $route['controller'] && $action === $route['action']) {
                 $cssClass .= 'show';
             }
             
@@ -189,7 +189,7 @@ $menuElements = array(
                     );
                 }
                 
-                if ($route['controller'] == null) {
+                if ($route['controller'] === false) {
                     echo '<a class="'.$cssClass.'">'.$title.'</a>';
                 } else {
                     echo $this->Html->link(
