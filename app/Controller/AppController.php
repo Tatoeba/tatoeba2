@@ -148,12 +148,6 @@ class AppController extends Controller
             $langInURL = $this->params['lang'];
         }
 
-        $routerDidParseURL = !empty($this->params['controller']);
-        if (!$routerDidParseURL) {
-            // better not try to redirect in order to avoid redirection loops
-            return;
-        }
-
         $langInURLAlias = $this->remapOldLangAlias($langInURL);
         if ($langInURLAlias != $langInURL) {
             $lang = $langInURLAlias;
@@ -170,6 +164,12 @@ class AppController extends Controller
         }
         $this->fixL10nCatalog();
         Configure::write('Config.language', $lang);
+
+        $routerDidParseURL = !empty($this->params['controller']);
+        if (!$routerDidParseURL) {
+            // better not try to redirect in order to avoid redirection loops
+            return;
+        }
 
         // Forcing the URL to have the (correct) language in it.
         $url = $this->request->here();
