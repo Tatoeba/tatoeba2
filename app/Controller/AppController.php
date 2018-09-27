@@ -148,6 +148,12 @@ class AppController extends Controller
             $langInURL = $this->params['lang'];
         }
 
+        $routerDidParseURL = !empty($this->params['controller']);
+        if (!$routerDidParseURL) {
+            // better not try to redirect in order to avoid redirection loops
+            return;
+        }
+
         $langInURLAlias = $this->remapOldLangAlias($langInURL);
         if ($langInURLAlias != $langInURL) {
             $lang = $langInURLAlias;
