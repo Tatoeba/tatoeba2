@@ -56,7 +56,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         <h2><?php echo __('General information about the files'); ?></h2>
         <p>
             <?php
-            __(
+            echo __(
                 'The files provided here are updated every <strong>Saturday at 9 a.m.</strong> '.
                 '(GMT).'
             );
