@@ -27,7 +27,7 @@
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Terms of use')));
 
-$frenchUI = ($this->request->params['lang'] == 'fra');
+$frenchUI = (Configure::read('Config.language') == 'fra');
 if (!$frenchUI):
 ?>
 <div id="annexe_content">

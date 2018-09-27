@@ -27,7 +27,7 @@
 ?>
 
 <?php
-$lang = $this->request->params['lang'];
+$lang = Configure::read('Config.language');
 $configUiLanguages = Configure::read('UI.languages');
 $languages = array();
 

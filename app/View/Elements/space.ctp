@@ -24,12 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-$lang = 'eng';
-if (isset($this->request->params['lang'])) {
-    Configure::write('Config.language', $this->request->params['lang']);
-    $lang = $this->request->params['lang'];
-}
 ?>
 
 

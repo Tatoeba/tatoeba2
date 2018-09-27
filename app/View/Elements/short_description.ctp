@@ -46,12 +46,6 @@ $this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 's
 
     <div class="container">
         <!-- Search -->
-        <?php
-        if (isset($this->request->params['lang'])) {
-            Configure::write('Config.language', $this->request->params['lang']);
-        }
-        ?>
-
         <div class="search-bar" ng-controller="SearchBarController as ctrl">
             <?php
             echo $this->Form->create(

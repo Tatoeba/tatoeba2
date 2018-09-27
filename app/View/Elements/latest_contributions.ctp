@@ -25,9 +25,6 @@
  * @link     http://tatoeba.org
  */
 $contributions =  ClassRegistry::init('Contribution')->getLastContributions(10);
-if (isset($this->request->params['lang'])) { 
-    Configure::write('Config.language', $this->request->params['lang']); 
-}
 ?>
 <md-list id="logs">
 <?php

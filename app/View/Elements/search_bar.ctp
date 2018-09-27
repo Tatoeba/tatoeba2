@@ -28,10 +28,6 @@
 $this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 'scriptBottom'));
 
 $searchQuery = Sanitize::html($searchQuery);
-
-if (isset($this->request->params['lang'])) {
-    Configure::write('Config.language', $this->request->params['lang']);
-}
 ?>
 
 <md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">

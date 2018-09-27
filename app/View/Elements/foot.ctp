@@ -24,10 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-if (isset($this->request->params['lang'])) {
-    Configure::write('Config.language', $this->request->params['lang']);
-}
 ?>
 <div id="footer">
 

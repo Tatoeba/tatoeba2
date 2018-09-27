@@ -26,7 +26,7 @@
  */
 
 $uiLanguages = Configure::read('UI.languages');
-$currentLang = $this->request->params['lang'];
+$currentLang = Configure::read('Config.language');
 $currentUrl = $this->request->url;
 
 foreach ($uiLanguages as $langs) {

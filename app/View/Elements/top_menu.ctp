@@ -35,7 +35,7 @@ if (empty($currentLanguage)) {
     $currentLanguage = $this->Session->read('random_lang_selected');
 }
 if (empty($currentLanguage) || $currentLanguage == 'und') {
-    $currentLanguage = $this->request->params['lang'];
+    $currentLanguage = Configure::read('Config.language');
 }
 if (empty($showTranslationsInto)) {
     $showTranslationsInto = 'none';

@@ -24,12 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-if (isset($this->request->params['lang'])) {
-    Configure::write('Config.language', $this->request->params['lang']);
-}
-?>
 
-<?php
 $currentUserIsMember = CurrentUser::isMember();
 
 foreach ($sentenceComments as $i=>$comment) {
