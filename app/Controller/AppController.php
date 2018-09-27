@@ -139,9 +139,7 @@ class AppController extends Controller
         //   language of the browser is not supported).
         // - If the user has a cookie, we use the language set in the cookie.
         // - If no cookie, we use the language set in the URL.
-        if (empty($lang)) {
-            $lang = $this->getSupportedLanguage();
-        }
+        $lang = $this->getSupportedLanguage();
         $langInCookie = $this->Cookie->read('interfaceLanguage');
         $langInURL = null;
         if (isset($this->params['lang'])) {
