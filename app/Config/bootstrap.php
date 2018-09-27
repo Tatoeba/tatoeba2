@@ -1,7 +1,5 @@
 <?php
 
-CakePlugin::load('Queue');
-
 /**
  * Printf-like function that supports:
  *   {n} params, n integer starting at zero
@@ -58,4 +56,4 @@ if (!function_exists('__format_decompose_list')) {
     }
 }
 
-?>
+CakePlugin::load('Queue');
