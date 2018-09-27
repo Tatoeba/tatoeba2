@@ -134,6 +134,9 @@ class AppController extends Controller
         // Important: needs to be done after RememberMe->check().
         CurrentUser::store($this->Auth->user());
 
+        // Set view variables for the search bar
+        $this->set('query', '');
+
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the
         //   language of the browser is not supported).
@@ -193,9 +196,6 @@ class AppController extends Controller
             $redirectCode = $this->request->is('ajax') ? null : 301;
             $this->redirect($redirectPage, $redirectCode);
         }
-
-        // Set view variables for the search bar
-        $this->set('query', '');
     }
 
     /**
