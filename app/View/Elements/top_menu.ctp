@@ -169,12 +169,6 @@ $menuElements = array(
                 $cssClass .= 'show';
             }
             
-            // Special case for homepage
-            if ($controller == 'pages' && $action == 'index'
-                && $route['action'] == 'home') {
-                $cssClass .= 'show';
-            }
-            
             // displaying <li> element
             ?>
             <li class='menuItem'>
