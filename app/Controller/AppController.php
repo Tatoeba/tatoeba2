@@ -166,35 +166,36 @@ class AppController extends Controller
         $this->fixL10nCatalog();
         Configure::write('Config.language', $lang);
 
+        // If the Router did not parse the URL, we don't know if the URL
+        // contains a language, we so cannot perform any kind of language
+        // redirection
         $routerDidParseURL = !empty($this->params['controller']);
-        if (!$routerDidParseURL) {
-            // better not try to redirect in order to avoid redirection loops
-            return;
-        }
+        if ($routerDidParseURL) {
 
-        // Forcing the URL to have the (correct) language in it.
-        $url = $this->request->here();
-        if (!empty($langInURL) && (
-              ($langInCookie && $langInURL != $langInCookie) ||
-              ($langInURLAlias != $langInURL)
-           )) {
-            // We're are now going to remove the language from the URL and set
-            // $langURL to null so that we get the the correct URL through
-            // redirection (below).
-            $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url);
-            $langInURL = null;
-        }
-        if (empty($langInURL)
-            && !$this->request->is('post')   // Avoid throwing away POST or
-            && !$this->request->is('put')) { // PUT data by redirecting
-            $redirectPage = "/".$lang.$url;
-            // Redirection of Ajax requests will be handled internally and all in
-            // one request thanks to RequestHandlerComponent::beforeRedirect().
-            // However, this function sets the HTTP return code and we don't want
-            // that. Instead, we want to hide the fact a redirection happened and
-            // let the sub-request return its own return code.
-            $redirectCode = $this->request->is('ajax') ? null : 301;
-            $this->redirect($redirectPage, $redirectCode);
+            // Forcing the URL to have the (correct) language in it.
+            $url = $this->request->here();
+            if (!empty($langInURL) && (
+                  ($langInCookie && $langInURL != $langInCookie) ||
+                  ($langInURLAlias != $langInURL)
+               )) {
+                // We're are now going to remove the language from the URL and set
+                // $langURL to null so that we get the the correct URL through
+                // redirection (below).
+                $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url);
+                $langInURL = null;
+            }
+            if (empty($langInURL)
+                && !$this->request->is('post')   // Avoid throwing away POST or
+                && !$this->request->is('put')) { // PUT data by redirecting
+                $redirectPage = "/".$lang.$url;
+                // Redirection of Ajax requests will be handled internally and all in
+                // one request thanks to RequestHandlerComponent::beforeRedirect().
+                // However, this function sets the HTTP return code and we don't want
+                // that. Instead, we want to hide the fact a redirection happened and
+                // let the sub-request return its own return code.
+                $redirectCode = $this->request->is('ajax') ? null : 301;
+                $this->redirect($redirectPage, $redirectCode);
+            }
         }
     }
 
