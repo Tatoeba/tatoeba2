@@ -28,11 +28,11 @@
 $uiLanguages = Configure::read('UI.languages');
 $currentLang = Configure::read('Config.language');
 $currentUrl = $this->request->here();
+$pos = strpos($currentUrl, $currentLang);
 
 foreach ($uiLanguages as $langs) {
 
     $alternateURL = $currentUrl;
-    $pos = strpos($currentUrl, $currentLang);
     if ($pos !== false) {
         $alternateURL = substr_replace(
             $currentUrl,
