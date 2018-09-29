@@ -6,7 +6,7 @@ ROOT='/var/www-prod'
 
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < /var/www-prod/docs/database/scripts/weekly_exports.sql
 
-DL_DIR="$ROOT""/app/webroot/files/downloads/"
+DL_DIR="/var/www-downloads/exports"
 mv /var/tmp/* "$DL_DIR"
 
 cd "$DL_DIR"

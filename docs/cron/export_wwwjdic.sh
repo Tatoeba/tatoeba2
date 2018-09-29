@@ -6,4 +6,4 @@ ROOT='/var/www-prod'
 
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < "$ROOT""/docs/database/scripts/wwwjdic.sql"
 
-mv /var/tmp/*.csv "$ROOT""/app/webroot/files/downloads"
+mv /var/tmp/*.csv "/var/www-downloads/exports"
