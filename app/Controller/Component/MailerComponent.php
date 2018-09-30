@@ -41,7 +41,7 @@ class MailerComponent extends Component
     public function sendBlockedOrSuspendedUserNotif($username, $isSuspended) {
         $this->Email = new CakeEmail();
         $this->Email
-            ->to('community-admins@tatoeba.org')
+            ->to('tatoeba-community-admins@googlegroups.com')
             ->subject('( ! ) ' . $username)
             ->template('blocked_or_suspended_user');
 
