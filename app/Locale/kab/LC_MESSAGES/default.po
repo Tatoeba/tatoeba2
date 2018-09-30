@@ -5,20 +5,51 @@
 # Translators:
 # Muḥend Belqasem <belkacem77@gmail.com>, 2018
 # Slimane AMIRI, 2018
+# Slimane AMIRI, 2018
+# Trang, 2018
 # Trang, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-02 16:55+0000\n"
-"PO-Revision-Date: 2018-09-02 18:52+0000\n"
-"Last-Translator: Trang\n"
+"POT-Creation-Date: 2018-09-23 17:37+0000\n"
+"PO-Revision-Date: 2018-09-24 12:39+0000\n"
+"Last-Translator: Slimane AMIRI\n"
 "Language-Team: Kabyle (http://www.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: kab\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L79
+msgid "Result of license switch to CC0 1.0"
+msgstr "Agemmuḍ n ubeddel n turagt ɣer CC0 1.0"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L107
+msgid ""
+"Unable to change the license of sentence {id} to “{newLicense}” because:"
+msgstr "Ur izmir ara ad ibeddel turagt n tefyirt {id} ɣer “{newLicense}” acku:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L147
+msgid "License switch started on {date} at {time} UTC."
+msgstr "Abeddel n turagt ibda ass n {date} ɣef {time} UTC."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L152
+msgid "Found {n} sentence that can be switched to {newLicense}."
+msgid_plural "Found {n} sentences that can be switched to {newLicense}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L167
+msgid "Successfully changed the license of {n} sentence."
+msgid_plural "Successfully changed the license of {n} sentences."
+msgstr[0] ""
+msgstr[1] ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L174
+msgid "License switch completed on {date} at {time} UTC."
+msgstr "Abeddel n turagt imed ass n {date} ɣef {time} UTC."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/ActivitiesController.php#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L115
@@ -53,6 +84,10 @@ msgstr "Teḍra-d tuccḍa deg usekles. Ma ulac aγilif, ɛreḍ tikelt-nniḍen
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, awal uffir amaynut"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LicensingController.php#L49
+msgid "A license switch is already in progress."
+msgstr "Abeddel n turagt iteddu yakan."
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L85
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
@@ -84,17 +119,17 @@ msgid ""
 "Please try with another username."
 msgstr "Aseqdac {username} iwumi tebɣiḍ ad tazneḍ izen-agi, ulac-it. Ma ulac aɣilif, ɛreḍ s yisem-nniḍen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L397
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L126
 msgid "restore"
 msgstr "err-it-id"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L405
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L137
 msgid "permanently delete"
 msgstr "kkes ilebda"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L410
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L248
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L392
@@ -105,24 +140,24 @@ msgstr "kkes ilebda"
 msgid "Are you sure?"
 msgstr "Tebɣiḍ ?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L412
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L414
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/CommentsHelper.php#L241
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L459
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L140
 msgid "delete"
 msgstr "kkes"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L424
 msgid "mark as unread"
 msgstr "creḍ ur yettwaɣra ara"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L431
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L434
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L473
 msgid "reply"
 msgstr "err"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L458
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L462
 msgid "Folder \"{name}\" emptied."
 msgstr "Akaram \"{name}\" d ilem."
 
@@ -234,15 +269,15 @@ msgstr "\"bab-nsent d win yesɛan tutlayt tayemmat\", acku asebdad \"bab: {usern
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1370
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "Ur tesεiḍ ara tasiregt i usenfel n turagt n tifeyirt-agi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1374
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Turagt n tefyirt tettwabedel ɣer “{newLicense}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1380
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "Ur izmir ara ad ibeddel turagt ɣer “{newLicense}” acku:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L110
 msgid "All public lists ({total})"
@@ -435,15 +470,19 @@ msgstr "Ulac aseqdac s yisem-agi n useqdac "
 msgid "No user with this ID: {id}"
 msgstr "Ulac aseqdac s usulay-agi ID: {id}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L45
+msgid "No language selected."
+msgstr "Ulac tutlayt ittwafernen."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L75
 msgid "You cannot edit this language."
 msgstr "Ur tezmireḍ ara ad tẓergeḍ tutlayt-agi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L96
 msgid "Language deleted"
 msgstr "Tutlayt tettwakkes"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L98
 msgid "You cannot delete this language."
 msgstr "Ur tezmireḍ ara ad tekkseḍ tutlayt-agi."
 
@@ -515,40 +554,40 @@ msgstr[1] "Isekkilen-a ur ttwarun ara: {charsEnumeration}."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L140
 msgid "This is not a valid license."
-msgstr ""
+msgstr "Turagt-a ur telli d taeɣtut."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L147
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "Tafyirt-agi attan yakan ddaw turagt-a."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L239
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "Tafyirt-a tesra ad tili d tanaṣlit ( mačči ad tt-twakkes seg tsuqilt)."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L247
 msgid "You're not the owner of this sentence."
-msgstr ""
+msgstr "Ur telliḍ ara d bab n tefyirt."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L254
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "Bab n tefyirt yesra ad yili d ameskar amezwaru n tmerna-ines."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L267
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "Tzemreḍ kan ad bedleḍ ɣer turagt-nniḍen i ttwasirgen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/SentencesList.php#L153
 msgid "unnamed list"
@@ -1181,7 +1220,7 @@ msgid "FAQ"
 msgstr "Isteqsiyen FAQ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L65
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/help.ctp#L28
 msgid "Help"
 msgstr "Tallelt"
@@ -1246,7 +1285,7 @@ msgstr "Facebook"
 msgid ""
 "Our written sentences and translations can be used under the Creative "
 "Commons Attribution 2.0 license (CC-BY 2.0)."
-msgstr "Tifyar-nneɣ akked tisuqilin-nneɣ yettwarun, zemrent ad ttwasqedcent ddaw n turagt Creative Commons Attribution 2.0 (CC-BY 2.0)."
+msgstr "Tifyar-nneɣ akked tsuqilin-nneɣ yettwarun, zemrent ad ttwasqedcent ddaw n turagt Creative Commons Attribution 2.0 (CC-BY 2.0)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/foot.ctp#L197
 msgid "More information"
@@ -1280,6 +1319,14 @@ msgstr "Skud yettili uttekki, skud Tatoeba yettuɣal yenfeɛ! Ɣef aya, attekki,
 msgid "Register"
 msgstr "Sekles"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/language_dropdown.ctp#L23
+msgid "Select a language"
+msgstr "Fren tutlayt"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/language_dropdown.ctp#L30
+msgid "No language found."
+msgstr "Ulac tutlayt yettwafen."
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/login.ctp#L38
@@ -1311,7 +1358,7 @@ msgid "Close"
 msgstr "Mdel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L35
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L537
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L542
 msgid "sentence deleted"
 msgstr "tafyirt tettwakkes"
 
@@ -1334,7 +1381,7 @@ msgid "permalink"
 msgstr "aseɣwen yezgan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/messages/comment.ctp#L165
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L559
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
@@ -1406,11 +1453,11 @@ msgstr "sken wayeḍ "
 msgid "show more..."
 msgstr "sken ugar..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L67
 msgid "Advanced search"
 msgstr "Anadi leqqayen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L587
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/ListsHelper.php#L605
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sinograms/index.ctp#L184
@@ -1418,12 +1465,12 @@ msgstr "Anadi leqqayen"
 msgid "Search"
 msgstr "Anadi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L95
 msgid "From"
 msgstr "Seg"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PrivateMessagesHelper.php#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/search_bar.ctp#L115
+msgctxt "language"
 msgid "To"
 msgstr "Ɣer"
 
@@ -1487,40 +1534,40 @@ msgstr "Tiɣimit-ik tezri."
 msgid "Please <a href=\"{}\">log in again</a>."
 msgstr "Ttwil-k <a href=\"{}\">ales tuqqna</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L36
 msgid "Tatoeba is a collection of sentences and translations."
-msgstr "Tatoeba d tagrumma n tefyar akked tisuqilin."
+msgstr "Tatoeba d tagrumma n tefyar akked tsuqilin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L40
 msgid "It's collaborative, open, free and even addictive."
 msgstr "D amḍiq n umɛiwen, yeldin, baṭel yerna yettenṭaḍ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L95
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
 msgstr "Nadi tifyar deg {langFrom} yettwasuqlen ar {langTo} igebren:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L107
 msgid "Clear search"
 msgstr "Sfeḍ anadi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L120
 msgid "Enter a word or a phrase"
 msgstr "Skecem awal neɣ tafyirt"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/advanced_search.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/search.ctp#L31
 msgctxt "title"
 msgid "Advanced search"
 msgstr "Anadi leqqayen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L149
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
 msgstr "Taxbalut: <em>=awal</em> ad inadi tissedi n <em>awal</em>"
 
 #. @translators: links to a page with tips to perform
 #. searches, like search operators
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/short_description.ctp#L156
 msgid "More tips"
 msgstr "Ugar n tixbula"
 
@@ -1795,7 +1842,7 @@ msgstr "Seqdec iznan usligen akken ad temmeslayeḍ ɣef tɣawsiwin ur ncudd ara
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L149
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/SentencesLists/show.ctp#L136
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L150
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Vocabulary/add_sentences.ctp#L106
 msgid "Cancel"
 msgstr "Sefsex"
@@ -2165,23 +2212,27 @@ msgstr "yerna-t {user}"
 msgid "linked by {user}"
 msgstr "icudd-itt {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L112
+msgid "license chosen by {user}"
+msgstr "Turagt tettwafren sɣur {user}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L117
 msgid "edited by {user}"
 msgstr "yessuffeɣ-it-id {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L119
 msgid "license changed by {user}"
-msgstr ""
+msgstr "Turagt tettwabeddel sɣur {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L124
 msgid "deleted by {user}"
 msgstr "yekkes-it {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L126
 msgid "unlinked by {user}"
 msgstr "yekkes-as acuddu {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L136
 msgid "{info}, {date}"
 msgstr "{info}, {date}"
 
@@ -2326,30 +2377,38 @@ msgid "Reply"
 msgstr "Err"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L195
+msgid "Notification from Tatoeba"
+msgstr "Alɣu sɣur Tatoeba"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L197
 msgid "Former member"
 msgstr "Aɛeggal aqbuṛ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L226
 msgid "Send private message"
 msgstr "Azen izen uslig"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L244
 msgid "edited"
 msgstr "yeẓreg"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L271
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L273
 msgid "to {recipient}"
 msgstr "i {recipient}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L278
 msgid "Draft"
 msgstr "Arewway"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L280
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L281
+msgid "notification from Tatoeba"
+msgstr "alɣu sɣur Tatoeba"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L285
 msgid "from {sender}"
 msgstr "seg {sender}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L361
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L186
 msgid "View this user's profile"
 msgstr "Sken-d amaɣnu-a n useqdac"
@@ -2419,6 +2478,11 @@ msgstr "Asebter yezrin [Ctrl+←]"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PaginationHelper.php#L151
 msgid "Next page [Ctrl+→]"
 msgstr "Asebter d-iteddun  [Ctrl+→]"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PrivateMessagesHelper.php#L93
+msgctxt "message"
+msgid "To"
+msgstr "Ɣer"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PrivateMessagesHelper.php#L108
 msgid "Title"
@@ -2630,12 +2694,71 @@ msgstr "sken tiririyin"
 msgid "by {messageAuthor}"
 msgstr "sɣur {messageAuthor}"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L20
+msgid "Switch my sentences' license"
+msgstr "Beddel turagt n tefyar-inu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L29
+msgid ""
+"The license switch of your sentences will be started soon. You will receive "
+"a private message when it will be completed."
+msgstr "Abeddel n turagt n tefyar-inek ad ibdu ticki. ad ak-n-azen izen uslig mi ara imed."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L32
+msgid ""
+"The license switch of your sentences is in progress. You will receive a "
+"private message when it will be completed."
+msgstr "Abeddel n turagt n tefyar-inek iteddu. d ak-n-azen izen uslig mi ara imed. "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L35
+msgid ""
+"The license switch of your sentences is completed. A report has been sent to"
+" you by private message."
+msgstr "Abeddel n turagt n tefyar-inek imed. Nuzen-ak-n aneqqis deg izen uslig."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L40
+msgid "A problem occured while switching the license of your sentences."
+msgstr "Illa-d wigur deg lawan n ubeddel n turagt n tefyar-inek."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L45
+msgid ""
+"This page allows you to massively switch the license of your sentences to "
+"{CC0-link}. Among all your sentences, only the ones that meet the following "
+"conditions will be affected."
+msgstr "S usebter-a ad tizmireḍ abeddel n turagt n tefyar-inek s waṭas ɣer {CC0-link}. Deg tefyar-inek, ala tidak ittqadaren tiwtilin ad ittwabedlen."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L49
+msgid "The current license of the sentence must be CC BY 2.0 FR."
+msgstr "Turagt tamirant n tefyirt ilaq ad tili CC BY 2.0 FR."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L50
+msgid "You must be the original creator of the sentence."
+msgstr "Isefk-ak ad tili d bab n tefyirt."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L51
+msgid "The sentence must be original and not derived from translation."
+msgstr "Ilaq ad tili tefyirt d anaṣlit mačči tekka-d seg tsuqilt."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L55
+msgid "Press the following button to initiate the license switch."
+msgstr "Senned ɣef tqeffalt-agi akken ad twenzeḍ abeddel n turagt."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L59
+msgid ""
+"Be careful, this operation can not be undone. Switching from CC BY to CC0 is"
+" possible, but not the opposite."
+msgstr "Ɣur-k, tigawt-a d awezɣi ad tt-twafsex. Abeddel seg CC BY to CC0 izmer ad yili, maca akken-nniḍen ala."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L63
+msgid "Switch license to CC0 1.0"
+msgstr "Beddel turagt ɣer CC0 1.0"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/about.ctp#L39
 msgid ""
 "Tatoeba is a large database of sentences and translations. Its content is "
 "ever-growing and results from the voluntary contributions of thousands of "
 "members."
-msgstr "Tatoeba d taffa n yisefka tameqqrant i tefyar akked tisuqilin. Agbur-is yezga yettimɣur, daɣen yekka-d seg twizi n wagimen n yimttekkiyen."
+msgstr "Tatoeba d taffa n yisefka tameqqrant i tefyar akked tsuqilin. Agbur-is yezga yettimɣur, daɣen yekka-d seg twizi n wagimen n yimttekkiyen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/about.ctp#L48
 msgid ""
@@ -3157,7 +3280,7 @@ msgstr "Maca yezmer daɣen ad yeǧǧ yal aɛeggal di Tatoeba ad yernu neɣ ad ye
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L30
 msgid "Tatoeba: Collection of sentences and translations"
-msgstr "Tatoeba d tagrumma n tefyar akked tisuqilin"
+msgstr "Tatoeba d tagrumma n tefyar akked tsuqilin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Wall/index.ctp#L72
@@ -3177,7 +3300,7 @@ msgstr "Tebγiḍ tallelt?"
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
-msgstr "Nleqqeḍ tifyar akked tisuqilin-nsent. Tzemreḍ ad tmuddeḍ afus s tsuqilt neɣ s tmerna n kra n tifyar."
+msgstr "Nleqqeḍ tifyar akked tsuqilin-nsent. Tzemreḍ ad tmuddeḍ afus s tsuqilt neɣ s tmerna n kra n tifyar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/index_for_guests.ctp#L49
 msgid "Join the community"
@@ -4111,11 +4234,17 @@ msgstr "Rnu tutlayt"
 msgid "Edit language"
 msgstr "Ẓreg tutlayt"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L87
+msgid ""
+"If your language is missing, please read our article on how to <a "
+"href=\"{}\">request a new language</a>."
+msgstr "Ma txus tutlayt-ik, ttxil ɣeṛ amagrad ɣef wamek <a href=\"{}\">ad tsutreḍ tutlayt tamaynut</a>."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L112
 msgid "What is your level?"
 msgstr "Acu-t uswir-ik?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/User/language.ctp#L130
 msgid "Details (optional). For instance, which dialect or from which country."
 msgstr "Talqayt (tafrayant). Amedya, anta tantala neɣ tameslayt neɣ tamurt."
 
