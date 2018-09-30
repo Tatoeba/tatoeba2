@@ -5,7 +5,7 @@ Tatoeba
 [![Join the chat at https://chat.tatoeba.org/](https://chat.tatoeba.org/badge)](https://chat.tatoeba.org/)
 
 This repository contains the source code of Tatoeba's website: 
-http://tatoeba.org. 
+https://tatoeba.org. 
 
 If you are interested in contributing to this project as a developer, please 
 read our [article about joining the dev team][1] before you start coding 
@@ -50,6 +50,6 @@ message in our [Google group][5], ask in our [Gitter chatroom][6] or in our
 [2]: https://github.com/Tatoeba/imouto
 [3]: https://github.com/Tatoeba/imouto/blob/master/README.md#imouto-for-development
 [4]: https://github.com/Tatoeba/tatoeba2/wiki/How-to-install-Tatoeba
-[5]: http://groups.google.com/group/tatoebaproject
+[5]: https://groups.google.com/group/tatoebaproject
 [6]: https://gitter.im/Tatoeba/tatoeba2
 [7]: https://chat.tatoeba.org/
