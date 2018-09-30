@@ -110,7 +110,6 @@
         }
 
         function onSearchTextChange() {
-            console.log(vm.searchText);
             vm.searchText = vm.searchText.replace(/\t/, ' ');
         }
 
