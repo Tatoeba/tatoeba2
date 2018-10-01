@@ -133,7 +133,7 @@ class MembersHelper extends AppHelper
             $imageName = 'unknown-avatar.png';
         }
 
-        return '/img/profiles_36/'.$imageName;
+        return $this->assetUrl('/img/profiles_36/'.$imageName);
     }
 
 
