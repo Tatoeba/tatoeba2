@@ -103,6 +103,9 @@ class MembersHelper extends AppHelper
      */
     public function image($username, $imageName = null, $options = array())
     {
+        if (empty($imageName)) {
+            $imageName = 'unknown-avatar.png';
+        }
         $options = $options + array(
             'width' => 36,
             'height' => 36,
@@ -114,23 +117,10 @@ class MembersHelper extends AppHelper
             ),
         );
         return $this->Html->image(
-            $this->imageUrl($imageName),
+            '/img/profiles_36/'.$imageName,
             $options
         );
     }
-
-    /**
-     *
-     */
-    public function imageUrl($imageName)
-    {
-        if (empty($imageName)) {
-            $imageName = 'unknown-avatar.png';
-        }
-
-        return $this->assetUrl('/img/profiles_36/'.$imageName);
-    }
-
 
     /**
      * Display "Edit" button in the profile.
