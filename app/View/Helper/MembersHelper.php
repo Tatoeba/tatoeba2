@@ -113,7 +113,7 @@ class MembersHelper extends AppHelper
                 $username
             ),
         );
-        echo $this->Html->image(
+        return $this->Html->image(
             $this->imageUrl($imageName),
             $options
         );

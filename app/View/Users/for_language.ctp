@@ -108,7 +108,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
             echo '<div class="user">';
             echo '<div class="profilePicture">';
-                $this->Members->image($username, $userImage);
+            echo $this->Members->image($username, $userImage);
             echo '</div>';
             echo '<div class="usernameAndLevel">';
                 echo $this->Html->link(
