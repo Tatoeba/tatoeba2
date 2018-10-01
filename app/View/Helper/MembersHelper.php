@@ -106,19 +106,16 @@ class MembersHelper extends AppHelper
         $options = $options + array(
             'width' => 36,
             'height' => 36,
-            'alt' => $username
-        );
-        echo $this->Html->link(
-            $this->Html->image(
-                $this->imageUrl($imageName),
-                $options
-            ),
-            array(
-                "controller" => "user",
-                "action" => "profile",
+            'alt' => $username,
+            'url' => array(
+                'controller' => 'user',
+                'action' => 'profile',
                 $username
             ),
-            array("escape" => false)
+        );
+        echo $this->Html->image(
+            $this->imageUrl($imageName),
+            $options
         );
     }
 
