@@ -36,12 +36,6 @@ if (isset($log['Contribution']['type'])) {
 }
 $style = $obsolete ? 'obsolete' : $action;
 
-$avatarUrl = $this->Members->imageUrl($avatar);
-$userProfileUrl = $this->Html->url(array(
-    'controller' => 'user',
-    'action' => 'profile',
-    $username
-));
 $sentenceUrl = $this->Html->url(array(
     'controller' => 'sentences',
     'action' => 'show',
@@ -52,10 +46,8 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
 ?>
 
 <md-list-item class="md-2-line <?= $type.'-'.$style ?>">
-    <a href="<?= $userProfileUrl ?>">
-        <img class="md-avatar" src="<?= $avatarUrl ?>">
-    </a>
-    <?php
+    <?
+    echo $this->Members->image($username, $avatar, array('class' => 'md-avatar'));
     echo $this->Languages->icon(
         $langCode,
         array(

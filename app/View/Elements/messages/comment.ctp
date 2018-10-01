@@ -1,6 +1,6 @@
 <?php
 $username = $comment['User']['username'];
-$avatarUrl = $this->Members->imageUrl($comment['User']['image']);
+$avatar = $comment['User']['image'];
 $createdDate = $comment['SentenceComment']['created'];
 $modifiedDate = $comment['SentenceComment']['modified'];
 $commentId = $comment['SentenceComment']['id'];
@@ -119,9 +119,7 @@ if ($sentenceOwnerLink) {
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>
-            <a href="<?= $userProfileUrl ?>">
-                <img class="md-user-avatar" src="<?= $avatarUrl ?>"/>
-            </a>
+            <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
         </md-card-avatar>
         <md-card-header-text>
             <span class="md-title">

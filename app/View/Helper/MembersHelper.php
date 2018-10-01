@@ -101,19 +101,17 @@ class MembersHelper extends AppHelper
     /**
      *
      */
-    public function image($username, $imageName = null)
+    public function image($username, $imageName = null, $options = array())
     {
-        if (empty($imageName)) {
-            $imageName = 'unknown-avatar.png';
-        }
+        $options = $options + array(
+            'width' => 36,
+            'height' => 36,
+            'alt' => $username
+        );
         echo $this->Html->link(
             $this->Html->image(
-                IMG_PATH.'profiles_36/'.$imageName,
-                array(
-                    'width' => 36,
-                    'height' => 36,
-                    'alt' => $username
-                )
+                $this->imageUrl($imageName),
+                $options
             ),
             array(
                 "controller" => "user",
