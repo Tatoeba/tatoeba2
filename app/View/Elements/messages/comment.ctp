@@ -34,7 +34,7 @@ $sentenceLink = $this->Html->link(
 );
 $sentenceText = '<em>'.__('sentence deleted').'</em>';
 if (isset($sentence['text'])) {
-    $sentenceText = $sentence['text'];
+    $sentenceText = Sanitize::html($sentence['text']);
 }
 $sentenceLang = $sentence['lang'];
 $sentenceOwner = null;
