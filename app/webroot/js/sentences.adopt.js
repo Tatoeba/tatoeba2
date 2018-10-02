@@ -19,7 +19,7 @@
 
 $(document).ready(function(){
     $(document).watch("addrule", function() {
-        $(document).on("click", ".adopt-button", function () {
+        $(".adopt-button").off('click').click(function() {
             var adoptOption = $(this).parent();
             var sentenceId = adoptOption.attr("data-sentence-id");
             
@@ -34,7 +34,7 @@ $(document).ready(function(){
             if (reqUrl) {
                 adoptOption.html("<div class='loader-small loader'></div>");
                 $.get(reqUrl, {}, function(data, textStatus, jqXHR) {
-                    adoptOption.replaceWith(data);
+                    adoptOption.watch("replaceWith", data);
                 });
             }
         });
