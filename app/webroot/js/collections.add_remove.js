@@ -24,7 +24,6 @@ $(document).ready(function(){
             var sentenceId = $(this).attr("data-sentence-id");
             var correctness = $(this).attr("data-sentence-correctness");
             var addToCorpusOption = $(this);
-            var action = "add";
 
             var requestUrl = "/collections";
             if ($(this).hasClass("selected")){
