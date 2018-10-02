@@ -36,8 +36,9 @@ $(document).ready(function(){
             addToCorpusOptionParent = addToCorpusOption.parent();
             addToCorpusOption.html("<div class='loader-small loader'></div>");
 
+
             $.post(requestUrl, {}, function(data){
-                addToCorpusOptionParent.replaceWith(data);
+                addToCorpusOptionParent.watch("replaceWith", data);
             });
         });
     });
