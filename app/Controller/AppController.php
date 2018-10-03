@@ -278,9 +278,15 @@ class AppController extends Controller
         return parent::redirect($url, $status, $exit);
     }
 
-    private function redirectPaginationToLastPage($object)
+    private function redirectPaginationToLastPage($object, $scope)
     {
         $findOptions = $this->paginate[$object];
+        if (is_array($scope) && !empty($scope)) {
+            if (!isset($findOptions['conditions'])) {
+                $findOptions['conditions'] = array();
+            }
+            $findOptions['conditions'] = array_merge($findOptions['conditions'], $scope);
+        }
         $count = $this->{$object}->find('count', $findOptions);
         $limit = $this->request->params['paging'][$object]['limit'];
         $lastPage = (int)ceil($count / $limit);
@@ -295,7 +301,7 @@ class AppController extends Controller
         try {
             return parent::paginate($object, $scope, $whitelist);
         } catch (NotFoundException $e) {
-            $this->redirectPaginationToLastPage($object);
+            $this->redirectPaginationToLastPage($object, $scope);
         }
     }
 

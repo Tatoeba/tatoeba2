@@ -23,6 +23,7 @@ class SentencesControllerTest extends ControllerTestCase {
 
 	public function setUp() {
 		$_COOKIE = array();
+		Configure::write('App.base', ''); // prevent using the filesystem path as base
 		Configure::write('Acl.database', 'test');
 		$this->controller = $this->generate('Sentences', array(
 			'methods' => array('redirect'),
@@ -246,5 +247,32 @@ class SentencesControllerTest extends ControllerTestCase {
 		));
 		$newSentence = $this->controller->Sentence->findById($sentenceId, 'license');
 		$this->assertNotEquals($oldSentence, $newSentence);
+	}
+
+	public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
+		$user = 'kazuki';
+		$userId = 7;
+		$lastPage = 2;
+
+		$sentences = array();
+		for ($i = 1; $i <= 100; $i++) {
+			$sentences[] = array(
+				'lang' => 'eng',
+				'text' => "Ay ay ay $i.",
+				'user_id' => $userId,
+			);
+			$sentences[] = array(
+				'lang' => 'eng',
+				'text' => "Oy oy oy $i.",
+				'user_id' => 1,
+			);
+		}
+		$this->controller->Sentence->saveMany($sentences);
+
+		$this->controller
+			 ->expects($this->once())
+			 ->method('redirect')
+			 ->with("/eng/sentences/of_user/$user/page:$lastPage");
+		$this->testAction("/eng/sentences/of_user/$user/page:9999999");
 	}
 }
