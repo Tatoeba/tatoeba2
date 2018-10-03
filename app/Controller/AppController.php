@@ -280,7 +280,11 @@ class AppController extends Controller
 
     private function redirectPaginationToLastPage($object, $scope)
     {
-        $findOptions = $this->paginate[$object];
+        if (is_array($object)) {
+            $scope = $object;
+            $object = $this->modelClass;
+        }
+        $findOptions = isset($this->paginate[$object]) ? $this->paginate[$object] : $this->paginate;
         if (is_array($scope) && !empty($scope)) {
             if (!isset($findOptions['conditions'])) {
                 $findOptions['conditions'] = array();
