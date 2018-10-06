@@ -26,8 +26,9 @@
   command: make chdir=/tmp/sinoparserd
 - name: Copy Binaries
   command: cp sinoparserd /usr/local/bin/sinoparserd chdir=/tmp/sinoparserd
-- name: Copy init file to system-wide location
-  copy: src=init.d dest=/etc/init.d/sinoparserd mode=0755
+- name: Copy service file to system-wide location
+  copy: src=sinoparserd.service dest=/etc/systemd/systemd/sinoparserd.service mode=0644
+  register: service_file
 - name: Copy default file to system-wide location
   copy: src=default dest=/etc/default/sinoparserd mode=0644
 - name: Copy dictionary files to a system wide location - 1
@@ -36,10 +37,15 @@
   command: cp doc/mandarin.xml /etc/mandarin.xml chdir=/tmp/sinoparserd
 - name: Create unprivileged user sinoparserd
   user: name=sinoparserd system=yes
-- name: Start the daemon
-  command: /etc/init.d/sinoparserd start
-- name: Add startup entry
-  command: update-rc.d sinoparserd defaults
+- name: Reload daemons
+  systemd:
+    daemon_reload: yes
+  when: service_file is changed
+- name: Start and enable the daemon
+  systemd:
+    name: sinoparserd
+    state: started
+    enabled: yes
 - name: Remove temporary files
   file:
     path: /tmp/sinoparserd

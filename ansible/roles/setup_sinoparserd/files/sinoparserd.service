@@ -1,0 +1,11 @@
+[Unit]
+Description=Sinoparser Deamon
+
+[Service]
+User=sinoparserd
+Environment=DAEMON_OPTS=
+EnvironmentFile=-/etc/default/sinoparserd
+ExecStart=/usr/local/bin/sinoparserd $DAEMON_OPTS
+
+[Install]
+WantedBy=multi-user.target
