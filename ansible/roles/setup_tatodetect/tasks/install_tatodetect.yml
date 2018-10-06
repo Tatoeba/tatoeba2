@@ -54,8 +54,9 @@
     src: /tmp/tatodetect/tools/generate.py
     dest: /usr/local/bin/tatodetect-generate-ngrams.py
     mode: 0755
-- name: Copy init file to system-wide location
-  copy: src=init.d dest=/etc/init.d/tatodetect mode=0755
+- name: Copy service file to system-wide location
+  copy: src=tatodetect.service dest=/etc/systemd/system/tatodetect.service mode=0644
+  register: service_file
 - name: Copy config file to system-wide location
   template: src=tatodetect.js.j2 dest=/etc/tatodetect.js mode=0644
 - name: Copy default options file to system-wide location
@@ -68,10 +69,15 @@
 - include: generate_ngrams_db.yml
   when: ngrams_create_mode == "generate"
 
-- name: Start the daemon
-  command: /etc/init.d/tatodetect start
-- name: Add startup entry
-  command: update-rc.d tatodetect defaults
+- name: Reload daemons
+  systemd:
+    daemon_reload: yes
+  when: service_file is changed
+- name: Start and enable the daemon
+  systemd:
+    name: tatodetect
+    state: started
+    enabled: yes
 - name: Remove temporary files
   file:
     path: "{{ item }}"
