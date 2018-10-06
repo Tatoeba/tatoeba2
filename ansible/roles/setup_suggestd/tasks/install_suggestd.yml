@@ -53,11 +53,12 @@
   args:
     chdir: "/tmp/suggestd"
 
-- name: Copy init file to system-wide location
+- name: Copy service file to system-wide location
   copy:
-    src: init.d
-    dest: /etc/init.d/suggestd
-    mode: 0755
+    src: suggestd.service
+    dest: /etc/systemd/system/suggestd.service
+    mode: 0644
+  register: service_file
 
 - name: Copy default options file to system-wide location
   copy:
@@ -78,11 +79,16 @@
     name: suggestd
     system: yes
 
-- name: Start the daemon
-  command: /etc/init.d/suggestd start
+- name: Reload daemons
+  systemd:
+    daemon_reload: yes
+  when: service_file is changed
 
-- name: Add startup entry
-  command: update-rc.d suggestd defaults
+- name: Start and enable the daemon
+  systemd:
+    name: suggestd
+    state: started
+    enabled: yes
 
 - name: Remove temporary files
   file:

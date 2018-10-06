@@ -1,0 +1,11 @@
+[Unit]
+Description=Suggest Deamon
+
+[Service]
+User=suggestd
+Environment=DAEMON_OPTS=
+EnvironmentFile=-/etc/default/suggestd
+ExecStart=/usr/local/bin/suggestd $DAEMON_OPTS
+
+[Install]
+WantedBy=multi-user.target
