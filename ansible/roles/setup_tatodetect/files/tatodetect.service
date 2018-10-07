@@ -2,7 +2,6 @@
 Description=Tatodetect Deamon
 
 [Service]
-User=tatodetect
 Environment=DAEMON_OPTS=
 EnvironmentFile=-/etc/default/tatodetect
 ExecStart=/usr/local/bin/tatodetect $DAEMON_OPTS
