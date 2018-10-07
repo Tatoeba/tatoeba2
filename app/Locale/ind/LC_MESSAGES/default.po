@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# ビールマンダアクター, 2016
-# ビールマンダアクター, 2015
+# Leg Bail, 2016
+# Leg Bail, 2015
 # menyo <biyanto.rebin@gmail.com>, 2015
+# Leg Bail, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-23 17:37+0000\n"
-"PO-Revision-Date: 2018-09-23 21:21+0000\n"
-"Last-Translator: ビールマンダアクター\n"
+"PO-Revision-Date: 2018-10-07 04:39+0000\n"
+"Last-Translator: Leg Bail\n"
 "Language-Team: Indonesian (http://www.transifex.com/tatoeba/tatoeba_website/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,30 +23,30 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L79
 msgid "Result of license switch to CC0 1.0"
-msgstr ""
+msgstr "Hasil lisensi berganti ke CC0 1.0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L107
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
-msgstr ""
+msgstr "Tidak bisa mengubah lisensi kalimat {id} ke “{newLicense}” dikarenakan:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L147
 msgid "License switch started on {date} at {time} UTC."
-msgstr ""
+msgstr "Pergantian lisensi dimulai pada {date} pukul {time} UTC."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L152
 msgid "Found {n} sentence that can be switched to {newLicense}."
 msgid_plural "Found {n} sentences that can be switched to {newLicense}."
-msgstr[0] ""
+msgstr[0] "Ditemukan {n} kalimat yang dapat diganti ke {newLicense}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L167
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
-msgstr[0] ""
+msgstr[0] "Berhasil mengubah lisensi dari {n} kalimat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L174
 msgid "License switch completed on {date} at {time} UTC."
-msgstr ""
+msgstr "Pergantian lisensi selesai pada {date} pukul {time} UTC."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/ActivitiesController.php#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L115
@@ -66,7 +67,7 @@ msgstr "Anda harus masuk terlebih dahulu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L112
 msgid "Your audio settings have been saved."
-msgstr ""
+msgstr "Pengaturan audio Anda telah disimpan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/AudioController.php#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L93
@@ -82,7 +83,7 @@ msgstr "Tatoeba, kata sandi baru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LicensingController.php#L49
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "Pergantian lisensi sedang diproses."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L85
 msgid ""
@@ -107,7 +108,7 @@ msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at {email}."
-msgstr ""
+msgstr "Anda mencapai batasan berkirim pesan hari ini. Mohon tunggu sampai Anda dapat mengirim pesan lagi. Jika ini adalah sebuah kesalahan, tolong hubungi administrator di {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/PrivateMessagesController.php#L270
 msgid ""
@@ -176,7 +177,7 @@ msgstr "Anda tidak memiliki izin untuk mengedit komentar ini."
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "Jika ini adalah sebuah kesalahan, tolong hubungi administrator di {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentenceCommentsController.php#L339
 msgid "Comments cannot be empty."
@@ -251,7 +252,7 @@ msgstr "Label dengan nama \"{tagName}\" tidak dapat ditemukan. Mohon periksa kem
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
-msgstr ""
+msgstr "“terdapat dalam daftar nomor {listId}”, karena daftar {listId} adalah daftar pribadi atau tidak ada"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
@@ -265,15 +266,15 @@ msgstr "\"dimiliki oleh pengguna yang menyatakan dirinya penutur asli\", dikaren
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1370
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "Anda tidak diperbolehkan mengubah lisensi kalimat ini."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1374
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Lisensi kalimat telah diubah ke “{newLicense}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1380
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "Tidak dapat mengubah lisensi ke “{newLicense}” dikarenakan:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L110
 msgid "All public lists ({total})"
@@ -335,7 +336,7 @@ msgstr "Tidak dapat menemukan kalimat dengan label ini. Label yang sedang Anda c
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L80
 msgid "No user with this username: {username}"
-msgstr ""
+msgstr "Tidak ditemukan nama pengguna: {nama pengguna}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L173
 msgid "Failed to upload image"
@@ -373,7 +374,7 @@ msgstr "Tanggal lahir yang dimasukkan salah. Silakan coba lagi."
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr ""
+msgstr "Tanggal ulang tahun kurang lengkap. Format yang diterima: tanggal lengkap, bulan dan hari, tahun dan bulan, tahun saja."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L551
 msgid "Your settings have been saved."
@@ -385,7 +386,7 @@ msgstr "Kata sandi baru tidak boleh kosong."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L623
 msgid "New passwords do not match."
-msgstr ""
+msgstr "Kata sandi yang baru tidak cocok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L628
 msgid "New password has been saved."
@@ -462,7 +463,7 @@ msgstr "Tidak ditemukan pengguna dengan nama ini:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersController.php#L533
 msgid "No user with this ID: {id}"
-msgstr ""
+msgstr "Tidak ada pengguna dengan ID ini: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L45
 msgid "No language selected."
