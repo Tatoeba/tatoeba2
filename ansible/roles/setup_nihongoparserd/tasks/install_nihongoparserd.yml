@@ -2,7 +2,7 @@
 
 - name: Stop nihongoparserd daemon if started
   command: service nihongoparserd stop
-  when: install_state|success and force_install == true
+  when: install_state is success and force_install == true
   ignore_errors: yes
 - name: Install dependencies for nihongoparserd
   apt: name={{item}} state=present
@@ -26,7 +26,9 @@
 - name: Copy init file to system-wide location
   command: cp conf/nihongoparserd /etc/init.d/ chdir=/tmp/nihongoparserd
 - name: Give execute permissions to the binaries
-  command: chmod +x /etc/init.d/nihongoparserd
+  file:
+    path: /etc/init.d/nihongoparserd
+    mode: 0755
 - name: Copy default file to system-wide location
   command: cp conf/default /etc/default/nihongoparserd chdir=/tmp/nihongoparserd
 - name: Create user nihongoparserd
@@ -38,4 +40,8 @@
 - name: Remove temporary files
   command: rm -rf /tmp/nihongoparserd
 - name: Enable auto-transcriptions
-  command: sed -i 's/\(Configure::write(.AutoTranscriptions.enabled.,\).*)/\1 true)/' {{code_dir}}/app/Config/core.php
+  replace:
+    path: '{{code_dir}}/app/Config/core.php'
+    regexp: 'Configure::write\(.AutoTranscriptions\.enabled.,[^)]+\)'
+    replace: 'Configure::write(''AutoTranscriptions.enabled'', true)'
+    validate: 'php -l %s'

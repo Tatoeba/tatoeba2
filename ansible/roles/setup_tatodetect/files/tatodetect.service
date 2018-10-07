@@ -1,0 +1,10 @@
+[Unit]
+Description=Tatodetect Deamon
+
+[Service]
+Environment=DAEMON_OPTS=
+EnvironmentFile=-/etc/default/tatodetect
+ExecStart=/usr/local/bin/tatodetect $DAEMON_OPTS
+
+[Install]
+WantedBy=multi-user.target

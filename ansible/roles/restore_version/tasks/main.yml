@@ -9,4 +9,4 @@
   script: change_version.sh {{code_dir}} {{version|int}}
   register: result
 - debug: msg="{{result.stdout}}"
-  when: result|success
+  when: result is success

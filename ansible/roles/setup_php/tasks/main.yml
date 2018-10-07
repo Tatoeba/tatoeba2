@@ -1,48 +1,45 @@
 ---
-#Tasks for setting up php5
 
-- name: Install php5
-  apt: name={{ item }} update_cache=yes cache_valid_time=36000 state=present
+- name: Install php
+  apt:
+    name: '{{ item }}'
+    update_cache: yes
+    cache_valid_time: 36000
+    state: latest
   with_items:
-  - php5-fpm
-  - php5-cli
-  - php5-mysql
-  - php5-intl
-  - php5-curl
-  - php5-memcache
-  - php5-imagick
-  - php5-mcrypt
+  - php-fpm
+  - php-cli
+  - php-mysql
+  - php-intl
+  - php-curl
+  - php-memcached
+  - php-imagick
+  - php-mcrypt
+  - php-xml
+  - php-mbstring
+  - php-zip
   - memcached
+  - composer
 
-- name: Copy php configuration files
-  copy: src=php.conf dest=/etc/php5/fpm/pool.d/tatoeba.conf
-
-- name: Restart nginx
-  service: name=nginx state=restarted enabled=yes
-- name: Restart php5-fpm
-  service: name=php5-fpm state=restarted enabled=yes
-
-- name: Download composer
-  get_url:
-    url: https://getcomposer.org/installer
-    dest: /tmp/installer
-  tags: composer
-
-- name: Install composer
-  shell: cat /tmp/installer | php -- --install-dir=/usr/local/bin
-  args:
-    creates: /usr/local/bin/composer
-  tags: composer
-
-- name: Rename composer.phar to composer
-  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer
-  args:
-    creates: /usr/local/bin/composer
-  tags: composer
-
-- name: Make composer executable
+- name: Remove default fpm pool
   file:
-    path: /usr/local/bin/composer
-    mode: a+x
-    state: file
-  tags: composer
+    path: /etc/php/7.0/fpm/pool.d/www.conf
+    state: absent
+  notify: reload php-fpm
+
+- name: Drop php-fpm configuration
+  copy:
+    src: tatoeba.conf
+    dest: /etc/php/7.0/fpm/pool.d
+    owner: root
+    group: root
+    mode: 0640
+  notify: reload php-fpm
+
+# Desired state
+
+- name: Start/Enable php-fpm
+  service:
+    name: php7.0-fpm
+    state: started
+    enabled: yes

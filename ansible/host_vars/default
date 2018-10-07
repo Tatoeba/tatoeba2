@@ -60,18 +60,17 @@ mysql_test_db_name: tatoeba_test
 
 # Variables for sphinx search
 # ---------------------------
-sphinx_deb_url: "http://sphinxsearch.com/files/sphinxsearch_2.2.10-release-1~wheezy_amd64.deb"
 sphinx_index_dir: /var/sphinx/indices
 sphinx_log_dir: /var/sphinx/log
 sphinx_sql_socket: /run/mysqld/mysqld.sock
-sphinx_pid_file: /var/run/sphinxsearch/searchd.pid
+sphinx_pid_file: /run/sphinxsearch/searchd.pid
 sphinx_binlog_path: /var/lib/sphinxsearch/data
 
 # Variables for tatodetect
 # ------------------------
 # How do you want ngrams.db file be created? Options: [generate, download, skip]
-ngrams_create_mode: skip
-ngrams_db_download_url: http://downloads.tatoeba.org/tatodetect/ngrams.db
+ngrams_create_mode: download
+ngrams_db_download_url: https://downloads.tatoeba.org/tatodetect/ngrams.db
 ngrams_db_file: /etc/ngrams.db
 
 

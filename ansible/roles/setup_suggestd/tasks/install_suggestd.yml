@@ -1,43 +1,96 @@
+
 - name: Stop suggestd daemon if started
   command: service suggestd stop
-  when: install_state|success and force_install == true
+  when: install_state is success and force_install == true
   ignore_errors: yes
+
 - name: Install dependencies for suggestd
-  apt: name={{item}} state=present
+  apt:
+    name: "{{item}}"
+    state: present
   with_items:
   - gcc
-  - automake 
+  - automake
   - make
-  - libevent-dev 
+  - libevent-dev
   - libsqlite3-dev
   - libexpat1-dev
   - pkg-config
-  - libmysqlclient-dev
+  - default-libmysqlclient-dev
+
 - name: Fetch suggestd source
-  git: repo=https://github.com/allan-simon/suggestd.git dest=/tmp/suggestd
+  git:
+    repo: "https://github.com/allan-simon/suggestd.git"
+    dest: "/tmp/suggestd"
+
 - name: Generate makefiles and compile - 1
-  command: aclocal chdir=/tmp/suggestd
+  command: aclocal
+  args:
+    chdir: "/tmp/suggestd"
+
 - name: Generate makefiles and compile - 2
-  command: autoconf chdir=/tmp/suggestd
+  command: autoconf
+  args:
+    chdir: "/tmp/suggestd"
+
 - name: Generate makefiles and compile - 3
-  command: automake --add-missing chdir=/tmp/suggestd
+  command: automake --add-missing
+  args:
+    chdir: "/tmp/suggestd"
+
 - name: Generate makefiles and compile - 4
-  command: ./configure chdir=/tmp/suggestd
+  command: ./configure
+  args:
+    chdir: "/tmp/suggestd"
+
 - name: Generate makefiles and compile - 5
-  command: make chdir=/tmp/suggestd
+  command: make
+  args:
+    chdir: "/tmp/suggestd"
+
 - name: Copy binaries
-  command: make install chdir=/tmp/suggestd
-- name: Copy init file to system-wide location
-  copy: src=init.d dest=/etc/init.d/suggestd mode=555
+  command: make install
+  args:
+    chdir: "/tmp/suggestd"
+
+- name: Copy service file to system-wide location
+  copy:
+    src: suggestd.service
+    dest: /etc/systemd/system/suggestd.service
+    mode: 0644
+  register: service_file
+
 - name: Copy default options file to system-wide location
-  copy: src=default dest=/etc/default/suggestd mode=555
+  copy:
+    src: default
+    dest: /etc/default/suggestd
+    mode: 0644
+
 - name: Copy config file to system-wide location
-  template: src=suggestd.xml.j2 dest=/etc/suggestd.xml mode=555
+  template:
+    src: suggestd.xml.j2
+    dest: /etc/suggestd.xml
+    owner: root
+    group: suggestd
+    mode: 0640
+
 - name: Create user suggestd
-  user: name=suggestd system=yes
-- name: Start the daemon
-  command: /etc/init.d/suggestd start
-- name: Add startup entry
-  command: update-rc.d suggestd defaults
+  user:
+    name: suggestd
+    system: yes
+
+- name: Reload daemons
+  systemd:
+    daemon_reload: yes
+  when: service_file is changed
+
+- name: Start and enable the daemon
+  systemd:
+    name: suggestd
+    state: started
+    enabled: yes
+
 - name: Remove temporary files
-  command: rm -rf /tmp/suggestd
+  file:
+    path: /tmp/suggestd
+    state: absent

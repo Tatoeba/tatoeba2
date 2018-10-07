@@ -7,10 +7,10 @@
   ignore_errors: yes
 - name: Database import/update fail message
   fail: msg="The code directory is not present in {{code_dir}}. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
-  when: code_status|failed
+  when: code_status is failed
 
 - name: Create directories for sphinx
-  file: path={{item}} state=directory recurse=yes mode=744 owner=sphinxsearch group=sphinxsearch
+  file: path={{item}} state=directory mode=0755 owner=sphinxsearch group=sphinxsearch
   with_items:
   - "{{sphinx_index_dir}}"
   - "{{sphinx_log_dir}}"
@@ -18,9 +18,15 @@
 - name: Generate sphinx.conf
   shell: ./app/Console/cake sphinx_conf > /etc/sphinxsearch/sphinx.conf chdir={{code_dir}}
 - name: Create indexes
+  become: true
+  become_user: sphinxsearch
   command: indexer --all
   when: sphinx_create_indexes == true
-- name: Set sphinxsearch to start with system startup
-  command: sed -i 's/START=no/START=yes/' /etc/default/sphinxsearch
 - name: Start the search daemon
   service: name=sphinxsearch state=started enabled=yes
+- name: Enable search
+  replace:
+    path: '{{code_dir}}/app/Config/core.php'
+    regexp: 'Configure::write\(.Search\.enabled.,[^)]+\)'
+    replace: 'Configure::write(''Search.enabled'', true)'
+    validate: 'php -l %s'
