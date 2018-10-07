@@ -284,7 +284,7 @@ class AppController extends Controller
             $scope = $object;
             $object = $this->modelClass;
         }
-        $findOptions = isset($this->paginate[$object]) ? $this->paginate[$object] : $this->paginate;
+        $findOptions = array_key_exists($object, $this->paginate) ? $this->paginate[$object] : $this->paginate;
         if (is_array($scope) && !empty($scope)) {
             if (!isset($findOptions['conditions'])) {
                 $findOptions['conditions'] = array();
