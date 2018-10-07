@@ -27,7 +27,7 @@
 - name: Copy Binaries
   command: cp sinoparserd /usr/local/bin/sinoparserd chdir=/tmp/sinoparserd
 - name: Copy service file to system-wide location
-  copy: src=sinoparserd.service dest=/etc/systemd/systemd/sinoparserd.service mode=0644
+  copy: src=sinoparserd.service dest=/etc/systemd/system/sinoparserd.service mode=0644
   register: service_file
 - name: Copy default file to system-wide location
   copy: src=default dest=/etc/default/sinoparserd mode=0644
