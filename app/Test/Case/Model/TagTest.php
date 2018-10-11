@@ -38,7 +38,7 @@ class TagTest extends CakeTestCase {
 
         $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
 
-        $after = $this->Tag->TagsSentence->find('count');
+        $after = $this->Tag->TagsSentences->find('count');
         $added = $after - $before;
         $this->assertEqual(1, $added);
     }
@@ -50,7 +50,7 @@ class TagTest extends CakeTestCase {
 
         $this->Tag->addTag('OK', $ownerId, $sentenceId);
 
-        $after = $this->Tag->TagsSentence->find('count');
+        $after = $this->Tag->TagsSentences->find('count');
         $added = $after - $before;
         $this->assertEqual(0, $added);
     }
