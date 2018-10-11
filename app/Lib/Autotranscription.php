@@ -246,7 +246,7 @@ class Autotranscription
             }
         }
 
-        $withFuri = preg_replace('/\[([^|]+)\|\]/u', '$1', $transcr);
+        $withFuri = preg_replace('/\[([^|]+)\|+\]/u', '$1', $transcr);
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $withFuri);
         $withFuri = str_replace('|', '', $withFuri);
         if (preg_match_all("/[^\p{Hiragana}\p{Katakana}ー\p{P}\p{Z}]/u", $withFuri, $matches)) {
@@ -270,7 +270,8 @@ class Autotranscription
                 );
             }
 
-            if (empty($furiList[0])) {
+            $rawFuri = implode($furiList);
+            if (!empty($rawFuri) && empty($furiList[0])) {
                $firstKanji = mb_substr($kanji, 0, 1);
                $charsEnumeration = implode(__(', '), array($firstKanji));
                $this->_charLacksFuriError($errors, array($firstKanji));
