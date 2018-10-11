@@ -5,6 +5,10 @@ App::uses('MessagesHelper', 'View/Helper');
 
 class MessagesHelperTest extends CakeTestCase {
 
+    public $fixtures = array(
+        'app.sentence',
+    );
+
     public function setUp() {
         parent::setUp();
         $View = new View();
