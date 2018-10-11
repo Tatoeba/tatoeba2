@@ -249,6 +249,23 @@ class Autotranscription
             );
         }
 
+        preg_match_all($tokenizeFuriRegex, $transcr, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            list(, $kanji, $furiganas) = $match;
+            $furiList = explode('|', $furiganas);
+            $n = mb_strlen($kanji);
+            if (count($furiList) > $n) {
+                $errors[] = format(
+                    __n(
+                        'The character “{kanji}” has more than one furigana: “{furiganas}”.',
+                        'The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”.',
+                        $n,
+                        true),
+                    compact('kanji', 'n', 'furiganas')
+                );
+            }
+        }
+
         return count($errors) == 0;
     }
 
