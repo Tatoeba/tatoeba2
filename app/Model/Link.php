@@ -78,11 +78,15 @@ class Link extends AppModel
 
     private function flagSentencesToReindex($sentence, $translation)
     {
-        $impactedSentences = array_merge(
-            $this->findDirectTranslationsIds($sentence),
-            $this->findDirectTranslationsIds($translation)
-        );
-        $impactedSentences = array_keys(array_flip($impactedSentences));
+        // When (un)linking from $sentence to $translation (one direction),
+        // it means $translation can be seen (or stops to be seen)
+        // from $sentence and its direct translations, so update them
+        // (and them only).
+        $impactedSentences = $this->findDirectTranslationsIds($sentence);
+        $impactedSentences = array_flip($impactedSentences);
+        unset($impactedSentences[$translation]);
+        $impactedSentences[$sentence] = null;
+        $impactedSentences = array_keys($impactedSentences);
         $this->Sentence->needsReindex($impactedSentences);
     }
 
