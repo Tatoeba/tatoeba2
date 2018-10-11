@@ -169,7 +169,6 @@ class AudioTest extends CakeTestCase {
         );
         $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
 
-        $this->assertFalse($isMVA);
         $this->assertEqual($expectedAttributes, $attributes);
         $this->assertEqual($expectedValues, $values);
     }
@@ -189,7 +188,6 @@ class AudioTest extends CakeTestCase {
         );
         $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
 
-        $this->assertFalse($isMVA);
         $this->assertEqual($expectedAttributes, $attributes);
         $this->assertEqual($expectedValues, $values);
     }
