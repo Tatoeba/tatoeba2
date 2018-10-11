@@ -37,6 +37,8 @@ class AutotranscriptionTest extends CakeTestCase {
             /* Allow spaces */
             '今は？ 今は？' => array('[今|いま]は？ [今|いま]は？'),
             '今は？　今は？' => array('[今|いま]は？　[今|いま]は？'),
+            /* Allow furi to span over more than one kanji */
+            '田舎道' => array('[田舎道|いなか||みち]'),
         );
         $testBad = array(
             '行けそう。' => array(
@@ -65,6 +67,8 @@ class AutotranscriptionTest extends CakeTestCase {
                 'Perfumeの[曲|きょく]',
                 '[Perfume|]の[曲|きょく]',
             ),
+            /* Do not allow furi to span over nothing */
+            '4年間' => array('[4年間||ねん|かん]'),
         );
         $this->assertValidTranscriptions('jpn', 'Jpan', 'Hrkt', $testGood);
         $this->assertInvalidTranscriptions('jpn', 'Jpan', 'Hrkt', $testBad);

@@ -253,6 +253,7 @@ class Autotranscription
         foreach ($matches as $match) {
             list(, $kanji, $furiganas) = $match;
             $furiList = explode('|', $furiganas);
+
             $n = mb_strlen($kanji);
             if (count($furiList) > $n) {
                 $errors[] = format(
@@ -263,6 +264,19 @@ class Autotranscription
                         true),
                     compact('kanji', 'n', 'furiganas')
                 );
+            }
+
+            if (empty($furiList[0])) {
+               $firstKanji = mb_substr($kanji, 0, 1);
+               $charsEnumeration = implode(__(', '), array($firstKanji));
+               $errors[] = format(
+                   __n(
+                       'The following character lacks furigana: {charsEnumeration}.',
+                       'The following characters lack furigana: {charsEnumeration}.',
+                       1,
+                       true),
+                   compact('charsEnumeration')
+               );
             }
         }
 
