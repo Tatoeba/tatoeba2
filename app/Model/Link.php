@@ -248,7 +248,8 @@ class Link extends AppModel
                 'IF(Link.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id) as translation_id'
             )
         ));
-        return Set::classicExtract($links, '{n}.0.translation_id');
+        $links = Set::classicExtract($links, '{n}.0.translation_id');
+        return is_null($links) ? array() : $links;
     }
 
     public function updateLanguage($sentenceId, $lang)

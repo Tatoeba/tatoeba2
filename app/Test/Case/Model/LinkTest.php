@@ -43,7 +43,7 @@ class LinkTest extends CakeTestCase {
 				'Link.translation_id' => $translationId,
 			))
 		);
-		$this->assertTrue($newLink);
+		$this->assertTrue((bool)$newLink);
 	}
 
 	function testAdd_linksTranslationToSentence() {
@@ -57,7 +57,7 @@ class LinkTest extends CakeTestCase {
 				'Link.sentence_id' => $translationId,
 			))
 		);
-		$this->assertTrue($newLink);
+		$this->assertTrue((bool)$newLink);
 	}
 
 	function testDeletePairRemovesBothWays() {
