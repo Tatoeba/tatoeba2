@@ -357,12 +357,30 @@ class PrivateMessage extends AppModel
 
         foreach ($recipients as $recpt) {
             if (!$this->canSendMessage($sentToday)) {
+                $this->validationErrors['sendError'] = array(
+                    'error' => format(
+                        __("You have reached your message limit for today. ".
+                           "Please wait until you can send more messages. ".
+                           "If you have received this message in error, ".
+                           "please contact administrators at {email}."),
+                        array('email' => 'team@tatoeba.org')
+                    ),
+                    'limit_exceeded' => true,
+                );
                 return false;
             }
 
             $recptId = $this->User->getIdFromUsername($recpt);
 
             if (!$recptId) {
+                $this->validationErrors['sendError'] = array(
+                    'error' => format(
+                        __('The user {username} to whom you want to send this '.
+                           'message does not exist. Please try with another username.'),
+                        array('username' => $recpt)
+                    ),
+                    'unsent_message' => $toSend,
+                );
                 return false;
             }
 
