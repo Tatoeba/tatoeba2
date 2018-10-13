@@ -110,12 +110,6 @@ class Sentence extends AppModel
         ),
     );
 
-
-    /**
-     * The constructor is here only to conditionally attach Sphinx.
-     *
-     * @return void
-     */
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
