@@ -110,7 +110,7 @@ class PrivateMessagesController extends AppController
 
         $currentUserId = $this->Auth->user('id');
 
-        $now = date("Y/m/d H:i:s", time());
+        $now = date("Y-m-d H:i:s", time());
 
         if ($this->request->data['PrivateMessage']['submitType'] === 'saveDraft') {
             $this->PrivateMessage->saveDraft($currentUserId, $now, $this->request->data);

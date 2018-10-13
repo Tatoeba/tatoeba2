@@ -18,7 +18,7 @@ class PrivateMessageTest extends CakeTestCase {
     }
 
     public function testSaveDraft_addsNewDraft() {
-        $date = '1999/12/31 23:59:59';
+        $date = '1999-12-31 23:59:59';
         $postData = array(
             'PrivateMessage' => array(
                 'recpt' => 'advanced_contributor',
@@ -37,7 +37,7 @@ class PrivateMessageTest extends CakeTestCase {
             'recpt'   => 0,
             'sender'  => 7,
             'user_id' => 7,
-            'date'    => '1999-12-31 23:59:59',
+            'date'    => $date,
             'folder'  => 'Drafts',
             'title'   => 'Status',
             'content' => 'Why are you so advanced?',
@@ -51,7 +51,7 @@ class PrivateMessageTest extends CakeTestCase {
 
     public function testSaveDraft_editsExistingDraft() {
         $draftId = 5;
-        $date = '2017/10/13 01:07:10';
+        $date = '2017-10-13 01:07:10';
         $postData = array(
             'PrivateMessage' => array(
                 'recpt' => 'advanced_contributor',
@@ -69,7 +69,7 @@ class PrivateMessageTest extends CakeTestCase {
             'recpt'   => 0,
             'sender'  => 4,
             'user_id' => 4,
-            'date'    => '2017-10-13 01:07:10',
+            'date'    => $date,
             'folder'  => 'Drafts',
             'title'   => 'My feelings',
             'content' => 'I\'m worrying about Tom. What do you think?',
