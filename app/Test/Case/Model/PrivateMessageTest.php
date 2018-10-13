@@ -82,6 +82,27 @@ class PrivateMessageTest extends CakeTestCase {
         $this->assertEqual($expectedPm, $pm['PrivateMessage']);
     }
 
+    public function testSave_failsIfEmptyContent() {
+        $pm = array(
+            'recpt'        => 3,
+            'sender'       => 1,
+            'user_id'      => 3,
+            'date'         => '1999-12-31 23:59:59',
+            'folder'       => 'Inbox',
+            'title'        => 'Hello',
+            'content'      => '',
+            'isnonread'    => 1,
+            'draft_recpts' => '',
+            'sent'         => 0,
+        );
+
+        $before = $this->PrivateMessage->find('count');
+        $this->PrivateMessage->save($pm);
+        $after = $this->PrivateMessage->find('count');
+
+        $this->assertEqual(0, $after - $before);
+    }
+
     public function testSend_toOneRecipent() {
         $date = '1999-12-31 23:59:59';
         $postData = array(

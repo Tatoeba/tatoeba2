@@ -56,6 +56,15 @@ class PrivateMessage extends AppModel
         )
     );
 
+    public $validate = array(
+        'content' => array(
+            'rule'       => 'notBlank',
+            'required'   => true,
+            'allowEmpty' => false,
+            'message'    => 'You must fill at least the content field.',
+        ),
+    );
+
     /**
      * Get private messages by folder.
      *
@@ -297,9 +306,7 @@ class PrivateMessage extends AppModel
             'sent' => 1
         ));
 
-        $this->save($message);
-
-        return $message;
+        return $this->save($message);
     }
 
     /**
@@ -351,7 +358,9 @@ class PrivateMessage extends AppModel
                 return false;
             }
 
-            $message = $this->saveToInbox($toSend, $recptId);
+            if (!$this->saveToInbox($toSend, $recptId)) {
+                return false;
+            }
 
             //$this->_sendMessageNotification($message, $recptId);
 
