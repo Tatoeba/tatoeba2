@@ -5,6 +5,7 @@ class PrivateMessageTest extends CakeTestCase {
 
     public $fixtures = array(
         'app.private_message',
+        'app.user',
     );
 
     public function setUp() {
@@ -79,5 +80,55 @@ class PrivateMessageTest extends CakeTestCase {
         );
         $pm = $this->PrivateMessage->findById($draftId);
         $this->assertEqual($expectedPm, $pm['PrivateMessage']);
+    }
+
+    public function testSend_toOneRecipent() {
+        $date = '1999-12-31 23:59:59';
+        $postData = array(
+            'PrivateMessage' => array(
+                'recpt' => 'advanced_contributor',
+                'title' => 'Status',
+                'content' => 'Why are you so advanced?',
+                'messageId' => '',
+                'submitType' => 'send',
+            ),
+        );
+        $currentUserId = 7;
+
+        $this->PrivateMessage->send($currentUserId, $date, $postData);
+
+        $sentId = $this->PrivateMessage->getLastInsertId();
+        $expectedSent = array(
+            'id'      => $sentId,
+            'recpt'   => 3,
+            'sender'  => 7,
+            'user_id' => 7,
+            'date'    => $date,
+            'folder'  => 'Sent',
+            'title'   => 'Status',
+            'content' => 'Why are you so advanced?',
+            'sent'    => 1,
+            'isnonread' => 0,
+            'draft_recpts' => '',
+        );
+        $sent = $this->PrivateMessage->findById($sentId);
+        $this->assertEqual($expectedSent, $sent['PrivateMessage']);
+
+        $receivedId = $sentId - 1;
+        $expectedReceived = array(
+            'id'      => $receivedId,
+            'recpt'   => 3,
+            'sender'  => 7,
+            'user_id' => 3,
+            'date'    => $date,
+            'folder'  => 'Inbox',
+            'title'   => 'Status',
+            'content' => 'Why are you so advanced?',
+            'sent'    => 1,
+            'isnonread' => 1,
+            'draft_recpts' => '',
+        );
+        $received = $this->PrivateMessage->findById($receivedId);
+        $this->assertEqual($expectedReceived, $received['PrivateMessage']);
     }
 }

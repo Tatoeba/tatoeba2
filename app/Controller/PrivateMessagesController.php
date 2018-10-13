@@ -106,8 +106,6 @@ class PrivateMessagesController extends AppController
      */
     public function send()
     {
-        $this->_validateMessage();
-
         $currentUserId = $this->Auth->user('id');
 
         $now = date("Y-m-d H:i:s", time());
@@ -116,166 +114,14 @@ class PrivateMessagesController extends AppController
             $this->PrivateMessage->saveDraft($currentUserId, $now, $this->request->data);
 
             $this->redirect(array('action' => 'folder', 'Drafts'));
-        }
-
-        $toSend = $this->PrivateMessage->buildMessage(
-            $this->request->data,
-            $currentUserId,
-            $now
-        );
-
-        $recipients = $this->_buildRecipientsArray();
-
-        $sentToday = $this->PrivateMessage->todaysMessageCount($currentUserId);
-
-        foreach ($recipients as $recpt) {
-            if (!$this->_canSendMessage($sentToday)) {
-                $this->_redirectDailyLimitReached();
+        } else {
+            $sent = $this->PrivateMessage->send($currentUserId, $now, $this->request->data);
+            if (!$sent) {
+                $this->redirect(array('action' => 'write'));
+            } else {
+                $this->redirect(array('action' => 'folder', 'Sent'));
             }
-
-            $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
-
-            if (!$recptId) {
-                $this->_redirectInvalidUser($toSend, $recpt);
-            }
-
-            $message = $this->PrivateMessage->saveToInbox($toSend, $recptId);
-
-            $this->_sendMessageNotification($message, $recptId);
-
-            $this->PrivateMessage->id = null;
-
-            $this->PrivateMessage->saveToOutbox(
-                $toSend,
-                $recptId,
-                $currentUserId
-            );
-
-            $this->PrivateMessage->id = null;
-
-            $sentToday += 1;
         }
-
-        $this->redirect(array('action' => 'folder', 'Sent'));
-    }
-
-    /**
-     * Validate the message.
-     *
-     * @return void
-     */
-    private function _validateMessage()
-    {
-        if ($this->_isIncompleteDraft($this->request->data['PrivateMessage'])) {
-            $this->_redirectIncomplete(
-                'You must fill at least the content field.'
-            );
-        } elseif ($this->_isIncomplete($this->request->data['PrivateMessage'])) {
-            $this->_redirectIncomplete(
-                'You must fill at least the "To" field and the content field.'
-            );
-        }
-    }
-
-    /**
-     * Private message is draft and content is empty.
-     *
-     * @param  array $message Private message submitted by user.
-     *
-     * @return boolean
-     */
-    private function _isIncompleteDraft($message)
-    {
-        return empty($message['content'])
-            && $message['submitType'] == 'saveDraft';
-    }
-
-    /**
-     * Private message recipient or content are empty and message is not draft.
-     *
-     * @param  array $message Private message submitted by user.
-     *
-     * @return boolean
-     */
-    private function _isIncomplete($message)
-    {
-        return (empty($message['recpt']) || empty($message['content']))
-            && $message['submitType'] != 'saveDraft';
-    }
-
-    /**
-     * Set flash message with error and redirect back to write.
-     *
-     * @param  string $error Flash message to set.
-     *
-     * @return void
-     */
-    private function _redirectIncomplete($error)
-    {
-        $this->Flash->set(
-            __($error)
-        );
-
-        $this->redirect(array('action' => 'write'));
-    }
-
-    /**
-     * Build array of unique recipients from recipents string.
-     *
-     * @return array
-     */
-    private function _buildRecipientsArray()
-    {
-        $recptArray = explode(',', $this->request->data['PrivateMessage']['recpt']);
-        $recptArray = array_map('trim', $recptArray);
-
-        return array_unique($recptArray, SORT_REGULAR);
-    }
-
-    /**
-     * Set flash message and redirect if new user has sent too many messages.
-     *
-     * @return void
-     */
-    private function _redirectDailyLimitReached()
-    {
-        $this->Flash->set(format(
-            __(
-                "You have reached your message limit for today. ".
-                "Please wait until you can send more messages. ".
-                "If you have received this message in error, ".
-                "please contact administrators at {email}.",
-                true
-            ),
-            array('email' => 'team@tatoeba.org')
-        ));
-
-        $this->redirect(array('action' => 'folder', 'Sent'));
-    }
-
-    /**
-     * Set flash message and redirect if user is invalid.
-     *
-     * @param  array  $message Message array.
-     * @param  string $recpt   Recipient username.
-     *
-     * @return void
-     */
-    private function _redirectInvalidUser($message, $recpt)
-    {
-        $this->Session->write('unsent_message', $message);
-        $this->Flash->set(
-            format(
-                __(
-                    'The user {username} to whom you want to send this '.
-                    'message does not exist. Please try with another username.',
-                    true
-                ),
-                array('username' => $recpt)
-            )
-        );
-
-        $this->redirect(array('action' => 'write'));
     }
 
     /**
@@ -566,7 +412,7 @@ class PrivateMessagesController extends AppController
         $messagesToday = $this->PrivateMessage->todaysMessageCount($userId);
 
         $this->set('messagesToday', $messagesToday);
-        $this->set('canSend', $this->_canSendMessage($messagesToday));
+        $this->set('canSend', $this->PrivateMessage->canSendMessage($messagesToday));
         $this->set('isNewUser', CurrentUser::isNewUser());
 
         if ($messageId) {

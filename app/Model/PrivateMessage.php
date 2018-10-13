@@ -26,6 +26,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('CurrentUser', 'Model');
+
 /**
  * Model for Private Messages.
  *
@@ -228,7 +230,7 @@ class PrivateMessage extends AppModel
      *
      * @return array
      */
-    public function buildMessage($data, $currentUserId, $now)
+    private function buildMessage($data, $currentUserId, $now)
     {
         $message = array(
             'sender'    => $currentUserId,
@@ -286,7 +288,7 @@ class PrivateMessage extends AppModel
      *
      * @return array
      */
-    public function saveToInbox($message, $recptId)
+    private function saveToInbox($message, $recptId)
     {
         $message = array_merge($message, array(
             'recpt' => $recptId,
@@ -309,7 +311,7 @@ class PrivateMessage extends AppModel
      *
      * @return array
      */
-    public function saveToOutbox($messageToSave, $recptId, $currentUserId)
+    private function saveToOutbox($messageToSave, $recptId, $currentUserId)
     {
         $message = array_merge($messageToSave, array(
             'user_id'   => $currentUserId,
@@ -324,6 +326,77 @@ class PrivateMessage extends AppModel
         $this->save($message);
 
         return $message;
+    }
+
+    public function send($currentUserId, $now, $message)
+    {
+        $toSend = $this->buildMessage(
+            $message,
+            $currentUserId,
+            $now
+        );
+
+        $recipients = $this->_buildRecipientsArray($message[$this->alias]['recpt']);
+
+        $sentToday = $this->todaysMessageCount($currentUserId);
+
+        foreach ($recipients as $recpt) {
+            if (!$this->canSendMessage($sentToday)) {
+                return false;
+            }
+
+            $recptId = $this->User->getIdFromUsername($recpt);
+
+            if (!$recptId) {
+                return false;
+            }
+
+            $message = $this->saveToInbox($toSend, $recptId);
+
+            //$this->_sendMessageNotification($message, $recptId);
+
+            $this->id = null;
+
+            $this->saveToOutbox(
+                $toSend,
+                $recptId,
+                $currentUserId
+            );
+
+            $this->id = null;
+
+            $sentToday += 1;
+        }
+    }
+
+    /**
+     * Build array of unique recipients from recipents string.
+     *
+     * @param  array $recpt Recipents
+     * @return array
+     */
+    private function _buildRecipientsArray($recpt)
+    {
+        $recptArray = explode(',', $recpt);
+        $recptArray = array_map('trim', $recptArray);
+
+        return array_unique($recptArray, SORT_REGULAR);
+    }
+
+    /**
+     * Return true if user can send message. New users can only send 5/24 hours.
+     *
+     * @param  int  $messagesToday Number of messages sent today.
+     *
+     * @return bool
+     */
+    public function canSendMessage($messagesToday)
+    {
+        if (CurrentUser::isNewUser()) {
+            return $messagesToday < 5;
+        }
+
+        return true;
     }
 
     /**
