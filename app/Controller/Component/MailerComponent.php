@@ -62,30 +62,6 @@ class MailerComponent extends Component
     }
 
 
-    public function sendPmNotification($pm, $id)
-    {
-        $User = ClassRegistry::init('User');
-        $recipientEmail = $User->getEmailFromId($pm['recpt']);
-        $sender = $User->getUsernameFromId($pm['sender']);
-        $title = $pm['title'];
-        $content = $pm['content'];
-
-        $this->Email = new CakeEmail();
-        $this->Email
-            ->to($recipientEmail)
-            ->subject('Tatoeba PM - ' . $title)
-            ->template('new_private_message')
-            ->viewVars(array(
-              'sender' => $sender,
-              'title' => $title,
-              'message' => $content,
-              'messageId' => $id
-            ));
-
-        $this->_send();
-    }
-
-
     public function sendSentenceCommentNotification($recipient, $comment, $sentenceOwner) {
         if (empty($recipient)) {
             return;

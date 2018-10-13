@@ -384,11 +384,15 @@ class PrivateMessage extends AppModel
                 return false;
             }
 
-            if (!$this->saveToInbox($toSend, $recptId)) {
+            $message = $this->saveToInbox($toSend, $recptId);
+            if (!$message) {
                 return false;
+            } else {
+                $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+                    'message' => $message[$this->alias],
+                ));
+                $this->getEventManager()->dispatch($event);
             }
-
-            //$this->_sendMessageNotification($message, $recptId);
 
             $this->id = null;
 

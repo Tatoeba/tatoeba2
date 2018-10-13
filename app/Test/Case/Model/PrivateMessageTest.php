@@ -191,4 +191,48 @@ class PrivateMessageTest extends CakeTestCase {
 
         $this->assertEqual(0, $after - $before);
     }
+
+    function testSend_firesSendingEvent() {
+        $date = '1999-12-31 23:59:59';
+        $postData = array(
+            'PrivateMessage' => array(
+                'recpt' => 'advanced_contributor',
+                'title' => 'Status',
+                'content' => 'Why are you so advanced?',
+                'messageId' => '',
+                'submitType' => 'send',
+            ),
+        );
+        $currentUserId = 7;
+        $expectedMessage = array(
+            'recpt' => 3,
+            'sender' => 7,
+            'date' => '1999-12-31 23:59:59',
+            'folder' => 'Inbox',
+            'title' => 'Status',
+            'content' => 'Why are you so advanced?',
+            'isnonread' => 1,
+            'user_id' => 3,
+            'draft_recpts' => '',
+            'sent' => 1,
+        );
+
+        $dispatched = false;
+        $model = $this->PrivateMessage;
+        $model->getEventManager()->attach(
+            function (CakeEvent $event) use ($model, &$dispatched, $expectedMessage) {
+                $this->assertSame($model, $event->subject());
+                extract($event->data); // $message
+                unset($message['id']);
+                $this->assertEquals($expectedMessage, $message);
+                $dispatched = true;
+            },
+            'Model.PrivateMessage.messageSent'
+        );
+
+        $this->PrivateMessage->send($currentUserId, $date, $postData);
+
+        $this->assertTrue($dispatched);
+    }
+
 }

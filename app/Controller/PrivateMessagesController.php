@@ -25,6 +25,7 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('NotificationListener', 'Lib/Event');
 
 /**
  * Controller for private messages.
@@ -40,6 +41,14 @@ class PrivateMessagesController extends AppController
     public $name = 'PrivateMessages';
     public $helpers = array('Html', 'Date');
     public $components = array('Flash', 'Mailer');
+
+    public function beforeFilter()
+    {
+        $eventManager = $this->PrivateMessage->getEventManager();
+        $eventManager->attach(new NotificationListener());
+
+        return parent::beforeFilter();
+    }
 
     /**
      * Display the inbox folder.
@@ -131,26 +140,6 @@ class PrivateMessagesController extends AppController
             } else {
                 $this->redirect(array('action' => 'folder', 'Sent'));
             }
-        }
-    }
-
-    /**
-     * Send email notification if user setting allows.
-     *
-     * @param  array $message Private message.
-     * @param  int   $userId  ID of user to send notification to.
-     *
-     * @return void
-     */
-    private function _sendMessageNotification($message, $userId)
-    {
-        $userSettings = $this->PrivateMessage->User->getSettings($userId);
-
-        if ($userSettings['User']['send_notifications']) {
-            $this->Mailer->sendPmNotification(
-                $message,
-                $this->PrivateMessage->id
-            );
         }
     }
 
