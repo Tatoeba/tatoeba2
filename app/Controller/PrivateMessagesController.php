@@ -613,26 +613,4 @@ class PrivateMessagesController extends AppController
 
         return true;
     }
-
-    /**
-     * Add a list to a private message.
-     *
-     * @param string $type         Type of object to join to the message.
-     * @param int    $joinObjectId ID object to join.
-     *
-     * @return void
-     */
-    public function join($type = null, $joinObjectId = null)
-    {
-        $type = Sanitize::paranoid($type);
-        $joinObjectId = Sanitize::paranoid($joinObjectId);
-
-        if ($type != null && $joinObjectId != null) {
-            $this->request->params['action'] = 'write';
-            $this->set('msgPreContent', '['.$type.':'.$joinObjectId.']');
-            $this->write();
-        } else {
-            $this->redirect(array('action' => 'write'));
-        }
-    }
 }
