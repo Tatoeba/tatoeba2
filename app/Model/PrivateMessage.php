@@ -344,6 +344,14 @@ class PrivateMessage extends AppModel
         );
 
         $recipients = $this->_buildRecipientsArray($message[$this->alias]['recpt']);
+        if (empty($recipients)) {
+            $this->validationErrors['sendError'] = array(
+                'error' => format(
+                    __('You must fill at least the "To" field and the content field.')
+                ),
+            );
+            return false;
+        }
 
         $sentToday = $this->todaysMessageCount($currentUserId);
 
@@ -388,6 +396,7 @@ class PrivateMessage extends AppModel
     {
         $recptArray = explode(',', $recpt);
         $recptArray = array_map('trim', $recptArray);
+        $recptArray = array_filter($recptArray);
 
         return array_unique($recptArray, SORT_REGULAR);
     }

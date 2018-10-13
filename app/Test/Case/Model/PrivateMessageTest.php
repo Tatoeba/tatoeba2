@@ -103,6 +103,25 @@ class PrivateMessageTest extends CakeTestCase {
         $this->assertEqual(0, $after - $before);
     }
 
+    public function testSaveDraft_withoutRecipient() {
+        $date = '1999-12-31 23:59:59';
+        $postData = array(
+            'PrivateMessage' => array(
+                'recpt' => '',
+                'title' => 'Status',
+                'content' => 'Why are you so advanced?',
+                'messageId' => '',
+                'submitType' => 'saveDraft',
+            ),
+        );
+
+        $before = $this->PrivateMessage->find('count');
+        $this->PrivateMessage->saveDraft(7, $date, $postData);
+        $after = $this->PrivateMessage->find('count');
+
+        $this->assertEqual(1, $after - $before);
+    }
+
     public function testSend_toOneRecipent() {
         $date = '1999-12-31 23:59:59';
         $postData = array(
@@ -151,5 +170,25 @@ class PrivateMessageTest extends CakeTestCase {
         );
         $received = $this->PrivateMessage->findById($receivedId);
         $this->assertEqual($expectedReceived, $received['PrivateMessage']);
+    }
+
+    public function testSend_withoutRecipient() {
+        $date = '1999-12-31 23:59:59';
+        $postData = array(
+            'PrivateMessage' => array(
+                'recpt' => '',
+                'title' => 'Status',
+                'content' => 'Why are you so advanced?',
+                'messageId' => '',
+                'submitType' => 'send',
+            ),
+        );
+        $currentUserId = 4;
+
+        $before = $this->PrivateMessage->find('count');
+        $this->PrivateMessage->send($currentUserId, $date, $postData);
+        $after = $this->PrivateMessage->find('count');
+
+        $this->assertEqual(0, $after - $before);
     }
 }

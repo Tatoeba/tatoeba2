@@ -117,6 +117,10 @@ class PrivateMessagesController extends AppController
         } else {
             $sent = $this->PrivateMessage->send($currentUserId, $now, $this->request->data);
             if (!$sent) {
+                if (isset($this->PrivateMessage->validationErrors['sendError'])) {
+                    $err = $this->PrivateMessage->validationErrors['sendError'];
+                    $this->Flash->set($err['error']);
+                }
                 $this->redirect(array('action' => 'write'));
             } else {
                 $this->redirect(array('action' => 'folder', 'Sent'));
