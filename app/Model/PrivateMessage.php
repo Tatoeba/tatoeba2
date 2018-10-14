@@ -350,10 +350,8 @@ class PrivateMessage extends AppModel
 
         $recipients = $this->_buildRecipientsArray($message[$this->alias]['recpt']);
         if (empty($recipients)) {
-            $this->validationErrors['sendError'] = array(
-                'error' => format(
-                    __('You must fill at least the "To" field and the content field.')
-                ),
+            $this->validationErrors['recpt'] = array(
+                __('You must fill at least the "To" field and the content field.')
             );
             return false;
         }
@@ -362,15 +360,14 @@ class PrivateMessage extends AppModel
 
         foreach ($recipients as $recpt) {
             if (!$this->canSendMessage($sentToday)) {
-                $this->validationErrors['sendError'] = array(
-                    'error' => format(
+                $this->validationErrors['limitExceeded'] = array(
+                    format(
                         __("You have reached your message limit for today. ".
                            "Please wait until you can send more messages. ".
                            "If you have received this message in error, ".
                            "please contact administrators at {email}."),
                         array('email' => 'team@tatoeba.org')
                     ),
-                    'limit_exceeded' => true,
                 );
                 return false;
             }
@@ -378,8 +375,8 @@ class PrivateMessage extends AppModel
             $recptId = $this->User->getIdFromUsername($recpt);
 
             if (!$recptId) {
-                $this->validationErrors['sendError'] = array(
-                    'error' => format(
+                $this->validationErrors['recpt'] = array(
+                    format(
                         __('The user {username} to whom you want to send this '.
                            'message does not exist. Please try with another username.'),
                         array('username' => $recpt)

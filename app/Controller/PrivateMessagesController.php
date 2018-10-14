@@ -127,15 +127,9 @@ class PrivateMessagesController extends AppController
             $sent = $this->PrivateMessage->send($currentUserId, $now, $this->request->data);
             if (!$sent) {
                 foreach ($this->PrivateMessage->validationErrors as $field => $err) {
-                    switch ($field) {
-                    case 'sendError':
-                        $this->Flash->set($err['error']);
-                        if (isset($err['limit_exceeded'])) {
-                            $this->redirect(array('action' => 'folder', 'Sent'));
-                        }
-                        break;
-                    default:
-                        $this->Flash->set($err[0]);
+                    $this->Flash->set($err[0]);
+                    if ($field == 'limitExceeded') {
+                        $this->redirect(array('action' => 'folder', 'Sent'));
                     }
                 }
                 $unsentMessage = $this->request->data['PrivateMessage'];
