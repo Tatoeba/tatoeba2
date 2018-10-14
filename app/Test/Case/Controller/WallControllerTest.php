@@ -23,8 +23,8 @@ class WallControllerTest extends ControllerTestCase {
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
         $userId = 1;
-        $lastPage = 3; // TODO Should be 2
-
+        $lastPage = 2;
+        
         $initialDate = new DateTime('2018-01-01');
 		for ($i = 0; $i <= 15; $i++) {
             $date = $initialDate->format('Y-m-d H:i:s');

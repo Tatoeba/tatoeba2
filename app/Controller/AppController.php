@@ -306,6 +306,7 @@ class AppController extends Controller
             return parent::paginate($object, $scope, $whitelist);
         } catch (NotFoundException $e) {
             $this->redirectPaginationToLastPage($object, $scope);
+            return array();
         }
     }
 
