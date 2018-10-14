@@ -27,6 +27,10 @@ class NotificationListener implements CakeEventListener {
         );
     }
 
+    public function __construct($Email = null) {
+        $this->Email = $Email ? $Email : new CakeEmail();
+    }
+
     public function sendPmNotification($event) {
         extract($event->data); // $message
         $User = ClassRegistry::init('User');
@@ -41,7 +45,6 @@ class NotificationListener implements CakeEventListener {
         $title = $message['title'];
         $content = $message['content'];
 
-        $this->Email = new CakeEmail();
         $this->Email
             ->to($recipientEmail)
             ->subject('Tatoeba PM - ' . $title)

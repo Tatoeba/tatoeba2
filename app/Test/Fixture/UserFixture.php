@@ -160,7 +160,7 @@ class UserFixture extends CakeTestFixture {
 			'last_time_active' => '1397514924',
 			'level' => '1',
 			'group_id' => '4',
-			'send_notifications' => 1,
+			'send_notifications' => 0,
 			'name' => '',
 			'birthday' => NULL,
 			'description' => '',

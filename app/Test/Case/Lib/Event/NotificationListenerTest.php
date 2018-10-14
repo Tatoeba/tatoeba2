@@ -33,17 +33,17 @@ class NotificationListenerTest extends CakeTestCase {
         parent::tearDown();
     }
 
-    private function _message() {
+    private function _message($recpt = 3) {
         return array(
             'id' => 42,
-            'recpt' => 3,
+            'recpt' => $recpt,
             'sender' => 7,
             'date' => '1999-12-31 23:59:59',
             'folder' => 'Inbox',
             'title' => 'Status',
             'content' => 'Why are you so advanced?',
             'isnonread' => 1,
-            'user_id' => 3,
+            'user_id' => $recpt,
             'draft_recpts' => '',
             'sent' => 1,
         );
@@ -64,6 +64,29 @@ class NotificationListenerTest extends CakeTestCase {
                     ->method('subject')
                     ->with('Tatoeba PM - Status');
         $this->Email->expects($this->once())
+                    ->method('send');
+
+        $this->NL->sendPmNotification($event);
+    }
+
+    public function testSendPmNotification_doNotSendIfDisabled() {
+        Configure::write('Mailer.enabled', false);
+        $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+            'message' => $this->_message(),
+        ));
+
+        $this->Email->expects($this->never())
+                    ->method('send');
+
+        $this->NL->sendPmNotification($event);
+    }
+
+    public function testSendPmNotification_doNotSendIfUserSettingsDisabled() {
+        $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+            'message' => $this->_message(7),
+        ));
+
+        $this->Email->expects($this->never())
                     ->method('send');
 
         $this->NL->sendPmNotification($event);
