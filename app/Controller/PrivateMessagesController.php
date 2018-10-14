@@ -130,9 +130,6 @@ class PrivateMessagesController extends AppController
                     switch ($field) {
                     case 'sendError':
                         $this->Flash->set($err['error']);
-                        if (isset($err['unsent_message'])) {
-                            $this->Session->write('unsent_message', $err['unsent_message']);
-                        }
                         if (isset($err['limit_exceeded'])) {
                             $this->redirect(array('action' => 'folder', 'Sent'));
                         }
@@ -141,6 +138,8 @@ class PrivateMessagesController extends AppController
                         $this->Flash->set($err[0]);
                     }
                 }
+                $unsentMessage = $this->request->data['PrivateMessage'];
+                $this->Session->write('unsent_message', $unsentMessage);
                 $this->redirect(array('action' => 'write'));
             } else {
                 $this->redirect(array('action' => 'folder', 'Sent'));
@@ -442,6 +441,7 @@ class PrivateMessagesController extends AppController
             $this->set('recipients', $recipients);
             $this->set('title', $recoveredMessage['title']);
             $this->set('content', $recoveredMessage['content']);
+            $this->set('recipients', $recoveredMessage['recpt']);
             $this->set('hasRecoveredMessage', true);
         } else {
             $this->set('recipients', $recipients);

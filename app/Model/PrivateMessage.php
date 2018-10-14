@@ -384,7 +384,6 @@ class PrivateMessage extends AppModel
                            'message does not exist. Please try with another username.'),
                         array('username' => $recpt)
                     ),
-                    'unsent_message' => $toSend,
                 );
                 return false;
             }
