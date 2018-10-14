@@ -39,6 +39,16 @@ class SentenceComment extends AppModel
     public $actsAs = array('Containable');
     public $belongsTo = array('Sentence', 'User');
 
+    public function afterSave($created, $options = array())
+    {
+        if ($created) {
+            $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+                'comment' => $this->data[$this->alias],
+            ));
+            $this->getEventManager()->dispatch($event);
+        }
+    }
+
     /**
      * Get number of sentences owned by a user.
      *
