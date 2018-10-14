@@ -45,29 +45,6 @@ class MailerComponentTest extends CakeTestCase {
         parent::tearDown();
     }
 
-    public function testSendWallReplyNotification_noUnwantedHeaderAndFooter() {
-        $recipient = 'kazuki@example.net';
-        $message = array(
-            'Wall' => array(
-                'content' => 'When it’s done.',
-                'owner' => '1',
-                'parent_id' => '1',
-                'date' => '2014-04-15 16:38:36',
-                'id' => '2',
-            ),
-            'User' => array(
-                'image' => '',
-                'username' => 'admin',
-            ),
-        );
-
-        $this->Mailer->sendWallReplyNotification($recipient, $message);
-
-        $sentMessage = implode($this->Mailer->Email->message());
-        $this->assertNotContains('CakePHP Framework', $sentMessage);
-        $this->assertNotContains('Emails/html', $sentMessage);
-    }
-
     public function testSendSentenceCommentNotification_onOrphanSentence() {
         $this->behaveAsUser('contributor');
         $sentenceOwner = null;

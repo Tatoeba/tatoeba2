@@ -69,6 +69,26 @@ class NotificationListenerTest extends CakeTestCase {
         $this->NL->sendPmNotification($event);
     }
 
+    public function testSendPmNotification_noUnwantedHeaderAndFooter() {
+        $this->Email = $this->getMock('CakeEmail', null);
+        $this->NL = $this->getMock('NotificationListener',
+                                   array('getTransport'),
+                                   array($this->Email));
+        $this->NL->expects($this->any())
+                 ->method('getTransport')
+                 ->will($this->returnValue('Debug'));
+
+        $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+            'message' => $this->_message(),
+        ));
+
+        $this->NL->sendPmNotification($event);
+
+        $sentMessage = implode($this->Email->message());
+        $this->assertNotContains('CakePHP Framework', $sentMessage);
+        $this->assertNotContains('Emails/html', $sentMessage);
+    }
+
     public function testSendPmNotification_doNotSendIfDisabled() {
         Configure::write('Mailer.enabled', false);
         $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
