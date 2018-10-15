@@ -7,10 +7,17 @@ Tatoeba
 This repository contains the source code of Tatoeba's website: 
 https://tatoeba.org. 
 
-If you are interested in contributing to this project as a developer, please 
-read our [article about joining the dev team][1] before you start coding 
-anything.
+Contributing
+------------
 
+If you are interested in contributing to this project as a developer, please 
+read our [article about it][1] before you start coding anything.
+
+:warning: **We will start upgrading to CakePHP 3 at the beginning of November.**
+
+This means:
+- If you're working on a pull request today, you should stop and wait for us to finish the migration.
+- If you have too much free time, you're more than welcome to join and help us out completing this migration.
 
 
 Installing Tatoeba
@@ -46,7 +53,7 @@ that you can run Tatoeba properly on your machine, don't hesitate to post a
 message in our [Google group][5], ask in our [Gitter chatroom][6] or in our
 [XMPP chatroom][7].
 
-[1]: https://github.com/Tatoeba/tatoeba2/wiki/Joining-the-dev-team
+[1]: https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer
 [2]: https://github.com/Tatoeba/imouto
 [3]: https://github.com/Tatoeba/imouto/blob/master/README.md#imouto-for-development
 [4]: https://github.com/Tatoeba/tatoeba2/wiki/How-to-install-Tatoeba
