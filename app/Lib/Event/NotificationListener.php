@@ -24,6 +24,7 @@ class NotificationListener implements CakeEventListener {
     public function implementedEvents() {
         return array(
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
+            'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',
         );
     }
 
@@ -54,6 +55,111 @@ class NotificationListener implements CakeEventListener {
               'title' => $title,
               'message' => $content,
               'messageId' => $message['id'],
+            ));
+
+        $this->_send();
+    }
+
+    private function _getMentionedEmails($comment, $commentId)
+    {
+        $User = ClassRegistry::init('User');
+        preg_match_all(
+            "/@[a-zA-Z0-9_]+/",
+            $comment['text'],
+            $usernames
+        );
+        $emails = array();
+        foreach ($usernames[0] as $string) {
+            $username = substr($string, 1);
+            $user = $User->findByUsername($username);
+            $sendNotif = !empty($user) && $user['User']['id'] != $comment['user_id']
+                && $user['User']['send_notifications'] == 1;
+            if ($sendNotif) {
+                $emails[] = $user['User']['email'];
+            }
+        }
+
+        return $emails;
+    }
+
+    public function sendSentenceCommentNotification($event) {
+        extract($event->data); // $comment
+        $sentenceId = $comment['sentence_id'];
+
+        $SentenceComment = ClassRegistry::init('SentenceComment');
+        $participants = $SentenceComment->getEmailsFromComments(
+            $sentenceId
+        );
+
+        $Sentence = ClassRegistry::init('Sentence');
+        $sentenceOwner = $Sentence->getEmailFromSentence(
+            $sentenceId
+        );
+
+        if ($sentenceOwner != null && !in_array($sentenceOwner, $participants)) {
+            $participants[] = $sentenceOwner;
+        }
+
+        $Sentence->id = $sentenceId;
+        $sentenceText = $Sentence->field('text');
+
+        $commentId = $SentenceComment->id;
+        $mentionEmails = $this->_getMentionedEmails($comment, $commentId);
+        foreach($mentionEmails as $email) {
+            $participants[] = $email;
+        }
+        $participants = array_unique($participants);
+
+        $User = ClassRegistry::init('User');
+        $User->id = $comment['user_id'];
+        $userEmail = $User->field('email');
+
+        // send message to the other participants of the thread
+        $comment['sentence_text'] = $sentenceText;
+        foreach ($participants as $participant) {
+            if ($participant != $userEmail) {
+                $this->_sendSentenceCommentNotification(
+                    $participant,
+                    $comment,
+                    $sentenceOwner
+                );
+            }
+        }
+    }
+
+    public function _sendSentenceCommentNotification($recipient, $comment, $sentenceOwner) {
+        if (empty($recipient)) {
+            return;
+        }
+        $User = ClassRegistry::init('User');
+        $author = $User->getUsernameFromId($comment['user_id']);
+        $sentenceText = $comment['sentence_text'];
+        $sentenceIsDeleted = $sentenceText === false;
+        $sentenceId = $comment['sentence_id'];
+        if ($sentenceIsDeleted) {
+            $subject = 'Tatoeba - Comment on deleted sentence #' . $sentenceId;
+        } else {
+            $subject = 'Tatoeba - Comment on sentence : ' . $sentenceText;
+        }
+        $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
+            . '/sentence_comments/show/'
+            . $comment['sentence_id']
+            . '#comments';
+        $recipientIsOwner = ($recipient == $sentenceOwner);
+        $commentText = $comment['text'];
+
+        $this->Email
+            ->to($recipient)
+            ->subject($subject)
+            ->template('comment_on_sentence')
+            ->viewVars(array(
+              'author' => $author,
+              'linkToSentence' => $linkToSentence,
+              'commentText' => $commentText,
+              'recipientIsOwner' => $recipientIsOwner,
+              'sentenceIsDeleted' => $sentenceIsDeleted,
+              'sentenceText' => $sentenceText,
+              'sentenceId' => $sentenceId,
             ));
 
         $this->_send();

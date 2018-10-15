@@ -7,6 +7,8 @@ App::uses('CakeEmail', 'Network/Email');
 class NotificationListenerTest extends CakeTestCase {
     public $fixtures = array(
         'app.user',
+        'app.sentence',
+        'app.sentence_comment',
     );
 
     public function setUp() {
@@ -110,5 +112,31 @@ class NotificationListenerTest extends CakeTestCase {
                     ->method('send');
 
         $this->NL->sendPmNotification($event);
+    }
+
+    public function testSendSentenceCommentNotification_toSentenceOwner() {
+        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+            'comment' => array(
+                'sentence_id' => 9,
+                'text' => 'This sentence lacks a flag.',
+                'user_id' => 4,
+            )
+        ));
+
+        $this->Email->expects($this->once())
+                    ->method('from')
+                    ->with(array('tatoeba@example.com' => 'noreply'));
+        $this->Email->expects($this->once())
+                    ->method('to')
+                    ->with('advanced_contributor@example.com');
+        $this->Email->expects($this->once())
+                    ->method('subject')
+                    ->with('Tatoeba - Comment on sentence : '
+                          .'This sentences purposely misses its flag.');
+        $this->Email->expects($this->once())
+                    ->method('send');
+        $_SERVER['HTTP_HOST'] = 'example.net';
+
+        $this->NL->sendSentenceCommentNotification($event);
     }
 }
