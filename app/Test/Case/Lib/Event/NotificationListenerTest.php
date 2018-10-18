@@ -14,6 +14,7 @@ class NotificationListenerTest extends CakeTestCase {
     public function setUp() {
         parent::setUp();
 
+        Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Mailer.enabled',   true);
         Configure::write('Mailer.username', 'tatoeba@example.com');
         Configure::write('Mailer.password', 'terrible_password');
@@ -135,7 +136,6 @@ class NotificationListenerTest extends CakeTestCase {
                           .'This sentences purposely misses its flag.');
         $this->Email->expects($this->once())
                     ->method('send');
-        $_SERVER['HTTP_HOST'] = 'example.net';
 
         $this->NL->sendSentenceCommentNotification($event);
     }
@@ -152,7 +152,6 @@ class NotificationListenerTest extends CakeTestCase {
         $this->Email->expects($this->once())
                     ->method('to')
                     ->with('corpus_maintainer@example.com');
-        $_SERVER['HTTP_HOST'] = 'example.net';
 
         $this->NL->sendSentenceCommentNotification($event);
     }
@@ -169,7 +168,6 @@ class NotificationListenerTest extends CakeTestCase {
         $this->Email->expects($this->once())
                     ->method('to')
                     ->with('corpus_maintainer@example.com');
-        $_SERVER['HTTP_HOST'] = 'example.net';
 
         $this->NL->sendSentenceCommentNotification($event);
     }
@@ -246,7 +244,6 @@ class NotificationListenerTest extends CakeTestCase {
         $this->Email->expects($this->once())
                     ->method('to')
                     ->with('advanced_contributor@example.com');
-        $_SERVER['HTTP_HOST'] = 'example.net';
 
         $this->NL->sendSentenceCommentNotification($event);
     }
@@ -283,7 +280,6 @@ class NotificationListenerTest extends CakeTestCase {
         $this->Email->expects($this->at(12))
                     ->method('to')
                     ->with('corpus_maintainer@example.com');
-        $_SERVER['HTTP_HOST'] = 'example.net';
 
         $this->NL->sendSentenceCommentNotification($event);
     }
@@ -305,7 +301,6 @@ class NotificationListenerTest extends CakeTestCase {
                     ->with('Tatoeba - Comment on deleted sentence #13');
         $this->Email->expects($this->once())
                     ->method('send');
-        $_SERVER['HTTP_HOST'] = 'example.net';
 
         $this->NL->sendSentenceCommentNotification($event);
     }
@@ -326,7 +321,6 @@ class NotificationListenerTest extends CakeTestCase {
                 'user_id' => 4,
             )
         ));
-        $_SERVER['HTTP_HOST'] = 'example.net';
         $expectedLink = 'https://example.net/sentence_comments/show/9#comments';
 
         $this->NL->sendSentenceCommentNotification($event);

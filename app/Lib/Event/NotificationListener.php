@@ -19,6 +19,7 @@
 
 App::uses('CakeEmail', 'Network/Email');
 App::uses('CakeEventListener', 'Event');
+App::uses('Router', 'Routing');
 
 class NotificationListener implements CakeEventListener {
     public function implementedEvents() {
@@ -141,11 +142,13 @@ class NotificationListener implements CakeEventListener {
         } else {
             $subject = 'Tatoeba - Comment on sentence : ' . $sentenceText;
         }
-        $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
-            . '/sentence_comments/show/'
-            . $comment['sentence_id']
-            . '#comments';
-        $recipientIsOwner = ($recipient == $sentenceOwner);
+        $url = array(
+            'controller' => 'sentence_comments',
+            'action' => 'show',
+            $comment['sentence_id'],
+            '#' => 'comments'
+        );
+        $linkToSentence = Router::url($url, true);
         $commentText = $comment['text'];
 
         $this->Email
