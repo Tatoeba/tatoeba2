@@ -36,6 +36,20 @@ class NotificationListenerTest extends CakeTestCase {
         parent::tearDown();
     }
 
+    /**
+     * Do not mock $this->Email but prevent it from sending out emails.
+     * Useful to test email contents.
+     */
+    private function setUpLightMock() {
+        $this->Email = new CakeEmail();
+        $this->NL = $this->getMock('NotificationListener',
+                                   array('getTransport'),
+                                   array($this->Email));
+        $this->NL->expects($this->any())
+                 ->method('getTransport')
+                 ->will($this->returnValue('Debug'));
+    }
+
     private function _message($recpt = 3) {
         return array(
             'id' => 42,
@@ -73,13 +87,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendPmNotification_noUnwantedHeaderAndFooter() {
-        $this->Email = new CakeEmail();
-        $this->NL = $this->getMock('NotificationListener',
-                                   array('getTransport'),
-                                   array($this->Email));
-        $this->NL->expects($this->any())
-                 ->method('getTransport')
-                 ->will($this->returnValue('Debug'));
+        $this->setUpLightMock();
 
         $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
             'message' => $this->_message(),
@@ -306,13 +314,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_includesLinkToComment() {
-        $this->Email = new CakeEmail();
-        $this->NL = $this->getMock('NotificationListener',
-                                   array('getTransport'),
-                                   array($this->Email));
-        $this->NL->expects($this->any())
-                 ->method('getTransport')
-                 ->will($this->returnValue('Debug'));
+        $this->setUpLightMock();
 
         $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
@@ -330,13 +332,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_includesCommentAuthor() {
-        $this->Email = new CakeEmail();
-        $this->NL = $this->getMock('NotificationListener',
-                                   array('getTransport'),
-                                   array($this->Email));
-        $this->NL->expects($this->any())
-                 ->method('getTransport')
-                 ->will($this->returnValue('Debug'));
+        $this->setUpLightMock();
 
         $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
