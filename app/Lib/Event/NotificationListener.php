@@ -73,8 +73,7 @@ class NotificationListener implements CakeEventListener {
         foreach ($usernames[0] as $string) {
             $username = substr($string, 1);
             $user = $User->findByUsername($username);
-            $sendNotif = !empty($user) && $user['User']['id'] != $comment['user_id']
-                && $user['User']['send_notifications'] == 1;
+            $sendNotif = !empty($user) && $user['User']['send_notifications'] == 1;
             if ($sendNotif) {
                 $emails[] = $user['User']['email'];
             }
@@ -97,7 +96,7 @@ class NotificationListener implements CakeEventListener {
             $sentenceId
         );
 
-        if ($sentenceOwner != null && !in_array($sentenceOwner, $participants)) {
+        if ($sentenceOwner) {
             $participants[] = $sentenceOwner;
         }
 
