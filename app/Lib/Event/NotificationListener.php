@@ -116,6 +116,7 @@ class NotificationListener implements CakeEventListener {
 
         // send message to the other participants of the thread
         $comment['sentence_text'] = $sentenceText;
+        $comment['author'] = $User->getUsernameFromId($comment['user_id']);
         foreach ($participants as $participant) {
             if ($participant != $userEmail) {
                 $this->_sendSentenceCommentNotification(
@@ -130,8 +131,6 @@ class NotificationListener implements CakeEventListener {
         if (empty($recipient)) {
             return;
         }
-        $User = ClassRegistry::init('User');
-        $author = $User->getUsernameFromId($comment['user_id']);
         $sentenceText = $comment['sentence_text'];
         $sentenceIsDeleted = $sentenceText === false;
         $sentenceId = $comment['sentence_id'];
@@ -154,7 +153,7 @@ class NotificationListener implements CakeEventListener {
             ->subject($subject)
             ->template('comment_on_sentence')
             ->viewVars(array(
-              'author' => $author,
+              'author' => $comment['author'],
               'linkToSentence' => $linkToSentence,
               'commentText' => $commentText,
               'sentenceIsDeleted' => $sentenceIsDeleted,

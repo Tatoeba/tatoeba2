@@ -328,4 +328,28 @@ class NotificationListenerTest extends CakeTestCase {
         $sentMessage = implode($this->Email->message());
         $this->assertContains($expectedLink, $sentMessage);
     }
+
+    public function testSendSentenceCommentNotification_includesCommentAuthor() {
+        $this->Email = $this->getMock('CakeEmail', null);
+        $this->NL = $this->getMock('NotificationListener',
+                                   array('getTransport'),
+                                   array($this->Email));
+        $this->NL->expects($this->any())
+                 ->method('getTransport')
+                 ->will($this->returnValue('Debug'));
+
+        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+            'comment' => array(
+                'sentence_id' => 9,
+                'text' => 'This sentence lacks a flag.',
+                'user_id' => 2,
+            )
+        ));
+        $expectedAuthor = 'corpus_maintainer';
+
+        $this->NL->sendSentenceCommentNotification($event);
+
+        $sentMessage = implode($this->Email->message());
+        $this->assertContains($expectedAuthor, $sentMessage);
+    }
 }
