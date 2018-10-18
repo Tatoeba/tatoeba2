@@ -61,7 +61,7 @@ class NotificationListener implements CakeEventListener {
         $this->_send();
     }
 
-    private function _getMentionedEmails($comment, $commentId)
+    private function _getMentionedEmails($comment)
     {
         $User = ClassRegistry::init('User');
         preg_match_all(
@@ -104,7 +104,7 @@ class NotificationListener implements CakeEventListener {
         $sentenceText = $Sentence->field('text');
 
         $commentId = $SentenceComment->id;
-        $mentionEmails = $this->_getMentionedEmails($comment, $commentId);
+        $mentionEmails = $this->_getMentionedEmails($comment);
         foreach($mentionEmails as $email) {
             $participants[] = $email;
         }
@@ -120,14 +120,13 @@ class NotificationListener implements CakeEventListener {
             if ($participant != $userEmail) {
                 $this->_sendSentenceCommentNotification(
                     $participant,
-                    $comment,
-                    $sentenceOwner
+                    $comment
                 );
             }
         }
     }
 
-    public function _sendSentenceCommentNotification($recipient, $comment, $sentenceOwner) {
+    public function _sendSentenceCommentNotification($recipient, $comment) {
         if (empty($recipient)) {
             return;
         }
@@ -158,7 +157,6 @@ class NotificationListener implements CakeEventListener {
               'author' => $author,
               'linkToSentence' => $linkToSentence,
               'commentText' => $commentText,
-              'recipientIsOwner' => $recipientIsOwner,
               'sentenceIsDeleted' => $sentenceIsDeleted,
               'sentenceText' => $sentenceText,
               'sentenceId' => $sentenceId,
