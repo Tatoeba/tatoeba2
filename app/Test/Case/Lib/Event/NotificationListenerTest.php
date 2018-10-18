@@ -73,7 +73,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendPmNotification_noUnwantedHeaderAndFooter() {
-        $this->Email = $this->getMock('CakeEmail', null);
+        $this->Email = new CakeEmail();
         $this->NL = $this->getMock('NotificationListener',
                                    array('getTransport'),
                                    array($this->Email));
@@ -306,7 +306,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_includesLinkToComment() {
-        $this->Email = $this->getMock('CakeEmail', null);
+        $this->Email = new CakeEmail();
         $this->NL = $this->getMock('NotificationListener',
                                    array('getTransport'),
                                    array($this->Email));
@@ -330,7 +330,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_includesCommentAuthor() {
-        $this->Email = $this->getMock('CakeEmail', null);
+        $this->Email = new CakeEmail();
         $this->NL = $this->getMock('NotificationListener',
                                    array('getTransport'),
                                    array($this->Email));
