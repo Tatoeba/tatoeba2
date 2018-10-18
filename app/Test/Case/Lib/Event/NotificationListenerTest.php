@@ -281,13 +281,13 @@ class NotificationListenerTest extends CakeTestCase {
                     ->with('admin@example.com');
         $this->Email->expects($this->at(4))
                     ->method('to')
-                    ->with('contributor@example.com');
+                    ->with('corpus_maintainer@example.com');
         $this->Email->expects($this->at(8))
                     ->method('to')
                     ->with('advanced_contributor@example.com');
         $this->Email->expects($this->at(12))
                     ->method('to')
-                    ->with('corpus_maintainer@example.com');
+                    ->with('contributor@example.com');
 
         $this->NL->sendSentenceCommentNotification($event);
     }

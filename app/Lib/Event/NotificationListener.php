@@ -61,73 +61,53 @@ class NotificationListener implements CakeEventListener {
         $this->_send();
     }
 
-    private function _getMentionedEmails($comment)
+    private function _getMentionedUsernames($comment)
     {
-        $User = ClassRegistry::init('User');
         preg_match_all(
-            "/@[a-zA-Z0-9_]+/",
-            $comment['text'],
-            $usernames
+            "/@([a-zA-Z0-9_]+)/",
+            $comment,
+            $matches,
+            PREG_PATTERN_ORDER
         );
-        $emails = array();
-        foreach ($usernames[0] as $string) {
-            $username = substr($string, 1);
-            $user = $User->findByUsername($username);
-            $sendNotif = !empty($user) && $user['User']['send_notifications'] == 1;
-            if ($sendNotif) {
-                $emails[] = $user['User']['email'];
-            }
-        }
-
-        return $emails;
+        return $matches[1];
     }
 
     public function sendSentenceCommentNotification($event) {
         extract($event->data); // $comment
         $sentenceId = $comment['sentence_id'];
 
-        $SentenceComment = ClassRegistry::init('SentenceComment');
-        $participants = $SentenceComment->getEmailsFromComments(
-            $sentenceId
-        );
-
         $Sentence = ClassRegistry::init('Sentence');
-        $sentenceOwner = $Sentence->getEmailFromSentence(
-            $sentenceId
-        );
+        $SentenceComment = ClassRegistry::init('SentenceComment');
 
-        if ($sentenceOwner) {
-            $participants[] = $sentenceOwner;
-        }
+        $sentence = $Sentence->findById($sentenceId, array('user_id', 'text'));
+        $comments = $SentenceComment->findAllBySentenceId($sentenceId, 'user_id');
+        $userIds = array_merge(array($sentence), $comments);
+        $userIds = Hash::extract($userIds, '{n}.{s}.user_id');
 
-        $Sentence->id = $sentenceId;
-        $sentenceText = $Sentence->field('text');
-
-        $commentId = $SentenceComment->id;
-        $mentionEmails = $this->_getMentionedEmails($comment);
-        foreach($mentionEmails as $email) {
-            $participants[] = $email;
-        }
-        $participants = array_unique($participants);
+        $usernames = $this->_getMentionedUsernames($comment['text']);
 
         $User = ClassRegistry::init('User');
-        $User->id = $comment['user_id'];
-        $userEmail = $User->field('email');
+        $toNotify = $User->find('all', array(
+            'fields' => array('email'),
+            'conditions' => array(
+                'OR' => array(
+                    array('id' => $userIds),
+                    array('username' => $usernames),
+                ),
+                'NOT' => array('id' => $comment['user_id']),
+                'send_notifications' => true,
+            ),
+        ));
+        $toNotify = Hash::extract($toNotify, '{n}.User.email');
 
-        // send message to the other participants of the thread
-        $comment['sentence_text'] = $sentenceText;
+        $comment['sentence_text'] = $sentence ? $sentence['Sentence']['text'] : false;
         $comment['author'] = $User->getUsernameFromId($comment['user_id']);
-        foreach ($participants as $participant) {
-            if ($participant != $userEmail) {
-                $this->_sendSentenceCommentNotification(
-                    $participant,
-                    $comment
-                );
-            }
+        foreach ($toNotify as $email) {
+            $this->_sendSentenceCommentNotification($email, $comment);
         }
     }
 
-    public function _sendSentenceCommentNotification($recipient, $comment) {
+    private function _sendSentenceCommentNotification($recipient, $comment) {
         if (empty($recipient)) {
             return;
         }
