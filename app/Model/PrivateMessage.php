@@ -407,6 +407,7 @@ class PrivateMessage extends AppModel
 
             $sentToday += 1;
         }
+        return true;
     }
 
     /**
