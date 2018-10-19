@@ -28,7 +28,7 @@ class WallTest extends CakeTestCase {
             'owner' => 2,
             'date' => '2018-01-02 03:04:05',
             'content' => 'Hi everyone!',
-//            'modified' => date(),
+            'modified' => '2018-01-02 03:04:05',
             'lft' => 5,
             'rght' => 6,
             'id' => 3,
@@ -39,7 +39,6 @@ class WallTest extends CakeTestCase {
         $after = $this->Wall->find('count');
 
         $this->assertEquals(1, $after - $before);
-        unset($saved['Wall']['modified']);
         $this->assertEquals($expected, $saved);
     }
 }

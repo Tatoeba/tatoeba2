@@ -56,6 +56,13 @@ class Wall extends AppModel
         )
     );
 
+    public function beforeSave($options = array()) {
+        if (isset($this->data[$this->alias]['date'])) {
+            $this->data[$this->alias]['modified'] = $this->data[$this->alias]['date'];
+        }
+        return true;
+    }
+
     /**
      * used after a save is made in the database
      *
