@@ -195,7 +195,7 @@ class Audio extends AppModel
                     'sourcePath' => $importPath.$filename,
                     'valid'    => false,
                 );
-                if (preg_match('/(\d+)\.mp3$/i', $file, $matches)) {
+                if (preg_match('/^(\d+)\.mp3$/i', $filename, $matches)) {
                     $fileInfos['sentenceId'] = $allSentenceIds[] = $matches[1];
                 }
                 $audioFiles[] = $fileInfos;
