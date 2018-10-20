@@ -66,13 +66,21 @@ class Wall extends AppModel
     /**
      * used after a save is made in the database
      *
-     * @param bool $created if succeed or not TODO: to check
+     * @param bool $created if succeed or not
      *
      * @return void
      */
 
     public function afterSave($created, $options = array())
     {
+        if ($created && isset($this->data[$this->alias]['date'])) {
+            $rootId = $this->getRootMessageIdOfReply($this->id);
+            $newThreadData = array(
+                'id' => $rootId,
+                'last_message_date' => $this->data[$this->alias]['date'],
+            );
+            $this->WallThread->save($newThreadData);
+        }
     }
 
     /**

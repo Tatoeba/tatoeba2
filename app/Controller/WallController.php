@@ -148,13 +148,7 @@ class WallController extends AppController
                     'content' => $this->request->data['Wall']['content'],
                 );
                 // now save to database
-                if ($this->Wall->save($newPost)) {
-                    $this->update_thread_date(
-                        $this->Wall->id,
-                        $now
-                    );
-                }
-
+                $this->Wall->save($newPost);
             }
         }
 
@@ -194,8 +188,6 @@ class WallController extends AppController
                 $this->loadModel('User');
                 $user = $this->User->getInfoWallUser($idTemp);
                 $this->set("user", $user);
-
-                $this->update_thread_date($newMessageId, $now);
 
                 // we forge a message to be used in the view
 
@@ -370,32 +362,6 @@ class WallController extends AppController
         }
         // redirect to previous page
         $this->redirect($this->referer());
-    }
-
-    /**
-     * update the WallThread table
-     *
-     * @param int    $messageId Message that have been add/updated
-     * @param string $newDate   Date of the event.
-     *
-     * @return void
-     */
-
-    public function update_thread_date($messageId, $newDate)
-    {
-        $messageId = Sanitize::paranoid($messageId);
-        // TODO Not sure what to do with $newDate...
-
-        $this->loadModel('WallThread');
-
-        $rootId = $this->Wall->getRootMessageIdOfReply($messageId);
-
-        $newThreadData = array(
-            'id' => $rootId,
-            'last_message_date' => $newDate
-        );
-
-        $this->WallThread->save($newThreadData);
     }
 
     /**
