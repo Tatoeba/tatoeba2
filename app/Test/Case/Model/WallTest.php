@@ -44,6 +44,32 @@ class WallTest extends CakeTestCase {
         $this->assertEquals($expected, $saved);
     }
 
+    public function testSave_doesNotSaveNewPostIfContentIsEmpty() {
+        $newPost = array(
+            'owner' => 2,
+            'date' => '2018-01-02 03:04:05',
+            'content' => '       ',
+        );
+
+        $before = $this->Wall->find('count');
+        $saved = $this->Wall->save($newPost);
+        $after = $this->Wall->find('count');
+
+        $this->assertEquals(0, $after - $before);
+        $this->assertFalse($saved);
+    }
+
+    public function testSave_doesNotSaveExistingPostIfContentIsEmpty() {
+        $post = array(
+            'id' => 2,
+            'content' => '',
+        );
+
+        $saved = $this->Wall->save($post);
+
+        $this->assertFalse($saved);
+    }
+
     private function _assertThreadDate($postId, $expectedDate) {
         $rootId = $this->Wall->getRootMessageIdOfReply($postId);
         $wallThread = $this->Wall->WallThread->findById($rootId, 'last_message_date');

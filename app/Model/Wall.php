@@ -56,6 +56,18 @@ class Wall extends AppModel
         )
     );
 
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+        $this->validate = array(
+            'content' => array(
+                'rule'       => 'notBlank',
+                'allowEmpty' => false,
+                'message'    => __('You cannot save an empty message.'),
+            ),
+        );
+    }
+
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['date'])) {
             $this->data[$this->alias]['modified'] = $this->data[$this->alias]['date'];

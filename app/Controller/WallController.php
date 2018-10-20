@@ -124,9 +124,7 @@ class WallController extends AppController
      */
     public function save()
     {
-        if (!empty($this->request->data['Wall']['content'])
-            && $this->Auth->user('id')
-        ) {
+        if ($this->Auth->user('id')) {
             $lastMess = $this->Session->read('hash_last_wall');
             $thisMess =md5($this->request->data['Wall']['content']);
 
@@ -167,7 +165,6 @@ class WallController extends AppController
     {
         $idTemp = $this->Auth->user('id');
         if (isset($this->request->data['content'])
-            && trim($this->request->data['content']) != ''
             && isset($this->request->data['replyTo'])
             && !(empty($idTemp))
         ) {
@@ -270,19 +267,7 @@ class WallController extends AppController
                     'content' => trim($this->request->data['Wall']['content']),
                 );
 
-                if (empty($editedPost['content'])) {
-                    $this->Flash->set(
-                        __('You cannot save an empty message.')
-                    );
-
-                    $this->redirect(
-                    array(
-                            "action" => "edit",
-                            $messageId
-                        )
-                    );
-
-                } else  if ($this->Wall->save($editedPost)) {
+                if ($this->Wall->save($editedPost)) {
                     $this->Flash->set(
                         __("Message saved.")
                     );
@@ -294,12 +279,8 @@ class WallController extends AppController
                         )
                     );
                 } else {
-                    $this->Flash->set(
-                        __(
-                            "We apologize, but we could not save your data.
-                             Please try again", true
-                        )
-                    );
+                    $firstValidationErrorMessage = reset($this->Wall->validationErrors)[0];
+                    $this->Flash->set($firstValidationErrorMessage);
                     $this->redirect(
                         array(
                             "action"=>"edit",
