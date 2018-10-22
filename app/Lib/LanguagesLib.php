@@ -563,7 +563,7 @@ class LanguagesLib
                 'kas' => __d('languages', 'Kashmiri'),
                 'otk' => __d('languages', 'Old Turkish'),
                 'aoz' => __d('languages', 'Uab Meto'), 
-                'fkn' => __d('languages', 'Kven Finnish'),
+                'fkv' => __d('languages', 'Kven Finnish'),
             );
         }
         return $languages;
