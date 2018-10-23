@@ -117,14 +117,17 @@ class UsersSentences extends AppModel
     /**
      * Get paginated user_sentneces for user.
      *
-     * @param  int    $userId      User ID.
-     * @param  int    $correctness Correctness value.
-     * @param  string $lang        Language.
+     * @param  int    $userId           User ID.
+     * @param  int    $correctnessLabel Label for correctness value.
+     * @param  string $lang             Language.
      *
      * @return array
      */
-    public function getPaginatedCorpusOf($userId, $correctness = null, $lang = null)
+    public function getPaginatedCorpusOf($userId, $correctnessLabel = null, $lang = null)
     {
+        $correctness = $this->correctnessValueFromLabel(
+            $correctnessLabel
+        );
         $conditions = array('UsersSentences.user_id' => $userId);
 
         if (is_int($correctness)) {
@@ -155,7 +158,7 @@ class UsersSentences extends AppModel
      *
      * @return int|string
      */
-    public function correctnessValueFromLabel($label)
+    private function correctnessValueFromLabel($label)
     {
         $values = [
             'not-ok' => -1,

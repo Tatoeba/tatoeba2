@@ -95,27 +95,23 @@ class CollectionsController extends AppController
         $this->helpers[] = 'Pagination';
 
         $userId = $this->User->getIdFromUsername($username);
-        $correctness = $this->UsersSentences->correctnessValueFromLabel(
-            $correctnessLabel
-        );
+        $backLink = $this->referer(array('action' => 'index'), true);
 
-        $backLink = $this->referer(array('action'=>'index'), true);
         $this->set('backLink', $backLink);
         $this->set('username', $username);
-        $this->set('correctness', $correctness);
 
         if(empty($userId)) {
-            $this->set("userExists", false);
+            $this->set('userExists', false);
             return;
         }
 
         $this->paginate = $this->UsersSentences->getPaginatedCorpusOf(
-            $userId, $correctness, $lang
+            $userId, $correctnessLabel, $lang
         );
         $corpus = $this->paginate();
 
         $this->set('corpus', $corpus);
-        $this->set("userExists", true);
+        $this->set('userExists', true);
         $this->set('correctnessLabel', $correctnessLabel);
         $this->set('lang', $lang);
     }
