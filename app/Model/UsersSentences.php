@@ -46,6 +46,49 @@ class UsersSentences extends AppModel
 
 
     /**
+     * 
+     */
+    public function saveSentence($sentenceId, $correctness, $userId) 
+    {
+        $userSentence = $this->findBySentenceIdAndUserId(
+            $sentenceId, $userId
+        );
+
+        if (empty($userSentence)) {
+            $data = array(
+                'user_id' => $userId,
+                'sentence_id' => $sentenceId,
+                'correctness' => $correctness
+            );
+        } else {
+            $data = array(
+                'id' => $userSentence['UsersSentences']['id'],
+                'correctness' => $correctness,
+                'dirty' => 0
+            );
+        }
+
+        return $this->save($data);
+    }
+
+    /**
+     * 
+     */
+    public function deleteSentence($sentenceId, $userId) 
+    {
+        $userSentence = $this->findBySentenceIdAndUserId(
+            $sentenceId, $userId
+        );
+
+        if ($userSentence) {
+            $id = $userSentence['UsersSentences']['id'];
+            return $this->delete($id, false);
+        }
+
+        return false;
+    }
+
+    /**
      * Get correctness for sentence as set by user.
      *
      * @param  int $sentenceId Sentence ID.

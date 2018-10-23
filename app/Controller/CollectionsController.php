@@ -56,31 +56,9 @@ class CollectionsController extends AppController
      */
     public function add_sentence($sentenceId, $correctness)
     {
-        $currentUserSentence = $this->UsersSentences->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'sentence_id' => $sentenceId,
-                    'user_id' => CurrentUser::get('id')
-                )
-            )
+        $this->UsersSentences->saveSentence(
+            $sentenceId, $correctness, CurrentUser::get('id')
         );
-
-        if (empty($currentUserSentence)) {
-            $data = array(
-                'user_id' => CurrentUser::get('id'),
-                'sentence_id' => $sentenceId,
-                'correctness' => $correctness
-            );
-        } else {
-            $data = array(
-                'id' => $currentUserSentence['UsersSentences']['id'],
-                'correctness' => $correctness,
-                'dirty' => 0
-            );
-        }
-
-        $this->UsersSentences->save($data);
 
         $this->set('sentenceId', $sentenceId);
 
@@ -94,20 +72,9 @@ class CollectionsController extends AppController
      */
     public function delete_sentence($sentenceId)
     {
-        $data = $this->UsersSentences->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'sentence_id' => $sentenceId,
-                    'user_id' => CurrentUser::get('id')
-                )
-            )
+        $this->UsersSentences->deleteSentence(
+            $sentenceId, CurrentUser::get('id')
         );
-
-        if ($data) {
-            $id = $data['UsersSentences']['id'];
-            $this->UsersSentences->delete($id, false);
-        }
 
         $this->set('sentenceId', $sentenceId);
 
