@@ -43,6 +43,28 @@ class TagTest extends CakeTestCase {
         $this->assertEqual(1, $added);
     }
 
+    function testAddTagFiresEvent() {
+        $contributorId = 4;
+        $sentenceId = 1;
+        $expectedTagName = '@needs_native_check';
+
+        $dispatched = false;
+        $model = $this->Tag;
+        $model->getEventManager()->attach(
+            function (CakeEvent $event) use ($model, &$dispatched, $expectedTagName) {
+                $this->assertSame($model, $event->subject());
+                extract($event->data); // $tagName
+                $this->assertEquals($expectedTagName, $tagName);
+                $dispatched = true;
+            },
+            'Model.Tag.tagAdded'
+        );
+
+        $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
+
+        $this->assertTrue($dispatched);
+    }
+
     function testSentenceOwnerCannotTagOwnSentenceAsOK() {
         $sentenceId = 1;
         $ownerId = 7;
