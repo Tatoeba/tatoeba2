@@ -11,10 +11,17 @@ class SentenceAnnotationFixture extends CakeTestFixture {
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id' => array('column' => 'sentence_id', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
 	public $records = array(
-		/* Sentence annotations are yet to be tested (and it's not used on tatoeba.org) */
+		array(
+			'id' => 1,
+			'sentence_id' => 6,
+			'meaning_id' => 1,
+			'text' => 'その問題の根本原因は、現代の世界において、賢明な人々が猜疑心に満ちている一方で、愚かな人々が自信過剰であるということである。',
+			'modified' => '2018-10-24 00:00:00',
+			'user_id' => 1
+		)
 	);
 }

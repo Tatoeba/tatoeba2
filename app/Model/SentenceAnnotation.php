@@ -143,4 +143,16 @@ class SentenceAnnotation extends AppModel
 
         return $newAnnotations;
     }
+
+
+    /**
+     * Save annotation.
+     */
+    public function saveAnnotation($data, $currentUserId)
+    {
+        $data['text'] = trim($data['text']);
+        $data['user_id'] = $currentUserId;
+
+        return $this->save($data);
+    }
 }
