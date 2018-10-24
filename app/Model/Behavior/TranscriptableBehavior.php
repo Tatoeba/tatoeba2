@@ -55,11 +55,6 @@ class TranscriptableBehavior extends ModelBehavior
         return $model->Transcription->isValidScriptForLanguage($lang, $script);
     }
 
-    public function afterDelete(Model $model) {
-        $conditions = array('Transcription.sentence_id' => $model->id);
-        $model->Transcription->deleteAll($conditions, false);
-    }
-
     public function afterSave(Model $model, $created, $options = array()) {
         if ($created) {
             $model->data[$model->alias]['id'] = $model->getLastInsertID();

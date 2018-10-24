@@ -436,6 +436,10 @@ class Sentence extends AppModel
         );
         $this->Link->deleteAll($conditions, false);
 
+        // Remove transcriptions
+        $conditions = array('Transcription.sentence_id' => $sentenceId);
+        $this->Transcription->deleteAll($conditions, false);
+
         // Decrement statistics
         $this->Language->decrementCountForLanguage($sentenceLang);
     }
