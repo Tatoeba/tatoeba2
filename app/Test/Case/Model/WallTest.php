@@ -117,4 +117,19 @@ class WallTest extends CakeTestCase {
 
         $this->_assertThreadDate($postId, '2014-04-15 16:38:36');
     }
+
+    public function testSave_hidingMessageDoesNotUpdateLastModifiedField() {
+        $postId = 2;
+        $post = array(
+            'id' => $postId,
+            'content' => 'Today!',
+        );
+
+        $before = $this->Wall->findById($postId, 'modified');
+        $this->Wall->id = $postId;
+        $this->Wall->saveField('hidden', true);
+        $after = $this->Wall->findById($postId, 'modified');
+
+        $this->assertEquals($before, $after);
+    }
 }

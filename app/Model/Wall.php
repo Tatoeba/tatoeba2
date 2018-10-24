@@ -68,9 +68,20 @@ class Wall extends AppModel
         );
     }
 
+    private function _isSavingField($field) {
+        $data = $this->data[$this->alias];
+        $pk = isset($data[$this->primaryKey]);
+        unset($data['modified']);
+        unset($data[$this->primaryKey]);
+        return $pk && array_key_exists($field, $data) && count($data) == 1;
+    }
+
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['date'])) {
             $this->data[$this->alias]['modified'] = $this->data[$this->alias]['date'];
+        }
+        if ($this->_isSavingField('hidden')) {
+            unset($this->data[$this->alias]['modified']);
         }
         return true;
     }
