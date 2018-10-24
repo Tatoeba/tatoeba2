@@ -104,22 +104,8 @@ class SentencesListsController extends AppController
         );
         $allLists = $this->paginate();
 
-        $total = $this->request->params['paging']['SentencesList']['count'];
-        if (empty($filter)) {
-            $title = format(
-                __('All public lists ({total})', $total),
-                array('total' => $total)
-            );
-        } else {
-            $title = format(
-                __('All public lists containing "{search}" ({total})', $total),
-                array('total' => $total, 'search' => $filter)
-            );
-        }
-
         $this->set('allLists', $allLists);
         $this->set('filter', $filter);
-        $this->set('title', $title);
     }
 
 
@@ -135,22 +121,9 @@ class SentencesListsController extends AppController
         );
         $allLists = $this->paginate();
 
-        $total = $this->request->params['paging']['SentencesList']['count'];
-        if (empty($filter)) {
-            $title = format(
-                __('Collaborative lists ({total})', $total),
-                array('total' => $total)
-            );
-        } else {
-            $title = format(
-                __('Collaborative lists containing "{search}" ({total})', $total),
-                array('search' => $filter, 'total' => $total)
-            );
-        }
-
         $this->set('allLists', $allLists);
         $this->set('filter', $filter);
-        $this->set('title', $title);
+        $this->set('isCollaborative', true);
 
         $this->render('index');
     }
