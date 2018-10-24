@@ -34,9 +34,6 @@ class WallControllerTest extends ControllerTestCase {
 				'owner' => $userId,
             );
             $this->controller->Wall->save($message);
-            $this->controller->update_thread_date(
-                $this->controller->Wall->id, $date 
-            );
 
             $this->controller->Wall->id = null;
             $initialDate->modify("+1 day");
