@@ -1,7 +1,7 @@
 <?php
 App::uses('UsersSentences', 'Model');
 
-class TagsSentencesTest extends CakeTestCase {
+class UsersSentencesTest extends CakeTestCase {
     public $fixtures = array(
         'app.user',
         'app.users_sentence',
@@ -14,7 +14,7 @@ class TagsSentencesTest extends CakeTestCase {
     }
 
     function tearDown() {
-        unset($this->Audio);
+        unset($this->UsersSentences);
         parent::tearDown();
     }
 
