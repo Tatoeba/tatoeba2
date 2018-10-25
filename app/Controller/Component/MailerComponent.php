@@ -62,45 +62,6 @@ class MailerComponent extends Component
     }
 
 
-    public function sendSentenceCommentNotification($recipient, $comment, $sentenceOwner) {
-        if (empty($recipient)) {
-            return;
-        }
-        $author = CurrentUser::get('username');
-        $sentenceText = $comment['sentence_text'];
-        $sentenceIsDeleted = $sentenceText === false;
-        $sentenceId = $comment['sentence_id'];
-        if ($sentenceIsDeleted) {
-            $subject = 'Tatoeba - Comment on deleted sentence #' . $sentenceId;
-        } else {
-            $subject = 'Tatoeba - Comment on sentence : ' . $sentenceText;
-        }
-        $linkToSentence = 'https://'.$_SERVER['HTTP_HOST']
-            . '/sentence_comments/show/'
-            . $comment['sentence_id']
-            . '#comments';
-        $recipientIsOwner = ($recipient == $sentenceOwner);
-        $commentText = $comment['text'];
-
-        $this->Email = new CakeEmail();
-        $this->Email
-            ->to($recipient)
-            ->subject($subject)
-            ->template('comment_on_sentence')
-            ->viewVars(array(
-              'author' => $author,
-              'linkToSentence' => $linkToSentence,
-              'commentText' => $commentText,
-              'recipientIsOwner' => $recipientIsOwner,
-              'sentenceIsDeleted' => $sentenceIsDeleted,
-              'sentenceText' => $sentenceText,
-              'sentenceId' => $sentenceId,
-            ));
-
-        $this->_send();
-    }
-
-
     public function sendWallReplyNotification($recipient, $message)
     {
         $author = $message['User']['username'];
