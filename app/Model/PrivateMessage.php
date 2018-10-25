@@ -340,6 +340,12 @@ class PrivateMessage extends AppModel
         return $message;
     }
 
+    public function notify($recptId, $now, $message)
+    {
+        $toSend = $this->buildMessage($message, 0, $now);
+        return $this->saveToInbox($toSend, $recptId);
+    }
+
     public function send($currentUserId, $now, $message)
     {
         $toSend = $this->buildMessage(
