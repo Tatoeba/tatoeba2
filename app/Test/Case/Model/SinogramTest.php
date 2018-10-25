@@ -34,7 +34,7 @@ class SinogramTest extends CakeTestCase {
 	}
 
 	function testSearch_ReturnSeveralGlyphs() {
-		$excepted = array('朗', '蓢', '蝴');
+		$excepted = array('朗', '蓢', '蝴');
 		$result = $this->Sinogram->search(array('月', '虫'));
 		$this->assertGlyphs($excepted, $result);
 	}
