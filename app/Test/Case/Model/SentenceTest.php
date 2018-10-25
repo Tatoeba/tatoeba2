@@ -21,6 +21,7 @@ class SentenceTest extends CakeTestCase {
 	);
 
 	function startTest($method) {
+		Configure::write('AutoTranscriptions.enabled', true);
 		$this->Sentence = ClassRegistry::init('Sentence');
 
 		$this->Sentence->Behaviors->Sphinx = Mockery::mock();
