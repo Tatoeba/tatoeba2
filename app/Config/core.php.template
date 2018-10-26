@@ -379,12 +379,15 @@
 /**
  * Recordings paths. They should end with a directory separator character (/).
  * The web server must serve <Recordings.path> under <Recordings.url>.
+ * <Recordings.url> can be a fully qualified URL (e.g.
+ * https://audio.example.com/sentences/) or a URL on the same host (e.g.
+ * /files/audio/). It must end with a slash character.
  * Admins may import audio files located in <Recordings.uploadPath>, in which
  * the webserver must have write access.
  */
-    Configure::write('Recordings.url', 'https://example.com/sentences/');
-    Configure::write('Recordings.path', '/sentences/audio/files/');
-    Configure::write('Recordings.importPath', '/audio/files/to/import/');
+    Configure::write('Recordings.url', '/files/audio/');
+    Configure::write('Recordings.path', APP.DS.'webroot'.DS.'files'.DS.'audio');
+    Configure::write('Recordings.importPath', APP.DS.'webroot'.DS.'files'.DS.'audio_import');
 
 
 /**
