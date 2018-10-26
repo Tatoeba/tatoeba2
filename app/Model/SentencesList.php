@@ -41,6 +41,9 @@ class SentencesList extends AppModel
     public $hasMany = array('SentencesSentencesLists');
     public $hasAndBelongsToMany = array('Sentence');
 
+    // We want to make sure that people don't download long lists, which can slow down the server.
+    // This is an arbitrary but easy to remember value, and most lists are shorter than this.
+    const MAX_COUNT_FOR_DOWNLOAD = 100;
 
     /**
      * Retrieves list.
@@ -55,14 +58,6 @@ class SentencesList extends AppModel
             'first',
             array(
                 'conditions' => array('SentencesList.id' => $id),
-                'fields' => array(
-                    'SentencesList.id',
-                    'SentencesList.name',
-                    'SentencesList.user_id',
-                    'SentencesList.visibility',
-                    'SentencesList.editable_by',
-                    'SentencesList.created'
-                ),
                 'contain' => array(
                     'User' => array(
                         'fields' => array('User.username')
@@ -70,6 +65,47 @@ class SentencesList extends AppModel
                 )
             )
         );
+    }
+
+    /**
+     * Retrieves list with permissions for the current user.
+     */
+    public function getListWithPermissions($id, $currentUserId)
+    {
+        $list = $this->find(
+            'first',
+            array(
+                'conditions' => array('SentencesList.id' => $id),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('User.username')
+                    )
+                )
+            )
+        );
+
+        $list['Permissions'] = $this->_getPermissions(
+            $list['SentencesList'], $currentUserId
+        );
+
+        return $list;
+    }
+
+    private function _getPermissions($list, $currentUserId) {
+        $visibility = $list['visibility'];
+        $editableBy = $list['editable_by'];
+        $belongsToUser = $currentUserId == $list['user_id'];
+        $numberOfSentences = $list['numberOfSentences'];
+
+        $permissions = array(
+            'canView' => $visibility != 'private' || $belongsToUser,
+            'canEdit' => $belongsToUser,
+            'canAddSentences' => $belongsToUser && $editableBy !== 'no_one',
+            'canRemoveSentences' => $belongsToUser || $editableBy == 'anyone',
+            'canDownload' => $numberOfSentences <= self::MAX_COUNT_FOR_DOWNLOAD
+        );
+
+        return $permissions;
     }
 
     /**

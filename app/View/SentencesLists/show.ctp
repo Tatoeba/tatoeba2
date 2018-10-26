@@ -24,9 +24,15 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+$this->Sentences->javascriptForAJAXSentencesGroup(false);
+
+$listCount = $this->Paginator->counter("%count%");
+$listId = $list['id'];
+$listVisibility = $list['visibility'];
+$listName = $list['name'];
+$maxCountForDownload = SentencesList::MAX_COUNT_FOR_DOWNLOAD;
 
 $this->set('title_for_layout', $this->Pages->formatTitle($listName));
-$this->Sentences->javascriptForAJAXSentencesGroup(false);
 ?>
 
 <div id="annexe_content">
@@ -36,18 +42,18 @@ $this->Sentences->javascriptForAJAXSentencesGroup(false);
         <h2><?php echo __('About this list'); ?></h2>
         <?php
         $linkToAuthorProfile = $this->Html->link(
-            $list['User']['username'],
+            $user['username'],
             array(
                 'controller' => 'user',
                 'action' => 'profile',
-                $list['User']['username']
+                $user['username']
             )
         );
         $createdBy = format(
             __('created by {listAuthor}'),
             array('listAuthor' => $linkToAuthorProfile)
         );
-        $createdDate = $this->Date->ago($list['SentencesList']['created']);
+        $createdDate = $this->Date->ago($list['created']);
         echo $this->Html->tag('p', $createdBy);
         echo $this->Html->tag('p', $createdDate);
         $numberOfSentencesMsg = format(
@@ -66,7 +72,7 @@ $this->Sentences->javascriptForAJAXSentencesGroup(false);
 
 
     <?php
-    if ($belongsToUser) {
+    if ($permissions['canEdit']) {
         ?>
         <div class="module">
             <h2><?php echo __('Options'); ?></h2>
@@ -76,7 +82,7 @@ $this->Sentences->javascriptForAJAXSentencesGroup(false);
                 $this->Lists->displayVisibilityOption($listId, $listVisibility);
                 echo '</p>';
                 echo '<p>';
-                $this->Lists->displayEditableByOptions($listId, $editableBy);
+                $this->Lists->displayEditableByOptions($listId, $list['editable_by']);
                 echo '</p>';
                 ?>
             </ul>
@@ -92,14 +98,33 @@ $this->Sentences->javascriptForAJAXSentencesGroup(false);
     ?>
     <div layout="column" layout-align="end center" layout-padding>
         <?php
-        if ($belongsToUser) {
+        if ($permissions['canEdit']) {
             $this->Lists->displayDeleteButton($listId);
         }
 
-        if ($canDownload) {
+        if ($permissions['canDownload']) {
             $this->Lists->displayDownloadLink($listId);
         } else {
-            echo $downloadMessage;
+            $firstSentence = __n('The download feature has been disabled for '.
+                'this list because it contains a sentence.',
+                'The download feature has been disabled for '.
+                'this list because it contains {n}&nbsp;sentences.',
+                $listCount, true);
+
+            $secondSentence = __n('Only lists containing one sentence or fewer can be '.
+                'downloaded. If you can edit the list, you may want '.
+                'to split it into multiple lists.',
+                'Only lists containing {max} or fewer sentences can be '.
+                'downloaded. If you can edit the list, you may want '.
+                'to split it into multiple lists.',
+                $maxCountForDownload, true);
+
+            echo $this->Html->tag(
+                'div', format($firstSentence, array('n' => $listCount))
+            );
+            echo $this->Html->tag(
+                'div', format($secondSentence, array('max' => $maxCountForDownload))
+            );
         }
         ?>
     </div>
@@ -111,7 +136,7 @@ $this->Sentences->javascriptForAJAXSentencesGroup(false);
     <div class="section">
     <?php
     $class = '';
-    if ($belongsToUser) {
+    if ($permissions['canEdit']) {
         $this->Html->script(JS_PATH . 'jquery.jeditable.js', false);
         $this->Html->script(JS_PATH . 'sentences_lists.edit_name.js', false);
 
@@ -137,7 +162,7 @@ $this->Sentences->javascriptForAJAXSentencesGroup(false);
         'data-tooltip' => __('Click to edit...'),
     ));
 
-    if ($belongsToUser && $editableBy !== 'no_one') {
+    if ($permissions['canAddSentences']) {
         echo $this->Html->div('edit-list-name', $editImage);
         $this->Lists->displayAddSentenceForm($listId);
     }
@@ -175,7 +200,9 @@ $this->Sentences->javascriptForAJAXSentencesGroup(false);
         }
     } else {
         foreach ($sentencesInList as $sentence) {
-            $this->Lists->displaySentence($sentence['Sentence'], $canRemoveSentence);
+            $this->Lists->displaySentence(
+                $sentence['Sentence'], $permissions['canRemoveSentences']
+            );
         }
     }
     ?>

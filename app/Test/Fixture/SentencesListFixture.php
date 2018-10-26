@@ -21,12 +21,13 @@ class SentencesListFixture extends CakeTestFixture {
 	public $records = array(
 		array(
 			'id' => '1',
-			'is_public' => '1',
 			'name' => 'Interesting French sentences',
 			'user_id' => 7,
 			'numberOfSentences' => 2,
 			'created' => '2014-04-15 00:54:01',
 			'modified' => '2014-04-15 00:54:12',
+			'visibility' => 'unlisted',
+			'editable_by' => 'creator'
 		)
 	);
 }
