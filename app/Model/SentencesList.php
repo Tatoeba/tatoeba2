@@ -243,33 +243,6 @@ class SentencesList extends AppModel
 
 
     /**
-     * Returns all the lists that given user cannot edit.
-     *
-     * @param int $userId Id of the user
-     *
-     * @return array
-     */
-    public function getNonEditableListsForUser($userId)
-    {
-        return $this->find(
-            "all",
-            array(
-                "conditions" => array(
-                    "SentencesList.user_id !=" => $userId,
-                    "SentencesList.is_public" => 0
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                ),
-                'order' => 'name'
-            )
-        );
-    }
-
-
-    /**
      *
      *
      *

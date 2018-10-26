@@ -6,7 +6,6 @@ class SentencesListFixture extends CakeTestFixture {
 
 	public $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'unsigned' => false, 'key' => 'primary'),
-		'is_public' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 450, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
 		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false),
 		'numberOfSentences' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8, 'unsigned' => true),

@@ -385,24 +385,6 @@ class SentencesListsController extends AppController
         $this->set('sentence', $sentence);
     }
 
-
-    /**
-     * Set list as public. When a list is public, other people can add sentences
-     * to that list.
-     * Used in AJAX request in sentences_lists.set_as_public.js.
-     *
-     * @return void
-     */
-    public function set_as_public()
-    {
-        $listId = Sanitize::paranoid($_POST['listId']);
-        $isPublic = Sanitize::paranoid($_POST['isPublic']);
-
-        $this->SentencesList->id = $listId;
-        $this->SentencesList->saveField('is_public', $isPublic);
-    }
-
-
     /**
      *
      * @return void
