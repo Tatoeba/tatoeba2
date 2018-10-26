@@ -201,18 +201,9 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         $listId = substr($_POST['id'], 1);
         $listName = $_POST['value'];
-
-        $listId = Sanitize::paranoid($listId);
-
-        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-
-            $this->SentencesList->id = $listId;
-            if ($this->SentencesList->saveField('name', $listName)) {
-                $this->set('result', $listName);
-            } else {
-                $this->set('result', 'error');
-            }
-
+        
+        if ($this->SentencesList->editName($listId, $listName, $userId)) {
+            $this->set('result', $listName);
         } else {
             $this->set('result', 'error');
         }
@@ -387,21 +378,10 @@ class SentencesListsController extends AppController
      */
     public function set_option()
     {
-        $allowedOptions = array('visibility', 'editable_by');
-
-        $listId = Sanitize::paranoid($_POST['listId']);
-        $option = $_POST['option'];
-        $value = $_POST['value'];
-
         $userId = CurrentUser::get('id');
-        $belongsToUser = $this->SentencesList->belongsTotUser($listId, $userId);
-
-        if ($belongsToUser && in_array($option, $allowedOptions)) {
-            $this->SentencesList->id = $listId;
-            $this->SentencesList->saveField($option, $value);
-
-            $result = $this->SentencesList->getList($listId);
-        }
+        $result = $this->SentencesList->editOption(
+            $_POST['listId'], $_POST['option'], $_POST['value'], $userId
+        );
 
         $this->header('Content-Type: application/json');
         $this->set('result', json_encode($result['SentencesList']));

@@ -605,4 +605,35 @@ class SentencesList extends AppModel
             return false;
         }
     }
+
+    /**
+     * Edit name.
+     */
+    public function editName($listId, $newName, $currentUserId)
+    {
+        $listId = Sanitize::paranoid($listId);
+        if ($this->isEditableByCurrentUser($listId, $currentUserId)) {
+            $this->id = $listId;
+            return $this->saveField('name', $newName);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Edit visibility or editable_by option.
+     */
+    public function editOption($listId, $option, $value, $currentUserId)
+    {
+        $allowedOptions = array('visibility', 'editable_by');
+        $listId = Sanitize::paranoid($listId);
+        $belongsToUser = $this->belongsTotUser($listId, $currentUserId);
+
+        if ($belongsToUser && in_array($option, $allowedOptions)) {
+            $this->id = $listId;
+            return $this->saveField($option, $value);
+        } else {
+            return array();
+        }
+    }
 }
