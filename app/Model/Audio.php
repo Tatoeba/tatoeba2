@@ -191,7 +191,7 @@ class Audio extends AppModel
             return $audioFiles;
         }
         while (false !== ($filename = readdir($dh))) {
-            $file = $importPath.$filename;
+            $file = $importPath . DS . $filename;
             if (is_file($file)) {
                 $fileInfos = array(
                     'fileName' => $filename,
@@ -261,7 +261,7 @@ class Audio extends AppModel
                 continue;
             }
 
-            $destDir = $recsBaseDir . $file['lang'];
+            $destDir = $recsBaseDir . DS . $file['lang'];
             if (!file_exists($destDir)) {
                 if (!mkdir($destDir)) {
                     $errors[] = format(

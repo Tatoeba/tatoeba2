@@ -377,7 +377,7 @@
 	// TODO We probably want to change the above to use Configure::write() instead of define()
 
 /**
- * Recordings paths. They should end with a directory separator character (/).
+ * Recordings paths.
  * The web server must serve <Recordings.path> under <Recordings.url>.
  * <Recordings.url> can be a fully qualified URL (e.g.
  * https://audio.example.com/sentences/) or a URL on the same host (e.g.
