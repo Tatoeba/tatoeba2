@@ -187,6 +187,9 @@ class Audio extends AppModel
         $allSentenceIds = array();
 
         $dh = opendir($importPath);
+        if (!$dh) {
+            return $audioFiles;
+        }
         while (false !== ($filename = readdir($dh))) {
             $file = $importPath.$filename;
             if (is_file($file)) {
