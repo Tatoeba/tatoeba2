@@ -177,16 +177,15 @@ class SentencesListsController extends AppController
      */
     public function add()
     {
-        $listName = $this->request->data['SentencesList']['name'];
-        if (!empty($this->request->data) && trim($listName) != '') {
-            $newList = array(
-                'name'    => $listName,
-                'user_id' => $this->Auth->user('id'),
-            );
-            $this->SentencesList->save($newList);
-            $this->redirect(array("action"=>"show", $this->SentencesList->id));
+        $list = $this->SentencesList->createList(
+            $this->request->data['SentencesList']['name'], 
+            $this->Auth->user('id')
+        );
+        
+        if (isset($list['SentencesList']['id'])) {
+            $this->redirect(array('action' => 'show', $list['SentencesList']['id']));
         } else {
-            $this->redirect(array("action"=>"index"));
+            $this->redirect(array('action' => 'index'));
         }
     }
 
@@ -229,12 +228,8 @@ class SentencesListsController extends AppController
      */
     public function delete($listId)
     {
-        $listId = Sanitize::paranoid($listId);
-
         $userId = $this->Auth->user('id');
-
-        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-            $this->SentencesList->delete($listId);
+        if ($this->SentencesList->deleteList($listId, $userId)) {
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
             // not been set, or has been set to false.
@@ -244,7 +239,8 @@ class SentencesListsController extends AppController
                 $mostRecentList = null;
             }
         }
-        $this->redirect(array("action" => "index"));
+        
+        $this->redirect(array('action' => 'index'));
     }
 
     /**

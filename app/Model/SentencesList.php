@@ -572,4 +572,37 @@ class SentencesList extends AppModel
 
         return $count;
     }
+
+    /**
+     * Create new list.
+     */
+    public function createList($name, $currentUserId) 
+    {
+        $name = trim($name);
+
+        if (empty($name)) {
+            return false;
+        }
+
+        $data = array(
+            'name' => $name,
+            'user_id' => $currentUserId
+        );
+
+        return $this->save($data);
+    }
+
+    /**
+     * Delete list.
+     */
+    public function deleteList($listId, $currentUserId) 
+    {
+        $listId = Sanitize::paranoid($listId);
+
+        if ($this->isEditableByCurrentUser($listId, $currentUserId)) {
+            return $this->delete($listId);
+        } else {
+            return false;
+        }
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 App::uses('SentencesList', 'Model');
-
+App::uses('Sanitize', 'Utility');
 class SentencesListTest extends CakeTestCase {
     public $fixtures = array(
         'app.sentences_list',
@@ -28,5 +28,39 @@ class SentencesListTest extends CakeTestCase {
             'canDownload' => true
         );
         $this->assertEquals($expected, $list['Permissions']);
+    }
+
+    function testCreateList_succeeds() {
+        $userId = 4;
+        $name = 'My new shiny list';
+        $list = $this->SentencesList->createList($name, $userId);
+
+        $expected = array(
+            'name' => $name,
+            'user_id' => $userId
+        );
+        $result = array_intersect_key($list['SentencesList'], $expected);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testCreateList_fails() {
+        $userId = 4;
+        $name = '   ';
+        $list = $this->SentencesList->createList($name, $userId);
+
+        $this->assertEquals(false, $list);
+    }
+
+    function testDeleteList_succeeds() {
+        $list = $this->SentencesList->deleteList(1, 7);
+
+        $this->assertEquals(true, $list);
+    }
+
+    function testDeleteList_fails() {
+        $list = $this->SentencesList->deleteList(1, 1);
+
+        $this->assertEquals(false, $list);
     }
 }
