@@ -25,6 +25,7 @@ class AudioTest extends CakeTestCase {
 
     function setUp() {
         parent::setUp();
+        Configure::write('Search.enabled', true);
         $this->Audio = ClassRegistry::init('Audio');
         $this->AudioFixture = ClassRegistry::init('AudioFixture');
     }
