@@ -244,19 +244,12 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $listId = Sanitize::paranoid($listId);
         $userId = $this->Auth->user('id');
-
-        $this->set('result', 'error');
-
-        if (!$this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-            return;
-        }
-
-        if ($this->SentencesList->addSentenceToList($sentenceId, $listId)) {
+        if ($this->SentencesList->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
+        } else {
+            $this->set('result', 'error');
         }
     }
 
@@ -271,19 +264,11 @@ class SentencesListsController extends AppController
      */
     public function remove_sentence_from_list($sentenceId, $listId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $listId = Sanitize::paranoid($listId);
-
         $userId = $this->Auth->user('id');
-
-        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-            $isRemoved = $this->SentencesList->removeSentenceFromList(
-                $sentenceId, $listId
-            );
-            if ($isRemoved) {
-                $this->set('removed', true);
-            }
-        }
+        $isRemoved = $this->SentencesList->removeSentenceFromList(
+            $sentenceId, $listId, $userId
+        );
+        $this->set('removed', $isRemoved);
     }
 
 
@@ -344,11 +329,10 @@ class SentencesListsController extends AppController
      */
     public function add_new_sentence_to_list()
     {
-        $sentence = null;
+        $result = null;
 
         if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
-            $listId = Sanitize::paranoid($_POST['listId']);
-
+            $listId = $_POST['listId'];
             $userName = $this->Auth->user('username');
             $sentenceText = $_POST['sentenceText'];
             $sentenceLang = $this->LanguageDetection->detectLang(
@@ -359,17 +343,14 @@ class SentencesListsController extends AppController
             $result = $this->SentencesList->addNewSentenceToList(
                 $listId,
                 $sentenceText,
-                $sentenceLang
+                $sentenceLang,
+                $this->Auth->user('id')
             );
-
-            $sentence = $result['Sentence'];
-            $sentence['User'] = $result['User'];
-            $sentence['Transcription'] = $result['Transcription'];
 
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         }
 
-        $this->set('sentence', $sentence);
+        $this->set('sentence', $result);
     }
 
     /**

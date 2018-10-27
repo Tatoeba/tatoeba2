@@ -390,17 +390,34 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-    public function addSentenceToList($sentenceId, $listId)
+    public function addSentenceToList($sentenceId, $listId, $currentUserId)
     {
-        $isSaved = $this->SentencesSentencesLists->addSentenceToList(
-            $sentenceId, $listId
-        );
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $listId = Sanitize::paranoid($listId);
 
-        if ($isSaved) {
-            $this->_incrementNumberOfSentencesToList($listId);
+        $sentence = $this->Sentence->findById($sentenceId);
+        if (empty($sentence)) {
+            return array();
         }
 
-        return $isSaved;
+        if (!$this->isEditableByCurrentUser($listId, $currentUserId)) {
+            return array();
+        }
+
+        $data = array(
+            'sentence_id' => $sentenceId,
+            'sentences_list_id' => $listId
+        );
+
+        try {
+            $result = $this->SentencesSentencesLists->save($data);
+            if (!empty($result)) {
+                $this->_incrementNumberOfSentencesToList($listId);
+            }
+            return $result;
+        } catch (Exception $e) {
+            return array();
+        }
     }
 
 
@@ -441,11 +458,27 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-    public function removeSentenceFromList($sentenceId, $listId)
+    public function removeSentenceFromList($sentenceId, $listId, $currentUserId)
     {
-        $isDeleted = $this->SentencesSentencesLists->removeSentenceFromList(
-            $sentenceId, $listId
-        );
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $listId = Sanitize::paranoid($listId);
+
+        if (!$this->isEditableByCurrentUser($listId, $currentUserId)) {
+            return false;
+        }
+
+        $sentenceInList = $this->SentencesSentencesLists->find('first', array(
+            'conditions' => array(
+                'sentence_id' => $sentenceId,
+                'sentences_list_id' => $listId
+            )
+        ));
+        if (empty($sentenceInList)){
+            return false;
+        }
+
+        $id = $sentenceInList['SentencesSentencesLists']['id'];        
+        $isDeleted = $this->SentencesSentencesLists->delete($id);
 
         if ($isDeleted) {
             $this->_decrementNumberOfSentencesToList($listId);
@@ -523,20 +556,20 @@ class SentencesList extends AppModel
      *
      * @return bool
      */
-    public function addNewSentenceToList($listId, $sentenceText, $sentenceLang)
+    public function addNewSentenceToList($listId, $sentenceText, $sentenceLang, $currentUserId)
     {
-        $userId = CurrentUser::get('id');
+        $listId = Sanitize::paranoid($listId);
 
         // Checking if user can add to list.
-        $userLevel = $this->User->getLevelOfUser($userId);
-        $canAdd = $this->isEditableByCurrentUser($listId, $userId) && $userLevel > -1;
+        $userLevel = $this->User->getLevelOfUser($currentUserId);
+        $canAdd = $userLevel > -1;
         if (!$canAdd) {
             return false;
         }
 
         // Saving sentence
         $sentenceSaved = $this->Sentence->saveNewSentence(
-            $sentenceText, $sentenceLang, $userId
+            $sentenceText, $sentenceLang, $currentUserId
         );
         if (!$sentenceSaved) {
             return false;
@@ -544,10 +577,10 @@ class SentencesList extends AppModel
 
         // Adding to list
         $sentenceId = $this->Sentence->id;
-        if ($this->addSentenceToList($sentenceId, $listId)) {
+        if ($this->addSentenceToList($sentenceId, $listId, $currentUserId)) {
             return $this->Sentence->getSentenceWithId($sentenceId);
         } else {
-            return null;
+            return false;
         }
     }
 

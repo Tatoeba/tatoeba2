@@ -18,23 +18,6 @@ class SentencesSentencesListsTest extends CakeTestCase {
         ClassRegistry::flush();
     }
 
-    function testRemoveSentenceFromList() {
-        $sentenceId = 4;
-        $listId = 1;
-        $before = $this->SentencesSentencesLists->find('count',
-		array('conditions' => array(
-			'sentence_id' => $sentenceId,
-		)
-	));
-        $this->SentencesSentencesLists->removeSentenceFromList($sentenceId, $listId);
-        $after = $this->SentencesSentencesLists->find('count',
-		array('conditions' => array(
-			'sentence_id' => $sentenceId,
-		)
-	));
-	$this->assertEqual(1, $before - $after);
-    }
-
     function testSphinxAttributesChanged() {
         $expectedValues = array(8 => array(array(1)));
         $this->SentencesSentencesLists->data['SentencesSentencesLists'] = array(

@@ -54,59 +54,6 @@ class SentencesSentencesLists extends AppModel
     }
 
     /**
-     * Add sentence to list.
-     *
-     * @param int $sentenceId Id of the sentence.
-     * @param int $listId     Id of the list.
-     *
-     * @return array
-     */
-    public function addSentenceToList($sentenceId, $listId)
-    {
-        $data = array(
-            'sentence_id' => $sentenceId,
-            'sentences_list_id' => $listId
-        );
-
-        $isSaved = $this->save($data);
-
-        return $isSaved;
-    }
-
-
-    /**
-     * Remove sentence from list.
-     *
-     * @param int $sentenceId Id of the sentence.
-     * @param int $listId     Id of the list.
-     *
-     * @return array
-     */
-    public function removeSentenceFromList($sentenceId, $listId)
-    {
-        $conditions = array(
-            'sentence_id' => $sentenceId,
-            'sentences_list_id' => $listId
-        );
-        $tmp = $this->belongsTo;
-        /**
-         * We have to temporarily remove the relation at least to sentence_list
-         * CakePHP will automatically (left) join the associated tables for the deletion process
-         * MySQL currently does not support altering the table with a trigger if the 
-         * query firing the trigger itself was already accessing the table in question
-         * 
-         * As there is no need to join the relations during the deletion, we
-         * may skip them as well. Furthermore, this will be faster. 
-         */
-        $this->belongsTo = array();
-        $isDeleted = $this->deleteAll($conditions, false, true);
-        $this->belongsTo = $tmp;
-
-        return $isDeleted;
-    }
-
-
-    /**
      * Returns value of $this->paginate, for paginating sentences of a list.
      *
      * @param int    $listId Id of the list.

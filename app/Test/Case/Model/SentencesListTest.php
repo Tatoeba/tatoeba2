@@ -4,7 +4,9 @@ App::uses('Sanitize', 'Utility');
 class SentencesListTest extends CakeTestCase {
     public $fixtures = array(
         'app.sentences_list',
+        'app.sentences_sentences_list',
         'app.sentence',
+        'app.favorites_user',
         'app.user'
     );
 
@@ -99,5 +101,114 @@ class SentencesListTest extends CakeTestCase {
     function testEditOption_fails() {
         $list = $this->SentencesList->editOption(1, 'editable', 'everyone', 7);
         $this->assertEquals(array(), $list);
+    }
+
+    function testAddSentenceToList_succeeds() {
+        $sentenceInList = $this->SentencesList->addSentenceToList(12, 1, 7);
+        $expected = array(
+            'sentence_id' => 12,
+            'sentences_list_id' => 1
+        );
+        $result = array_intersect_key($sentenceInList['SentencesSentencesLists'], $expected);
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testAddSentenceToList_fails() {
+        $result1 = $this->SentencesList->addSentenceToList(4, 1, 7);
+        $result2 = $this->SentencesList->addSentenceToList(10000, 1, 7);
+        $result3 = $this->SentencesList->addSentenceToList(4, 1, 1);
+
+        $result = array(
+            'result1' => $result1,
+            'result2' => $result2,
+            'result3' => $result3
+        );
+        $expected = array(
+            'result1' => array(),
+            'result2' => array(),
+            'result3' => array()
+        );
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testAddNewSentenceToList_succeeds() {
+        $listId = 1;
+        $lang = 'eng';
+        $text = 'This is a new shiny sentence.';
+        $userId = 7;
+        $data = $this->SentencesList->addNewSentenceToList($listId, $text, $lang, $userId);
+
+        $expectedSentence = array('lang' => $lang, 'text' => $text);
+        $expectedUser = array('id' => $userId);
+        $expected = array(
+            'Sentence' => $expectedSentence,
+            'User' => $expectedUser
+        );
+        $result = array(
+            'Sentence' => array_intersect_key($data['Sentence'], $expectedSentence),
+            'User' => array_intersect_key($data['User'], $expectedUser)
+        );
+        
+        $this->assertEquals($expected, $result);
+    }
+
+    function testAddNewSentenceToList_fails() {
+        $result1 = $this->SentencesList->addNewSentenceToList(1, 'x', 'eng', 1);
+        $result2 = $this->SentencesList->addNewSentenceToList(1, '', 'eng', 7);
+
+        $result = array(
+            'result1' => $result1,
+            'result2' => $result2
+        );
+        $expected = array(
+            'result1' => false,
+            'result2' => false
+        );
+
+        $this->assertEquals($expected, $result);
+    }
+
+    function testRemoveSentenceFromList() {
+        $sentenceId = 4;
+        $listId = 1;
+        $userId = 7;
+        $before = $this->SentencesList->SentencesSentencesLists->find('count',
+            array('conditions' => array(
+                'sentence_id' => $sentenceId,
+            )
+        ));
+        $this->SentencesList->removeSentenceFromList($sentenceId, $listId, $userId);
+        $after = $this->SentencesList->SentencesSentencesLists->find('count',
+            array('conditions' => array(
+                'sentence_id' => $sentenceId,
+            )
+        ));
+        $this->assertEqual(1, $before - $after);
+    }
+
+    function testRemoveSentenceFromList_succeeds() {
+        $result = $this->SentencesList->removeSentenceFromList(4, 1, 7);
+        $this->assertEquals(true, $result);
+    }
+
+    function testRemoveSentenceFromList_fails() {
+        $result1 = $this->SentencesList->removeSentenceFromList(10000, 1, 7);
+        $result2 = $this->SentencesList->removeSentenceFromList(4, 1, 1);
+        $result3 = $this->SentencesList->removeSentenceFromList(4, 2, 7);
+
+        $result = array(
+            'result1' => $result1,
+            'result2' => $result2,
+            'result3' => $result3
+        );
+        $expected = array(
+            'result1' => false,
+            'result2' => false,
+            'result3' => false
+        );
+
+        $this->assertEquals($expected, $result);
     }
 }
