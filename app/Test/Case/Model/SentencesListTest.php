@@ -69,16 +69,15 @@ class SentencesListTest extends CakeTestCase {
     function testEditName_suceeds() {
         $listId = 1;
         $newName = 'Very interesting French sentences';    
-        $date = new DateTime();
         $list = $this->SentencesList->editName($listId, $newName, 7);
         
         $expected = array(
             'id' => $listId,
-            'name' => $newName,
-            'modified' => $date->format('Y-m-d H:i:s')
+            'name' => $newName
         );
+        $result = array_intersect_key($list['SentencesList'], $expected);
 
-        $this->assertEquals($list['SentencesList'], $expected);
+        $this->assertEquals($result, $expected);
     }
 
     function testEditName_fails() {
@@ -88,14 +87,14 @@ class SentencesListTest extends CakeTestCase {
     }
 
     function testEditOption_succeeds() {
-        $date = new DateTime();
         $list = $this->SentencesList->editOption(1, 'editable_by', 'everyone', 7);
         $expected = array(
             'id' => 1,
-            'editable_by' => 'everyone',
-            'modified' => $date->format('Y-m-d H:i:s')
+            'editable_by' => 'everyone'
         );
-        $this->assertEquals($list['SentencesList'], $expected);
+        $result = array_intersect_key($list['SentencesList'], $expected);
+
+        $this->assertEquals($result, $expected);
     }
 
     function testEditOption_fails() {
