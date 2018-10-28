@@ -13,6 +13,7 @@ class TranscriptionsControllerTest extends ControllerTestCase {
     );
 
     public function setUp() {
+        Configure::write('Acl.database', 'test');
         $this->controller = $this->generate('Transcriptions');
 
         /* Replace Autotranscription to allow syntax errors */
