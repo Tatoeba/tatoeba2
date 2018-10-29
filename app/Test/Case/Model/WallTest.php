@@ -132,4 +132,39 @@ class WallTest extends CakeTestCase {
 
         $this->assertEquals($before, $after);
     }
+
+    public function testSave_replyFiresEvent() {
+        $date = '2018-01-02 03:04:05';
+        $reply = array(
+            'owner' => 7,
+            'date' => $date,
+            'parent_id' => 2,
+            'content' => 'I see.',
+        );
+        $expectedPost = array(
+            'owner' => 7,
+            'date' => '2018-01-02 03:04:05',
+            'modified' => '2018-01-02 03:04:05',
+            'parent_id' => 2,
+            'content' => 'I see.',
+            'lft' => 3,
+            'rght' => 4,
+        );
+        $dispatched = false;
+        $model = $this->Wall;
+        $model->getEventManager()->attach(
+            function (CakeEvent $event) use ($model, &$dispatched, $expectedPost) {
+                $this->assertSame($model, $event->subject());
+                extract($event->data); // $post
+                unset($post['id']);
+                $this->assertEquals($expectedPost, $post);
+                $dispatched = true;
+            },
+            'Model.Wall.postPosted'
+        );
+
+        $saved = $this->Wall->save($reply);
+
+        $this->assertTrue($dispatched);
+    }
 }

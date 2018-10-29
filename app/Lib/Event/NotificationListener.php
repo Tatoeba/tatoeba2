@@ -26,11 +26,72 @@ class NotificationListener implements CakeEventListener {
         return array(
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
             'Model.SentenceComment.commentPosted' => 'sendSentenceCommentNotification',
+            'Model.Wall.postPosted' => 'sendWallReplyNotification',
         );
     }
 
     public function __construct($Email = null) {
         $this->Email = $Email ? $Email : new CakeEmail();
+    }
+
+    private function _getMessageForMail($parentMessageId)
+    {
+        $Wall = ClassRegistry::init('Wall');
+        return $Wall->find(
+            'first',
+            array(
+                'order' => 'Wall.id',
+                'fields'=> array('Wall.id'),
+                'conditions' => array('Wall.id' => $parentMessageId),
+                'contain'    => array(
+                    'User' => array (
+                        'fields' => array(
+                            'User.username',
+                            'User.id',
+                            'User.email',
+                            'User.send_notifications',
+                        )
+                    )
+                )
+            )
+        );
+    }
+
+    public function sendWallReplyNotification($event) {
+        extract($event->data); // $post
+        if (!$post['parent_id']) {
+            return;
+        }
+
+        $parentMessage = $this->_getMessageForMail($post['parent_id']);
+        if (!$parentMessage['User']['send_notifications']
+            || $parentMessage['User']['id'] == $post['owner']) {
+            return;
+        }
+
+        $recipient = $parentMessage['User']['email'];
+        $User = ClassRegistry::init('User');
+        $author = $User->getUsernameFromId($post['owner']);
+        $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
+        $url = array(
+            'controller' => 'wall',
+            'action' => 'show_message',
+            $post['id'],
+            '#' => 'message_'.$post['id']
+        );
+        $linkToMessage = Router::url($url, true);
+
+        $this->Email
+             ->to($recipient)
+             ->subject($subject)
+             ->template('wall_reply')
+             ->viewVars(array(
+                 'author' => $author,
+                 'linkToMessage' => $linkToMessage,
+                 'messageContent' => $post['content']
+             ));
+
+        $this->_send();
     }
 
     public function sendPmNotification($event) {

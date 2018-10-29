@@ -26,6 +26,7 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('NotificationListener', 'Lib/Event');
 
 /**
  * Controller for the wall.
@@ -80,6 +81,9 @@ class WallController extends AppController
         );
 
         $this->Security->unlockedActions = array('save_inside');
+
+        $eventManager = $this->Wall->getEventManager();
+        $eventManager->attach(new NotificationListener());
     }
 
     /**
@@ -202,18 +206,6 @@ class WallController extends AppController
                 $message['User']['username'] = $user['User']['username'];
 
                 $this->set("message", $message);
-
-
-                // send notification
-                $parentMessage = $this->Wall->getMessageForMail($parentId);
-                if ($parentMessage['User']['send_notifications']
-                    && $parentMessage['User']['id'] != $idTemp
-                ) {
-                    $participant = $parentMessage['User']['email'];
-                    $this->Mailer->sendWallReplyNotification(
-                        $participant, $message
-                    );
-                }
             }
         }
     }

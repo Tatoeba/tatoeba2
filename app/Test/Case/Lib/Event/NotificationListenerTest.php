@@ -9,6 +9,7 @@ class NotificationListenerTest extends CakeTestCase {
         'app.user',
         'app.sentence',
         'app.sentence_comment',
+        'app.wall',
     );
 
     public function setUp() {
@@ -347,5 +348,112 @@ class NotificationListenerTest extends CakeTestCase {
 
         $sentMessage = implode($this->Email->message());
         $this->assertContains($expectedAuthor, $sentMessage);
+    }
+
+    private function _wallReply() {
+        return array(
+            'id' => 3,
+            'owner' => 7,
+            'date' => '2018-01-02 03:04:05',
+            'modified' => '2018-01-02 03:04:05',
+            'parent_id' => 2,
+            'content' => 'I see.',
+            'lft' => 3,
+            'rght' => 4,
+        );
+    }
+
+    public function testSendWallReplyNotification() {
+        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+            'post' => $this->_wallReply(),
+        ));
+
+        $this->Email->expects($this->once())
+                    ->method('from')
+                    ->with(array('tatoeba@example.com' => 'noreply'));
+        $this->Email->expects($this->once())
+                    ->method('to')
+                    ->with('admin@example.com');
+        $this->Email->expects($this->once())
+                    ->method('subject')
+                    ->with('Tatoeba - kazuki has replied to you on the Wall');
+        $this->Email->expects($this->once())
+                    ->method('send');
+
+        $this->NL->sendWallReplyNotification($event);
+    }
+
+    public function testSendWallReplyNotification_includesLinkToPost() {
+        $this->setUpLightMock();
+
+        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+            'post' => $this->_wallReply(),
+        ));
+        $expectedLink = 'https://example.net/wall/show_message/3#message_3';
+
+        $this->NL->sendWallReplyNotification($event);
+
+        $sentMessage = implode($this->Email->message());
+        $this->assertContains($expectedLink, $sentMessage);
+    }
+
+    public function testSendWallReplyNotification_doesntSelfNotify() {
+        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+            'post' => array(
+                'id' => 3,
+                'owner' => 1,
+                'date' => '2018-01-02 03:04:05',
+                'modified' => '2018-01-02 03:04:05',
+                'parent_id' => 2,
+                'content' => 'I’m replying to myself!',
+                'lft' => 4,
+                'rght' => 5,
+            ),
+        ));
+
+        $this->Email->expects($this->never())
+                    ->method('send');
+
+        $this->NL->sendWallReplyNotification($event);
+    }
+
+    public function testSendWallReplyNotification_doesNotSendIfUserSettingsDisabled() {
+        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+            'post' => array(
+                'id' => 3,
+                'owner' => 1,
+                'date' => '2018-01-02 03:04:05',
+                'modified' => '2018-01-02 03:04:05',
+                'parent_id' => 1,
+                'content' => 'No, I was kidding!',
+                'lft' => 4,
+                'rght' => 5,
+            ),
+        ));
+
+        $this->Email->expects($this->never())
+                    ->method('send');
+
+        $this->NL->sendWallReplyNotification($event);
+    }
+
+    public function testSendWallReplyNotification_doesNotSendOnNewThread() {
+        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+            'post' => array(
+                'id' => 3,
+                'owner' => 2,
+                'date' => '2018-01-02 03:04:05',
+                'modified' => '2018-01-02 03:04:05',
+                'parent_id' => NULL,
+                'content' => 'Hi everyone!',
+                'lft' => 4,
+                'rght' => 5,
+            ),
+        ));
+
+        $this->Email->expects($this->never())
+                    ->method('send');
+
+        $this->NL->sendWallReplyNotification($event);
     }
 }

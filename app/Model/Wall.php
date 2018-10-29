@@ -104,6 +104,13 @@ class Wall extends AppModel
             );
             $this->WallThread->save($newThreadData);
         }
+
+        if ($created) {
+            $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+                'post' => $this->data[$this->alias],
+            ));
+            $this->getEventManager()->dispatch($event);
+        }
     }
 
     /**
@@ -230,37 +237,6 @@ class Wall extends AppModel
                         "fields" => array(
                             "User.username",
                             "User.id"
-                        )
-                    )
-                )
-            )
-        );
-    }
-
-    /**
-     * retrieve information of a parent message
-     * needed to generate an email
-     *
-     * @param int $parentMessageId id of the parent message
-     *
-     * @return array
-     */
-
-    public function getMessageForMail($parentMessageId)
-    {
-        return $this->find(
-            'first',
-            array(
-                "order" => "Wall.id",
-                "fields"=> array('Wall.id'),
-                "conditions" => array("Wall.id" => $parentMessageId),
-                "contain"    => array(
-                    "User" => array (
-                        "fields" => array(
-                            "User.username",
-                            "User.id",
-                            "User.email",
-                            "User.send_notifications",
                         )
                     )
                 )

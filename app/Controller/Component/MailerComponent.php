@@ -61,32 +61,6 @@ class MailerComponent extends Component
         $this->_send();
     }
 
-
-    public function sendWallReplyNotification($recipient, $message)
-    {
-        $author = $message['User']['username'];
-        $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
-        $linkToMessage = 'https://'.$_SERVER['HTTP_HOST']
-            . '/wall/show_message/'
-            . $message['Wall']['id']
-            . '#message_'.$message['Wall']['id'];
-        $messageContent = $message['Wall']['content'];
-
-        $this->Email = new CakeEmail();
-        $this->Email
-            ->to($recipient)
-            ->subject($subject)
-            ->template('wall_reply')
-            ->viewVars(array(
-              'author' => $author,
-              'linkToMessage' => $linkToMessage,
-              'messageContent' => $messageContent
-            ));
-
-        $this->_send();
-    }
-
-
     public function sendNewPassword($recipient, $username, $newPassword)
     {
         $this->Email = new CakeEmail();
