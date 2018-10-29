@@ -120,10 +120,6 @@ class WallTest extends CakeTestCase {
 
     public function testSave_hidingMessageDoesNotUpdateLastModifiedField() {
         $postId = 2;
-        $post = array(
-            'id' => $postId,
-            'content' => 'Today!',
-        );
 
         $before = $this->Wall->findById($postId, 'modified');
         $this->Wall->id = $postId;
