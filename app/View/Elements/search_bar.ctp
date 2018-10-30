@@ -82,7 +82,7 @@ echo $this->Form->create(
                    dir="auto"
                    data-query="<?= $searchQuery ?>"
                    flex>
-            <md-icon id="clearSearch" ng-click="ctrl.clearSearch()">clear</md-icon>       
+            <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
         </div>
     </div>
 
@@ -102,7 +102,7 @@ echo $this->Form->create(
             ?>
         </div>
 
-        <div id="arrow" ng-click="ctrl.swapLanguages()">
+        <div id="arrow" tabindex="-1" ng-click="ctrl.swapLanguages()">
             <md-icon>swap_horiz</md-icon>
         </div>
 
