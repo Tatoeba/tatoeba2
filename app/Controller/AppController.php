@@ -278,6 +278,39 @@ class AppController extends Controller
         return parent::redirect($url, $status, $exit);
     }
 
+    private function redirectPaginationToLastPage($object, $scope)
+    {
+        if (is_array($object)) {
+            $scope = $object;
+            $object = $this->modelClass;
+        } elseif (is_null($object)) {
+            $object = $this->modelClass;
+        }
+        $findOptions = array_key_exists($object, $this->paginate) ? $this->paginate[$object] : $this->paginate;
+        if (is_array($scope) && !empty($scope)) {
+            if (!isset($findOptions['conditions'])) {
+                $findOptions['conditions'] = array();
+            }
+            $findOptions['conditions'] = array_merge($findOptions['conditions'], $scope);
+        }
+        $count = $this->{$object}->find('count', $findOptions);
+        $limit = $this->request->params['paging'][$object]['limit'];
+        $lastPage = (int)ceil($count / $limit);
+
+        $this->request->params['named']['page'] = $lastPage;
+        $lastPageUrl = Router::reverse($this->request);
+        $this->redirect($lastPageUrl);
+    }
+
+    public function paginate($object = null, $scope = array(), $whitelist = array())
+    {
+        try {
+            return parent::paginate($object, $scope, $whitelist);
+        } catch (NotFoundException $e) {
+            $this->redirectPaginationToLastPage($object, $scope);
+            return array();
+        }
+    }
 
     /**
      * Returns the ISO code of the language in which we should set the interface,

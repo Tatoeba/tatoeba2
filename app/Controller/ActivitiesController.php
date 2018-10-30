@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('AppController', 'Controller');
+
 /**
  * Controller for activities (i.e. things that contributors can do in Tatoeba).
  *

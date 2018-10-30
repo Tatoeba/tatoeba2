@@ -43,7 +43,7 @@ class LinkTest extends CakeTestCase {
 				'Link.translation_id' => $translationId,
 			))
 		);
-		$this->assertTrue($newLink);
+		$this->assertTrue((bool)$newLink);
 	}
 
 	function testAdd_linksTranslationToSentence() {
@@ -57,7 +57,7 @@ class LinkTest extends CakeTestCase {
 				'Link.sentence_id' => $translationId,
 			))
 		);
-		$this->assertTrue($newLink);
+		$this->assertTrue((bool)$newLink);
 	}
 
 	function testDeletePairRemovesBothWays() {
@@ -169,7 +169,12 @@ class LinkTest extends CakeTestCase {
 	}
 
 	function testAdd_flagSentencesToReindex() {
-		$expected = array(2, 5, 8);
+		/* Linking 8 and 5 is done in two steps:
+                 *   8->5 => 8 and its direct translations (8) can now see 5
+		 *   5->8 => 5 and its direct translations (2,5) can now see 8
+                 * Result: $expected = 8, 2, 5
+                 */
+		$expected = array(8, 2, 5);
 		$this->Link->add(8, 5);
 		$result = $this->Link->Sentence->ReindexFlag->find('all');
 		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
@@ -177,7 +182,12 @@ class LinkTest extends CakeTestCase {
 	}
 
 	function testDelete_flagSentencesToReindex() {
-		$expected = array(1, 2, 3, 4, 5);
+		/* Unlinking 1 and 2 is done in two steps:
+                     delete 1->2 => 1 and its direct translations (1,3,4) stop seeing 2
+                     delete 2->1 => 2 and its direct translations (2,4,5) stop seeing 2
+                 * Result: $expected = 1, 3, 4, 2, 4, 5
+                 */
+		$expected = array(1, 3, 4, 2, 4, 5);
 		$this->Link->deletePair(1, 2);
 		$result = $this->Link->Sentence->ReindexFlag->find('all');
 		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');

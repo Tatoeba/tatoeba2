@@ -25,6 +25,9 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('AppController', 'Controller');
+App::uses('NotificationListener', 'Lib/Event');
+
 /**
  * Controller for the wall.
  *
@@ -78,6 +81,9 @@ class WallController extends AppController
         );
 
         $this->Security->unlockedActions = array('save_inside');
+
+        $eventManager = $this->Wall->getEventManager();
+        $eventManager->attach(new NotificationListener());
     }
 
     /**
@@ -122,9 +128,7 @@ class WallController extends AppController
      */
     public function save()
     {
-        if (!empty($this->request->data['Wall']['content'])
-            && $this->Auth->user('id')
-        ) {
+        if ($this->Auth->user('id')) {
             $lastMess = $this->Session->read('hash_last_wall');
             $thisMess =md5($this->request->data['Wall']['content']);
 
@@ -146,13 +150,7 @@ class WallController extends AppController
                     'content' => $this->request->data['Wall']['content'],
                 );
                 // now save to database
-                if ($this->Wall->save($newPost)) {
-                    $this->update_thread_date(
-                        $this->Wall->id,
-                        $now
-                    );
-                }
-
+                $this->Wall->save($newPost);
             }
         }
 
@@ -171,7 +169,6 @@ class WallController extends AppController
     {
         $idTemp = $this->Auth->user('id');
         if (isset($this->request->data['content'])
-            && trim($this->request->data['content']) != ''
             && isset($this->request->data['replyTo'])
             && !(empty($idTemp))
         ) {
@@ -193,8 +190,6 @@ class WallController extends AppController
                 $user = $this->User->getInfoWallUser($idTemp);
                 $this->set("user", $user);
 
-                $this->update_thread_date($newMessageId, $now);
-
                 // we forge a message to be used in the view
 
                 $message['Wall']['content'] = $content;
@@ -211,18 +206,6 @@ class WallController extends AppController
                 $message['User']['username'] = $user['User']['username'];
 
                 $this->set("message", $message);
-
-
-                // send notification
-                $parentMessage = $this->Wall->getMessageForMail($parentId);
-                if ($parentMessage['User']['send_notifications']
-                    && $parentMessage['User']['id'] != $idTemp
-                ) {
-                    $participant = $parentMessage['User']['email'];
-                    $this->Mailer->sendWallReplyNotification(
-                        $participant, $message
-                    );
-                }
             }
         }
     }
@@ -276,19 +259,7 @@ class WallController extends AppController
                     'content' => trim($this->request->data['Wall']['content']),
                 );
 
-                if (empty($editedPost['content'])) {
-                    $this->Flash->set(
-                        __('You cannot save an empty message.')
-                    );
-
-                    $this->redirect(
-                    array(
-                            "action" => "edit",
-                            $messageId
-                        )
-                    );
-
-                } else  if ($this->Wall->save($editedPost)) {
+                if ($this->Wall->save($editedPost)) {
                     $this->Flash->set(
                         __("Message saved.")
                     );
@@ -300,12 +271,8 @@ class WallController extends AppController
                         )
                     );
                 } else {
-                    $this->Flash->set(
-                        __(
-                            "We apologize, but we could not save your data.
-                             Please try again", true
-                        )
-                    );
+                    $firstValidationErrorMessage = reset($this->Wall->validationErrors)[0];
+                    $this->Flash->set($firstValidationErrorMessage);
                     $this->redirect(
                         array(
                             "action"=>"edit",
@@ -368,32 +335,6 @@ class WallController extends AppController
         }
         // redirect to previous page
         $this->redirect($this->referer());
-    }
-
-    /**
-     * update the WallThread table
-     *
-     * @param int    $messageId Message that have been add/updated
-     * @param string $newDate   Date of the event.
-     *
-     * @return void
-     */
-
-    public function update_thread_date($messageId, $newDate)
-    {
-        $messageId = Sanitize::paranoid($messageId);
-        // TODO Not sure what to do with $newDate...
-
-        $this->loadModel('WallThread');
-
-        $rootId = $this->Wall->getRootMessageIdOfReply($messageId);
-
-        $newThreadData = array(
-            'id' => $rootId,
-            'last_message_date' => $newDate
-        );
-
-        $this->WallThread->save($newThreadData);
     }
 
     /**

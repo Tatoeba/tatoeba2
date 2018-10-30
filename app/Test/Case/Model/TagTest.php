@@ -38,9 +38,31 @@ class TagTest extends CakeTestCase {
 
         $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
 
-        $after = $this->Tag->TagsSentence->find('count');
+        $after = $this->Tag->TagsSentences->find('count');
         $added = $after - $before;
         $this->assertEqual(1, $added);
+    }
+
+    function testAddTagFiresEvent() {
+        $contributorId = 4;
+        $sentenceId = 1;
+        $expectedTagName = '@needs_native_check';
+
+        $dispatched = false;
+        $model = $this->Tag;
+        $model->getEventManager()->attach(
+            function (CakeEvent $event) use ($model, &$dispatched, $expectedTagName) {
+                $this->assertSame($model, $event->subject());
+                extract($event->data); // $tagName
+                $this->assertEquals($expectedTagName, $tagName);
+                $dispatched = true;
+            },
+            'Model.Tag.tagAdded'
+        );
+
+        $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
+
+        $this->assertTrue($dispatched);
     }
 
     function testSentenceOwnerCannotTagOwnSentenceAsOK() {
@@ -50,7 +72,7 @@ class TagTest extends CakeTestCase {
 
         $this->Tag->addTag('OK', $ownerId, $sentenceId);
 
-        $after = $this->Tag->TagsSentence->find('count');
+        $after = $this->Tag->TagsSentences->find('count');
         $added = $after - $before;
         $this->assertEqual(0, $added);
     }

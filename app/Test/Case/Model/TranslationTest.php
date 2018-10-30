@@ -4,22 +4,9 @@ App::import('Model', 'Translation');
 class TranslationTest extends CakeTestCase {
     public $fixtures = array(
         'app.sentence',
-        'app.user',
-        'app.group',
-        'app.sentence_comment',
-        'app.contribution',
-        'app.sentences_list',
-        'app.sentences_sentences_list',
-        'app.wall',
-        'app.wall_thread',
-        'app.favorites_user',
-        'app.tag',
-        'app.tags_sentence',
-        'app.transcription',
-        'app.language',
         'app.link',
-        'app.sentence_annotation',
-        'app.reindex_flag',
+        'app.transcription',
+        'app.user',
     );
 
     function startTest($method) {

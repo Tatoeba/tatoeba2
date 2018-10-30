@@ -16,6 +16,13 @@ class LinkFixture extends CakeTestFixture {
 	);
 
 	public $records = array(
+		/* Here is a little ASCII chart of these fixtures.
+		 * Let's try to keep it updated!
+		 *
+		 *   5-2-1-3
+		 *      \|
+		 *       4-6-10
+		 */
 		array(
 			'id' => '1',
 			'sentence_id' => '1',

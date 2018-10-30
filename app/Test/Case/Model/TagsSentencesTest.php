@@ -5,30 +5,6 @@ App::import('Model', 'TagsSentences');
 class TagsSentencesTest extends CakeTestCase {
     public $fixtures = array(
         'app.tags_sentence',
-        'app.user',
-        'app.group',
-        'app.wall',
-        'app.wall_thread',
-        'app.sentence_comment',
-        'app.contribution',
-        'app.sentence',
-        'app.sentences_list',
-        'app.favorite',
-        'app.sentence',
-        'app.language',
-        'app.reindex_flag',
-        'app.favorites_user',
-        'app.link',
-        'app.contribution',
-        'app.sentence_comment',
-        'app.sentence_annotation',
-        'app.translation',
-        'app.sentences_translation',
-        'app.tag',
-        'app.sentences_list',
-        'app.sentences_sentences_list',
-        'app.favorites_user',
-        'app.transcription',
     );
 
     function startTest($method) {

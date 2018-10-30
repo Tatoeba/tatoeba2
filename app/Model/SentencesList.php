@@ -41,6 +41,9 @@ class SentencesList extends AppModel
     public $hasMany = array('SentencesSentencesLists');
     public $hasAndBelongsToMany = array('Sentence');
 
+    // We want to make sure that people don't download long lists, which can slow down the server.
+    // This is an arbitrary but easy to remember value, and most lists are shorter than this.
+    const MAX_COUNT_FOR_DOWNLOAD = 100;
 
     /**
      * Retrieves list.
@@ -55,14 +58,6 @@ class SentencesList extends AppModel
             'first',
             array(
                 'conditions' => array('SentencesList.id' => $id),
-                'fields' => array(
-                    'SentencesList.id',
-                    'SentencesList.name',
-                    'SentencesList.user_id',
-                    'SentencesList.visibility',
-                    'SentencesList.editable_by',
-                    'SentencesList.created'
-                ),
                 'contain' => array(
                     'User' => array(
                         'fields' => array('User.username')
@@ -70,6 +65,47 @@ class SentencesList extends AppModel
                 )
             )
         );
+    }
+
+    /**
+     * Retrieves list with permissions for the current user.
+     */
+    public function getListWithPermissions($id, $currentUserId)
+    {
+        $list = $this->find(
+            'first',
+            array(
+                'conditions' => array('SentencesList.id' => $id),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('User.username')
+                    )
+                )
+            )
+        );
+
+        $list['Permissions'] = $this->_getPermissions(
+            $list['SentencesList'], $currentUserId
+        );
+
+        return $list;
+    }
+
+    private function _getPermissions($list, $currentUserId) {
+        $visibility = $list['visibility'];
+        $editableBy = $list['editable_by'];
+        $belongsToUser = $currentUserId == $list['user_id'];
+        $numberOfSentences = $list['numberOfSentences'];
+
+        $permissions = array(
+            'canView' => $visibility != 'private' || $belongsToUser,
+            'canEdit' => $belongsToUser,
+            'canAddSentences' => $belongsToUser && $editableBy !== 'no_one',
+            'canRemoveSentences' => $belongsToUser || $editableBy == 'anyone',
+            'canDownload' => $numberOfSentences <= self::MAX_COUNT_FOR_DOWNLOAD
+        );
+
+        return $permissions;
     }
 
     /**
@@ -202,33 +238,6 @@ class SentencesList extends AppModel
             ),
             'order' => 'created DESC',
             'limit' => 50
-        );
-    }
-
-
-    /**
-     * Returns all the lists that given user cannot edit.
-     *
-     * @param int $userId Id of the user
-     *
-     * @return array
-     */
-    public function getNonEditableListsForUser($userId)
-    {
-        return $this->find(
-            "all",
-            array(
-                "conditions" => array(
-                    "SentencesList.user_id !=" => $userId,
-                    "SentencesList.is_public" => 0
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                ),
-                'order' => 'name'
-            )
         );
     }
 
@@ -381,17 +390,34 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-    public function addSentenceToList($sentenceId, $listId)
+    public function addSentenceToList($sentenceId, $listId, $currentUserId)
     {
-        $isSaved = $this->SentencesSentencesLists->addSentenceToList(
-            $sentenceId, $listId
-        );
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $listId = Sanitize::paranoid($listId);
 
-        if ($isSaved) {
-            $this->_incrementNumberOfSentencesToList($listId);
+        $sentence = $this->Sentence->findById($sentenceId);
+        if (empty($sentence)) {
+            return array();
         }
 
-        return $isSaved;
+        if (!$this->isEditableByCurrentUser($listId, $currentUserId)) {
+            return array();
+        }
+
+        $data = array(
+            'sentence_id' => $sentenceId,
+            'sentences_list_id' => $listId
+        );
+
+        try {
+            $result = $this->SentencesSentencesLists->save($data);
+            if (!empty($result)) {
+                $this->_incrementNumberOfSentencesToList($listId);
+            }
+            return $result;
+        } catch (Exception $e) {
+            return array();
+        }
     }
 
 
@@ -432,11 +458,27 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-    public function removeSentenceFromList($sentenceId, $listId)
+    public function removeSentenceFromList($sentenceId, $listId, $currentUserId)
     {
-        $isDeleted = $this->SentencesSentencesLists->removeSentenceFromList(
-            $sentenceId, $listId
-        );
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $listId = Sanitize::paranoid($listId);
+
+        if (!$this->isEditableByCurrentUser($listId, $currentUserId)) {
+            return false;
+        }
+
+        $sentenceInList = $this->SentencesSentencesLists->find('first', array(
+            'conditions' => array(
+                'sentence_id' => $sentenceId,
+                'sentences_list_id' => $listId
+            )
+        ));
+        if (empty($sentenceInList)){
+            return false;
+        }
+
+        $id = $sentenceInList['SentencesSentencesLists']['id'];        
+        $isDeleted = $this->SentencesSentencesLists->delete($id);
 
         if ($isDeleted) {
             $this->_decrementNumberOfSentencesToList($listId);
@@ -514,20 +556,20 @@ class SentencesList extends AppModel
      *
      * @return bool
      */
-    public function addNewSentenceToList($listId, $sentenceText, $sentenceLang)
+    public function addNewSentenceToList($listId, $sentenceText, $sentenceLang, $currentUserId)
     {
-        $userId = CurrentUser::get('id');
+        $listId = Sanitize::paranoid($listId);
 
         // Checking if user can add to list.
-        $userLevel = $this->User->getLevelOfUser($userId);
-        $canAdd = $this->isEditableByCurrentUser($listId, $userId) && $userLevel > -1;
+        $userLevel = $this->User->getLevelOfUser($currentUserId);
+        $canAdd = $userLevel > -1;
         if (!$canAdd) {
             return false;
         }
 
         // Saving sentence
         $sentenceSaved = $this->Sentence->saveNewSentence(
-            $sentenceText, $sentenceLang, $userId
+            $sentenceText, $sentenceLang, $currentUserId
         );
         if (!$sentenceSaved) {
             return false;
@@ -535,10 +577,10 @@ class SentencesList extends AppModel
 
         // Adding to list
         $sentenceId = $this->Sentence->id;
-        if ($this->addSentenceToList($sentenceId, $listId)) {
+        if ($this->addSentenceToList($sentenceId, $listId, $currentUserId)) {
             return $this->Sentence->getSentenceWithId($sentenceId);
         } else {
-            return null;
+            return false;
         }
     }
 
@@ -562,5 +604,69 @@ class SentencesList extends AppModel
         );
 
         return $count;
+    }
+
+    /**
+     * Create new list.
+     */
+    public function createList($name, $currentUserId) 
+    {
+        $name = trim($name);
+
+        if (empty($name)) {
+            return false;
+        }
+
+        $data = array(
+            'name' => $name,
+            'user_id' => $currentUserId
+        );
+
+        return $this->save($data);
+    }
+
+    /**
+     * Delete list.
+     */
+    public function deleteList($listId, $currentUserId) 
+    {
+        $listId = Sanitize::paranoid($listId);
+
+        if ($this->isEditableByCurrentUser($listId, $currentUserId)) {
+            return $this->delete($listId);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Edit name.
+     */
+    public function editName($listId, $newName, $currentUserId)
+    {
+        $listId = Sanitize::paranoid($listId);
+        if ($this->isEditableByCurrentUser($listId, $currentUserId)) {
+            $this->id = $listId;
+            return $this->saveField('name', $newName);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Edit visibility or editable_by option.
+     */
+    public function editOption($listId, $option, $value, $currentUserId)
+    {
+        $allowedOptions = array('visibility', 'editable_by');
+        $listId = Sanitize::paranoid($listId);
+        $belongsToUser = $this->belongsTotUser($listId, $currentUserId);
+
+        if ($belongsToUser && in_array($option, $allowedOptions)) {
+            $this->id = $listId;
+            return $this->saveField($option, $value);
+        } else {
+            return array();
+        }
     }
 }

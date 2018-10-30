@@ -10,11 +10,16 @@ class UsersControllerTest extends ControllerTestCase {
 		'app.user',
 		'app.group',
 		'app.users_language',
+		'app.last_contribution',
 	);
 
 	function setUp() {
+		Configure::write('App.base', ''); // prevent using the filesystem path as base
 		Configure::write('Acl.database', 'test');
 		Configure::write('Security.salt', 'ze@9422#5dS?!99xx');
+		$this->controller = $this->generate('Users', array(
+			'methods' => array('redirect'),
+		));
 	}
 
 	function tearDown() {
@@ -128,4 +133,23 @@ class UsersControllerTest extends ControllerTestCase {
 		list($version, $hash) = explode(' ', $user['User']['password'], 2);
 		$this->assertEquals(1, $version);
 	}
+
+	public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
+		$lastPage = 2;
+		$users = array();
+		for ($i = 1; $i <= 20; $i++) {
+			$users[] = array(
+				'username' => "foobar_$i",
+				'email' => "foobar_$i@example.com",
+			);
+		}
+		$this->controller->User->saveMany($users);
+
+		$this->controller
+			 ->expects($this->once())
+			 ->method('redirect')
+			 ->with("/eng/users/all/page:$lastPage/sort:User.group_id/direction:asc");
+		$this->testAction('/eng/users/all/page:9999999/sort:User.group_id/direction:asc');
+	}
+
 }

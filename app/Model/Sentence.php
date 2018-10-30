@@ -110,12 +110,6 @@ class Sentence extends AppModel
         ),
     );
 
-
-    /**
-     * The constructor is here only to conditionally attach Sphinx.
-     *
-     * @return void
-     */
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
@@ -441,6 +435,10 @@ class Sentence extends AppModel
             // during delete() thanks to the HABTM relation
         );
         $this->Link->deleteAll($conditions, false);
+
+        // Remove transcriptions
+        $conditions = array('Transcription.sentence_id' => $sentenceId);
+        $this->Transcription->deleteAll($conditions, false);
 
         // Decrement statistics
         $this->Language->decrementCountForLanguage($sentenceLang);
@@ -833,34 +831,6 @@ class Sentence extends AppModel
 
         return $neighbors;
     }
-
-    /**
-     * Return email of owner of the sentence.
-     *
-     * @param int $sentenceId Id of the sentence.
-     *
-     * @return array
-     */
-    public function getEmailFromSentence($sentenceId)
-    {
-        $sentence = $this->find(
-            'first',
-            array(
-                'fields' => array(),
-                'conditions' => array('Sentence.id' => $sentenceId),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('email'),
-                        'conditions' => array('send_notifications' => 1)
-                    )
-                )
-            )
-        );
-
-        return $sentence ? $sentence['User']['email'] : null;
-    }
-
-
 
     /**
      * Return all tags on a given sentence

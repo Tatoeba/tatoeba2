@@ -39,6 +39,16 @@ class SentenceComment extends AppModel
     public $actsAs = array('Containable');
     public $belongsTo = array('Sentence', 'User');
 
+    public function afterSave($created, $options = array())
+    {
+        if ($created) {
+            $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+                'comment' => $this->data[$this->alias],
+            ));
+            $this->getEventManager()->dispatch($event);
+        }
+    }
+
     /**
      * Get number of sentences owned by a user.
      *
@@ -142,37 +152,6 @@ class SentenceComment extends AppModel
                 )
             )
         );
-    }
-
-    /**
-     * Return emails of users who posted a comment on the sentence
-     * and who didn't disable notification.
-     *
-     * @param int $sentenceId Id of the sentence.
-     *
-     * @return array
-     */
-    public function getEmailsFromComments($sentenceId)
-    {
-        $emails = array();
-        $comments = $this->find(
-            'all',
-            array(
-                'fields' => array(),
-                'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
-                'contain' => array (
-                    'User' => array(
-                        'fields' => array('email'),
-                        'conditions' => array('send_notifications' => 1)
-                    )
-                )
-            )
-        );
-        foreach ($comments as $comment) {
-            $emails[] = $comment['User']['email'];
-        }
-        $emails = array_unique($emails);
-        return $emails;
     }
 
     /**

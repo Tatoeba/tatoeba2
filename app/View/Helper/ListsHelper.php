@@ -412,7 +412,12 @@ class ListsHelper extends AppHelper
         $sentence,
         $canCurrentUserEdit = false
     ) {
-        $sentenceId = $sentence['id'];
+        if (isset($sentence['Sentence'])) {
+            $sentenceId = $sentence['Sentence']['id'];
+        } else {
+            $sentenceId = $sentence['id'];
+        }
+
         if (empty($sentenceId)) {
             // In case the sentence has been deleted, we don't want to display
             // it in the list.

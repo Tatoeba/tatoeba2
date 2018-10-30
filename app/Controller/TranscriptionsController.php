@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+App::uses('AppController', 'Controller');
+
 class TranscriptionsController extends AppController
 {
     public $name = 'Transcriptions';
@@ -75,7 +77,9 @@ class TranscriptionsController extends AppController
 
         $saved = false;
         if ($canEdit) {
-            $this->Transcription->delete($transcr['Transcription']['id'], false);
+            if ($transcr) {
+                $this->Transcription->delete($transcr['Transcription']['id'], false);
+            }
             $saved = $this->Transcription->generateTranscription(
                 $sentence,
                 $script,

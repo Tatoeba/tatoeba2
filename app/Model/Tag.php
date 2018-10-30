@@ -135,13 +135,9 @@ class Tag extends AppModel
                 return false;
             }
         }
-        // Send a request to suggestd (the auto-suggest daemon) to update its internal
-        // table.
-        // TODO only do this if we add a new ("dirty") tag.
-        $dirty = fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
-        if ($dirty != null) {
-            fclose($dirty);
-        }
+
+        $event = new CakeEvent('Model.Tag.tagAdded', $this, compact('tagName'));
+        $this->getEventManager()->dispatch($event);
 
         if ($sentenceId != null) {
             $this->TagsSentences->tagSentence(

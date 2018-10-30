@@ -129,7 +129,7 @@ class MessagesHelper extends AppHelper
      */
     public function isReply($recipients, $messageId, $content)
     {
-        return $recipients && !$messageId && $content != null;
+        return $this->request->params['action'] == 'show';
     }
 
     /**

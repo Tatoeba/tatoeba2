@@ -1,0 +1,10 @@
+This folder was created to test the audio on dev environments.
+It’s a temporary folder to import new audio recordings.
+
+How to import audio recordings :
+
+1. Make sure the webserver has read and write access to this folder.
+2. Put your audio recordings here, named after the ID of the sentence: <id>.mp3
+   (e.g. recording for sentence #7276361 should be named 7276361.mp3).
+3. Log in as admin and go to /audio/import to import them
+   (e.g. http://localhost:8080/eng/audio/import ).

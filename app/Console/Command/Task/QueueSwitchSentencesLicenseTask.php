@@ -80,8 +80,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             'content' => $this->report,
             'messageId' => '',
         ));
-        $message = $this->PrivateMessage->buildMessage($data, 0, $now);
-        $this->PrivateMessage->saveToInbox($message, $recipientId);
+        $this->PrivateMessage->notify($recipientId, $now, $data);
     }
 
     protected function _switchLicense($rows, $modelName, $dryRun) {

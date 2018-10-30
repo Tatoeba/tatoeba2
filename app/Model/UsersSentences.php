@@ -46,6 +46,49 @@ class UsersSentences extends AppModel
 
 
     /**
+     * 
+     */
+    public function saveSentence($sentenceId, $correctness, $userId) 
+    {
+        $userSentence = $this->findBySentenceIdAndUserId(
+            $sentenceId, $userId
+        );
+
+        if (empty($userSentence)) {
+            $data = array(
+                'user_id' => $userId,
+                'sentence_id' => $sentenceId,
+                'correctness' => $correctness
+            );
+        } else {
+            $data = array(
+                'id' => $userSentence['UsersSentences']['id'],
+                'correctness' => $correctness,
+                'dirty' => 0
+            );
+        }
+
+        return $this->save($data);
+    }
+
+    /**
+     * 
+     */
+    public function deleteSentence($sentenceId, $userId) 
+    {
+        $userSentence = $this->findBySentenceIdAndUserId(
+            $sentenceId, $userId
+        );
+
+        if ($userSentence) {
+            $id = $userSentence['UsersSentences']['id'];
+            return $this->delete($id, false);
+        }
+
+        return false;
+    }
+
+    /**
      * Get correctness for sentence as set by user.
      *
      * @param  int $sentenceId Sentence ID.
@@ -74,14 +117,17 @@ class UsersSentences extends AppModel
     /**
      * Get paginated user_sentneces for user.
      *
-     * @param  int    $userId      User ID.
-     * @param  int    $correctness Correctness value.
-     * @param  string $lang        Language.
+     * @param  int    $userId           User ID.
+     * @param  int    $correctnessLabel Label for correctness value.
+     * @param  string $lang             Language.
      *
      * @return array
      */
-    public function getPaginatedCorpusOf($userId, $correctness = null, $lang = null)
+    public function getPaginatedCorpusOf($userId, $correctnessLabel = null, $lang = null)
     {
+        $correctness = $this->correctnessValueFromLabel(
+            $correctnessLabel
+        );
         $conditions = array('UsersSentences.user_id' => $userId);
 
         if (is_int($correctness)) {
@@ -112,7 +158,7 @@ class UsersSentences extends AppModel
      *
      * @return int|string
      */
-    public function correctnessValueFromLabel($label)
+    private function correctnessValueFromLabel($label)
     {
         $values = [
             'not-ok' => -1,

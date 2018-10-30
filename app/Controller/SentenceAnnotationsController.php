@@ -106,28 +106,16 @@ class SentenceAnnotationsController extends AppController
         if (empty($this->request->data)) {
             return;
         }
-
-        if (!isset($this->request->data['SentenceAnnotation']['id'])) {
-            $this->SentenceAnnotation->create();
-        }
-
-        $sentenceId = Sanitize::paranoid(
-            $this->request->data['SentenceAnnotation']['sentence_id']
+        
+        $savedAnnotation = $this->SentenceAnnotation->saveAnnotation(
+            $this->request->data['SentenceAnnotation'], CurrentUser::get('id')
         );
-        $this->request->data['SentenceAnnotation']['user_id'] = CurrentUser::get('id');
-        $text = trim($this->request->data['SentenceAnnotation']['text']);
-
-        $annotation = array(
-            'id'          => $this->request->data['SentenceAnnotation']['id'],
-            'sentence_id' => $sentenceId,
-            'meaning_id'  => $this->request->data['SentenceAnnotation']['meaning_id'],
-            'text'        => $text,
-            'user_id'     => CurrentUser::get('id'),
-        );
-        if ($this->SentenceAnnotation->save($annotation)) {
+        
+        if ($savedAnnotation) {
+            $sentenceId = $savedAnnotation['SentenceAnnotation']['sentence_id'];
             $this->flash(
                 'Index saved.',
-                "/sentence_annotations/show/".$sentenceId
+                '/sentence_annotations/show/'.$sentenceId
             );
         }
     }
@@ -225,7 +213,6 @@ class SentenceAnnotationsController extends AppController
         $this->paginate = $pagination;
         $results = $this->paginate();
 
-        //$annotations = $this->SentenceAnnotation->getLatestAnnotations(500);
         $this->set('annotations', $results);
     }
 }

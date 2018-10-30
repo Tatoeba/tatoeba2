@@ -25,6 +25,7 @@ class AudioTest extends CakeTestCase {
 
     function setUp() {
         parent::setUp();
+        Configure::write('Search.enabled', true);
         $this->Audio = ClassRegistry::init('Audio');
         $this->AudioFixture = ClassRegistry::init('AudioFixture');
     }
@@ -169,7 +170,6 @@ class AudioTest extends CakeTestCase {
         );
         $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
 
-        $this->assertFalse($isMVA);
         $this->assertEqual($expectedAttributes, $attributes);
         $this->assertEqual($expectedValues, $values);
     }
@@ -189,7 +189,6 @@ class AudioTest extends CakeTestCase {
         );
         $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
 
-        $this->assertFalse($isMVA);
         $this->assertEqual($expectedAttributes, $attributes);
         $this->assertEqual($expectedValues, $values);
     }

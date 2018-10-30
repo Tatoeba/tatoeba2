@@ -53,9 +53,6 @@ class SentencesListsController extends AppController
         'Cookie',
         'CommonSentence'
     );
-    // We want to make sure that people don't download long lists, which can slow down the server.
-    // This is an arbitrary but easy to remember value, and most lists are shorter than this.
-    const MAX_COUNT_FOR_DOWNLOAD = 100;
 
     public $uses = array('SentencesList', 'SentencesSentencesLists', 'User');
 
@@ -104,22 +101,8 @@ class SentencesListsController extends AppController
         );
         $allLists = $this->paginate();
 
-        $total = $this->request->params['paging']['SentencesList']['count'];
-        if (empty($filter)) {
-            $title = format(
-                __('All public lists ({total})', $total),
-                array('total' => $total)
-            );
-        } else {
-            $title = format(
-                __('All public lists containing "{search}" ({total})', $total),
-                array('total' => $total, 'search' => $filter)
-            );
-        }
-
         $this->set('allLists', $allLists);
         $this->set('filter', $filter);
-        $this->set('title', $title);
     }
 
 
@@ -135,22 +118,9 @@ class SentencesListsController extends AppController
         );
         $allLists = $this->paginate();
 
-        $total = $this->request->params['paging']['SentencesList']['count'];
-        if (empty($filter)) {
-            $title = format(
-                __('Collaborative lists ({total})', $total),
-                array('total' => $total)
-            );
-        } else {
-            $title = format(
-                __('Collaborative lists containing "{search}" ({total})', $total),
-                array('search' => $filter, 'total' => $total)
-            );
-        }
-
         $this->set('allLists', $allLists);
         $this->set('filter', $filter);
-        $this->set('title', $title);
+        $this->set('isCollaborative', true);
 
         $this->render('index');
     }
@@ -173,23 +143,18 @@ class SentencesListsController extends AppController
         }
 
         if (!isset($id)) {
-            $this->redirect(array("action"=>"index"));
+            $this->redirect(array('action' => 'index'));
         }
 
-        $list = $this->SentencesList->getList($id);
+        $list = $this->SentencesList->getListWithPermissions(
+            $id, CurrentUser::get('id')
+        );
 
-        $listId = $list['SentencesList']['id'];
-        $listName = $list['SentencesList']['name'];
-        $listVisibility = $list['SentencesList']['visibility'];
-        $editableBy = $list['SentencesList']['editable_by'];
-        $isEditableByAnyone = $editableBy == 'anyone';
-        $belongsToUser = CurrentUser::get('id') == $list['SentencesList']['user_id'];
-
-        if ($listVisibility == 'private' && !$belongsToUser) {
+        if (!$list['Permissions']['canView']) {
             $this->Flash->set(
                 __('You do not have permission to view this list.')
             );
-            $this->redirect(array("action"=>"index"));
+            $this->redirect(array('action' => 'index'));
         }
 
         $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
@@ -197,69 +162,11 @@ class SentencesListsController extends AppController
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
 
-        $thisListCount = $this->request->params['paging']['SentencesSentencesLists']['count'];
-        $downloadability_info = $this->_get_downloadability_info($thisListCount);
-
         $this->set('translationsLang', $translationsLang);
-        $this->set('list', $list);
+        $this->set('list', $list['SentencesList']);
+        $this->set('user', $list['User']);
+        $this->set('permissions', $list['Permissions']);
         $this->set('sentencesInList', $sentencesInList);
-        $this->set('canDownload', $downloadability_info['can_download']);
-        $this->set('downloadMessage', $downloadability_info['message']);
-        $this->set('listId', $listId);
-        $this->set('listName', $listName);
-        $this->set('listVisibility', $listVisibility);
-        $this->set('editableBy', $editableBy);
-        $this->set('belongsToUser', $belongsToUser);
-        $this->set('canRemoveSentence', $belongsToUser || $isEditableByAnyone);
-        $this->set('listCount', $thisListCount);
-    }
-
-
-    /**
-     * Returns array of two elements: a bool (index = 'can_download') indicating
-     * whether list can be downloaded, and a string (index = 'message') containing
-     * an empty string (if the bool is true) or a message with details (if the
-     * bool is false).
-     *
-     * @param int $count length of list
-     *
-     * @return string
-     */
-    protected function _get_downloadability_info($count)
-    {
-        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD)
-        {
-            $ret['can_download'] = true;
-            $ret['message'] = "";
-        }
-        else
-        {
-            $ret['can_download'] = false;
-
-            $firstSentence = __n('The download feature has been disabled for '.
-                                 'this list because it contains a sentence.',
-                                 'The download feature has been disabled for '.
-                                 'this list because it contains {n}&nbsp;sentences.',
-                                 $count, true);
-
-            $secondSentence = __n('Only lists containing one sentence or fewer can be '.
-                                  'downloaded. If you can edit the list, you may want '.
-                                  'to split it into multiple lists.',
-                                  'Only lists containing {max} or fewer sentences can be '.
-                                  'downloaded. If you can edit the list, you may want '.
-                                  'to split it into multiple lists.',
-                                  self::MAX_COUNT_FOR_DOWNLOAD, true);
-            $firstSentence = format($firstSentence, array('n' => $count));
-            $secondSentence = format($secondSentence, array('max' => self::MAX_COUNT_FOR_DOWNLOAD));
-            $ret['message'] = format(
-            /* @translators: this string is used to concatenate two sentences.
-               You typically want to change this to {firstSentence}{secondSentence}
-               if your language don't use space as a word separator. */
-                __('{firstSentence} {secondSentence}'),
-                compact('firstSentence', 'secondSentence')
-            );
-        }
-        return $ret;
     }
 
 
@@ -270,16 +177,15 @@ class SentencesListsController extends AppController
      */
     public function add()
     {
-        $listName = $this->request->data['SentencesList']['name'];
-        if (!empty($this->request->data) && trim($listName) != '') {
-            $newList = array(
-                'name'    => $listName,
-                'user_id' => $this->Auth->user('id'),
-            );
-            $this->SentencesList->save($newList);
-            $this->redirect(array("action"=>"show", $this->SentencesList->id));
+        $list = $this->SentencesList->createList(
+            $this->request->data['SentencesList']['name'], 
+            $this->Auth->user('id')
+        );
+        
+        if (isset($list['SentencesList']['id'])) {
+            $this->redirect(array('action' => 'show', $list['SentencesList']['id']));
         } else {
-            $this->redirect(array("action"=>"index"));
+            $this->redirect(array('action' => 'index'));
         }
     }
 
@@ -295,18 +201,9 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         $listId = substr($_POST['id'], 1);
         $listName = $_POST['value'];
-
-        $listId = Sanitize::paranoid($listId);
-
-        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-
-            $this->SentencesList->id = $listId;
-            if ($this->SentencesList->saveField('name', $listName)) {
-                $this->set('result', $listName);
-            } else {
-                $this->set('result', 'error');
-            }
-
+        
+        if ($this->SentencesList->editName($listId, $listName, $userId)) {
+            $this->set('result', $listName);
         } else {
             $this->set('result', 'error');
         }
@@ -322,12 +219,8 @@ class SentencesListsController extends AppController
      */
     public function delete($listId)
     {
-        $listId = Sanitize::paranoid($listId);
-
         $userId = $this->Auth->user('id');
-
-        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-            $this->SentencesList->delete($listId);
+        if ($this->SentencesList->deleteList($listId, $userId)) {
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
             // not been set, or has been set to false.
@@ -337,7 +230,8 @@ class SentencesListsController extends AppController
                 $mostRecentList = null;
             }
         }
-        $this->redirect(array("action" => "index"));
+        
+        $this->redirect(array('action' => 'index'));
     }
 
     /**
@@ -350,19 +244,12 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $listId = Sanitize::paranoid($listId);
         $userId = $this->Auth->user('id');
-
-        $this->set('result', 'error');
-
-        if (!$this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-            return;
-        }
-
-        if ($this->SentencesList->addSentenceToList($sentenceId, $listId)) {
+        if ($this->SentencesList->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
+        } else {
+            $this->set('result', 'error');
         }
     }
 
@@ -377,19 +264,11 @@ class SentencesListsController extends AppController
      */
     public function remove_sentence_from_list($sentenceId, $listId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $listId = Sanitize::paranoid($listId);
-
         $userId = $this->Auth->user('id');
-
-        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
-            $isRemoved = $this->SentencesList->removeSentenceFromList(
-                $sentenceId, $listId
-            );
-            if ($isRemoved) {
-                $this->set('removed', true);
-            }
-        }
+        $isRemoved = $this->SentencesList->removeSentenceFromList(
+            $sentenceId, $listId, $userId
+        );
+        $this->set('removed', $isRemoved);
     }
 
 
@@ -450,11 +329,10 @@ class SentencesListsController extends AppController
      */
     public function add_new_sentence_to_list()
     {
-        $sentence = null;
+        $result = null;
 
         if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
-            $listId = Sanitize::paranoid($_POST['listId']);
-
+            $listId = $_POST['listId'];
             $userName = $this->Auth->user('username');
             $sentenceText = $_POST['sentenceText'];
             $sentenceLang = $this->LanguageDetection->detectLang(
@@ -465,36 +343,15 @@ class SentencesListsController extends AppController
             $result = $this->SentencesList->addNewSentenceToList(
                 $listId,
                 $sentenceText,
-                $sentenceLang
+                $sentenceLang,
+                $this->Auth->user('id')
             );
-
-            $sentence = $result['Sentence'];
-            $sentence['User'] = $result['User'];
-            $sentence['Transcription'] = $result['Transcription'];
 
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         }
 
-        $this->set('sentence', $sentence);
+        $this->set('sentence', $result);
     }
-
-
-    /**
-     * Set list as public. When a list is public, other people can add sentences
-     * to that list.
-     * Used in AJAX request in sentences_lists.set_as_public.js.
-     *
-     * @return void
-     */
-    public function set_as_public()
-    {
-        $listId = Sanitize::paranoid($_POST['listId']);
-        $isPublic = Sanitize::paranoid($_POST['isPublic']);
-
-        $this->SentencesList->id = $listId;
-        $this->SentencesList->saveField('is_public', $isPublic);
-    }
-
 
     /**
      *
@@ -502,21 +359,10 @@ class SentencesListsController extends AppController
      */
     public function set_option()
     {
-        $allowedOptions = array('visibility', 'editable_by');
-
-        $listId = Sanitize::paranoid($_POST['listId']);
-        $option = $_POST['option'];
-        $value = $_POST['value'];
-
         $userId = CurrentUser::get('id');
-        $belongsToUser = $this->SentencesList->belongsTotUser($listId, $userId);
-
-        if ($belongsToUser && in_array($option, $allowedOptions)) {
-            $this->SentencesList->id = $listId;
-            $this->SentencesList->saveField($option, $value);
-
-            $result = $this->SentencesList->getList($listId);
-        }
+        $result = $this->SentencesList->editOption(
+            $_POST['listId'], $_POST['option'], $_POST['value'], $userId
+        );
 
         $this->header('Content-Type: application/json');
         $this->set('result', json_encode($result['SentencesList']));
@@ -536,11 +382,15 @@ class SentencesListsController extends AppController
         }
 
         $count = $this->SentencesList->getNumberOfSentences($listId);
-        $downloadability_info = $this->_get_downloadability_info($count);
-        if (!$downloadability_info['can_download'])
+        if ($count > SentencesList::MAX_COUNT_FOR_DOWNLOAD)
         {
-            $message = $downloadability_info['message'];
-            $this->flash($message, '/sentences_lists/show/'.$listId);
+            $this->flash(
+                __(
+                    'This list cannot be downloaded '.
+                    'because it contains too many sentences.'
+                ),
+                array('action' => 'show', $listId)
+            );
         }
 
         $listId = Sanitize::paranoid($listId);

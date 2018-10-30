@@ -414,9 +414,20 @@ class SentenceDerivationShellTest extends CakeTestCase
     private function stuffLogs($n)
     {
         for ($i = 0; $i < $n%4; $i++) {
-            $this->SentenceDerivationShell->Sentence->saveNewSentence(
-                "Some random sentence $i.", 'eng', 1, 0, 0, 'CC BY 2.0 FR'
-            );
+            $this->SentenceDerivationShell->Contribution->create();
+            $this->SentenceDerivationShell->Contribution->save(array(
+                'sentence_id' => 10000+$n,
+                'sentence_lang' => 'eng',
+                'translation_id' => null,
+                'translation_lang' => null,
+                'script' => null,
+                'text' => "Some random sentence $i.",
+                'action' => 'insert',
+                'user_id' => '1',
+                'datetime' => 'NOW()',
+                'ip' => '127.0.0.1',
+                'type' => 'sentence',
+            ));
         }
         for ($i = 0; $i < (int)($n/4); $i++) {
             foreach (array('delete', 'insert') as $action) {

@@ -172,15 +172,17 @@ class Transcription extends AppModel
         }
         foreach ($results as &$result) {
             $id = $result['Transcription']['sentence_id'];
-            $script = $result['Transcription']['script'];
-            $to = $this->transcriptableToWhat($sentenceById[$id]);
-            if (isset($to[$script])) {
-                $flags = array_intersect_key($to[$script], $this->defaultFlags);
-                $result['Transcription'] = array_merge(
-                    $result['Transcription'],
-                    $this->defaultFlags,
-                    $flags
-                );
+            if (isset($sentenceById[$id])) {
+                $to = $this->transcriptableToWhat($sentenceById[$id]);
+                $script = $result['Transcription']['script'];
+                if (isset($to[$script])) {
+                    $flags = array_intersect_key($to[$script], $this->defaultFlags);
+                    $result['Transcription'] = array_merge(
+                        $result['Transcription'],
+                        $this->defaultFlags,
+                        $flags
+                    );
+                }
             }
         }
     }

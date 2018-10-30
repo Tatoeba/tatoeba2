@@ -197,6 +197,22 @@ class Autotranscription
         return $furiganas;
     }
 
+    private function _charLacksFuriError(&$errors, $chars) {
+        /* @translators: This string is used to create an enumeration by
+           joining each item with it. For instance, if you translate this
+           string to “/” and the list is A, B, C, then the translated
+           enumeration will be A/B/C. */
+        $charsEnumeration = implode(__(', '), $chars);
+        $errors[] = format(
+            __n(
+                'The following character lacks furigana: {charsEnumeration}.',
+                'The following characters lack furigana: {charsEnumeration}.',
+                count($chars),
+                true),
+            compact('charsEnumeration')
+        );
+    }
+
     public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr, &$errors) {
         $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー|]*)\]/u';
 
@@ -230,23 +246,36 @@ class Autotranscription
             }
         }
 
-        $withFuri = preg_replace('/\[([^|]+)\|\]/u', '$1', $transcr);
+        $withFuri = preg_replace('/\[([^|]+)\|+\]/u', '$1', $transcr);
         $withFuri = preg_replace($tokenizeFuriRegex, '$2', $withFuri);
         $withFuri = str_replace('|', '', $withFuri);
         if (preg_match_all("/[^\p{Hiragana}\p{Katakana}ー\p{P}\p{Z}]/u", $withFuri, $matches)) {
-            /* @translators: This string is used to create an enumeration by
-               joining each item with it. For instance, if you translate this
-               string to “/” and the list is A, B, C, then the translated
-               enumeration will be A/B/C. */
-            $charsEnumeration = implode(__(', '), $matches[0]);
-            $errors[] = format(
-                __n(
-                    'The following character lacks furigana: {charsEnumeration}.',
-                    'The following characters lack furigana: {charsEnumeration}.',
-                    count($matches[0]),
-                    true),
-                compact('charsEnumeration')
-            );
+            $this->_charLacksFuriError($errors, $matches[0]);
+        }
+
+        preg_match_all($tokenizeFuriRegex, $transcr, $matches, PREG_SET_ORDER);
+        foreach ($matches as $match) {
+            list(, $kanji, $furiganas) = $match;
+            $furiList = explode('|', $furiganas);
+
+            $n = mb_strlen($kanji);
+            if (count($furiList) > $n) {
+                $errors[] = format(
+                    __n(
+                        'The character “{kanji}” has more than one furigana: “{furiganas}”.',
+                        'The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”.',
+                        $n,
+                        true),
+                    compact('kanji', 'n', 'furiganas')
+                );
+            }
+
+            $rawFuri = implode($furiList);
+            if (!empty($rawFuri) && empty($furiList[0])) {
+               $firstKanji = mb_substr($kanji, 0, 1);
+               $charsEnumeration = implode(__(', '), array($firstKanji));
+               $this->_charLacksFuriError($errors, array($firstKanji));
+            }
         }
 
         return count($errors) == 0;

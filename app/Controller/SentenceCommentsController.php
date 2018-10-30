@@ -26,6 +26,7 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('NotificationListener', 'Lib/Event');
 
 /**
  * Controller for sentence comments.
@@ -105,6 +106,9 @@ class SentenceCommentsController extends AppController
             'of_user',
             'on_sentences_of_user'
         );
+
+        $eventManager = $this->SentenceComment->getEventManager();
+        $eventManager->attach(new NotificationListener());
     }
 
     /**
@@ -207,71 +211,12 @@ class SentenceCommentsController extends AppController
         $comment['user_id'] = $userId;
 
         if ($this->SentenceComment->save($comment)) {
-            $sentenceId = $this->request->data['SentenceComment']['sentence_id'];
-            $participants = $this->SentenceComment->getEmailsFromComments(
-                $sentenceId
-            );
-            $sentenceOwner = $this->Sentence->getEmailFromSentence(
-                $sentenceId
-            );
-
-            if ($sentenceOwner != null && !in_array($sentenceOwner, $participants)) {
-                $participants[] = $sentenceOwner;
-            }
-
-            $this->Sentence->id = $sentenceId;
-            $sentenceText = $this->Sentence->field('text');
-            $commentId = $this->SentenceComment->id;
-            $mentionEmails = $this->_getMentionedEmails($comment, $commentId);
-            foreach($mentionEmails as $email) {
-                $participants[] = $email;
-            }
-            $participants = array_unique($participants);
-
-            // send message to the other participants of the thread
-            foreach ($participants as $participant) {
-                if ($participant != $userEmail) {
-                    $this->Mailer->sendSentenceCommentNotification(
-                        $participant,
-                        array(
-                            'sentence_id' => $sentenceId,
-                            'sentence_text' => $sentenceText,
-                            'text' => $comment['text'],
-                        ),
-                        $sentenceOwner
-                    );
-                }
-            }
-
-
             $this->flash(
                 __('Your comment has been saved.'),
                 '/sentence_comments/show/'
                 .$this->request->data['SentenceComment']['sentence_id']
             );
         }
-    }
-
-
-    private function _getMentionedEmails($comment, $commentId)
-    {
-        preg_match_all(
-            "/@[a-zA-Z0-9_]+/",
-            $comment['text'],
-            $usernames
-        );
-        $emails = array();
-        foreach ($usernames[0] as $string) {
-            $username = substr($string, 1);
-            $user = $this->User->findByUsername($username);
-            $sendNotif = !empty($user) && $username != CurrentUser::get('username')
-                && $user['User']['send_notifications'] == 1;
-            if ($sendNotif) {
-                $emails[] = $user['User']['email'];
-            }
-        }
-
-        return $emails;
     }
 
 

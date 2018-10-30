@@ -26,6 +26,7 @@
  */
 
 App::uses('AppController', 'Controller');
+App::uses('SuggestdListener', 'Lib/Event');
 
 /**
  * Controller for tags
@@ -67,6 +68,9 @@ class TagsController extends AppController
         $this->Security->unlockedActions = array(
             'add_tag_post'
         );
+
+        $eventManager = $this->Tag->getEventManager();
+        $eventManager->attach(new SuggestdListener());
     }
 
     /**

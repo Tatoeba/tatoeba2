@@ -30,6 +30,13 @@ $sentenceUrl = $this->Html->url(array(
     $sentence['id']
 ));
 $notReliable = $sentence['correctness'] == -1;
+
+$sentenceText = Sanitize::html($sentence['text']);
+if (isset($sentence['highlight'])) {
+    $highlight = $sentence['highlight'];
+    $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);
+}
+
 ?>
 <div sentence-and-translations class="sentence-and-translations" md-whiteframe="1">
     <div layout="column">
@@ -59,7 +66,7 @@ $notReliable = $sentence['correctness'] == -1;
             </div>
             <div class="text" flex
                  dir="<?= LanguagesLib::getLanguageDirection($sentence['lang']) ?>">
-                <?= Sanitize::html($sentence['text']) ?>
+                <?= $sentenceText ?>
             </div>
             <? if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>

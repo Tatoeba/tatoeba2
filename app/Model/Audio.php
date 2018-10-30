@@ -187,15 +187,18 @@ class Audio extends AppModel
         $allSentenceIds = array();
 
         $dh = opendir($importPath);
+        if (!$dh) {
+            return $audioFiles;
+        }
         while (false !== ($filename = readdir($dh))) {
-            $file = $importPath.$filename;
+            $file = $importPath . DS . $filename;
             if (is_file($file)) {
                 $fileInfos = array(
                     'fileName' => $filename,
                     'sourcePath' => $importPath.$filename,
                     'valid'    => false,
                 );
-                if (preg_match('/(\d+)\.mp3$/i', $file, $matches)) {
+                if (preg_match('/^(\d+)\.mp3$/i', $filename, $matches)) {
                     $fileInfos['sentenceId'] = $allSentenceIds[] = $matches[1];
                 }
                 $audioFiles[] = $fileInfos;
@@ -258,7 +261,7 @@ class Audio extends AppModel
                 continue;
             }
 
-            $destDir = $recsBaseDir . $file['lang'];
+            $destDir = $recsBaseDir . DS . $file['lang'];
             if (!file_exists($destDir)) {
                 if (!mkdir($destDir)) {
                     $errors[] = format(

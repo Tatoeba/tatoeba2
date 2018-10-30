@@ -50,6 +50,7 @@
 
         function clearSearch() {
             vm.searchQuery = '';
+            angular.element('#SentenceQuery').focus();
         }
 
         function swapLanguages() {

@@ -69,7 +69,6 @@ class SentencesController extends AppController
     public $uses = array(
         'Audio',
         'Sentence',
-        'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
         'SentencesList',
         'User',

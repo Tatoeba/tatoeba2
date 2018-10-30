@@ -26,6 +26,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('CurrentUser', 'Model');
+
 /**
  * Model for Private Messages.
  *
@@ -53,6 +55,20 @@ class PrivateMessage extends AppModel
             'foreignKey' => 'sender'
         )
     );
+
+
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+        $this->validate = array(
+            'content' => array(
+                'rule'       => 'notBlank',
+                'required'   => true,
+                'allowEmpty' => false,
+                'message'    => __('You must fill at least the content field.'),
+            ),
+        );
+    }
 
     /**
      * Get private messages by folder.
@@ -228,7 +244,7 @@ class PrivateMessage extends AppModel
      *
      * @return array
      */
-    public function buildMessage($data, $currentUserId, $now)
+    private function buildMessage($data, $currentUserId, $now)
     {
         $message = array(
             'sender'    => $currentUserId,
@@ -286,7 +302,7 @@ class PrivateMessage extends AppModel
      *
      * @return array
      */
-    public function saveToInbox($message, $recptId)
+    private function saveToInbox($message, $recptId)
     {
         $message = array_merge($message, array(
             'recpt' => $recptId,
@@ -295,9 +311,7 @@ class PrivateMessage extends AppModel
             'sent' => 1
         ));
 
-        $this->save($message);
-
-        return $message;
+        return $this->save($message);
     }
 
     /**
@@ -309,7 +323,7 @@ class PrivateMessage extends AppModel
      *
      * @return array
      */
-    public function saveToOutbox($messageToSave, $recptId, $currentUserId)
+    private function saveToOutbox($messageToSave, $recptId, $currentUserId)
     {
         $message = array_merge($messageToSave, array(
             'user_id'   => $currentUserId,
@@ -324,6 +338,113 @@ class PrivateMessage extends AppModel
         $this->save($message);
 
         return $message;
+    }
+
+    public function notify($recptId, $now, $message)
+    {
+        $toSend = $this->buildMessage($message, 0, $now);
+        return $this->saveToInbox($toSend, $recptId);
+    }
+
+    public function send($currentUserId, $now, $message)
+    {
+        $toSend = $this->buildMessage(
+            $message,
+            $currentUserId,
+            $now
+        );
+
+        $recipients = $this->_buildRecipientsArray($message[$this->alias]['recpt']);
+        if (empty($recipients)) {
+            $this->validationErrors['recpt'] = array(
+                __('You must fill at least the "To" field and the content field.')
+            );
+            return false;
+        }
+
+        $sentToday = $this->todaysMessageCount($currentUserId);
+
+        foreach ($recipients as $recpt) {
+            if (!$this->canSendMessage($sentToday)) {
+                $this->validationErrors['limitExceeded'] = array(
+                    format(
+                        __("You have reached your message limit for today. ".
+                           "Please wait until you can send more messages. ".
+                           "If you have received this message in error, ".
+                           "please contact administrators at {email}."),
+                        array('email' => 'team@tatoeba.org')
+                    ),
+                );
+                return false;
+            }
+
+            $recptId = $this->User->getIdFromUsername($recpt);
+
+            if (!$recptId) {
+                $this->validationErrors['recpt'] = array(
+                    format(
+                        __('The user {username} to whom you want to send this '.
+                           'message does not exist. Please try with another username.'),
+                        array('username' => $recpt)
+                    ),
+                );
+                return false;
+            }
+
+            $message = $this->saveToInbox($toSend, $recptId);
+            if (!$message) {
+                return false;
+            } else {
+                $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+                    'message' => $message[$this->alias],
+                ));
+                $this->getEventManager()->dispatch($event);
+            }
+
+            $this->id = null;
+
+            $this->saveToOutbox(
+                $toSend,
+                $recptId,
+                $currentUserId
+            );
+
+            $this->id = null;
+
+            $sentToday += 1;
+        }
+        return true;
+    }
+
+    /**
+     * Build array of unique recipients from recipents string.
+     *
+     * @param  array $recpt Recipents
+     * @return array
+     */
+    private function _buildRecipientsArray($recpt)
+    {
+        $recptArray = explode(',', $recpt);
+        $recptArray = array_map('trim', $recptArray);
+        $recptArray = array_filter($recptArray);
+
+        return array_unique($recptArray, SORT_REGULAR);
+    }
+
+    /**
+     * Return true if user can send message. New users can only send 5/24 hours.
+     *
+     * @param  int  $messagesToday Number of messages sent today.
+     *
+     * @return bool
+     */
+    public function canSendMessage($messagesToday)
+    {
+        if (CurrentUser::isNewUser()) {
+            return $messagesToday < 5;
+        }
+
+        return true;
     }
 
     /**

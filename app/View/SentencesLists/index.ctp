@@ -25,6 +25,23 @@
  * @link     http://tatoeba.org
  */
 
+ $total = $this->Paginator->counter("%count%");
+if (empty($filter)) {
+    if (!empty($isCollaborative)) {
+        $title = __('Collaborative lists ({total})');
+    } else {
+        $title = __('All public lists ({total})');
+    }
+    $title = format($title, array('total' => $total));
+} else {
+    if (!empty($isCollaborative)) {
+        $title = __('Collaborative lists containing "{search}" ({total})');
+    } else {
+        $title = __('All public lists containing "{search}" ({total})');
+    }
+    $title = format($title, array('total' => $total, 'search' => $filter));
+}
+
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 

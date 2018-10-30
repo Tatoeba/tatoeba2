@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::uses('CurrentUser', 'Model');
+
 /**
  * Model for contributions.
  *

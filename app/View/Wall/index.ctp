@@ -43,18 +43,8 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
 
 ?>
 <div id="annexe_content" >
-    <div class="module" >
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Tips'); ?></h2>
-        <p>
-        <?php
-        echo __(
-            'Here you can ask general questions like how to use Tatoeba, ' .
-            'report bugs or strange behavior, or simply socialize with the'.
-            ' rest of the community.'
-        );
-        ?>
-        </p>
-
         <p>
         <?php
         echo format(
@@ -66,11 +56,23 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
         );
         ?>
         </p>
+        <p>
+        <?php
+        echo format(
+            __(
+                'We aim to maintain a healthy atmosphere for civilized discussions. '.
+                'Please read our '.
+                '<a href="{}">rules against bad behavior</a>.', true
+            ),
+            'https://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+        );
+        ?>
+        </p>
     </div>
 
-    <div class="module" >
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Latest messages'); ?></h2>
-        <ul>
+        <ul class="latest-messages">
             <?php
             $mesg = count($tenLastMessages);
 
@@ -120,7 +122,7 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <div>
         <h2>
             <?php
             $threadsCount = $this->Paginator->counter(array('format' => '%count%'));

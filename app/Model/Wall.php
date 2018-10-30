@@ -56,20 +56,61 @@ class Wall extends AppModel
         )
     );
 
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+        $this->validate = array(
+            'content' => array(
+                'rule'       => 'notBlank',
+                'allowEmpty' => false,
+                'message'    => __('You cannot save an empty message.'),
+            ),
+        );
+    }
+
+    private function _isSavingField($field) {
+        $data = $this->data[$this->alias];
+        $pk = isset($data[$this->primaryKey]);
+        unset($data['modified']);
+        unset($data[$this->primaryKey]);
+        return $pk && array_key_exists($field, $data) && count($data) == 1;
+    }
+
+    public function beforeSave($options = array()) {
+        if (isset($this->data[$this->alias]['date'])) {
+            $this->data[$this->alias]['modified'] = $this->data[$this->alias]['date'];
+        }
+        if ($this->_isSavingField('hidden')) {
+            unset($this->data[$this->alias]['modified']);
+        }
+        return true;
+    }
+
     /**
      * used after a save is made in the database
      *
-     * @param bool $created if succeed or not TODO: to check
+     * @param bool $created if succeed or not
      *
      * @return void
      */
 
     public function afterSave($created, $options = array())
     {
-        if (isset($this->data['Wall']['content'])) {
-            $data['newMessage']['owner'] = $this->data['Wall']['owner'] ;
+        if ($created && isset($this->data[$this->alias]['date'])) {
+            $rootId = $this->getRootMessageIdOfReply($this->id);
+            $newThreadData = array(
+                'id' => $rootId,
+                'last_message_date' => $this->data[$this->alias]['date'],
+            );
+            $this->WallThread->save($newThreadData);
         }
 
+        if ($created) {
+            $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+                'post' => $this->data[$this->alias],
+            ));
+            $this->getEventManager()->dispatch($event);
+        }
     }
 
     /**
@@ -196,37 +237,6 @@ class Wall extends AppModel
                         "fields" => array(
                             "User.username",
                             "User.id"
-                        )
-                    )
-                )
-            )
-        );
-    }
-
-    /**
-     * retrieve information of a parent message
-     * needed to generate an email
-     *
-     * @param int $parentMessageId id of the parent message
-     *
-     * @return array
-     */
-
-    public function getMessageForMail($parentMessageId)
-    {
-        return $this->find(
-            'first',
-            array(
-                "order" => "Wall.id",
-                "fields"=> array('Wall.id'),
-                "conditions" => array("Wall.id" => $parentMessageId),
-                "contain"    => array(
-                    "User" => array (
-                        "fields" => array(
-                            "User.username",
-                            "User.id",
-                            "User.email",
-                            "User.send_notifications",
                         )
                     )
                 )
