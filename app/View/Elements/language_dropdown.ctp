@@ -18,6 +18,7 @@ $this->Form->unlockField($name);
         md-items="language in vm.querySearch(vm.searchText)"
         md-item-text="language.name"
         md-min-length="0"
+        md-autoselect="vm.searchText.length"
         placeholder="<?= __x('searchbar', 'Any language') ?>">
         <md-item-template>
             <span md-highlight-text="vm.searchText" 
