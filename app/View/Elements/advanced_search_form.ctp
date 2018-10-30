@@ -159,7 +159,6 @@ echo $this->Form->create(
 
       echo $this->Search->selectLang('trans_to', $trans_to, array(
           'label' => __('Language:'),
-          'options' => $this->Languages->getSearchableLanguagesArray(),
       ));
       echo $this->Form->input('trans_link', array(
           'label' => __('Link:'),

@@ -38,7 +38,6 @@
         var languages = [];
         var name = '';
 
-        vm.previousSelectedItem = languages[0];
         vm.selectedItem = null;
         vm.searchText = '';
 
@@ -46,8 +45,6 @@
         vm.querySearch = querySearch;
         vm.onSelectedItemChange = onSelectedItemChange;
         vm.onSearchTextChange = onSearchTextChange;
-        vm.onBlur = onBlur;
-        vm.onFocus = onFocus;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -111,19 +108,6 @@
 
         function onSearchTextChange() {
             vm.searchText = vm.searchText.replace(/\t/, ' ');
-        }
-
-        function onBlur() {
-            if (!vm.selectedItem) {
-                vm.selectedItem = vm.previousSelectedItem;
-            }
-        }
-
-        function onFocus() {
-            if (vm.selectedItem) {
-                vm.previousSelectedItem = vm.selectedItem;
-                vm.searchText = '';
-            }
         }
     }
 

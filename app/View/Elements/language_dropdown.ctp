@@ -8,7 +8,7 @@ $this->Form->unlockField($name);
      ng-init="vm.init(<?= $languagesJSON ?>, '<?= $selectedLanguage ?>', '<?= $name ?>')" 
      class="language-dropdown-container"
      title="{{vm.selectedItem.name}}">
-     <?= $this->Form->hidden($name, array('value' => '{{vm.selectedItem.code}}')); ?>
+     <?= $this->Form->hidden($name, array('value' => '{{vm.selectedItem.code || "und" }}')); ?>
     <md-autocomplete
         md-menu-class="language-dropdown"
         md-selected-item="vm.selectedItem"
@@ -18,9 +18,7 @@ $this->Form->unlockField($name);
         md-items="language in vm.querySearch(vm.searchText)"
         md-item-text="language.name"
         md-min-length="0"
-        ng-blur="vm.onBlur()"
-        ng-focus="vm.onFocus()"
-        placeholder="<?= __('Select a language') ?>">
+        placeholder="<?= __x('searchbar', 'Any language') ?>">
         <md-item-template>
             <span md-highlight-text="vm.searchText" 
                   md-highlight-flags="ig"

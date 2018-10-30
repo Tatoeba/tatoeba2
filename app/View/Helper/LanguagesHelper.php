@@ -322,12 +322,7 @@ class LanguagesHelper extends AppHelper
      */
     public function getSearchableLanguagesArray()
     {
-        $languages = $this->onlyLanguagesArray();
-        array_unshift(
-            $languages, array('und' => __x('searchbar', 'Any language'))
-        );
-
-        return $languages;
+        return $this->onlyLanguagesArray();
     }
 
     /**
