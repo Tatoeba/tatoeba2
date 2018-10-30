@@ -563,6 +563,7 @@ class LanguagesLib
                 'kas' => __d('languages', 'Kashmiri'),
                 'otk' => __d('languages', 'Old Turkish'),
                 'aoz' => __d('languages', 'Uab Meto'), 
+                'shy' => __d('languages', 'Tachawit'),
                 'fkv' => __d('languages', 'Kven Finnish'),
             );
         }
