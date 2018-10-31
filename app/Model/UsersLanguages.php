@@ -48,11 +48,11 @@ class UsersLanguages extends AppModel
     public function beforeSave($options = array())
     {
         $userId = $this->data['UsersLanguages']['of_user_id'];
+        $lang = $this->data['UsersLanguages']['language_code'];
         $groupId = $this->User->getGroupOfUser($userId);
 
         if ($this->id) {
-          $data = $this->findById($this->id);
-          $lang = $data['UsersLanguages']['language_code'];
+          $data = $this->findById($this->id);          
           $previousLevel = $data['UsersLanguages']['level'];
           $newLevel = $this->data['UsersLanguages']['level'];
           $this->Language->decrementCountForLevel($lang, $previousLevel);
@@ -157,7 +157,11 @@ class UsersLanguages extends AppModel
             )
         );
 
-        return $languageInfo['UsersLanguages'];
+        if (isset($languageInfo['UsersLanguages'])) {
+            return $languageInfo['UsersLanguages'];
+        } else {
+            return null;
+        }
     }
 
 
@@ -234,5 +238,40 @@ class UsersLanguages extends AppModel
             }
         }
         return $query;
+    }
+
+    public function saveUserLanguage($data, $currentUserId) 
+    {
+        if (empty($data['id'])) {
+            $canSave = true;
+        } else {
+            $id = $data['id'];
+            $langInfo = $this->getLanguageInfo($id);
+            $canSave = $langInfo['by_user_id'] == $currentUserId;
+            $data['language_code'] = $langInfo['language_code'];
+        }
+
+        if ($canSave) {
+            $data['of_user_id'] = $currentUserId;
+            $data['by_user_id'] = $currentUserId;
+            if ($data['level'] < 0) {
+                $data['level'] = null;
+            }
+            return $this->save($data);
+        } else {
+            return array();
+        }
+    }
+
+    public function deleteUserLanguage($id, $currentUserId)
+    {
+        $langInfo = $this->getLanguageInfo($id);
+        $canDelete = $langInfo['by_user_id'] == $currentUserId;
+
+        if ($canDelete) {
+            return $this->delete($id, false);
+        } else {
+            return false;
+        }
     }
 }

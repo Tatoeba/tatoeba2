@@ -17,5 +17,15 @@ class UsersLanguageFixture extends CakeTestFixture {
 	);
 
 	public $records = array(
+		array(
+			'id' => 1,
+			'of_user_id' => 4,
+			'by_user_id' => 4,
+			'language_code' => 'jpn',
+			'level' => 1,
+			'details' => '',
+			'created' => '2018-10-31 00:00:00',
+			'modified' => '2018-10-31 00:00:00'
+		)
 	);
 }

@@ -51,27 +51,12 @@ class UsersLanguagesController extends AppController
             );
         }
 
-        $userId = $this->request->data['UsersLanguages']['of_user_id'];
-        $username = $this->User->getUserNameFromId($userId);
-
-        if (empty($this->request->data['UsersLanguages']['id'])) {
-            $canSave = true;
-        } else {
-            $id = $this->request->data['UsersLanguages']['id'];
-            $langInfo = $this->UsersLanguages->getLanguageInfo($id);
-            $canSave = $langInfo['by_user_id'] == CurrentUser::get('id');
-        }
-
-        if ($canSave) {
-            $allowedFields = array('id', 'language_code', 'level', 'details');
-            $language = $this->filterKeys($this->request->data['UsersLanguages'], $allowedFields);
-            $language['of_user_id'] = CurrentUser::get('id');
-            $language['by_user_id'] = CurrentUser::get('id');
-            if ($language['level'] < 0) {
-                $language['level'] = null;
-            }
-            $this->UsersLanguages->save($language);
-        } else {
+        $savedLanguage = $this->UsersLanguages->save(
+            $this->request->data['UsersLanguages'],
+            CurrentUser::get('id')
+        );
+        
+        if (empty($savedLanguage)) {
             $this->Flash->set(__('You cannot edit this language.'));
         }
 
@@ -79,7 +64,7 @@ class UsersLanguagesController extends AppController
             array(
                 'controller' => 'user',
                 'action' => 'profile',
-                $username
+                CurrentUser::get('username')
             )
         );
     }
@@ -88,11 +73,9 @@ class UsersLanguagesController extends AppController
     public function delete($id)
     {
         $userId = CurrentUser::get('id');
-        $langInfo = $this->UsersLanguages->getLanguageInfo($id);
-        $canDelete = $langInfo['by_user_id'] == $userId;
-
-        if ($canDelete) {
-            $this->UsersLanguages->delete($id, false);
+        $isDeleted = $this->UsersLanguages->deleteUserLanguage($id, $userId);
+        
+        if ($isDeleted) {
             $this->Flash->set(__('Language deleted'));
         } else {
             $this->Flash->set(__('You cannot delete this language.'));
