@@ -1,7 +1,7 @@
 <?php
 App::uses('UsersLanguages', 'Model');
 
-class UsersSentencesTest extends CakeTestCase {
+class UsersLanguagesTest extends CakeTestCase {
     public $fixtures = array(
         'app.user',
         'app.users_language'
