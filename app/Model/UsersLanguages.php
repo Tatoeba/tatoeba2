@@ -243,7 +243,7 @@ class UsersLanguages extends AppModel
     public function saveUserLanguage($data, $currentUserId) 
     {
         if (empty($data['id'])) {
-            $canSave = true;
+            $canSave = !empty($data['language_code']) && $data['language_code'] != 'und';
         } else {
             $id = $data['id'];
             $langInfo = $this->getLanguageInfo($id);
@@ -257,7 +257,12 @@ class UsersLanguages extends AppModel
             if ($data['level'] < 0) {
                 $data['level'] = null;
             }
-            return $this->save($data);
+
+            try {
+                return $this->save($data);
+            } catch (Exception $e) {
+                return array();
+            }
         } else {
             return array();
         }

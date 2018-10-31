@@ -4,7 +4,8 @@ App::uses('UsersLanguages', 'Model');
 class UsersLanguagesTest extends CakeTestCase {
     public $fixtures = array(
         'app.user',
-        'app.users_language'
+        'app.users_language',
+        'app.language'
     );
 
     function setUp() {
@@ -82,8 +83,21 @@ class UsersLanguagesTest extends CakeTestCase {
             'id' => 20,
             'level' => 2
         );
-        $expected = array();
-        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+        $result1 = $this->UsersLanguages->saveUserLanguage($data, 1);
+        $data = array(
+            'language_code' => 'und',
+            'level' => 5
+        );
+        $result2 = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $result = array(
+            'savingNonExistingId' => $result1,
+            'savingUndefinedLanguage' => $result2
+        );
+        $expected = array(
+            'savingNonExistingId' => array(),
+            'savingUndefinedLanguage' => array(),
+        );
 
         $this->assertEquals($expected, $result);
     }

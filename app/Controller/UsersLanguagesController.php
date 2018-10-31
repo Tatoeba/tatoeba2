@@ -41,32 +41,33 @@ class UsersLanguagesController extends AppController
 
     public function save()
     {
-        if (empty($this->request->data['UsersLanguages']['language_code'])) {
-            $this->Flash->set(__('No language selected.'));
+        $savedLanguage = $this->UsersLanguages->saveUserLanguage(
+            $this->request->data['UsersLanguages'],
+            CurrentUser::get('id')
+        );
+
+        if (empty($savedLanguage)) {
+            $lang = $this->request->data['UsersLanguages']['language_code'];
+            if (empty($lang) || $lang == 'und') {
+                $this->Flash->set(__('No language selected.'));
+            } else {
+                $this->Flash->set(__('You cannot save this language.'));
+            }
             $this->redirect(
                 array(
                     'controller' => 'user',
                     'action' => 'language'
                 )
             );
+        } else {
+            $this->redirect(
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    CurrentUser::get('username')
+                )
+            );
         }
-
-        $savedLanguage = $this->UsersLanguages->save(
-            $this->request->data['UsersLanguages'],
-            CurrentUser::get('id')
-        );
-        
-        if (empty($savedLanguage)) {
-            $this->Flash->set(__('You cannot edit this language.'));
-        }
-
-        $this->redirect(
-            array(
-                'controller' => 'user',
-                'action' => 'profile',
-                CurrentUser::get('username')
-            )
-        );
     }
 
 

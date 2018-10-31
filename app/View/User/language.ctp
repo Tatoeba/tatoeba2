@@ -71,7 +71,8 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                     'language_dropdown', 
                     array(
                         'name' => 'language_code',
-                        'languages' => $languagesList
+                        'languages' => $languagesList,
+                        'placeholder' => __('Select a language')
                     )
                 );
             } else {
