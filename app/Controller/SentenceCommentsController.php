@@ -372,7 +372,6 @@ class SentenceCommentsController extends AppController
         $this->paginate['SentenceComment']['conditions'] = $conditions;
         $userComments = $this->paginate('SentenceComment');
 
-        $userId = $this->User->getIdfromUsername($userName);
         $backLink = $this->referer(array('action'=>'index'), true);
         $this->set('backLink', $backLink);
         // if there's no such user no need to do more computation
