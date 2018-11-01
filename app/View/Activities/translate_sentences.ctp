@@ -34,6 +34,8 @@ if (empty($currentLanguage)) {
 if (empty($notTranslatedInto)) {
     $notTranslatedInto = 'none';
 }
+$langsFrom = $this->Languages->profileLanguagesArray(false, false);
+$langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
 ?>
 
 <div id="annexe_content">
@@ -77,6 +79,24 @@ if (empty($notTranslatedInto)) {
     <h2><?php echo __('Translate sentences'); ?></h2>
 
     <div class="section" md-whiteframe="1">
+        <? if (CurrentUser::isMember() && count($langsFrom) < 2) { ?>
+        <div class="warning">
+            <?= format(
+                __(
+                    'Translating sentences implies that you know at least two languages. '.
+                    'You have only one language in <a href="{}">your profile</a>. '.
+                    'Please add at least one more language.'
+                ),
+                $this->Html->url(
+                    array(
+                        'controller' => 'user', 
+                        'action' => 'profile',
+                        CurrentUser::get('username')
+                    )
+                )
+            ); ?>
+        </div>
+        <? } ?>
         <h3><?php echo __('Search for untranslated sentences'); ?></h3>
         <div>
             <?php
@@ -87,10 +107,6 @@ if (empty($notTranslatedInto)) {
                     "type" => "get"
                 )
             );
-
-            $langsFrom = $this->Languages->profileLanguagesArray(false, false);
-            $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
-
             ?>
             <fieldset class="select">
                 <label for="ActivityLangFrom">
