@@ -151,18 +151,31 @@ class LanguagesHelper extends AppHelper
      * @return array
      */
 
-    public function profileLanguagesArray($withAutoDetection, $withOther)
+    public function profileLanguagesArray($withAutoDetection, $withOther, $withNone = false, $withAny = false)
     {
         $languages = array_intersect_key(
             $this->onlyLanguagesArray(false),
             array_flip(CurrentUser::getProfileLanguages())
         );
 
+        $options = array();
         if (count($languages) > 1 && $withAutoDetection) {
-            array_unshift($languages, array('auto' => __('Auto detect')));
+            $options['auto'] = __('Auto detect');
+        }
+        if ($withNone) {
+            $options['none'] = '—';
+        }
+        if ($withAny) {
+            $options['und'] = __('Any language');   
         }
         if ($withOther) {
-            array_unshift($languages, array('' => __('other language')));
+            $options[''] = __('other language');
+        }
+        if (!empty($options)) {
+            $languages = array(
+                $options,
+                __('Profile languages') => $languages
+            );
         }
 
         return $languages;

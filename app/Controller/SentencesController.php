@@ -976,60 +976,6 @@ class SentencesController extends AppController
         $this->set('random', $randomSentence);
     }
 
-    /**
-     * show several random sentences a time
-     * NOTE : TODO : this just a work around !
-     *
-     * @return void
-     */
-    public function several_random_sentences()
-    {
-
-        if (isset($_POST['data']['Sentence']['numberWanted'])) {
-            $number = $_POST['data']['Sentence']['numberWanted'];
-            $number = Sanitize::paranoid($number);
-        } else {
-            // default number of sentences when coming from "show more..."
-            $number = 5;
-        }
-
-        if (isset($_POST['data']['Sentence']['into'])) {
-            $lang = $_POST['data']['Sentence']['into'] ;
-            $lang = Sanitize::paranoid($lang);
-            $this->Session->write('random_lang_selected', $lang);
-        } else {
-            // default language when coming from "show more..."
-            $lang = $this->Session->read('random_lang_selected');
-        }
-        $this->addLastUsedLang($lang);
-
-        $type = null ;
-        // to avoid "petit malin"
-        if ( $number > 100 or $number < 10) {
-            $number = 10 ;
-        }
-
-        $this->Session->write('random_lang_selected', $lang);
-
-        $allSentences = $this->Sentence->find('random', array(
-            'lang' => $lang,
-            'number' => $number,
-            'contain' => $this->Sentence->contain(),
-        ));
-
-        if (empty($allSentences)) {
-            $searchDisabled = !Configure::read('Search.enabled');
-            if ($searchDisabled) {
-                $this->set('searchProblem', 'disabled');
-            } else {
-                $this->set('searchProblem', 'error');
-            }
-        } else {
-            $this->set("allSentences", $allSentences);
-        }
-        $this->set('lastNumberChosen', $number);
-
-    }
 
     /**
      * Show all the sentences of a given user

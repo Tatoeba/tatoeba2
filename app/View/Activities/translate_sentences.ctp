@@ -88,8 +88,8 @@ if (empty($notTranslatedInto)) {
                 )
             );
 
-            $langsFrom = $this->Languages->onlyLanguagesArray();
-            $langsTo = $this->Languages->LanguagesArrayForNegativeLists();
+            $langsFrom = $this->Languages->profileLanguagesArray(false, false);
+            $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
 
             ?>
             <fieldset class="select">
@@ -126,7 +126,33 @@ if (empty($notTranslatedInto)) {
                     false
                 );
                 ?>
+                <p class="hint">
+                    <?= __('Best practice: translate only into your native language.') ?>
+                </p>
             </fieldset>
+
+            <fieldset class="select">
+                <input type="radio" name="sort" value="{{sort}}" checked hidden
+                       ng-init="sort = 'created'"/>
+                <label>
+                    <?= __('Order:'); ?>
+                </label>
+                <md-radio-group ng-model='sort'>
+                    <md-radio-button value='created' class='md-primary'>
+                        <?= __('Last created first') ?>
+                    </md-radio-button>
+                    <md-radio-button value='modified' class='md-primary'>
+                        <?= __('Last modified first') ?>
+                    </md-radio-button>
+                    <md-radio-button value='words' class='md-primary'>
+                        <?= __('Fewest words first') ?>
+                    </md-radio-button>
+                    <md-radio-button value='random' class='md-primary'>
+                        <?= __('Random') ?>
+                    </md-radio-button>
+                </md-radio-group>
+            </fieldset>
+            
 
             <fieldset class="submit">
                 <md-button type="submit" class="md-raised md-primary">
@@ -137,56 +163,4 @@ if (empty($notTranslatedInto)) {
         </div>
     </div>
 
-    <div class="section" md-whiteframe="1">
-        <h3><?php echo __('Display random sentences'); ?></h3>
-        <?php
-        $numberOfSentencesWanted = array (10 => 10 , 20 => 20 , 50 => 50, 100 => 100);
-        $selectedLanguage = $this->Session->read('random_lang_selected');
-        echo $this->Form->create(
-            'Sentence',
-            array(
-                "url" => array("action" => "several_random_sentences"),
-                "type" => "post"
-            )
-        );
-        ?>
-
-        <fieldset class="select">
-        <label><?php echo __('Quantity'); ?></label>
-        <?php
-        echo $this->Form->select(
-            'numberWanted',
-            $numberOfSentencesWanted,
-            array(
-                'value' => 5,
-                'empty' => false
-            )
-        );
-        ?>
-        </fieldset>
-
-        <fieldset class="select">
-        <label><?php echo __('Language'); ?></label>
-        <?php
-        echo $this->Form->select(
-            'into',
-            $this->Languages->languagesArrayAlone(),
-            array(
-                'value' => $selectedLanguage,
-                'class' => 'language-selector',
-                "empty" => false
-            ),
-            false
-        );
-        ?>
-        </fieldset>
-
-        <fieldset class="submit">
-            <md-button type="submit" class="md-raised md-primary">
-                <?php echo __('show random sentences'); ?>
-            </md-button>
-        </fieldset>
-
-        <?php echo $this->Form->end();?>
-    </div>
 </div>

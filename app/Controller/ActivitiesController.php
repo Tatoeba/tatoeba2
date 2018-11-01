@@ -142,6 +142,7 @@ class ActivitiesController extends AppController
         {
             $langFrom = Sanitize::paranoid($_GET['langFrom']);
             $langTo = Sanitize::paranoid($_GET['langTo']);
+            $sort = Sanitize::paranoid($_GET['sort']);
 
             $this->Cookie->write(
                 'not_translated_into_lang',
@@ -158,7 +159,7 @@ class ActivitiesController extends AppController
                     'to' => 'none',
                     'trans_filter' => 'exclude',
                     'trans_to' => $langTo,
-                    'sort' => 'modified'
+                    'sort' => $sort
                 )
             ));
         }
