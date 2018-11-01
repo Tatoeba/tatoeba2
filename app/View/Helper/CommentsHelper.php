@@ -149,22 +149,13 @@ class CommentsHelper extends AppHelper
         $content = $message['text'];
         $authorId = $author['id'];
 
-        // Hack. This was the only way I knew to get the proper
-        // action value for this form
-        // The form in users/edit also has the same problem
         echo $this->Form->create(
             false,
             array(
-                "url" => array(
-                    "controller" => "sentence_comments",
-                    "action" => "edit",
-                    $message['id']
-                ),
                 "class" => "message form"
             )
         );
 
-        echo $this->Form->hidden('SentenceComment.id');
         echo $this->Form->hidden('SentenceComment.sentence_id');
 
         $this->Messages->displayHeader($author, $created, $modified, null);

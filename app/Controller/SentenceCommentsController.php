@@ -223,7 +223,6 @@ class SentenceCommentsController extends AppController
     public function edit($commentId)
     {
         $commentId = Sanitize::paranoid($commentId);
-        $this->SentenceComment->id = $commentId;
 
         //get permissions
         if (empty($this->request->data)) {
@@ -237,7 +236,6 @@ class SentenceCommentsController extends AppController
             $sentenceId = $sentenceComment['SentenceComment']['sentence_id'];
             $authorId = $sentenceComment['SentenceComment']['user_id'];
         } else {
-            $sentenceComment = $this->request->data['SentenceComment'];
             $sentenceId = $this->request->data['SentenceComment']['sentence_id'];
             $authorId = $this->SentenceComment->getOwnerIdOfComment(
                 $this->request->data['SentenceComment']['id']
@@ -266,11 +264,9 @@ class SentenceCommentsController extends AppController
         } else {
             //user has permissions so either display form or save comment
             if (empty($this->request->data)) {
-                $this->helpers[] = "Messages";
                 $this->request->data = $sentenceComment;
                 $this->set('sentenceComment', $sentenceComment);
             } else {
-                $commentId = $this->request->data['SentenceComment']['id'];
                 //save comment
                 $commentUpdate = array(
                     'id'   => $commentId,
@@ -301,7 +297,6 @@ class SentenceCommentsController extends AppController
                 }
             }
         }
-
     }
 
     /**
