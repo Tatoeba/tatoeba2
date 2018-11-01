@@ -321,14 +321,13 @@ class SentenceCommentsController extends AppController
 
     public function of_user($userName)
     {
+        $this->set('userName', $userName);
         $userId = $this->User->getIdfromUsername($userName);
+        $this->set('userExists', !empty($userId));
         $backLink = $this->referer(array('action'=>'index'), true);
+        $this->set('backLink', $backLink);
         // if there's no such user no need to do more computation
         if (empty($userId)) {
-
-            $this->set('backLink', $backLink);
-            $this->set('userName', $userName);
-            $this->set("userExists", false);
             return;
         }
 
@@ -346,9 +345,7 @@ class SentenceCommentsController extends AppController
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
         $this->set('userComments', $userComments);
-        $this->set('userName', $userName);
         $this->set('commentsPermissions', $commentsPermissions);
-        $this->set("userExists", true);
     }
 
 
@@ -362,7 +359,9 @@ class SentenceCommentsController extends AppController
 
     public function on_sentences_of_user($userName)
     {
+        $this->set('userName', $userName);
         $userId = $this->User->getIdfromUsername($userName);
+        $this->set('userExists', !empty($userId));
 
         $conditions = array(
             'Sentence.user_id' => $userId
@@ -375,12 +374,9 @@ class SentenceCommentsController extends AppController
 
         $userId = $this->User->getIdfromUsername($userName);
         $backLink = $this->referer(array('action'=>'index'), true);
+        $this->set('backLink', $backLink);
         // if there's no such user no need to do more computation
         if (empty($userId)) {
-
-            $this->set('backLink', $backLink);
-            $this->set('userName', $userName);
-            $this->set("userExists", false);
             return;
         }
 
@@ -389,9 +385,7 @@ class SentenceCommentsController extends AppController
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
-        $this->set('userExists', true);
         $this->set('userComments', $userComments);
-        $this->set('userName', $userName);
         $this->set('commentsPermissions', $commentsPermissions);
     }
 
