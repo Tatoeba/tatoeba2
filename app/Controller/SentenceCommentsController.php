@@ -329,24 +329,11 @@ class SentenceCommentsController extends AppController
             $this->set('backLink', $backLink);
             $this->set('userName', $userName);
             $this->set("userExists", false);
-            $this->set("noComment", true);
             return;
         }
 
         $this->helpers[] = 'Messages';
         $this->helpers[] = 'Members';
-
-        // in the same idea, we do not need to do extra request if the user
-        // has no comment
-        $numberOfComments = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
-        if ($numberOfComments === 0) {
-
-            $this->set('backLink', $backLink);
-            $this->set('userName', $userName);
-            $this->set("userExists", true);
-            $this->set("noComment", true);
-            return;
-        }
 
         $this->paginate['SentenceComment']['conditions'] = array(
             'SentenceComment.user_id' => $userId
@@ -361,7 +348,6 @@ class SentenceCommentsController extends AppController
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
         $this->set('commentsPermissions', $commentsPermissions);
-        $this->set("noComment", false);
         $this->set("userExists", true);
     }
 
@@ -395,20 +381,6 @@ class SentenceCommentsController extends AppController
             $this->set('backLink', $backLink);
             $this->set('userName', $userName);
             $this->set("userExists", false);
-            $this->set("noComment", false);
-            return;
-        }
-
-        // in the same idea, we do not need to do extra request if the user
-        // has no comment
-        $numberOfComments = $this->SentenceComment->numberOfCommentsOnSentencesOf(
-            $userId
-        );
-        if ($numberOfComments === 0) {
-            $this->set('backLink', $backLink);
-            $this->set('userName', $userName);
-            $this->set("userExists", true);
-            $this->set("noComment", true);
             return;
         }
 
@@ -418,7 +390,6 @@ class SentenceCommentsController extends AppController
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
         $this->set('userExists', true);
-        $this->set('noComment', false);
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
         $this->set('commentsPermissions', $commentsPermissions);

@@ -53,9 +53,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 <div id="main_content">
     <div class="section">
     <?php
+    $paging = $this->Paginator->params();
     if ($userExists === false) {
         $this->CommonModules->displayNoSuchUser($userName, $backLink);
-    } elseif ($noComment === true) {
+    } elseif (!isset($paging['count'])) {
         echo '<h2>';
         echo format(
             __("{user} has posted no comment"),
@@ -69,13 +70,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         ?>
         <h2>
             <?php 
-            echo $this->Paginator->counter(
-                array(
-                    'format' => format(
-                        __('{user}\'s comments (total&nbsp;{n})'),
-                        array('user' => $userName, 'n' => '%count%')
-                    )
-                )
+            echo format(
+                __('{user}\'s comments (total&nbsp;{n})'),
+                array('user' => $userName, 'n' => $paging['count'])
             ); 
             ?>
         </h2>

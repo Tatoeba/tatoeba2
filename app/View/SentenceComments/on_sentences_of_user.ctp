@@ -51,6 +51,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 <div id="main_content">
     <div class="section">
     <?php
+    $paging = $this->Paginator->params();
     if ($userExists === false) {
         echo '<h2>';
         echo format(
@@ -60,7 +61,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         echo '</h2>';
 
         echo $this->Html->link(__('Go back to previous page'), $backLink);
-    } elseif ($noComment === true) {
+    } elseif (!isset($paging['count'])) {
         echo '<h2>';
         echo format(
             __("{user} has no comment posted on his/her sentences"),
@@ -74,13 +75,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         ?>
         <h2>
             <?php 
-            echo $this->Paginator->counter(
-                array(
-                    'format' => format(
-                        __('Comments on {user}\'s sentences (total&nbsp;{n})'),
-                        array('user' => $userName, 'n' => '%count%')
-                    )
-                )
+            echo format(
+                __('Comments on {user}\'s sentences (total&nbsp;{n})'),
+                array('user' => $userName, 'n' => $paging['count'])
             ); 
             ?>
         </h2>
