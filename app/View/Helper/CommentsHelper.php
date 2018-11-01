@@ -149,12 +149,9 @@ class CommentsHelper extends AppHelper
         $content = $message['text'];
         $authorId = $author['id'];
 
-        echo $this->Form->create(
-            false,
-            array(
-                "class" => "message form"
-            )
-        );
+        echo $this->Form->create(array(
+            'class' => 'message form',
+        ));
 
         $this->Messages->displayHeader($author, $created, $modified, null);
         ?>

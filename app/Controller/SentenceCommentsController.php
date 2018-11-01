@@ -256,7 +256,9 @@ class SentenceCommentsController extends AppController
             );
         } else {
             //user has permissions so either display form or save comment
-            if ($this->request->is('post')) {
+            if ($this->request->is('get')) {
+                $this->request->data = $sentenceComment;
+            } else {
                 //save comment
                 $text = $this->request->data['SentenceComment']['text'];
                 $this->SentenceComment->id = $commentId;
@@ -276,8 +278,6 @@ class SentenceCommentsController extends AppController
                     $firstValidationErrorMessage = reset($this->SentenceComment->validationErrors)[0];
                     $this->Flash->set($firstValidationErrorMessage);
                 }
-            } else {
-                $this->request->data = $sentenceComment;
             }
             $this->set('sentenceComment', $sentenceComment);
         }
