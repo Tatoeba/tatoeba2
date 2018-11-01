@@ -195,17 +195,6 @@ class SentenceCommentsController extends AppController
             "+1 month"
         );
 
-        if (empty($this->request->data['SentenceComment']['text'])) {
-            $sentenceId = $this->request->data['SentenceComment']['sentence_id'];
-            $this->redirect(
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $sentenceId
-                )
-            );
-        }
-
         $allowedFields = array('sentence_id', 'text');
         $comment = $this->filterKeys($this->request->data['SentenceComment'], $allowedFields);
         $comment['user_id'] = $userId;
@@ -216,6 +205,14 @@ class SentenceCommentsController extends AppController
                 '/sentence_comments/show/'
                 .$this->request->data['SentenceComment']['sentence_id']
             );
+        } else {
+            $firstValidationErrorMessage = reset($this->SentenceComment->validationErrors)[0];
+            $this->Flash->set($firstValidationErrorMessage);
+            $this->redirect(array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ));
         }
     }
 
@@ -278,19 +275,6 @@ class SentenceCommentsController extends AppController
                 $this->set('sentenceComment', $sentenceComment);
             } else {
                 $commentId = $this->request->data['SentenceComment']['id'];
-                //check for empty text
-                if (empty($this->request->data['SentenceComment']['text'])) {
-                    $this->Flash->set(
-                        __("Comments cannot be empty.")
-                    );
-                    $this->redirect(
-                        array(
-                            'controller' => "sentence_comments",
-                            'action'=> 'edit',
-                            $commentId
-                        )
-                    );
-                }
                 //save comment
                 $commentUpdate = array(
                     'id'   => $commentId,
@@ -309,15 +293,13 @@ class SentenceCommentsController extends AppController
                         )
                     );
                 } else {
-                    $this->Flash->set(
-                        __("We could not save your changes.")
-                    );
+                    $firstValidationErrorMessage = reset($this->SentenceComment->validationErrors)[0];
+                    $this->Flash->set($firstValidationErrorMessage);
                     $this->redirect(
                         array(
-                            'controller' => "sentences",
-                            'action'=> 'show',
-                            $sentenceId,
-                            "#" => "comment-".$commentId
+                            'controller' => "sentence_comments",
+                            'action'=> 'edit',
+                            $commentId,
                         )
                     );
                 }

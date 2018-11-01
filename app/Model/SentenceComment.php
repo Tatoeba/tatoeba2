@@ -39,6 +39,19 @@ class SentenceComment extends AppModel
     public $actsAs = array('Containable');
     public $belongsTo = array('Sentence', 'User');
 
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+        $this->validate = array(
+            'text' => array(
+                'rule'       => 'notBlank',
+                'allowEmpty' => false,
+                'message'    => __('Comments cannot be empty.'),
+            ),
+        );
+    }
+
+
     public function afterSave($created, $options = array())
     {
         if ($created) {
