@@ -44,22 +44,14 @@ class SentenceCommentsController extends AppController
     public $name = 'SentenceComments';
     public $uses = array(
         "SentenceComment",
-        "Sentence",
         "User",
-        "PrivateMessage"
     );
     public $helpers = array(
         'Comments',
-        'Sentences',
-        'Languages',
-        'Navigation',
-        'Html',
-        'Form',
         'CommonModules',
         'Pagination',
-        'Tags'
     );
-    public $components = array ('Flash', 'LanguageDetection', 'Permissions', 'Mailer');
+    public $components = array ('Flash', 'Permissions');
 
     public $paginate = array(
         'SentenceComment' => array(
