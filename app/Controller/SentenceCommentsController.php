@@ -363,21 +363,18 @@ class SentenceCommentsController extends AppController
         $userId = $this->User->getIdfromUsername($userName);
         $this->set('userExists', !empty($userId));
 
-        $conditions = array(
-            'Sentence.user_id' => $userId
-        );
-        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers(
-            $conditions
-        );
-        $this->paginate['SentenceComment']['conditions'] = $conditions;
-        $userComments = $this->paginate('SentenceComment');
-
         $backLink = $this->referer(array('action'=>'index'), true);
         $this->set('backLink', $backLink);
         // if there's no such user no need to do more computation
         if (empty($userId)) {
             return;
         }
+
+        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers(
+            array('Sentence.user_id' => $userId)
+        );
+        $this->paginate['SentenceComment']['conditions'] = $conditions;
+        $userComments = $this->paginate('SentenceComment');
 
         $this->helpers[] = 'Messages';
         $this->helpers[] = 'Members';
