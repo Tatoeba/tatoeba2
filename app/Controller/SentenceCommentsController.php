@@ -386,16 +386,7 @@ class SentenceCommentsController extends AppController
      */
     public function hide_message($messageId)
     {
-        if (CurrentUser::isAdmin()) {
-            $messageId = Sanitize::paranoid($messageId);
-
-            $this->SentenceComment->id = $messageId;
-            $this->SentenceComment->saveField('hidden', true);
-
-            // redirect to previous page
-            $this->redirect($this->referer());
-        }
-
+        $this->_setHiding($messageId, true);
     }
 
 
@@ -408,11 +399,16 @@ class SentenceCommentsController extends AppController
      */
     public function unhide_message($messageId)
     {
+        $this->_setHiding($messageId, false);
+    }
+
+    private function _setHiding($messageId, $hiding)
+    {
         if (CurrentUser::isAdmin()) {
             $messageId = Sanitize::paranoid($messageId);
 
             $this->SentenceComment->id = $messageId;
-            $this->SentenceComment->saveField('hidden', false);
+            $this->SentenceComment->saveField('hidden', $hiding);
 
             // redirect to previous page
             $this->redirect($this->referer());
