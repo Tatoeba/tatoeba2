@@ -225,7 +225,10 @@ class SentenceCommentsController extends AppController
         $commentId = Sanitize::paranoid($commentId);
 
         //get permissions
-        if (empty($this->request->data)) {
+        if ($this->request->is('post')) {
+            $sentenceId = $this->request->data['SentenceComment']['sentence_id'];
+            $authorId = $this->SentenceComment->getOwnerIdOfComment($commentId);
+        } else {
             $sentenceComment = $this->SentenceComment->find('first', array(
                 'conditions' => array('SentenceComment.id' => $commentId),
                 'contain' => array(
@@ -235,11 +238,6 @@ class SentenceCommentsController extends AppController
             ));
             $sentenceId = $sentenceComment['SentenceComment']['sentence_id'];
             $authorId = $sentenceComment['SentenceComment']['user_id'];
-        } else {
-            $sentenceId = $this->request->data['SentenceComment']['sentence_id'];
-            $authorId = $this->SentenceComment->getOwnerIdOfComment(
-                $this->request->data['SentenceComment']['id']
-            );
         }
 
         //check permissions now
@@ -263,10 +261,7 @@ class SentenceCommentsController extends AppController
             );
         } else {
             //user has permissions so either display form or save comment
-            if (empty($this->request->data)) {
-                $this->request->data = $sentenceComment;
-                $this->set('sentenceComment', $sentenceComment);
-            } else {
+            if ($this->request->is('post')) {
                 //save comment
                 $text = $this->request->data['SentenceComment']['text'];
                 $this->SentenceComment->id = $commentId;
@@ -293,6 +288,9 @@ class SentenceCommentsController extends AppController
                         )
                     );
                 }
+            } else {
+                $this->request->data = $sentenceComment;
+                $this->set('sentenceComment', $sentenceComment);
             }
         }
     }
