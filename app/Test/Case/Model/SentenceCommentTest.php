@@ -69,23 +69,19 @@ class SentenceCommentTest extends CakeTestCase {
     }
 
     public function testSave_editsExistingComment() {
-        $comment = array(
-            'id' => 2,
-            'text' => 'Someone should REALLY delete this sentence.',
-        );
+        $newText = 'Someone should REALLY delete this sentence.';
 
-        $saved = $this->SentenceComment->save($comment);
+        $this->SentenceComment->id = 2;
+        $saved = $this->SentenceComment->saveField('text', $newText, true);
 
         $this->assertTrue((bool)$saved);
     }
 
     public function testSave_failsEditingCommentWithEmptyContents() {
-        $comment = array(
-            'id' => 2,
-            'text' => ' ',
-        );
+        $newText = ' ';
 
-        $saved = $this->SentenceComment->save($comment);
+        $this->SentenceComment->id = 2;
+        $saved = $this->SentenceComment->saveField('text', $newText, true);
 
         $this->assertFalse((bool)$saved);
     }

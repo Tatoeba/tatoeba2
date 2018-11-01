@@ -268,11 +268,9 @@ class SentenceCommentsController extends AppController
                 $this->set('sentenceComment', $sentenceComment);
             } else {
                 //save comment
-                $commentUpdate = array(
-                    'id'   => $commentId,
-                    'text' => $this->request->data['SentenceComment']['text'],
-                );
-                if ($this->SentenceComment->save($commentUpdate)) {
+                $text = $this->request->data['SentenceComment']['text'];
+                $this->SentenceComment->id = $commentId;
+                if ($this->SentenceComment->saveField('text', $text, true)) {
                     $this->Flash->set(
                         __("Changes to your comment have been saved.")
                     );
