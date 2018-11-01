@@ -156,8 +156,6 @@ class CommentsHelper extends AppHelper
             )
         );
 
-        echo $this->Form->hidden('SentenceComment.sentence_id');
-
         $this->Messages->displayHeader($author, $created, $modified, null);
         ?>
 

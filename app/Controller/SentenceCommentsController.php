@@ -225,20 +225,15 @@ class SentenceCommentsController extends AppController
         $commentId = Sanitize::paranoid($commentId);
 
         //get permissions
-        if ($this->request->is('post')) {
-            $sentenceId = $this->request->data['SentenceComment']['sentence_id'];
-            $authorId = $this->SentenceComment->getOwnerIdOfComment($commentId);
-        } else {
-            $sentenceComment = $this->SentenceComment->find('first', array(
-                'conditions' => array('SentenceComment.id' => $commentId),
-                'contain' => array(
-                    'Sentence' => array('Transcription'),
-                    'User',
-                )
-            ));
-            $sentenceId = $sentenceComment['SentenceComment']['sentence_id'];
-            $authorId = $sentenceComment['SentenceComment']['user_id'];
-        }
+        $sentenceComment = $this->SentenceComment->find('first', array(
+            'conditions' => array('SentenceComment.id' => $commentId),
+            'contain' => array(
+                'Sentence' => array('Transcription'),
+                'User',
+            )
+        ));
+        $sentenceId = $sentenceComment['SentenceComment']['sentence_id'];
+        $authorId = $sentenceComment['SentenceComment']['user_id'];
 
         //check permissions now
         $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
