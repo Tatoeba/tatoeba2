@@ -200,20 +200,16 @@ class SentenceCommentsController extends AppController
         $comment['user_id'] = $userId;
 
         if ($this->SentenceComment->save($comment)) {
-            $this->flash(
-                __('Your comment has been saved.'),
-                '/sentence_comments/show/'
-                .$this->request->data['SentenceComment']['sentence_id']
-            );
+            $this->Flash->set(__('Your comment has been saved.'));
         } else {
             $firstValidationErrorMessage = reset($this->SentenceComment->validationErrors)[0];
             $this->Flash->set($firstValidationErrorMessage);
-            $this->redirect(array(
-                'controller' => 'sentences',
-                'action' => 'show',
-                $sentenceId
-            ));
         }
+        $this->redirect(array(
+            'controller' => 'sentences',
+            'action' => 'show',
+            $sentenceId
+        ));
     }
 
 
