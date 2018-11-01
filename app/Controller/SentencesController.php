@@ -277,48 +277,25 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function delete($id = null)
+    public function delete($id)
     {
-        $id = Sanitize::paranoid($id);
-        if (empty($id)) {
-            return;
-        }
-
-        $sentence = $this->Sentence->findById($id);
-        if (!$sentence) {
-            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
-            return;
-        }
-
-        if (!CurrentUser::canRemoveSentence($sentence['Sentence']['id'], $sentence['Sentence']['user_id'])) {
-            $this->flash(
-                __('You cannot delete this sentence.'),
-                '/sentences/show/'.$id
-            );
-            return;
-        }
-
-        $isDeleted = $this->Sentence->delete(
-            $id,
-            false
-        );
+        $isDeleted = $this->Sentence->deleteSentence($id);
         if ($isDeleted) {
-            $this->flash(
-                format(
-                    __('The sentence #{id} has been deleted.'),
-                    array("id" => $id)
-                ),
-                '/sentences/show/'.$id
+            $flassMessage = format(
+                __('The sentence #{id} has been deleted.'),
+                array('id' => $id)
             );
+            
         } else {
-            $this->flash(
-                format(
-                    __('Error: the sentence #{id} could not be deleted.'),
-                    array("id" => $id)
-                ),
-                '/sentences/show/'.$id
+            $flassMessage = format(
+                __('Error: the sentence #{id} could not be deleted.'),
+                array('id' => $id)
             );
         }
+        $this->flash(
+            $flassMessage,
+            array('controller' => 'sentences', 'action' => 'show', $id)
+        );
     }
 
     /**
@@ -378,90 +355,16 @@ class SentencesController extends AppController
      */
     public function edit_sentence()
     {
-        $text = $this->_getEditFormText($this->request->data);
-
-        $idLangArray = $this->_getEditFormIdLang($this->request->data);
-
-        if (!$text || !$idLangArray) {
-            return;
+        $sentence = $this->Sentence->editSentence($this->request->data);
+        if (empty($sentence)) {
+            $sentenceText = $this->request->data['text'];
+        } else {
+            $sentenceText = $sentence['Sentence']['text'];
         }
-
-        // Set $id and $lang
-        extract($idLangArray);
-
-        $sentence = $this->Sentence->findById($id);
-
-        if ($this->_cantEditSentence($sentence)) {
-            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
-
-            return;
-        }
-
-        $isSaved = $this->Sentence->editSentence($id, $text, $lang);
 
         $this->layout = null;
-
-        if ($isSaved) {
-            $this->UsersSentences->makeDirty($id);
-
-            $this->set('sentence_text', $text);
-        } else {
-            $this->set('sentence_text', $sentence['Sentence']['text']);
-        }
-    }
-
-    /**
-     * Get text from edit form params.
-     *
-     * @param  array $params Form parameters.
-     *
-     * @return string|boolean
-     */
-    private function _getEditFormText($params)
-    {
-        if (isset($params['value'])) {
-            return trim($params['value']);
-        }
-
-        return false;
-    }
-
-    /**
-     * Get id and lang from edit form params.
-     *
-     * @param  array $params Form parameters.
-     *
-     * @return array|boolean
-     */
-    private function _getEditFormIdLang($params)
-    {
-        if (isset($params['id'])) {
-            // ['form']['id'] contains both the sentence id and its language.
-            // Do not sanitize it directly.
-            $sentenceId = $params['id'];
-
-            $dirtyArray = explode("_", $sentenceId);
-
-            return [
-                'id' => Sanitize::paranoid($dirtyArray[1]),
-                'lang' => Sanitize::paranoid($dirtyArray[0])
-            ];
-        }
-
-        return false;
-    }
-
-    /**
-     * Return true if user can't edit sentence.
-     *
-     * @param  array $sentence Sentence to edit.
-     *
-     * @return boolean
-     */
-    private function _cantEditSentence($sentence)
-    {
-        return !$sentence ||
-            !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id']);
+        
+        $this->set('sentence_text', $sentenceText);
     }
 
     /**

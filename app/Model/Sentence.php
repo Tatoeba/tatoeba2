@@ -79,6 +79,7 @@ class Sentence extends AppModel
             'foreignKey' => 'sentence_id',
         ),
         'ReindexFlag',
+        'UsersSentences'
     );
 
     public $belongsTo = array(
@@ -1222,30 +1223,99 @@ class Sentence extends AppModel
     /**
      * Edit the sentence.
      *
-     * @param  int $id      Sentence id.
-     * @param  string $text New sentence text.
-     * @param  string $lang New sentnece lang.
+     * @param array $data We're taking the data from the AJAX request. It has an
+     *                    'id' and a 'value', but the 'id' actually contains the
+     *                    language followed by the id, separated by an underscore.
      *
-     * @return boolean
+     * @return array
      */
-    public function editSentence($id, $text, $lang)
+    public function editSentence($data)
     {
-        $this->id = $id;
+        $text = $this->_getEditFormText($data);
+        $idLangArray = $this->_getEditFormIdLang($data);
+        if (!$text || !$idLangArray) {
+            return array();
+        }
 
+        // Set $id and $lang
+        extract($idLangArray);
+        $sentence = $this->findById($id);
+        if ($this->_cantEditSentence($sentence)) {
+            return array();
+        }
+        
         if ($this->hasAudio($id)) {
-            return false;
+            return array();
         }
 
         $hash = $this->makeHash($lang, $text);
+        $data = array(
+            'id' => $id,
+            'text' => $text,
+            'hash' => $hash,
+            'lang' => $lang
+        );
 
-        $data['Sentence']['text'] = $text;
-        $data['Sentence']['hash'] = $hash;
-
-        if (!empty($lang)) {
-            $data['Sentence']['lang'] = $lang;
+        $sentenceSaved = $this->save($data);
+        if ($sentenceSaved) {
+            $this->UsersSentences->makeDirty($id);
         }
 
-        return $this->save($data);
+        return $sentenceSaved;
+    }
+
+    /**
+     * Get text from edit form params.
+     *
+     * @param  array $params Form parameters.
+     *
+     * @return string|boolean
+     */
+    private function _getEditFormText($params)
+    {
+        if (isset($params['value'])) {
+            return trim($params['value']);
+        }
+
+        return false;
+    }
+
+    /**
+     * Get id and lang from edit form params.
+     *
+     * @param  array $params Form parameters.
+     *
+     * @return array|boolean
+     */
+    private function _getEditFormIdLang($params)
+    {
+        if (isset($params['id'])) {
+            // ['form']['id'] contains both the sentence id and its language.
+            // Do not sanitize it directly.
+            $sentenceId = $params['id'];
+
+            $dirtyArray = explode("_", $sentenceId);
+
+            return [
+                'id' => Sanitize::paranoid($dirtyArray[1]),
+                'lang' => Sanitize::paranoid($dirtyArray[0])
+            ];
+        }
+
+        return false;
+    }
+
+    /**
+     * Return true if user can't edit sentence.
+     *
+     * @param  array $sentence Sentence to edit.
+     *
+     * @return boolean
+     */
+    private function _cantEditSentence($sentence)
+    {
+        return !$sentence ||
+            !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id']);
     }
 
     /**
@@ -1256,5 +1326,24 @@ class Sentence extends AppModel
     public function hasAudio($id)
     {
         return $this->Audio->findBySentenceId($id, 'sentence_id');
+    }
+
+    public function deleteSentence($id)
+    {
+        $id = Sanitize::paranoid($id);
+        if (empty($id)) {
+            return false;
+        }
+
+        $sentence = $this->findById($id);
+        if (!$sentence) {
+            return false;
+        }
+
+        if (!CurrentUser::canRemoveSentence($sentence['Sentence']['id'], $sentence['Sentence']['user_id'])) {
+            return false;
+        }
+
+        return $this->delete($id, false);
     }
 }

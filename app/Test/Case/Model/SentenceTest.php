@@ -2,6 +2,7 @@
 /* Sentence Test cases generated on: 2014-04-15 01:07:30 : 1397516850*/
 App::import('Model', 'Sentence');
 App::import('Behavior', 'Sphinx');
+App::uses('Sanitize', 'Utility');
 
 class SentenceTest extends CakeTestCase {
 	public $fixtures = array(
@@ -18,6 +19,7 @@ class SentenceTest extends CakeTestCase {
 		'app.transcription',
 		'app.reindex_flag',
 		'app.audio',
+		'app.users_sentence',
 	);
 
 	function startTest($method) {
@@ -748,5 +750,74 @@ class SentenceTest extends CakeTestCase {
 
 		$this->assertEquals($expectedAttributes, $attributes);
 		$this->assertEquals($expectedValues, $values);
+	}
+
+	function testEditSentence_succeeds() {
+		$user = $this->Sentence->User->findById(2);
+		CurrentUser::store($user['User']);
+
+		$data = array(
+			'id' => 'eng_53',
+			'value' => 'Edited sentence.'
+		);
+		$sentence = $this->Sentence->editSentence($data);
+
+		$expected = array(
+			'id' => 53,
+			'lang' => 'eng',
+			'text' => 'Edited sentence.',
+			'hash' => '1kqlcvr'
+		);
+		$result = array_intersect_key($sentence['Sentence'], $expected);
+
+		$this->assertEquals($expected, $result);
+	}
+
+	function testEditSentence_fails() {
+		$user = $this->Sentence->User->findById(4);
+		CurrentUser::store($user['User']);
+
+		$data = array(
+			'id' => 'eng_1',
+			'value' => 'Edited sentence.'
+		);
+		$result1 = $this->Sentence->editSentence($data);
+
+		$data = array(
+			'id' => '53_eng',
+			'value' => 'Edited sentence.'
+		);
+		$result2 = $this->Sentence->editSentence($data);
+
+		$result = array(
+			'notOwner' => $result1,
+			'wronglyFormattedId' => $result2
+		);
+		$expected = array(
+			'notOwner' => array(),
+			'wronglyFormattedId' => array()
+		);
+		
+		$this->assertEquals($expected, $result);
+	}
+
+	function testDeleteSentence_succeeds()
+	{
+		$user = $this->Sentence->User->findById(4);
+		CurrentUser::store($user['User']);
+
+		$result = $this->Sentence->deleteSentence(53);
+
+		$this->assertEquals(true, $result);
+	}
+
+	function testDeleteSentence_fails()
+	{
+		$user = $this->Sentence->User->findById(4);
+		CurrentUser::store($user['User']);
+
+		$result = $this->Sentence->deleteSentence(52);
+
+		$this->assertEquals(false, $result);
 	}
 }
