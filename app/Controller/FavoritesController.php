@@ -65,9 +65,7 @@ class FavoritesController extends AppController
     public function of_user($username)
     {
         $userId = $this->User->getIdFromUsername($username);
-        $backLink = $this->referer(array('action'=>'index'), true);
 
-        $this->set('backLink', $backLink);
         $this->set('username', $username);
         if (empty($userId)) {
 

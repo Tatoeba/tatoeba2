@@ -324,8 +324,6 @@ class SentenceCommentsController extends AppController
         $this->set('userName', $userName);
         $userId = $this->User->getIdfromUsername($userName);
         $this->set('userExists', !empty($userId));
-        $backLink = $this->referer(array('action'=>'index'), true);
-        $this->set('backLink', $backLink);
         // if there's no such user no need to do more computation
         if (empty($userId)) {
             return;
@@ -363,8 +361,6 @@ class SentenceCommentsController extends AppController
         $userId = $this->User->getIdfromUsername($userName);
         $this->set('userExists', !empty($userId));
 
-        $backLink = $this->referer(array('action'=>'index'), true);
-        $this->set('backLink', $backLink);
         // if there's no such user no need to do more computation
         if (empty($userId)) {
             return;

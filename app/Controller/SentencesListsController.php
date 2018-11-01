@@ -296,8 +296,6 @@ class SentencesListsController extends AppController
         $this->set('username', $username);
         $userId = $this->User->getIdFromUsername($username);
         if (empty($userId)) {
-            $backLink = $this->referer(array('action'=>'index'), true);
-            $this->set('backLink', $backLink);
             $this->set("userExists", false);
             return;
         }

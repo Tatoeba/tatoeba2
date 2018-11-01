@@ -1144,10 +1144,7 @@ class SentencesController extends AppController
         $this->loadModel('User');
         $userId = $this->User->getIdFromUserName($userName);
 
-        $backLink = $this->referer(array('action'=>'index'), true);
         // if there's no such user no need to do more computation
-
-        $this->set('backLink', $backLink);
         $this->set("userName", $userName);
         if (empty($userId)) {
 

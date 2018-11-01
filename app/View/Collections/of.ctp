@@ -97,7 +97,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         <?php
         if (!$userExists) {
-            $this->CommonModules->displayNoSuchUser($username, $backLink);
+            $this->CommonModules->displayNoSuchUser($username);
         } else {
             $title = $this->Paginator->counter(array(
                 'format' => $title . ' ' . __("(total %count%)")

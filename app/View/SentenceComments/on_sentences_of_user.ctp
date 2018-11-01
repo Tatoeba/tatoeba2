@@ -53,14 +53,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     <?php
     $paging = $this->Paginator->params();
     if ($userExists === false) {
-        echo '<h2>';
-        echo format(
-            __("There's no user called {username}"),
-            array('username' => $userName)
-        );
-        echo '</h2>';
-
-        echo $this->Html->link(__('Go back to previous page'), $backLink);
+        $this->CommonModules->displayNoSuchUser($userName);
     } elseif (!isset($paging['count'])) {
         echo '<h2>';
         echo format(
@@ -69,7 +62,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         );
         echo '</h2>';
 
-        echo $this->Html->link(__('Go back to previous page'), $backLink);
+        echo $this->Html->link(__('Go back to previous page'), 'javascript:history.back()');
 
     } else {
         ?>

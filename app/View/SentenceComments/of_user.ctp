@@ -55,7 +55,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     <?php
     $paging = $this->Paginator->params();
     if ($userExists === false) {
-        $this->CommonModules->displayNoSuchUser($userName, $backLink);
+        $this->CommonModules->displayNoSuchUser($userName);
     } elseif (!isset($paging['count'])) {
         echo '<h2>';
         echo format(
@@ -64,7 +64,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         );
         echo '</h2>';
 
-        echo $this->Html->link(__('Go back to previous page'), $backLink);
+        echo $this->Html->link(__('Go back to previous page'), 'javascript:history.back()');
 
     } else {
         ?>

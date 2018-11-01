@@ -95,9 +95,7 @@ class CollectionsController extends AppController
         $this->helpers[] = 'Pagination';
 
         $userId = $this->User->getIdFromUsername($username);
-        $backLink = $this->referer(array('action' => 'index'), true);
 
-        $this->set('backLink', $backLink);
         $this->set('username', $username);
 
         if(empty($userId)) {

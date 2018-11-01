@@ -64,7 +64,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <div class="module">
         <?php
         if (!$userExists) {
-            $this->CommonModules->displayNoSuchUser($username, $backLink);
+            $this->CommonModules->displayNoSuchUser($username);
         } else {
             echo $this->Html->tag('h2', $title, array('escape' => true)); ?>
 

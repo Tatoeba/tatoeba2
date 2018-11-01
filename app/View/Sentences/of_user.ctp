@@ -69,7 +69,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     <?php
     if ($userExists === false) {
-        $this->CommonModules->displayNoSuchUser($userName, $backLink);
+        $this->CommonModules->displayNoSuchUser($userName);
     } elseif ($numberOfSentences === 0) {
         echo '<h2>';
         if (!empty($lang)) {
@@ -86,7 +86,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         }
         echo '</h2>';
 
-        echo $this->Html->link(__('Go back to previous page'), $backLink);
+        echo $this->Html->link(__('Go back to previous page'), 'javascript:history.back()');
 
     } else {
         ?>

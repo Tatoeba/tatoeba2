@@ -114,11 +114,10 @@ class CommonModulesHelper extends AppHelper
      * Display a module content which indicate the user does not exist
      *
      * @param string $userName The username which doesn't exist.
-     * @param string $backLink The backlink.
      *
      * @return void
      */
-    public function displayNoSuchUser($username, $backLink)
+    public function displayNoSuchUser($username)
     {
         echo '<h2>';
         echo format(
@@ -127,7 +126,7 @@ class CommonModulesHelper extends AppHelper
         );
         echo '</h2>';
 
-        echo $this->Html->link(__('Go back to previous page'), $backLink);
+        echo $this->Html->link(__('Go back to previous page'), 'javascript:history.back()');
     }
 }
 ?>
