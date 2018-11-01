@@ -329,9 +329,6 @@ class SentenceCommentsController extends AppController
             return;
         }
 
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'Members';
-
         $this->paginate['SentenceComment']['conditions'] = array(
             'SentenceComment.user_id' => $userId
         );
@@ -371,9 +368,6 @@ class SentenceCommentsController extends AppController
         );
         $this->paginate['SentenceComment']['conditions'] = $conditions;
         $userComments = $this->paginate('SentenceComment');
-
-        $this->helpers[] = 'Messages';
-        $this->helpers[] = 'Members';
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
