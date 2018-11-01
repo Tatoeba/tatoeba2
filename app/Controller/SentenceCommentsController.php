@@ -275,18 +275,11 @@ class SentenceCommentsController extends AppController
                 } else {
                     $firstValidationErrorMessage = reset($this->SentenceComment->validationErrors)[0];
                     $this->Flash->set($firstValidationErrorMessage);
-                    $this->redirect(
-                        array(
-                            'controller' => "sentence_comments",
-                            'action'=> 'edit',
-                            $commentId,
-                        )
-                    );
                 }
             } else {
                 $this->request->data = $sentenceComment;
-                $this->set('sentenceComment', $sentenceComment);
             }
+            $this->set('sentenceComment', $sentenceComment);
         }
     }
 
