@@ -39,8 +39,6 @@ App::uses('NotificationListener', 'Lib/Event');
  */
 class SentenceCommentsController extends AppController
 {
-
-    public $persistentModel = true;
     public $name = 'SentenceComments';
     public $uses = array(
         "SentenceComment",

@@ -39,7 +39,6 @@ App::uses('AppController', 'Controller');
  */
 class SentencesController extends AppController
 {
-    public $persistentModel = true;
     public $name = 'Sentences';
     public $components = array (
         'LanguageDetection',

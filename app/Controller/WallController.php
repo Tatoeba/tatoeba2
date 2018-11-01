@@ -40,9 +40,6 @@ App::uses('NotificationListener', 'Lib/Event');
 
 class WallController extends AppController
 {
-
-    public $persistentModel = true;
-
     public $name = 'Wall' ;
     public $paginate = array(
         "order" => "WallThread.last_message_date DESC",

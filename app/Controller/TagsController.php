@@ -47,7 +47,6 @@ class TagsController extends AppController
      * @access public
      */
     public $name = 'Tags';
-    public $persistentModel = true;
     public $components = array('CommonSentence', 'Flash');
     public $helpers = array('Pagination');
     /**

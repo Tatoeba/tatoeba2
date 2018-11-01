@@ -37,7 +37,6 @@
  */
 class SController extends AppController
 {
-    public $persistentModel = true;
     public $name = 'S';
 
     public $helpers = array(
