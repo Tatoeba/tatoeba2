@@ -1,13 +1,19 @@
 <?php
 App::uses('SentencesList', 'Model');
-App::uses('Sanitize', 'Utility');
+
 class SentencesListTest extends CakeTestCase {
     public $fixtures = array(
         'app.sentences_list',
         'app.sentences_sentences_list',
         'app.sentence',
         'app.favorites_user',
-        'app.user'
+        'app.user',
+        'app.contribution',
+        'app.language',
+        'app.reindex_flag',
+        'app.link',
+        'app.audio',
+        'app.transcription'
     );
 
     function setUp() {
@@ -51,19 +57,19 @@ class SentencesListTest extends CakeTestCase {
         $name = '   ';
         $list = $this->SentencesList->createList($name, $userId);
 
-        $this->assertEquals(false, $list);
+        $this->assertFalse($list);
     }
 
     function testDeleteList_succeeds() {
         $list = $this->SentencesList->deleteList(1, 7);
 
-        $this->assertEquals(true, $list);
+        $this->assertTrue($list);
     }
 
     function testDeleteList_fails() {
         $list = $this->SentencesList->deleteList(1, 1);
 
-        $this->assertEquals(false, $list);
+        $this->assertFalse($list);
     }
 
     function testEditName_suceeds() {
@@ -83,7 +89,7 @@ class SentencesListTest extends CakeTestCase {
     function testEditName_fails() {
         $list = $this->SentencesList->editName(1, 'x', 1);
 
-        $this->assertEquals(false, $list);
+        $this->assertFalse($list);
     }
 
     function testEditOption_succeeds() {
@@ -99,7 +105,7 @@ class SentencesListTest extends CakeTestCase {
 
     function testEditOption_fails() {
         $list = $this->SentencesList->editOption(1, 'editable', 'everyone', 7);
-        $this->assertEquals(array(), $list);
+        $this->assertEmpty($list);
     }
 
     function testAddSentenceToList_succeeds() {
@@ -113,24 +119,24 @@ class SentencesListTest extends CakeTestCase {
         $this->assertEquals($expected, $result);
     }
 
-    function testAddSentenceToList_fails() {
-        $result1 = $this->SentencesList->addSentenceToList(4, 1, 7);
-        $result2 = $this->SentencesList->addSentenceToList(10000, 1, 7);
-        $result3 = $this->SentencesList->addSentenceToList(4, 1, 1);
-
-        $result = array(
-            'result1' => $result1,
-            'result2' => $result2,
-            'result3' => $result3
-        );
-        $expected = array(
-            'result1' => array(),
-            'result2' => array(),
-            'result3' => array()
-        );
-
-        $this->assertEquals($expected, $result);
+    function testAddSentenceToList_failsBecauseUserNotAllowed() {
+        $result = $this->SentencesList->addSentenceToList(4, 1, 1);
+        
+        $this->assertEmpty($result);
     }
+
+    function testAddSentenceToList_failsBecauseSentenceAlreadyInList() {
+        $result = $this->SentencesList->addSentenceToList(4, 1, 7);
+
+        $this->assertEmpty($result);
+    }
+
+    function testAddSentenceToList_failsBecauseUnknownSentenceId() {
+        $result = $this->SentencesList->addSentenceToList(10000, 1, 7);
+
+        $this->assertEmpty($result);
+    }
+
 
     function testAddNewSentenceToList_succeeds() {
         $listId = 1;
@@ -153,20 +159,16 @@ class SentencesListTest extends CakeTestCase {
         $this->assertEquals($expected, $result);
     }
 
-    function testAddNewSentenceToList_fails() {
-        $result1 = $this->SentencesList->addNewSentenceToList(1, 'x', 'eng', 1);
-        $result2 = $this->SentencesList->addNewSentenceToList(1, '', 'eng', 7);
+    function testAddNewSentenceToList_failsBecauseEmptySentence() {
+        $result = $this->SentencesList->addNewSentenceToList(1, '', 'eng', 7);
 
-        $result = array(
-            'result1' => $result1,
-            'result2' => $result2
-        );
-        $expected = array(
-            'result1' => false,
-            'result2' => false
-        );
+        $this->assertFalse($result);
+    }
 
-        $this->assertEquals($expected, $result);
+    function testAddNewSentenceToList_failsBecauseUserNotAllowed() {
+        $result = $this->SentencesList->addNewSentenceToList(1, 'x', 'eng', 1);
+
+        $this->assertFalse($result);
     }
 
     function testRemoveSentenceFromList() {
@@ -189,25 +191,25 @@ class SentencesListTest extends CakeTestCase {
 
     function testRemoveSentenceFromList_succeeds() {
         $result = $this->SentencesList->removeSentenceFromList(4, 1, 7);
-        $this->assertEquals(true, $result);
+
+        $this->assertTrue($result);
     }
 
-    function testRemoveSentenceFromList_fails() {
-        $result1 = $this->SentencesList->removeSentenceFromList(10000, 1, 7);
-        $result2 = $this->SentencesList->removeSentenceFromList(4, 1, 1);
-        $result3 = $this->SentencesList->removeSentenceFromList(4, 2, 7);
+    function testRemoveSentenceFromList_failsBecauseUnknownSentenceId() {
+        $result = $this->SentencesList->removeSentenceFromList(10000, 1, 7);
 
-        $result = array(
-            'result1' => $result1,
-            'result2' => $result2,
-            'result3' => $result3
-        );
-        $expected = array(
-            'result1' => false,
-            'result2' => false,
-            'result3' => false
-        );
+        $this->assertFalse($result);
+    }
 
-        $this->assertEquals($expected, $result);
+    function testRemoveSentenceFromList_failsBecauseUserNotAllowed() {
+        $result = $this->SentencesList->removeSentenceFromList(4, 1, 1);
+
+        $this->assertFalse($result);
+    }
+
+    function testRemoveSentenceFromList_failsBecauseUnknownListId() {
+        $result = $this->SentencesList->removeSentenceFromList(4, 2, 7);
+
+        $this->assertFalse($result);
     }
 }

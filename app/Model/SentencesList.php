@@ -34,6 +34,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::uses('Sanitize', 'Utility');
 class SentencesList extends AppModel
 {
     public $actsAs = array('Containable');
