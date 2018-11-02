@@ -39,11 +39,11 @@
 */
 
 App::import('Model', 'CurrentUser');
-App::import('Sanitize');
 App::import('Lib', 'LanguagesLib');
 App::uses('CakeEvent', 'Event');
 App::uses('ContributionListener', 'Lib/Event');
 App::uses('UsersLanguagesListener', 'Lib/Event');
+App::uses('Sanitize', 'Utility');
 
 class Sentence extends AppModel
 {

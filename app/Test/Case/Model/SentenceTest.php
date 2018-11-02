@@ -2,7 +2,6 @@
 /* Sentence Test cases generated on: 2014-04-15 01:07:30 : 1397516850*/
 App::import('Model', 'Sentence');
 App::import('Behavior', 'Sphinx');
-App::uses('Sanitize', 'Utility');
 
 class SentenceTest extends CakeTestCase {
 	public $fixtures = array(
@@ -767,7 +766,21 @@ class SentenceTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 	}
 
-	function testEditSentence_fails() {
+	function testEditSentence_failsBecauseHasAudio() {
+		$user = $this->Sentence->User->findById(7);
+		CurrentUser::store($user['User']);
+
+		$data = array(
+			'id' => 'spa_3',
+			'value' => 'changing'
+		);
+		$result = $this->Sentence->editSentence($data);
+		$expected = $this->Sentence->findById(3);
+		
+		$this->assertEquals($expected, $result);
+	}
+
+	function testEditSentence_failsBecauseNotOwner() {
 		$user = $this->Sentence->User->findById(4);
 		CurrentUser::store($user['User']);
 
@@ -775,34 +788,23 @@ class SentenceTest extends CakeTestCase {
 			'id' => 'eng_1',
 			'value' => 'Edited sentence.'
 		);
-		$result1 = $this->Sentence->editSentence($data);
+		$result = $this->Sentence->editSentence($data);
+		$expected = $this->Sentence->findById(1);
 
+		$this->assertEquals($expected, $result);
+	}
+
+	function testEditSentence_failsBecauseWrongId() {
+		$user = $this->Sentence->User->findById(4);
+		CurrentUser::store($user['User']);
+		
 		$data = array(
 			'id' => '53_eng',
 			'value' => 'Edited sentence.'
 		);
-		$result2 = $this->Sentence->editSentence($data);
-
-		$user = $this->Sentence->User->findById(7);
-		CurrentUser::store($user['User']);
-		$data = array(
-			'id' => 'spa_3',
-			'value' => 'changing'
-		);
-		$result3 = $this->Sentence->editSentence($data);
-
-		$result = array(
-			'notOwner' => $result1,
-			'wronglyFormattedId' => $result2,
-			'hasAudio' => $result3
-		);
-		$expected = array(
-			'notOwner' => $this->Sentence->findById(1),
-			'wronglyFormattedId' => array(),
-			'hasAudio' => $this->Sentence->findById(3)
-		);
+		$result = $this->Sentence->editSentence($data);
 		
-		$this->assertEquals($expected, $result);
+		$this->assertEmpty($result);
 	}
 
 	function testDeleteSentence_succeeds()
@@ -812,7 +814,7 @@ class SentenceTest extends CakeTestCase {
 
 		$result = $this->Sentence->deleteSentence(53);
 
-		$this->assertEquals(true, $result);
+		$this->assertTrue($result);
 	}
 
 	function testDeleteSentence_fails()
@@ -822,6 +824,6 @@ class SentenceTest extends CakeTestCase {
 
 		$result = $this->Sentence->deleteSentence(52);
 
-		$this->assertEquals(false, $result);
+		$this->assertFalse($result);
 	}
 }
