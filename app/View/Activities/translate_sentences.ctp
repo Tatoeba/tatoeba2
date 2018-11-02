@@ -84,8 +84,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
             <?= format(
                 __(
                     'Translating sentences implies that you know at least two languages. '.
-                    'You have only one language in <a href="{}">your profile</a>. '.
-                    'Please add at least one more language.'
+                    'Please complete <a href="{}">your profile</a> to indicate at least two languages.'
                 ),
                 $this->Html->url(
                     array(
