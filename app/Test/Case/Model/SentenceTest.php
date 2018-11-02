@@ -417,12 +417,6 @@ class SentenceTest extends CakeTestCase {
 		$this->assertFalse($result);
 	}
 
-	function testReturnsFalseIfAudioOnEdit() {
-		$result = $this->Sentence->editSentence(3, 'spa', 'changing');
-
-		$this->assertFalse($result);
-	}
-
 	function testTranslationLinksFromSentenceRemovedOnDelete() {
 		$sentenceId = 1;
 
@@ -789,13 +783,23 @@ class SentenceTest extends CakeTestCase {
 		);
 		$result2 = $this->Sentence->editSentence($data);
 
+		$user = $this->Sentence->User->findById(7);
+		CurrentUser::store($user['User']);
+		$data = array(
+			'id' => 'spa_3',
+			'value' => 'changing'
+		);
+		$result3 = $this->Sentence->editSentence($data);
+
 		$result = array(
 			'notOwner' => $result1,
-			'wronglyFormattedId' => $result2
+			'wronglyFormattedId' => $result2,
+			'hasAudio' => $result3
 		);
 		$expected = array(
-			'notOwner' => array(),
-			'wronglyFormattedId' => array()
+			'notOwner' => $this->Sentence->findById(1),
+			'wronglyFormattedId' => array(),
+			'hasAudio' => $this->Sentence->findById(3)
 		);
 		
 		$this->assertEquals($expected, $result);

@@ -1241,11 +1241,11 @@ class Sentence extends AppModel
         extract($idLangArray);
         $sentence = $this->findById($id);
         if ($this->_cantEditSentence($sentence)) {
-            return array();
+            return $sentence;
         }
         
         if ($this->hasAudio($id)) {
-            return array();
+            return $sentence;
         }
 
         $hash = $this->makeHash($lang, $text);

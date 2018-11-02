@@ -357,14 +357,12 @@ class SentencesController extends AppController
     {
         $sentence = $this->Sentence->editSentence($this->request->data);
         if (empty($sentence)) {
-            $sentenceText = $this->request->data['text'];
+            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
         } else {
             $sentenceText = $sentence['Sentence']['text'];
+            $this->layout = null;
+            $this->set('sentence_text', $sentenceText);
         }
-
-        $this->layout = null;
-        
-        $this->set('sentence_text', $sentenceText);
     }
 
     /**
