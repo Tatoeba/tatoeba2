@@ -40,9 +40,6 @@ class SearchHelper extends AppHelper
     public function selectLang($fieldName, $selectedLanguage, $options = array()) {
         if (!$this->langs) {
             $this->langs = $this->getLangs();
-            array_unshift(
-                $this->langs, array('und' => __x('searchbar', 'Any language'))
-            );
         }
 
         $options = array_merge(
