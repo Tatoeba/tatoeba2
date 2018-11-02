@@ -611,6 +611,7 @@ class LanguagesLib
 
         $rightToLeftLangs = array(
             "ara",
+            "arq",
             "heb",
             "arz",
             "uig",
