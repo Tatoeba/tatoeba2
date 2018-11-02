@@ -78,28 +78,25 @@ class UsersLanguagesTest extends CakeTestCase {
         $this->assertEquals($expected, $result);
     } 
 
-    function testSaveUserLanguage_fails() {
+    
+    function testSaveUserLanguage_failsBecauseUnknownId() {
         $data = array(
             'id' => 20,
             'level' => 2
         );
-        $result1 = $this->UsersLanguages->saveUserLanguage($data, 1);
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
+
+        $this->assertEmpty($result);
+    } 
+
+    function testSaveUserLanguage_failsBecauseUndefinedLanguage() {       
         $data = array(
             'language_code' => 'und',
             'level' => 5
         );
-        $result2 = $this->UsersLanguages->saveUserLanguage($data, 1);
+        $result = $this->UsersLanguages->saveUserLanguage($data, 1);
 
-        $result = array(
-            'savingNonExistingId' => $result1,
-            'savingUndefinedLanguage' => $result2
-        );
-        $expected = array(
-            'savingNonExistingId' => array(),
-            'savingUndefinedLanguage' => array(),
-        );
-
-        $this->assertEquals($expected, $result);
+        $this->assertEmpty($result);
     }
 
     function testDeleteUserLanguage_succeeds() {
@@ -108,19 +105,14 @@ class UsersLanguagesTest extends CakeTestCase {
         $this->assertEquals(true, $result);
     }
 
-    function testDeleteUserLanguage_fails() {
-        $result1 = $this->UsersLanguages->deleteUserLanguage(1, 1);
-        $result2 = $this->UsersLanguages->deleteUserLanguage(2, 4);
+    function testDeleteUserLanguage_failsBecauseUserNotAllowed()
+    {
+        $result = $this->UsersLanguages->deleteUserLanguage(1, 1);
+        $this->assertFalse($result);
+    }
 
-        $result = array(
-            'result1' => $result1,
-            'result2' => $result2
-        );
-        $expected = array(
-            'result1' => false,
-            'result2' => false
-        );
-
-        $this->assertEquals($expected, $result);
+    function testDeleteUserLanguage_failsBecauseUnknownId() {
+        $result = $this->UsersLanguages->deleteUserLanguage(2, 4);
+        $this->assertFalse($result);
     }
 }
