@@ -4,6 +4,7 @@
 # -----------------
 ansible_ssh_user: vagrant
 ansible_ssh_port: 2222
+ansible_ssh_pipelining: yes
 
 
 # Variables for common role
