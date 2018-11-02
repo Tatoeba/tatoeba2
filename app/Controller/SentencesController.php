@@ -281,19 +281,19 @@ class SentencesController extends AppController
     {
         $isDeleted = $this->Sentence->deleteSentence($id);
         if ($isDeleted) {
-            $flassMessage = format(
+            $flashMessage = format(
                 __('The sentence #{id} has been deleted.'),
                 array('id' => $id)
             );
             
         } else {
-            $flassMessage = format(
+            $flashMessage = format(
                 __('Error: the sentence #{id} could not be deleted.'),
                 array('id' => $id)
             );
         }
         $this->flash(
-            $flassMessage,
+            $flashMessage,
             array('controller' => 'sentences', 'action' => 'show', $id)
         );
     }
