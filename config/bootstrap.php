@@ -251,5 +251,3 @@ if (!function_exists('__format_decompose_list')) {
         return $result;
     }
 }
-
-Plugin::load('Queue', ['bootstrap' => true]);

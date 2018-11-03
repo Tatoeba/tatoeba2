@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "95e5aa17c563b8c765ccee0dea8fbfdc",
-    "content-hash": "a96f5ecd82a8d323c31ca5a950324487",
+    "hash": "156b490cc083f0c3c746f77f80865e83",
+    "content-hash": "122fb77c5e6d8fd3dd80d5e3760c393a",
     "packages": [
         {
             "name": "aura/intl",
@@ -195,6 +195,47 @@
                 "time"
             ],
             "time": "2018-10-18 22:02:21"
+        },
+        {
+            "name": "cakephp/plugin-installer",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/plugin-installer.git",
+                "reference": "41373d0678490502f45adc7be88aa22d24ac1843"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/plugin-installer/zipball/41373d0678490502f45adc7be88aa22d24ac1843",
+                "reference": "41373d0678490502f45adc7be88aa22d24ac1843",
+                "shasum": ""
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "dev-master",
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "^4.8|^5.7|^6.0"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Cake\\Composer\\Installer\\PluginInstaller"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cake\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "http://cakephp.org"
+                }
+            ],
+            "description": "A composer installer for CakePHP 3.0+ plugins.",
+            "time": "2017-12-24 21:09:29"
         },
         {
             "name": "dereuromark/cakephp-queue",

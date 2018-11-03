@@ -30,6 +30,13 @@ use Cake\Routing\Middleware\RoutingMiddleware;
  */
 class Application extends BaseApplication
 {
+    public function bootstrap()
+    {
+        parent::bootstrap();
+
+        $this->addPlugin('Queue', ['bootstrap' => true]);
+    }
+
     /**
      * Setup the middleware queue your application will use.
      *
