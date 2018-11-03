@@ -74,9 +74,9 @@ class PagesController extends AppController
      *
      * @return void
      */
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
-        parent::beforeFilter();
+        parent::beforeFilter($event);
         $this->_redirect_for_old_url();
         // setting actions that are available to everyone, even guests
         $this->Auth->allow();

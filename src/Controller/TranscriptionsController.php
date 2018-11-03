@@ -45,9 +45,9 @@ class TranscriptionsController extends AppController
         'order' => 'Transcription.modified DESC'
     );
 
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
-        parent::beforeFilter();
+        parent::beforeFilter($event);
 
         $this->Auth->allowedActions = array(
             'view',

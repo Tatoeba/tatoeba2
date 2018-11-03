@@ -139,7 +139,7 @@ class Audio extends AppModel
         }
     }
 
-    public function afterDelete() {
+    public function afterDelete(Event $event, Entity $entity, ArrayObject $options) {
         if (isset($this->data[$this->alias]['sentence_id'])) {
             $this->Sentence->flagSentenceAndTranslationsToReindex(
                 $this->data[$this->alias]['sentence_id']

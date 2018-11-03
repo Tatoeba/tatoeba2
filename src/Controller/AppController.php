@@ -115,7 +115,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
         // only prevent CSRF for logins and registration in the users controller
         $this->Security->csrfCheck = false;
@@ -209,7 +209,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function beforeRender()
+    public function beforeRender(Event $event)
     {
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->request->is('ajax')) {

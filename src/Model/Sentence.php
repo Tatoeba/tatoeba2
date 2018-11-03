@@ -397,7 +397,7 @@ class Sentence extends AppModel
      *
      * @return void
      */
-    public function afterDelete()
+    public function afterDelete(Event $event, Entity $entity, ArrayObject $options)
     {
         // --- Logs for sentence ---
         $sentenceLang = $this->data['Sentence']['lang'];

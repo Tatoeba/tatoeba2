@@ -43,9 +43,9 @@ class CollectionsController extends AppController
     public $uses = array('UsersSentences', 'User');
     public $helpers = array('CommonModules');
 
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
-        parent::beforeFilter();
+        parent::beforeFilter($event);
 
         $this->Auth->allowedActions = array(
             'of'

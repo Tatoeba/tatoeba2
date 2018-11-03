@@ -45,12 +45,12 @@ class PrivateMessagesController extends AppController
     public $helpers = array('Html', 'Date');
     public $components = array('Flash', 'Mailer');
 
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
         $eventManager = $this->PrivateMessage->getEventManager();
         $eventManager->attach(new NotificationListener());
 
-        return parent::beforeFilter();
+        return parent::beforeFilter($event);
     }
 
     /**

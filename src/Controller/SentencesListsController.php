@@ -66,9 +66,9 @@ class SentencesListsController extends AppController
      *
      * @return void
      */
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
-        parent::beforeFilter();
+        parent::beforeFilter($event);
 
         $this->Auth->allowedActions = array(
             'index',

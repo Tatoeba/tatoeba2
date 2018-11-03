@@ -28,9 +28,9 @@ class LicensingController extends AppController {
         'Queue.QueuedTask',
     );
 
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
-        parent::beforeFilter();
+        parent::beforeFilter($event);
 
         $this->Security->unlockedActions = array(
             'switch_my_sentences',

@@ -51,9 +51,9 @@ class AudioController extends AppController
         'order' => 'Audio.modified DESC'
     );
 
-    public function beforeFilter()
+    public function beforeFilter(Event $event)
     {
-        parent::beforeFilter();
+        parent::beforeFilter($event);
 
         $this->Auth->allowedActions = array(
             'of',
