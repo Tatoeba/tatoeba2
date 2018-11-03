@@ -2,6 +2,8 @@
 /* Language Fixture generated on: 2015-05-12 10:28:59 : 1431426539 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class LanguageFixture extends CakeTestFixture {
 	public $name = 'Language';
 

@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'Translation');
+use App\Model\Translation;
+use Cake\TestSuite\TestCase;
 
-class TranslationTest extends CakeTestCase {
+class TranslationTest extends TestCase {
     public $fixtures = array(
         'app.sentence',
         'app.link',

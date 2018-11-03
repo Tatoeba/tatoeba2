@@ -18,6 +18,8 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
+
 
 /**
  * This helper is only here to mess up with the Form helper.

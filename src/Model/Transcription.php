@@ -18,8 +18,9 @@
  */
 namespace App\Model;
 
+use App\Lib\autotranscription;
+use App\Model\AppModel;
 
-App::import('Lib', 'autotranscription');
 
 class Transcription extends AppModel
 {

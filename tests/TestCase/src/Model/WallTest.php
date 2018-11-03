@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('Wall', 'Model');
+use App\Model\Wall;
+use Cake\TestSuite\TestCase;
 
-class WallTest extends CakeTestCase {
+class WallTest extends TestCase {
 
     public $fixtures = array(
         'app.wall',
@@ -151,7 +152,7 @@ class WallTest extends CakeTestCase {
         $dispatched = false;
         $model = $this->Wall;
         $model->getEventManager()->attach(
-            function (CakeEvent $event) use ($model, &$dispatched, $expectedPost) {
+            function (Event $event) use ($model, &$dispatched, $expectedPost) {
                 $this->assertSame($model, $event->subject());
                 extract($event->data); // $post
                 unset($post['id']);

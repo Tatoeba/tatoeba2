@@ -27,8 +27,9 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+use App\Model\CurrentUser;
 
-App::uses('CurrentUser', 'Model');
 
 /**
  * Model for Private Messages.
@@ -397,7 +398,7 @@ class PrivateMessage extends AppModel
             if (!$message) {
                 return false;
             } else {
-                $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+                $event = new Event('Model.PrivateMessage.messageSent', $this, array(
                     'message' => $message[$this->alias],
                 ));
                 $this->getEventManager()->dispatch($event);

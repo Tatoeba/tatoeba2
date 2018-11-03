@@ -1,8 +1,9 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::import('Controller', 'App');
-App::import('Component', 'Cookie');
+use App\Component\Cookie;
+use App\Controller\App;
+use Cake\Core\Configure;
 
 class AppControllerTest extends ControllerTestCase {
 	public $fixtures = array(

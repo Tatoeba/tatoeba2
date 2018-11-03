@@ -26,6 +26,8 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+
 
 /**
  * Model for groups.

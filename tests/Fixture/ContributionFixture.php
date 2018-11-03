@@ -2,6 +2,8 @@
 /* Contribution Fixture generated on: 2014-09-14 16:11:46 : 1410711106 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class ContributionFixture extends CakeTestFixture {
 	public $name = 'Contribution';
 

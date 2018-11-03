@@ -2,9 +2,10 @@
 /* SentencesSentencesLists Test cases generated on: 2016-12-03 08:56:44 : 1480755404*/
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'SentencesSentencesLists');
+use App\Model\SentencesSentencesLists;
+use Cake\TestSuite\TestCase;
 
-class SentencesSentencesListsTest extends CakeTestCase {
+class SentencesSentencesListsTest extends TestCase {
     public $fixtures = array(
         'app.sentences_sentences_list',
         'app.sentences_list',

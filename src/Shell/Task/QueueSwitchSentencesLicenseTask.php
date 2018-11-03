@@ -1,7 +1,5 @@
 <?php
 
-App::uses('QueueTask', 'Queue.Console/Command/Task');
-App::uses('Model', 'CurrentUser');
 
 class QueueSwitchSentencesLicenseTask extends QueueTask {
 

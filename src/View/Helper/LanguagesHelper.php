@@ -26,9 +26,11 @@
  */
 namespace App\View\Helper;
 
+use App\Lib\LanguagesLib;
+use App\Model\CurrentUser;
+use App\View\Helper\AppHelper;
+use Cake\Core\Configure;
 
-App::import('Model', 'CurrentUser');
-App::import('Lib', 'LanguagesLib');
 
 /**
  * Helper for languages

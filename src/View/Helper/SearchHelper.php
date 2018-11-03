@@ -18,6 +18,8 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
+
 
 class SearchHelper extends AppHelper
 {

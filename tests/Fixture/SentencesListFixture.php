@@ -2,6 +2,8 @@
 /* SentencesList Fixture generated on: 2014-04-15 02:32:40 : 1397521960 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class SentencesListFixture extends CakeTestFixture {
 	public $name = 'SentencesList';
 	public $import = array('records' => true);

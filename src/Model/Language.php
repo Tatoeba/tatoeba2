@@ -26,6 +26,8 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+use App\Utility\Sanitize;
 
 /**
  * Model for Languages.
@@ -37,7 +39,6 @@ namespace App\Model;
  * @link     http://tatoeba.org
  */
 
-App::uses('Sanitize', 'Utility');
 
 class Language extends AppModel
 {

@@ -26,8 +26,8 @@
  */
 namespace App\View\Helper;
 
+use Cake\View\Helper;
 
-App::uses('Helper', 'View');
 
 /**
  * Controller for contributions.

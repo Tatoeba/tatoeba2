@@ -26,6 +26,8 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+
 
 /**
  * Controller for sentence imports.

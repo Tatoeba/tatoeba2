@@ -26,9 +26,9 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+use App\Lib\Event\NotificationListener;
 
-App::uses('AppController', 'Controller');
-App::uses('NotificationListener', 'Lib/Event');
 
 /**
  * Controller for the wall.

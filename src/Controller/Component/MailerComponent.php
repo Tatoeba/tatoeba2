@@ -26,8 +26,10 @@
  */
 namespace App\Controller\Component;
 
+use App\Network\Email\Email;
+use Cake\Controller\Component;
+use Cake\Core\Configure;
 
-App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Component for mails.
@@ -41,7 +43,7 @@ App::uses('CakeEmail', 'Network/Email');
 class MailerComponent extends Component
 {
     public function sendBlockedOrSuspendedUserNotif($username, $isSuspended) {
-        $this->Email = new CakeEmail();
+        $this->Email = new Email();
         $this->Email
             ->to('tatoeba-community-admins@googlegroups.com')
             ->subject('( ! ) ' . $username)
@@ -65,7 +67,7 @@ class MailerComponent extends Component
 
     public function sendNewPassword($recipient, $username, $newPassword)
     {
-        $this->Email = new CakeEmail();
+        $this->Email = new Email();
         $this->Email
             ->to($recipient)
             ->subject(__('Tatoeba, new password'))

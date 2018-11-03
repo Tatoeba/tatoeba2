@@ -18,11 +18,12 @@
  */
 namespace App\Event;
 
+use App\Event\EventListener;
+use App\Lib\Event\AppListener;
+use Cake\Event\EventListener;
 
-App::uses('AppListener', 'Lib/Event');
-App::uses('CakeEventListener', 'Event');
 
-class ContributionListener extends AppListener implements CakeEventListener {
+class ContributionListener extends AppListener implements EventListener {
     public function implementedEvents() {
         return array(
             'Model.Sentence.saved' => 'logSentence',

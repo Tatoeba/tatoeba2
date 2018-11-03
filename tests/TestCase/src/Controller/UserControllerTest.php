@@ -1,7 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::uses('UserController', 'Controller');
+use App\Controller\UserController;
+use Cake\Core\Configure;
 
 class UserControllerTest extends ControllerTestCase {
 

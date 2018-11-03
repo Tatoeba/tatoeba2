@@ -26,6 +26,7 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
 
 /**
  * Helper to display buttons in sentences menu.

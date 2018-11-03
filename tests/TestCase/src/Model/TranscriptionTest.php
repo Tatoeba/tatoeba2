@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'Transcription');
+use App\Model\Transcription;
+use Cake\TestSuite\TestCase;
 
-class TranscriptionTest extends CakeTestCase {
+class TranscriptionTest extends TestCase {
     public $fixtures = array(
         'app.transcription',
         'app.sentence',

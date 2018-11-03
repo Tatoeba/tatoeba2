@@ -2,6 +2,8 @@
 
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class LastContributionFixture extends CakeTestFixture {
 
 	public $fields = array(

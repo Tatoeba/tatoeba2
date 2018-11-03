@@ -26,6 +26,8 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+
 
 /**
  * Controller for links between sentences. Links specify which sentences are

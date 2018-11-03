@@ -18,8 +18,8 @@
  */
 namespace App\Model;
 
+use App\Model\Model;
 
-App::uses('Model', 'Model');
 
 /**
  * Application model for Cake.

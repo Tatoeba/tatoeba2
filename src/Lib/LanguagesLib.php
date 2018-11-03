@@ -26,6 +26,8 @@
  */
 namespace App\Lib;
 
+use Cake\Core\Configure;
+
 
 class LanguagesLib
 {

@@ -26,8 +26,10 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+use App\Model\CurrentUser;
+use Cake\Core\Configure;
 
-App::uses('CurrentUser', 'Model');
 
 /**
  * Model for contributions.

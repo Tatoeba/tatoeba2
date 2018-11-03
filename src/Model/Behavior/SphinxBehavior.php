@@ -9,6 +9,10 @@
  */
 namespace App\Model\Behavior;
 
+use App\Lib\SphinxClient;
+use Cake\Database\ConnectionManager;
+use Cake\Model\Behavior;
+use Cake\Model\Model;
 
 
 class SphinxBehavior extends ModelBehavior
@@ -40,7 +44,6 @@ class SphinxBehavior extends ModelBehavior
 
         $this->settings[$model->alias] = $settings;
 
-        App::import('Lib', 'SphinxClient');
         $this->runtime[$model->alias]['sphinx'] = new SphinxClient();
         $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['host'],
                                                            $this->settings[$model->alias]['port']);

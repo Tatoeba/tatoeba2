@@ -1,8 +1,9 @@
 <?php
 namespace App\Auth;
 
-App::uses('AbstractPasswordHasher', 'Controller/Component/Auth');
-App::uses('Security', 'Utility');
+use App\Controller\Component\Auth\AbstractPasswordHasher;
+use Cake\Core\Configure;
+use Cake\Utility\Security;
 
 class VersionedPasswordHasher extends AbstractPasswordHasher {
 

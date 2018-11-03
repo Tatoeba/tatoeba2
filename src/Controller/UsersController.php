@@ -26,6 +26,9 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+use Cake\Routing\Router;
+
 
 /**
  * Controller for users.

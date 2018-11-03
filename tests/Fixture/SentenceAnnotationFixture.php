@@ -2,6 +2,8 @@
 /* SentenceAnnotation Fixture generated on: 2014-09-14 16:11:53 : 1410711113 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class SentenceAnnotationFixture extends CakeTestFixture {
 	public $name = 'SentenceAnnotation';
 

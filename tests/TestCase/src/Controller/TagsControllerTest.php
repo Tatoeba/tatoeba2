@@ -1,7 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::uses('TagsController', 'Controller');
+use App\Controller\TagsController;
+use Cake\Core\Configure;
 
 class TagsControllerTest extends ControllerTestCase {
     public $fixtures = array(

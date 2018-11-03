@@ -26,6 +26,8 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+
 
 /**
  * Model for links. Links indicate which sentence is translation of which.

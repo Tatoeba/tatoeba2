@@ -26,6 +26,9 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+use Cake\Core\Configure;
+
 
 /**
  * Model for sentence comments.
@@ -57,7 +60,7 @@ class SentenceComment extends AppModel
     public function afterSave($created, $options = array())
     {
         if ($created) {
-            $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+            $event = new Event('Model.SentenceComment.commentPosted', $this, array(
                 'comment' => $this->data[$this->alias],
             ));
             $this->getEventManager()->dispatch($event);

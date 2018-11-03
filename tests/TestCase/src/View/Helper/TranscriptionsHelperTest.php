@@ -1,12 +1,13 @@
 <?php
 namespace App\Test\TestCase\View\Helper;
 
-App::uses('Controller', 'Controller');
-App::uses('View', 'View');
-App::uses('HtmlHelper', 'View/Helper');
-App::uses('TranscriptionsHelper', 'View/Helper');
+use App\View\Helper\HtmlHelper;
+use App\View\Helper\TranscriptionsHelper;
+use Cake\Controller\Controller;
+use Cake\TestSuite\TestCase;
+use Cake\View\View;
 
-class TranscriptionsHelperTest extends CakeTestCase {
+class TranscriptionsHelperTest extends TestCase {
     public $fixtures = array(
         'app.aro',
         'app.aco',

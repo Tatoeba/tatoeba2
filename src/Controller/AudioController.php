@@ -18,6 +18,8 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+
 
 class AudioController extends AppController
 {

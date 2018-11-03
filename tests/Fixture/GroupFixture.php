@@ -2,6 +2,8 @@
 /* Group Fixture generated on: 2014-09-14 16:11:50 : 1410711110 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class GroupFixture extends CakeTestFixture {
 	public $name = 'Group';
 

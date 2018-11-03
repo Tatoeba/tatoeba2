@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('PrivateMessage', 'Model');
+use App\Model\PrivateMessage;
+use Cake\TestSuite\TestCase;
 
-class PrivateMessageTest extends CakeTestCase {
+class PrivateMessageTest extends TestCase {
 
     public $fixtures = array(
         'app.private_message',
@@ -222,7 +223,7 @@ class PrivateMessageTest extends CakeTestCase {
         $dispatched = false;
         $model = $this->PrivateMessage;
         $model->getEventManager()->attach(
-            function (CakeEvent $event) use ($model, &$dispatched, $expectedMessage) {
+            function (Event $event) use ($model, &$dispatched, $expectedMessage) {
                 $this->assertSame($model, $event->subject());
                 extract($event->data); // $message
                 unset($message['id']);

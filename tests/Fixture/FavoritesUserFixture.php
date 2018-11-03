@@ -2,6 +2,8 @@
 /* FavoritesUser Fixture generated on: 2014-09-14 16:11:49 : 1410711109 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class FavoritesUserFixture extends CakeTestFixture {
 	public $name = 'FavoritesUser';
 

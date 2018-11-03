@@ -2,6 +2,8 @@
 /* TagsSentence Fixture generated on: 2014-09-14 16:12:00 : 1410711120 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class TagsSentenceFixture extends CakeTestFixture {
 	public $name = 'TagsSentence';
 

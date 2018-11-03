@@ -18,12 +18,14 @@
  */
 namespace App\Event;
 
+use App\Event\EventListener;
+use App\Network\Email\Email;
+use Cake\Core\Configure;
+use Cake\Event\EventListener;
+use Cake\Routing\Router;
 
-App::uses('CakeEmail', 'Network/Email');
-App::uses('CakeEventListener', 'Event');
-App::uses('Router', 'Routing');
 
-class NotificationListener implements CakeEventListener {
+class NotificationListener implements EventListener {
     public function implementedEvents() {
         return array(
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
@@ -33,7 +35,7 @@ class NotificationListener implements CakeEventListener {
     }
 
     public function __construct($Email = null) {
-        $this->Email = $Email ? $Email : new CakeEmail();
+        $this->Email = $Email ? $Email : new Email();
     }
 
     private function _getMessageForMail($parentMessageId)

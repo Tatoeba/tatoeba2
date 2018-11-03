@@ -25,6 +25,9 @@
  */
 namespace App\Controller\Component;
 
+use Cake\Controller\Component;
+use Cake\Controller\Controller;
+
 
 /**
  * Component for permissions.

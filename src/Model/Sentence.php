@@ -28,6 +28,16 @@
  */
 namespace App\Model;
 
+use App\Controller\AppController;
+use App\Lib\Event\ContributionListener;
+use App\Lib\Event\UsersLanguagesListener;
+use App\Lib\LanguagesLib;
+use App\Model\AppModel;
+use App\Model\CurrentUser;
+use App\Utility\Sanitize;
+use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\Event\Event;
 
 /**
  * Model Class which represent sentences
@@ -40,12 +50,6 @@ namespace App\Model;
  * @link     http://tatoeba.org
 */
 
-App::import('Model', 'CurrentUser');
-App::import('Lib', 'LanguagesLib');
-App::uses('CakeEvent', 'Event');
-App::uses('ContributionListener', 'Lib/Event');
-App::uses('UsersLanguagesListener', 'Lib/Event');
-App::uses('Sanitize', 'Utility');
 
 class Sentence extends AppModel
 {
@@ -277,7 +281,7 @@ class Sentence extends AppModel
      */
     public function afterSave($created, $options = array())
     {
-        $event = new CakeEvent('Model.Sentence.saved', $this, array(
+        $event = new Event('Model.Sentence.saved', $this, array(
             'id' => $this->id,
             'created' => $created,
             'data' => $this->data[$this->alias]

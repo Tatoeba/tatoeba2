@@ -26,6 +26,8 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+
 
 /**
  * Model Class which represent the wall and messages posted on
@@ -108,7 +110,7 @@ class Wall extends AppModel
         }
 
         if ($created) {
-            $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+            $event = new Event('Model.Wall.postPosted', $this, array(
                 'post' => $this->data[$this->alias],
             ));
             $this->getEventManager()->dispatch($event);

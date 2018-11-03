@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('SentenceComment', 'Model');
+use App\Model\SentenceComment;
+use Cake\TestSuite\TestCase;
 
-class SentenceCommentTest extends CakeTestCase {
+class SentenceCommentTest extends TestCase {
 
     public $fixtures = array(
         'app.sentence_comment',
@@ -30,7 +31,7 @@ class SentenceCommentTest extends CakeTestCase {
         $dispatched = false;
         $model = $this->SentenceComment;
         $model->getEventManager()->attach(
-            function (CakeEvent $event) use ($model, &$dispatched, $comment) {
+            function (Event $event) use ($model, &$dispatched, $comment) {
                 $this->assertSame($model, $event->subject());
                 unset($event->data['comment']['id']);
                 unset($event->data['comment']['modified']);

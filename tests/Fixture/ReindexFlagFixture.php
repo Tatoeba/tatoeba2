@@ -2,6 +2,8 @@
 /* ReindexFlag Fixture generated on: 2015-11-27 23:54:27 : 1448668467 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class ReindexFlagFixture extends CakeTestFixture {
 	public $name = 'ReindexFlag';
 

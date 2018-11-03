@@ -26,9 +26,10 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+use App\Lib\SphinxClient;
+use Cake\Core\Configure;
 
-App::import('Lib', 'SphinxClient');
-App::uses('AppController', 'Controller');
 
 /**
  * Controller for sentences.

@@ -18,6 +18,8 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+
 
 class ReindexFlag extends AppModel
 {

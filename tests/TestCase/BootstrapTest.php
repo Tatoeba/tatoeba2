@@ -2,9 +2,9 @@
 
 namespace App\Test\TestCase;
 
-App::uses('CakeTestCase', 'TestSuite');
+use Cake\TestSuite\TestCase;
 
-class BootstrapTest extends CakeTestCase {
+class BootstrapTest extends TestCase {
     function testFormat() {
         # Basic {} functionality
         $this->assertEqual('Begin with...', format('{}...', 'Begin with'));

@@ -1,7 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::uses('ActivitiesController', 'Controller');
+use App\Controller\ActivitiesController;
+use Cake\Core\Configure;
 
 class ActivitiesControllerTest extends ControllerTestCase {
 

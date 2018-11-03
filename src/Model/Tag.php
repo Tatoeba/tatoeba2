@@ -26,6 +26,8 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+
 
 /**
  * Model for Tags on sentence.
@@ -138,7 +140,7 @@ class Tag extends AppModel
             }
         }
 
-        $event = new CakeEvent('Model.Tag.tagAdded', $this, compact('tagName'));
+        $event = new Event('Model.Tag.tagAdded', $this, compact('tagName'));
         $this->getEventManager()->dispatch($event);
 
         if ($sentenceId != null) {

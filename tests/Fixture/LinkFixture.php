@@ -2,6 +2,8 @@
 /* SentencesTranslation Fixture generated on: 2014-04-15 01:02:28 : 1397516548 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class LinkFixture extends CakeTestFixture {
 	public $name = 'Link';
 	public $table = 'sentences_translations';

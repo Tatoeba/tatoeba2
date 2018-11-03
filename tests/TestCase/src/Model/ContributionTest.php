@@ -1,13 +1,14 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('Contribution', 'Model');
-App::uses('CurrentUser', 'Model');
+use App\Model\Contribution;
+use App\Model\CurrentUser;
+use Cake\TestSuite\TestCase;
 
 /**
  * Contribution Test Case
  */
-class ContributionTest extends CakeTestCase {
+class ContributionTest extends TestCase {
 
     public $fixtures = array(
         'app.contribution',
@@ -39,7 +40,7 @@ class ContributionTest extends CakeTestCase {
             'user_id' => '7',
             'type' => 'license',
         );
-        $event = new CakeEvent('Model.Sentence.saved', $this, array(
+        $event = new Event('Model.Sentence.saved', $this, array(
             'id' => 48,
             'created' => true,
             'data' => array('license' => 'CC0 1.0'),
@@ -65,7 +66,7 @@ class ContributionTest extends CakeTestCase {
             'user_id' => '7',
             'type' => 'license',
         );
-        $event = new CakeEvent('Model.Sentence.saved', $this, array(
+        $event = new Event('Model.Sentence.saved', $this, array(
             'id' => 48,
             'created' => false,
             'data' => array('license' => 'CC0 1.0'),

@@ -18,8 +18,9 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+use Cake\Core\Configure;
 
-App::uses('AppController', 'Controller');
 
 class LicensingController extends AppController {
 

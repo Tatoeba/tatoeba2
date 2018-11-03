@@ -2,9 +2,10 @@
 /* Link Test cases generated on: 2014-04-16 04:19:37 : 1397614777*/
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'Link');
+use App\Model\Link;
+use Cake\TestSuite\TestCase;
 
-class LinkTest extends CakeTestCase {
+class LinkTest extends TestCase {
 	public $fixtures = array(
 		'app.sentence',
 		'app.user',

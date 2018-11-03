@@ -17,8 +17,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Helper');
-App::import('Helper', 'Languages');
 
 class CLDRLanguageNamesShell extends Shell {
 

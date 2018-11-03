@@ -11,6 +11,9 @@
  */
 namespace App\View\Helper;
 
+use Cake\Utility\Inflector;
+use Cake\View\Helper;
+
 class CsvHelper extends Helper {
 
     public $delimiter = ',';

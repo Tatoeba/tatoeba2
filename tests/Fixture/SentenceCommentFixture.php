@@ -2,6 +2,8 @@
 /* SentenceComment Fixture generated on: 2014-09-14 16:11:54 : 1410711114 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class SentenceCommentFixture extends CakeTestFixture {
 	public $name = 'SentenceComment';
 

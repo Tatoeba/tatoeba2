@@ -26,8 +26,8 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
 
-App::uses('AppController', 'Controller');
 
 /**
  * Controller for activities (i.e. things that contributors can do in Tatoeba).

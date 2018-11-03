@@ -17,9 +17,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Model', 'User');
-App::import('Model', 'Wall');
-App::import('Model', 'WallThread');
 
 class RestoreWallShell extends Shell {
 

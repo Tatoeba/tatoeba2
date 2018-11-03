@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('SentenceAnnotation', 'Model');
+use App\Model\SentenceAnnotation;
+use Cake\TestSuite\TestCase;
 
-class SentenceAnnotationTest extends CakeTestCase {
+class SentenceAnnotationTest extends TestCase {
     public $fixtures = array(
         'app.sentence_annotation',
     );

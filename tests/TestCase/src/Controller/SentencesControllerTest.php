@@ -1,7 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::uses('SentencesController', 'Controller');
+use App\Controller\SentencesController;
+use Cake\Core\Configure;
 
 class SentencesControllerTest extends ControllerTestCase {
 	public $fixtures = array(

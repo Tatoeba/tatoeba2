@@ -1,7 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::uses('WallController', 'Controller');
+use App\Controller\WallController;
+use Cake\Core\Configure;
 
 class WallControllerTest extends ControllerTestCase {
 

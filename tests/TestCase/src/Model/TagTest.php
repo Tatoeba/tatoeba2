@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'Tag');
+use App\Model\Tag;
+use Cake\TestSuite\TestCase;
 
-class TagTest extends CakeTestCase {
+class TagTest extends TestCase {
     public $fixtures = array(
         'app.sentence',
         'app.user',
@@ -53,7 +54,7 @@ class TagTest extends CakeTestCase {
         $dispatched = false;
         $model = $this->Tag;
         $model->getEventManager()->attach(
-            function (CakeEvent $event) use ($model, &$dispatched, $expectedTagName) {
+            function (Event $event) use ($model, &$dispatched, $expectedTagName) {
                 $this->assertSame($model, $event->subject());
                 extract($event->data); // $tagName
                 $this->assertEquals($expectedTagName, $tagName);

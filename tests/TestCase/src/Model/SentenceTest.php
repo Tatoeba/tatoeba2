@@ -2,10 +2,12 @@
 /* Sentence Test cases generated on: 2014-04-15 01:07:30 : 1397516850*/
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'Sentence');
-App::import('Behavior', 'Sphinx');
+use App\Behavior\Sphinx;
+use App\Model\Sentence;
+use Cake\Core\Configure;
+use Cake\TestSuite\TestCase;
 
-class SentenceTest extends CakeTestCase {
+class SentenceTest extends TestCase {
 	public $fixtures = array(
 		'app.sentence',
 		'app.user',
@@ -72,7 +74,7 @@ class SentenceTest extends CakeTestCase {
 		);
 		$model = $this->Sentence;
 		$model->getEventManager()->attach(
-			function (CakeEvent $event) use ($model, &$dispatched, $id, $data) {
+			function (Event $event) use ($model, &$dispatched, $id, $data) {
 				$this->assertSame($model, $event->subject());
 				// filter out unpredictable keys like 'modified' => now()
 				// from $event->data['data']

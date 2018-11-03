@@ -1,11 +1,12 @@
 <?php
 namespace App\Test\TestCase\View\Helper;
 
-App::uses('View', 'View');
-App::uses('Helper', 'View');
-App::uses('MessagesHelper', 'View/Helper');
+use App\View\Helper\MessagesHelper;
+use Cake\TestSuite\TestCase;
+use Cake\View\Helper;
+use Cake\View\View;
 
-class MessagesHelperTest extends CakeTestCase {
+class MessagesHelperTest extends TestCase {
 
     public $fixtures = array(
         'app.sentence',

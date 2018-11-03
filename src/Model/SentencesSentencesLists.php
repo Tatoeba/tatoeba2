@@ -26,6 +26,9 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+use Cake\Core\Configure;
+
 
 /**
  * Model for association table between sentences and lists.

@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('UsersSentences', 'Model');
+use App\Model\UsersSentences;
+use Cake\TestSuite\TestCase;
 
-class UsersSentencesTest extends CakeTestCase {
+class UsersSentencesTest extends TestCase {
     public $fixtures = array(
         'app.user',
         'app.users_sentence',

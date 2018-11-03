@@ -2,6 +2,8 @@
 /* User Fixture generated on: 2014-09-14 16:12:01 : 1410711121 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class UserFixture extends CakeTestFixture {
 	public $name = 'User';
 

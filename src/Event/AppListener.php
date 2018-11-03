@@ -23,7 +23,7 @@ namespace App\Event;
  * How to use: make class Whatever listen to Foobar's events:
  *
  * // Lib/Event/WhateverListener.php
- * class WhateverListener extends AppListener implements CakeEventListener {
+ * class WhateverListener extends AppListener implements EventListener {
  *     public function implementedEvents() {
  *         return array(
  *             'Model.Foobar.event' => 'whateverCallback',
@@ -39,7 +39,7 @@ namespace App\Event;
  *     }
  *
  *     public function doStuff() {
- *         $event = new CakeEvent('Model.Foobar.event', $this, array(...));
+ *         $event = new Event('Model.Foobar.event', $this, array(...));
  *         $this->getEventManager()->dispatch($event);
  *     }
  * }

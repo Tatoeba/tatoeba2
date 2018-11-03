@@ -17,8 +17,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Lib', array('CountriesList', 'LanguagesLib'));
-
 class CLDRCountriesShell extends Shell {
     private $CLDR_copyright = '
 # This file is based on modified data files from Unicode, Inc.

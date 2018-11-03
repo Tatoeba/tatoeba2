@@ -17,7 +17,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Lib', 'LanguagesLib');
 
 class InitLanguagesTableShell extends Shell {
 

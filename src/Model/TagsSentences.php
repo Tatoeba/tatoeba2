@@ -26,6 +26,9 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+use Cake\Core\Configure;
+
 
 /**
  * Model for join table Tags => sentences.

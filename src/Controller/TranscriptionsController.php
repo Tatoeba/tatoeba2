@@ -18,8 +18,8 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
 
-App::uses('AppController', 'Controller');
 
 class TranscriptionsController extends AppController
 {

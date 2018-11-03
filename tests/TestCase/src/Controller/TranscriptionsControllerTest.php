@@ -1,7 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::uses('Controller', 'Transcriptions');
+use App\Transcriptions\Controller;
+use Cake\Core\Configure;
 
 class TranscriptionsControllerTest extends ControllerTestCase {
     public $fixtures = array(

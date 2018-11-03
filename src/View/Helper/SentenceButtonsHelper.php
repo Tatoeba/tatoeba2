@@ -26,6 +26,9 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
+use Cake\Core\Configure;
+
 
 /**
  * Helper to display sentences buttons that are not part of the menu.

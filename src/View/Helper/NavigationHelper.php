@@ -26,6 +26,8 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
+
 
 /**
  * Helper to display navigation links (previous, next, random, go to)

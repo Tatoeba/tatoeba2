@@ -18,11 +18,12 @@
  */
 namespace App\Model\Behavior;
 
+use App\Lib\Murmurhash3;
+use Cake\Model\Behavior;
 
 /**
  * Model behavior for murmurhash3 helper functions.
  */
-App::import('Lib', 'Murmurhash3');
 
 class HashableBehavior extends ModelBehavior
 {

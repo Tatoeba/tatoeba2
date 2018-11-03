@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Lib;
 
-App::import('Lib', 'Autotranscription');
+use App\Lib\Autotranscription;
+use Cake\TestSuite\TestCase;
 
-class AutotranscriptionTest extends CakeTestCase {
+class AutotranscriptionTest extends TestCase {
     function startTest($method) {
         $this->AT = new Autotranscription();
     }

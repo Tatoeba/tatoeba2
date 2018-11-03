@@ -2,6 +2,8 @@
 /* Aro Fixture generated on: 2015-02-04 02:32:22 : 1423017142 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class AroFixture extends CakeTestFixture {
 	public $name = 'Aro';
 

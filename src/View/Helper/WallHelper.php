@@ -26,6 +26,8 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
+
 
 /**
  * Helper used to display a form to add a message to a wall

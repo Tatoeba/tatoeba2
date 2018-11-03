@@ -26,6 +26,12 @@
  */
 namespace App\Controller;
 
+use App\Lib\LanguagesLib;
+use App\Model\CurrentUser;
+use App\Utility\Sanitize;
+use Cake\Controller\Controller;
+use Cake\Core\Configure;
+use Cake\Routing\Router;
 /**
  * Controller for contributions.
  *
@@ -36,11 +42,7 @@ namespace App\Controller;
  * @link     http://tatoeba.org
  */
 
-App::uses('Controller', 'Controller');
 
-App::import('Utility', 'Sanitize');
-App::import('Model', 'CurrentUser');
-App::import('Lib', 'LanguagesLib');
 
 class AppController extends Controller
 {

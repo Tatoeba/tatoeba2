@@ -2,6 +2,8 @@
 /* ArosAco Fixture generated on: 2014-10-20 07:39:46 : 1413790786 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class ArosAcoFixture extends CakeTestFixture {
 	public $name = 'ArosAco';
 

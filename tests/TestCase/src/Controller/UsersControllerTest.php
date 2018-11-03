@@ -1,7 +1,8 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-App::import('Controller', 'Users');
+use App\Controller\Users;
+use Cake\Core\Configure;
 
 class UsersControllerTest extends ControllerTestCase {
 	public $fixtures = array(

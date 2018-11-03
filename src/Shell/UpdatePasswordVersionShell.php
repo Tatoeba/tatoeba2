@@ -1,6 +1,5 @@
 <?php
 
-App::import('Security', 'Utility');
 
 class UpdatePasswordVersionShell extends AppShell {
 

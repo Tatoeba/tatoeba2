@@ -18,6 +18,8 @@
  */
 namespace App\View\Helper;
 
+use App\Lib\CountriesList;
+use App\View\Helper\AppHelper;
 
 class CountriesHelper extends AppHelper
 {
@@ -25,7 +27,6 @@ class CountriesHelper extends AppHelper
 
     public function getAllCountries() {
         if (!$this->countries) {
-            App::import('Lib', 'CountriesList');
             $CountriesList = new CountriesList();
             $this->countries = $CountriesList->list;
         }

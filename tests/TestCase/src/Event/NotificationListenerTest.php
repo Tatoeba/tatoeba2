@@ -2,11 +2,13 @@
 
 namespace App\Test\TestCase\Event;
 
-App::uses('NotificationListener', 'Lib/Event');
-App::uses('CakeEvent', 'Event');
-App::uses('CakeEmail', 'Network/Email');
+use App\Lib\Event\NotificationListener;
+use App\Network\Email\Email;
+use Cake\Core\Configure;
+use Cake\Event\Event;
+use Cake\TestSuite\TestCase;
 
-class NotificationListenerTest extends CakeTestCase {
+class NotificationListenerTest extends TestCase {
     public $fixtures = array(
         'app.user',
         'app.sentence',
@@ -22,7 +24,7 @@ class NotificationListenerTest extends CakeTestCase {
         Configure::write('Mailer.username', 'tatoeba@example.com');
         Configure::write('Mailer.password', 'terrible_password');
 
-        $this->Email = $this->getMock('CakeEmail', array(
+        $this->Email = $this->getMock('Email', array(
             'from', 'to', 'subject', 'send'
         ));
         foreach (array('from', 'to', 'subject') as $method) {
@@ -44,7 +46,7 @@ class NotificationListenerTest extends CakeTestCase {
      * Useful to test email contents.
      */
     private function setUpLightMock() {
-        $this->Email = new CakeEmail();
+        $this->Email = new Email();
         $this->NL = $this->getMock('NotificationListener',
                                    array('getTransport'),
                                    array($this->Email));
@@ -70,7 +72,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendPmNotification() {
-        $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+        $event = new Event('Model.PrivateMessage.messageSent', $this, array(
             'message' => $this->_message(),
         ));
 
@@ -92,7 +94,7 @@ class NotificationListenerTest extends CakeTestCase {
     public function testSendPmNotification_noUnwantedHeaderAndFooter() {
         $this->setUpLightMock();
 
-        $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+        $event = new Event('Model.PrivateMessage.messageSent', $this, array(
             'message' => $this->_message(),
         ));
 
@@ -105,7 +107,7 @@ class NotificationListenerTest extends CakeTestCase {
 
     public function testSendPmNotification_doNotSendIfDisabled() {
         Configure::write('Mailer.enabled', false);
-        $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+        $event = new Event('Model.PrivateMessage.messageSent', $this, array(
             'message' => $this->_message(),
         ));
 
@@ -116,7 +118,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendPmNotification_doNotSendIfUserSettingsDisabled() {
-        $event = new CakeEvent('Model.PrivateMessage.messageSent', $this, array(
+        $event = new Event('Model.PrivateMessage.messageSent', $this, array(
             'message' => $this->_message(7),
         ));
 
@@ -127,7 +129,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_toSentenceOwner() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 9,
                 'text' => 'This sentence lacks a flag.',
@@ -152,7 +154,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_toOtherCommentsAuthors() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 14,
                 'text' => 'I’m adopting!',
@@ -168,7 +170,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_toMentionedUsers() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 1,
                 'text' => '@corpus_maintainer Any licensing problem with this sentence?',
@@ -184,7 +186,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_notToMentionedInvalidUsers() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 1,
                 'text' => 'mentioning @invalid @users',
@@ -199,7 +201,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_notToSelfMentioned() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 1,
                 'text' => 'mentioning myself: @advanced_contributor',
@@ -214,7 +216,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_ignoresUsersWithNotificationsDisabled() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 4,
                 'text' => '@kazuki Yay!',
@@ -229,7 +231,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_ignoresCommentPoster() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 14,
                 'text' => 'Come on, someone adopt this sentence!',
@@ -244,7 +246,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_doesNotDoubleSend() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 17,
                 'text' => '@advanced_contributor @advanced_contributor I love you!',
@@ -260,7 +262,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_toMultipleRecipents() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 19,
                 'text' => '@advanced_contributor and @corpus_maintainer I love you guys!',
@@ -296,7 +298,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendSentenceCommentNotification_onDeletedSentence() {
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 13,
                 'text' => 'I deleted this sentence!',
@@ -319,7 +321,7 @@ class NotificationListenerTest extends CakeTestCase {
     public function testSendSentenceCommentNotification_includesLinkToComment() {
         $this->setUpLightMock();
 
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 9,
                 'text' => 'This sentence lacks a flag.',
@@ -337,7 +339,7 @@ class NotificationListenerTest extends CakeTestCase {
     public function testSendSentenceCommentNotification_includesCommentAuthor() {
         $this->setUpLightMock();
 
-        $event = new CakeEvent('Model.SentenceComment.commentPosted', $this, array(
+        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
             'comment' => array(
                 'sentence_id' => 9,
                 'text' => 'This sentence lacks a flag.',
@@ -366,7 +368,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendWallReplyNotification() {
-        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.postPosted', $this, array(
             'post' => $this->_wallReply(),
         ));
 
@@ -388,7 +390,7 @@ class NotificationListenerTest extends CakeTestCase {
     public function testSendWallReplyNotification_includesLinkToPost() {
         $this->setUpLightMock();
 
-        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.postPosted', $this, array(
             'post' => $this->_wallReply(),
         ));
         $expectedLink = 'https://example.net/wall/show_message/3#message_3';
@@ -400,7 +402,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendWallReplyNotification_doesntSelfNotify() {
-        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.postPosted', $this, array(
             'post' => array(
                 'id' => 3,
                 'owner' => 1,
@@ -420,7 +422,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendWallReplyNotification_doesNotSendIfUserSettingsDisabled() {
-        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.postPosted', $this, array(
             'post' => array(
                 'id' => 3,
                 'owner' => 1,
@@ -440,7 +442,7 @@ class NotificationListenerTest extends CakeTestCase {
     }
 
     public function testSendWallReplyNotification_doesNotSendOnNewThread() {
-        $event = new CakeEvent('Model.Wall.postPosted', $this, array(
+        $event = new Event('Model.Wall.postPosted', $this, array(
             'post' => array(
                 'id' => 3,
                 'owner' => 2,

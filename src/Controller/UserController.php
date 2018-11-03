@@ -26,9 +26,10 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+use App\Controller\Component\Auth\VersionedPasswordHasher;
+use App\Lib\LanguagesLib;
 
-App::uses('AppController', 'Controller');
-App::uses('VersionedPasswordHasher', 'Controller/Component/Auth');
 
 /**
  * Controller for sentence comments.
@@ -580,7 +581,6 @@ class UserController extends AppController
      */
     private function _language_settings($userInput)
     {
-        App::import('Lib', 'LanguagesLib');
         $userInput = str_replace(' ', '', $userInput);
         $userLangs = explode(',', $userInput);
         $tmpLanguagesArray = array();

@@ -1,11 +1,12 @@
 <?php
 namespace App\Test\TestCase\Shell\Task;
 
-App::uses('ConsoleOutput', 'Console');
-App::uses('ConsoleInput', 'Console');
-App::uses('QueueSwitchSentencesLicenseTask', 'Console/Command/Task');
+use App\Console\Command\Task\QueueSwitchSentencesLicenseTask;
+use Cake\Console\ConsoleInput;
+use Cake\Console\ConsoleOutput;
+use Cake\TestSuite\TestCase;
 
-class QueueSwitchSentencesLicenseTaskTest extends CakeTestCase
+class QueueSwitchSentencesLicenseTaskTest extends TestCase
 {
     public $fixtures = array(
         'app.sentence',

@@ -26,6 +26,8 @@
  */
 namespace App\Model;
 
+use Cake\Core\Configure;
+
 
 /**
  * Model class for vocabulary.

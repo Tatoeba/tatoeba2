@@ -26,9 +26,9 @@
  */
 namespace App\View\Helper;
 
+use App\Utility\Sanitize;
+use App\View\Helper\AppHelper;
 
-App::uses('AppHelper', 'View/Helper');
-App::import('Utility', 'Sanitize');
 
 /**
  * Helper for messages.

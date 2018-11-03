@@ -2,9 +2,10 @@
 /* TagsSentences Test cases generated on: 2015-06-25 11:02:51 : 1435230171*/
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'TagsSentences');
+use App\Model\TagsSentences;
+use Cake\TestSuite\TestCase;
 
-class TagsSentencesTest extends CakeTestCase {
+class TagsSentencesTest extends TestCase {
     public $fixtures = array(
         'app.tags_sentence',
     );

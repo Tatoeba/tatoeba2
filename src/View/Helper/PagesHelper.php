@@ -18,6 +18,8 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
+use Cake\Routing\Router;
 
 class PagesHelper extends AppHelper
 {

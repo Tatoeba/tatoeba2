@@ -26,6 +26,8 @@
  */
 namespace App\Model;
 
+use App\Model\AppModel;
+use App\Utility\Sanitize;
 
 /**
  * Model for sentences list.
@@ -37,7 +39,6 @@ namespace App\Model;
  * @link     http://tatoeba.org
  */
 
-App::uses('Sanitize', 'Utility');
 class SentencesList extends AppModel
 {
     public $actsAs = array('Containable');

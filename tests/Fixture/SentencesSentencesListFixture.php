@@ -2,6 +2,8 @@
 /* SentencesSentencesList Fixture generated on: 2014-09-14 16:11:58 : 1410711118 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class SentencesSentencesListFixture extends CakeTestFixture {
 	public $name = 'SentencesSentencesLists';
 

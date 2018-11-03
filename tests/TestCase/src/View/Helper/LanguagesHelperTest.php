@@ -1,11 +1,13 @@
 <?php
 namespace App\Test\TestCase\View\Helper;
 
-App::uses('Controller', 'Controller');
-App::uses('View', 'View');
-App::uses('LanguagesHelper', 'View/Helper');
+use App\View\Helper\LanguagesHelper;
+use Cake\Controller\Controller;
+use Cake\Core\Configure;
+use Cake\TestSuite\TestCase;
+use Cake\View\View;
 
-class LanguagesHelperTest extends CakeTestCase {
+class LanguagesHelperTest extends TestCase {
 	public $fixtures = array(
 		'app.users_language',
 	);

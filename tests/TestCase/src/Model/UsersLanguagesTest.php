@@ -1,9 +1,10 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('UsersLanguages', 'Model');
+use App\Model\UsersLanguages;
+use Cake\TestSuite\TestCase;
 
-class UsersLanguagesTest extends CakeTestCase {
+class UsersLanguagesTest extends TestCase {
     public $fixtures = array(
         'app.user',
         'app.users_language',

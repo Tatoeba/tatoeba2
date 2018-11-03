@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Lib', 'LanguagesLib');
+App::uses('LanguagesLib', 'Lib');
 
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 ?>

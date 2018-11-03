@@ -26,8 +26,9 @@
  */
 namespace App\Model;
 
+use App\Controller\Component\Auth\VersionedPasswordHasher;
+use App\Model\AppModel;
 
-App::uses('VersionedPasswordHasher', 'Controller/Component/Auth');
 
 /**
  * Model for users.

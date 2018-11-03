@@ -18,8 +18,8 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
 
-App::uses('AppHelper', 'View/Helper');
 
 class AudioHelper extends AppHelper
 {

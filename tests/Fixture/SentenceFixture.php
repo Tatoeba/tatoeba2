@@ -2,6 +2,9 @@
 /* Sentence Fixture generated on: 2014-10-26 16:46:13 : 1414341973 */
 namespace App\Test\Fixture;
 
+use Cake\Database\ConnectionManager;
+use Cake\TestSuite\Fixture\TestFixture;
+
 class SentenceFixture extends CakeTestFixture {
 	public $name = 'Sentence';
 

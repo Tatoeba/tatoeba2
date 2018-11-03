@@ -18,8 +18,9 @@
  */
 namespace App\View\Helper;
 
+use App\View\Helper\AppHelper;
+use Cake\View\View;
 
-App::uses('AppHelper', 'View/Helper');
 
 class LicenseHelper extends AppHelper
 {

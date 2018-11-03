@@ -1,12 +1,13 @@
 <?php
 namespace App\Test\TestCase\Shell;
 
-App::uses('ConsoleOutput', 'Console');
-App::uses('ConsoleInput', 'Console');
-App::uses('Shell', 'Console');
-App::uses('SentenceDerivationShell', 'Console/Command');
+use App\Console\Command\SentenceDerivationShell;
+use Cake\Console\ConsoleInput;
+use Cake\Console\ConsoleOutput;
+use Cake\Console\Shell;
+use Cake\TestSuite\TestCase;
 
-class SentenceDerivationShellTest extends CakeTestCase
+class SentenceDerivationShellTest extends TestCase
 {
     public $fixtures = array(
         'app.contribution',

@@ -18,10 +18,11 @@
  */
 namespace App\Event;
 
+use App\Event\EventListener;
+use Cake\Event\EventListener;
 
-App::uses('CakeEventListener', 'Event');
 
-class SuggestdListener implements CakeEventListener {
+class SuggestdListener implements EventListener {
     public function implementedEvents() {
         return array(
             'Model.Tag.tagAdded' => 'notifySuggestd',

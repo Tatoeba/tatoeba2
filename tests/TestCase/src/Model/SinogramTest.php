@@ -2,9 +2,10 @@
 /* Sinogram Test cases generated on: 2015-02-24 09:10:47 : 1424769047*/
 namespace App\Test\TestCase\Model;
 
-App::import('Model', 'Sinogram');
+use App\Model\Sinogram;
+use Cake\TestSuite\TestCase;
 
-class SinogramTest extends CakeTestCase {
+class SinogramTest extends TestCase {
 	public $fixtures = array('app.sinogram', 'app.sinogram_subglyph');
 
 	function startTest($method) {

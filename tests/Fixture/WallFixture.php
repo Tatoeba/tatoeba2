@@ -2,6 +2,8 @@
 /* Wall Fixture generated on: 2014-04-15 16:50:14 : 1397573414 */
 namespace App\Test\Fixture;
 
+use Cake\TestSuite\Fixture\TestFixture;
+
 class WallFixture extends CakeTestFixture {
 	public $name = 'Wall';
 	public $table = 'wall';

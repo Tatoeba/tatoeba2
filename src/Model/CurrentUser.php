@@ -26,6 +26,7 @@
  */
 namespace App\Model;
 
+use App\Model\User;
 
 /**
  * Static class that stores the Auth information of the user. This is the only
@@ -42,7 +43,6 @@ namespace App\Model;
  * @link     http://tatoeba.org
  */
 
-App::import('Model', 'User');
 
 class CurrentUser extends AppModel
 {

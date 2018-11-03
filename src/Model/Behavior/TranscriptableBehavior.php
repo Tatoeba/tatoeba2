@@ -18,6 +18,9 @@
  */
 namespace App\Model\Behavior;
 
+use Cake\Model\Behavior;
+use Cake\Model\Model;
+
 
 /**
  * Model behavior for transcriptions/transliterations.

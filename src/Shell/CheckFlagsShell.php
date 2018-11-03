@@ -17,10 +17,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-App::import('Helper');
-App::import('Helper', 'Languages');
-App::import('Model', 'Sentence');
-App::import('Component', 'LanguageDetection');
 
 class CheckFlagsShell extends Shell {
 

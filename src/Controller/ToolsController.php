@@ -26,6 +26,8 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+use App\Lib\Autotranscription;
 
 /**
  * Controller for tools.
@@ -36,7 +38,6 @@ namespace App\Controller;
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-App::import('Lib', 'Autotranscription');
 
 class ToolsController extends AppController
 {

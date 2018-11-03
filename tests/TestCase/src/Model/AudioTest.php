@@ -1,9 +1,11 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-App::uses('Model', 'Audio');
+use App\Audio\Model;
+use Cake\Core\Configure;
+use Cake\TestSuite\TestCase;
 
-class AudioTest extends CakeTestCase {
+class AudioTest extends TestCase {
     public $fixtures = array(
         'app.audio',
         'app.contribution',

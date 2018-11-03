@@ -26,9 +26,9 @@
  */
 namespace App\Controller;
 
+use App\Controller\AppController;
+use App\Lib\Event\SuggestdListener;
 
-App::uses('AppController', 'Controller');
-App::uses('SuggestdListener', 'Lib/Event');
 
 /**
  * Controller for tags
