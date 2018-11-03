@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class WallThreadFixture extends CakeTestFixture {
+class WallThreadFixture extends TestFixture {
 	public $name = 'WallThread';
 	public $table = 'wall_threads_last_message';
 

@@ -6,7 +6,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class PrivateMessageFixture extends CakeTestFixture {
+class PrivateMessageFixture extends TestFixture {
 
 /**
  * Fields

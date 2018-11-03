@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class SinogramFixture extends CakeTestFixture {
+class SinogramFixture extends TestFixture {
 	public $name = 'Sinogram';
 
 	public $fields = array(

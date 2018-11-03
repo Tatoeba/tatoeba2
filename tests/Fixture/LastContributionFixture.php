@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class LastContributionFixture extends CakeTestFixture {
+class LastContributionFixture extends TestFixture {
 
 	public $fields = array(
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'index'),

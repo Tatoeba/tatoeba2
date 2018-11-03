@@ -5,7 +5,7 @@ namespace App\Test\Fixture;
 use Cake\Database\ConnectionManager;
 use Cake\TestSuite\Fixture\TestFixture;
 
-class SentenceFixture extends CakeTestFixture {
+class SentenceFixture extends TestFixture {
 	public $name = 'Sentence';
 
 	public $fields = array(

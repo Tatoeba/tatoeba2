@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class SentenceAnnotationFixture extends CakeTestFixture {
+class SentenceAnnotationFixture extends TestFixture {
 	public $name = 'SentenceAnnotation';
 
 	public $fields = array(

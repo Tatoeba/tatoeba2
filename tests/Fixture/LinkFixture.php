@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class LinkFixture extends CakeTestFixture {
+class LinkFixture extends TestFixture {
 	public $name = 'Link';
 	public $table = 'sentences_translations';
 

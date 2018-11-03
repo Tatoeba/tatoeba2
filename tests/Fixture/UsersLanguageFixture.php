@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class UsersLanguageFixture extends CakeTestFixture {
+class UsersLanguageFixture extends TestFixture {
 	public $name = 'UsersLanguage';
 
 	public $fields = array(

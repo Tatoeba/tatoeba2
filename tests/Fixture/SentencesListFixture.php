@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class SentencesListFixture extends CakeTestFixture {
+class SentencesListFixture extends TestFixture {
 	public $name = 'SentencesList';
 	public $import = array('records' => true);
 

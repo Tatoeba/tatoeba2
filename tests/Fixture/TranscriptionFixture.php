@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class TranscriptionFixture extends CakeTestFixture {
+class TranscriptionFixture extends TestFixture {
 	public $name = 'Transcription';
 
 	public $fields = array(

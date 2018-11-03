@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class AroFixture extends CakeTestFixture {
+class AroFixture extends TestFixture {
 	public $name = 'Aro';
 
 	public $fields = array(
