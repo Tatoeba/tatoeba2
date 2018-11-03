@@ -1,156 +1,171 @@
 <?php
 /**
- * Short description for file.
+ * Routes configuration
  *
  * In this file, you set up routes to your controllers and their actions.
  * Routes are very important mechanism that allows you to freely connect
- * different urls to chosen controllers and their actions (functions).
+ * different URLs to chosen controllers and their actions (functions).
  *
- * PHP versions 4 and 5
- *
- * CakePHP(tm) :  Rapid Development Framework <http://www.cakephp.org/>
- * Copyright 2005-2008, Cake Software Foundation, Inc.
- *                                1785 E. Sahara Avenue, Suite 490-204
- *                                Las Vegas, Nevada 89104
+ * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
  *
  * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright  Copyright 2005-2008, Cake Software Foundation, Inc.
- * @package      Cake
- * @subpackage   cake.app.config
- * @since        CakePHP(tm) v 0.2.9
- * @version      $Revision: 7296 $
- * @link         http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
- * @modifiedby   $LastChangedBy: gwoo $
- * @lastmodified $Date: 2008-06-27 02:09:03 -0700 (Fri, 27 Jun 2008) $
- * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+ * @link          https://cakephp.org CakePHP(tm) Project
+ * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-/*  /!\ WARNING /!\
-**
-**  order of lines  is important here !
-**  router::connect works like this
-**  rules are ordered, the first is the first declared
-**  and we stop search once we have found a matching rule
-*/
+use Cake\Core\Configure;
+use Cake\Core\Plugin;
+use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 
 /**
- * TODO all rules are have a with and without :lang ,
- * maybe we can have a rule to handle both
+ * The default class to use for all routes
+ *
+ * The following route classes are supplied with CakePHP and are appropriate
+ * to set as the default:
+ *
+ * - Route
+ * - InflectedRoute
+ * - DashedRoute
+ *
+ * If no call is made to `Router::defaultRouteClass()`, the class used is
+ * `Route` (`Cake\Routing\Route\Route`)
+ *
+ * Note that `Route` does not do any inflections on URLs which will result in
+ * inconsistently cased URLs when used with `:plugin`, `:controller` and
+ * `:action` markers.
+ *
+ * Cache: Routes are cached to improve performance, check the RoutingMiddleware
+ * constructor in your `src/Application.php` file to change this behavior.
+ *
  */
+Router::defaultRouteClass(DashedRoute::class);
 
-// Array that lists all the languages into which the Tatoeba interface has been translated
-$configUiLanguages = Configure::read('UI.languages');
-$iso3LangArray = array();
-foreach ($configUiLanguages as $lang) {
-    $iso3LangArray[] = $lang[0];
-    if (isset($lang[3]) && is_array($lang[3])) {
-        foreach ($lang[3] as $alias) {
-            $iso3LangArray[] = $alias;
+Router::scope('/', function (RouteBuilder $routes) {
+    // Array that lists all the languages into which the Tatoeba interface
+    // has been translated
+    $configUiLanguages = Configure::read('UI.languages');
+    $iso3LangArray = array();
+    foreach ($configUiLanguages as $lang) {
+        $iso3LangArray[] = $lang[0];
+        if (isset($lang[3]) && is_array($lang[3])) {
+            foreach ($lang[3] as $alias) {
+                $iso3LangArray[] = $alias;
+            }
         }
     }
-}
-$interfaceLanguages = array(
-    'lang' => join('|', $iso3LangArray)
-);
+    $interfaceLanguages = array(
+        'lang' => join('|', $iso3LangArray)
+    );
 
-/**
- * To route tools, in order to still have tools in the URL, which is
- * clearer for users IMHO
- * this rule appears first, that way /fre/tools/search_sinograms  is
- * not catch by the general rule for controllers
- */
-Router::connect(
-    '/tools/search_hanzi_kanji',
-    array(
-        'controller' => 'sinograms',
-        'action' =>'index'
-    )
-);
-Router::connect(
-    '/tools/search_hanzi_kanji/:action',
-    array(
-        'controller' => 'sinograms',
-    )
-);
+    /**
+     * To route tools, in order to still have tools in the URL, which is
+     * clearer for users IMHO
+     * this rule appears first, that way /fre/tools/search_Sinograms  is
+     * not catch by the general rule for controllers
+     */
+    $routes->connect(
+        '/tools/search_hanzi_kanji',
+        [
+            'controller' => 'Sinograms',
+            'action' =>'index'
+        ]
+    );
+    $routes->connect(
+        '/tools/search_hanzi_kanji/:action',
+        [
+            'controller' => 'Sinograms',
+        ]
+    );
 
-Router::connect(
-    '/:lang/tools/search_hanzi_kanji',
-    array(
-        'lang'=>'eng',
-        'controller' => 'sinograms',
-        'action' =>'index'
-    ),
-    $interfaceLanguages
-);
-Router::connect(
-    '/:lang/tools/search_hanzi_kanji/:action',
-    array(
-        'lang'=>'eng',
-        'controller' => 'sinograms',
-    ),
-    $interfaceLanguages
-);
+    $routes->connect(
+        '/:lang/tools/search_hanzi_kanji',
+        [
+            'lang'=>'eng',
+            'controller' => 'Sinograms',
+            'action' =>'index'
+        ],
+        $interfaceLanguages
+    );
+    $routes->connect(
+        '/:lang/tools/search_hanzi_kanji/:action',
+        [
+            'lang'=>'eng',
+            'controller' => 'Sinograms',
+        ],
+        $interfaceLanguages
+    );
 
-/**
- * Here, we are connecting '/' (base path) to controller called 'Pages',
- * its action called 'display', and we pass a param to select the view file
- * to use (in this case, /app/views/pages/home.thtml)...
- */
-Router::connect(
-    '/',
-    array(
-        'controller' => 'pages',
-        'action' => 'index',
-    )
-);
-Router::connect(
-    '/:lang',
-    array(
-        'lang' => ':lang',
-        'controller' => 'pages',
-        'action' => 'index',
-    ),
-    $interfaceLanguages
-);
-// TODO : can we use directly "home" action instead of display ?
+    /**
+     * Here, we are connecting '/' (base path) to a controller called 'Pages',
+     * its action called 'display', and we pass a param to select the view file
+     * to use (in this case, src/Template/Pages/home.ctp)...
+     */
+    $routes->connect(
+        '/',
+        [
+            'controller' => 'Pages',
+            'action' => 'index'
+        ]
+    );
+    $routes->connect(
+        '/:lang',
+        [
+            'lang' => ':lang',
+            'controller' => 'Pages',
+            'action' => 'index'
+        ],
+        $interfaceLanguages
+    );
 
-Router::connect(
-    '/:action',
-    array(
-        'controller' => 'pages',
-    )
-);
-Router::connect(
-    '/:lang/:action',
-    array(
-        'lang' => ':lang',
-        'controller' => 'pages',
-    ),
-    $interfaceLanguages
-);
+    $routes->connect(
+        '/:action',
+        [
+            'controller' => 'pages',
+        ]
+    );
+    $routes->connect(
+        '/:lang/:action',
+        [
+            'lang' => ':lang',
+            'controller' => 'pages',
+        ],
+        $interfaceLanguages
+    );
 
-/**
- * Then we connect url '/test' to our test controller. This is helpful in
- * developement.
- */
-Router::connect(
-    '/tests',
-    array(
-        'controller' => 'tests',
-        'action' => 'index'
-    )
-);
-/**
- * La langue choisie sera maintenant disponible dans les contrôleurs
- * par la variable $this->params['lang'].
- */
-Router::connect(
-    '/:lang/:controller/:action/*',
-    array(
-        'lang'=>'eng'
-    ),
-    $interfaceLanguages
-);
+    /**
+     * La langue choisie sera maintenant disponible dans les contrôleurs
+     * par la variable $this->params['lang'].
+     */
+    $routes->connect(
+        '/:lang/:controller/:action/*',
+        [
+            'lang'=>'eng'
+        ],
+        $interfaceLanguages
+    );
+
+    /**
+     * Connect catchall routes for all controllers.
+     *
+     * Using the argument `DashedRoute`, the `fallbacks` method is a shortcut for
+     *    `$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);`
+     *    `$routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);`
+     *
+     * Any route class can be used with this method, such as:
+     * - DashedRoute
+     * - InflectedRoute
+     * - Route
+     * - Or your own route class
+     *
+     * You can remove these routes once you've connected the
+     * routes you want in your application.
+     */
+    $routes->fallbacks(DashedRoute::class);
+});
