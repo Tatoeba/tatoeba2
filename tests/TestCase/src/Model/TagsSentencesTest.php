@@ -7,7 +7,7 @@ use Cake\TestSuite\TestCase;
 
 class TagsSentencesTest extends TestCase {
     public $fixtures = array(
-        'app.tags_sentence',
+        'app.tags_sentences'
     );
 
     function startTest($method) {

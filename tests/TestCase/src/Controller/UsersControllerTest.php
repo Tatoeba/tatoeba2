@@ -6,14 +6,14 @@ use Cake\Core\Configure;
 
 class UsersControllerTest extends ControllerTestCase {
 	public $fixtures = array(
-		'app.aro',
-		'app.aco',
-		'app.aros_aco',
-		'app.sentence',
-		'app.user',
-		'app.group',
-		'app.users_language',
-		'app.last_contribution',
+		'app.aros',
+		'app.acos',
+		'app.aros_acos',
+		'app.sentences',
+		'app.users',
+		'app.groups',
+		'app.users_languages',
+		'app.last_contributions'
 	);
 
 	function setUp() {

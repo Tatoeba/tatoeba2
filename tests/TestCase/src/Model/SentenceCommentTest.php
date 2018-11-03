@@ -7,7 +7,7 @@ use Cake\TestSuite\TestCase;
 class SentenceCommentTest extends TestCase {
 
     public $fixtures = array(
-        'app.sentence_comment',
+        'app.sentence_comments'
     );
 
     public function setUp() {

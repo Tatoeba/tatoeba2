@@ -6,10 +6,10 @@ use Cake\TestSuite\TestCase;
 
 class TranslationTest extends TestCase {
     public $fixtures = array(
-        'app.sentence',
-        'app.link',
-        'app.transcription',
-        'app.user',
+        'app.sentences',
+        'app.links',
+        'app.transcriptions',
+        'app.users'
     );
 
     function startTest($method) {

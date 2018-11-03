@@ -6,7 +6,7 @@ use Cake\TestSuite\TestCase;
 
 class SentenceAnnotationTest extends TestCase {
     public $fixtures = array(
-        'app.sentence_annotation',
+        'app.sentence_annotations'
     );
 
     function setUp() {

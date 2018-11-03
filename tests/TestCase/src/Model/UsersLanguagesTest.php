@@ -6,9 +6,9 @@ use Cake\TestSuite\TestCase;
 
 class UsersLanguagesTest extends TestCase {
     public $fixtures = array(
-        'app.user',
-        'app.users_language',
-        'app.language'
+        'app.users',
+        'app.users_languages',
+        'app.languages'
     );
 
     function setUp() {

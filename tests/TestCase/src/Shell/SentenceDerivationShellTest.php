@@ -10,12 +10,12 @@ use Cake\TestSuite\TestCase;
 class SentenceDerivationShellTest extends TestCase
 {
     public $fixtures = array(
-        'app.contribution',
-        'app.sentence',
-        'app.language',
-        'app.reindex_flag',
-        'app.link',
-        'app.user',
+        'app.contributions',
+        'app.sentences',
+        'app.languages',
+        'app.reindex_flags',
+        'app.links',
+        'app.users'
     );
 
     public function setUp()

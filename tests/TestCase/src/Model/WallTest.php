@@ -7,9 +7,9 @@ use Cake\TestSuite\TestCase;
 class WallTest extends TestCase {
 
     public $fixtures = array(
-        'app.wall',
-        'app.wall_thread',
-        'app.user',
+        'app.walls',
+        'app.wall_threads',
+        'app.users'
     );
 
     public function setUp() {

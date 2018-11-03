@@ -7,10 +7,10 @@ use Cake\Core\Configure;
 class WallControllerTest extends ControllerTestCase {
 
     public $fixtures = array(
-        'app.wall',
-        'app.wall_thread',
-        'app.user',
-        'app.users_language'
+        'app.walls',
+        'app.wall_threads',
+        'app.users',
+        'app.users_languages'
     );
 
     public function setUp() {

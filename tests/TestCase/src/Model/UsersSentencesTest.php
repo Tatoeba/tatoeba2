@@ -6,9 +6,9 @@ use Cake\TestSuite\TestCase;
 
 class UsersSentencesTest extends TestCase {
     public $fixtures = array(
-        'app.user',
-        'app.users_sentence',
-        'app.sentence'
+        'app.users',
+        'app.users_sentences',
+        'app.sentences'
     );
 
     function setUp() {

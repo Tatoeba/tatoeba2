@@ -6,9 +6,9 @@ use Cake\TestSuite\TestCase;
 
 class TranscriptionTest extends TestCase {
     public $fixtures = array(
-        'app.transcription',
-        'app.sentence',
-        'app.user',
+        'app.transcriptions',
+        'app.sentences',
+        'app.users'
     );
 
     function startTest($method) {

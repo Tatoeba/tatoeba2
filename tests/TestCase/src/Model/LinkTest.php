@@ -7,23 +7,23 @@ use Cake\TestSuite\TestCase;
 
 class LinkTest extends TestCase {
 	public $fixtures = array(
-		'app.sentence',
-		'app.user',
-		'app.group',
-		'app.sentence_comment',
-		'app.contribution',
-		'app.sentences_list',
-		'app.sentences_sentences_list',
-		'app.wall',
-		'app.wall_thread',
-		'app.favorites_user',
-		'app.tag',
-		'app.tags_sentence',
-		'app.language',
-		'app.link',
-		'app.sentence_annotation',
-		'app.transcription',
-		'app.reindex_flag',
+		'app.sentences',
+		'app.users',
+		'app.groups',
+		'app.sentence_comments',
+		'app.contributions',
+		'app.sentences_lists',
+		'app.sentences_sentences_lists',
+		'app.walls',
+		'app.wall_threads',
+		'app.favorites_users',
+		'app.tags',
+		'app.tags_sentences',
+		'app.languages',
+		'app.links',
+		'app.sentence_annotations',
+		'app.transcriptions',
+		'app.reindex_flags'
 	);
 
 	function startTest($method) {

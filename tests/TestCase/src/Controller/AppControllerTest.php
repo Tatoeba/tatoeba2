@@ -7,9 +7,9 @@ use Cake\Core\Configure;
 
 class AppControllerTest extends ControllerTestCase {
 	public $fixtures = array(
-		'app.sentence',
-		'app.user',
-		'app.users_language',
+		'app.sentences',
+		'app.users',
+		'app.users_languages'
 	);
 
 	function startTest($method) {

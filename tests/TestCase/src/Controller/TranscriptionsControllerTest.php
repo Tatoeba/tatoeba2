@@ -6,13 +6,13 @@ use Cake\Core\Configure;
 
 class TranscriptionsControllerTest extends ControllerTestCase {
     public $fixtures = array(
-        'app.aro',
-        'app.aco',
-        'app.aros_aco',
-        'app.transcription',
-        'app.user',
-        'app.users_language',
-        'app.sentence',
+        'app.aros',
+        'app.acos',
+        'app.aros_acos',
+        'app.transcriptions',
+        'app.users',
+        'app.users_languages',
+        'app.sentences'
     );
 
     public function setUp() {

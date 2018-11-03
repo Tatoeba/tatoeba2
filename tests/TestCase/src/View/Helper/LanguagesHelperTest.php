@@ -9,7 +9,7 @@ use Cake\View\View;
 
 class LanguagesHelperTest extends TestCase {
 	public $fixtures = array(
-		'app.users_language',
+		'app.users_languages'
 	);
 
 	function setUp() {

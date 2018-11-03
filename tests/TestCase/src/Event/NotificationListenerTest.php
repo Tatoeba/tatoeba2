@@ -10,10 +10,10 @@ use Cake\TestSuite\TestCase;
 
 class NotificationListenerTest extends TestCase {
     public $fixtures = array(
-        'app.user',
-        'app.sentence',
-        'app.sentence_comment',
-        'app.wall',
+        'app.users',
+        'app.sentences',
+        'app.sentence_comments',
+        'app.walls'
     );
 
     public function setUp() {

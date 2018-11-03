@@ -6,17 +6,17 @@ use Cake\TestSuite\TestCase;
 
 class SentencesListTest extends TestCase {
     public $fixtures = array(
-        'app.sentences_list',
-        'app.sentences_sentences_list',
-        'app.sentence',
-        'app.favorites_user',
-        'app.user',
-        'app.contribution',
-        'app.language',
-        'app.reindex_flag',
-        'app.link',
-        'app.audio',
-        'app.transcription'
+        'app.sentences_lists',
+        'app.sentences_sentences_lists',
+        'app.sentences',
+        'app.favorites_users',
+        'app.users',
+        'app.contributions',
+        'app.languages',
+        'app.reindex_flags',
+        'app.links',
+        'app.audios',
+        'app.transcriptions'
     );
 
     function setUp() {

@@ -11,9 +11,9 @@ use Cake\TestSuite\TestCase;
 class ContributionTest extends TestCase {
 
     public $fixtures = array(
-        'app.contribution',
-        'app.sentence',
-        'app.users_language',
+        'app.contributions',
+        'app.sentences',
+        'app.users_languages'
     );
 
     public function setUp() {

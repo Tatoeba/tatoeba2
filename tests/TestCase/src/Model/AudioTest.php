@@ -7,24 +7,24 @@ use Cake\TestSuite\TestCase;
 
 class AudioTest extends TestCase {
     public $fixtures = array(
-        'app.audio',
-        'app.contribution',
-        'app.favorites_user',
-        'app.group',
-        'app.language',
-        'app.link',
-        'app.reindex_flag',
-        'app.sentence',
-        'app.sentence_annotation',
-        'app.sentence_comment',
-        'app.sentences_list',
-        'app.sentences_sentences_list',
-        'app.tag',
-        'app.tags_sentence',
-        'app.transcription',
-        'app.user',
-        'app.wall',
-        'app.wall_thread',
+        'app.audios',
+        'app.contributions',
+        'app.favorites_users',
+        'app.groups',
+        'app.languages',
+        'app.links',
+        'app.reindex_flags',
+        'app.sentences',
+        'app.sentence_annotations',
+        'app.sentence_comments',
+        'app.sentences_lists',
+        'app.sentences_sentences_lists',
+        'app.tags',
+        'app.tags_sentences',
+        'app.transcriptions',
+        'app.users',
+        'app.walls',
+        'app.wall_threads'
     );
 
     function setUp() {

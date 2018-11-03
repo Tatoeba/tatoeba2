@@ -6,14 +6,14 @@ use Cake\Core\Configure;
 
 class TagsControllerTest extends ControllerTestCase {
     public $fixtures = array(
-        'app.aro',
-        'app.aco',
-        'app.aros_aco',
-        'app.sentence',
-        'app.tag',
-        'app.tags_sentence',
-        'app.user',
-        'app.users_language',
+        'app.aros',
+        'app.acos',
+        'app.aros_acos',
+        'app.sentences',
+        'app.tags',
+        'app.tags_sentences',
+        'app.users',
+        'app.users_languages'
     );
 
     public function setUp() {

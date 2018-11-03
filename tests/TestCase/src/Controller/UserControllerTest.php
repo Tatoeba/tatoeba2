@@ -7,12 +7,12 @@ use Cake\Core\Configure;
 class UserControllerTest extends ControllerTestCase {
 
     public $fixtures = array(
-        'app.aro',
-        'app.aco',
-        'app.aros_aco',
-        'app.user',
-        'app.sentence',
-        'app.users_language',
+        'app.aros',
+        'app.acos',
+        'app.aros_acos',
+        'app.users',
+        'app.sentences',
+        'app.users_languages'
     );
 
     private $oldPasswords = array();

@@ -9,20 +9,20 @@ use Cake\TestSuite\TestCase;
 
 class SentenceTest extends TestCase {
 	public $fixtures = array(
-		'app.sentence',
-		'app.user',
-		'app.users_language',
-		'app.contribution',
-		'app.sentences_list',
-		'app.sentences_sentences_list',
-		'app.tag',
-		'app.tags_sentence',
-		'app.language',
-		'app.link',
-		'app.transcription',
-		'app.reindex_flag',
-		'app.audio',
-		'app.users_sentence',
+		'app.sentences',
+		'app.users',
+		'app.users_languages',
+		'app.contributions',
+		'app.sentences_lists',
+		'app.sentences_sentences_lists',
+		'app.tags',
+		'app.tags_sentences',
+		'app.languages',
+		'app.links',
+		'app.transcriptions',
+		'app.reindex_flags',
+		'app.audios',
+		'app.users_sentences'
 	);
 
 	function startTest($method) {

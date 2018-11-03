@@ -9,11 +9,11 @@ use Cake\TestSuite\TestCase;
 class QueueSwitchSentencesLicenseTaskTest extends TestCase
 {
     public $fixtures = array(
-        'app.sentence',
-        'app.contribution',
-        'app.reindex_flag',
-        'app.users_language',
-        'app.private_message',
+        'app.sentences',
+        'app.contributions',
+        'app.reindex_flags',
+        'app.users_languages',
+        'app.private_messages'
     );
 
     public function setUp()

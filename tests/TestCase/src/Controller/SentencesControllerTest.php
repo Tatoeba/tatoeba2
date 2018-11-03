@@ -6,22 +6,22 @@ use Cake\Core\Configure;
 
 class SentencesControllerTest extends ControllerTestCase {
 	public $fixtures = array(
-		'app.sentence',
-		'app.user',
-		'app.users_language',
-		'app.contribution',
-		'app.sentences_sentences_list',
-		'app.tag',
-		'app.tags_sentence',
-		'app.language',
-		'app.link',
-		'app.aro',
-		'app.aco',
-		'app.aros_aco',
-		'app.reindex_flag',
-		'app.transcription',
-		'app.audio',
-		'app.users_sentence',
+		'app.sentences',
+		'app.users',
+		'app.users_languages',
+		'app.contributions',
+		'app.sentences_sentences_lists',
+		'app.tags',
+		'app.tags_sentences',
+		'app.languages',
+		'app.links',
+		'app.aros',
+		'app.acos',
+		'app.aros_acos',
+		'app.reindex_flags',
+		'app.transcriptions',
+		'app.audios',
+		'app.users_sentences'
 	);
 
 	public function setUp() {

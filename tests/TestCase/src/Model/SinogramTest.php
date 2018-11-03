@@ -6,7 +6,10 @@ use App\Model\Sinogram;
 use Cake\TestSuite\TestCase;
 
 class SinogramTest extends TestCase {
-	public $fixtures = array('app.sinogram', 'app.sinogram_subglyph');
+	public $fixtures = array(
+		'app.sinograms',
+		'app.sinogram_subglyphs'
+	);
 
 	function startTest($method) {
 		$this->Sinogram = ClassRegistry::init('Sinogram');

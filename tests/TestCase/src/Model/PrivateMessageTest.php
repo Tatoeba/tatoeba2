@@ -7,8 +7,8 @@ use Cake\TestSuite\TestCase;
 class PrivateMessageTest extends TestCase {
 
     public $fixtures = array(
-        'app.private_message',
-        'app.user',
+        'app.private_messages',
+        'app.users'
     );
 
     public function setUp() {

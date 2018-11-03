@@ -7,9 +7,9 @@ use Cake\TestSuite\TestCase;
 
 class SentencesSentencesListsTest extends TestCase {
     public $fixtures = array(
-        'app.sentences_sentences_list',
-        'app.sentences_list',
-        'app.sentence',
+        'app.sentences_sentences_lists',
+        'app.sentences_lists',
+        'app.sentences'
     );
 
     function startTest($method) {
