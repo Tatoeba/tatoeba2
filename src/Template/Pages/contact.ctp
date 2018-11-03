@@ -42,7 +42,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Contact us')));
         <h2><?php echo __('FAQ'); ?></h2>
         <p>
         <?php
-        $faqUrl = $this->Html->url(array('action' => 'faq'));
+        $faqUrl = $this->Url->build(array('action' => 'faq'));
         echo format(
             __(
                 'Please make sure to <a href="{}">read the FAQ</a> '.
@@ -86,7 +86,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Contact us')));
                 'You can also tell us what you think by posting on the '.
                 '<a href="{}">Wall</a>.', true
             ),
-            $this->Html->url(array("controller"=>"wall"))
+            $this->Url->build(array("controller"=>"wall"))
         );
         ?>
     </div>

@@ -46,7 +46,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         'check out the <a href="{}">sentence lists</a>. '.
         'You can build your own, or view the ones that others have created. '.
         'The lists can be downloaded and printed.', true),
-        $this->Html->url(array("controller"=>"sentences_lists")
+        $this->Url->build(array("controller"=>"sentences_lists")
     ));
     ?>
     </p>
@@ -104,7 +104,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         $firstSentence = format(__(
            'If you have questions or requests, feel free to '.
            '<a href="{}">contact us</a>.' , true),
-           $this->Html->url(array("controller"=>"pages", "action"=>"contact")
+           $this->Url->build(array("controller"=>"pages", "action"=>"contact")
        ));
         $secondSentence = __('In general, we answer quickly.');
         echo format(
@@ -270,7 +270,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php
-                $tag_url = $this->Html->url(array(
+                $tag_url = $this->Url->build(array(
                     'controller' => 'tags',
                     'action' => 'view_all'
                 ));
@@ -319,7 +319,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php
-                $list_url = $this->Html->url(array(
+                $list_url = $this->Url->build(array(
                     'controller' => 'sentences_lists',
                     'action' => 'index'
                 ));

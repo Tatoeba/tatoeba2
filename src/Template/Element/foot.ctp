@@ -207,7 +207,7 @@
                     'If you love this content, please consider a '.
                     '<a href={}>donation</a>.', true
                 ),
-                $this->Html->url(
+                $this->Url->build(
                     array('controller' => 'pages', 'action' => 'donate')
                 )
             );

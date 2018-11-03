@@ -31,7 +31,7 @@
 echo ' ';
 echo format(
     __('Please <a href="{}">log in again</a>.'),
-    $this->Html->url(array('controller' => 'users', 'action' => 'login'))
+    $this->Url->build(array('controller' => 'users', 'action' => 'login'))
 );
 ?>
 </div>

@@ -139,7 +139,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
 
         <div layout="row" layout-align="end center">
             <?php
-            $cancelUrl = $this->Html->url(
+            $cancelUrl = $this->Url->build(
                 array(
                     'controller' => 'user',
                     'action' => 'profile',

@@ -88,7 +88,7 @@ echo $this->element('pmmenu');
 
             echo '<td>';
                 if ($folder == 'Drafts') {
-                    $url = $this->Html->url(
+                    $url = $this->Url->build(
                         array(
                             'action' => 'write',
                             'none',
@@ -96,7 +96,7 @@ echo $this->element('pmmenu');
                         )
                     );
                 } else {
-                    $url = $this->Html->url(
+                    $url = $this->Url->build(
                         array(
                             'action' => 'show',
                             $msg['PrivateMessage']['id']

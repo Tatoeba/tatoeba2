@@ -52,7 +52,7 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
                 'Before asking a question, '.
                 'make sure to read the <a href="{}">FAQ</a>.', true
             ),
-            $this->Html->url(array('controller' => 'pages', 'action' => 'faq'))
+            $this->Url->build(array('controller' => 'pages', 'action' => 'faq'))
         );
         ?>
         </p>

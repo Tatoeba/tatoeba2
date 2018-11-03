@@ -202,7 +202,7 @@ class ShowAllHelper extends AppHelper
                     'Please use the <a href={}>Translate sentences</a> page '.
                     'to find untranslated sentences.', true
                 ),
-                $this->Html->url(array(
+                $this->Url->build(array(
                     'controller' => 'activities',
                     'action' => 'translate_sentences'
                 ))

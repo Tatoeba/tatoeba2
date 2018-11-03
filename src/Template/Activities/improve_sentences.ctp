@@ -26,28 +26,28 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Improve sentences')));
-$changeURL = $this->Html->url(
+$changeURL = $this->Url->build(
                        array(
                              'controller' => 'tags',
                              'action' => 'show_sentences_with_tag',
                              $tagChangeId
                              )
                        );
-$checkURL = $this->Html->url(
+$checkURL = $this->Url->build(
                          array(
                                'controller' => 'tags',
                                'action' => 'show_sentences_with_tag',
                                $tagCheckId
                                )
                          );
-$nncURL = $this->Html->url(
+$nncURL = $this->Url->build(
                        array(
                              'controller' => 'tags',
                              'action' => 'show_sentences_with_tag',
                              $tagNeedsNativeCheckId
                              )
                        );
-$okURL = $this->Html->url(
+$okURL = $this->Url->build(
                       array(
                             'controller' => 'tags',
                             'action' => 'show_sentences_with_tag',

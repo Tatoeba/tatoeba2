@@ -185,7 +185,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
             <md-list-item>
                 <?php
-                $sentencesByLanguageURL = $this->Html->url(
+                $sentencesByLanguageURL = $this->Url->build(
                     array(
                         'controller' => 'stats',
                         'action' => 'sentences_by_language'

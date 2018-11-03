@@ -168,7 +168,7 @@ class CommentsHelper extends AppHelper
             </div>
 
             <?php
-            $cancelUrl = $this->Html->url(
+            $cancelUrl = $this->Url->build(
                 array(
                     "controller" => "sentences",
                     "action" => "show",

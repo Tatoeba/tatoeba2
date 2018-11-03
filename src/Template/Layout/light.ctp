@@ -50,7 +50,7 @@
         <div id="container">
         <?php
         if($this->Session->check('Message.flash')){
-            $this->Session->flash();
+            $this->Flash->render();
         }
         echo $content_for_layout;
         ?>

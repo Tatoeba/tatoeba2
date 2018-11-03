@@ -38,7 +38,7 @@
 $title = __('Log in');
 $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title)));
 
-if  ($this->Session->check('Message.auth')) $this->Session->flash('auth');
+if  ($this->Session->check('Message.auth')) $this->Flash->render('auth');
 
 $formTarget = array('controller' => 'users', 'action' => 'check_login');
 
@@ -46,14 +46,14 @@ if (isset($this->request->query['redirectTo'])) {
     $formTarget['?'] = array('redirectTo' => $this->request->query['redirectTo']);
 }
 
-$passwordUrl = $this->Html->url(
+$passwordUrl = $this->Url->build(
     array(
         "controller" => "users",
         "action" => "new_password"
     )
 );
 
-$registerUrl = $this->Html->url(
+$registerUrl = $this->Url->build(
     array(
         "controller" => "users",
         "action" => "register"

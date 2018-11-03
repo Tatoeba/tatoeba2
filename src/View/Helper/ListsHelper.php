@@ -269,7 +269,7 @@ class ListsHelper extends AppHelper
      */
     public function displayDownloadLink($listId)
     {
-        $url = $this->Html->url(
+        $url = $this->Url->build(
             array(
                 "controller" => "sentences_lists",
                 "action" => "download",
@@ -296,7 +296,7 @@ class ListsHelper extends AppHelper
     public function displayTranslationsDropdown($listId, $translationsLang = null) {
         echo __('Show translations :') . ' ';
 
-        // TODO User $this->Html->url()
+        // TODO User $this->Url->build()
         $path = '/';
         if (!empty($this->request->params['lang'])) {
             $path .= $this->request->params['lang'] . '/';
@@ -386,7 +386,7 @@ class ListsHelper extends AppHelper
 
     public function displayDeleteButton($listId)
     {
-        $url = $this->Html->url(
+        $url = $this->Url->build(
             array(
                 "controller" => "sentences_lists",
                 "action" => "delete",
@@ -519,7 +519,7 @@ class ListsHelper extends AppHelper
             ),
             array(
                 'addToListButton' => $this->Html->image(IMG_PATH . 'list.svg', array('height' => 16)),
-                'url' => $this->Html->url(array(
+                'url' => $this->Url->build(array(
                     'controller' => 'sentences',
                     'action' => 'show',
                     'random'

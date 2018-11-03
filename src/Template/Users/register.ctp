@@ -68,7 +68,7 @@ echo $this->Form->checkbox(
 $lang = Configure::read('Config.language');
 $label = format(
     __('I accept the <a href="{}">terms of use</a>'),
-    $this->Html->url(array("controller"=>"pages", "action"=>"terms_of_use", "#"=>$lang))
+    $this->Url->build(array("controller"=>"pages", "action"=>"terms_of_use", "#"=>$lang))
 );
 ?>
 <h2><? echo __('Register'); ?></h2>

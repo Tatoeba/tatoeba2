@@ -45,7 +45,7 @@ class VocabularyHelper extends AppHelper
             );
         }
         if (isset($vocab['query'])) {
-            $url = $this->Html->url(array(
+            $url = $this->Url->build(array(
                 'controller' => 'sentences',
                 'action' => 'search',
                 '?' => array(

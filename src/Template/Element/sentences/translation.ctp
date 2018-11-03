@@ -3,7 +3,7 @@ $showExtra = '';
 if ($isExtra) {
     $showExtra = 'ng-if="vm.isExpanded"';
 }
-$translationUrl = $this->Html->url(array(
+$translationUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
     $translation['id']

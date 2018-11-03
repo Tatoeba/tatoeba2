@@ -35,7 +35,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
         <?php
         echo format(
             __('You can check out the <a href="{}">FAQ</a>.'),
-            $this->Html->url(array('controller' => 'pages', 'action' => 'faq'))
+            $this->Url->build(array('controller' => 'pages', 'action' => 'faq'))
         );
         ?>
         </p>
@@ -45,7 +45,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                 'If you cannot find the answer to your question, do not hesitate '.
                 'to <a href="{}">contact us</a>.'
             ),
-            $this->Html->url(array('controller' => 'pages', 'action' => 'contact'))
+            $this->Url->build(array('controller' => 'pages', 'action' => 'contact'))
         );
         ?>
         </p>
@@ -72,7 +72,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                     true
                 ),
                 array(
-                    $this->Html->url(array('controller' => 'wall')),
+                    $this->Url->build(array('controller' => 'wall')),
                     'chatroom' => 'https://chat.tatoeba.org'
                 )
             );
@@ -133,7 +133,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                 <?php
                 echo format(
                     __('From the <a href="{}">Contribute</a> section'),
-                    $this->Html->url(
+                    $this->Url->build(
                         array(
                             'controller' => 'pages',
                             'action' => 'contribute'
@@ -149,7 +149,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
                         'By creating a new <a href="{}">list</a>, and going to '.
                         'the edit page for that list.', true
                     ),
-                    $this->Html->url(
+                    $this->Url->build(
                         array(
                             'controller' => 'sentences_lists',
                             'action' => 'index'

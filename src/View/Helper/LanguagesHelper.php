@@ -479,7 +479,7 @@ class LanguagesHelper extends AppHelper
             );
         }
 
-        $newLangUrl = $this->Html->url(array(
+        $newLangUrl = $this->Url->build(array(
             'controller' => 'user',
             'action' => 'language'
         ));

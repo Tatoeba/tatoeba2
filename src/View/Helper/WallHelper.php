@@ -140,7 +140,7 @@ class WallHelper extends AppHelper
             </div>
 
             <?php
-            $cancelUrl = $this->Html->url(
+            $cancelUrl = $this->Url->build(
                 array(
                     "action" => "show_message",
                     $message['Wall']['id'],

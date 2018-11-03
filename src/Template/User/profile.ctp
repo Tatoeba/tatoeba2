@@ -145,7 +145,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
 
             <?php
             if ($username == $currentMember) {
-                $editSettingsUrl = $this->Html->url(array(
+                $editSettingsUrl = $this->Url->build(array(
                     'controller' => 'user',
                     'action' => 'settings'
                 ));
@@ -189,14 +189,14 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                     <?
                     $editUrl = null;
                     if ($username == $currentMember) {
-                        $editUrl = $this->Html->url(
+                        $editUrl = $this->Url->build(
                             array(
                                 'controller' => 'user',
                                 'action' => 'edit_profile'
                             )
                         );
                     } else if (CurrentUser::isAdmin()) {
-                        $editUrl = $this->Html->url(
+                        $editUrl = $this->Url->build(
                             array(
                                 'controller' => 'users',
                                 'action' => 'edit',
@@ -307,7 +307,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
             <h2 flex><? echo __('Languages'); ?></h2>
             <?php
             if ($username == $currentMember) {
-                $addLangUrl = $this->Html->url(array(
+                $addLangUrl = $this->Url->build(array(
                     'controller' => 'user',
                     'action' => 'language'
                 ));
@@ -347,7 +347,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                     $langCode = $languageInfo['language_code'];
                     $level = $languageInfo['level'];
                     $details = $languageInfo['details'];
-                    $editLangUrl = $this->Html->url(array(
+                    $editLangUrl = $this->Url->build(array(
                         'controller' => 'user',
                         'action' => 'language',
                         $langCode
@@ -375,7 +375,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                             </p>
                         </div>
                         <? if ($username == $currentMember) {
-                            $deleteUrl = $this->Html->url(
+                            $deleteUrl = $this->Url->build(
                                 array(
                                     'controller' => 'users_languages',
                                     'action' => 'delete',

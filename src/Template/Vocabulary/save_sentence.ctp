@@ -1,5 +1,5 @@
 <?php
-$sentence['url'] = $this->Html->url(array(
+$sentence['url'] = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
     $sentence['id']

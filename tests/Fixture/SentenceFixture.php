@@ -27,7 +27,7 @@ class SentenceFixture extends TestFixture {
 
 	public function init() {
 		parent::init();
-		$dbo = ConnectionManager::getDataSource($this->Schema->connection);
+		$dbo = ConnectionManager::get($this->Schema->connection);
 		$dbo->columns['binary'] = array('name' => 'binary');
 	}
 

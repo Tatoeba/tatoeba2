@@ -43,12 +43,12 @@ if (!empty($sentence['User'])) {
 }
 $langDir = LanguagesLib::getLanguageDirection($sentenceLang);
 
-$editUrl = $this->Html->url(array(
+$editUrl = $this->Url->build(array(
     'controller' => 'sentence_comments',
     'action' => 'edit',
     $commentId
 ));
-$sentenceUrl = $this->Html->url(array(
+$sentenceUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
     $sentenceId
@@ -73,7 +73,7 @@ if (empty($modifiedDate) || $createdDate == $modifiedDate) {
     );
 }
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
-$userProfileUrl = $this->Html->url(array(
+$userProfileUrl = $this->Url->build(array(
     'controller' => 'user',
     'action' => 'profile',
     $username
@@ -143,7 +143,7 @@ if ($sentenceOwnerLink) {
             }
             ?>
             <md-button class="md-icon-button" <?= $confirmation ?>
-                       href="<?= $this->Html->url($menuItem['url']) ?>"
+                       href="<?= $this->Url->build($menuItem['url']) ?>"
                        aria-label="<?= $itemLabel ?>">
                 <md-icon><?= $menuItem['icon'] ?></md-icon>
                 <md-tooltip><?= $itemLabel ?></md-tooltip>

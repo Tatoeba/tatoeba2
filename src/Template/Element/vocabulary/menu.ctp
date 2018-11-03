@@ -1,18 +1,18 @@
 <?php
-$addUrl = $this->Html->url(
+$addUrl = $this->Url->build(
     array(
         'controller' => 'vocabulary',
         'action' => 'add'
     )
 );
-$indexUrl = $this->Html->url(
+$indexUrl = $this->Url->build(
     array(
         'controller' => 'vocabulary',
         'action' => 'of',
         CurrentUser::get('username')
     )
 );
-$addSentencesUrl = $this->Html->url(
+$addSentencesUrl = $this->Url->build(
     array(
         'controller' => 'vocabulary',
         'action' => 'add_sentences'

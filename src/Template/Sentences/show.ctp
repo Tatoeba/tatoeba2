@@ -252,7 +252,7 @@ $this->Navigation->displaySentenceNavigation(
             } else if ($searchProblem == 'error') {
                 echo $this->Html->tag('p', format(__('An error occurred while fetching random sentences. '.
                                                'If this persists, please <a href="{}">let us know</a>.', true),
-                                     $this->Html->url(array("controller"=>"pages", "action" => "contact"))
+                                     $this->Url->build(array("controller"=>"pages", "action" => "contact"))
                 ));
             }
             ?>

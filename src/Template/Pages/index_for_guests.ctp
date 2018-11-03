@@ -38,7 +38,7 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
             'We are collecting sentences and their translations. '.
             'You can help us by translating or adding new sentences.', true
         ));
-        $registerUrl = $this->Html->url(
+        $registerUrl = $this->Url->build(
             array(
                 "controller" => "users",
                 "action" => "register"

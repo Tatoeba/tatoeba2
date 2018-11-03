@@ -24,7 +24,7 @@ $userLink = $this->Html->link(
         $user['username']
     )
 );
-$sentenceUrl = $this->Html->url(array(
+$sentenceUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
     $sentence['id']

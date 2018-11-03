@@ -30,7 +30,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Add sentences')));
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
 $this->Html->script(JS_PATH . 'sentences.contribute.js', false);
 
-$vocabularyUrl = $this->Html->url(array(
+$vocabularyUrl = $this->Url->build(array(
     'controller' => 'vocabulary',
     'action' => 'add_sentences'
 ));
