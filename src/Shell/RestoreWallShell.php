@@ -16,6 +16,12 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace App\Shell;
+
+use App\Model\User;
+use App\Model\Wall;
+use App\Model\WallThread;
+use Cake\Console\Shell;
 
 
 class RestoreWallShell extends Shell {

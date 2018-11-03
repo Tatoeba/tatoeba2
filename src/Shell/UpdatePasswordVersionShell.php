@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Shell;
+
+use App\Security\Utility;
 
 class UpdatePasswordVersionShell extends AppShell {
 

@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Shell;
+
+use App\Shell\AppShell;
 
 class Walker {
     private $model;

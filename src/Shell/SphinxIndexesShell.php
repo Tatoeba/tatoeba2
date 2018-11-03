@@ -16,6 +16,12 @@
  *  You should have received a copy of the GNU Affero General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace App\Shell;
+
+use App\Lib\LanguagesLib;
+use App\Model\ReindexFlag;
+use Cake\Console\Shell;
+use Cake\Core\Configure;
 
 
 define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
