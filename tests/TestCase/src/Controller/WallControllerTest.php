@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Controller;
+
 App::uses('WallController', 'Controller');
 
 class WallControllerTest extends ControllerTestCase {

@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\View\Helper;
+
 App::uses('Controller', 'Controller');
 App::uses('View', 'View');
 App::uses('HtmlHelper', 'View/Helper');

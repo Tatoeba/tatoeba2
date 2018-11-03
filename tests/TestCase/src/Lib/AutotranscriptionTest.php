@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Lib;
+
 App::import('Lib', 'Autotranscription');
 
 class AutotranscriptionTest extends CakeTestCase {

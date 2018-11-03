@@ -1,5 +1,7 @@
 <?php
 /* Group Fixture generated on: 2014-09-14 16:11:50 : 1410711110 */
+namespace App\Test\Fixture;
+
 class GroupFixture extends CakeTestFixture {
 	public $name = 'Group';
 

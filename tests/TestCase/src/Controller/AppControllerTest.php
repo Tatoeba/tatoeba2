@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Controller;
+
 App::import('Controller', 'App');
 App::import('Component', 'Cookie');
 

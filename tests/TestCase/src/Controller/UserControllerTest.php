@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Controller;
+
 App::uses('UserController', 'Controller');
 
 class UserControllerTest extends ControllerTestCase {

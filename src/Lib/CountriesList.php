@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Lib;
+
 # This file is based on modified data files from Unicode, Inc.
 
 # COPYRIGHT AND PERMISSION NOTICE

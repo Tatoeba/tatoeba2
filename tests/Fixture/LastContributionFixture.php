@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Test\Fixture;
+
 class LastContributionFixture extends CakeTestFixture {
 
 	public $fields = array(

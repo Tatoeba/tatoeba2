@@ -1,5 +1,7 @@
 <?php
 /* Sinogram Fixture generated on: 2015-02-24 10:49:31 : 1424774971 */
+namespace App\Test\Fixture;
+
 class SinogramFixture extends CakeTestFixture {
 	public $name = 'Sinogram';
 

@@ -14,6 +14,8 @@
  * @param  number $seed  Positive integer only
  * @return number 32-bit (base 32 converted) positive integer hash
  */
+namespace App\Lib;
+
 
 function murmurhash3_int($key,$seed=0){
   $key  = array_values(unpack('C*',(string) $key));

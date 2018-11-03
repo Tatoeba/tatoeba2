@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Model;
+
 App::uses('UsersSentences', 'Model');
 
 class UsersSentencesTest extends CakeTestCase {

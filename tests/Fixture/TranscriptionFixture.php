@@ -1,5 +1,7 @@
 <?php
 /* Transcription Fixture generated on: 2014-10-26 15:19:49 : 1414336789 */
+namespace App\Test\Fixture;
+
 class TranscriptionFixture extends CakeTestFixture {
 	public $name = 'Transcription';
 

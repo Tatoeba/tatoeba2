@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Model;
+
 App::uses('UsersLanguages', 'Model');
 
 class UsersLanguagesTest extends CakeTestCase {

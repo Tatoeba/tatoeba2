@@ -1,5 +1,7 @@
 <?php
 /* Sinogram Test cases generated on: 2015-02-24 09:10:47 : 1424769047*/
+namespace App\Test\TestCase\Model;
+
 App::import('Model', 'Sinogram');
 
 class SinogramTest extends CakeTestCase {

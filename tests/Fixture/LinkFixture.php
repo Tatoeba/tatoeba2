@@ -1,5 +1,7 @@
 <?php
 /* SentencesTranslation Fixture generated on: 2014-04-15 01:02:28 : 1397516548 */
+namespace App\Test\Fixture;
+
 class LinkFixture extends CakeTestFixture {
 	public $name = 'Link';
 	public $table = 'sentences_translations';

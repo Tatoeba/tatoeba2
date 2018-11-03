@@ -2,6 +2,8 @@
 /**
  * PrivateMessage Fixture
  */
+namespace App\Test\Fixture;
+
 class PrivateMessageFixture extends CakeTestFixture {
 
 /**

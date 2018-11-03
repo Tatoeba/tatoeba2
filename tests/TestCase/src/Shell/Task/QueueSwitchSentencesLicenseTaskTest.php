@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Shell\Task;
+
 App::uses('ConsoleOutput', 'Console');
 App::uses('ConsoleInput', 'Console');
 App::uses('QueueSwitchSentencesLicenseTask', 'Console/Command/Task');

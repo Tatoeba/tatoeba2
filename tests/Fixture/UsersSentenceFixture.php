@@ -2,6 +2,8 @@
 /**
  * UsersSentence Fixture
  */
+namespace App\Test\Fixture;
+
 class UsersSentenceFixture extends CakeTestFixture {
 
 /**

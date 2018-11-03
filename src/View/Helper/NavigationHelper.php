@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\View\Helper;
+
 
 /**
  * Helper to display navigation links (previous, next, random, go to)

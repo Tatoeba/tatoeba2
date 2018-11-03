@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\View\Helper;
+
 App::uses('View', 'View');
 App::uses('Helper', 'View');
 App::uses('MessagesHelper', 'View/Helper');

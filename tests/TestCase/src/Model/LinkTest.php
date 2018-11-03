@@ -1,5 +1,7 @@
 <?php
 /* Link Test cases generated on: 2014-04-16 04:19:37 : 1397614777*/
+namespace App\Test\TestCase\Model;
+
 App::import('Model', 'Link');
 
 class LinkTest extends CakeTestCase {

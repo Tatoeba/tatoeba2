@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\View\Helper;
+
 
 /**
  * Helper used to display a form to add a message to a wall

@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Controller;
+
 App::uses('Controller', 'Transcriptions');
 
 class TranscriptionsControllerTest extends ControllerTestCase {

@@ -1,5 +1,7 @@
 <?php
 /* Tag Fixture generated on: 2014-09-14 16:11:59 : 1410711119 */
+namespace App\Test\Fixture;
+
 class TagFixture extends CakeTestFixture {
 	public $name = 'Tag';
 

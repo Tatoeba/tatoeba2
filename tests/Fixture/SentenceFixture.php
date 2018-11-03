@@ -1,5 +1,7 @@
 <?php
 /* Sentence Fixture generated on: 2014-10-26 16:46:13 : 1414341973 */
+namespace App\Test\Fixture;
+
 class SentenceFixture extends CakeTestFixture {
 	public $name = 'Sentence';
 

@@ -1,5 +1,7 @@
 <?php
 /* TagsSentence Fixture generated on: 2014-09-14 16:12:00 : 1410711120 */
+namespace App\Test\Fixture;
+
 class TagsSentenceFixture extends CakeTestFixture {
 	public $name = 'TagsSentence';
 

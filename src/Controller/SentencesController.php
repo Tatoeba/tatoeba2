@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\Controller;
+
 
 App::import('Lib', 'SphinxClient');
 App::uses('AppController', 'Controller');

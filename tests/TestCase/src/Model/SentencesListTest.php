@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Model;
+
 App::uses('SentencesList', 'Model');
 
 class SentencesListTest extends CakeTestCase {

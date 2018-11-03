@@ -1,5 +1,7 @@
 <?php
 /* Contribution Fixture generated on: 2014-09-14 16:11:46 : 1410711106 */
+namespace App\Test\Fixture;
+
 class ContributionFixture extends CakeTestFixture {
 	public $name = 'Contribution';
 

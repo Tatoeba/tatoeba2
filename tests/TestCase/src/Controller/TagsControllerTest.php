@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Controller;
+
 App::uses('TagsController', 'Controller');
 
 class TagsControllerTest extends ControllerTestCase {

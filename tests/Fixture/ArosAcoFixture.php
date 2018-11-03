@@ -1,5 +1,7 @@
 <?php
 /* ArosAco Fixture generated on: 2014-10-20 07:39:46 : 1413790786 */
+namespace App\Test\Fixture;
+
 class ArosAcoFixture extends CakeTestFixture {
 	public $name = 'ArosAco';
 

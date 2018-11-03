@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Model;
+
 App::uses('SentenceAnnotation', 'Model');
 
 class SentenceAnnotationTest extends CakeTestCase {

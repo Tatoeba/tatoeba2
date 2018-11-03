@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Controller;
+
 App::uses('SentencesController', 'Controller');
 
 class SentencesControllerTest extends ControllerTestCase {

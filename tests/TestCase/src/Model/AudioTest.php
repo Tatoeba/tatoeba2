@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Model;
+
 App::uses('Model', 'Audio');
 
 class AudioTest extends CakeTestCase {

@@ -1,5 +1,7 @@
 <?php
 /* TagsSentences Test cases generated on: 2015-06-25 11:02:51 : 1435230171*/
+namespace App\Test\TestCase\Model;
+
 App::import('Model', 'TagsSentences');
 
 class TagsSentencesTest extends CakeTestCase {

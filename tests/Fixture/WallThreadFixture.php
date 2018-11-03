@@ -1,5 +1,7 @@
 <?php
 /* WallThreadsLastMessage Fixture generated on: 2014-04-15 17:08:46 : 1397574526 */
+namespace App\Test\Fixture;
+
 class WallThreadFixture extends CakeTestFixture {
 	public $name = 'WallThread';
 	public $table = 'wall_threads_last_message';

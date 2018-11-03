@@ -9,6 +9,8 @@
  * @copyright       Adam Royle
  * @license         http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+namespace App\View\Helper;
+
 class CsvHelper extends Helper {
 
     public $delimiter = ',';

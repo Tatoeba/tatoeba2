@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Model;
+
 App::import('Model', 'Tag');
 
 class TagTest extends CakeTestCase {

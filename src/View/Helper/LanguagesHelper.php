@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\View\Helper;
+
 
 App::import('Model', 'CurrentUser');
 App::import('Lib', 'LanguagesLib');

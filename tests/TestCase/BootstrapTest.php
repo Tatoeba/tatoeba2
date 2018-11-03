@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Test\TestCase;
+
 App::uses('CakeTestCase', 'TestSuite');
 
 class BootstrapTest extends CakeTestCase {

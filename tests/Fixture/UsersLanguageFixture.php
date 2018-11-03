@@ -1,5 +1,7 @@
 <?php
 /* UsersLanguage Fixture generated on: 2015-05-02 14:16:52 : 1430576212 */
+namespace App\Test\Fixture;
+
 class UsersLanguageFixture extends CakeTestFixture {
 	public $name = 'UsersLanguage';
 

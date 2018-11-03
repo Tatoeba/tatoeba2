@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\Model;
+
 
 /**
  * Static class that stores the Auth information of the user. This is the only

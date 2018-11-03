@@ -1,5 +1,7 @@
 <?php
 /* SinogramSubglyph Fixture generated on: 2015-02-24 10:48:04 : 1424774884 */
+namespace App\Test\Fixture;
+
 class SinogramSubglyphFixture extends CakeTestFixture {
 	public $name = 'SinogramSubglyph';
 

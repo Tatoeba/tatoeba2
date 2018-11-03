@@ -1,5 +1,7 @@
 <?php
 /* Audio Fixture generated on: 2016-12-13 06:51:54 : 1481611914 */
+namespace App\Test\Fixture;
+
 class AudioFixture extends CakeTestFixture {
     public $name = 'Audio';
 

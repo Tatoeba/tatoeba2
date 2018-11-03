@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\View\Helper;
+
 
 /**
  * Helper for sentences lists.

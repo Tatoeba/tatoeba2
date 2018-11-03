@@ -26,6 +26,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\Model;
+
 
 /**
  * Model Class which represent sentences

@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Model;
+
 App::uses('PrivateMessage', 'Model');
 
 class PrivateMessageTest extends CakeTestCase {

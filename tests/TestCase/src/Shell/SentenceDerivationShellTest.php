@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase\Shell;
+
 App::uses('ConsoleOutput', 'Console');
 App::uses('ConsoleInput', 'Console');
 App::uses('Shell', 'Console');

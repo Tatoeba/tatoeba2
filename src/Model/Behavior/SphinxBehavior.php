@@ -7,6 +7,8 @@
  * @author  Vilen Tambovtsev
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+namespace App\Model\Behavior;
+
 
 
 class SphinxBehavior extends ModelBehavior

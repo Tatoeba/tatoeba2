@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\Controller;
+
 
 App::uses('AppController', 'Controller');
 App::uses('SuggestdListener', 'Lib/Event');

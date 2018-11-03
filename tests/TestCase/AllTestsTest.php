@@ -1,4 +1,6 @@
 <?php
+namespace App\Test\TestCase;
+
 class AllTestsTest extends CakeTestSuite {
     public static function suite() {
         $suite = new CakeTestSuite('All tests');

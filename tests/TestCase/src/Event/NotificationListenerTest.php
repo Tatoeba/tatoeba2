@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Test\TestCase\Event;
+
 App::uses('NotificationListener', 'Lib/Event');
 App::uses('CakeEvent', 'Event');
 App::uses('CakeEmail', 'Network/Email');

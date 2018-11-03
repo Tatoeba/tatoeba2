@@ -1,4 +1,6 @@
 <?php
+namespace App\Auth;
+
 App::uses('AbstractPasswordHasher', 'Controller/Component/Auth');
 App::uses('Security', 'Utility');
 

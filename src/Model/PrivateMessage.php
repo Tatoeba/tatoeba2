@@ -25,6 +25,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+namespace App\Model;
+
 
 App::uses('CurrentUser', 'Model');
 

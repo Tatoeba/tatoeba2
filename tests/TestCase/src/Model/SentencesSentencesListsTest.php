@@ -1,5 +1,7 @@
 <?php
 /* SentencesSentencesLists Test cases generated on: 2016-12-03 08:56:44 : 1480755404*/
+namespace App\Test\TestCase\Model;
+
 App::import('Model', 'SentencesSentencesLists');
 
 class SentencesSentencesListsTest extends CakeTestCase {
