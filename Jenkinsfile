@@ -9,30 +9,11 @@ pipeline {
     stage('Test') {
       steps {
         sh 'mysql -u jenkins -pcakephp_jenkins -e \'DROP DATABASE IF EXISTS jenkins_test; CREATE DATABASE jenkins_test\';'
-        writeFile file: 'app/Config/database.php', text: '''<?php
-class DATABASE_CONFIG {
-    public $test = array(
-        \'datasource\' => \'Database/Mysql\',
-        \'host\'       => \'localhost\',
-        \'database\'   => \'jenkins_test\',
-        \'login\'      => \'jenkins\',
-        \'password\'   => \'cakephp_jenkins\',
-        \'encoding\'   => \'utf8\',
-    );
-
-    public $sphinx = array(
-        \'host\' => \'localhost\',
-        \'port\' => 9312,
-        \'sphinxql_port\' => 9306,
-        \'indexdir\' => \'/var/sphinx/indices\',
-        \'socket\' => \'/run/mysqld/mysqld.sock\',
-        \'logdir\' => \'/var/sphinx/log\',
-        \'pidfile\' => \'/var/run/sphinxsearch/searchd.pid\',
-        \'binlog_path\' => \'/var/lib/sphinxsearch/data\',
-    );
-}'''
-        sh 'cp app/Config/core.php.template app/Config/core.php'
-        sh './app/Console/cake test --stderr app AllTests'
+        sh 'cp config/app_local.php.template config/app_local.php'
+        sh 'sed -i "s/{{mysql_test_user}}/jenkins/"             config/app_local.php'
+        sh 'sed -i "s/{{mysql_test_password}}/cakephp_jenkins/" config/app_local.php'
+        sh 'sed -i "s/{{mysql_test_db_name}}/jenkins_test/"     config/app_local.php'
+        sh 'vendor/bin/phpunit'
       }
     }
   }
