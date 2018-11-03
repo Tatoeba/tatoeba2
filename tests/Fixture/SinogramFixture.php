@@ -8,22 +8,23 @@ class SinogramFixture extends TestFixture {
 	public $name = 'Sinogram';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'utf' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 8, 'collate' => 'utf8_unicode_ci', 'comment' => 'code utf8 du caractere', 'charset' => 'utf8'),
-		'glyph' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'index', 'collate' => 'utf8_unicode_ci', 'comment' => 'caractère en lui même', 'charset' => 'utf8'),
-		'strokes' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 3, 'comment' => 'nombre de trait composant le caractère'),
-		'english' => array('type' => 'text', 'null' => true, 'default' => NULL, 'collate' => 'utf8_unicode_ci', 'comment' => 'traduction du caractère', 'charset' => 'utf8'),
-		'chin-trad' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'comment' => 'équivalent traditionelle du caractère', 'charset' => 'utf8'),
-		'chin-simpl' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'comment' => 'équivalent simplifié du caractère', 'charset' => 'utf8'),
-		'chin-pinyin' => array('type' => 'string', 'null' => true, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'comment' => 'pinyin (chinois) du caractère', 'charset' => 'latin1'),
-		'jap-on' => array('type' => 'string', 'null' => true, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'comment' => 'prononciation On du caractère', 'charset' => 'latin1'),
-		'jap-kun' => array('type' => 'string', 'null' => true, 'default' => NULL, 'collate' => 'latin1_swedish_ci', 'comment' => 'prononciation Kun du caractère', 'charset' => 'latin1'),
-		'frequency' => array('type' => 'float', 'null' => false, 'default' => '0', 'comment' => 'frequence du caractère'),
-		'checked' => array('type' => 'boolean', 'null' => false, 'default' => NULL),
-		'subcharacterslist' => array('type' => 'string', 'null' => true, 'default' => NULL, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'usedByList' => array('type' => 'string', 'null' => true, 'default' => NULL, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'glyph_index' => array('column' => 'glyph', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'utf' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 8, 'collate' => 'utf8_unicode_ci', 'comment' => 'code utf8 du caractere', 'charset' => 'utf8'],
+		'glyph' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'comment' => 'caractère en lui même', 'charset' => 'utf8'],
+		'strokes' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 3, 'comment' => 'nombre de trait composant le caractère'],
+		'english' => ['type' => 'text', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'traduction du caractère', 'charset' => 'utf8'],
+		'chin-trad' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'comment' => 'équivalent traditionelle du caractère', 'charset' => 'utf8'],
+		'chin-simpl' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 10, 'collate' => 'utf8_unicode_ci', 'comment' => 'équivalent simplifié du caractère', 'charset' => 'utf8'],
+		'chin-pinyin' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => 'pinyin (chinois) du caractère', 'charset' => 'latin1'],
+		'jap-on' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => 'prononciation On du caractère', 'charset' => 'latin1'],
+		'jap-kun' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => 'prononciation Kun du caractère', 'charset' => 'latin1'],
+		'frequency' => ['type' => 'float', 'null' => false, 'default' => '0', 'comment' => 'frequence du caractère'],
+		'checked' => ['type' => 'boolean', 'null' => false, 'default' => null],
+		'subcharacterslist' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'usedByList' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'_indexes' => ['glyph_index' => ['unique' => 0, 'columns' => 'glyph']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB']
 	);
 
 	public $records = array(

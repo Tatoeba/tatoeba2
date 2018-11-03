@@ -8,15 +8,15 @@ class AudioFixture extends TestFixture {
     public $name = 'Audio';
 
     public $fields = array(
-        'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-        'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-        'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
-        'external' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 500, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-        'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
-        'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
-        'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
-        'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
-    );
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
+		'external' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 500, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'created' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
+	);
 
     public $records = array(
         array(

@@ -9,14 +9,15 @@ class LinkFixture extends TestFixture {
 	public $table = 'sentences_translations';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'translation_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'sentence_lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'translation_lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'distance' => array('type' => 'integer', 'null' => false, 'default' => '1', 'length' => 2),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id' => array('column' => array('sentence_id', 'translation_id'), 'unique' => 1), 'translation_id' => array('column' => 'translation_id', 'unique' => 0), 'sentence_lang' => array('column' => 'sentence_lang', 'unique' => 0), 'translation_lang' => array('column' => 'translation_lang', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'translation_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'sentence_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'translation_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'distance' => ['type' => 'integer', 'null' => false, 'default' => '1', 'length' => 2],
+		'_indexes' => ['translation_id' => ['unique' => 0, 'columns' => 'translation_id'], 'sentence_lang' => ['unique' => 0, 'columns' => 'sentence_lang'], 'translation_lang' => ['unique' => 0, 'columns' => 'translation_lang']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'sentence_id' => ['type' => 'unique', 'columns' => ['sentence_id', 'translation_id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

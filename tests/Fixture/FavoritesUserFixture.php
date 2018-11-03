@@ -8,10 +8,10 @@ class FavoritesUserFixture extends TestFixture {
 	public $name = 'FavoritesUser';
 
 	public $fields = array(
-		'favorite_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-		'indexes' => array('favorite_id' => array('column' => array('favorite_id', 'user_id'), 'unique' => 1)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
+		'favorite_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'user_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['favorite_id']], 'favorite_id' => ['type' => 'unique', 'columns' => ['favorite_id', 'user_id']]],
+		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

@@ -8,15 +8,16 @@ class TagFixture extends TestFixture {
 	public $name = 'Tag';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'internal_name' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'description' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 500, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'nbrOfSentences' => array('type' => 'integer', 'null' => false, 'default' => '0', 'key' => 'index'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'nbr_sentences_idx' => array('column' => 'nbrOfSentences', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'internal_name' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 50, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'description' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 500, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'nbrOfSentences' => ['type' => 'integer', 'null' => false, 'default' => '0'],
+		'_indexes' => ['user_id' => ['unique' => 0, 'columns' => 'user_id'], 'nbr_sentences_idx' => ['unique' => 0, 'columns' => 'nbrOfSentences']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

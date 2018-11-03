@@ -8,19 +8,20 @@ class ContributionFixture extends TestFixture {
 	public $name = 'Contribution';
 
 	public $fields = array(
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'sentence_lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'translation_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
-		'translation_lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'script' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 1500),
-		'action' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 6, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
-		'datetime' => array('type' => 'datetime', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'ip' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 15, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'type' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 8, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'id_desc' => array('column' => 'id', 'unique' => 1), 'sentence_id' => array('column' => 'sentence_id', 'unique' => 0), 'datetime' => array('column' => 'datetime', 'unique' => 0), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'sentence_lang' => array('column' => array('sentence_lang', 'type'), 'unique' => 0), 'translation_id_idx' => array('column' => 'translation_id', 'unique' => 0)),
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'sentence_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'translation_id' => ['type' => 'integer', 'null' => true, 'default' => null],
+		'translation_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'script' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'text' => ['type' => 'text', 'null' => false, 'default' => null, 'length' => 1500],
+		'action' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 6, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
+		'datetime' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'ip' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 15, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
+		'type' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 8, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'_indexes' => ['sentence_id' => ['unique' => 0, 'columns' => 'sentence_id'], 'datetime' => ['unique' => 0, 'columns' => 'datetime'], 'user_id' => ['unique' => 0, 'columns' => 'user_id'], 'sentence_lang' => ['unique' => 0, 'columns' => ['sentence_lang', 'type']], 'translation_id_idx' => ['unique' => 0, 'columns' => 'translation_id']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'id_desc' => ['type' => 'unique', 'columns' => 'id']]
 	);
 
 	public $records = array(

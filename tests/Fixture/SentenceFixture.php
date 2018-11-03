@@ -9,25 +9,20 @@ class SentenceFixture extends TestFixture {
 	public $name = 'Sentence';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'unsigned' => false, 'key' => 'primary'),
-		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 1500),
-		'correctness' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2, 'unsigned' => false),
-		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false, 'key' => 'index'),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL, 'key' => 'index'),
-		'script' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'hash' => array('type' => 'binary', 'null' => false, 'default' => NULL, 'length' => 16, 'key' => 'index'),
-		'license' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'based_on_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'user_id' => array('column' => 'user_id', 'unique' => 0),
-			'lang' => array('column' => 'lang', 'unique' => 0),
-			'modified_idx' => array('column' => 'modified', 'unique' => 0),
-			'hash' => array('column' => 'hash', 'unique' => 0)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'text' => ['type' => 'text', 'null' => false, 'default' => null, 'length' => 1500],
+		'correctness' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2, 'unsigned' => false],
+		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'script' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'hash' => ['type' => 'binary', 'null' => false, 'default' => null, 'length' => 16],
+		'license' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'based_on_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
+		'_indexes' => ['user_id' => ['unique' => 0, 'columns' => 'user_id'], 'lang' => ['unique' => 0, 'columns' => 'lang'], 'modified_idx' => ['unique' => 0, 'columns' => 'modified'], 'hash' => ['unique' => 0, 'columns' => 'hash']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);
 
 	public function init() {

@@ -8,16 +8,17 @@ class SentenceCommentFixture extends TestFixture {
 	public $name = 'SentenceComment';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'text' => array('type' => 'binary', 'null' => false, 'default' => NULL),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-		'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'hidden' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id_idx' => array('column' => 'sentence_id', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'text' => ['type' => 'binary', 'null' => false, 'default' => null],
+		'user_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'created' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'hidden' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
+		'_indexes' => ['sentence_id_idx' => ['unique' => 0, 'columns' => 'sentence_id']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

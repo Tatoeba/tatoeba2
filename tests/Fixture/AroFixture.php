@@ -8,15 +8,16 @@ class AroFixture extends TestFixture {
 	public $name = 'Aro';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
-		'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
-		'model' => array('type' => 'string', 'null' => true, 'default' => NULL, 'key' => 'index', 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'foreign_key' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
-		'alias' => array('type' => 'string', 'null' => true, 'default' => NULL, 'key' => 'index', 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'lft' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10, 'key' => 'index'),
-		'rght' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 10),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'idx_aros_lft_rght' => array('column' => array('lft', 'rght'), 'unique' => 0), 'idx_aros_alias' => array('column' => 'alias', 'unique' => 0), 'idx_aros_model_foreign_key' => array('column' => array('model', 'foreign_key'), 'unique' => 0)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'parent_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 10],
+		'model' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
+		'foreign_key' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 10],
+		'alias' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
+		'lft' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 10],
+		'rght' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 10],
+		'_indexes' => ['idx_aros_lft_rght' => ['unique' => 0, 'columns' => ['lft', 'rght']], 'idx_aros_alias' => ['unique' => 0, 'columns' => 'alias'], 'idx_aros_model_foreign_key' => ['unique' => 0, 'columns' => ['model', 'foreign_key']]],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

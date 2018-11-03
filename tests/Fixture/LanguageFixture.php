@@ -8,23 +8,23 @@ class LanguageFixture extends TestFixture {
 	public $name = 'Language';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 3, 'key' => 'primary'),
-		'code' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'unique', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'sentences' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'audio' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'group_1' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2),
-		'group_2' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 3),
-		'group_3' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 4),
-		'group_4' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'level_0' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'level_1' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'level_2' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'level_3' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'level_4' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'level_5' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'level_unknown' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'lang' => array('column' => 'code', 'unique' => 1)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 3],
+		'code' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'sentences' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'audio' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'group_1' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2],
+		'group_2' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 3],
+		'group_3' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 4],
+		'group_4' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'level_0' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'level_1' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'level_2' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'level_3' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'level_4' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'level_5' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'level_unknown' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'lang' => ['type' => 'unique', 'columns' => 'code']],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

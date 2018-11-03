@@ -8,14 +8,15 @@ class SentenceAnnotationFixture extends TestFixture {
 	public $name = 'SentenceAnnotation';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'meaning_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 2000),
-		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id' => array('column' => 'sentence_id', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'meaning_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'text' => ['type' => 'text', 'null' => false, 'default' => null, 'length' => 2000],
+		'modified' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'user_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'_indexes' => ['sentence_id' => ['unique' => 0, 'columns' => 'sentence_id']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);
 
 	public $records = array(

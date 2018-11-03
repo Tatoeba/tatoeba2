@@ -8,15 +8,12 @@ class SentencesSentencesListFixture extends TestFixture {
 	public $name = 'SentencesSentencesLists';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'sentences_list_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'index'),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'list_id' => array('column' => array('sentences_list_id', 'sentence_id'), 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'sentences_list_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'list_id' => ['type' => 'unique', 'columns' => ['sentences_list_id', 'sentence_id']]],
+		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB']
 	);
 
 	public $records = array(

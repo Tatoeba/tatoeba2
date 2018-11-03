@@ -14,18 +14,15 @@ class UsersSentenceFixture extends TestFixture {
  * @var array
  */
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'index'),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false),
-		'correctness' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 1, 'unsigned' => false),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'dirty' => array('type' => 'boolean', 'null' => true, 'default' => '0'),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'user_sentence' => array('column' => array('user_id', 'sentence_id'), 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'user_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'correctness' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 1, 'unsigned' => false],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'dirty' => ['type' => 'boolean', 'null' => true, 'default' => '0'],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'user_sentence' => ['type' => 'unique', 'columns' => ['user_id', 'sentence_id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);
 
 /**

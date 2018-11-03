@@ -8,16 +8,16 @@ class UsersLanguageFixture extends TestFixture {
 	public $name = 'UsersLanguage';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'of_user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'by_user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-		'language_code' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'level' => array('type' => 'integer', 'null' => true, 'default' => '0', 'length' => 2),
-		'details' => array('type' => 'binary', 'null' => false, 'default' => NULL),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_lang' => array('column' => array('of_user_id', 'by_user_id', 'language_code'), 'unique' => 1)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'of_user_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'by_user_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'language_code' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'level' => ['type' => 'integer', 'null' => true, 'default' => '0', 'length' => 2],
+		'details' => ['type' => 'binary', 'null' => false, 'default' => null],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'user_lang' => ['type' => 'unique', 'columns' => ['of_user_id', 'by_user_id', 'language_code']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);
 
 	public $records = array(

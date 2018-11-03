@@ -9,16 +9,16 @@ class SentencesListFixture extends TestFixture {
 	public $import = array('records' => true);
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'unsigned' => false, 'key' => 'primary'),
-		'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 450, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'unsigned' => false),
-		'numberOfSentences' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8, 'unsigned' => true),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'visibility' => array('type' => 'string', 'null' => false, 'default' => 'unlisted', 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'), // enum('private','unlisted','public')
-		'editable_by' => array('type' => 'string', 'null' => false, 'default' => 'creator', 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'), // enum('creator','anyone','no_one')
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'name' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 450, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
+		'numberOfSentences' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8, 'unsigned' => true],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'visibility' => ['type' => 'string', 'null' => false, 'default' => 'unlisted', 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'editable_by' => ['type' => 'string', 'null' => false, 'default' => 'creator', 'length' => 10, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB']
 	);
 
 	public $records = array(

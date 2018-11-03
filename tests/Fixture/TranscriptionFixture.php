@@ -8,16 +8,16 @@ class TranscriptionFixture extends TestFixture {
 	public $name = 'Transcription';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'script' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 10000),
-		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
-		'needsReview' => array('type' => 'boolean', 'null' => false, 'default' => '1'),
-		'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
-		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'unique_transcriptions' => array('column' => array('sentence_id', 'script'), 'unique' => 1)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'script' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'text' => ['type' => 'text', 'null' => false, 'default' => null, 'length' => 10000],
+		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
+		'needsReview' => ['type' => 'boolean', 'null' => false, 'default' => '1'],
+		'created' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'unique_transcriptions' => ['type' => 'unique', 'columns' => ['sentence_id', 'script']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

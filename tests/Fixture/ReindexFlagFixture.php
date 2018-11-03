@@ -8,11 +8,12 @@ class ReindexFlagFixture extends TestFixture {
 	public $name = 'ReindexFlag';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'lang_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 3),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'idx_sentence_id' => array('column' => 'sentence_id', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'lang_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 3],
+		'_indexes' => ['idx_sentence_id' => ['unique' => 0, 'columns' => 'sentence_id']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB']
 	);
 
 	public $records = array(

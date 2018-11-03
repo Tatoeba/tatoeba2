@@ -8,15 +8,16 @@ class ArosAcoFixture extends TestFixture {
 	public $name = 'ArosAco';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
-		'aro_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'index'),
-		'aco_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'index'),
-		'_create' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'_read' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'_update' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'_delete' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'ARO_ACO_KEY' => array('column' => array('aro_id', 'aco_id'), 'unique' => 1), 'idx_aros_acos_aro_id_aco_id' => array('column' => array('aro_id', 'aco_id'), 'unique' => 1), 'aco_id' => array('column' => 'aco_id', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'aro_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'aco_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
+		'_create' => ['type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
+		'_read' => ['type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
+		'_update' => ['type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
+		'_delete' => ['type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
+		'_indexes' => ['aco_id' => ['unique' => 0, 'columns' => 'aco_id']],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'ARO_ACO_KEY' => ['type' => 'unique', 'columns' => ['aro_id', 'aco_id']], 'idx_aros_acos_aro_id_aco_id' => ['type' => 'unique', 'columns' => ['aro_id', 'aco_id']]],
+		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM']
 	);
 
 	public $records = array(

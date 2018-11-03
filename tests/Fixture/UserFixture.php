@@ -8,30 +8,26 @@ class UserFixture extends TestFixture {
 	public $name = 'User';
 
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false, 'key' => 'primary'),
-		'username' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 20, 'key' => 'unique', 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'password' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 62, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'email' => array('type' => 'string', 'null' => false, 'length' => 100, 'key' => 'unique', 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'since' => array('type' => 'datetime', 'null' => false, 'default' => '0000-00-00 00:00:00'),
-		'last_time_active' => array('type' => 'integer', 'null' => false, 'default' => '0', 'unsigned' => false),
-		'level' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2, 'unsigned' => false),
-		'group_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 4, 'unsigned' => false),
-		'send_notifications' => array('type' => 'boolean', 'null' => false, 'default' => '1'),
-		'name' => array('type' => 'string', 'null' => false, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'birthday' => array('type' => 'date', 'null' => true, 'default' => null),
-		'description' => array('type' => 'binary', 'null' => false, 'default' => null),
-		'settings' => array('type' => 'text', 'null' => false, 'default' => null),
-		'homepage' => array('type' => 'string', 'null' => false, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'image' => array('type' => 'string', 'null' => false, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'country_id' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'audio_license' => array('type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'audio_attribution_url' => array('type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1),
-			'login' => array('column' => 'username', 'unique' => 1),
-			'email' => array('column' => 'email', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],
+		'username' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 20, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'password' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 62, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'email' => ['type' => 'string', 'null' => false, 'length' => 100, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'since' => ['type' => 'datetime', 'null' => false, 'default' => '0000-00-00 00:00:00'],
+		'last_time_active' => ['type' => 'integer', 'null' => false, 'default' => '0', 'unsigned' => false],
+		'level' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2, 'unsigned' => false],
+		'group_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 4, 'unsigned' => false],
+		'send_notifications' => ['type' => 'boolean', 'null' => false, 'default' => '1'],
+		'name' => ['type' => 'string', 'null' => false, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'birthday' => ['type' => 'date', 'null' => true, 'default' => null],
+		'description' => ['type' => 'binary', 'null' => false, 'default' => null],
+		'settings' => ['type' => 'text', 'null' => false, 'default' => null],
+		'homepage' => ['type' => 'string', 'null' => false, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'image' => ['type' => 'string', 'null' => false, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'country_id' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
+		'audio_license' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'audio_attribution_url' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'login' => ['type' => 'unique', 'columns' => 'username'], 'email' => ['type' => 'unique', 'columns' => 'email']],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);
 
 	public $records = array(
