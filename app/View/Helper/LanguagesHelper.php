@@ -171,12 +171,8 @@ class LanguagesHelper extends AppHelper
         if ($withOther) {
             $options[''] = __('other language');
         }
-        if (!empty($options)) {
-            $languages = array(
-                $options,
-                __('Profile languages') => $languages
-            );
-        }
+        
+        array_unshift($languages, $options);
 
         return $languages;
     }

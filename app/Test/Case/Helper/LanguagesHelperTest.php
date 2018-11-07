@@ -141,4 +141,25 @@ class LanguagesHelperTest extends CakeTestCase {
 		$result = $this->Languages->codeToNameAlone('und');
 		$this->assertEqual('unknown', $result);
 	}
+
+	function testProfileLanguagesArray_preselectLangSucceeds() {
+		CurrentUser::store(array('id' => 4));
+		$preSelectedLang = $this->_preselectLanguage('jpn');
+		$this->assertEquals('jpn', $preSelectedLang);
+	}
+
+	function testProfileLanguagesArray_preselectLangFails() {
+		CurrentUser::store(array('id' => 4));
+		$preSelectedLang = $this->_preselectLanguage('ita');
+		$this->assertEquals('0', $preSelectedLang);
+	}
+
+	function _preselectLanguage($lang) {
+		$preSelectedLang = $lang;
+		$langArray = $this->Languages->profileLanguagesArray(true, true, true, true);
+		if (!array_key_exists($preSelectedLang, $langArray)) {
+			$preSelectedLang = key($langArray);
+		}
+		return $preSelectedLang;
+	}
 }
