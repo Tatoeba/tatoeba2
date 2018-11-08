@@ -3,7 +3,8 @@
     "require": {
         "cakephp/cakephp": "3.6.*",
         "cakephp/plugin-installer": "^1.0",
-        "dereuromark/cakephp-queue": "^3.11"
+        "dereuromark/cakephp-queue": "^3.11",
+        "cakephp/acl": "^0.4.0"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "2.*",

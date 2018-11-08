@@ -47,7 +47,9 @@ use Cake\Routing\Router;
 class AppController extends Controller
 {
     public $components = array(
-        'Acl',
+        'Acl' => array(
+            'className' => 'Acl.Acl',
+        ),
         'Auth' => array(
 		'authenticate' => array(
 			'Form' => array('passwordHasher' => 'Versioned')
