@@ -34,6 +34,14 @@ class Application extends BaseApplication
     {
         parent::bootstrap();
 
+        if (PHP_SAPI === 'cli') {
+            try {
+                $this->addPlugin('Bake');
+            } catch (MissingPluginException $e) {
+                // Do not halt if the plugin is missing
+            }
+        }
+
         $this->addPlugin('Queue', ['bootstrap' => true]);
     }
 
