@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class SentencesSentencesListFixture extends TestFixture {
+class SentencesSentencesListsFixture extends TestFixture {
 	public $name = 'SentencesSentencesLists';
 
 	public $fields = array(

@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class WallFixture extends TestFixture {
+class WallsFixture extends TestFixture {
 	public $name = 'Wall';
 	public $table = 'wall';
 

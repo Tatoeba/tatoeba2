@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class AudioFixture extends TestFixture {
+class AudiosFixture extends TestFixture {
     public $name = 'Audio';
 
     public $fields = array(

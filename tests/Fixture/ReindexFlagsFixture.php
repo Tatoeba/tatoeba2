@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class ReindexFlagFixture extends TestFixture {
+class ReindexFlagsFixture extends TestFixture {
 	public $name = 'ReindexFlag';
 
 	public $fields = array(

@@ -4,7 +4,7 @@ namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class UserFixture extends TestFixture {
+class UsersFixture extends TestFixture {
 	public $name = 'User';
 
 	public $fields = array(
