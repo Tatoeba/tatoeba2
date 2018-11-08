@@ -24,27 +24,21 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Query;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
-
-/**
- * Model Class which represent chinese-like characters into the database
- *
- * @category Sinograms
- * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
-*/
-
-class Sinogram extends AppModel
+class SinogramsTable extends Table
 {
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+        $this->hasMany('SinogramSubglyphs');
+    }
 
-    public $name = "Sinogram";
-    public $hasMany = array ('SinogramSubglyph');
-    public $actsAs = array("Containable");
     /**
     * search a sinogram matching the input requirements
     *
@@ -76,30 +70,28 @@ class Sinogram extends AppModel
         // as IN statement will be very slow when exceeding 5+
         $numberOfSublyph = count($subGlyphArray);
         $result = $this->find('all', array(
-            'fields' => array('Sinogram.id', 'Sinogram.glyph'),
+            'fields' => array('Sinograms.id', 'Sinograms.glyph'),
             'conditions' => array(
-                'subglyph' => $subGlyphArray, // IN statement is here
+                'subglyph IN' => $subGlyphArray, // IN statement is here
             ),
-            'joins' => array(array(
+            'join' => array(array(
                 'table' => 'sinogram_subglyphs',
-                'alias' => 'SinogramSubglyph',
-                'conditions' => array('SinogramSubglyph.glyph = Sinogram.glyph'),
+                'alias' => 'SinogramSubglyphs',
+                'conditions' => array('SinogramSubglyphs.glyph = Sinograms.glyph'),
             )),
             'group' => array(
-                'Sinogram.glyph '
-                .'HAVING count(DISTINCT SinogramSubglyph.subglyph) = '.$numberOfSublyph
+                '`Sinograms`.`glyph` '
+                .'HAVING count(DISTINCT SinogramSubglyphs.subglyph) = '.$numberOfSublyph
             ),
-        ));
+        ))->toArray();
 
         // if there's only character, it should be logical that this character match
         // itself
         if ($onlyOneCharacter) {
-            $thisGlyph = $this->find(
-                "first", array(
-                "fields" => array("Sinogram.id","Sinogram.glyph"),
-                "conditions" => array("Sinogram.glyph" => $sinogram  )
-                )
-            );
+            $thisGlyph = $this->find("all", array(
+                "fields" => array("Sinograms.id","Sinograms.glyph"),
+                "conditions" => array("Sinograms.glyph" => $sinogram  )
+            ))->first();
             array_push($result, $thisGlyph);
         }
 
@@ -129,7 +121,7 @@ class Sinogram extends AppModel
 
         $toExplodeString = implode(",", $toExplodeArray);
 
-        $results = $this->query(
+        $results = $this->_connection->query(
             "SELECT glyph , subglyph
             FROM  sinogram_subglyphs
             WHERE glyph IN (". $toExplodeString .") ;"
@@ -141,14 +133,14 @@ class Sinogram extends AppModel
      * get informations of a given sinogram
      *
      * @param string $sinogram the sinogram we want informations of
-        *
+     *
      * @return array informations concerning this sinogram
      */
 
     public function informations($sinogram)
     {
         $return = $this->find(
-            'first',
+            'all',
             array(
                 "fields" => array(
                     "Sinogram.glyph",
@@ -160,10 +152,8 @@ class Sinogram extends AppModel
                 ),
                 "conditions" => array("Sinogram.glyph" => $sinogram )
             )
-        );
+        )->first();
 
         return $return ;
-
     }
-
 }

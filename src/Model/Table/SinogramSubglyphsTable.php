@@ -24,27 +24,15 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 
+class SinogramSubglyphsTable extends Table
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
 
-/**
- * Model Class which represent sinograms compounds
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
-*/
-
-class SinogramSubglyph extends AppModel
-{
-
-    public $name = "SinogramSubglyph";
-
-    public $belongsTo = array('Sinogram');
-
-    public $actsAs = array('Containable');
+        $this->belongsTo('Sinograms');
+    }
 }
