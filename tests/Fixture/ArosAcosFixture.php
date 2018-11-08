@@ -15,7 +15,9 @@ class ArosAcosFixture extends TestFixture {
 		'_read' => ['type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
 		'_update' => ['type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
 		'_delete' => ['type' => 'string', 'null' => false, 'default' => '0', 'length' => 2, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
-		'_indexes' => ['aco_id' => ['unique' => 0, 'columns' => 'aco_id']],
+		'_indexes' => [
+			'aco_id' => ['type' => 'index', 'columns' => ['aco_id'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'ARO_ACO_KEY' => ['type' => 'unique', 'columns' => ['aro_id', 'aco_id']], 'idx_aros_acos_aro_id_aco_id' => ['type' => 'unique', 'columns' => ['aro_id', 'aco_id']]],
 		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM']
 	);

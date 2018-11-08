@@ -15,7 +15,10 @@ class TagsFixture extends TestFixture {
 		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
 		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'nbrOfSentences' => ['type' => 'integer', 'null' => false, 'default' => '0'],
-		'_indexes' => ['user_id' => ['unique' => 0, 'columns' => 'user_id'], 'nbr_sentences_idx' => ['unique' => 0, 'columns' => 'nbrOfSentences']],
+		'_indexes' => [
+			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+			'nbr_sentences_idx' => ['type' => 'index', 'columns' => ['nbrOfSentences'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);

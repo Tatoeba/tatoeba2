@@ -11,7 +11,9 @@ class ReindexFlagsFixture extends TestFixture {
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'sentence_id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'lang_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 3],
-		'_indexes' => ['idx_sentence_id' => ['unique' => 0, 'columns' => 'sentence_id']],
+		'_indexes' => [
+			'idx_sentence_id' => ['type' => 'index', 'columns' => ['sentence_id'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB']
 	);

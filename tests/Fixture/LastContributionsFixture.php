@@ -19,7 +19,13 @@ class LastContributionsFixture extends TestFixture {
 		'ip' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 15, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
 		'type' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 8, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10, 'unsigned' => true],
-		'_indexes' => ['sentence_id' => ['unique' => 0, 'columns' => 'sentence_id'], 'datetime' => ['unique' => 0, 'columns' => 'datetime'], 'user_id' => ['unique' => 0, 'columns' => 'user_id'], 'sentence_lang' => ['unique' => 0, 'columns' => ['sentence_lang', 'type']], 'translation_id_idx' => ['unique' => 0, 'columns' => 'translation_id']],
+		'_indexes' => [
+			'sentence_id' => ['type' => 'index', 'columns' => ['sentence_id'], 'length' => []],
+			'datetime' => ['type' => 'index', 'columns' => ['datetime'], 'length' => []],
+			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+			'sentence_lang' => ['type' => 'index', 'columns' => ['sentence_lang', 'type'], 'length' => []],
+			'translation_id_idx' => ['type' => 'index', 'columns' => ['translation_id'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'id_desc' => ['type' => 'unique', 'columns' => 'id']],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);

@@ -15,7 +15,11 @@ class ArosFixture extends TestFixture {
 		'alias' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'],
 		'lft' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 10],
 		'rght' => ['type' => 'integer', 'null' => true, 'default' => null, 'length' => 10],
-		'_indexes' => ['idx_aros_lft_rght' => ['unique' => 0, 'columns' => ['lft', 'rght']], 'idx_aros_alias' => ['unique' => 0, 'columns' => 'alias'], 'idx_aros_model_foreign_key' => ['unique' => 0, 'columns' => ['model', 'foreign_key']]],
+		'_indexes' => [
+			'idx_aros_lft_rght' => ['type' => 'index', 'columns' => ['lft', 'rght'], 'length' => []],
+			'idx_aros_alias' => ['type' => 'index', 'columns' => ['alias'], 'length' => []],
+			'idx_aros_model_foreign_key' => ['type' => 'index', 'columns' => ['model', 'foreign_key'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM']
 	);

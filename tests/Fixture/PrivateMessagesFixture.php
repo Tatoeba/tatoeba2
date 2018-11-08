@@ -25,7 +25,9 @@ class PrivateMessagesFixture extends TestFixture {
 		'isnonread' => ['type' => 'integer', 'null' => false, 'default' => '1', 'length' => 4, 'unsigned' => false],
 		'draft_recpts' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'sent' => ['type' => 'integer', 'null' => false, 'default' => '1', 'length' => 4, 'unsigned' => false],
-		'_indexes' => ['idx_recpt' => ['unique' => 0, 'columns' => 'recpt']],
+		'_indexes' => [
+			'idx_recpt' => ['type' => 'index', 'columns' => ['recpt'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'InnoDB']
 	);

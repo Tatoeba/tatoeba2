@@ -16,7 +16,11 @@ class SentenceCommentsFixture extends TestFixture {
 		'created' => ['type' => 'datetime', 'null' => false, 'default' => null],
 		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'hidden' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
-		'_indexes' => ['sentence_id_idx' => ['unique' => 0, 'columns' => 'sentence_id']],
+		'_indexes' => [
+			'sentence_id_idx' => ['type' => 'index', 'columns' => ['sentence_id'], 'length' => []],
+			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+			'created' => ['type' => 'index', 'columns' => ['created'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);

@@ -14,7 +14,9 @@ class SentenceAnnotationsFixture extends TestFixture {
 		'text' => ['type' => 'text', 'null' => false, 'default' => null, 'length' => 2000],
 		'modified' => ['type' => 'datetime', 'null' => false, 'default' => null],
 		'user_id' => ['type' => 'integer', 'null' => false, 'default' => null, 'length' => 10],
-		'_indexes' => ['sentence_id' => ['unique' => 0, 'columns' => 'sentence_id']],
+		'_indexes' => [
+			'sentence_id' => ['type' => 'index', 'columns' => ['sentence_id'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);

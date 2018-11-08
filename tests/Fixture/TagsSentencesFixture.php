@@ -13,7 +13,11 @@ class TagsSentencesFixture extends TestFixture {
 		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
 		'sentence_id' => ['type' => 'integer', 'null' => true, 'default' => null],
 		'added_time' => ['type' => 'datetime', 'null' => true, 'default' => null],
-		'_indexes' => ['user_id' => ['unique' => 0, 'columns' => 'user_id'], 'tag_id' => ['unique' => 0, 'columns' => 'tag_id'], 'sentence_id' => ['unique' => 0, 'columns' => 'sentence_id']],
+		'_indexes' => [
+			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+			'tag_id' => ['type' => 'index', 'columns' => ['tag_id'], 'length' => []],
+			'sentence_id' => ['type' => 'index', 'columns' => ['sentence_id'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);

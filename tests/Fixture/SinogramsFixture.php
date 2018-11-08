@@ -22,7 +22,9 @@ class SinogramsFixture extends TestFixture {
 		'checked' => ['type' => 'boolean', 'null' => false, 'default' => null],
 		'subcharacterslist' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'usedByList' => ['type' => 'string', 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
-		'_indexes' => ['glyph_index' => ['unique' => 0, 'columns' => 'glyph']],
+		'_indexes' => [
+			'glyph_index' => ['type' => 'index', 'columns' => ['glyph'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'InnoDB']
 	);

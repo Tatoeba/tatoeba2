@@ -20,7 +20,12 @@ class SentencesFixture extends TestFixture {
 		'hash' => ['type' => 'binary', 'null' => false, 'default' => null, 'length' => 16],
 		'license' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'based_on_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
-		'_indexes' => ['user_id' => ['unique' => 0, 'columns' => 'user_id'], 'lang' => ['unique' => 0, 'columns' => 'lang'], 'modified_idx' => ['unique' => 0, 'columns' => 'modified'], 'hash' => ['unique' => 0, 'columns' => 'hash']],
+		'_indexes' => [
+			'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
+			'lang' => ['type' => 'index', 'columns' => ['lang'], 'length' => []],
+			'modified_idx' => ['type' => 'index', 'columns' => ['modified'], 'length' => []],
+			'hash' => ['type' => 'index', 'columns' => ['hash'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);

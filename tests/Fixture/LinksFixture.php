@@ -15,7 +15,11 @@ class LinksFixture extends TestFixture {
 		'sentence_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'translation_lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'distance' => ['type' => 'integer', 'null' => false, 'default' => '1', 'length' => 2],
-		'_indexes' => ['translation_id' => ['unique' => 0, 'columns' => 'translation_id'], 'sentence_lang' => ['unique' => 0, 'columns' => 'sentence_lang'], 'translation_lang' => ['unique' => 0, 'columns' => 'translation_lang']],
+		'_indexes' => [
+			'translation_id' => ['type' => 'index', 'columns' => ['translation_id'], 'length' => []],
+			'sentence_lang' => ['type' => 'index', 'columns' => ['sentence_lang'], 'length' => []],
+			'translation_lang' => ['type' => 'index', 'columns' => ['translation_lang'], 'length' => []],
+		],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']], 'sentence_id' => ['type' => 'unique', 'columns' => ['sentence_id', 'translation_id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM']
 	);
