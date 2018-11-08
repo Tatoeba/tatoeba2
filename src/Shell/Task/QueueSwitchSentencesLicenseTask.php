@@ -5,7 +5,7 @@ namespace App\Shell\Task;
 use App\CurrentUser\Model;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
-use Queue\Console\Command\Task\QueueTask;
+use Queue\Shell\Task\QueueTask;
 
 class QueueSwitchSentencesLicenseTask extends QueueTask {
 
