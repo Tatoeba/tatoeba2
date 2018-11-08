@@ -26,7 +26,7 @@
  */
 namespace App\View\Helper;
 
-use App\Utility\Sanitize;
+use Cake\Core\Configure;
 use App\View\Helper\AppHelper;
 
 
@@ -576,7 +576,7 @@ class MessagesHelper extends AppHelper
      * @return string The comment body formatted for HTML display.
      */
     public function formatedContent($content) {
-        $content = Sanitize::html($content);
+        $content = htmlentities($content, ENT_QUOTES, Configure::read('App.encoding'));
 
         // Convert sentence mentions to links
         $content = $this->ClickableLinks->clickableSentence($content);

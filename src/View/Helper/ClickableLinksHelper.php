@@ -27,6 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
+use Cake\ORM\TableRegistry;
 
 
 /**
@@ -126,7 +127,7 @@ class ClickableLinksHelper extends AppHelper
     public function clickableSentence($text)
     {
         $self = $this;
-        $model = ClassRegistry::init('Sentence');
+        $model = TableRegistry::get('Sentence');
         $content = preg_replace_callback(
             $this::SENTENCE_ID_PATTERN, 
             function ($m) use ($self, $model) {
