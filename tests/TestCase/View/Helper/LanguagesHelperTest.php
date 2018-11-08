@@ -1,8 +1,8 @@
 <?php
 namespace App\Test\TestCase\View\Helper;
 
+use App\Model\CurrentUser;
 use App\View\Helper\LanguagesHelper;
-use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
@@ -14,8 +14,7 @@ class LanguagesHelperTest extends TestCase {
 
 	function setUp() {
         parent::setUp();
-        $Controller = new Controller();
-        $View = new View($Controller);
+        $View = new View();
         $this->Languages = new LanguagesHelper($View);
 		Configure::write('Config.language', 'eng');
 		CurrentUser::store(null);
