@@ -25,12 +25,6 @@ class SentencesFixture extends TestFixture {
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);
 
-	public function init() {
-		parent::init();
-		$dbo = ConnectionManager::get($this->Schema->connection);
-		$dbo->columns['binary'] = array('name' => 'binary');
-	}
-
 	public $records = array(
 		array(
 			'id' => '1',
