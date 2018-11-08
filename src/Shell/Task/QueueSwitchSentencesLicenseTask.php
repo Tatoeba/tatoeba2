@@ -188,7 +188,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
  * @param int $id The id of the QueuedTask
  * @return bool Success
  */
-    public function run($options, $id = null) {
+    public function run(array $options, $id = null) {
         if (isset($options['UIlang'])) {
             $prevLang = Configure::read('Config.language');
             Configure::write('Config.language', $options['UIlang']);
