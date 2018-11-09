@@ -502,34 +502,6 @@ class User extends AppModel
         return !empty($user) ? $user['User']['username'] : null;
     }
 
-
-    /**
-     * Return array of (id => username).
-     *
-     * @param array $userIds Array of user ids.
-     *
-     * @return array
-     */
-    public function getUsernamesFromIds($usersIds)
-    {
-        $results = $this->find(
-            'all',
-            array(
-                'conditions' => array('id' => $usersIds),
-                'fields' => array('id', 'username')
-            )
-        );
-
-        $users = array();
-        foreach($results as $result) {
-            $id = $result['User']['id'];
-            $username = $result['User']['username'];
-            $users[$id] = $username;
-        }
-
-        return $users;
-    }
-
     /**
      * Return id of a user from the email.
      *
@@ -607,25 +579,6 @@ class User extends AppModel
         );
         return !empty($user) ? $user['User']['password'] : null;
     }
-
-    /**
-     * Return number of members who have validated their registration.
-     *
-     * @return int
-     */
-
-    public function getNumberOfActiveMembers()
-    {
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array(
-                    'group_id <' => 5
-                )
-            )
-        );
-    }
-
 
     /**
      * Return the level of the user of given id.
