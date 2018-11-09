@@ -24,118 +24,126 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Controller\Component\Auth\VersionedPasswordHasher;
-use App\Model\AppModel;
+use App\Auth\VersionedPasswordHasher;
+use Cake\ORM\Query;
+use Cake\ORM\RulesChecker;
+use Cake\ORM\Table;
+use Cake\Validation\Validator;
 
-
-/**
- * Model for users.
- *
- * @category Users
- * @package  Models
- * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class User extends AppModel
+class UsersTable extends Table
 {
 
-    /**
-     *
-     * @var string
-     */
-    public $name = 'User';
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+
+        $this->belongsTo('Groups');
+
+        $this->hasMany('Audios');
+        $this->hasMany('Contributions');
+        $this->hasMany('Favorites');
+        $this->hasMany('LastContributions');
+        $this->hasMany('PrivateMessages');
+        $this->hasMany('SentenceAnnotations');
+        $this->hasMany('SentenceComments');
+        $this->hasMany('Sentences');
+        $this->hasMany('SentencesLists');
+        $this->hasMany('Tags');
+        $this->hasMany('TagsSentences');
+        $this->hasMany('Transcriptions');
+        $this->hasMany('Wall', [
+            'foreignKey' => 'owner'
+        ]);
+
+        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+
+        $validator
+            ->scalar('username')
+            ->requirePresence('username', 'create')
+            ->lengthBetween('username', [2, 20])
+            ->add('username', [
+                'alphanumeric' => ['rule' => ['custom', '/^\\w*$/']],
+            ]);
+
+        $validator
+            ->scalar('password')
+            ->requirePresence('password', 'create');
+
+        $validator
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->add('email', [
+                'email' => ['rule' => ['custom' => '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/']],
+            ]);
+
+        $validator
+            ->date('since');
+
+        $validator
+            ->date('last_time_active');
+
+        $validator
+            ->integer('group_id');
+
+        $validator
+            ->boolean('send_notifications');
+
+        $validator
+            ->scalar('name')
+            ->maxLength('name', 255);
+
+        $validator
+            ->date('birthday');
+
+        $validator
+            ->scalar('description');
+
+        $validator
+            ->scalar('homepage')
+            ->maxLength('homepage', 255);
+
+        $validator
+            ->scalar('image')
+            ->maxLength('image', 255);
+
+        $validator
+            ->scalar('country_id')
+            ->maxLength('country_id', 2);
+
+        $validator
+            ->scalar('audio_license')
+            ->maxLength('audio_license', 50);
+
+        $validator
+            ->scalar('audio_attribution_url')
+            ->maxLength('audio_attribution_url', 255);
+
+        return $validator;
+    }
 
     /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
      *
-     * @var array
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
      */
-    public $actsAs = array(
-        'Acl' => array('type' => 'requester'),
-        'Containable'
-    );
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['username']));
+        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['group_id'], 'Groups'));
 
-    // contributor vs. advanced contributor vs. corpus maintainer vs. admin
-    const LOWEST_TRUST_GROUP_ID = 4;
-
-    // trustworthy vs. untrustworthy
-    const MIN_LEVEL = -1; // trustworthy
-    const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
-
-    /**
-     *
-     * @var array
-     */
-    public $validate = array(
-        'username' => array(
-            'alphanumeric' => array('rule' => '/^\\w*$/'),
-            'isUnique' => array('rule' => 'isUnique'),
-            'min' => array('rule' => array('minLength', 2))
-        ),
-        'email' => array(
-            'email' => array('rule' => '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'),
-            'isUnique' => array('rule' => 'isUnique')
-        ),
-        'lastlogout' => array('numeric'),
-        'status' => array('numeric'),
-        'permissions' => array('numeric'),
-        'level' => array('numeric'),
-        'group_id' => array('numeric')
-    );
-
-    /**
-     *
-     * @var array
-     */
-    public $belongsTo = array(
-        'Group' => array(
-            'className' => 'Group',
-            'foreignKey' => 'group_id',
-            'conditions' => '',
-            'fields' => '',
-            'order' => ''
-        )
-    );
-
-    /**
-     *
-     * @var array
-     */
-    public $hasMany = array(
-        'SentenceComments',
-        'Contributions',
-        'Sentences',
-        'SentencesLists',
-        'Wall' => array('foreignKey' => 'owner')
-    );
-
-    public static $defaultSettings = array(
-        'is_public' => false,
-        'lang' => null,
-        'use_most_recent_list' => false,
-        'collapsible_translations' => false,
-        'show_transcriptions' => false,
-        'sentences_per_page' => 10,
-        'users_collections_ratings' => false,
-        'native_indicator' => false,
-        'copy_button' => false,
-        'hide_random_sentence' => false,
-        'use_new_design' => false,
-        'default_license' => 'CC BY 2.0 FR',
-    );
-
-    private $settingsValidation = array(
-        'sentences_per_page' => array(10, 20, 50, 100),
-    );
-
-    private $passwordHasher;
-
-    public function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
-        $this->passwordHasher = new VersionedPasswordHasher();
+        return $rules;
     }
 
     public function beforeFind($queryData) {
@@ -144,47 +152,6 @@ class User extends AppModel
         }
     
         return $queryData;
-    }
-
-    public function afterFind($results, $primary = false) {
-        foreach ($results as &$result) {
-            if (isset($result['User']) && array_key_exists('settings', $result['User'])) {
-                $result['User']['settings'] = (array)json_decode(
-                    $result['User']['settings']
-                );
-                $result['User']['settings'] = array_merge(
-                    self::$defaultSettings,
-                    $result['User']['settings']
-                );
-                $this->validateSettings($result['User']['settings']);
-            }
-        }
-        return $results;
-    }
-
-    public function beforeSave($options = array()) {
-        if (isset($this->data['User']['password'])) {
-            $this->data['User']['password'] = $this->passwordHasher->hash(
-                $this->data['User']['password']
-            );
-        }
-        if (array_key_exists('settings', $this->data['User'])
-            && is_array($this->data['User']['settings'])) {
-            $settings = $this->field('settings', array('id' => $this->id));
-            $settings = array_merge($settings, $this->data['User']['settings']);
-            $settings = array_intersect_key($settings, self::$defaultSettings);
-            $this->validateSettings($settings);
-            $this->data['User']['settings'] = json_encode($settings);
-        }
-        return true;
-    }
-
-    private function validateSettings(&$settings) {
-        foreach ($this->settingsValidation as $setting => $values) {
-            if (!in_array($settings[$setting], $values)) {
-                $settings[$setting] = self::$defaultSettings[$setting];
-            }
-        }
     }
 
     /**
@@ -205,28 +172,6 @@ class User extends AppModel
                 'foreign_key' => $userId,
                 'parent_id' => $groupId
             ));
-        }
-    }
-
-    /**
-     * ?
-     *
-     * @return array
-     */
-    public function parentNode()
-    {
-        if (!$this->id && empty($this->data)) {
-            return null;
-        }
-        if (isset($this->data['User']['group_id'])) {
-            $groupId = $this->data['User']['group_id'];
-        } else {
-            $groupId = $this->field('group_id');
-        }
-        if (!$groupId) {
-            return null;
-        } else {
-            return array('Group' => array('id' => $groupId));
         }
     }
 
