@@ -61,24 +61,4 @@ if ($selectedLanguage == null) {
         );
         ?>
     </span>
-    <?php
-    if ($this->Session->read('Auth.User.id')) {
-        ?>
-        <span>
-            <?php
-             echo $this->Html->link(
-                 __('show more...'),
-                 array(
-                     "controller" => "sentences",
-                     "action" => "several_random_sentences"
-                 ),
-                 array(
-                     "class" => "titleAnnexeLink"
-                 )
-             );
-             ?>
-        </span>
-    <?php
-    }
-    ?>
 </h2>
