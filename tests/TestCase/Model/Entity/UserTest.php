@@ -33,4 +33,11 @@ class UserTest extends TestCase
 
         $this->assertEquals(true, $this->User->settings['is_public']);
     }
+
+    public function testSet_settingsIgnoresUnknownSettings()
+    {
+        $this->User->set('settings', ['this_does_not_exist' => true]);
+
+        $this->assertFalse(isset($this->User->settings['this_does_not_exist']));
+    }
 }
