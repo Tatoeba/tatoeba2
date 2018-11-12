@@ -147,10 +147,7 @@ class AppController extends Controller
         // - If no cookie, we use the language set in the URL.
         $lang = $this->getSupportedLanguage();
         $langInCookie = $this->Cookie->read('interfaceLanguage');
-        $langInURL = null;
-        if (isset($this->params['lang'])) {
-            $langInURL = $this->params['lang'];
-        }
+        $langInURL = $this->request->getParam('lang', null);
 
         $langInURLAlias = $this->remapOldLangAlias($langInURL);
         if ($langInURLAlias != $langInURL) {
@@ -172,7 +169,7 @@ class AppController extends Controller
         // If the Router did not parse the URL, we don't know if the URL
         // contains a language, we so cannot perform any kind of language
         // redirection
-        $routerDidParseURL = !empty($this->params['controller']);
+        $routerDidParseURL = !empty($this->request->getParam('controller'));
         if ($routerDidParseURL) {
 
             // Forcing the URL to have the (correct) language in it.
@@ -253,9 +250,9 @@ class AppController extends Controller
     {
         $this->Flash->set($msg);
         if (is_array($to)) {
-            $to = array_merge(array('lang' => $this->params['lang']), $to);
+            $to = array_merge(array('lang' => $this->request->getParam('lang')), $to);
         } else {
-            $to = '/'.$this->params['lang'].$to;
+            $to = '/'.$this->request->getParam('lang').$to;
         }
         $this->redirect($to);
         $this->_stop();
@@ -276,8 +273,8 @@ class AppController extends Controller
     {
         // if the developer has used "redirect" method without
         // specifying the lang param, then we add it
-        if (isset($this->params['lang']) && is_array($url)) {
-            $url['lang'] = $this->params['lang'];
+        if ($this->request->getParam('lang') !== false && is_array($url)) {
+            $url['lang'] = $this->request->getParam('lang');
         }
         return parent::redirect($url, $status, $exit);
     }
