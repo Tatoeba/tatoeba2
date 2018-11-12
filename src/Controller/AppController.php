@@ -52,7 +52,9 @@ class AppController extends Controller
         ),
         'Auth' => array(
 		'authenticate' => array(
-			'Form' => array('passwordHasher' => 'Versioned')
+			'Form' => array(
+                            'passwordHasher' => array('className' => 'Versioned'),
+                        ),
 		)
 	),
         'Flash',
