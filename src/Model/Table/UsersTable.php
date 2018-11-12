@@ -315,12 +315,13 @@ class UsersTable extends Table
     {
         return $this->get($id, ['contain' => [
             'Sentences' => function ($q) {
-                return $q->select(['id', 'lang', 'correctness', 'text'])
+                return $q->select(['user_id', 'id', 'lang', 'correctness', 'text'])
                          ->limit(10)
                          ->orderAsc('modified');
             },
             'Contributions' => function ($q) {
                 $fields = [
+                    'user_id',
                     'sentence_id',
                     'sentence_lang',
                     'translation_id',
@@ -336,6 +337,7 @@ class UsersTable extends Table
             },
             'SentenceComments' => function ($q) {
                 $fields = [
+                    'user_id',
                     'id',
                     'text',
                     'created',
@@ -348,7 +350,7 @@ class UsersTable extends Table
                          ->orderDesc('created');
             },
             'Wall' => function ($q) {
-                return $q->select(['id', 'content', 'date', 'hidden', 'modified'])
+                return $q->select(['owner', 'id', 'content', 'date', 'hidden', 'modified'])
                          ->limit(10)
                          ->orderDesc('date');
             },
