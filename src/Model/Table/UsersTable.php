@@ -493,10 +493,12 @@ class UsersTable extends Table
 
     public function updatePasswordVersion($userId, $plainTextPassword)
     {
-        $this->id = $userId;
-        $storedHash = $this->field('password');
-        if ($this->passwordHasher->isOutdated($storedHash)) {
-            $this->saveField('password', $plainTextPassword);
+        $passwordHasher = new VersionedPasswordHasher();
+        $user = $this->get($userId);
+        $storedHash = $user->password;
+        if ($passwordHasher->isOutdated($storedHash)) {
+            $user->password = $plainTextPassword;
+            $this->save($user);
         }
     }
 }

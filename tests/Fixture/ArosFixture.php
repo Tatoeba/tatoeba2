@@ -28,7 +28,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '1',
 			'parent_id' => NULL,
-			'model' => 'Group',
+			'model' => 'Groups',
 			'foreign_key' => '1',
 			'alias' => 'group_admin',
 			'lft' => '1',
@@ -37,7 +37,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '2',
 			'parent_id' => NULL,
-			'model' => 'Group',
+			'model' => 'Groups',
 			'foreign_key' => '2',
 			'alias' => 'group_moderator',
 			'lft' => '5',
@@ -46,7 +46,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '3',
 			'parent_id' => NULL,
-			'model' => 'Group',
+			'model' => 'Groups',
 			'foreign_key' => '3',
 			'alias' => 'group_trusted_user',
 			'lft' => '9',
@@ -55,7 +55,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '4',
 			'parent_id' => NULL,
-			'model' => 'Group',
+			'model' => 'Groups',
 			'foreign_key' => '4',
 			'alias' => 'group_user',
 			'lft' => '13',
@@ -64,7 +64,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '5',
 			'parent_id' => NULL,
-			'model' => 'Group',
+			'model' => 'Groups',
 			'foreign_key' => '5',
 			'alias' => 'group_inactive',
 			'lft' => '19',
@@ -73,7 +73,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '6',
 			'parent_id' => NULL,
-			'model' => 'Group',
+			'model' => 'Groups',
 			'foreign_key' => '6',
 			'alias' => 'group_spammer',
 			'lft' => '23',
@@ -82,7 +82,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '7',
 			'parent_id' => '1',
-			'model' => 'User',
+			'model' => 'Users',
 			'foreign_key' => '1',
 			'alias' => 'user_admin',
 			'lft' => '2',
@@ -91,7 +91,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '8',
 			'parent_id' => '2',
-			'model' => 'User',
+			'model' => 'Users',
 			'foreign_key' => '2',
 			'alias' => 'user_moderator',
 			'lft' => '6',
@@ -100,7 +100,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '9',
 			'parent_id' => '3',
-			'model' => 'User',
+			'model' => 'Users',
 			'foreign_key' => '3',
 			'alias' => 'user_trusted_user',
 			'lft' => '10',
@@ -109,7 +109,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '10',
 			'parent_id' => '4',
-			'model' => 'User',
+			'model' => 'Users',
 			'foreign_key' => '4',
 			'alias' => 'user_user',
 			'lft' => '14',
@@ -118,7 +118,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '11',
 			'parent_id' => '5',
-			'model' => 'User',
+			'model' => 'Users',
 			'foreign_key' => '5',
 			'alias' => 'user_inactive',
 			'lft' => '20',
@@ -127,7 +127,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '12',
 			'parent_id' => '6',
-			'model' => 'User',
+			'model' => 'Users',
 			'foreign_key' => '6',
 			'alias' => 'user_spammer',
 			'lft' => '24',
@@ -136,7 +136,7 @@ class ArosFixture extends TestFixture {
 		array(
 			'id' => '13',
 			'parent_id' => '4',
-			'model' => 'User',
+			'model' => 'Users',
 			'foreign_key' => '7',
 			'alias' => NULL,
 			'lft' => '16',
