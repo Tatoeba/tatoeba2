@@ -16,6 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+use App\Model\CurrentUser;
 
 $username = $user['User']['username'];
 $userId =  $user['User']['id'];

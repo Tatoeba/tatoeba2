@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use App\Model\CurrentUser;
 
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
 $this->Html->script('jquery.scrollTo.min.js', false);

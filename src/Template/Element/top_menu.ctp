@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+use Cake\Core\Configure;
+
 // Detecting language for "browse by language"
 $session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');

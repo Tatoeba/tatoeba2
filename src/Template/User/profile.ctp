@@ -25,6 +25,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use App\Model\CurrentUser;
 
 /**
  * profile view for Users.

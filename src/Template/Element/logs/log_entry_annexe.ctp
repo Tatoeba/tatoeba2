@@ -1,4 +1,6 @@
 <?php
+use App\Lib\LanguagesLib;
+
 $langCode = $log['Contribution']['sentence_lang'];
 $sentenceId = null;
 $translationId = null;

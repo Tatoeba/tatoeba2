@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+use Cake\Core\Configure;
+
 if (Configure::read('Announcement.enabled')) {
     $announcementId = 'looking-for-designers';
     $announcementText = '<p>Tatoeba needs help to re-design the website to be 

@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use Cake\Core\Configure;
 
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 

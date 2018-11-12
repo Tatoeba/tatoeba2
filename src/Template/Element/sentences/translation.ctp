@@ -1,4 +1,6 @@
 <?php
+use App\Lib\LanguagesLib;
+
 $showExtra = '';
 if ($isExtra) {
     $showExtra = 'ng-if="vm.isExpanded"';

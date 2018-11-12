@@ -1,4 +1,6 @@
 <?php
+use App\Lib\LanguagesLib;
+
 $langCode = $log['Contribution']['sentence_lang'];
 $sentenceId = $log['Contribution']['sentence_id'];
 $sentenceLink = $this->Html->link(

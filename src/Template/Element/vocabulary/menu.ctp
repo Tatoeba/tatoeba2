@@ -1,4 +1,6 @@
 <?php
+use App\Model\CurrentUser;
+
 $addUrl = $this->Url->build(
     array(
         'controller' => 'vocabulary',

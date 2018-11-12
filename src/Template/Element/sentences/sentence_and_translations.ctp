@@ -1,4 +1,6 @@
 <?php
+use App\Lib\LanguagesLib;
+
 $this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom'));
 
 list($directTranslations, $indirectTranslations) = $this->Sentences->segregateTranslations(

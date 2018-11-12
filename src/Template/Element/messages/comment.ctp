@@ -1,4 +1,7 @@
 <?php
+use App\Lib\LanguagesLib;
+use App\Model\CurrentUser;
+
 $username = $comment['User']['username'];
 $avatar = $comment['User']['image'];
 $createdDate = $comment['SentenceComment']['created'];

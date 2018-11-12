@@ -17,6 +17,9 @@
  * @since         CakePHP(tm) v 1.3
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
+
 if (!class_exists('ConnectionManager') || Configure::read('debug') < 2) {
     return false;
 }

@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use App\Model\CurrentUser;
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 ?>
 <div id="annexe_content">

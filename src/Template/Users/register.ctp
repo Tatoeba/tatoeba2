@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use Cake\Core\Configure;
 
 /**
  * Page to register.

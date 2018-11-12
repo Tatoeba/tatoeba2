@@ -25,6 +25,9 @@
  * @link     http://tatoeba.org
  */
 
+use App\Lib\LanguagesLib;
+use Cake\Core\Configure;
+
 $lang = LanguagesLib::languageTag(Configure::read('Config.language'));
 $this->set('title_for_layout', $this->Pages->formatTitle(__('What is Tatoeba?')));
 ?>

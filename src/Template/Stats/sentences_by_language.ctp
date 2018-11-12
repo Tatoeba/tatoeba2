@@ -24,7 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+use Cake\Core\Configure;
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Number of sentences per language')));
 
 $max = $stats[0]['Language']['sentences'];

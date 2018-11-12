@@ -25,6 +25,9 @@
  * @link     http://tatoeba.org
  */
 
+use App\Lib\LanguagesLib;
+use Cake\Core\Configure;
+
 $uiLanguages = Configure::read('UI.languages');
 $currentLang = Configure::read('Config.language');
 $currentUrl = $this->request->here();

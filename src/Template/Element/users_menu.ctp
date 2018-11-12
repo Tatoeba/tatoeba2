@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use App\Model\CurrentUser;
 ?>
 
 <div class="section" md-whiteframe="1">

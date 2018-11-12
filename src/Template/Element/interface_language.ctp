@@ -24,9 +24,10 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-?>
 
-<?php
+use App\Lib\LanguagesLib;
+use Cake\Core\Configure;
+
 $lang = Configure::read('Config.language');
 $configUiLanguages = Configure::read('UI.languages');
 $languages = array();

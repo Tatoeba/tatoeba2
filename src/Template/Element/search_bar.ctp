@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+use Cake\Core\Configure;
+
 $this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 'scriptBottom'));
 
 $searchQuery = Sanitize::html($searchQuery);

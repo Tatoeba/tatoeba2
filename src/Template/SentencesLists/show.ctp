@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use App\Model\CurrentUser;
+
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
 
 $listCount = $this->Paginator->counter("%count%");
