@@ -560,7 +560,7 @@ class UsersController extends AppController
 
         $this->paginate = array(
             'limit' => 20,
-            'order' => array('group_id'),
+            'order' => array('group_id', 'id'),
             'fields' => array('id', 'username', 'since', 'image', 'group_id'),
         );
 

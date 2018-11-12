@@ -146,14 +146,6 @@ class UsersTable extends Table
         return $rules;
     }
 
-    public function beforeFind($queryData) {
-        if (is_array($queryData['order'])) {
-            $queryData['order'][] = 'User.id';
-        }
-    
-        return $queryData;
-    }
-
     /**
      * Create the aro entry for given user in case it's not present. Without this
      * aro entry, the user cannot be edited, or cannot reset their password.
