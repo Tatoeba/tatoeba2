@@ -40,4 +40,13 @@ class UserTest extends TestCase
 
         $this->assertFalse(isset($this->User->settings['this_does_not_exist']));
     }
+
+    public function testGet_settingsSetsDefaultSettings()
+    {
+        $defaultLicense = User::$defaultSettings['default_license'];
+
+        $this->User->set('settings', ['is_public' => true]);
+
+        $this->assertEquals($defaultLicense, $this->User->settings['default_license']);
+    }
 }

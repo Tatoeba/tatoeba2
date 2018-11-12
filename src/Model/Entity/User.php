@@ -43,10 +43,6 @@ class User extends Entity
                 $result['User']['settings'] = (array)json_decode(
                     $result['User']['settings']
                 );
-                $result['User']['settings'] = array_merge(
-                    self::$defaultSettings,
-                    $result['User']['settings']
-                );
                 $this->validateSettings($result['User']['settings']);
             }
         }
@@ -60,6 +56,11 @@ class User extends Entity
             $this->data['User']['settings'] = json_encode($settings);
         }
         return true;
+    }
+
+    protected function _getSettings($settings) {
+        $settings = array_merge(self::$defaultSettings, (array)$settings);
+        return $settings;
     }
 
     protected function _setSettings($settings) {
