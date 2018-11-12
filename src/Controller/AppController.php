@@ -269,7 +269,7 @@ class AppController extends Controller
         return parent::redirect($url, $status, $exit);
     }
 
-    private function redirectPaginationToLastPage($object, $scope)
+    private function redirectPaginationToLastPage($object, $settings)
     {
         if (is_array($object)) {
             $scope = $object;
@@ -293,12 +293,12 @@ class AppController extends Controller
         $this->redirect($lastPageUrl);
     }
 
-    public function paginate($object = null, $scope = array(), $whitelist = array())
+    public function paginate($object = NULL, array $settings = array())
     {
         try {
-            return parent::paginate($object, $scope, $whitelist);
+            return parent::paginate($object, $settings);
         } catch (NotFoundException $e) {
-            $this->redirectPaginationToLastPage($object, $scope);
+            $this->redirectPaginationToLastPage($object, $settings);
             return array();
         }
     }
