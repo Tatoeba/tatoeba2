@@ -44,7 +44,6 @@ class NavigationHelper extends AppHelper
         'Html',
         'Form',
         'Languages',
-        'Js',
         'Images'
     );
 

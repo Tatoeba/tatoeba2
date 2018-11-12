@@ -42,7 +42,7 @@ use App\Lib\Autotranscription;
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Js', 'Transcriptions', 'Pinyin');
+    public $helpers = array('Transcriptions', 'Pinyin');
     public $uses = array('Transcription');
 
     /**

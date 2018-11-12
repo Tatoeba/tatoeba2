@@ -42,7 +42,6 @@ class MenuHelper extends AppHelper
 
     public $helpers = array(
         'Html',
-        'Js',
         'Form',
         'Pages',
         'Images'

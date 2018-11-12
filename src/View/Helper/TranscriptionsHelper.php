@@ -27,7 +27,6 @@ class TranscriptionsHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Images',
-        'Js',
         'Languages',
         'Pinyin',
         'Search',

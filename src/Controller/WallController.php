@@ -58,7 +58,6 @@ class WallController extends AppController
     );
     public $helpers = array(
         'Wall',
-        'Js',
         'Date',
         'Pagination'
     );

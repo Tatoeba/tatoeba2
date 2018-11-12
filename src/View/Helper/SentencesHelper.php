@@ -56,7 +56,6 @@ class SentencesHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Form',
-        'Js',
         'SentenceButtons',
         'Languages',
         'Menu',

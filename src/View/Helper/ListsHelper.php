@@ -42,7 +42,6 @@ class ListsHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
-        'Js',
         'Form',
         'Languages',
         'Sentences',

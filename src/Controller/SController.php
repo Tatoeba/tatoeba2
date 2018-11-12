@@ -47,7 +47,6 @@ class SController extends AppController
         'Sentences',
         'Html',
         'Languages',
-        'Js',
     );
 
     public $uses = array('Sentence');

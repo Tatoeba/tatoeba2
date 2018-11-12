@@ -40,7 +40,7 @@ use App\View\Helper\AppHelper;
  */
 class SentenceAnnotationsHelper extends AppHelper
 {
-    public $helpers = array('Form', 'Js', 'Html', 'Date');
+    public $helpers = array('Form', 'Html', 'Date');
 
     /**
      * Displays the form that lets you search annotations of a specific sentence.

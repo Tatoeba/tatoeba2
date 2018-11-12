@@ -43,7 +43,6 @@ class SentenceButtonsHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
-        'Js',
         'Languages',
         'Form',
         'Images'

@@ -69,7 +69,6 @@ class AppController extends Controller
         'Html',
         'Form',
         'Logs',
-        'Js',
         'Pages',
         'Search',
         'Security',

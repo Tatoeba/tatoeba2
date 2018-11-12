@@ -43,7 +43,6 @@ class TagsHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Form',
-        'Js',
         'Sentences',
     );
 
