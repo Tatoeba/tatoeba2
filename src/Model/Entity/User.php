@@ -3,6 +3,7 @@ namespace App\Model\Entity;
 
 use App\Auth\VersionedPasswordHasher;
 use Cake\ORM\Entity;
+use Cake\ORM\TableRegistry;
 
 class User extends Entity
 {
@@ -65,18 +66,19 @@ class User extends Entity
      */
     public function parentNode()
     {
-        if (!$this->id && empty($this->data)) {
-            return null;
-        }
-        if (isset($this->data['User']['group_id'])) {
-            $groupId = $this->data['User']['group_id'];
-        } else {
-            $groupId = $this->field('group_id');
-        }
-        if (!$groupId) {
-            return null;
-        } else {
-            return array('Group' => array('id' => $groupId));
-        }
+	if (!$this->id) {
+		return null;
+	}
+	if (isset($this->group_id)) {
+		$groupId = $this->group_id;
+	} else {
+		$Users = TableRegistry::get('Users');
+		$user = $Users->find('all', ['fields' => ['group_id']])->where(['id' => $this->id])->first();
+		$groupId = $user->group_id;
+	}
+	if (!$groupId) {
+		return null;
+	}
+	return ['Groups' => ['id' => $groupId]];
     }
 }
