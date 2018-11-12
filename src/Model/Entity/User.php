@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Entity;
 
+use App\Auth\VersionedPasswordHasher;
 use Cake\ORM\Entity;
 
 class User extends Entity
@@ -31,7 +32,10 @@ class User extends Entity
         'sentences_per_page' => array(10, 20, 50, 100),
     );
 
-    private $passwordHasher;
+    protected function _setPassword($password) {
+        $passwordHasher = new VersionedPasswordHasher();
+        return $passwordHasher->hash($password);
+    }
 
     public function afterFind($results, $primary = false) {
         foreach ($results as &$result) {
@@ -50,11 +54,6 @@ class User extends Entity
     }
 
     public function beforeSave($options = array()) {
-        if (isset($this->data['User']['password'])) {
-            $this->data['User']['password'] = $this->passwordHasher->hash(
-                $this->data['User']['password']
-            );
-        }
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
             $settings = $this->field('settings', array('id' => $this->id));

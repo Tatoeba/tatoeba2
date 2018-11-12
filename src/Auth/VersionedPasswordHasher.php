@@ -1,16 +1,15 @@
 <?php
 namespace App\Auth;
 
-use App\Controller\Component\Auth\AbstractPasswordHasher;
+use Cake\Auth\AbstractPasswordHasher;
 use Cake\Core\Configure;
-use Cake\Utility\Security;
 
 class VersionedPasswordHasher extends AbstractPasswordHasher {
 
 	const LATEST_VERSION = 1;
 
 	public function hash($password) {
-		return '1 '.Security::hash($password, 'blowfish');
+		return '1 '.password_hash($password, PASSWORD_BCRYPT);
 	}
 
 	public function isOutdated($hash) {
@@ -34,8 +33,7 @@ class VersionedPasswordHasher extends AbstractPasswordHasher {
 		if ($hashVersion == 0) {
 			$plainTextPassword = $V0hash;
 		}
-		$calculatedHash = Security::hash($plainTextPassword, 'blowfish', $storedHash);
-		return $storedHash === $calculatedHash;
+		return password_verify($plainTextPassword, $storedHash);
 	}
 
 }
