@@ -25,4 +25,12 @@ class UserTest extends TestCase
         $this->User->set('password', 'my super password');
         $this->assertContains('$', $this->User->password);
     }
+
+    public function testSet_settingsMergesExistingSettings()
+    {
+        $this->User->set('settings', ['is_public' => true]);
+        $this->User->set('settings', ['default_license' => 'CC0 1.0']);
+
+        $this->assertEquals(true, $this->User->settings['is_public']);
+    }
 }

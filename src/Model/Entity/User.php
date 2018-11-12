@@ -56,13 +56,17 @@ class User extends Entity
     public function beforeSave($options = array()) {
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
-            $settings = $this->field('settings', array('id' => $this->id));
-            $settings = array_merge($settings, $this->data['User']['settings']);
             $settings = array_intersect_key($settings, self::$defaultSettings);
             $this->validateSettings($settings);
             $this->data['User']['settings'] = json_encode($settings);
         }
         return true;
+    }
+
+    protected function _setSettings($settings) {
+        $existingSettings = (array)$this->settings;
+        $settings = array_merge($existingSettings, $settings);
+        return $settings;
     }
 
     private function validateSettings(&$settings) {
