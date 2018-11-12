@@ -203,7 +203,7 @@ $menuElements = array(
                 if (!empty($data['sub-menu'])) {
                     echo "<ul class='sub-menu'>";
                     foreach ($data['sub-menu'] as $title2 => $route2) {
-                        $newTab = null;
+                        $newTab = array();
                         if (!is_array($route2)) {
                             $newTab = array('onclick' => "window.open(this.href,'_blank');return false;");
                         }
