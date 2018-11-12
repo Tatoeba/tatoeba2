@@ -52,6 +52,7 @@ use Cake\Core\Configure;
 
         // Specific
         $controller = $this->request->params["controller"];
+        $controller = Cake\Utility\Inflector::delimit($controller);
         $action = $this->request->params["action"];
         echo $this->Html->css(CSS_PATH . $controller."/".$action .".css");
 
@@ -103,7 +104,7 @@ use Cake\Core\Configure;
         echo $this->element('announcement');
         echo $this->Flash->render('flash', array('element' => 'flash_message'));
 
-        echo $content_for_layout;
+        echo $this->fetch('content');
         ?>
 
         <!--
@@ -145,7 +146,6 @@ use Cake\Core\Configure;
         $this->Html->script(JS_PATH . 'announcement.js', $scriptOptions);
     }
 
-    echo $scripts_for_layout;
     echo $this->fetch('scriptBottom');
 
     if (Configure::read('GoogleAnalytics.enabled')) {
