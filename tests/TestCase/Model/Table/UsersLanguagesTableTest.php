@@ -1,10 +1,11 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\UsersLanguages;
+use App\Model\Table\UsersLanguagesTable;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-class UsersLanguagesTest extends TestCase {
+class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
         'app.users',
         'app.users_languages',
@@ -13,11 +14,11 @@ class UsersLanguagesTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        $this->UsersLanguages = ClassRegistry::init('UsersLanguages');
+        $this->UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
     }
 
     function tearDown() {
-        unset($this->UsersLanguages);
+        unset($this->UsersLanguages); 
         parent::tearDown();
     }
 

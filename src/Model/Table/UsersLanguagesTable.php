@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2010 SIMON   Allan   <allan.simon@supinfo.com>
+ * Copyright (C) 2018   HO Ngoc Phuong Trang
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,30 +15,14 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
+use Cake\ORM\Entity;
+use Cake\Core\Exception\Exception;
 
-
-/**
- * Model Class for users languages skill level.
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
-*/
-class UsersLanguages extends AppModel
+class UsersLanguagesTable extends Table
 {
     public $name = 'UsersLanguages';
     public $useTable = "users_languages";
@@ -48,64 +32,7 @@ class UsersLanguages extends AppModel
         'Language' => array('foreignKey' => 'language_code')
     );
 
-
-    public function beforeSave($options = array())
-    {
-        $userId = $this->data['UsersLanguages']['of_user_id'];
-        $lang = $this->data['UsersLanguages']['language_code'];
-        $groupId = $this->User->getGroupOfUser($userId);
-
-        if ($this->id) {
-          $data = $this->findById($this->id);          
-          $previousLevel = $data['UsersLanguages']['level'];
-          $newLevel = $this->data['UsersLanguages']['level'];
-          $this->Language->decrementCountForLevel($lang, $previousLevel);
-
-          if ($previousLevel == 5 || $newLevel == 5 && $previousLevel != $newLevel) {
-              if ($previousLevel > $newLevel) {
-                  $this->Language->decrementCountForGroup($lang, $groupId);
-              } else {
-                  $this->Language->incrementCountForGroup($lang, $groupId);
-              }
-          }
-        } else {
-          $this->Language->incrementCountForGroup($lang, $groupId);
-        }
-
-        return true;
-    }
-
-
-    public function afterSave($created, $options = array())
-    {
-        $lang = $this->data['UsersLanguages']['language_code'];
-        $level = $this->data['UsersLanguages']['level'];
-        $this->Language->incrementCountForLevel($lang, $level);
-
-        if ($created && $level == 5) {
-            $userId = $this->data['UsersLanguages']['of_user_id'];
-            $groupId = $this->User->getGroupOfUser($userId);
-            $this->Language->incrementCountForGroup($lang, $groupId);
-        }
-    }
-
-
-    public function beforeDelete($options = array())
-    {
-        $data = $this->findById($this->id);
-        $lang = $data['UsersLanguages']['language_code'];
-        $level = $data['UsersLanguages']['level'];
-        $this->Language->decrementCountForLevel($lang, $level);
-
-        if ($level == 5) {
-            $userId = $data['UsersLanguages']['of_user_id'];
-            $groupId = $this->User->getGroupOfUser($userId);
-            $this->Language->decrementCountForGroup($lang, $groupId);
-        }
-
-        return true;
-    }
-
+    // TODO Reimplement the update of language stats
 
     public function getLanguagesOfUser($userId)
     {
@@ -153,19 +80,13 @@ class UsersLanguages extends AppModel
 
     public function getLanguageInfo($id)
     {
-        $languageInfo = $this->find(
-            'first',
-            array(
-                'conditions' => array('id' => $id),
-                'fields' => array('language_code', 'by_user_id')
-            )
-        );
-
-        if (isset($languageInfo['UsersLanguages'])) {
-            return $languageInfo['UsersLanguages'];
-        } else {
-            return null;
+        try  {
+            $result = $this->get($id)->language_info;
+        } catch (Exception $e) {
+            $result = null;
         }
+
+        return $result;
     }
 
 
@@ -248,22 +169,27 @@ class UsersLanguages extends AppModel
     {
         if (empty($data['id'])) {
             $canSave = !empty($data['language_code']) && $data['language_code'] != 'und';
+            $langInfo = $this->newEntity();
+            $langInfo->language_code = $data['language_code'];
         } else {
             $id = $data['id'];
-            $langInfo = $this->getLanguageInfo($id);
-            $canSave = $langInfo['by_user_id'] == $currentUserId;
-            $data['language_code'] = $langInfo['language_code'];
+            try {
+                $langInfo = $this->get($id);
+            } catch (Exception $e) {
+                $langInfo = $this->newEntity();
+            }            
+            $canSave = $langInfo->by_user_id == $currentUserId;
         }
 
         if ($canSave) {
-            $data['of_user_id'] = $currentUserId;
-            $data['by_user_id'] = $currentUserId;
-            if ($data['level'] < 0) {
-                $data['level'] = null;
-            }
-
+            $langInfo->of_user_id = $currentUserId;
+            $langInfo->by_user_id = $currentUserId;
+            $langInfo->level = isset($data['level']) && $data['level'] >= 0 ? $data['level'] : null;
+            $langInfo->details = isset($data['details']) ? $data['details'] : null;
+            
             try {
-                return $this->save($data);
+                $result = $this->save($langInfo);
+                return $result->old_format;
             } catch (Exception $e) {
                 return array();
             }
@@ -274,11 +200,16 @@ class UsersLanguages extends AppModel
 
     public function deleteUserLanguage($id, $currentUserId)
     {
-        $langInfo = $this->getLanguageInfo($id);
-        $canDelete = $langInfo['by_user_id'] == $currentUserId;
+        try {
+            $langInfo = $this->get($id);
+        } catch (Exception $e) {
+            $langInfo = null;
+        }
+        
+        $canDelete = $langInfo && $langInfo->by_user_id == $currentUserId;
 
         if ($canDelete) {
-            return $this->delete($id, false);
+            return $this->delete($langInfo);
         } else {
             return false;
         }
