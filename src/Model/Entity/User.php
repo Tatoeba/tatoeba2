@@ -51,7 +51,6 @@ class User extends Entity
     public function beforeSave($options = array()) {
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
-            $this->validateSettings($settings);
             $this->data['User']['settings'] = json_encode($settings);
         }
         return true;
