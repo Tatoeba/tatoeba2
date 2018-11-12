@@ -27,6 +27,7 @@
 namespace App\Model\Table;
 
 use App\Auth\VersionedPasswordHasher;
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -34,6 +35,11 @@ use Cake\Validation\Validator;
 
 class UsersTable extends Table
 {
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('settings', 'json');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {

@@ -37,25 +37,6 @@ class User extends Entity
         return $passwordHasher->hash($password);
     }
 
-    public function afterFind($results, $primary = false) {
-        foreach ($results as &$result) {
-            if (isset($result['User']) && array_key_exists('settings', $result['User'])) {
-                $result['User']['settings'] = (array)json_decode(
-                    $result['User']['settings']
-                );
-            }
-        }
-        return $results;
-    }
-
-    public function beforeSave($options = array()) {
-        if (array_key_exists('settings', $this->data['User'])
-            && is_array($this->data['User']['settings'])) {
-            $this->data['User']['settings'] = json_encode($settings);
-        }
-        return true;
-    }
-
     protected function _getSettings($settings) {
         $settings = array_merge(self::$defaultSettings, (array)$settings);
         $this->validateSettings($settings);
