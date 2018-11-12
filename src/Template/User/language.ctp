@@ -33,7 +33,7 @@ if (empty($this->request->data)) {
     $submitLabel = __('Save');
 }
 
-$this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title)));
+$this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 ?>
 <div id="annexe_content">
     <?php

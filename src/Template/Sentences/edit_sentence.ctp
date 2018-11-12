@@ -25,6 +25,6 @@
  * @link     http://tatoeba.org
  */
 if (isset($sentence_text)) {
-    echo Sanitize::html(trim($sentence_text));
+    echo h(trim($sentence_text));
 }
 ?>

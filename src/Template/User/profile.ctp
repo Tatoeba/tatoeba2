@@ -41,7 +41,7 @@ $dateFormat = 'Y-m-d';
 $userId = $user['id'];
 $realName = $user['name'];
 $username = $user['username'];
-$userDescription = Sanitize::html($user['description']);
+$userDescription = h($user['description']);
 $homepage = $user['homepage'];
 $birthday = $user['birthday'];
 $userSince = $user['since'];
@@ -55,11 +55,11 @@ $countryName = $this->Countries->getCountryNameByCode($user['country_id']);
 
 $userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
-    $userImage = Sanitize::html($user['image']);
+    $userImage = h($user['image']);
 }
 
 $title = empty($realName) ? $username : "$username ($realName)";
-$this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title)));
+$this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 ?>
 
 <div id="annexe_content">
@@ -252,7 +252,7 @@ $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title))
                 $birthday = $this->Date->formatBirthday($birthday, $dateFormat);
             }
             if (!empty($homepage)) {
-                $homepage = $this->ClickableLinks->clickableURL(Sanitize::html($homepage));
+                $homepage = $this->ClickableLinks->clickableURL(h($homepage));
             }
 
             $personalInfo = array(

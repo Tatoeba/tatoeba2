@@ -18,7 +18,6 @@
  */
 namespace App\View\Helper;
 
-use App\Utility\Sanitize;
 use App\View\Helper\AppHelper;
 
 
@@ -54,8 +53,8 @@ class TranscriptionsHelper extends AppHelper
                }
                $ruby = '';
                for ($i = 0; $i < count($kanjis); $i++) {
-                   $kanji = Sanitize::html($kanjis[$i]);
-                   $reading = Sanitize::html($readings[$i]);
+                   $kanji = h($kanjis[$i]);
+                   $reading = h($readings[$i]);
                    $ruby .= "<ruby>$kanji<rp>（</rp><rt>$reading</rt><rp>）</rp></ruby>";
                }
                return $ruby;
@@ -310,7 +309,7 @@ class TranscriptionsHelper extends AppHelper
      * so that it may be displayed as HTML.
      */
     public function transcriptionAsHTML($lang, $transcr) {
-        $text = Sanitize::html($transcr['text']);
+        $text = h($transcr['text']);
 
         if (isset($transcr['highlight'])) {
             $text = $this->Search->highlightMatches($transcr['highlight'], $text);

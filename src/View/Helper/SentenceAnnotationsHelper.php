@@ -166,7 +166,7 @@ class SentenceAnnotationsHelper extends AppHelper
             echo $this->Form->input(
                 'SentenceAnnotation.textReplacing',
                 array(
-                    "label" => "Replace ". Sanitize::html($stringToReplace) ." by:"
+                    "label" => "Replace ". h($stringToReplace) ." by:"
                 )
             );
             echo '<div>';
@@ -214,7 +214,7 @@ class SentenceAnnotationsHelper extends AppHelper
         </td>
 
         <td class="text">
-        <?php echo Sanitize::html($text); ?>
+        <?php echo h($text); ?>
         </td>
 
         <td class="username">

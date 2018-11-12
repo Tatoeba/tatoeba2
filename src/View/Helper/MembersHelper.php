@@ -54,7 +54,7 @@ class MembersHelper extends AppHelper
      */
     public function creditsToUser($realName, $username = null, $description = null)
     {
-        $realName = Sanitize::html($realName);
+        $realName = h($realName);
         ?>
         <div class="person">
             <div class="realName">

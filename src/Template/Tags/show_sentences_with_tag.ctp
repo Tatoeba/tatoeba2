@@ -27,7 +27,7 @@
 use App\Model\CurrentUser;
 
 if ($tagExists) {
-    $tagName = Sanitize::html($tagName);
+    $tagName = h($tagName);
     $title = format(__('Sentences with tag {tagName}'), compact('tagName'));
     ?>
 

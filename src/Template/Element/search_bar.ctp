@@ -29,7 +29,7 @@ use Cake\Core\Configure;
 
 $this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 'scriptBottom'));
 
-$searchQuery = Sanitize::html($searchQuery);
+$searchQuery = h($searchQuery);
 ?>
 
 <md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">

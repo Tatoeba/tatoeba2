@@ -36,7 +36,7 @@
  */
 
 $title = __('Log in');
-$this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title)));
+$this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 
 if  ($this->request->getSession()->check('Message.auth')) $this->Flash->render('auth');
 

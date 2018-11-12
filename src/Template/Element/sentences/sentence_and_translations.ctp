@@ -33,7 +33,7 @@ $sentenceUrl = $this->Url->build(array(
 ));
 $notReliable = $sentence['correctness'] == -1;
 
-$sentenceText = Sanitize::html($sentence['text']);
+$sentenceText = h($sentence['text']);
 if (isset($sentence['highlight'])) {
     $highlight = $sentence['highlight'];
     $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);

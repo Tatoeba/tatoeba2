@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
  
-$query = Sanitize::html($query);
+$query = h($query);
 if (empty($query)) {
     $noResultLabel = __('No results found.');
 } else {

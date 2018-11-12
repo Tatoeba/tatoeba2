@@ -52,7 +52,7 @@
             <hr/>
 
             <p>
-            <?php echo Sanitize::html($annotation['text']); ?>
+            <?php echo h($annotation['text']); ?>
             </p>
 
             <?php

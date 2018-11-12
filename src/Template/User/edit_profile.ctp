@@ -58,7 +58,7 @@ $this->Languages->localizedAsort($countries);
         <?php
         $image = 'unknown-avatar.png';
         if (!empty($this->request->data['User']['image'])) {
-            $image = Sanitize::html($this->request->data['User']['image']);
+            $image = h($this->request->data['User']['image']);
         }
         echo $this->Html->image(
             IMG_PATH . 'profiles_128/'.$image

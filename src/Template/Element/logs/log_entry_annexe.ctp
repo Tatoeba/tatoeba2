@@ -45,7 +45,7 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
         <div class="content" dir="<?= $langDir ?>">
             <?
             if ($type =='sentence') {
-                echo $sentenceLink.' '.Sanitize::html($sentenceText);
+                echo $sentenceLink.' '.h($sentenceText);
             } elseif ($type == 'license') {
                 echo $sentenceLink.' ➜ '.$this->Html->tag('span', $sentenceText, array('class' => 'license'));
             } else { // link
