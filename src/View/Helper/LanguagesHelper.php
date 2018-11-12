@@ -43,7 +43,7 @@ use Cake\Core\Configure;
  */
 class LanguagesHelper extends AppHelper
 {
-    public $helpers = array('Html', 'Session');
+    public $helpers = array('Html');
 
     /* Memoization of languages code and their localized names */
     private $__languages_alone;
@@ -66,7 +66,7 @@ class LanguagesHelper extends AppHelper
     {
         if (class_exists('Collator')) {
             $isoLang = Configure::read('Config.language');
-            $coll = new Collator($isoLang);
+            $coll = new \Collator($isoLang);
             $coll->asort($array);
         } else {
             asort($array);
@@ -77,7 +77,7 @@ class LanguagesHelper extends AppHelper
         if (CurrentUser::isMember()) {
             return CurrentUser::getProfileLanguages();
         } else {
-            return $this->Session->read('last_used_lang');
+            return $this->request->session()->read('last_used_lang');
         }
     }
 

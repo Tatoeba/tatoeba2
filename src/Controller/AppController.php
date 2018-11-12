@@ -59,7 +59,6 @@ class AppController extends Controller
         'Permissions',
         'RememberMe',
         'Cookie',
-        'Session',
         'Security',
     );
 
@@ -74,7 +73,6 @@ class AppController extends Controller
         'Pages',
         'Search',
         'Security',
-        'Session',
         'Images'
     );
 
@@ -223,26 +221,27 @@ class AppController extends Controller
         // needed for the translation form (in helpers/sentences.php), but we
         // cannot access the Cookie component from a view.
         // This is not optimized, but I'm too lazy to do otherwise.
+        $session = $this->request->session();
         $preSelectedLang = $this->Cookie->read('contribute_lang');
-        $this->Session->write('contribute_lang', $preSelectedLang);
+        $session->write('contribute_lang', $preSelectedLang);
 
         // Same for these cookies, used in show_all_in.
         $lang = $this->Cookie->read('browse_sentences_in_lang');
-        $this->Session->write('browse_sentences_in_lang', $lang);
+        $session->write('browse_sentences_in_lang', $lang);
 
         $translationLang = $this->Cookie->read('show_translations_into_lang');
-        $this->Session->write('show_translations_into_lang', $translationLang);
+        $session->write('show_translations_into_lang', $translationLang);
 
         $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
-        $this->Session->write('not_translated_into_lang', $notTranslatedInto);
+        $session->write('not_translated_into_lang', $notTranslatedInto);
 
         $filterAudioOnly = $this->Cookie->read('filter_audio_only');
-        $this->Session->write('filter_audio_only', $filterAudioOnly);
+        $session->write('filter_audio_only', $filterAudioOnly);
 
         // Use this when displaying the list to which a sentence should be assigned.
         // See views/helpers/menu.php, controllers/sentences_list_controller.php.
         $mostRecentList = $this->Cookie->read('most_recent_list');
-        $this->Session->write('most_recent_list', $mostRecentList);
+        $session->write('most_recent_list', $mostRecentList);
     }
 
 
@@ -368,11 +367,12 @@ class AppController extends Controller
      * with a 'preferred languages' list.
      */
     public function addLastUsedLang($code) {
+        $session = $this->request->session();
         if (!CurrentUser::isMember() && LanguagesLib::languageExists($code)) {
-            $current = (array)$this->Session->read('last_used_lang');
+            $current = (array)$session->read('last_used_lang');
             if (!in_array($code, $current)) {
                 $current[] = $code;
-                $this->Session->write('last_used_lang', $current);
+                $session->write('last_used_lang', $current);
             }
         }
     }

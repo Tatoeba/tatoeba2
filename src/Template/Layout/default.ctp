@@ -68,14 +68,15 @@
     <?php
     $isHomepage = $controller == 'pages' && $action == 'index';
     if (CurrentUser::isMember() || !$isHomepage) {
+        $session = $this->request->session();
         echo $this->element('search_bar', array(
-            'selectedLanguageFrom' => $this->Session->read('search_from'),
-            'selectedLanguageTo' => $this->Session->read('search_to'),
+            'selectedLanguageFrom' => $session->read('search_from'),
+            'selectedLanguageTo' => $session->read('search_to'),
             'searchQuery' => $query,
             'cache' => array(
                 // Only use cache when search fields are not prefilled
-                'time' => is_null($this->Session->read('search_from'))
-                && is_null($this->Session->read('search_to'))
+                'time' => is_null($session->read('search_from'))
+                && is_null($session->read('search_to'))
                 && empty($query)
                 && !$this->Languages->preferredLanguageFilter()
                     ? '+1 day' : false,

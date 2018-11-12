@@ -27,7 +27,7 @@
 
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 
-$selectedLanguage = $this->Session->read('random_lang_selected');
+$selectedLanguage = $this->request->session()->read('random_lang_selected');
 ?>
 <div id="annexe_content">
     <?php 

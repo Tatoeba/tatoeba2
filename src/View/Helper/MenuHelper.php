@@ -45,7 +45,6 @@ class MenuHelper extends AppHelper
         'Js',
         'Form',
         'Pages',
-        'Session',
         'Images'
     );
 
@@ -313,7 +312,7 @@ class MenuHelper extends AppHelper
     {
         $useMostRecentList = CurrentUser::get('settings.use_most_recent_list');
         if ($useMostRecentList != null && $useMostRecentList) {
-            $mostRecentList = $this->Session->read('most_recent_list');
+            $mostRecentList = $this->request->session()->read('most_recent_list');
         } else {
             $mostRecentList = null;
         }

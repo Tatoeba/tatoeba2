@@ -119,7 +119,7 @@ class UsersController extends AppController
         $id = Sanitize::paranoid($id);
 
         if (!$id && empty($this->request->data)) {
-            $this->Session->setFlash('Invalid User');
+            $this->Flash->set('Invalid User');
             $this->redirect(array('action'=>'index'));
         }
         if (!empty($this->request->data)) {
@@ -139,9 +139,9 @@ class UsersController extends AppController
                     );
                 }
 
-                $this->Session->setFlash('The user information has been saved.');
+                $this->Flash->set('The user information has been saved.');
             } else {
-                $this->Session->setFlash(
+                $this->Flash->set(
                     'The user information could not be saved. Please try again.'
                 );
             }
@@ -167,11 +167,11 @@ class UsersController extends AppController
         $id = Sanitize::paranoid($id);
 
         if (!$id) {
-            $this->Session->setFlash('Invalid id for User');
+            $this->Flash->set('Invalid id for User');
             $this->redirect(array('action'=>'index'));
         }
         if ($this->User->delete($id)) {
-            $this->Session->setFlash('User deleted');
+            $this->Flash->set('User deleted');
             $this->redirect(array('action'=>'index'));
         }
     }
@@ -296,7 +296,7 @@ class UsersController extends AppController
     public function logout()
     {
         $this->RememberMe->delete();
-        $this->Session->delete('last_used_lang');
+        $this->request->session()->delete('last_used_lang');
         $this->redirect($this->Auth->logout());
     }
 
@@ -338,7 +338,7 @@ class UsersController extends AppController
 
         // Password is empty
         if ($this->request->data['User']['password'] == '') {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('Password cannot be empty.')
             );
             $this->request->data['User']['password'] = '';
@@ -349,7 +349,7 @@ class UsersController extends AppController
         // Did not answer the quiz properly
         $correctAnswer = mb_substr($this->request->data['User']['email'], 0, 5, 'UTF-8');
         if ($this->request->data['User']['quiz'] != $correctAnswer) {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('Wrong answer to the question.')
             );
             $this->request->data['User']['password'] = '';
@@ -359,7 +359,7 @@ class UsersController extends AppController
 
         // Did not accept terms of use
         if (!$this->request->data['User']['acceptation_terms_of_use']) {
-            $this->Session->setFlash(
+            $this->Flash->set(
                 __('You did not accept the terms of use.')
             );
             $this->request->data['User']['password'] = '';
@@ -531,7 +531,7 @@ class UsersController extends AppController
             $this->set('user', $user);
             $this->set('commentsPermissions', $commentsPermissions);
         } else {
-            $this->Session->write('last_user_id', $id);
+            $this->request->session()->write('last_user_id', $id);
             $this->flash(
                 format(
                     __('No user with this ID: {id}'),

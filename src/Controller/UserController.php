@@ -89,7 +89,7 @@ class UserController extends AppController
     public function updateAuthData($userId)
     {
         $userData = $this->User->read(null, $userId);
-        $this->Session->write(AuthComponent::$sessionKey, $userData['User']);
+        $this->request->session()->write(AuthComponent::$sessionKey, $userData['User']);
     }
 
     /**
@@ -549,7 +549,7 @@ class UserController extends AppController
             if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
                 $user = $this->User->read(null, $currentUserId);
-                $this->Session->write(AuthComponent::$sessionKey, $user['User']);
+                $this->request->session()->write(AuthComponent::$sessionKey, $user['User']);
 
                 $flashMsg = __('Your settings have been saved.');
             } else {

@@ -23,12 +23,12 @@ use App\View\Helper\AppHelper;
 
 class SearchHelper extends AppHelper
 {
-    public $helpers = array('Form', 'Session', 'Languages');
+    public $helpers = array('Form', 'Languages');
 
     private $langs;
 
     public function getLangs() {
-        $restrictSearchLangsEnabled = $this->Session->read('restrict_search_langs_enabled');
+        $restrictSearchLangsEnabled = $this->request->session()->read('restrict_search_langs_enabled');
         if ($restrictSearchLangsEnabled) {
             $langArray = $this->Languages->profileLanguagesArray(false, false);
             $currentUserLanguages = CurrentUser::getProfileLanguages();

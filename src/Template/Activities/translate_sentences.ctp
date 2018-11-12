@@ -26,10 +26,11 @@
  */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Translate sentences')));
 
-$currentLanguage = $this->Session->read('browse_sentences_in_lang');
-$notTranslatedInto = $this->Session->read('not_translated_into_lang');
+$session = $this->request->session();
+$currentLanguage = $session->read('browse_sentences_in_lang');
+$notTranslatedInto = $session->read('not_translated_into_lang');
 if (empty($currentLanguage)) {
-    $currentLanguage = $this->Session->read('random_lang_selected');
+    $currentLanguage = $session->read('random_lang_selected');
 }
 if (empty($notTranslatedInto)) {
     $notTranslatedInto = 'none';

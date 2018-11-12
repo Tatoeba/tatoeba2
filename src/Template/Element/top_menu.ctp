@@ -26,13 +26,14 @@
  */
 
 // Detecting language for "browse by language"
-$currentLanguage = $this->Session->read('browse_sentences_in_lang');
-$showTranslationsInto = $this->Session->read('show_translations_into_lang');
-$notTranslatedInto = $this->Session->read('not_translated_into_lang');
-$filterAudioOnly = $this->Session->read('filter_audio_only');
+$session = $this->request->session();
+$currentLanguage = $session->read('browse_sentences_in_lang');
+$showTranslationsInto = $session->read('show_translations_into_lang');
+$notTranslatedInto = $session->read('not_translated_into_lang');
+$filterAudioOnly = $session->read('filter_audio_only');
 
 if (empty($currentLanguage)) {
-    $currentLanguage = $this->Session->read('random_lang_selected');
+    $currentLanguage = $session->read('random_lang_selected');
 }
 if (empty($currentLanguage) || $currentLanguage == 'und') {
     $currentLanguage = Configure::read('Config.language');
@@ -224,7 +225,7 @@ $menuElements = array(
         <div id="user_menu">
             <?php
             // User menu
-            if (!$this->Session->read('Auth.User.id')) {
+            if (!$session->read('Auth.User.id')) {
                 $isOnLoginPage = ($this->request->params['controller'] == 'users')
                     && ($this->request->params['action'] == 'login');
 

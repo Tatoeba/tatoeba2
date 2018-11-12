@@ -128,10 +128,11 @@ class WallController extends AppController
     public function save()
     {
         if ($this->Auth->user('id')) {
-            $lastMess = $this->Session->read('hash_last_wall');
+            $session = $this->request->session();
+            $lastMess = $session->read('hash_last_wall');
             $thisMess =md5($this->request->data['Wall']['content']);
 
-            $this->Session->write(
+            $session->write(
                 'hash_last_wall',
                 $thisMess
             );
