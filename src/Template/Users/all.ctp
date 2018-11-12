@@ -53,7 +53,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             "label" => "",
         )
     );
-    echo $this->Form->end(__('search'));
+    echo $this->Form->submit(__('search'));
+    echo $this->Form->end();
     $this->Security->disableCSRFProtection();
     ?>
     </div>
@@ -97,12 +98,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         <div class="users">
         <?php
         foreach ($users as $i=>$user):
-        $groupId = $user['User']['group_id'];
+        $groupId = $user->group_id;
         $status = "status".$groupId;
-        $username = $user['User']['username'];
+        $username = $user->username;
         $userImage = null;
-        if (isset($user['User']['image'])) {
-            $userImage = $user['User']['image'];
+        if (isset($user->image)) {
+            $userImage = $user->image;
         };
         ?>
         <div class="user <?php echo $status ?>">
@@ -114,11 +115,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             <div class="username">
                 <?php
                 echo $this->Html->link(
-                    $user['User']['username'],
+                    $user->username,
                     array(
                         "controller"=>'user',
                         "action"=>'profile',
-                        $user['User']['username']
+                        $user->username
                     )
                 );
                 ?>
@@ -127,7 +128,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
 
             <div class="memberSince" title="<?php echo __("Member since"); ?>">
                 <span class="date">
-                <?php echo $this->Date->ago($user['User']['since']); ?>
+                <?php echo $this->Date->ago($user->since); ?>
                 </span>
             </div>
 
