@@ -49,4 +49,13 @@ class UserTest extends TestCase
 
         $this->assertEquals($defaultLicense, $this->User->settings['default_license']);
     }
+
+    public function testGet_settingsValidatesSettings()
+    {
+        $default = User::$defaultSettings['sentences_per_page'];
+
+        $this->User->set('settings', ['sentences_per_page' => 33]);
+
+        $this->assertEquals($default, $this->User->settings['sentences_per_page']);
+    }
 }
