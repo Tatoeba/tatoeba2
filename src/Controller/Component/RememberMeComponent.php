@@ -26,7 +26,7 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\Controller\Controller;
+use Cake\ORM\TableRegistry;
 
 
 /**
@@ -41,7 +41,6 @@ use Cake\Controller\Controller;
 class RememberMeComponent extends Component
 {
     public $components = array('Auth', 'Cookie');
-    public $controller = null;
 
     /**
      * Cookie retention period.
@@ -50,18 +49,6 @@ class RememberMeComponent extends Component
      */
     private $_period = '+2 weeks';
     private $_cookieName = 'User';
-
-    /**
-     * ?
-     *
-     * @param unknown $controller ?
-     *
-     * @return void
-     */
-    public function startup(Controller $controller)
-    {
-        $this->controller = $controller;
-    }
 
     /**
      * Remember user so (s)he doesn't have to log in again.
@@ -95,13 +82,12 @@ class RememberMeComponent extends Component
             return;
         }
 
-        $model = ClassRegistry::init('User');
-        $user = $model->find('first', array(
-            'conditions' => array(
+        $model = TableRegistry::get('Users');
+        $user = $model->find()
+            ->where([
                 'username' => $cookie['username'],
                 'password' => $cookie['password'],
-            )
-        ));
+            ])->first();
 
         if (!empty($user) && $this->Auth->login($user['User'])) {
             $this->Cookie->write($this->_cookieName, $cookie, true, $this->_period);
