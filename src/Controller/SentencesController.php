@@ -47,7 +47,6 @@ class SentencesController extends AppController
         'LanguageDetection',
         'CommonSentence',
         'Permissions',
-        'Cookie'
     );
     public $helpers = array(
         'Sentences',

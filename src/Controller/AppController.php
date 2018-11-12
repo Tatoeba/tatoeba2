@@ -58,7 +58,6 @@ class AppController extends Controller
         'Flash',
         'Permissions',
         'RememberMe',
-        'Cookie',
         'Security',
     );
 
@@ -89,6 +88,13 @@ class AppController extends Controller
 
     private function blackhole($type) {
       var_dump("Blackholed: $type");
+    }
+
+    public function initialize()
+    {
+        $this->loadComponent('Cookie', [
+            'key' => Configure::read('Security.cookieSalt', Configure::read('Security.salt')),
+        ]);
     }
 
     /**

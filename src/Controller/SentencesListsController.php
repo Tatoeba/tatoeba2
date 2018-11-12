@@ -55,7 +55,6 @@ class SentencesListsController extends AppController
     public $components = array(
         'Flash',
         'LanguageDetection',
-        'Cookie',
         'CommonSentence'
     );
 
