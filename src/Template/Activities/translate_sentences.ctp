@@ -26,7 +26,7 @@
  */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Translate sentences')));
 
-$session = $this->request->session();
+$session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $notTranslatedInto = $session->read('not_translated_into_lang');
 if (empty($currentLanguage)) {

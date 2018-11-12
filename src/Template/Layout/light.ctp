@@ -49,7 +49,7 @@
     <body>
         <div id="container">
         <?php
-        if($this->request->session()->check('Message.flash')){
+        if($this->request->getSession()->check('Message.flash')){
             $this->Flash->render();
         }
         echo $content_for_layout;

@@ -216,7 +216,7 @@ class PagesController extends AppController
      */
     private function _random_sentence() {
         $this->loadModel('Sentence');
-        $lang = $this->request->session()->read('random_lang_selected');
+        $lang = $this->request->getSession()->read('random_lang_selected');
         $randomId = $this->Sentence->getRandomId($lang);
         if (is_null($randomId)) {
             $this->set('searchProblem', true);

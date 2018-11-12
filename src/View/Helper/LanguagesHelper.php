@@ -77,7 +77,7 @@ class LanguagesHelper extends AppHelper
         if (CurrentUser::isMember()) {
             return CurrentUser::getProfileLanguages();
         } else {
-            return $this->request->session()->read('last_used_lang');
+            return $this->request->getSession()->read('last_used_lang');
         }
     }
 

@@ -38,7 +38,7 @@
 $title = __('Log in');
 $this->set('title_for_layout', Sanitize::html($this->Pages->formatTitle($title)));
 
-if  ($this->request->session()->check('Message.auth')) $this->Flash->render('auth');
+if  ($this->request->getSession()->check('Message.auth')) $this->Flash->render('auth');
 
 $formTarget = array('controller' => 'users', 'action' => 'check_login');
 

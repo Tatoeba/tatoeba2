@@ -68,7 +68,7 @@
     <?php
     $isHomepage = $controller == 'pages' && $action == 'index';
     if (CurrentUser::isMember() || !$isHomepage) {
-        $session = $this->request->session();
+        $session = $this->request->getSession();
         echo $this->element('search_bar', array(
             'selectedLanguageFrom' => $session->read('search_from'),
             'selectedLanguageTo' => $session->read('search_to'),

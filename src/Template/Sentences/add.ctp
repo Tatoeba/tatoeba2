@@ -88,7 +88,7 @@ $vocabularyUrl = $this->Url->build(array(
             $this->Languages->displayAddLanguageMessage(true);
 
         } else {
-            $preSelectedLang = $this->request->session()->read('contribute_lang');
+            $preSelectedLang = $this->request->getSession()->read('contribute_lang');
 
             if (!array_key_exists($preSelectedLang, $langArray)) {
                 $preSelectedLang = key($langArray);

@@ -136,7 +136,7 @@ class PrivateMessagesController extends AppController
                     }
                 }
                 $unsentMessage = $this->request->data['PrivateMessage'];
-                $this->request->session()->write('unsent_message', $unsentMessage);
+                $this->request->getSession()->write('unsent_message', $unsentMessage);
                 $this->redirect(array('action' => 'write'));
             } else {
                 $this->redirect(array('action' => 'folder', 'Sent'));
@@ -405,7 +405,7 @@ class PrivateMessagesController extends AppController
     {
         $this->helpers[] = "PrivateMessages";
 
-        $recoveredMessage = $this->request->session()->read('unsent_message');
+        $recoveredMessage = $this->request->getSession()->read('unsent_message');
 
         $userId = CurrentUser::get('id');
 
@@ -433,7 +433,7 @@ class PrivateMessagesController extends AppController
             $this->set('content', $pm['PrivateMessage']['content']);
             $this->set('messageId', $messageId);
         } else if ($recoveredMessage) {
-            $this->request->session()->delete('unsent_message');
+            $this->request->getSession()->delete('unsent_message');
 
             $this->set('recipients', $recipients);
             $this->set('title', $recoveredMessage['title']);

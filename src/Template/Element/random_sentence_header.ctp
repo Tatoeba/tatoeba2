@@ -28,7 +28,7 @@
 $this->Html->script(JS_PATH . 'sentences.show_another.js', array('block' => 'scriptBottom'));
 
 $langArray = $this->Languages->languagesArrayAlone();
-$selectedLanguage = $this->request->session()->read('random_lang_selected');
+$selectedLanguage = $this->request->getSession()->read('random_lang_selected');
 
 if ($selectedLanguage == null) {
     $selectedLanguage == 'und';
@@ -62,7 +62,7 @@ if ($selectedLanguage == null) {
         ?>
     </span>
     <?php
-    if ($this->request->session()->read('Auth.User.id')) {
+    if ($this->request->getSession()->read('Auth.User.id')) {
         ?>
         <span>
             <?php

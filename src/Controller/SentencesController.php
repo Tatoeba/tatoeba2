@@ -165,7 +165,7 @@ class SentencesController extends AppController
         $id = Sanitize::paranoid($id);
 
         if ($id == "random" || $id == null || $id == "" ) {
-            $id = $this->request->session()->read('random_lang_selected');
+            $id = $this->request->getSession()->read('random_lang_selected');
             $id = Sanitize::paranoid($id);
         }
 
@@ -194,7 +194,7 @@ class SentencesController extends AppController
             $this->set('canComment', $canComment);
 
             // this way "next" and "previous"
-            $lang = $this->request->session()->read('random_lang_selected');
+            $lang = $this->request->getSession()->read('random_lang_selected');
             $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
             $this->set('nextSentence', $neighbors['next']);
             $this->set('prevSentence', $neighbors['prev']);
@@ -238,7 +238,7 @@ class SentencesController extends AppController
                     $this->set('searchProblem', 'error');
                 }
             } else {
-                $this->request->session()->write('random_lang_selected', $lang);
+                $this->request->getSession()->write('random_lang_selected', $lang);
                 $this->redirect(array("action"=>"show", $randomId));
             }
 
@@ -523,8 +523,8 @@ class SentencesController extends AppController
         }
 
         // Session variables for search bar
-        $this->request->session()->write('search_from', $from);
-        $this->request->session()->write('search_to', $to);
+        $this->request->getSession()->write('search_from', $from);
+        $this->request->getSession()->write('search_to', $to);
         $this->addLastUsedLang($from);
         $this->addLastUsedLang($to);
 
@@ -959,7 +959,7 @@ class SentencesController extends AppController
         $lang = Sanitize::paranoid($lang);
 
         if ($lang == null) {
-            $lang = $this->request->session()->read('random_lang_selected');
+            $lang = $this->request->getSession()->read('random_lang_selected');
         }
 
         $randomId = $this->Sentence->getRandomId($lang);
@@ -971,7 +971,7 @@ class SentencesController extends AppController
             $randomSentence = $this->Sentence->getSentenceWithId($randomId);
         }
 
-        $this->request->session()->write('random_lang_selected', $lang);
+        $this->request->getSession()->write('random_lang_selected', $lang);
         $this->set('random', $randomSentence);
     }
 
@@ -1091,7 +1091,7 @@ class SentencesController extends AppController
      */
     public function get_neighbors_for_ajax($id, $lang)
     {
-        $this->request->session()->write('random_lang_selected', $lang);
+        $this->request->getSession()->write('random_lang_selected', $lang);
         $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
         $this->set('nextSentence', $neighbors['next']);
         $this->set('prevSentence', $neighbors['prev']);

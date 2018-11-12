@@ -207,7 +207,7 @@ class AppController extends Controller
         // needed for the translation form (in helpers/sentences.php), but we
         // cannot access the Cookie component from a view.
         // This is not optimized, but I'm too lazy to do otherwise.
-        $session = $this->request->session();
+        $session = $this->request->getSession();
         $preSelectedLang = $this->Cookie->read('contribute_lang');
         $session->write('contribute_lang', $preSelectedLang);
 
@@ -353,7 +353,7 @@ class AppController extends Controller
      * with a 'preferred languages' list.
      */
     public function addLastUsedLang($code) {
-        $session = $this->request->session();
+        $session = $this->request->getSession();
         if (!CurrentUser::isMember() && LanguagesLib::languageExists($code)) {
             $current = (array)$session->read('last_used_lang');
             if (!in_array($code, $current)) {

@@ -26,7 +26,7 @@
  */
 
 // Detecting language for "browse by language"
-$session = $this->request->session();
+$session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $showTranslationsInto = $session->read('show_translations_into_lang');
 $notTranslatedInto = $session->read('not_translated_into_lang');

@@ -55,7 +55,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
 <div id="main_content">
 
     <?php
-    if ($this->request->session()->read('Auth.User.id')) {
+    if ($this->request->getSession()->read('Auth.User.id')) {
         ?>
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Getting started'); ?></h2>

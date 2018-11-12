@@ -296,7 +296,7 @@ class UsersController extends AppController
     public function logout()
     {
         $this->RememberMe->delete();
-        $this->request->session()->delete('last_used_lang');
+        $this->request->getSession()->delete('last_used_lang');
         $this->redirect($this->Auth->logout());
     }
 
@@ -531,7 +531,7 @@ class UsersController extends AppController
             $this->set('user', $user);
             $this->set('commentsPermissions', $commentsPermissions);
         } else {
-            $this->request->session()->write('last_user_id', $id);
+            $this->request->getSession()->write('last_user_id', $id);
             $this->flash(
                 format(
                     __('No user with this ID: {id}'),

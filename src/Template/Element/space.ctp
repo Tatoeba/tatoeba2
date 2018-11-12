@@ -30,7 +30,7 @@
 <ul>
     <li id="profile">
     <?php
-    $username = $this->request->session()->read('Auth.User.username');
+    $username = $this->request->getSession()->read('Auth.User.username');
     $profileIcon = $this->Html->image(
         IMG_PATH . 'profile.svg',
         array(

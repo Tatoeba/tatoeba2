@@ -51,7 +51,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     $this->Lists->displaySearchForm($filter);
 
-    if ($this->request->session()->read('Auth.User.id')) {
+    if ($this->request->getSession()->read('Auth.User.id')) {
         $this->Lists->displayCreateListForm();
     }
     ?>

@@ -97,7 +97,7 @@ class NavigationHelper extends AppHelper
 
 
             $langArray = $this->Languages->languagesArrayAlone();
-            $selectedLanguage = $this->request->session()->read('random_lang_selected');
+            $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
 
             echo $this->Form->select(
                 "randomLangChoiceInBrowse",
