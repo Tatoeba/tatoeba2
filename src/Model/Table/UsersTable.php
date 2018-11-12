@@ -213,7 +213,7 @@ class UsersTable extends Table
      */
     public function getInformationOfCurrentUser($userId)
     {
-        return $this->findById($userId);
+        return $this->get($userId);
     }
 
     /**
@@ -225,27 +225,24 @@ class UsersTable extends Table
      */
     public function getInformationOfUser($userName)
     {
-        return $this->find(
-            'first',
-            array(
-                'conditions' => array('username' => $userName),
-                'fields' => array(
-                    'id',
-                    'name',
-                    'image',
-                    'homepage',
-                    'since',
-                    'send_notifications',
-                    'description',
-                    'settings',
-                    'username',
-                    'birthday',
-                    'group_id',
-                    'level',
-                    'country_id'
-                )
-            )
-        );
+        return $this->find()
+            ->select([
+                'id',
+                'name',
+                'image',
+                'homepage',
+                'since',
+                'send_notifications',
+                'description',
+                'settings',
+                'username',
+                'birthday',
+                'group_id',
+                'level',
+                'country_id',
+            ])
+            ->where(['username' => $userName])
+            ->first();
     }
 
 
@@ -258,17 +255,14 @@ class UsersTable extends Table
      */
     public function getSettings($userId)
     {
-        return $this->find(
-            'first',
-            array(
-                'conditions' => array('id' => $userId),
-                'fields' => array(
-                    'send_notifications',
-                    'settings',
-                    'email',
-                )
-            )
-        );
+        return $this->find()
+            ->select([
+                'send_notifications',
+                'settings',
+                'email',
+            ])
+            ->where(['id' => $userId])
+            ->first();
     }
 
 
@@ -281,16 +275,13 @@ class UsersTable extends Table
      */
     public function getAudioSettings($userId)
     {
-        return $this->find(
-            'first',
-            array(
-                'conditions' => array('id' => $userId),
-                'fields' => array(
-                    'audio_license',
-                    'audio_attribution_url',
-                )
-            )
-        );
+        return $this->find()
+            ->select([
+                'audio_license',
+                'audio_attribution_url',
+            ])
+            ->where(['id' => $userId])
+            ->first();
     }
 
 
@@ -303,19 +294,14 @@ class UsersTable extends Table
      */
     public function getInfoWallUser($userId)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.id' => $userId),
-                'fields' => array(
-                    'User.image',
-                    'User.username',
-                    'User.id'
-                )
-            )
-        );
-
-        return $result ;
+        return $this->find()
+            ->select([
+                'image',
+                'username',
+                'id'
+            ])
+            ->where(['id' => $userId])
+            ->first();
     }
 
     /**
@@ -327,62 +313,46 @@ class UsersTable extends Table
      */
     public function getUserByIdWithExtraInfo($id)
     {
-        $user = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.id' => $id),
-                'contain' => array(
-                    'Sentences' => array(
-                        'limit' => 10,
-                        'fields' => array(
-                            'id',
-                            'lang',
-                            'correctness',
-                            'text',
-                        ),
-                        'order' => 'modified DESC'
-                    ),
-                    'Contributions' => array(
-                        'limit' => 10,
-                        'conditions' => array('type !=' => 'license'),
-                        'fields' => array(
-                            'sentence_id',
-                            'sentence_lang',
-                            'translation_id',
-                            'action',
-                            'datetime',
-                            'type',
-                            'text',
-                        ),
-                        'order' => 'datetime DESC '
-                    ),
-                    'SentenceComments' => array(
-                        'limit' => 10,
-                        'fields' => array(
-                            'id',
-                            'text',
-                            'created',
-                            'sentence_id',
-                            'hidden',
-                            'modified'
-                        ),
-                        'order' => 'created DESC'
-                    ),
-                    'Wall' => array(
-                        'limit' => 10,
-                        'fields' => array(
-                            'id',
-                            'content',
-                            'date',
-                            'hidden',
-                            'modified'
-                        ),
-                        'order' => 'date DESC'
-                    )
-                )
-            )
-        );
-        return $user;
+        return $this->get($id, ['contain' => [
+            'Sentences' => function ($q) {
+                return $q->select(['id', 'lang', 'correctness', 'text'])
+                         ->limit(10)
+                         ->orderAsc('modified');
+            },
+            'Contributions' => function ($q) {
+                $fields = [
+                    'sentence_id',
+                    'sentence_lang',
+                    'translation_id',
+                    'action',
+                    'datetime',
+                    'type',
+                    'text',
+                ];
+                return $q->select($fields)
+                         ->where(['type !=' => 'license'])
+                         ->limit(10)
+                         ->orderDesc('datetime');
+            },
+            'SentenceComments' => function ($q) {
+                $fields = [
+                    'id',
+                    'text',
+                    'created',
+                    'sentence_id',
+                    'hidden',
+                    'modified',
+                ];
+                return $q->select($fields)
+                         ->limit(10)
+                         ->orderDesc('created');
+            },
+            'Wall' => function ($q) {
+                return $q->select(['id', 'content', 'date', 'hidden', 'modified'])
+                         ->limit(10)
+                         ->orderDesc('date');
+            },
+        ]]);
     }
 
 
@@ -395,14 +365,7 @@ class UsersTable extends Table
      */
     public function getUserById($id)
     {
-        $user = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.id' => $id)
-            )
-        );
-
-        return $user;
+        return $this->get($id);
     }
 
 
@@ -415,14 +378,11 @@ class UsersTable extends Table
      */
     public function getIdFromUsername($username)
     {
-        $user = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.username' => $username),
-                'fields' => 'User.id'
-            )
-        );
-        return !empty($user) ? $user['User']['id'] : null;
+        $user = $this->find()
+            ->select('id')
+            ->where(['username' => $username])
+            ->first();
+        return !$user ? $user->id : null;
     }
 
 
@@ -435,14 +395,11 @@ class UsersTable extends Table
      */
     public function getUserNameFromId($userId)
     {
-        $user = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.id' => $userId),
-                'fields' => 'User.username'
-            )
-        );
-        return !empty($user) ? $user['User']['username'] : null;
+        $user = $this->find()
+            ->select(['username'])
+            ->where(['id' => $userId])
+            ->first();
+        return !$user ? $user->username : null;
     }
 
     /**
@@ -454,14 +411,11 @@ class UsersTable extends Table
      */
     public function getIdFromEmail($userEmail)
     {
-        $user = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.email' => $userEmail),
-                'fields' => 'User.id'
-            )
-        );
-        return !empty($user) ? $user['User']['id'] : null;
+        $user = $this->find()
+            ->select(['id'])
+            ->where(['email' => $userEmail])
+            ->first();
+        return !$user ? $user->id : null;
     }
 
     /**
@@ -473,14 +427,11 @@ class UsersTable extends Table
      */
     public function getEmailFromId($userId)
     {
-        $user = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.id' => $userId),
-                'fields' => 'User.email'
-            )
-        );
-        return !empty($user) ? $user['User']['email'] : null;
+        $user = $this->find()
+            ->select(['email'])
+            ->where(['id' => $userId])
+            ->first();
+        return !$user ? $user->email : null;
     }
 
     /**
@@ -492,16 +443,10 @@ class UsersTable extends Table
      */
     public function isEmailUnique($email, $userId)
     {
-        $result =  $this->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'email' => $email,
-                    'User.id !=' => $userId
-                )
-           )
-        );
-        return empty($result);
+        $user = $this->find()
+            ->where(['email' => $email, 'id !=' => $userId])
+            ->first();
+        return !$user;
     }
 
     /**
@@ -513,14 +458,11 @@ class UsersTable extends Table
      */
     public function getPassword($userId)
     {
-        $user = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.id' => $userId),
-                'fields' => 'User.password'
-            )
-        );
-        return !empty($user) ? $user['User']['password'] : null;
+        $user = $this->find()
+            ->select(['password'])
+            ->where(['id' => $userId])
+            ->first();
+        return !$user ? $user->password : null;
     }
 
     /**
@@ -532,22 +474,19 @@ class UsersTable extends Table
      */
     public function getLevelOfUser($userId)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array('User.id' => $userId),
-                'fields' => 'User.level'
-            )
-        );
-        return $result['User']['level'];
+        $user = $this->find()
+            ->select(['level'])
+            ->where(['id' => $userId])
+            ->first();
+        return $user->level;
     }
 
 
     public function getGroupOfUser($userId)
     {
-        $result = $this->findById($userId, 'group_id');
+        $result = $this->findById($userId, 'group_id')->first();
 
-        return $result['User']['group_id'];
+        return $result->group_id;
     }
 
     public function updatePasswordVersion($userId, $plainTextPassword)
