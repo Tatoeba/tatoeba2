@@ -27,7 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 
 /**
  * Controller for activities (i.e. things that contributors can do in Tatoeba).

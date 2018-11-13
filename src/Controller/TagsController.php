@@ -28,7 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Lib\Event\SuggestdListener;
-
+use Cake\Event\Event;
 
 /**
  * Controller for tags

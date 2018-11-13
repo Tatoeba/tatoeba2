@@ -29,7 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Controller\Component\Auth\VersionedPasswordHasher;
 use App\Lib\LanguagesLib;
-
+use Cake\Event\Event;
 
 /**
  * Controller for sentence comments.

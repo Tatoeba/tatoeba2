@@ -27,7 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\Event\Event;
 
 /**
  * Controller for links between sentences. Links specify which sentences are

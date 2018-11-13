@@ -28,7 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Lib\Event\NotificationListener;
-
+use Cake\Event\Event;
 
 /**
  * Controller for sentence comments.

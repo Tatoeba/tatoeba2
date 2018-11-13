@@ -28,7 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Core\Configure;
-
+use Cake\Event\Event;
 
 /**
  * Controller for sentences lists.

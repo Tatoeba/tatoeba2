@@ -29,7 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Lib\SphinxClient;
 use Cake\Core\Configure;
-
+use Cake\Event\Event;
 
 /**
  * Controller for sentences.

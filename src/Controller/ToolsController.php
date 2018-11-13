@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Lib\Autotranscription;
+use Cake\Event\Event;
 
 /**
  * Controller for tools.
