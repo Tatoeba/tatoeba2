@@ -251,3 +251,5 @@ if (!function_exists('__format_decompose_list')) {
         return $result;
     }
 }
+
+Cake\I18n\I18n::setDefaultFormatter('sprintf');
