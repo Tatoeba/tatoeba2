@@ -130,8 +130,6 @@ class UsersController extends AppController
             $isBlocked = !$wasBlocked && $this->request->data['User']['level'] == -1;
             $isSuspended = !$wasSuspended && $this->request->data['User']['group_id'] == 6;
 
-            $this->User->fixAro($id, $this->request->data['User']['group_id']);
-
             if ($this->User->save($this->request->data)) {
                 $username = $this->request->data['User']['username'];
                 if ($isBlocked || $isSuspended) {

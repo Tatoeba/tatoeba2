@@ -153,27 +153,6 @@ class UsersTable extends Table
     }
 
     /**
-     * Create the aro entry for given user in case it's not present. Without this
-     * aro entry, the user cannot be edited, or cannot reset their password.
-     *
-     * @return null
-     */
-    public function fixAro($userId, $groupId) {
-        $users = $this->Aro->find('all', array(
-           'conditions' => array('foreign_key' => $userId)
-        ));
-
-        if (empty($users)) {
-            $this->Aro->create();
-            $this->Aro->save(array(
-                'model' => 'User',
-                'foreign_key' => $userId,
-                'parent_id' => $groupId
-            ));
-        }
-    }
-
-    /**
      * Generate a random password.
      *
      * @return string
