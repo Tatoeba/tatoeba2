@@ -26,7 +26,9 @@
  */
 namespace App\Model;
 
-use App\Model\User;
+use App\Model\Entity\User;
+use Cake\ORM\TableRegistry;
+use Cake\Utility\Hash;
 
 /**
  * Static class that stores the Auth information of the user. This is the only
@@ -44,10 +46,8 @@ use App\Model\User;
  */
 
 
-class CurrentUser extends AppModel
+class CurrentUser
 {
-    public $useTable = false;
-
     private static $_auth;
     private static $_profileLanguages;
 
@@ -84,16 +84,11 @@ class CurrentUser extends AppModel
      */
     public static function get($path)
     {
-        $path = str_replace('.', '/', $path);
         if (strpos($path, 'User') !== 0) {
-            $path = sprintf('User/%s', $path);
+            $path = sprintf('User.%s', $path);
         }
 
-        if (strpos($path, '/') !== 0) {
-            $path = sprintf('/%s', $path);
-        }
-
-        $value = Set::extract($path, self::$_auth);
+        $value = Hash::get(self::$_auth, $path);
 
         if (!$value) {
             return false;
@@ -242,10 +237,10 @@ class CurrentUser extends AppModel
             return false;
         }
 
-        $Link = ClassRegistry::init('Link');
-        $hasTranslations = $Link->find('first', array(
-            'conditions' => array('sentence_id' => $sentenceId)
-        ));
+        $Link = TableRegistry::get('Links');
+        $hasTranslations = $Link->find()
+            ->where(['sentence_id' => $sentenceId])
+            ->first();
         if (!$hasTranslations) {
             return true;
         }
@@ -306,7 +301,7 @@ class CurrentUser extends AppModel
     public static function hasFavorited($sentenceId)
     {
         $userId = self::get('id');
-        $Favorite = ClassRegistry::init('Favorite');
+        $Favorite = TableRegistry::get('Favorites');
         return $Favorite->isSentenceFavoritedByUser($sentenceId, $userId);
     }
 
@@ -321,7 +316,7 @@ class CurrentUser extends AppModel
     public static function correctnessForSentence($sentenceId)
     {
         $userId = self::get('id');
-        $UsersSentences = ClassRegistry::init('UsersSentences');
+        $UsersSentences = TableRegistry::get('UsersSentences');
         return $UsersSentences->correctnessForSentence($sentenceId, $userId);
     }
 
@@ -375,12 +370,12 @@ class CurrentUser extends AppModel
 
     private static function _setProfileLanguages()
     {
-        $UsersLanguages = ClassRegistry::init('UsersLanguages');
+        $UsersLanguages = TableRegistry::get('UsersLanguages');
         $userId = self::get('id');
         $languages = $UsersLanguages->getLanguagesOfUser($userId);
         $languageCodes = array();
         foreach($languages as $lang) {
-            $languageCodes[] = $lang['UsersLanguages']['language_code'];
+            $languageCodes[] = $lang->language_code;
         }
 
         self::$_profileLanguages = $languageCodes;
