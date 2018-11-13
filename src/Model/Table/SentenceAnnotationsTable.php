@@ -15,30 +15,13 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
+use Cake\ORM\Entity;
 
-
-/**
- * Model for sentence annotations.
- *
- * @category SentenceAnnotations
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class SentenceAnnotation extends AppModel
+class SentenceAnnotationsTable extends Table
 {
     public $belongsTo = array('Sentence', 'User');
 
@@ -154,9 +137,18 @@ class SentenceAnnotation extends AppModel
      */
     public function saveAnnotation($data, $currentUserId)
     {
-        $data['text'] = trim($data['text']);
-        $data['user_id'] = $currentUserId;
+        if (isset($data['id'])) {
+            $annotation = $this->get($data['id']);
+        } else {
+            $annotation = $this->newEntity();
+        }       
+        
+        $annotation->sentence_id = $data['sentence_id'];
+        $annotation->meaning_id = $data['meaning_id'];
+        $annotation->text = trim($data['text']);
+        $annotation->user_id = $currentUserId;
 
-        return $this->save($data);
+        $result = $this->save($annotation);
+        return $result->old_format;        
     }
 }

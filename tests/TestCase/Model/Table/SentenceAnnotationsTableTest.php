@@ -1,17 +1,18 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\SentenceAnnotation;
+use App\Model\Table\SentenceAnnotationsTable;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-class SentenceAnnotationTest extends TestCase {
+class SentenceAnnotationsTableTest extends TestCase {
     public $fixtures = array(
         'app.sentence_annotations'
     );
 
     function setUp() {
         parent::setUp();
-        $this->SentenceAnnotation = ClassRegistry::init('SentenceAnnotation');
+        $this->SentenceAnnotation = TableRegistry::getTableLocator()->get('SentenceAnnotations');
     }
 
     function tearDown() {
@@ -51,9 +52,10 @@ class SentenceAnnotationTest extends TestCase {
             'meaning_id' => 1,
             'text' => 'Some new text'
         );
-        $this->SentenceAnnotation->saveAnnotation($data, $userId);
-
-        $sentenceAnnotation = $this->SentenceAnnotation->findById(1);
+        $sentenceAnnotation = $this->SentenceAnnotation->saveAnnotation(
+            $data, $userId
+        );
+        
         $expected = array(
             'id' => 1,
             'sentence_id' => 6,
