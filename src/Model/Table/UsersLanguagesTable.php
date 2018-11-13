@@ -20,7 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
-use Cake\Core\Exception\Exception;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 class UsersLanguagesTable extends Table
 {
@@ -82,7 +82,7 @@ class UsersLanguagesTable extends Table
     {
         try  {
             $result = $this->get($id)->language_info;
-        } catch (Exception $e) {
+        } catch (RecordNotFoundException $e) {
             $result = null;
         }
 
@@ -175,7 +175,7 @@ class UsersLanguagesTable extends Table
             $id = $data['id'];
             try {
                 $langInfo = $this->get($id);
-            } catch (Exception $e) {
+            } catch (RecordNotFoundException $e) {
                 $langInfo = $this->newEntity();
             }            
             $canSave = $langInfo->by_user_id == $currentUserId;
@@ -187,12 +187,8 @@ class UsersLanguagesTable extends Table
             $langInfo->level = isset($data['level']) && $data['level'] >= 0 ? $data['level'] : null;
             $langInfo->details = isset($data['details']) ? $data['details'] : null;
             
-            try {
-                $result = $this->save($langInfo);
-                return $result->old_format;
-            } catch (Exception $e) {
-                return array();
-            }
+            $result = $this->save($langInfo);
+            return $result->old_format;
         } else {
             return array();
         }
@@ -202,7 +198,7 @@ class UsersLanguagesTable extends Table
     {
         try {
             $langInfo = $this->get($id);
-        } catch (Exception $e) {
+        } catch (RecordNotFoundException $e) {
             $langInfo = null;
         }
         
