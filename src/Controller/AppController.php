@@ -163,7 +163,7 @@ class AppController extends Controller
         if ($routerDidParseURL) {
 
             // Forcing the URL to have the (correct) language in it.
-            $url = $this->request->here();
+            $url = $this->request->getRequestTarget();
             if (!empty($langInURL) && (
                   ($langInCookie && $langInURL != $langInCookie) ||
                   ($langInURLAlias != $langInURL)
