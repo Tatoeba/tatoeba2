@@ -22,7 +22,7 @@ use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
-use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\Route\InflectedRoute;
 
 /**
  * The default class to use for all routes
@@ -45,7 +45,7 @@ use Cake\Routing\Route\DashedRoute;
  * constructor in your `src/Application.php` file to change this behavior.
  *
  */
-Router::defaultRouteClass(DashedRoute::class);
+Router::defaultRouteClass(InflectedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
     // Array that lists all the languages into which the Tatoeba interface
@@ -167,5 +167,5 @@ Router::scope('/', function (RouteBuilder $routes) {
      * You can remove these routes once you've connected the
      * routes you want in your application.
      */
-    $routes->fallbacks(DashedRoute::class);
+    $routes->fallbacks(InflectedRoute::class);
 });
