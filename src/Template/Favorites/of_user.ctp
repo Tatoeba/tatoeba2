@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$username = Sanitize::paranoid($username, array("_"));
+$username = h($username);
 
 if ($userExists) {
     $numberOfSentences = (int) $this->Paginator->counter(

@@ -35,7 +35,7 @@ use App\Model\CurrentUser;
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$userName = Sanitize::paranoid($userName, array("_"));
+$userName = h($userName);
 $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__("{user}'s comments"), array('user' => $userName))
 ));

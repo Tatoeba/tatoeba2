@@ -33,7 +33,7 @@
  * @link     http://tatoeba.org
  */
 
-$username = Sanitize::paranoid($username, array("_"));
+$username = h($username);
 if ($userExists) {
     $title = format(__("Logs of {user}'s contributions"), array('user' => $username));
 } else {

@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$username = Sanitize::paranoid($username, array("_"));
+$username = h($username);
 $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__("{user}'s Wall messages"), array('user' => $username))
 ));
