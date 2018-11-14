@@ -141,11 +141,11 @@ class ActivitiesController extends AppController
     {
         $this->helpers[] = 'Languages';
 
-        if (isset($_GET['langFrom']) && isset($_GET['langTo']))
+        $langFrom = $this->request->getQuery('langFrom');
+        $langTo = $this->request->getQuery('langTo');
+        if ($langFrom && $langTo)
         {
-            $langFrom = $_GET['langFrom'];
-            $langTo = $_GET['langTo'];
-            $sort = $_GET['sort');
+            $sort = $this->request->getQuery('sort', 'created');
 
             $this->Cookie->write(
                 'not_translated_into_lang',
