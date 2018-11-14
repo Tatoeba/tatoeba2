@@ -27,6 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\CurrentUser;
 use Cake\Event\Event;
 
 /**
@@ -41,7 +42,6 @@ use Cake\Event\Event;
 class ActivitiesController extends AppController
 {
     public $components = array ('CommonSentence', 'Flash');
-    public $uses = array('Sentence', 'Tag', 'User');
 
     /**
      * Before filter.
@@ -82,21 +82,21 @@ class ActivitiesController extends AppController
             $conditions['lang'] = $lang;
         }
 
-        $this->loadModel('Sentence');
+        $this->loadModel('Sentences');
         $this->paginate = array(
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
             'contain' => array(
                 'Transcription' => array(
-                    'User' => array('fields' => array('username')),
+                    'Users' => array('fields' => array('username')),
                 ),
                 'Audio' => array(
-                    'User' => array('fields' => array('username')),
+                    'Users' => array('fields' => array('username')),
                     'fields' => array('user_id'),
                 ),
             ),
         );
-        $results = $this->paginate('Sentence');
+        $results = $this->paginate('Sentences');
         $this->set('results', $results);
         $this->set('lang', $lang);
     }
@@ -107,17 +107,18 @@ class ActivitiesController extends AppController
      */
     public function improve_sentences()
     {
-        $tagChangeName = $this->Tag->getChangeTagName();
-        $tagCheckName = $this->Tag->getCheckTagName();
-        $tagDeleteName = $this->Tag->getDeleteTagName();
-        $tagNeedsNativeCheckName = $this->Tag->getNeedsNativeCheckTagName();
-        $tagOKName = $this->Tag->getOKTagName();
+        $this->loadModel('Tags');
+        $tagChangeName = $this->Tags->getChangeTagName();
+        $tagCheckName = $this->Tags->getCheckTagName();
+        $tagDeleteName = $this->Tags->getDeleteTagName();
+        $tagNeedsNativeCheckName = $this->Tags->getNeedsNativeCheckTagName();
+        $tagOKName = $this->Tags->getOKTagName();
 
-        $tagChangeId = $this->Tag->getIdFromName($tagChangeName);
-        $tagCheckId = $this->Tag->getIdFromName($tagCheckName);
-        $tagDeleteId = $this->Tag->getIdFromName($tagDeleteName);
-        $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName);
-        $tagOKId = $this->Tag->getIdFromName($tagOKName);
+        $tagChangeId = $this->Tags->getIdFromName($tagChangeName);
+        $tagCheckId = $this->Tags->getIdFromName($tagCheckName);
+        $tagDeleteId = $this->Tags->getIdFromName($tagDeleteName);
+        $tagNeedsNativeCheckId = $this->Tags->getIdFromName($tagNeedsNativeCheckName);
+        $tagOKId = $this->Tags->getIdFromName($tagOKName);
 
         $this->set('tagChangeName', $tagChangeName);
         $this->set('tagCheckName', $tagCheckName);
@@ -142,9 +143,9 @@ class ActivitiesController extends AppController
 
         if (isset($_GET['langFrom']) && isset($_GET['langTo']))
         {
-            $langFrom = Sanitize::paranoid($_GET['langFrom']);
-            $langTo = Sanitize::paranoid($_GET['langTo']);
-            $sort = Sanitize::paranoid($_GET['sort']);
+            $langFrom = $_GET['langFrom'];
+            $langTo = $_GET['langTo'];
+            $sort = $_GET['sort');
 
             $this->Cookie->write(
                 'not_translated_into_lang',
@@ -181,7 +182,8 @@ class ActivitiesController extends AppController
 
         $this->set('username', $username);
 
-        $userId = $this->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
 
         if (empty($userId)) {
             $flashMessage = format(
@@ -197,31 +199,31 @@ class ActivitiesController extends AppController
             );
         }
 
-        $this->loadModel('Sentence');
+        $this->loadModel('Sentences');
 
         $conditions = array(
             'user_id' => $userId
         );
         if (!empty($lang)) {
-            $conditions['Sentence.lang'] = $lang;
+            $conditions['Sentences.lang'] = $lang;
         }
 
         if (CurrentUser::isMember()) {
-            $contain = $this->Sentence->contain();
+            $contain = $this->Sentences->contain();
         } else {
-            $contain = $this->Sentence->minimalContain();
+            $contain = $this->Sentences->minimalContain();
         }
         $this->paginate = array(
-            'Sentence' => array(
-                'fields' => $this->Sentence->fields(),
+            'Sentences' => array(
+                'fields' => $this->Sentences->fields(),
                 'conditions' => $conditions,
                 'contain' => $contain,
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => 'Sentence.created DESC'
+                'order' => ['Sentences.created DESC'],
             )
         );
 
-        $results = $this->paginate('Sentence');
+        $results = $this->paginate('Sentences');
 
         $this->set('results', $results);
         $this->set('lang', $lang);
