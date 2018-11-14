@@ -129,26 +129,29 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testSaveTranslation_links() {
-		$user = $this->Sentence->User->findByUsername('kazuki');
-		CurrentUser::store($user['User']);
+		CurrentUser::store(['id' => 7]);
 
 		$translationFromSentenceId = 1;
-		$lastId = $this->Sentence->find('first', array('fields' => array('MAX(id)+1 AS v')));
-		$newlyCreatedSentenceId = $lastId[0]['v'];
-		$this->Sentence->Link = $this->getMockForModel('Link', array('add'));
-
-		$this->Sentence->Link
-			->expects($this->once())
-			->method('add')
-			->with($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng');
-
-		$this->Sentence->saveTranslation(
+		$translation = $this->Sentence->saveTranslation(
 			$translationFromSentenceId,
 			'eng',
 			'This is the translation.',
-			'eng',
-			Sentence::MAX_CORRECTNESS
+			'eng'
 		);
+
+		$result = $this->Sentence->Links->find('all')
+			->where(['OR' => [
+				[
+					'sentence_id' => $translationFromSentenceId,
+					'translation_id' => $translation->id
+				],
+				[
+					'sentence_id' => $translation->id,
+					'translation_id' => $translationFromSentenceId
+				]
+			]])->count();
+		
+		$this->assertEquals(2, $result);
 	}
 
 	function testSave_validSentence() {

@@ -6,7 +6,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 class LinksFixture extends TestFixture {
 	public $name = 'Link';
-	public $table = 'sentences_translations';
+	public $useTable = 'sentences_translations';
 
 	public $fields = array(
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],

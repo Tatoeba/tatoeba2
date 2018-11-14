@@ -15,68 +15,50 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
+use Cake\Utility\Hash;
 
-
-/**
- * Model for links. Links indicate which sentence is translation of which.
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
-*/
-class Link extends AppModel
+class LinksTable extends Table
 {
     public $useTable = 'sentences_translations';
 
-    public $belongsTo = array(
-        'Sentence'
-    );
+    public function initialize(array $config)
+    {
+        $this->belongsTo('Sentences');
+    }
 
-    public function beforeSave($options = array()) {
-        if (   isset($this->data[$this->alias]['sentence_id'])
-            && isset($this->data[$this->alias]['translation_id'])) {
-            $duplicate = $this->find('first', array('conditions' => array(
-                'sentence_id' => $this->data[$this->alias]['sentence_id'],
-                'translation_id' => $this->data[$this->alias]['translation_id']
-            )));
-            if ($duplicate)
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->sentence_id && $entity->translation_id) {
+            $duplicate = $this->find()
+            ->where([
+                'sentence_id' => $entity->sentence_id,
+                'translation_id' => $entity->translation_id
+            ])
+            ->first();
+                
+            if ($duplicate) {
                 return false;
+            }
         }
         return true;
     }
 
-    /**
-     * Called after a link is saved.
-     *
-     * @param bool $created true if a new line has been created.
-     *                      false if a line has been updated.
-     *
-     * @return void
-     */
-    public function afterSave($created, $options = array())
+    public function afterSave($event, $entity, $options = array())
     {
-        ClassRegistry::init('Contribution')->saveLinkContribution(
-            $this->data['Link']['sentence_id'],
-            $this->data['Link']['translation_id'],
+        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $Contributions->saveLinkContribution(
+            $entity->sentence_id,
+            $entity->translation_id,
             'insert'
         );
         $this->flagSentencesToReindex(
-            $this->data['Link']['sentence_id'],
-            $this->data['Link']['translation_id']
+            $entity->sentence_id,
+            $entity->translation_id
         );
     }
 
@@ -91,7 +73,7 @@ class Link extends AppModel
         unset($impactedSentences[$translation]);
         $impactedSentences[$sentence] = null;
         $impactedSentences = array_keys($impactedSentences);
-        $this->Sentence->needsReindex($impactedSentences);
+        $this->Sentences->needsReindex($impactedSentences);
     }
 
     /**
@@ -142,15 +124,14 @@ class Link extends AppModel
             return false;
         }
 
-
         if ($sentenceLang != null && $translationLang != null) {
             // Check whether the sentences exist.
-            $result = $this->query("
-                SELECT COUNT(*) as count FROM sentences
-                WHERE id IN ($sentenceId, $translationId)
-            ");
+            $ids = [$sentenceId, $translationId];
+            $result = $this->Sentences->find('all')
+                ->where(['id' => $ids], ['id' => 'integer[]'])
+                ->count();
 
-            if ($result[0][0]['count'] < 2) {
+            if ($result < 2) {
                 return false;
             }
         } else {
@@ -185,7 +166,8 @@ class Link extends AppModel
         $data[1]['translation_id'] = $sentenceId;
         $data[1]['sentence_lang'] = $translationLang;
         $data[1]['translation_lang'] = $sentenceLang;
-        return $this->saveAll($data);
+        $links = $this->newEntities($data);
+        return $this->saveMany($links);
     }
 
     /**
@@ -224,11 +206,11 @@ class Link extends AppModel
     }
 
     public function findDirectTranslationsIds($sentenceId) {
-        $links = $this->find('all', array(
-            'conditions' => array('sentence_id' => $sentenceId),
-            'fields' => array('translation_id'),
-        ));
-        $ids = Set::classicExtract($links, '{n}.Link.translation_id');
+        $links = $this->find('all')
+            ->where(['sentence_id' => $sentenceId])
+            ->select(['translation_id'])
+            ->toList();
+        $ids = Hash::extract($links, '{n}.translation_id');
         return !empty($ids) ? $ids : array();
     }
 

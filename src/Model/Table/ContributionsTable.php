@@ -310,7 +310,7 @@ class ContributionsTable extends Table
      */
     public function saveLinkContribution($sentenceId, $translationId, $action)
     {
-        $data = array(
+        $data = $this->newEntity([
             'id' => null,
             'sentence_id' => $sentenceId,
             'translation_id' => $translationId,
@@ -319,7 +319,7 @@ class ContributionsTable extends Table
             'ip' => CurrentUser::getIp(),
             'type' => 'link',
             'action' => $action
-        );
+        ]);
         $this->save($data);
     }
 

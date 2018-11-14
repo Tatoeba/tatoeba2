@@ -95,6 +95,7 @@ class SentencesTable extends Table
 
     public function initialize(array $config)
     {
+        $this->belongsToMany('Links');
         $this->belongsTo('Users');
         $this->hasMany('Contributions');
         $this->addBehavior('Hashable');
@@ -895,7 +896,7 @@ class SentencesTable extends Table
 
         // saving links
         if ($sentenceSaved) {
-            $this->Link->add($sentenceId, $this->id, $sentenceLang, $translationLang);
+            $this->Links->add($sentenceId, $sentenceSaved->id, $sentenceLang, $translationLang);
         }
 
         return $sentenceSaved; // The most important is that the sentence is saved.
@@ -946,7 +947,7 @@ class SentencesTable extends Table
         }
 
         $sentence = $this->newEntity($data);
-        
+
         return $this->save($sentence);
     }
 
