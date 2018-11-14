@@ -23,6 +23,8 @@ use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
+use App\Lib\LanguagesLib;
+use App\Model\CurrentUser;
 
 class SentencesTable extends Table
 {
@@ -93,15 +95,41 @@ class SentencesTable extends Table
     public function initialize(array $config)
     {
         $this->belongsTo('Users');
+        $this->hasMany('Contributions');
         $this->addBehavior('Hashable');
     }
 
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->requirePresence('text', 'user_id')
             ->notEmpty('text');
+            
+        $validator
+            ->add('license', [
+                'inList' => [
+                    'rule' => ['inList', ['CC0 1.0', 'CC BY 2.0 FR']],
+                    /* @translators: This string will be preceded by "Unable to
+                    change the license to “{newLicense}” because:" */
+                    'message' => __('This is not a valid license.')
+                ],
+                'isChanging' => [
+                    'rule' => [$this, 'isChanging'],
+                    'on' => 'update',
+                    /* @translators: This string will be preceded by "Unable to
+                    change the license to “{newLicense}” because:" */
+                    'message' => __('This sentence is already under that license.'),
+                ],
+                'canSwitchLicense' => [
+                    'rule' => [$this, 'canSwitchLicense'],
+                    'on' => 'update',
+                ]
+            ]);
 
+        $validator
+            ->add('lang', [
+                'rule' => ['inList', array_keys(LanguagesLib::languagesInTatoeba())]
+            ]);
+            
         return $validator;
     }
 
@@ -183,68 +211,55 @@ class SentencesTable extends Table
         return $text;
     }
 
-    public function beforeValidate($options = array())
+    public function beforeSave($event, $entity, $options)
     {
-        // Set this array as late as possible, because languagesInTatoeba()
-        // makes uses of __(), which relies on 'Config.language', which is set
-        // quite late, in AppController::beforeFilter().
-        if (!$this->validate['lang']['rule']) {
-            $this->validate['lang']['rule'] = array('inList',
-                array_keys(LanguagesLib::languagesInTatoeba())
-            );
-        }
-        if (isset($this->data['Sentence']['text']))
-        {
-            $text = $this->data['Sentence']['text'];
-            $this->data['Sentence']['text'] = $this->clean($text);
-        }
-        if (!isset($this->data['Sentence']['id'])) { // creating a new sentence
-            if (!isset($this->data['Sentence']['license'])) {
-                if (isset($this->data['Sentence']['user_id'])) {
-                    $userId = $this->data['Sentence']['user_id'];
-                    $user = $this->User->findById($userId, 'settings');
-                    if ($user) {
-                        $userDefaultLicense = $user['User']['settings']['default_license'];
-                        $this->data['Sentence']['license'] = $userDefaultLicense;
-                    }
+        $entity->text = $this->clean($entity->text);
+
+        if ($entity->isNew()) { // creating a new sentence
+            if (!$entity->license && $entity->user_id) {
+                $user = $this->Users->get($entity->user_id);
+                if ($user) {
+                    $userDefaultLicense = $user->settings['default_license'];
+                    $entity->license = $userDefaultLicense;
                 }
             }
         }
     }
 
-    public function isChanging($check, $what) {
-        $newValue = $check[$what];
-        $currentValue = $this->field($what);
+    public function isChanging($check, $context) {
+        $id = $context['data']['id'];
+        $newValue = $check;
+        $currentValue = $this->get($id)->license;
         return $newValue !== $currentValue;
     }
 
-    public function canSwitchLicense($check) {
-        $sentenceId = $this->id;
-        $sentence = $this->findById($sentenceId, array('based_on_id', 'user_id', 'license'));
-        $isOriginal = !is_null($sentence['Sentence']['based_on_id']) && $sentence['Sentence']['based_on_id'] == 0;
+    public function canSwitchLicense($check, $context) {
+        $sentenceId = $context['data']['id'];
+        $sentence = $this->get($sentenceId); //['based_on_id', 'user_id', 'license']);
+        $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $this->invalidate('license', __('The sentence needs to be original (not initially derived from translation).'));
+            $sentence->setError('license', __('The sentence needs to be original (not initially derived from translation).'));
         }
 
-        $currentOwner = $sentence['Sentence']['user_id'];
+        $currentOwner = $sentence->user_id;
         $currentUser = CurrentUser::get('id');
         if ($currentUser != $currentOwner) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $this->invalidate('license', __('You\'re not the owner of this sentence.'));
+            $sentence->setError('license', __('You\'re not the owner of this sentence.'));
         }
 
-        $originalCreator = $this->Contribution->getOriginalCreatorOf($sentenceId);
+        $originalCreator = $this->Contributions->getOriginalCreatorOf($sentenceId);
         if ($originalCreator !== $currentOwner) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $this->invalidate('license', __('The owner of the sentence needs to be its original creator.'));
+            $sentence->setError('license', __('The owner of the sentence needs to be its original creator.'));
         }
 
-        $newLicense = $check['license'];
-        $currentLicense = $sentence['Sentence']['license'];
+        $newLicense = $check;
+        $currentLicense = $sentence->license;
         $perms = array(null, 'CC BY 2.0 FR', 'CC0 1.0');
         $currentPermissiveness = array_search($currentLicense, $perms);
         $newPermissiveness = array_search($newLicense, $perms);
@@ -253,19 +268,14 @@ class SentencesTable extends Table
             $newPermissiveness < $currentPermissiveness) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $this->invalidate('license', __('You can only switch to a more permissive license.'));
+            $sentence->setError('license', __('You can only switch to a more permissive license.'));
         }
 
-        return true;
+        return empty($sentence->getErrors());
     }
 
     /**
      * Called after a sentence is saved.
-     *
-     * @param bool $created true if a new line has been created.
-     *                      false if a line has been updated.
-     *
-     * @return void
      */
     public function afterSave($event, $entity, $options = array())
     {
@@ -346,6 +356,8 @@ class SentencesTable extends Table
 
     public function needsReindex($ids)
     {
+        // TODO
+        /*
         $sentences = $this->find('all', array(
             'conditions' => array('id' => $ids),
             'fields' => array('id as sentence_id', 'lang'),
@@ -355,6 +367,7 @@ class SentencesTable extends Table
             $rec = $rec['Sentence'];
         }
         $this->ReindexFlag->saveAll($sentences);
+        */
     }
 
     /**

@@ -1,13 +1,15 @@
 <?php
-/* Sentence Test cases generated on: 2014-04-15 01:07:30 : 1397516850*/
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
+use App\Model\Table\SentencesTable;
 use App\Behavior\Sphinx;
-use App\Model\Sentence;
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+use App\Model\CurrentUser;
 
-class SentenceTest extends TestCase {
+class SentencesTableTest extends TestCase {
 	public $fixtures = array(
 		'app.sentences',
 		'app.users',
@@ -25,12 +27,15 @@ class SentenceTest extends TestCase {
 		'app.users_sentences'
 	);
 
-	function startTest($method) {
-		Configure::write('AutoTranscriptions.enabled', true);
-		$this->Sentence = ClassRegistry::init('Sentence');
+	function setUp() {
+		parent::setUp();
+		Configure::write('Acl.database', 'test');
+		$this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
 
+		/*
 		$this->Sentence->Behaviors->Sphinx = Mockery::mock();
 
+		Configure::write('AutoTranscriptions.enabled', true);
 		$autotranscription = $this->_installAutotranscriptionMock();
 		$autotranscription
 			->expects($this->any())
@@ -44,6 +49,7 @@ class SentenceTest extends TestCase {
 			->expects($this->any())
 			->method('jpn_Jpan_to_Hrkt_validate')
 			->will($this->returnValue(true));
+		*/
 	}
 
 	function _installAutotranscriptionMock() {
@@ -56,41 +62,42 @@ class SentenceTest extends TestCase {
 		return $autotranscription;
 	}
 
-	function endTest($method) {
+	function tearDown() {
 		unset($this->Sentence);
-		ClassRegistry::flush();
+		parent::tearDown();
 	}
 
-	function beOwnerOfCurrentSentence() {
-		$owner = $this->Sentence->field('user_id');
-		CurrentUser::store(array('id' => $owner));
+	function beOwnerOfCurrentSentence($id) {
+		$sentence = $this->Sentence->get($id);
+		CurrentUser::store(array('id' => $sentence->user_id));
 	}
 
 	function testSave_firesEventOnUpdate() {
 		$dispatched = false;
 		$id = 1;
-		$data = array(
+		$data = $this->Sentence->newEntity([
+			'id' => $id,
 			'text' => 'Changing text of sentence #1.',
-		);
+		]);
 		$model = $this->Sentence;
 		$model->getEventManager()->attach(
 			function (Event $event) use ($model, &$dispatched, $id, $data) {
-				$this->assertSame($model, $event->subject());
+				$this->assertSame($model->getAlias(), $event->getSubject()->getAlias());
 				// filter out unpredictable keys like 'modified' => now()
 				// from $event->data['data']
-				$event->data['data'] = array_intersect_key(
-					$event->data['data'],
-					$data
-				);
-				$created = $event->data['created'];
+				$result = [
+					'id' => $event->getData('id'),
+					'created' => $event->getData('created'),
+					'data' => $event->getData('data')
+				];
+				$created = $result['created'];
 				$expectedEventData = compact('id', 'created', 'data');
-				$this->assertEquals($expectedEventData, $event->data);
+				$this->assertEquals($expectedEventData, $result);
 				$dispatched = true;
 			},
 			'Model.Sentence.saved'
 		);
 
-		$this->Sentence->id = $id;
 		$this->Sentence->save($data);
 
 		$this->assertTrue($dispatched);
@@ -146,127 +153,107 @@ class SentenceTest extends TestCase {
 	}
 
 	function testSave_validSentence() {
-		$data = array(
+		$data = $this->Sentence->newEntity([
 			'text' => 'Hi there!',
-		);
+		]);
+		
 		$result = $this->Sentence->save($data);
 		$this->assertTrue((bool)$result);
 	}
 
 	function testSave_checksValidLicense() {
-		$data = array(
+		$data = $this->Sentence->newEntity([
 			'text' => 'Trying to save a sentence with an invalid license.',
 			'license' => 'some-strange-thing',
-		);
+		]);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
 
 	function testSave_checksLicenseUpdatesFine() {
-		$this->Sentence->id = 48;
-		$this->beOwnerOfCurrentSentence();
-		$data = array(
-			'license' => 'CC0 1.0',
-		);
+		$this->beOwnerOfCurrentSentence(48);
+		$data = $this->Sentence->get(48);
+		$data->license = 'CC0 1.0';
 		$result = $this->Sentence->save($data);
 
 		$this->assertTrue((bool)$result);
 	}
 
 	function testSave_checksLicenseDoesntUpdateIfCurrentUserIsNotOwner() {
-		$this->Sentence->id = 48;
 		CurrentUser::store(array('id' => 3));
-		$data = array(
-			'license' => 'CC0 1.0',
-		);
+		$data = $this->Sentence->get(48);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
 
 	function testSave_checksLicenseDoesntUpdateIfBasedOnIdIsNull() {
-		$this->Sentence->id = 1;
-		$this->beOwnerOfCurrentSentence();
-		$data = array(
-			'license' => 'CC0 1.0',
-		);
+		$this->beOwnerOfCurrentSentence(1);
+		$data = $this->Sentence->get(1);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
 
 	function testSave_checksLicenseDoesntUpdateIfAddedAsTranslation() {
-		$this->Sentence->id = 49;
-		$this->beOwnerOfCurrentSentence();
-		$data = array(
-			'license' => 'CC0 1.0',
-		);
+		$this->beOwnerOfCurrentSentence(49);
+		$data = $this->Sentence->get(49);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
 
 	function testSave_checksLicenseDoesntUpdateToAMoreRestrictiveLicense() {
-		$this->Sentence->id = 51;
-		$this->beOwnerOfCurrentSentence();
-		$data = array(
-			'license' => 'CC BY 2.0 FR',
-		);
+		$this->beOwnerOfCurrentSentence(51);
+		$data = $this->Sentence->get(51);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC BY 2.0 FR']);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
 
 	function testSave_checksLicenseUpdatesFromNullLicense() {
-		$this->Sentence->id = 52;
-		$this->beOwnerOfCurrentSentence();
-		$data = array(
-			'license' => 'CC BY 2.0 FR',
-		);
+		$this->beOwnerOfCurrentSentence(52);
+		$data = $this->Sentence->get(52);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC BY 2.0 FR']);
 		$result = $this->Sentence->save($data);
 		$this->assertTrue((bool)$result);
 	}
 
 	function testSave_checksLicenseDoesntUpdateToTheSameLicense() {
-		$this->Sentence->id = 48;
-		$this->beOwnerOfCurrentSentence();
-		$data = array(
-			'license' => 'CC BY 2.0 FR',
-		);
+		$this->beOwnerOfCurrentSentence(48);
+		$data = $this->Sentence->get(48);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC BY 2.0 FR']);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
 
 	function testSave_checksLicenseDoesntUpdateIfOwnerIsNotTheOriginalCreator() {
-		$this->Sentence->id = 50;
-		$this->beOwnerOfCurrentSentence();
-		$data = array(
-			'license' => 'CC0 1.0',
-		);
+		$this->beOwnerOfCurrentSentence(50);
+		$data = $this->Sentence->get(50);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
 
 	function testSave_setsDefaultLicenseSettingOnCreation() {
-		$data = array(
+		$data = $this->Sentence->newEntity([
 			'text' => 'This sentence should get a default licence.',
 			'user_id' => 7,
-		);
-
-		$this->Sentence->create();
-		$this->Sentence->save($data);
-
-		$savedSentence = $this->Sentence->findById($this->Sentence->id);
-		$this->assertEquals('CC0 1.0', $savedSentence['Sentence']['license']);
+		]);
+		$savedSentence = $this->Sentence->save($data);
+		$this->assertEquals('CC0 1.0', $savedSentence->license);
 	}
 
 	function testSave_doesNotChangeLicenseOnUpdate() {
-		$data = array(
+		$data = $this->Sentence->newEntity([
 			'id' => 1,
 			'text' => 'Updating sentence #1.',
 			'user_id' => 7,
-		);
+		]);
 
-		$this->Sentence->save($data);
-
-		$savedSentence = $this->Sentence->findById($this->Sentence->id);
-		$this->assertEquals('CC BY 2.0 FR', $savedSentence['Sentence']['license']);
+		$savedSentence = $this->Sentence->save($data);
+		$savedSentence = $this->Sentence->get($savedSentence->id);
+		$this->assertEquals('CC BY 2.0 FR', $savedSentence->license);
 	}
 
     function testSentenceAdditionAddsTranscription() {

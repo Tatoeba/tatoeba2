@@ -94,7 +94,7 @@ class CurrentUser
             return false;
         }
 
-        return $value[0];
+        return $value;
     }
 
     public static function getSetting($setting)

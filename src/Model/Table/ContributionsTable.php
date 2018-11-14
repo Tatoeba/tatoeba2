@@ -24,9 +24,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
 
@@ -40,7 +40,7 @@ use Cake\Core\Configure;
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-class Contribution extends AppModel
+class ContributionsTable extends Table
 {
     public $actsAs = array(
         "Containable"
@@ -358,17 +358,17 @@ class Contribution extends AppModel
 
     public function getOriginalCreatorOf($sentenceId)
     {
-        $log = $this->find('first', array(
-            'fields' => array('user_id'),
-            'conditions' => array(
+        $log = $this->find()
+            ->where([
                 'sentence_id' => $sentenceId,
                 'action' => 'insert',
                 'type' => 'sentence',
-            ),
-            'order' => 'datetime',
-        ));
+            ])
+            ->order(['datetime' => 'DESC'])
+            ->first();
+
         if ($log) {
-            return $log['Contribution']['user_id'];
+            return $log->user_id;
         } else {
             return false;
         }
