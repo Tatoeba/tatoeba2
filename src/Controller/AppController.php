@@ -190,6 +190,12 @@ class AppController extends Controller
 
         // Restore named parameters removed in CakePHP 3
         $this->request = Router::parseNamedParams($this->request);
+
+        // Parse named parameters (e.g. /page:123)
+        // as if they were query params (e.g. ?page=123)
+        $namedParams = $this->request->getParam('named');
+        $newQueryParams = array_merge($this->request->getQueryParams(), $namedParams);
+        $this->request = $this->request->withQueryParams($newQueryParams);
     }
 
     /**
