@@ -27,6 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\CurrentUser;
 use Cake\Event\Event;
 
 /**
@@ -59,12 +60,6 @@ class PagesController extends AppController
         'Html',
         'Languages'
     );
-    /**
-     * This controller does not use a model
-     *
-     * @var array
-     */
-    public $uses = array();
 
     public $components = array('Permissions');
 
@@ -104,8 +99,10 @@ class PagesController extends AppController
         }
 
         // Stats
-        $stats = ClassRegistry::init('Language')->getSentencesStatistics(5);
-        $numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
+        $this->loadModel('Languages');
+        $stats = $this->Languages->getSentencesStatistics(5);
+        $this->loadModel('Sentences');
+        $numSentences = $this->Sentences->getTotalNumberOfSentences();
 
         $this->set('stats', $stats);
         $this->set('numSentences', $numSentences);
@@ -119,7 +116,8 @@ class PagesController extends AppController
 
 
     private function _homepageForGuests() {
-        $contribToday = ClassRegistry::init('Contribution')->getTodayContributions();
+        $this->loadModel('Contributions');
+        $contribToday = $this->Contributions->getTodayContributions();
 
         $this->set('contribToday', $contribToday);
         $this->render('index_for_guests');
@@ -130,8 +128,8 @@ class PagesController extends AppController
         $this->helpers[] = 'Messages';
 
         /*latest comments part */
-        $this->loadModel('SentenceComment');
-        $latestComments = $this->SentenceComment->getLatestComments(5);
+        $this->loadModel('SentenceComments');
+        $latestComments = $this->SentenceComments->getLatestComments(5);
         $commentsPermissions = $this->Permissions->getCommentsOptions(
             $latestComments
         );
@@ -157,7 +155,7 @@ class PagesController extends AppController
 
     private function _redirect_for_old_url()
     {
-        $action = $this->request->params['action'];
+        $action = $this->request->getParam('action');
 
         switch ($action) {
             case "tatoeba-team-and-credits":
@@ -215,18 +213,18 @@ class PagesController extends AppController
      * @return void
      */
     private function _random_sentence() {
-        $this->loadModel('Sentence');
+        $this->loadModel('Sentences');
         $lang = $this->request->getSession()->read('random_lang_selected');
-        $randomId = $this->Sentence->getRandomId($lang);
+        $randomId = $this->Sentences->getRandomId($lang);
         if (is_null($randomId)) {
             $this->set('searchProblem', true);
         } else {
-            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+            $randomSentence = $this->Sentences->getSentenceWithId($randomId);
             $this->set('random', $randomSentence);
         }
 
-        if (isset($randomSentence['Sentence']['script'])) {
-            $this->set('sentenceScript', $randomSentence['Sentence']['script']);
+        if (isset($randomSentence->script)) {
+            $this->set('sentenceScript', $randomSentence->script);
         }
     }
 
