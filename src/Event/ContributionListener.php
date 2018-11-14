@@ -18,15 +18,19 @@
  */
 namespace App\Event;
 
-use App\Event\EventListener;
-use App\Lib\Event\AppListener;
-use Cake\Event\EventListener;
+use App\Event\AppListener;
+use Cake\Event\EventListenerInterface;
+use Cake\ORM\TableRegistry;
 
-
-class ContributionListener extends AppListener implements EventListener {
+class ContributionListener implements EventListenerInterface {
     public function implementedEvents() {
         return array(
             'Model.Sentence.saved' => 'logSentence',
         );
+    }
+
+    public function logSentence($event, $entity, $options) {
+        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $Contributions->logSentence($event);
     }
 }

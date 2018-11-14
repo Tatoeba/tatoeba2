@@ -42,23 +42,25 @@ use Cake\Core\Configure;
  */
 class ContributionsTable extends Table
 {
-    public $actsAs = array(
-        "Containable"
-    );
-    public $belongsTo = array('Sentence', 'User');
+    public function initialize(array $config)
+    {
+        $this->belongsTo('Users');
+        $this->belongsTo('Sentences');
+    }
 
     public function logSentence($event) {
-        if (isset($event->data['data']['license'])) {
-            $this->create();
-            $this->save(array(
-                'sentence_id' => $event->data['id'],
+        $data = $event->getData('data');
+        if (isset($data['license'])) {
+            $newLog = $this->newEntity(array(
+                'sentence_id' => $event->getData('id'),
                 'user_id' => CurrentUser::get('id'),
                 'datetime' => date("Y-m-d H:i:s"),
                 'ip' => CurrentUser::getIp(),
-                'action' => $event->data['created'] ? 'insert' : 'update',
+                'action' => $event->getData('created') ? 'insert' : 'update',
                 'type' => 'license',
-                'text' => $event->data['data']['license'],
+                'text' => $data['license'],
             ));
+            $this->save($newLog);
         };
     }
 

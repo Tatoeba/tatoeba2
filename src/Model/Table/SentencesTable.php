@@ -25,6 +25,7 @@ use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
+use App\Event\ContributionListener;
 
 class SentencesTable extends Table
 {
@@ -97,6 +98,9 @@ class SentencesTable extends Table
         $this->belongsTo('Users');
         $this->hasMany('Contributions');
         $this->addBehavior('Hashable');
+
+        $this->getEventManager()->on(new ContributionListener());
+        //$this->getEventManager()->attach(new UsersLanguagesListener());
     }
 
     public function validationDefault(Validator $validator)

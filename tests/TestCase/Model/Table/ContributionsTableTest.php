@@ -1,9 +1,11 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-use App\Model\Contribution;
 use App\Model\CurrentUser;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
+use Cake\Core\Configure;
 
 /**
  * Contribution Test Case
@@ -18,7 +20,8 @@ class ContributionTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        $this->Contribution = ClassRegistry::init('Contribution');
+        Configure::write('Acl.database', 'test');
+        $this->Contribution = TableRegistry::getTableLocator()->get('Contributions');
     }
 
     public function tearDown() {
@@ -45,11 +48,11 @@ class ContributionTest extends TestCase {
             'created' => true,
             'data' => array('license' => 'CC0 1.0'),
         ));
+        
+        $this->Contribution->Sentences->getEventManager()->dispatch($event);
 
-        $this->Contribution->Sentence->getEventManager()->dispatch($event);
-
-        $newLog = $this->Contribution->findById($this->Contribution->getLastInsertID());
-        $newLog = array_intersect_key($newLog['Contribution'], $expectedLog);
+        $log = $this->Contribution->find()->order(['id' => 'DESC'])->first();
+        $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
         $this->assertEquals($expectedLog, $newLog);
     }
 
@@ -72,10 +75,10 @@ class ContributionTest extends TestCase {
             'data' => array('license' => 'CC0 1.0'),
         ));
 
-        $this->Contribution->Sentence->getEventManager()->dispatch($event);
+        $this->Contribution->Sentences->getEventManager()->dispatch($event);
 
-        $newLog = $this->Contribution->findById($this->Contribution->getLastInsertID());
-        $newLog = array_intersect_key($newLog['Contribution'], $expectedLog);
+        $log = $this->Contribution->find()->order(['id' => 'DESC'])->first();
+        $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
         $this->assertEquals($expectedLog, $newLog);
     }
 }
