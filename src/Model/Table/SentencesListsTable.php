@@ -24,10 +24,10 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
-use App\Utility\Sanitize;
+use Cake\ORM\Table;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Model for sentences list.
@@ -39,16 +39,20 @@ use App\Utility\Sanitize;
  * @link     http://tatoeba.org
  */
 
-class SentencesList extends AppModel
+class SentencesListsTable extends Table
 {
-    public $actsAs = array('Containable');
-    public $belongsTo = array('User');
-    public $hasMany = array('SentencesSentencesLists');
-    public $hasAndBelongsToMany = array('Sentence');
-
     // We want to make sure that people don't download long lists, which can slow down the server.
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.
     const MAX_COUNT_FOR_DOWNLOAD = 100;
+
+    public function initialize(array $config)
+    {
+        parent::initialize($config);
+        
+        $this->belongsTo('Users');
+        $this->hasMany('SentencesSentencesLists');
+        $this->belongsToMany('Sentences');
+    }
 
     /**
      * Retrieves list.
@@ -77,18 +81,7 @@ class SentencesList extends AppModel
      */
     public function getListWithPermissions($id, $currentUserId)
     {
-        $list = $this->find(
-            'first',
-            array(
-                'conditions' => array('SentencesList.id' => $id),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('User.username')
-                    )
-                )
-            )
-        );
-
+        $list = $this->get($id, ['contain' => ['Users']]);
         $list['Permissions'] = $this->_getPermissions(
             $list['SentencesList'], $currentUserId
         );
@@ -397,30 +390,31 @@ class SentencesList extends AppModel
      */
     public function addSentenceToList($sentenceId, $listId, $currentUserId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $listId = Sanitize::paranoid($listId);
-
-        $sentence = $this->Sentence->findById($sentenceId);
-        if (empty($sentence)) {
+        try {
+            $sentence = $this->Sentences->get($sentenceId);
+        } catch (RecordNotFoundException $e) {
             return array();
         }
-
-        if (!$this->isEditableByCurrentUser($listId, $currentUserId)) {
-            return array();
-        }
-
-        $data = array(
-            'sentence_id' => $sentenceId,
-            'sentences_list_id' => $listId
-        );
 
         try {
-            $result = $this->SentencesSentencesLists->save($data);
+            $list = $this->get($listId);
+        } catch (RecordNotFoundException $e) {
+            return array();
+        }
+
+        if (!$list->isEditableBy($currentUserId)) {
+            return array();
+        }
+
+        $list->sentences = [$sentence];
+
+        try {
+            $result = $this->save($list);
             if (!empty($result)) {
                 $this->_incrementNumberOfSentencesToList($listId);
             }
-            return $result;
-        } catch (Exception $e) {
+            return $result->saved_old_format;
+        } catch (\PDOException $e) {
             return array();
         }
     }
@@ -465,25 +459,24 @@ class SentencesList extends AppModel
      */
     public function removeSentenceFromList($sentenceId, $listId, $currentUserId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $listId = Sanitize::paranoid($listId);
-
-        if (!$this->isEditableByCurrentUser($listId, $currentUserId)) {
+        try {
+            $list = $this->get($listId);
+        } catch (RecordNotFoundException $e) {
+            return false;
+        }
+        
+        if (!$list->isEditableBy($currentUserId)) {
             return false;
         }
 
-        $sentenceInList = $this->SentencesSentencesLists->find('first', array(
-            'conditions' => array(
-                'sentence_id' => $sentenceId,
-                'sentences_list_id' => $listId
-            )
-        ));
-        if (empty($sentenceInList)){
-            return false;
+        try {
+            $sentence = $this->Sentences->get($sentenceId);
+        } catch (RecordNotFoundException $e) {
+            return false;    
         }
 
-        $id = $sentenceInList['SentencesSentencesLists']['id'];        
-        $isDeleted = $this->SentencesSentencesLists->delete($id);
+        $id = $sentence->id;
+        $isDeleted = $this->Sentences->unlink($list, [$sentence]);
 
         if ($isDeleted) {
             $this->_decrementNumberOfSentencesToList($listId);
@@ -563,17 +556,15 @@ class SentencesList extends AppModel
      */
     public function addNewSentenceToList($listId, $sentenceText, $sentenceLang, $currentUserId)
     {
-        $listId = Sanitize::paranoid($listId);
-
         // Checking if user can add to list.
-        $userLevel = $this->User->getLevelOfUser($currentUserId);
+        $userLevel = $this->Users->getLevelOfUser($currentUserId);
         $canAdd = $userLevel > -1;
         if (!$canAdd) {
             return false;
         }
 
         // Saving sentence
-        $sentenceSaved = $this->Sentence->saveNewSentence(
+        $sentenceSaved = $this->Sentences->saveNewSentence(
             $sentenceText, $sentenceLang, $currentUserId
         );
         if (!$sentenceSaved) {
@@ -581,9 +572,10 @@ class SentencesList extends AppModel
         }
 
         // Adding to list
-        $sentenceId = $this->Sentence->id;
+        $sentenceId = $sentenceSaved->id;
         if ($this->addSentenceToList($sentenceId, $listId, $currentUserId)) {
-            return $this->Sentence->getSentenceWithId($sentenceId);
+            $sentence = $this->Sentences->get($sentenceId, ['contain' => 'Users']);
+            return $sentence->old_format;
         } else {
             return false;
         }
@@ -622,12 +614,11 @@ class SentencesList extends AppModel
             return false;
         }
 
-        $data = array(
-            'name' => $name,
-            'user_id' => $currentUserId
-        );
+        $data = $this->newEntity();
+        $data->name = $name;
+        $data->user_id = $currentUserId;
 
-        return $this->save($data);
+        return $this->save($data)->old_format;
     }
 
     /**
@@ -635,10 +626,9 @@ class SentencesList extends AppModel
      */
     public function deleteList($listId, $currentUserId) 
     {
-        $listId = Sanitize::paranoid($listId);
-
-        if ($this->isEditableByCurrentUser($listId, $currentUserId)) {
-            return $this->delete($listId);
+        $list = $this->get($listId);
+        if ($list->isEditableBy($currentUserId)) {
+            return $this->delete($list);
         } else {
             return false;
         }
@@ -649,10 +639,10 @@ class SentencesList extends AppModel
      */
     public function editName($listId, $newName, $currentUserId)
     {
-        $listId = Sanitize::paranoid($listId);
-        if ($this->isEditableByCurrentUser($listId, $currentUserId)) {
-            $this->id = $listId;
-            return $this->saveField('name', $newName);
+        $list = $this->get($listId);
+        if ($list->isEditableBy($currentUserId)) {
+            $list->name = $newName;
+            return $this->save($list)->old_format;
         } else {
             return false;
         }
@@ -664,12 +654,12 @@ class SentencesList extends AppModel
     public function editOption($listId, $option, $value, $currentUserId)
     {
         $allowedOptions = array('visibility', 'editable_by');
-        $listId = Sanitize::paranoid($listId);
-        $belongsToUser = $this->belongsTotUser($listId, $currentUserId);
+        $list = $this->get($listId);
+        $belongsToUser = $list->user_id == $currentUserId;
 
         if ($belongsToUser && in_array($option, $allowedOptions)) {
-            $this->id = $listId;
-            return $this->saveField($option, $value);
+            $list->{$option} = $value;
+            return $this->save($list)->old_format;
         } else {
             return array();
         }

@@ -16,42 +16,15 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Controller\AppController;
-use App\Lib\Event\ContributionListener;
-use App\Lib\Event\UsersLanguagesListener;
-use App\Lib\LanguagesLib;
-use App\Model\AppModel;
-use App\Model\CurrentUser;
-use App\Utility\Sanitize;
-use Cake\Cache\Cache;
+use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Validation\Validator;
 
-/**
- * Model Class which represent sentences
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
-*/
-
-
-class Sentence extends AppModel
+class SentencesTable extends Table
 {
     public $name = 'Sentence';
     public $actsAs = array('Containable', 'Transcriptable', 'Hashable');
@@ -117,47 +90,62 @@ class Sentence extends AppModel
         ),
     );
 
-    public function __construct($id = false, $table = null, $ds = null)
+    public function initialize(array $config)
     {
-        parent::__construct($id, $table, $ds);
-
-        if (!Configure::read('AutoTranscriptions.enabled')) {
-            $this->Behaviors->disable('Transcriptable');
-        }
-        if (Configure::read('Search.enabled')) {
-            $this->Behaviors->attach('Sphinx');
-        }
-
-        $this->findMethods['random'] = true;
-
-        $this->validate['license'] = array(
-            'validLicense' => array(
-                'rule' => array('inList', array(
-                    'CC0 1.0',
-                    'CC BY 2.0 FR',
-                )),
-                /* @translators: This string will be preceded by "Unable to
-                   change the license to “{newLicense}” because:" */
-                'message' => __('This is not a valid license.'),
-            ),
-            'isChanging' => array(
-                'rule' => array('isChanging', 'license'),
-                'on' => 'update',
-                /* @translators: This string will be preceded by "Unable to
-                   change the license to “{newLicense}” because:" */
-                'message' => __('This sentence is already under that license.'),
-            ),
-            'canSwitchLicense' => array(
-                'rule' => array('canSwitchLicense'),
-                'on' => 'update',
-            ),
-        );
-
-        $this->linkWithTranslationModel();
-
-        $this->getEventManager()->attach(new ContributionListener());
-        $this->getEventManager()->attach(new UsersLanguagesListener());
+        $this->belongsTo('Users');
+        $this->addBehavior('Hashable');
     }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->requirePresence('text', 'user_id')
+            ->notEmpty('text');
+
+        return $validator;
+    }
+
+    // public function __construct($id = false, $table = null, $ds = null)
+    // {
+    //     parent::__construct($id, $table, $ds);
+        
+    //     if (!Configure::read('AutoTranscriptions.enabled')) {
+    //         $this->Behaviors->disable('Transcriptable');
+    //     }
+    //     if (Configure::read('Search.enabled')) {
+    //         $this->Behaviors->attach('Sphinx');
+    //     }
+        
+    //     $this->findMethods['random'] = true;
+    
+    //     $this->validate['license'] = array(
+    //         'validLicense' => array(
+    //             'rule' => array('inList', array(
+    //                 'CC0 1.0',
+    //                 'CC BY 2.0 FR',
+    //             )),
+    //             /* @translators: This string will be preceded by "Unable to
+    //                change the license to “{newLicense}” because:" */
+    //             'message' => __('This is not a valid license.'),
+    //         ),
+    //         'isChanging' => array(
+    //             'rule' => array('isChanging', 'license'),
+    //             'on' => 'update',
+    //             /* @translators: This string will be preceded by "Unable to
+    //                change the license to “{newLicense}” because:" */
+    //             'message' => __('This sentence is already under that license.'),
+    //         ),
+    //         'canSwitchLicense' => array(
+    //             'rule' => array('canSwitchLicense'),
+    //             'on' => 'update',
+    //         ),
+    //     );
+
+    //     $this->linkWithTranslationModel();
+
+    //     $this->getEventManager()->attach(new ContributionListener());
+    //     $this->getEventManager()->attach(new UsersLanguagesListener());
+    // }
 
     /**
      * Links the Sentence and Translation models with restrictions
@@ -279,23 +267,24 @@ class Sentence extends AppModel
      *
      * @return void
      */
-    public function afterSave($created, $options = array())
+    public function afterSave($event, $entity, $options = array())
     {
+        $created = $entity->isNew();
         $event = new Event('Model.Sentence.saved', $this, array(
-            'id' => $this->id,
+            'id' => $entity->id,
             'created' => $created,
-            'data' => $this->data[$this->alias]
+            'data' => $entity
         ));
         $this->getEventManager()->dispatch($event);
         
         $this->logSentenceEdition($created);
         $this->updateTags($created);
-        if (isset($this->data['Sentence']['modified'])) {
-            $this->needsReindex($this->id);
+        if (isset($entity->modified)) {
+            $this->needsReindex($entity->id);
         }
         $transIndexedAttr = array('lang', 'user_id');
         $transNeedsReindex = array_intersect_key(
-            $this->data['Sentence'],
+            $entity->old_format,
             array_flip($transIndexedAttr)
         );
         if ($transNeedsReindex) {
@@ -345,11 +334,14 @@ class Sentence extends AppModel
 
     private function updateTags($created)
     {
+        // TODO
+        /*
         $edited = array_key_exists('text', $this->data[$this->alias]);
         if (!$created && $edited) {
             $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
             $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
         }
+        */
     }
 
     public function needsReindex($ids)
@@ -907,8 +899,9 @@ class Sentence extends AppModel
         $text = $this->clean($text);
 
         $hash = $this->makeHash($lang, $text);
+        $hash = $this->padHashBinary($hash);
 
-        $sentences = $this->findAllByBinary($hash, 'hash');
+        $sentences = $this->findAllByHash($hash);
 
         foreach ($sentences as $sentence) {
             if ($this->confirmDuplicate($text, $lang, $sentence['Sentence'])) {
@@ -918,22 +911,22 @@ class Sentence extends AppModel
             }
         }
 
-        $this->create();
-
         $this->duplicate = false;
 
-        $data['Sentence']['text'] = $text;
-        $data['Sentence']['user_id'] = $userId;
-        $data['Sentence']['correctness'] = $correctness;
-        $data['Sentence']['hash'] = $hash;
-        $data['Sentence']['license'] = $license;
-        $data['Sentence']['based_on_id'] = $basedOnId;
+        $data['text'] = $text;
+        $data['user_id'] = $userId;
+        $data['correctness'] = $correctness;
+        $data['hash'] = $hash;
+        $data['license'] = $license;
+        $data['based_on_id'] = $basedOnId;
 
         if (!empty($lang)) {
-            $data['Sentence']['lang'] = $lang;
+            $data['lang'] = $lang;
         }
 
-        return $this->save($data);
+        $sentence = $this->newEntity($data);
+        
+        return $this->save($sentence);
     }
 
     /**

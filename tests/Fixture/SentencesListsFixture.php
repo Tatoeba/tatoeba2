@@ -6,7 +6,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 class SentencesListsFixture extends TestFixture {
 	public $name = 'SentencesList';
-	public $import = array('records' => true);
 
 	public $fields = array(
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null, 'unsigned' => false],

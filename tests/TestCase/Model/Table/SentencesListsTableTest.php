@@ -1,10 +1,12 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\SentencesList;
+use App\Model\Table\SentencesListsTable;
+use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
-class SentencesListTest extends TestCase {
+class SentencesListsTableTest extends TestCase {
     public $fixtures = array(
         'app.sentences_lists',
         'app.sentences_sentences_lists',
@@ -21,7 +23,8 @@ class SentencesListTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        $this->SentencesList = ClassRegistry::init('SentencesList');
+        Configure::write('Acl.database', 'test');
+        $this->SentencesList = TableRegistry::getTableLocator()->get('SentencesLists');
     }
 
     function tearDown() {
@@ -147,7 +150,7 @@ class SentencesListTest extends TestCase {
         $text = 'This is a new shiny sentence.';
         $userId = 7;
         $data = $this->SentencesList->addNewSentenceToList($listId, $text, $lang, $userId);
-
+        
         $expectedSentence = array('lang' => $lang, 'text' => $text);
         $expectedUser = array('id' => $userId);
         $expected = array(
@@ -178,18 +181,14 @@ class SentencesListTest extends TestCase {
         $sentenceId = 4;
         $listId = 1;
         $userId = 7;
-        $before = $this->SentencesList->SentencesSentencesLists->find('count',
-            array('conditions' => array(
-                'sentence_id' => $sentenceId,
-            )
-        ));
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => $sentenceId])
+            ->count();
         $this->SentencesList->removeSentenceFromList($sentenceId, $listId, $userId);
-        $after = $this->SentencesList->SentencesSentencesLists->find('count',
-            array('conditions' => array(
-                'sentence_id' => $sentenceId,
-            )
-        ));
-        $this->assertEqual(1, $before - $after);
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => $sentenceId])
+            ->count();
+        $this->assertEquals(1, $before - $after);
     }
 
     function testRemoveSentenceFromList_succeeds() {
