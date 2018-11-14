@@ -104,9 +104,9 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testSaveNewSentence_addsOneSentence() {
-		$oldNumberOfSentences = $this->Sentence->find('count');
+		$oldNumberOfSentences = $this->Sentence->find('all')->count();
 		$this->Sentence->saveNewSentence('Hello world.', 'eng', 1);
-		$newNumberOfSentences = $this->Sentence->find('count');
+		$newNumberOfSentences = $this->Sentence->find('all')->count();
 		$sentencesAdded = $newNumberOfSentences - $oldNumberOfSentences;
 
 		$this->assertEquals($sentencesAdded, 1);
@@ -116,12 +116,11 @@ class SentencesTableTest extends TestCase {
 		$text = 'Hello world.';
 
 		$this->Sentence->saveNewSentence($text, '', 1);
-		$savedSentence = $this->Sentence->find(
-			'first',
-			array('conditions' => array('Sentence.text' => $text))
-		);
-
-		$this->assertNull($savedSentence['Sentence']['lang']);
+		$savedSentence = $this->Sentence->find('all')
+			->where(['text' => $text])
+			->first();
+		
+		$this->assertNull($savedSentence->lang);
 	}
 
 	function testSaveNewSentence_returnsTrueWhenSaved() {

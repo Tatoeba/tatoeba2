@@ -127,11 +127,15 @@ class SentencesTable extends Table
                     'rule' => [$this, 'canSwitchLicense'],
                     'on' => 'update',
                 ]
-            ]);
+            ])
+            ->allowEmpty('license');
 
+        $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
             ->add('lang', [
-                'rule' => ['inList', array_keys(LanguagesLib::languagesInTatoeba())]
+                'inList' => [
+                    'rule' => ['inList', $languages]
+                ]
             ]);
             
         return $validator;
@@ -239,7 +243,7 @@ class SentencesTable extends Table
 
     public function canSwitchLicense($check, $context) {
         $sentenceId = $context['data']['id'];
-        $sentence = $this->get($sentenceId); //['based_on_id', 'user_id', 'license']);
+        $sentence = $this->get($sentenceId);
         $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to

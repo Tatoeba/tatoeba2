@@ -84,17 +84,15 @@ class CurrentUser
      */
     public static function get($path)
     {
+        if (!self::$_auth) {
+            return null;
+        }
+
         if (strpos($path, 'User') !== 0) {
             $path = sprintf('User.%s', $path);
         }
 
-        $value = Hash::get(self::$_auth, $path);
-
-        if (!$value) {
-            return false;
-        }
-
-        return $value;
+        return Hash::get(self::$_auth, $path);
     }
 
     public static function getSetting($setting)
