@@ -41,7 +41,6 @@ use Cake\Event\Event;
 class AutocompletionsController extends AppController
 {
     public $name = 'Autocompletions';
-    public $uses = '';
     public $components = array('RequestHandler');
 
     /**
