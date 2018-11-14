@@ -187,6 +187,9 @@ class AppController extends Controller
                 $this->redirect($redirectPage, $redirectCode);
             }
         }
+
+        // Restore named parameters removed in CakePHP 3
+        $this->request = Router::parseNamedParams($this->request);
     }
 
     /**
