@@ -3,8 +3,9 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\ActivitiesController;
 use Cake\Core\Configure;
+use Cake\TestSuite\IntegrationTestCase;
 
-class ActivitiesControllerTest extends ControllerTestCase {
+class ActivitiesControllerTest extends IntegrationTestCase {
 
     public $fixtures = array(
         'app.sentences',
@@ -12,26 +13,13 @@ class ActivitiesControllerTest extends ControllerTestCase {
         'app.users_languages'
     );
 
-    public function setUp() {
-        Configure::write('App.base', ''); // prevent using the filesystem path as base
-        $this->controller = $this->generate('Activities', array(
-            'methods' => array('redirect'),
-        ));
-    }
-
-    public function endTest($method) {
-        unset($this->controller);
-    }
-
     public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
         $user = 'kazuki';
         $userId = 7;
         $lastPage = 2;
 
-        $this->controller
-             ->expects($this->once())
-             ->method('redirect')
-             ->with("/eng/activities/translate_sentences_of/$user/page:$lastPage");
-        $this->testAction("/eng/activities/translate_sentences_of/$user/page:9999999");
+        $this->get("/eng/activities/translate_sentences_of/$user/page:9999999");
+
+        $this->assertRedirect("/eng/activities/translate_sentences_of/$user/page:$lastPage");
     }
 }

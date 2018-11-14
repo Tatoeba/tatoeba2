@@ -32,7 +32,9 @@ use App\Utility\Sanitize;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Routing\Router;
+
 /**
  * Controller for contributions.
  *
@@ -280,25 +282,10 @@ class AppController extends Controller
 
     private function redirectPaginationToLastPage($object, $settings)
     {
-        if (is_array($object)) {
-            $scope = $object;
-            $object = $this->modelClass;
-        } elseif (is_null($object)) {
-            $object = $this->modelClass;
-        }
-        $findOptions = array_key_exists($object, $this->paginate) ? $this->paginate[$object] : $this->paginate;
-        if (is_array($scope) && !empty($scope)) {
-            if (!isset($findOptions['conditions'])) {
-                $findOptions['conditions'] = array();
-            }
-            $findOptions['conditions'] = array_merge($findOptions['conditions'], $scope);
-        }
-        $count = $this->{$object}->find('count', $findOptions);
-        $limit = $this->request->params['paging'][$object]['limit'];
-        $lastPage = (int)ceil($count / $limit);
-
-        $this->request->params['named']['page'] = $lastPage;
-        $lastPageUrl = Router::reverse($this->request);
+        $paging = $this->Paginator->getPagingParams();
+        $lastPage = $paging[$object]['pageCount'];
+        $currentUrl = $this->request->getRequestTarget();
+        $lastPageUrl = preg_replace('/\/page:\d+/', "/page:$lastPage", $currentUrl, 1);
         $this->redirect($lastPageUrl);
     }
 
