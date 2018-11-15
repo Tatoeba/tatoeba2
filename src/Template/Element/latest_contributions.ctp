@@ -24,7 +24,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$contributions =  ClassRegistry::init('Contribution')->getLastContributions(10);
+use Cake\ORM\TableRegistry;
+
+$contributions = TableRegistry::get('Contributions')->getLastContributions(10);
 ?>
 <md-list id="logs">
 <?php
