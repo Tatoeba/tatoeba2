@@ -60,9 +60,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             }
         }
     }
-    $interfaceLanguages = array(
-        'lang' => join('|', $iso3LangArray)
-    );
+    $interfaceLanguages = join('|', $iso3LangArray);
 
     /**
      * To route tools, in order to still have tools in the URL, which is
@@ -90,9 +88,9 @@ Router::scope('/', function (RouteBuilder $routes) {
             'lang'=>'eng',
             'controller' => 'Sinograms',
             'action' =>'index'
-        ],
-        $interfaceLanguages
+        ]
     )
+    ->setPatterns(['lang' => $interfaceLanguages])
     ->setPersist(['lang']);
 
     $routes->connect(
@@ -100,9 +98,9 @@ Router::scope('/', function (RouteBuilder $routes) {
         [
             'lang'=>'eng',
             'controller' => 'Sinograms',
-        ],
-        $interfaceLanguages
+        ]
     )
+    ->setPatterns(['lang' => $interfaceLanguages])
     ->setPersist(['lang']);
 
     /**
@@ -123,8 +121,9 @@ Router::scope('/', function (RouteBuilder $routes) {
             'lang' => ':lang',
             'controller' => 'Pages',
             'action' => 'index'
-        ],
-        $interfaceLanguages
+        ]
+    )
+    ->setPatterns(['lang' => $interfaceLanguages])
     ->setPersist(['lang']);
 
     $routes->connect(
@@ -138,8 +137,9 @@ Router::scope('/', function (RouteBuilder $routes) {
         [
             'lang' => ':lang',
             'controller' => 'pages',
-        ],
-        $interfaceLanguages
+        ]
+    )
+    ->setPatterns(['lang' => $interfaceLanguages])
     ->setPersist(['lang']);
 
     /**
@@ -150,8 +150,9 @@ Router::scope('/', function (RouteBuilder $routes) {
         '/:lang/:controller/:action/*',
         [
             'lang'=>'eng'
-        ],
-        $interfaceLanguages
+        ]
+    )
+    ->setPatterns(['lang' => $interfaceLanguages])
     ->setPersist(['lang']);
 
     /**
