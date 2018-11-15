@@ -363,7 +363,7 @@ class UsersTable extends Table
             ->select('id')
             ->where(['username' => $username])
             ->first();
-        return !$user ? $user->id : null;
+        return $user ? $user->id : null;
     }
 
 
@@ -380,7 +380,7 @@ class UsersTable extends Table
             ->select(['username'])
             ->where(['id' => $userId])
             ->first();
-        return !$user ? $user->username : null;
+        return $user ? $user->username : null;
     }
 
     /**
@@ -396,7 +396,7 @@ class UsersTable extends Table
             ->select(['id'])
             ->where(['email' => $userEmail])
             ->first();
-        return !$user ? $user->id : null;
+        return $user ? $user->id : null;
     }
 
     /**
@@ -412,7 +412,7 @@ class UsersTable extends Table
             ->select(['email'])
             ->where(['id' => $userId])
             ->first();
-        return !$user ? $user->email : null;
+        return $user ? $user->email : null;
     }
 
     /**
@@ -443,7 +443,7 @@ class UsersTable extends Table
             ->select(['password'])
             ->where(['id' => $userId])
             ->first();
-        return !$user ? $user->password : null;
+        return $user ? $user->password : null;
     }
 
     /**
