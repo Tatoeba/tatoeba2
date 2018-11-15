@@ -42,6 +42,7 @@ $this->Html->script(JS_PATH . 'users/register.ctrl.js', array('block' => 'script
 
 $this->Security->enableCSRFProtection();
 echo $this->Form->create('User', array(
+    'id' => 'UserRegisterForm',
     'name' => 'registrationForm',
     'url' => array('action' => 'register'),
     'class' => 'md-whiteframe-1dp',
