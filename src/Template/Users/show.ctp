@@ -18,8 +18,8 @@
 */
 use App\Model\CurrentUser;
 
-$username = $user['User']['username'];
-$userId =  $user['User']['id'];
+$username = $user->username;
+$userId =  $user->id;
 $this->set('title_for_layout', $this->Pages->formatTitle(format(
     __('Tatoeba user: {username}'),
     compact('username')
@@ -36,16 +36,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 
     <?php
     /* Latest contributions from the user */
-    if (count($user['Contributions']) > 0) {
+    if (count($user->contributions) > 0) {
         ?>
         <div class="section" md-whiteframe="1">
             <h2><?php echo __('Latest contributions'); ?></h2>
             <md-list id="logs">
             <?php
-            foreach ($user['Contributions'] as $userContribution) {
+            foreach ($user->contributions as $userContribution) {
                 $contribution = array(
                     'Contribution' => $userContribution,
-                    'User' => $user['User']
+                    'User' => $user
                 );
                 echo $this->element(
                     'logs/log_entry_annexe',
@@ -63,7 +63,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 <div id="main_content">
     <?php
     /* Latest sentences, translations or adoptions from the user */
-    if (count($user['Sentences']) > 0) {
+    if (count($user->sentences) > 0) {
         echo '<div class="module">';
             echo '<h2>';
             echo __('Latest sentences');
@@ -84,7 +84,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            foreach ($user['Sentences'] as $sentence) {
+            foreach ($user->sentences as $sentence) {
                 $this->Sentences->displayGenericSentence(
                     $sentence,
                     $type,
@@ -96,7 +96,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
     }
 
     /* Latest comments from the user */
-    if (count($user['SentenceComments']) > 0) {
+    if (count($user->sentence_comments) > 0) {
         echo '<div class="module">';
             echo '<h2>';
             echo __('Latest comments');
@@ -115,9 +115,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             echo '</h2>';
 
             echo '<div class="comments">';
-            foreach ($user['SentenceComments'] as $i => $sentenceComment) {
+            foreach ($user->sentence_comments as $i => $sentenceComment) {
                 $comment['SentenceComment'] = $sentenceComment;
-                $comment['User'] = $user['User'];
+                $comment['User'] = $user;
                 $currentUserIsMember = CurrentUser::isMember();
 
                 $menu = $this->Comments->getMenuForComment(
@@ -141,7 +141,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 
 
     /* Latest messages on the Wall */
-    if (count($user['Wall']) > 0) {
+    if (count($user->wall) > 0) {
         echo '<div class="module">';
             echo '<h2>';
             echo __('Latest Wall messages');
@@ -160,7 +160,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             echo '</h2>';
 
             echo '<div class="wall">';
-            foreach ($user['Wall'] as $comment) {
+            foreach ($user->wall as $comment) {
                 $this->Wall->createThread(
                     $comment,
                     $user['User'],
