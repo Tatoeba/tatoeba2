@@ -51,9 +51,9 @@ use Cake\Core\Configure;
         echo $this->Html->css(CSS_PATH . 'layouts/elements.css');
 
         // Specific
-        $controller = $this->request->params["controller"];
+        $controller = $this->request->getParam("controller");
         $controller = Cake\Utility\Inflector::delimit($controller);
-        $action = $this->request->params["action"];
+        $action = $this->request->getParam("action");
         echo $this->Html->css(CSS_PATH . $controller."/".$action .".css");
 
         echo $this->element('seo_international_targeting');
