@@ -54,8 +54,6 @@ class UsersController extends AppController
     );
     public $components = array('Flash', 'Mailer', 'RememberMe');
 
-    public $uses = array("User","Contribution","UsersLanguages");
-
     /**
      * Before filter.
      *
@@ -98,8 +96,8 @@ class UsersController extends AppController
                 'id', 'email', 'username', 'since', 'level'
             ),
             'contain' => array(
-                "Group" => array(
-                    "fields" => "Group.name"
+                "Groups" => array(
+                    "fields" => "Groups.name"
                 )
             )
         );
@@ -117,21 +115,21 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $id = Sanitize::paranoid($id);
-
-        if (!$id && empty($this->request->data)) {
+        $user = $this->Users->get($id);
+        if (!$user) {
             $this->Flash->set('Invalid User');
             $this->redirect(array('action'=>'index'));
         }
-        if (!empty($this->request->data)) {
+        if (!empty($this->request->getData())) {
 
-            $wasBlocked = $this->User->getLevelOfUser($id) == -1;
-            $wasSuspended = $this->User->getGroupOfUser($id) == 6;
-            $isBlocked = !$wasBlocked && $this->request->data['User']['level'] == -1;
-            $isSuspended = !$wasSuspended && $this->request->data['User']['group_id'] == 6;
+            $wasBlocked = $user->level == -1;
+            $wasSuspended = $user->group_id == 6;
+            $isBlocked = !$wasBlocked && $this->request->getData('level') == -1;
+            $isSuspended = !$wasSuspended && $this->request->getData('group_id') == 6;
 
-            if ($this->User->save($this->request->data)) {
-                $username = $this->request->data['User']['username'];
+            $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $username = $this->request->getData('username');
                 if ($isBlocked || $isSuspended) {
                     $this->Mailer->sendBlockedOrSuspendedUserNotif(
                         $username, $isSuspended
@@ -145,12 +143,8 @@ class UsersController extends AppController
                 );
             }
         }
-        if (empty($this->request->data)) {
-
-            $this->request->data = $this->User->getUserById($id);
-        }
-        $groups = $this->User->Group->find('list');
-        $this->set(compact('groups'));
+        $groups = $this->Users->Groups->find('list');
+        $this->set(compact('groups', 'user'));
     }
 
 
@@ -163,16 +157,13 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
-        $id = Sanitize::paranoid($id);
-
-        if (!$id) {
+        $user = $this->Users->get($id);
+        if (!$user) {
             $this->Flash->set('Invalid id for User');
-            $this->redirect(array('action'=>'index'));
-        }
-        if ($this->User->delete($id)) {
+        } elseif ($this->Users->delete($user)) {
             $this->Flash->set('User deleted');
-            $this->redirect(array('action'=>'index'));
         }
+        $this->redirect(array('action'=>'index'));
     }
 
 
@@ -199,43 +190,42 @@ class UsersController extends AppController
      */
     public function check_login()
     {
-        $this->Auth->login();
+        $user = $this->Auth->identify();
 
-        // group_id 5 => users is inactive
-        if ($this->Auth->user('group_id') == 5) {
-            $this->flash(
-                __(
-                    'This account has been marked inactive. '.
-                    'You cannot log in with it anymore. '.
-                    'Please contact an admin if this is a mistake.', true
-                ),
-                '/users/logout/'
-            );
-        }
-        // group_id 6 => users is spammer
-        else if ($this->Auth->user('group_id') == 6) {
-            $this->flash(
-                __(
-                    'This account has been marked as a spammer. '.
-                    'You cannot log in with it anymore. '.
-                    'Please contact an admin if this is a mistake.', true
-                ),
-                '/users/logout/'
-            );
-        }
-        else
-        {
-            $redirectUrl = $this->Auth->redirectUrl();
-            if (isset($this->request->query['redirectTo'])) {
-                $redirectUrl = $this->request->query['redirectTo'];
+        $redirectUrl = $this->request->getQuery('redirectTo', $this->Auth->redirectUrl());
+        $failedUrl = array(
+            'action' => 'login',
+            '?' => array('redirectTo' => $redirectUrl)
+        );
+
+        if ($user) {
+            // group_id 5 => users is inactive
+            if ($user['group_id'] == 5) {
+                $this->flash(
+                    __(
+                        'This account has been marked inactive. '.
+                        'You cannot log in with it anymore. '.
+                        'Please contact an admin if this is a mistake.', true
+                    ),
+                    $failedUrl
+                );
             }
-            $failedUrl = array(
-                'action' => 'login',
-                '?' => array('redirectTo' => $redirectUrl)
-            );
-            if ($this->Auth->user()) {
+            // group_id 6 => users is spammer
+            else if ($user['group_id'] == 6) {
+                $this->flash(
+                    __(
+                        'This account has been marked as a spammer. '.
+                        'You cannot log in with it anymore. '.
+                        'Please contact an admin if this is a mistake.', true
+                    ),
+                    $failedUrl
+                );
+            } else {
+                $this->Auth->setUser($user);
                 $this->_common_login($redirectUrl);
-            } elseif (empty($this->request->data["User"]['username'])) {
+            }
+        } else {
+            if (empty($this->request->getData('username'))) {
                 $this->flash(
                     __(
                         'You must fill in your '.
@@ -266,20 +256,23 @@ class UsersController extends AppController
 
     private function _common_login($redirectUrl)
     {
-        // update the last login time
-        $data['User']['username'] = $this->Auth->user('username');
-        $data['User']['last_time_active'] = time();
-        $this->User->save($data);
+        $userId = $this->Auth->user('id');
 
-        $this->User->updatePasswordVersion(
-            $this->Auth->user('id'),
-            $this->request->data['User']['password']
-        );
-        if (empty($this->request->data['User']['rememberMe'])) {
+        // update the last login time
+        $user = $this->Users->get($userId);
+        $user->last_time_active = time();
+        $this->Users->save($user);
+
+        $plainTextPassword = $this->request->getData('password');
+        $this->Users->updatePasswordVersion($userId, $plainTextPassword);
+
+        if (empty($this->request->getData('rememberMe'))) {
             $this->RememberMe->delete();
         } else {
+            $hashedPassword = $this->Users->get($userId, ['fields' => 'password'])->password;
             $this->RememberMe->remember(
-                $this->request->data['User']['username'], $this->User->field('password')
+                $this->request->getData('username'),
+                $hashedPassword
             );
         }
 
@@ -317,52 +310,48 @@ class UsersController extends AppController
         }
 
         // No data
-        if (empty($this->request->data)) {
+        if (empty($this->request->getData())) {
             $this->set('username', null);
             $this->set('email', null);
             $this->set('language', null);
             return;
         }
 
-        $this->set('username', $this->request->data['User']['username']);
-        $this->set('email', $this->request->data['User']['email']);
-        $this->set('language', $this->request->data['User']['language']);
-
-        // Username does not fit requirements
-        if (!$this->User->validates()) {
-            $this->request->data['User']['password'] = '';
-            $this->request->data['User']['quiz'] = '';
-            return;
-        }
+        $this->set('username', $this->request->getData('username'));
+        $this->set('email', $this->request->getData('email'));
+        $this->set('language', $this->request->getData('language'));
 
         // Password is empty
-        if ($this->request->data['User']['password'] == '') {
+        if ($this->request->getData('password') == '') {
             $this->Flash->set(
                 __('Password cannot be empty.')
             );
-            $this->request->data['User']['password'] = '';
-            $this->request->data['User']['quiz'] = '';
+            $this->request = $this->request
+                ->withoutData('password')
+                ->withoutData('quiz');
             return;
         }
 
         // Did not answer the quiz properly
-        $correctAnswer = mb_substr($this->request->data['User']['email'], 0, 5, 'UTF-8');
-        if ($this->request->data['User']['quiz'] != $correctAnswer) {
+        $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
+        if ($this->request->getData('quiz') != $correctAnswer) {
             $this->Flash->set(
                 __('Wrong answer to the question.')
             );
-            $this->request->data['User']['password'] = '';
-            $this->request->data['User']['quiz'] = '';
+            $this->request = $this->request
+                ->withoutData('password')
+                ->withoutData('quiz');
             return;
         }
 
         // Did not accept terms of use
-        if (!$this->request->data['User']['acceptation_terms_of_use']) {
+        if (!$this->request->getData('acceptation_terms_of_use')) {
             $this->Flash->set(
                 __('You did not accept the terms of use.')
             );
-            $this->request->data['User']['password'] = '';
-            $this->request->data['User']['quiz'] = '';
+            $this->request = $this->request
+                ->withoutData('password')
+                ->withoutData('quiz');
             return;
         }
 
@@ -370,27 +359,30 @@ class UsersController extends AppController
 
 
         // At this point, we're fine, so we can create the user
-        $this->User->create();
-        $allowedFields = array('username', 'password', 'email');
-        $newUser = $this->filterKeys($this->request->data['User'], $allowedFields);
-        $newUser['since']    = date("Y-m-d H:i:s");
-        $newUser['group_id'] = 4;
+        $newUser = $this->Users->newEntity(
+            $this->request->getData(),
+            ['fields' => ['username', 'password', 'email']]
+        );
+        $newUser->since = date("Y-m-d H:i:s");
+        $newUser->group_id = 4;
 
         // And we save
-        if ($this->User->save($newUser)) {
+        if ($this->Users->save($newUser)) {
+            $this->loadModel('UsersLanguages');
             // Save native language
-            $language = $this->request->data['User']['language'];
+            $language = $this->request->getData('language');
             if (!empty($language) && $language != 'none') {
-                $userLanguage = array(
-                    'of_user_id' => $this->User->id,
-                    'by_user_id' => $this->User->id,
+                $userLanguage = $this->UsersLanguages->newEntity([
+                    'of_user_id' => $newUser->id,
+                    'by_user_id' => $newUser->id,
                     'level' => 5,
                     'language_code' => $language
-                );
+                ]);
                 $this->UsersLanguages->save($userLanguage);
             }
 
-            $this->Auth->login();
+            $user = $this->Auth->identify();
+            $this->Auth->setUser($user);
 
             $profileUrl = Router::url(
                 array(
@@ -434,30 +426,26 @@ class UsersController extends AppController
      */
     public function new_password()
     {
-        if (!empty($this->request->data)) {
-            $user = $this->User->findByEmail($this->request->data['User']['email']);
+        $sentEmail = $this->request->getData('email');
+        if (!empty($sentEmail)) {
+            $user = $this->Users->findByEmail($sentEmail);
 
             // check if user exists, if so :
             if ($user) {
-                $newPassword = $this->User->generatePassword();
+                $newPassword = $this->Users->generatePassword();
+                $user->password = $newPassword;
 
-                // data to save
-                $updatePasswordData = array(
-                    'id' => $user['User']['id'],
-                    'password' => $newPassword,
-                );
-
-                if ($this->User->save($updatePasswordData)) { // if saved
+                if ($this->Users->save($user)) { // if saved
                     // prepare message
                     $this->Mailer->sendNewPassword(
-                        $this->request->data['User']['email'],
-                        $user['User']['username'],
+                        $user->email,
+                        $user->username,
                         $newPassword
                     );
 
                     $flashMessage = format(
                         __('Your new password has been sent to {email}.'),
-                        array('email' => $this->request->data['User']['email'])
+                        array('email' => $user->email)
                     );
                     $flashMessage .= "<br/>";
                     $flashMessage .= __(
@@ -470,7 +458,7 @@ class UsersController extends AppController
                 $this->flash(
                     __(
                         'There is no registered user with this email address: ', true
-                    ) . $this->request->data['User']['email'],
+                    ) . $sentEmail,
                     '/users/new_password'
                 );
             }
@@ -484,7 +472,7 @@ class UsersController extends AppController
      */
     public function search()
     {
-        $userId = $this->User->getIdFromUsername($this->request->data['User']['username']);
+        $userId = $this->Users->getIdFromUsername($this->request->getData('username'));
 
         if ($userId != null) {
             $this->redirect(array("action" => "show", $userId));
@@ -492,7 +480,7 @@ class UsersController extends AppController
             $this->flash(
                 __(
                     'No user with this username: ', true
-                ).$this->request->data['User']['username'],
+                ).$this->request->getData('username'),
                 '/users/all/'
             );
         }
@@ -510,13 +498,11 @@ class UsersController extends AppController
      */
     public function show($id)
     {
-        $id = Sanitize::paranoid($id);
-
         if ($id == 'random') {
             $id = null;
         }
 
-        $user = $this->User->getUserByIdWithExtraInfo($id);
+        $user = $this->Users->getUserByIdWithExtraInfo($id);
 
         if ($user != null) {
             $this->helpers[] = 'Wall';
@@ -524,7 +510,7 @@ class UsersController extends AppController
             $this->helpers[] = 'Members';
 
             $commentsPermissions = $this->Permissions->getCommentsOptions(
-                $user['SentenceComments']
+                $user->sentence_comments
             );
 
             $this->set('user', $user);
@@ -550,9 +536,9 @@ class UsersController extends AppController
     {
         $this->helpers[] = 'Members';
 
-        $this->loadModel('LastContribution');
-        $currentContributors = $this->LastContribution->getCurrentContributors();
-        $total = $this->LastContribution->getTotal($currentContributors);
+        $this->loadModel('LastContributions');
+        $currentContributors = $this->LastContributions->getCurrentContributors();
+        $total = $this->LastContributions->getTotal($currentContributors);
 
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
@@ -563,7 +549,8 @@ class UsersController extends AppController
             'fields' => array('id', 'username', 'since', 'image', 'group_id'),
         );
 
-        $users = $this->paginate(array('User.group_id < 5'));
+        $query = $this->Users->find()->where(['Users.group_id <' => 5]);
+        $users = $this->paginate($query);
         $this->set('users', $users);
     }
 
@@ -578,7 +565,7 @@ class UsersController extends AppController
     public function check_username($username)
     {
         $this->layout = null;
-        $user = $this->User->getIdFromUsername($username);
+        $user = $this->Users->getIdFromUsername($username);
 
         if ($user) {
             $this->set('data', true);
@@ -598,7 +585,7 @@ class UsersController extends AppController
     public function check_email($email)
     {
         $this->layout = null;
-        $userId = $this->User->getIdFromEmail($email);
+        $userId = $this->Users->getIdFromEmail($email);
 
         if ($userId) {
             $this->set('data', true);
@@ -612,10 +599,11 @@ class UsersController extends AppController
     {
         $this->helpers[] = 'Members';
 
+        $this->loadModel('UsersLanguages');
         $usersLanguages = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
 
         if (empty($lang)) {
-            $lang = $usersLanguages[0]['UsersLanguages']['language_code'];
+            $lang = $usersLanguages->first()->language_code;
         }
 
         $this->paginate = $this->UsersLanguages->getUsersForLanguage($lang);
