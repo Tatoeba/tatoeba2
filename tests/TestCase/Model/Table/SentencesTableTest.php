@@ -8,6 +8,7 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Lib\Autotranscription;
 
 class SentencesTableTest extends TestCase {
 	public $fixtures = array(
@@ -34,7 +35,7 @@ class SentencesTableTest extends TestCase {
 
 		/*
 		$this->Sentence->Behaviors->Sphinx = Mockery::mock();
-
+		*/
 		Configure::write('AutoTranscriptions.enabled', true);
 		$autotranscription = $this->_installAutotranscriptionMock();
 		$autotranscription
@@ -48,17 +49,19 @@ class SentencesTableTest extends TestCase {
 		$autotranscription
 			->expects($this->any())
 			->method('jpn_Jpan_to_Hrkt_validate')
-			->will($this->returnValue(true));
-		*/
+			->will($this->returnValue(true));		
 	}
 
 	function _installAutotranscriptionMock() {
-		$autotranscription = $this->getMock('Autotranscription', array(
-			'cmn_detectScript',
-			'jpn_Jpan_to_Hrkt_generate',
-			'jpn_Jpan_to_Hrkt_validate',
-		));
-		$this->Sentence->Transcription->setAutotranscription($autotranscription);
+		$autotranscription = $this->getMockBuilder(Autotranscription::class)
+			->setMethods([
+				'cmn_detectScript',
+				'jpn_Jpan_to_Hrkt_generate',
+				'jpn_Jpan_to_Hrkt_validate',
+			])
+			->getMock();
+		
+		$this->Sentence->Transcriptions->setAutotranscription($autotranscription);
 		return $autotranscription;
 	}
 
@@ -259,15 +262,14 @@ class SentencesTableTest extends TestCase {
 	}
 
     function testSentenceAdditionAddsTranscription() {
-        $result = $this->Sentence->save(array(
-            'text' => '歌舞伎ってご存知ですか？',
+		$data = $this->Sentence->newEntity([
+			'text' => '歌舞伎ってご存知ですか？',
             'lang' => 'jpn'
-        ));
-        $newSentence = $this->Sentence->getLastInsertID();
-        $transcriptions = $this->Sentence->Transcription->find(
-            'count',
-            array('conditions' => array('sentence_id' => $newSentence))
-        );
+		]);
+        $newSentence = $this->Sentence->save($data);
+		$transcriptions = $this->Sentence->Transcriptions->find()
+			->where(['sentence_id' => $newSentence->id])
+			->count();
         $this->assertEquals(1, $transcriptions);
     }
 
@@ -278,12 +280,13 @@ class SentencesTableTest extends TestCase {
 			->method('cmn_detectScript')
 			->will($this->returnValue('Hant'));
 		$cmnSentenceId = 2;
-		$this->Sentence->id = $cmnSentenceId;
-		$this->Sentence->save(array(
+		$data = $this->Sentence->newEntity([
+			'id' => $cmnSentenceId,
 			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
-		));
-		$result = $this->Sentence->findById($cmnSentenceId, 'script');
-		$this->assertEquals('Hant', $result['Sentence']['script']);
+		]);
+		$this->Sentence->save($data);
+		$result = $this->Sentence->get($cmnSentenceId);
+		$this->assertEquals('Hant', $result->script);
 	}
 
 	function testSentenceFlagEditionUpdatesScript() {
@@ -300,34 +303,36 @@ class SentencesTableTest extends TestCase {
 		$jpnSentenceId = 6;
 		$fieldsDiffers = array('text');
 		$conditions = array('sentence_id' => $jpnSentenceId);
-		$transcrBefore = $this->Sentence->Transcription->find(
-			'all', compact('fields', 'conditions')
-		);
+		$transcrBefore = $this->Sentence->Transcriptions->find('all')
+			->where($conditions)
+			->first();
 
-		$this->Sentence->id = $jpnSentenceId;
-		$this->Sentence->save(array(
-			'text' => '未来から来ました。',
-		));
+		$data = $this->Sentence->newEntity([
+			'id' => $jpnSentenceId,
+			'text' => '未来から来ました。'
+		]);
+		$this->Sentence->save($data);
 
-		$transcrAfter = $this->Sentence->Transcription->find(
-			'all', compact('fields', 'conditions')
-		);
+		$transcrAfter = $this->Sentence->Transcriptions->find('all')
+			->where($conditions)
+			->first();
+
 		$this->assertEquals(count($transcrBefore), count($transcrAfter));
 		$this->assertNotEquals($transcrBefore, $transcrAfter);
 	}
 
 	function testSentenceFlagEditionGeneratesTranscriptions() {
 		$engSentenceId = 1;
-		$conditions = array('sentence_id' => $engSentenceId);
-
-		$this->Sentence->id = $engSentenceId;
-		$this->Sentence->save(array(
+		$data = $this->Sentence->newEntity([
+			'id' => $engSentenceId,
 			'lang' => 'jpn',
-		));
+		]);
+		$this->Sentence->save($data);
 
-		$nbTranscr = $this->Sentence->Transcription->find(
-			'count', compact('conditions')
-		);
+		$nbTranscr = $this->Sentence->Transcriptions->find()
+			->where(['sentence_id' => $engSentenceId])
+			->count();
+
 		$this->assertTrue($nbTranscr > 0);
 	}
 
@@ -335,14 +340,15 @@ class SentencesTableTest extends TestCase {
 		$jpnSentenceId = 6;
 		$conditions = array('sentence_id' => $jpnSentenceId);
 
-		$this->Sentence->id = $jpnSentenceId;
-		$this->Sentence->save(array(
+		$data = $this->Sentence->newEntity([
+			'id' => $jpnSentenceId,
 			'lang' => 'deu',
-		));
+		]);
+		$this->Sentence->save($data);
 
-		$nbTranscr = $this->Sentence->Transcription->find(
-			'count', compact('conditions')
-		);
+		$nbTranscr = $this->Sentence->Transcriptions->find()
+			->where($conditions)
+			->count();			
 		$this->assertTrue($nbTranscr == 0);
 	}
 
@@ -350,25 +356,25 @@ class SentencesTableTest extends TestCase {
 		$jpnSentenceId = 6;
 		$jpnSentenceOwner = 7;
 		$conditions = array('sentence_id' => $jpnSentenceId);
-		$transcrBefore = $this->Sentence->Transcription->find(
-			'all', compact('conditions')
-		);
+		$transcrBefore = $this->Sentence->Transcriptions->find('all')
+			->where($conditions)
+			->first();
 
 		$this->Sentence->unsetOwner($jpnSentenceId, $jpnSentenceOwner);
 
-		$transcrAfter = $this->Sentence->Transcription->find(
-			'all', compact('conditions')
-		);
+		$transcrAfter = $this->Sentence->Transcriptions->find('all')
+			->where($conditions)
+			->first();
 		$this->assertEquals($transcrBefore, $transcrAfter);
 	}
 
 	function testSentenceDeletionDeletesTranscriptions() {
-		$jpnSentenceId = 6;
-		$this->Sentence->delete($jpnSentenceId, false);
+		$jpnSentence = $this->Sentence->get(6);
+		$this->Sentence->delete($jpnSentence);
 
-		$transcr = $this->Sentence->Transcription->find('all', array(
-			'conditions' => array('sentence_id' => $jpnSentenceId),
-		));
+		$transcr = $this->Sentence->Transcriptions->find('all')
+			->where(['sentence_id' => $jpnSentence->id])
+			->toList();
 		$this->assertEquals(array(), $transcr);
 	}
 

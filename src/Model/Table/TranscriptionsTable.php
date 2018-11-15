@@ -16,13 +16,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Lib\autotranscription;
-use App\Model\AppModel;
+use App\Lib\Autotranscription;
+use Cake\ORM\Table;
 
 
-class Transcription extends AppModel
+class TranscriptionsTable extends Table
 {
     /**
      * Autotranscription class
@@ -132,6 +132,11 @@ class Transcription extends AppModel
        of the last transcription save operation */
     public $validationErrors = array();
 
+    public function initialize(array $config)
+    {
+        $this->belongsTo('Sentences');
+    }
+
     public function setAutotranscription($object) {
         $this->autotranscription = $object;
     }
@@ -165,7 +170,7 @@ class Transcription extends AppModel
             'fields' => array('id', 'lang', 'script'),
             'callbacks' => false,
         );
-        $dbo = $this->Sentence->getDataSource();
+        $dbo = $this->Sentences->getDataSource();
         $sentences = $dbo->read($this->Sentence, $query, -1);
 
         $sentenceById = array();
@@ -190,11 +195,11 @@ class Transcription extends AppModel
         }
     }
 
-    public function _isUnique() {
-        $script = $this->_getFieldFromDataOrDatabase('script');
+    public function _isUnique($entity) {
+        $script = $entity->script;
         if (!$script)
             return false;
-        $sentenceId = $this->_getFieldFromDataOrDatabase('sentence_id');
+        $sentenceId = $entity->sentence_id;
         if (!$sentenceId)
             return false;
 
@@ -202,50 +207,50 @@ class Transcription extends AppModel
             'script' => $script,
             'sentence_id' => $sentenceId,
         );
-        if (!empty($this->id)) {
+        if ($entity->id) {
             $conditions['id !='] = $this->id;
         }
 
-        return ($this->find('count', array('conditions' => $conditions)) == 0);
+        $count = $this->find()->where($conditions)->count(); 
+        return $count == 0;
     }
 
-    public function beforeSave($options = array()) {
+    public function beforeSave($event, $entity, $options) {
         $ok = true;
-        if (isset($this->data[$this->alias]['id'])) { // update
+        if (!$entity->isNew()) { // update
             if ($this->isModifyingFields(array('sentence_id', 'script')))
                 $ok = false;
             else
                 $ok = $this->_checkTranscriptionRules();
         } else { // create
-            if (   isset($this->data[$this->alias]['sentence_id'])
-                || isset($this->data[$this->alias]['script'])) {
-                $ok = $this->_isUnique() && $this->_checkTranscriptionRules();
+            if ($entity->sentence_id || $entity->script) {
+                $ok = $this->_isUnique($entity) && $this->_checkTranscriptionRules($entity);
             }
         }
         return $ok;
     }
 
-    private function _checkTranscriptionRules() {
-        $targetScript = $this->_getFieldFromDataOrDatabase('script');
+    private function _checkTranscriptionRules($entity) {
+        $targetScript = $entity->script;
         if (!$targetScript)
             return false;
 
-        $parentSentenceId = $this->_getFieldFromDataOrDatabase('sentence_id');
+        $parentSentenceId = $entity->sentence_id;
         if (!$parentSentenceId)
             return false;
-        $parentSentence = $this->Sentence->find('first', array(
-            'conditions' => array('Sentence.id' => $parentSentenceId),
-        ));
+        $parentSentence = $this->Sentences->find()
+            ->where(['id' => $parentSentenceId])
+            ->first();
         if (!$parentSentence)
             return false;
 
-        $langScript = $this->getSourceLangScript($parentSentence['Sentence']);
+        $langScript = $this->getSourceLangScript($parentSentence);
         if (!$langScript)
             return false;
         if (!isset($this->availableTranscriptions[$langScript][$targetScript]))
             return false;
 
-        $userId = $this->_getFieldFromDataOrDatabase('user_id');
+        $userId = $entity->user_id;
         $transcrValidateMethod = sprintf(
             '%s_to_%s_validate',
             strtr($langScript, '-', '_'),
@@ -256,7 +261,7 @@ class Transcription extends AppModel
             $this->validationErrors = array();
             $ok = $this->autotranscription->{$transcrValidateMethod}(
                 $parentSentence['Sentence']['text'],
-                $this->_getFieldFromDataOrDatabase('text'),
+                $entity->text,
                 $this->validationErrors
             );
             if (!$ok) {
@@ -342,7 +347,7 @@ class Transcription extends AppModel
     }
 
     public function saveTranscription($transcr) {
-        $sentence = $this->Sentence->findById($transcr['sentence_id']);
+        $sentence = $this->Sentences->findById($transcr['sentence_id']);
         if (!$sentence)
             return false;
 
@@ -400,11 +405,8 @@ class Transcription extends AppModel
 
         $params = $this->availableTranscriptions[$langScript][$targetScript];
         if ($save) {
-            $this->create();
-            if (!$this->save($transcr))
-                return false;
-            $this->read();
-            $transcr = $this->data[$this->alias];
+            $data = $this->newEntity($transcr);
+            $transcr = $this->save($data)->old_format['Transcription'];
         } else {
             $transcr['id'] = 'autogenerated';
         }

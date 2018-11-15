@@ -18,75 +18,57 @@
  */
 namespace App\Model\Behavior;
 
-use Cake\Model\Behavior;
-use Cake\Model\Model;
-
+use Cake\ORM\Behavior;
+use Cake\Event\Event;
+use Cake\Datasource\EntityInterface;
+use Cake\ORM\TableRegistry;
 
 /**
  * Model behavior for transcriptions/transliterations.
  * Only attached to the Sentence model.
  */
-class TranscriptableBehavior extends ModelBehavior
+class TranscriptableBehavior extends Behavior
 {
-    private function addScriptInformation($model) {
-        $lang = $model->_getFieldFromDataOrDatabase('lang');
-        $text = $model->_getFieldFromDataOrDatabase('text');
-        $script = $model->Transcription->detectScript($lang, $text);
-        $model->data[$model->alias]['script'] = $script;
+    public function initialize(array $config) {
+        $this->Transcriptions = TableRegistry::getTableLocator()->get('Transcriptions');
     }
 
-    public function beforeSave(Model $model, $options = array()) {
-        $isNewSentence = !$model->id;
-        if ($isNewSentence) {
-            if (!isset($model->data[$model->alias]['script']))
-                $this->addScriptInformation($model);
-        } else {
-            if (isset($model->data[$model->alias]['text']) ||
-                isset($model->data[$model->alias]['lang']))
-                $this->addScriptInformation($model);
-        }
-        if (!$this->isScriptValid($model)) {
+    public function beforeSave($event, $entity, $options) {
+        $entity->script = $this->Transcriptions->detectScript(
+            $entity->lang, 
+            $entity->text
+        );
+        if (!$this->isScriptValid($entity)) {
             return false;
         }
         return true;
     }
 
-    private function isScriptValid($model) {
-        if (!isset($model->data[$model->alias]['script']))
+    private function isScriptValid($entity) {
+        if (!isset($entity->script))
             return true;
 
-        $script = $model->data[$model->alias]['script'];
-        $lang = $model->_getFieldFromDataOrDatabase('lang');
-        return $model->Transcription->isValidScriptForLanguage($lang, $script);
+        $isValid = $this->Transcriptions->isValidScriptForLanguage(
+            $entity->lang, 
+            $entity->script
+        );
+        return $isValid;
     }
 
-    public function afterSave(Model $model, $created, $options = array()) {
-        if ($created) {
-            $model->data[$model->alias]['id'] = $model->getLastInsertID();
-            $this->createTranscriptions($model, $model->data);
-        } else {
-            if (array_key_exists('text', $model->data[$model->alias]) ||
-                array_key_exists('lang', $model->data[$model->alias])) {
-                $this->deleteTranscriptions($model);
-                $sentence = $model->find('first', array(
-                    'conditions' => array(
-                        $model->alias . '.' . $model->primaryKey => $model->id
-                    ),
-                ));
-                $this->createTranscriptions($model, $sentence);
-            }
+    public function afterSave($event, $entity, $options) {
+        if ($entity->text || $entity->lang) {
+            $this->deleteTranscriptions($entity);
         }
+        $this->createTranscriptions($entity);
     }
 
-    private function createTranscriptions($model, $data = null) {
-        $sentence = $data[$model->alias];
-        $model->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
+    private function createTranscriptions($entity) {
+        $this->Transcriptions->generateAndSaveAllTranscriptionsFor($entity->old_format);
     }
 
-    private function deleteTranscriptions($model) {
-        $sentenceId = $model->id;
-        $model->Transcription->deleteAll(
-            array('Transcription.sentence_id' => $sentenceId),
+    private function deleteTranscriptions($entity) {
+        $this->Transcriptions->deleteAll(
+            array('Transcription.sentence_id' => $entity->id),
             false,
             false
         );

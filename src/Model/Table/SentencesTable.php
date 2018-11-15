@@ -95,10 +95,16 @@ class SentencesTable extends Table
 
     public function initialize(array $config)
     {
-        $this->belongsToMany('Links');
+        $this->belongsToMany('Translations');
         $this->belongsTo('Users');
+        $this->belongsTo('Languages');
         $this->hasMany('Contributions');
+        $this->hasMany('Transcriptions');
+        $this->hasMany('Audios');
+        $this->hasMany('Translations');
+        $this->hasMany('Links');
         $this->addBehavior('Hashable');
+        $this->addBehavior('Transcriptable');
 
         $this->getEventManager()->on(new ContributionListener());
         //$this->getEventManager()->attach(new UsersLanguagesListener());
@@ -379,29 +385,17 @@ class SentencesTable extends Table
         */
     }
 
-    /**
-     * Called before every deletion operation.
-     *
-     * @param boolean $cascade If true records that depend on this record will also be deleted
-     * @return boolean True if the operation should continue, false if it should abort
-     */
-    public function beforeDelete($cascade = true) {
-        // Retrieve data before deleting it, so that we can log things
-        // in afterDelete()
-        $this->data = $this->find(
-            'first',
-            array(
-                'conditions' => array('Sentence.id' => $this->id),
-                'contain' => array('Link', 'User', 'Audio')
-            )
-        );
-
-        if (count($this->data['Audio']) > 0) {
+    public function beforeDelete($event, $entity, $options)
+    {
+        $hasAudio = $this->hasAudio($entity->id);
+        if ($hasAudio) {
             return false;
         }
 
+        /*
         $this->data['ReindexFlag'] =
             $this->Link->findDirectAndIndirectTranslationsIds($this->id);
+        */
 
         return true;
     }
@@ -411,32 +405,20 @@ class SentencesTable extends Table
      *
      * @return void
      */
-    public function afterDelete(Event $event, Entity $entity, ArrayObject $options)
+    public function afterDelete($event, $entity, $options)
     {
+        $sentenceId = $entity->id;
+        $sentenceLang = $entity->lang;
         // --- Logs for sentence ---
-        $sentenceLang = $this->data['Sentence']['lang'];
-        $sentenceScript = $this->data['Sentence']['script'];
-        $sentenceId = $this->data['Sentence']['id'];
-        $sentenceText = $this->data['Sentence']['text'];
-        $this->Contribution->saveSentenceContribution(
+        $this->Contributions->saveSentenceContribution(
             $sentenceId,
             $sentenceLang,
-            $sentenceScript,
-            $sentenceText,
+            $entity->script,
+            $entity->text,
             'delete'
         );
 
-        // --- Logs for links ---
-        $action = 'delete';
-        foreach ($this->data['Link'] as $translation) {
-            $this->Contribution->saveLinkContribution(
-                $sentenceId, $translation['id'], $action
-            );
-            $this->Contribution->saveLinkContribution(
-                $translation['id'], $sentenceId, $action
-            );
-        }
-
+        /* TODO
         // Reindex translations
         $this->needsReindex($this->data['ReindexFlag']);
 
@@ -445,24 +427,30 @@ class SentencesTable extends Table
         $this->ReindexFlag->create();
         $this->ReindexFlag->save(array(
             'sentence_id' => $sentenceId,
-            'lang' => $this->data['Sentence']['lang'],
+            'lang' => $sentenceLang
         ));
+        */
 
         // Remove links
-        $conditions = array(
-            'Link.sentence_id' => $sentenceId,
-            // Note that deleting Link.translation_id == $sentenceId
-            // is unnecessary because CakePHP already deleted them
-            // during delete() thanks to the HABTM relation
-        );
-        $this->Link->deleteAll($conditions, false);
+        $conditions = ['OR' => [
+            'sentence_id' => $sentenceId,
+            'translation_id'=> $sentenceId
+        ]];
+        $links = $this->Links->find('all')->where($conditions)->toList();
+        $deleted = $this->Links->deleteAll($conditions);
+
+        // --- Logs for links ---
+        foreach ($links as $link) {
+            $this->Contributions->saveLinkContribution(
+                $link->sentence_id, $link->translation_id, 'delete'
+            );
+        }
 
         // Remove transcriptions
-        $conditions = array('Transcription.sentence_id' => $sentenceId);
-        $this->Transcription->deleteAll($conditions, false);
+        $this->Transcriptions->deleteAll(['sentence_id' => $sentenceId]);
 
-        // Decrement statistics
-        $this->Language->decrementCountForLanguage($sentenceLang);
+        // TODO Decrement statistics
+        // $this->Languages->decrementCountForLanguage($sentenceLang);
     }
 
     public function afterFind($results, $primary = false) {
@@ -1061,11 +1049,11 @@ class SentencesTable extends Table
      */
     public function unsetOwner($sentenceId, $userId)
     {
-        $this->id = $sentenceId;
+        $sentence = $this->get($sentenceId);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
-        $ownerId = $currentOwner['id'];
-        if ($ownerId == $userId) {
-            $this->saveField('user_id', null);
+        if ($currentOwner->id == $userId) {
+            $sentence->user_id = null;
+            $this->save($sentence);
             return true;
         }
         return false;
@@ -1081,18 +1069,9 @@ class SentencesTable extends Table
      */
     public function getOwnerInfoOfSentence($sentenceId)
     {
-        $sentence = $this->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'Sentence.id' => $sentenceId
-                ),
-                'fields' => array('user_id'),
-                'contain' => array('User' => array('group_id'))
-            )
-        );
-
-        return $sentence['User'];
+        $sentence = $this->get($sentenceId, ['contain' => 'Users']);
+        
+        return $sentence->user;
     }
 
 
@@ -1346,7 +1325,8 @@ class SentencesTable extends Table
      */
     public function hasAudio($id)
     {
-        return $this->Audio->findBySentenceId($id, 'sentence_id');
+        $count = $this->Audios->findBySentenceId($id)->count();
+        return $count > 0;
     }
 
     public function deleteSentence($id)

@@ -6,6 +6,7 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 class AudiosFixture extends TestFixture {
     public $name = 'Audio';
+    public $useTable = 'audios';
 
     public $fields = array(
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],

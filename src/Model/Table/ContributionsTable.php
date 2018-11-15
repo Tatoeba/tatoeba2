@@ -282,7 +282,7 @@ class ContributionsTable extends Table
      */
     public function saveSentenceContribution($id, $lang, $script, $text, $action)
     {
-        $data = array(
+        $data = $this->newEntity([
             'id' => null,
             'sentence_id' => $id,
             'sentence_lang' => $lang,
@@ -293,7 +293,7 @@ class ContributionsTable extends Table
             'ip' => CurrentUser::getIp(),
             'type' => 'sentence',
             'action' => $action
-        );
+        ]);
 
         $this->save($data);
     }
