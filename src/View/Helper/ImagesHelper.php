@@ -55,7 +55,7 @@ class ImagesHelper extends AppHelper
      *
      * @return string
      */
-    public function svgIcon($imageName, $options = null, $id = null) {
+    public function svgIcon($imageName, $options = array(), $id = null) {
         $imgPath = $this->assetTimestamp('/img/' . $imageName . '.svg');
         if (empty($id)) {
             $id = $imageName;
