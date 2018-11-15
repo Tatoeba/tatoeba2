@@ -77,6 +77,7 @@ echo $this->Form->create(
     'User',
     array(
         'url' => array(
+            'controller' => 'users',
             'action' => 'check_login',
             '?' => array('redirectTo' => $this->Pages->currentPageUrl()),
         ),
