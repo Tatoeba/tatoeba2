@@ -114,6 +114,7 @@ class AppController extends Controller
         $this->Security->blackHoleCallback = 'blackhole';
 
         $this->Cookie->domain = TATOEBA_DOMAIN;
+        $this->Cookie->configKey('CakeCookie', 'encryption', false);
         // This line will call views/elements/session_expired.ctp.
         // When one tries to do an AJAX action after the session is expired,
         // the action will return the content of this file instead of
@@ -139,7 +140,7 @@ class AppController extends Controller
         // - If the user has a cookie, we use the language set in the cookie.
         // - If no cookie, we use the language set in the URL.
         $lang = $this->getSupportedLanguage();
-        $langInCookie = $this->Cookie->read('interfaceLanguage');
+        $langInCookie = $this->Cookie->read('CakeCookie.interfaceLanguage');
         $langInURL = $this->request->getParam('lang', null);
 
         $langInURLAlias = $this->remapOldLangAlias($langInURL);
@@ -148,13 +149,13 @@ class AppController extends Controller
         } else if ($langInCookie) {
             $langInCookieAlias = $this->remapOldLangAlias($langInCookie);
             if ($langInCookieAlias != $langInCookie && !empty($langInURL)) {
-                $this->Cookie->write('interfaceLanguage', $langInCookieAlias, false, "+1 month");
+                $this->Cookie->write('CakeCookie.interfaceLanguage', $langInCookieAlias, false, "+1 month");
                 $langInCookie = $langInCookieAlias;
             }
             $lang = $langInCookie;
         } else if (!empty($langInURL)) {
             $lang = $langInURL;
-            $this->Cookie->write('interfaceLanguage', $lang, false, "+1 month");
+            $this->Cookie->write('CakeCookie.interfaceLanguage', $lang, false, "+1 month");
         }
         Configure::write('Config.language', $lang);
 
