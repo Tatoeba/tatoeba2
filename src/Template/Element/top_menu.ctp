@@ -147,20 +147,21 @@ $menuElements = array(
         <?php
         echo $this->element('header');
 
-        // current path param
+        // currenot path param
+        $pass = $this->request->getParam('pass');
         $param = '';
-        if (isset($this->request->params['pass'][0])) {
-            $param = $this->request->params['pass'][0];
+        if (!empty($pass)) {
+            $param = $pass[0];
         };
         
         // current path action
-        $action = $this->request->params['action'];
+        $action = $this->request->getParam('action');
         if ($action == 'display') {
             $action = $param;
         }
         
         // current path controller
-        $controller = $this->request->params['controller'];
+        $controller = $this->request->getParam('controller');
         
         foreach ($menuElements as $title => $data) {
             
@@ -228,8 +229,7 @@ $menuElements = array(
             <?php
             // User menu
             if (!$session->read('Auth.User.id')) {
-                $isOnLoginPage = ($this->request->params['controller'] == 'users')
-                    && ($this->request->params['action'] == 'login');
+                $isOnLoginPage = ($controller == 'Users' && $action == 'login');
 
                 if (!$isOnLoginPage) {
                     echo $this->element('login');
