@@ -76,8 +76,8 @@ class UsersTable extends Table
             ->scalar('username')
             ->requirePresence('username', 'create')
             ->lengthBetween('username', [2, 20])
-            ->add('username', [
-                'alphanumeric' => ['rule' => ['custom', '/^\\w*$/']],
+            ->add('username', 'alphanumeric', [
+                'rule' => ['custom', '/^\\w*$/']
             ]);
 
         $validator
@@ -87,8 +87,8 @@ class UsersTable extends Table
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
-            ->add('email', [
-                'email' => ['rule' => ['custom' => '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/']],
+            ->add('email', 'email', [
+                'rule' => ['custom', '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'],
             ]);
 
         $validator
