@@ -26,9 +26,10 @@
  */
 namespace App\Controller\Component;
 
-use App\Network\Email\Email;
 use Cake\Controller\Component;
 use Cake\Core\Configure;
+use Cake\Mailer\Email;
+use Cake\ORM\TableRegistry;
 
 
 /**
@@ -49,8 +50,8 @@ class MailerComponent extends Component
             ->subject('( ! ) ' . $username)
             ->template('blocked_or_suspended_user');
 
-        $User = ClassRegistry::init('User');
-        $Contribution = ClassRegistry::init('Contribution');
+        $User = TableRegistry::get('Users');
+        $Contribution = TableRegistry::get('Contributions');
         $userId = $User->getIdFromUsername($username);
         $ips = $Contribution->getLastContributionOf($userId);
 
