@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use App\Model\Entity\User;
 
 /**
  * Edit view for Users model.
@@ -35,8 +36,8 @@
  * @link     http://tatoeba.org
  */
 
-$userId = $this->Form->value('User.id');
-$username = $this->Form->value('User.username');
+$userId = $user->id;
+$username = $user->username;
 ?>
 <div id="annexe_content">
     <ul class="actions">
@@ -48,7 +49,7 @@ $username = $this->Form->value('User.username');
             'action' => 'delete',
             $userId
         ),
-        null,
+        array(),
         format(__d('admin', 'Are you sure you want to delete user #{number}?'),
                array('number' => $userId))
         );
@@ -73,7 +74,7 @@ $username = $this->Form->value('User.username');
 <div id="main_content">
 <?php
 $this->Security->enableCSRFProtection();
-echo $this->Form->create('User');
+echo $this->Form->create($user, array('id' => 'UserEditForm'));
 ?>
     <fieldset>
     <legend><?php echo __d('admin', 'Edit User'); ?></legend>
@@ -100,7 +101,8 @@ echo $this->Form->create('User');
     ?>
     </fieldset>
 <?php
-echo $this->Form->end(array('label' => __d('admin', 'Submit')));
+echo $this->Form->submit(__d('admin', 'Submit'));
+echo $this->Form->end();
 $this->Security->disableCSRFProtection();
 ?>
 </div>
