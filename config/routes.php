@@ -92,7 +92,9 @@ Router::scope('/', function (RouteBuilder $routes) {
             'action' =>'index'
         ],
         $interfaceLanguages
-    );
+    )
+    ->setPersist(['lang']);
+
     $routes->connect(
         '/:lang/tools/search_hanzi_kanji/:action',
         [
@@ -100,7 +102,8 @@ Router::scope('/', function (RouteBuilder $routes) {
             'controller' => 'Sinograms',
         ],
         $interfaceLanguages
-    );
+    )
+    ->setPersist(['lang']);
 
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -122,7 +125,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             'action' => 'index'
         ],
         $interfaceLanguages
-    );
+    ->setPersist(['lang']);
 
     $routes->connect(
         '/:action',
@@ -137,7 +140,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             'controller' => 'pages',
         ],
         $interfaceLanguages
-    );
+    ->setPersist(['lang']);
 
     /**
      * La langue choisie sera maintenant disponible dans les contrôleurs
@@ -149,7 +152,7 @@ Router::scope('/', function (RouteBuilder $routes) {
             'lang'=>'eng'
         ],
         $interfaceLanguages
-    );
+    ->setPersist(['lang']);
 
     /**
      * Connect catchall routes for all controllers.
