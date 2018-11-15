@@ -35,8 +35,8 @@ $languages = array();
 foreach ($configUiLanguages as $langs) {
     list($isoCode, $suffix, $name) = $langs;
     $fullIsoCode = LanguagesLib::languageTag($isoCode, $suffix);
-    $languages[$isoCode] = array(
-        'name' => $name,
+    $languages[] = array(
+        'text' => $name,
         'value' => $isoCode,
         'lang' => $fullIsoCode,
         'dir' => LanguagesLib::getLanguageDirection($isoCode),
@@ -46,7 +46,7 @@ foreach ($configUiLanguages as $langs) {
 usort(
     $languages,
     function($a, $b) {
-        return strnatcmp($a['name'], $b['name']);
+        return strnatcmp($a['text'], $b['text']);
     }
 );
 
