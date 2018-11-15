@@ -25,6 +25,7 @@
  * @link     http://tatoeba.org
  */
 use App\Model\CurrentUser;
+use Cake\ORM\TableRegistry;
 ?>
 
 
@@ -197,7 +198,7 @@ use App\Model\CurrentUser;
 
 
     <?php
-    $newMessages = ClassRegistry::init('PrivateMessage')->numberOfUnreadMessages(
+    $newMessages = TableRegistry::get('PrivateMessages')->numberOfUnreadMessages(
         CurrentUser::get('id')
     );
     $class = '';
