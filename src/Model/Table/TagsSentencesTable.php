@@ -20,6 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\Utility\Hash;
 
 class TagsSentencesTable extends Table
 {
@@ -179,15 +180,14 @@ class TagsSentencesTable extends Table
         return !empty($result);
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $sentenceId) {
         $isMVA = true;
         $attributes[] = 'tags_id';
-        $sentenceId = $this->data['TagsSentences']['sentence_id'];
-        $records = $this->find('all', array(
-            'conditions' => array('sentence_id' => $sentenceId),
-            'fields' => 'tag_id',
-        ));
-        $tagsId = (array)Set::classicExtract($records, '{n}.TagsSentences.tag_id');
+        $records = $this->find('all')
+            ->where(['sentence_id' => $sentenceId])
+            ->select('tag_id')
+            ->toList();
+        $tagsId = Hash::extract($records, '{n}.tag_id');
         $values = array($sentenceId => array($tagsId));
     }
 }

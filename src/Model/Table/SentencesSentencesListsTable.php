@@ -15,32 +15,14 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\Utility\Hash;
 
-
-/**
- * Model for association table between sentences and lists.
- *
- * @category SentencesSentencesLists
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-
-class SentencesSentencesLists extends AppModel
+class SentencesSentencesListsTable extends Table
 {
     public $name = 'SentencesSentencesLists';
     public $useTable = 'sentences_sentences_lists';
@@ -107,15 +89,14 @@ class SentencesSentencesLists extends AppModel
         );
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $sentenceId) {
         $isMVA = true;
         $attributes[] = 'lists_id';
-        $sentenceId = $this->data['SentencesSentencesLists']['sentence_id'];
-        $records = $this->find('all', array(
-            'conditions' => array('sentence_id' => $sentenceId),
-            'fields' => 'sentences_list_id',
-        ));
-        $listsId = (array)Set::classicExtract($records, '{n}.SentencesSentencesLists.sentences_list_id');
+        $records = $this->find('all')
+            ->where(['sentence_id' => $sentenceId])
+            ->select('sentences_list_id')
+            ->toList();
+        $listsId = Hash::extract($records, '{n}.sentences_list_id');
         $values = array($sentenceId => array($listsId));
     }
 }
