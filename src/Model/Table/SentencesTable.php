@@ -27,6 +27,7 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\Event\ContributionListener;
 use Cake\Utility\Hash;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 class SentencesTable extends Table
 {
@@ -113,6 +114,8 @@ class SentencesTable extends Table
         $this->hasMany('Translations');
         $this->hasMany('Links');
         $this->hasMany('ReindexFlags');
+        $this->hasMany('UsersSentences');
+        
         $this->addBehavior('Hashable');
         $this->addBehavior('Transcriptable');
 
@@ -379,6 +382,9 @@ class SentencesTable extends Table
 
     public function needsReindex($ids)
     {
+        if (empty($ids)) {
+            return;
+        }
         $result = $this->find('all')
             ->where(['id' => $ids], ['id' => 'integer[]'])
             ->select(['id', 'lang'])
@@ -1242,7 +1248,12 @@ class SentencesTable extends Table
 
         // Set $id and $lang
         extract($idLangArray);
-        $sentence = $this->findById($id);
+        try {
+            $sentence = $this->get($id);
+        } catch (RecordNotFoundException $e) {
+            return array();
+        }
+        
         if ($this->_cantEditSentence($sentence)) {
             return $sentence;
         }
@@ -1252,14 +1263,13 @@ class SentencesTable extends Table
         }
 
         $hash = $this->makeHash($lang, $text);
-        $data = array(
-            'id' => $id,
+        $this->patchEntity($sentence, [
             'text' => $text,
             'hash' => $hash,
             'lang' => $lang
-        );
+        ]);
 
-        $sentenceSaved = $this->save($data);
+        $sentenceSaved = $this->save($sentence);
         if ($sentenceSaved) {
             $this->UsersSentences->makeDirty($id);
         }
@@ -1300,8 +1310,8 @@ class SentencesTable extends Table
             $dirtyArray = explode("_", $sentenceId);
 
             return [
-                'id' => Sanitize::paranoid($dirtyArray[1]),
-                'lang' => Sanitize::paranoid($dirtyArray[0])
+                'id' => $dirtyArray[1],
+                'lang' => $dirtyArray[0]
             ];
         }
 
@@ -1318,7 +1328,7 @@ class SentencesTable extends Table
     private function _cantEditSentence($sentence)
     {
         return !$sentence ||
-            !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id']);
+            !CurrentUser::canEditSentenceOfUserId($sentence->user_id);
     }
 
     /**
@@ -1334,20 +1344,19 @@ class SentencesTable extends Table
 
     public function deleteSentence($id)
     {
-        $id = Sanitize::paranoid($id);
         if (empty($id)) {
             return false;
         }
 
-        $sentence = $this->findById($id);
+        $sentence = $this->get($id);
         if (!$sentence) {
             return false;
         }
 
-        if (!CurrentUser::canRemoveSentence($sentence['Sentence']['id'], $sentence['Sentence']['user_id'])) {
+        if (!CurrentUser::canRemoveSentence($sentence->id, $sentence->user_id)) {
             return false;
         }
 
-        return $this->delete($id, false);
+        return $this->delete($sentence);
     }
 }

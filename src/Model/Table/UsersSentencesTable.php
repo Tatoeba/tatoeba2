@@ -15,30 +15,12 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 
-
-/**
- * Model Class for users sentences.
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class UsersSentences extends AppModel
+class UsersSentencesTable extends Table
 {
     public $name = 'UsersSentences';
     public $useTable = "users_sentences";

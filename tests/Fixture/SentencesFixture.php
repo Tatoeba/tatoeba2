@@ -17,7 +17,7 @@ class SentencesFixture extends TestFixture {
 		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'script' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'hash' => ['type' => 'binary', 'null' => false, 'default' => null, 'length' => 16],
+		'hash' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 16],
 		'license' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 50, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'based_on_id' => ['type' => 'integer', 'null' => true, 'default' => null, 'unsigned' => false],
 		'_indexes' => [

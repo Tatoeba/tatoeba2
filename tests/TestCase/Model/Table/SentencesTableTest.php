@@ -782,8 +782,8 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testEditSentence_succeeds() {
-		$user = $this->Sentence->User->findById(2);
-		CurrentUser::store($user['User']);
+		$user = $this->Sentence->Users->get(2);
+		CurrentUser::store($user);
 
 		$data = array(
 			'id' => 'eng_53',
@@ -797,42 +797,41 @@ class SentencesTableTest extends TestCase {
 			'text' => 'Edited sentence.',
 			'hash' => '1kqlcvr'
 		);
-		$result = array_intersect_key($sentence['Sentence'], $expected);
+		$result = array_intersect_key($sentence->old_format['Sentence'], $expected);
 
 		$this->assertEquals($expected, $result);
 	}
 
 	function testEditSentence_failsBecauseHasAudio() {
-		$user = $this->Sentence->User->findById(7);
-		CurrentUser::store($user['User']);
+		$user = $this->Sentence->Users->get(7);
+		CurrentUser::store($user);
 
 		$data = array(
 			'id' => 'spa_3',
 			'value' => 'changing'
 		);
 		$result = $this->Sentence->editSentence($data);
-		$expected = $this->Sentence->findById(3);
+		$expected = $this->Sentence->get(3);
 		
 		$this->assertEquals($expected, $result);
 	}
 
 	function testEditSentence_failsBecauseNotOwner() {
-		$user = $this->Sentence->User->findById(4);
-		CurrentUser::store($user['User']);
+		$user = $this->Sentence->Users->get(4);
+		CurrentUser::store($user);
 
 		$data = array(
 			'id' => 'eng_1',
 			'value' => 'Edited sentence.'
 		);
 		$result = $this->Sentence->editSentence($data);
-		$expected = $this->Sentence->findById(1);
-
+		$expected = $this->Sentence->get(1);
 		$this->assertEquals($expected, $result);
 	}
 
 	function testEditSentence_failsBecauseWrongId() {
-		$user = $this->Sentence->User->findById(4);
-		CurrentUser::store($user['User']);
+		$user = $this->Sentence->Users->get(4);
+		CurrentUser::store($user);
 		
 		$data = array(
 			'id' => '53_eng',
@@ -845,8 +844,8 @@ class SentencesTableTest extends TestCase {
 
 	function testDeleteSentence_succeeds()
 	{
-		$user = $this->Sentence->User->findById(4);
-		CurrentUser::store($user['User']);
+		$user = $this->Sentence->Users->get(4);
+		CurrentUser::store($user);
 
 		$result = $this->Sentence->deleteSentence(53);
 
@@ -855,8 +854,8 @@ class SentencesTableTest extends TestCase {
 
 	function testDeleteSentence_fails()
 	{
-		$user = $this->Sentence->User->findById(4);
-		CurrentUser::store($user['User']);
+		$user = $this->Sentence->Users->get(4);
+		CurrentUser::store($user);
 
 		$result = $this->Sentence->deleteSentence(52);
 
