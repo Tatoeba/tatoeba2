@@ -228,7 +228,9 @@ class SentencesTable extends Table
 
     public function beforeSave($event, $entity, $options)
     {
-        $entity->text = $this->clean($entity->text);
+        if ($entity->text) {
+            $entity->text = $this->clean($entity->text);
+        }        
 
         if ($entity->isNew()) { // creating a new sentence
             if (!$entity->license && $entity->user_id) {
@@ -250,7 +252,7 @@ class SentencesTable extends Table
 
     public function canSwitchLicense($check, $context) {
         $sentenceId = $context['data']['id'];
-        $sentence = $this->get($sentenceId);
+        $sentence = $this->get($sentenceId, ['fields' => ['based_on_id', 'user_id', 'license']]);
         $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to
@@ -1049,7 +1051,7 @@ class SentencesTable extends Table
      */
     public function unsetOwner($sentenceId, $userId)
     {
-        $sentence = $this->get($sentenceId);
+        $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         if ($currentOwner->id == $userId) {
             $sentence->user_id = null;
