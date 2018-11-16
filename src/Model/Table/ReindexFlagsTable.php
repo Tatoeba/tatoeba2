@@ -16,11 +16,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 
 
-class ReindexFlag extends AppModel
+class ReindexFlagsTable extends Table
 {
 }

@@ -11,6 +11,7 @@ use App\Model\CurrentUser;
 use App\Lib\Autotranscription;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Model\Entity\Contribution;
+use Cake\Utility\Hash;
 
 class SentencesTableTest extends TestCase {
 	public $fixtures = array(
@@ -649,36 +650,41 @@ class SentencesTableTest extends TestCase {
 	function testNeedsReindex() {
 		$reindex = array(2, 3);
 		$this->Sentence->needsReindex($reindex);
-		$result = $this->Sentence->ReindexFlag->findAllBySentenceId($reindex);
-		$this->assertEquals(2, count($result));
+		$result = $this->Sentence->ReindexFlags->find('all')
+			->where(['sentence_id' => $reindex], ['sentence_id' => 'integer[]'])
+			->count();
+		$this->assertEquals(2, $result);
 	}
 
 	function testModifiedSentenceNeedsReindex() {
 		$id = 1;
-		$this->Sentence->id = $id;
-		$this->Sentence->save(array('text' => 'Changed!'));
-		$result = $this->Sentence->ReindexFlag->findBySentenceId($id);
+		$sentence = $this->Sentence->get($id);
+		$sentence->text = 'Changed!';
+		$this->Sentence->save($sentence);
+		$result = $this->Sentence->ReindexFlags->findBySentenceId($id);
 		$this->assertTrue((bool)$result);
 	}
 
 	function testModifiedSentenceNeedsTranslationsReindex() {
 		$expected = array(1, 2, 4, 5);
-		$this->Sentence->id = 5;
-		$this->Sentence->save(array('user_id' => 0));
-		$result = $this->Sentence->ReindexFlag->find('all', array(
-			'order' => 'sentence_id'
-		));
-		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+		$sentence = $this->Sentence->get(5);
+		$sentence->user_id = 0;
+		$this->Sentence->save($sentence);
+		$result = $this->Sentence->ReindexFlags->find('all')
+			->order(['sentence_id'])
+			->toList();
+		$result = Hash::extract($result, '{n}.sentence_id');
 		$this->assertEquals($expected, $result);
 	}
 
 	function testRemovedSentenceNeedsItselfAndTranslationsReindex() {
 		$expected = array(1, 2, 4, 5);
-		$this->Sentence->delete(5, false);
-		$result = $this->Sentence->ReindexFlag->find('all', array(
-			'order' => 'sentence_id'
-		));
-		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+		$sentence = $this->Sentence->get(5);
+		$this->Sentence->delete($sentence);
+		$result = $this->Sentence->ReindexFlags->find('all')
+			->order(['sentence_id'])
+			->toList();
+		$result = Hash::extract($result, '{n}.sentence_id');
 		$this->assertEquals($expected, $result);
 	}
 

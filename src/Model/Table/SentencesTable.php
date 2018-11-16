@@ -112,6 +112,7 @@ class SentencesTable extends Table
         $this->hasMany('Audios');
         $this->hasMany('Translations');
         $this->hasMany('Links');
+        $this->hasMany('ReindexFlags');
         $this->addBehavior('Hashable');
         $this->addBehavior('Transcriptable');
 
@@ -320,11 +321,11 @@ class SentencesTable extends Table
         }
         $transIndexedAttr = array('lang', 'user_id');
         $transNeedsReindex = array_intersect_key(
-            $entity->old_format,
+            $entity->old_format['Sentence'],
             array_flip($transIndexedAttr)
         );
         if ($transNeedsReindex) {
-            $this->flagTranslationsToReindex($this->id);
+            $this->flagTranslationsToReindex($entity->id);
         }
     }
 
@@ -335,7 +336,7 @@ class SentencesTable extends Table
 
     private function flagTranslationsToReindex($id)
     {
-        $transIds = $this->Link->findDirectAndIndirectTranslationsIds($id);
+        $transIds = $this->Links->findDirectAndIndirectTranslationsIds($id);
         $this->needsReindex($transIds);
     }
 
@@ -382,18 +383,19 @@ class SentencesTable extends Table
 
     public function needsReindex($ids)
     {
-        // TODO
-        /*
-        $sentences = $this->find('all', array(
-            'conditions' => array('id' => $ids),
-            'fields' => array('id as sentence_id', 'lang'),
-        ));
-        foreach ($sentences as &$rec) {
-            unset($rec['Sentence']['script']); // TODO get this removed
-            $rec = $rec['Sentence'];
+        $result = $this->find('all')
+            ->where(['id' => $ids], ['id' => 'integer[]'])
+            ->select(['id', 'lang'])
+            ->toList();
+        $sentences = [];
+        foreach ($result as $sentence) {
+            $sentences[] = [
+                'sentence_id' => $sentence->id,
+                'lang' => $sentence->lang
+            ];
         }
-        $this->ReindexFlag->saveAll($sentences);
-        */
+        $data = $this->ReindexFlags->newEntities($sentences);
+        $this->ReindexFlags->saveMany($data);
     }
 
     public function beforeDelete($event, $entity, $options)
@@ -402,11 +404,6 @@ class SentencesTable extends Table
         if ($hasAudio) {
             return false;
         }
-
-        /*
-        $this->data['ReindexFlag'] =
-            $this->Link->findDirectAndIndirectTranslationsIds($this->id);
-        */
 
         return true;
     }
@@ -429,18 +426,17 @@ class SentencesTable extends Table
             'delete'
         );
 
-        /* TODO
         // Reindex translations
-        $this->needsReindex($this->data['ReindexFlag']);
+        $translationsIds = $this->Links->findDirectAndIndirectTranslationsIds($entity->id);
+        $this->needsReindex($translationsIds);
 
         // Add the sentence to the kill-list
         // so that it won't appear in search results anymore
-        $this->ReindexFlag->create();
-        $this->ReindexFlag->save(array(
+        $reindexFlag = $this->ReindexFlags->newEntity([
             'sentence_id' => $sentenceId,
             'lang' => $sentenceLang
-        ));
-        */
+        ]);
+        $this->ReindexFlags->save($reindexFlag);
 
         // Remove links
         $conditions = ['OR' => [

@@ -24,10 +24,10 @@ use Cake\Utility\Hash;
 
 class LinksTable extends Table
 {
-    public $useTable = 'sentences_translations';
-
     public function initialize(array $config)
     {
+        $this->setTable('sentences_translations');
+        
         $this->belongsTo('Sentences');
     }
 
@@ -215,26 +215,22 @@ class LinksTable extends Table
     }
 
     public function findDirectAndIndirectTranslationsIds($sentenceId) {
-        $links = $this->find('all', array(
-            'joins' => array(
-                array(
-                    'table' => $this->useTable,
+        $links = $this->find('all')
+            ->join([
+                [
+                    'table' => $this->getTable(),
                     'alias' => 'Translation',
                     'type' => 'inner',
-                    'conditions' => array(
-                        'Link.translation_id = Translation.sentence_id'
-                    )
-                )
-            ),
-            'conditions' => array(
-                'Link.sentence_id' => $sentenceId,
-            ),
-            'fields' => array(
-                'DISTINCT Link.sentence_id',
-                'IF(Link.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id) as translation_id'
-            )
-        ));
-        $links = Set::classicExtract($links, '{n}.0.translation_id');
+                    'conditions' => ['Links.translation_id = Translation.sentence_id']
+                ]
+            ])
+            ->where(['Links.sentence_id' => $sentenceId])
+            ->select([
+                'sentence_id' => 'DISTINCT(Links.sentence_id)',
+                'translation_id' => 'IF(Links.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id)'
+            ])
+            ->toList();
+        $links = Hash::extract($links, '{n}.translation_id');
         return is_null($links) ? array() : $links;
     }
 
