@@ -39,10 +39,20 @@ class TranscriptableBehavior extends Behavior
             $oldEntity = $event->getSubject()->get($entity->id, ['fields' => ['lang']]);
             $lang = $oldEntity->lang;
         }
-        $entity->script = $this->Transcriptions->detectScript(
-            $lang, 
-            $entity->text
-        );
+        if ($entity->isNew()) {
+            if (!$entity->script) {
+                $entity->script = $this->Transcriptions->detectScript(
+                    $lang, 
+                    $entity->text
+                );
+            }
+        } else if ($entity->isDirty('lang') || $entity->isDirty('text')) {
+            $entity->script = $this->Transcriptions->detectScript(
+                $lang, 
+                $entity->text
+            );
+        }
+           
         if (!$this->isScriptValid($entity)) {
             return false;
         }

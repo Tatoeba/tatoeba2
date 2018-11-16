@@ -593,58 +593,54 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testScriptIsSetOnSentenceCreation() {
-		$cmnSentence = array(
+		$cmnSentence = $this->Sentence->newEntity([
 			'lang' => 'cmn',
 			'text' => '我们试试看！',
-		);
+		]);
 
-		$this->Sentence->save($cmnSentence);
+		$savedSentence = $this->Sentence->save($cmnSentence);
 
-		$id = $this->Sentence->getLastInsertID();
-		$savedSentence = $this->Sentence->findById($id, 'script');
-		$this->assertEquals('Hans', $savedSentence['Sentence']['script']);
+		$this->assertEquals('Hans', $savedSentence->script);
 	}
 
 	function testScriptIsNotSetOnSentenceCreation() {
-		$cmnSentence = array(
+		$cmnSentence = $this->Sentence->newEntity([
 			'lang' => 'eng',
 			'text' => 'Who needs to specify script in English?',
-		);
+		]);
 
-		$this->Sentence->save($cmnSentence);
+		$savedSentence = $this->Sentence->save($cmnSentence);
 
-		$id = $this->Sentence->getLastInsertID();
-		$savedSentence = $this->Sentence->findById($id, 'script');
-		$this->assertNull($savedSentence['Sentence']['script']);
+		$this->assertNull($savedSentence->script);
 	}
 
 	function testScriptShouldBeValidOnUpdate() {
-		$cmnSentence = array(
+		$cmnSentence = $this->Sentence->newEntity([
 			'id' => 2,
 			'script' => 'invalid script code!',
-		);
+		]);
 
 		$result = $this->Sentence->save($cmnSentence);
 		$this->assertFalse($result);
 	}
 
 	function testScriptShouldBeValidOnCreate() {
-		$cmnSentence = array(
+		$cmnSentence = $this->Sentence->newEntity([
 			'script' => 'invalid script code!',
 			'lang' => 'cmn',
 			'text' => '我们试试看！',
-		);
+		]);
 
 		$result = $this->Sentence->save($cmnSentence);
 		$this->assertFalse($result);
 	}
 
 	function testScriptShouldBeValidAndCheckType() {
-		$cmnSentence = array(
+		$cmnSentence = $this->Sentence->newEntity([
 			'script' => true,
 			'lang' => 'cmn',
 			'text' => '我们试试看！',
-		);
+		]);
 
 		$result = $this->Sentence->save($cmnSentence);
 		$this->assertFalse($result);
