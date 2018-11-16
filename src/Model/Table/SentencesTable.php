@@ -315,7 +315,7 @@ class SentencesTable extends Table
         $this->getEventManager()->dispatch($event);
         
         $this->logSentenceEdition($created);
-        $this->updateTags($created);
+        $this->updateTags($entity);
         if (isset($entity->modified)) {
             $this->needsReindex($entity->id);
         }
@@ -369,16 +369,12 @@ class SentencesTable extends Table
         }
     }
 
-    private function updateTags($created)
+    private function updateTags($entity)
     {
-        // TODO
-        /*
-        $edited = array_key_exists('text', $this->data[$this->alias]);
-        if (!$created && $edited) {
-            $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
-            $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
+        if (!$entity->isNew() && $entity->isDirty('text')) {
+            $OKTagId = $this->Tags->getIdFromName($this->Tags->getOKTagName());
+            $this->TagsSentences->removeTagFromSentence($OKTagId, $entity->id);
         }
-        */
     }
 
     public function needsReindex($ids)

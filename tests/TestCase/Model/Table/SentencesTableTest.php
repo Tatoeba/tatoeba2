@@ -690,17 +690,18 @@ class SentencesTableTest extends TestCase {
 
 	function testSentenceLoosesOKTagOnEdition() {
 		$sentenceId = 2;
-		$OKTagId = $this->Sentence->Tag->getIdFromName(
-			$this->Sentence->Tag->getOKTagName()
+		$OKTagId = $this->Sentence->Tags->getIdFromName(
+			$this->Sentence->Tags->getOKTagName()
 		);
 		$this->assertTrue(
 			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
 		);
-		$this->Sentence->save(array(
+		$sentence = $this->Sentence->newEntity([
 			'id' => $sentenceId,
 			'lang' => 'cmn',
 			'text' => "That should remove the OK tag automatically!"
-		));
+		]);
+		$this->Sentence->save($sentence);
 		$this->assertFalse(
 			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
 		);
@@ -708,16 +709,17 @@ class SentencesTableTest extends TestCase {
 
 	function testSentenceDontLoosesOKTagOnFlagChange() {
 		$sentenceId = 2;
-		$OKTagId = $this->Sentence->Tag->getIdFromName(
-			$this->Sentence->Tag->getOKTagName()
+		$OKTagId = $this->Sentence->Tags->getIdFromName(
+			$this->Sentence->Tags->getOKTagName()
 		);
 		$this->assertTrue(
 			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
 		);
-		$this->Sentence->save(array(
+		$sentence = $this->Sentence->newEntity([
 			'id' => $sentenceId,
 			'lang' => 'ita',
-		));
+		]);
+		$this->Sentence->save($sentence);
 		$this->assertTrue(
 			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
 		);

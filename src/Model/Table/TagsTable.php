@@ -211,14 +211,11 @@ class TagsTable extends Table
      *
      */
     public function getIdFromName($tagName) {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array('Tag.name'=>$tagName),
-                'fields' => 'id'
-            )
-        );
-        return !empty($result) ? $result['Tag']['id'] : NULL;
+        $result = $this->find('all')
+            ->where(['name' => $tagName])
+            ->select(['id'])
+            ->first();
+        return $result->id;
     }
 
 

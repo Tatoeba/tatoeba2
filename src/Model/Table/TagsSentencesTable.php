@@ -96,21 +96,10 @@ class TagsSentencesTable extends Table
     }
 
     public function removeTagFromSentence($tagId,$sentenceId) {
-        $this->unBindModel(
-            array(
-                'belongsTo' => array('User', 'Tag', 'Sentence')
-            )
-        );
-        $this->deleteAll(
-            array(
-                'tag_id' => $tagId,
-                'sentence_id' => $sentenceId
-            ),
-            // we don't want record to be deleted in cascade, as we only want
-            // the relation to be broken
-            false,
-            true  // yet we want callbacks
-        );
+        $this->deleteAll([
+            'tag_id' => $tagId,
+            'sentence_id' => $sentenceId
+        ]);
     }
 
 
@@ -165,16 +154,13 @@ class TagsSentencesTable extends Table
      */
     public function isSentenceTagged($sentenceId, $tagId)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => 'tag_id',
-                'conditions' => array(
-                    "tag_id" => $tagId,
-                    "sentence_id" => $sentenceId
-                ),
-            )
-        );
+        $result = $this->find('all')
+            ->where([
+                'tag_id' => $tagId,
+                'sentence_id' => $sentenceId
+            ])
+            ->select(['tag_id'])
+            ->first();
 
         return !empty($result);
     }
