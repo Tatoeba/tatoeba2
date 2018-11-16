@@ -15,30 +15,12 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   SIMON   Allan   <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 
-
-/**
- * Model for Tags on sentence.
- *
- * @category Tags
- * @package  Models
- * @author   SIMON   Allan   <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class Tag extends AppModel
+class TagsTable extends Table
 {
     public $name = 'Tag';
 

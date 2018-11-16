@@ -99,8 +99,14 @@ class SentencesTable extends Table
         $this->belongsToMany('Translations');
         $this->belongsTo('Users');
         $this->belongsTo('Languages');
-        $this->belongsTo('SentencesLists');
         $this->belongsTo('TagsSentences');
+        $this->belongsToMany('SentencesLists', [
+            'dependent' => true
+        ]);
+        $this->belongsToMany('Tags', [
+            'dependent' => true,
+            'joinTable' => 'tags_sentences'
+        ]);
         $this->hasMany('Contributions');
         $this->hasMany('Transcriptions');
         $this->hasMany('Audios');
@@ -454,8 +460,8 @@ class SentencesTable extends Table
         // Remove transcriptions
         $this->Transcriptions->deleteAll(['sentence_id' => $sentenceId]);
 
-        // TODO Decrement statistics
-        // $this->Languages->decrementCountForLanguage($sentenceLang);
+        // Decrement statistics
+        $this->Languages->decrementCountForLanguage($sentenceLang);
     }
 
     public function afterFind($results, $primary = false) {

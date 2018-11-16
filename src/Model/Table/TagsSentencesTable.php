@@ -42,6 +42,12 @@ class TagsSentencesTable extends Table
         }
     }
 
+    public function initialize(array $config)
+    {
+        $this->belongsTo('Users');
+        $this->belongsTo('Tags');
+    }
+
     protected function _findCount($state, $query, $results = array()) {
         if ($state === 'before') {
             // Filter out duplicate tags
@@ -75,25 +81,18 @@ class TagsSentencesTable extends Table
 
     public function getAllTagsOnSentence($sentenceId)
     {
-        return $this->find(
-            'all',
-            array(
-                'fields' => array(
-                    'Tag.name',
-                    'User.id',
-                    'User.username',
-                    'TagsSentences.tag_id',
-                    'TagsSentences.added_time'
-                ),
-                'conditions' => array(
-                    'TagsSentences.sentence_id' => $sentenceId
-                ),
-                'contain' => array(
-                    'Tag', 'User'
-                ),
-                'group' => 'TagsSentences.tag_id'
-            )
-        );
+        return $this->find('all')
+            ->contain(['Tags', 'Users'])
+            ->where(['TagsSentences.sentence_id' => $sentenceId])
+            ->select([
+                'Tags.name',
+                'Users.id',
+                'Users.username',
+                'TagsSentences.tag_id',
+                'TagsSentences.added_time'
+            ])
+            ->group(['TagsSentences.tag_id'])
+            ->toList();
     }
 
     public function removeTagFromSentence($tagId,$sentenceId) {

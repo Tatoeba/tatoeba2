@@ -567,12 +567,16 @@ class SentencesTableTest extends TestCase {
 	function testListsCleanedOnDelete() {
 		$sentenceId = 8;
 		$sentence = $this->Sentence->get($sentenceId);
-		$inListBefore = $this->Sentence->SentencesLists->SentencesSentencesLists->findAllBySentenceId($sentenceId);
+		$inListBefore = $this->Sentence->SentencesLists->SentencesSentencesLists
+			->findAllBySentenceId($sentenceId)
+			->count();
 
 		$this->Sentence->delete($sentence);
 
-		$inListAfter = $this->Sentence->SentencesLists->SentencesSentencesLists->findAllBySentenceId($sentenceId);
-		$delta = count($inListAfter) - count($inListBefore);
+		$inListAfter = $this->Sentence->SentencesLists->SentencesSentencesLists
+			->findAllBySentenceId($sentenceId)
+			->count();
+		$delta = $inListAfter - $inListBefore;
 		$this->assertEquals(-1, $delta);
 	}
 
