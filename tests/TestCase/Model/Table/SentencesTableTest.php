@@ -289,12 +289,13 @@ class SentencesTableTest extends TestCase {
 
 	function testSentenceFlagEditionUpdatesScript() {
 		$cmnSentenceId = 2;
-		$this->Sentence->save(array(
+		$data = $this->Sentence->newEntity([
 			'id' => $cmnSentenceId,
 			'lang' => 'eng',
-		));
-		$result = $this->Sentence->findById($cmnSentenceId, 'script');
-		$this->assertNull($result['Sentence']['script']);
+		]);
+		$this->Sentence->save($data);
+		$result = $this->Sentence->get($cmnSentenceId, ['fields' => ['script']]);
+		$this->assertNull($result->script);
 	}
 
 	function testSentenceTextEditionRegeneratesTranscriptions() {
@@ -356,13 +357,13 @@ class SentencesTableTest extends TestCase {
 		$conditions = array('sentence_id' => $jpnSentenceId);
 		$transcrBefore = $this->Sentence->Transcriptions->find('all')
 			->where($conditions)
-			->first();
+			->toList();
 
 		$this->Sentence->unsetOwner($jpnSentenceId, $jpnSentenceOwner);
 
 		$transcrAfter = $this->Sentence->Transcriptions->find('all')
 			->where($conditions)
-			->first();
+			->toList();
 		$this->assertEquals($transcrBefore, $transcrAfter);
 	}
 

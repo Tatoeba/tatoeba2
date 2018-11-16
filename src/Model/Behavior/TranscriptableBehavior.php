@@ -34,8 +34,13 @@ class TranscriptableBehavior extends Behavior
     }
 
     public function beforeSave($event, $entity, $options) {
+        $lang = $entity->lang;
+        if (!$lang && $entity->id) {
+            $oldEntity = $event->getSubject()->get($entity->id, ['fields' => ['lang']]);
+            $lang = $oldEntity->lang;
+        }
         $entity->script = $this->Transcriptions->detectScript(
-            $entity->lang, 
+            $lang, 
             $entity->text
         );
         if (!$this->isScriptValid($entity)) {
@@ -56,10 +61,12 @@ class TranscriptableBehavior extends Behavior
     }
 
     public function afterSave($event, $entity, $options) {
-        if ($entity->text || $entity->lang) {
+        if ($entity->isNew()) {
+            $this->createTranscriptions($entity);
+        } else if ($entity->isDirty('text') || $entity->isDirty('lang')) {
             $this->deleteTranscriptions($entity);
+            $this->createTranscriptions($entity);
         }
-        $this->createTranscriptions($entity);
     }
 
     private function createTranscriptions($entity) {
