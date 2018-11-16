@@ -9,6 +9,8 @@ use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 use App\Lib\Autotranscription;
+use Cake\Datasource\Exception\RecordNotFoundException;
+use App\Model\Entity\Contribution;
 
 class SentencesTableTest extends TestCase {
 	public $fixtures = array(
@@ -390,86 +392,102 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testSentenceRemovedOnDelete() {
-		$sentenceId = 1;
+		$sentence = $this->Sentence->get(1);
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$result = (bool)$this->Sentence->findById($sentenceId);
+		try {
+			$result = $this->Sentence->get(1);
+		} catch (RecordNotFoundException $e) {
+			$result = false;
+		}
 		$this->assertFalse($result);
 	}
 
 	function testReturnsTrueOnDelete() {
-		$sentenceId = 1;
+		$sentence = $this->Sentence->get(1);
 
-		$result = $this->Sentence->delete($sentenceId, false);
+		$result = $this->Sentence->delete($sentence);
 
 		$this->assertTrue($result);
 	}
 
 	function testReturnsFalseIfAudioOnDelete() {
-		$sentenceId = 3;
+		$sentence = $this->Sentence->get(3);
 
-		$result = $this->Sentence->delete($sentenceId, false);
+		$result = $this->Sentence->delete($sentence);
 
 		$this->assertFalse($result);
 	}
 
 	function testTranslationLinksFromSentenceRemovedOnDelete() {
 		$sentenceId = 1;
+		$sentence = $this->Sentence->get($sentenceId);
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$trans = $this->Sentence->Link->findDirectTranslationsIds($sentenceId);
+		$trans = $this->Sentence->Links->findDirectTranslationsIds($sentenceId);
 		$this->assertEquals(array(), $trans);
 	}
 
 	function testLogsSentenceDeletionOnDelete() {
-		$sentenceId = 1;
+		$sentence = $this->Sentence->get(1);
 		$conditions = array('type' => 'sentence');
-		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
+		$before = $this->Sentence->Contributions->find()
+			->where($conditions)
+			->count();
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
+		$after = $this->Sentence->Contributions->find()
+			->where($conditions)
+			->count();
 		$added = $after - $before;
 		$this->assertEquals(1, $added);
 	}
 
 	function testLogsSentenceDeletionWithFieldsOnDelete() {
 		$sentenceId = 1;
-		$sentence = $this->Sentence->findById($sentenceId);
+		$sentence = $this->Sentence->get($sentenceId);
 		$expected = array(
 			'sentence_id' => $sentenceId,
-			'sentence_lang' => $sentence['Sentence']['lang'],
-			'text' => $sentence['Sentence']['text'],
+			'sentence_lang' => $sentence->lang,
+			'text' => $sentence->text,
 			'action' => 'delete',
 		);
 		$fields = array('sentence_id', 'sentence_lang', 'text', 'action');
 		$conditions = array('type' => 'sentence');
-		$before = $this->Sentence->Contribution->deleteAll('1=1');
+		$before = $this->Sentence->Contributions->deleteAll(['id >' => 0]);
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$log = $this->Sentence->Contribution->find('all',
-			compact('conditions', 'fields')
-		);
-		$this->assertEquals($expected, $log[0]['Contribution']);
+		$log = $this->Sentence->Contributions->find('all')
+			->where($conditions)
+			->select($fields)
+			->toList();
+		$result = array_intersect_key($log[0]->old_format['Contribution'], $expected);
+		$this->assertEquals($expected, $result);
 	}
 
 	function testLogsLinkDeletionOnDelete() {
-		$sentenceId = 5;
+		$sentence = $this->Sentence->get(5);
 		$conditions = array('type' => 'link');
-		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
+		$before = $this->Sentence->Contributions->find('all')
+			->where($conditions)
+			->count();
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
+		$after = $this->Sentence->Contributions->find('all')
+			->where($conditions)
+			->count();
 		$added = $after - $before;
 		$this->assertEquals(2, $added);
 	}
 
 	function testLogsLinkDeletionWithFieldsOnDelete() {
 		$sentenceId = 1;
+		$sentence = $this->Sentence->get($sentenceId);
 		$expected = array(
 			array('Contribution' => array(
 				'sentence_id' => $sentenceId,
@@ -499,59 +517,71 @@ class SentencesTableTest extends TestCase {
 		$conditions = array('type' => 'link');
 		$contain = array();
 		$fields = array('sentence_id', 'translation_id');
-		$before = $this->Sentence->Contribution->deleteAll('1=1');
+		$before = $this->Sentence->Contributions->deleteAll(['id >' => 0]);
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$logs = $this->Sentence->Contribution->find('all',
-			compact('conditions', 'fields', 'contain')
-		);
-		$this->assertEquals($expected, $logs);
+		$logs = $this->Sentence->Contributions->find('all')
+			->where($conditions)
+			->select($fields)
+			->toList();
+
+		$result = [];
+		foreach ($logs as $log) {
+			$result[] = ['Contribution' => [
+				'sentence_id' => $log->sentence_id,
+				'translation_id' => $log->translation_id
+			]];
+		}
+
+		$this->assertEquals($expected, $result);
 	}
 
 	function testTranslationLinksToSentenceRemovedOnDelete() {
 		$sentenceId = 1;
+		$sentence = $this->Sentence->get($sentenceId);
+		$translations = $this->Sentence->Links->findDirectTranslationsIds($sentenceId);
 
-		$translations = $this->Sentence->Link->findDirectTranslationsIds($sentenceId);
-
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
 		foreach($translations as $transId) {
-			$trans = $this->Sentence->Link->findDirectTranslationsIds($transId);
+			$trans = $this->Sentence->Links->findDirectTranslationsIds($transId);
 			$this->assertFalse(in_array($sentenceId, $trans));
 		}
 	}
 
 	function testLanguageCountDecrementedOnDelete() {
 		$sentenceId = 1;
-		$sentence = $this->Sentence->findById($sentenceId, 'lang');
-		$language = $this->Sentence->Language->findByCode($sentence['Sentence']['lang'], 'sentences');
-		$countBefore = $language['Language']['sentences'];
+		$sentence = $this->Sentence->get($sentenceId);
+		$language = $this->Sentence->Languages->findByCode($sentence->lang)->first();
+		$countBefore = $language->sentences;
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$language = $this->Sentence->Language->findByCode($sentence['Sentence']['lang'], 'sentences');
-		$countAfter = $language['Language']['sentences'];
+		$language = $this->Sentence->Languages->findByCode($sentence->lang)->first();
+		$countAfter = $language->sentences;
 		$delta = $countAfter - $countBefore;
 		$this->assertEquals(-1, $delta);
 	}
 
 	function testListsCleanedOnDelete() {
 		$sentenceId = 8;
-		$inListBefore = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
+		$sentence = $this->Sentence->get($sentenceId);
+		$inListBefore = $this->Sentence->SentencesLists->SentencesSentencesLists->findAllBySentenceId($sentenceId);
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
-		$inListAfter = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
+		$inListAfter = $this->Sentence->SentencesLists->SentencesSentencesLists->findAllBySentenceId($sentenceId);
 		$delta = count($inListAfter) - count($inListBefore);
 		$this->assertEquals(-1, $delta);
 	}
 
 	function testTagsAreRemovedOnDelete() {
 		$sentenceId = 8;
+		$sentence = $this->Sentence->get($sentenceId);
 		$tagsBefore = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
 
-		$this->Sentence->delete($sentenceId, false);
+		$this->Sentence->delete($sentence);
 
 		$tagsAfter = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
 		$this->assertNotEquals(0, count($tagsBefore));

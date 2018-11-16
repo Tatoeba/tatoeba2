@@ -99,6 +99,8 @@ class SentencesTable extends Table
         $this->belongsToMany('Translations');
         $this->belongsTo('Users');
         $this->belongsTo('Languages');
+        $this->belongsTo('SentencesLists');
+        $this->belongsTo('TagsSentences');
         $this->hasMany('Contributions');
         $this->hasMany('Transcriptions');
         $this->hasMany('Audios');
