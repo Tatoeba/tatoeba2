@@ -26,6 +26,7 @@ use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\Event\ContributionListener;
+use Cake\Utility\Hash;
 
 class SentencesTable extends Table
 {
@@ -1198,11 +1199,11 @@ class SentencesTable extends Table
     }
 
     public function getSentencesLang($sentencesIds) {
-        $result = $this->find('all', array(
-            'fields' => array('lang', 'id'),
-            'conditions' => array('Sentence.id' => $sentencesIds),
-        ));
-        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.lang');
+        $result = $this->find('all')
+            ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
+            ->select(['lang', 'id'])
+            ->toList();
+        return Hash::combine($result, '{n}.id', '{n}.lang');
     }
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
