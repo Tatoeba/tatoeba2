@@ -1,11 +1,13 @@
 <?php
-/* Link Test cases generated on: 2014-04-16 04:19:37 : 1397614777*/
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Link;
+use App\Model\Table\LinksTable;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
+use Cake\Utility\Hash;
 
-class LinkTest extends TestCase {
+class LinksTableTest extends TestCase {
 	public $fixtures = array(
 		'app.sentences',
 		'app.users',
@@ -26,13 +28,15 @@ class LinkTest extends TestCase {
 		'app.reindex_flags'
 	);
 
-	function startTest($method) {
-		$this->Link = ClassRegistry::init('Link');
+	function setUp($method) {
+		parent::setUp();
+		Configure::write('Acl.database', 'test');
+		$this->Link = TableRegistry::getTableLocator()->get('Links');
 	}
 
-	function endTest($method) {
+	function tearDown($method) {
 		unset($this->Link);
-		ClassRegistry::flush();
+		parent::tearDown();
 	}
 
 	function testAdd_linksSentenceToTranslation() {
@@ -40,12 +44,12 @@ class LinkTest extends TestCase {
 		$translationId = 7;
 		$this->Link->add($sentenceId, $translationId);
 
-		$newLink = $this->Link->find('first',
-			array('conditions' => array(
-				'Link.sentence_id' => $sentenceId,
-				'Link.translation_id' => $translationId,
-			))
-		);
+		$newLink = $this->Link->find()
+			->where([
+				'sentence_id' => $sentenceId,
+				'translation_id' => $translationId,
+			])
+			->first();
 		$this->assertTrue((bool)$newLink);
 	}
 
@@ -54,12 +58,12 @@ class LinkTest extends TestCase {
 		$translationId = 7;
 		$this->Link->add($sentenceId, $translationId);
 
-		$newLink = $this->Link->find('first',
-			array('conditions' => array(
-				'Link.translation_id' => $sentenceId,
-				'Link.sentence_id' => $translationId,
-			))
-		);
+		$newLink = $this->Link->find()
+			->where([
+				'translation_id' => $sentenceId,
+				'sentence_id' => $translationId,
+			])
+			->first();
 		$this->assertTrue((bool)$newLink);
 	}
 
@@ -67,19 +71,19 @@ class LinkTest extends TestCase {
 		$sentenceId = 4;
 		$translationId = 6;
 		$this->Link->deletePair($sentenceId, $translationId);
-		$result = $this->Link->find('count', array('conditions' => array(
-			'or' => array(
-				array('and' => array(
-					'Link.sentence_id'    => $translationId,
-					'Link.translation_id' => $sentenceId,
-				)),
-				array('and' => array(
-					'Link.sentence_id'    => $sentenceId,
-					'Link.translation_id' => $translationId,
-				)),
-			)
-		)));
-		$this->assertEqual($result, 0);
+		$result = $this->Link->find()
+			->where(['OR' => [
+				[
+					'sentence_id'    => $translationId,
+					'translation_id' => $sentenceId,
+				],
+				[
+					'sentence_id'    => $sentenceId,
+					'translation_id' => $translationId,
+				]
+			]])
+			->count();
+		$this->assertEquals(0, $result);
 	}
 
 	function testDeletePairLogsDeletion() {
@@ -87,22 +91,22 @@ class LinkTest extends TestCase {
 		$translationId = 6;
 		$this->Link->deletePair($sentenceId, $translationId);
 
-		$nbLogs = ClassRegistry::init('Contribution')
-			->find('count', array('conditions' => array(
-				'or' => array(
-					array('and' => array(
-						'Contribution.sentence_id'    => $translationId,
-						'Contribution.translation_id' => $sentenceId,
-						'Contribution.action'         => 'delete',
-					)),
-					array('and' => array(
-						'Contribution.sentence_id'    => $sentenceId,
-						'Contribution.translation_id' => $translationId,
-						'Contribution.action'         => 'delete',
-					)),
-				)
-			)));
-		$this->assertEqual($nbLogs, 2);
+		$nbLogs = TableRegistry::getTableLocator()->get('Contributions')
+			->find('all')
+			->where(['OR' => [
+				[
+					'sentence_id'    => $translationId,
+					'translation_id' => $sentenceId,
+					'action'         => 'delete',
+				],
+				[
+					'sentence_id'    => $sentenceId,
+					'translation_id' => $translationId,
+					'action'         => 'delete',
+				]
+			]])
+			->count();
+		$this->assertEquals($nbLogs, 2);
 	}
 
 	function testFindDirectAndIndirectTranslationsIds_worksWithLonelySentences() {
@@ -111,7 +115,7 @@ class LinkTest extends TestCase {
 
 		$result = $this->Link->findDirectAndIndirectTranslationsIds($lonelySentenceId);
 
-		$this->assertEqual($result, $expectedLinkedSentences);
+		$this->assertEquals($result, $expectedLinkedSentences);
 	}
 
 	function testFindDirectAndIndirectTranslationsIds_doesNotReturnDuplicates() {
@@ -120,7 +124,7 @@ class LinkTest extends TestCase {
 		$result = $this->Link->findDirectAndIndirectTranslationsIds($sentenceId);
 		$filteredResult = array_unique($result);
 
-		$this->assertEqual($result, $filteredResult);
+		$this->assertEquals($result, $filteredResult);
 	}
 
 	function testFindDirectAndIndirectTranslationsIds_walksWholeGraph() {
@@ -130,7 +134,7 @@ class LinkTest extends TestCase {
 		$result = $this->Link->findDirectAndIndirectTranslationsIds($sentenceId);
 		sort($result);
 
-		$this->assertEqual($result, $expectedLinkedSentences);
+		$this->assertEquals($result, $expectedLinkedSentences);
 	}
 
 	function testFindDirectAndIndirectTranslationsIds_walksPartsOfGraph() {
@@ -140,7 +144,7 @@ class LinkTest extends TestCase {
 		$result = $this->Link->findDirectAndIndirectTranslationsIds($sentenceId);
 		sort($result);
 
-		$this->assertEqual($result, $expectedLinkedSentences);
+		$this->assertEquals($result, $expectedLinkedSentences);
 	}
 
 	function testFindDirectTranslationsIds_worksWithLonelySentences() {
@@ -149,7 +153,7 @@ class LinkTest extends TestCase {
 
 		$result = $this->Link->findDirectTranslationsIds($lonelySentenceId);
 
-		$this->assertEqual($result, $expectedLinkedSentences);
+		$this->assertEquals($result, $expectedLinkedSentences);
 	}
 
 	function testFindDirectTranslationsIds_doesNotReturnDuplicates() {
@@ -158,7 +162,7 @@ class LinkTest extends TestCase {
 		$result = $this->Link->findDirectTranslationsIds($sentenceId);
 		$filteredResult = array_unique($result);
 
-		$this->assertEqual($result, $filteredResult);
+		$this->assertEquals($result, $filteredResult);
 	}
 
 	function testFindDirectTranslationsIds_walksGraph() {
@@ -168,7 +172,7 @@ class LinkTest extends TestCase {
 		$result = $this->Link->findDirectTranslationsIds($sentenceId);
 		sort($result);
 
-		$this->assertEqual($result, $expectedLinkedSentences);
+		$this->assertEquals($result, $expectedLinkedSentences);
 	}
 
 	function testAdd_flagSentencesToReindex() {
@@ -179,9 +183,9 @@ class LinkTest extends TestCase {
                  */
 		$expected = array(8, 2, 5);
 		$this->Link->add(8, 5);
-		$result = $this->Link->Sentence->ReindexFlag->find('all');
-		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
-		$this->assertEqual($expected, $result);
+		$result = $this->Link->Sentences->ReindexFlags->find('all')->toList();
+		$result = Hash::extract($result, '{n}.sentence_id');
+		$this->assertEquals($expected, $result);
 	}
 
 	function testDelete_flagSentencesToReindex() {
@@ -192,8 +196,8 @@ class LinkTest extends TestCase {
                  */
 		$expected = array(1, 3, 4, 2, 4, 5);
 		$this->Link->deletePair(1, 2);
-		$result = $this->Link->Sentence->ReindexFlag->find('all');
-		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
-		$this->assertEqual($expected, $result);
+		$result = $this->Link->Sentences->ReindexFlags->find('all')->toList();
+		$result = Hash::extract($result, '{n}.sentence_id');
+		$this->assertEquals($expected, $result);
 	}
 }

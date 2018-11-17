@@ -76,25 +76,24 @@ class LinksTable extends Table
         $this->Sentences->needsReindex($impactedSentences);
     }
 
-    /**
-     * Called before a link is deleted.
-     *
-     * @return void
-     */
-    public function beforeDelete($cascade = true)
+    private function logLinksAndFlagSentences($sentenceId, $translationId)
     {
-        $aboutToDelete = $this->findById($this->id);
-        $Contribution = ClassRegistry::init('Contribution');
-        if (isset($aboutToDelete['Link'])) {
-            $Contribution->saveLinkContribution(
-                $aboutToDelete['Link']['sentence_id'],
-                $aboutToDelete['Link']['translation_id'],
-                'delete'
-            );
-        }
+        $Contribution = TableRegistry::getTableLocator()->get('Contributions');
+        $Contribution->saveLinkContribution(
+            $sentenceId,
+            $translationId,
+            'delete'
+        );
         $this->flagSentencesToReindex(
-            $aboutToDelete['Link']['sentence_id'],
-            $aboutToDelete['Link']['translation_id']
+            $sentenceId,
+            $translationId
+        );
+    }
+
+    public function afterDelete($event, $entity, $options) {
+        $this->logLinksAndFlagSentences(
+            $entity->sentence_id,
+            $entity->translation_id
         );
         return true;
     }
@@ -124,9 +123,9 @@ class LinksTable extends Table
             return false;
         }
 
+        $ids = [$sentenceId, $translationId];
         if ($sentenceLang != null && $translationLang != null) {
             // Check whether the sentences exist.
-            $ids = [$sentenceId, $translationId];
             $result = $this->Sentences->find('all')
                 ->where(['id' => $ids], ['id' => 'integer[]'])
                 ->count();
@@ -137,21 +136,21 @@ class LinksTable extends Table
         } else {
             // Check whether the sentences exist and retrieve
             // the language code for each sentence
-            $result = $this->query("
-                SELECT Sentence.id, Sentence.lang FROM sentences as Sentence
-                WHERE id IN ($sentenceId, $translationId)
-            ");
+            $result = $this->Sentences->find('all')
+                ->where(['id' => $ids], ['id' => 'integer[]'])
+                ->select(['id', 'lang'])
+                ->toList();
 
             if (count($result) != 2) {
                 return false;
             }
 
             foreach ($result as $sentence) {
-                if ($sentence['Sentence']['id'] == $sentenceId) {
-                    $sentenceLang = $sentence['Sentence']['lang'];
+                if ($sentence->id == $sentenceId) {
+                    $sentenceLang = $sentence->lang;
                 }
-                if ($sentence['Sentence']['id'] == $translationId) {
-                    $translationLang = $sentence['Sentence']['lang'];
+                if ($sentence->id == $translationId) {
+                    $translationLang = $sentence->lang;
                 }
             }
         }
@@ -181,25 +180,23 @@ class LinksTable extends Table
      */
     public function deletePair($sentenceId, $translationId)
     {
-        $toRemove = $this->find('all', array(
-            'conditions' => array(
-                'or' => array(
-                    array('and' => array(
-                        'Link.sentence_id'    => $translationId,
-                        'Link.translation_id' => $sentenceId,
-                    )),
-                    array('and' => array(
-                        'Link.sentence_id'    => $sentenceId,
-                        'Link.translation_id' => $translationId,
-                    ))
-                )
-            ),
-            'fields' => array('id'),
-            'limit' => 2,
-        ));
-        $toRemove = Set::extract($toRemove, '{n}.Link.id');
-        if ($toRemove) {
-            $deleted = $this->deleteAll(array('Link.id' => $toRemove), false, true);
+        $conditions = ['OR' => [
+            [
+                'sentence_id'    => $translationId,
+                'translation_id' => $sentenceId,
+            ],
+            [
+                'sentence_id'    => $sentenceId,
+                'translation_id' => $translationId,
+            ]
+        ]];
+
+        $deleted = $this->deleteAll($conditions);
+
+        if ($deleted == 2) {
+            // deleteAll() doesn't trigger afterSave()
+            $this->logLinksAndFlagSentences($sentenceId, $translationId);
+            $this->logLinksAndFlagSentences($translationId, $sentenceId);
         }
 
         return $deleted;
