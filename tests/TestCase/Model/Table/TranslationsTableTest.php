@@ -1,10 +1,13 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Translation;
+use App\Model\Table\TranslationsTable;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
+use Cake\Utility\Hash;
 
-class TranslationTest extends TestCase {
+class TranslationsTableTest extends TestCase {
     public $fixtures = array(
         'app.sentences',
         'app.links',
@@ -12,19 +15,18 @@ class TranslationTest extends TestCase {
         'app.users'
     );
 
-    function startTest($method) {
-        $this->Translation = ClassRegistry::init('Translation');
+    function setUp() {
+        parent::setUp();
+        Configure::write('Acl.database', 'test');
+        $this->Translation = TableRegistry::getTableLocator()->get('Translations');
     }
 
-    function endTest($method) {
+    function tearDown() {
         unset($this->Translation);
-        ClassRegistry::flush();
+        parent::tearDown();
     }
 
     function testFindCheckAllFields() {
-        $this->Translation->unbindModel(
-            array('hasMany' => array('Transcription'))
-        );
         $result = $this->Translation->getTranslationsOf(5, array());
         $expected = array(
                 array(
@@ -64,7 +66,7 @@ class TranslationTest extends TestCase {
                     ),
                 ),
         );
-        $this->assertEqual($expected, $result);
+        $this->assertEquals($expected, $result);
     }
 
     function _assertFind($sentenceIdsAndTheirExpectedTranslationIds, $langs) {
@@ -75,11 +77,10 @@ class TranslationTest extends TestCase {
             array(0 => array(), 1 => array())
         );
         foreach ($result as $rec) {
-            $rec = $rec['Translation'];
-            $sentenceId = $rec['sentence_id'];
-            $returned[$sentenceId][$rec['type']][] = $rec['id'];
+            $sentenceId = $rec->sentence_id;
+            $returned[$sentenceId][$rec->type][] = $rec->id;
         }
-        $this->assertEqual($sentenceIdsAndTheirExpectedTranslationIds, $returned);
+        $this->assertEquals($sentenceIdsAndTheirExpectedTranslationIds, $returned);
     }
 
     function testFindCheckIds() {
@@ -130,7 +131,7 @@ class TranslationTest extends TestCase {
     function testGetTranslationsOfCheckLangOrder() {
         $result = $this->Translation->getTranslationsOf(1, array());
 
-        $languages = $languages = Set::classicExtract($result, '{n}.Translation.lang');
+        $languages = $languages = Hash::extract($result, '{n}.lang');
         $expected = array('cmn', 'deu', 'fra', 'jpn', 'spa');
 
         $this->assertEquals($expected, $languages);

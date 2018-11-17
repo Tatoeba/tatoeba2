@@ -15,41 +15,27 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
 
-
-/**
- * Model for translations.
- *
- * @category Translations
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class Translation extends AppModel
+class TranslationsTable extends Table
 {
     public $actsAs = array('Containable', 'Transcriptable');
     public $useTable = 'sentences';
     public $hasMany = array('Transcription', 'Audio');
 
-    public function __construct($id = false, $table = null, $ds = null)
+    public function initialize(array $config)
     {
-        parent::__construct($id, $table, $ds);
-        if (!Configure::read('AutoTranscriptions.enabled')) {
-            $this->Behaviors->disable('Transcriptable');
+        $this->setTable('sentences');
+
+        $this->hasMany('Transcriptions');
+
+        if (Configure::read('AutoTranscriptions.enabled')) {
+            $this->addBehavior('Transcriptable');
         }
     }
 
@@ -127,61 +113,42 @@ class Translation extends AppModel
          *   WHERE Translation.id = AllTranslations.translation_id
          *   ORDER BY Translation.lang;
          */
-        $dbo = $this->getDataSource();
-        if ($escapeId) {
-            $conditions = array('Link.sentence_id' => $ids);
-        } else {
-            $conditions = array("Link.sentence_id = $ids");
-        }
-        $subQuery = $dbo->buildStatement(
-            array(
-                'fields' => array(
-                    "Link.sentence_id as sentence_id",
-                    "IF(Link.sentence_id = IndirectLink.translation_id, "
-                        ."IndirectLink.sentence_id, "
-                        ."IndirectLink.translation_id) "
-                        ."AS translation_id",
-                    "MIN(Link.sentence_id <> IndirectLink.translation_id) "
-                        ."AS 'type'",
-                ),
+        $Links = TableRegistry::getTableLocator()->get('Links');
+        $subQuery = $Links->find('all')
+            ->where(['Links.sentence_id IN' => $ids])
+            ->join([
                 'table' => 'sentences_translations',
-                'alias' => 'Link',
-                'limit' => null,
-                'offset' => null,
-                'joins' => array(array(
-                    'table' => 'sentences_translations',
-                    'alias' => 'IndirectLink',
-                    'type' => 'inner',
-                    'conditions' => array(
-                        'Link.translation_id = IndirectLink.sentence_id'
-                    ),
-                )),
-                'conditions' => $conditions,
-                'group' => array('sentence_id', 'translation_id'),
-            ),
-            $this
-        );
+                'alias' => 'IndirectLink',
+                'type' => 'inner',
+                'conditions' => ['Links.translation_id = IndirectLink.sentence_id']
+            ])
+            ->select([
+                'sentence_id' => 'Links.sentence_id',
+                'translation_id' => 'IF(Links.sentence_id = IndirectLink.translation_id, IndirectLink.sentence_id, IndirectLink.translation_id)',
+                'type' => 'MIN(Links.sentence_id <> IndirectLink.translation_id)'
+            ])
+            ->group('translation_id');
 
-        return array(
-            'joins' => array(
-                array(
-                    'table' => "($subQuery)",
+        return $this->find('all')
+            ->join([
+                [
+                    'table' => $subQuery,
                     'alias' => 'AllTranslations',
-                    'conditions' => array('Translation.id = AllTranslations.translation_id'),
-                )
-            ),
-            'fields' => array(
-                'AllTranslations.type',
-                'AllTranslations.sentence_id',
-                'Translation.id',
-                'Translation.text',
-                'Translation.user_id',
-                'Translation.lang',
-                'Translation.script',
-                'Translation.correctness',
-            ),
-            'order' => array('Translation.lang')
-        );
+                    'type' => 'inner',
+                    'conditions' => ['Translations.id = AllTranslations.translation_id']
+                ]
+            ])
+            ->select([
+                'type' => 'AllTranslations.type',
+                'sentence_id' => 'AllTranslations.sentence_id',
+                'id' => 'Translations.id',
+                'text' => 'Translations.text',
+                'user_id' => 'Translations.user_id',
+                'lang' => 'Translations.lang',
+                'script' => 'Translations.script',
+                'correctness' => 'Translations.correctness',
+            ])
+            ->order('Translations.lang');
     }
 
     public function afterFind($results, $primary = false) {
@@ -211,13 +178,13 @@ class Translation extends AppModel
     {
         $query = $this->fetchTranslationsQuery($ids);
         if ($langs) {
-            $query['conditions']['Translation.lang'] = $langs;
+            $query->where(['Translations.lang' => $langs], ['Translations.lang' => 'string[]']);
         }
-        $query['contain'] = array(
-            'Transcription' => array(
-                'User' => array('fields' => 'username')
-            )
-        );
-        return $this->find('all', $query);
+        $query->contain([
+            'Transcriptions' => [
+                'Users' => ['fields' => 'username']
+            ]
+        ]);
+        return $query->toList();
     }
 }

@@ -123,11 +123,6 @@ class TranscriptionsTable extends Table
         ),
     );
 
-    public $belongsTo = array(
-        'Sentence',
-        'User',
-    );
-
     /* Transcription-specific validation error messages
        of the last transcription save operation */
     public $validationErrors = array();
@@ -135,6 +130,7 @@ class TranscriptionsTable extends Table
     public function initialize(array $config)
     {
         $this->belongsTo('Sentences');
+        $this->belongsTo('Users');
     }
 
     public function setAutotranscription($object) {
