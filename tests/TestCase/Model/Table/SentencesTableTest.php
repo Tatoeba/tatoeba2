@@ -142,7 +142,7 @@ class SentencesTableTest extends TestCase {
 		$newlyCreatedSentenceId = $lastSentence->max + 1;
 
 		$this->Sentence->Links = $this->getMockBuilder(LinksTable::class)
-			->setMethods(['add'])
+			->setMethods(['add', 'findDirectAndIndirectTranslationsIds'])
 			->getMock();
 			
 		$this->Sentence->Links
