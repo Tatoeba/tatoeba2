@@ -1139,16 +1139,6 @@ class SentencesTable extends Table
 
 
     /**
-     * Get total number of sentences.
-     *
-     * @return int
-     */
-    public function getTotalNumberOfSentences()
-    {
-        return $this->find('count');
-    }
-
-    /**
      * Return text of a sentence for given id.
      *
      * @param int $sentenceId Id of the sentence

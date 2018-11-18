@@ -61,7 +61,7 @@ class StatsController extends AppController
     function sentences_by_language() {
         $stats = $this->Language->getSentencesStatistics();
         $audioStats = $this->Language->getAudioStats();
-        $totalSentences = $this->Sentence->getTotalNumberOfSentences();
+        $totalSentences = $this->Sentence->find()->count();
 
         $this->set('stats', $stats);
         $this->set('audioStats', $audioStats);

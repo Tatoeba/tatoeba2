@@ -102,7 +102,7 @@ class PagesController extends AppController
         $this->loadModel('Languages');
         $stats = $this->Languages->getSentencesStatistics(5);
         $this->loadModel('Sentences');
-        $numSentences = $this->Sentences->getTotalNumberOfSentences();
+        $numSentences = $this->Sentences->find()->count();
 
         $this->set('stats', $stats);
         $this->set('numSentences', $numSentences);
