@@ -15,31 +15,14 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
+use Cake\Event\Event;
+use Cake\Validation\Validator;
 
-
-/**
- * Model Class which represent the wall and messages posted on
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
-*/
-
-class Wall extends AppModel
+class WallTable extends Table
 {
     public $name = 'Wall';
     public $useTable = 'wall';
@@ -60,34 +43,35 @@ class Wall extends AppModel
         )
     );
 
-    public function __construct($id = false, $table = null, $ds = null)
-    {
-        parent::__construct($id, $table, $ds);
-        $this->validate = array(
-            'content' => array(
-                'rule'       => 'notBlank',
-                'allowEmpty' => false,
-                'message'    => __('You cannot save an empty message.'),
-            ),
-        );
-    }
-
-    private function _isSavingField($field) {
-        $data = $this->data[$this->alias];
+    private function _isSavingField($field, $entity) {
         $pk = isset($data[$this->primaryKey]);
         unset($data['modified']);
         unset($data[$this->primaryKey]);
         return $pk && array_key_exists($field, $data) && count($data) == 1;
     }
 
-    public function beforeSave($options = array()) {
-        if (isset($this->data[$this->alias]['date'])) {
-            $this->data[$this->alias]['modified'] = $this->data[$this->alias]['date'];
+    public function initialize(array $config)
+    {
+        $this->hasOne('WallThreads');
+
+        $this->addBehavior('Tree');
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->add('content', 'notBlank', [
+                'rule' => 'notBlank',
+                'message'    => __('You cannot save an empty message.'),
+            ]);
+
+        return $validator;
+    }
+
+    public function beforeSave($event, $entity, $options = array()) {
+        if ($entity->date && !$entity->isDirty('hidden')) {
+            $entity->modified = $entity->date;
         }
-        if ($this->_isSavingField('hidden')) {
-            unset($this->data[$this->alias]['modified']);
-        }
-        return true;
     }
 
     /**
@@ -98,20 +82,20 @@ class Wall extends AppModel
      * @return void
      */
 
-    public function afterSave($created, $options = array())
+    public function afterSave($event, $entity, $options = array())
     {
-        if ($created && isset($this->data[$this->alias]['date'])) {
-            $rootId = $this->getRootMessageIdOfReply($this->id);
-            $newThreadData = array(
+        if ($entity->isNew() && $entity->date) {
+            $rootId = $this->getRootMessageIdOfReply($entity->id);
+            $newThreadData = $this->WallThreads->newEntity([
                 'id' => $rootId,
-                'last_message_date' => $this->data[$this->alias]['date'],
-            );
-            $this->WallThread->save($newThreadData);
+                'last_message_date' => $entity->date,
+            ]);
+            $this->WallThreads->save($newThreadData);
         }
 
-        if ($created) {
+        if ($entity->isNew()) {
             $event = new Event('Model.Wall.postPosted', $this, array(
-                'post' => $this->data[$this->alias],
+                'post' => $entity,
             ));
             $this->getEventManager()->dispatch($event);
         }
@@ -280,25 +264,18 @@ class Wall extends AppModel
 
     public function getRootMessageIdOfReply($replyId)
     {
+        $replyLftRght = $this->_getLftRghtOfMessage($replyId);
+        $replyLft = $replyLftRght->lft;
+        $replyRght = $replyLftRght->rght;
+        $result = $this->find()
+            ->where([
+                'parent_id IS NULL',
+                'lft <=' => $replyLft,
+                'rght >=' => $replyRght
+            ])
+            ->first();
 
-
-        $replyLftRght  = $this->_getLftRghtOfMessage($replyId);
-
-        $replyLft = $replyLftRght['lft'];
-        $replyRght = $replyLftRght['rght'];
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => 'id',
-                'conditions' => array(
-                    'parent_id' => null,
-                    'lft <=' => $replyLft,
-                    'rght >=' => $replyRght
-                ),
-            )
-        );
-
-        return $result['Wall']['id'];
+        return $result->id;
     }
 
 
@@ -356,15 +333,9 @@ class Wall extends AppModel
      */
     private function _getLftRghtOfMessage($messageId)
     {
-        $replyLftRght = $this->find(
-            'first',
-            array(
-                'fields' => array('lft', 'rght'),
-                'conditions' => array('id' => $messageId),
-            )
-        );
+        $replyLftRght = $this->get($messageId, ['fields' => ['lft', 'rght']]);
 
-        return $replyLftRght['Wall'];
+        return $replyLftRght;
     }
 
     /**

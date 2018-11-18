@@ -15,37 +15,16 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan SIMON <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
-
-
-/**
- * Model Class which represent the wall and messages posted on
- *
- * @category WallThread
- * @package  Models
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
-*/
+use Cake\ORM\Table;
 
 
-
-class WallThread extends AppModel
+class WallThreadsTable extends Table
 {
 
     public $name = "WallThread" ;
-    public $useTable = "wall_threads_last_message";
 
     public $hasOne = array(
         'Wall' => array(
@@ -53,5 +32,10 @@ class WallThread extends AppModel
              'foreignKey' => 'id'
         )
     );
+
+    public function initialize(array $config)
+    {
+        $this->setTable('wall_threads_last_message');
+    }
 
 }

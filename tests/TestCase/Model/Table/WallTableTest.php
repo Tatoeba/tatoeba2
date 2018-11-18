@@ -3,6 +3,9 @@ namespace App\Test\TestCase\Model;
 
 use App\Model\Wall;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
+use Cake\Event\Event;
 
 class WallTest extends TestCase {
 
@@ -14,7 +17,8 @@ class WallTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        $this->Wall = ClassRegistry::init('Wall');
+        Configure::write('Acl.database', 'test');
+        $this->Wall = TableRegistry::getTableLocator()->get('Wall');
     }
 
     public function tearDown() {
@@ -24,49 +28,48 @@ class WallTest extends TestCase {
     }
 
     public function testSave_createsPost() {
-        $newPost = array(
+        $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => '2018-01-02 03:04:05',
             'content' => 'Hi everyone!',
-        );
+        ]);
         $expected = array('Wall' => array(
             'owner' => 2,
             'date' => '2018-01-02 03:04:05',
             'content' => 'Hi everyone!',
             'modified' => '2018-01-02 03:04:05',
+            'parent_id' => null,
             'lft' => 5,
             'rght' => 6,
             'id' => 3,
         ));
 
-        $before = $this->Wall->find('count');
-        $saved = $this->Wall->save($newPost);
-        $after = $this->Wall->find('count');
+        $before = $this->Wall->find()->count();
+        $saved = $this->Wall->save($newPost)->old_format;
+        $after = $this->Wall->find()->count();
 
         $this->assertEquals(1, $after - $before);
         $this->assertEquals($expected, $saved);
     }
 
     public function testSave_doesNotSaveNewPostIfContentIsEmpty() {
-        $newPost = array(
+        $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => '2018-01-02 03:04:05',
             'content' => '       ',
-        );
+        ]);
 
-        $before = $this->Wall->find('count');
+        $before = $this->Wall->find()->count();
         $saved = $this->Wall->save($newPost);
-        $after = $this->Wall->find('count');
+        $after = $this->Wall->find()->count();
 
         $this->assertEquals(0, $after - $before);
         $this->assertFalse($saved);
     }
 
     public function testSave_doesNotSaveExistingPostIfContentIsEmpty() {
-        $post = array(
-            'id' => 2,
-            'content' => '',
-        );
+        $post = $this->Wall->get(2);
+        $this->Wall->patchEntity($post, ['content' => '']);
 
         $saved = $this->Wall->save($post);
 
@@ -75,46 +78,46 @@ class WallTest extends TestCase {
 
     private function _assertThreadDate($postId, $expectedDate) {
         $rootId = $this->Wall->getRootMessageIdOfReply($postId);
-        $wallThread = $this->Wall->WallThread->findById($rootId, 'last_message_date');
-        $threadDate = $wallThread[$this->Wall->WallThread->alias]['last_message_date'];
+        $wallThread = $this->Wall->WallThreads->get($rootId);
+        $threadDate = $wallThread->last_message_date->i18nFormat('yyyy-MM-dd HH:mm:ss');
         $this->assertEquals($expectedDate, $threadDate);
     }
 
     public function testSave_newPostUpdatesExistingThreadDate() {
         $date = '2018-01-02 03:04:05';
-        $reply = array(
+        $reply = $this->Wall->newEntity([
             'owner' => 7,
             'date' => $date,
             'parent_id' => 2,
             'content' => 'I see.',
-        );
+        ]);
 
         $saved = $this->Wall->save($reply);
-
-        $postId = $saved[$this->Wall->alias][$this->Wall->primaryKey];
+        
+        $postId = $saved->id;
         $this->_assertThreadDate($postId, $date);
     }
 
     public function testSave_newPostUpdatesNewThreadDate() {
         $date = '2018-01-02 03:04:05';
-        $newPost = array(
+        $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => $date,
             'content' => 'Hi everyone!',
-        );
+        ]);
 
         $saved = $this->Wall->save($newPost);
 
-        $postId = $saved[$this->Wall->alias][$this->Wall->primaryKey];
+        $postId = $saved->id;
         $this->_assertThreadDate($postId, $date);
     }
 
     public function testSave_editExistingPostDoesNotUpdateThreadDate() {
         $postId = 2;
-        $post = array(
+        $post = $this->Wall->newEntity([
             'id' => $postId,
             'content' => 'Today!',
-        );
+        ]);
 
         $this->Wall->save($post);
 
@@ -123,23 +126,23 @@ class WallTest extends TestCase {
 
     public function testSave_hidingMessageDoesNotUpdateLastModifiedField() {
         $postId = 2;
-
-        $before = $this->Wall->findById($postId, 'modified');
-        $this->Wall->id = $postId;
-        $this->Wall->saveField('hidden', true);
-        $after = $this->Wall->findById($postId, 'modified');
+        $post = $this->Wall->get($postId);
+        $before = $post->modified;
+        $post->hidden = true;
+        $this->Wall->save($post);
+        $after = $this->Wall->get($postId, ['fields' => ['modified']])->modified;
 
         $this->assertEquals($before, $after);
     }
 
     public function testSave_replyFiresEvent() {
         $date = '2018-01-02 03:04:05';
-        $reply = array(
+        $reply = $this->Wall->newEntity([
             'owner' => 7,
             'date' => $date,
             'parent_id' => 2,
             'content' => 'I see.',
-        );
+        ]);
         $expectedPost = array(
             'owner' => 7,
             'date' => '2018-01-02 03:04:05',
@@ -154,7 +157,7 @@ class WallTest extends TestCase {
         $model->getEventManager()->attach(
             function (Event $event) use ($model, &$dispatched, $expectedPost) {
                 $this->assertSame($model, $event->subject());
-                extract($event->data); // $post
+                $post = $event->getData('post')->old_format['Wall']; // $post
                 unset($post['id']);
                 $this->assertEquals($expectedPost, $post);
                 $dispatched = true;
