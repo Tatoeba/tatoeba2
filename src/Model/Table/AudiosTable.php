@@ -20,6 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\Validation\Validator;
 
 
 class AudiosTable extends Table
@@ -71,6 +72,26 @@ class AudiosTable extends Table
         }
     }
 
+    public function initialize(array $config)
+    {
+        $this->belongsTo('Sentences');
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->requirePresence('sentence_id', 'create')
+            ->numeric('sentence_id');
+
+        $validator
+            ->notBlank('created');
+
+        $validator
+            ->notBlank('modified');
+
+        return $validator;
+    }
+
     public function afterFind($results, $primary = false) {
         foreach ($results as &$result) {
             if (isset($result[$this->alias])
@@ -87,32 +108,30 @@ class AudiosTable extends Table
         return $results;
     }
 
-    private function encodeExternal() {
-        if (isset($this->data[$this->alias]['external'])
-            && is_array($this->data[$this->alias]['external'])) {
-            $external = $this->field('external', array('id' => $this->id));
+    private function encodeExternal($entity) {
+        if (is_array($entity->external)) {
+            $external = $this->get($entity->id, ['fields' => ['external']]);
             if ($external === false) {
                 $external = array();
             }
             $external = array_merge($external, $this->data[$this->alias]['external']);
             $external = array_intersect_key($external, $this->defaultExternal);
-            $this->data[$this->alias]['external'] = json_encode($external);
+            //$this->data[$this->alias]['external'] = json_encode($external);
         }
     }
 
-    public function beforeSave($options = array()) {
-        if (isset($this->data[$this->alias]['id']) &&
-            isset($this->data[$this->alias]['sentence_id'])) {
+    public function beforeSave($event, $entity, $options = array()) {
+        if ($entity->id && $entity->sentence_id) {
             // save the previous sentence_id before updating it
-            $result = $this->findById($this->data[$this->alias]['id'], 'sentence_id');
-            if (isset($result[$this->alias]['sentence_id'])) {
-                $this->data['PrevSentenceId'] = $result[$this->alias]['sentence_id'];
+            $result = $this->get($entity->id, ['fields' => ['sentence_id']]);
+            if ($entity->sentence_id) {
+                $entity->PrevSentenceId = $result->sentence_id;
             }
         }
 
         $ok = true;
-        $user_id = $this->_getFieldFromDataOrDatabase('user_id');
-        $external = $this->_getFieldFromDataOrDatabase('external');
+        $user_id = $entity->user_id;
+        $external = $entity->external;
         if ($external) {
             $external = array_filter($external);
         }
@@ -120,38 +139,35 @@ class AudiosTable extends Table
             $ok = false;
         }
 
-        $this->encodeExternal();
+        $this->encodeExternal($external);
         return $ok;
     }
 
-    public function afterSave($created, $options = array()) {
-        if (isset($this->data[$this->alias]['sentence_id'])) {
-            $this->Sentence->flagSentenceAndTranslationsToReindex(
-                $this->data[$this->alias]['sentence_id']
+    public function afterSave($event, $entity, $options = array()) {
+        if ($entity->sentence_id) {
+            $this->Sentences->flagSentenceAndTranslationsToReindex(
+                $entity->sentence_id
             );
-            if (isset($this->data['PrevSentenceId']) &&
-                $this->data['PrevSentenceId'] != $this->data[$this->alias]['sentence_id']) {
-                $this->Sentence->flagSentenceAndTranslationsToReindex(
-                    $this->data['PrevSentenceId']
+            if ($entity->PrevSentenceId && $entity->PrevSentenceId != $entity->sentence_id) {
+                $this->Sentences->flagSentenceAndTranslationsToReindex(
+                    $entity->PrevSentenceId
                 );
-                unset($this->data['PrevSentenceId']);
             }
         }
     }
 
-    public function afterDelete(Event $event, Entity $entity, ArrayObject $options) {
-        if (isset($this->data[$this->alias]['sentence_id'])) {
-            $this->Sentence->flagSentenceAndTranslationsToReindex(
-                $this->data[$this->alias]['sentence_id']
+    public function afterDelete($event, $entity, $options) {
+        if ($entity->sentence_id) {
+            $this->Sentences->flagSentenceAndTranslationsToReindex(
+                $entity->sentence_id
             );
         }
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
-        if (array_key_exists('sentence_id', $this->data[$this->alias])) {
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $sentenceId) {
+        if ($sentenceId) {
             $attributes[] = 'has_audio';
-            $sentenceId = $this->data[$this->alias]['sentence_id'];
-            $hasAudio = (bool)$this->findBySentenceId($sentenceId, 'sentence_id');
+            $hasAudio = $this->findBySentenceId($sentenceId)->first();
             $values[$sentenceId][] = intval($hasAudio);
         }
     }

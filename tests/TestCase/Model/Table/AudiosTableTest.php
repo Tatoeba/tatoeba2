@@ -1,11 +1,14 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Audio\Model;
+use App\Model\Table\AudiosTable;
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use App\Test\Fixture\AudiosFixture;
+use Cake\Utility\Hash;
 
-class AudioTest extends TestCase {
+class AudiosTableTest extends TestCase {
     public $fixtures = array(
         'app.audios',
         'app.contributions',
@@ -29,16 +32,14 @@ class AudioTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        Configure::write('Search.enabled', true);
-        $this->Audio = ClassRegistry::init('Audio');
-        $this->AudioFixture = ClassRegistry::init('AudioFixture');
+        //Configure::write('Search.enabled', true);
+        $this->Audio = TableRegistry::getTableLocator()->get('Audios');
+        $this->AudioFixture =  new AudiosFixture();
     }
 
     function tearDown() {
-        parent::tearDown();
         unset($this->Audio);
-        unset($this->AudioFixture);
-        ClassRegistry::flush();
+        parent::tearDown();
     }
 
     function _getRecord($record) {
@@ -50,7 +51,8 @@ class AudioTest extends TestCase {
         $this->Audio->deleteAll(array('1=1'));
         unset($data['id']);
         $data = array_merge($data, $changedFields);
-        return (bool)$this->Audio->save($data);
+        $audio = $this->Audio->newEntity($data);
+        return (bool)$this->Audio->save($audio);
     }
 
     function _saveRecordWithout($record, $missingFields) {
@@ -60,7 +62,8 @@ class AudioTest extends TestCase {
         foreach ($missingFields as $field) {
             unset($data[$field]);
         }
-        return (bool)$this->Audio->save($data);
+        $audio = $this->Audio->newEntity($data);
+        return (bool)$this->Audio->save($audio);
     }
 
     function _assertValidRecordWith($record, $changedFields) {
@@ -87,8 +90,9 @@ class AudioTest extends TestCase {
         $this->_assertInvalidRecordWithout(0, array('sentence_id'));
     }
     function testSentenceIdCanBeUpdated() {
-        $data = array('id' => 1, 'sentence_id' => 10);
-
+        $data = $this->Audio->get(1);
+        $data->sentence_id = 10;
+        
         $result = (bool)$this->Audio->save($data);
 
         $this->assertTrue($result);
@@ -122,17 +126,16 @@ class AudioTest extends TestCase {
 
     function testSentencesReindexedOnSentenceIdUpdate() {
         $audioId = 1;
-        $prevAudio = $this->Audio->findById($audioId, 'sentence_id');
-        $data = array('id' => $audioId, 'sentence_id' => 7);
-        $expected = array(1, 2, 3, 4, 7);
-
+        $data = $this->Audio->get($audioId);
+        $data->sentence_id = 7;
         $this->Audio->save($data);
 
-        $result = $this->Audio->Sentence->ReindexFlag->find('all', array(
-            'order' => 'sentence_id'
-        ));
-        $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
-        $this->assertEqual($expected, $result);
+        $expected = array(1, 2, 3, 4, 7);
+        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+            ->order('sentence_id')
+            ->toList();
+        $result = Hash::extract($result, '{n}.sentence_id');
+        $this->assertEquals($expected, $result);
     }
 
     function testSentencesReindexedOnCreate() {
@@ -140,23 +143,24 @@ class AudioTest extends TestCase {
 
         $this->_saveRecordWith(0, array('sentence_id' => 10));
 
-        $result = $this->Audio->Sentence->ReindexFlag->find('all', array(
-            'order' => 'sentence_id'
-        ));
-        $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
-        $this->assertEqual($expected, $result);
+        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+            ->order('sentence_id')
+            ->toList();
+        $result = Hash::extract($result, '{n}.sentence_id');
+        $this->assertEquals($expected, $result);
     }
 
     function testSentencesReindexedOnDelete() {
         $expected = array(1, 2, 3, 4);
 
-        $this->Audio->delete(1, false);
+        $audio = $this->Audio->get(1);
+        $this->Audio->delete($audio);
 
-        $result = $this->Audio->Sentence->ReindexFlag->find('all', array(
-            'order' => 'sentence_id'
-        ));
-        $result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
-        $this->assertEqual($expected, $result);
+        $result = $this->Audio->Sentences->ReindexFlags->find('all')
+            ->order('sentence_id')
+            ->toList();
+        $result = Hash::extract($result, '{n}.sentence_id');
+        $this->assertEquals($expected, $result);
     }
 
     function testSphinxAttributesChanged_onUpdate() {
@@ -167,15 +171,10 @@ class AudioTest extends TestCase {
             $sentenceId => array(1),
         );
 
-        $this->Audio->id = $sentenceId;
-        $this->Audio->data['Audio'] = array(
-            'id' => $audioId,
-            'sentence_id' => $sentenceId,
-        );
-        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
+        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA, $sentenceId);
 
-        $this->assertEqual($expectedAttributes, $attributes);
-        $this->assertEqual($expectedValues, $values);
+        $this->assertEquals($expectedAttributes, $attributes);
+        $this->assertEquals($expectedValues, $values);
     }
 
     function testSphinxAttributesChanged_onDelete() {
@@ -186,15 +185,10 @@ class AudioTest extends TestCase {
             $sentenceId => array(0),
         );
 
-        $this->Audio->id = $sentenceId;
-        $this->Audio->data['Audio'] = array(
-            'id' => $audioId,
-            'sentence_id' => $sentenceId,
-        );
-        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA);
+        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA, $sentenceId);
 
-        $this->assertEqual($expectedAttributes, $attributes);
-        $this->assertEqual($expectedValues, $values);
+        $this->assertEquals($expectedAttributes, $attributes);
+        $this->assertEquals($expectedValues, $values);
     }
 
 }
