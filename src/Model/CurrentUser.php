@@ -29,6 +29,7 @@ namespace App\Model;
 use App\Model\Entity\User;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
+use Cake\I18n\Time;
 
 /**
  * Static class that stores the Auth information of the user. This is the only
@@ -275,18 +276,9 @@ class CurrentUser
      */
     public static function isNewUser()
     {
-        $isNewUser = false;
-        $daysToWait = "14";
-
-        $today = new DateTime("now");
-        $since = new DateTime(self::get('since'));
-        $userAge = $since->diff($today);
-
-        if ($userAge->days <= $daysToWait) {
-            $isNewUser = true;
-        }
-
-        return $isNewUser;
+        $since = new Time(self::get('since'));
+        
+        return $since->wasWithinLast('2 weeks');
     }
 
     /**

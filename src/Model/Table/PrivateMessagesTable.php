@@ -16,32 +16,17 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   DEPARIS Étienne <etienne.deparis@umaneti.net>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 use App\Model\CurrentUser;
+use Cake\I18n\Time;
+use Cake\Event\Event;
+use Cake\Validation\Validator;
 
 
-/**
- * Model for Private Messages.
- *
- * @category PrivateMessage
- * @package  Models
- * @author   DEPARIS Étienne <etienne.deparis@umaneti.net>
- * @author   SIMON   Allan   <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class PrivateMessage extends AppModel
+class PrivateMessagesTable extends Table
 {
     public $name = 'PrivateMessage';
 
@@ -59,18 +44,27 @@ class PrivateMessage extends AppModel
         )
     );
 
-
-    public function __construct($id = false, $table = null, $ds = null)
+    public function initialize(array $config)
     {
-        parent::__construct($id, $table, $ds);
-        $this->validate = array(
-            'content' => array(
-                'rule'       => 'notBlank',
-                'required'   => true,
-                'allowEmpty' => false,
-                'message'    => __('You must fill at least the content field.'),
-            ),
-        );
+        $this->belongsTo('Users');
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->requirePresence('content')
+            ->add('content', 'notBlank', [
+                'rule' => 'notBlank',
+                'message' =>  __('You must fill at least the content field.')
+            ]);
+
+        $validator
+            ->add('recpt', 'notBlank', [
+                'rule' => 'notBlank',
+                'message' => __('You must fill at least the "To" field and the content field.')
+            ]);
+        
+        return $validator;
     }
 
     /**
@@ -224,18 +218,15 @@ class PrivateMessage extends AppModel
      */
     public function todaysMessageCount($userId)
     {
-        $yesterday = date_modify(new DateTime("now"), "-1 day");
+        $yesterday = new Time('-24 hours');
 
-        return $this->find(
-            "count",
-            array(
-                  'conditions' => array(
-                      'sender' => $userId,
-                      'folder' => array('Sent', 'Trash'),
-                      'date >= ' => date_format($yesterday, "Y/m/d H:i:s")
-                  )
-            )
-        );
+        return $this->find()
+            ->where([
+                'sender' => $userId,
+                'folder IN' => ['Sent', 'Trash'],
+                'date >=' => $yesterday->i18nFormat('yyyy-MM-dd HH:mm:ss')
+            ])
+            ->count();
     }
 
     /**
@@ -292,9 +283,8 @@ class PrivateMessage extends AppModel
             $draft['id'] = $data['PrivateMessage']['messageId'];
         }
 
-        $this->save($draft);
-
-        return $draft;
+        $entity = $this->newEntity($draft);
+        return $this->save($entity);
     }
 
     /**
@@ -313,7 +303,7 @@ class PrivateMessage extends AppModel
             'draft_recpts' => '',
             'sent' => 1
         ));
-
+        $message = $this->newEntity($message);
         return $this->save($message);
     }
 
@@ -338,9 +328,8 @@ class PrivateMessage extends AppModel
             'id' => null
         ));
 
-        $this->save($message);
-
-        return $message;
+        $message = $this->newEntity($message);
+        return $this->save($message);;
     }
 
     public function notify($recptId, $now, $message)
@@ -357,13 +346,7 @@ class PrivateMessage extends AppModel
             $now
         );
 
-        $recipients = $this->_buildRecipientsArray($message[$this->alias]['recpt']);
-        if (empty($recipients)) {
-            $this->validationErrors['recpt'] = array(
-                __('You must fill at least the "To" field and the content field.')
-            );
-            return false;
-        }
+        $recipients = $this->_buildRecipientsArray($message['PrivateMessage']['recpt']);
 
         $sentToday = $this->todaysMessageCount($currentUserId);
 
@@ -381,7 +364,7 @@ class PrivateMessage extends AppModel
                 return false;
             }
 
-            $recptId = $this->User->getIdFromUsername($recpt);
+            $recptId = $this->Users->getIdFromUsername($recpt);
 
             if (!$recptId) {
                 $this->validationErrors['recpt'] = array(
@@ -399,7 +382,7 @@ class PrivateMessage extends AppModel
                 return false;
             } else {
                 $event = new Event('Model.PrivateMessage.messageSent', $this, array(
-                    'message' => $message[$this->alias],
+                    'message' => $message,
                 ));
                 $this->getEventManager()->dispatch($event);
             }

@@ -1,8 +1,11 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\PrivateMessage;
+use App\Model\Table\PrivateMessagesTable;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
+use Cake\Event\Event;
 
 class PrivateMessageTest extends TestCase {
 
@@ -13,7 +16,8 @@ class PrivateMessageTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        $this->PrivateMessage = ClassRegistry::init('PrivateMessage');
+        Configure::write('Acl.database', 'test');
+        $this->PrivateMessage = TableRegistry::getTableLocator()->get('PrivateMessages');
     }
 
     public function tearDown() {
@@ -33,9 +37,9 @@ class PrivateMessageTest extends TestCase {
             ),
         );
 
-        $this->PrivateMessage->saveDraft(7, $date, $postData);
+        $draft =$this->PrivateMessage->saveDraft(7, $date, $postData);
 
-        $id = $this->PrivateMessage->getLastInsertId();
+        $id = $draft->id;
         $expectedPm = array(
             'id'      => $id,
             'recpt'   => 0,
@@ -49,8 +53,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => 'advanced_contributor',
         );
-        $pm = $this->PrivateMessage->findById($id);
-        $this->assertEqual($expectedPm, $pm['PrivateMessage']);
+        $pm = $this->PrivateMessage->get($id)->old_format;
+        $this->assertEquals($expectedPm, $pm['PrivateMessage']);
     }
 
     public function testSaveDraft_editsExistingDraft() {
@@ -81,12 +85,12 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => 'advanced_contributor',
         );
-        $pm = $this->PrivateMessage->findById($draftId);
-        $this->assertEqual($expectedPm, $pm['PrivateMessage']);
+        $pm = $this->PrivateMessage->get($draftId)->old_format;
+        $this->assertEquals($expectedPm, $pm['PrivateMessage']);
     }
 
     public function testSave_failsIfEmptyContent() {
-        $pm = array(
+        $pm = $this->PrivateMessage->newEntity([
             'recpt'        => 3,
             'sender'       => 1,
             'user_id'      => 3,
@@ -97,13 +101,13 @@ class PrivateMessageTest extends TestCase {
             'isnonread'    => 1,
             'draft_recpts' => '',
             'sent'         => 0,
-        );
+        ]);
 
-        $before = $this->PrivateMessage->find('count');
+        $before = $this->PrivateMessage->find()->count();
         $this->PrivateMessage->save($pm);
-        $after = $this->PrivateMessage->find('count');
+        $after = $this->PrivateMessage->find()->count();
 
-        $this->assertEqual(0, $after - $before);
+        $this->assertEquals(0, $after - $before);
     }
 
     public function testSaveDraft_withoutRecipient() {
@@ -118,11 +122,11 @@ class PrivateMessageTest extends TestCase {
             ),
         );
 
-        $before = $this->PrivateMessage->find('count');
+        $before = $this->PrivateMessage->find()->count();
         $this->PrivateMessage->saveDraft(7, $date, $postData);
-        $after = $this->PrivateMessage->find('count');
+        $after = $this->PrivateMessage->find()->count();
 
-        $this->assertEqual(1, $after - $before);
+        $this->assertEquals(1, $after - $before);
     }
 
     public function testSend_toOneRecipent() {
@@ -138,9 +142,9 @@ class PrivateMessageTest extends TestCase {
         );
         $currentUserId = 7;
 
-        $this->PrivateMessage->send($currentUserId, $date, $postData);
+        $message = $this->PrivateMessage->send($currentUserId, $date, $postData);
 
-        $sentId = $this->PrivateMessage->getLastInsertId();
+        $sentId = $this->PrivateMessage->find()->order(['id' => 'DESC'])->first()->id;
         $expectedSent = array(
             'id'      => $sentId,
             'recpt'   => 3,
@@ -154,8 +158,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 0,
             'draft_recpts' => '',
         );
-        $sent = $this->PrivateMessage->findById($sentId);
-        $this->assertEqual($expectedSent, $sent['PrivateMessage']);
+        $sent = $this->PrivateMessage->get($sentId)->old_format;
+        $this->assertEquals($expectedSent, $sent['PrivateMessage']);
 
         $receivedId = $sentId - 1;
         $expectedReceived = array(
@@ -171,8 +175,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => '',
         );
-        $received = $this->PrivateMessage->findById($receivedId);
-        $this->assertEqual($expectedReceived, $received['PrivateMessage']);
+        $received = $this->PrivateMessage->get($receivedId)->old_format;
+        $this->assertEquals($expectedReceived, $received['PrivateMessage']);
     }
 
     public function testSend_withoutRecipient() {
@@ -188,11 +192,11 @@ class PrivateMessageTest extends TestCase {
         );
         $currentUserId = 4;
 
-        $before = $this->PrivateMessage->find('count');
+        $before = $this->PrivateMessage->find()->count();
         $this->PrivateMessage->send($currentUserId, $date, $postData);
-        $after = $this->PrivateMessage->find('count');
+        $after = $this->PrivateMessage->find()->count();
 
-        $this->assertEqual(0, $after - $before);
+        $this->assertEquals(0, $after - $before);
     }
 
     function testSend_firesSendingEvent() {
@@ -224,8 +228,8 @@ class PrivateMessageTest extends TestCase {
         $model = $this->PrivateMessage;
         $model->getEventManager()->attach(
             function (Event $event) use ($model, &$dispatched, $expectedMessage) {
-                $this->assertSame($model, $event->subject());
-                extract($event->data); // $message
+                $this->assertSame($model->getAlias(), $event->subject()->getAlias());
+                $message = $event->getData('message')->old_format['PrivateMessage']; // $message
                 unset($message['id']);
                 $this->assertEquals($expectedMessage, $message);
                 $dispatched = true;
