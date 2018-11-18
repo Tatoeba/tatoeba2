@@ -1,8 +1,9 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\UsersSentences;
+use App\Model\Table\UsersSentencesTable;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
 
 class UsersSentencesTest extends TestCase {
     public $fixtures = array(
@@ -13,7 +14,7 @@ class UsersSentencesTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        $this->UsersSentences = ClassRegistry::init('UsersSentences');
+        $this->UsersSentences = TableRegistry::getTableLocator()->get('UsersSentences');
     }
 
     function tearDown() {
@@ -32,7 +33,7 @@ class UsersSentencesTest extends TestCase {
 
         $userSentence = $this->UsersSentences->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        );
+        )->first()->old_format;
         $expected = array(
             'user_id' => $userId,
             'sentence_id' => $sentenceId,
@@ -54,7 +55,7 @@ class UsersSentencesTest extends TestCase {
 
         $userSentence = $this->UsersSentences->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        );
+        )->first()->old_format;
         $expected = array(
             'user_id' => $userId,
             'sentence_id' => $sentenceId,

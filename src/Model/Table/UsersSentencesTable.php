@@ -38,23 +38,20 @@ class UsersSentencesTable extends Table
     {
         $userSentence = $this->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        );
+        )->first();
 
-        if (empty($userSentence)) {
-            $data = array(
+        if (!$userSentence) {
+            $userSentence = $this->newEntity([
                 'user_id' => $userId,
                 'sentence_id' => $sentenceId,
                 'correctness' => $correctness
-            );
+            ]);
         } else {
-            $data = array(
-                'id' => $userSentence['UsersSentences']['id'],
-                'correctness' => $correctness,
-                'dirty' => 0
-            );
+            $userSentence->correctness = $correctness;
+            $userSentence->dirty = 0;
         }
 
-        return $this->save($data);
+        return $this->save($userSentence)->old_format;
     }
 
     /**
@@ -64,11 +61,10 @@ class UsersSentencesTable extends Table
     {
         $userSentence = $this->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        );
+        )->first();
 
         if ($userSentence) {
-            $id = $userSentence['UsersSentences']['id'];
-            return $this->delete($id, false);
+            return $this->delete($userSentence, false);
         }
 
         return false;
