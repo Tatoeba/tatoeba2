@@ -20,6 +20,8 @@ namespace App\Model\Table;
 
 use App\Lib\Autotranscription;
 use Cake\ORM\Table;
+use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 
 class TranscriptionsTable extends Table
@@ -131,19 +133,33 @@ class TranscriptionsTable extends Table
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');
+
+        $this->setAutotranscription(new Autotranscription());
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->notBlank('text')
+            ->requirePresence('text', 'create');
+
+        $validator
+            ->notBlank('created');
+
+        $validator
+            ->notBlank('modified');
+
+        $validator
+            ->numeric('user_id');
+        
+        return $validator;
     }
 
     public function setAutotranscription($object) {
         $this->autotranscription = $object;
     }
 
-    public function __construct($id = false, $table = null, $ds = null)
-    {
-        parent::__construct($id, $table, $ds);
-        $this->setAutotranscription(new Autotranscription());
-    }
-
-    public function afterFind($results, $primary = false) {
+    public function afterFind($event, $entity, $options) {
         $this->setTranscriptionsFlags($results);
         return $results;
     }
@@ -214,10 +230,10 @@ class TranscriptionsTable extends Table
     public function beforeSave($event, $entity, $options) {
         $ok = true;
         if (!$entity->isNew()) { // update
-            if ($this->isModifyingFields(array('sentence_id', 'script')))
+            if ($entity->isDirty('sentence_id') || $entity->isDirty('script'))
                 $ok = false;
             else
-                $ok = $this->_checkTranscriptionRules();
+                $ok = $this->_checkTranscriptionRules($entity);
         } else { // create
             if ($entity->sentence_id || $entity->script) {
                 $ok = $this->_isUnique($entity) && $this->_checkTranscriptionRules($entity);
@@ -343,12 +359,12 @@ class TranscriptionsTable extends Table
     }
 
     public function saveTranscription($transcr) {
-        $sentence = $this->Sentences->findById($transcr['sentence_id']);
+        $sentence = $this->Sentences->get($transcr['sentence_id']);
         if (!$sentence)
             return false;
 
         $targetScript = $transcr['script'];
-        $langScript = $this->getSourceLangScript($sentence['Sentence']);
+        $langScript = $this->getSourceLangScript($sentence->old_format);
         if (!$langScript || !isset($this->availableTranscriptions[$langScript][$targetScript]))
             return false;
 
@@ -483,7 +499,7 @@ class TranscriptionsTable extends Table
 
     public function addGeneratedTranscriptions($transcriptions, $sentence) {
         $possibleScripts = $this->transcriptableToWhat($sentence);
-        $existingScripts = (array)Set::classicExtract($transcriptions, '{n}.script');
+        $existingScripts = (array)Hash::extract($transcriptions, '{n}.script');
         $scriptsToGenerate = array_diff_key($possibleScripts, array_flip($existingScripts));
 
         foreach ($scriptsToGenerate as $script => $process) {
