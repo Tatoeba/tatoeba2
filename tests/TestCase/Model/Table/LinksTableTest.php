@@ -28,13 +28,13 @@ class LinksTableTest extends TestCase {
 		'app.reindex_flags'
 	);
 
-	function setUp($method) {
+	function setUp() {
 		parent::setUp();
 		Configure::write('Acl.database', 'test');
 		$this->Link = TableRegistry::getTableLocator()->get('Links');
 	}
 
-	function tearDown($method) {
+	function tearDown() {
 		unset($this->Link);
 		parent::tearDown();
 	}

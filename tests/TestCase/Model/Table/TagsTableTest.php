@@ -28,13 +28,13 @@ class TagsTableTest extends TestCase {
         'app.reindex_flags'
     );
 
-    function setUp($method) {
+    function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
         $this->Tag = TableRegistry::getTableLocator()->get('Tags');
     }
 
-    function tearDown($method) {
+    function tearDown() {
         unset($this->Tag);
         parent::tearDown();
     }
