@@ -1,8 +1,10 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\SentenceComment;
+use App\Model\Table\SentenceCommentsTable;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Event\Event;
 
 class SentenceCommentTest extends TestCase {
 
@@ -12,7 +14,7 @@ class SentenceCommentTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        $this->SentenceComment = ClassRegistry::init('SentenceComment');
+        $this->SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
     }
 
     public function tearDown() {
@@ -22,21 +24,18 @@ class SentenceCommentTest extends TestCase {
     }
 
     public function testSave_newCommentfiresEvent() {
-        $comment = array(
+        $comment = $this->SentenceComment->newEntity([
             'sentence_id' => 1,
             'text' => 'What a great sentence!',
             'user_id' => 4,
-        );
+        ]);
 
         $dispatched = false;
         $model = $this->SentenceComment;
         $model->getEventManager()->attach(
             function (Event $event) use ($model, &$dispatched, $comment) {
-                $this->assertSame($model, $event->subject());
-                unset($event->data['comment']['id']);
-                unset($event->data['comment']['modified']);
-                unset($event->data['comment']['created']);
-                $this->assertEquals($comment, $event->data['comment']);
+                $this->assertSame($model->getAlias(), $event->subject()->getAlias());
+                $this->assertEquals($comment, $event->getData('comment'));
                 $dispatched = true;
             },
             'Model.SentenceComment.commentPosted'
@@ -48,11 +47,11 @@ class SentenceCommentTest extends TestCase {
     }
 
     public function testSave_savesNewComment() {
-        $comment = array(
+        $comment = $this->SentenceComment->newEntity([
             'sentence_id' => 1,
             'text' => 'What a great sentence!',
             'user_id' => 4,
-        );
+        ]);
 
         $saved = $this->SentenceComment->save($comment);
 
@@ -60,11 +59,11 @@ class SentenceCommentTest extends TestCase {
     }
 
     public function testSave_failsSavingNewEmptyComment() {
-        $comment = array(
+        $comment = $this->SentenceComment->newEntity([
             'sentence_id' => 1,
             'text' => ' ',
             'user_id' => 4,
-        );
+        ]);
 
         $saved = $this->SentenceComment->save($comment);
 
@@ -72,19 +71,20 @@ class SentenceCommentTest extends TestCase {
     }
 
     public function testSave_editsExistingComment() {
-        $newText = 'Someone should REALLY delete this sentence.';
-
-        $this->SentenceComment->id = 2;
-        $saved = $this->SentenceComment->saveField('text', $newText, true);
+        $comment = $this->SentenceComment->get(2);
+        $this->SentenceComment->patchEntity(
+            $comment,
+            ['text' => 'Someone should REALLY delete this sentence.']
+        );
+        $saved = $this->SentenceComment->save($comment);
 
         $this->assertTrue((bool)$saved);
     }
 
     public function testSave_failsEditingCommentWithEmptyContents() {
-        $newText = ' ';
-
-        $this->SentenceComment->id = 2;
-        $saved = $this->SentenceComment->saveField('text', $newText, true);
+        $comment = $this->SentenceComment->get(2);
+        $this->SentenceComment->patchEntity($comment, ['text' => ' ']);
+        $saved = $this->SentenceComment->save($comment);
 
         $this->assertFalse((bool)$saved);
     }

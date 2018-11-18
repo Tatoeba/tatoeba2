@@ -15,53 +15,39 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\Event\Event;
+use App\Event\NotificationListener;
+use Cake\Validation\Validator;
+use Cake\ORM\RulesChecker;
 
 
-/**
- * Model for sentence comments.
- *
- * @category SentenceComments
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class SentenceComment extends AppModel
+class SentenceCommentsTable extends Table
 {
     public $actsAs = array('Containable');
     public $belongsTo = array('Sentence', 'User');
 
-    public function __construct($id = false, $table = null, $ds = null)
+
+    public function validationDefault(Validator $validator)
     {
-        parent::__construct($id, $table, $ds);
-        $this->validate = array(
-            'text' => array(
-                'rule'       => 'notBlank',
-                'allowEmpty' => false,
-                'message'    => __('Comments cannot be empty.'),
-            ),
-        );
+        $validator
+            ->add('text', 'notBlank', [
+                'rule' => 'notBlank',
+                'message' => __('Comments cannot be empty.')
+            ]);
+
+        return $validator;
     }
 
-
-    public function afterSave($created, $options = array())
+    public function afterSave($event, $entity, $options)
     {
-        if ($created) {
+        if ($entity->isNew()) {
             $event = new Event('Model.SentenceComment.commentPosted', $this, array(
-                'comment' => $this->data[$this->alias],
+                'comment' => $entity,
             ));
             $this->getEventManager()->dispatch($event);
         }

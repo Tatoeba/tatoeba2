@@ -18,14 +18,13 @@
  */
 namespace App\Event;
 
-use App\Event\EventListener;
-use App\Network\Email\Email;
+use Cake\Event\EventListenerInterface;
+use Cake\Mailer\Email;
 use Cake\Core\Configure;
-use Cake\Event\EventListener;
 use Cake\Routing\Router;
 
 
-class NotificationListener implements EventListener {
+class NotificationListener implements EventListenerInterface {
     public function implementedEvents() {
         return array(
             'Model.PrivateMessage.messageSent' => 'sendPmNotification',
