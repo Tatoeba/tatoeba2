@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\Event\Event;
 
 class TagsTable extends Table
 {
@@ -65,6 +66,12 @@ class TagsTable extends Table
     {
         return 'OK';
     }
+
+    public function initialize(array $config) 
+    {
+        $this->hasMany('TagsSentences');
+        $this->belongsToMany('Sentences');
+    }
     /**
      * Cakephp callback before each saving operation
      *
@@ -72,9 +79,9 @@ class TagsTable extends Table
      *              False if we have to abort it
      */
 
-    public function beforeSave($options = array())
+    public function beforeSave($event, $entity, $options = array())
     {
-        $tagName = $this->data['Tag']['name'];
+        $tagName = $entity->name;
         $result = $this->getIdFromName($tagName);
         return empty($result);
     }
@@ -96,23 +103,21 @@ class TagsTable extends Table
 
         // Special case: don't allow the owner of a sentence to give it an OK tag.
         if ($tagName == 'OK') {
-            $owner = $this->Sentence->getOwnerInfoOfSentence($sentenceId);
+            $owner = $this->Sentences->getOwnerInfoOfSentence($sentenceId);
             if ($owner && $userId == $owner['id']) {
                 return false;
             }
         }
 
-        $data = array(
-            "Tag" => array(
-                "name" => $tagName,
-                "user_id" => $userId,
-                "created" => date("Y-m-d H:i:s")
-            )
-        );
+        $data = $this->newEntity([
+            'name' => $tagName,
+            'user_id' => $userId,
+            'created' => date('Y-m-d H:i:s')
+        ]);
         // try to add it as a new tag
         $added = $this->save($data);
         if ($added) {
-            $tagId = $this->id;
+            $tagId = $added->id;
         } else {
             // This is mildly inefficient because the query has already
             // been performed in beforeSave().

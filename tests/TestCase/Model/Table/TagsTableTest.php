@@ -1,10 +1,13 @@
 <?php
-namespace App\Test\TestCase\Model;
+namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Tag;
+use App\Model\Table\TagsTable;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
+use Cake\Event\Event;
 
-class TagTest extends TestCase {
+class TagsTableTest extends TestCase {
     public $fixtures = array(
         'app.sentences',
         'app.users',
@@ -25,25 +28,27 @@ class TagTest extends TestCase {
         'app.reindex_flags'
     );
 
-    function startTest($method) {
-        $this->Tag = ClassRegistry::init('Tag');
+    function setUp($method) {
+        parent::setUp();
+        Configure::write('Acl.database', 'test');
+        $this->Tag = TableRegistry::getTableLocator()->get('Tags');
     }
 
-    function endTest($method) {
+    function tearDown($method) {
         unset($this->Tag);
-        ClassRegistry::flush();
+        parent::tearDown();
     }
 
     function testAddTagAddsTag() {
         $contributorId = 4;
         $sentenceId = 1;
-        $before = $this->Tag->TagsSentences->find('count');
+        $before = $this->Tag->TagsSentences->find('all')->count();
 
         $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
 
-        $after = $this->Tag->TagsSentences->find('count');
+        $after = $this->Tag->TagsSentences->find('all')->count();
         $added = $after - $before;
-        $this->assertEqual(1, $added);
+        $this->assertEquals(1, $added);
     }
 
     function testAddTagFiresEvent() {
@@ -55,7 +60,7 @@ class TagTest extends TestCase {
         $model = $this->Tag;
         $model->getEventManager()->attach(
             function (Event $event) use ($model, &$dispatched, $expectedTagName) {
-                $this->assertSame($model, $event->subject());
+                $this->assertSame($model->getAlias(), $event->subject()->getAlias());
                 extract($event->data); // $tagName
                 $this->assertEquals($expectedTagName, $tagName);
                 $dispatched = true;
@@ -71,12 +76,12 @@ class TagTest extends TestCase {
     function testSentenceOwnerCannotTagOwnSentenceAsOK() {
         $sentenceId = 1;
         $ownerId = 7;
-        $before = $this->Tag->TagsSentences->find('count');
+        $before = $this->Tag->TagsSentences->find('all')->count();
 
         $this->Tag->addTag('OK', $ownerId, $sentenceId);
 
-        $after = $this->Tag->TagsSentences->find('count');
+        $after = $this->Tag->TagsSentences->find('all')->count();
         $added = $after - $before;
-        $this->assertEqual(0, $added);
+        $this->assertEquals(0, $added);
     }
 }

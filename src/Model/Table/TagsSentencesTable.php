@@ -25,7 +25,7 @@ use Cake\Utility\Hash;
 class TagsSentencesTable extends Table
 {
     public $name = 'TagSentences';
-    public $useTable = "tags_sentences";
+    public $useTable = 'tags_sentences';
     public $actsAs = array('Containable');
 
 
@@ -61,14 +61,12 @@ class TagsSentencesTable extends Table
         $isTagged = $this->isSentenceTagged($sentenceId, $tagId);
 
         if (!$isTagged) {
-            $data = array(
-                "TagsSentences" => array(
-                    "user_id" => $userId,
-                    "tag_id" => $tagId,
-                    "sentence_id" => $sentenceId,
-                    "added_time" => date("Y-m-d H:i:s")
-                )
-            );
+            $data = $this->newEntity([
+                'user_id' => $userId,
+                'tag_id' => $tagId,
+                'sentence_id' => $sentenceId,
+                'added_time' => date('Y-m-d H:i:s')
+            ]);
 
             $this->save($data);
 
@@ -113,7 +111,7 @@ class TagsSentencesTable extends Table
      */
     public function getSentencesWithNonNewTag($tagId, $lang)
     {
-        $date = date('Y-m-d', strtotime("-2 weeks"));
+        $date = date('Y-m-d', strtotime('-2 weeks'));
 
         $sentenceConditions = array();
 
