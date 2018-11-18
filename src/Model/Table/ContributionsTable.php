@@ -29,6 +29,7 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
+use Cake\I18n\Time;
 
 
 /**
@@ -232,18 +233,14 @@ class ContributionsTable extends Table
 
     public function getTodayContributions()
     {
-        $currentDate = 'Contribution.datetime >'.'\''.date('Y-m-d').' 00:00:00\'';
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array(
-                    $currentDate,
-                    'Contribution.translation_id' => null,
-                    'Contribution.action' => 'insert',
-                    'Contribution.type !=' => 'license'
-                ),
-            )
-        );
+        return $this->find()
+            ->where([
+                'datetime >' => Time::now()->i18nFormat('yyyy-MM-dd'),
+                'translation_id IS NULL',
+                'action' => 'insert',
+                'type !=' => 'license'
+            ])
+            ->count();
     }
 
 
@@ -289,7 +286,7 @@ class ContributionsTable extends Table
             'script' => $script,
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
-            'datetime' => date("Y-m-d H:i:s"),
+            'datetime' => Time::now()->i18nFormat('yyyy-MM-dd HH:mm:ss'),
             'ip' => CurrentUser::getIp(),
             'type' => 'sentence',
             'action' => $action

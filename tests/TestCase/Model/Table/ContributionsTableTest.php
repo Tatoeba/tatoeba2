@@ -81,4 +81,10 @@ class ContributionTest extends TestCase {
         $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
         $this->assertEquals($expectedLog, $newLog);
     }
+
+    public function testGetTodayContributions() {
+        $this->Contribution->saveSentenceContribution(123, 'eng', null, 'test', 'insert');
+        $count = $this->Contribution->getTodayContributions();
+        $this->assertEquals(1, $count);
+    }
 }
