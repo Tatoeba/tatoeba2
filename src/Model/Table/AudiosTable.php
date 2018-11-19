@@ -105,13 +105,11 @@ class AudiosTable extends Table
     }
 
     private function encodeExternal($entity) {
-        if (is_array($entity->external)) {
-            $external = $this->get($entity->id, ['fields' => ['external']]);
-            if ($external === false) {
-                $external = array();
-            }
-            //$this->data[$this->alias]['external'] = json_encode($external);
+        $external = $this->get($entity->id, ['fields' => ['external']]);
+        if ($external === false) {
+            $external = array();
         }
+        //$this->data[$this->alias]['external'] = json_encode($external);
     }
 
     public function beforeSave($event, $entity, $options = array()) {

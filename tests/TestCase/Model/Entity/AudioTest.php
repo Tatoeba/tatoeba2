@@ -42,4 +42,9 @@ class AudioTest extends TestCase
 
         $this->assertEquals('foobar', $this->Audio->external['username']);
     }
+
+    public function testGet_externalDoesntTouchNullValues()
+    {
+        $this->assertNull($this->Audio->external);
+    }
 }

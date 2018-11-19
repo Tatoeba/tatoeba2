@@ -12,14 +12,18 @@ class Audio extends Entity
     );
 
     protected function _getExternal($external) {
-        $external = array_merge(self::$defaultExternal, (array)$external);
-        $external = array_intersect_key($external, self::$defaultExternal);
+        if (is_array($external)) {
+            $external = array_merge(self::$defaultExternal, $external);
+            $external = array_intersect_key($external, self::$defaultExternal);
+        }
         return $external;
     }
 
     protected function _setExternal($external) {
-        $existingExternal = (array)$this->external;
-        $external = array_merge($existingExternal, $external);
+        $existingExternal = $this->external;
+        if (is_array($this->external) && is_array($existingExternal)) {
+            $external = array_merge($existingExternal, $external);
+        }
         return $external;
     }
 }
