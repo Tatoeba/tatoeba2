@@ -111,7 +111,6 @@ class AudiosTable extends Table
                 $external = array();
             }
             $external = array_merge($external, $this->data[$this->alias]['external']);
-            $external = array_intersect_key($external, $this->defaultExternal);
             //$this->data[$this->alias]['external'] = json_encode($external);
         }
     }

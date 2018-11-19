@@ -27,4 +27,11 @@ class AudioTest extends TestCase
 
         $this->assertTrue(array_key_exists('license', $this->Audio->external));
     }
+
+    public function testSet_externalIgnoresUnknownKeys()
+    {
+        $this->Audio->set('external', ['this_does_not_exist' => true]);
+
+        $this->assertFalse(array_key_exists('this_does_not_exist', $this->Audio->external));
+    }
 }

@@ -13,6 +13,7 @@ class Audio extends Entity
 
     protected function _getExternal($external) {
         $external = array_merge(self::$defaultExternal, (array)$external);
+        $external = array_intersect_key($external, self::$defaultExternal);
         return $external;
     }
 }
