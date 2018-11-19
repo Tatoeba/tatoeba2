@@ -34,4 +34,12 @@ class AudioTest extends TestCase
 
         $this->assertFalse(array_key_exists('this_does_not_exist', $this->Audio->external));
     }
+
+    public function testSet_externalMergesExistingValues()
+    {
+        $this->Audio->set('external', ['username' => 'foobar']);
+        $this->Audio->set('external', ['attribution_url' => 'http://example.net/']);
+
+        $this->assertEquals('foobar', $this->Audio->external['username']);
+    }
 }

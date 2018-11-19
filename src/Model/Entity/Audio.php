@@ -16,4 +16,10 @@ class Audio extends Entity
         $external = array_intersect_key($external, self::$defaultExternal);
         return $external;
     }
+
+    protected function _setExternal($external) {
+        $existingExternal = (array)$this->external;
+        $external = array_merge($existingExternal, $external);
+        return $external;
+    }
 }

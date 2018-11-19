@@ -110,7 +110,6 @@ class AudiosTable extends Table
             if ($external === false) {
                 $external = array();
             }
-            $external = array_merge($external, $this->data[$this->alias]['external']);
             //$this->data[$this->alias]['external'] = json_encode($external);
         }
     }
