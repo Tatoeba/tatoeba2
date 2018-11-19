@@ -191,4 +191,10 @@ class AudiosTableTest extends TestCase {
         $this->assertEquals($expectedValues, $values);
     }
 
+    function testExternalFieldParsedAsJSON()
+    {
+        $audio = $this->Audio->get(2);
+
+        $this->assertEquals('Philippe Petit', $audio->external['username']);
+    }
 }

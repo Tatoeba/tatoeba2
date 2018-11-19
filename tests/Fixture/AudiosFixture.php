@@ -32,7 +32,7 @@ class AudiosFixture extends TestFixture {
             'id' => '2',
             'sentence_id' => '4',
             'user_id' => NULL,
-            'external' => '{username:"Philippe Petit"}',
+            'external' => '{"username":"Philippe Petit"}',
             'created' => '2001-12-02 06:47:30',
             'modified' => '2001-12-12 06:47:30'
         ),
@@ -40,7 +40,7 @@ class AudiosFixture extends TestFixture {
             'id' => '3',
             'sentence_id' => '12',
             'user_id' => NULL,
-            'external' => '{username:"Philippe Petit"}',
+            'external' => '{"username":"Philippe Petit"}',
             'created' => '2001-12-02 06:47:30',
             'modified' => '2001-12-12 06:47:30'
         ),

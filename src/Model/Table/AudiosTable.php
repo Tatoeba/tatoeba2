@@ -20,6 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\Database\Schema\TableSchema;
 use Cake\Validation\Validator;
 
 
@@ -52,11 +53,11 @@ class AudiosTable extends Table
         'User',
     );
 
-    public $defaultExternal = array(
-        'username' => null,
-        'license' => null,
-        'attribution_url' => null,
-    );
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('external', 'json');
+        return $schema;
+    }
 
     /**
      * The constructor is here only to conditionally attach Sphinx.
@@ -92,26 +93,6 @@ class AudiosTable extends Table
         return $validator;
     }
 
-    public function afterFind($results, $primary = false) {
-        foreach ($results as &$result) {
-            if (isset($result[$this->alias])
-                && array_key_exists('external', $result[$this->alias])) {
-                $result[$this->alias]['external'] = (array)json_decode(
-                    $result[$this->alias]['external']
-                );
-            }
-        }
-        return $results;
-    }
-
-    private function encodeExternal($entity) {
-        $external = $this->get($entity->id, ['fields' => ['external']]);
-        if ($external === false) {
-            $external = array();
-        }
-        //$this->data[$this->alias]['external'] = json_encode($external);
-    }
-
     public function beforeSave($event, $entity, $options = array()) {
         if ($entity->id && $entity->sentence_id) {
             // save the previous sentence_id before updating it
@@ -131,7 +112,6 @@ class AudiosTable extends Table
             $ok = false;
         }
 
-        $this->encodeExternal($external);
         return $ok;
     }
 
@@ -159,7 +139,7 @@ class AudiosTable extends Table
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $sentenceId) {
         if ($sentenceId) {
             $attributes[] = 'has_audio';
-            $hasAudio = $this->findBySentenceId($sentenceId)->first();
+            $hasAudio = (bool)$this->findBySentenceId($sentenceId)->first();
             $values[$sentenceId][] = intval($hasAudio);
         }
     }
