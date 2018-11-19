@@ -76,6 +76,8 @@ class AudiosTable extends Table
     public function initialize(array $config)
     {
         $this->belongsTo('Sentences');
+
+        $this->addBehavior('Timestamp');
     }
 
     public function validationDefault(Validator $validator)

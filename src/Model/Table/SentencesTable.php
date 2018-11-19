@@ -117,6 +117,7 @@ class SentencesTable extends Table
         $this->hasMany('UsersSentences');
         
         $this->addBehavior('Hashable');
+        $this->addBehavior('Timestamp');
         $this->addBehavior('Transcriptable');
 
         $this->getEventManager()->on(new ContributionListener());

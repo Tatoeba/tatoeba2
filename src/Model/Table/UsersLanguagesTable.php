@@ -34,6 +34,11 @@ class UsersLanguagesTable extends Table
 
     // TODO Reimplement the update of language stats
 
+    public function initialize(array $config)
+    {
+        $this->addBehavior('Timestamp');
+    }
+
     public function getLanguagesOfUser($userId)
     {
         $languages = $this->find(

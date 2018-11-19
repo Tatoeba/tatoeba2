@@ -54,6 +54,7 @@ class WallTable extends Table
     {
         $this->hasOne('WallThreads');
 
+        $this->addBehavior('Timestamp');
         $this->addBehavior('Tree');
     }
 

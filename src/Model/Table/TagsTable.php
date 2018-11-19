@@ -71,6 +71,8 @@ class TagsTable extends Table
     {
         $this->hasMany('TagsSentences');
         $this->belongsToMany('Sentences');
+
+        $this->addBehavior('Timestamp');
     }
     /**
      * Cakephp callback before each saving operation

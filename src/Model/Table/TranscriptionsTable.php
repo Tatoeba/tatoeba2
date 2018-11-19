@@ -134,6 +134,8 @@ class TranscriptionsTable extends Table
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');
 
+        $this->addBehavior('Timestamp');
+
         $this->setAutotranscription(new Autotranscription());
     }
 

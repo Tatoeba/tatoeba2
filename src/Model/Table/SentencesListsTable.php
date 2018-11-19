@@ -52,6 +52,8 @@ class SentencesListsTable extends Table
         $this->belongsTo('Users');
         $this->hasMany('SentencesSentencesLists');
         $this->belongsToMany('Sentences');
+
+        $this->addBehavior('Timestamp');
     }
 
     /**

@@ -31,6 +31,10 @@ class SentenceCommentsTable extends Table
     public $actsAs = array('Containable');
     public $belongsTo = array('Sentence', 'User');
 
+    public function initialize(array $config)
+    {
+        $this->addBehavior('Timestamp');
+    }
 
     public function validationDefault(Validator $validator)
     {

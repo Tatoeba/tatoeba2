@@ -33,6 +33,11 @@ class SentencesSentencesListsTable extends Table
         'SentencesList' => array('foreignKey' => 'sentences_list_id')
     );
 
+    public function initialize(array $config)
+    {
+        $this->addBehavior('Timestamp');
+    }
+
     public function __construct($id = false, $table = null, $ds = null) {
         parent::__construct($id, $table, $ds);
         if (Configure::read('Search.enabled')) {
