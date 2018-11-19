@@ -94,14 +94,6 @@ class AudiosTable extends Table
     }
 
     public function beforeSave($event, $entity, $options = array()) {
-        if ($entity->id && $entity->sentence_id) {
-            // save the previous sentence_id before updating it
-            $result = $this->get($entity->id, ['fields' => ['sentence_id']]);
-            if ($entity->sentence_id) {
-                $entity->PrevSentenceId = $result->sentence_id;
-            }
-        }
-
         $ok = true;
         $user_id = $entity->user_id;
         $external = $entity->external;
@@ -120,9 +112,10 @@ class AudiosTable extends Table
             $this->Sentences->flagSentenceAndTranslationsToReindex(
                 $entity->sentence_id
             );
-            if ($entity->PrevSentenceId && $entity->PrevSentenceId != $entity->sentence_id) {
+            $prev_sentence_id = $entity->getOriginal('sentence_id');
+            if ($prev_sentence_id != $entity->sentence_id) {
                 $this->Sentences->flagSentenceAndTranslationsToReindex(
-                    $entity->PrevSentenceId
+                    $prev_sentence_id
                 );
             }
         }
