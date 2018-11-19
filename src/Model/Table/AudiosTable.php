@@ -99,10 +99,6 @@ class AudiosTable extends Table
                 $result[$this->alias]['external'] = (array)json_decode(
                     $result[$this->alias]['external']
                 );
-                $result[$this->alias]['external'] = array_merge(
-                    $this->defaultExternal,
-                    $result[$this->alias]['external']
-                );
             }
         }
         return $results;
