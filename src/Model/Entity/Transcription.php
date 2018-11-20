@@ -22,6 +22,62 @@ use Cake\ORM\Entity;
 
 class Transcription extends Entity
 {
+    private $scriptsByLang = array( /* ISO 15924 */
+        'jpn' => array('Jpan'),
+        'uzb' => array('Cyrl', 'Latn'),
+        'cmn' => array('Hans', 'Hant', 'Latn'),
+        'yue' => array('Hans', 'Hant', 'Latn'),
+    );
+    private $availableTranscriptions = array(
+        'jpn-Jpan' => array(
+            'Hrkt' => array(
+                'type' => 'altscript',
+            ),
+        ),
+        'cmn-Hans' => array(
+            'Hant' => array(
+                'type' => 'altscript',
+                'readonly' => true,
+            ),
+            'Latn' => array(
+            ),
+        ),
+        'cmn-Hant' => array(
+            'Hans' => array(
+                'type' => 'altscript',
+                'readonly' => true,
+            ),
+            'Latn' => array(
+            ),
+        ),
+        'yue-Hans' => array(
+            'Latn' => array(
+                'readonly' => true,
+            ),
+        ),
+        'yue-Hant' => array(
+            'Latn' => array(
+                'readonly' => true,
+            ),
+        ),
+        'uzb-Latn' => array(
+            'Cyrl' => array(
+                'type' => 'altscript',
+                'readonly' => true,
+            ),
+        ),
+        'uzb-Cyrl' => array(
+            'Latn' => array(
+                'type' => 'altscript',
+                'readonly' => true,
+            ),
+        ),
+    );
+    private $defaultFlags = array(
+        'readonly' => false,
+        'type' => 'transcription',
+    );
+
     protected function _getOldFormat() 
     {
         return [
@@ -31,8 +87,61 @@ class Transcription extends Entity
                 'script' => $this->script,
                 'text' => $this->text,
                 'user_id' => $this->user_id,
-                'needsReview' => $this->needsReview
+                'needsReview' => $this->needsReview,
+                'readonly' => $this->readonly,
+                'type' => $this->type,
             ]
         ];
+    }
+
+    protected function _getReadonly()
+    {
+        $settings = $this->getSettings();
+
+        if (isset($settings['readonly'])) {
+            return $settings['readonly'];
+        } else {
+            return false;
+        }
+    }
+
+    protected function _getType()
+    {
+        $settings = $this->getSettings();
+        
+        if (isset($settings['type'])) {
+            return $settings['type'];
+        } else {
+            return null;
+        }
+    }
+
+    private function getSettings()
+    {
+        $settings = [];
+        if ($this->sentence) {
+            $sourceScript = $this->sentence->script;
+            $sourceLang = $this->sentence->lang;
+            if (!$sourceScript) {
+                $sourceScript = $this->getSourceScript($sourceLang);
+            }
+            $langScript = $sourceLang . '-' . $sourceScript;
+            if (isset($this->availableTranscriptions[$langScript])) {
+                $transcription = $this->availableTranscriptions[$langScript];
+                if (isset($transcription[$this->script])) {
+                    $settings = $transcription[$this->script];
+                }
+            }
+        }
+        return $settings;
+    }
+
+    private function getSourceScript($sourceLang) {
+        if (isset($this->scriptsByLang[$sourceLang])) {
+            if (count($this->scriptsByLang[$sourceLang]) == 1) {
+                return $this->scriptsByLang[$sourceLang][0];
+            }
+        }
+        return false;
     }
 }

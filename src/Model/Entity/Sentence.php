@@ -29,6 +29,7 @@ class Sentence extends Entity
             'lang' => $this->lang,
             'text' => $this->text,
             'hash' => $this->hash,
+            'script' => $this->script,
             'user_id' => $this->user_id
         ];
         

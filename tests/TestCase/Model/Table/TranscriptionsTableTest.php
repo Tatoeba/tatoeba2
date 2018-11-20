@@ -287,7 +287,7 @@ class TranscriptionsTableTest extends TestCase {
 
     function testFindOnExistingRecordsReturnsReadonlyField() {
         $transcr = $this->Transcription->get(1);
-        $result = array_key_exists('readonly', $transcr);
+        $result = array_key_exists('readonly', $transcr->old_format['Transcription']);
         $this->assertTrue($result);
     }
 
@@ -363,12 +363,12 @@ class TranscriptionsTableTest extends TestCase {
         $transcr->text = 'あああ';
 
         $this->Transcription->generateTranscription(
-            $jpnSentence, 'Hrkt', true, $transcr->old_format
+            $jpnSentence, 'Hrkt', true, $transcr->old_format['Transcription']
         );
 
         $updated = $this->Transcription->find('all')
-        ->where(['sentence_id' => $transcr->sentence_id])
-        ->toList();
+            ->where(['sentence_id' => $transcr->sentence_id])
+            ->toList();
         $this->assertEquals('あああ', $updated[0]->text);
     }
 
@@ -571,11 +571,11 @@ class TranscriptionsTableTest extends TestCase {
     function testAddGeneratedTranscriptionsKeepsOrder() {
         $cmnSentenceId = 2;
         $cmnSentence = $this->Transcription->Sentences->get($cmnSentenceId);
-        $transcription = $this->Transcription->newEntity([
+        $transcription = [
             'sentence_id' => $cmnSentenceId,
             'script' => 'Latn',
             'text' => 'blah blah blah in pinyin',
-        ]);
+        ];
         $result = $this->Transcription->saveTranscription($transcription);
 
         $result = $this->Transcription->addGeneratedTranscriptions(
