@@ -229,6 +229,7 @@ class WallTable extends Table
                 'lft <=' => $replyLft,
                 'rght >=' => $replyRght
             ])
+            ->select('id')
             ->first();
 
         return $result->id;
