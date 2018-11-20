@@ -46,11 +46,10 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
         <h2><?php echo __('Latest messages'); ?></h2>
         <?php
         foreach ($latestMessages as $message) {
-
-            $messageOwner = $message['User']['username'];
-            $messageContent = $message['Wall']['content'];
-            $messageDate = $message['Wall']['date'];
-            $messageId = $message['Wall']['id'];
+            $messageOwner = $message->user->username;
+            $messageContent = $message->content;
+            $messageDate = $message->date;
+            $messageId = $message->id;
             
             $this->Wall->messagePreview(
                 $messageId, $messageOwner, $messageContent, $messageDate
