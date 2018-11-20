@@ -118,14 +118,9 @@ class ContributionsTable extends Table
      */
     public function numberOfContributionsBy($userId)
     {
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array(
-                    'Contribution.user_id' => $userId
-                )
-            )
-        );
+        return $this->find()
+            ->where(['user_id' => $userId])
+            ->count();
     }
 
 
@@ -138,38 +133,30 @@ class ContributionsTable extends Table
      */
     public function getContributionsRelatedToSentence($sentenceId)
     {
-        $conditions = array(
-            'Contribution.sentence_id' => $sentenceId,
-        );
+        $query = $this->find()
+            ->select([
+                'Contributions.sentence_lang',
+                'Contributions.script',
+                'Contributions.text',
+                'Contributions.translation_id',
+                'Contributions.action',
+                'Contributions.id',
+                'Contributions.datetime',
+                'Contributions.type',
+                'Users.username',
+                'Users.id',
+            ])
+            ->where(['Contributions.sentence_id' => $sentenceId])
+            ->contain(['Users' => function ($q) {
+                return $q->select(['username', 'id']);
+            }])
+            ->order('datetime');
+
         if (!CurrentUser::isAdmin()) {
-            $conditions['Contribution.type !='] = 'license';
+            $query = $query->where(['Contributions.type !=' => 'license']);
         }
 
-        $result = $this->find(
-            'all',
-            array(
-                'fields' => array(
-                    'Contribution.sentence_lang',
-                    'Contribution.script',
-                    'Contribution.text',
-                    'Contribution.translation_id',
-                    'Contribution.action',
-                    'Contribution.id',
-                    'Contribution.datetime',
-                    'Contribution.type',
-                    'User.username',
-                    'User.id'
-                ),
-                'conditions' => $conditions,
-                'contain' => array(
-                    'User'=> array(
-                        'fields' => array('User.username','User.id')
-                    ),
-                ),
-                'order' => array('Contribution.datetime')
-            )
-        );
-        return $result ;
+        return $query->all();
     }
 
     /**
@@ -183,53 +170,34 @@ class ContributionsTable extends Table
      */
     public function getLastContributions($limit, $lang = 'und')
     {
-        // we sanitize, really important here as we forge our own query
-        $limit = Sanitize::paranoid($limit);
-        $lang = Sanitize::paranoid($lang);
-
         if (!is_numeric($limit)) {
-            return array();
+            return [];
         }
+        $query = $this->find()
+            ->select([
+                'sentence_id',
+                'sentence_lang',
+                'script',
+                'text',
+                'datetime',
+                'action'
+            ])
+            ->where(['type' => 'sentence'])
+            ->orderDesc('datetime')
+            ->limit($limit)
+            ->contain(['Users' => function ($q) {
+                return $q->select(['id', 'username', 'image']);
+            }]);
 
-        $conditions = array('type' => 'sentence');
+        $query = $this->excludeBots($query);
 
         if ($lang == 'und'|| empty($lang)) {
-            $this->setSource('last_contributions');
+            $this->setTable('last_contributions');
         } else {
-            $conditions['sentence_lang'] = $lang;
+            $query = $query->where(['sentence_lang' => $lang]);
         }
 
-        $conditions = $this->getQueryConditionsWithExcludedUsers($conditions);
-
-        $contain = array(
-            'User' => array(
-                'fields' => array(
-                    'id',
-                    'username',
-                    'image'
-                )
-            )
-        );
-
-        $results = $this->find(
-            'all',
-            array(
-                'fields' => array(
-                    'sentence_id',
-                    'sentence_lang',
-                    'script',
-                    'text',
-                    'datetime',
-                    'action'
-                ),
-                'conditions' => $conditions,
-                'order' => 'datetime DESC',
-                'limit' => $limit,
-                'contain' => $contain
-            )
-        );
-
-        return $results;
+        return $query->all();
     }
 
     /**
@@ -264,14 +232,9 @@ class ContributionsTable extends Table
     public function updateLanguage($sentence_id, $lang)
     {
         $this->updateAll(
-            array(
-                "sentence_lang" => "'$lang'"
-            ),
-            array(
-                "sentence_id" => $sentence_id
-            )
+            ['sentence_lang' => $lang],
+            ['sentence_id' => $sentence_id]
         );
-
     }
 
 
@@ -327,38 +290,26 @@ class ContributionsTable extends Table
         $this->save($data);
     }
 
-
-    /**
-     *
-     *
-     */
-    public function getQueryConditionsWithExcludedUsers($conditions)
+    public function excludeBots($query)
     {
         $botsIds = Configure::read('Bots.userIds');
 
-        if (!isset($conditions)) {
-            $conditions = array();
-        }
         if (!empty($botsIds)) {
-            $conditions['NOT'] = array('user_id' => $botsIds);
+            return $query->where(['user_id NOT IN' => $botsIds]);
         }
 
-        return $conditions;
+        return $query;
     }
-
 
     public function getLastContributionOf($userId)
     {
-        return $this->find(
-            'all',
-            array(
-                'conditions' => array('user_id' => $userId),
-                'fields' => array('ip', 'count(*) as count'),
-                'group' => 'ip',
-                'order' => 'count DESC',
-                'limit' => 10
-            )
-        );
+        return $this->find()
+            ->select(['ip', 'count' => 'count(*)'])
+            ->where(['user_id' => $userId])
+            ->group(['group' => 'ip'])
+            ->orderDesc('count')
+            ->limit(10)
+            ->all();
     }
 
 
