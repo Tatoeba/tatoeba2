@@ -127,12 +127,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     ->setPersist(['lang']);
 
     $routes->connect(
-        '/:action',
-        [
-            'controller' => 'pages',
-        ]
-    );
-    $routes->connect(
         '/:lang/:action',
         [
             'lang' => ':lang',
@@ -141,6 +135,13 @@ Router::scope('/', function (RouteBuilder $routes) {
     )
     ->setPatterns(['lang' => $interfaceLanguages])
     ->setPersist(['lang']);
+
+    $routes->connect(
+        '/:action',
+        [
+            'controller' => 'pages',
+        ]
+    );
 
     /**
      * La langue choisie sera maintenant disponible dans les contrôleurs
