@@ -2,21 +2,21 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $comment['User']['username'];
-$avatar = $comment['User']['image'];
-$createdDate = $comment['SentenceComment']['created'];
-$modifiedDate = $comment['SentenceComment']['modified'];
-$commentId = $comment['SentenceComment']['id'];
-$authorId = $comment['SentenceComment']['user_id'];
-$commentText = $comment['SentenceComment']['text'];
-$commentHidden = $comment['SentenceComment']['hidden'];
+$username = $comment->user->username;
+$avatar = $comment->user->image;
+$createdDate = $comment->created;
+$modifiedDate = $comment->modified;
+$commentId = $comment->id;
+$authorId = $comment->user_id;
+$commentText = $comment->text;
+$commentHidden = $comment->hidden;
 $sentence = null;
 $sentenceOwnerLink = null;
-if (isset($comment['Sentence'])) {
-    $sentence = $comment['Sentence'];
+if (isset($comment->sentence)) {
+    $sentence = $comment->sentence;
 }
-if ($sentence && isset($sentence['User']['username'])) {
-    $sentenceOwner = $sentence['User']['username'];
+if ($sentence && isset($sentence->user->username)) {
+    $sentenceOwner = $sentence->user->username;
     $sentenceOwnerLink = $this->Html->link(
         $sentenceOwner,
         array(
@@ -26,7 +26,7 @@ if ($sentence && isset($sentence['User']['username'])) {
         )
     );
 }
-$sentenceId = $comment['SentenceComment']['sentence_id'];
+$sentenceId = $comment->sentence_id;
 $sentenceLink = $this->Html->link(
     '#'.$sentenceId,
     array(
@@ -37,12 +37,12 @@ $sentenceLink = $this->Html->link(
 );
 $sentenceText = '<em>'.__('sentence deleted').'</em>';
 if (isset($sentence['text'])) {
-    $sentenceText = h($sentence['text']);
+    $sentenceText = h($sentence->text);
 }
-$sentenceLang = $sentence['lang'];
+$sentenceLang = $sentence->lang;
 $sentenceOwner = null;
-if (!empty($sentence['User'])) {
-    $sentenceOwner = $sentence['User']['username'];
+if ($sentence->user) {
+    $sentenceOwner = $sentence->user->username;
 }
 $langDir = LanguagesLib::getLanguageDirection($sentenceLang);
 
