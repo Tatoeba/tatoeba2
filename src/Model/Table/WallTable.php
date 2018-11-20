@@ -29,28 +29,6 @@ class WallTable extends Table
     public $useTable = 'wall';
     public $actsAs = array('Tree','Containable');
 
-    public $belongsTo = array(
-        'User' => array(
-            'className'  => 'User',
-            'foreignKey' => 'owner'
-        )
-    );
-
-    public $hasOne = array(
-        'WallThread' => array(
-            'className' => 'WallThread',
-             'dependent' => true,
-             'foreignKey' => 'id'
-        )
-    );
-
-    private function _isSavingField($field, $entity) {
-        $pk = isset($data[$this->primaryKey]);
-        unset($data['modified']);
-        unset($data[$this->primaryKey]);
-        return $pk && array_key_exists($field, $data) && count($data) == 1;
-    }
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('content', 'text');
@@ -61,7 +39,11 @@ class WallTable extends Table
 
     public function initialize(array $config)
     {
-        $this->hasOne('WallThreads');
+        $this->hasOne('WallThreads')
+             ->setDependent(true);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'owner'
+        ]);
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('Tree');
@@ -119,22 +101,13 @@ class WallTable extends Table
 
     public function getFirstMessages()
     {
-        return  $this->find(
-            'all',
-            array(
-                "order" => "Wall.date DESC",
-                "conditions" => array ("Wall.parent_id" => 0),
-                "contain"    => array (
-                    "User" => array (
-                        "fields" => array(
-                            "User.image",
-                            "User.username",
-                            "User.id"
-                        )
-                    )
-                )
-            )
-        );
+        return  $this->find()
+            ->orderDesc('date')
+            ->where(['parent_id' => 0])
+            ->contain(['Users' => function ($q) {
+                return $q->select(['id', 'username', 'image']);
+            }])
+            ->all();
     }
 
     /**
@@ -145,17 +118,12 @@ class WallTable extends Table
 
     public function getMessages()
     {
-        return $this->find(
-            'all',
-            array(
-                "order" => "Wall.id",
-                "contain"    => array (
-                    "User" => array (
-                        "fields" => array("User.image","User.username", "User.id")
-                        )
-                    )
-            )
-        );
+        return $this->find()
+            ->order('id')
+            ->contain(['Users' => function ($q) {
+                return $q->select(['id', 'username', 'image']);
+            }])
+            ->all();
     }
 
     /**
@@ -186,30 +154,19 @@ class WallTable extends Table
             array_push($orArray, $betweenArray);
         }
         // execute the request
-        $result = $this->find(
-            'threaded',
-            array(
-                "order" => array(
-                    "WallThread.last_message_date DESC",
-                    "Wall.date ASC"
-                ),
-                "conditions" => array(
-                    'OR' => $orArray
-                ),
-                "contain" => array (
-                    "User" => array (
-                        "fields" => array(
-                            "User.image",
-                            "User.username",
-                            "User.id"
-                        )
-                    ),
-                    "WallThread" => array(
-                        'fields' => "last_message_date"
-                    )
-                )
-            )
-        );
+        $result = $this->find('threaded')
+            ->orderDesc('WallThreads.last_message_date')
+            ->orderAsc('Wall.date')
+            ->where(['OR' => $orArray])
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->select(['id', 'image', 'username']);
+                },
+                'WallThreads' => function ($q) {
+                    return $q->select(['last_message_date']);
+                }
+            ])
+            ->all();
 
         return $result;
 
@@ -224,22 +181,14 @@ class WallTable extends Table
 
     public function getLastMessages($numberOfLastMessages)
     {
-        return $this->find(
-            'all',
-            array(
-                "order" => "Wall.date DESC",
-                "limit" => $numberOfLastMessages,
-                "conditions" => array("hidden" => 0),
-                "contain"    => array (
-                    "User" => array (
-                        "fields" => array(
-                            "User.username",
-                            "User.id"
-                        )
-                    )
-                )
-            )
-        );
+        return $this->find()
+            ->orderDesc('date')
+            ->limit($numberOfLastMessages)
+            ->where(['hidden' => 0])
+            ->contain(['Users' => function ($q) {
+                return $q->select(['id', 'username']);
+            }])
+            ->all();
     }
 
     /**
@@ -252,15 +201,12 @@ class WallTable extends Table
 
     public function getOwnerIdOfMessage($messageId)
     {
-        $result = $this->find(
-            "first",
-            array(
-                'fields' => array('owner'),
-                'conditions' => array('id' => $messageId),
-            )
-        );
+        $result = $this->find()
+            ->select(['owner'])
+            ->where(['id' => $messageId])
+            ->first();
 
-        return $result['Wall']['owner'];
+        return $result->owner;
     }
 
     /**
@@ -310,25 +256,13 @@ class WallTable extends Table
         );
 
         // execute the request
-        $result = $this->find(
-            'threaded',
-            array(
-                "order" => "Wall.date ASC",
-                "conditions" => array(
-                    'Wall.lft BETWEEN ? AND ?' => $lftRghtArray
-                ),
-                "contain" => array (
-                    "User" => array (
-                        "fields" => array(
-                            "User.image",
-                            "User.username",
-                            "User.id"
-                        )
-                    )
-                )
-            )
-        );
-
+        $result = $this->find('threaded')
+            ->orderAsc('Wall.date')
+            ->where(['Wall.lft BETWEEN ? AND ?' => $lftRghtArray])
+            ->contain(['Users' => function ($q) {
+                return $q->select(['id', 'image', 'username']);
+            }])
+            ->all();
         return $result;
 
     }
@@ -357,16 +291,11 @@ class WallTable extends Table
      */
     public function hasMessageReplies($messageId)
     {
-        $replyLftRght = $this->find(
-            'first',
-            array(
-                'fields' => array('lft', 'rght'),
-                'conditions' => array(
-                    'id' => $messageId,
-                ),
-            )
-        );
-        return $replyLftRght['Wall']['lft'] != ($replyLftRght['Wall']['rght'] - 1);
+        $replyLftRght = $this->find()
+            ->select(['lft', 'rght'])
+            ->where(['id' => $messageId])
+            ->first();
+        return $replyLftRght->lft != ($replyLftRght->rght - 1);
     }
 
     /**
