@@ -20,6 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\Database\Schema\TableSchema;
 use Cake\Event\Event;
 use App\Event\NotificationListener;
 use Cake\Validation\Validator;
@@ -30,6 +31,12 @@ class SentenceCommentsTable extends Table
 {
     public $actsAs = array('Containable');
     public $belongsTo = array('Sentence', 'User');
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('text', 'text');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {

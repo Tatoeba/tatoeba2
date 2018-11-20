@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
 
@@ -27,6 +28,11 @@ class SentenceAnnotationsTable extends Table
 
     public $actsAs = array('Containable');
 
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('text', 'text');
+        return $schema;
+    }
 
     /**
      * Get annotations for the sentence specified.

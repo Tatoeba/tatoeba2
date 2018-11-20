@@ -20,6 +20,7 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
+use Cake\Database\Schema\TableSchema;
 use Cake\Datasource\Exception\RecordNotFoundException;
 
 class UsersLanguagesTable extends Table
@@ -33,6 +34,12 @@ class UsersLanguagesTable extends Table
     );
 
     // TODO Reimplement the update of language stats
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('details', 'text');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {

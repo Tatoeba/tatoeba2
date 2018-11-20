@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
@@ -48,6 +49,12 @@ class WallTable extends Table
         unset($data['modified']);
         unset($data[$this->primaryKey]);
         return $pk && array_key_exists($field, $data) && count($data) == 1;
+    }
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('content', 'text');
+        return $schema;
     }
 
     public function initialize(array $config)

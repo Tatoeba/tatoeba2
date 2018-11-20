@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use App\Lib\Autotranscription;
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
@@ -128,6 +129,12 @@ class TranscriptionsTable extends Table
     /* Transcription-specific validation error messages
        of the last transcription save operation */
     public $validationErrors = array();
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('text', 'text');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {
