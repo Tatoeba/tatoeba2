@@ -1,8 +1,8 @@
 <?php
 use App\Lib\LanguagesLib;
 
-$langCode = $log['Contribution']['sentence_lang'];
-$sentenceId = $log['Contribution']['sentence_id'];
+$langCode = $log->sentence_lang;
+$sentenceId = $log->sentence_id;
 $sentenceLink = $this->Html->link(
     '#'.$sentenceId,
     array(
@@ -12,8 +12,8 @@ $sentenceLink = $this->Html->link(
     )
 );
 $translationId = null;
-if (isset($log['Contribution']['translation_id'])) {
-    $translationId = $log['Contribution']['translation_id'];
+if (isset($log->translation_id)) {
+    $translationId = $log->translation_id;
     $translationLink = $this->Html->link(
         '#'.$translationId,
         array(
@@ -23,22 +23,22 @@ if (isset($log['Contribution']['translation_id'])) {
         )
     );
 }
-$sentenceText = $log['Contribution']['text'];
-$sentenceDate = $log['Contribution']['datetime'];
+$sentenceText = $log->text;
+$sentenceDate = $log->datetime;
 $obsolete = false;
-if (isset($log['Contribution']['obsolete'])) {
-    $obsolete = $log['Contribution']['obsolete'];
+if (isset($log->obsolete)) {
+    $obsolete = $log->obsolete;
 }
-$username = $log['User']['username'];
-$avatar = $log['User']['image'];
-$action =  $log['Contribution']['action'];
+$username = $log->user->username;
+$avatar = $log->user->image;
+$action =  $log->action;
 $type = 'sentence';
-if (isset($log['Contribution']['type'])) {
-    $type = $log['Contribution']['type'];
+if (isset($log->type)) {
+    $type = $log->type;
 }
 $style = $obsolete ? 'obsolete' : $action;
 
-$sentenceUrl = $this->Html->url(array(
+$sentenceUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
     $sentenceId

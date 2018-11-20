@@ -1,19 +1,19 @@
 <?php
 use App\Lib\LanguagesLib;
 
-$langCode = $log['Contribution']['sentence_lang'];
+$langCode = $log->sentence_lang;
 $sentenceId = null;
 $translationId = null;
-$sentenceText = $log['Contribution']['text'];
-$sentenceDate = $log['Contribution']['datetime'];
-$username = $log['User']['username'];
-$action =  $log['Contribution']['action'];
-$type = $log['Contribution']['type'];
+$sentenceText = $log->text;
+$sentenceDate = $log->datetime;
+$username = $log->user->username;
+$action =  $log->action;
+$type = $log->type;
 $sentenceLink = null;
 $translationLink = null;
 
-if (isset($log['Contribution']['sentence_id'])) {
-    $sentenceId = $log['Contribution']['sentence_id'];
+if ($log->sentence_id) {
+    $sentenceId = $log->sentence_id;
     $sentenceLink = $this->Html->link(
         '#'.$sentenceId,
         array(
@@ -23,8 +23,8 @@ if (isset($log['Contribution']['sentence_id'])) {
         )
     );
 }
-if (isset($log['Contribution']['translation_id'])) {
-    $translationId = $log['Contribution']['translation_id'];
+if ($log->translation_id) {
+    $translationId = $log->translation_id;
     $translationLink = $this->Html->link(
         '#'.$translationId,
         array(
