@@ -61,25 +61,14 @@ class AudiosTable extends Table
         return $schema;
     }
 
-    /**
-     * The constructor is here only to conditionally attach Sphinx.
-     *
-     * @return void
-     */
-    public function __construct($id = false, $table = null, $ds = null)
-    {
-        parent::__construct($id, $table, $ds);
-
-        if (Configure::read('Search.enabled')) {
-            $this->Behaviors->attach('Sphinx');
-        }
-    }
-
     public function initialize(array $config)
     {
         $this->belongsTo('Sentences');
 
         $this->addBehavior('Timestamp');
+        if (Configure::read('Search.enabled')) {
+            $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
+        }
     }
 
     public function validationDefault(Validator $validator)
@@ -95,6 +84,34 @@ class AudiosTable extends Table
             ->notBlank('modified');
 
         return $validator;
+    }
+
+    public function afterFind($results, $primary = false) {
+        foreach ($results as &$result) {
+            if (isset($result[$this->alias])
+                && array_key_exists('external', $result[$this->alias])) {
+                $result[$this->alias]['external'] = (array)json_decode(
+                    $result[$this->alias]['external']
+                );
+                $result[$this->alias]['external'] = array_merge(
+                    $this->defaultExternal,
+                    $result[$this->alias]['external']
+                );
+            }
+        }
+        return $results;
+    }
+
+    private function encodeExternal($entity) {
+        if ($entity && is_array($entity->external)) {
+            $external = $this->get($entity->id, ['fields' => ['external']]);
+            if ($external === false) {
+                $external = array();
+            }
+            $external = array_merge($external, $this->data[$this->alias]['external']);
+            $external = array_intersect_key($external, $this->defaultExternal);
+            //$this->data[$this->alias]['external'] = json_encode($external);
+        }
     }
 
     public function beforeSave($event, $entity, $options = array()) {
@@ -133,11 +150,12 @@ class AudiosTable extends Table
         }
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $sentenceId) {
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {
+        $sentenceId = $entity->sentence_id;
         if ($sentenceId) {
             $attributes[] = 'has_audio';
-            $hasAudio = (bool)$this->findBySentenceId($sentenceId)->first();
-            $values[$sentenceId][] = intval($hasAudio);
+            $hasAudio = $this->findBySentenceId($sentenceId)->first();
+            $values[$sentenceId][] = $hasAudio ? 1 : 0;
         }
     }
 

@@ -10,12 +10,12 @@
 namespace App\Model\Behavior;
 
 use App\Lib\SphinxClient;
-use Cake\Database\ConnectionManager;
-use Cake\Model\Behavior;
-use Cake\Model\Model;
+use Cake\Core\Configure;
+use Cake\ORM\Behavior;
+use Cake\ORM\TableRegistry;
 
 
-class SphinxBehavior extends ModelBehavior
+class SphinxBehavior extends Behavior
 {
     /**
      * Used for runtime configuration of model
@@ -33,21 +33,24 @@ class SphinxBehavior extends ModelBehavior
      */
     public $sphinx = null;
 
-    function setup(Model $model, $options = array())
+    public function initialize(array $config)
     {
-        $databases = ConnectionManager::enumConnectionObjects();
-        $config = array_merge(
+        $alias = $config['alias'];
+        $databases = Configure::read('Sphinx');
+        $dbConfig = array_merge(
             $this->_defaults,
-            $databases['sphinx']
+            $databases
         );
-        $settings = array_intersect_key($config, $this->_defaults);
+        $settings = array_intersect_key($dbConfig, $this->_defaults);
 
-        $this->settings[$model->alias] = $settings;
+        $this->settings[$alias] = $settings;
 
-        $this->runtime[$model->alias]['sphinx'] = new SphinxClient();
-        $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['host'],
-                                                           $this->settings[$model->alias]['port']);
-        $this->runtime[$model->alias]['deletedData'] = array();
+        $this->runtime[$alias]['sphinx'] = new SphinxClient();
+        $this->runtime[$alias]['sphinx']->SetServer(
+            $this->settings[$alias]['host'],
+            $this->settings[$alias]['port']
+        );
+        $this->runtime[$alias]['deletedData'] = array();
     }
 
     /**
@@ -57,7 +60,7 @@ class SphinxBehavior extends ModelBehavior
      * @return array Modified query
      * @access public
      */
-    function beforeFind(Model $model, $query)
+    function beforeFind($event, $entity, $options)
     {
         if (empty($query['sphinx'])) {
             return true;
@@ -245,34 +248,24 @@ class SphinxBehavior extends ModelBehavior
 
     }
 
-    public function beforeDelete(Model $model, $cascade = true) {
-        if (!$model->data)
-            $model->read();
-        if ($model->data)
-            array_push($this->runtime[$model->alias]['deletedData'], $model->data);
-        return true;
+    public function afterDelete($event, $entity, $options) {
+        $alias = $event->getSubject()->getAlias();
+        $this->_refreshSphinxAttributes($alias, $entity);
     }
 
-    public function afterDelete(Model $model) {
-        while ($data = array_shift($this->runtime[$model->alias]['deletedData'])) {
-            $temp = $model->data;
-            $model->data = $data;
-            $this->_refreshSphinxAttributes($model);
-            $model->data = $temp;
-        }
+    public function afterSave($event, $entity, $options = array()) {
+        $alias = $event->getSubject()->getAlias();
+        $this->_refreshSphinxAttributes($alias, $entity);
     }
 
-    public function afterSave(Model $model, $created, $options = array()) {
-        $this->_refreshSphinxAttributes($model);
-    }
-
-    private function _refreshSphinxAttributes(&$model) {
+    private function _refreshSphinxAttributes($alias, $entity) {
+        $model = TableRegistry::getTableLocator()->get($alias);
         if (!method_exists($model, 'sphinxAttributesChanged'))
             return;
 
         $attributes = $values = array();
         $isMVA = false;
-        $model->sphinxAttributesChanged($attributes, $values, $isMVA);
+        $model->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
         foreach ($values as $sentenceId => &$value) {
             if ($isMVA) {
@@ -284,7 +277,8 @@ class SphinxBehavior extends ModelBehavior
             }
         }
 
-        $langs = ClassRegistry::init('Sentence')->getSentencesLang(array_keys($values));
+        $Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $langs = $Sentences->getSentencesLang(array_keys($values));
         $batchedByLang = array();
         foreach ($values as $sentenceId => $value) {
             if (!array_key_exists($sentenceId, $langs)
@@ -297,14 +291,14 @@ class SphinxBehavior extends ModelBehavior
         }
 
         foreach ($batchedByLang as $lang => $values) {
-            $res = $this->runtime[$model->alias]['sphinx']->UpdateAttributes(
+            $res = $this->runtime[$alias]['sphinx']->UpdateAttributes(
                 "${lang}_delta_index,${lang}_main_index",
                 $attributes,
                 $values,
                 $isMVA
             );
             if ($res < 0) {
-                $error = $this->runtime[$model->alias]['sphinx']->GetLastError();
+                $error = $this->runtime[$alias]['sphinx']->GetLastError();
                 trigger_error('Unable to update Sphinx attribute(s) (' . implode(', ', $attributes).'): '.$error);
             }
         }

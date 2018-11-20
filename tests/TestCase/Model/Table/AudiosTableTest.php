@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\AudiosTable;
-use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use App\Test\Fixture\AudiosFixture;
@@ -32,7 +31,6 @@ class AudiosTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        //Configure::write('Search.enabled', true);
         $this->Audio = TableRegistry::getTableLocator()->get('Audios');
         $this->AudioFixture =  new AudiosFixture();
     }
@@ -164,28 +162,29 @@ class AudiosTableTest extends TestCase {
     }
 
     function testSphinxAttributesChanged_onUpdate() {
-        $audioId = 1;
-        $sentenceId = 3;
+        $entity = $this->Audio->get(1);
+        $sentenceId = $entity->sentence_id;
         $expectedAttributes = array('has_audio');
         $expectedValues = array(
             $sentenceId => array(1),
         );
 
-        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA, $sentenceId);
+        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
         $this->assertEquals($expectedAttributes, $attributes);
         $this->assertEquals($expectedValues, $values);
     }
 
     function testSphinxAttributesChanged_onDelete() {
-        $audioId = 1;
-        $sentenceId = 1;
+        $entity = $this->Audio->get(1);
+        $sentenceId = $entity->sentence_id;
         $expectedAttributes = array('has_audio');
         $expectedValues = array(
             $sentenceId => array(0),
         );
 
-        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA, $sentenceId);
+        $this->Audio->delete($entity);
+        $this->Audio->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
         $this->assertEquals($expectedAttributes, $attributes);
         $this->assertEquals($expectedValues, $values);

@@ -731,13 +731,10 @@ class SentencesTableTest extends TestCase {
 		$expectedValues = array(
 			$sentenceId => array(0),
 		);
-
-		$this->Sentence->id = $sentenceId;
-		$this->Sentence->data['Sentence'] = array(
-			'id' => $sentenceId,
-			'user_id' => null,
-		);
-		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
+		$entity = $this->Sentence->get($sentenceId);
+		$entity->user_id = null;
+		
+		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
 		$this->assertEquals($expectedAttributes, $attributes);
 		$this->assertEquals($expectedValues, $values);
@@ -750,13 +747,10 @@ class SentencesTableTest extends TestCase {
 		$expectedValues = array(
 			$sentenceId => array($ownerId),
 		);
-
-		$this->Sentence->id = $sentenceId;
-		$this->Sentence->data['Sentence'] = array(
-			'id' => $sentenceId,
-			'user_id' => $ownerId,
-		);
-		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
+		$entity = $this->Sentence->get($sentenceId);
+		$entity->user_id = $ownerId;
+		
+		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
 		$this->assertEquals($expectedAttributes, $attributes);
 		$this->assertEquals($expectedValues, $values);
@@ -769,13 +763,10 @@ class SentencesTableTest extends TestCase {
 		$expectedValues = array(
 			$sentenceId => array($correctness + 128),
 		);
+		$entity = $this->Sentence->get($sentenceId);
+		$entity->correctness = $correctness;
 
-		$this->Sentence->id = $sentenceId;
-		$this->Sentence->data['Sentence'] = array(
-			'id' => $sentenceId,
-			'correctness' => $correctness,
-		);
-		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
+		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
 		$this->assertEquals($expectedAttributes, $attributes);
 		$this->assertEquals($expectedValues, $values);

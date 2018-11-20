@@ -29,6 +29,7 @@ use App\Model\CurrentUser;
 use App\Event\ContributionListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Database\Exception;
 
 class SentencesTable extends Table
 {
@@ -1205,24 +1206,29 @@ class SentencesTable extends Table
     }
 
     public function getSentencesLang($sentencesIds) {
-        $result = $this->find('all')
+        try {
+            $result = $this->find('all')
             ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
             ->select(['lang', 'id'])
             ->toList();
+        } catch (Exception $e) {
+            $result = [];
+        }
+        
         return Hash::combine($result, '{n}.id', '{n}.lang');
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
-        $sentenceId = $this->id;
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {
+        $sentenceId = $entity->id;
         $values[$sentenceId] = array();
-        if (array_key_exists('user_id', $this->data['Sentence'])) {
+        if ($entity->isDirty('user_id')) {
             $attributes[] = 'user_id';
-            $sentenceOwner = $this->data['Sentence']['user_id'];
+            $sentenceOwner = $entity->user_id;
             $values[$sentenceId][] = $sentenceOwner;
         }
-        if (array_key_exists('correctness', $this->data['Sentence'])) {
+        if ($entity->isDirty('correctness')) {
             $attributes[] = 'ucorrectness';
-            $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
+            $sentenceUCorrectness = $entity->correctness + 128;
             $values[$sentenceId][] = $sentenceUCorrectness;
         }
         if (count($values[$sentenceId]) == 0)

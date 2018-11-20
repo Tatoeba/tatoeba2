@@ -24,8 +24,8 @@ class SentencesSentencesListsTableTest extends TestCase {
 
     function testSphinxAttributesChanged() {
         $expectedValues = array(8 => array(array(1)));
-        $sentenceId = 8;
-        $this->SentencesSentencesLists->sphinxAttributesChanged($attrs, $values, $isMVA, $sentenceId);
+        $entity = $this->SentencesSentencesLists->get(2);
+        $this->SentencesSentencesLists->sphinxAttributesChanged($attrs, $values, $isMVA, $entity);
         $this->assertTrue($isMVA);
         $this->assertEquals(array('lists_id'), $attrs);
         $this->assertEquals($expectedValues, $values);

@@ -170,7 +170,8 @@ class TagsSentencesTable extends Table
         return !empty($result);
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $sentenceId) {
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {
+        $sentenceId = $entity->sentence_id;
         $isMVA = true;
         $attributes[] = 'tags_id';
         $records = $this->find('all')

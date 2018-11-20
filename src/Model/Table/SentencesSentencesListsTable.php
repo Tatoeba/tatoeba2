@@ -94,7 +94,8 @@ class SentencesSentencesListsTable extends Table
         );
     }
 
-    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $sentenceId) {
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {
+        $sentenceId = $entity->sentence_id;
         $isMVA = true;
         $attributes[] = 'lists_id';
         $records = $this->find('all')

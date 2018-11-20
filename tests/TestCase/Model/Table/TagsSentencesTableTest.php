@@ -22,8 +22,8 @@ class TagsSentencesTableTest extends TestCase {
 
     function testSphinxAttributesChanged() {
         $expectedValues = array(8 => array(array(1, 3)));
-        $sentenceId = 8;
-        $this->TagsSentences->sphinxAttributesChanged($attrs, $values, $isMVA, $sentenceId);
+        $entity = $this->TagsSentences->get(1);
+        $this->TagsSentences->sphinxAttributesChanged($attrs, $values, $isMVA, $entity);
         $this->assertTrue($isMVA);
         $this->assertEquals(array('tags_id'), $attrs);
         $this->assertEquals($expectedValues, $values);
