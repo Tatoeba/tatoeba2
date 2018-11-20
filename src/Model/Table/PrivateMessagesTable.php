@@ -204,16 +204,13 @@ class PrivateMessagesTable extends Table
      */
     public function numberOfUnreadMessages($userId)
     {
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array(
-                    'PrivateMessage.recpt' => $userId,
-                    'PrivateMessage.folder' => 'Inbox',
-                    'PrivateMessage.isnonread' => 1
-                ),
-            )
-        );
+        return $this->find()
+            ->where([
+                'recpt' => $userId,
+                'folder' => 'Inbox',
+                'isnonread' => 1
+            ])
+            ->count();
     }
 
     /**
