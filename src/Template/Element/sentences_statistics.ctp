@@ -38,8 +38,8 @@
         <ul class="sentencesStats">
             <?php
             foreach ($stats as $stat) {
-                $langCode = $stat['Language']['code'];
-                $numberOfSentences = $stat['Language']['sentences'];
+                $langCode = $stat->code;
+                $numberOfSentences = $stat->sentences;
                 $link = array(
                     "controller" => "sentences",
                     "action" => "show_all_in",
