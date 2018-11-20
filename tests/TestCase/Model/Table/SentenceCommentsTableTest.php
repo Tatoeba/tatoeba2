@@ -32,13 +32,13 @@ class SentenceCommentTest extends TestCase {
 
         $dispatched = false;
         $model = $this->SentenceComment;
-        $model->getEventManager()->attach(
+        $model->getEventManager()->on(
+            'Model.SentenceComment.commentPosted',
             function (Event $event) use ($model, &$dispatched, $comment) {
-                $this->assertSame($model->getAlias(), $event->subject()->getAlias());
+                $this->assertSame($model, $event->getSubject());
                 $this->assertEquals($comment, $event->getData('comment'));
                 $dispatched = true;
-            },
-            'Model.SentenceComment.commentPosted'
+            }
         );
 
         $this->SentenceComment->save($comment);

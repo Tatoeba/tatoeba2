@@ -58,14 +58,14 @@ class TagsTableTest extends TestCase {
 
         $dispatched = false;
         $model = $this->Tag;
-        $model->getEventManager()->attach(
+        $model->getEventManager()->on(
+            'Model.Tag.tagAdded',
             function (Event $event) use ($model, &$dispatched, $expectedTagName) {
-                $this->assertSame($model->getAlias(), $event->subject()->getAlias());
-                extract($event->data); // $tagName
+                $this->assertSame($model, $event->getSubject());
+                extract($event->getData()); // $tagName
                 $this->assertEquals($expectedTagName, $tagName);
                 $dispatched = true;
-            },
-            'Model.Tag.tagAdded'
+            }
         );
 
         $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);

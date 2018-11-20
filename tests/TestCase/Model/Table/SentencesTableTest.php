@@ -86,9 +86,10 @@ class SentencesTableTest extends TestCase {
 			'text' => 'Changing text of sentence #1.',
 		]);
 		$model = $this->Sentence;
-		$model->getEventManager()->attach(
+		$model->getEventManager()->on(
+			'Model.Sentence.saved',
 			function (Event $event) use ($model, &$dispatched, $id, $data) {
-				$this->assertSame($model->getAlias(), $event->getSubject()->getAlias());
+				$this->assertSame($model, $event->getSubject());
 				// filter out unpredictable keys like 'modified' => now()
 				// from $event->data['data']
 				$result = [
@@ -100,8 +101,7 @@ class SentencesTableTest extends TestCase {
 				$expectedEventData = compact('id', 'created', 'data');
 				$this->assertEquals($expectedEventData, $result);
 				$dispatched = true;
-			},
-			'Model.Sentence.saved'
+			}
 		);
 
 		$this->Sentence->save($data);

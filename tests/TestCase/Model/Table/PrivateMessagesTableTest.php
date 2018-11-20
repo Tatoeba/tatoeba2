@@ -226,15 +226,15 @@ class PrivateMessageTest extends TestCase {
 
         $dispatched = false;
         $model = $this->PrivateMessage;
-        $model->getEventManager()->attach(
+        $model->getEventManager()->on(
+            'Model.PrivateMessage.messageSent',
             function (Event $event) use ($model, &$dispatched, $expectedMessage) {
-                $this->assertSame($model->getAlias(), $event->subject()->getAlias());
+                $this->assertSame($model, $event->getSubject());
                 $message = $event->getData('message')->old_format['PrivateMessage']; // $message
                 unset($message['id']);
                 $this->assertEquals($expectedMessage, $message);
                 $dispatched = true;
-            },
-            'Model.PrivateMessage.messageSent'
+            }
         );
 
         $this->PrivateMessage->send($currentUserId, $date, $postData);

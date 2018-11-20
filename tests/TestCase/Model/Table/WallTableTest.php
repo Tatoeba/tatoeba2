@@ -154,15 +154,15 @@ class WallTest extends TestCase {
         );
         $dispatched = false;
         $model = $this->Wall;
-        $model->getEventManager()->attach(
+        $model->getEventManager()->on(
+            'Model.Wall.postPosted',
             function (Event $event) use ($model, &$dispatched, $expectedPost) {
-                $this->assertSame($model, $event->subject());
+                $this->assertSame($model, $event->getSubject());
                 $post = $event->getData('post')->old_format['Wall']; // $post
                 unset($post['id']);
                 $this->assertEquals($expectedPost, $post);
                 $dispatched = true;
-            },
-            'Model.Wall.postPosted'
+            }
         );
 
         $saved = $this->Wall->save($reply);
