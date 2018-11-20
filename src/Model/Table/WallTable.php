@@ -54,6 +54,8 @@ class WallTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('content', 'text');
+        $schema->setColumnType('modified', 'string');
+        $schema->setColumnType('date', 'string');
         return $schema;
     }
 

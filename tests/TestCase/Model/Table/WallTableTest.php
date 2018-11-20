@@ -79,7 +79,7 @@ class WallTest extends TestCase {
     private function _assertThreadDate($postId, $expectedDate) {
         $rootId = $this->Wall->getRootMessageIdOfReply($postId);
         $wallThread = $this->Wall->WallThreads->get($rootId);
-        $threadDate = $wallThread->last_message_date->i18nFormat('yyyy-MM-dd HH:mm:ss');
+        $threadDate = $wallThread->last_message_date;
         $this->assertEquals($expectedDate, $threadDate);
     }
 

@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 
 class UsersSentencesTable extends Table
@@ -30,6 +31,12 @@ class UsersSentencesTable extends Table
         'User' => array('foreignKey' => 'user_id')
     );
 
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('created', 'string');
+        $schema->setColumnType('modified', 'string');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {

@@ -35,6 +35,8 @@ class SentenceCommentsTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
+        $schema->setColumnType('modified', 'string');
+        $schema->setColumnType('created', 'string');
         return $schema;
     }
 

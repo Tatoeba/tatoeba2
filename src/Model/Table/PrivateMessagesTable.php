@@ -19,6 +19,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use App\Model\CurrentUser;
 use Cake\I18n\Time;
@@ -43,6 +44,12 @@ class PrivateMessagesTable extends Table
             'foreignKey' => 'sender'
         )
     );
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('date', 'string');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {

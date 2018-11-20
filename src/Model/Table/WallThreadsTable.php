@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 
 
@@ -32,6 +33,12 @@ class WallThreadsTable extends Table
              'foreignKey' => 'id'
         )
     );
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('last_message_date', 'string');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {

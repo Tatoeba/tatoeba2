@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
 
@@ -65,6 +66,12 @@ class TagsTable extends Table
     public function getOKTagName()
     {
         return 'OK';
+    }
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('created', 'string');
+        return $schema;
     }
 
     public function initialize(array $config) 

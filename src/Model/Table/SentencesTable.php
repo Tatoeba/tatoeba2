@@ -99,6 +99,8 @@ class SentencesTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
+        $schema->setColumnType('created', 'string');
+        $schema->setColumnType('modified', 'string');
         return $schema;
     }
 

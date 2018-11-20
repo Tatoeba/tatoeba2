@@ -56,6 +56,8 @@ class AudiosTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('external', 'json');
+        $schema->setColumnType('modified', 'string');
+        $schema->setColumnType('created', 'string');
         return $schema;
     }
 

@@ -28,10 +28,10 @@ class Wall extends Entity
             'Wall' => [
                 'id' => $this->id,
                 'owner' => $this->owner,
-                'date' => $this->date->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                'date' => $this->date,
                 'parent_id' => $this->parent_id,
                 'content' => $this->content,
-                'modified' => $this->modified->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                'modified' => $this->modified,
                 'lft' => $this->lft,
                 'rght' => $this->rght,
             ]

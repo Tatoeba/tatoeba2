@@ -30,7 +30,7 @@ class PrivateMessage extends Entity
                 'recpt' => $this->recpt,
                 'sender' => $this->sender,
                 'user_id' => $this->user_id,
-                'date' => $this->date->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+                'date' => $this->date,
                 'folder' => $this->folder,
                 'title' => $this->title,
                 'content' => $this->content,

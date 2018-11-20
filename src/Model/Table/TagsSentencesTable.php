@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Utility\Hash;
@@ -40,6 +41,12 @@ class TagsSentencesTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->Behaviors->attach('Sphinx');
         }
+    }
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('added_time', 'string');
+        return $schema;
     }
 
     public function initialize(array $config)

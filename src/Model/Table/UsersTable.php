@@ -37,6 +37,8 @@ class UsersTable extends Table
 {
     protected function _initializeSchema(TableSchema $schema)
     {
+        $schema->setColumnType('birthday', 'string');
+        $schema->setColumnType('since', 'string');
         $schema->setColumnType('description', 'text');
         $schema->setColumnType('settings', 'json');
         return $schema;
