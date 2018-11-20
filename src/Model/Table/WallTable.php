@@ -297,34 +297,4 @@ class WallTable extends Table
             ->first();
         return $replyLftRght->lft != ($replyLftRght->rght - 1);
     }
-
-    /**
-     * Return of the id of the first of the thread of the given
-     * message
-     *
-     * @param int $replyId The id of the message we want the root.
-     *
-     * @return int Return the root id.
-     */
-
-    private function _getRootMessageIdLftRghtOfReply($replyId)
-    {
-        $replyLftRght  = $this->_getLftRghtOfMessage($replyId);
-
-        $replyLft = $replyLftRght['lft'];
-        $replyRght = $replyLftRght['rght'];
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => array('lft', 'rght'),
-                'conditions' => array(
-                    'parent_id' => null,
-                    'lft <=' => $replyLft,
-                    'rght >=' => $replyRght
-                ),
-            )
-        );
-
-        return $result['Wall'];
-    }
 }
