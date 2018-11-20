@@ -29,9 +29,6 @@ use Cake\ORM\RulesChecker;
 
 class SentenceCommentsTable extends Table
 {
-    public $actsAs = array('Containable');
-    public $belongsTo = array('Sentence', 'User');
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -42,6 +39,9 @@ class SentenceCommentsTable extends Table
 
     public function initialize(array $config)
     {
+        $this->belongsTo('Sentences');
+        $this->belongsTo('Users');
+
         $this->addBehavior('Timestamp');
     }
 
@@ -75,13 +75,9 @@ class SentenceCommentsTable extends Table
      */
     public function numberOfCommentsOwnedBy($userId)
     {
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array( 'SentenceComment.user_id' => $userId),
-             )
-        );
-
+        return $this->find()
+            ->where(['user_id' => $userId])
+            ->count();
     }
 
     /**
@@ -95,17 +91,10 @@ class SentenceCommentsTable extends Table
 
     public function numberOfCommentsOnSentencesOf($userId)
     {
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array('Sentence.user_id' => $userId),
-                'contain' => array(
-                    'Sentence' => array(
-                    )
-                )
-            )
-        );
-
+        return $this->find()
+            ->contain(['Sentences'])
+            ->where(['Sentences.user_id' => $userId])
+            ->count();
     }
 
     /**
@@ -117,22 +106,13 @@ class SentenceCommentsTable extends Table
      */
     public function getCommentsForSentence($sentenceId)
     {
-        return $this->find(
-            'all',
-            array(
-                'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
-                'order' => 'SentenceComment.created',
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image'
-                        )
-                    )
-                )
-            )
-        );
+        return $this->find()
+            ->where(['sentence_id' => $sentenceId])
+            ->order('SentenceComments.created')
+            ->contain(['Users' => function ($q) {
+                    return $q->select(['id', 'username', 'image']);
+            }])
+            ->all();
     }
 
     /**
@@ -144,31 +124,23 @@ class SentenceCommentsTable extends Table
      */
     public function getLatestComments($limit)
     {
-        $conditions = array();
-        $conditions['hidden'] = 0;
-        $conditions = $this->getQueryConditionWithExcludedUsers($conditions);
-
-        return $this->find(
-            'all',
-            array(
-                'order' => 'SentenceComment.created DESC',
-                'limit' => $limit,
-                'conditions' => $conditions,
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image'
-                        )
-                    ),
-                    'Sentence' => array(
-                        'User' => array('username'),
-                        'fields' => array('id', 'text', 'lang')
-                    )
-                )
-            )
-        );
+        $query = $this->find()
+            ->limit($limit)
+            ->where(['hidden' => 0])
+            ->orderDesc('SentenceComments.created')
+            ->contain([
+                'Users' => function ($q) {
+                    return $q->select(['id', 'username', 'image']);
+                },
+                'Sentences' => function ($q) {
+                    return $q->select(['id', 'text', 'lang'])
+                        ->contain(['Users' => function ($q) {
+                            return $q->select(['username']);
+                        }]);
+                }
+            ]);
+        $query = $this->excludeBots($query);
+        return $query->all();
     }
 
     /**
@@ -181,15 +153,12 @@ class SentenceCommentsTable extends Table
 
     public function getOwnerIdOfComment($commentId)
     {
-        $result = $this->find(
-            "first",
-            array(
-                'fields' => array('SentenceComment.user_id'),
-                'conditions' => array('SentenceComment.id' => $commentId),
-            )
-        );
+        $result = $this->find()
+            ->select(['user_id'])
+            ->where(['id' => $commentId])
+            ->first();
 
-        return $result['SentenceComment']['user_id'];
+        return $result->user_id;
     }
 
 
@@ -223,25 +192,14 @@ class SentenceCommentsTable extends Table
         return $result;
     }
 
-    /**
-     *
-     */
-    function getQueryConditionWithExcludedUsers($conditions = null)
+    public function excludeBots($query)
     {
         $botsIds = Configure::read('Bots.userIds');
 
-        if (!isset($conditions)) {
-            $conditions = array();
-        }
         if (!empty($botsIds)) {
-            if (count($botsIds) > 1) {
-                $conditions["SentenceComment.user_id NOT"] = $botsIds;
-            } else {
-                $conditions["SentenceComment.user_id !="] = $botsIds[0];
-            }
-
+            return $query->where(['SentenceComment.user_id NOT IN' => $botsIds]);
         }
 
-        return $conditions;
+        return $query;
     }
 }
