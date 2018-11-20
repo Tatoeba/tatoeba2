@@ -34,12 +34,8 @@ class SentencesTableTest extends TestCase {
 	function setUp() {
 		parent::setUp();
 		Configure::write('Acl.database', 'test');
-		$this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
-
-		/*
-		$this->Sentence->Behaviors->Sphinx = Mockery::mock();
-		*/
 		Configure::write('AutoTranscriptions.enabled', true);
+		$this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
 		$autotranscription = $this->_installAutotranscriptionMock();
 		$autotranscription
 			->expects($this->any())
@@ -281,10 +277,8 @@ class SentencesTableTest extends TestCase {
 			->method('cmn_detectScript')
 			->will($this->returnValue('Hant'));
 		$cmnSentenceId = 2;
-		$data = $this->Sentence->newEntity([
-			'id' => $cmnSentenceId,
-			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
-		]);
+		$data = $this->Sentence->get($cmnSentenceId);
+		$data->text = '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。';
 		$this->Sentence->save($data);
 		$result = $this->Sentence->get($cmnSentenceId);
 		$this->assertEquals('Hant', $result->script);
@@ -303,16 +297,12 @@ class SentencesTableTest extends TestCase {
 
 	function testSentenceTextEditionRegeneratesTranscriptions() {
 		$jpnSentenceId = 6;
-		$fieldsDiffers = array('text');
 		$conditions = array('sentence_id' => $jpnSentenceId);
 		$transcrBefore = $this->Sentence->Transcriptions->find('all')
 			->where($conditions)
 			->first();
-
-		$data = $this->Sentence->newEntity([
-			'id' => $jpnSentenceId,
-			'text' => '未来から来ました。'
-		]);
+		$data = $this->Sentence->get($jpnSentenceId);
+		$data->text = '未来から来ました。';
 		$this->Sentence->save($data);
 
 		$transcrAfter = $this->Sentence->Transcriptions->find('all')
