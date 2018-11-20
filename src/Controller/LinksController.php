@@ -48,11 +48,12 @@ class LinksController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
         // setting actions that are available to everyone, even guests
         if($this->request->is('ajax')) {
           $this->Security->unlockedActions = array('add', 'delete');
         }
+
+        return parent::beforeFilter($event);
     }
 
     private function _renderTranslationsOf($sentenceId, $message)

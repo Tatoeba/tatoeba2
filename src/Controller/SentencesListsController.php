@@ -67,8 +67,6 @@ class SentencesListsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-
         $this->Auth->allowedActions = array(
             'index',
             'show',
@@ -84,6 +82,8 @@ class SentencesListsController extends AppController
             'save_name',
             'add_new_sentence_to_list'
         );
+
+        return parent::beforeFilter($event);
     }
 
 

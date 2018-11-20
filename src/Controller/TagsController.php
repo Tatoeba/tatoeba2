@@ -58,7 +58,6 @@ class TagsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
             'show_sentences_with_tag',
@@ -72,6 +71,8 @@ class TagsController extends AppController
 
         $eventManager = $this->Tag->getEventManager();
         $eventManager->attach(new SuggestdListener());
+
+        return parent::beforeFilter($event);
     }
 
     /**

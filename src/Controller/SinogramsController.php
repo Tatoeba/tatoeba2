@@ -55,7 +55,6 @@ class SinogramsController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
         $this->Auth->allow();
 
         $this->Security->unlockedActions = array(
@@ -65,6 +64,8 @@ class SinogramsController extends AppController
           'load_example_sentence',
           'load_radicals'
         );
+
+        return parent::beforeFilter($event);
     }
 
     /**

@@ -53,8 +53,6 @@ class AudioController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-
         $this->Auth->allowedActions = array(
             'of',
             'index',
@@ -63,6 +61,8 @@ class AudioController extends AppController
         $this->Security->unlockedActions = array(
             'save_settings' // can't figure out why this is blackholed
         );
+
+        return parent::beforeFilter($event);
     }
 
     public function import() {

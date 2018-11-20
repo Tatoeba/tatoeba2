@@ -107,8 +107,6 @@ class SentencesController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
             'index',
@@ -130,6 +128,8 @@ class SentencesController extends AppController
           'change_language',
           'edit_sentence'
         );
+
+        return parent::beforeFilter($event);
     }
 
     /**

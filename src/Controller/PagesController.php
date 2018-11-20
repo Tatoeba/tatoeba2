@@ -71,10 +71,13 @@ class PagesController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-        $this->_redirect_for_old_url();
         // setting actions that are available to everyone, even guests
         $this->Auth->allow();
+
+        if ($response = $this->_redirect_for_old_url()) {
+            return $response;
+        }
+        return parent::beforeFilter($event);
     }
 
     /**
@@ -174,7 +177,7 @@ class PagesController extends AppController
                 return;
         }
 
-        $this->redirect(
+        return $this->redirect(
             array(
                 "controller" => "pages",
                 "action" => $action

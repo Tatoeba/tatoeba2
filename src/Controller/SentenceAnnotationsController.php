@@ -54,11 +54,11 @@ class SentenceAnnotationsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-
         $this->Auth->allowedActions = array(
             'last_modified'
         );
+
+        return parent::beforeFilter($event);
     }
 
 

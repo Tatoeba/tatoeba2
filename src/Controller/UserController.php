@@ -79,11 +79,11 @@ class UserController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-
         $this->Auth->allowedActions = array(
             'profile'
         );
+
+        return parent::beforeFilter($event);
     }
 
     public function updateAuthData($userId)

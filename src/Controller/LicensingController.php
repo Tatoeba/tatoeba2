@@ -30,11 +30,11 @@ class LicensingController extends AppController {
 
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-
         $this->Security->unlockedActions = array(
             'switch_my_sentences',
         );
+
+        return parent::beforeFilter($event);
     }
 
     public function switch_my_sentences() {

@@ -47,8 +47,6 @@ class TranscriptionsController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
-
         $this->Auth->allowedActions = array(
             'view',
             'of',
@@ -58,6 +56,8 @@ class TranscriptionsController extends AppController
             'save',
             'reset'
         );
+
+        return parent::beforeFilter($event);
     }
 
     public function view($sentenceId) {

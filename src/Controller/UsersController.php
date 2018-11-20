@@ -61,7 +61,6 @@ class UsersController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        parent::beforeFilter($event);
         // setting actions that are available to everyone, even guests
         // no need to allow login
         $this->Auth->allowedActions = array(
@@ -80,6 +79,8 @@ class UsersController extends AppController
         // prevent CSRF in this controller
         // since we're handling login and registration
         $this->Security->validatePost = true;
+
+        return parent::beforeFilter($event);
     }
 
     /**

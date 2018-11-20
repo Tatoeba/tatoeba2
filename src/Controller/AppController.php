@@ -187,7 +187,7 @@ class AppController extends Controller
                 // that. Instead, we want to hide the fact a redirection happened and
                 // let the sub-request return its own return code.
                 $redirectCode = $this->request->is('ajax') ? null : 301;
-                $this->redirect($redirectPage, $redirectCode);
+                return $this->redirect($redirectPage, $redirectCode);
             }
         }
 
