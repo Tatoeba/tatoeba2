@@ -29,7 +29,6 @@ use App\Model\CurrentUser;
 use App\Event\ContributionListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
-use Cake\Database\Exception;
 
 class SentencesTable extends Table
 {
@@ -1201,14 +1200,10 @@ class SentencesTable extends Table
     }
 
     public function getSentencesLang($sentencesIds) {
-        try {
-            $result = $this->find('all')
-            ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
-            ->select(['lang', 'id'])
-            ->toList();
-        } catch (Exception $e) {
-            $result = [];
-        }
+        $result = $this->find('all')
+        ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
+        ->select(['lang', 'id'])
+        ->toList();
         
         return Hash::combine($result, '{n}.id', '{n}.lang');
     }
