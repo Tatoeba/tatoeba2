@@ -57,14 +57,14 @@ $this->Languages->localizedAsort($countries);
         <div class="title"><?php echo __('Current picture'); ?></div>
         <?php
         $image = 'unknown-avatar.png';
-        if (!empty($this->request->data['User']['image'])) {
-            $image = h($this->request->data['User']['image']);
+        if (!empty($user->image)) {
+            $image = h($user->image);
         }
         echo $this->Html->image(
             IMG_PATH . 'profiles_128/'.$image
         );
 
-        if (!empty($this->request->data['User']['image'])) {
+        if (!empty($user->image)) {
             ?>
             <md-button type="submit" class="md-raised md-warn">
                 <?php echo __('Remove'); ?>
@@ -100,71 +100,42 @@ $this->Languages->localizedAsort($countries);
     </div>
 
     <?php
-    $dateOptions = array(
+    echo $this->Form->create($user, [
+        'id' => 'profile-form',
+        'url' => ['controller' => 'user', 'action' => 'save_basic']
+    ]);
+
+    echo $this->Form->control('name', [
+        'label' => __x('user', 'Name'),
+        'lang' => '',
+        'dir' => 'auto'
+    ]);
+
+    echo $this->Form->control('country_id', [
+        'label' => __('Country'),
+        'options' => $countries,
+        'empty' => true
+    ]);
+
+    echo $this->Form->control('birthday', [
+        'label' => __('Birthday'),
+        'type' => 'date',
         'minYear' => date('Y') - 100,
         'maxYear' => date('Y') - 3,
-        'type' => 'date',
-        'selected' => $this->request->data['User']['birthday'],
-        'empty' => true,
-        'label' => __('Birthday')
-    );
-    $selectedCountryId = $this->request->data['User']['country_id'];
+        'empty' => true
+    ]);
 
-    echo $this->Form->create(
-        false,
-        array(
-            "url" => array('controller' => 'user', 'action' => 'save_basic')
-        )
-    );
+    echo $this->Form->control('homepage', [
+        'label' => __('Homepage'),
+        'lang' => '',
+        'dir' => 'ltr'
+    ]);
 
-    echo $this->Form->input(
-        'User.name',
-        array(
-            'label' => __x('user', 'Name'),
-            'lang' => '',
-            'dir' => 'auto',
-        )
-    );
-
-    echo '<div class="input">';
-    echo '<label for="UserCountryId">';
-     __('Country');
-    echo '</label>';
-    echo $this->Form->select(
-        'User.country_id',
-        $countries,
-        array(
-            "value" => $selectedCountryId
-        )
-    );
-    echo '</div>';
-
-    echo $this->Form->input(
-        'User.birthday',
-        $dateOptions
-    );
-
-    echo $this->Form->input(
-        'User.homepage',
-        array(
-            'label' => __('Homepage'),
-            'lang' => '',
-            'dir' => 'ltr',
-        )
-    );
-
-    echo $this->Html->tag(
-        'label',
-        __('Description'),
-        array('for' => 'UserDescription')
-    );
-    echo $this->Form->textarea(
-        'User.description',
-        array(
-            'lang' => '',
-            'dir' => 'auto',
-        )
-    );
+    echo $this->Form->label('description', __('Description'));
+    echo $this->Form->textarea('description', [
+        'lang' => '',
+        'dir' => 'auto',
+    ]);
     ?>
     <div layout="row" layout-align="end center" layout-padding>
         <md-button type="submit" class="md-raised md-primary">

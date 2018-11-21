@@ -686,13 +686,15 @@ class UserController extends AppController
      */
     public function edit_profile()
     {
+        $this->loadModel('Users');
+
         $currentUserId = CurrentUser::get('id');
         if (empty($currentUserId)) {
             $this->redirect('/');
         }
 
-        $userInfo = $this->User->getInformationOfCurrentUser($currentUserId);
-        $this->request->data = $userInfo;
+        $userInfo = $this->Users->getInformationOfCurrentUser($currentUserId);
+        $this->set('user', $userInfo);
     }
 
 
