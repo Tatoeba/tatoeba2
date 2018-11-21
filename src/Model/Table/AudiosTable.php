@@ -86,34 +86,6 @@ class AudiosTable extends Table
         return $validator;
     }
 
-    public function afterFind($results, $primary = false) {
-        foreach ($results as &$result) {
-            if (isset($result[$this->alias])
-                && array_key_exists('external', $result[$this->alias])) {
-                $result[$this->alias]['external'] = (array)json_decode(
-                    $result[$this->alias]['external']
-                );
-                $result[$this->alias]['external'] = array_merge(
-                    $this->defaultExternal,
-                    $result[$this->alias]['external']
-                );
-            }
-        }
-        return $results;
-    }
-
-    private function encodeExternal($entity) {
-        if ($entity && is_array($entity->external)) {
-            $external = $this->get($entity->id, ['fields' => ['external']]);
-            if ($external === false) {
-                $external = array();
-            }
-            $external = array_merge($external, $this->data[$this->alias]['external']);
-            $external = array_intersect_key($external, $this->defaultExternal);
-            //$this->data[$this->alias]['external'] = json_encode($external);
-        }
-    }
-
     public function beforeSave($event, $entity, $options = array()) {
         $ok = true;
         $user_id = $entity->user_id;
