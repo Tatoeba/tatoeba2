@@ -40,8 +40,6 @@ use Cake\Event\Event;
  */
 class StatsController extends AppController
 {
-    public $uses = array('Language', 'Sentence', 'Audio');
-
     /**
      * Before filter.
      *
@@ -84,7 +82,8 @@ class StatsController extends AppController
      */
     function native_speakers()
     {
-        $stats = $this->Language->getNativeSpeakersStatistics();
+        $this->loadModel('Languages');
+        $stats = $this->Languages->getNativeSpeakersStatistics();
         $this->set('stats', $stats);
     }
 }

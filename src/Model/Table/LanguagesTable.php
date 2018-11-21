@@ -120,22 +120,19 @@ class LanguagesTable extends Table
      */
     public function getNativeSpeakersStatistics()
     {
-        $results = $this->find(
-            'all',
-            array(
-                'conditions' => array('code !=' => null),
-                'fields' => array(
-                    'code',
-                    'group_1',
-                    'group_2',
-                    'group_3',
-                    'group_4',
-                    '(group_1 + group_2 + group_3 + group_4) as total'
-                ),
-                'order' => array('total DESC')
-            )
-        );
-
+        $results = $this->find()
+            ->where(['code IS NOT' => null])
+            ->select([
+                'code',
+                'group_1',
+                'group_2',
+                'group_3',
+                'group_4',
+                'total' => '(group_1 + group_2 + group_3 + group_4)'
+            ])
+            ->order(['total' => 'DESC'])
+            ->toList();
+            
         return $results;
     }
 

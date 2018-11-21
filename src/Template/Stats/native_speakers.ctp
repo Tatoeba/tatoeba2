@@ -81,16 +81,14 @@ $membersIcons = array(
 
             <?php
             $rank = 1;
-            foreach ($stats as $stat) {
-                $language = $stat['Language'];
+            foreach ($stats as $language) {
+                $langCode = $language->code;
 
-                $langCode = $language['code'];
-
-                $numAdmins = $language['group_1'];
-                $numCorpusMaintainers = $language['group_2'];
-                $numAdvancedContributors = $language['group_3'];
-                $numContributors = $language['group_4'];
-                $total = $stat[0]['total'];
+                $numAdmins = $language->group_1;
+                $numCorpusMaintainers = $language->group_2;
+                $numAdvancedContributors = $language->group_3;
+                $numContributors = $language->group_4;
+                $total = $language->total;
 
                 $languageIcon = $this->Languages->icon(
                     $langCode, array('width' => 30, 'height' => 20)

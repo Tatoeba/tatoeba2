@@ -41,7 +41,7 @@ use App\View\Helper\AppHelper;
 class ImagesHelper extends AppHelper
 {
     public $helpers = array(
-        'Html',
+        'Html', 'Url'
     );
 
     /**
@@ -56,7 +56,7 @@ class ImagesHelper extends AppHelper
      * @return string
      */
     public function svgIcon($imageName, $options = array(), $id = null) {
-        $imgPath = $this->assetTimestamp('/img/' . $imageName . '.svg');
+        $imgPath = $this->Url->assetUrl('/img/' . $imageName . '.svg');
         if (empty($id)) {
             $id = $imageName;
         }
