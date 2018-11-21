@@ -792,14 +792,9 @@ class SentencesTable extends Table
      */
     public function numberOfSentencesOwnedBy($userId)
     {
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array(
-                    'Sentence.user_id' => $userId
-                ),
-            )
-        );
+        return $this->find()
+            ->where(['user_id' => $userId])
+            ->count();
     }
 
     /**

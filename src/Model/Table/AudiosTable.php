@@ -160,9 +160,9 @@ class AudiosTable extends Table
     }
 
     public function numberOfAudiosBy($userId) {
-        return $this->find('count', array(
-            'conditions' => array('user_id' => $userId),
-        ));
+        return $this->find()
+            ->where(['user_id' => $userId])
+            ->count();
     }
 
     public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {

@@ -15,34 +15,15 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 
 
-/**
- * Model for favorite
- *
- * @category Favorite
- * @package  Models
- * @author   Allan Simon <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-
-class Favorite extends AppModel
+class FavoritesTable extends Table
 {
     public $name = 'Favorite';
-    public $useTable = 'favorites_users';
 
     public $actsAs = array(
         'Containable'
@@ -51,6 +32,11 @@ class Favorite extends AppModel
     public $belongsTo = array(
         'Sentence' => array('foreignKey' => 'favorite_id')
     );
+
+    public function initialize(array $config)
+    {
+        $this->setTable('favorites_users');
+    }
 
     /**
      * Get number of favorite sentences of a user.
@@ -61,16 +47,9 @@ class Favorite extends AppModel
      */
     public function numberOfFavoritesOfUser($userId)
     {
-        $result = $this->find(
-            'count',
-            array(
-                'conditions' => array(
-                    'user_id' => $userId
-                )
-            )
-        );
-
-        return $result;
+        return $this->find()
+            ->where(['user_id' => $userId])
+            ->count();
     }
 
     /**

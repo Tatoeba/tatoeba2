@@ -30,6 +30,7 @@ use App\Controller\AppController;
 use App\Controller\Component\Auth\VersionedPasswordHasher;
 use App\Lib\LanguagesLib;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for sentence comments.
@@ -110,6 +111,9 @@ class UserController extends AppController
         $this->helpers[] = 'ClickableLinks';
         $this->helpers[] = 'Members';
 
+        $this->loadModel('Users');
+        $this->loadModel('UsersLanguages');
+
         if (empty($userName)) {
             if (!CurrentUser::isMember()) {
                 $this->redirect(array('controller'=>'pages','action' => 'home'));
@@ -121,8 +125,7 @@ class UserController extends AppController
             }
         }
 
-        $userName = Sanitize::paranoid($userName, array('_'));
-        if (!( $infoOfUser = $this->User->getInformationOfUser($userName) )) {
+        if (!( $user = $this->Users->getInformationOfUser($userName) )) {
             $this->Flash->set(format(
                 __('No user with this username: {username}'),
                 array('username' => $userName)
@@ -133,15 +136,14 @@ class UserController extends AppController
             );
         }
 
-        $user = $infoOfUser['User'];
-        $groupId = $user['group_id'];
-        $userId = $user['id'];
+        $groupId = $user->group_id;
+        $userId = $user->id;
         $userStats = $this->_stats($userId);
         $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
 
-        $isPublic = ($user['settings']['is_public'] == 1);
+        $isPublic = ($user->settings['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
-        $notificationsEnabled = ($user['send_notifications'] == 1);
+        $notificationsEnabled = ($user->send_notifications == 1);
 
         $this->set('userStats', $userStats);
         $this->set('user', $user);
@@ -654,15 +656,19 @@ class UserController extends AppController
      */
     private function _stats($userId)
     {
-        $this->loadModel('Audio');
-        $numberOfSentences = $this->Sentence->numberOfSentencesOwnedBy($userId);
+        $this->loadModel('Audios');
+        $this->loadModel('Sentences');
+        $this->loadModel('SentenceComments');
+        $this->loadModel('Contributions');
+        $this->loadModel('Favorites');
+        $numberOfSentences = $this->Sentences->numberOfSentencesOwnedBy($userId);
         $numberOfComments
-            = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
+            = $this->SentenceComments->numberOfCommentsOwnedBy($userId);
 
         $numberOfContributions
-            = $this->Contribution->numberOfContributionsBy($userId);
-        $numberOfFavorites  = $this->Favorite->numberOfFavoritesOfUser($userId);
-        $numberOfAudios = $this->Audio->numberOfAudiosBy($userId);
+            = $this->Contributions->numberOfContributionsBy($userId);
+        $numberOfFavorites  = $this->Favorites->numberOfFavoritesOfUser($userId);
+        $numberOfAudios = $this->Audios->numberOfAudiosBy($userId);
         return compact(
             'numberOfComments',
             'numberOfSentences',

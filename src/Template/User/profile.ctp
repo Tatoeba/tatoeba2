@@ -226,7 +226,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 
                     <?php
                     $cssClasses = array('status', $statusClass);
-                    $options = null;
+                    $options = [];
                     if ($level == -1) {
                         $cssClasses[] = 'contributionsBlocked';
                         $options = array('title' => __('Contributions blocked'));
@@ -343,11 +343,10 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         {
             ?>
             <md-list>
-                <? foreach($userLanguages as $userLanguage) {
-                    $languageInfo = $userLanguage['UsersLanguages'];
-                    $langCode = $languageInfo['language_code'];
-                    $level = $languageInfo['level'];
-                    $details = $languageInfo['details'];
+                <? foreach($userLanguages as $languageInfo) {
+                    $langCode = $languageInfo->language_code;
+                    $level = $languageInfo->level;
+                    $details = $languageInfo->details;
                     $editLangUrl = $this->Url->build(array(
                         'controller' => 'user',
                         'action' => 'language',
@@ -380,7 +379,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                                 array(
                                     'controller' => 'users_languages',
                                     'action' => 'delete',
-                                    $languageInfo['id']
+                                    $languageInfo->id
                                 )
                             );
                             $confirmation = __('Are you sure?');

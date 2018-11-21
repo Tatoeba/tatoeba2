@@ -196,4 +196,9 @@ class AudiosTableTest extends TestCase {
 
         $this->assertEquals('Philippe Petit', $audio->external['username']);
     }
+
+    function testNumberOfAudiosBy() {
+        $result = $this->Audio->numberOfAudiosBy(4);
+        $this->assertEquals(1, $result);
+    }
 }
