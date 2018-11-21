@@ -24,4 +24,9 @@ class LanguagesTableTest extends TestCase {
         $result = $this->Languages->getNativeSpeakersStatistics();
         $this->assertEquals(7, count($result));
     }
+
+    function testGetUsersLanguagesStatistics() {
+        $result = $this->Languages->getNativeSpeakersStatistics();
+        $this->assertEquals(7, count($result));
+    }
 }

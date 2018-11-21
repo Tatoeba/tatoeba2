@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+use App\Model\Entity\Language;
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of members')));
 ?>
 
@@ -66,9 +68,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
                 <th><?php echo __('Total'); ?></th>
             </tr>
             <?php
-            foreach($stats as $stat) {
-                $language = $stat['Language'];
-                $langCode = $language['code'];
+            foreach($stats as $language) {
+                $langCode = $language->code;
                 $langName = $this->Html->link(
                     $this->Languages->codeToNameAlone($langCode),
                     array(
@@ -81,14 +82,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
                 echo '<tr>';
                 echo $this->Html->tag('td', $this->Languages->icon($langCode, array()));
                 echo $this->Html->tag('td', $langName);
-                echo $this->Html->tag('td', $language['level_5']);
-                echo $this->Html->tag('td', $language['level_4']);
-                echo $this->Html->tag('td', $language['level_3']);
-                echo $this->Html->tag('td', $language['level_2']);
-                echo $this->Html->tag('td', $language['level_1']);
-                echo $this->Html->tag('td', $language['level_0']);
-                echo $this->Html->tag('td', $language['level_unknown']);
-                echo $this->Html->tag('td', $stat[0]['total']);
+                echo $this->Html->tag('td', $language->level_5);
+                echo $this->Html->tag('td', $language->level_4);
+                echo $this->Html->tag('td', $language->level_3);
+                echo $this->Html->tag('td', $language->level_2);
+                echo $this->Html->tag('td', $language->level_1);
+                echo $this->Html->tag('td', $language->level_0);
+                echo $this->Html->tag('td', $language->level_unknown);
+                echo $this->Html->tag('td', $language->total);
                 echo '</tr>';
             }
             ?>

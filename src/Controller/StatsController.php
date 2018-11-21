@@ -72,7 +72,8 @@ class StatsController extends AppController
      */
     function users_languages()
     {
-        $stats = $this->Language->getUsersLanguagesStatistics();
+        $this->loadModel('Languages');
+        $stats = $this->Languages->getUsersLanguagesStatistics();
         $this->set('stats', $stats);
     }
 

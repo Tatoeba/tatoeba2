@@ -30,6 +30,7 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 use Cake\Core\Configure;
+use App\Model\Entity\Language;
 
 
 /**

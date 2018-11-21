@@ -25,8 +25,6 @@ class LanguagesTable extends Table
 {
     public $name = 'Language';
 
-    const MAX_LEVEL = 5;
-
     /**
      * Return stats for number of sentences per language.
      *
@@ -92,26 +90,23 @@ class LanguagesTable extends Table
      */
     public function getUsersLanguagesStatistics()
     {
-        $results = $this->find(
-            'all',
-            array(
-                'conditions' => array('code !=' => null),
-                'fields' => array(
-                    'code',
-                    'level_5',
-                    'level_4',
-                    'level_3',
-                    'level_2',
-                    'level_1',
-                    'level_0',
-                    'level_unknown',
-                    '(level_5 + level_4 + level_3 + level_2 + level_1 + level_0 + level_unknown) as total'
-                ),
-                'order' => array('total DESC'),
-            )
-        );
+        $results = $this->find()
+            ->where(['code IS NOT' => null])
+            ->select([
+                'code',
+                'level_5',
+                'level_4',
+                'level_3',
+                'level_2',
+                'level_1',
+                'level_0',
+                'level_unknown',
+                'total' => '(level_5 + level_4 + level_3 + level_2 + level_1 + level_0 + level_unknown)'
+            ])
+            ->order(['total' => 'DESC'])
+            ->toList();
 
-        return $results ;
+        return $results;
     }
 
 
