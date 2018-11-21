@@ -76,7 +76,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         <h2>
         <?php
         echo $this->Paginator->counter(
-            array('format' => __('Members (total %count%)'))
+            format(
+                __('Members (total {number})'),
+                ['number' => '{{count}}']
+            )
         );
         ?>
         </h2>

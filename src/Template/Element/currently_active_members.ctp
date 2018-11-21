@@ -39,17 +39,19 @@ echo format(
 
 <div>
 <?php
+$highestNumberOfContributions = $currentContributors[0]->total;
 foreach($currentContributors as $i=>$currentContributor){
-    $numberOfContributions = $currentContributor['numberOfContributions'];
-    $highestNumberOfContributions = $currentContributors[0]['numberOfContributions'];
+    $numberOfContributions = $currentContributor->total;
     $percentage = ($numberOfContributions/$total)*100;
+    $username = $currentContributor->user->username;
+    $userImage = $currentContributor->user->image;
     ?>
     <div class="currentContributor">
         <div class="image">
             <?php
             echo $this->Members->image(
-                $currentContributor['userName'],
-                $currentContributor['image']
+                $username,
+                $userImage
             );
             ?>
         </div>
@@ -57,11 +59,11 @@ foreach($currentContributors as $i=>$currentContributor){
         <div class="info">
             <div class="username">
                 <?php
-                echo $this->Html->link($currentContributor['userName'],
+                echo $this->Html->link($username,
                     array(
                         "controller" => "contributions",
                         "action" => "of_user",
-                        $currentContributor['userName']
+                        $username
                     )
                 );
                 ?>
