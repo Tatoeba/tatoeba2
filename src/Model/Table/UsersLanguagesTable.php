@@ -78,15 +78,13 @@ class UsersLanguagesTable extends Table
 
     public function getLanguageInfoOfUser($lang, $userId)
     {
-        $languageInfo = $this->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'by_user_id' => $userId,
-                    'language_code' => $lang
-                )
-            )
-        );
+        $languageInfo = $this->find()
+            ->where([
+                'of_user_id' => $userId,
+                'by_user_id' => $userId,
+                'language_code' => $lang
+            ])
+            ->first();
 
         return $languageInfo;
     }

@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-if (empty($this->request->data)) {
+if (!$userLanguage) {
     $title = __('Add a language');
     $submitLabel = __('Add language');
 } else {
@@ -49,9 +49,9 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <?php
         echo $this->Html->tag('h2', $title);
 
-        echo $this->Form->create('UsersLanguages', array(
-            'url' => array('action' => 'save')
-        ));
+        echo $this->Form->create($userLanguage, [
+            'url' => ['controller' => 'users_languages', 'action' => 'save']
+        ]);
         echo $this->Form->hidden('id');
         echo $this->Form->hidden('of_user_id', array('value' => $ofUserId));
         ?>
@@ -66,7 +66,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                 __('Language:'),
                 array('for' => 'UsersLanguagesLanguageCode')
             );
-            if (empty($this->request->data)) {
+            if (!$userLanguage) {
                 echo $this->element(
                     'language_dropdown', 
                     array(
@@ -76,14 +76,14 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     )
                 );
             } else {
-                $languageCode = $this->request->data['UsersLanguages']['language_code'];
+                $languageCode = $userLanguage->language_code;
                 echo $this->Languages->codeToNameAlone($languageCode);
             }
             ?>
         </div>
 
         <?
-        if (empty($this->request->data)) {
+        if (!$userLanguage) {
             $hintText = format(
                 __('If your language is missing, please read our article on how to <a href="{}">request a new language</a>.'),
                 'https://en.wiki.tatoeba.org/articles/show/new-language-request'
@@ -98,8 +98,8 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <div class="info">
             <?php
             $selected = -1;
-            if (isset($this->request->data['UsersLanguages']['level'])) {
-                $selected = $this->request->data['UsersLanguages']['level'];
+            if ($userLanguage && $userLanguage->level) {
+                $selected = $userLanguage->level;
             }
 
             $radioLabels = $this->Languages->getLevelsLabels();
@@ -125,13 +125,12 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <!-- Details -->
         <div class="info">
             <?php
-            echo $this->Html->tag(
-                'label',
+            echo $this->Form->label(
+                'details',
                 __(
                     'Details (optional). '.
                     'For instance, which dialect or from which country.', true
-                ),
-                array('for' => 'AddUsersLanguagesDetails')
+                )
             );
             echo $this->Form->textarea('details');
             ?>

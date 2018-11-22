@@ -719,11 +719,14 @@ class UserController extends AppController
     {
         $userId = CurrentUser::get('id');
         $username = CurrentUser::get('username');
+        $userLanguage = null;
 
         if (!empty($lang)) {
-            $this->request->data = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
+            $this->loadModel('UsersLanguages');
+            $userLanguage = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
         }
 
+        $this->set('userLanguage', $userLanguage);
         $this->set('ofUserId', $userId);
         $this->set('username', $username);
     }

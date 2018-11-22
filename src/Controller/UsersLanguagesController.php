@@ -27,7 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use App\Model\CurrentUser;
 
 /**
  * Controller for users languages.
@@ -46,12 +46,12 @@ class UsersLanguagesController extends AppController
     public function save()
     {
         $savedLanguage = $this->UsersLanguages->saveUserLanguage(
-            $this->request->data['UsersLanguages'],
+            $this->request->getData(),
             CurrentUser::get('id')
         );
 
         if (empty($savedLanguage)) {
-            $lang = $this->request->data['UsersLanguages']['language_code'];
+            $lang = $savedLanguage->language_code;
             if (empty($lang) || $lang == 'und') {
                 $this->Flash->set(__('No language selected.'));
             } else {

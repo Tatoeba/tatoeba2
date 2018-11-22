@@ -119,4 +119,25 @@ class UsersLanguagesTableTest extends TestCase {
         $result = $this->UsersLanguages->deleteUserLanguage(2, 4);
         $this->assertFalse($result);
     }
+
+    function testGetLanguageInfoOfUser_succeeds() {
+        $lang = 'jpn';
+        $userId = 4;
+        $result = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
+        $this->assertEquals(1, $result->id);
+    }
+
+    function testGetLanguageInfoOfUser_failsBecauseWrongLang() {
+        $lang = 'eng';
+        $userId = 4;
+        $result = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
+        $this->assertEquals(null, $result);
+    }
+
+    function testGetLanguageInfoOfUser_failsBecauseWrongUser() {
+        $lang = 'jpn';
+        $userId = 1;
+        $result = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
+        $this->assertEquals(null, $result);
+    }
 }
