@@ -203,8 +203,7 @@ class UserController extends AppController
         }
 
         // Generate name for picture
-        $email = $this->Auth->user('email');
-        $newFileName =  md5($email) . '.png' ;
+        $newFileName =  $this->Auth->user('id') . '.png' ;
         $newFileFullPath128 = WWW_ROOT . 'img' . DS . 'profiles_128' . DS . $newFileName;
         $newFileFullPath36 = WWW_ROOT . 'img' . DS . 'profiles_36'. DS . $newFileName;
 
