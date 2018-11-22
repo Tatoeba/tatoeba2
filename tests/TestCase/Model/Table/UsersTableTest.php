@@ -65,4 +65,12 @@ class UsersTableTest extends TestCase
         $newPassword = $this->Users->get($userId)->password;
         $this->assertEquals($oldPassword, $newPassword);
     }
+
+    public function testGetSettings()
+    {
+        $userSettings = $this->Users->getSettings(4);
+        $expected = ['send_notifications', 'settings', 'email'];
+        $result = array_keys($userSettings->toArray());
+        $this->assertEquals($expected, $result);
+    }
 }

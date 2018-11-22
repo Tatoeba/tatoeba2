@@ -39,12 +39,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
 <div id="main_content">
     <div md-whiteframe="1" class="options settings-form">
-        <?php echo $this->Form->create(null, array('url' => array('controller' => 'user', 'action' => 'save_settings'))); ?>
+        <?php echo $this->Form->create($userSettings, [
+            'url' => ['controller' => 'user', 'action' => 'save_settings']
+        ]); ?>
         <h2><?php echo __('Options'); ?></h2>
         <md-list flex role="list" class="flex" >
             <md-subheader><?php echo __('Main options'); ?></md-subheader>
             <md-list-item>
-                <?php $sendNotifications = $this->request->data['User']['send_notifications']; ?>
+                <?php $sendNotifications = $userSettings->send_notifications; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -66,7 +68,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $isPublic = $this->request->data['User']['settings']['is_public']; ?>
+                <?php $isPublic = $userSettings->settings['is_public']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -79,7 +81,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.is_public',
+                        'settings.is_public',
                         array(
                         'value' => '{{isPublic}}'
                         )
@@ -90,7 +92,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $useRecent = $this->request->data['User']['settings']['use_most_recent_list']; ?>
+                <?php $useRecent = $userSettings->settings['use_most_recent_list']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -106,7 +108,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.use_most_recent_list',
+                        'settings.use_most_recent_list',
                         array(
                             'value' => '{{useRecent}}'
                         )
@@ -116,7 +118,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $collapsibleTranslations = $this->request->data['User']['settings']['collapsible_translations']; ?>
+                <?php $collapsibleTranslations = $userSettings->settings['collapsible_translations']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -132,7 +134,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.collapsible_translations',
+                        'settings.collapsible_translations',
                         array(
                             'value' => '{{collapsibleTranslations}}'
                         )
@@ -142,7 +144,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $showTranscriptions = $this->request->data['User']['settings']['show_transcriptions']; ?>
+                <?php $showTranscriptions = $userSettings->settings['show_transcriptions']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -154,7 +156,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.show_transcriptions',
+                        'settings.show_transcriptions',
                         array(
                             'value' => '{{showTranscriptions}}'
                         )
@@ -164,7 +166,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $hideRandomSentence = $this->request->data['User']['settings']['hide_random_sentence']; ?>
+                <?php $hideRandomSentence = $userSettings->settings['hide_random_sentence']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -176,7 +178,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.hide_random_sentence',
+                        'settings.hide_random_sentence',
                         array(
                             'value' => '{{hideRandomSentence}}'
                         )
@@ -198,7 +200,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                         'Enter <a href="{url}">ISO 639-3 codes</a>, separated with a comma (e.g.: jpn,epo,ara,deu). '.
                         'Tatoeba will then only display translations in the languages you '.
                         'indicated. You can leave this empty to display translations in all '.
-                        'languages.', true
+                        'languages.'
                     ),
                     array(
                         'url' => $sentencesByLanguageURL
@@ -207,20 +209,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 ?>
                 <md-input-container class="md-block">
                     <?php
-                    echo $this->Form->input(
-                        'User.settings.lang',
-                        array(
-                            'label' => __('Languages'),
-                            'after' => '<div class="hint">'.$tip.'</div>'
-                        )
-                    );
+                    echo $this->Form->control('settings.lang', [
+                        'label' => __('Languages')
+                    ]);
                     ?>
+                    <div class="hint"><?= $tip ?></div>
                 </md-input-container>
             </md-list-item>
 
             <md-list-item>
                 <p><? echo __('Number of sentences per page'); ?></p>
-                <?php echo $this->Form->input('User.settings.sentences_per_page', array(
+                <?php echo $this->Form->input('settings.sentences_per_page', array(
                     'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
                     'label' => ''
                 )); ?>
@@ -242,7 +241,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 ?>
             </md-list-item>
             <md-list-item>
-                <?php $collectionRatings = $this->request->data['User']['settings']['users_collections_ratings']; ?>
+                <?php $collectionRatings = $userSettings->settings['users_collections_ratings']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -254,7 +253,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.users_collections_ratings',
+                        'settings.users_collections_ratings',
                         array(
                         'value' => '{{collectionRatings}}'
                         )
@@ -263,7 +262,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $nativeIndicator = $this->request->data['User']['settings']['native_indicator']; ?>
+                <?php $nativeIndicator = $userSettings->settings['native_indicator']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -279,7 +278,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.native_indicator',
+                        'settings.native_indicator',
                         array(
                         'value' => '{{nativeIndicator}}'
                         )
@@ -288,7 +287,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $copyButton = $this->request->data['User']['settings']['copy_button']; ?>
+                <?php $copyButton = $userSettings->settings['copy_button']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -300,7 +299,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
-                        'User.settings.copy_button',
+                        'settings.copy_button',
                         array(
                           'value' => '{{copyButton}}'
                         )
@@ -309,7 +308,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $useNewDesign = $this->request->data['User']['settings']['use_new_design']; ?>
+                <?php $useNewDesign = $userSettings->settings['use_new_design']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
@@ -325,7 +324,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <div ng-hide="true">
                 <?php
                 echo $this->Form->input(
-                    'User.settings.use_new_design',
+                    'settings.use_new_design',
                     array(
                         'value' => '{{useNewDesign}}'
                     )
@@ -345,22 +344,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
     </div>
     <div md-whiteframe="1" class="settings-form">
         <?php
-        echo $this->Form->create(
-            null,
-            array(
-                'url' => array('controller' => 'user', 'action' => 'save_basic')
-            )
-        );
+        echo $this->Form->create($userSettings, [
+            'url' => ['controller' => 'user', 'action' => 'save_basic']
+        ]);
         ?>
             <h2><?php echo __('Change email address'); ?></h2>
             <md-input-container class="md-block">
                 <?php
-                echo $this->Form->input(
-                    'User.email',
-                    array(
-                        'label' => __('Email address')
-                    )
-                );
+                echo $this->Form->control('email', [
+                    'label' => __('Email address')
+                ]);
                 ?>
             </md-input-container>
             <div layout="row" layout-align="center center">
@@ -375,48 +368,33 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
     <div md-whiteframe="1" class="settings-form">
         <?php
-        echo $this->Form->create(
-            'User',
-            array(
-                'url' => array(
-                    'controller' => 'user',
-                    'action' => 'save_password'
-                )
-            )
-        );
+        echo $this->Form->create($userSettings, [
+            'url' => ['controller' => 'user', 'action' => 'save_password']
+        ]);
         ?>
         <h2><?php echo __('Change password'); ?></h2>
             <md-input-container class="md-block">
                 <?php
-                echo $this->Form->input(
-                    'old_password',
-                    array(
-                        "label" => __('Old password'),
-                        "type" => "password"
-                    )
-                );
+                echo $this->Form->control('old_password', [
+                    'label' => __('Old password'),
+                    'type' => 'password'
+                ]);
                 ?>
             </md-input-container>
             <md-input-container class="md-block">
                 <?php
-                echo $this->Form->input(
-                    'new_password',
-                    array(
-                        "label" => __('New password'),
-                        "type" => "password"
-                    )
-                );
+                echo $this->Form->control('new_password', [
+                    'label' => __('New password'),
+                    'type' => 'password'
+                ]);
                 ?>
             </md-input-container>
             <md-input-container class="md-block">
                 <?php
-                echo $this->Form->input(
-                    'new_password2',
-                    array(
-                        "label" => __('New password again'),
-                        "type" => "password"
-                    )
-                );
+                echo $this->Form->control('new_password2', [
+                    'label' => __('New password again'),
+                    'type' => 'password'
+                ]);
                 ?>
             </md-input-container>
             <div layout="row" layout-align="center center">

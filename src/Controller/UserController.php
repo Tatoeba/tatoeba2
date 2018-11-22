@@ -27,7 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Controller\Component\Auth\VersionedPasswordHasher;
+use App\Auth\VersionedPasswordHasher;
 use App\Lib\LanguagesLib;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
@@ -539,21 +539,20 @@ class UserController extends AppController
     {
         $currentUserId = CurrentUser::get('id');
         if (empty($currentUserId)) {
-            $this->redirect('/');
+            return $this->redirect('/');
         }
 
-        if (!empty($this->request->data)) {
-            $this->request->data['User']['settings']['lang'] = $this->_language_settings(
-                $this->request->data['User']['settings']['lang']
+        $data = $this->request->getData();
+        if (!empty($data)) {
+            $this->loadModel('Users');
+            $data['settings']['lang'] = $this->_language_settings(
+                $data['settings']['lang']
             );
-            $allowedFields = array('send_notifications', 'settings');
-            $dataToSave = $this->filterKeys($this->request->data['User'], $allowedFields);
-            $dataToSave['id'] = $currentUserId;
-            if ($this->User->save($dataToSave)) {
-                // Needed so that the information is updated for the Auth component.
-                $user = $this->User->read(null, $currentUserId);
-                $this->request->getSession()->write(AuthComponent::$sessionKey, $user['User']);
-
+            $user = $this->Users->get($currentUserId);
+            $this->Users->patchEntity($user, $data);
+            $savedUser = $this->Users->save($user);
+            if ($savedUser) {
+                $this->Auth->setUser($savedUser);
                 $flashMsg = __('Your settings have been saved.');
             } else {
                 $flashMsg = __(
@@ -610,16 +609,17 @@ class UserController extends AppController
      */
     public function save_password()
     {
-        if (!empty($this->request->data)) {
-
+        $data = $this->request->getData();
+        if (!empty($data)) {
+            $this->loadModel('Users');
             $userId = $this->Auth->user('id');
 
             $passwordHasher = new VersionedPasswordHasher();
-            $submittedPassword = $this->request->data['User']['old_password'];
-            $actualPassword = $this->User->getPassword($userId);
+            $submittedPassword = $data['old_password'];
+            $actualPassword = $this->Users->getPassword($userId);
 
-            $newPassword1 = $this->request->data['User']['new_password'];
-            $newPassword2 = $this->request->data['User']['new_password2'];
+            $newPassword1 = $data['new_password'];
+            $newPassword2 = $data['new_password2'];
 
             if (empty($newPassword1)) {
                 $flashMsg = __('New password cannot be empty.');
@@ -628,8 +628,10 @@ class UserController extends AppController
                 $flashMsg = __("New passwords do not match.");
             }
             elseif ($passwordHasher->check($submittedPassword, $actualPassword)) {
-                $this->User->id = $userId;
-                if ($this->User->saveField('password', $newPassword1)) {
+                $user = $this->Users->get($userId);
+                $this->Users->patchEntity($user, ['password' => $newPassword1]);
+                $savedUser = $this->Users->save($user);
+                if ($savedUser) {
                     $flashMsg = __('New password has been saved.');
                 } else {
                     $flashMsg = __('An error occurred while saving.');
@@ -711,7 +713,9 @@ class UserController extends AppController
             $this->redirect('/');
         }
 
-        $this->request->data = $this->User->getSettings($currentUserId);
+        $this->loadModel('Users');
+        $userSettings = $this->Users->getSettings($currentUserId);
+        $this->set('userSettings', $userSettings);
     }
 
 
