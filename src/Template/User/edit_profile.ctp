@@ -117,12 +117,25 @@ $this->Languages->localizedAsort($countries);
         'empty' => true
     ]);
 
-    echo $this->Form->control('birthday', [
-        'label' => __('Birthday'),
-        'type' => 'date',
+    
+    $birthday = explode('-', $user->birthday);
+    $year = !isset($birthday[0]) || $birthday[0] == '0000' ? '' : $birthday[0];
+    $month = !isset($birthday[1]) || $birthday[1] == '00' ? '' : $birthday[1];
+    $day = !isset($birthday[2]) || $birthday[2] == '00' ? '' : $birthday[2];
+    echo $this->Form->label('birthday', __('Birthday'));
+    echo $this->Form->year('birthday', [
+        'empty' => true,
+        'value' => $year,
         'minYear' => date('Y') - 100,
-        'maxYear' => date('Y') - 3,
-        'empty' => true
+        'maxYear' => date('Y') - 3
+    ]);
+    echo $this->Form->month('birthday', [
+        'empty' => true,
+        'value' => $month
+    ]);
+    echo $this->Form->day('birthday', [
+        'empty' => true,
+        'value' => $day
     ]);
 
     echo $this->Form->control('homepage', [
