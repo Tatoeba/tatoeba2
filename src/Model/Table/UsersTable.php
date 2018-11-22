@@ -107,16 +107,19 @@ class UsersTable extends Table
             ->boolean('send_notifications');
 
         $validator
+            ->allowEmpty('name')
             ->scalar('name')
             ->maxLength('name', 255);
 
         $validator
-            ->date('birthday');
+            ->allowEmpty('birthday');
 
         $validator
+            ->allowEmpty('description')
             ->scalar('description');
 
         $validator
+            ->allowEmpty('homepage')
             ->scalar('homepage')
             ->maxLength('homepage', 255);
 
@@ -125,6 +128,7 @@ class UsersTable extends Table
             ->maxLength('image', 255);
 
         $validator
+            ->allowEmpty('country_id')
             ->scalar('country_id')
             ->maxLength('country_id', 2);
 

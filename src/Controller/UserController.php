@@ -31,6 +31,7 @@ use App\Controller\Component\Auth\VersionedPasswordHasher;
 use App\Lib\LanguagesLib;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Controller for sentence comments.
@@ -297,42 +298,38 @@ class UserController extends AppController
     public function save_basic()
     {
         $currentUserId = CurrentUser::get('id');
+        $data = $this->request->getData();
 
-        if (empty($currentUserId)) {
-            $this->redirect('/');
+        $this->loadModel('Users');
+        try {
+            $user = $this->Users->get($currentUserId);
+        } catch (RecordNotFoundException $e) {
+            return $this->redirect('/');
         }
 
-        if (!$this->_isUniqueEmail($this->request->data, $currentUserId)) {
-            $this->_redirectNonUniqueEmail();
+        if (!$this->_isUniqueEmail($data, $currentUserId)) {
+            return $this->_redirectNonUniqueEmail();
         }
 
-        if (!$this->_isValidBirthday($this->request->data)) {
-            $this->_redirectInvalidBirthday();
+        if (!$this->_isValidBirthday($data)) {
+            return $this->_redirectInvalidBirthday();
         }
 
-        if (!$this->_isAcceptedBirthday($this->request->data)) {
-            $this->_redirectUnacceptedBirthday();
+        if (!$this->_isAcceptedBirthday($data)) {
+            return $this->_redirectUnacceptedBirthday();
         }
 
-        if (isset($this->request->data['User']['birthday'])) {
-            $this->request->data['User']['birthday'] = $this->_fillEmptyBirthdayFields();
+        if (isset($data['birthday'])) {
+            $data['birthday'] = $this->_generateBirthdayDate($data);
         }
+        
+        $this->Users->patchEntity($user, $data);
+        $savedUser = $this->Users->save($user);        
 
-        $saved = false;
-
-        if (!empty($this->request->data)) {
-            $allowedFields = array(
-                'name', 'country_id', 'birthday', 'homepage', 'email', 'description'
-            );
-            $basicInfos = $this->filterKeys($this->request->data['User'], $allowedFields);
-            $basicInfos['id'] = $currentUserId;
-            $saved = $this->User->save($basicInfos);
-            $this->updateAuthData($currentUserId);
-        }
-
-        if ($saved) {
+        if ($savedUser) {
+            $this->Auth->setUser($savedUser->toArray());
             $this->Flash->set(
-                __("Profile saved.")
+                __('Profile saved.')
             );
             $this->redirect(
                 array(
@@ -343,7 +340,7 @@ class UserController extends AppController
         } else {
             $this->Flash->set(
                 __(
-                    "Failed to change email address. Please enter a proper email address.",
+                    'Failed to change email address. Please enter a proper email address.',
                     true
                 )
             );
@@ -366,9 +363,9 @@ class UserController extends AppController
      */
     private function _isUniqueEmail($data, $currentUserId)
     {
-        if (isset($data['User']['email'])) {
-            return $this->User->isEmailUnique(
-                $data['User']['email'],
+        if (isset($data['email'])) {
+            return $this->Users->isEmailUnique(
+                $data['email'],
                 $currentUserId
             );
         }
@@ -403,12 +400,12 @@ class UserController extends AppController
      */
     private function _isValidBirthday($data)
     {
-        if (isset($data['User']['birthday'])) {
-            $year = $data['User']['birthday']['year'];
+        if (isset($data['birthday'])) {
+            $year = $data['birthday']['year'];
 
-            $month = $data['User']['birthday']['month'];
+            $month = $data['birthday']['month'];
 
-            $day = $data['User']['birthday']['day'];
+            $day = $data['birthday']['day'];
 
             if ($year && $month && $day) {
                 return checkdate($month, $day, $year);
@@ -461,8 +458,8 @@ class UserController extends AppController
             ['year', 'month']
         ];
 
-        if (isset($data['User']['birthday'])) {
-            $setValues = array_keys(array_filter($data['User']['birthday']));
+        if (isset($data['birthday'])) {
+            $setValues = array_keys(array_filter($data['birthday']));
 
             rsort($setValues);
 
@@ -499,9 +496,9 @@ class UserController extends AppController
      *
      * @return array
      */
-    private function _fillEmptyBirthdayFields()
+    private function _generateBirthdayDate($data)
     {
-        foreach ($this->request->data['User']['birthday'] as $key => $value) {
+        foreach ($data['birthday'] as $key => $value) {
             if ($value == '' && $key == 'year') {
                 $birthday[$key] = '0000';
             } elseif ($value == '') {
@@ -514,14 +511,14 @@ class UserController extends AppController
         $birthdayString = implode('', $birthday);
 
         if ($birthdayString == '00000000') {
-            return $this->request->data['User']['birthday'];
+            return null;
         } elseif ($birthdayString == '02290000') {
             // Mysql wont save a partial leap year date so change year to 1904
             // and catch in date view helper.
             $birthday['year'] = '1904';
         }
 
-        return $birthday;
+        return $birthday['year'].'-'.$birthday['month'].'-'.$birthday['day'];
     }
 
     /**
