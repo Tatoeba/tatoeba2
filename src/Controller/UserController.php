@@ -166,19 +166,20 @@ class UserController extends AppController
         $redirectURL = array('action' => 'profile', CurrentUser::get('username'));
 
         $image = null;
-        if (isset($this->request->data['profile_image']['image'])) {
-            $image = $this->request->data['profile_image']['image'];
+        $data = $this->request->getData();
+        if (isset($data['image'])) {
+            $image = $data['image'];
         }
 
         // We first check if a file has been correctly uploaded
-        $redirect = (empty($this->request->data) || empty($image)) ||
+        $redirect = (empty($data) || empty($image)) ||
                     ($image['error'] != UPLOAD_ERR_OK) ||
                     !is_uploaded_file($image['tmp_name']);
         if ($redirect) {
             $this->Flash->set(
                 __('Failed to upload image')
             );
-            $this->redirect($redirectURL);
+            return $this->redirect($redirectURL);
         }
 
         // The file size must be < 1mb
@@ -187,7 +188,7 @@ class UserController extends AppController
             $this->Flash->set(
                 __('Please choose an image that does not exceed 1 MB.')
             );
-            $this->redirect($redirectURL);
+            return $this->redirect($redirectURL);
         }
 
         // Check file extension
@@ -198,14 +199,14 @@ class UserController extends AppController
             $this->Flash->set(
                 __('Please choose GIF, JPEG or PNG image format.')
             );
-            $this->redirect($redirectURL);
+            return $this->redirect($redirectURL);
         }
 
         // Generate name for picture
         $email = $this->Auth->user('email');
         $newFileName =  md5($email) . '.png' ;
-        $newFileFullPath128 = IMAGES . "profiles_128". DS . $newFileName;
-        $newFileFullPath36 = IMAGES . "profiles_36". DS . $newFileName;
+        $newFileFullPath128 = WWW_ROOT . 'img' . DS . 'profiles_128' . DS . $newFileName;
+        $newFileFullPath36 = WWW_ROOT . 'img' . DS . 'profiles_36'. DS . $newFileName;
 
         // Use _resize_image method here
         $save128Succed = $this->_resize_image(
@@ -221,8 +222,10 @@ class UserController extends AppController
 
         // if all resize has worked we can save it in user information
         if ($save36Succed && $save128Succed) {
-            $this->User->id = $this->Auth->user('id');
-            $this->User->saveField('image', $newFileName);
+            $this->loadModel('Users');
+            $user = $this->Users->get($this->Auth->user('id'));
+            $user->image = $newFileName;
+            $this->Users->save($user);
         } else {
             $this->Flash->set(
                 __("Error while saving.")
@@ -234,8 +237,10 @@ class UserController extends AppController
 
     public function remove_image()
     {
-        $this->User->id = CurrentUser::get('id');
-        $this->User->saveField('image', null);
+        $this->loadModel('Users');
+        $user = $this->Users->get(CurrentUser::get('id'));
+        $user->image = null;
+        $this->Users->save($user);
 
         $this->redirect(array('action' => 'profile', CurrentUser::get('username')));
     }
@@ -254,7 +259,7 @@ class UserController extends AppController
 
     private function _resize_image($oldFile, $newFile, $dimension)
     {
-        $oldImage = new Imagick($oldFile);
+        $oldImage = new \Imagick($oldFile);
         $oldWidth = $oldImage->getImageWidth();
         $oldHeight = $oldImage->getImageHeight();
 
@@ -264,17 +269,17 @@ class UserController extends AppController
             $oldImage->thumbnailImage(null, $dimension);
         }
 
-        $newImage = new Imagick();
+        $newImage = new \Imagick();
         $newImage->newImage(
             $dimension,
             $dimension,
-            new ImagickPixel("transparent")
+            new \ImagickPixel("transparent")
         );
 
 
         $newImage->compositeImage(
             $oldImage,
-            Imagick::COMPOSITE_OVER,
+            \Imagick::COMPOSITE_OVER,
             0,
             0
         );
