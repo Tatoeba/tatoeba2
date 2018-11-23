@@ -28,7 +28,8 @@ namespace App\View\Helper;
 
 use Cake\Core\Configure;
 use App\View\Helper\AppHelper;
-
+use App\Model\CurrentUser;
+use \Datetime;
 
 /**
  * Helper for messages.

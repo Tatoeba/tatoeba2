@@ -76,23 +76,22 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
             <?php
             $mesg = count($tenLastMessages);
 
-            for ($i = 0 ; $i < min(10, $mesg); $i++) {
-                $currentMessage = $tenLastMessages[$i] ;
+            foreach ($tenLastMessages as $currentMessage) {
                 echo '<li>';
                 // text of the link
                 $text = format(__('{date}, by {author}'),
                                array(
-                                   'date' => $this->Date->ago($currentMessage['Wall']['date']),
-                                   'author' => $currentMessage['User']['username']
+                                   'date' => $this->Date->ago($currentMessage->date),
+                                   'author' => $currentMessage->user->username
                                ));
 
                 $path = array(
                     'controller' => 'wall',
                     'action' => 'index',
-                    '#' => 'message_'.$currentMessage['Wall']['id']
+                    '#' => 'message_'.$currentMessage->id
                     );
                 // link
-                $isInitialPost = $currentMessage['Wall']['parent_id'] == null;
+                $isInitialPost = $currentMessage->parent_id == null;
                 echo $this->Html->link($text, $path, array(
                     'escape' => false,
                     'class' => $isInitialPost ? 'initial-post' : null,
@@ -125,7 +124,7 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
     <div>
         <h2>
             <?php
-            $threadsCount = $this->Paginator->counter(array('format' => '%count%'));
+            $threadsCount = $this->Paginator->counter(array('format' => '{{count}}'));
             echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
                         array('n' => $threadsCount));
             ?>
@@ -149,10 +148,10 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
         // display comment part
         foreach ($allMessages as $message) {
             $this->Wall->createThread(
-                $message['Wall'],
-                $message['User'],
+                $message,
+                $message->user,
                 $message['Permissions'],
-                $message['children']
+                $message->children
             );
         }
         ?>

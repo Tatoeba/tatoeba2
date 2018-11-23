@@ -39,8 +39,8 @@ class WallTable extends Table
 
     public function initialize(array $config)
     {
-        $this->hasOne('WallThreads')
-             ->setDependent(true);
+        $this->hasOne('WallThreads', ['foreignKey' => 'id'])
+            ->setDependent(true);
         $this->belongsTo('Users', [
             'foreignKey' => 'owner'
         ]);
@@ -136,41 +136,42 @@ class WallTable extends Table
      * @return array A nested array of array of array ... nested in a logical way
      *                children are nested in their parent etc...
      */
-
     public function getMessagesThreaded($rootMessages)
     {
         if (empty($rootMessages)) {
-            return array();
+            return [];
         }
 
-        // generate the condition array as it's a bit complicated
-        $orArray = array();
-        foreach ($rootMessages as $rootMessage) {
-            $lftRghtArray = array($rootMessage['lft'], $rootMessage['rght']);
-            $betweenArray = array (
-                'Wall.lft BETWEEN ? AND ?' => $lftRghtArray
-            );
-
-            array_push($orArray, $betweenArray);
-        }
         // execute the request
         $result = $this->find('threaded')
-            ->orderDesc('WallThreads.last_message_date')
-            ->orderAsc('Wall.date')
-            ->where(['OR' => $orArray])
-            ->contain([
-                'Users' => function ($q) {
-                    return $q->select(['id', 'image', 'username']);
-                },
-                'WallThreads' => function ($q) {
-                    return $q->select(['last_message_date']);
-                }
+            ->order([
+                'WallThreads.last_message_date' => 'DESC',
+                'Wall.date' => 'ASC'
             ])
-            ->all();
+            ->where(function($exp) use ($rootMessages) {
+                $or = $exp->or_([]);
+                foreach ($rootMessages as $rootMessage) {
+                    $or->between(
+                        'Wall.lft', 
+                        $rootMessage->lft, 
+                        $rootMessage->rght
+                    );
+                }
+                return $exp->add($or);
+            })
+            ->contain([
+                'Users' => [
+                    'fields' => ['id', 'image', 'username']
+                ],
+                'WallThreads' => [
+                    'fields' => ['last_message_date']
+                ]
+            ])
+            ->toList();
 
         return $result;
-
     }
+
     /**
      * get the X last messages posted
      *

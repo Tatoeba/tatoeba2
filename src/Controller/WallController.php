@@ -27,7 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Lib\Event\NotificationListener;
+use App\Event\NotificationListener;
 use Cake\Event\Event;
 
 /**
@@ -43,19 +43,16 @@ use Cake\Event\Event;
 class WallController extends AppController
 {
     public $name = 'Wall' ;
-    public $paginate = array(
-        "order" => "WallThread.last_message_date DESC",
-        "limit" => 10,
-        "fields" => array ("lft",'rght'),
-        "conditions" => array (
-            "Wall.parent_id" => null ,
-        ),
-        "contain" => array (
-            "WallThread" => array(
-                'fields' => "last_message_date"
-            )
-        )
-    );
+    public $paginate = [
+        'sortWhitelist' => ['WallThreads.last_message_date'],
+        'order' => ['WallThreads.last_message_date' => 'DESC'],
+        'limit' => 10,
+        'fields' => ['lft', 'rght'],
+        'conditions' => ['Wall.parent_id IS NULL'],
+        'contain' => [
+            'WallThreads' => ['fields' => ['last_message_date']]
+        ]
+    ];
     public $helpers = array(
         'Wall',
         'Date',
@@ -96,15 +93,8 @@ class WallController extends AppController
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
-        $messagesIdDirty = $this->paginate();
-        $messageLftRght = array();
-        foreach ($messagesIdDirty as $messageDirty) {
-            array_push($messageLftRght, $messageDirty['Wall']);
-        }
-
+        $messageLftRght = $this->paginate();
         $messages = $this->Wall->getMessagesThreaded($messageLftRght);
-
-
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,
             $userId,

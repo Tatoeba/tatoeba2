@@ -169,4 +169,12 @@ class WallTest extends TestCase {
 
         $this->assertTrue($dispatched);
     }
+
+    public function testGetMessagesThreaded() {
+        $rootMessages = $this->Wall->find()
+            ->where(['parent_id IS NULL'])
+            ->toList();
+        $threads = $this->Wall->getMessagesThreaded($rootMessages);
+        $this->assertEquals(1, count($threads[0]->children));
+    }
 }

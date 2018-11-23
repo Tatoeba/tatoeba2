@@ -27,6 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
+use App\Model\CurrentUser;
 
 
 /**
@@ -71,7 +72,7 @@ class WallHelper extends AppHelper
             <div class="info">
             <?php
             $user = CurrentUser::get('User');
-            $this->Messages->displayAvatar($user['User']);
+            $this->Messages->displayAvatar($user);
             ?>
             </div>
             <div class="title">
@@ -211,9 +212,9 @@ class WallHelper extends AppHelper
                 $this->createReplyDiv(
                     // this is because the allMessages array
                     // is indexed with message Id
-                    $child['Wall'],
-                    $child['User'],
-                    $child['children'],
+                    $child,
+                    $child->user,
+                    $child->children,
                     $child['Permissions']
                 );
             }
@@ -327,7 +328,7 @@ class WallHelper extends AppHelper
 
     public function createThread($message, $author, $permissions, $children)
     {
-
+        $message = $message->toArray();
         $messageId = $message['id'];
 
         echo '<div id="message_'.$messageId.'" class="topThread" >'."\n";
@@ -347,9 +348,9 @@ class WallHelper extends AppHelper
                 $this->createReplyDiv(
                     // this is because the allMessages array
                     // is indexed with message Id
-                    $child['Wall'],
-                    $child['User'],
-                    $child['children'],
+                    $child,
+                    $child->user,
+                    $child->children,
                     $child['Permissions']
                 );
             }
