@@ -847,4 +847,15 @@ class SentencesTableTest extends TestCase {
 		$result = $this->Sentence->numberOfSentencesOwnedBy(7);
 		$this->assertEquals(18, $result);
 	}
+
+	function testGetSentenceTextForId_succeeds() {
+		$result = $this->Sentence->getSentenceTextForId(1);
+		$expected = 'The fundamental cause of the problem is that in the modern world, idiots are full of confidence, while the intelligent are full of doubt.';
+		$this->assertEquals($expected, $result);
+	}
+
+	function testGetSentenceTextForId_fails() {
+		$result = $this->Sentence->getSentenceTextForId(99999999);
+		$this->assertEquals('', $result);
+	}
 }

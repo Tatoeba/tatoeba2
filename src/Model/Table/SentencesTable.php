@@ -1152,15 +1152,12 @@ class SentencesTable extends Table
      */
     public function getSentenceTextForId($sentenceId)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => array('text'),
-                'conditions' => array('id' => $sentenceId),
-            )
-        );
-
-        return !empty($result) ? $result['Sentence']['text'] : "";
+        try {
+            $result = $this->get($sentenceId, ['fields' => 'text']);
+            return $result->text;
+        } catch (RecordNotFoundException $e) {
+            return '';
+        }
     }
 
     /**
