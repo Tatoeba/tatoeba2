@@ -696,25 +696,25 @@ md-icon.disabled.material-icons {
  * --------------------------------------------------------------------
  */
 
-#PrivateMessageSendForm {
+#private-message-form {
     margin-top: 0;
 }
 
-#PrivateMessageSendForm .pmFields {
+#private-message-form .pmFields {
     margin: 20px 20px -10px 20px;
 }
 
-#PrivateMessageSendForm label {
+#private-message-form label {
     width: 100px;
     display: block;
     float: left;
 }
 
-#PrivateMessageSendForm .input {
+#private-message-form .input {
     margin: 3px 0;
 }
 
-#PrivateMessageSendForm .input input {
+#private-message-form .input input {
     width: 455px;
     border: 1px solid #ddd;
 }

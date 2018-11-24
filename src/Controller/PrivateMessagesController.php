@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for private messages.
@@ -376,46 +377,36 @@ class PrivateMessagesController extends AppController
      */
     public function write($recipients = '', $messageId = null)
     {
-        $this->helpers[] = "PrivateMessages";
+        $this->helpers[] = 'PrivateMessages';
 
         $recoveredMessage = $this->request->getSession()->read('unsent_message');
 
         $userId = CurrentUser::get('id');
 
-        $messagesToday = $this->PrivateMessage->todaysMessageCount($userId);
+        $messagesToday = $this->PrivateMessages->todaysMessageCount($userId);
 
         $this->set('messagesToday', $messagesToday);
-        $this->set('canSend', $this->PrivateMessage->canSendMessage($messagesToday));
+        $this->set('canSend', $this->PrivateMessages->canSendMessage($messagesToday));
         $this->set('isNewUser', CurrentUser::isNewUser());
 
         if ($messageId) {
-            $pm = $this->_getMessageById($messageId);
-            $senderId = $pm['PrivateMessage']['sender'];
-
-            if ($senderId != $userId) {
-                $this->redirect(
-                    array(
-                        'action' => 'folder',
-                        'Drafts'
-                    )
-                );
+            $pm = $this->PrivateMessages->get($messageId);
+            $recipients = $pm->draft_recpts;
+            if ($pm->sender != $userId) {
+                $this->redirect([
+                    'action' => 'folder',
+                    'Drafts'
+                ]);
             }
-
-            $this->set('recipients', $pm['PrivateMessage']['draft_recpts']);
-            $this->set('title', $pm['PrivateMessage']['title']);
-            $this->set('content', $pm['PrivateMessage']['content']);
-            $this->set('messageId', $messageId);
         } else if ($recoveredMessage) {
+            $pm = $this->PrivateMessages->newEntity($recoveredMessage);
             $this->request->getSession()->delete('unsent_message');
-
-            $this->set('recipients', $recipients);
-            $this->set('title', $recoveredMessage['title']);
-            $this->set('content', $recoveredMessage['content']);
-            $this->set('recipients', $recoveredMessage['recpt']);
             $this->set('hasRecoveredMessage', true);
         } else {
-            $this->set('recipients', $recipients);
+            $pm = $pm = $this->PrivateMessages->newEntity();            
         }
+        $this->set('recipients', $recipients);
+        $this->set('pm', $pm);
     }
 
     /**

@@ -27,7 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-
+use App\Model\CurrentUser;
 
 /**
  * Helper to display things related to private messages.
@@ -45,35 +45,29 @@ class PrivateMessagesHelper extends AppHelper
     /**
      * Displays the form to write a private message.
      *
-     * @param string $recipient Recipient of the message.
-     * @param string $title     Title of the message.
-     * @param string $content   Content of the message.
-     * @param int    $messageId Id of message if message is draft
+     * @param string $recipients List of usernames separated by a comma.
+     * @param Entity $pm         PrivateMessage entity.
      */
-    public function displayForm(
-        $recipients = null, $title = null, $content = null, $messageId = null
-    ) {
+    public function displayForm($pm, $recipients) {
         $headerTitle = $this->Messages->getHeaderTitle(
             $recipients,
-            $messageId,
-            $content,
-            $title
+            $pm->id,
+            $pm->content,
+            $pm->title
         );
 
-        echo $this->Form->create(
-            'PrivateMessage',
-            array(
-                'url' => array('action' => 'send'),
-                'class' => 'message form'
-            )
-        );
+        echo $this->Form->create($pm, [
+            'id' => 'private-message-form',
+            'url' => ['action' => 'send'],
+            'class' => 'message form'
+        ]);
         ?>
 
         <div class="header">
             <div class="info">
             <?php
             $user = CurrentUser::get('User');
-            $this->Messages->displayAvatar($user['User']);
+            $this->Messages->displayAvatar($user);
             ?>
             </div>
 
@@ -86,53 +80,38 @@ class PrivateMessagesHelper extends AppHelper
             <div class="pmFields">
             <div ng-hide="true">
             <?php
-            echo $this->Form->input('messageId', array('value' => $messageId));
+            echo $this->Form->input('messageId', array('value' => $pm->id));
             echo $this->Form->input('submitType', array('value' => ''));
             ?>
             </div>
             <?php
-            echo $this->Form->input(
-                'recpt',
-                array(
-                    'label' => __x('message', 'To'),
-                    'default' => $recipients,
-                    'type' => 'text',
-                    'maxlength' => 250,
-                    'class' => 'pmTo',
-                    'lang' => '',
-                    'dir' => 'ltr',
-                )
-            );
+            echo $this->Form->control('recipients', [
+                'label' => __x('message', 'To'),
+                'default' => $recipients,
+                'maxlength' => 250,
+                'class' => 'pmTo',
+                'lang' => '',
+                'dir' => 'ltr',
+            ]);
 
-            echo $this->Form->input(
-                'title',
-                array(
-                    'default' => $title,
-                    'type' => 'text',
-                    'label' => __('Title'),
-                    'class' => 'pmTitle',
-                    'lang' => '',
-                    'dir' => 'auto',
-                )
-            );
+            echo $this->Form->control('title', [
+                'label' => __('Title'),
+                'class' => 'pmTitle',
+                'lang' => '',
+                'dir' => 'auto',
+            ]);
             ?>
             </div>
 
             <div class="textarea">
             <?php
-            if ($this->Messages->isReply($recipients, $messageId, $content)) {
+            if ($this->Messages->isReply($recipients, $pm->id, $pm->content)) {
                 $content = $this->formatReplyMessage($content, $recipients);
             }
-            echo $this->Form->input(
-                'content',
-                array(
-                    'label' => '',
-                    'default' => $content,
-                    'type' => 'textarea',
-                    'lang' => '',
-                    'dir' => 'auto',
-                )
-            );
+            echo $this->Form->textarea('content', [
+                'lang' => '',
+                'dir' => 'auto',
+            ]);
             ?>
             </div>
             <div layout="row" layout-align="end center" layout-padding>

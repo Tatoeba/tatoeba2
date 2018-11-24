@@ -69,13 +69,7 @@ echo $this->element('pmmenu');
      }
 
      if ($canSend) {
-        if (isset($messageId)) {
-            $this->PrivateMessages->displayForm($recipients, $title, $content, $messageId);
-        } else if (isset($hasRecoveredMessage)) {
-            $this->PrivateMessages->displayForm($recipients, $title, $content);
-        } else {
-            $this->PrivateMessages->displayForm($recipients);
-        }
+        $this->PrivateMessages->displayForm($pm, $recipients);
      }
      ?>
     </div>
