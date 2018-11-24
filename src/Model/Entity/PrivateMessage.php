@@ -40,4 +40,20 @@ class PrivateMessage extends Entity
             ]
         ];
     }
+
+    protected function _getType()
+    {
+        return $this->author ? 'human' : 'machine';
+    }
+
+    protected function _getOrigin()
+    {
+        if ($this->recpt == $this->user_id) {
+            return 'Inbox';
+        } elseif (!$this->sent) {
+            return 'Drafts';
+        }
+
+        return 'Sent';
+    }
 }

@@ -48,7 +48,7 @@ echo $this->element('pmmenu');
     <div class="section md-whiteframe-1dp pm_module">
         <h2>
             <?php 
-            $n = $this->Paginator->counter(array('format' => '%count%'));
+            $n = $this->Paginator->counter(array('format' => '{{count}}'));
             echo format(__n('{folderName} ({n}&nbsp;message)',
                             '{folderName} ({n}&nbsp;messages)',
                             $n, true),
@@ -64,7 +64,7 @@ echo $this->element('pmmenu');
         <?php
 
         foreach ($content as $msg) {
-            if ($msg['PrivateMessage']['isnonread'] == 1) {
+            if ($msg->isnonread == 1) {
                  echo '<tr class="messageHeader unread">';
             } else {
                  echo '<tr class="messageHeader">';
@@ -80,10 +80,10 @@ echo $this->element('pmmenu');
             }
             echo '</td>';
 
-            if ($msg['PrivateMessage']['title'] == '') {
+            if ($msg->title == '') {
                 $messageTitle = __('[no subject]');
             } else {
-                $messageTitle = $msg['PrivateMessage']['title'];
+                $messageTitle = $msg->title;
             }
 
             echo '<td>';
@@ -92,14 +92,14 @@ echo $this->element('pmmenu');
                         array(
                             'action' => 'write',
                             'none',
-                            $msg['PrivateMessage']['id']
+                            $msg->id
                         )
                     );
                 } else {
                     $url = $this->Url->build(
                         array(
                             'action' => 'show',
-                            $msg['PrivateMessage']['id']
+                            $msg->id
                         )
                     );
                 }
@@ -114,7 +114,7 @@ echo $this->element('pmmenu');
                 echo '<span class="userAndDate">';
                 echo $label;
                 echo ', ';
-                echo $this->Date->ago($msg['PrivateMessage']['date']);
+                echo $this->Date->ago($msg->date);
                 echo '</span>';
                 echo '</a>';
             echo '</td>';
@@ -126,7 +126,7 @@ echo $this->element('pmmenu');
                     __('restore'),
                     array(
                         'action' => 'restore',
-                        $msg['PrivateMessage']['id']
+                        $msg->id
                      )
                 );
                 echo '</td>';
@@ -136,7 +136,7 @@ echo $this->element('pmmenu');
                 );
                 $deleteLabel = __('permanently delete');
             } else {
-                $deleteConfirmation = null;
+                $deleteConfirmation = [];
                 $deleteLabel = __('delete');
             }
 
@@ -144,10 +144,10 @@ echo $this->element('pmmenu');
             echo '<td>';
             echo $this->Html->link(
                 $deleteLabel,
-                array(
+                [
                     'action' => 'delete',
-                    $msg['PrivateMessage']['id']
-                ),
+                    $msg->id
+                ],
                 $deleteConfirmation
             );
            echo '</td>';

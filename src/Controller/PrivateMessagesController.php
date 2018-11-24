@@ -27,7 +27,6 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Lib\Event\NotificationListener;
 use Cake\Event\Event;
 
 /**
@@ -47,9 +46,6 @@ class PrivateMessagesController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $eventManager = $this->PrivateMessage->getEventManager();
-        $eventManager->attach(new NotificationListener());
-
         return parent::beforeFilter($event);
     }
 
@@ -76,9 +72,7 @@ class PrivateMessagesController extends AppController
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'Messages';
 
-        $folder = Sanitize::paranoid($folder);
-
-        $this->paginate = $this->PrivateMessage->getPaginatedMessages(
+        $this->paginate = $this->PrivateMessages->getPaginatedMessages(
             $this->Auth->user('id'),
             $folder,
             $status
@@ -86,29 +80,8 @@ class PrivateMessagesController extends AppController
 
         $content = $this->paginate();
 
-        if ($folder == 'Trash') {
-            $content = array_map([$this, '_setToOrigin'], $content);
-        }
-
         $this->set('folder', $folder);
         $this->set('content', $content);
-    }
-
-    /**
-     * Set PrivateMessage key to the message's origin folder.
-     *
-     * @param array  $message Private message array.
-     * @param string $key     PrivateMessage key to set to origin folder.
-     *
-     * @return array
-     */
-    private function _setToOrigin($message, $key = 'origin')
-    {
-        $origin = $this->_findOriginFolder($message);
-
-        $message['PrivateMessage'][$key] = $origin;
-
-        return $message;
     }
 
     /**

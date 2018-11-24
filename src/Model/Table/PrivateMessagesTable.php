@@ -25,25 +25,12 @@ use App\Model\CurrentUser;
 use Cake\I18n\Time;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
+use App\Event\NotificationListener;
 
 
 class PrivateMessagesTable extends Table
 {
     public $name = 'PrivateMessage';
-
-    public $actsAs = array('Containable');
-
-    public $belongsTo = array(
-        'User',
-        'Recipient' => array(
-            'className' => 'User',
-            'foreignKey' => 'recpt'
-        ),
-        'Sender' => array(
-            'className' => 'User',
-            'foreignKey' => 'sender'
-        )
-    );
 
     protected function _initializeSchema(TableSchema $schema)
     {
@@ -54,6 +41,16 @@ class PrivateMessagesTable extends Table
     public function initialize(array $config)
     {
         $this->belongsTo('Users');
+        $this->belongsTo('Recipients', [
+            'className' => 'Users',
+            'foreignKey' => 'recpt'
+        ]);
+        $this->belongsTo('Authors', [
+            'className' => 'Users',
+            'foreignKey' => 'sender'
+        ]);
+
+        $this->getEventManager()->on(new NotificationListener());
     }
 
     public function validationDefault(Validator $validator)
@@ -104,23 +101,6 @@ class PrivateMessagesTable extends Table
         );
     }
 
-    private function _setSenderType(&$results) {
-        foreach ($results as &$result) {
-            if (isset($result['PrivateMessage']) &&
-                isset($result['PrivateMessage']['sender']) &&
-                isset($result['Sender'])
-               ) {
-                $type = $result['PrivateMessage']['sender'] == 0 ? 'machine' : 'human';
-                $result['Sender']['type'] = $type;
-            }
-        }
-    }
-
-    public function afterFind($results, $primary = false) {
-        $this->_setSenderType($results);
-        return $results;
-    }
-
     /**
      * Return query for paginated messages in specified folder.
      *
@@ -148,29 +128,27 @@ class PrivateMessagesTable extends Table
             $conditions['isnonread'] = 1;
         }
 
-        return array(
-            'PrivateMessage' => array(
-                'conditions' => $conditions,
-                'contain' => array(
-                    'Sender' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image',
-                        )
-                    ),
-                    'Recipient' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image',
-                        )
-                    )
-                ),
-                'order' => 'date DESC',
-                'limit' => 20
-            )
-        );
+        return [
+            'conditions' => $conditions,
+            'contain' => [
+                'Authors' => [
+                    'fields' => [
+                        'id',
+                        'username',
+                        'image'
+                    ]
+                ],
+                'Recipients' => [
+                    'fields' => [
+                        'id',
+                        'username',
+                        'image',
+                    ]
+                ]
+            ],
+            'order' => ['date' => 'DESC'],
+            'limit' => 20
+        ];
     }
 
     /**

@@ -271,22 +271,22 @@ class MessagesHelper extends AppHelper
         $folder = $this->_getFolder($folder, $msg);
 
         if ($folder == 'Sent') {
-            $user = $msg['Recipient'];
+            $user = $msg->recipient;
             $label = format(
                 __('to {recipient}'),
-                array('recipient' => $user['username'])
+                array('recipient' => $user->username)
             );
         } elseif ($this->_isDraftMessage($folder, $msg)) {
             $user = null;
             $label = __('Draft');
-        } elseif ($msg['Sender']['type'] == 'machine') {
+        } elseif ($msg->type == 'machine') {
             $user = null;
             $label = __('notification from Tatoeba');
         } else {
-            $user = $msg['Sender'];
+            $user = $msg->author;
             $label = format(
                 __('from {sender}'),
-                array('sender' => $user['username'])
+                array('sender' => $user->username)
             );
         }
 
