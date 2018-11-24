@@ -58,7 +58,14 @@ class PrivateMessagesTable extends Table
         $validator
             ->requirePresence('content')
             ->add('content', 'notBlank', [
-                'rule' => 'notBlank',
+                'rule' => function($value, $provider) {
+                    $data = $provider['data'];
+                    if (isset($data['folder']) && $data['folder'] == 'Drafts') {
+                        return true;
+                    } else {
+                        return !empty($value);
+                    }
+                },
                 'message' =>  __('You must fill at least the content field.')
             ]);
 
@@ -252,17 +259,17 @@ class PrivateMessagesTable extends Table
         $draft = array(
             'user_id'       => $currentUserId,
             'sender'        => $currentUserId,
-            'draft_recpts'  => $data['PrivateMessage']['recpt'],
+            'draft_recpts'  => $data['recipients'],
             'date'          => $now,
             'folder'        => 'Drafts',
-            'title'         => $data['PrivateMessage']['title'],
-            'content'       => $data['PrivateMessage']['content'],
+            'title'         => $data['title'],
+            'content'       => $data['content'],
             'isnonread'     => 1,
             'sent'          => 0,
         );
 
-        if ($data['PrivateMessage']['messageId']) {
-            $draft['id'] = $data['PrivateMessage']['messageId'];
+        if ($data['messageId']) {
+            $draft['id'] = $data['messageId'];
         }
 
         $entity = $this->newEntity($draft);

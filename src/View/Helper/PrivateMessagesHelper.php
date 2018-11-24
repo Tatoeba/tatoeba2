@@ -115,10 +115,10 @@ class PrivateMessagesHelper extends AppHelper
             ?>
             </div>
             <div layout="row" layout-align="end center" layout-padding>
-                <md-button type="submit" name="data[PrivateMessage][submitType]" value="saveDraft" class="md-raised">
+                <md-button type="submit" name="submitType" value="saveDraft" class="md-raised">
                     <?php echo __('Save as draft'); ?>
                 </md-button>
-                <md-button type="submit" name="data[PrivateMessage][submitType]" value="send" class="md-raised md-primary">
+                <md-button type="submit" name="submitType" value="send" class="md-raised md-primary">
                     <?php echo __('Send'); ?>
                 </md-button>
             </div>

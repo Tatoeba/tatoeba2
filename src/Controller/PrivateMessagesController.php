@@ -93,23 +93,23 @@ class PrivateMessagesController extends AppController
     public function send()
     {
         $currentUserId = $this->Auth->user('id');
-
         $now = date("Y-m-d H:i:s", time());
+        $data = $this->request->getData();
 
-        if ($this->request->data['PrivateMessage']['submitType'] === 'saveDraft') {
-            $this->PrivateMessage->saveDraft($currentUserId, $now, $this->request->data);
+        if ($data['submitType'] === 'saveDraft') {
+            $this->PrivateMessages->saveDraft($currentUserId, $now, $data);
 
             $this->redirect(array('action' => 'folder', 'Drafts'));
         } else {
-            $sent = $this->PrivateMessage->send($currentUserId, $now, $this->request->data);
+            $sent = $this->PrivateMessages->send($currentUserId, $now, $data);
             if (!$sent) {
-                foreach ($this->PrivateMessage->validationErrors as $field => $err) {
+                foreach ($this->PrivateMessages->validationErrors as $field => $err) {
                     $this->Flash->set($err[0]);
                     if ($field == 'limitExceeded') {
                         $this->redirect(array('action' => 'folder', 'Sent'));
                     }
                 }
-                $unsentMessage = $this->request->data['PrivateMessage'];
+                $unsentMessage = $data['PrivateMessage'];
                 $this->request->getSession()->write('unsent_message', $unsentMessage);
                 $this->redirect(array('action' => 'write'));
             } else {

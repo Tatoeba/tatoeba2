@@ -28,13 +28,11 @@ class PrivateMessageTest extends TestCase {
     public function testSaveDraft_addsNewDraft() {
         $date = '1999-12-31 23:59:59';
         $postData = array(
-            'PrivateMessage' => array(
-                'recpt' => 'advanced_contributor',
-                'title' => 'Status',
-                'content' => 'Why are you so advanced?',
-                'messageId' => '',
-                'submitType' => 'saveDraft',
-            ),
+            'recipients' => 'advanced_contributor',
+            'title' => 'Status',
+            'content' => 'Why are you so advanced?',
+            'messageId' => '',
+            'submitType' => 'saveDraft',
         );
 
         $draft =$this->PrivateMessage->saveDraft(7, $date, $postData);
@@ -61,13 +59,11 @@ class PrivateMessageTest extends TestCase {
         $draftId = 5;
         $date = '2017-10-13 01:07:10';
         $postData = array(
-            'PrivateMessage' => array(
-                'recpt' => 'advanced_contributor',
-                'title' => 'My feelings',
-                'content' => 'I\'m worrying about Tom. What do you think?',
-                'messageId' => $draftId,
-                'submitType' => 'saveDraft',
-            ),
+            'recipients' => 'advanced_contributor',
+            'title' => 'My feelings',
+            'content' => 'I\'m worrying about Tom. What do you think?',
+            'messageId' => $draftId,
+            'submitType' => 'saveDraft',
         );
 
         $this->PrivateMessage->saveDraft(4, $date, $postData);
@@ -113,13 +109,11 @@ class PrivateMessageTest extends TestCase {
     public function testSaveDraft_withoutRecipient() {
         $date = '1999-12-31 23:59:59';
         $postData = array(
-            'PrivateMessage' => array(
-                'recpt' => '',
-                'title' => 'Status',
-                'content' => 'Why are you so advanced?',
-                'messageId' => '',
-                'submitType' => 'saveDraft',
-            ),
+            'recipients' => '',
+            'title' => 'Status',
+            'content' => 'Why are you so advanced?',
+            'messageId' => '',
+            'submitType' => 'saveDraft',
         );
 
         $before = $this->PrivateMessage->find()->count();
