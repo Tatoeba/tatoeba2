@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-04 21:34+0000\n"
-"PO-Revision-Date: 2018-11-06 10:04+0000\n"
+"PO-Revision-Date: 2018-11-17 14:00+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -264,7 +264,7 @@ msgstr "N'hoc'h ket aotreet da welout al listenn-mañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L387
 msgid "This list cannot be downloaded because it contains too many sentences."
-msgstr ""
+msgstr "N'hall ket bezañ pellgarget al listenn peogwir e vez re a frazennoù enni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L148
 msgid ""
@@ -485,11 +485,11 @@ msgstr "Ar frazenn kaset a zo berroc'h evit an hini orin."
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
+msgstr[0] "An arouez “{kanji}” en devez muioc'h evit {n} furigana: ”{furiganas}”."
+msgstr[1] "An arouezioù “{kanji}” o devez muioc'h evit {n} furiganas: ”{furiganas}”."
+msgstr[2] "An arouezioù “{kanji}” o devez muioc'h evit {n} furiganas: ”{furiganas}”."
+msgstr[3] "An arouezioù “{kanji}” o devez muioc'h evit {n} furiganas: ”{furiganas}”."
+msgstr[4] "An arouezioù “{kanji}” o devez muioc'h evit {n} furiganas: ”{furiganas}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/Autotranscription.php#L357
 msgid "The following character is not transcribed: {charsEnumeration}."
@@ -503,7 +503,7 @@ msgstr[4] "N'eo ket bet treuzskrivet an arouezioù da-heul: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/PrivateMessage.php#L68
 msgid "You must fill at least the content field."
-msgstr ""
+msgstr "Rankout a rit leuniañ ar vaezienn endalc'had."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/PrivateMessage.php#L360
 msgid "You must fill at least the \"To\" field and the content field."
@@ -740,7 +740,7 @@ msgstr "Ma kav deoc'h ez eus meur a droidigezh, gellout a rit ouzhpennañ meur a
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "Treiñ frazennoù a dalvez e ouzoc'h div yezh da vihanañ. Klokait <a href=\"{}\">ho profil</a>mar plij evit lakaat hewel d'an dud e ouzoc'h div yezh da vihanañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L99
 msgid "Search for untranslated sentences"
@@ -758,7 +758,7 @@ msgstr "N'eo ket bet troet war-eeun e:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L145
 msgid "Best practice: translate only into your native language."
-msgstr ""
+msgstr "Boaz gwellañ: troit en ho yezh-vamm hepken."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L212

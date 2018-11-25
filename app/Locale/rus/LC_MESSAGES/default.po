@@ -9,13 +9,14 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Igor Aleksandrovich Ivanov <tovarishivanov1917@mail.ru>, 2014
 # Nikolay Korotkiy <sikmir@gmail.com>, 2016
+# Trang, 2018
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-04 21:34+0000\n"
-"PO-Revision-Date: 2018-11-05 20:38+0000\n"
+"PO-Revision-Date: 2018-11-22 17:31+0000\n"
 "Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -265,7 +266,7 @@ msgstr "У вас нет прав на просмотр данного спис�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L387
 msgid "This list cannot be downloaded because it contains too many sentences."
-msgstr ""
+msgstr "Этот список не может быть загружен, так как содержит слишком много предложений."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L148
 msgid ""
@@ -416,7 +417,7 @@ msgstr "Язык не выбран."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L54
 msgid "You cannot save this language."
-msgstr ""
+msgstr "Вы не можете сохранить этот язык."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L80
 msgid "Language deleted"
@@ -484,10 +485,10 @@ msgstr "Введенное предложение короче оригинал�
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Знак “{kanji}” имеет больше одной фуриганы: ”{furiganas}”."
+msgstr[1] "Знак “{kanji}” имеет больше, чем {n} фуриганы: ”{furiganas}”."
+msgstr[2] "Знак “{kanji}” имеет больше, чем {n} фуриган: ”{furiganas}”."
+msgstr[3] "Знак “{kanji}” имеет больше, чем {n} фуриганы: ”{furiganas}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Lib/Autotranscription.php#L357
 msgid "The following character is not transcribed: {charsEnumeration}."
@@ -500,7 +501,7 @@ msgstr[3] "Не транскрибированы знаки {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/PrivateMessage.php#L68
 msgid "You must fill at least the content field."
-msgstr ""
+msgstr "Вы должны заполнить как минимум поле содержимого."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/PrivateMessage.php#L360
 msgid "You must fill at least the \"To\" field and the content field."
@@ -737,7 +738,7 @@ msgstr "Если Вы считаете, что возможны нескольк
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "Перевод предложений подразумевает знание вами как минимум двух языков. Пожалуйста, заполните <a href=\"{}\">ваш профиль</a> и обозначьте как минимум два языка."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L99
 msgid "Search for untranslated sentences"
@@ -755,7 +756,7 @@ msgstr "Без прямых переводов на:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L145
 msgid "Best practice: translate only into your native language."
-msgstr ""
+msgstr "Лучшая практика: переводите только на родной язык."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/advanced_search_form.ctp#L212
@@ -2469,7 +2470,7 @@ msgstr "Следующая страница [Ctrl+→]"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PrivateMessagesHelper.php#L93
 msgctxt "message"
 msgid "To"
-msgstr "язык перевода:"
+msgstr "Кому"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/PrivateMessagesHelper.php#L108
 msgid "Title"
