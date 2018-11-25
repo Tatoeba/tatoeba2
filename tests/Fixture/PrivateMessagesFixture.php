@@ -115,6 +115,34 @@ class PrivateMessagesFixture extends TestFixture {
             'draft_recpts' => '',
             'sent' => '1'
         ),
+        # A deleted draft
+        array(
+            'id' => '7',
+            'recpt' => '1',
+            'sender' => '4',
+            'user_id' => '4',
+            'date' => '2018-10-12 01:07:10',
+            'folder' => 'Trash',
+            'title' => 'Draft',
+            'content' => 'Deleted.',
+            'isnonread' => '1',
+            'draft_recpts' => 'advanced_contributor',
+            'sent' => '0'
+        ),
+        # A deleted message from Inbox
+        array(
+            'id' => '8',
+            'recpt' => '4',
+            'sender' => '1',
+            'user_id' => '4',
+            'date' => '2018-10-13 01:07:10',
+            'folder' => 'Trash',
+            'title' => 'Hello',
+            'content' => 'How are you?',
+            'isnonread' => '0',
+            'draft_recpts' => '',
+            'sent' => '1'
+        ),
     );
 
 }

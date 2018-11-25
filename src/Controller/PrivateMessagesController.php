@@ -317,33 +317,10 @@ class PrivateMessagesController extends AppController
      */
     public function restore($messageId)
     {
-        $message = $this->_getMessageById($messageId);
-
-        $folder = $this->_findOriginFolder($message);
-
-        $message['PrivateMessage']['folder'] = $folder;
-
-        $this->PrivateMessage->save($message);
+        $message = $this->PrivateMessages->restoreMessage($messageId);
+        $folder = $message ? $message->folder : 'Trash';
 
         $this->redirect(array('action' => 'folder', $folder));
-    }
-
-    /**
-     * Determine which folder trash message originally belonged to.
-     *
-     * @param  array $message Private message array.
-     *
-     * @return string
-     */
-    private function _findOriginFolder($message)
-    {
-        if ($message['PrivateMessage']['recpt'] == $this->Auth->user('id')) {
-            return 'Inbox';
-        } elseif ($message['PrivateMessage']['sent'] == false) {
-            return 'Drafts';
-        }
-
-        return 'Sent';
     }
 
     /**

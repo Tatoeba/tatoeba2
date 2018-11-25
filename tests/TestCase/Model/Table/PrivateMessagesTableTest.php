@@ -275,4 +275,21 @@ class PrivateMessageTest extends TestCase {
         $this->assertFalse($deleted);
     }
 
+    public function testRestoreMessage_succeeds()
+    {
+        CurrentUser::store(['id' => 4]);
+        $pm = $this->PrivateMessage->restoreMessage(4);
+        $this->assertEquals('Sent', $pm->folder);
+        $pm = $this->PrivateMessage->restoreMessage(7);
+        $this->assertEquals('Drafts', $pm->folder);
+        $pm = $this->PrivateMessage->restoreMessage(8);
+        $this->assertEquals('Inbox', $pm->folder);
+    }
+
+    public function testRestoreMessage_fails()
+    {
+        CurrentUser::store(['id' => 1]);
+        $pm = $this->PrivateMessage->restoreMessage(4);
+        $this->assertFalse($pm);
+    }
 }

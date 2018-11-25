@@ -460,4 +460,11 @@ class PrivateMessagesTable extends Table
             return $this->save($message);
         }
     }
+    
+    public function restoreMessage($id)
+    {
+        $message = $this->get($id);
+        $message->folder = $message->origin;
+        return $this->save($message);
+    }
 }
