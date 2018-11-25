@@ -303,17 +303,7 @@ class PrivateMessagesController extends AppController
      */
     public function delete($messageId)
     {
-        $message = $this->_getMessageById($messageId);
-
-        if ($message['PrivateMessage']['user_id'] == CurrentUser::get('id')) {
-            if ($message['PrivateMessage']['folder'] == 'Trash') {
-                $this->PrivateMessage->delete($messageId);
-            } else {
-                $message['PrivateMessage']['folder'] = 'Trash';
-
-                $this->PrivateMessage->save($message);
-            }
-        }
+        $this->PrivateMessages->deleteMessage($messageId);
 
         $this->redirect($this->referer());
     }

@@ -27,6 +27,7 @@ use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Event\NotificationListener;
 use Cake\ORM\RulesChecker;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 
 class PrivateMessagesTable extends Table
@@ -60,6 +61,14 @@ class PrivateMessagesTable extends Table
             $canSend = $this->canSendMessage($message->sender);
             return $canSend;
         }, 'limitExceeded');
+
+        $rules->addUpdate(function($message) {
+            return $message->user_id == CurrentUser::get('id');
+        }, 'isAllowedToUpdate');
+
+        $rules->addDelete(function($message) {
+            return $message->user_id == CurrentUser::get('id');
+        }, 'isAllowedToDelete');
         
         return $rules;
     }
@@ -434,5 +443,21 @@ class PrivateMessagesTable extends Table
         $this->save($message);
 
         return $message;
+    }
+
+    public function deleteMessage($id)
+    {
+        try {
+            $message = $this->get($id);
+        } catch (RecordNotFoundException $e) {
+            return false;
+        }
+        
+        if ($message->folder == 'Trash') {
+            return $this->delete($message);
+        } else {
+            $message->folder = 'Trash';
+            return $this->save($message);
+        }
     }
 }

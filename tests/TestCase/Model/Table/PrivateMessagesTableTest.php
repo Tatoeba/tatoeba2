@@ -6,12 +6,14 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 class PrivateMessageTest extends TestCase {
 
     public $fixtures = array(
         'app.private_messages',
-        'app.users'
+        'app.users',
+        'app.users_languages'
     );
 
     public function setUp() {
@@ -56,6 +58,7 @@ class PrivateMessageTest extends TestCase {
     }
 
     public function testSaveDraft_editsExistingDraft() {
+        CurrentUser::store(['id' => 4]);
         $draftId = 5;
         $date = '2017-10-13 01:07:10';
         $postData = array(
@@ -246,6 +249,30 @@ class PrivateMessageTest extends TestCase {
         $this->PrivateMessage->send($currentUserId, $date, $postData);
 
         $this->assertTrue($dispatched);
+    }
+
+    public function testDeleteMessage_movedToTrash()
+    {
+        CurrentUser::store(['id' => 3]);
+        $this->PrivateMessage->deleteMessage(1);
+        $pm = $this->PrivateMessage->get(1);
+        $this->assertEquals('Trash', $pm->folder);
+    }
+
+    public function testDeleteMessage_deletedFromDatabase()
+    {
+        CurrentUser::store(['id' => 4]);
+        $result = $this->PrivateMessage->deleteMessage(4);
+        $pm = $this->PrivateMessage->findById(4)->first();
+        $this->assertTrue($result);
+        $this->assertNull($pm);
+    }
+
+    public function testDeleteMessage_failsBecauseNotAllowedToDelete()
+    {
+        CurrentUser::store(['id' => 1]);
+        $deleted = $this->PrivateMessage->deleteMessage(1);
+        $this->assertFalse($deleted);
     }
 
 }
