@@ -192,4 +192,28 @@ class UsersFixture extends TestFixture {
 			'audio_attribution_url' => NULL,
 		),
 	);
+
+	public function init() {
+		$this->records[] = [
+			'id' => '9',
+			'username' => 'new_member',
+			'password' => '0 $2a$10$C9HUn1u98XMMV/J2DP9F.eSPrJY0UiX7Z1PsDiWoGakXsSzwpUQ/e',
+			'email' => 'new_member@example.net',
+			'since' => date('Y-m-d H:i:s'),
+			'last_time_active' => null,
+			'level' => '1',
+			'group_id' => '4',
+			'send_notifications' => 1,
+			'name' => '',
+			'birthday' => NULL,
+			'description' => '',
+			'settings' => '{"is_public":"0","lang":null}',
+			'homepage' => '',
+			'image' => '',
+			'country_id' => NULL,
+			'audio_license' => NULL,
+			'audio_attribution_url' => NULL,
+		];
+		parent::init();
+	}
 }

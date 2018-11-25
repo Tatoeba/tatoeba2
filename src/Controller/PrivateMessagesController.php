@@ -106,9 +106,6 @@ class PrivateMessagesController extends AppController
             foreach ($messages as $msg) {
                 if (!$msg) {
                     $hasErrors = true;
-                } else if ($msg->getError('limitExceeded')) {
-                    $this->Flash->set($msg->getErrors('limitExceeded'));
-                    return $this->redirect(array('action' => 'folder', 'Sent'));
                 } else if (!empty($msg->getErrors())) {
                     $errors = $msg->getErrors();
                     $hasErrors = true;
@@ -395,7 +392,7 @@ class PrivateMessagesController extends AppController
         $messagesToday = $this->PrivateMessages->todaysMessageCount($userId);
 
         $this->set('messagesToday', $messagesToday);
-        $this->set('canSend', $this->PrivateMessages->canSendMessage($messagesToday));
+        $this->set('canSend', $this->PrivateMessages->canSendMessage($userId));
         $this->set('isNewUser', CurrentUser::isNewUser());
 
         if ($messageId) {

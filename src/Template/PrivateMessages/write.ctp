@@ -31,24 +31,26 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
     <div>
-     <?php
-     if ($isNewUser && !$canSend) {
-         echo "<p>";
-             __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
-             );
-         echo "</p>";
-         echo "<p>";
-             __(
-                 "Please wait until you can send more messages."
-             );
-         echo "</p>";
-         echo "<p>";
-             echo format(__(
-                 'If you have received this message in error, '.
-                 'please contact administrators at {email}.', true
-             ), array('email' => 'team@tatoeba.org'));
-         echo "</p>";
-     } else if ($isNewUser) {
+    <?php
+    if ($isNewUser && !$canSend) {
+        ?>
+        <div class="section md-whiteframe-1dp">
+        <h2><?= __('You have reached your message limit for today') ?></h2>
+        <p>
+            <?= __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day.") ?>
+        </p>
+        <p>
+            <?= __("Please wait until you can send more messages.") ?>
+        </p>
+        <p>
+            <?= format(__(
+                'If you have received this message in error, '.
+                'please contact administrators at {email}.', true
+            ), array('email' => 'team@tatoeba.org')) ?>
+        </p>
+        </div>
+        <?php
+    } else if ($isNewUser) {
          echo "<p>";
              __(
                  "To help keep Tatoeba free of spam and other malicious messages
@@ -66,11 +68,11 @@ echo $this->element('pmmenu');
          );
          echo "</p>";
          echo "<br/>";
-     }
+    }
 
-     if ($canSend) {
+    if ($canSend) {
         $this->PrivateMessages->displayForm($pm, $recipients);
-     }
-     ?>
+    }
+    ?>
     </div>
 </div>

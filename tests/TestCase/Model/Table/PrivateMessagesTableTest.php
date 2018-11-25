@@ -171,6 +171,24 @@ class PrivateMessageTest extends TestCase {
         $this->assertEquals($expectedReceived, $received['PrivateMessage']);
     }
 
+    public function testSend_limitExceeded() {
+        $date = date('Y-m-d H:i:s');
+        $postData = array(
+            'recipients' => 'advanced_contributor',
+            'title' => 'Spamming',
+            'content' => 'Spamming very much.',
+            'messageId' => '',
+            'submitType' => 'send',
+        );
+        $currentUserId = 9;
+
+        for ($i = 0; $i <= 5; $i++) {
+            $message = $this->PrivateMessage->send($currentUserId, $date, $postData);
+        }
+
+        $this->assertFalse($message[0]);
+    }
+
     public function testSend_withoutRecipient() {
         $date = '1999-12-31 23:59:59';
         $postData = array(

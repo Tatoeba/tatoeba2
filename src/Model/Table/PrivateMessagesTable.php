@@ -56,22 +56,11 @@ class PrivateMessagesTable extends Table
 
     public function buildRules(RulesChecker $rules)
     {
-        $checkLimit = function($message) {
-            $sender = $message->sender;
-            $sentToday = $this->todaysMessageCount($sender);
-            return $this->canSendMessage($sentToday);
-        };
-        $rules->add($checkLimit, 'limitExceeded', [
-            'message' => format(
-                __(
-                    "You have reached your message limit for today. ".
-                    "Please wait until you can send more messages. ".
-                    "If you have received this message in error, ".
-                    "please contact administrators at {email}."
-                ),
-                ['email' => 'team@tatoeba.org']
-            ),
-        ]);
+        $rules->addCreate(function($message) {
+            $canSend = $this->canSendMessage($message->sender);
+            return $canSend;
+        }, 'limitExceeded');
+        
         return $rules;
     }
 
@@ -403,13 +392,14 @@ class PrivateMessagesTable extends Table
      *
      * @return bool
      */
-    public function canSendMessage($messagesToday)
+    public function canSendMessage($userId)
     {
-        if (CurrentUser::isNewUser()) {
-            return $messagesToday < 5;
-        }
+        $user = $this->Users->get($userId, ['fields' => 'since']);
+        $sentToday = $this->todaysMessageCount($userId);
+        $since = new Time($user->since);
+        $isNewUser = $since->wasWithinLast('2 weeks');
 
-        return true;
+        return !$isNewUser || $sentToday < 5;
     }
 
     /**
