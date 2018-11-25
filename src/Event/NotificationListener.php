@@ -22,6 +22,7 @@ use Cake\Event\EventListenerInterface;
 use Cake\Mailer\Email;
 use Cake\Core\Configure;
 use Cake\Routing\Router;
+use Cake\ORM\TableRegistry;
 
 
 class NotificationListener implements EventListenerInterface {
@@ -98,11 +99,11 @@ class NotificationListener implements EventListenerInterface {
     }
 
     public function sendPmNotification($event) {
-        extract($event->data); // $message
-        $User = ClassRegistry::init('User');
+        $message = $event->getData('message'); // $message
+        $User = TableRegistry::getTableLocator()->get('Users');
         $userSettings = $User->getSettings($message['recpt']);
 
-        if (!$userSettings['User']['send_notifications']) {
+        if (!$userSettings['send_notifications']) {
             return;
         }
 

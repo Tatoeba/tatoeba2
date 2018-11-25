@@ -126,13 +126,11 @@ class PrivateMessageTest extends TestCase {
     public function testSend_toOneRecipent() {
         $date = '1999-12-31 23:59:59';
         $postData = array(
-            'PrivateMessage' => array(
-                'recpt' => 'advanced_contributor',
-                'title' => 'Status',
-                'content' => 'Why are you so advanced?',
-                'messageId' => '',
-                'submitType' => 'send',
-            ),
+            'recipients' => 'advanced_contributor',
+            'title' => 'Status',
+            'content' => 'Why are you so advanced?',
+            'messageId' => '',
+            'submitType' => 'send',
         );
         $currentUserId = 7;
 
@@ -176,13 +174,11 @@ class PrivateMessageTest extends TestCase {
     public function testSend_withoutRecipient() {
         $date = '1999-12-31 23:59:59';
         $postData = array(
-            'PrivateMessage' => array(
-                'recpt' => '',
-                'title' => 'Status',
-                'content' => 'Why are you so advanced?',
-                'messageId' => '',
-                'submitType' => 'send',
-            ),
+            'recpt' => '',
+            'title' => 'Status',
+            'content' => 'Why are you so advanced?',
+            'messageId' => '',
+            'submitType' => 'send',
         );
         $currentUserId = 4;
 
@@ -196,13 +192,11 @@ class PrivateMessageTest extends TestCase {
     function testSend_firesSendingEvent() {
         $date = '1999-12-31 23:59:59';
         $postData = array(
-            'PrivateMessage' => array(
-                'recpt' => 'advanced_contributor',
-                'title' => 'Status',
-                'content' => 'Why are you so advanced?',
-                'messageId' => '',
-                'submitType' => 'send',
-            ),
+            'recipients' => 'advanced_contributor',
+            'title' => 'Status',
+            'content' => 'Why are you so advanced?',
+            'messageId' => '',
+            'submitType' => 'send',
         );
         $currentUserId = 7;
         $expectedMessage = array(

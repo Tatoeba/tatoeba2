@@ -26,6 +26,7 @@ use Cake\I18n\Time;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Event\NotificationListener;
+use Cake\ORM\RulesChecker;
 
 
 class PrivateMessagesTable extends Table
@@ -53,29 +54,53 @@ class PrivateMessagesTable extends Table
         $this->getEventManager()->on(new NotificationListener());
     }
 
+    public function buildRules(RulesChecker $rules)
+    {
+        $checkLimit = function($message) {
+            $sender = $message->sender;
+            $sentToday = $this->todaysMessageCount($sender);
+            return $this->canSendMessage($sentToday);
+        };
+        $rules->add($checkLimit, 'limitExceeded', [
+            'message' => format(
+                __(
+                    "You have reached your message limit for today. ".
+                    "Please wait until you can send more messages. ".
+                    "If you have received this message in error, ".
+                    "please contact administrators at {email}."
+                ),
+                ['email' => 'team@tatoeba.org']
+            ),
+        ]);
+        return $rules;
+    }
+
     public function validationDefault(Validator $validator)
     {
         $validator
             ->requirePresence('content')
             ->add('content', 'notBlank', [
-                'rule' => function($value, $provider) {
-                    $data = $provider['data'];
-                    if (isset($data['folder']) && $data['folder'] == 'Drafts') {
-                        return true;
-                    } else {
-                        return !empty($value);
-                    }
-                },
-                'message' =>  __('You must fill at least the content field.')
+                'rule' => [$this, 'notBlankExceptDraft'],
+                'message' =>  __('You cannot send an empty message.')
             ]);
 
         $validator
-            ->add('recpt', 'notBlank', [
-                'rule' => 'notBlank',
-                'message' => __('You must fill at least the "To" field and the content field.')
+            ->add('recipients', 'notBlank', [
+                'rule' => [$this, 'notBlankExceptDraft'],
+                'message' => __('You must fill the "To" field.')
             ]);
         
         return $validator;
+    }
+
+    function notBlankExceptDraft($value, $provider)
+    {
+        $data = $provider['data'];
+        if (isset($data['folder']) && $data['folder'] == 'Drafts') {
+            return true;
+        } else {
+            return !empty(trim($value));
+        }
     }
 
     /**
@@ -233,13 +258,13 @@ class PrivateMessagesTable extends Table
             'sender'    => $currentUserId,
             'date'      => $now,
             'folder'    => 'Inbox',
-            'title'     => $data['PrivateMessage']['title'],
-            'content'   => $data['PrivateMessage']['content'],
+            'title'     => $data['title'],
+            'content'   => $data['content'],
             'isnonread' => 1,
         );
 
-        if ($data['PrivateMessage']['messageId']) {
-            $message['id'] = $data['PrivateMessage']['messageId'];
+        if (isset($data['messageId'])) {
+            $message['id'] = $data['messageId']; // is this used for anything?
         }
 
         return $message;
@@ -249,7 +274,6 @@ class PrivateMessagesTable extends Table
      * Save a draft message.
      *
      * @param  int      $currentUserId ID for current user.
-     * @param  string   $now           Timestamp.
      * @param  array    $data          Form data from controller.
      *
      * @return array                   Draft.
@@ -318,7 +342,7 @@ class PrivateMessagesTable extends Table
         ));
 
         $message = $this->newEntity($message);
-        return $this->save($message);;
+        return $this->save($message);
     }
 
     public function notify($recptId, $now, $message)
@@ -327,68 +351,34 @@ class PrivateMessagesTable extends Table
         return $this->saveToInbox($toSend, $recptId);
     }
 
-    public function send($currentUserId, $now, $message)
+    public function send($currentUserId, $now, $data)
     {
-        $toSend = $this->buildMessage(
-            $message,
-            $currentUserId,
-            $now
-        );
-
-        $recipients = $this->_buildRecipientsArray($message['PrivateMessage']['recpt']);
-
-        $sentToday = $this->todaysMessageCount($currentUserId);
-
+        $recipients = $this->_buildRecipientsArray($data['recipients']);
+        $messages = [];
         foreach ($recipients as $recpt) {
-            if (!$this->canSendMessage($sentToday)) {
-                $this->validationErrors['limitExceeded'] = array(
-                    format(
-                        __("You have reached your message limit for today. ".
-                           "Please wait until you can send more messages. ".
-                           "If you have received this message in error, ".
-                           "please contact administrators at {email}."),
-                        array('email' => 'team@tatoeba.org')
-                    ),
-                );
-                return false;
-            }
-
             $recptId = $this->Users->getIdFromUsername($recpt);
+            $data = $this->buildMessage($data, $currentUserId, $now);
+            if ($recptId) {
+                $msg = $this->saveToInbox($data, $recptId);
+                if ($msg) {
+                    $event = new Event('Model.PrivateMessage.messageSent', $this, array(
+                        'message' => $msg,
+                    ));
+                    $this->getEventManager()->dispatch($event);
 
-            if (!$recptId) {
-                $this->validationErrors['recpt'] = array(
-                    format(
-                        __('The user {username} to whom you want to send this '.
-                           'message does not exist. Please try with another username.'),
-                        array('username' => $recpt)
-                    ),
-                );
-                return false;
-            }
-
-            $message = $this->saveToInbox($toSend, $recptId);
-            if (!$message) {
-                return false;
+                    $this->saveToOutbox($data, $recptId, $currentUserId);
+                }                
             } else {
-                $event = new Event('Model.PrivateMessage.messageSent', $this, array(
-                    'message' => $message,
+                $msg = $this->newEntity($data);
+                $msg->setError('recicipients', format(
+                    __('The user {username} to whom you want to send this '.
+                        'message does not exist. Please try with another username.'),
+                    ['username' => $recpt]
                 ));
-                $this->getEventManager()->dispatch($event);
             }
-
-            $this->id = null;
-
-            $this->saveToOutbox(
-                $toSend,
-                $recptId,
-                $currentUserId
-            );
-
-            $this->id = null;
-
-            $sentToday += 1;
+            $messages[] = $msg;
         }
-        return true;
+        return $messages;
     }
 
     /**

@@ -101,20 +101,29 @@ class PrivateMessagesController extends AppController
 
             $this->redirect(array('action' => 'folder', 'Drafts'));
         } else {
-            $sent = $this->PrivateMessages->send($currentUserId, $now, $data);
-            if (!$sent) {
-                foreach ($this->PrivateMessages->validationErrors as $field => $err) {
-                    $this->Flash->set($err[0]);
-                    if ($field == 'limitExceeded') {
-                        $this->redirect(array('action' => 'folder', 'Sent'));
+            $hasErrors = false;
+            $messages = $this->PrivateMessages->send($currentUserId, $now, $data);
+            foreach ($messages as $msg) {
+                if (!$msg) {
+                    $hasErrors = true;
+                } else if ($msg->getError('limitExceeded')) {
+                    $this->Flash->set($msg->getErrors('limitExceeded'));
+                    return $this->redirect(array('action' => 'folder', 'Sent'));
+                } else if (!empty($msg->getErrors())) {
+                    $errors = $msg->getErrors();
+                    $hasErrors = true;
+                    foreach($errors as $error) {
+                        $this->Flash->set(reset($error));
                     }
                 }
-                $unsentMessage = $data['PrivateMessage'];
-                $this->request->getSession()->write('unsent_message', $unsentMessage);
-                $this->redirect(array('action' => 'write'));
-            } else {
-                $this->redirect(array('action' => 'folder', 'Sent'));
             }
+            if ($hasErrors || empty($messages)) {
+                $unsentMessage = $data;
+                $this->request->getSession()->write('unsent_message', $unsentMessage);
+                return $this->redirect(array('action' => 'write'));
+            }
+            
+            $this->redirect(array('action' => 'folder', 'Sent'));
         }
     }
 
