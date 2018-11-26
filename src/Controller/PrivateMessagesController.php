@@ -290,9 +290,7 @@ class PrivateMessagesController extends AppController
      */
     public function mark($folder, $messageId)
     {
-        $message = $this->_getMessageById($messageId);
-
-        $this->PrivateMessage->toggleUnread($message);
+        $this->PrivateMessages->toggleUnread($messageId);
 
         $this->redirect(array('action' => 'folder', $folder));
     }

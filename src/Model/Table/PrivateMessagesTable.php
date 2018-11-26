@@ -441,15 +441,18 @@ class PrivateMessagesTable extends Table
      *
      * @return array
      */
-    public function toggleUnread($message)
+    public function toggleUnread($id)
     {
+        try {
+            $message = $this->get($id);
+        } catch (RecordNotFoundException $e) {
+            return null;
+        }
+        
         $status = !! $message->isnonread;
+        $message->isnonread = !$status;
 
-        $message['PrivateMessage']['isnonread'] = !$status;
-
-        $this->save($message);
-
-        return $message;
+        return $this->save($message);
     }
 
     public function deleteMessage($id)

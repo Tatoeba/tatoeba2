@@ -315,10 +315,52 @@ class PrivateMessageTest extends TestCase {
         $this->assertEquals(1, $before - $after);
     }
 
-    public function testReadMessage_fails()
+    public function testReadMessage_failsBecauseNotAllowed()
     {
         CurrentUser::store(['id' => 1]);
         $pm = $this->PrivateMessage->readMessage(1);
         $this->assertNull($pm);
+    }
+
+    public function testToggleUnread_marksAsRead()
+    {
+        $userId = 3;
+        CurrentUser::store(['id' => $userId]);
+        $before = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $pm = $this->PrivateMessage->toggleUnread(1);
+        $after = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $this->assertEquals(1, $before - $after);
+    }
+
+    public function testToggleUnread_marksAsUnread()
+    {
+        $userId = 4;
+        CurrentUser::store(['id' => $userId]);
+        $before = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $pm = $this->PrivateMessage->toggleUnread(2);
+        $after = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $this->assertEquals(1, $after - $before);
+    }
+
+    public function testToggleUnread_failsBecauseNotAllowed()
+    {
+        $userId = 3;
+        CurrentUser::store(['id' => $userId]);
+        $before = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $pm = $this->PrivateMessage->toggleUnread(2);
+        $after = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $this->assertEquals($before, $after);
     }
 }
