@@ -22,6 +22,9 @@ use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
+use Cake\ORM\RulesChecker;
+use App\Model\CurrentUser;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallTable extends Table
 {
@@ -47,6 +50,17 @@ class WallTable extends Table
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('Tree');
+    }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->addDelete(function($message) {
+            $messageHasReplies = $this->hasMessageReplies($message->id);
+            $userHasPermission = $message->owner == CurrentUser::get('id') || CurrentUser::isAdmin();
+            return !$messageHasReplies && $userHasPermission;
+        }, 'isAllowedToDelete');
+        
+        return $rules;
     }
 
     public function validationDefault(Validator $validator)
@@ -299,4 +313,16 @@ class WallTable extends Table
             ->first();
         return $replyLftRght->lft != ($replyLftRght->rght - 1);
     }
+
+    public function deleteMessage($id)
+    {
+        try {
+            $message = $this->get($id);
+        } catch (RecordNotFoundException $e) {
+            return false;
+        }
+        
+        return $this->delete($message);
+    }
+        
 }

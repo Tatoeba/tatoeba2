@@ -117,10 +117,11 @@ class WallController extends AppController
     public function save()
     {
         if ($this->Auth->user('id')) {
+            $content = $this->request->getData('content');
             $session = $this->request->getSession();
             $lastMess = $session->read('hash_last_wall');
-            $thisMess =md5($this->request->data['Wall']['content']);
-
+            $thisMess = md5($content);
+            
             $session->write(
                 'hash_last_wall',
                 $thisMess
@@ -131,13 +132,13 @@ class WallController extends AppController
                 false,
                 "+1 month"
             );
-            if ($lastMess !=$thisMess ) {
+            if ($lastMess != $thisMess) {
                 $now = date("Y-m-d H:i:s");
-                $newPost = array(
+                $newPost = $this->Wall->newEntity([
                     'owner'   => $this->Auth->user('id'),
                     'date'    => $now,
-                    'content' => $this->request->data['Wall']['content'],
-                );
+                    'content' => $content,
+                ]);
                 // now save to database
                 $this->Wall->save($newPost);
             }
@@ -302,27 +303,7 @@ class WallController extends AppController
 
     public function delete_message($messageId)
     {
-        $messageId = Sanitize::paranoid($messageId);
-        if ($this->Wall->hasMessageReplies($messageId)) {
-            // if the message has replies then we can't delete it
-            // redirect to previous page
-            $this->redirect($this->referer());
-        }
-        $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
-        //we check a second time even if it has been checked while displaying
-        // or not the delete icon, but one can try to directly call delete_message
-        // so we need to recheck
-        $messagePermissions = $this->Permissions->getWallMessageOptions(
-            null,
-            $messageOwnerId,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
-        if ($messagePermissions['canDelete']) {
-            // second parameter "true" => delete in cascade
-            $this->Wall->delete($messageId, true);
-        }
-        // redirect to previous page
+        $deleted = $this->Wall->deleteMessage($messageId);
         $this->redirect($this->referer());
     }
 

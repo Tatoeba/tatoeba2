@@ -6,13 +6,15 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 class WallTest extends TestCase {
 
     public $fixtures = array(
         'app.walls',
         'app.wall_threads',
-        'app.users'
+        'app.users',
+        'app.users_languages',
     );
 
     public function setUp() {
@@ -176,5 +178,29 @@ class WallTest extends TestCase {
             ->toList();
         $threads = $this->Wall->getMessagesThreaded($rootMessages);
         $this->assertEquals(1, count($threads[0]->children));
+    }
+
+    public function testDeleteMessage_succeeds() {
+        CurrentUser::store(['id' => 1]);
+        $result = $this->Wall->deleteMessage(2);
+        $this->assertTrue($result);
+    }
+
+    public function testDeleteMessage_failsWrongId() {
+        CurrentUser::store(['id' => 1]);
+        $result = $this->Wall->deleteMessage(99999);
+        $this->assertFalse($result);
+    }
+
+    public function testDeleteMessage_failsBecauseHasReplies() {
+        CurrentUser::store(['id' => 1]);
+        $result = $this->Wall->deleteMessage(1);
+        $this->assertFalse($result);
+    }
+
+    public function testDeleteMessage_failsBecauseUserDoesntHavePermission() {
+        CurrentUser::store(['id' => 7]);
+        $result = $this->Wall->deleteMessage(2);
+        $this->assertFalse($result);
     }
 }

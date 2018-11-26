@@ -62,7 +62,7 @@ class NotificationListener implements EventListenerInterface {
     }
 
     public function sendWallReplyNotification($event) {
-        extract($event->data); // $post
+        $post = $event->getData('post'); // $post
         if (!$post['parent_id']) {
             return;
         }
