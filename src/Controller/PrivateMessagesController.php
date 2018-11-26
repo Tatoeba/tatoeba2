@@ -224,7 +224,7 @@ class PrivateMessagesController extends AppController
                 'folder' => $folder,
             );
 
-            $this->PrivateMessage->deleteAll($conditions, false);
+            $this->PrivateMessages->deleteAll($conditions);
 
             $this->Flash->set(
                 format(
