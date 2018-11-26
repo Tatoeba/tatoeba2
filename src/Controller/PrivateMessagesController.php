@@ -149,20 +149,6 @@ class PrivateMessagesController extends AppController
     }
 
     /**
-     * Sanitize ID, fetch and return message.
-     *
-     * @param  int $messageId ID for message.
-     *
-     * @return array
-     */
-    private function _getMessageById($messageId)
-    {
-        $messageId = Sanitize::paranoid($messageId);
-
-        return $this->PrivateMessage->getMessageWithId($messageId);
-    }
-
-    /**
      * Get menu for folder.
      *
      * @param string $folder    Folder name: 'Inbox', 'Sent', 'Trash'
@@ -335,21 +321,5 @@ class PrivateMessagesController extends AppController
         }
         $this->set('recipients', $recipients);
         $this->set('pm', $pm);
-    }
-
-    /**
-     * Return true if user can send message. New users can only send 5/24 hours.
-     *
-     * @param  int  $messagesToday Number of messages sent today.
-     *
-     * @return bool
-     */
-    private function _canSendMessage($messagesToday)
-    {
-        if (CurrentUser::isNewUser()) {
-            return $messagesToday < 5;
-        }
-
-        return true;
     }
 }

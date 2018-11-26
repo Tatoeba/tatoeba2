@@ -108,36 +108,6 @@ class PrivateMessagesTable extends Table
     }
 
     /**
-     * Get private messages by folder.
-     *
-     * @param string $folder Name of the folder we want the messages.
-     * @param int    $userId Id of the user.
-     *
-     * @return array
-     */
-    public function getMessages($folder, $userId)
-    {
-        return $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'PrivateMessage.user_id' => $userId,
-                    'PrivateMessage.folder' => $folder
-                ),
-                'order' => 'PrivateMessage.date DESC',
-                'contain' => array(
-                    'Sender' => array(
-                        'fields' => array('username', 'image'),
-                    ),
-                    'Recipient' => array(
-                        'fields' => array('username', 'image')
-                    )
-                )
-            )
-        );
-    }
-
-    /**
      * Return query for paginated messages in specified folder.
      *
      * @param  int $userId    ID for current user.
@@ -185,28 +155,6 @@ class PrivateMessagesTable extends Table
             'order' => ['date' => 'DESC'],
             'limit' => 20
         ];
-    }
-
-    /**
-     * Get message by id.
-     *
-     * @param int $messageId ID of the message to retrieve.
-     *
-     * @return array
-     */
-    public function getMessageWithId($messageId)
-    {
-        return $this->find(
-            'first',
-            array(
-                'conditions' => array('PrivateMessage.id' => $messageId),
-                'contain' => array(
-                    'Sender' => array(
-                        'fields' => array('username', 'image')
-                    )
-                )
-            )
-        );
     }
 
     /**
