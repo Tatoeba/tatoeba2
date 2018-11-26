@@ -105,12 +105,14 @@ class PrivateMessagesHelper extends AppHelper
 
             <div class="textarea">
             <?php
+            $content = $pm->content;
             if ($this->Messages->isReply($recipients, $pm->id, $pm->content)) {
-                $content = $this->formatReplyMessage($content, $recipients);
+                $content = $this->formatReplyMessage($pm->content, $recipients);
             }
             echo $this->Form->textarea('content', [
                 'lang' => '',
                 'dir' => 'auto',
+                'value' => $content
             ]);
             ?>
             </div>

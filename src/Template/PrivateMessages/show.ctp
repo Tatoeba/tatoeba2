@@ -42,11 +42,12 @@ echo $this->element('pmmenu');
     <div class="module">
     <?php
     echo $this->Languages->tagWithLang(
-        'h2', '', $messageTitle
+        'h2', '', $message->title
     );
     ?>
 
     <?php
+    $author = $message->author;
     $this->Messages->displayMessage(
         $message,
         $author,
@@ -57,12 +58,8 @@ echo $this->element('pmmenu');
     
     <a name="reply"></a>
     <?php
-    if ($folder == 'Inbox' && $author['type'] == 'human') {
-        $this->PrivateMessages->displayForm(
-            $author['username'], 
-            $messageTitle, 
-            $message['text']
-        );
+    if ($message->folder == 'Inbox' && $message->type == 'human') {
+        $this->PrivateMessages->displayForm($message, $author->username);
     }
     ?>
     

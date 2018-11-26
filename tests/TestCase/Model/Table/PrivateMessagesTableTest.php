@@ -292,4 +292,33 @@ class PrivateMessageTest extends TestCase {
         $pm = $this->PrivateMessage->restoreMessage(4);
         $this->assertFalse($pm);
     }
+
+    public function testReadMessage_succeeds()
+    {
+        CurrentUser::store(['id' => 3]);
+        $pm = $this->PrivateMessage->readMessage(1);
+        $expectedContent = 'There is a problem with sentence #123.';
+        $this->assertEquals($expectedContent, $pm->content);
+    }
+
+    public function testReadMessage_marksAsRead()
+    {
+        $userId = 3;
+        CurrentUser::store(['id' => $userId]);
+        $before = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $pm = $this->PrivateMessage->readMessage(1);
+        $after = $this->PrivateMessage->find()
+            ->where(['user_id' => $userId, 'isnonread' => 1])
+            ->count();
+        $this->assertEquals(1, $before - $after);
+    }
+
+    public function testReadMessage_fails()
+    {
+        CurrentUser::store(['id' => 1]);
+        $pm = $this->PrivateMessage->readMessage(1);
+        $this->assertNull($pm);
+    }
 }

@@ -136,21 +136,16 @@ class PrivateMessagesController extends AppController
         $this->helpers[] = 'Messages';
         $this->helpers[] = 'PrivateMessages';
 
-        $privateMessage = $this->_getMessageById($messageId);
+        $message = $this->PrivateMessages->readMessage($messageId);
 
-        $this->_authorizeUser($privateMessage);
+        if (!$message) {
+            return $this->redirect(['action' => 'folder', 'Inbox']);
+        }
 
-        $privateMessage = $this->PrivateMessage->markAsRead($privateMessage);
-
-        $message = $this->_getMessageFromPm($privateMessage['PrivateMessage']);
-        $folder = $privateMessage['PrivateMessage']['folder'];
-        $type = $privateMessage['Sender']['type'];
+        $menu = $this->_getMenu($message->folder, $messageId, $message->type);
 
         $this->set('message', $message);
-        $this->set('author', $privateMessage['Sender']);
-        $this->set('folder', $folder);
-        $this->set('messageMenu', $this->_getMenu($folder, $messageId, $type));
-        $this->set('title', $privateMessage['PrivateMessage']['title']);
+        $this->set('messageMenu', $menu);
     }
 
     /**
@@ -165,44 +160,6 @@ class PrivateMessagesController extends AppController
         $messageId = Sanitize::paranoid($messageId);
 
         return $this->PrivateMessage->getMessageWithId($messageId);
-    }
-
-    /**
-     * Redirect to Inbox is user tries to view a message that is not theirs.
-     *
-     * @param  array $message Private message.
-     *
-     * @return void
-     */
-    private function _authorizeUser($message)
-    {
-        $recipientId = $message['PrivateMessage']['recpt'];
-        $senderId = $message['PrivateMessage']['sender'];
-        $currentUserId = CurrentUser::get('id');
-
-        if ($recipientId != $currentUserId && $senderId != $currentUserId) {
-            $this->redirect(
-                array(
-                    'action' => 'folder',
-                    'Inbox'
-                )
-            );
-        }
-    }
-
-    /**
-     * Get message details from the private message array.
-     *
-     * @param array $privateMessage Private message array.
-     *
-     * @return array
-     */
-    private function _getMessageFromPm($privateMessage)
-    {
-        return [
-            'created' => $privateMessage['date'],
-            'text' => $privateMessage['content']
-        ];
     }
 
     /**

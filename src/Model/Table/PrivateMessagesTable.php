@@ -101,6 +101,12 @@ class PrivateMessagesTable extends Table
         }
     }
 
+    public function beforeFind($event, $query, $options, $primary)
+    {
+        // Making sure users can read only their own PM's.
+        $query->where(['user_id' => CurrentUser::get('id')]);
+    }
+
     /**
      * Get private messages by folder.
      *
@@ -420,8 +426,9 @@ class PrivateMessagesTable extends Table
      */
     public function markAsRead($message)
     {
-        if ($message['PrivateMessage']['isnonread'] == 1) {
-            $message = $this->toggleUnread($message);
+        if ($message->isnonread == 1) {
+            $message->isnonread = 0;
+            return $this->save($message);
         }
 
         return $message;
@@ -436,7 +443,7 @@ class PrivateMessagesTable extends Table
      */
     public function toggleUnread($message)
     {
-        $status = !! $message['PrivateMessage']['isnonread'];
+        $status = !! $message->isnonread;
 
         $message['PrivateMessage']['isnonread'] = !$status;
 
@@ -466,5 +473,24 @@ class PrivateMessagesTable extends Table
         $message = $this->get($id);
         $message->folder = $message->origin;
         return $this->save($message);
+    }
+
+    public function readMessage($id)
+    {
+        try {
+            $message = $this->get($id, [
+                'contain' => [
+                    'Authors' => [
+                        'fields' => ['username', 'image']
+                    ]
+                ]   
+            ]);
+        } catch (RecordNotFoundException $e) {
+            return null;
+        }
+        
+        $message = $this->markAsRead($message);
+
+        return $message;
     }
 }
