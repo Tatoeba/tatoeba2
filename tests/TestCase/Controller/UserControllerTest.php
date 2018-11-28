@@ -126,4 +126,27 @@ class UserControllerTest extends IntegrationTestCase
         $this->assertEquals($this->_controller->Auth->user('username'), $username);
         $this->assertEquals($this->_controller->Auth->user('email'), $newEmail);
     }
+
+    public function testSaveBasic_ignoresUnallowedFields() {
+        $username = 'contributor';
+        $newGroup = 1;
+        $this->logInAs($username);
+
+        $this->post('/eng/user/save_basic', [
+            'name' => 'Contributor',
+            'country_id' => 'CL',
+            'birthday' => [
+                'year' => '1999',
+                'month' => '01',
+                'day' => '01'
+            ],
+            'homepage' => '',
+            'description' => '',
+            'group_id' => $newGroup,
+        ]);
+
+        $users = TableRegistry::get('Users');
+        $user = $users->findByUsername($username)->first();
+        $this->assertNotEquals($newGroup, $user->group_id);
+    }
 }

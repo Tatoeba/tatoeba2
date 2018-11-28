@@ -326,8 +326,11 @@ class UserController extends AppController
         if (isset($data['birthday'])) {
             $data['birthday'] = $this->_generateBirthdayDate($data);
         }
-        
-        $this->Users->patchEntity($user, $data);
+
+        $allowedFields = [
+            'name', 'country_id', 'birthday', 'homepage', 'email', 'description'
+        ];
+        $this->Users->patchEntity($user, $data, ['fields' => $allowedFields]);
         $savedUser = $this->Users->save($user);        
 
         if ($savedUser) {
