@@ -326,28 +326,28 @@ class WallController extends AppController
      */
     public function messages_of_user($username)
     {
-        $userId = $this->Wall->User->getIdFromUsername($username);
+        $userId = $this->Wall->Users->getIdFromUsername($username);
 
-        $this->paginate = array(
-            "order" => "date DESC",
-            "limit" => 20,
-            "fields" => array (
-                "id", "date", "content", "hidden", "owner", "modified"
-            ),
-            "conditions" => array (
-                "owner" => $userId,
-            ),
-            "contain" => array (
-                "User" => array(
-                    'fields' => array("username", "image")
-                )
-            )
-        );
+        $this->paginate = [
+            'order' => ['date' => 'DESC'],
+            'limit' => 20,
+            'fields' => [
+                'id', 'date', 'content', 'hidden', 'owner', 'modified'
+            ],
+            'conditions' => [
+                'owner' => $userId,
+            ],
+            'contain' => [
+                'Users' => [
+                    'fields' => ['username', 'image']
+                ]
+            ]
+        ];
 
         $messages = $this->paginate();
 
-        $this->set("messages", $messages);
-        $this->set("username", $username);
+        $this->set('messages', $messages);
+        $this->set('username', $username);
     }
 
 

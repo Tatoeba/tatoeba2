@@ -64,8 +64,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     <?php
     foreach ($messages as $message) {
         $this->Wall->createThread(
-            $message['Wall'],
-            $message['User'],
+            $message,
+            $message->user,
             null,
             null
         );
