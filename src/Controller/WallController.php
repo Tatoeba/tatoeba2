@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Event\NotificationListener;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for the wall.
@@ -361,10 +362,9 @@ class WallController extends AppController
     public function hide_message($messageId)
     {
         if (CurrentUser::isAdmin()) {
-            $messageId = Sanitize::paranoid($messageId);
-
-            $this->Wall->id = $messageId;
-            $this->Wall->saveField('hidden', true);
+            $message = $this->Wall->get($messageId);
+            $message->hidden = true;
+            $this->Wall->save($message);
 
             // redirect to previous page
             $this->redirect($this->referer());
@@ -383,10 +383,9 @@ class WallController extends AppController
     public function unhide_message($messageId)
     {
         if (CurrentUser::isAdmin()) {
-            $messageId = Sanitize::paranoid($messageId);
-
-            $this->Wall->id = $messageId;
-            $this->Wall->saveField('hidden', false);
+            $message = $this->Wall->get($messageId);
+            $message->hidden = false;
+            $this->Wall->save($message);
 
             // redirect to previous page
             $this->redirect($this->referer());

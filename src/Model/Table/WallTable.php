@@ -75,7 +75,9 @@ class WallTable extends Table
     }
 
     public function beforeSave($event, $entity, $options = array()) {
-        if ($entity->date && !$entity->isDirty('hidden')) {
+        if ($entity->isDirty('hidden')) {
+            $entity->modified = $entity->getOriginal('modified');
+        } else if ($entity->date) {
             $entity->modified = $entity->date;
         }
     }
