@@ -117,9 +117,9 @@ class UserController extends AppController
 
         if (empty($userName)) {
             if (!CurrentUser::isMember()) {
-                $this->redirect(array('controller'=>'pages','action' => 'home'));
+                return $this->redirect(array('controller'=>'pages','action' => 'home'));
             } else {
-                $this->redirect(
+                return $this->redirect(
                     array('action' => 'profile',
                     CurrentUser::get('username'))
               );
@@ -131,7 +131,7 @@ class UserController extends AppController
                 __('No user with this username: {username}'),
                 array('username' => $userName)
             ));
-            $this->redirect(
+            return $this->redirect(
                 array('controller'=>'users',
                   'action' => 'all')
             );
@@ -231,7 +231,7 @@ class UserController extends AppController
             );
         }
 
-        $this->redirect($redirectURL);
+        return $this->redirect($redirectURL);
     }
 
     public function remove_image()
@@ -241,7 +241,7 @@ class UserController extends AppController
         $user->image = null;
         $this->Users->save($user);
 
-        $this->redirect(array('action' => 'profile', CurrentUser::get('username')));
+        return $this->redirect(array('action' => 'profile', CurrentUser::get('username')));
     }
 
     /**
@@ -335,7 +335,7 @@ class UserController extends AppController
             $this->Flash->set(
                 __('Profile saved.')
             );
-            $this->redirect(
+            return $this->redirect(
                 array(
                     'action' => 'profile',
                     CurrentUser::get('username')
@@ -348,7 +348,7 @@ class UserController extends AppController
                     true
                 )
             );
-            $this->redirect(
+            return $this->redirect(
                 array(
                     'controller' => 'user',
                     'action' => 'settings'
@@ -387,7 +387,7 @@ class UserController extends AppController
         $this->Flash->set(
             __("That email address already exists. Please try another.")
         );
-        $this->redirect(
+        return $this->redirect(
             array(
                     'controller' => 'user',
                     'action' => 'settings'
@@ -436,7 +436,7 @@ class UserController extends AppController
         $this->Flash->set(
             __("The entered birthday is an invalid date. Please try again.")
         );
-        $this->redirect(
+        return $this->redirect(
             array(
                     'controller' => 'user',
                     'action' => 'edit_profile'
@@ -486,7 +486,7 @@ class UserController extends AppController
             __("The entered birthday is incomplete. ".
                 "Accepted birthdays: full date, month and day, year and month, only year.", true)
         );
-        $this->redirect(
+        return $this->redirect(
             array(
                     'controller' => 'user',
                     'action' => 'edit_profile'
@@ -565,7 +565,7 @@ class UserController extends AppController
             $this->Flash->set($flashMsg);
         }
 
-        $this->redirect(array('action' => 'settings'));
+        return $this->redirect(array('action' => 'settings'));
     }
 
 
@@ -646,7 +646,7 @@ class UserController extends AppController
             $this->Flash->set($flashMsg);
         }
 
-        $this->redirect(array('action' => 'settings'));
+        return $this->redirect(array('action' => 'settings'));
     }
 
     /**
@@ -693,7 +693,7 @@ class UserController extends AppController
 
         $currentUserId = CurrentUser::get('id');
         if (empty($currentUserId)) {
-            $this->redirect('/');
+            return $this->redirect('/');
         }
 
         $userInfo = $this->Users->getInformationOfCurrentUser($currentUserId);
@@ -710,7 +710,7 @@ class UserController extends AppController
     {
         $currentUserId = CurrentUser::get('id');
         if (empty($currentUserId)) {
-            $this->redirect('/');
+            return $this->redirect('/');
         }
 
         $this->loadModel('Users');
