@@ -54,19 +54,25 @@ class WallHelper extends AppHelper
      * @return void
      */
 
-    public function displayAddMessageToWallForm()
+    public function displayAddMessageToWallForm($isReply = false)
     {
-        /* we use models=>wall to force use wall, instead cakephp would have
-           called "walls/save' which is not what we want
-        */
-        echo $this->Form->create(
-            '',
-            array(
-                "url" => array("controller" => "wall", "action" => "save"),
-                "class" => "message form"
-            )
-        );
+        if ($isReply) {
+            $formId = 'reply-form';
+            $action = 'save_inside';
+        } else {
+            $formId = 'WallSaveForm';
+            $action = 'save';
+        }       
+        
+        echo $this->Form->create('', [
+            'id' => $formId,
+            'url' => ['controller' => 'wall', 'action' => $action],
+            'class' => 'message form'
+        ]);
         ?>
+        <div class="hidden">
+        <?= $this->Form->input('replyTo', array('value' => '')); ?>
+        </div>
 
         <div class="header">
             <div class="info">
@@ -84,7 +90,6 @@ class WallHelper extends AppHelper
             <div class="textarea">
             <?php
             echo $this->Form->textarea('content', array('lang' => '', 'dir' => 'auto'));
-            echo $this->Form->hidden('replyTo', array('value'=>"" ));
             ?>
             </div>
 

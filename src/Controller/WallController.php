@@ -73,8 +73,6 @@ class WallController extends AppController
             'messages_of_user'
         );
 
-        $this->Security->unlockedActions = array('save_inside');
-
         $eventManager = $this->Wall->getEventManager();
         $eventManager->attach(new NotificationListener());
 
@@ -157,46 +155,16 @@ class WallController extends AppController
 
     public function save_inside()
     {
-        $idTemp = $this->Auth->user('id');
-        if (isset($this->request->data['content'])
-            && isset($this->request->data['replyTo'])
-            && !(empty($idTemp))
-        ) {
-            $content = Sanitize::stripScripts($this->request->data['content']);
-            $parentId = Sanitize::paranoid($this->request->data['replyTo']);
-            $now = date("Y-m-d H:i:s");
+        $data = $this->request->getData();
+        $userId = $this->Auth->user('id');
+        $content = $data['content'];
+        $parentId = $data['replyTo'];
 
-            $newPost = array(
-                'content'   => $content,
-                'owner'     => $idTemp,
-                'parent_id' => $parentId,
-                'date'      => $now,
-            );
-            // now save to database
-            if ($this->Wall->save($newPost)) {
-                $newMessageId = $this->Wall->id ;
-
-                $this->loadModel('User');
-                $user = $this->User->getInfoWallUser($idTemp);
-                $this->set("user", $user);
-
-                // we forge a message to be used in the view
-
-                $message['Wall']['content'] = $content;
-                $message['Wall']['owner'] = $idTemp;
-                $message['Wall']['parent_id'] = $parentId;
-                $message['Wall']['date'] = $now;
-                $message['Wall']['id'] = $newMessageId;
-
-                $message['User']['image'] = $user['User']['image'];
-                if (empty($message['User']['image'])) {
-                    $message['User']['image'] = 'unknown-avatar.png';
-                }
-
-                $message['User']['username'] = $user['User']['username'];
-
-                $this->set("message", $message);
-            }
+        // now save to database
+        $message = $this->Wall->saveReply($parentId, $content, $userId);
+        if ($message) {
+            $this->set('user', $message->user);
+            $this->set('message', $message);
         }
     }
 

@@ -211,7 +211,7 @@ class AppController extends Controller
     {
         // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->request->is('ajax')) {
-            $this->layout = null;
+            $this->viewBuilder()->setLayout('ajax');
         }
 
         // TODO

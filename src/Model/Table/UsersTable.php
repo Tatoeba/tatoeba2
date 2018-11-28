@@ -270,26 +270,6 @@ class UsersTable extends Table
             ->first();
     }
 
-
-    /**
-     * get all the information about a user needed by the Wall
-     *
-     * @param integer $userId User Indentifiant
-     *
-     * @return array
-     */
-    public function getInfoWallUser($userId)
-    {
-        return $this->find()
-            ->select([
-                'image',
-                'username',
-                'id'
-            ])
-            ->where(['id' => $userId])
-            ->first();
-    }
-
     /**
      * Get user latest sentences, logs, comments, wall messages.
      *

@@ -203,4 +203,22 @@ class WallTest extends TestCase {
         $result = $this->Wall->deleteMessage(2);
         $this->assertFalse($result);
     }
+
+    public function testSaveReply_succeeds() {
+        $content = 'I hope soon.';
+        $result = $this->Wall->saveReply(2, $content, 7);
+        $this->assertEquals(3, $result->id);
+    }
+
+    public function testSaveReply_failsBecauseNoParentId() {
+        $content = 'I hope soon.';
+        $result = $this->Wall->saveReply(null, $content, 7);
+        $this->assertNull($result);
+    }
+
+    public function testSaveReply_failsBecauseEmptyContent() {
+        $content = '   ';
+        $result = $this->Wall->saveReply(2, $content, 7);
+        $this->assertNull($result);
+    }
 }

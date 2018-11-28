@@ -27,24 +27,21 @@
  */
 
 
-if (isset($message)) {
-
-    $messageId = $message["Wall"]["id"];
-    $userName = $message['User']['username'];
-    $userImage = $message['User']['image'];
-    $messageContent =  $message['Wall']['content'];
+if ($message) {
+    $messageId = $message->id;
+    $userName = $user->username;
+    $userImage = $user->image;
+    $messageContent =  $message->content;
 
     echo '<div class="new thread" id="message_' . $messageId . '">'."\n";
 
     $this->Messages->displayMessage(
-        $message['Wall'],
-        $message['User'],
+        $message,
+        $user,
         null,
         null
     );
 
     echo '</div>';
-
 }
-
 ?>

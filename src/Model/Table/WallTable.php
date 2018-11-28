@@ -324,5 +324,33 @@ class WallTable extends Table
         
         return $this->delete($message);
     }
+
+    public function saveReply($parentId, $content, $userId)
+    {
+        if (!$parentId) {
+            return null;
+        }
         
+        $now = date('Y-m-d H:i:s');
+        $data = $this->newEntity([
+            'content'   => $content,
+            'owner'     => $userId,
+            'parent_id' => $parentId,
+            'date'      => $now,
+        ]);
+
+        $savedMessage = $this->save($data);
+
+        if ($savedMessage) {
+            return $this->get($savedMessage->id, [
+                'contain' => [
+                    'Users' => [
+                        'fields' => ['id', 'username', 'image']
+                    ]
+                ]
+            ]);
+        } else {
+            return null;
+        }
+    }
 }

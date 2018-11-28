@@ -40,25 +40,24 @@ class NotificationListener implements EventListenerInterface {
 
     private function _getMessageForMail($parentMessageId)
     {
-        $Wall = ClassRegistry::init('Wall');
-        return $Wall->find(
-            'first',
-            array(
-                'order' => 'Wall.id',
-                'fields'=> array('Wall.id'),
-                'conditions' => array('Wall.id' => $parentMessageId),
-                'contain'    => array(
-                    'User' => array (
-                        'fields' => array(
-                            'User.username',
-                            'User.id',
-                            'User.email',
-                            'User.send_notifications',
-                        )
-                    )
-                )
-            )
-        );
+        $Wall = TableRegistry::getTableLocator()->get('Wall');
+        return $Wall->find()
+            ->where([
+                'Wall.id' => $parentMessageId
+            ])
+            ->order(['Wall.id'])
+            ->select(['Wall.id'])
+            ->contain([
+                'Users' => [
+                    'fields' => [
+                        'username',
+                        'id',
+                        'email',
+                        'send_notifications',
+                    ]
+                ]
+            ])
+            ->first();
     }
 
     public function sendWallReplyNotification($event) {

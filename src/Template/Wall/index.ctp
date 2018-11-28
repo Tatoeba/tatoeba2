@@ -133,8 +133,10 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
         <?php
         // leave a comment part
         if ($isAuthenticated) {
-            echo '<div id="sendMessageForm">'."\n";
             echo $this->Wall->displayAddMessageToWallForm();
+
+            echo '<div style="display:none">'."\n";
+            echo $this->Wall->displayAddMessageToWallForm(true);
             echo '</div>'."\n";
         }
         ?>

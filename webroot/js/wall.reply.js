@@ -43,13 +43,23 @@ $(document).ready(function() {
         $("#replyFormDiv_" + previousReplyFormInMessageID).hide();
 
         var rootUrl = get_tatoeba_root_url();
+        var data = {
+            'content': messageContent,
+            'replyTo': previousReplyFormInMessageID,
+        };
+        var csrfHeader = $('[name="_csrfToken"]').val();
+        $('input[name^="_Token"]').each(function() {
+            data[$(this).attr('name')] = $(this).val();
+        });
 
-        $.post(
-            rootUrl + "/wall/save_inside", {
-                "content": messageContent,
-                "replyTo": previousReplyFormInMessageID
+        $.ajax({
+            type: 'post',
+            url: rootUrl + '/wall/save_inside', 
+            data: data,
+            headers: {
+                'X-CSRF-Token': csrfHeader
             },
-            function(data) {
+            success: function(data) {
                 $("#session_expired").remove();
                 $("#messageBody_" + previousReplyFormInMessageID).append(data);
                 // replace "close"  by "reply"
@@ -60,8 +70,8 @@ $(document).ready(function() {
                 $("#loader_" + previousReplyFormInMessageID).hide();
                 $("#replyFormDiv_" + previousReplyFormInMessageID).show();
                 previousReplyFormInMessageID = -1;
-            }, "html"
-        );
+            }
+        });
     }
 
     /*
@@ -103,7 +113,7 @@ $(document).ready(function() {
             // i know that's a bit "hacky" to retrieve the send message form
             // but that way we're sure to always have a coherent form, and
             // we only need to change the helper
-            var sendMessageForm = $('#WallSaveForm').clone();
+            var sendMessageForm = $('#reply-form').clone();
 
             // change the form in order to make it unique
             sendMessageForm.attr("id", "replyForm_" + currentMessageId);
