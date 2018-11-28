@@ -285,8 +285,6 @@ class WallController extends AppController
      */
     public function show_message($messageId)
     {
-        $messageId = Sanitize::paranoid($messageId);
-
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
@@ -296,8 +294,6 @@ class WallController extends AppController
            is virtually impossible, as the ordering can change between the page
            generation and the user click on the link
         */
-
-
         $thread = $this->Permissions->getWallMessagesOptions(
             $thread,
             $userId,

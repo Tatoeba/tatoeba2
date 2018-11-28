@@ -71,7 +71,7 @@ $this->Html->script('wall.show_and_hide_replies.js', ['block' => true]);
         // but i agree it's my own :(
         if ($isAuthenticated) {
             echo '<div id="sendMessageForm">'."\n";
-            echo $this->Wall->displayAddMessageToWallForm();
+            echo $this->Wall->displayAddMessageToWallForm(true);
             echo '</div>'."\n";
         }
         ?>
@@ -81,8 +81,8 @@ $this->Html->script('wall.show_and_hide_replies.js', ['block' => true]);
         <div class="wall">
             <?php
             $this->Wall->createThread(
-                $message['Wall'],
-                $message['User'],
+                $message,
+                $message->user,
                 $message['Permissions'],
                 $message['children']
             );

@@ -79,8 +79,8 @@ class WallTest extends TestCase {
     }
 
     private function _assertThreadDate($postId, $expectedDate) {
-        $rootId = $this->Wall->getRootMessageIdOfReply($postId);
-        $wallThread = $this->Wall->WallThreads->get($rootId);
+        $root = $this->Wall->getRootMessageOfReply($postId);
+        $wallThread = $this->Wall->WallThreads->get($root->id);
         $threadDate = $wallThread->last_message_date;
         $this->assertEquals($expectedDate, $threadDate);
     }
@@ -220,5 +220,21 @@ class WallTest extends TestCase {
         $content = '   ';
         $result = $this->Wall->saveReply(2, $content, 7);
         $this->assertNull($result);
+    }
+
+    public function testGetRootMessageOfReply() {
+        $expected = ['id' => 1, 'lft' => 1, 'rght' => 4];
+        $result = $this->Wall->getRootMessageOfReply(2)->toArray();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testGetWholeThreadContaining_succeeds() {
+        $result = $this->Wall->getWholeThreadContaining(2);
+        $this->assertEquals(1, count($result[0]->children));
+    }
+
+    public function testGetWholeThreadContaining_failsBecauseWrongId() {
+        $result = $this->Wall->getWholeThreadContaining(999999);
+        $this->assertEquals([], $result);
     }
 }

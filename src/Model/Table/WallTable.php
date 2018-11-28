@@ -91,9 +91,9 @@ class WallTable extends Table
     public function afterSave($event, $entity, $options = array())
     {
         if ($entity->isNew() && $entity->date) {
-            $rootId = $this->getRootMessageIdOfReply($entity->id);
+            $root = $this->getRootMessageOfReply($entity->id);
             $newThreadData = $this->WallThreads->newEntity([
-                'id' => $rootId,
+                'id' => $root->id,
                 'last_message_date' => $entity->date,
             ]);
             $this->WallThreads->save($newThreadData);
@@ -233,9 +233,14 @@ class WallTable extends Table
      * @return int Return the root id.
      */
 
-    public function getRootMessageIdOfReply($replyId)
+    public function getRootMessageOfReply($replyId)
     {
-        $replyLftRght = $this->_getLftRghtOfMessage($replyId);
+        try {
+            $replyLftRght = $this->get($replyId, ['fields' => ['lft', 'rght']]);
+        } catch (RecordNotFoundException $e) {
+            return null;
+        }
+
         $replyLft = $replyLftRght->lft;
         $replyRght = $replyLftRght->rght;
         $result = $this->find()
@@ -244,19 +249,15 @@ class WallTable extends Table
                 'lft <=' => $replyLft,
                 'rght >=' => $replyRght
             ])
-            ->select('id')
+            ->select(['id', 'lft', 'rght'])
             ->first();
 
-        return $result->id;
+        return $result;
     }
 
-
-
-
-
     /**
-     * retriev a nested array with all the messages of the thread
-     * which contain the message id given as parameter
+     * Retrieve a nested array with all the messages of the thread
+     * which contain the message id given as parameter.
      *
      * @param int $messageId Id of the message.
      *
@@ -264,38 +265,23 @@ class WallTable extends Table
      */
     public function getWholeThreadContaining($messageId)
     {
-        $rootId = $this->getRootMessageIdOfReply($messageId);
-        $rootLftRght = $this->_getLftRghtOfMessage($rootId);
-        $lftRghtArray = array(
-            $rootLftRght['lft'],
-            $rootLftRght['rght']
-        );
+        $rootMsg = $this->getRootMessageOfReply($messageId); 
+        if (!$rootMsg) {
+            return [];
+        }
 
         // execute the request
         $result = $this->find('threaded')
-            ->orderAsc('Wall.date')
-            ->where(['Wall.lft BETWEEN ? AND ?' => $lftRghtArray])
+            ->order(['Wall.date'])
+            ->where(function($q) use ($rootMsg) {
+                return $q->between('Wall.lft', $rootMsg->lft, $rootMsg->rght);
+            })
             ->contain(['Users' => function ($q) {
                 return $q->select(['id', 'image', 'username']);
             }])
-            ->all();
+            ->toList();
+        
         return $result;
-
-    }
-
-    /**
-     * retrive the left and right field (use for hierarchical data in mysql)
-     * of a message
-     *
-     * @param int $messageId The message id.
-     *
-     * @return array Array with 'lft'  and 'rght' fields.
-     */
-    private function _getLftRghtOfMessage($messageId)
-    {
-        $replyLftRght = $this->get($messageId, ['fields' => ['lft', 'rght']]);
-
-        return $replyLftRght;
     }
 
     /**
