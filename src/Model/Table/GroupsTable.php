@@ -24,38 +24,20 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
 
 
-/**
- * Model for groups.
- *
- * @category Groups
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class Group extends AppModel
+class GroupsTable extends Table
 {
-    public $actsAs = array('Acl' => array('requester'),'Containable');
-    public $hasMany = array(
-        'User' => array(
-            'className' => 'User',
-            'foreignKey' => 'group_id',
-            'dependent' => false,
-        )
-    );
-
-    /**
-     * Parent node. Potentially useful for ACL... but I'm not sure.
-     *
-     * @return void
-     */
-    public function parentNode()
+    public function initialize(array $config)
     {
-        return null;
+        parent::initialize($config);
+
+        $this->hasMany('Users');
+
+        $this->addBehavior('Timestamp');
+        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
     }
 }
