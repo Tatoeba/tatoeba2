@@ -60,6 +60,7 @@ if ($currentJob) {
         array('class' => 'warning')
     );
     echo $this->Form->create();
-    echo $this->Form->end(__('Switch license to CC0 1.0'));
+    echo $this->Form->submit(__('Switch license to CC0 1.0'));
+    echo $this->Form->end();
 }
 

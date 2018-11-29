@@ -19,14 +19,11 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\CurrentUser;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 
 class LicensingController extends AppController {
-
-    public $uses = array(
-        'Queue.QueuedTask',
-    );
 
     public function beforeFilter(Event $event)
     {
@@ -40,12 +37,14 @@ class LicensingController extends AppController {
     public function switch_my_sentences() {
         $currentUserId = CurrentUser::get('id');
 
-        $currentJob = $this->QueuedTask->find('first', array(
-            'conditions' => array(
+        $this->loadModel('Queue.QueuedTasks');
+        $currentJob = $this->QueuedTasks->find()
+            ->where([
                 'jobtype' => 'SwitchSentencesLicense',
                 'group' => $currentUserId,
-            )
-        ));
+            ])
+            ->first();
+
         if ($this->request->is('post')) {
             if ($currentJob) {
                 $this->Flash->set(__(
@@ -58,14 +57,14 @@ class LicensingController extends AppController {
                     'UIlang' => Configure::read('Config.language'),
                     'sendReport' => true,
                 );
-                $currentJob = $this->QueuedTask->createJob(
+                $currentJob = $this->QueuedTasks->createJob(
                     'SwitchSentencesLicense',
                     $options,
                     null,
                     $currentUserId
                 );
                 if ($currentJob) {
-                    $currentJob = $this->QueuedTask->read();
+                    $currentJob = $this->QueuedTasks->read();
                 }
             }
         }
