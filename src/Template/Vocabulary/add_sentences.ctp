@@ -26,7 +26,7 @@
  */
 ?>
 <?php
-$this->Html->script('/js/vocabulary/add-sentences.ctrl.js', false);
+$this->Html->script('/js/vocabulary/add-sentences.ctrl.js', ['block' => true]);
 
 $title = __('Vocabulary that needs sentences');
 

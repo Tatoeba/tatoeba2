@@ -26,7 +26,7 @@
  */
 ?>
 <?php
-$this->Html->script('/js/vocabulary/of.ctrl.js', false);
+$this->Html->script('/js/vocabulary/of.ctrl.js', ['block' => true]);
 
 $count = $this->Paginator->counter('%count%');
 $title = format(

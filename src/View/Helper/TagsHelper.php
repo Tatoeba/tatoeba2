@@ -58,7 +58,7 @@ class TagsHelper extends AppHelper
      */
     public function displayTagsModule($tagsArray, $sentenceId = null, $sentenceLang = null)
     {
-        $this->Html->script(JS_PATH . 'autocompletion.js', false);
+        $this->Html->script(JS_PATH . 'autocompletion.js', ['block' => true]);
         ?>
 
         <div class="module">
@@ -182,7 +182,7 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
-        $this->Html->script(JS_PATH . 'tags.add.js', false);
+        $this->Html->script(JS_PATH . 'tags.add.js', ['block' => true]);
 
         echo $this->Form->create(
             'Tag',
