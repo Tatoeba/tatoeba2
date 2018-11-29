@@ -44,7 +44,7 @@ use App\Model\Entity\Language;
  */
 class LanguagesHelper extends AppHelper
 {
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'Url');
 
     /* Memoization of languages code and their localized names */
     private $__languages_alone;

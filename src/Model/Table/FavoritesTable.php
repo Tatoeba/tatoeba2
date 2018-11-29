@@ -136,15 +136,12 @@ class FavoritesTable extends Table
      */
     public function isSentenceFavoritedByUser($sentenceId, $userId)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'favorite_id' => $sentenceId,
-                    'user_id' => $userId
-                )
-            )
-        );
+        $result = $this->find()
+            ->where([
+                'favorite_id' => $sentenceId,
+                'user_id' => $userId
+            ])
+            ->first();
         return !empty($result);
     }
 }

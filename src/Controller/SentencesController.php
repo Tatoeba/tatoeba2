@@ -27,6 +27,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\CurrentUser;
+use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use Cake\Core\Configure;
 use Cake\Event\Event;
@@ -162,11 +164,8 @@ class SentencesController extends AppController
         $this->helpers[] = 'Members';
         $this->helpers[] = 'Audio';
 
-        $id = Sanitize::paranoid($id);
-
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->request->getSession()->read('random_lang_selected');
-            $id = Sanitize::paranoid($id);
         }
 
         if (is_numeric($id)) {
@@ -175,11 +174,11 @@ class SentencesController extends AppController
             // Whether the sentence still exists or not, we retrieve the
             // contributions and the comments because we don't want them
             // to disappear just because the sentence was deleted.
-            $contributions = $this->Sentence->getContributionsRelatedToSentence(
+            $contributions = $this->Sentences->getContributionsRelatedToSentence(
                 $id
             );
 
-            $comments = $this->Sentence->getCommentsForSentence($id);
+            $comments = $this->Sentences->getCommentsForSentence($id);
             $commentsPermissions = $this->Permissions->getCommentsOptions($comments);
 
             $this->set('sentenceComments', $comments);
@@ -187,7 +186,7 @@ class SentencesController extends AppController
             $this->set('contributions', $contributions);
 
             // And now we retrieve the sentence
-            $sentence = $this->Sentence->getSentenceWithId($id);
+            $sentence = $this->Sentences->getSentenceWithId($id);
 
             $canComment = CurrentUser::isMember()
                 && (!empty($contributions) || !empty($sentence));
@@ -195,10 +194,11 @@ class SentencesController extends AppController
 
             // this way "next" and "previous"
             $lang = $this->request->getSession()->read('random_lang_selected');
-            $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
+            $neighbors = $this->Sentences->getNeighborsSentenceIds($id, $lang);
             $this->set('nextSentence', $neighbors['next']);
             $this->set('prevSentence', $neighbors['prev']);
 
+            $this->loadModel('UsersSentences');
             $correctnessArray = $this->UsersSentences->getCorrectnessForSentence($id);
             $this->set('correctnessArray', $correctnessArray);
 
@@ -210,7 +210,8 @@ class SentencesController extends AppController
                 return;
             }
 
-            $tagsArray = $this->Sentence->getAllTagsOnSentence($id);
+            $tagsArray = $this->Sentences->getAllTagsOnSentence($id);
+            $this->loadModel('SentencesSentencesLists');
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
 
             $this->set('sentence', $sentence);
@@ -228,7 +229,7 @@ class SentencesController extends AppController
                 $lang = null;
             }
 
-            $randomId = $this->Sentence->getRandomId($lang);
+            $randomId = $this->Sentences->getRandomId($lang);
 
             if (is_null($randomId)) {
                 $searchDisabled = !Configure::read('Search.enabled');

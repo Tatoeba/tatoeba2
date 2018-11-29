@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use App\Model\CurrentUser;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Utility\Hash;
@@ -36,12 +37,8 @@ class SentencesSentencesListsTable extends Table
     public function initialize(array $config)
     {
         $this->addBehavior('Timestamp');
-    }
-
-    public function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
         if (Configure::read('Search.enabled')) {
-            $this->Behaviors->attach('Sphinx');
+            $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
     }
 
@@ -76,22 +73,19 @@ class SentencesSentencesListsTable extends Table
 
     public function getListsForSentence($sentenceId)
     {
-        return $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'sentence_id' => $sentenceId,
-                    'user_id' => CurrentUser::get('id')
-                ),
-                'fields' => array('created'),
-                'contain' => array(
-                    'SentencesList' => array(
-                        'fields' => array('id', 'name', 'visibility')
-                    )
-                ),
-                'order' => 'visibility, created DESC'
-            )
-        );
+        return $this->find()
+            ->where([
+                'sentence_id' => $sentenceId,
+                'user_id' => CurrentUser::get('id')
+            ])
+            ->select(['created'])
+            ->contain([
+                'SentencesLists' => [
+                    'fields' => ['id', 'name', 'visibility']
+                ]
+            ])
+            ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
+            ->all();
     }
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {

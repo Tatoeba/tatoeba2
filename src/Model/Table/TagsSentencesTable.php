@@ -36,13 +36,6 @@ class TagsSentencesTable extends Table
         'Tag',
         );
 
-    public function __construct($id = false, $table = null, $ds = null) {
-        parent::__construct($id, $table, $ds);
-        if (Configure::read('Search.enabled')) {
-            $this->Behaviors->attach('Sphinx');
-        }
-    }
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('added_time', 'string');
@@ -53,6 +46,10 @@ class TagsSentencesTable extends Table
     {
         $this->belongsTo('Users');
         $this->belongsTo('Tags');
+
+        if (Configure::read('Search.enabled')) {
+            $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
+        }
     }
 
     protected function _findCount($state, $query, $results = array()) {

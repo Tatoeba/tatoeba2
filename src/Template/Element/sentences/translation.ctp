@@ -8,9 +8,9 @@ if ($isExtra) {
 $translationUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
-    $translation['id']
+    $translation->id
 ));
-$notReliable = $translation['correctness'] == -1;
+$notReliable = $translation->correctness == -1;
 ?>
 <div layout="row" layout-align="start center" <?= $showExtra ?>
      class="translation <?= $notReliable ? 'not-reliable' : '' ?>">
@@ -18,7 +18,7 @@ $notReliable = $translation['correctness'] == -1;
     <div class="lang">
         <?
         echo $this->Languages->icon(
-            $translation['lang'],
+            $translation->lang,
             array(
                 'width' => 30,
                 'height' => 20
@@ -27,8 +27,8 @@ $notReliable = $translation['correctness'] == -1;
         ?>
     </div>
     <div class="text" flex
-         dir="<?= LanguagesLib::getLanguageDirection($translation['lang']) ?>">
-        <?= h($translation['text']) ?>
+         dir="<?= LanguagesLib::getLanguageDirection($translation->lang) ?>">
+        <?= h($translation->text) ?>
     </div>
     <? if ($notReliable) { ?>
         <md-icon class="md-warn">warning</md-icon>

@@ -106,7 +106,6 @@ class SentencesTable extends Table
 
     public function initialize(array $config)
     {
-        $this->belongsToMany('Translations');
         $this->belongsTo('Users');
         $this->belongsTo('Languages');
         $this->belongsTo('TagsSentences');
@@ -117,13 +116,23 @@ class SentencesTable extends Table
             'dependent' => true,
             'joinTable' => 'tags_sentences'
         ]);
+        $this->belongsToMany('Translations', [
+            'className' => 'Sentences',
+            'joinTable' => 'sentences_translations',
+            'foreignKey' => 'sentence_id',
+            'targetForeignKey' => 'translation_id',
+        ]);
         $this->hasMany('Contributions');
         $this->hasMany('Transcriptions');
         $this->hasMany('Audios');
-        $this->hasMany('Translations');
         $this->hasMany('Links');
         $this->hasMany('ReindexFlags');
         $this->hasMany('UsersSentences');
+        $this->hasMany('Favorites_users', [
+            'classname'  => 'favorites',
+            'foreignKey' => 'favorite_id'
+        ]);
+        $this->hasMany('SentenceComments');
         
         $this->addBehavior('Hashable');
         $this->addBehavior('Timestamp');
@@ -679,31 +688,31 @@ class SentencesTable extends Table
             'Favorites_users' => array(
                 'fields' => array()
             ),
-            'User' => array(
+            'Users' => array(
                 'fields' => array('id', 'username', 'group_id', 'level')
             ),
-            'SentencesList' => array(
-                'fields' => array('id')
+            'SentencesLists' => array(
+                'fields' => array('id', 'SentencesSentencesLists.sentence_id')
             ),
-            'Transcription'   => array(
-                'User' => array('fields' => array('username')),
+            'Transcriptions'   => array(
+                'Users' => array('fields' => array('username')),
             ),
-            'Translation' => array(
-                'Transcription' => array(
-                    'User' => array('fields' => array('username')),
+            'Translations' => array(
+                'Transcriptions' => array(
+                    'Users' => array('fields' => array('username')),
                 ),
-                'Audio' => array(
-                    'User' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'external'),
+                'Audios' => array(
+                    'Users' => array('fields' => array('username')),
+                    'fields' => array('user_id', 'external', 'sentence_id'),
                 ),
             ),
-            'Audio' => array(
-                'User' => array('fields' => array(
+            'Audios' => array(
+                'Users' => array('fields' => array(
                     'username',
                     'audio_license',
                     'audio_attribution_url',
                 )),
-                'fields' => array('user_id', 'external'),
+                'fields' => array('user_id', 'external', 'sentence_id'),
             ),
         );
     }
@@ -714,10 +723,10 @@ class SentencesTable extends Table
      */
     public function minimalContain() {
         return array(
-            'User' => array(
+            'Users' => array(
                 'fields' => array('id', 'username', 'group_id', 'level')
             ),
-            'Translation' => array(),
+            'Translations' => array(),
         );
     }
 
@@ -766,14 +775,11 @@ class SentencesTable extends Table
      */
     public function getSentenceWithId($id)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array('Sentence.id' => $id),
-                'contain' => $this->contain(),
-                'fields' => $this->fields(),
-            )
-        );
+        $result = $this->find()
+            ->where(['Sentences.id' => $id])
+            ->contain($this->contain())
+            ->select($this->fields())
+            ->first();
 
         if ($result == null) {
             return;
@@ -833,24 +839,25 @@ class SentencesTable extends Table
      */
     public function getNeighborsSentenceIds($sourceId, $lang = null)
     {
-        $conditions = array();
+        $find = $this->find()->select('id');
+
         if (!empty($lang) && $lang != 'und') {
-            $conditions["Sentence.lang"] = $lang;
+            $find = $find->where(['lang' => $lang]);
         }
 
-        $this->id = $sourceId;
-        $neighborsCake = $this->find(
-            'neighbors',
-            array(
-                'fields' => array("id"),
-                'conditions' => $conditions,
-            )
-        );
+        $prev = $find
+            ->orderDesc('id')
+            ->where(['id <' => $sourceId])
+            ->first();
+        $next = $find
+            ->orderAsc('id', true)
+            ->where(['id >' => $sourceId], [], true)
+            ->first();
 
-        $neighbors = array(
-            "prev" => $neighborsCake['prev']['Sentence']['id'],
-            "next" => $neighborsCake['next']['Sentence']['id'],
-        );
+        $neighbors = [
+            'prev' => $prev->id,
+            'next' => $next->id,
+        ];
 
         return $neighbors;
     }
@@ -1008,7 +1015,7 @@ class SentencesTable extends Table
      */
     public function getContributionsRelatedToSentence($id)
     {
-        return $this->Contribution->getContributionsRelatedToSentence($id);
+        return $this->Contributions->getContributionsRelatedToSentence($id);
 
     }
 
@@ -1021,7 +1028,7 @@ class SentencesTable extends Table
      */
     public function getCommentsForSentence($id)
     {
-        return $this->SentenceComment->getCommentsForSentence($id);
+        return $this->SentenceComments->getCommentsForSentence($id);
     }
 
 

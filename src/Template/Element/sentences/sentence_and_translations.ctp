@@ -11,31 +11,31 @@ $displayedTranslations = 0;
 $showExtra = '';
 $numExtra = count($directTranslations) + count($indirectTranslations) - $maxDisplayed;
 $sentenceLink = $this->Html->link(
-    '#'.$sentence['id'],
+    '#'.$sentence->id,
     array(
         'controller' => 'sentences',
         'action' => 'show',
-        $sentence['id']
+        $sentence->id
     )
 );
 $userLink = $this->Html->link(
-    $user['username'],
+    $user->username,
     array(
         'controller' => 'user',
         'action' => 'profile',
-        $user['username']
+        $user->username
     )
 );
 $sentenceUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
-    $sentence['id']
+    $sentence->id
 ));
-$notReliable = $sentence['correctness'] == -1;
+$notReliable = $sentence->correctness == -1;
 
-$sentenceText = h($sentence['text']);
-if (isset($sentence['highlight'])) {
-    $highlight = $sentence['highlight'];
+$sentenceText = h($sentence->text);
+if (isset($sentence->highlight)) {
+    $highlight = $sentence->highlight;
     $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);
 }
 
@@ -58,7 +58,7 @@ if (isset($sentence['highlight'])) {
             <div class="lang">
                 <?
                 echo $this->Languages->icon(
-                    $sentence['lang'],
+                    $sentence->lang,
                     array(
                         'width' => 30,
                         'height' => 20
@@ -67,7 +67,7 @@ if (isset($sentence['highlight'])) {
                 ?>
             </div>
             <div class="text" flex
-                 dir="<?= LanguagesLib::getLanguageDirection($sentence['lang']) ?>">
+                 dir="<?= LanguagesLib::getLanguageDirection($sentence->lang) ?>">
                 <?= $sentenceText ?>
             </div>
             <? if ($notReliable) { ?>
@@ -91,7 +91,7 @@ if (isset($sentence['highlight'])) {
                 echo $this->element(
                     'sentences/translation',
                     array(
-                        'sentenceId' => $sentence['id'],
+                        'sentenceId' => $sentence->id,
                         'translation' => $translation,
                         'isExtra' => $isExtra
                     )
@@ -114,7 +114,7 @@ if (isset($sentence['highlight'])) {
                 echo $this->element(
                     'sentences/translation',
                     array(
-                        'sentenceId' => $sentence['id'],
+                        'sentenceId' => $sentence->id,
                         'translation' => $translation,
                         'isExtra' => $isExtra
                     )
