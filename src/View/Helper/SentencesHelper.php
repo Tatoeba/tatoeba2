@@ -26,6 +26,7 @@
  */
 namespace App\View\Helper;
 
+use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 
@@ -75,8 +76,8 @@ class SentencesHelper extends AppHelper
     /**
      * Diplays a sentence and its translations.
      *
-     * @param array $sentenceData   Sentence, transcriptions, translations,
-                                    owner and audio recordings.
+     * @param array $sentence   Sentence, transcriptions, translations,
+                                owner and audio recordings.
      * @param bool  $options              Array of options
                                           withAudio: set it to false to hide audio icon
      *                                    langFilter: the language $indirectTranslations are filtered in, if any.
@@ -84,15 +85,10 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displaySentencesGroup(
-        $sentenceData,
+        $sentence,
         $options = array(),
         $duplicate = false
     ) {
-        if (isset($sentenceData['Sentence'])) {
-            $sentence = $sentenceData['Sentence'];
-        } else {
-            $sentence = $sentenceData;
-        }
         $options = array_merge(
             array(
                 'withAudio' => true,
@@ -102,7 +98,7 @@ class SentencesHelper extends AppHelper
         );
         extract($options);
 
-        $id = $sentence['id'];
+        $id = $sentence->id;
 
         ?>
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
@@ -123,7 +119,7 @@ class SentencesHelper extends AppHelper
         }
 
         $this->displayMainSentence(
-            $sentenceData,
+            $sentence,
             $withAudio,
             $langFilter
         );
@@ -138,7 +134,7 @@ class SentencesHelper extends AppHelper
         // Form to add a new translation
         $this->_displayNewTranslationForm($id);
 
-        $translations = $sentenceData['Translation'];
+        $translations = $sentence->translations;
         $this->displayTranslations($id, $translations, $withAudio, $langFilter);
 
         ?>
@@ -149,15 +145,7 @@ class SentencesHelper extends AppHelper
     public function segregateTranslations($translations) {
         $result = array(0 => array(), 1 => array());
         foreach ($translations as $translation) {
-            if (isset($translation['Translation'])) {
-                // direct Translation::find() call case, as opposed to
-                // find('all', array('contain' => array('Translation')))
-                foreach ($translation['Translation'] as $k => $v) {
-                    $translation[$k] = $v;
-                }
-                unset($translation['Translation']);
-            }
-            $type = $translation['type'];
+            $type = 0;// TODO get indirect translations $translation->type;
             if (array_key_exists($type, $result)) {
                 $result[$type][] = $translation;
             }
@@ -267,19 +255,19 @@ class SentencesHelper extends AppHelper
     /**
      * Displays group of sentences with only text, flag and audio button.
      *
-     * @param array $sentenceData  Sentence, transcriptions, translations, audios, owner.
+     * @param array $sentence  Sentence, transcriptions, translations, audios, owner.
      *
      * @return void
      */
-    public function displaySimpleSentencesGroup($sentenceData) {
+    public function displaySimpleSentencesGroup($sentence) {
         $withAudio = true;
-        $id = $sentenceData['Sentence']['id'];
+        $id = $sentence->id;
         ?>
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
 
         <?php
         $this->displayGenericSentence(
-            $sentenceData,
+            $sentence,
             'mainSentence',
             $withAudio
         );
@@ -288,7 +276,7 @@ class SentencesHelper extends AppHelper
         <div id="_<?php echo $id; ?>_translations" class="translations">
         <?php
         // direct translations
-        foreach ($sentenceData['Translation'] as $translation) {
+        foreach ($sentence->translations as $translation) {
             $this->displayGenericSentence(
                 $translation,
                 'directTranslation',
@@ -443,31 +431,23 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displayMainSentence(
-        $sentenceData,
+        $sentence,
         $withAudio,
         $langFilter = 'und'
     ) {
-        if (isset($sentenceData['Sentence'])) {
-            $sentence = $sentenceData['Sentence'];
-        } else {
-            $sentence = $sentenceData;
-        }
-        $user = $sentenceData['User'];
-        $sentenceId = $sentence['id'];
-        $canTranslate = $sentence['correctness'] >= 0;
-        $hasAudio = isset($sentenceData['Audio']) && count($sentenceData['Audio']);
-        $script = null;
-        if (isset($sentence['script'])) {
-            $script = $sentence['script'];
-        }
+        $user = $sentence->user;
+        $sentenceId = $sentence->id;
+        $canTranslate = $sentence->correctness >= 0;
+        $hasAudio = isset($sentence->audios) && count($sentence->audios);
+        $script = $sentence->script;
         $this->Menu->displayMenu(
             $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio
         );
 
-        $ownerName = $user ? $user['username'] : null;
+        $ownerName = $user ? $user->username : null;
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
-            $sentenceData,
+            $sentence,
             'mainSentence',
             $withAudio,
             null,
@@ -487,7 +467,7 @@ class SentencesHelper extends AppHelper
      *  - the language flag
      *  - the audio button
      *
-     * @param array  $sentenceData    Sentence, transcriptions, owner, audios.
+     * @param array  $sentence        Sentence, transcriptions, owner, audios.
      * @param string $type            Type of sentence. Can be 'mainSentence',
      *                                'directTranslation' or 'indirectTranslation'.
      * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
@@ -498,20 +478,15 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displayGenericSentence(
-        $sentenceData,
+        $sentence,
         $type,
         $withAudio = true,
         $parentId = null,
         $isEditable = false,
         $langFilter = 'und'
     ) {
-        if (isset($sentenceData['Sentence'])) {
-            $sentence = $sentenceData['Sentence'];
-        } else {
-            $sentence = $sentenceData;
-        }
-        $sentenceId = $sentence['id'];
-        $sentenceLang = $sentence['lang'];
+        $sentenceId = $sentence->id;
+        $sentenceLang = $sentence->lang;
         $isFavoritePage = ($this->request->params['controller'] == 'favorites' && $this->request->params['action'] == 'of_user');
         $classes = array('sentence', $type);
         if ($isEditable && $type == 'directTranslation') {
@@ -555,21 +530,21 @@ class SentencesHelper extends AppHelper
         // Copy
         if (CurrentUser::getSetting('copy_button')) {
             echo '<div class="copy column">';
-            $this->SentenceButtons->displayCopyButton($sentence['text']);
+            $this->SentenceButtons->displayCopyButton($sentence->text);
             echo '</div>';
         }
 
         // Sentence
-        $hasAudio = isset($sentenceData['Audio']) && count($sentenceData['Audio']);
+        $hasAudio = isset($sentence->audios) && count($sentence->audios);
         $canEdit = $isEditable && !$hasAudio;
         $this->displaySentenceContent($sentence, $canEdit);
         echo '</div>';
 
         // audio
-        if ($withAudio && isset($sentenceData['Audio'])) {
+        if ($withAudio && isset($sentence->audios)) {
             echo '<div class="audio column">';
             $this->SentenceButtons->audioButton(
-                $sentenceId, $sentenceLang, $sentenceData['Audio']
+                $sentenceId, $sentenceLang, $sentence->audios
             );
             echo '</div>';
         }
@@ -581,15 +556,15 @@ class SentencesHelper extends AppHelper
         }
 
         // Transcriptions
-        if (isset($sentenceData['Transcription'])
-            && count($sentenceData['Transcription'])) {
+        if (isset($sentence->transcriptions)
+            && count($sentence->transcriptions)) {
             echo $this->Html->div('transcriptions', null, array(
-               'data-sentence-id' => $sentence['id'],
+               'data-sentence-id' => $sentence->id,
             ));
             $this->Transcriptions->displayTranscriptions(
-                $sentenceData['Transcription'],
-                $sentence['lang'],
-                $sentence['user_id']
+                $sentence->transcriptions,
+                $sentence->lang,
+                $sentence->user_id
             );
             echo $this->Html->tag('/div');
         }
@@ -665,20 +640,17 @@ class SentencesHelper extends AppHelper
         $isEditable
     ) {
         echo $this->Html->div('sentenceContent', null, array(
-            'data-sentence-id' => $sentence['id'],
+            'data-sentence-id' => $sentence->id,
         ));
 
-        $script = null;
-        if (isset($sentence['script'])) {
-            $script = $sentence['script'];
-        }
+        $script = $sentence->script;
         $highlight = null;
-        if (isset($sentence['highlight'])) {
-            $highlight = $sentence['highlight'];
+        if (isset($sentence->highlight)) {
+            $highlight = $sentence->highlight;
         }
         $this->displaySentenceText(
-            $sentence['id'], $sentence['text'], $isEditable,
-            $sentence['lang'], $script, $sentence['correctness'],
+            $sentence->id, $sentence->text, $isEditable,
+            $sentence->lang, $script, $sentence->correctness,
             $highlight
         );
 
@@ -756,7 +728,7 @@ class SentencesHelper extends AppHelper
      */
     public function javascriptForAJAXSentencesGroup($inline = true) {
         if($inline) {
-            $options = array('inline' => true);
+            $options = [];
         } else {
             $options = array('block' => 'scriptBottom');
         }
@@ -780,7 +752,7 @@ class SentencesHelper extends AppHelper
 
     public function javascriptForAJAXTranslationsGroup($inline = true) {
         if($inline) {
-            $options = array('inline' => true);
+            $options = [];
         } else {
             $options = array('block' => 'scriptBottom');
         }
@@ -804,7 +776,7 @@ class SentencesHelper extends AppHelper
      */
     public function displaySGroup($sentence, $translations)
     {
-        $id = $sentence['id'];
+        $id = $sentence->id;
         ?>
 
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
@@ -814,7 +786,7 @@ class SentencesHelper extends AppHelper
             <div class="translations">
                 <?php
                 foreach ($translations as $translation) {
-                    if ($translation['type'] == 0) {
+                    if ($translation->type == 0) {
                         $this->displayS($translation, 'directTranslation');
                     }
                 }
@@ -841,7 +813,7 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displayS($sentence, $type) {
-        $lang = $sentence['lang'];
+        $lang = $sentence->lang;
 
         echo $this->Html->div(
             "sentence " . $type,
@@ -853,27 +825,27 @@ class SentencesHelper extends AppHelper
         );
 
         $this->SentenceButtons->displayLanguageFlag(
-            $sentence['id'], $sentence['lang'], false
+            $sentence->id, $sentence->lang, false
         );
 
         if ($type == 'mainSentence') {
             echo $this->Html->link(
-                $sentence['text'],
+                $sentence->text,
                 array(
                     'controller' => 'sentences',
                     'action' => 'show',
-                    $sentence['id']
+                    $sentence->id
                 )
             );
         } else {
-            echo $this->Html->div(null, $sentence['text']);
+            echo $this->Html->div(null, $sentence->text);
         }
 
         echo $this->Html->tag('/div');
     }
 
     public function originText($sentence) {
-        $baseId = $sentence['Sentence']['based_on_id'];
+        $baseId = $sentence->based_on_id;
         if (!is_null($baseId) && $baseId == 0) {
             $msg = __('This sentence is original and '
                      .'was not derived from translation.');
