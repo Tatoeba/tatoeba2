@@ -65,8 +65,8 @@ $langArray = $this->Languages->onlyLanguagesArray();
         ); ?>
         </div>
 
-        <?php echo $this->Form->end('import',
-           array('label' => __d('admin', 'import'))); ?>
+        <?php echo $this->Form->submit(__d('admin', 'import')); ?>
+        <?php echo $this->Form->end(); ?>
     </div>
     
     
@@ -108,8 +108,8 @@ $langArray = $this->Languages->onlyLanguagesArray();
         ); ?>
         </div>
         
-        <?php echo $this->Form->end('import',
-        array('label' => __d('admin', 'import'))); ?>
+        <?php echo $this->Form->submit(__d('admin', 'import')); ?>
+        <?php echo $this->Form->end(); ?>
     </div>
     
     

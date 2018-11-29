@@ -83,7 +83,8 @@ if (CurrentUser::isAdmin()) {
             "value" => $ownerName
         )
     );
-    echo $this->Form->end(__d('admin', 'Submit'));
+    echo $this->Form->submit(__d('admin', 'Submit'));
+    echo $this->Form->end();
 }
 ?>
 </div>

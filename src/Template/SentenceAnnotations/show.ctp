@@ -103,7 +103,8 @@
             );
 
             // save button
-            echo $this->Form->end('save');
+            echo $this->Form->submit('save');
+            echo $this->Form->end();
         }
     }
     ?>

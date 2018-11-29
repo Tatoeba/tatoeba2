@@ -88,7 +88,8 @@ class NavigationHelper extends AppHelper
                     "dir" => "ltr",
                 )
             );
-            echo $this->Form->end(__('OK'));
+            echo $this->Form->submit(__('OK'));
+            echo $this->Form->end();
             ?>
 
             <div class="languageSelect">

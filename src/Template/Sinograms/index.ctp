@@ -77,7 +77,8 @@ $this->Html->script(JS_PATH . "sinograms.search.js", false);
             "toExplode",
             array("label" => __("characters to explode"))
         );
-        echo $this->Form->end(__("Explode"));
+        echo $this->Form->submit(__("Explode"));
+        echo $this->Form->end();
         ?>
         </div>
         <div id="explosionResults">

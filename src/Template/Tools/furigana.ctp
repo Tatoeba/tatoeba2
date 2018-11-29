@@ -79,6 +79,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         );
         ?>
         </p>
-        <?php echo $this->Form->end(__('Autogenerate furigana')); ?>
+        <?php echo $this->Form->submit(__('Autogenerate furigana')); ?>
+        <?php echo $this->Form->end(); ?>
     </div>
 </div>

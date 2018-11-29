@@ -96,7 +96,8 @@ if (!isset($lastText)) {
         </p>
         <p>
         </p>
-        <?php echo $this->Form->end(__('Convert')); ?>
+        <?php echo $this->Form->submit(__('Convert')); ?>
+        <?php echo $this->Form->end(); ?>
     </div>
 
 </div>

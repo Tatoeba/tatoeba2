@@ -57,7 +57,8 @@ if ($canEdit) {
         $options['empty'] = true;
     }
     echo $this->Form->input('license', $options);
-    echo $this->Form->end(__d('admin', 'Change'));
+    echo $this->Form->submit(__d('admin', 'Change'));
+    echo $this->Form->end();
 }
 ?>
 </div>
