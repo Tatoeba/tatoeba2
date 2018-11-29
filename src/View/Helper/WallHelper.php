@@ -44,7 +44,7 @@ class WallHelper extends AppHelper
 {
 
     public $helpers = array(
-        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages', 'Languages'
+        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages', 'Languages', 'Url'
     );
 
 
@@ -123,17 +123,14 @@ class WallHelper extends AppHelper
         ?>
         <div class="editWallMessage" >
         <?php
-        echo $this->Form->create(
-            "Wall",
-            array(
-                "url" => array(
-                    "controller" => "wall",
-                    "action" => "edit",
-                    $messageId
-                ),
-                "class" => "message form"
-            )
-        );
+        echo $this->Form->create($message, [
+            'url' => [
+                'controller' => 'wall',
+                'action' => 'edit',
+                $messageId
+            ],
+            'class' => 'message form'
+        ]);
 
         echo $this->Form->hidden('id');
 
@@ -146,13 +143,11 @@ class WallHelper extends AppHelper
             </div>
 
             <?php
-            $cancelUrl = $this->Url->build(
-                array(
-                    "action" => "show_message",
-                    $message['Wall']['id'],
-                    "#" => "message_".$message['Wall']['id']
-                )
-            );
+            $cancelUrl = $this->Url->build([
+                'action' => 'show_message',
+                $message->id,
+                "#" => "message_".$message->id
+            ]);
             ?>
             <div layout="row" layout-align="end center" layout-padding>
                 <md-button class="md-raised" href="<?= $cancelUrl; ?>">

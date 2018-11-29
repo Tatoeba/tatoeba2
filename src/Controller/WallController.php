@@ -30,6 +30,7 @@ use App\Controller\AppController;
 use App\Event\NotificationListener;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Controller for the wall.
@@ -178,71 +179,41 @@ class WallController extends AppController
      */
     public function edit($messageId)
     {
-        $messageId = Sanitize::paranoid($messageId);
-        $this->Wall->id = $messageId;
-
-        if (empty($this->request->data)) {
-            $message = $this->Wall->read();
-            $this->request->data = $message;
-
-            $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
-            $messagePermissions = $this->Permissions->getWallMessageOptions(
-                null,
-                $messageOwnerId,
-                CurrentUser::get('id'),
-                CurrentUser::get('group_id')
-            );
-
-            if ($messagePermissions['canEdit'] == false) {
-                $this->_cannotEdit();
-            } else {
-                $this->set("message", $message);
-            }
-        } else {
-            //$this->request->data is not empty, so go save
-            $messageId = $this->request->data['Wall']['id'];
-            $this->Wall->id = $messageId;
-
-            $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
-            $messagePermissions = $this->Permissions->getWallMessageOptions(
-                null,
-                $messageOwnerId,
-                CurrentUser::get('id'),
-                CurrentUser::get('group_id')
-            );
-            if ($messagePermissions['canEdit'] == false) {
-                $this->_cannotEdit();
-            } else {
-                $editedPost = array(
-                    'id' => $messageId,
-                    'content' => trim($this->request->data['Wall']['content']),
-                );
-
-                if ($this->Wall->save($editedPost)) {
-                    $this->Flash->set(
-                        __("Message saved.")
-                    );
-                    $this->redirect(
-                        array(
-                            "action"=>"index",
-                            $messageId,
-                            "#" => "message_$messageId"
-                        )
-                    );
-                } else {
-                    $firstValidationErrorMessage = reset($this->Wall->validationErrors)[0];
-                    $this->Flash->set($firstValidationErrorMessage);
-                    $this->redirect(
-                        array(
-                            "action"=>"edit",
-                            $messageId
-                        )
-                    );
-                }
-            }
-
+        try {
+            $message = $this->Wall->get($messageId);
+        } catch(RecordNotFoundException $e) {
+            $this->redirect($this->referer());
         }
 
+        $messagePermissions = $this->Permissions->getWallMessageOptions(
+            null,
+            $message->owner,
+            CurrentUser::get('id'),
+            CurrentUser::get('group_id')
+        );
+        if ($messagePermissions['canEdit'] == false) {
+            $this->_cannotEdit();
+        }
+        
+        if ($this->request->is('put')) {
+            $data = $this->request->getData();
+            $this->Wall->patchEntity($message, $data);
+            $savedMessage = $this->Wall->save($message);
+            if ($savedMessage) {
+                $this->Flash->set(__('Message saved.'));
+                $this->redirect([
+                    'action' => 'show_message',
+                    $messageId,
+                    '#' => "message_$messageId"
+                ]);
+            } else if ($message->getErrors()) {
+                $firstValidationErrorMessage = reset($message->getErrors())[0];
+                $this->Flash->set($firstValidationErrorMessage);
+                $this->redirect(['action' => 'edit', $messageId]);
+            }
+        } else { 
+            $this->set('message', $message);
+        }
     }
 
     private function _cannotEdit() {
@@ -258,7 +229,7 @@ class WallController extends AppController
             '<p>'.$noPermission.'</p>'.
             '<p>'.$contactAdmin.'</p>'
         );
-        $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('action' => 'index'));
     }
 
 

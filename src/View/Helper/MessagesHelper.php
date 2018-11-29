@@ -169,7 +169,7 @@ class MessagesHelper extends AppHelper
             <div class="info">
             <?php
             $user = CurrentUser::get('User');
-            $this->displayAvatar($user['User']);
+            $this->displayAvatar($user);
             ?>
             </div>
             <div class="title">
