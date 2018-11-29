@@ -47,6 +47,8 @@ class PrivateMessagesController extends AppController
 
     public function beforeFilter(Event $event)
     {
+        $this->getEventManager()->on(new NotificationListener());
+        
         return parent::beforeFilter($event);
     }
 

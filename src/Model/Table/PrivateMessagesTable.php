@@ -51,8 +51,6 @@ class PrivateMessagesTable extends Table
             'className' => 'Users',
             'foreignKey' => 'sender'
         ]);
-
-        $this->getEventManager()->on(new NotificationListener());
     }
 
     public function buildRules(RulesChecker $rules)
