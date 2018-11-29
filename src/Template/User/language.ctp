@@ -71,8 +71,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     'language_dropdown', 
                     array(
                         'name' => 'language_code',
-                        'languages' => $languagesList,
-                        'placeholder' => __('Select a language')
+                        'languages' => $languagesList
                     )
                 );
             } else {
