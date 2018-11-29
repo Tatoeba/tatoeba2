@@ -18,6 +18,7 @@
  */
 namespace App\View\Helper;
 
+use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 
 
