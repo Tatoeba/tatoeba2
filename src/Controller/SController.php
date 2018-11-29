@@ -49,8 +49,6 @@ class SController extends AppController
         'Languages',
     );
 
-    public $uses = array('Sentence');
-
     /**
      * Before filter.
      *
@@ -74,12 +72,12 @@ class SController extends AppController
      */
     public function s($id = null)
     {
-        $id = Sanitize::paranoid($id);
+        $this->loadModel('Sentences');
 
         if (is_numeric($id)) {
 
             // And now we retrieve the sentence
-            $sentence = $this->Sentence->getSentenceWithId($id);
+            $sentence = $this->Sentences->getSentenceWithId($id);
 
             // If no sentence, we don't need to go further.
             // We just set some variable so we don't get warnings.
@@ -92,7 +90,7 @@ class SController extends AppController
 
             $this->set('sentence', $sentence);
         } else {
-            $max = $this->Sentence->getMaxId();
+            $max = $this->Sentences->getMaxId();
             $randId = rand(1, $max);
 
             return $this->redirect(

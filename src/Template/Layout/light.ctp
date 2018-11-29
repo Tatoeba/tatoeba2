@@ -52,7 +52,7 @@
         if($this->request->getSession()->check('Message.flash')){
             $this->Flash->render();
         }
-        echo $content_for_layout;
+        echo $this->fetch('content');
         ?>
         </div>
     </body>
