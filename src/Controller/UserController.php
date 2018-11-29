@@ -552,7 +552,8 @@ class UserController extends AppController
                 $data['settings']['lang']
             );
             $user = $this->Users->get($currentUserId);
-            $this->Users->patchEntity($user, $data);
+            $allowedFields = ['send_notifications', 'settings'];
+            $this->Users->patchEntity($user, $data, ['fields' => $allowedFields]);
             $savedUser = $this->Users->save($user);
             if ($savedUser) {
                 $this->Auth->setUser($savedUser);

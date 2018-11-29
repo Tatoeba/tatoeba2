@@ -149,4 +149,23 @@ class UserControllerTest extends IntegrationTestCase
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newGroup, $user->group_id);
     }
+
+    public function testSaveSettings_ignoresUnallowedFields() {
+        $username = 'contributor';
+        $newGroup = 1;
+        $this->logInAs($username);
+
+        $this->post('/eng/user/save_settings', [
+            'send_notifications' => '1',
+            'settings' => [
+                'is_public' => '1',
+                'lang' => 'fra',
+            ],
+            'group_id' => $newGroup,
+        ]);
+
+        $users = TableRegistry::get('Users');
+        $user = $users->findByUsername($username)->first();
+        $this->assertNotEquals($newGroup, $user->group_id);
+    }
 }
