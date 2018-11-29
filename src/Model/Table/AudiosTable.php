@@ -48,11 +48,6 @@ class AudiosTable extends Table
 
     public $actsAs = array('Containable');
 
-    public $belongsTo = array(
-        'Sentence' => array('type' => 'inner'),
-        'User',
-    );
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('external', 'json');
@@ -63,7 +58,10 @@ class AudiosTable extends Table
 
     public function initialize(array $config)
     {
-        $this->belongsTo('Sentences');
+        $this->belongsTo('Sentences', [
+            'joinType' => 'inner',
+        ]);
+        $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
