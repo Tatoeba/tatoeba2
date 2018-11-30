@@ -89,7 +89,8 @@ class RememberMeComponent extends Component
                 'password' => $cookie['password'],
             ])->first();
 
-        if (!empty($user) && $this->Auth->login($user['User'])) {
+        if ($user) {
+            $this->Auth->setUser($user->toArray());
             $this->Cookie->write($this->_cookieName, $cookie, true, $this->_period);
         } else {
             $this->delete();

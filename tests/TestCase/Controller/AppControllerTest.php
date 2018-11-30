@@ -1,186 +1,121 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Component\Cookie;
-use App\Controller\App;
 use Cake\Core\Configure;
+use Cake\TestSuite\IntegrationTestCase;
 
-class AppControllerTest extends ControllerTestCase {
+class AppControllerTest extends IntegrationTestCase {
 	public $fixtures = array(
-		'app.sentences',
 		'app.users',
-		'app.users_languages'
+		'app.users_languages',
+		'app.private_messages',
 	);
 
-	function startTest($method) {
-		Configure::write('UI.languages', array(
-			array('cmn', 'Hans', '中文', array('chi')),
-			array('eng', null, 'English'),
-			array('jbo', null, 'Lojban'),
-			array('jpn', null, '日本語'),
-			array('pt_BR', 'BR', 'Português (BR)'),
-		));
-		Configure::write('App.base', ''); // prevent using the filesystem path as base
-		$mockedComponents = array();
-		if (strpos($method, "testBeforeFilter_") !== false) {
-			$mockedComponents = array('Cookie' => array('read', 'write'));
-		}
-		$this->controller = $this->generate('App', array(
-			'methods' => array('redirect', 'bar', 'index'),
-			'components' => $mockedComponents,
-		));
-		$this->controller->Auth->allowedActions = array('bar', 'index');
-	}
+	function setUp() {
+		parent::setUp();
 
-	function tearDown() {
-		$this->controller->Auth->Session->destroy();
-		unset($this->controller);
+		Configure::write('UI.languages', [
+			['cmn', 'Hans', '中文', ['chi']],
+			['eng', null, 'English'],
+			['jbo', null, 'Lojban'],
+			['jpn', null, '日本語'],
+			['pt_BR', 'BR', 'Português (BR)'],
+		]);
+		Configure::write('Security.cookieSalt', 'nCwygQoRC5EgFHDRNkdWS6hps74V3y9Z');
 	}
 
 	function setInterfaceLanguageCookie($lang = null) {
-		$this->controller->Cookie
-			->expects($this->any())
-			->method('read')
-			->will($this->returnCallback(
-				function () use ($lang) {
-					$args = func_get_args();
-					if (isset($args[0]) && $args[0] == 'interfaceLanguage') {
-						return $lang;
-					}
-				}
-			));
+		$this->cookie('CakeCookie', ['interfaceLanguage' => $lang]);
 	}
 
-	function expectLanguageCookie($lang) {
-		$this->controller->Cookie
-			->expects($this->once())
-			->method('write')
-			->with('interfaceLanguage', $lang, false, '+1 month');
-	}
-
-	function expectNoLanguageCookie() {
-		$this->controller->Cookie
-			->expects($this->never())
-			->method('write');
+	function assertInterfaceLanguageCookie($lang) {
+		$this->assertCookie(json_encode(['interfaceLanguage' => $lang]), 'CakeCookie');
 	}
 
 	function testBeforeFilter_redirectsToEnglishByDefault() {
-		$this->expectNoLanguageCookie();
-		$this->controller
-			->expects($this->once())
-			->method('redirect')
-			->with('/eng/foo/bar');
-
-		$this->testAction('/foo/bar', array('method' => 'GET'));
+		$this->get('/about');
+		$this->assertRedirect('/eng/about');
 	}
 
 	function testBeforeFilter_redirectsToEnglishByDefaultWithIndexAction() {
-		$this->expectNoLanguageCookie();
-		$this->controller
-			->expects($this->once())
-			->method('redirect')
-			->with('/eng/foo/index');
-
-		$this->testAction('/foo/index', array('method' => 'GET'));
+		$this->get('/wall/index');
+		$this->assertRedirect('/eng/wall/index');
 	}
 
 	function testBeforeFilter_redirectsToLanguageInCookie() {
-		$this->expectNoLanguageCookie();
 		$this->setInterfaceLanguageCookie('jpn');
-		$this->controller
-			->expects($this->once())
-			->method('redirect')
-			->with('/jpn/foo/bar');
-
-		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
+		$this->get('/eng/about');
+		$this->assertRedirect('/jpn/about');
 	}
 
 	function testBeforeFilter_redirectsToLanguageInCookieWithoutLanguageInUrl() {
-		$this->expectNoLanguageCookie();
 		$this->setInterfaceLanguageCookie('jpn');
-		$this->controller
-			->expects($this->once())
-			->method('redirect')
-			->with('/jpn/foo/bar');
-
-		$this->testAction('/foo/bar', array('method' => 'GET'));
+		$this->get('/about');
+		$this->assertRedirect('/jpn/about');
 	}
 
 	function testBeforeFilter_doesntRedirectIfLanguageInCookieEqualsLanguageInUrl() {
-		$this->expectNoLanguageCookie();
 		$this->setInterfaceLanguageCookie('eng');
-		$this->controller
-			->expects($this->never())
-			->method('redirect');
-
-		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
+		$this->get('/eng/about');
+		$this->assertNoRedirect();
 	}
 
 	function testBeforeFilter_doesntRedirectIfEnglishWithoutCookie() {
-		$this->expectLanguageCookie('eng');
-		$this->controller
-			->expects($this->never())
-			->method('redirect');
-
-		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
+		$this->get('/eng/about');
+		$this->assertNoRedirect();
+		$this->assertInterfaceLanguageCookie('eng');
 	}
 
 	function testBeforeFilter_redirectsFromOldAliasWithLangInUrl() {
-		$this->expectNoLanguageCookie();
-		$this->controller
-			->expects($this->once())
-			->method('redirect')
-			->with('/cmn/foo/bar');
-
-		$this->testAction('/chi/foo/bar', array('method' => 'GET'));
+		$this->get('/chi/about');
+		$this->assertRedirect('/cmn/about');
 	}
 
 	function testBeforeFilter_redirectsFromOldAliasWithCookie() {
-		$this->expectNoLanguageCookie();
 		$this->setInterfaceLanguageCookie('chi');
-		$this->controller
-			->expects($this->once())
-			->method('redirect')
-			->with('/chi/foo/bar');
-
-		$this->testAction('/foo/bar', array('method' => 'GET'));
+		$this->get('/about');
+		$this->assertRedirect('/chi/about');
 	}
 
 	function testBeforeFilter_redirectsFromOldAliasWithCookieWithLangInUrl() {
-		$this->expectNoLanguageCookie();
 		$this->setInterfaceLanguageCookie('chi');
-		$this->controller
-			->expects($this->once())
-			->method('redirect')
-			->with('/cmn/foo/bar');
-
-		$this->testAction('/chi/foo/bar', array('method' => 'GET'));
+		$this->get('/chi/about');
+		$this->assertRedirect('/cmn/about');
 	}
 
 	function testBeforeFilter_updatesCookieFromOldAlias() {
-		$this->expectLanguageCookie('cmn');
 		$this->setInterfaceLanguageCookie('chi');
-		$this->controller
-			->expects($this->never())
-			->method('redirect');
+		$this->get('/cmn/about');
+		$this->assertNoRedirect();
+		$this->assertInterfaceLanguageCookie('cmn');
+	}
 
-		$this->testAction('/cmn/foo/bar', array('method' => 'GET'));
+	function setRememberMeCookie($username, $password) {
+		$this->cookieEncrypted(
+			'User',
+			compact('username', 'password'),
+			'aes',
+			Configure::read('Security.cookieSalt')
+		);
 	}
 
 	function testRememberMeAutomaticallyLogsInUser() {
-		$this->controller->RememberMe->remember('contributor', '0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l6');
-		$this->assertFalse($this->controller->Auth->loggedIn());
+		$this->setRememberMeCookie(
+			'contributor',
+			'0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l6'
+		);
+		$this->get('/eng/about');
 
-		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
-
-		$this->assertTrue($this->controller->Auth->loggedIn());
+		$this->assertSession(4, 'Auth.User.id');
 	}
 
 	function testRememberMeFailsIfIncorrectPassword() {
-		$this->controller->RememberMe->remember('contributor', '0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l4');
+		$this->setRememberMeCookie(
+			'contributor',
+			'0 $2a$10$Dn8/JT1xViULUEBCR5HiquLCXXB4/K3N2Nzc0PRZ.bfbmoApO55l4'
+		);
+		$this->get('/eng/about');
 
-		$this->testAction('/eng/foo/bar', array('method' => 'GET'));
-
-		$this->assertFalse($this->controller->Auth->loggedIn());
+		$this->assertSession(null, 'Auth.User.id');
 	}
 }
