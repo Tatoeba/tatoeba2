@@ -28,10 +28,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class WallTable extends Table
 {
-    public $name = 'Wall';
-    public $useTable = 'wall';
-    public $actsAs = array('Tree','Containable');
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('content', 'text');
@@ -114,38 +110,6 @@ class WallTable extends Table
         }
     }
 
-    /**
-     * Get all the message which start a thread
-     *
-     * @return array of all messages which start a thread
-     */
-
-    public function getFirstMessages()
-    {
-        return  $this->find()
-            ->orderDesc('date')
-            ->where(['parent_id' => 0])
-            ->contain(['Users' => function ($q) {
-                return $q->select(['id', 'username', 'image']);
-            }])
-            ->all();
-    }
-
-    /**
-     * get all Messages
-     *
-     * @return array of all messages
-     */
-
-    public function getMessages()
-    {
-        return $this->find()
-            ->order('id')
-            ->contain(['Users' => function ($q) {
-                return $q->select(['id', 'username', 'image']);
-            }])
-            ->all();
-    }
 
     /**
      * retrieve all the thread of the given root message
@@ -213,23 +177,6 @@ class WallTable extends Table
             ->all();
     }
 
-    /**
-     * Retrieve the id of one message's owner
-     *
-     * @param int $messageId Id of the message
-     *
-     * @return int The owner id
-     */
-
-    public function getOwnerIdOfMessage($messageId)
-    {
-        $result = $this->find()
-            ->select(['owner'])
-            ->where(['id' => $messageId])
-            ->first();
-
-        return $result->owner;
-    }
 
     /**
      * Return of the id of the first of the thread of the given
