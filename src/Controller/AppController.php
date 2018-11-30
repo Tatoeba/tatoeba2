@@ -282,6 +282,9 @@ class AppController extends Controller
 
     private function redirectPaginationToLastPage($object, $settings)
     {
+        if ($object instanceof \Cake\Datasource\QueryInterface) {
+            $object = $object->getRepository()->getAlias();
+        }
         $paging = $this->Paginator->getPagingParams();
         $lastPage = $paging[$object]['pageCount'];
         $currentUrl = $this->request->getRequestTarget();
