@@ -116,8 +116,8 @@ class WallTest extends TestCase {
 
     public function testSave_editExistingPostDoesNotUpdateThreadDate() {
         $postId = 2;
-        $post = $this->Wall->newEntity([
-            'id' => $postId,
+        $post = $this->Wall->get($postId);
+        $this->Wall->patchEntity($post, [
             'content' => 'Today!',
         ]);
 
