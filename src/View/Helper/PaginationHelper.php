@@ -40,7 +40,7 @@ use App\View\Helper\AppHelper;
  */
 class PaginationHelper extends AppHelper
 {
-    public $helpers = array('Paginator');
+    public $helpers = array('Paginator', 'Html');
 
     /**
      * Wraps Paginator->sort with default order
@@ -127,41 +127,25 @@ class PaginationHelper extends AppHelper
         );
         $numbersOptions = array_merge($numbersOptions, $extraNumbersOptions);
         ?>
-        <div class="paging">
-
+        <ul class="paging">
            <?php
-
-            echo $this->Paginator->prev(
-                'keyboard_arrow_left',
+            $prevIcon = $this->Html->tag('md-icon', 'keyboard_arrow_left', [
                 // @translators Appears on “previous page” links
                 // mouseover. Keyboard shortcut is between brackets.
-                array('title' => __('Previous page [Ctrl+←]'),
-                  'tag' => 'md-icon'),
-                null,
-                array('class' => 'material-icons disabled',
-                  'tag' => 'md-icon')
-            );
-            ?>
+                'title' => __('Previous page [Ctrl+←]'),
+            ]);
+            echo $this->Paginator->prev($prevIcon, ['escape' => false]);
+            
+            echo $this->Paginator->numbers($numbersOptions);
 
-            <span class="numbers">
-            <?php echo $this->Paginator->numbers($numbersOptions);  ?>
-            </span>
-
-            <?php
-            echo $this->Paginator->next(
-                'keyboard_arrow_right',
+            $nextIcon = $this->Html->tag('md-icon', 'keyboard_arrow_right', [
                 // @translators Appears on “next page” links
                 // mouseover. Keyboard shortcut is between brackets.
-                array('title' => __('Next page [Ctrl+→]'),
-                  'tag' => 'md-icon'),
-                null,
-                array('class' => 'material-icons disabled',
-                  'tag' => 'md-icon')
-            );
-
-
+                'title' => __('Next page [Ctrl+→]'),
+            ]);
+            echo $this->Paginator->next($nextIcon, ['escape' => false]);
             ?>
-        </div>
+        </ul>
         <?php
     }
 }

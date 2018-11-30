@@ -645,25 +645,28 @@ html[dir="rtl"] .comment.sentence .text {
     text-align: center;
 }
 
-.numbers a {
+.paging li {
+    display: inline-block;
+}
+
+.paging li a {
     padding: 5px 8px;
     margin: 3px;
     background: #EEEEEE;
     color: #757575;
 }
 
-.numbers a:hover {
+.paging li a:hover {
     background: #E0E0E0;
     color: #757575;
 }
 
-.paging .disabled {
-
+.paging li.disabled a {
     background: #EEE;
     color: #BDBDBD;
 }
 
-.paging .current {
+.paging li.active a {
     padding: 5px 8px;
     margin: 3px;
     background: #4caf50;
@@ -671,21 +674,28 @@ html[dir="rtl"] .comment.sentence .text {
     font-weight: bold;
 }
 
-.paging .numbers {
+.paging  {
     padding: 0 10px;
     font-size: 10.5pt;
 }
 
-a.prev {
+.paging li.prev a, .paging li.next a {
     background: none;
 }
 
-a.next {
-   background: none;
+.paging li.prev md-icon, 
+.paging li.next md-icon {
+    color: #4caf50;
 }
 
-md-icon.disabled.material-icons {
-   background: none;
+.paging li.prev a:hover md-icon, 
+.paging li.next a:hover md-icon {
+    color: #DD8800;
+}
+
+.paging li.disabled a md-icon,
+.paging li.disabled a:hover md-icon {
+    color: #BDBDBD;
 }
 
 /*
