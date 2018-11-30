@@ -25,7 +25,6 @@ use App\Model\CurrentUser;
 use Cake\I18n\Time;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
-use App\Event\NotificationListener;
 use Cake\ORM\RulesChecker;
 use Cake\Datasource\Exception\RecordNotFoundException;
 

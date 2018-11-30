@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Event\NotificationListener;
 
 /**
  * Controller for private messages.
