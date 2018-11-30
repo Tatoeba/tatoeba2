@@ -32,26 +32,36 @@ class WallTest extends TestCase {
     public function testSave_createsPost() {
         $newPost = $this->Wall->newEntity([
             'owner' => 2,
-            'date' => '2018-01-02 03:04:05',
             'content' => 'Hi everyone!',
         ]);
-        $expected = array('Wall' => array(
+        $expected = [
             'owner' => 2,
-            'date' => '2018-01-02 03:04:05',
             'content' => 'Hi everyone!',
-            'modified' => '2018-01-02 03:04:05',
             'parent_id' => null,
             'lft' => 5,
             'rght' => 6,
             'id' => 3,
-        ));
+        ];
 
         $before = $this->Wall->find()->count();
         $saved = $this->Wall->save($newPost)->old_format;
+        $result = array_intersect_key($saved['Wall'], $expected);
         $after = $this->Wall->find()->count();
 
         $this->assertEquals(1, $after - $before);
-        $this->assertEquals($expected, $saved);
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testSave_setsDates() {
+        $now = date('Y-m-d H:i');
+        $newPost = $this->Wall->newEntity([
+            'owner' => 2,
+            'content' => 'Hi everyone!',
+        ]);
+        $saved = $this->Wall->save($newPost);
+        
+        $this->assertContains($now, $saved->date);
+        $this->assertContains($now, $saved->modified);
     }
 
     public function testSave_doesNotSaveNewPostIfContentIsEmpty() {
@@ -151,17 +161,13 @@ class WallTest extends TestCase {
     }
 
     public function testSave_replyFiresEvent() {
-        $date = '2018-01-02 03:04:05';
         $reply = $this->Wall->newEntity([
             'owner' => 7,
-            'date' => $date,
             'parent_id' => 2,
             'content' => 'I see.',
         ]);
         $expectedPost = array(
             'owner' => 7,
-            'date' => '2018-01-02 03:04:05',
-            'modified' => '2018-01-02 03:04:05',
             'parent_id' => 2,
             'content' => 'I see.',
             'lft' => 3,
@@ -175,6 +181,8 @@ class WallTest extends TestCase {
                 $this->assertSame($model, $event->getSubject());
                 $post = $event->getData('post')->old_format['Wall']; // $post
                 unset($post['id']);
+                unset($post['date']);
+                unset($post['modified']);
                 $this->assertEquals($expectedPost, $post);
                 $dispatched = true;
             }

@@ -48,7 +48,14 @@ class WallTable extends Table
             'foreignKey' => 'owner'
         ]);
 
-        $this->addBehavior('Timestamp');
+        $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => [
+                    'date' => 'new',
+                    'modified' => 'always',
+                ]
+            ]
+        ]);
         $this->addBehavior('Tree');
     }
 
@@ -317,12 +324,10 @@ class WallTable extends Table
             return null;
         }
         
-        $now = date('Y-m-d H:i:s');
         $data = $this->newEntity([
             'content'   => $content,
             'owner'     => $userId,
             'parent_id' => $parentId,
-            'date'      => $now,
         ]);
 
         $savedMessage = $this->save($data);

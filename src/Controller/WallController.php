@@ -133,10 +133,8 @@ class WallController extends AppController
                 "+1 month"
             );
             if ($lastMess != $thisMess) {
-                $now = date("Y-m-d H:i:s");
                 $newPost = $this->Wall->newEntity([
                     'owner'   => $this->Auth->user('id'),
-                    'date'    => $now,
                     'content' => $content,
                 ]);
                 // now save to database
