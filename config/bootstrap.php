@@ -253,3 +253,4 @@ if (!function_exists('__format_decompose_list')) {
 }
 
 Cake\I18n\I18n::setDefaultFormatter('sprintf');
+Cake\I18n\Time::setToStringFormat('yyyy-MM-dd HH:mm:ss');

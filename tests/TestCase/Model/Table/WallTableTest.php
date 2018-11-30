@@ -126,6 +126,19 @@ class WallTest extends TestCase {
         $this->_assertThreadDate($postId, '2014-04-15 16:38:36');
     }
 
+    public function testSave_editExistingPostUpdatesModifiedDate() {
+        $postId = 2;
+        $post = $this->Wall->get($postId);
+        $this->Wall->patchEntity($post, [
+            'content' => 'Today!',
+        ]);
+
+        $now = date('Y-m-d H:i');
+        $newPost = $this->Wall->save($post);
+
+        $this->assertContains($now, $newPost->modified);
+    }
+
     public function testSave_hidingMessageDoesNotUpdateLastModifiedField() {
         $postId = 2;
         $post = $this->Wall->get($postId);
