@@ -53,15 +53,14 @@ class WallTest extends TestCase {
     }
 
     public function testSave_setsDates() {
-        $now = date('Y-m-d H:i');
         $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'content' => 'Hi everyone!',
         ]);
         $saved = $this->Wall->save($newPost);
         
-        $this->assertContains($now, $saved->date);
-        $this->assertContains($now, $saved->modified);
+        $this->assertEquals($saved->date, $saved->modified);
+        $this->assertNotNull($saved->date);
     }
 
     public function testSave_doesNotSaveNewPostIfContentIsEmpty() {
@@ -139,14 +138,14 @@ class WallTest extends TestCase {
     public function testSave_editExistingPostUpdatesModifiedDate() {
         $postId = 2;
         $post = $this->Wall->get($postId);
+        $oldModified = $post->modified;
         $this->Wall->patchEntity($post, [
             'content' => 'Today!',
         ]);
 
-        $now = date('Y-m-d H:i');
         $newPost = $this->Wall->save($post);
 
-        $this->assertContains($now, $newPost->modified);
+        $this->assertLessThan($newPost->modified, $oldModified);
     }
 
     public function testSave_hidingMessageDoesNotUpdateLastModifiedField() {
