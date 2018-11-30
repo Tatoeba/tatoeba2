@@ -29,7 +29,7 @@ use App\Model\CurrentUser;
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Add sentences')));
 
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
-$this->Html->script(JS_PATH . 'sentences.contribute.js', false);
+$this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => true]);
 
 $vocabularyUrl = $this->Url->build(array(
     'controller' => 'vocabulary',
