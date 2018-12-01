@@ -197,7 +197,7 @@ class SentenceCommentsTable extends Table
         $botsIds = Configure::read('Bots.userIds');
 
         if (!empty($botsIds)) {
-            return $query->where(['SentenceComment.user_id NOT IN' => $botsIds]);
+            return $query->where(['SentenceComments.user_id NOT IN' => $botsIds]);
         }
 
         return $query;
