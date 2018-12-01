@@ -56,6 +56,12 @@ class SentenceCommentsTable extends Table
         return $validator;
     }
 
+    public function beforeSave($event, $entity, $options = array()) {
+        if ($entity->isDirty('hidden')) {
+            $entity->modified = $entity->getOriginal('modified');
+        }
+    }
+
     public function afterSave($event, $entity, $options)
     {
         if ($entity->isNew()) {

@@ -5,6 +5,7 @@ use App\Model\Table\SentenceCommentsTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 class SentenceCommentTest extends TestCase {
 
@@ -14,6 +15,7 @@ class SentenceCommentTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
+        Configure::write('Acl.database', 'test');
         $this->SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
     }
 
@@ -87,5 +89,16 @@ class SentenceCommentTest extends TestCase {
         $saved = $this->SentenceComment->save($comment);
 
         $this->assertFalse((bool)$saved);
+    }
+
+    public function testSave_hidingMessageDoesNotUpdateLastModifiedField() {
+        $messageId = 2;
+        $message = $this->SentenceComment->get($messageId);
+        $before = $message->modified;
+        $message->hidden = true;
+        $this->SentenceComment->save($message);
+        $after = $this->SentenceComment->get($messageId, ['fields' => ['modified']])->modified;
+
+        $this->assertEquals($before, $after);
     }
 }

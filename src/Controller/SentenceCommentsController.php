@@ -30,6 +30,7 @@ use App\Controller\AppController;
 use App\Event\NotificationListener;
 use Cake\Event\Event;
 use Cake\Core\Configure;
+use App\Model\CurrentUser;
 
 /**
  * Controller for sentence comments.
@@ -394,10 +395,9 @@ class SentenceCommentsController extends AppController
     private function _setHiding($messageId, $hiding)
     {
         if (CurrentUser::isAdmin()) {
-            $messageId = Sanitize::paranoid($messageId);
-
-            $this->SentenceComment->id = $messageId;
-            $this->SentenceComment->saveField('hidden', $hiding);
+            $comment = $this->SentenceComments->get($messageId);
+            $comment->hidden = $hiding;
+            $this->SentenceComments->save($comment);
 
             // redirect to previous page
             $this->redirect($this->referer());
