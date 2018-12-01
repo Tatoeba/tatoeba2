@@ -82,8 +82,8 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
         <ul class="guest-sentences-stats">
             <?php
             foreach ($stats as $stat) {
-                $langCode = $stat['Language']['code'];
-                $numberOfSentences = $stat['Language']['sentences'];
+                $langCode = $stat->code;
+                $numberOfSentences = $stat->sentences;
                 $link = array(
                     "controller" => "sentences",
                     "action" => "show_all_in",
