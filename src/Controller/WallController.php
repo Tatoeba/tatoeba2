@@ -195,7 +195,9 @@ class WallController extends AppController
         
         if ($this->request->is('put')) {
             $data = $this->request->getData();
-            $this->Wall->patchEntity($message, $data);
+            $this->Wall->patchEntity($message, [
+                'content' => $data['content']
+            ]);
             $savedMessage = $this->Wall->save($message);
             if ($savedMessage) {
                 $this->Flash->set(__('Message saved.'));
