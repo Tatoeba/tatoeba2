@@ -310,20 +310,19 @@ class SentenceCommentsController extends AppController
     public function of_user($userName)
     {
         $this->set('userName', $userName);
-        $userId = $this->User->getIdFromUsername($userName);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($userName);
         $this->set('userExists', !empty($userId));
         // if there's no such user no need to do more computation
         if (empty($userId)) {
             return;
         }
 
-        $this->paginate['SentenceComment']['conditions'] = array(
-            'SentenceComment.user_id' => $userId
+        $this->paginate['conditions'] = array(
+            'SentenceComments.user_id' => $userId
         );
 
-        $userComments = $this->paginate(
-            'SentenceComment'
-        );
+        $userComments = $this->paginate();
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
