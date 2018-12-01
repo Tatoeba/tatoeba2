@@ -342,19 +342,21 @@ class SentenceCommentsController extends AppController
     public function on_sentences_of_user($userName)
     {
         $this->set('userName', $userName);
-        $userId = $this->User->getIdFromUsername($userName);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($userName);
         $this->set('userExists', !empty($userId));
 
-        // if there's no such user no need to do more computation
         if (empty($userId)) {
             return;
         }
 
-        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers(
-            array('Sentence.user_id' => $userId)
-        );
-        $this->paginate['SentenceComment']['conditions'] = $conditions;
-        $userComments = $this->paginate('SentenceComment');
+        $botsIds = Configure::read('Bots.userIds');
+        $conditions = ['Sentences.user_id' => $userId];
+        if (!empty($botsIds)) {
+            $conditions['SentenceComments.user_id NOT IN'] = $botsIds;
+        }
+        $this->paginate['conditions'] = $conditions;
+        $userComments = $this->paginate();
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
