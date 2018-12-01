@@ -15,29 +15,20 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
+use Cake\Database\Schema\TableSchema;
 
-
-/**
- * @category Contributions
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-class ContributionsStats extends AppModel
+class ContributionsStatsTable extends Table
 {
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('date', 'string');
+        return $schema;
+    }
+
     /**
      * Returns number of contributions for each day. We only count the number of new
      * sentences, not the number of modifications.
@@ -60,23 +51,30 @@ class ContributionsStats extends AppModel
 
         }
 
-        return $this->find(
-            'all',
-            array(
-                'fields' => array(
-                    'lang',
-                    'sentences',
-                    'date',
-                ),
-                'conditions' => array(
-                    'date >=' => $startDate,
-                    'date <' => $endDate,
-                    'type' => 'sentence',
-                    'action' => 'insert',
-                    'lang' => $lang
-                ),
-                'order' => 'date, sentences DESC'
-            )
-        );
+        $conditions = [
+            'date >=' => $startDate,
+            'date <' => $endDate,
+            'type' => 'sentence',
+            'action' => 'insert'
+        ];
+
+        if ($lang) {
+            $conditions['lang'] = $lang;
+        } else {
+            $conditions['lang IS'] = null;
+        }
+
+        return $this->find()
+            ->where($conditions)
+            ->select([
+                'lang',
+                'sentences',
+                'date',
+            ])
+            ->order([
+                'date' => 'ASC', 
+                'sentences' => 'DESC'
+            ])
+            ->toList();
     }
 }

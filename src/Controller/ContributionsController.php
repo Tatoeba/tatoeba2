@@ -154,6 +154,7 @@ class ContributionsController extends AppController
 
         } else {
 
+            $this->loadModel('ContributionsStats');
             $stats = $this->ContributionsStats->getActivityTimelineStatistics(
                 $year, $month
             );

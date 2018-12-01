@@ -48,8 +48,8 @@ $maxWidth = 400;
 $maxTotal = 0;
 
 foreach ($stats as $stat) {
-    if ($stat['ContributionsStats']['sentences'] > $maxTotal) {
-        $maxTotal = $stat['ContributionsStats']['sentences'];
+    if ($stat->sentences > $maxTotal) {
+        $maxTotal = $stat->sentences;
     }
 }
 ?>
@@ -78,9 +78,9 @@ foreach ($stats as $stat) {
     $numberOfDays = 0;
 
     foreach ($stats as $stat) {
-
-        $numSentences = $stat['ContributionsStats']['sentences'];
-        $date = $stat['ContributionsStats']['date'];
+        
+        $numSentences = $stat->sentences;
+        $date = $stat->date;
 
         $width = ($numSentences / $maxTotal) * 100;
         $bar = $this->Html->div('logs_stats', null,
