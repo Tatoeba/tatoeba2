@@ -114,14 +114,14 @@ class ContributionsController extends AppController
      */
     public function latest($filter = 'und')
     {
-        $this->loadModel('LastContribution');
-        $currentContributors = $this->LastContribution->getCurrentContributors();
-        $total = $this->LastContribution->getTotal($currentContributors);
+        $this->loadModel('LastContributions');
+        $currentContributors = $this->LastContributions->getCurrentContributors();
+        $total = $this->LastContributions->getTotal($currentContributors);
 
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
         $this->set(
-            'contributions', $this->Contribution->getLastContributions(200, $filter)
+            'contributions', $this->Contributions->getLastContributions(200, $filter)
         );
     }
 
