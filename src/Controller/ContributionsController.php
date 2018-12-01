@@ -76,28 +76,23 @@ class ContributionsController extends AppController
      */
     public function index($filter = 'und')
     {
-        $filter = Sanitize::paranoid($filter);
-
         $this->helpers[] = 'Pagination';
 
-        $conditions = array();
+        $conditions = [];
         if ($filter != 'und') {
             $conditions = array('sentence_lang' => $filter);
         }
-        $conditions = $this->Contribution->getQueryConditionsWithExcludedUsers($conditions);
 
-        $this->paginate = array(
-            'Contribution' => array(
-                'conditions' => $conditions,
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username', 'image')
-                    )
-                ),
-                'limit' => 200,
-                'order' => 'id DESC',
-            )
-        );
+        $this->paginate = [
+            'conditions' => $conditions,
+            'contain' => [
+                'Users' => [
+                    'fields' => ['username', 'image']
+                ]
+            ],
+            'limit' => 200,
+            'order' => ['id' => 'DESC'],
+        ];
         $contributions = $this->paginate();
 
         $this->set('contributions', $contributions);
