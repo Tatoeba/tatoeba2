@@ -27,8 +27,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Lib\Event\NotificationListener;
+use App\Event\NotificationListener;
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 /**
  * Controller for sentence comments.
@@ -53,34 +54,25 @@ class SentenceCommentsController extends AppController
     );
     public $components = array ('Flash', 'Permissions');
 
-    public $paginate = array(
-        'SentenceComment' => array(
-            'fields' => array(
-                'id',
-                'user_id',
-                'text',
-                'created',
-                'modified',
-                'sentence_id',
-                'hidden'
-            ),
-            'contain' => array(
-                'User' => array(
-                    'fields' => array(
-                        'id',
-                        'username',
-                        'image',
-                    )
-                ),
-                'Sentence' => array(
-                    'User' => array('username'),
-                    'fields' => array('id', 'text', 'lang', 'correctness')
-                )
-            ),
-            'limit' => 50,
-            'order' => 'created DESC',
-        )
-    );
+    public $paginate = [
+        'contain' => [
+            'Users' => [
+                'fields' => [
+                    'id',
+                    'username',
+                    'image',
+                ]
+            ],
+            'Sentences' => [
+                'Users' => [
+                    'fields' => ['username']
+                ],
+                'fields' => ['id', 'text', 'lang', 'correctness']
+            ]
+        ],
+        'limit' => 50,
+        'order' => ['created' => 'DESC'],
+    ];
 
     /**
      * Before filter.
@@ -97,7 +89,7 @@ class SentenceCommentsController extends AppController
             'on_sentences_of_user'
         );
 
-        $eventManager = $this->SentenceComment->getEventManager();
+        $eventManager = $this->SentenceComments->getEventManager();
         $eventManager->attach(new NotificationListener());
 
         return parent::beforeFilter($event);
@@ -115,12 +107,16 @@ class SentenceCommentsController extends AppController
         $this->helpers[] = 'Messages';
         $this->helpers[] = 'Members';
 
-        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers();
+        $botsIds = Configure::read('Bots.userIds');
+        $conditions = [];
+        if (!empty($botsIds)) {
+            $conditions = ['SentenceComments.user_id NOT IN' => $botsIds];
+        }
         if ($langFilter != 'und') {
-            $conditions["Sentence.lang"] = $langFilter;
+            $conditions['Sentences.lang'] = $langFilter;
         }
 
-        $this->paginate['SentenceComment']['conditions'] = $conditions;
+        $this->paginate['conditions'] = $conditions;
 
         $latestComments = $this->paginate();
 

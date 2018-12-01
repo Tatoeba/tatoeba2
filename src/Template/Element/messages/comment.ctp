@@ -39,9 +39,9 @@ $sentenceText = '<em>'.__('sentence deleted').'</em>';
 if (isset($sentence['text'])) {
     $sentenceText = h($sentence->text);
 }
-$sentenceLang = $sentence->lang;
+$sentenceLang = $sentence ? $sentence->lang : null;
 $sentenceOwner = null;
-if ($sentence->user) {
+if ($sentence && $sentence->user) {
     $sentenceOwner = $sentence->user->username;
 }
 $langDir = LanguagesLib::getLanguageDirection($sentenceLang);
@@ -88,37 +88,37 @@ if ($sentenceOwnerLink) {
 }
 
 ?>
-<? if ($sentence) { ?>
-    <div class="comment sentence" md-whiteframe="2">
-        <div class="info">
-            <?= format(
-                $sentenceInfoLabel,
-                array(
-                    'number' => $sentenceLink,
-                    'username' => $sentenceOwnerLink
-                )
-            ); ?>
-        </div>
-        <div layout="row" layout-align="start center">
-            <div class="text" dir="<?= $langDir ?>" flex>
-                <?= $sentenceText ?>
-            </div>
-            <?php
-            echo $this->Languages->icon(
-                $sentenceLang,
-                array(
-                    'width' => 30,
-                    'height' => 20,
-                    'class' => 'lang'
-                )
-            );
-            ?>
-            <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
-                <md-icon>info</md-icon>
-            </md-button>
-        </div>
+
+<div class="comment sentence" md-whiteframe="2">
+    <div class="info">
+        <?= format(
+            $sentenceInfoLabel,
+            array(
+                'number' => $sentenceLink,
+                'username' => $sentenceOwnerLink
+            )
+        ); ?>
     </div>
-<? } ?>
+    <div layout="row" layout-align="start center">
+        <div class="text" dir="<?= $langDir ?>" flex>
+            <?= $sentenceText ?>
+        </div>
+        <?php
+        echo $this->Languages->icon(
+            $sentenceLang,
+            array(
+                'width' => 30,
+                'height' => 20,
+                'class' => 'lang'
+            )
+        );
+        ?>
+        <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+            <md-icon>info</md-icon>
+        </md-button>
+    </div>
+</div>
+
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>

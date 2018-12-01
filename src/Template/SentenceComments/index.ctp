@@ -15,26 +15,8 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
 use App\Model\CurrentUser;
-
-/**
- * Display latest comments.
- *
- * @category SentenceComments
- * @package  Views
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Comments on sentences')));
 
@@ -54,11 +36,7 @@ $this->Paginator->options(
         <h2>
             <?php
             echo $this->Paginator->counter(
-                array(
-                    'format' => __(
-                        'Comments on sentences (total %count%)'
-                    )
-                )
+                __('Comments on sentences (total {{count}})')
             );
             ?>
         </h2>
@@ -70,7 +48,7 @@ $this->Paginator->options(
 
         foreach ($sentenceComments as $i => $comment) {
             $menu = $this->Comments->getMenuForComment(
-                $comment['SentenceComment'],
+                $comment,
                 $commentsPermissions[$i],
                 $currentUserIsMember
             );
