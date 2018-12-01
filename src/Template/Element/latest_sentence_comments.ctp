@@ -30,7 +30,7 @@ $currentUserIsMember = CurrentUser::isMember();
 
 foreach ($sentenceComments as $i=>$comment) {
     $menu = $this->Comments->getMenuForComment(
-        $comment['SentenceComment'],
+        $comment,
         $commentsPermissions[$i],
         $currentUserIsMember
     );
