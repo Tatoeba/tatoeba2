@@ -273,8 +273,7 @@ class SentenceCommentsController extends AppController
     }
 
     /**
-     * delete requested comment
-     * NOTE: delete is a php5 keyword
+     * Delete requested comment.
      *
      * @param int $commentId id of the comment
      *
@@ -283,20 +282,7 @@ class SentenceCommentsController extends AppController
 
     public function delete_comment($commentId)
     {
-        $commentId = Sanitize::paranoid($commentId);
-
-        $commentOwnerId = $this->SentenceComment->getOwnerIdOfComment($commentId);
-
-        //we check a second time even if it has been checked while displaying
-        // or not the delete icon, but one can try to directly call delete_comment
-        // so we need to recheck
-        $commentPermissions = $this->Permissions->getCommentOptions(
-            $commentOwnerId
-        );
-        if ($commentPermissions['canDelete']) {
-            $this->SentenceComment->delete($commentId);
-        }
-        // redirect to previous page
+        $this->SentenceComments->deleteComment($commentId);
         $this->redirect($this->referer());
     }
 

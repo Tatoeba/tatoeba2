@@ -25,7 +25,8 @@ use Cake\Event\Event;
 use App\Event\NotificationListener;
 use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
-
+use App\Model\CurrentUser;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 class SentenceCommentsTable extends Table
 {
@@ -43,6 +44,15 @@ class SentenceCommentsTable extends Table
         $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
+    }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->addDelete(function($message) {
+            return $message->user_id == CurrentUser::get('id') || CurrentUser::isAdmin();
+        }, 'isAllowedToDelete');
+        
+        return $rules;
     }
 
     public function validationDefault(Validator $validator)
@@ -207,5 +217,16 @@ class SentenceCommentsTable extends Table
         }
 
         return $query;
+    }
+
+    public function deleteComment($id)
+    {
+        try {
+            $comment = $this->get($id);
+        } catch (RecordNotFoundException $e) {
+            return false;
+        }
+        
+        return $this->delete($comment);
     }
 }

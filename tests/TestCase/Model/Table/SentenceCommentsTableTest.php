@@ -6,11 +6,13 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use Cake\Core\Configure;
+use App\Model\CurrentUser;
 
 class SentenceCommentTest extends TestCase {
 
     public $fixtures = array(
-        'app.sentence_comments'
+        'app.sentence_comments',
+        'app.users_languages'
     );
 
     public function setUp() {
@@ -100,5 +102,23 @@ class SentenceCommentTest extends TestCase {
         $after = $this->SentenceComment->get($messageId, ['fields' => ['modified']])->modified;
 
         $this->assertEquals($before, $after);
+    }
+
+    public function testDeleteComment_succeeds() {
+        CurrentUser::store(['id' => 3]);
+        $result = $this->SentenceComment->deleteComment(2);
+        $this->assertTrue($result);
+    }
+
+    public function testDeleteComment_failsWrongId() {
+        CurrentUser::store(['id' => 3]);
+        $result = $this->SentenceComment->deleteComment(99999);
+        $this->assertFalse($result);
+    }
+
+    public function testDeleteComment_failsBecauseNotAllowed() {
+        CurrentUser::store(['id' => 3]);
+        $result = $this->SentenceComment->deleteComment(1);
+        $this->assertFalse($result);
     }
 }
