@@ -32,9 +32,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
     <div class="module">
         <?php
         echo $this->Html->tag('h2', __('Search tags'));
-        echo $this->Form->create(array(
+        echo $this->Form->create('Tags', [
             'url' => array('action' => 'search'),
-        ));
+        ]);
         echo $this->Form->input(
             'search',
             array(
@@ -65,13 +65,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
         <?php
         if (empty($filter)) {
             $title = $this->Paginator->counter(
-                array('format' => __('All tags (total %count%)'))
+                array('format' => __('All tags (total {{count}})'))
             );
         } else {
             $title = $this->Paginator->counter(
                 array(
                     'format' => format(
-                        __('Tags containing: {search} (total %count%)'),
+                        __('Tags containing: {search} (total {{count}})'),
                         array('search' => $filter)
                     )
                 )
@@ -99,9 +99,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
                 ?>
                 <span class="tag">
                     <?php
-                    $tagName =  $tag['Tag']['name'];
-                    $tagId =  $tag['Tag']['id'];
-                    $count = $tag['Tag']['nbrOfSentences'];
+                    $tagName = $tag->name;
+                    $tagId = $tag->id;
+                    $count = $tag->nbrOfSentences;
                     $this->Tags->displayTagInCloud($tagName, $tagId, $count);
                     ?>
                 </span>

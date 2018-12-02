@@ -18,11 +18,10 @@
  */
 namespace App\Event;
 
-use App\Event\EventListener;
-use Cake\Event\EventListener;
+use Cake\Event\EventListenerInterface;
 
 
-class SuggestdListener implements EventListener {
+class SuggestdListener implements EventListenerInterface {
     public function implementedEvents() {
         return array(
             'Model.Tag.tagAdded' => 'notifySuggestd',
@@ -30,7 +29,7 @@ class SuggestdListener implements EventListener {
     }
 
     public function notifySuggestd($event) {
-        extract($event->data); // $tagName
+        $tagName = $event->getData('tagName'); // $tagName
 
         // Send a request to suggestd (the auto-suggest daemon) to update its internal
         // table.

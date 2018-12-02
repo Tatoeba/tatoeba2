@@ -15,30 +15,13 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   Allan SIMON <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
 namespace App\Controller;
 
 use App\Controller\AppController;
-use App\Lib\Event\SuggestdListener;
+use App\Event\SuggestdListener;
 use Cake\Event\Event;
 
-/**
- * Controller for tags
- *
- * @category Tags
- * @package  Controllers
- * @author   Allan SIMON <allan.simon@supinfo.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
 
 class TagsController extends AppController
 {
@@ -69,7 +52,7 @@ class TagsController extends AppController
             'add_tag_post'
         );
 
-        $eventManager = $this->Tag->getEventManager();
+        $eventManager = $this->Tags->getEventManager();
         $eventManager->attach(new SuggestdListener());
 
         return parent::beforeFilter($event);
@@ -178,18 +161,18 @@ class TagsController extends AppController
 
         $conditions = [];
         if (!empty($filter)) {
-            $conditions = array(
+            $conditions = [
                 'name LIKE' => "%$filter%"
-            );
+            ];
         }
-        $this->paginate = array(
+        $this->paginate = [
             'limit' => 50,
-            'fields' => array('name', 'id', 'nbrOfSentences'),
-            'order' => 'nbrOfSentences DESC',
+            'fields' => ['name', 'id', 'nbrOfSentences'],
+            'order' => ['nbrOfSentences' => 'DESC'],
             'conditions' => $conditions
-        );
+        ];
 
-        $allTags = $this->paginate('Tag');
+        $allTags = $this->paginate();
         $this->set("allTags", $allTags);
         $this->set("filter", $filter);
     }
