@@ -82,14 +82,14 @@ class ListsHelper extends AppHelper
         <?php
         foreach ($arrayOfLists as $list) {
             $this->displayRow(
-                $list['SentencesList']['id'],
-                $list['SentencesList']['name'],
-                $list['User']['username'],
-                $list['SentencesList']['created'],
-                $list['SentencesList']['modified'],
-                $list['SentencesList']['numberOfSentences'],
-                $list['SentencesList']['visibility'],
-                $list['SentencesList']['editable_by']
+                $list->id,
+                $list->name,
+                $list->user->username,
+                $list->created,
+                $list->modified,
+                $list->numberOfSentences,
+                $list->visibility,
+                $list->editable_by
             );
         }
         ?>
@@ -539,18 +539,18 @@ class ListsHelper extends AppHelper
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
-                if ($list['SentencesList']['visibility'] == 'public') {
+                if ($list['visibility'] == 'public') {
                     $class = 'public-list';
                 } else {
                     $class = 'personal-list';
                 }
                 echo '<li class="'.$class.'">';
                 echo $this->Html->link(
-                    $list['SentencesList']['name'],
+                    $list['name'],
                     array(
                         'controller' => 'sentences_lists',
                         'action' => 'show',
-                        $list['SentencesList']['id']
+                        $list['id']
                     )
                 );
                 echo '</li>';
@@ -574,13 +574,11 @@ class ListsHelper extends AppHelper
                     "type" => "post",
                 )
             );
-            echo $this->Form->input(
-                'name',
-                array(
-                    'label' => __x('list', 'Name')
-                )
-            );
-            echo $this->Form->end(__('create'));
+            echo $this->Form->control('name', [
+                'label' => __x('list', 'Name')
+            ]);
+            echo $this->Form->button(__('create'));
+            echo $this->Form->end();
             ?>
         </div>
         <?php
@@ -675,9 +673,9 @@ class ListsHelper extends AppHelper
             $sortedLists = array(0 => array(), 1 => array());
             $currentUserId = CurrentUser::get('id');
             foreach ($lists as $list) {
-                $where = (int)($list['SentencesList']['user_id'] != $currentUserId);
-                $listId   = $list['SentencesList']['id'];
-                $listName = $list['SentencesList']['name'];
+                $where = (int)($list['user_id'] != $currentUserId);
+                $listId   = $list['id'];
+                $listName = $list['name'];
                 $sortedLists[$where][$listId] = $listName;
             }
 

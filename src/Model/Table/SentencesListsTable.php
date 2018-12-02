@@ -224,30 +224,29 @@ class SentencesListsTable extends Table
     ) {
         $conditions = null;
         if (!empty($search)) {
-            $conditions['SentencesList.name LIKE'] = "%$search%";
+            $conditions['SentencesLists.name LIKE'] = "%$search%";
         }
         if (!empty($username)) {
             $userId = $this->User->getIdFromUsername($username);
-            $conditions['SentencesList.user_id'] = $userId;
+            $conditions['SentencesLists.user_id'] = $userId;
         }
         if (!empty($visibility)) {
-            $conditions['SentencesList.visibility'] = $visibility;
+            $conditions['SentencesLists.visibility'] = $visibility;
         }
         if (!empty($editableBy)) {
-            $conditions['SentencesList.editable_by'] = $editableBy;
+            $conditions['SentencesLists.editable_by'] = $editableBy;
         }
 
-
-        return array(
+        return [
             'conditions' => $conditions,
-            'contain' => array(
-                'User' => array(
-                    'fields' => array('username')
-                )
-            ),
-            'order' => 'created DESC',
+            'contain' => [
+                'Users' => [
+                    'fields' => ['username']
+                ]
+            ],
+            'order' => ['created' => 'DESC'],
             'limit' => 50
-        );
+        ];
     }
 
 

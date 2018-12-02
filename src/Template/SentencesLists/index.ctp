@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
- $total = $this->Paginator->counter("%count%");
+ $total = $this->Paginator->counter("{{count}}");
 if (empty($filter)) {
     if (!empty($isCollaborative)) {
         $title = __('Collaborative lists ({total})');

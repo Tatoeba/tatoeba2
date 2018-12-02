@@ -100,7 +100,7 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index', $filter));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists(
+        $this->paginate = $this->SentencesLists->getPaginatedLists(
             $filter, null, 'public'
         );
         $allLists = $this->paginate();
@@ -117,7 +117,7 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'collaborative', $filter));
         }
 
-        $this->paginate = $this->SentencesList->getPaginatedLists(
+        $this->paginate = $this->SentencesLists->getPaginatedLists(
             $filter, null, 'public', 'anyone'
         );
         $allLists = $this->paginate();
