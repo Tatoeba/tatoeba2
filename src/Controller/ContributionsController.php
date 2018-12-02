@@ -177,7 +177,8 @@ class ContributionsController extends AppController
     {
         $this->helpers[] = 'Pagination';
 
-        $userId = $this->Contribution->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
         $this->set('username', $username);
 
         if (empty($userId)) {
@@ -185,21 +186,19 @@ class ContributionsController extends AppController
             return;
         }
 
-        $this->paginate = array(
-            'Contribution' => array(
-                'conditions' => array(
-                    'user_id' => $userId,
-                    'type !=' => 'license'
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username', 'image')
-                    )
-                ),
-                'limit' => 200,
-                'order' => 'id DESC',
-            )
-        );
+        $this->paginate = [
+            'conditions' => [
+                'user_id' => $userId,
+                'type !=' => 'license'
+            ],
+            'contain' => [
+                'Users' => [
+                    'fields' => ['username', 'image']
+                ]
+            ],
+            'limit' => 200,
+            'order' => ['id' => 'DESC'],
+        ];
         $contributions = $this->paginate();
         $this->set('contributions', $contributions);
         $this->set('userExists', true);
