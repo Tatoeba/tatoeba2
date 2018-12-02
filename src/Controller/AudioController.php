@@ -94,14 +94,16 @@ class AudioController extends AppController
     }
 
     public function of($username) {
-        $userId = $this->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
         if ($userId) {
-            $sentencesWithAudio = $this->paginate('Audio', array(
-                'Audio.user_id' => $userId,
-            ));
+            $this->paginate['conditions'] = [
+                'Audios.user_id' => $userId,
+            ];
+            $sentencesWithAudio = $this->paginate('Audios');
             $this->set(compact('sentencesWithAudio'));
 
-            $audioSettings = $this->User->getAudioSettings($userId);
+            $audioSettings = $this->Users->getAudioSettings($userId);
             $this->set(compact('audioSettings'));
         }
         $this->set(compact('username'));

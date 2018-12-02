@@ -38,7 +38,6 @@ class AudioHelper extends AppHelper
 
     private function defaultAttribUrl($username) {
         return array(
-            'lang' => '',
             'controller' => 'user',
             'action' => 'profile',
             $username

@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Model\CurrentUser;
 
 $title = format(
     __('Audio contributed by {username}'),
@@ -83,7 +84,7 @@ if (isset($sentencesWithAudio)) {
     } else {
         $title = $this->Paginator->counter(
             array(
-                'format' => $title . ' ' . __("(total %count%)")
+                'format' => $title . ' ' . __("(total {{count}})")
             )
         );
         echo $this->Html->tag('h2', $title);
@@ -99,9 +100,9 @@ if (isset($sentencesWithAudio)) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = true;
-        foreach ($sentencesWithAudio as $sentence) {
+        foreach ($sentencesWithAudio as $audio) {
             $this->Sentences->displayGenericSentence(
-                $sentence,
+                $audio->sentence,
                 $type,
                 $withAudio,
                 $parentId
