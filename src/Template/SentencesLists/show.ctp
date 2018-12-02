@@ -25,10 +25,11 @@
  * @link     http://tatoeba.org
  */
 use App\Model\CurrentUser;
+use App\Model\Entity\SentencesList;
 
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
 
-$listCount = $this->Paginator->counter("%count%");
+$listCount = $this->Paginator->counter("{{count}}");
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = $list['name'];
@@ -156,13 +157,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         );
     }
 
-    echo $this->Html->tag('h2', $listName, array(
+    echo $this->Html->tag('h2', $listName, [
         'id'    => "l$listId",
         'class' => $class,
         'data-submit'  => __('OK'),
         'data-cancel'  => __('Cancel'),
         'data-tooltip' => __('Click to edit...'),
-    ));
+    ]);
 
     if ($permissions['canAddSentences']) {
         echo $this->Html->div('edit-list-name', $editImage);
@@ -188,22 +189,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
         foreach ($sentencesInList as $sentence) {
-            $translations = isset($sentence['Sentence']['Translation']) ?
-                $sentence['Sentence']['Translation'] :
-                array();
+            $translations = $sentence->translations;
             echo $this->element(
                 'sentences/sentence_and_translations',
                 array(
-                    'sentence' => $sentence['Sentence'],
+                    'sentence' => $sentence,
                     'translations' => $translations,
-                    'user' => $sentence['Sentence']['User']
+                    'user' => $sentence->user
                 )
             );
         }
     } else {
         foreach ($sentencesInList as $sentence) {
             $this->Lists->displaySentence(
-                $sentence['Sentence'], $permissions['canRemoveSentences']
+                $sentence, $permissions['canRemoveSentences']
             );
         }
     }

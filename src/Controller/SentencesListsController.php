@@ -141,8 +141,6 @@ class SentencesListsController extends AppController
      */
     public function show($id = null, $translationsLang = null)
     {
-        $id = Sanitize::paranoid($id);
-        $translationsLang = Sanitize::paranoid($translationsLang);
         if (empty($translationsLang)) {
             $translationsLang = 'none';
         }
@@ -151,7 +149,7 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
-        $list = $this->SentencesList->getListWithPermissions(
+        $list = $this->SentencesLists->getListWithPermissions(
             $id, CurrentUser::get('id')
         );
 
@@ -162,14 +160,15 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
+        $this->loadModel('SentencesSentencesLists');
         $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
             $id, CurrentUser::getSetting('sentences_per_page'), $translationsLang
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
 
         $this->set('translationsLang', $translationsLang);
-        $this->set('list', $list['SentencesList']);
-        $this->set('user', $list['User']);
+        $this->set('list', $list);
+        $this->set('user', $list->user);
         $this->set('permissions', $list['Permissions']);
         $this->set('sentencesInList', $sentencesInList);
     }

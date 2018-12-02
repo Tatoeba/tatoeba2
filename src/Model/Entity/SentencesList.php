@@ -22,6 +22,10 @@ use Cake\ORM\Entity;
 
 class SentencesList extends Entity
 {
+    // We want to make sure that people don't download long lists, which can slow down the server.
+    // This is an arbitrary but easy to remember value, and most lists are shorter than this.
+    const MAX_COUNT_FOR_DOWNLOAD = 100;
+
     protected function _getOldFormat() 
     {
         return [

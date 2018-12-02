@@ -46,7 +46,8 @@ class ListsHelper extends AppHelper
         'Languages',
         'Sentences',
         'Date',
-        'Images'
+        'Images',
+        'Url'
     );
 
     /**
@@ -412,16 +413,12 @@ class ListsHelper extends AppHelper
      * @return void
      */
     public function displaySentence(
-        $sentence,
+        $sentenceInList,
         $canCurrentUserEdit = false
     ) {
-        if (isset($sentence['Sentence'])) {
-            $sentenceId = $sentence['Sentence']['id'];
-        } else {
-            $sentenceId = $sentence['id'];
-        }
-
-        if (empty($sentenceId)) {
+        $sentence = $sentenceInList->sentence;
+        $sentenceId = $sentence->id;
+        if (!$sentence) {
             // In case the sentence has been deleted, we don't want to display
             // it in the list.
             // We may also want to run the script to update the count of sentences

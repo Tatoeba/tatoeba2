@@ -5,6 +5,7 @@ use App\Model\Table\SentencesListsTable;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use App\Model\CurrentUser;
 
 class SentencesListsTableTest extends TestCase {
     public $fixtures = array(
@@ -13,6 +14,7 @@ class SentencesListsTableTest extends TestCase {
         'app.sentences',
         'app.favorites_users',
         'app.users',
+        'app.users_languages',
         'app.contributions',
         'app.languages',
         'app.reindex_flags',
@@ -31,8 +33,20 @@ class SentencesListsTableTest extends TestCase {
         unset($this->SentencesList);
         parent::tearDown();
     }
+    
+    function testGetListWithPermissions_listBelongsToCurrentUser() {
+        $list = $this->SentencesList->getListWithPermissions(1, 7);
+        $expected = array(
+            'canView' => true,
+            'canEdit' => true,
+            'canAddSentences' => true,
+            'canRemoveSentences' => true,
+            'canDownload' => true
+        );
+        $this->assertEquals($expected, $list['Permissions']);
+    }
 
-    function testGetListWithPermissions() {
+    function testGetListWithPermissions_listDoesntBelongsToCurrentUser() {
         $list = $this->SentencesList->getListWithPermissions(1, 4);
         $expected = array(
             'canView' => true,
@@ -213,5 +227,15 @@ class SentencesListsTableTest extends TestCase {
         $result = $this->SentencesList->removeSentenceFromList(4, 2, 7);
 
         $this->assertFalse($result);
+    }
+
+    function testGetUserChoices() {
+        CurrentUser::store(['id' => 7]);
+        $result = $this->SentencesList->getUserChoices(7);
+        $expected = [
+            'OfUser' => ['1' => 'Interesting French sentences'],
+            'Collaborative' => []
+        ];
+        $this->assertEquals($expected, $result);
     }
 }

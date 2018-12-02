@@ -36,6 +36,8 @@ class SentencesSentencesListsTable extends Table
 
     public function initialize(array $config)
     {
+        $this->belongsTo('Sentences');
+        
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
@@ -53,21 +55,21 @@ class SentencesSentencesListsTable extends Table
      */
     public function getPaginatedSentencesInList($listId, $limit, $translationsLang)
     {
-        $contain = array('Sentence' => $this->Sentence->paginateContain());
+        $contain = ['Sentences' => $this->Sentences->paginateContain()];
         if ($translationsLang == 'none') {
-            unset($contain['Sentence']['Translation']);
+            unset($contain['Sentences']['Translation']);
         } elseif ($translationsLang != 'und') {
-            $this->Sentence->linkTranslationModel(array(
+            $this->Sentences->linkTranslationModel([
                 'Translation.lang' => $translationsLang
-            ));
+            ]);
         }
-        return array(
+        return [
             'limit' => $limit,
-            'conditions' => array('sentences_list_id' => $listId),
+            'conditions' => ['sentences_list_id' => $listId],
             'contain' => $contain,
-            'fields' => array('created', 'sentence_id'),
-            'order' => 'created DESC'
-        );
+            'fields' => ['created', 'sentence_id'],
+            'order' => ['created' => 'DESC']
+        ];
     }
 
 

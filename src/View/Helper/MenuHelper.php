@@ -28,6 +28,7 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use App\Model\CurrentUser;
+use Cake\ORM\TableRegistry;
 
 /**
  * Helper to display buttons in sentences menu.
@@ -357,7 +358,8 @@ class MenuHelper extends AppHelper
 
         $this->Html->script('sentences_lists.menu.js', array('block' => 'scriptBottom'));
 
-        $lists = ClassRegistry::init('SentencesList')->getUserChoices(
+        $SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
+        $lists = $SentencesLists->getUserChoices(
             CurrentUser::get('id')
         );
 

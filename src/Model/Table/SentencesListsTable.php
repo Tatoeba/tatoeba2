@@ -15,38 +15,17 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Datasource\Exception\RecordNotFoundException;
-
-/**
- * Model for sentences list.
- *
- * @category SentencesLists
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-
 use Cake\Database\Schema\TableSchema;
+use App\Model\Entity\SentencesList;
+use App\Model\CurrentUser;
 
 class SentencesListsTable extends Table
 {
-    // We want to make sure that people don't download long lists, which can slow down the server.
-    // This is an arbitrary but easy to remember value, and most lists are shorter than this.
-    const MAX_COUNT_FOR_DOWNLOAD = 100;
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('created', 'string');
@@ -94,7 +73,7 @@ class SentencesListsTable extends Table
     {
         $list = $this->get($id, ['contain' => ['Users']]);
         $list['Permissions'] = $this->_getPermissions(
-            $list['SentencesList'], $currentUserId
+            $list, $currentUserId
         );
 
         return $list;
@@ -111,7 +90,7 @@ class SentencesListsTable extends Table
             'canEdit' => $belongsToUser,
             'canAddSentences' => $belongsToUser && $editableBy !== 'no_one',
             'canRemoveSentences' => $belongsToUser || $editableBy == 'anyone',
-            'canDownload' => $numberOfSentences <= self::MAX_COUNT_FOR_DOWNLOAD
+            'canDownload' => $numberOfSentences <= SentencesList::MAX_COUNT_FOR_DOWNLOAD
         );
 
         return $permissions;
@@ -168,31 +147,27 @@ class SentencesListsTable extends Table
      */
     public function getUserChoices($userId)
     {
-        $results = $this->find(
-            "all",
-            array(
-                "conditions" => array(
-                    "OR" => array(
-                        "SentencesList.user_id" => $userId,
-                        "SentencesList.editable_by" => 'anyone'
-                    ),
-                    "NOT" => array(
-                        "SentencesList.editable_by" => 'no_one'
-                    )
-                ),
-                'fields' => array('id', 'name', 'user_id'),
-                'order' => 'name'
-            )
-        );
+        $results = $this->find()
+            ->where([
+                'OR' => [
+                    'user_id' => $userId,
+                    'editable_by' => 'anyone'
+                ],
+                'NOT' => [
+                    'editable_by' => 'no_one'
+                ]
+            ])
+            ->select(['id', 'name', 'user_id'])
+            ->order(['name']);
 
         $listsOfUser = array();
         $collaborativeLists = array();
 
         $currentUserId = CurrentUser::get('id');
         foreach ($results as $result) {
-            $listId = $result['SentencesList']['id'];
-            $listName = $result['SentencesList']['name'];
-            $userId = $result['SentencesList']['user_id'];
+            $listId = $result['id'];
+            $listName = $result['name'];
+            $userId = $result['user_id'];
 
             if (empty($listName)) {
                 $listName = __('unnamed list');
