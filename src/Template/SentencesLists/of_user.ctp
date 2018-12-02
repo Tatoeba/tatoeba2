@@ -26,7 +26,7 @@
  */
 
 if ($userExists) {
-    $total = $this->Paginator->counter("%count%");
+    $total = $this->Paginator->counter("{{count}}");
 }
 
 if (!$userExists) {

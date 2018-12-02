@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for sentences lists.
@@ -298,9 +299,10 @@ class SentencesListsController extends AppController
         }
 
         $this->set('username', $username);
-        $userId = $this->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
         if (empty($userId)) {
-            $this->set("userExists", false);
+            $this->set('userExists', false);
             return;
         }
 
@@ -308,14 +310,14 @@ class SentencesListsController extends AppController
         if ($username != CurrentUser::get('username')) {
             $visibility = 'public';
         }
-        $this->paginate = $this->SentencesList->getPaginatedLists(
+        $this->paginate = $this->SentencesLists->getPaginatedLists(
             $filter, $username, $visibility
         );
-        $userLists = $this->paginate('SentencesList');
+        $userLists = $this->paginate();
 
         $this->set('userLists', $userLists);
         $this->set('filter', $filter);
-        $this->set("userExists", true);
+        $this->set('userExists', true);
     }
 
     /**

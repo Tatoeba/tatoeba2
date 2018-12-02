@@ -227,7 +227,7 @@ class SentencesListsTable extends Table
             $conditions['SentencesLists.name LIKE'] = "%$search%";
         }
         if (!empty($username)) {
-            $userId = $this->User->getIdFromUsername($username);
+            $userId = $this->Users->getIdFromUsername($username);
             $conditions['SentencesLists.user_id'] = $userId;
         }
         if (!empty($visibility)) {
