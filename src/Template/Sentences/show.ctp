@@ -208,7 +208,7 @@ $this->Navigation->displaySentenceNavigation(
             foreach ($sentenceComments as $i=>$comment) {
                 $commentId = $comment['SentenceComment']['id'];
                 $menu = $this->Comments->getMenuForComment(
-                    $comment['SentenceComment'],
+                    $comment,
                     $commentsPermissions[$i],
                     false
                 );
