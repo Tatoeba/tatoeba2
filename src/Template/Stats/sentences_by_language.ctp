@@ -28,7 +28,7 @@ use Cake\Core\Configure;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Number of sentences per language')));
 
-$max = $stats[0]['Language']['sentences'];
+$max = $stats[0]['sentences'];
 ?>
 <div id="annexe_content">
     <?php echo $this->element('audio_stats', array(
@@ -60,9 +60,7 @@ $max = $stats[0]['Language']['sentences'];
 
     <?php
     $rank = 1;
-    foreach ($stats as $stat) {
-        $language = $stat['Language'];
-
+    foreach ($stats as $language) {
         $langCode = $language['code'];
         $numSentences = $language['sentences'];
         if ($max == 0) {

@@ -117,7 +117,7 @@ class LanguagesFixture extends TestFixture {
 			'id' => '6',
 			'code' => 'jpn',
 			'sentences' => '1',
-			'audio' => '0',
+			'audio' => '3',
 			'group_1' => '0',
 			'group_2' => '0',
 			'group_3' => '0',

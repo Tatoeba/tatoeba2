@@ -20,6 +20,19 @@ class LanguagesTableTest extends TestCase {
         parent::tearDown();
     }
 
+    function testGetSentencesStatistics() {
+        $result = $this->Languages->getSentencesStatistics(5);
+        $this->assertEquals(5, count($result));
+        $this->assertLessThanOrEqual($result[0]->sentences, $result[4]->sentences);
+    }
+
+    function testGetAudioStats() {
+        $result = $this->Languages->getAudioStats();
+        $this->assertEquals(1, count($result));
+        $this->assertEquals(3, $result[0]->total);
+        $this->assertEquals('jpn', $result[0]->lang);
+    }
+
     function testGetNativeSpeakersStatistics() {
         $result = $this->Languages->getNativeSpeakersStatistics();
         $this->assertEquals(7, count($result));

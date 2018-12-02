@@ -35,18 +35,15 @@ class LanguagesTable extends Table
      */
     public function getSentencesStatistics($limit = null)
     {
-        $results = $this->find(
-            'all',
-            array(
-                'fields' => array(
-                    'code',
-                    'sentences',
-                    'audio',
-                ),
-                'order' => array('sentences DESC'),
-                'limit' => $limit
-            )
-        );
+        $results = $this->find()
+            ->select([
+                'code',
+                'sentences',
+                'audio',
+            ])
+            ->order(['sentences' => 'DESC'])
+            ->limit($limit)
+            ->toList();
 
         return $results ;
     }
@@ -58,27 +55,16 @@ class LanguagesTable extends Table
      */
     public function getAudioStats()
     {
-        $results = $this->find(
-            'all',
-            array(
-                'conditions' => array('audio >' => 0),
-                'fields' => array(
-                    'code',
-                    'audio',
-                ),
-                'order' => array('audio DESC')
+        $results = $this->find()
+            ->where(['audio >' => 0])
+            ->select([
+                'lang' => 'code', 
+                'total' => 'audio']
             )
-        );
+            ->order(['audio' => 'DESC'])
+            ->toList();
 
-        $stats = array();
-        foreach ($results as $result) {
-            $stats[] = array(
-                'lang' => $result['Language']['code'],
-                'total' => $result['Language']['audio']
-            );
-        }
-
-        return $stats;
+        return $results;
     }
 
 
