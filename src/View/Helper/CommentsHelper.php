@@ -55,22 +55,19 @@ class CommentsHelper extends AppHelper
      */
     public function displayCommentForm($sentenceId, $sentenceText)
     {
-        echo $this->Form->create(
-            'SentenceComment',
-            array(
-                "url" => array("action" => "save"),
-                "class" => "message form"
-            )
-        );
+        echo $this->Form->create('', [
+            'url' => ['controller' => 'sentence_comments', 'action' => 'save'],
+            'class' => 'message form'
+        ]);
 
-        echo $this->Form->hidden('sentence_id', array("value"=>$sentenceId));
+        echo $this->Form->hidden('sentence_id', ['value' => $sentenceId]);
         ?>
 
         <div class="header">
             <div class="info">
             <?php
             $user = CurrentUser::get('User');
-            $this->Messages->displayAvatar($user['User']);
+            $this->Messages->displayAvatar($user);
             ?>
             </div>
             <div class="title">

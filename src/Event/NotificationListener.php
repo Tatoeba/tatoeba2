@@ -23,6 +23,8 @@ use Cake\Mailer\Email;
 use Cake\Core\Configure;
 use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
+use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Utility\Hash;
 
 
 class NotificationListener implements EventListenerInterface {
@@ -137,34 +139,42 @@ class NotificationListener implements EventListenerInterface {
     }
 
     public function sendSentenceCommentNotification($event) {
-        extract($event->data); // $comment
+        $comment = $event->getData('comment'); // $comment
         $sentenceId = $comment['sentence_id'];
 
-        $Sentence = ClassRegistry::init('Sentence');
-        $SentenceComment = ClassRegistry::init('SentenceComment');
+        $Sentence = TableRegistry::getTableLocator()->get('Sentences');
+        $SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
 
-        $sentence = $Sentence->findById($sentenceId, array('user_id', 'text'));
-        $comments = $SentenceComment->findAllBySentenceId($sentenceId, 'user_id');
+        try {
+            $sentence = $Sentence->get($sentenceId, ['user_id', 'text']);
+        } catch (RecordNotFoundException $e) {
+            $sentence = null;
+        }
+        
+        $comments = $SentenceComment->findAllBySentenceId($sentenceId, [
+            'fields' => ['user_id']
+        ])->toList();
         $userIds = array_merge(array($sentence), $comments);
-        $userIds = Hash::extract($userIds, '{n}.{s}.user_id');
+        $userIds = Hash::extract($userIds, '{n}.user_id');
 
         $usernames = $this->_getMentionedUsernames($comment['text']);
+        $orCondition = ['id IN' => $userIds];
+        if ($usernames) {
+            $orCondition['username IN'] = $usernames;
+        }
 
-        $User = ClassRegistry::init('User');
-        $toNotify = $User->find('all', array(
-            'fields' => array('email'),
-            'conditions' => array(
-                'OR' => array(
-                    array('id' => $userIds),
-                    array('username' => $usernames),
-                ),
-                'NOT' => array('id' => $comment['user_id']),
+        $User =  TableRegistry::getTableLocator()->get('Users');
+        $toNotify = $User->find()
+            ->where([
+                'OR' => $orCondition,
+                'NOT' => ['id' => $comment->user_id],
                 'send_notifications' => true,
-            ),
-        ));
-        $toNotify = Hash::extract($toNotify, '{n}.User.email');
+            ])
+            ->select(['email'])
+            ->toList();
+        $toNotify = Hash::extract($toNotify, '{n}.email');
 
-        $comment['sentence_text'] = $sentence ? $sentence['Sentence']['text'] : false;
+        $comment['sentence_text'] = $sentence ? $sentence->text : false;
         $comment['author'] = $User->getUsernameFromId($comment['user_id']);
         foreach ($toNotify as $email) {
             $this->_sendSentenceCommentNotification($email, $comment);

@@ -161,45 +161,42 @@ class SentenceCommentsController extends AppController
      */
     public function save()
     {
-        $userId = $this->Auth->user('id');
-        $userEmail = $this->Auth->user('email');
-
-        $sentenceId = $this->request->data['SentenceComment']['sentence_id'];
-        $commentText = $this->request->data['SentenceComment']['text'];
-
-        if (empty($sentenceId)) {
-            $this->redirect('/');
-        }
-
+        $data = $this->request->getData();
+        $commentText = $data['text'];
+        $sentenceId = $data['sentence_id'];
         // to avoid spammer and repost
         $lastCom = $this->Cookie->read('hash_last_com');
         $thisCom = md5($commentText . $sentenceId);
         if ($lastCom == $thisCom) {
-            $this->redirect('/');
+            return $this->redirect('/');
         }
 
         $this->Cookie->write(
             'hash_last_com',
             $thisCom,
             false,
-            "+1 month"
+            '+1 month'
         );
 
-        $allowedFields = array('sentence_id', 'text');
-        $comment = $this->filterKeys($this->request->data['SentenceComment'], $allowedFields);
-        $comment['user_id'] = $userId;
-
-        if ($this->SentenceComment->save($comment)) {
+        $comment = $this->SentenceComments->newEntity([
+            'sentence_id' => $sentenceId,
+            'text' => $commentText,
+            'user_id' => $this->Auth->user('id')
+        ]);
+        $savedComment = $this->SentenceComments->save($comment);
+        if ($savedComment) {
             $this->Flash->set(__('Your comment has been saved.'));
-        } else {
-            $firstValidationErrorMessage = reset($this->SentenceComment->validationErrors)[0];
-            $this->Flash->set($firstValidationErrorMessage);
+        } else if ($comment->getErrors()) {
+            foreach($comment->getErrors() as $error) {
+                $firstValidationErrorMessage = reset($error);
+                $this->Flash->set($firstValidationErrorMessage);
+            }
         }
-        $this->redirect(array(
+        return $this->redirect([
             'controller' => 'sentences',
             'action' => 'show',
             $sentenceId
-        ));
+        ]);
     }
 
 
