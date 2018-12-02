@@ -42,11 +42,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             <h2><?php echo __('Latest contributions'); ?></h2>
             <md-list id="logs">
             <?php
-            foreach ($user->contributions as $userContribution) {
-                $contribution = array(
-                    'Contribution' => $userContribution,
-                    'User' => $user
-                );
+            foreach ($user->contributions as $contribution) {
+                $contribution->user = $user; // not optimal
                 echo $this->element(
                     'logs/log_entry_annexe',
                     array('log' => $contribution)
@@ -115,11 +112,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             echo '</h2>';
 
             echo '<div class="comments">';
+            $currentUserIsMember = CurrentUser::isMember();
             foreach ($user->sentence_comments as $i => $sentenceComment) {
-                $comment['SentenceComment'] = $sentenceComment;
-                $comment['User'] = $user;
-                $currentUserIsMember = CurrentUser::isMember();
-
+                $sentenceComment->user = $user; // not optimal
                 $menu = $this->Comments->getMenuForComment(
                     $sentenceComment,
                     $commentsPermissions[$i],
@@ -129,7 +124,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
                 echo $this->element(
                     'messages/comment',
                     array(
-                        'comment' => $comment,
+                        'comment' => $sentenceComment,
                         'menu' => $menu,
                         'replyIcon' => $currentUserIsMember
                     )
@@ -163,7 +158,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             foreach ($user->wall as $comment) {
                 $this->Wall->createThread(
                     $comment,
-                    $user['User'],
+                    $user,
                     null,
                     null
                 );
