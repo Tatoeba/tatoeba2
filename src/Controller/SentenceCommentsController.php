@@ -31,6 +31,7 @@ use App\Event\NotificationListener;
 use Cake\Event\Event;
 use Cake\Core\Configure;
 use App\Model\CurrentUser;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Controller for sentence comments.
@@ -211,20 +212,20 @@ class SentenceCommentsController extends AppController
      */
     public function edit($commentId)
     {
-        $commentId = Sanitize::paranoid($commentId);
+        try {
+            $comment = $this->SentenceComments->get($commentId, [
+                'contain' => [
+                    'Sentences' => ['Transcriptions'],
+                    'Users',
+                ]
+            ]);
+        } catch (RecordNotFoundException $e) {
+            return $this->redirect($this->referer());
+        }
+        
+        $sentenceId = $comment->sentence_id;
+        $authorId = $comment->user_id;
 
-        //get permissions
-        $sentenceComment = $this->SentenceComment->find('first', array(
-            'conditions' => array('SentenceComment.id' => $commentId),
-            'contain' => array(
-                'Sentence' => array('Transcription'),
-                'User',
-            )
-        ));
-        $sentenceId = $sentenceComment['SentenceComment']['sentence_id'];
-        $authorId = $sentenceComment['SentenceComment']['user_id'];
-
-        //check permissions now
         $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
         if (!$canEdit) {
             $no_permission = __(
@@ -236,40 +237,41 @@ class SentenceCommentsController extends AppController
                 "please contact administrators at {email}.", true
             ), array('email' => 'team@tatoeba.org'));
             $this->Flash->set($no_permission.$wrongly);
-            $this->redirect(
+            return $this->redirect(
                 array(
                     'controller' => "sentences",
                     'action'=> 'show',
                     $sentenceId
                 )
             );
-        } else {
-            //user has permissions so either display form or save comment
-            if ($this->request->is('get')) {
-                $this->request->data = $sentenceComment;
-            } else {
-                //save comment
-                $text = $this->request->data['SentenceComment']['text'];
-                $this->SentenceComment->id = $commentId;
-                if ($this->SentenceComment->saveField('text', $text, true)) {
-                    $this->Flash->set(
-                        __("Changes to your comment have been saved.")
-                    );
-                    $this->redirect(
-                        array(
-                            'controller' => "sentences",
-                            'action'=> 'show',
-                            $sentenceId,
-                            "#" => "comment-".$commentId
-                        )
-                    );
-                } else {
-                    $firstValidationErrorMessage = reset($this->SentenceComment->validationErrors)[0];
+        } 
+
+        if ($this->request->is('put')) {
+            $data = $this->request->getData();
+            $this->SentenceComments->patchEntity($comment, [
+                'text' => $data['text']
+            ]);
+            $savedComment = $this->SentenceComments->save($comment);
+            if ($savedComment) {
+                $this->Flash->set(
+                    __("Changes to your comment have been saved.")
+                );
+                return $this->redirect([
+                    'controller' => 'sentences',
+                    'action'=> 'show',
+                    $sentenceId,
+                    '#' => 'comment-'.$commentId
+                ]);
+            } else if ($comment->getErrors()) {
+                foreach($comment->getErrors() as $error) {
+                    $firstValidationErrorMessage = reset($error);
                     $this->Flash->set($firstValidationErrorMessage);
                 }
+                return $this->redirect(['action' => 'edit', $commentId]);
             }
-            $this->set('sentenceComment', $sentenceComment);
-        }
+        } else {
+            $this->set('sentenceComment', $comment);
+        }        
     }
 
     /**

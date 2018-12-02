@@ -15,56 +15,35 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Edit Comment')));
-
-
 ?>
 
-<div id="annexe_content">
-    
-    
-    <!-- <div class="module">
-    </div> -->
-</div>
-
 <div id="main_content">
-    
-
 <div class="module">
     <?php
     echo '<h2>';
     echo format(
         __('Edit Comment on Sentence #{number}'),
-        array('number' => $sentenceComment['SentenceComment']['sentence_id'])
+        array('number' => $sentenceComment->sentence_id)
     );
     echo '</h2>';
     ?>
     
     <div id="sentence<?php 
-        echo $sentenceComment['SentenceComment']['sentence_id'];
+        echo $sentenceComment->sentence_id;
         ?>" 
         class="sentenceSingle">
     <?php
-    $this->Comments->displaySentence($sentenceComment);
+    $this->Comments->displaySentence($sentenceComment->sentence);
     ?>
     </div>
     
     <?php
     $this->Comments->displayCommentEditForm(
-        $sentenceComment['SentenceComment'],
-        $sentenceComment['User']
+        $sentenceComment,
+        $sentenceComment->user
     );
     ?>
-</div>
-    
 </div>

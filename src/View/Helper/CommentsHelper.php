@@ -42,7 +42,7 @@ use App\View\Helper\AppHelper;
 class CommentsHelper extends AppHelper
 {
 
-    public $helpers = array('Form', 'Html', 'Sentences', 'Messages');
+    public $helpers = array('Form', 'Html', 'Sentences', 'Messages', 'Url');
 
 
     /**
@@ -134,8 +134,12 @@ class CommentsHelper extends AppHelper
      */
     public function displaySentence($sentence)
     {
-        $sentence['Translation'] = array();
-        $this->Sentences->displaySimpleSentencesGroup($sentence);
+        if ($sentence) {
+            $sentence->translations = [];
+            $this->Sentences->displaySimpleSentencesGroup($sentence);
+        } else {
+            echo '<em>'.__('sentence deleted').'</em>';
+        }        
     }
 
 
@@ -154,9 +158,9 @@ class CommentsHelper extends AppHelper
         $content = $message['text'];
         $authorId = $author['id'];
 
-        echo $this->Form->create(array(
+        echo $this->Form->create($message, [
             'class' => 'message form',
-        ));
+        ]);
 
         $this->Messages->displayHeader($author, $created, $modified, null);
         ?>
@@ -164,7 +168,7 @@ class CommentsHelper extends AppHelper
         <div class="body">
             <div class="textarea">
             <?php
-            echo $this->Form->textarea('SentenceComment.text');
+            echo $this->Form->textarea('text');
             ?>
             </div>
 
