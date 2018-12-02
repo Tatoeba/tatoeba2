@@ -26,6 +26,7 @@ if (isset($lang)){
 } else {
     $title = __('Sentences with audio');
 }
+$this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
@@ -49,7 +50,7 @@ if (isset($sentencesWithAudio)) {
     } else {
         $title = $this->Paginator->counter(
             array(
-                'format' => $title . ' ' . __("(total %count%)")
+                'format' => $title . ' ' . __("(total {{count}})")
             )
         );
         echo $this->Html->tag('h2', $title);
@@ -60,11 +61,9 @@ if (isset($sentencesWithAudio)) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = true;
-        foreach ($sentencesWithAudio as $sentence) {
-            $sentence['Audio']['User'] = $sentence['User'];
-            unset($sentence['User']);
+        foreach ($sentencesWithAudio as $audio) {
             $this->Sentences->displayGenericSentence(
-                $sentence,
+                $audio->sentence,
                 $type,
                 $withAudio,
                 $parentId

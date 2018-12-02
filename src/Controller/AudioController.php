@@ -20,6 +20,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use App\Lib\LanguagesLib;
 
 class AudioController extends AppController
 {
@@ -42,14 +43,14 @@ class AudioController extends AppController
         'Audio',
     );
 
-    public $paginate = array(
-        'contain' => array(
-            'User' => array('username'),
-            'Sentence' => array('Transcription')
-        ),
+    public $paginate = [
+        'contain' => [
+            'Users' => ['fields' => ['username']],
+            'Sentences' => ['Transcriptions']
+        ],
         'limit' => 100,
-        'order' => 'Audio.modified DESC'
-    );
+        'order' => ['Audios.modified' => 'DESC']
+    ];
 
     public function beforeFilter(Event $event)
     {
@@ -80,12 +81,15 @@ class AudioController extends AppController
     public function index($lang = null) {
         $conditions = array();
         if (LanguagesLib::languageExists($lang)) {
-            $conditions['Sentence.lang'] = $lang;
+            $conditions['Sentences.lang'] = $lang;
             $this->set(compact('lang'));
         }
-        $sentencesWithAudio = $this->paginate('Audio', $conditions);
+        $this->paginate['conditions'] = $conditions;
+        $sentencesWithAudio = $this->paginate('Audios');
+        
+        $this->loadModel('Languages');
         $this->set(compact('sentencesWithAudio'));
-        $this->set(array('stats' => $this->Language->getAudioStats()));
+        $this->set(array('stats' => $this->Languages->getAudioStats()));
         $this->set('lang', $lang);
     }
 
