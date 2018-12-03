@@ -21,6 +21,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Event\SuggestdListener;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 
 class TagsController extends AppController
@@ -234,7 +235,7 @@ class TagsController extends AppController
         // comes from an old URL with the internal name, so we
         // redirect them to the right URL.
         if ($tagId != '0' && intval($tagId) == 0) {
-            $actualTagId = $this->Tag->getIdFromInternalName($tagId);
+            $actualTagId = $this->Tags->getIdFromInternalName($tagId);
             $this->redirect(
                 array(
                     "controller" => "tags",
@@ -249,13 +250,13 @@ class TagsController extends AppController
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Tags';
 
-        $tagName = $this->Tag->getNameFromId($tagId);
+        $tagName = $this->Tags->getNameFromId($tagId);
         $tagExists = !empty($tagName);
         $this->set('tagExists', $tagExists);
         $this->set('tagId', $tagId);
 
         if ($tagExists) {
-            $this->paginate = $this->Tag->paramsForPaginate(
+            $this->paginate = $this->Tags->paramsForPaginate(
                 $tagId,
                 CurrentUser::getSetting('sentences_per_page'),
                 $lang

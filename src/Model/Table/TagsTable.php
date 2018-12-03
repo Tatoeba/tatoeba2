@@ -175,21 +175,22 @@ class TagsTable extends Table
 
     public function paramsForPaginate($tagId, $limit, $lang = null)
     {
-        $conditions = array('Tag.id' => $tagId);
-        $contain = array(
-            'Tag' => array(
-                'fields' => array('id'),
-            ),
-            'Sentence' => $this->Sentence->paginateContain(),
-        );
+        $conditions = ['Tags.id' => $tagId];
+        $contain = [
+            'Tags' => ['fields' => ['id']],
+            'Sentences' => $this->Sentences->paginateContain()
+        ];
 
         if (!empty($lang) && $lang != 'und') {
-            $conditions['Sentence.lang'] = $lang;
+            $conditions['Sentences.lang'] = $lang;
         }
         $params = array(
             'TagsSentences' => array(
                 'limit' => $limit,
-                'fields' => array('DISTINCT sentence_id', 'user_id'),
+                'fields' => [
+                    'sentence_id' => 'DISTINCT(sentence_id)', 
+                    'user_id'
+                ],
                 'conditions' => $conditions,
                 'contain' => $contain
             )
@@ -208,14 +209,12 @@ class TagsTable extends Table
      * @return int Id of the tag
      */
     public function getIdFromInternalName($tagInternalName) {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array('Tag.internal_name' => $tagInternalName),
-                'fields' => 'id'
-            )
-        );
-        return $result['Tag']['id'];
+        $result = $this->find()
+            ->where(['internal_name' => $tagInternalName])
+            ->select(['id'])
+            ->first();
+            
+        return $result->id;
     }
 
 
@@ -256,13 +255,11 @@ class TagsTable extends Table
      *
      */
     public function getNameFromId($tagId) {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array('Tag.id'=>$tagId),
-                'fields' => 'name'
-            )
-        );
-        return $result['Tag']['name'];
+        $result = $this->find()
+            ->where(['id' => $tagId])
+            ->select(['name'])
+            ->first();
+
+        return $result->name;
     }
 }

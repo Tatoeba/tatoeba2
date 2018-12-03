@@ -236,7 +236,7 @@ class TagsHelper extends AppHelper
         $canCurrentUserRemove = false,
         $tagId = null
     ) {
-        if (empty($sentence['id'])) {
+        if (!$sentence) {
             // In case the sentence has been deleted, we don't want to display
             // it in the list.
             return;

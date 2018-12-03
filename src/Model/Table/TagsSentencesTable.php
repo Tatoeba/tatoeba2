@@ -46,6 +46,7 @@ class TagsSentencesTable extends Table
     {
         $this->belongsTo('Users');
         $this->belongsTo('Tags');
+        $this->belongsTo('Sentences');
 
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);

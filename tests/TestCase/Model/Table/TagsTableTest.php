@@ -84,4 +84,24 @@ class TagsTableTest extends TestCase {
         $added = $after - $before;
         $this->assertEquals(0, $added);
     }
+
+    function testGetIdFromInternalName_succeeds() {
+        $result = $this->Tag->getIdFromInternalName('OK');
+        $this->assertEquals(2, $result);
+    }
+
+    function testGetIdFromInternalName_fails() {
+        $result = $this->Tag->getIdFromInternalName('OOK');
+        $this->assertNull($result);
+    }
+
+    function testGetNameFromId_succeeds() {
+        $result = $this->Tag->getNameFromId(2);
+        $this->assertEquals('OK', $result);
+    }
+
+    function testGetNameFromId_fails() {
+        $result = $this->Tag->getNameFromId(4);
+        $this->assertNull($result);
+    }
 }
