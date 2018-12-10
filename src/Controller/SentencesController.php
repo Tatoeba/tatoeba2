@@ -281,7 +281,7 @@ class SentencesController extends AppController
      */
     public function delete($id)
     {
-        $isDeleted = $this->Sentence->deleteSentence($id);
+        $isDeleted = $this->Sentences->deleteSentence($id);
         if ($isDeleted) {
             $flashMessage = format(
                 __('The sentence #{id} has been deleted.'),
@@ -357,7 +357,7 @@ class SentencesController extends AppController
      */
     public function edit_sentence()
     {
-        $sentence = $this->Sentence->editSentence($this->request->data);
+        $sentence = $this->Sentences->editSentence($this->request->data);
         if (empty($sentence)) {
             $this->redirect(array('controller' => 'pages', 'action' => 'home'));
         } else {
@@ -380,7 +380,7 @@ class SentencesController extends AppController
         $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
 
-        $this->Sentence->setOwner($id, $userId, CurrentUser::get('group_id'));
+        $this->Sentences->setOwner($id, $userId, CurrentUser::get('group_id'));
 
         $this->renderAdopt($id);
     }
@@ -399,14 +399,14 @@ class SentencesController extends AppController
         $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
 
-        $this->Sentence->unsetOwner($id, $userId);
+        $this->Sentences->unsetOwner($id, $userId);
 
         $this->renderAdopt($id);
     }
 
     private function renderAdopt($id)
     {
-        $sentence = $this->Sentence->find('first', array(
+        $sentence = $this->Sentences->find('first', array(
             'conditions' => array('Sentence.id' => $id),
             'contain' => array('User' => 'username'),
             'fields' => array('id'),
@@ -987,10 +987,8 @@ class SentencesController extends AppController
      */
     public function of_user($userName, $lang = null)
     {
-        $lang = Sanitize::paranoid($lang);
-
-        $this->loadModel('User');
-        $userId = $this->User->getIdFromUserName($userName);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUserName($userName);
 
         // if there's no such user no need to do more computation
         $this->set("userName", $userName);
@@ -1017,7 +1015,7 @@ class SentencesController extends AppController
     private function _sentences_of_user_common($userId, $lang)
     {
         $this->paginate = array(
-            'Sentence' => array(
+            'Sentences' => array(
                 'fields' => array(
                     'id',
                     'text',
@@ -1026,37 +1024,27 @@ class SentencesController extends AppController
                     'correctness'
                 ),
                 'contain' => array(
-                    'Transcription' => array(
-                        'User' => array('fields' => array('username')),
+                    'Transcriptions' => array(
+                        'Users' => array('fields' => array('username')),
                     ),
-                    'User' => array(
+                    'Users' => array(
                         'fields' => array('username')
                     )
                 ),
                 'limit' => 100,
-                'order' => "Sentence.modified DESC"
+                'order' => "Sentences.modified DESC"
 
             )
         );
 
 
-        $conditions = array(
-            'Sentence.user_id' => $userId,
-        );
+        $conditions = $this->Sentences->find()->where(['user_id' => $userId]);
         // if the lang is specified then we also filter on the language
         if (!empty($lang)) {
-            $conditions = array(
-                "AND" => array(
-                    'Sentence.user_id' => $userId,
-                    'Sentence.lang' => $lang
-                )
-            );
+            $conditions = $conditions->where(['lang' => $lang]);
         }
 
-        $sentences = $this->paginate(
-            'Sentence',
-            $conditions
-        );
+        $sentences = $this->paginate($conditions);
 
         $this->set('user_sentences', $sentences);
     }
@@ -1196,35 +1184,34 @@ class SentencesController extends AppController
 
     public function edit_license()
     {
-        if (isset($this->request->data['Sentence']['id']) &&
-            isset($this->request->data['Sentence']['license'])) {
-            $sentenceId = $this->request->data['Sentence']['id'];
-            $newLicense = $this->request->data['Sentence']['license'];
-        } else {
-            throw new BadRequestException();
+        $sentenceId = $this->request->getData('id');
+        $newLicense = $this->request->getData('license');
+        if (is_null($sentenceId) || is_null($newLicense)) {
+            throw new \Cake\Http\Exception\BadRequestException();
         }
 
         if (CurrentUser::isModerator()) {
-            unset($this->Sentence->validate['license']['canSwitchLicense']);
+            unset($this->Sentences->validate['license']['canSwitchLicense']);
         }
 
-        $this->Sentence->id = $sentenceId;
+        $sentence = $this->Sentences->get($sentenceId);
+        $sentence->license = $newLicense;
 
         if (!CurrentUser::isModerator()) {
             $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
         }
-        elseif ($this->Sentence->save(array('license' => $newLicense))) {
+        elseif ($this->Sentences->save($sentence)) {
             $this->Flash->set(format(
                 __('The license of the sentence has been changed to “{newLicense}”.'),
                 compact('newLicense')
             ));
         } else {
-            if (isset($this->Sentence->validationErrors['license'])) {
+            if (isset($this->Sentences->validationErrors['license'])) {
                 $message = format(
                     __('Unable to change the license to “{newLicense}” because:'),
                     compact('newLicense')
                 );
-                $errors = $this->Sentence->validationErrors['license'];
+                $errors = $this->Sentences->validationErrors['license'];
                 $params = compact('errors');
                 $this->Flash->set($message, compact('params'));
             }
