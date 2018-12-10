@@ -11,21 +11,8 @@ class TagsTableTest extends TestCase {
     public $fixtures = array(
         'app.sentences',
         'app.users',
-        'app.groups',
-        'app.sentence_comments',
-        'app.contributions',
-        'app.sentences_lists',
-        'app.sentences_sentences_lists',
-        'app.walls',
-        'app.wall_threads',
-        'app.favorites_users',
         'app.tags',
         'app.tags_sentences',
-        'app.languages',
-        'app.links',
-        'app.sentence_annotations',
-        'app.transcriptions',
-        'app.reindex_flags'
     );
 
     function setUp() {
