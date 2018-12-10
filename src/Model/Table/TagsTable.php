@@ -18,35 +18,13 @@
  */
 namespace App\Model\Table;
 
+use App\Model\CurrentUser;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
 
 class TagsTable extends Table
 {
-    public $name = 'Tag';
-
-    public $actsAs = array('Containable');
-
-
-    public $belongsTo = array('User',);
-    public $hasMany = array('TagsSentences');
-
-    public $hasAndBelongsToMany = array(
-        'Sentence' => array(
-            'className' => 'Sentence',
-            'joinTable' => 'tags_sentences',
-            'foreignKey' => 'sentence_id',
-            'associationForeignKey' => 'tag_id'
-        ),
-         'Tagger' => array(
-            'className' => 'User',
-            'joinTable' => 'tags_sentences',
-            'foreignKey' => 'user_id',
-            'associationForeignKey' => 'tag_id'
-        ),
-    );
-
     public function getChangeTagName()
     {
         return '@change';
@@ -78,6 +56,7 @@ class TagsTable extends Table
     {
         $this->hasMany('TagsSentences');
         $this->belongsToMany('Sentences');
+        $this->belongsTo('Users');
 
         $this->addBehavior('Timestamp');
     }
@@ -162,14 +141,14 @@ class TagsTable extends Table
     }
 
     private function canRemoveTagFromSentence($tagId, $sentenceId) {
-        $result = $this->TagsSentences->find('first', array(
-            'conditions' => array(
+        $result = $this->TagsSentences->find()
+            ->where([
                 'tag_id' => $tagId,
                 'sentence_id' => $sentenceId,
-            ),
-        ));
+            ])
+            ->first();
         return $result && CurrentUser::canRemoveTagFromSentence(
-            $result['TagsSentences']['user_id']
+            $result->user_id
         );
     }
 
@@ -238,14 +217,8 @@ class TagsTable extends Table
      *
      */
     public function tagExists($tagId) {
-        $result = $this->find(
-        'first',
-            array(
-                'conditions' => array('Tag.id'=>$tagId),
-                'fields' => 'name'
-            )
-        );
-        return empty($result) ? false : true;
+        $result = $this->get($tagId, ['fields' => ['name']]);
+        return !empty($result);
     }
 
 
