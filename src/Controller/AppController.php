@@ -284,6 +284,8 @@ class AppController extends Controller
     {
         if ($object instanceof \Cake\Datasource\QueryInterface) {
             $object = $object->getRepository()->getAlias();
+        } elseif (is_null($object)) {
+            $object = $this->modelClass;
         }
         $paging = $this->Paginator->getPagingParams();
         $lastPage = $paging[$object]['pageCount'];

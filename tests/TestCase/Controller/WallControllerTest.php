@@ -1,52 +1,48 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\WallController;
 use Cake\Core\Configure;
+use Cake\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
 
-class WallControllerTest extends ControllerTestCase {
+class WallControllerTest extends IntegrationTestCase {
 
-    public $fixtures = array(
+    public $fixtures = [
         'app.walls',
         'app.wall_threads',
         'app.users',
         'app.users_languages'
-    );
+    ];
 
     public function setUp() {
-        Configure::write('App.base', ''); // prevent using the filesystem path as base
-        $this->controller = $this->generate('Wall', array(
-            'methods' => array('redirect'),
-        ));
+        parent::setUp();
+        Configure::write('Acl.database', 'test');
     }
 
-    public function endTest($method) {
-        unset($this->controller);
+    private function postNewPosts($n) {
+        $userId = 1;
+        $initialDate = new \DateTime('2018-01-01');
+        $posts = [];
+        for ($i = 0; $i <= $n; $i++) {
+            $date = $initialDate->format('Y-m-d H:i:s');
+            $posts[] = [
+                'content' => "Wall message $i",
+                'date' => $date,
+                'owner' => $userId,
+            ];
+            $initialDate->modify("+1 day");
+        }
+        $wall = TableRegistry::get('Wall');
+        $wall->saveMany($wall->newEntities($posts));
     }
 
     public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
-        $userId = 1;
         $lastPage = 2;
-        
-        $initialDate = new DateTime('2018-01-01');
-		for ($i = 0; $i <= 15; $i++) {
-            $date = $initialDate->format('Y-m-d H:i:s');
-			$message = array(
-                'content' => "Wall message $i",
-                'date' => $date,
-				'owner' => $userId,
-            );
-            $this->controller->Wall->save($message);
 
-            $this->controller->Wall->id = null;
-            $initialDate->modify("+1 day");
-		}
-        
-        $this->controller
-             ->expects($this->once())
-             ->method('redirect')
-             ->with("/eng/wall/index/page:$lastPage");
-        $this->testAction("/eng/wall/index/page:9999999");
+        $this->postNewPosts(15);
+
+        $this->get("/eng/wall/index/page:9999999");
+        $this->assertRedirect("/eng/wall/index/page:$lastPage");
     }
 }
 ?>
