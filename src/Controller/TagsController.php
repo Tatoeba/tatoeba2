@@ -33,8 +33,8 @@ class TagsController extends AppController
      * @access public
      */
     public $name = 'Tags';
-    public $components = array('CommonSentence', 'Flash');
-    public $helpers = array('Pagination');
+    public $components = ['CommonSentence', 'Flash'];
+    public $helpers = ['Pagination'];
     /**
      * Before filter.
      *
@@ -43,15 +43,15 @@ class TagsController extends AppController
     public function beforeFilter(Event $event)
     {
         // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array(
+        $this->Auth->allowedActions = [
             'show_sentences_with_tag',
             'view_all',
             'search'
-        );
+        ];
 
-        $this->Security->unlockedActions = array(
+        $this->Security->unlockedActions = [
             'add_tag_post'
-        );
+        ];
 
         $eventManager = $this->Tags->getEventManager();
         $eventManager->attach(new SuggestdListener());
@@ -70,11 +70,11 @@ class TagsController extends AppController
         if ($this->request->is('ajax')) {
             $this->helpers[] = 'Tags';
 
-            $tagName = $this->request->data['tag_name'];
-            $sentenceId = Sanitize::paranoid($this->request->data['sentence_id']);
+            $tagName = $this->request->getData('tag_name');
+            $sentenceId = Sanitize::paranoid($this->request->getData('sentence_id'));
             $userId = CurrentUser::get("id");
             $username = CurrentUser::get("username");
-            $tagId = $this->Tag->addTag($tagName, $userId, $sentenceId);
+            $tagId = $this->Tags->addTag($tagName, $userId, $sentenceId);
 
             $isSaved = !empty($tagId);
             $this->set('isSaved', $isSaved);
@@ -87,9 +87,9 @@ class TagsController extends AppController
                 $this->set('date', date("Y-m-d H:i:s"));
             }
         } else {
-            $tagName = $this->request->data['Tag']['tag_name'];
-            $sentenceId = Sanitize::paranoid($this->request->data['Tag']['sentence_id']);
-            $this->add_tag($tagName, $sentenceId);
+            $tagName = $this->request->getData('tag_name');
+            $sentenceId = $this->request->getData('sentence_id');
+            return $this->add_tag($tagName, $sentenceId);
         }
     }
 
@@ -108,46 +108,39 @@ class TagsController extends AppController
 
         // If no sentence id, we redirect to homepage.
         if (empty($sentenceId) || !is_numeric($sentenceId) ) {
-            $this->redirect(
-                array(
-                    'controller' => 'pages',
-                    'action' => 'home'
-                )
-            );
+            return $this->redirect([
+                'controller' => 'pages',
+                'action' => 'home'
+            ]);
         }
 
         // If empty tag, we redirect to sentence's page.
         if (empty($tagName)) {
-            $this->redirect(
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $sentenceId
-                )
-            );
+            return $this->redirect([
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ]);
         }
 
         // save and check if the tag has been added
-        $tag = $this->Tag->addTag($tagName, $userId, $sentenceId);
+        $tag = $this->Tags->addTag($tagName, $userId, $sentenceId);
         if (!empty($tag)) {
             $infoMessage = format(
                 __(
                     "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",
                     true
                 ),
-                array('tagName' => $tagName, 'number' => $sentenceId)
+                ['tagName' => $tagName, 'number' => $sentenceId]
             );
             $this->Flash->set($infoMessage);
         }
 
-        $this->redirect(
-            array(
-                'controller' => 'sentences',
-                'action' => 'show',
-                $sentenceId
-            )
-        );
-
+        return $this->redirect([
+            'controller' => 'sentences',
+            'action' => 'show',
+            $sentenceId
+        ]);
     }
 
     /**
@@ -190,15 +183,13 @@ class TagsController extends AppController
     public function remove_tag_from_sentence($tagId, $sentenceId)
     {
         if (!empty($tagId) && !empty($sentenceId)) {
-            $this->Tag->removeTagFromSentence($tagId, $sentenceId);
+            $this->Tags->removeTagFromSentence($tagId, $sentenceId);
         }
-        $this->redirect(
-            array(
-                'controller' => 'sentences',
-                'action' => 'show',
-                $sentenceId
-            )
-        );
+        return $this->redirect([
+            'controller' => 'sentences',
+            'action' => 'show',
+            $sentenceId
+        ]);
 
     }
 
@@ -215,9 +206,9 @@ class TagsController extends AppController
     public function remove_tag_of_sentence_from_tags_show($tagId, $sentenceId)
     {
         if (!empty($tagId) && !empty($sentenceId)) {
-            $this->Tag->removeTagFromSentence($tagId, $sentenceId);
+            $this->Tags->removeTagFromSentence($tagId, $sentenceId);
         }
-        $this->redirect($_SERVER['HTTP_REFERER']);
+        return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
 
@@ -236,12 +227,12 @@ class TagsController extends AppController
         // redirect them to the right URL.
         if ($tagId != '0' && intval($tagId) == 0) {
             $actualTagId = $this->Tags->getIdFromInternalName($tagId);
-            $this->redirect(
-                array(
+            return $this->redirect(
+                [
                     "controller" => "tags",
                     "action" => "show_sentences_with_tag",
                     $actualTagId, $lang
-                ),
+                ],
                 301
             );
         }
@@ -264,9 +255,9 @@ class TagsController extends AppController
 
             $sentences = $this->paginate('TagsSentences');
 
-            $taggerIds = array();
+            $taggerIds = [];
             foreach ($sentences as $sentence) {
-                $taggerIds[] = $sentence['TagsSentences']['user_id'];
+                $taggerIds[] = $sentence->user_id;
             }
 
             $this->set('langFilter', $lang);
@@ -285,14 +276,11 @@ class TagsController extends AppController
 
     public function search()
     {
-        $search = $this->request->data['Tag']['search'];
-        pr($this->request->data);
-        $this->redirect(
-            array(
-                'controller' => 'tags',
-                'action' => 'view_all',
-                $search
-            )
-        );
+        $search = $this->request->getData('search');
+        return $this->redirect([
+            'controller' => 'tags',
+            'action' => 'view_all',
+            $search
+        ]);
     }
 }
