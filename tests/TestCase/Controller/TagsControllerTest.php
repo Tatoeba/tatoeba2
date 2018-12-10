@@ -1,61 +1,49 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\TagsController;
 use Cake\Core\Configure;
+use Cake\ORM\TableRegistry;
+use Cake\TestSuite\IntegrationTestCase;
 
-class TagsControllerTest extends ControllerTestCase {
-    public $fixtures = array(
+class TagsControllerTest extends IntegrationTestCase {
+    public $fixtures = [
         'app.aros',
         'app.acos',
         'app.aros_acos',
-        'app.sentences',
         'app.tags',
         'app.tags_sentences',
         'app.users',
         'app.users_languages'
-    );
+    ];
 
     public function setUp() {
+        parent::setUp();
         Configure::write('Acl.database', 'test');
-        $this->controller = $this->generate('Tags');
-        $this->controller->Auth->Session->destroy();
-    }
-
-    public function endTest($method) {
-        $this->controller->Auth->Session->destroy();
-        unset($this->controller);
+        Configure::write('Security.salt', 'ze@9422#5dS?!99xx');
     }
 
     private function logInAs($username) {
-        $user = $this->controller->Tag->User->find('first', array(
-            'conditions' => array('username' => $username),
-        ));
-        $this->controller->Auth->login($user['User']);
+        $users = TableRegistry::get('Users');
+        $user = $users->findByUsername($username)->first();
+        $this->session(['Auth' => ['User' => $user->toArray()]]);
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
     }
 
     private function _removeAsUser($username, $tagId, $sentenceId) {
-        $beforeCount = $this->controller->Tag->TagsSentence->find('count', array(
-            'conditions' => array(
-                'tag_id' => $tagId,
-                'sentence_id' => $sentenceId,
-            ),
-        ));
+        $TagsSentences = TableRegistry::get('TagsSentences');
+        $beforeCount = $TagsSentences->find()
+            ->where(['tag_id' => $tagId, 'sentence_id' => $sentenceId])
+            ->count();
         if ($username) {
             $this->logInAs($username);
         }
-        $this->testAction(
-            "/jpn/tags/remove_tag_from_sentence/$tagId/$sentenceId",
-            array(
-                'method' => 'get',
-            )
-        );
-        $afterCount = $this->controller->Tag->TagsSentence->find('count', array(
-            'conditions' => array(
-                'tag_id' => $tagId,
-                'sentence_id' => $sentenceId,
-            ),
-        ));
+
+        $this->get("/jpn/tags/remove_tag_from_sentence/$tagId/$sentenceId");
+
+        $afterCount = $TagsSentences->find()
+            ->where(['tag_id' => $tagId, 'sentence_id' => $sentenceId])
+            ->count();
         return $afterCount - $beforeCount;
     }
 
