@@ -87,17 +87,10 @@ class MailerComponent extends Component
             return;
         }
 
-        $this->Email->config(array(
-            'port' => '465',
-            'timeout' => '45',
-            'host' => 'ssl://smtp.gmail.com',
-            'username' => Configure::read('Mailer.username'),
-            'password' => Configure::read('Mailer.password'),
-            'transport' => $this->getTransport(),
-        ));
-        $this->Email->emailFormat('html');
-        $this->Email->from(array(Configure::read('Mailer.username') => 'noreply'));
-        $this->Email->send();
+        $this->Email->transport('gmail')
+            ->emailFormat('html')
+            ->setFrom([Configure::read('Mailer.username') => 'noreply'])
+            ->send();
     }
 
     public function getTransport()

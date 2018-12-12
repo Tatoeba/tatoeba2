@@ -429,7 +429,7 @@ class UsersController extends AppController
     {
         $sentEmail = $this->request->getData('email');
         if (!empty($sentEmail)) {
-            $user = $this->Users->findByEmail($sentEmail);
+            $user = $this->Users->findByEmail($sentEmail)->first();
 
             // check if user exists, if so :
             if ($user) {

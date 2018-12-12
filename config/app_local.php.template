@@ -56,10 +56,20 @@ return [
      * For email notifications.
      * Cf. src/Event/NotificationListener.php
      */
+     'EmailTransport' => [
+        'gmail' => [
+            'host' => 'ssl://smtp.gmail.com',
+            'port' => '465',
+            'timeout' => '45',
+            'username' => 'some.random.gmail.address@gmail.com',
+            'password' => 'some.password',
+            'className' => 'Smtp'
+        ]
+    ],
+        
     'Mailer' => [
-        'enabled', false,
-        'username', 'some.random.gmail.address@gmail.com',
-        'password', 'some.password',
+        'enabled' => false,
+        'username' => 'some.email@email.com',
     ],
 
     /**
