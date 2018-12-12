@@ -28,6 +28,8 @@ class PrivateMessageTest extends TestCase {
     }
 
     public function testSaveDraft_addsNewDraft() {
+        $userId = 7;
+        CurrentUser::store(['id' => $userId]);
         $date = '1999-12-31 23:59:59';
         $postData = array(
             'recipients' => 'advanced_contributor',
@@ -37,14 +39,14 @@ class PrivateMessageTest extends TestCase {
             'submitType' => 'saveDraft',
         );
 
-        $draft =$this->PrivateMessage->saveDraft(7, $date, $postData);
+        $draft = $this->PrivateMessage->saveDraft($userId, $date, $postData);
 
         $id = $draft->id;
         $expectedPm = array(
             'id'      => $id,
             'recpt'   => 0,
-            'sender'  => 7,
-            'user_id' => 7,
+            'sender'  => $userId,
+            'user_id' => $userId,
             'date'    => $date,
             'folder'  => 'Drafts',
             'title'   => 'Status',
@@ -110,6 +112,8 @@ class PrivateMessageTest extends TestCase {
     }
 
     public function testSaveDraft_withoutRecipient() {
+        $userId = 7;
+        CurrentUser::store(['id' => $userId]);
         $date = '1999-12-31 23:59:59';
         $postData = array(
             'recipients' => '',
@@ -120,7 +124,7 @@ class PrivateMessageTest extends TestCase {
         );
 
         $before = $this->PrivateMessage->find()->count();
-        $this->PrivateMessage->saveDraft(7, $date, $postData);
+        $this->PrivateMessage->saveDraft($userId, $date, $postData);
         $after = $this->PrivateMessage->find()->count();
 
         $this->assertEquals(1, $after - $before);
@@ -136,15 +140,17 @@ class PrivateMessageTest extends TestCase {
             'submitType' => 'send',
         );
         $currentUserId = 7;
+        $recpt = 3;
+        CurrentUser::store(['id' => $currentUserId]);
 
         $message = $this->PrivateMessage->send($currentUserId, $date, $postData);
 
         $sentId = $this->PrivateMessage->find()->order(['id' => 'DESC'])->first()->id;
         $expectedSent = array(
             'id'      => $sentId,
-            'recpt'   => 3,
-            'sender'  => 7,
-            'user_id' => 7,
+            'recpt'   => $recpt,
+            'sender'  => $currentUserId,
+            'user_id' => $currentUserId,
             'date'    => $date,
             'folder'  => 'Sent',
             'title'   => 'Status',
@@ -159,9 +165,9 @@ class PrivateMessageTest extends TestCase {
         $receivedId = $sentId - 1;
         $expectedReceived = array(
             'id'      => $receivedId,
-            'recpt'   => 3,
-            'sender'  => 7,
-            'user_id' => 3,
+            'recpt'   => $recpt,
+            'sender'  => $currentUserId,
+            'user_id' => $recpt,
             'date'    => $date,
             'folder'  => 'Inbox',
             'title'   => 'Status',
@@ -170,6 +176,7 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => '',
         );
+        CurrentUser::store(['id' => $recpt]);
         $received = $this->PrivateMessage->get($receivedId)->old_format;
         $this->assertEquals($expectedReceived, $received['PrivateMessage']);
     }
@@ -184,6 +191,7 @@ class PrivateMessageTest extends TestCase {
             'submitType' => 'send',
         );
         $currentUserId = 9;
+        CurrentUser::store(['id' => $currentUserId]);
 
         for ($i = 0; $i <= 5; $i++) {
             $message = $this->PrivateMessage->send($currentUserId, $date, $postData);

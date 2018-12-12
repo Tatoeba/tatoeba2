@@ -418,7 +418,12 @@ class PrivateMessagesTable extends Table
     
     public function restoreMessage($id)
     {
-        $message = $this->get($id);
+        try {
+            $message = $this->get($id);
+        } catch (RecordNotFoundException $e) {
+            return false;
+        }
+
         $message->folder = $message->origin;
         return $this->save($message);
     }
