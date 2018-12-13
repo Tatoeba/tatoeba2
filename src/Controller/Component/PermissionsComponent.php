@@ -256,7 +256,7 @@ class PermissionsComponent extends Component
         foreach ($messages as $i=>$message) {
             $messages[$i]['Permissions'] = $this->getWallMessageOptions(
                 $message,
-                $message['User']['id'],
+                $message->user->id,
                 $currentUserId,
                 $currentUserGroup
             );
