@@ -106,7 +106,7 @@ class SentencesController extends AppController
         parent::initialize();
 
         $params = $this->request->params;
-        $noCsrfActions = ['edit_sentence'];
+        $noCsrfActions = ['edit_sentence', 'change_language'];
         if (in_array($params['action'], $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
@@ -1064,10 +1064,11 @@ class SentencesController extends AppController
         if (isset($this->request->data['id'])
             && isset($this->request->data['newLang'])
         ) {
-            $newLang = Sanitize::paranoid($this->request->data['newLang']);
-            $id = Sanitize::paranoid($this->request->data['id']);
+            $newLang = $this->request->data['newLang'];
+            $id = $this->request->data['id'];
 
-            $lang = $this->Sentence->changeLanguage($id, $newLang);
+            $lang = $this->Sentences->changeLanguage($id, $newLang);
+            $this->loadModel('UsersSentences');
             $this->UsersSentences->makeDirty($id);
             $this->set('lang', $lang);
         }

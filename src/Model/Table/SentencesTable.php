@@ -975,44 +975,42 @@ class SentencesTable extends Table
      */
     public function changeLanguage($sentenceId, $newLang)
     {
-        $sentence = $this->find('first', array(
-            'conditions' => array('id' => $sentenceId),
-            'fields' => array('lang', 'user_id'),
-        ));
-        if (!$sentence) {
+        try {
+            $sentence = $this->get($sentenceId, [
+                'fields' => ['id', 'lang', 'user_id']
+            ]);
+        } catch (RecordNotFoundException $e) {
             return false;
         }
-        $ownerId = $sentence['Sentence']['user_id'];
-        $prevLang = $sentence['Sentence']['lang'];
+        
+        $ownerId = $sentence->user_id;
+        $prevLang = $sentence->lang;
         $currentUserId = CurrentUser::get('id');
 
         if ($ownerId == $currentUserId || CurrentUser::isModerator()) {
 
             // Making sure the language is not saved as an empty string but as NULL.
-            if ($newLang == "" ) {
+            if ($newLang == '' ) {
                 $newLang = null;
             }
 
-            $data['Sentence'] = array(
-                'lang' => $newLang,
-            );
-            $this->id = $sentenceId;
-            $this->save($data);
+            $sentence->lang = $newLang;
+            $result = $this->save($sentence);
 
-            $this->Link->updateLanguage($sentenceId, $newLang);
-            $this->Contribution->updateLanguage($sentenceId, $newLang);
-            $this->Language->incrementCountForLanguage($newLang);
-            $this->Language->decrementCountForLanguage($prevLang);
+            $this->Links->updateLanguage($sentenceId, $newLang);
+            $this->Contributions->updateLanguage($sentenceId, $newLang);
+            $this->Languages->incrementCountForLanguage($newLang);
+            $this->Languages->decrementCountForLanguage($prevLang);
 
             // In the previous language, add the sentence to the kill-list
             // so that it doesn't appear in results any more.
-            $this->ReindexFlag->create();
-            $this->ReindexFlag->save(array(
+            $reindexFlag = $this->ReindexFlags->newEntity([
                 'sentence_id' => $sentenceId,
                 'lang' => $prevLang,
-            ));
+            ]);
+            $this->ReindexFlags->save($reindexFlag);
 
-            return $newLang;
+            return $result->lang;
         }
 
         return $prevLang;

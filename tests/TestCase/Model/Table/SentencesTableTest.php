@@ -868,4 +868,21 @@ class SentencesTableTest extends TestCase {
 		$result = $this->Sentence->getLanguageCodeFromSentenceId(99999999);
 		$this->assertEquals(null, $result);
 	}
+
+	function testChangeLanguage_succeeds() {
+		CurrentUser::store(['id' => 7]);
+		$result = $this->Sentence->changeLanguage(1, 'jpn');
+		$this->assertEquals('jpn', $result);
+	}
+
+	function testChangeLanguage_failsBecauseNowAllowed() {
+		CurrentUser::store(['id' => 4]);
+		$result = $this->Sentence->changeLanguage(1, 'jpn');
+		$this->assertEquals('eng', $result);
+	}
+
+	function testChangeLanguage_failsBecauseWrongSentenceId() {
+		$result = $this->Sentence->changeLanguage(9999999, 'jpn');
+		$this->assertFalse($result);
+	}
 }

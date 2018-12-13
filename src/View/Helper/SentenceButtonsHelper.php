@@ -254,6 +254,7 @@ class SentenceButtonsHelper extends AppHelper
                 'selectLang_'.$id,
                 $langArray,
                 array(
+                    'id' => 'selectLang_'.$id,
                     "value" => $preselectedLang,
                     "class"=>"language-selector",
                     "empty" => false
