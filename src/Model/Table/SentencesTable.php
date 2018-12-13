@@ -726,8 +726,8 @@ class SentencesTable extends Table
             ->first();
 
         $neighbors = [
-            'prev' => $prev->id,
-            'next' => $next->id,
+            'prev' => $prev ? $prev->id : null,
+            'next' => $next ? $next->id : null,
         ];
 
         return $neighbors;
