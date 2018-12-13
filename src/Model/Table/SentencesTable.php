@@ -930,11 +930,10 @@ class SentencesTable extends Table
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0, $basedOnId = 0, $license = null)
     {
-        $text = $this->clean($text);
-
         $hash = $this->makeHash($lang, $text);
         $hash = $this->padHashBinary($hash);
 
+        /* TODO duplicate detection
         $sentences = $this->findAllByHash($hash);
 
         foreach ($sentences as $sentence) {
@@ -944,8 +943,7 @@ class SentencesTable extends Table
                 return $this->duplicate = true;
             }
         }
-
-        $this->duplicate = false;
+        */
 
         $data['text'] = $text;
         $data['user_id'] = $userId;
@@ -1179,15 +1177,12 @@ class SentencesTable extends Table
     */
     public function getLanguageCodeFromSentenceId($sentenceId)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => array('lang'),
-                'conditions' => array('id' => $sentenceId),
-            )
-        );
-
-        return $result['Sentence']['lang'];
+        try {
+            $result = $this->get($sentenceId, ['fields' => ['lang']]);
+            return $result->lang;
+        } catch (RecordNotFoundException $e) {
+            return null;
+        }
     }
 
 

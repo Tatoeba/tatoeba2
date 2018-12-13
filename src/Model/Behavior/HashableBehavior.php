@@ -87,7 +87,7 @@ class HashableBehavior extends Behavior
 
         $hex = str_pad($hex, 32, 0);
 
-        return hex2bin($hex);
+        return $hex;
     }
 
     /**

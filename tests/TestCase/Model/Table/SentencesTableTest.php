@@ -858,4 +858,14 @@ class SentencesTableTest extends TestCase {
 		$result = $this->Sentence->getSentenceTextForId(99999999);
 		$this->assertEquals('', $result);
 	}
+
+	function testGetLanguageCodeFromSentenceId_succeeds() {
+		$result = $this->Sentence->getLanguageCodeFromSentenceId(1);
+		$this->assertEquals('eng', $result);
+	}
+
+	function testGetLanguageCodeFromSentenceId_fails() {
+		$result = $this->Sentence->getLanguageCodeFromSentenceId(99999999);
+		$this->assertEquals(null, $result);
+	}
 }

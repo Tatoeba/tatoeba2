@@ -426,10 +426,10 @@ class SentencesController extends AppController
      */
     public function save_translation()
     {
-        $sentenceId = Sanitize::paranoid($_POST['id']);
-        $translationLang = Sanitize::paranoid($_POST['selectLang']);
+        $sentenceId = $_POST['id'];
+        $translationLang = $_POST['selectLang'];
         $userId = $this->Auth->user('id');
-        $userLevel = $this->Sentence->User->getLevelOfUser($userId);
+        $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
 
         if ($userLevel < 0) {
             return ;
@@ -454,21 +454,15 @@ class SentencesController extends AppController
             }
 
             // Saving...
-            $sentenceLang = $this->Sentence->getLanguageCodeFromSentenceId($sentenceId);
-            $isSaved = $this->Sentence->saveTranslation(
+            $sentenceLang = $this->Sentences->getLanguageCodeFromSentenceId($sentenceId);
+            $translation = $this->Sentences->saveTranslation(
                 $sentenceId,
                 $sentenceLang,
                 $translationText,
                 $translationLang
             );
 
-            if ($isSaved) {
-                $translationId = $this->Sentence->id;
-                $translation = $this->Sentence->find('first', array(
-                    'conditions' => array('Sentence.id' => $translationId),
-                    'contain' => array('Transcription', 'Audio')
-                ));
-
+            if ($translation) {
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
             }

@@ -337,7 +337,17 @@ class SentencesHelper extends AppHelper
             )
         );
 
-        echo '<div class="form">';
+        echo $this->Form->create('Sentence', [
+            'id' => 'translation-form',
+            'url' => [
+                'controller' => 'sentences', 
+                'action' => 'save_translation'
+            ],
+            'class' => 'form',
+            'onsubmit' => 'return false'
+        ]);
+        
+        echo $this->Form->hidden('id', ['value' => $id]);
 
         echo $this->Html->tag(
             'label',
@@ -349,7 +359,7 @@ class SentencesHelper extends AppHelper
 
         // Input field
         echo $this->Form->textarea(
-            'translation',
+            'value',
             array(
                 'id' => '_'.$id.'_text',
                 'class' => 'addTranslationsTextInput',
@@ -368,9 +378,10 @@ class SentencesHelper extends AppHelper
         );
 
         echo $this->Form->select(
-            'translationLang_'.$id,
+            'selectLang',
             $langArray,
             array(
+                "id" => 'translationLang_'.$id,
                 "value" => $preSelectedLang,
                 "class" => "translationLang language-selector",
                 "empty" => false
@@ -413,7 +424,7 @@ class SentencesHelper extends AppHelper
                 'class'=>'cancel button'
             )
         );
-        echo '</div>';
+        echo $this->Form->end();
 
         echo '</div>';
 
