@@ -100,6 +100,8 @@ class AppController extends Controller
         $this->loadComponent('Cookie', [
             'key' => Configure::read('Security.cookieSalt', Configure::read('Security.salt')),
         ]);
+
+        $this->loadComponent('Csrf');
     }
 
     /**

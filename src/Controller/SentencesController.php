@@ -102,6 +102,16 @@ class SentencesController extends AppController
         'sort_reverse' => '',
     );
 
+    public function initialize() {
+        parent::initialize();
+
+        $params = $this->request->params;
+        $noCsrfActions = ['edit_sentence'];
+        if (in_array($params['action'], $noCsrfActions)) {
+            $this->components()->unload('Csrf');
+        }
+    }
+
     /**
      * Before filter.
      *
@@ -124,12 +134,12 @@ class SentencesController extends AppController
             'with_audio'
         );
 
-        $this->Security->unlockedActions = array(
+        $this->Security->config('unlockedActions', [
           'add_an_other_sentence',
           'save_translation',
           'change_language',
           'edit_sentence'
-        );
+        ]);
 
         return parent::beforeFilter($event);
     }
@@ -361,9 +371,8 @@ class SentencesController extends AppController
         if (empty($sentence)) {
             $this->redirect(array('controller' => 'pages', 'action' => 'home'));
         } else {
-            $sentenceText = $sentence['Sentence']['text'];
             $this->layout = null;
-            $this->set('sentence_text', $sentenceText);
+            $this->set('sentence_text', $sentence->text);
         }
     }
 

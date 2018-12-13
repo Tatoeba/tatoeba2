@@ -1129,6 +1129,7 @@ class SentencesTable extends Table
         }
 
         $hash = $this->makeHash($lang, $text);
+        $hash = $this->padHashBinary($hash);
         $this->patchEntity($sentence, [
             'text' => $text,
             'hash' => $hash,

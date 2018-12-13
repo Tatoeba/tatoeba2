@@ -79,7 +79,7 @@ class ContributionsTable extends Table
             );
         }
 
-        if (isset($data['license'])) {
+        if ($data->isDirty('license')) {
             $newLog = $this->newEntity(array(
                 'sentence_id' => $sentenceId,
                 'user_id' => CurrentUser::get('id'),
