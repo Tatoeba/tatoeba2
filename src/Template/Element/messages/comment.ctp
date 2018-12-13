@@ -89,6 +89,7 @@ if ($sentenceOwnerLink) {
 
 ?>
 
+<? if (!isset($hideSentence) || !$hideSentence) { ?>
 <div class="comment sentence" md-whiteframe="2">
     <div class="info">
         <?= format(
@@ -118,6 +119,7 @@ if ($sentenceOwnerLink) {
         </md-button>
     </div>
 </div>
+<? } ?>
 
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>

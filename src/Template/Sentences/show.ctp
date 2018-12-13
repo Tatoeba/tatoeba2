@@ -220,7 +220,8 @@ $this->Navigation->displaySentenceNavigation(
                     array(
                         'comment' => $comment,
                         'menu' => $menu,
-                        'replyIcon' => false
+                        'replyIcon' => false,
+                        'hideSentence' => true
                     )
                 );
             }
