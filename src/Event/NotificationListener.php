@@ -69,13 +69,13 @@ class NotificationListener implements EventListenerInterface {
         }
 
         $parentMessage = $this->_getMessageForMail($post['parent_id']);
-        if (!$parentMessage['User']['send_notifications']
-            || $parentMessage['User']['id'] == $post['owner']) {
+        if (!$parentMessage->user->send_notifications
+            || $parentMessage->user->id == $post['owner']) {
             return;
         }
 
-        $recipient = $parentMessage['User']['email'];
-        $User = ClassRegistry::init('User');
+        $recipient = $parentMessage->user->email;
+        $User = TableRegistry::getTableLocator()->get('Users');
         $author = $User->getUsernameFromId($post['owner']);
         $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
         $url = array(
