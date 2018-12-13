@@ -55,6 +55,7 @@ class PrivateMessagesHelper extends AppHelper
             $pm->content,
             $pm->title
         );
+        $isReply = $this->Messages->isReply($recipients, $pm->id, $pm->content);
 
         echo $this->Form->create($pm, [
             'id' => 'private-message-form',
@@ -80,7 +81,9 @@ class PrivateMessagesHelper extends AppHelper
             <div class="pmFields">
             <div ng-hide="true">
             <?php
-            echo $this->Form->input('messageId', array('value' => $pm->id));
+            if (!$isReply) {
+                echo $this->Form->input('messageId', array('value' => $pm->id));
+            }
             echo $this->Form->input('submitType', array('value' => ''));
             ?>
             </div>
@@ -106,7 +109,7 @@ class PrivateMessagesHelper extends AppHelper
             <div class="textarea">
             <?php
             $content = $pm->content;
-            if ($this->Messages->isReply($recipients, $pm->id, $pm->content)) {
+            if ($isReply) {
                 $content = $this->formatReplyMessage($pm->content, $recipients);
             }
             echo $this->Form->textarea('content', [

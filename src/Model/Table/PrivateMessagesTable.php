@@ -213,7 +213,7 @@ class PrivateMessagesTable extends Table
         );
 
         if (isset($data['messageId'])) {
-            $message['id'] = $data['messageId']; // is this used for anything?
+            $message['id'] = $data['messageId']; // for drafts
         }
 
         return $message;
