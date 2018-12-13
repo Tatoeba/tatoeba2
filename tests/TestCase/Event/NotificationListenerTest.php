@@ -2,8 +2,8 @@
 
 namespace App\Test\TestCase\Event;
 
-use App\Lib\Event\NotificationListener;
-use App\Network\Email\Email;
+use App\Event\NotificationListener;
+use Cake\Mailer\Email;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\TestSuite\TestCase;
@@ -19,14 +19,14 @@ class NotificationListenerTest extends TestCase {
     public function setUp() {
         parent::setUp();
 
+        Configure::write('Acl.database', 'test');
         Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Mailer.enabled',   true);
         Configure::write('Mailer.username', 'tatoeba@example.com');
-        Configure::write('Mailer.password', 'terrible_password');
 
-        $this->Email = $this->getMock('Email', array(
-            'from', 'to', 'subject', 'send'
-        ));
+        $this->Email = $this->getMockBuilder(Email::class)
+            ->setMethods(['from', 'to', 'subject', 'send'])
+            ->getMock();
         foreach (array('from', 'to', 'subject') as $method) {
             $this->Email->expects($this->any())
                         ->method($method)
@@ -47,9 +47,9 @@ class NotificationListenerTest extends TestCase {
      */
     private function setUpLightMock() {
         $this->Email = new Email();
-        $this->NL = $this->getMock('NotificationListener',
-                                   array('getTransport'),
-                                   array($this->Email));
+        $this->NL = $this->getMockBuilder(NotificationListener::class)
+            ->setMethods(['getTransport'])
+            ->getMock();
         $this->NL->expects($this->any())
                  ->method('getTransport')
                  ->will($this->returnValue('Debug'));

@@ -167,7 +167,7 @@ class NotificationListener implements EventListenerInterface {
         $toNotify = $User->find()
             ->where([
                 'OR' => $orCondition,
-                'NOT' => ['id' => $comment->user_id],
+                'NOT' => ['id' => $comment['user_id']],
                 'send_notifications' => true,
             ])
             ->select(['email'])
@@ -223,17 +223,10 @@ class NotificationListener implements EventListenerInterface {
             return;
         }
 
-        $this->Email->config(array(
-            'port' => '465',
-            'timeout' => '45',
-            'host' => 'ssl://smtp.gmail.com',
-            'username' => Configure::read('Mailer.username'),
-            'password' => Configure::read('Mailer.password'),
-            'transport' => $this->getTransport(),
-        ));
-        $this->Email->emailFormat('html');
-        $this->Email->from(array(Configure::read('Mailer.username') => 'noreply'));
-        $this->Email->send();
+        $this->Email->transport('gmail')
+            ->emailFormat('html')
+            ->from([Configure::read('Mailer.username') => 'noreply'])
+            ->send();
     }
 
     public function getTransport()
