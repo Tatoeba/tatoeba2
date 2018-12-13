@@ -74,6 +74,7 @@ class NavigationHelper extends AppHelper
             echo $this->Form->create(
                 'Sentence',
                 array(
+                    'id' => 'SentenceGoToSentenceForm',
                     "url" => array("action" => "go_to_sentence"),
                     "type" => "get"
                 )

@@ -31,10 +31,10 @@ $this->Html->script('jquery.scrollTo.min.js', ['block' => true]);
 
 if (!isset($searchProblem)) {
 if (isset($sentence)) {
-    $sentenceId = $sentence['Sentence']['id'];
-    $sentenceLang = $sentence['Sentence']['lang'];
-    $sentenceText = $sentence['Sentence']['text'];
-    $sentenceCorrectness = $sentence['Sentence']['correctness'];
+    $sentenceId = $sentence->id;
+    $sentenceLang = $sentence->lang;
+    $sentenceText = $sentence->text;
+    $sentenceCorrectness = $sentence->correctness;
 
     $languageName = $this->Languages->codeToNameToFormat($sentenceLang);
     $title = format(__('{language} example sentence: {sentence}'),
