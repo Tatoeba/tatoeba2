@@ -237,7 +237,6 @@ class SentencesTable extends Table
         ));
         $this->getEventManager()->dispatch($event);
         
-        $this->logSentenceEdition($created);
         $this->updateTags($entity);
         if (isset($entity->modified)) {
             $this->needsReindex($entity->id);
@@ -261,35 +260,6 @@ class SentencesTable extends Table
     {
         $transIds = $this->Links->findDirectAndIndirectTranslationsIds($id);
         $this->needsReindex($transIds);
-    }
-
-    private function logSentenceEdition($created)
-    {
-        if (isset($this->data['Sentence']['text'])) {
-            // --- Logs for sentence ---
-            $sentenceLang = null;
-            if (isset($this->data['Sentence']['lang'])) {
-                $sentenceLang = $this->data['Sentence']['lang'];
-            }
-            $sentenceScript = null;
-            if (isset($this->data['Sentence']['script'])) {
-                $sentenceScript = $this->data['Sentence']['script'];
-            }
-            $sentenceAction = 'update';
-            $sentenceText = $this->data['Sentence']['text'];
-            if ($created) {
-                $sentenceAction = 'insert';
-                $this->Language->incrementCountForLanguage($sentenceLang);
-            }
-
-            $this->Contribution->saveSentenceContribution(
-                $this->id,
-                $sentenceLang,
-                $sentenceScript,
-                $sentenceText,
-                $sentenceAction
-            );
-        }
     }
 
     private function updateTags($entity)

@@ -42,4 +42,30 @@ class LanguagesTableTest extends TestCase {
         $result = $this->Languages->getNativeSpeakersStatistics();
         $this->assertEquals(7, count($result));
     }
+
+    function testIncrementCountForLanguage() {
+        $lang = 'eng';
+        $before = $this->Languages->find()
+            ->where(['code' => $lang])
+            ->first();
+        $this->Languages->incrementCountForLanguage($lang);
+        $after = $this->Languages->find()
+            ->where(['code' => $lang])
+            ->select(['sentences'])
+            ->first();
+        $this->assertEquals(1, $after->sentences - $before->sentences);
+    }
+
+    function testDecrementCountForLanguage() {
+        $lang = 'eng';
+        $before = $this->Languages->find()
+            ->where(['code' => $lang])
+            ->first();
+        $this->Languages->decrementCountForLanguage($lang);
+        $after = $this->Languages->find()
+            ->where(['code' => $lang])
+            ->select(['sentences'])
+            ->first();
+        $this->assertEquals(-1, $after->sentences - $before->sentences);
+    }
 }

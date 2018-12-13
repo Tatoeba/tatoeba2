@@ -15,6 +15,7 @@ class ContributionTest extends TestCase {
     public $fixtures = array(
         'app.contributions',
         'app.sentences',
+        'app.languages',
         'app.users_languages'
     );
 
@@ -28,6 +29,39 @@ class ContributionTest extends TestCase {
         unset($this->Contribution);
 
         parent::tearDown();
+    }
+
+    public function testLogSentenceUpdate_logsSentenceInsert() {
+        CurrentUser::store(['id' => 7]);
+        $expectedLog = [
+            'sentence_id' => '48',
+            'sentence_lang' => 'eng',
+            'translation_id' => null,
+            'translation_lang' => null,
+            'script' => null,
+            'text' => 'New sentence.',
+            'action' => 'insert',
+            'user_id' => '7',
+            'type' => 'sentence',
+        ];
+        $data = $this->Contribution->Sentences->newEntity([
+            'lang' => 'eng',
+            'text' => 'New sentence.'
+        ]);
+        $event = new Event('Model.Sentence.saved', $this, array(
+            'id' => 48,
+            'created' => true,
+            'data' => $data,
+        ));
+        
+        $this->Contribution->Sentences->getEventManager()->dispatch($event);
+
+        $log = $this->Contribution->find()
+            ->where(['sentence_id' => 48])
+            ->order(['id' => 'DESC'])
+            ->first();
+        $newLog = array_intersect_key($log->old_format['Contribution'], $expectedLog);
+        $this->assertEquals($expectedLog, $newLog);
     }
 
     public function testLogSentenceUpdate_logsLicenseInsert() {

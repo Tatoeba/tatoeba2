@@ -127,18 +127,10 @@ class LanguagesTable extends Table
      */
     public function incrementCountForLanguage($langCode)
     {
-        $langCode = Sanitize::paranoid($langCode);
-        $endOfQuery = "code = '$langCode'";
-
-        if ($langCode == '' or $langCode == null) {
-            $endOfQuery = 'code is null';
-        }
-
-        $query = "
-            UPDATE languages SET sentences = sentences + 1
-                WHERE $endOfQuery ;
-        ";
-        $this->query($query);
+        return $this->updateAll(
+            ['sentences' => new QueryExpression('sentences + 1')],
+            ['code' => $langCode]
+        );
     }
 
 

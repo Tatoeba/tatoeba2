@@ -58,13 +58,34 @@ class ContributionsTable extends Table
 
     public function logSentence($event) {
         $data = $event->getData('data');
+        $created = $event->getData('created');
+        $sentenceId = $event->getData('id');
+
+        if ($data->text) {
+            $sentenceLang = $data->lang ? $data->lang : null;
+            $sentenceScript = $data->script ? $data->script : null;
+            $sentenceAction = 'update';
+            $sentenceText = $data->text;
+            if ($created) {
+                $sentenceAction = 'insert';
+                $this->Sentences->Languages->incrementCountForLanguage($sentenceLang);
+            }
+            $this->saveSentenceContribution(
+                $sentenceId,
+                $sentenceLang,
+                $sentenceScript,
+                $sentenceText,
+                $sentenceAction
+            );
+        }
+
         if (isset($data['license'])) {
             $newLog = $this->newEntity(array(
-                'sentence_id' => $event->getData('id'),
+                'sentence_id' => $sentenceId,
                 'user_id' => CurrentUser::get('id'),
                 'datetime' => date("Y-m-d H:i:s"),
                 'ip' => CurrentUser::getIp(),
-                'action' => $event->getData('created') ? 'insert' : 'update',
+                'action' => $created ? 'insert' : 'update',
                 'type' => 'license',
                 'text' => $data['license'],
             ));
