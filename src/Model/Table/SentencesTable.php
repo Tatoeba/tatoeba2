@@ -32,70 +32,9 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class SentencesTable extends Table
 {
-    public $name = 'Sentence';
-    public $actsAs = array('Containable', 'Transcriptable', 'Hashable');
-
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-
-    public $validate = array(
-        'lang' => array(
-            'rule' => array(),
-            'allowEmpty' => true,
-            // The rule will be defined in beforeValidate().
-        ),
-        'text' => array(
-            'rule' => array('minLength', '1')
-        ),
-    );
-
-    public $hasMany = array(
-        'Audio',
-        'Contribution',
-        'SentenceComment',
-        'Favorites_users' => array (
-            'classname'  => 'favorites',
-            'foreignKey' => 'favorite_id'
-        ),
-        'SentenceAnnotation',
-        'Transcription',
-        'Translation' => array(
-            'className' => 'Translation',
-            'foreignKey' => 'sentence_id',
-        ),
-        'ReindexFlag',
-        'UsersSentences'
-    );
-
-    public $belongsTo = array(
-        'User',
-        'Language' => array(
-            'classname' => 'Language',
-            /* Our foreign key is 'lang' but it doesn't correspond
-               to the primary key of the `languages` table.
-               It is just set here so that we can access the Language
-               model while true linking doesn't work. */
-            'foreignKey' => 'lang',
-        ),
-    );
-
-    public $hasAndBelongsToMany = array(
-        'Link' => array(
-            'className' => 'Link',
-            'joinTable' => 'sentences_translations',
-            'foreignKey' => 'translation_id',
-            'associationForeignKey' => 'sentence_id'
-        ),
-        'SentencesList',
-        'Tag' => array(
-            'className' => 'Tag',
-            'joinTable' => 'tags_sentences',
-            'foreignKey' => 'sentence_id',
-            'associationForeignKey' => 'tag_id',
-            'with' => 'TagsSentences',
-        ),
-    );
-
+    
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -180,47 +119,6 @@ class SentencesTable extends Table
         return $validator;
     }
 
-    // public function __construct($id = false, $table = null, $ds = null)
-    // {
-    //     parent::__construct($id, $table, $ds);
-        
-    //     if (!Configure::read('AutoTranscriptions.enabled')) {
-    //         $this->Behaviors->disable('Transcriptable');
-    //     }
-    //     if (Configure::read('Search.enabled')) {
-    //         $this->Behaviors->attach('Sphinx');
-    //     }
-        
-    //     $this->findMethods['random'] = true;
-    
-    //     $this->validate['license'] = array(
-    //         'validLicense' => array(
-    //             'rule' => array('inList', array(
-    //                 'CC0 1.0',
-    //                 'CC BY 2.0 FR',
-    //             )),
-    //             /* @translators: This string will be preceded by "Unable to
-    //                change the license to “{newLicense}” because:" */
-    //             'message' => __('This is not a valid license.'),
-    //         ),
-    //         'isChanging' => array(
-    //             'rule' => array('isChanging', 'license'),
-    //             'on' => 'update',
-    //             /* @translators: This string will be preceded by "Unable to
-    //                change the license to “{newLicense}” because:" */
-    //             'message' => __('This sentence is already under that license.'),
-    //         ),
-    //         'canSwitchLicense' => array(
-    //             'rule' => array('canSwitchLicense'),
-    //             'on' => 'update',
-    //         ),
-    //     );
-
-    //     $this->linkWithTranslationModel();
-
-    //     $this->getEventManager()->attach(new ContributionListener());
-    //     $this->getEventManager()->attach(new UsersLanguagesListener());
-    // }
 
     /**
      * Links the Sentence and Translation models with restrictions
