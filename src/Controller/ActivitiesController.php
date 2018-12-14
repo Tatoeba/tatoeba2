@@ -77,7 +77,7 @@ class ActivitiesController extends AppController
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Pagination';
 
-        $conditions = array('user_id' => null);
+        $conditions = array('user_id IS' => null);
         if(!empty($lang)) {
             $conditions['lang'] = $lang;
         }
@@ -87,12 +87,12 @@ class ActivitiesController extends AppController
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
             'contain' => array(
-                'Transcription' => array(
+                'Transcriptions' => array(
                     'Users' => array('fields' => array('username')),
                 ),
-                'Audio' => array(
+                'Audios' => array(
                     'Users' => array('fields' => array('username')),
-                    'fields' => array('user_id'),
+                    'fields' => array('user_id', 'sentence_id'),
                 ),
             ),
         );

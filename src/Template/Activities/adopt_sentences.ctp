@@ -92,8 +92,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     $this->Pagination->display(array($lang));
     
     foreach ($results as $sentence) {
-        $sentence['Translation'] = array();
-        $sentence['User'] = array();
+        $sentence->translations = [];
         $this->Sentences->displaySentencesGroup($sentence);
     }
         
