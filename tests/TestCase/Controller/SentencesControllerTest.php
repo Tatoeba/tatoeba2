@@ -17,6 +17,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 		'app.acos',
 		'app.aros_acos',
 		'app.private_messages',
+		'app.reindex_flags',
 	];
 
 	public function setUp() {
