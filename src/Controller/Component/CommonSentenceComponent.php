@@ -27,6 +27,7 @@
 namespace App\Controller\Component;
 
 use Cake\Controller\Component;
+use Cake\ORM\TableRegistry;
 
 
 /**
@@ -74,7 +75,7 @@ class CommonSentenceComponent extends Component
 
         $lang = $this->_setLanguage($lang, $text, $username);
 
-        $Sentence = ClassRegistry::init('Sentence');
+        $Sentence = TableRegistry::getTableLocator()->get('Sentences');
 
         return $Sentence->saveNewSentence($text, $lang, $userId, $correctness, 0, $license);
     }

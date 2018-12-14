@@ -319,7 +319,7 @@ class SentencesController extends AppController
     public function add_an_other_sentence()
     {
         $userId = $this->Auth->user('id');
-        $userLevel = $this->Sentence->User->getLevelOfUser($userId);
+        $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
         if ($userLevel < 0) {
             return;
         }
@@ -333,12 +333,13 @@ class SentencesController extends AppController
 
         $userName = $this->Auth->user('username');
 
-        $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
-        $sentenceText = $_POST['value'];
-        $sentenceLicense = isset($this->data['sentenceLicense']) ?
-                           $this->data['sentenceLicense'] : null;
+        $data = $this->request->getData();
+        $sentenceLang = $data['selectedLang'];
+        $sentenceText = $data['value'];
+        $sentenceLicense = isset($data['sentenceLicense']) ?
+                           $data['sentenceLicense'] : null;
 
-        $isSaved = $this->CommonSentence->addNewSentence(
+        $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,
             $userId,
@@ -348,13 +349,9 @@ class SentencesController extends AppController
         );
 
         // saving
-        if ($isSaved) {
-            $this->layout = null;
-
-            $sentenceId = $this->Sentence->id;
-            $sentence = $this->Sentence->getSentenceWithId($sentenceId);
-
-            $this->set('duplicate', $this->Sentence->duplicate);
+        if ($savedSentence) {
+            $sentence = $this->Sentences->getSentenceWithId($savedSentence->id);
+            // $this->set('duplicate', $this->Sentence->duplicate); TODO
             $this->set('sentence', $sentence);
         }
 

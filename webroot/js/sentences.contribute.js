@@ -42,15 +42,25 @@ $(document).ready(function() {
         
         if ($.trim(sentenceText) != '') {
             $(".sentencesAddedloading").show();
+
+            var data = {
+                'value': sentenceText,
+                'selectedLang': selectedLang,
+                'sentenceLicense': sentenceLicense
+            };
+            var csrfHeader = $('#sentence-form input[name="_csrfToken"]').val();
+            $('#sentence-form input[name^="_Token"]').each(function() {
+                data[$(this).attr('name')] = $(this).val();
+            });
             
-            $.post(
-                rootUrl + "/sentences/add_an_other_sentence",
-                {
-                    "value": sentenceText,
-                    "selectedLang": selectedLang,
-                    "sentenceLicense": sentenceLicense
+            $.ajax({
+                type: 'post',
+                url: rootUrl + '/sentences/add_an_other_sentence',
+                data: data,
+                headers: {
+                    'X-CSRF-Token': csrfHeader
                 },
-                function(data){
+                success: function(data) {
                     $("#SentenceText").val("");
                     $("#SentenceText").focus(); // Adding back the focus.
                     $("#session_expired").remove();
@@ -60,9 +70,8 @@ $(document).ready(function() {
                     $("#sentencesAdded > div:first-child "
                       + ".needsReview").show();
                     // TODO fix "SyntaxError: expected expression, got '<'"
-                },
-                "html"
-            );
+                }
+            });
         }
     }
 });

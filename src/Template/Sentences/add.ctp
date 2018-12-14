@@ -29,7 +29,7 @@ use App\Model\CurrentUser;
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Add sentences')));
 
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
-$this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => true]);
+$this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBottom']);
 
 $vocabularyUrl = $this->Url->build(array(
     'controller' => 'vocabulary',
@@ -94,6 +94,11 @@ $vocabularyUrl = $this->Url->build(array(
             if (!array_key_exists($preSelectedLang, $langArray)) {
                 $preSelectedLang = key($langArray);
             }
+            echo $this->Form->create('Sentence', [
+                'id' => 'sentence-form',
+                'url' => '/sentences/add_an_other_sentence',
+                'onsubmit' => 'return false'
+            ]);
             ?>
 
             <div layout="column">
@@ -105,6 +110,7 @@ $vocabularyUrl = $this->Url->build(array(
                             'contributionLang',
                             $langArray,
                             array(
+                                'id' => 'contributionLang',
                                 "value" => $preSelectedLang,
                                 "class" => "language-selector",
                                 "empty" => false
@@ -122,6 +128,7 @@ $vocabularyUrl = $this->Url->build(array(
                             'sentenceLicense',
                             $this->Sentences->License->getLicenseOptions(),
                             array(
+                                'id' => 'sentenceLicense',
                                 "value" => CurrentUser::getSetting('default_license'),
                                 "class" => "license-selector",
                                 "empty" => false
@@ -148,6 +155,7 @@ $vocabularyUrl = $this->Url->build(array(
                 </div>
             </div>
             <?php
+            echo $this->Form->end();
         }
         ?>
 
