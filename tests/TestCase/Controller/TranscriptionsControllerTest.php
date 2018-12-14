@@ -1,10 +1,11 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Transcriptions\Controller;
 use Cake\Core\Configure;
+use Cake\TestSuite\IntegrationTestCase;
+use Cake\ORM\TableRegistry;
 
-class TranscriptionsControllerTest extends ControllerTestCase {
+class TranscriptionsControllerTest extends IntegrationTestCase {
     public $fixtures = array(
         'app.aros',
         'app.acos',
@@ -16,16 +17,25 @@ class TranscriptionsControllerTest extends ControllerTestCase {
     );
 
     public function setUp() {
+        parent::setUp();
         Configure::write('Acl.database', 'test');
-        $this->controller = $this->generate('Transcriptions');
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+    }
+
+    public function controllerSpy($event, $controller = null) {
+        parent::controllerSpy($event, $controller);
 
         /* Replace Autotranscription to allow syntax errors */
-        $autotranscription = $this->getMock('Autotranscription', array(
-            'jpn_Jpan_to_Hrkt_validate',
-            'jpn_Jpan_to_Hrkt_generate',
-            'jpn_Hrkt_to_Latn_generate',
-            'yue_Hant_to_Latn_generate',
-        ));
+        $autotranscription = $this->getMockBuilder(Autotranscription::class)
+            ->setMethods([
+                'jpn_Jpan_to_Hrkt_validate',
+                'jpn_Jpan_to_Hrkt_generate',
+                'jpn_Hrkt_to_Latn_generate',
+                'yue_Hant_to_Latn_generate',
+            ])
+            ->getMock();
+
         $autotranscription
             ->expects($this->any())
             ->method('jpn_Jpan_to_Hrkt_validate')
@@ -42,131 +52,125 @@ class TranscriptionsControllerTest extends ControllerTestCase {
             ->expects($this->any())
             ->method('yue_Hant_to_Latn_generate')
             ->will($this->returnValue('yeah'));
-        $this->controller->Transcription->setAutotranscription($autotranscription);
 
-        // Make sure no user is logged in when running from /test.php
-        $this->controller->Auth->Session->destroy();
+        $this->_controller->Transcriptions
+            ->setAutotranscription($autotranscription);
     }
 
-    public function endTest($method) {
-        $this->controller->Auth->Session->destroy();
-        unset($this->controller);
+    private function assertRedirectedToLoginPage() {
+        $this->assertRedirect('/jpn/users/login');
     }
 
     private function logInAs($username) {
-        $user = $this->controller->User->findByUsername($username);
-        $this->controller->Auth->login($user['User']);
+        $users = TableRegistry::get('Users');
+        $user = $users->findByUsername($username)->first();
+        $this->session(['Auth' => ['User' => $user->toArray()]]);
     }
 
     private function _resetAsUser($username, $sentenceId, $script) {
         $this->logInAs($username);
-
-        return $this->testAction(
-            "/jpn/transcriptions/reset/$sentenceId/$script",
-            array(
-                'method' => 'post',
-            )
-        );
+        $this->post("/jpn/transcriptions/reset/$sentenceId/$script");
     }
 
     private function _saveAsUser($username, $sentenceId, $script, $transcrText) {
         if ($username) {
             $this->logInAs($username);
         }
-        $data = array('value' => $transcrText);
 
-        return $this->testAction(
+        $this->post(
             "/jpn/transcriptions/save/$sentenceId/$script",
-            array(
-                'data' => $data,
-                'method' => 'post',
-            )
+            [ 'value' => $transcrText ]
         );
     }
 
     public function testGuestCannotEditMachineTranscription() {
-        $result = $this->_saveAsUser(null, 10, 'Hrkt', 'something new');
-        $this->assertFalse($result);
+        $this->_saveAsUser(null, 10, 'Hrkt', 'something new');
+        $this->assertRedirectedToLoginPage();
     }
     public function testGuestCannotEditHumanTranscription() {
-        $result = $this->_saveAsUser(null, 6, 'Hrkt', 'something new');
-        $this->assertFalse($result);
+        $this->_saveAsUser(null, 6, 'Hrkt', 'something new');
+        $this->assertRedirectedToLoginPage();
     }
 
     public function testRegularUserCannotEditMachineTranscription() {
-        $result = $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
-        $this->assertFalse($result);
+        $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
+        $this->assertResponseCode(400);
     }
     public function testOwnerCanEditOwnTranscription() {
-        $result = $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
+        $this->assertResponseSuccess();
     }
     public function testNonTranscriptionAuthorCannotEditHumanTranscription() {
-        $result = $this->_saveAsUser('contributor', 6, 'Hrkt', 'something new');
-        $this->assertFalse($result);
+        $this->_saveAsUser('contributor', 6, 'Hrkt', 'something new');
+        $this->assertResponseCode(400);
     }
     public function testSentenceOwnerCanEditTranscriptionMadeBySomeoneElse() {
-        $user = $this->controller->User->findByUsername('contributor');
-        $saved = $this->controller->Transcription->save(array(
-            'id' => 1,
-            'user_id' => $user['User']['id'],
-        ));
+        $users = TableRegistry::get('Users');
+        $user = $users->findByUsername('contributor')->first();
+        $transcr = TableRegistry::get('Transcriptions');
+        $tr = $transcr->get(1);
+        $tr->user_id = $user->id;
+        $saved = $transcr->save($tr);
 
-        $result = $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
+        $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
 
-        $this->assertTrue($result);
+        $this->assertResponseSuccess();
     }
     public function testRegularUserCannotInsertTranscription() {
-        $this->controller->Transcription->deleteAll('1=1');
-        $result = $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
-        $this->assertFalse($result);
+        $transcr = TableRegistry::get('Transcriptions');
+        $transcr->deleteAll('1=1');
+        $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
+        $this->assertResponseCode(400);
     }
     public function testOwnerCanInsertTranscription() {
-        $this->controller->Transcription->deleteAll('1=1');
-        $result = $this->_saveAsUser('kazuki', 10, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $transcr = TableRegistry::get('Transcriptions');
+        $transcr->deleteAll('1=1');
+        $this->_saveAsUser('kazuki', 10, 'Hrkt', 'something new');
+        $this->assertResponseSuccess();
     }
 
     public function testAdvancedUserCanEditMachineTranscription() {
-        $result = $this->_saveAsUser('advanced_contributor', 10, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $this->_saveAsUser('advanced_contributor', 10, 'Hrkt', 'something new');
+        $this->assertResponseSuccess();
     }
     public function testAdvancedUserCannotEditHumanTranscription() {
-        $result = $this->_saveAsUser('advanced_contributor', 6, 'Hrkt', 'something new');
-        $this->assertFalse($result);
+        $this->_saveAsUser('advanced_contributor', 6, 'Hrkt', 'something new');
+        $this->assertResponseCode(400);
     }
 
     public function testCorpusMaintainerCanEditMachineTranscription() {
-        $result = $this->_saveAsUser('corpus_maintainer', 10, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $this->_saveAsUser('corpus_maintainer', 10, 'Hrkt', 'something new');
+        $this->assertResponseSuccess();
     }
     public function testCorpusMaintainerCanEditHumanTranscription() {
-        $result = $this->_saveAsUser('corpus_maintainer', 6, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $this->_saveAsUser('corpus_maintainer', 6, 'Hrkt', 'something new');
+        $this->assertResponseSuccess();
     }
 
     public function testAdminCanEditMachineTranscription() {
-        $result = $this->_saveAsUser('admin', 10, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $this->_saveAsUser('admin', 10, 'Hrkt', 'something new');
+        $this->assertResponseSuccess();
     }
     public function testAdminCanEditHumanTranscription() {
-        $result = $this->_saveAsUser('admin', 6, 'Hrkt', 'something new');
-        $this->assertTrue($result);
+        $this->_saveAsUser('admin', 6, 'Hrkt', 'something new');
+        $this->assertResponseSuccess();
     }
 
     public function testResetDoesResetTranscription() {
         $this->_resetAsUser('kazuki', 6, 'Hrkt');
-        $result = $this->controller->Transcription->find('first', array(
-            'conditions' => array('sentence_id' => 6, 'script' => 'Hrkt')
-        ));
-        $this->assertEquals('furi', $result['Transcription']['text']);
+
+        $result = $this->_controller->Transcriptions->find()
+            ->where(['Transcriptions.sentence_id' => 6, 'Transcriptions.script' => 'Hrkt'])
+            ->first();
+        $this->assertEquals('furi', $result->text);
     }
 
     public function testRegularUserCanResetNonExistingTranscription() {
         $this->_resetAsUser('kazuki', 11, 'Latn');
-        $result = $this->controller->Transcription->find('count', array(
-            'conditions' => array('sentence_id' => 11, 'script' => 'Latn')
-        ));
+
+        $result = $this->_controller->Transcriptions->find()
+            ->where(['Transcriptions.sentence_id' => 11, 'Transcriptions.script' => 'Latn'])
+            ->count();
         $this->assertEquals(1, $result);
     }
 }

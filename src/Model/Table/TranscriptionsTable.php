@@ -420,9 +420,6 @@ class TranscriptionsTable extends Table
     }
 
     public function generateTranscription($sentence, $targetScript, $save = false, $transcr = array()) {
-        if (isset($sentence['Sentence']))
-            $sentence = $sentence['Sentence'];
-        
         $langScript = $this->getSourceLangScript($sentence);
         if (!$transcr) {
             $transcr = $this->_generateTranscription(
@@ -505,12 +502,10 @@ class TranscriptionsTable extends Table
     }
 
     public function findTranscription($sentenceId, $script) {
-        return $this->find('first', array(
-            'conditions' => array(
-                'sentence_id' => $sentenceId,
-                'script' => $script
-            ),
-        ));
+        return $this->find()->where([
+            'Transcriptions.sentence_id' => $sentenceId,
+            'Transcriptions.script' => $script
+        ])->first();
     }
 
     private function insertTranscriptionOrdered(&$transcriptions, $newTranscr) {
