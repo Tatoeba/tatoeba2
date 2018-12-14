@@ -261,7 +261,10 @@ class SentencesTable extends Table
     public function beforeSave($event, $entity, $options)
     {
         if ($entity->text) {
-            $entity->text = $this->clean($entity->text);
+            $cleanedText = $this->clean($entity->text);
+            if ($cleanedText !== $entity->text) {
+                $entity->text = $cleanedText;
+            }
         }        
 
         if ($entity->isNew()) { // creating a new sentence
