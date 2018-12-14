@@ -175,7 +175,7 @@ class SentencesTableTest extends TestCase {
 	function testSave_checksLicenseUpdatesFine() {
 		$this->beOwnerOfCurrentSentence(48);
 		$data = $this->Sentence->get(48);
-		$data->license = 'CC0 1.0';
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
 		$result = $this->Sentence->save($data);
 
 		$this->assertTrue((bool)$result);

@@ -217,6 +217,19 @@ class SentencesControllerTest extends IntegrationTestCase {
 		$this->assertNotEquals($oldSentence->license, $newSentence->license);
 	}
 
+	public function testEditLicense_cannotSetInvalidLicense() {
+		$sentenceId = 50;
+		$sentences = TableRegistry::get('Sentences');
+		$oldSentence = $sentences->get($sentenceId);
+		$this->logInAs('admin');
+		$this->post('/jpn/sentences/edit_license', [
+			'id' => $sentenceId,
+			'license' => 'CL42 Crazy License',
+		]);
+		$newSentence = $sentences->get($sentenceId);
+		$this->assertEquals($oldSentence->license, $newSentence->license);
+	}
+
 	public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
 		$user = 'kazuki';
 		$userId = 7;
