@@ -44,6 +44,7 @@ if ($selectedLanguageTo == null) {
 echo $this->Form->create(
     'Sentence',
     array(
+        'id' => 'SentenceSearchForm',
         "url" => array("controller" => "sentences", "action" => "search"),
         "type" => "get"
     )
