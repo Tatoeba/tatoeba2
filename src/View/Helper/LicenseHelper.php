@@ -30,9 +30,9 @@ class LicenseHelper extends AppHelper
 
     private $licenses;
 
-    public function __construct(View $view, $settings = array()) {
-        assert(isset($settings['availableLicences']));
-        parent::__construct($view, $settings);
+    public function __construct(View $view, $config = array()) {
+        assert(isset($config['availableLicences']));
+        parent::__construct($view, $config);
         $this->licenses = array(
             '' => array('name' => __('No license for offsite use')),
             /* @translators: refers to the license used for sentence or audio recordings */
@@ -71,7 +71,7 @@ class LicenseHelper extends AppHelper
     }
 
     public function getLicenseOptions() {
-        foreach ($this->settings['availableLicences'] as $license) {
+        foreach ($this->config('availableLicences') as $license) {
             $keyToName[$license] = isset($this->licenses[$license]['name']) ? $this->licenses[$license]['name'] : $license;
         }
         return $keyToName;

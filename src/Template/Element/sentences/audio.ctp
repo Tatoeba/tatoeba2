@@ -52,15 +52,15 @@ if (CurrentUser::isAdmin()) {
             "type" => "post",
         )
     );
-    echo $this->Form->input(
+    echo $this->Form->hidden(
         "id",
         array("value" => $sentenceId)
     );
     __d("admin", "Enabled");
-    echo $this->Form->input(
+    echo $this->Form->control(
         "hasaudio",
         array(
-            "legend" => false,
+            "label" => false,
             "type" => "radio",
             "options" => array(
                 1 => "yes",
@@ -78,7 +78,7 @@ if (CurrentUser::isAdmin()) {
             $ownerName = $audios[0]['external']['username'];
         }
     }
-    echo $this->Form->input("ownerName",
+    echo $this->Form->control("ownerName",
         array(
             "value" => $ownerName
         )

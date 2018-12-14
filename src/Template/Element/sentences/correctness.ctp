@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+use App\Model\Table\SentencesTable;
 ?>
 
 <div class="module">
@@ -36,18 +38,18 @@
             "type" => "post",
         )
     );
-    echo $this->Form->input(
+    echo $this->Form->hidden(
         "id",
         array("value" => $sentenceId)
     );
-    echo $this->Form->input(
+    echo $this->Form->control(
         "correctness",
         array(
-            "legend" => false,
+            "label" => false,
             "type" => "radio",
             "options" => array(
-                Sentence::MIN_CORRECTNESS => "-1",
-                Sentence::MAX_CORRECTNESS => "0"
+                SentencesTable::MIN_CORRECTNESS => "-1",
+                SentencesTable::MAX_CORRECTNESS => "0"
             ),
             "value" => $sentenceCorrectness
         )
