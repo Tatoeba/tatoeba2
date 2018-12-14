@@ -383,7 +383,6 @@ class SentencesController extends AppController
      */
     public function adopt($id)
     {
-        $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
 
         $this->Sentences->setOwner($id, $userId, CurrentUser::get('group_id'));
@@ -402,7 +401,6 @@ class SentencesController extends AppController
      */
     public function let_go($id)
     {
-        $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
 
         $this->Sentences->unsetOwner($id, $userId);
@@ -412,14 +410,13 @@ class SentencesController extends AppController
 
     private function renderAdopt($id)
     {
-        $sentence = $this->Sentences->find('first', array(
-            'conditions' => array('Sentence.id' => $id),
-            'contain' => array('User' => 'username'),
-            'fields' => array('id'),
-        ));
+        $sentence = $this->Sentences->get($id, [
+            'contain' => ['Users' => ['fields' => ['username']]],
+            'fields' => ['id'],
+        ]);
 
         $this->set('sentenceId', $id);
-        $this->set('owner', $sentence['User']);
+        $this->set('owner', $sentence->user);
         $this->layout = null;
         $this->render('adopt');
     }

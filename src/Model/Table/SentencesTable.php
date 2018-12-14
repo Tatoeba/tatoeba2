@@ -912,8 +912,7 @@ class SentencesTable extends Table
      */
     public function setOwner($sentenceId, $userId, $currentUserGroupId)
     {
-        $this->id = $sentenceId;
-
+        $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         $ownerId = $currentOwner['id'];
         $ownerGroupId = $currentOwner['group_id'];
@@ -922,7 +921,8 @@ class SentencesTable extends Table
                 && in_array($currentUserGroupId, range(1, 3)));
 
         if ($isAdoptable) {
-            $this->saveField('user_id', $userId);
+            $sentence->user_id = $userId;
+            $this->save($sentence);
             return true;
         }
         return false;

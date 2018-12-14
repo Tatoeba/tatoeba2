@@ -885,4 +885,24 @@ class SentencesTableTest extends TestCase {
 		$result = $this->Sentence->changeLanguage(9999999, 'jpn');
 		$this->assertFalse($result);
 	}
+
+	function testSetOwner_succeeds() {
+		$result = $this->Sentence->setOwner(14, 7, 4);
+		$this->assertTrue($result);
+	}
+
+	function testSetOwner_fails() {
+		$result = $this->Sentence->setOwner(1, 1, 1);
+		$this->assertFalse($result);
+	}
+
+	function testUnsetOwner_succeeds() {
+		$result = $this->Sentence->unsetOwner(1, 7);
+		$this->assertTrue($result);
+	}
+
+	function testUnsetOwner_fails() {
+		$result = $this->Sentence->unsetOwner(1, 1);
+		$this->assertFalse($result);
+	}
 }
