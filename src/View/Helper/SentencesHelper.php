@@ -134,9 +134,10 @@ class SentencesHelper extends AppHelper
         // Form to add a new translation
         $this->_displayNewTranslationForm($id);
 
-        $translations = $sentence->translations;
-        $this->displayTranslations($id, $translations, $withAudio, $langFilter);
-
+        if ($sentence->translations) {
+            $translations = $sentence->translations;
+            $this->displayTranslations($id, $translations, $withAudio, $langFilter);
+        }
         ?>
         </div>
         <?php

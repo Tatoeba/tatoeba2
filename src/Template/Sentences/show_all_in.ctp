@@ -28,13 +28,10 @@ use App\Model\CurrentUser;
 
 $languageName = $this->Languages->codeToNameToFormat($lang);
 
-if ($filterAudioOnly === 'only-with-audio') {
-    $title = format(__('All sentences in {language} with audio'),
-                array('language' => $languageName));
-} else {
-    $title = format(__('All sentences in {language}'),
-                array('language' => $languageName));
-}
+$title = format(
+    __('All sentences in {language}'), 
+    array('language' => $languageName)
+);
 
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
@@ -43,12 +40,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?php
     $this->ShowAll->displayShowAllInSelect($lang);
     $this->ShowAll->displayShowOnlyTranslationInSelect($translationLang);
-    $this->ShowAll->displayShowNotTranslatedInto();
-    $this->ShowAll->displayFilterOrNotAudioOnly($filterAudioOnly);
     ?>
-
-
 </div>
+
 <div id="main_content">
     <div class="section">
     <?php
@@ -56,40 +50,28 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 
-        $paginationUrl = array(
-            $lang,
-            $translationLang,
-            'none',
-            $filterAudioOnly,
-        );
+        $paginationUrl = array($lang, $translationLang);
+
         $this->Pagination->display($paginationUrl);
 
         if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
             foreach ($results as $sentence) {
-                $translations = isset($sentence['Translation']) ?
-                    $sentence['Translation'] :
-                    array();
                 echo $this->element(
                     'sentences/sentence_and_translations',
                     array(
-                        'sentence' => $sentence['Sentence'],
-                        'translations' => $translations,
-                        'user' => $sentence['User']
+                        'sentence' => $sentence,
+                        'translations' => $sentence->translations,
+                        'user' => $sentence->user
                     )
                 );
             }
         } else {
             foreach ($results as $sentence) {
-                if (!isset($sentence['Translation'])) {
-                    $sentence['Translation'] = array();
-                }
                 $this->Sentences->displaySentencesGroup(
-                    $sentence,
-                    array('langFilter' => $translationLang)
+                    $sentence
                 );
             }
         }
-
 
         $this->Pagination->display($paginationUrl);
     }

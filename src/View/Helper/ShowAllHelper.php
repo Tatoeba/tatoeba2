@@ -47,6 +47,7 @@ class ShowAllHelper extends AppHelper
         'Languages',
         'Form',
         'Html',
+        'Url'
     );
 
     /**

@@ -31,8 +31,6 @@ use Cake\Core\Configure;
 $session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $showTranslationsInto = $session->read('show_translations_into_lang');
-$notTranslatedInto = $session->read('not_translated_into_lang');
-$filterAudioOnly = $session->read('filter_audio_only');
 
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
@@ -42,9 +40,6 @@ if (empty($currentLanguage) || $currentLanguage == 'und') {
 }
 if (empty($showTranslationsInto)) {
     $showTranslationsInto = 'none';
-}
-if (empty($notTranslatedInto)) {
-    $notTranslatedInto = 'none';
 }
 
 // array containing the elements of the menu : $title => $route
@@ -63,8 +58,7 @@ $menuElements = array(
             __('Browse by language') => array(
                 "controller" => "sentences",
                 "action" => "show_all_in",
-                $currentLanguage, $showTranslationsInto, $notTranslatedInto,
-                $filterAudioOnly
+                $currentLanguage, $showTranslationsInto
             ),
             __('Browse by list') => array(
                 "controller" => "sentences_lists",

@@ -824,84 +824,42 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function show_all_in(
-        $lang,
-        $translationLang,
-        $notTranslatedInto,
-        $filterAudioOnly = "indifferent"
-    ) {
-        // TODO This is a hack. We need to find out how to make
-        // a form in contribute.ctp that directly forges a CakePHP-compliant URL
-        if (isset($_POST['data']['Sentence']['into'])) {
-            $this->redirect(
-                array(
-                    "controller" => "sentences",
-                    "action" => "show_all_in",
-                    $_POST['data']['Sentence']['into'],
-                    'none',
-                    'none',
-                    'indifferent'
-                )
-            );
-        }
-
+    public function show_all_in($lang, $translationLang) {
         $this->helpers[] = 'ShowAll';
 
-        $model = 'Sentence';
-
         if ($lang == 'unknown') {
-            $lang = null;
+            $conditions = ['Sentences.lang IS' => null];
+        } else {
+            $conditions = ['Sentences.lang' => $lang];
         }
 
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
 
         if (CurrentUser::isMember()) {
-            $contain = $this->Sentence->contain();
+            $contain = $this->Sentences->contain();
         } else {
-            $contain = $this->Sentence->minimalContain();
+            $contain = $this->Sentences->minimalContain();
         }
 
-        $pagination = array(
-            'Sentence' => array(
-                'fields' => $this->Sentence->fields(),
-                'contain' => $contain,
-                'conditions' => array(
-                    'Sentence.lang' => $lang,
-                ),
-                'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => "Sentence.id desc"
-            )
-        );
+        $pagination = [
+            'fields' => $this->Sentences->fields(),
+            'contain' => $contain,
+            'conditions' => $conditions,
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+            'order' => ['Sentences.id' => 'DESC']
+        ];
 
-        // filter or not sentences-with-audio-only
-        if ($filterAudioOnly === "only-with-audio") {
-            $pagination['Sentence']['joins'] = array(array(
-                'type' => 'inner',
-                'table' => 'audios',
-                'alias' => 'Audio',
-                'conditions' => array('Sentence.id = Audio.sentence_id'),
-            ));
-        }
-
-        $allSentences = $this->_common_sentences_pagination(
-            $pagination,
-            $model,
-            $translationLang
-        );
-
-        if ($lang === null) {
-            $lang = 'unknown';
-        }
+        $this->paginate = $pagination;
+        $allSentences = $this->paginate();
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);
-        $this->set('filterAudioOnly', $filterAudioOnly);
         $this->set('results', $allSentences);
 
         $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
         $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
-        $this->Cookie->write('filter_audio_only', $filterAudioOnly, false, "+1 month");
+        $this->render(null);
     }
     /**
      * Return all information needed to display a paginated
