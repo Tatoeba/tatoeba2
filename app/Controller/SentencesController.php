@@ -544,13 +544,9 @@ class SentencesController extends AppController
             $ranking_formula = 'modified';
         }
         $sortMode .= empty($sort_reverse) ? ' DESC' : ' ASC';
-        
-        if ($sort == 'random' && $from == 'und') {
-            $fromIndex = array_rand(LanguagesLib::languagesInTatoeba());
-        } else {
-            $fromIndex = $from;
-        }
-        $index = array($fromIndex . '_main_index', $fromIndex . '_delta_index');
+        $index = $from == 'und' ?
+                 array('und_index') :
+                 array($from . '_main_index', $from . '_delta_index');
         $sphinx = array(
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
