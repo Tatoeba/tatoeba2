@@ -539,8 +539,9 @@ class Sentence extends AppModel
             return null;
         }
 
-        if(empty($lang)) {
-            $lang = 'und';
+        if(empty($lang) || $lang == 'und') {
+            $languages = LanguagesLib::languagesInTatoeba();
+            $lang = array_rand($languages);
         }
 
         $returnIds = array ();
