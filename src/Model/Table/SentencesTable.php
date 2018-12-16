@@ -365,6 +365,52 @@ class SentencesTable extends Table
         return $results;
     }
 
+    public function findFilteredTranslations($query, $options) {
+        return $query->formatResults(function($results) use ($options) {
+            return $results->map(function($result) use ($options) {
+                
+                $directTranslations = [];
+                $indirectTranslations = [];
+                $parentIds = [$result->id];
+                $indirectIds = [];
+                
+                foreach ($result->translations as $translation) {
+                    $parentIds[] = $translation->id;
+                    if ($translation->indirect_translations) {
+                        foreach ($translation->indirect_translations as $indirectTranslation) {
+                            if (!in_array($indirectTranslation->id, $indirectIds)) {
+                                $indirectTranslations[] = $indirectTranslation;
+                                $indirectIds[] = $indirectTranslation->id;
+                            }
+                        }
+                        unset($translation->indirect_translations);
+                        $directTranslations[] = $translation;
+                    }
+                }
+
+                if (isset($options['translationLang'])) {
+                    $lang = $options['translationLang'];
+                    $filter = function ($item) use ($lang) {
+                        return !$lang || $lang == 'und' || $item->lang == $lang;
+                    };
+                    $directTranslations = array_filter($directTranslations, $filter);
+                    $indirectTranslations = array_filter($indirectTranslations, $filter);
+                }
+                
+                $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
+                    return !in_array($item->id, $parentIds);
+                });
+        
+                $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
+                $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
+                
+                $result['translations'] = [$directTranslations, $indirectTranslations];
+
+                return $result;
+            });
+        });
+    }
+
     /**
      * Search one random chinese/japanese sentence containing $sinogram.
      *
@@ -659,7 +705,7 @@ class SentencesTable extends Table
      */
     public function getSentenceWithId($id)
     {
-        $result = $this->find()
+        $result = $this->find('filteredTranslations')
             ->where(['Sentences.id' => $id])
             ->contain($this->contain())
             ->select($this->fields())

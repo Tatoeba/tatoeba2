@@ -144,42 +144,8 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    public function segregateTranslations($translations, $parentId) {
-        if (!$translations) {
-            return null;
-        }
-        $directTranslations = [];
-        $indirectTranslations = [];
-        $parentIds = [$parentId];
-        $indirectIds = [];
-        
-        foreach ($translations as $translation) {
-            $parentIds[] = $translation->id;
-            if ($translation->indirect_translations) {
-                foreach ($translation->indirect_translations as $indirectTranslation) {
-                    if (!in_array($indirectTranslation->id, $indirectIds)) {
-                        $indirectTranslations[] = $indirectTranslation;
-                        $indirectIds[] = $indirectTranslation->id;
-                    }
-                }
-                unset($translation->indirect_translations);
-                $directTranslations[] = $translation;
-            }
-        }
-        
-        $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
-            return !in_array($item->id, $parentIds);
-        });
-
-        $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
-        $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
-
-        return [$directTranslations, $indirectTranslations];
-    }
-
     public function displayTranslations($id, $translations, $withAudio = true, $langFilter = 'und') {
-        list($translations, $indirectTranslations)
-            = $this->segregateTranslations($translations, $id);
+        list($translations, $indirectTranslations) = $translations;
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
 

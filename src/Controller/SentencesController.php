@@ -837,8 +837,11 @@ class SentencesController extends AppController
         $this->addLastUsedLang($translationLang);
 
         $pagination = [
+            'finder' => ['filteredTranslations' => [
+                'translationLang' => $translationLang
+            ]],
             'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->paginateContain(),
+            'contain' => $this->Sentences->paginateContain($translationLang),
             'conditions' => $conditions,
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => ['Sentences.id' => 'DESC']

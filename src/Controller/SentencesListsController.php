@@ -160,10 +160,19 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
-        $this->loadModel('SentencesSentencesLists');
-        $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
-            $id, CurrentUser::getSetting('sentences_per_page'), $translationsLang
-        );
+        $this->loadModel('Sentences');
+        
+        $contain = $this->Sentences->paginateContain();
+        $contain['finder'] = ['filteredTranslations' => [
+            'translationLang' => $translationsLang
+        ]];
+        $pagination = [
+            'contain' => ['Sentences' => $contain],
+            'conditions' => ['sentences_list_id' => $id],
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+            'order' => ['Sentences.id' => 'DESC']
+        ];
+        $this->paginate = $pagination;
         $sentencesInList = $this->paginate('SentencesSentencesLists');
 
         $this->set('translationsLang', $translationsLang);
