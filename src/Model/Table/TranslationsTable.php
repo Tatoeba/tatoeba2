@@ -21,18 +21,30 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
+use Cake\Database\Schema\TableSchema;
 
 class TranslationsTable extends Table
 {
-    public $actsAs = array('Containable', 'Transcriptable');
-    public $useTable = 'sentences';
-    public $hasMany = array('Transcription', 'Audio');
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('text', 'text');
+        $schema->setColumnType('created', 'string');
+        $schema->setColumnType('modified', 'string');
+        return $schema;
+    }
 
     public function initialize(array $config)
     {
         $this->setTable('sentences');
 
         $this->hasMany('Transcriptions');
+        $this->hasMany('Audios');
+        $this->belongsToMany('IndirectTranslations', [
+            'className' => 'Translations',
+            'joinTable' => 'sentences_translations',
+            'foreignKey' => 'sentence_id',
+            'targetForeignKey' => 'translation_id'
+        ]);
 
         if (Configure::read('AutoTranscriptions.enabled')) {
             $this->addBehavior('Transcriptable');

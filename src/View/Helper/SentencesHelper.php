@@ -29,6 +29,7 @@ namespace App\View\Helper;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
+use Cake\Utility\Hash;
 
 
 /**
@@ -143,20 +144,42 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    public function segregateTranslations($translations) {
-        $result = array(0 => array(), 1 => array());
+    public function segregateTranslations($translations, $parentId) {
+        if (!$translations) {
+            return null;
+        }
+        $directTranslations = [];
+        $indirectTranslations = [];
+        $parentIds = [$parentId];
+        $indirectIds = [];
+        
         foreach ($translations as $translation) {
-            $type = 0;// TODO get indirect translations $translation->type;
-            if (array_key_exists($type, $result)) {
-                $result[$type][] = $translation;
+            $parentIds[] = $translation->id;
+            if ($translation->indirect_translations) {
+                foreach ($translation->indirect_translations as $indirectTranslation) {
+                    if (!in_array($indirectTranslation->id, $indirectIds)) {
+                        $indirectTranslations[] = $indirectTranslation;
+                        $indirectIds[] = $indirectTranslation->id;
+                    }
+                }
+                unset($translation->indirect_translations);
+                $directTranslations[] = $translation;
             }
         }
-        return $result;
+        
+        $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
+            return !in_array($item->id, $parentIds);
+        });
+
+        $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
+        $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
+
+        return [$directTranslations, $indirectTranslations];
     }
 
     public function displayTranslations($id, $translations, $withAudio = true, $langFilter = 'und') {
         list($translations, $indirectTranslations)
-            = $this->segregateTranslations($translations);
+            = $this->segregateTranslations($translations, $id);
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
 

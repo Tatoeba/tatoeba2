@@ -836,15 +836,9 @@ class SentencesController extends AppController
         $this->addLastUsedLang($lang);
         $this->addLastUsedLang($translationLang);
 
-        if (CurrentUser::isMember()) {
-            $contain = $this->Sentences->contain();
-        } else {
-            $contain = $this->Sentences->minimalContain();
-        }
-
         $pagination = [
             'fields' => $this->Sentences->fields(),
-            'contain' => $contain,
+            'contain' => $this->Sentences->paginateContain(),
             'conditions' => $conditions,
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => ['Sentences.id' => 'DESC']

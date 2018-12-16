@@ -56,13 +56,7 @@ class SentencesSentencesListsTable extends Table
     public function getPaginatedSentencesInList($listId, $limit, $translationsLang)
     {
         $contain = ['Sentences' => $this->Sentences->paginateContain()];
-        if ($translationsLang == 'none') {
-            unset($contain['Sentences']['Translation']);
-        } elseif ($translationsLang != 'und') {
-            $this->Sentences->linkTranslationModel([
-                'Translation.lang' => $translationsLang
-            ]);
-        }
+        
         return [
             'limit' => $limit,
             'conditions' => ['sentences_list_id' => $listId],

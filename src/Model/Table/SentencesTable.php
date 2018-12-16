@@ -56,7 +56,6 @@ class SentencesTable extends Table
             'joinTable' => 'tags_sentences'
         ]);
         $this->belongsToMany('Translations', [
-            'className' => 'Sentences',
             'joinTable' => 'sentences_translations',
             'foreignKey' => 'sentence_id',
             'targetForeignKey' => 'translation_id',
@@ -555,7 +554,7 @@ class SentencesTable extends Table
      */
     public function contain()
     {
-        return array(
+        $contain = array(
             'Favorites_users' => array(
                 'fields' => array()
             ),
@@ -569,6 +568,15 @@ class SentencesTable extends Table
                 'Users' => array('fields' => array('username')),
             ),
             'Translations' => array(
+                'IndirectTranslations' => array(
+                    'Transcriptions' => array(
+                        'Users' => array('fields' => array('username')),
+                    ),
+                    'Audios' => array(
+                        'Users' => array('fields' => array('username')),
+                        'fields' => array('user_id', 'external', 'sentence_id'),
+                    ),
+                ),
                 'Transcriptions' => array(
                     'Users' => array('fields' => array('username')),
                 ),
@@ -586,6 +594,8 @@ class SentencesTable extends Table
                 'fields' => array('user_id', 'external', 'sentence_id'),
             ),
         );
+
+        return $contain;
     }
 
     /**
@@ -593,12 +603,16 @@ class SentencesTable extends Table
      * for the most basic display of the sentence groups.
      */
     public function minimalContain() {
-        return array(
+        $contain = array(
             'Users' => array(
                 'fields' => array('id', 'username', 'group_id', 'level')
             ),
-            'Translations' => array(),
+            'Translations' => array(
+                'IndirectTranslations' => array(),
+            ),
         );
+
+        return $contain;
     }
 
     /**
@@ -612,7 +626,6 @@ class SentencesTable extends Table
         } else {
             $params = $this->minimalContain();
         }
-        $params['fields'] = $this->fields();
         return $params;
     }
 
