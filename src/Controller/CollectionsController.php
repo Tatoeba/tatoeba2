@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for users sentences.
@@ -45,6 +46,8 @@ class CollectionsController extends AppController
 
     public function beforeFilter(Event $event)
     {
+        $this->loadModel('UsersSentences');
+
         $this->Auth->allowedActions = array(
             'of'
         );
@@ -98,7 +101,8 @@ class CollectionsController extends AppController
     {
         $this->helpers[] = 'Pagination';
 
-        $userId = $this->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
 
         $this->set('username', $username);
 
@@ -110,7 +114,7 @@ class CollectionsController extends AppController
         $this->paginate = $this->UsersSentences->getPaginatedCorpusOf(
             $userId, $correctnessLabel, $lang
         );
-        $corpus = $this->paginate();
+        $corpus = $this->paginate('UsersSentences');
 
         $this->set('corpus', $corpus);
         $this->set('userExists', true);

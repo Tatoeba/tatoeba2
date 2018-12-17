@@ -36,7 +36,7 @@ $(document).ready(function(){
             addToCorpusOption.html("<div class='loader-small loader'></div>");
 
 
-            $.post(requestUrl, {}, function(data){
+            $.get(requestUrl, function(data){
                 addToCorpusOptionParent.watch("replaceWith", data);
             });
         });

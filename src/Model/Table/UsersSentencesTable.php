@@ -20,17 +20,10 @@ namespace App\Model\Table;
 
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 class UsersSentencesTable extends Table
 {
-    public $name = 'UsersSentences';
-    public $useTable = "users_sentences";
-    public $actsAs = array('Containable');
-    public $belongsTo = array(
-        'Sentence',
-        'User' => array('foreignKey' => 'user_id')
-    );
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('created', 'string');
@@ -40,6 +33,11 @@ class UsersSentencesTable extends Table
 
     public function initialize(array $config)
     {
+        $this->setTable('users_sentences');
+
+        $this->belongsTo('Sentences');
+        $this->belongsTo('Users');
+
         $this->addBehavior('Timestamp');
     }
 
@@ -92,19 +90,17 @@ class UsersSentencesTable extends Table
      */
     public function correctnessForSentence($sentenceId, $userId)
     {
-        $result = $this->find(
-            'first', array(
-                'conditions' => array(
-                    'sentence_id' => $sentenceId,
-                    'user_id' => $userId
-                )
-            )
-        );
+        $result = $this->find()
+            ->where([
+                'sentence_id' => $sentenceId,
+                'user_id' => $userId
+            ])
+            ->first();
 
         if (empty($result)) {
             return -2;
         } else {
-            return $result['UsersSentences']['correctness'];
+            return $result->correctness;
         }
     }
 
@@ -136,12 +132,14 @@ class UsersSentencesTable extends Table
 
         return array(
             'conditions' => $conditions,
-            'fields' => array('id', 'sentence_id', 'correctness', 'modified'),
-            'contain' => array(
-                'Sentence' => array('id', 'lang', 'text', 'correctness')
-            ),
+            'fields' => ['id', 'sentence_id', 'correctness', 'modified'],
+            'contain' => [
+                'Sentences' => [
+                    'fields' => ['id', 'lang', 'text', 'correctness']
+                ]
+            ],
             'limit' => 50,
-            'order' => 'modified DESC'
+            'order' => ['modified' => 'DESC']
         );
     }
 
@@ -176,21 +174,13 @@ class UsersSentencesTable extends Table
      */
     public function getCorrectnessForSentence($sentenceId)
     {
-        return $this->find('all',
-            array(
-                'fields' => array(
-                    'correctness', 'modified', 'dirty'
-                ),
-                'conditions' => array(
-                    'sentence_id' => $sentenceId
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('id', 'username')
-                    )
-                )
-            )
-        );
+        return $this->find()
+            ->where(['sentence_id' => $sentenceId])
+            ->select(['correctness', 'modified', 'dirty'])
+            ->contain([
+                'Users' => ['fields' => ['id', 'username']]
+            ])
+            ->toList();
     }
 
     /**

@@ -78,21 +78,21 @@ $this->Navigation->displaySentenceNavigation(
         foreach($correctnessArray as $correctness) {
             echo '<div>';
             echo $this->Images->correctnessIcon(
-                $correctness['UsersSentences']['correctness']
+                $correctness->correctness
             );
             echo $this->Html->link(
-                $correctness['User']['username'],
+                $correctness->user->username,
                 array(
                     'controller' => 'user',
                     'action' => 'profile',
-                    $correctness['User']['username']
+                    $correctness->user->username
                 ),
                 array(
                     'class' => 'username',
-                    'title' => $correctness['UsersSentences']['modified']
+                    'title' => $correctness->modified
                 )
             );
-            if ($correctness['UsersSentences']['dirty'] != 0) {
+            if ($correctness->dirty != 0) {
                 echo ' <span class="info">'. __('(outdated)'). '</span>';
             }
             echo '</div>';

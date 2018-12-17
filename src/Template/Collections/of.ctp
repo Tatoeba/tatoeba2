@@ -101,7 +101,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $this->CommonModules->displayNoSuchUser($username);
         } else {
             $title = $this->Paginator->counter(array(
-                'format' => $title . ' ' . __("(total %count%)")
+                'format' => $title . ' ' . __("(total {{count}})")
             ));
             echo $this->Html->tag('h2', $title);
         ?>
@@ -122,11 +122,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            foreach ($corpus as $sentence) {
+            foreach ($corpus as $item) {
+                $sentence = $item->sentence;
                 echo '<div>';
 
-                if (empty($sentence['Sentence']['id'])) {
-                    $sentenceId = $sentence['UsersSentences']['sentence_id'];
+                if (empty($sentence->id)) {
+                    $sentenceId = $item->sentence_id;
                     $linkToSentence = $this->Html->link(
                         '#'.$sentenceId,
                         array(
@@ -144,18 +145,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     );
                 } else {
                     $this->Sentences->displayGenericSentence(
-                        $sentence['Sentence'],
+                        $sentence,
                         $type,
                         $parentId,
                         $withAudio
                     );
                 }
 
-                $correctness = $sentence['UsersSentences']['correctness'];
+                $correctness = $item->correctness;
                 echo $this->Html->div(
                     'correctness',
                     $this->Images->correctnessIcon($correctness),
-                    array('title' => $sentence['UsersSentences']['modified'])
+                    array('title' => $item->modified)
                 );
 
                 echo '</div>';

@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersSentencesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
 
 class UsersSentencesTest extends TestCase {
     public $fixtures = array(
@@ -14,6 +15,7 @@ class UsersSentencesTest extends TestCase {
 
     function setUp() {
         parent::setUp();
+        Configure::write('Acl.database', 'test');
         $this->UsersSentences = TableRegistry::getTableLocator()->get('UsersSentences');
     }
 
@@ -87,5 +89,25 @@ class UsersSentencesTest extends TestCase {
         );
 
         $this->assertEquals($result, false);
+    }
+
+    function testCorrectnessForSentence_succeeds() {
+        $result = $this->UsersSentences->correctnessForSentence(2, 1);
+        $this->assertEquals(1, $result);
+    }
+
+    function testCorrectnessForSentence_fails() {
+        $result = $this->UsersSentences->correctnessForSentence(999, 999);
+        $this->assertEquals(-2, $result);
+    }
+
+    function testGetCorrectnessForSentence_hasResult() {
+        $result = $this->UsersSentences->getCorrectnessForSentence(2);
+        $this->assertEquals(1, count($result));
+    }
+
+    function testGetCorrectnessForSentence_hasNoResult() {
+        $result = $this->UsersSentences->getCorrectnessForSentence(999);
+        $this->assertEquals(0, count($result));
     }
 }
