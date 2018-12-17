@@ -247,11 +247,22 @@ class TagsController extends AppController
         $this->set('tagId', $tagId);
 
         if ($tagExists) {
-            $this->paginate = $this->Tags->paramsForPaginate(
-                $tagId,
-                CurrentUser::getSetting('sentences_per_page'),
-                $lang
-            );
+            $this->loadModel('Sentences');
+            $contain = $this->Sentences->paginateContain();
+            $contain['finder'] = 'filteredTranslations';
+
+            $conditions = ['tag_id' => $tagId];
+            if (!empty($lang) && $lang != 'und') {
+                $conditions['Sentences.lang'] = $lang;
+            }
+
+            $pagination = [
+                'contain' => ['Sentences' => $contain],
+                'conditions' => $conditions,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
+                'order' => ['Sentences.id' => 'DESC']
+            ];
+            $this->paginate = $pagination;
 
             $sentences = $this->paginate('TagsSentences');
 
