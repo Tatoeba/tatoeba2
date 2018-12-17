@@ -374,9 +374,10 @@ class MenuHelper extends AppHelper
 
         <?php
         echo $this->Form->select(
-            'listSelection'.$sentenceId,
+            'list',
             $selectItems,
             array(
+                'id' => 'listSelection'.$sentenceId,
                 "value" => $mostRecentList,
                 "class" => "listOfLists",
                 "empty" => false

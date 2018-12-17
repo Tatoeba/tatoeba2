@@ -258,7 +258,7 @@ class SentencesListsController extends AppController
     public function add_sentence_to_list($sentenceId, $listId)
     {
         $userId = $this->Auth->user('id');
-        if ($this->SentencesList->addSentenceToList($sentenceId, $listId, $userId)) {
+        if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         } else {
@@ -278,7 +278,7 @@ class SentencesListsController extends AppController
     public function remove_sentence_from_list($sentenceId, $listId)
     {
         $userId = $this->Auth->user('id');
-        $isRemoved = $this->SentencesList->removeSentenceFromList(
+        $isRemoved = $this->SentencesLists->removeSentenceFromList(
             $sentenceId, $listId, $userId
         );
         $this->set('removed', $isRemoved);

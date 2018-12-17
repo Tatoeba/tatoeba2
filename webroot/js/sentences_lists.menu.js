@@ -59,7 +59,7 @@ $(document).ready(function() {
             if(listId > 0){
                 $("#_"+sentenceId+"_in_process").show();
 
-                $.post(
+                $.get(
                     rootUrl
                     + "/sentences_lists/add_sentence_to_list/"
                     + sentenceId + "/" + listId
