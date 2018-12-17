@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\TagsSentencesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
+use Cake\Core\Configure;
 
 class TagsSentencesTableTest extends TestCase {
     public $fixtures = array(
@@ -12,6 +13,7 @@ class TagsSentencesTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
+        Configure::write('Acl.database', 'test');
         $this->TagsSentences = TableRegistry::getTableLocator()->get('TagsSentences');
     }
 
@@ -27,5 +29,15 @@ class TagsSentencesTableTest extends TestCase {
         $this->assertTrue($isMVA);
         $this->assertEquals(array('tags_id'), $attrs);
         $this->assertEquals($expectedValues, $values);
+    }
+
+    function testTagSentence_succeeds() {
+        $result = $this->TagsSentences->tagSentence(1, 1, 1);
+        $this->assertTrue($result);
+    }
+
+    function testTagSentence_failsBecauseAlreadyAdded() {
+        $result = $this->TagsSentences->tagSentence(2, 2, 1);
+        $this->assertFalse($result);
     }
 }

@@ -119,12 +119,12 @@ class TagsTable extends Table
         $this->getEventManager()->dispatch($event);
 
         if ($sentenceId != null) {
-            $this->TagsSentences->tagSentence(
+            $tagged = $this->TagsSentences->tagSentence(
                 $sentenceId,
                 $tagId,
                 $userId
             );
-            return $tagId;
+            return $tagged ? null : $tagId;
         }
 
         return false;
@@ -207,7 +207,8 @@ class TagsTable extends Table
             ->where(['name' => $tagName])
             ->select(['id'])
             ->first();
-        return $result->id;
+            
+        return $result ? $result->id : null;
     }
 
 

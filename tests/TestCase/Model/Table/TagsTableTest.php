@@ -60,6 +60,11 @@ class TagsTableTest extends TestCase {
         $this->assertTrue($dispatched);
     }
 
+    function testAddTag_tagAlreadyAdded() {
+        $result = $this->Tag->addTag('OK', 1, 2);
+        $this->assertNotEmpty($result);
+    }
+
     function testSentenceOwnerCannotTagOwnSentenceAsOK() {
         $sentenceId = 1;
         $ownerId = 7;
@@ -90,5 +95,15 @@ class TagsTableTest extends TestCase {
     function testGetNameFromId_fails() {
         $result = $this->Tag->getNameFromId(4);
         $this->assertNull($result);
+    }
+
+    function testGetIdFromName_succeeds() {
+        $result = $this->Tag->getIdFromName('OK');
+        $this->assertEquals(2, $result);
+    }
+
+    function testGetIdFromName_fails() {
+        $result = $this->Tag->getIdFromName('OOK');
+        $this->assertEquals(null, $result);
     }
 }
