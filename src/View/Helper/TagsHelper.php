@@ -67,13 +67,15 @@ class TagsHelper extends AppHelper
 
             <div class="tagsListOnSentence" >
                 <?php
-                foreach ($tagsArray as $tagArray) {
+                foreach ($tagsArray as $item) {
+                    $tag = $item->tag;
+                    $user = $item->user;
 
-                    $tagName =  $tagArray['Tag']['name'];
-                    $userId = $tagArray['User']['id'];
-                    $username = $tagArray['User']['username'];
-                    $tagId = $tagArray['TagsSentences']['tag_id'];
-                    $date = $tagArray['TagsSentences']['added_time'];
+                    $tagName =  $tag->name;
+                    $userId = $user->id;
+                    $username = $user->username;
+                    $tagId = $item->tag_id;
+                    $date = $item->added_time;
 
                     $this->displayTag(
                         $tagName, $tagId, $sentenceId, $userId, $username, $date, $sentenceLang
@@ -185,13 +187,10 @@ class TagsHelper extends AppHelper
     {
         $this->Html->script(JS_PATH . 'tags.add.js', ['block' => true]);
 
-        echo $this->Form->create(
-            'Tag',
-            array(
-                "url" => array("action" => "add_tag_post"),
-                "type" => "post",
-            )
-        );
+        echo $this->Form->create('Tag', [
+            'id' => 'TagAddTagPostForm',
+            'url' => ['controller' => 'tags', 'action' => 'add_tag_post']
+        ]);
 
         // TODO replace me I'm dirty
         // The idea is to mark a "dirty" tag (one not updated yet),
