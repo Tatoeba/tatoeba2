@@ -34,6 +34,7 @@ use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Routing\Router;
+use Cake\I18n\I18n;
 
 /**
  * Controller for contributions.
@@ -160,6 +161,7 @@ class AppController extends Controller
             $this->Cookie->write('CakeCookie.interfaceLanguage', $lang, false, "+1 month");
         }
         Configure::write('Config.language', $lang);
+        I18N::setLocale($lang);
 
         // If the Router did not parse the URL, we don't know if the URL
         // contains a language, we so cannot perform any kind of language
