@@ -79,7 +79,7 @@ def getResourcesFiles(languagesTable, resourceSlug, resourceFilename, translatio
         if not os.path.exists(languageFile):
             printAndLog('Problem with %s'%language)
             continue
-        languagePath=os.path.join(mainLocal,'app','Locale',language[1],'LC_MESSAGES')
+        languagePath=os.path.join(mainLocal,'src','Locale',language[1])
         if not os.path.exists(languagePath):
             os.makedirs(languagePath)
         printAndLog('Copying %s.po (%s)'%(resourceFilename,language[1]))
