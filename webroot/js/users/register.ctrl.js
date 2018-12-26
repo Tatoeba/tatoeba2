@@ -44,6 +44,9 @@
             require: 'ngModel',
             link: function($scope, $elem, $attr, ngModel) {
                 ngModel.$asyncValidators.uniqueUsername = function(value) {
+                    if (!value) {
+                        return $q.resolve();
+                    }
                     return $http.get('/users/check_username/' + value).then(
                         function(response) {
                             if (response.data === 'valid') {
@@ -63,6 +66,9 @@
             require: 'ngModel',
             link: function($scope, $elem, $attr, ngModel) {
                 ngModel.$asyncValidators.uniqueEmail = function(value) {
+                    if (!value) {
+                        return $q.resolve();
+                    }
                     return $http.get('/users/check_email/' + value).then(
                         function(response) {
                             if (response.data === 'valid') {

@@ -38,7 +38,7 @@ use Cake\Core\Configure;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));
 
-$this->Html->script(JS_PATH . 'users/register.ctrl.js', array('block' => 'scriptBottom'));
+$this->Html->script('users/register.ctrl.js', ['block' => 'scriptBottom']);
 
 $this->Security->enableCSRFProtection();
 echo $this->Form->create('User', array(
@@ -86,7 +86,7 @@ $label = format(
                 'label' => '',
                 'id' => 'registrationUsername',
                 'ng-model' => 'user.username',
-                'required' => '',
+                'required' => true,
                 'minlength' => 2,
                 'maxlength' => 20,
                 'ng-pattern' => '/^\w{2,20}$/',
@@ -95,7 +95,7 @@ $label = format(
             )
         );
         ?>
-        <div ng-messages="registrationForm['data[User][username]'].$error">
+        <div ng-messages="registrationForm['username'].$error">
             <div ng-message="required">
                 <? echo __('Field required') ?>
             </div>
@@ -128,12 +128,12 @@ $label = format(
                 'label' => '',
                 'id' => 'registrationPassword',
                 'ng-model' => 'user.password',
-                'required' => '',
+                'required' => true,
                 'minlength' => 6,
             )
         );
         ?>
-        <div ng-messages="registrationForm['data[User][password]'].$error">
+        <div ng-messages="registrationForm['password'].$error">
             <div ng-message="required">
                 <? echo __('Field required') ?>
             </div>
@@ -169,14 +169,14 @@ $label = format(
                 'id' => 'registrationEmail',
                 'class' => 'registrationField',
                 'ng-model' => 'user.email',
-                'required' => '',
+                'required' => true,
                 'ng-pattern' => $pattern,
                 'unique-email' => '',
                 'ng-init' => "user.email = '$email'"
             )
         );
         ?>
-        <div ng-messages="registrationForm['data[User][email]'].$error">
+        <div ng-messages="registrationForm['email'].$error">
             <div ng-message="required">
                 <? echo __('Field required') ?>
             </div>
@@ -190,7 +190,7 @@ $label = format(
     </md-input-container>
     <md-input-container class="registration-loader">
         <md-progress-circular md-diameter="16"
-                              ng-if="registrationForm['data[User][email]'].$pending">
+                              ng-if="registrationForm['email'].$pending">
         </md-progress-circular>
     </md-input-container>
 </div>
@@ -244,7 +244,7 @@ $label = format(
             array(
                 'label' => __('Answer'),
                 'ng-model' => 'registration.quizAnswer',
-                'required' => '',
+                'required' => true,
             )
         );
 
