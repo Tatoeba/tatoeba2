@@ -130,6 +130,11 @@ class SentencesTableTest extends TestCase {
 		$this->assertTrue((bool)$returnValue);
 	}
 
+	function testSaveNewSentence_doesntAddDuplicate() {
+		$sentence = $this->Sentence->saveNewSentence('What are you doing?', 'eng', 1);
+		$this->assertEquals(27, $sentence->id);
+	}
+
 	function testSaveTranslation_links() {
 		CurrentUser::store(['id' => 7]);
 

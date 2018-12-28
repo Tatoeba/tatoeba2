@@ -40,6 +40,7 @@ class SentencesTable extends Table
         $schema->setColumnType('text', 'text');
         $schema->setColumnType('created', 'string');
         $schema->setColumnType('modified', 'string');
+        $schema->setColumnType('hash', 'string');
         return $schema;
     }
 
@@ -860,17 +861,12 @@ class SentencesTable extends Table
         $hash = $this->makeHash($lang, $text);
         $hash = $this->padHashBinary($hash);
 
-        /* TODO duplicate detection
-        $sentences = $this->findAllByHash($hash);
-
+        $sentences = $this->findAllByHash(hex2bin($hash));
         foreach ($sentences as $sentence) {
-            if ($this->confirmDuplicate($text, $lang, $sentence['Sentence'])) {
-                $this->id = $sentence['Sentence']['id'];
-
-                return $this->duplicate = true;
+            if ($this->confirmDuplicate($text, $lang, $sentence)) {
+                return $sentence;
             }
         }
-        */
 
         $data['text'] = $text;
         $data['user_id'] = $userId;
