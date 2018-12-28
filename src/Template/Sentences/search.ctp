@@ -26,9 +26,7 @@
  */
 use App\Model\CurrentUser;
 
-if ($search_disabled) {
-    $title = __('Search disabled');
-} else if ($is_advanced_search) {
+if ($is_advanced_search) {
     $title = __x('title', 'Advanced search');
 } else if (!empty($query)) {
     $title = format(__('Sentences with: {keywords}'), array('keywords' => h($query)));
@@ -85,14 +83,7 @@ if ($ignored) {
 <div id="main_content">
 <div class="section">
 <?php
-if ($search_disabled) {
-?>
-    <h2><?php echo __('Search disabled'); ?></h2>
-    <p><?php echo __('Due to technical reasons, the search feature is '.
-                     'currently disabled. We are sorry for the '.
-                     'inconvenience. Please try again later.'); ?></p>
-<?
-} else if (!is_array($results)) {
+if (!is_array($results)) {
   if (!isset($sphinx_markers)) {
 ?>
     <h2><?php echo __('Search error'); ?></h2>

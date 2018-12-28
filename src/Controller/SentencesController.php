@@ -492,6 +492,11 @@ class SentencesController extends AppController
      */
     public function search()
     {
+        if (!Configure::read('Search.enabled')) {
+            $this->render('search_disabled');
+            return;
+        }
+
         $criteriaVars = array();
         foreach ($this->defaultSearchCriteria as $name => $default) {
             $criteriaVars[$name] = $default;
@@ -769,31 +774,29 @@ class SentencesController extends AppController
         if (!empty($sphinx_markers)) {
             $this->set(compact('sphinx_markers'));
         }
-        $search_disabled = !Configure::read('Search.enabled');
-        if (!$search_disabled) {
-            $model = 'Sentence';
-            if (CurrentUser::isMember()) {
-                $contain = $this->Sentence->contain();
-            } else {
-                $contain = $this->Sentence->minimalContain();
-            }
-            $pagination = array(
-                'Sentence' => array(
-                    'fields' => $this->Sentence->fields(),
-                    'contain' => $contain,
-                    'limit' => CurrentUser::getSetting('sentences_per_page'),
-                    'sphinx' => $sphinx,
-                    'search' => $query
-                )
-            );
-
-            $results = $this->_common_sentences_pagination(
-                $pagination,
-                $model,
-                $to,
-                $real_total
-            );
+        
+        $model = 'Sentence';
+        if (CurrentUser::isMember()) {
+            $contain = $this->Sentence->contain();
+        } else {
+            $contain = $this->Sentence->minimalContain();
         }
+        $pagination = array(
+            'Sentence' => array(
+                'fields' => $this->Sentence->fields(),
+                'contain' => $contain,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
+                'sphinx' => $sphinx,
+                'search' => $query
+            )
+        );
+
+        $results = $this->_common_sentences_pagination(
+            $pagination,
+            $model,
+            $to,
+            $real_total
+        );
 
         $strippedQuery = preg_replace('/"|=/', '', $query);
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
