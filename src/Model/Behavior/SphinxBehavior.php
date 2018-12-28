@@ -60,22 +60,26 @@ class SphinxBehavior extends Behavior
      * @return array Modified query
      * @access public
      */
-    function beforeFind($event, $entity, $options)
+    function beforeFind($event, $query, $options, $primary)
     {
-        if (empty($query['sphinx'])) {
+        if (empty($options['sphinx'])) {
             return true;
         }
 
-        if ($model->findQueryType == 'count') {
-            $query['limit'] = 1;
-            $query['page'] = 1;
-        } else if (empty($query['limit'])) {
-            $query['limit'] = 9999999;
-            $query['page'] = 1;
+        $alias = $event->getSubject()->getAlias();
+
+        /*if ($event->type == 'count') {
+            $options['limit'] = 1;
+            $options['page'] = 1;
+        } else 
+        */
+        if (empty($options['limit'])) {
+            $options['limit'] = 9999999;
+            $options['page'] = 1;
         }
 
-        $sphinx = $this->runtime[$model->alias]['sphinx'];
-        foreach ($query['sphinx'] as $key => $setting) {
+        $sphinx = $this->runtime[$alias]['sphinx'];
+        foreach ($options['sphinx'] as $key => $setting) {
             switch ($key) {
                 case 'filter':
                     foreach ($setting as $arg) {
@@ -114,11 +118,11 @@ class SphinxBehavior extends Behavior
                     break;
             }
         }
-        $sphinx->SetLimits(($query['page'] - 1) * $query['limit'], $query['limit']);
+        $sphinx->SetLimits(($options['page'] - 1) * $options['limit'], $options['limit']);
 
-        $indexes = !empty($query['sphinx']['index']) ? implode(',' , $query['sphinx']['index']) : '*';
+        $indexes = !empty($options['sphinx']['index']) ? implode(',' , $options['sphinx']['index']) : '*';
 
-        $result = $sphinx->Query($query['search'], $indexes);
+        $result = $sphinx->Query($options['search'], $indexes);
 
         if ($result === false) {
             trigger_error("Search query failed: " . $sphinx->GetLastError());
@@ -129,27 +133,29 @@ class SphinxBehavior extends Behavior
             }
         }
 
+        /*
         unset($query['conditions']);
         unset($query['order']);
         unset($query['offset']);
         $query['page'] = 1;
-        if ($model->findQueryType == 'count') {
+        */
+
+        /*if ($event->type == 'count') { // TODO
             $result['total'] = !empty($result['total']) ? $result['total'] : 0;
             $query['fields'] = 'ABS(' . $result['total'] . ') AS count';
-
-        } else {
+        } else {*/
             $this->_cached_result = $result;
-            $this->_cached_query = $query['search'];
+            $this->_cached_query = $options['search'];
 
             if (isset($result['matches'])) {
                 $ids = array_keys($result['matches']);
             } else {
                 $ids = array(0);
             }
-            $query['conditions'] = array($model->alias . '.'.$model->primaryKey => $ids);
-            $query['order'] = 'FIND_IN_SET('.$model->alias.'.'.$model->primaryKey.', \'' . implode(',', $ids) . '\')';
+            $query->where(['id IN' => $ids]);
+            $query->order('FIND_IN_SET(id, \'' . implode(',', $ids) . '\')');
 
-        }
+        /*}*/
 
         return $query;
     }
@@ -228,6 +234,7 @@ class SphinxBehavior extends Behavior
         }
     }
 
+    /*
     public function afterFind(Model $model, $results, $primary = false) {
         if (!is_null($this->_cached_query)) {
             $search = $this->_cached_query;
@@ -247,6 +254,7 @@ class SphinxBehavior extends Behavior
         return $results;
 
     }
+    */
 
     public function afterDelete($event, $entity, $options) {
         $alias = $event->getSubject()->getAlias();

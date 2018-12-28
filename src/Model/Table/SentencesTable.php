@@ -29,6 +29,7 @@ use App\Model\CurrentUser;
 use App\Event\ContributionListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Cache\Cache;
 
 class SentencesTable extends Table
 {
@@ -76,6 +77,7 @@ class SentencesTable extends Table
         $this->addBehavior('Hashable');
         $this->addBehavior('Timestamp');
         $this->addBehavior('Transcriptable');
+        $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
 
         $this->getEventManager()->on(new ContributionListener());
         //$this->getEventManager()->attach(new UsersLanguagesListener());
@@ -560,21 +562,14 @@ class SentencesTable extends Table
             ),
         );
 
-        $results = $this->find(
-            'list',
-            array(
-                'fields' => array('id'),
-                'sphinx' => $sphinx,
-                'search' => '',
-                'limit' => 100,
-            )
-        );
+        $results = $this->find('all', [
+            'fields' => ['id'],
+            'limit' => $numberOfIdWanted,
+            'sphinx' => $sphinx,
+            'search' => ''
+        ])->toList();
 
-        if(is_array($results)){
-            return array_keys($results);
-        }
-
-        return 1;
+        return Hash::extract($results, '{n}.id');
     }
 
     /**
