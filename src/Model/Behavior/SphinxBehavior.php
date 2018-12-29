@@ -152,7 +152,7 @@ class SphinxBehavior extends Behavior
                 $ids = array(0);
             }
             $query->where(['Sentences.id IN' => $ids]);
-            //$query->order('FIND_IN_SET(id, \'' . implode(',', $ids) . '\')');
+            $query->order('FIND_IN_SET(Sentences.id, \'' . implode(',', $ids) . '\')');
 
         /*}*/
 
@@ -164,7 +164,7 @@ class SphinxBehavior extends Behavior
         return $this->_cached_result['total_found'];
     }
 
-    private function addHighlightMarkers($model, &$results, $search) {
+    public function addHighlightMarkers($alias, $results, $search) {
         // Sort the results by lang, i.e. by index
         $docsByLang = array();
         $size = count($results);
@@ -175,15 +175,15 @@ class SphinxBehavior extends Behavior
         }
         $i = 0;
         foreach ($results as $result) {
-            $lang = $result[$model->name]['lang'];
-            $text = $result[$model->name]['text'];
+            $lang = $result['lang'];
+            $text = $result['text'];
             if (!array_key_exists($lang, $docsByLang)) {
                 $docsByLang[$lang] = array_fill(0, $size, '');
             }
             $docsByLang[$lang][$i++] = $text;
         }
         foreach ($results as $result) {
-            $lang = $result[$model->name]['lang'];
+            $lang = $result['lang'];
             if (isset($result['Transcription'])) {
                 foreach ($result['Transcription'] as $transcResult) {
                     $docsByLang[$lang][$i++] = $transcResult['text'];
@@ -200,7 +200,7 @@ class SphinxBehavior extends Behavior
         );
         $mergedExcerpts = array();
         foreach ($docsByLang as $lang => $documents) {
-            $excerpts = $this->runtime[$model->alias]['sphinx']->BuildExcerpts(
+            $excerpts = $this->runtime[$alias]['sphinx']->BuildExcerpts(
                 $documents,
                 $lang.'_main_index',
                 $search,
@@ -222,7 +222,7 @@ class SphinxBehavior extends Behavior
                 array($options['before_match'], $options['after_match']),
                 $excerpt
             );
-            $results[$i][$model->name]['highlight'] = $highlight;
+            $result['highlight'] = $highlight;
         }
         foreach ($results as $i => $result) {
             if (isset($result['Transcription'])) {
@@ -236,21 +236,9 @@ class SphinxBehavior extends Behavior
                 }
             }
         }
-    }
 
-    /*
-    public function afterFind(Model $model, $results, $primary = false) {
-        if (!is_null($this->_cached_query)) {
-            $search = $this->_cached_query;
-            if ($search) {
-                $this->addHighlightMarkers($model, $results, $search);
-            }
-            $this->_cached_query = null;
-        }
         return $results;
-
     }
-    */
 
     public function afterDelete($event, $entity, $options) {
         $alias = $event->getSubject()->getAlias();

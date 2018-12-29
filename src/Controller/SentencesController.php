@@ -770,6 +770,7 @@ class SentencesController extends AppController
             $to
         );
         $real_total = $this->Sentences->getRealTotal();
+        $results = $this->Sentences->addHighlightMarkers($this->Sentences->getAlias(), $results, $query);
 
         $strippedQuery = preg_replace('/"|=/', '', $query);
         $this->loadModel('Vocabulary');
