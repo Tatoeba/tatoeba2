@@ -127,9 +127,9 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
         <div class="random_sentences_set">
             <div id="random_sentence_display">
                 <?php
-                $sentence = $random['Sentence'];
-                $translations = $random['Translation'];
-                $sentenceOwner = $random['User'];
+                $sentence = $random;
+                $translations = $random->translations;
+                $sentenceOwner = $random->user;
 
                 echo $this->element(
                     'sentences/sentence_and_translations',
