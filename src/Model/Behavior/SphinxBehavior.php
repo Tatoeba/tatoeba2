@@ -152,8 +152,8 @@ class SphinxBehavior extends Behavior
             } else {
                 $ids = array(0);
             }
-            $query->where(['id IN' => $ids]);
-            $query->order('FIND_IN_SET(id, \'' . implode(',', $ids) . '\')');
+            $query->where(['Sentences.id IN' => $ids]);
+            //$query->order('FIND_IN_SET(id, \'' . implode(',', $ids) . '\')');
 
         /*}*/
 

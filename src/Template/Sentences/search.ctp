@@ -83,8 +83,8 @@ if ($ignored) {
 <div id="main_content">
 <div class="section">
 <?php
-if (!is_array($results)) {
-  if (!isset($sphinx_markers)) {
+$searchError = false; // TODO
+if ($searchError) {
 ?>
     <h2><?php echo __('Search error'); ?></h2>
     <p><?php
@@ -97,7 +97,7 @@ if (!is_array($results)) {
         );
     ?></p>
 <?
-  } else {
+} elseif (isset($sphinx_markers)) {
 ?>
     <h2><?php echo __('Search error'); ?></h2>
     <p><?php
@@ -110,7 +110,6 @@ if (!is_array($results)) {
         );
     ?></p>
 <?
-  }
 } elseif (!empty($results)) {
 
     if (!$is_advanced_search && !empty($query)) {
@@ -125,29 +124,23 @@ if (!is_array($results)) {
     }
     echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total);
 
-    echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
-
+    //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
+    
     $this->Pagination->display();
 
     if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
         foreach ($results as $sentence) {
-            $translations = isset($sentence['Translation']) ?
-                $sentence['Translation'] :
-                array();
             echo $this->element(
                 'sentences/sentence_and_translations',
                 array(
-                    'sentence' => $sentence['Sentence'],
-                    'translations' => $translations,
-                    'user' => $sentence['User']
+                    'sentence' => $sentence,
+                    'translations' => $sentence->translations,
+                    'user' => $sentence->user
                 )
             );
         }
     } else {
         foreach ($results as $sentence) {
-            if (!isset($sentence['Translation'])) {
-                $sentence['Translation'] = array();
-            }
             $this->Sentences->displaySentencesGroup(
                 $sentence,
                 array('langFilter' => $to)

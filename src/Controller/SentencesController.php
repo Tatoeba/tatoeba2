@@ -693,9 +693,10 @@ class SentencesController extends AppController
         }
 
         // filter by list
-        $searchableLists = $this->SentencesList->getSearchableLists();
+        $this->loadModel('SentencesLists');
+        $searchableLists = $this->SentencesLists->getSearchableLists();
         if (!empty($list)) {
-            $isSearchable = $this->SentencesList->isSearchableList($list);
+            $isSearchable = $this->SentencesLists->isSearchableList($list);
             if ($isSearchable) {
                 $sphinx['filter'][] = array('lists_id', $list);
                 $found = false;
@@ -775,21 +776,20 @@ class SentencesController extends AppController
             $this->set(compact('sphinx_markers'));
         }
         
-        $model = 'Sentence';
+        $model = 'Sentences';
         if (CurrentUser::isMember()) {
-            $contain = $this->Sentence->contain();
+            $contain = $this->Sentences->contain();
         } else {
-            $contain = $this->Sentence->minimalContain();
+            $contain = $this->Sentences->minimalContain();
         }
-        $pagination = array(
-            'Sentence' => array(
-                'fields' => $this->Sentence->fields(),
-                'contain' => $contain,
-                'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'sphinx' => $sphinx,
-                'search' => $query
-            )
-        );
+        $pagination = [
+            'finder' => 'filteredTranslations',
+            'fields' => $this->Sentences->fields(),
+            'contain' => $contain,
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+            'sphinx' => $sphinx,
+            'search' => $query
+        ];
 
         $results = $this->_common_sentences_pagination(
             $pagination,
@@ -799,6 +799,7 @@ class SentencesController extends AppController
         );
 
         $strippedQuery = preg_replace('/"|=/', '', $query);
+        $this->loadModel('Vocabulary');
         $vocabulary = $this->Vocabulary->findByText($strippedQuery);
 
         $this->set('vocabulary', $vocabulary);
@@ -894,12 +895,6 @@ class SentencesController extends AppController
 
         $this->paginate = $pagination;
         $results = $this->paginate($model);
-        if (!is_array($results)) {
-            return false;
-        }
-        if (isset($results[0]['Sentence']['_total_found'])) {
-            $real_total = $results[0]['Sentence']['_total_found'];
-        }
 
         return $results;
     }
