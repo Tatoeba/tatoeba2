@@ -767,9 +767,9 @@ class SentencesController extends AppController
         $results = $this->_common_sentences_pagination(
             $pagination,
             $model,
-            $to,
-            $real_total
+            $to
         );
+        $real_total = $this->Sentences->getRealTotal();
 
         $strippedQuery = preg_replace('/"|=/', '', $query);
         $this->loadModel('Vocabulary');

@@ -34,7 +34,7 @@ class PagesHelper extends AppHelper
                that shows a list of sentences (search, browse by language,
                adopt sentences…) by appending the number of results. Note
                the use of &nbsp; which is a non-breaking space. */
-            $title = format(__n('{title} (one result)',
+            $title = format(__n('{title} ({n} result)',
                                 '{title} ({n}&nbsp;results)',
                                 $n, true),
                             compact('title', 'n')
@@ -45,7 +45,7 @@ class PagesHelper extends AppHelper
                to display {thousand} results (that should always be turned
                into “1000”), but {n} results actually exist in the corpus.
                Note the use of &nbsp; which is a non-breaking space. */
-            $title = format(__n('{title} ({thousand}&nbsp;results out of one occurrence)',
+            $title = format(__n('{title} ({thousand}&nbsp;results out of {n} occurrence)',
                                 '{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)',
                                 $real_total, true),
                             array('title' => $title, 'thousand' => $n, 'n' => $real_total)

@@ -146,7 +146,6 @@ class SphinxBehavior extends Behavior
         } else {*/
             $this->_cached_result = $result;
             $this->_cached_query = $options['search'];
-
             if (isset($result['matches'])) {
                 $ids = array_keys($result['matches']);
             } else {
@@ -158,6 +157,11 @@ class SphinxBehavior extends Behavior
         /*}*/
 
         return $query;
+    }
+
+    public function getRealTotal()
+    {
+        return $this->_cached_result['total_found'];
     }
 
     private function addHighlightMarkers($model, &$results, $search) {
@@ -242,14 +246,6 @@ class SphinxBehavior extends Behavior
                 $this->addHighlightMarkers($model, $results, $search);
             }
             $this->_cached_query = null;
-        }
-
-        if(!is_null($this->_cached_result)) {
-            foreach($results as &$result) {
-                $result[$model->name]['_weight'] = $this->_cached_result['matches'][$result[$model->name]['id']]['weight'];
-                $result[$model->name]['_total_found'] = $this->_cached_result['total_found'];
-            }
-            $this->_cached_result = null;
         }
         return $results;
 
