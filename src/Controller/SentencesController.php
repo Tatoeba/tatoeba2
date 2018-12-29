@@ -538,34 +538,7 @@ class SentencesController extends AppController
             $query
         );
 
-        $ranking_formula = '-text_len';
-        $sortMode = '@rank';
-        if ($sort == 'random') {
-            $sortMode = '@random';
-        } elseif ($sort == 'created') {
-            $ranking_formula = 'created';
-        } elseif ($sort == 'modified') {
-            $ranking_formula = 'modified';
-        }
-        $sortMode .= empty($sort_reverse) ? ' DESC' : ' ASC';
-        $index = $from == 'und' ?
-                 array('und_index') :
-                 array($from . '_main_index', $from . '_delta_index');
-        $sphinx = array(
-            'index' => $index,
-            'matchMode' => SPH_MATCH_EXTENDED2,
-            'sortMode' => array(SPH_SORT_EXTENDED => $sortMode),
-            'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
-        );
-        if (empty($query) && $sort != 'random') {
-            // When the query is empty, Sphinx changes matchMode into
-            // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
-            // sortMode instead.
-            if (!empty($sort_reverse)) {
-                $ranking_formula = "-($ranking_formula)";
-            }
-            $sphinx['sortMode'] = array(SPH_SORT_EXPR => $ranking_formula);
-        }
+        $sphinx = $this->Sentences->sphinxOptions($query, $from, $sort, $sort_reverse);
 
         $transFilter = array();
         // if we want to search only on sentences having translations
