@@ -54,8 +54,7 @@ if (isset($sentencesWithTranscription)) {
         );
         echo $this->Html->tag('h2', $title);
 
-        $paginationUrl = array($username);
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
 
         $type = 'mainSentence';
         $parentId = null;
@@ -69,7 +68,7 @@ if (isset($sentencesWithTranscription)) {
             );
         }
 
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
     }
 } else {
     echo $this->Html->tag('h2', format(

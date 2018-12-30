@@ -66,8 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         echo $this->Html->tag('h2', $title);
         if ($numberOfSentences > 0) {
 
-            $paginationUrl = array($username);
-            $this->Pagination->display($paginationUrl);
+            $this->Pagination->display();
 
             $type = 'mainSentence';
             $parentId = null;
@@ -109,7 +108,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     );
                 }
             }
-            $this->Pagination->display($paginationUrl);
+            $this->Pagination->display();
 
         } else {
             echo __('This user does not have any favorites.');

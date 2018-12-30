@@ -90,7 +90,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
         </div>
 
         <?php
-            $this->Pagination->display(array($filter));
+            $this->Pagination->display();
         ?>
 
         <div>
@@ -112,7 +112,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
 
         <div>
         <?php
-            $this->Pagination->display(array($filter));
+            $this->Pagination->display();
         ?>
         </div>
     </div>

@@ -79,8 +79,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         </h2>
         
         <?php
-        $paginatorUrl = array($userName);
-        $this->Pagination->display($paginatorUrl);
+        $this->Pagination->display();
         ?>
         
         <div class="comments">
@@ -106,7 +105,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         </div>
         
        <?php
-        $this->Pagination->display($paginatorUrl);
+        $this->Pagination->display();
         
     }
     ?>

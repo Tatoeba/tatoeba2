@@ -52,8 +52,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             ?>
         </p>
         <?php
-        $paginationUrl = array($langFilter);
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
         ?>
 
         <md-list flex>
@@ -117,7 +116,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         </md-list>
 
         <?php
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
         ?>
     </div>
 

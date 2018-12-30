@@ -63,8 +63,7 @@ if ($tagExists) {
             </div>
 
             <?php
-            $url = array($tagId, $langFilter);
-            $this->Pagination->display($url);
+            $this->Pagination->display();
             ?>
 
             <div class="sentencesList" id="sentencesList">
@@ -101,7 +100,7 @@ if ($tagExists) {
             </div>
 
             <?php
-            $this->Pagination->display($url);
+            $this->Pagination->display();
             ?>
 
         </div>

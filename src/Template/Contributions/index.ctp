@@ -46,7 +46,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
     <div class="section" md-whiteframe="1">
         <h2><?php echo __('Contributions'); ?></h2>
         <?php
-        $this->Pagination->display(array($langFilter), array('last' => false));
+        $this->Pagination->display(['last' => false]);
         ?>
 
         <md-list id="logs">
@@ -58,7 +58,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
         </md-list>
 
         <?php
-        $this->Pagination->display(array($langFilter), array('last' => false));
+        $this->Pagination->display(['last' => false]);
         ?>
     </div>
 </div>

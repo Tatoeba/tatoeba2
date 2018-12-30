@@ -80,28 +80,6 @@ class PaginationHelper extends AppHelper
      */
     public function display($extramParams = array(), $extraNumbersOptions = array())
     {
-        $paging = $this->request->params['paging'];
-        $pagingInfo = array_pop($paging); // In the hope that there's only always
-                                          // one element in $paging.
-        if ($pagingInfo['pageCount'] < 2) {
-            return;
-        }
-
-        $urls = $this->request->query;
-        $getv = "";
-        foreach ($urls as $key=>$value) {
-            if ($key === 'url') {
-                continue; // we need to ignore the url field
-            }
-            // making the passing parameters
-            $getv .= urlencode($key)."=".urlencode($value)."&";
-        }
-        $getv = substr_replace($getv, "", -1); // remove the last char '&'
-
-        $extramParams['?'] = $getv;
-        $this->Paginator->options(array('url' => $extramParams));
-        // -----------------------------------------------------------
-
         $numberFirstLinks = 1;
         $numberLastLinks = 1;
         $numbersOptions = array(

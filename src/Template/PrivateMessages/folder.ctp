@@ -57,7 +57,7 @@ echo $this->element('pmmenu');
         </h2>
         
         <?php
-        $this->Pagination->display(array($folder));
+        $this->Pagination->display();
         ?>
         
         <table class="pm_folder">
@@ -158,7 +158,7 @@ echo $this->element('pmmenu');
         </table>
         
         <?php
-        $this->Pagination->display(array($folder));
+        $this->Pagination->display();
         ?>
     </div>
 </div>

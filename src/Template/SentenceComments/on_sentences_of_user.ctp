@@ -78,8 +78,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         
         
         <?php 
-        $paginatorUrl = array($userName);
-        $this->Pagination->display($paginatorUrl);
+        $this->Pagination->display();
         ?>
         
         
@@ -107,7 +106,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         
         
         <?php
-        $this->Pagination->display($paginatorUrl);
+        $this->Pagination->display();
         
     }
     ?> 

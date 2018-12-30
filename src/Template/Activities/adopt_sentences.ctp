@@ -89,14 +89,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?php 
     echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 
-    $this->Pagination->display(array($lang));
+    $this->Pagination->display();
     
     foreach ($results as $sentence) {
         $sentence->translations = [];
         $this->Sentences->displaySentencesGroup($sentence);
     }
         
-    $this->Pagination->display(array($lang));
+    $this->Pagination->display();
     ?>
     </div>
 </div>

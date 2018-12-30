@@ -48,8 +48,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <h2><?= $title ?></h2>
 
         <?php
-        $paginationUrl = array($username);
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
         ?>
 
         <md-list flex>
@@ -72,8 +71,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         </md-list>
 
         <?php
-        $paginationUrl = array($username);
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
         ?>
     </div>
 

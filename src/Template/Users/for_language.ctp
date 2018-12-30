@@ -99,7 +99,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <h2><?php echo $title; ?></h2>
         <div class="usersLanguages">
         <?php
-        $this->Pagination->display(array($lang));
+        $this->Pagination->display();
 
         foreach($users as $user) {
             $username = $user['User']['username'];
@@ -124,7 +124,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             echo '</div>';
         }
 
-        $this->Pagination->display(array($lang));
+        $this->Pagination->display();
         ?>
         </div>
     </div>

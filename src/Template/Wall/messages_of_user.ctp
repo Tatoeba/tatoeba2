@@ -56,8 +56,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     </h2>
     
     <?php
-    $paginatorUrl = array($username);
-    $this->Pagination->display($paginatorUrl);
+    $this->Pagination->display();
     ?>
     
     <div class="wall">
@@ -74,8 +73,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     </div>
     
     <?php
-    $paginatorUrl = array($username);
-    $this->Pagination->display($paginatorUrl);
+    $this->Pagination->display();
     ?>
 </div>
 </div>

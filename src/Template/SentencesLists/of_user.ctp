@@ -87,11 +87,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </div>
 
             <?php
-            $this->Pagination->display(array($username, $filter));
+            $this->Pagination->display();
 
             $this->Lists->displayListTable($userLists);
 
-            $this->Pagination->display(array($username, $filter));
+            $this->Pagination->display();
         }
         ?>
     </div>

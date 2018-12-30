@@ -170,8 +170,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         $this->Lists->displayAddSentenceForm($listId);
     }
 
-    $url = array($listId, $translationsLang);
-    $this->Pagination->display($url);
+    $this->Pagination->display();
 
     ?>
 
@@ -210,7 +209,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     </div>
 
     <?php
-    $this->Pagination->display($url);
+    $this->Pagination->display();
     ?>
 
     </div>

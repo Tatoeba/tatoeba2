@@ -42,8 +42,7 @@ $this->Paginator->options(
         </h2>
 
         <?php
-        $paginationUrl = array($langFilter);
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
         $currentUserIsMember = CurrentUser::isMember();
 
         foreach ($sentenceComments as $i => $comment) {
@@ -63,7 +62,7 @@ $this->Paginator->options(
             );
         }
 
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
         ?>
 
     </div>

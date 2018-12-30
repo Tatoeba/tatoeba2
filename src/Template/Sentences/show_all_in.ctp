@@ -50,9 +50,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 
-        $paginationUrl = array($lang, $translationLang);
-
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
 
         if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
             foreach ($results as $sentence) {
@@ -73,7 +71,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             }
         }
 
-        $this->Pagination->display($paginationUrl);
+        $this->Pagination->display();
     }
     ?>
     </div>

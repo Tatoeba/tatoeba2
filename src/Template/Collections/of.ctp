@@ -116,8 +116,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             ?>
         </div>
         <?php
-            $paginationUrl = array($username, $correctnessLabel, $lang);
-            $this->Pagination->display($paginationUrl);
+            $this->Pagination->display();
 
             $type = 'mainSentence';
             $parentId = null;
@@ -162,7 +161,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 echo '</div>';
             }
 
-            $this->Pagination->display($paginationUrl);
+            $this->Pagination->display();
         }
         ?>
     </div>
