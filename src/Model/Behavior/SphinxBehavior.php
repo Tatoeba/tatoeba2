@@ -67,16 +67,14 @@ class SphinxBehavior extends Behavior
         }
 
         $alias = $event->getSubject()->getAlias();
-
+        $page = isset($options['sphinx']['page']) ? $options['sphinx']['page']: 1;
+        $limit = isset($options['sphinx']['limit']) ? (int)$options['sphinx']['limit'] : 1;
+        
         /*if ($event->type == 'count') {
             $options['limit'] = 1;
             $options['page'] = 1;
         } else 
         */
-        if (empty($options['limit'])) {
-            $options['limit'] = 9999999;
-            $options['page'] = 1;
-        }
 
         $sphinx = $this->runtime[$alias]['sphinx'];
         foreach ($options['sphinx'] as $key => $setting) {
@@ -118,7 +116,7 @@ class SphinxBehavior extends Behavior
                     break;
             }
         }
-        $sphinx->SetLimits(($options['page'] - 1) * $options['limit'], $options['limit']);
+        $sphinx->SetLimits(($page - 1) * $limit, $limit);
 
         $indexes = !empty($options['sphinx']['index']) ? implode(',' , $options['sphinx']['index']) : '*';
 
@@ -132,13 +130,6 @@ class SphinxBehavior extends Behavior
                 trigger_error("Search query warning: " . $sphinx->GetLastWarning());
             }
         }
-
-        /*
-        unset($query['conditions']);
-        unset($query['order']);
-        unset($query['offset']);
-        $query['page'] = 1;
-        */
 
         /*if ($event->type == 'count') { // TODO
             $result['total'] = !empty($result['total']) ? $result['total'] : 0;
@@ -157,6 +148,11 @@ class SphinxBehavior extends Behavior
         /*}*/
 
         return $query;
+    }
+
+    public function getTotal()
+    {
+        return $this->_cached_result['total'];
     }
 
     public function getRealTotal()

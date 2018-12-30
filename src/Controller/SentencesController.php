@@ -748,6 +748,10 @@ class SentencesController extends AppController
         if (!empty($sphinx_markers)) {
             $this->set(compact('sphinx_markers'));
         }
+
+        $limit = CurrentUser::getSetting('sentences_per_page');
+        $sphinx['page'] = $this->request->query('page');
+        $sphinx['limit'] = $limit;
         
         $model = 'Sentences';
         if (CurrentUser::isMember()) {
@@ -756,7 +760,7 @@ class SentencesController extends AppController
             $contain = $this->Sentences->minimalContain();
         }
         $pagination = [
-            'finder' => 'filteredTranslations',
+            'finder' => 'withSphinx',
             'fields' => $this->Sentences->fields(),
             'contain' => $contain,
             'limit' => CurrentUser::getSetting('sentences_per_page'),
