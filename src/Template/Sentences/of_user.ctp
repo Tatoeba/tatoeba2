@@ -27,11 +27,7 @@
 $userName = h($userName);
 
 if ($userExists === true) {
-    $numberOfSentences = (int) $this->Paginator->counter(
-        array(
-            "format" => "%count%"
-        )
-    );
+    $numberOfSentences = (int) $this->Paginator->counter('{{count}}');
     $this->Paginator->options(
         array(
             'url' => $this->request->params['pass']
@@ -93,11 +89,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         <h2>
             <?php
-            echo $this->Paginator->counter(
-                array(
-                    'format' => $title . ' ' . __("(total %count%)")
-                )
-            );
+            echo $this->Paginator->counter($title . ' ' . __("(total {{count}})"));
             ?>
         </h2>
 

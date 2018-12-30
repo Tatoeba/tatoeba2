@@ -960,8 +960,7 @@ class SentencesController extends AppController
                     )
                 ),
                 'limit' => 100,
-                'order' => "Sentences.modified DESC"
-
+                'order' => ['Sentences.modified' => 'DESC']
             )
         );
 
