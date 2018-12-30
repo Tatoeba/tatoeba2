@@ -49,13 +49,6 @@ echo $this->Form->create(
         'options' => $this->Languages->languagesArrayForPositiveLists(),
     ));
 
-    $orphansNote = $this->Html->tag(
-        'div',
-        __('Orphan sentences are likely to be incorrect.'),
-        array(
-            'class' => 'note',
-        )
-    );
     echo $this->Form->input('orphans', array(
         'label' => __('Is orphan:'),
         'options' => array(
@@ -63,17 +56,16 @@ echo $this->Form->create(
             'no' => __('No'),
             'yes' => __('Yes'),
         ),
-        'after' => $orphansNote,
         'value' => $orphans,
     ));
-
-    $unapprNote = $this->Html->tag(
+    echo $this->Html->tag(
         'div',
-        __('Unapproved sentences are likely to be incorrect.'),
+        __('Orphan sentences are likely to be incorrect.'),
         array(
             'class' => 'note',
         )
     );
+
     echo $this->Form->input('unapproved', array(
         'label' => __('Is unapproved:'),
         'options' => array(
@@ -81,9 +73,15 @@ echo $this->Form->create(
             'no' => __('No'),
             'yes' => __('Yes'),
         ),
-        'after' => $unapprNote,
         'value' => $unapproved,
     ));
+    echo $this->Html->tag(
+        'div',
+        __('Unapproved sentences are likely to be incorrect.'),
+        array(
+            'class' => 'note',
+        )
+    );
 
     echo $this->Form->input('native', array(
         'type' => 'checkbox',

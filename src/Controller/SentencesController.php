@@ -791,7 +791,8 @@ class SentencesController extends AppController
     }
 
     public function advanced_search() {
-        $this->set('searchableLists', $this->SentencesList->getSearchableLists());
+        $this->loadModel('SentencesLists');
+        $this->set('searchableLists', $this->SentencesLists->getSearchableLists());
         $this->set($this->defaultSearchCriteria);
     }
 

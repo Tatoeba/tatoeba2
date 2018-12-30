@@ -69,6 +69,10 @@ legend {
     display: inline-block;
 }
 
+#AdvancedSearchSearchForm .checkbox label:first-child {
+    width: inherit;
+}
+
 #AdvancedSearchSearchForm input {
     border: 1px solid #DDDDDD;
 }
@@ -79,7 +83,7 @@ legend {
     width: 50%;
 }
 
-#AdvancedSearchSearchForm input:first-child {
+#AdvancedSearchSearchForm input[type="text"]:first-child {
     margin-left: 100px;
 }
 #AdvancedSearchSearchForm div.note {
@@ -103,11 +107,7 @@ legend {
     margin-bottom: 10px;
 }
 
-#AdvancedSearchFrom,
-#AdvancedSearchTo,
-#AdvancedSearchTransTo,
-#AdvancedSearchList,
-#AdvancedSearchSort,
+#AdvancedSearchSearchForm select,
 #AdvancedSearchSearchForm input[type="text"] {
     width: 140px;
     margin-bottom: 3px;
