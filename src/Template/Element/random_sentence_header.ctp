@@ -43,6 +43,7 @@ if ($selectedLanguage == null) {
             "randomLangChoice",
             $langArray,
             array(
+                'id' => 'randomLangChoice',
                 'value' => $selectedLanguage,
                 'class' => 'language-selector',
                 "empty" => false
@@ -61,24 +62,4 @@ if ($selectedLanguage == null) {
         );
         ?>
     </span>
-    <?php
-    if ($this->request->getSession()->read('Auth.User.id')) {
-        ?>
-        <span>
-            <?php
-             echo $this->Html->link(
-                 __('show more...'),
-                 array(
-                     "controller" => "sentences",
-                     "action" => "several_random_sentences"
-                 ),
-                 array(
-                     "class" => "titleAnnexeLink"
-                 )
-             );
-             ?>
-        </span>
-    <?php
-    }
-    ?>
 </h2>

@@ -886,19 +886,17 @@ class SentencesController extends AppController
      */
     public function random($lang = null)
     {
-        $lang = Sanitize::paranoid($lang);
-
         if ($lang == null) {
             $lang = $this->request->getSession()->read('random_lang_selected');
         }
 
-        $randomId = $this->Sentence->getRandomId($lang);
+        $randomId = $this->Sentences->getRandomId($lang);
 
         if (is_null($randomId)) {
             $this->set('searchProblem', true);
             $randomSentence = null;
         } else {
-            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+            $randomSentence = $this->Sentences->getSentenceWithId($randomId);
         }
 
         $this->request->getSession()->write('random_lang_selected', $lang);
