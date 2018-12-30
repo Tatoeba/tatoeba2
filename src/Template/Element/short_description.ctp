@@ -48,14 +48,11 @@ $this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 's
         <!-- Search -->
         <div class="search-bar" ng-controller="SearchBarController as ctrl">
             <?php
-            echo $this->Form->create(
-                'Sentence',
-                array(
-                    "url" => array("action" => "search"),
-                    "type" => "get",
-                    "id" => "new-search-bar"
-                )
-            );
+            echo $this->Form->create('Sentence', [
+                'url' => ['controller' => 'sentences', 'action' => 'search'],
+                'type' => 'get',
+                'id' => 'new-search-bar'
+            ]);
 
             if (!isset($selectedLanguageFrom)) {
                 $selectedLanguageFrom = 'und';
