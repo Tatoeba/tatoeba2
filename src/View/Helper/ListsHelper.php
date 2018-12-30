@@ -28,6 +28,7 @@ namespace App\View\Helper;
 
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
+use Cake\Utility\Hash;
 
 /**
  * Helper for sentences lists.
@@ -684,10 +685,10 @@ class ListsHelper extends AppHelper
                 $othersLists        => $sortedLists[1],
             );
         } else {
-            $allLists = Set::combine(
+            $allLists = Hash::combine(
                 $lists,
-                '{n}.SentencesList.id',
-                '{n}.SentencesList.name'
+                '{n}.id',
+                '{n}.name'
             );
             return array('' => $unspecified) + $allLists;
         }

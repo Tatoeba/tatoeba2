@@ -6,6 +6,7 @@ use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\CurrentUser;
+use Cake\Utility\Hash;
 
 class SentencesListsTableTest extends TestCase {
     public $fixtures = array(
@@ -237,5 +238,16 @@ class SentencesListsTableTest extends TestCase {
             'Collaborative' => []
         ];
         $this->assertEquals($expected, $result);
+    }
+
+    function testGetSearchableLists_asGuests() {
+        $result = $this->SentencesList->getSearchableLists();
+        $this->assertEquals([2], Hash::extract($result, '{n}.id'));
+    }
+
+    function testGetSearchableLists_asMember() {
+        CurrentUser::store(['id' => 7]);
+        $result = $this->SentencesList->getSearchableLists();
+        $this->assertEquals([1, 2], Hash::extract($result, '{n}.id'));
     }
 }
