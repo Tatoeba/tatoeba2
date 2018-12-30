@@ -68,7 +68,8 @@ class FavoritesController extends AppController
      */
     public function of_user($username)
     {
-        $userId = $this->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
 
         $this->set('username', $username);
         if (empty($userId)) {
@@ -76,8 +77,8 @@ class FavoritesController extends AppController
             $this->set("userExists", false);
             return;
         }
-        $this->paginate = $this->Favorite->getPaginatedFavoritesOfUser($userId);
-        $favorites = $this->paginate('Favorite');
+        $this->paginate = $this->Favorites->getPaginatedFavoritesOfUser($userId);
+        $favorites = $this->paginate();
         $this->set('favorites', $favorites);
         $this->set("userExists", true);
     }
@@ -92,12 +93,10 @@ class FavoritesController extends AppController
 
     public function add_favorite($sentenceId, $withRemoveOrUndo = false)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-
         $userId =$this->Auth->user('id');
 
         if ($userId != null) {
-            $isSaved = $this->Favorite->addFavorite($sentenceId, $userId);
+            $isSaved = $this->Favorites->addFavorite($sentenceId, $userId);
             $isLogged = true;
         }
 
@@ -114,12 +113,10 @@ class FavoritesController extends AppController
 
     public function remove_favorite($sentenceId, $withRemoveOrUndo = false)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-
         $userId =$this->Auth->user('id');
 
         if ($userId != null) {
-            $isSaved = $this->Favorite->removeFavorite($sentenceId, $userId);
+            $isSaved = $this->Favorites->removeFavorite($sentenceId, $userId);
             $isLogged = true;
         }
 

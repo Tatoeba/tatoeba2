@@ -29,13 +29,11 @@ class FavoritesTable extends Table
         'Containable'
     );
 
-    public $belongsTo = array(
-        'Sentence' => array('foreignKey' => 'favorite_id')
-    );
-
     public function initialize(array $config)
     {
         $this->setTable('favorites_users');
+        
+        $this->belongsTo('Sentences', ['foreignKey' => 'favorite_id']);
     }
 
     /**
@@ -62,24 +60,21 @@ class FavoritesTable extends Table
 
     public function getPaginatedFavoritesOfUser($userId)
     {
-
         $favorites = array(
-            'fields' => array(
+            'fields' => [
                 'favorite_id'
-            ),
-            'conditions' => array(
-                'Favorite.user_id' => $userId
-            ),
-            'contain' => array(
-                'Sentence' => array(
-                    'text',
-                    'lang',
-                    'correctness',
-                    'Transcription' => array(
-                        'User' => array('fields' => 'username'),
+            ],
+            'conditions' => [
+                'Favorites.user_id' => $userId
+            ],
+            'contain' => [
+                'Sentences' => [
+                    'fields' => ['text', 'lang', 'correctness'],
+                    'Transcriptions' => array(
+                        'Users' => ['fields' => 'username'],
                     ),
-                )
-            )
+                ]
+            ]
         );
 
         return $favorites;
@@ -95,10 +90,10 @@ class FavoritesTable extends Table
      */
     public function addFavorite($sentenceId, $userId)
     {
-        $data = array(
+        $data = $this->newEntity([
             'favorite_id' => $sentenceId,
             'user_id' => $userId
-        );
+        ]);
 
         $isSaved = $this->save($data);
 
@@ -115,12 +110,10 @@ class FavoritesTable extends Table
      */
     public function removeFavorite($sentenceId, $userId)
     {
-        $conditions = array(
-            'Favorite.favorite_id' => $sentenceId,
-            'Favorite.user_id' => $userId
-        );
-
-        $isDeleted = $this->deleteAll($conditions, false);
+        $isDeleted = $this->deleteAll([
+            'favorite_id' => $sentenceId,
+            'user_id' => $userId
+        ]);
 
         return $isDeleted;
     }

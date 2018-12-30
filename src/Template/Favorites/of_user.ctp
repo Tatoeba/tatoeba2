@@ -28,11 +28,7 @@
 $username = h($username);
 
 if ($userExists) {
-    $numberOfSentences = (int) $this->Paginator->counter(
-        array(
-            "format" => "%count%"
-        )
-    );
+    $numberOfSentences = (int) $this->Paginator->counter('{{count}}');
 
     $title = format(__("{user}'s favorite sentences"), array('user' => $username));
 } else {
@@ -58,11 +54,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     if (!$userExists) {
         $this->CommonModules->displayNoSuchUser($username);
     } else {
-        $title = $this->Paginator->counter(
-            array(
-                'format' => $title . ' ' . __("(total %count%)")
-            )
-        );
+        $title = $this->Paginator->counter($title . ' ' . __('(total {{count}})'));
         echo $this->Html->tag('h2', $title);
         if ($numberOfSentences > 0) {
 
@@ -73,8 +65,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $withAudio = false;
             $ownerName = null;
             foreach ($favorites as $favorite) {
-                if (empty($favorite['Sentence']['text'])) {
-                    $sentenceId = $favorite['Favorite']['favorite_id'];
+                if (empty($favorite->sentence->text)) {
+                    $sentenceId = $favorite->favorite_id;
                     $linkToSentence = $this->Html->link(
                         '#'.$sentenceId,
                         array(
@@ -101,7 +93,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <?
                 } else {
                     $this->Sentences->displayGenericSentence(
-                        $favorite['Sentence'],
+                        $favorite->sentence,
                         $type,
                         $withAudio,
                         $parentId

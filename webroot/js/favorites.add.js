@@ -40,7 +40,7 @@ $(document).ready(function(){
                 requestUrl += "/true";
             }
             favoriteOption.html("<div class='loader-small loader'></div>");
-            $.post(requestUrl, {}, function(data) {
+            $.get(requestUrl, function(data) {
                 if(favoriteOption.parent().hasClass("favorite-page")){
                     if(favoriteOption.hasClass("remove")){
                         favoriteOption.parent().parent().find(".content.column").html(successString);
