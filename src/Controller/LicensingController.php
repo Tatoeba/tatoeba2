@@ -37,11 +37,11 @@ class LicensingController extends AppController {
     public function switch_my_sentences() {
         $currentUserId = CurrentUser::get('id');
 
-        $this->loadModel('Queue.QueuedTasks');
-        $currentJob = $this->QueuedTasks->find()
+        $this->loadModel('Queue.QueuedJobs');
+        $currentJob = $this->QueuedJobs->find()
             ->where([
-                'jobtype' => 'SwitchSentencesLicense',
-                'group' => $currentUserId,
+                'job_type' => 'SwitchSentencesLicense',
+                'job_group' => $currentUserId,
             ])
             ->first();
 
@@ -57,15 +57,11 @@ class LicensingController extends AppController {
                     'UIlang' => Configure::read('Config.language'),
                     'sendReport' => true,
                 );
-                $currentJob = $this->QueuedTasks->createJob(
+                $currentJob = $this->QueuedJobs->createJob(
                     'SwitchSentencesLicense',
                     $options,
-                    null,
-                    $currentUserId
+                    ['group' => $currentUserId]
                 );
-                if ($currentJob) {
-                    $currentJob = $this->QueuedTasks->read();
-                }
             }
         }
 

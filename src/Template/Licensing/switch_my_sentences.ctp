@@ -20,23 +20,13 @@
 $this->set('title_for_layout', __("Switch my sentences' license"));
 
 if ($currentJob) {
-    $status = $currentJob['QueuedTask']['status'];
-    switch ($status) {
-    /* Possible values for 'status' are defined
-     * in __construct() in app/Plugin/Queue/Model/QueuedTask.php */
-    case 'NOT_READY':
-    case 'NOT_STARTED':
-        $message = __('The license switch of your sentences will be started soon. You will receive a private message when it will be completed.');
-        break;
-    case 'IN_PROGRESS':
-        $message = __('The license switch of your sentences is in progress. You will receive a private message when it will be completed.');
-        break;
-    case 'COMPLETED':
+    if (isset($currentJob['completed'])) {
         $message = __('The license switch of your sentences is completed. A report has been sent to you by private message.');
-        break;
-    case 'UNKNOWN':
-    case 'FAILED':
-    default:
+    } elseif (isset($currentJob['fetched'])) {
+        $message = __('The license switch of your sentences is in progress. You will receive a private message when it will be completed.');
+    } elseif (isset($currentJob['created'])) {
+        $message = __('The license switch of your sentences will be started soon. You will receive a private message when it will be completed.');
+    } else {
         $message = __('A problem occured while switching the license of your sentences.');
     }
     echo $this->Html->tag('p', $message);
