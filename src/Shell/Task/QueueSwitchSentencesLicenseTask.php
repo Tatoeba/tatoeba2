@@ -2,10 +2,11 @@
 
 namespace App\Shell\Task;
 
-use App\CurrentUser\Model;
+use App\Model\CurrentUser;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
 use Queue\Shell\Task\QueueTask;
+use App\Shell\AppShell;
 
 class QueueSwitchSentencesLicenseTask extends QueueTask {
 
@@ -78,16 +79,17 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
     }
 
     private function sendReport($recipientId) {
+        $this->loadModel('PrivateMessages');
         $now = date("Y/m/d H:i:s", time());
-        $data = array('PrivateMessage' => array(
+        $data = [
             'title' => __('Result of license switch to CC0 1.0'),
             'content' => $this->report,
             'messageId' => '',
-        ));
-        $this->PrivateMessage->notify($recipientId, $now, $data);
+        ];
+        $this->PrivateMessages->notify($recipientId, $now, $data);
     }
 
-    protected function _switchLicense($rows, $modelName, $dryRun) {
+    public function _switchLicense($rows, $modelName, $dryRun) {
         $total = 0;
         $saveParams = array(
             'validate' => true,
@@ -95,13 +97,14 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         );
         $newLicense = 'CC0 1.0';
         foreach ($rows as $row) {
-            $id = $row[$modelName]['id'];
-            $this->{$modelName}->id = $id;
+            $id = $row->id;
+            $data = $this->{$modelName}->get($id);
             if ($dryRun) {
-                $this->{$modelName}->set(array('license' => $newLicense));
-                $ok = $this->{$modelName}->validates();
+                $this->{$modelName}->patchEntity($data, ['license' => $newLicense]);
+                $ok = empty($data->getErrors());                
             } else {
-                $ok = $this->{$modelName}->saveField('license', $newLicense, $saveParams);
+                $this->{$modelName}->patchEntity($data, ['license' => $newLicense]);
+                $ok = $this->{$modelName}->save($data);
             }
             if ($ok) {
                 $total++;
@@ -126,11 +129,12 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
     }
 
     private function switchLicense($options) {
+        $this->loadModel('Sentences');
         $findOptions = array(
-            'fields' => array('Sentence.id'),
+            'fields' => array('Sentences.id'),
             'conditions' => array(
                 'license' => 'CC BY 2.0 FR',
-                'Sentence.user_id' => $options['userId'],
+                'Sentences.user_id' => $options['userId'],
                 'based_on_id' => 0,
             ),
             'joins' => array(array(
@@ -150,7 +154,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             __('License switch started on {date} at {time} UTC.'),
             $this->dateAndTime()
         ));
-        $selected = $this->Sentence->find('count', $findOptions);
+        $selected = $this->Sentences->find('all', $findOptions)->count();
         $this->out(format(
             __n('Found {n} sentence that can be switched to {newLicense}.',
                 'Found {n} sentences that can be switched to {newLicense}.',
@@ -161,7 +165,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
 
         if ($selected > 0) {
             $proceeded = $this->batchOperation(
-                'Sentence',
+                'Sentences',
                 '_switchLicense',
                 $findOptions,
                 $options['dryRun']
@@ -210,5 +214,85 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             Configure::write('Config.language', $prevLang);
         }
         return true;
+    }
+
+
+    // ----------------------------------------------------
+    // TODO Refactor. 
+    // Below is a copy-paste of AppShell.php as a quick
+    // solution to migrate the mass license update feature.
+    // ----------------------------------------------------
+
+    public $batchOperationSize = 1000;
+
+    private function _orderCondition($nonUniqueField, $lastValue, $pKey, $lastId) {
+        if ($nonUniqueField == $pKey) {
+            return array("$pKey >" => $lastId);
+        } else {
+            return array('AND' => array(
+                "$nonUniqueField >=" => $lastValue,
+                array('OR' => array(
+                    "$nonUniqueField >" => $lastValue,
+                    array('AND' => array(
+                        $nonUniqueField => $lastValue,
+                        "$pKey >" => $lastId,
+                    )),
+                )),
+            ));
+        }
+    }
+
+    protected function batchOperation($model, $operation, $options) {
+        if (!isset($options['order'])) {
+            $options['order'] = $this->{$model}->getAlias().'.id';
+        }
+        if (is_string($options['order'])) {
+            $options['order'] = array($options['order']);
+        }
+        $order1 = $options['order'][0];
+        if (count($options['order']) == 2) {
+            $order2 = $options['order'][1];
+        } else {
+            $order2 = $order1;
+        }
+        if (isset($options['fields'])) {
+            foreach ($options['order'] as $field) {
+                $options['fields'][] = $field;
+            }
+        }
+
+        $o1parts = explode('.', $order1);
+        $o2parts = explode('.', $order2);
+        $proceeded = 0;
+        $options = array_merge(
+            array(
+                'contain' => array(),
+                'limit' => $this->batchOperationSize,
+            ),
+            $options
+        );
+
+        if (!isset($options['conditions'])) {
+            $options['conditions'] = array();
+        }
+        $options['conditions'][] = array();
+        end($options['conditions']);
+        $conditionKey = key($options['conditions']);
+        reset($options['conditions']);
+
+        $data = array();
+        do {
+            $data = $this->{$model}->find('all', $options)->toList();
+            $args = func_get_args();
+            array_splice($args, 0, 3, array($data, $model));
+            $proceeded += call_user_func_array(array($this, $operation), $args);
+            $lastRow = end($data);
+            if ($lastRow) {
+                $lastValue1 = $lastRow[ $o1parts[0] ][ $o1parts[1] ];
+                $lastValue2 = $lastRow[ $o2parts[0] ][ $o2parts[1] ];
+                $options['conditions'][$conditionKey] = $this->_orderCondition($order1, $lastValue1, $order2, $lastValue2);
+            }
+        } while ($data);
+        return $proceeded;
     }
 }

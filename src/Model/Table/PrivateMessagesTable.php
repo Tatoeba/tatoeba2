@@ -55,8 +55,7 @@ class PrivateMessagesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->addCreate(function($message) {
-            $canSend = $this->canSendMessage($message->sender);
-            return $canSend;
+            return $message->type == 'machine' || $canSend;
         }, 'limitExceeded');
 
         $rules->addUpdate(function($message) {
