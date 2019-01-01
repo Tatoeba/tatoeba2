@@ -192,7 +192,7 @@ class SentencesTable extends Table
         if (!$isOriginal) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $sentence->setError('license', __('The sentence needs to be original (not initially derived from translation).'));
+            return __('The sentence needs to be original (not initially derived from translation).');
         }
 
         $currentOwner = $sentence->user_id;
@@ -200,14 +200,14 @@ class SentencesTable extends Table
         if ($currentUser != $currentOwner) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $sentence->setError('license', __('You\'re not the owner of this sentence.'));
+            return __('You\'re not the owner of this sentence.');
         }
 
         $originalCreator = $this->Contributions->getOriginalCreatorOf($sentenceId);
         if ($originalCreator !== $currentOwner) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $sentence->setError('license', __('The owner of the sentence needs to be its original creator.'));
+            return __('The owner of the sentence needs to be its original creator.');
         }
 
         $newLicense = $check;
@@ -220,7 +220,7 @@ class SentencesTable extends Table
             $newPermissiveness < $currentPermissiveness) {
             /* @translators: This string will be preceded by "Unable to
                change the license to “{newLicense}” because:" */
-            $sentence->setError('license', __('You can only switch to a more permissive license.'));
+            return __('You can only switch to a more permissive license.');
         }
 
         return empty($sentence->getErrors());
@@ -1129,6 +1129,10 @@ class SentencesTable extends Table
     }
 
     public function getSentencesLang($sentencesIds) {
+        if (empty($sentencesIds)) {
+            return [];
+        }
+        
         $result = $this->find('all')
         ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
         ->select(['lang', 'id'])

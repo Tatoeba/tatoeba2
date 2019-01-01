@@ -1117,28 +1117,24 @@ class SentencesController extends AppController
             throw new \Cake\Http\Exception\BadRequestException();
         }
 
-        if (CurrentUser::isModerator()) {
-            unset($this->Sentences->validate['license']['canSwitchLicense']);
-        }
-
         $sentence = $this->Sentences->get($sentenceId);
         $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
 
         if (!CurrentUser::isModerator()) {
             $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
-        }
-        elseif ($this->Sentences->save($sentence)) {
-            $this->Flash->set(format(
-                __('The license of the sentence has been changed to “{newLicense}”.'),
-                compact('newLicense')
-            ));
         } else {
-            if (isset($this->Sentences->validationErrors['license'])) {
+            $errors = $sentence->getError('license');
+            $savedSentence = $this->Sentences->save($sentence);
+            if ($savedSentence) {
+                $this->Flash->set(format(
+                    __('The license of the sentence has been changed to “{newLicense}”.'),
+                    compact('newLicense')
+                ));
+            } elseif (!empty($errors)) {
                 $message = format(
                     __('Unable to change the license to “{newLicense}” because:'),
                     compact('newLicense')
                 );
-                $errors = $this->Sentences->validationErrors['license'];
                 $params = compact('errors');
                 $this->Flash->set($message, compact('params'));
             }
