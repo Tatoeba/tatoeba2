@@ -178,12 +178,11 @@ class LanguagesHelper extends AppHelper
         }
         if (!empty($options)) {
             $languages = array(
-                $options,
                 __('Profile languages') => $languages
             );
         }
 
-        return $languages;
+        return $options + $languages;
     }
 
     /**
@@ -195,10 +194,9 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayAlone()
     {
         $languages = $this->onlyLanguagesArray();
-        array_unshift($languages, array(
-            'und' => $this->langAsAlone(__('All languages'))
-        ));
-        return $languages;
+        $options = ['und' => $this->langAsAlone(__('All languages'))];
+        
+        return $options + $languages;
     }
 
     /**
@@ -212,10 +210,9 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayToFormat()
     {
         $languages = LanguagesLib::languagesInTatoeba();
+        $options = ['und' => __('All languages')];
 
-        array_unshift($languages, array('und' => __('All languages')));
-
-        return $languages;
+        return $options + $languages;
     }
 
     /**
@@ -226,12 +223,9 @@ class LanguagesHelper extends AppHelper
     public function unknownLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
+        $options = ['unknown' => __x('dropdown-list', 'Unknown language')];
 
-        array_push($languages, array(
-            'unknown' => __x('dropdown-list', 'Unknown language')
-        ));
-
-        return $languages;
+        return $options + $languages;
     }
 
 
@@ -245,10 +239,9 @@ class LanguagesHelper extends AppHelper
     public function otherLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
+        $options = ['' => __('other language')];
 
-        array_unshift($languages, array('' => __('other language')));
-
-        return $languages;
+        return $options + $languages;
     }
 
 
@@ -263,8 +256,8 @@ class LanguagesHelper extends AppHelper
     public function translationsArray()
     {
         $languages = $this->userLanguagesArray();
+        $options = ['auto' => __('Auto detect')];
 
-        array_unshift($languages, array('auto' => __('Auto detect')));
         return $languages;
     }
 
@@ -278,16 +271,12 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayForPositiveLists()
     {
         $languages = $this->onlyLanguagesArray();
+        $options = [
+            'none' => __('None'),
+            'und' => __('All languages')
+        ];
 
-        array_unshift(
-            $languages,
-            array(
-                'none' => __('None'),
-                'und' => __('All languages')
-            )
-        );
-
-        return $languages;
+        return $options + $languages;
     }
 
 
@@ -300,16 +289,12 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayForNegativeLists()
     {
         $languages = $this->onlyLanguagesArray();
+        $options = [
+            'none' => '—',
+            'und' => __('Any language')
+        ];
 
-        array_unshift(
-            $languages,
-            array(
-                'none' => '—',
-                'und' => __('Any language')
-            )
-        );
-
-        return $languages;
+        return $options + $languages;
     }
 
 
@@ -321,15 +306,9 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayWithNone()
     {
         $languages = $this->onlyLanguagesArray();
+        $options = ['none' => __('None')];
 
-        array_unshift(
-            $languages,
-            array(
-                'none' => __('None')
-            )
-        );
-
-        return $languages;
+        return $options + $languages;
     }
 
 
@@ -340,11 +319,11 @@ class LanguagesHelper extends AppHelper
      */
     public function getSearchableLanguagesArray()
     {
+
         $languages = $this->onlyLanguagesArray();
-        array_unshift(
-            $languages, array('und' => __x('searchbar', 'Any language'))
-        );
-        return $languages;
+        $options = array('und' => __x('searchbar', 'Any language'));
+        
+        return $options + $languages;
     }
 
     /**
