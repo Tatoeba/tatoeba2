@@ -18,7 +18,8 @@
  */
 namespace App\Shell;
 
-use App\Core\ConnectionManager;
+use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
 use App\Lib\LanguagesLib;
 use Cake\Console\Shell;
 
@@ -219,7 +220,8 @@ class SphinxConfShell extends Shell {
 
     public $indexExtraOptions = array();
 
-    private $configs;
+    private $dbConfig;
+    private $sphinxConfig;
 
     public function __construct() {
         parent::__construct();
@@ -395,10 +397,10 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = {$this->configs->default['login']}
-    sql_pass                 = {$this->configs->default['password']}
-    sql_db                   = {$this->configs->default['database']}
-    sql_sock                 = {$this->configs->sphinx['socket']}
+    sql_user                 = {$this->dbConfig['username']}
+    sql_pass                 = {$this->dbConfig['password']}
+    sql_db                   = {$this->dbConfig['database']}
+    sql_sock                 = {$this->sphinxConfig['socket']}
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
 
@@ -429,7 +431,7 @@ EOT;
 
     private function conf_language_indexes($languages) {
         $conf = '';
-        $sourcePath = $this->configs->sphinx['indexdir'];
+        $sourcePath = $this->sphinxConfig['indexdir'];
         foreach ($languages as $lang => $name) {
             foreach (array('main', 'delta') as $type) {
                 $parent = array(
@@ -593,7 +595,7 @@ index und_index : common_index
     }
 
     public function conf_ending() {
-        $sphinxLogDir = $this->configs->sphinx['logdir'];
+        $sphinxLogDir = $this->sphinxConfig['logdir'];
         $log_opt = $sphinxLogDir . DIRECTORY_SEPARATOR . 'searchd.log';
         $query_log_opt = $sphinxLogDir . DIRECTORY_SEPARATOR . 'query.log';
 
@@ -606,15 +608,15 @@ indexer
 
 searchd
 {
-    listen                  = {$this->configs->sphinx['host']}:{$this->configs->sphinx['port']}
-    listen                  = localhost:{$this->configs->sphinx['sphinxql_port']}:mysql41
+    listen                  = {$this->sphinxConfig['host']}:{$this->sphinxConfig['port']}
+    listen                  = localhost:{$this->sphinxConfig['sphinxql_port']}:mysql41
     log                     = $log_opt
     query_log               = $query_log_opt
-    binlog_path             = {$this->configs->sphinx['binlog_path']}
+    binlog_path             = {$this->sphinxConfig['binlog_path']}
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = {$this->configs->sphinx['pidfile']}
+    pid_file                = {$this->sphinxConfig['pidfile']}
     seamless_rotate         = 1
     preopen_indexes         = 1
     unlink_old              = 1
@@ -637,15 +639,10 @@ EOT;
         return $conf;
     }
 
-    public function startup() {
-        include_once APP . 'Config' . DS . 'database.php';
-		if (class_exists('DATABASE_CONFIG')) {
-			$this->configs = new DATABASE_CONFIG();
-		}
-        /* Avoid printing welcome message */
-    }
-
     public function main() {
+        $this->dbConfig = ConnectionManager::get('default')->config();
+        $this->sphinxConfig = Configure::read('Sphinx');
+        
         echo $this->conf($this->args);
     }
 }

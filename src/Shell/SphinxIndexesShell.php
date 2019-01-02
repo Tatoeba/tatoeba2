@@ -61,9 +61,9 @@ class SphinxIndexesShell extends Shell {
         }
 
         /* Remove sentences that were indexed */
-        $ReindexFlag = ClassRegistry::init('ReindexFlag');
+        $this->loadModel('ReindexFlags');
         $conditions = array('lang' => $lang, 'indexed' => true);
-        $ReindexFlag->deleteAll($conditions, false);
+        $this->ReindexFlags->deleteAll($conditions, false);
         echo "ok\n";
     }
 
