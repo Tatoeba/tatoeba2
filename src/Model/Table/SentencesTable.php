@@ -122,25 +122,6 @@ class SentencesTable extends Table
     }
 
 
-    /**
-     * Links the Sentence and Translation models with restrictions
-     * on the language of translated sentences according to the
-     * profile setting 'lang'.
-     */
-    private function linkWithTranslationModel() {
-        $userLangs = CurrentUser::getLanguages();
-        $conditions = $userLangs ?
-                      array('Translation.lang' => $userLangs) :
-                      array();
-        $this->linkTranslationModel($conditions);
-    }
-
-    public function linkTranslationModel($conditions = array())
-    {
-        $this->hasMany['Translation']['finderQuery']
-            = $this->Translation->hasManyTranslationsLikeSqlQuery($conditions);
-    }
-
     private function clean($text)
     {
         $text = trim($text);

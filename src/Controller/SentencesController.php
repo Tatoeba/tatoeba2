@@ -839,42 +839,7 @@ class SentencesController extends AppController
         $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
         $this->render(null);
     }
-    /**
-     * Return all information needed to display a paginated
-     * list of sentences
-     *
-     * @param array  $pagination      The pagination request.
-     * @param string $model           Model to use for pagination
-     * @param string $translationLang If different of null, will only
-     *                                retrieve translation in this language.
-     * @param int    &$real_total     If Sphinx returns the "real total", it
-     *                                will be stored here. Sphinx returns a
-     *                                limited number of results (1000), but
-     *                                it's able to tell the exact number of
-     *                                results that could be returned if there
-     *                                were no limitation.
-     *
-     * @return array Big nested array of sentences + information related to senences
-     */
-    private function _common_sentences_pagination(
-        $pagination,
-        $model,
-        $translationLang = null,
-        &$real_total = 0
-    ) {
-        if ($translationLang == "none") {
-            unset($pagination[$model]['contain']['Translation']);
-        } elseif ($translationLang != "und") {
-            $this->Sentence->linkTranslationModel(array(
-                'Translation.lang' => $translationLang
-            ));
-        }
-
-        $this->paginate = $pagination;
-        $results = $this->paginate($model);
-
-        return $results;
-    }
+    
     /**
      * Show random sentence.
      *
