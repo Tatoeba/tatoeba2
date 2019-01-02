@@ -391,7 +391,7 @@ class SentencesTable extends Table
                     }
                 }
 
-                if (isset($options['translationLang'])) {
+                if (!empty($options['translationLang']) && $options['translationLang'] != 'und') {
                     $lang = $options['translationLang'];
                     $filter = function ($item) use ($lang) {
                         return !$lang || $lang == 'und' || $item->lang == $lang;

@@ -760,7 +760,7 @@ class SentencesController extends AppController
             $contain = $this->Sentences->minimalContain();
         }
         $pagination = [
-            'finder' => 'withSphinx',
+            'finder' => ['withSphinx' => ['translationLang' => $to]],
             'fields' => $this->Sentences->fields(),
             'contain' => $contain,
             'limit' => CurrentUser::getSetting('sentences_per_page'),
@@ -768,11 +768,9 @@ class SentencesController extends AppController
             'search' => $query
         ];
 
-        $results = $this->_common_sentences_pagination(
-            $pagination,
-            $model,
-            $to
-        );
+        $this->paginate = $pagination;
+        $results = $this->paginate($model);
+
         $real_total = $this->Sentences->getRealTotal();
         $results = $this->Sentences->addHighlightMarkers($this->Sentences->getAlias(), $results, $query);
 
