@@ -16,14 +16,6 @@ $sentenceLink = $this->Html->link(
         $sentence->id
     )
 );
-$userLink = $this->Html->link(
-    $user->username,
-    array(
-        'controller' => 'user',
-        'action' => 'profile',
-        $user->username
-    )
-);
 $sentenceUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
@@ -41,14 +33,31 @@ if (isset($sentence->highlight)) {
 <div sentence-and-translations class="sentence-and-translations" md-whiteframe="1">
     <div layout="column">
         <md-subheader>
-            <?=
-            format(
-                __('Sentence {number} — belongs to {username}'),
-                array(
-                    'number' => $sentenceLink,
-                    'username' => $userLink
-                )
-            );
+            <?
+            if ($user) {
+                $userLink = $this->Html->link(
+                    $user->username,
+                    array(
+                        'controller' => 'user',
+                        'action' => 'profile',
+                        $user->username
+                    )
+                );
+                echo format(
+                    __('Sentence {number} — belongs to {username}'),
+                    array(
+                        'number' => $sentenceLink,
+                        'username' => $userLink
+                    )
+                );
+            } else {
+                echo format(
+                    __('Sentence {number}'),
+                    array(
+                        'number' => $sentenceLink
+                    )
+                );
+            }            
             ?>
         </md-subheader>
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"

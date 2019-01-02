@@ -187,8 +187,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
          data-list-id="<?php echo $listId; ?>">
     <?php
     if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
-        foreach ($sentencesInList as $sentence) {
-            $translations = $sentence->translations;
+        foreach ($sentencesInList as $item) {
+            $sentence = $item->sentence;
+            $translations = $item->translations;
             echo $this->element(
                 'sentences/sentence_and_translations',
                 array(
