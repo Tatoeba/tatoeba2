@@ -250,4 +250,14 @@ class SentencesListsTableTest extends TestCase {
         $result = $this->SentencesList->getSearchableLists();
         $this->assertEquals([1, 2], Hash::extract($result, '{n}.id'));
     }
+
+    function testGetNameForListWithId() {
+        $result = $this->SentencesList->getNameForListWithId(1);
+        $this->assertEquals('Interesting French sentences', $result);
+    }
+
+    function testGetNumberOfSentences() {
+        $result = $this->SentencesList->getNumberOfSentences(1);
+        $this->assertEquals(2, $result);
+    }
 }

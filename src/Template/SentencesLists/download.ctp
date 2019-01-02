@@ -61,6 +61,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     echo $this->Form->create(
         'SentencesList',
         array(
+            'id' => 'SentencesListExportToCsvForm',
             'url' => array('action' => 'export_to_csv'),
             'class' => 'downloadForm'
         )

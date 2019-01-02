@@ -30,6 +30,7 @@ use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use App\Model\Entity\SentencesList;
 
 /**
  * Controller for sentences lists.
@@ -393,7 +394,7 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
-        $count = $this->SentencesList->getNumberOfSentences($listId);
+        $count = $this->SentencesLists->getNumberOfSentences($listId);
         if ($count > SentencesList::MAX_COUNT_FOR_DOWNLOAD)
         {
             $this->flash(
@@ -405,9 +406,7 @@ class SentencesListsController extends AppController
             );
         }
 
-        $listId = Sanitize::paranoid($listId);
-
-        $listName = $this->SentencesList->getNameForListWithId($listId);
+        $listName = $this->SentencesLists->getNameForListWithId($listId);
         $this->set('listId', $listId);
         $this->set('listName', $listName);
     }

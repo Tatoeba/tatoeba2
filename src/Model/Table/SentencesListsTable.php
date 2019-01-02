@@ -516,17 +516,9 @@ class SentencesListsTable extends Table
      */
     public function getNameForListWithId($listId)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'id' => $listId
-                ),
-                'fields' => array('name')
-            )
-        );
+        $result = $this->get($listId, ['fields' => ['name']]);
 
-        return $result['SentencesList']['name'];
+        return $result->name;
     }
 
 
@@ -576,14 +568,9 @@ class SentencesListsTable extends Table
      */
     public function getNumberOfSentences($listId)
     {
-        $count = $this->SentencesSentencesLists->find(
-            'count',
-            array(
-                'conditions' => array(
-                    'sentences_list_id' => $listId
-                )
-            )
-        );
+        $count = $this->SentencesSentencesLists->find()
+            ->where(['sentences_list_id' => $listId])
+            ->count();
 
         return $count;
     }
