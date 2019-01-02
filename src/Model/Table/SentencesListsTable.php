@@ -233,32 +233,48 @@ class SentencesListsTable extends Table
     public function getSentencesAndTranslationsOnly($listId, $translationLang)
     {
         if (empty($translationLang)) {
-            $request = '
-            SELECT Sentence.id, Sentence.text
-            from sentences_sentences_lists as ssls
-            left join sentences as Sentence on ssls.sentence_id = Sentence.id
-            where ssls.sentences_list_id = '.$listId
-            ;
+            return $this->SentencesSentencesLists->find()
+                ->contain(['Sentences' => [
+                    'fields' => ['id', 'text']
+                ]])
+                ->where(['sentences_list_id' => $listId])
+                ->formatResults(function($results) {
+                    return $results->map(function($result) {
+                        $sentence = $result->sentence;
+                        return [
+                            'id' => $sentence->id,
+                            'text' => $sentence->text
+                        ];
+                    });
+                })
+                ->toList();
         } else {
-            $request = '
-            select Sentence.id, Sentence.text, Translation.text
-            from sentences_sentences_lists as ssls
-            left join sentences as Sentence on ssls.sentence_id = Sentence.id
-            left join
-            (select s.id as sentence_id , t.text as text
-            from sentences_sentences_lists as ssls
-                left join sentences as s on ssls.sentence_id = s.id
-                left join sentences_translations as st on (s.id = st.sentence_id)
-                left join sentences as t on ( st.translation_id = t.id )
-            where ssls.sentences_list_id = '.$listId.'
-                and t.lang  = "'.$translationLang.'"
-            ) as Translation on Sentence.id = Translation.sentence_id
-            where ssls.sentences_list_id = '.$listId
-            ;
+            return $this->SentencesSentencesLists->find()
+                ->contain(['Sentences' => [
+                    'fields' => ['id', 'text'],
+                    'Translations' => [
+                        'conditions' => ['lang' => $translationLang]
+                    ]
+                ]])
+                ->where(['sentences_list_id' => $listId])
+                ->formatResults(function($results) {
+                    $data = [];
+                    foreach($results as $result) {
+                        $sentence = $result->sentence;
+                        if ($sentence->translations) {
+                            foreach($sentence->translations as $translation) {
+                                $data[] = [
+                                    'id' => $sentence->id,
+                                    'text' => $sentence->text,
+                                    'translation' => $translation->text
+                                ];
+                            }
+                        }                        
+                    }
+                    return $data;
+                })
+                ->toList();
         }
-        $results = $this->query($request);
-
-        return $results;
     }
 
 

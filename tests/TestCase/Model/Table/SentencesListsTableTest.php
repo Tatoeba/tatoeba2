@@ -260,4 +260,20 @@ class SentencesListsTableTest extends TestCase {
         $result = $this->SentencesList->getNumberOfSentences(1);
         $this->assertEquals(2, $result);
     }
+
+    function testGetSentencesAndTranslationsOnly_withoutTranslations() {
+        $result = $this->SentencesList->getSentencesAndTranslationsOnly(1);
+        $ids = Hash::extract($result, '{n}.id');
+        $texts = Hash::extract($result, '{n}.text');
+        $this->assertEquals([4, 8], $ids);
+        $this->assertEquals(count($ids), count($texts));
+    }
+
+    function testGetSentencesAndTranslationsOnly_withTranslations() {
+        $result = $this->SentencesList->getSentencesAndTranslationsOnly(1, 'eng');
+        $ids = Hash::extract($result, '{n}.id');
+        $translations = Hash::extract($result, '{n}.translation');
+        $this->assertEquals([4], $ids);
+        $this->assertEquals(count($ids), count($translations));
+    }
 }

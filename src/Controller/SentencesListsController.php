@@ -419,42 +419,32 @@ class SentencesListsController extends AppController
 
     public function export_to_csv()
     {
-        $exportId = $_POST['data']['SentencesList']['insertId'];
-        $translationsLang = $_POST['data']['SentencesList']['TranslationsLang'];
-        $listId = $_POST['data']['SentencesList']['id'];
+        $exportId = $this->request->getData('insertId');
+        $translationsLang = $this->request->getData('TranslationsLang');
+        $listId = $this->request->getData('id');
 
-        // Sanitize part
-        $exportId = Sanitize::paranoid($exportId);
-        $translationsLang = Sanitize::paranoid($translationsLang);
-        $listId = Sanitize::paranoid($listId);
-
-        if ($translationsLang === "none") {
+        if ($translationsLang === 'none') {
             $translationsLang = null;
         }
 
-        $exportId = ($exportId === "1");
+        $exportId = ($exportId === '1');
         $withTranslation = ($translationsLang !== null);
 
-        // as the view is a file to be downloaded we need to say
-        // to cakephp that it must not add the layout
-        $this->layout = null;
-        $this->autoLayout = false;
-        // to prevent cakephp from adding debug output
-        Configure::write("debug", 0);
-
-        $results = $this->SentencesList->getSentencesAndTranslationsOnly(
+        $results = $this->SentencesLists->getSentencesAndTranslationsOnly(
             $listId, $translationsLang
         );
+
+        $this->viewBuilder()->setLayout('ajax');
 
         // We specify which fields will be present in the csv.
         // Order is important.
         $fieldsList = array();
         if ($exportId === true) {
-            array_push($fieldsList, "Sentence.id");
+            array_push($fieldsList, 'id');
         }
-        array_push($fieldsList, 'Sentence.text');
+        array_push($fieldsList, 'text');
         if ($withTranslation === true) {
-            array_push($fieldsList, "Translation.text");
+            array_push($fieldsList, 'translation');
         }
 
         // send to the view
