@@ -355,12 +355,13 @@ class SentencesTableTest extends TestCase {
 		$conditions = array('sentence_id' => $jpnSentenceId);
 		$transcrBefore = $this->Sentence->Transcriptions->find('all')
 			->where($conditions)
+			->select(['id', 'script', 'text', 'user_id', 'needsReview'])
 			->toList();
-
 		$this->Sentence->unsetOwner($jpnSentenceId, $jpnSentenceOwner);
 
 		$transcrAfter = $this->Sentence->Transcriptions->find('all')
 			->where($conditions)
+			->select(['id', 'script', 'text', 'user_id', 'needsReview'])
 			->toList();
 		$this->assertEquals($transcrBefore, $transcrAfter);
 	}
@@ -780,10 +781,9 @@ class SentencesTableTest extends TestCase {
 		$expected = array(
 			'id' => 53,
 			'lang' => 'eng',
-			'text' => 'Edited sentence.',
-			'hash' => '1kqlcvr'
+			'text' => 'Edited sentence.'
 		);
-		$result = array_intersect_key($sentence->old_format['Sentence'], $expected);
+		$result = array_intersect_key($sentence->toArray(), $expected);
 
 		$this->assertEquals($expected, $result);
 	}

@@ -6,6 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use App\Test\Fixture\AudiosFixture;
 use Cake\Utility\Hash;
+use Cake\Core\Configure;
 
 class AudiosTableTest extends TestCase {
     public $fixtures = array(
@@ -31,6 +32,7 @@ class AudiosTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
+        Configure::write('Acl.database', 'test');
         $this->Audio = TableRegistry::getTableLocator()->get('Audios');
         $this->AudioFixture =  new AudiosFixture();
     }

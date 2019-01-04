@@ -193,7 +193,7 @@ class TagsTable extends Table
             ->select(['id'])
             ->first();
             
-        return $result->id;
+        return $result ? $result->id : null;
     }
 
 
@@ -234,6 +234,6 @@ class TagsTable extends Table
             ->select(['name'])
             ->first();
 
-        return $result->name;
+        return $result ? $result->name : null;
     }
 }

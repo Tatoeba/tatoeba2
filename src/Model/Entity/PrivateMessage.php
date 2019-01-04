@@ -43,7 +43,7 @@ class PrivateMessage extends Entity
 
     protected function _getType()
     {
-        return $this->author ? 'human' : 'machine';
+        return $this->author || $this->sender ? 'human' : 'machine';
     }
 
     protected function _getOrigin()

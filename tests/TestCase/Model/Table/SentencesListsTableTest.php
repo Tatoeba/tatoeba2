@@ -225,7 +225,7 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testRemoveSentenceFromList_failsBecauseUnknownListId() {
-        $result = $this->SentencesList->removeSentenceFromList(4, 2, 7);
+        $result = $this->SentencesList->removeSentenceFromList(4, 999999, 7);
 
         $this->assertFalse($result);
     }
@@ -234,13 +234,17 @@ class SentencesListsTableTest extends TestCase {
         CurrentUser::store(['id' => 7]);
         $result = $this->SentencesList->getUserChoices(7);
         $expected = [
-            'OfUser' => ['1' => 'Interesting French sentences'],
+            'OfUser' => [
+                '1' => 'Interesting French sentences',
+                '2' => 'Public list'
+            ],
             'Collaborative' => []
         ];
         $this->assertEquals($expected, $result);
     }
 
     function testGetSearchableLists_asGuests() {
+        CurrentUser::store(['id' => null]);
         $result = $this->SentencesList->getSearchableLists();
         $this->assertEquals([2], Hash::extract($result, '{n}.id'));
     }

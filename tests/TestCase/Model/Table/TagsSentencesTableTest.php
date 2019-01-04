@@ -8,6 +8,7 @@ use Cake\Core\Configure;
 
 class TagsSentencesTableTest extends TestCase {
     public $fixtures = array(
+        'app.sentences',
         'app.tags_sentences'
     );
 

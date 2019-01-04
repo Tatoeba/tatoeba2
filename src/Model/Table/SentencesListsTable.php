@@ -230,7 +230,7 @@ class SentencesListsTable extends Table
      *
      *
      */
-    public function getSentencesAndTranslationsOnly($listId, $translationLang)
+    public function getSentencesAndTranslationsOnly($listId, $translationLang = null)
     {
         if (empty($translationLang)) {
             return $this->SentencesSentencesLists->find()

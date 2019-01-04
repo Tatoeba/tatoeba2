@@ -80,7 +80,7 @@ class TranscriptableBehavior extends Behavior
     }
 
     private function createTranscriptions($entity) {
-        $this->Transcriptions->generateAndSaveAllTranscriptionsFor($entity->old_format);
+        $this->Transcriptions->generateAndSaveAllTranscriptionsFor($entity);
     }
 
     private function deleteTranscriptions($entity) {
