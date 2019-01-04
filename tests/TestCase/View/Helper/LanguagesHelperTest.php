@@ -6,6 +6,7 @@ use App\View\Helper\LanguagesHelper;
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
+use Cake\I18n\I18n;
 
 class LanguagesHelperTest extends TestCase {
 	public $fixtures = array(
@@ -13,17 +14,11 @@ class LanguagesHelperTest extends TestCase {
 	);
 
 	function setUp() {
-        parent::setUp();
+		parent::setUp();
         $View = new View();
-        $this->Languages = new LanguagesHelper($View);
-		Configure::write('Config.language', 'eng');
+		$this->Languages = new LanguagesHelper($View);
+		I18N::setLocale('en');
 		CurrentUser::store(null);
-	}
-
-	function tearDown() {
-		parent::tearDown();
-		unset($this->Languages);
-		ClassRegistry::flush();
 	}
 
 	function _beRegularUser() {
@@ -49,99 +44,94 @@ class LanguagesHelperTest extends TestCase {
 		$result = $this->Languages->userLanguagesArray();
 		$result = array_keys($result);
 
-		$this->assertEqual($expectedUserLanguages, $result);
+		$this->assertEquals($expectedUserLanguages, $result);
 	}
 
 	function testTranslationsArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->translationsArray();
-		$this->assertEqual('Japanese', $result['jpn']);
+		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testTranslationsArray_returnsLocalizedLangagesNames() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->translationsArray();
-		$this->assertEqual('日本語', $result['jpn']);
+		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testLanguagesArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->languagesArrayAlone();
-		$this->assertEqual('Japanese', $result['jpn']);
+		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testLanguagesArray_returnsLocalizedLangagesNames() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->languagesArrayAlone();
-		$this->assertEqual('日本語', $result['jpn']);
+		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testUnknownLanguagesArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->unknownLanguagesArray();
-		$this->assertEqual('Japanese', $result['jpn']);
+		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testUnknownLanguagesArray_returnsLocalizedLangagesNames() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->unknownLanguagesArray();
-		$this->assertEqual('日本語', $result['jpn']);
+		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testOtherLanguagesArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->otherLanguagesArray();
-		$this->assertEqual('Japanese', $result['jpn']);
+		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testOtherLanguagesArray_returnsLocalizedLangagesNames() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->otherLanguagesArray();
-		$this->assertEqual('日本語', $result['jpn']);
+		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testLanguagesArrayForLists_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->languagesArrayForPositiveLists();
-		$this->assertEqual('Japanese', $result['jpn']);
+		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testLanguagesArrayForLists_returnsLocalizedLangagesNames() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->languagesArrayForPositiveLists();
-		$this->assertEqual('日本語', $result['jpn']);
+		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testLanguagesArrayWithNone_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->languagesArrayWithNone();
-		$this->assertEqual('Japanese', $result['jpn']);
+		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testLanguagesArrayWithNone_returnsLocalizedLangagesNames() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->languagesArrayWithNone();
-		$this->assertEqual('日本語', $result['jpn']);
+		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testGetSearchableLanguagesArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->getSearchableLanguagesArray();
-		$this->assertEqual('Japanese', $result['jpn']);
+		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testGetSearchableLanguagesArray_returnsLocalizedLangagesNames() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->getSearchableLanguagesArray();
-		$this->assertEqual('日本語', $result['jpn']);
+		$this->assertEquals('日本語', $result['jpn']);
 	}
 
 	function testCodeToName_returnsUnlocalizedName() {
 		$result = $this->Languages->codeToNameAlone('jpn');
-		$this->assertEqual('Japanese', $result);
+		$this->assertEquals('Japanese', $result);
 	}
 
 	function testCodeToName_returnsLocalizedName() {
-		Configure::write('Config.language', 'jpn');
+		I18N::setLocale('ja');
 		$result = $this->Languages->codeToNameAlone('jpn');
-		$this->assertEqual('日本語', $result);
-	}
-
-	function testCodeToName_returnsUnknownForUndefinedLanguage() {
-		$result = $this->Languages->codeToNameAlone('und');
-		$this->assertEqual('unknown', $result);
+		$this->assertEquals('日本語', $result);
 	}
 }

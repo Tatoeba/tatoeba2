@@ -27,6 +27,7 @@
 namespace App\Lib;
 
 use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
 
 class LanguagesLib
@@ -223,16 +224,8 @@ class LanguagesLib
         static $languages;
         static $lastLang;
 
-        if (class_exists('Configure')) {
-            $currentLang = Configure::read('Config.language');
-        } else {
-            $currentLang = null;
-        }
-        if (!function_exists('__')) {
-            function __($string) {
-                return $string;
-            }
-        }
+        $currentLang = I18n::getLocale();
+
         if (!$languages || $currentLang != $lastLang) {
             $lastLang = $currentLang;
             $languages = array(
