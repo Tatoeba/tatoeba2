@@ -58,6 +58,7 @@ class SentencesTable extends Table
             'joinTable' => 'tags_sentences'
         ]);
         $this->belongsToMany('Translations', [
+            'dependent' => false,
             'joinTable' => 'sentences_translations',
             'foreignKey' => 'sentence_id',
             'targetForeignKey' => 'translation_id',
