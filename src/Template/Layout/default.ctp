@@ -32,7 +32,7 @@ use Cake\Core\Configure;
 <head>
     <?php echo $this->Html->charset(); ?>
     <title>
-        <?php echo $title_for_layout; ?>
+        <?= isset($title_for_layout) ? $title_for_layout : $this->fetch('title'); ?>
     </title>
     <?php
         echo $this->Html->meta('icon');

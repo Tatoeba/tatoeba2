@@ -168,6 +168,10 @@ class SentencesTable extends Table
     }
 
     public function canSwitchLicense($check, $context) {
+        if (CurrentUser::isModerator()) {
+            return true;
+        }
+        
         $sentenceId = $context['data']['id'];
         $sentence = $this->get($sentenceId, ['fields' => ['based_on_id', 'user_id', 'license']]);
         $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;

@@ -18,6 +18,12 @@ class SentencesControllerTest extends IntegrationTestCase {
 		'app.aros_acos',
 		'app.private_messages',
 		'app.reindex_flags',
+		'app.audios',
+		'app.transcriptions',
+		'app.contributions',
+		'app.tags',
+		'app.tags_sentences',
+		'app.users_sentences',
 	];
 
 	public function setUp() {
@@ -252,8 +258,8 @@ class SentencesControllerTest extends IntegrationTestCase {
 		$entities = $sentences->newEntities($newSentences);
 		$result = $sentences->saveMany($entities);
 
-		$this->get("/eng/sentences/of_user/$user/page:9999999");
+		$this->get("/eng/sentences/of_user/$user?page=9999999");
 
-		$this->assertRedirect("/eng/sentences/of_user/$user/page:$lastPage");
+		$this->assertRedirect("/eng/sentences/of_user/$user?page=$lastPage");
 	}
 }

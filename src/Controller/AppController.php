@@ -288,16 +288,19 @@ class AppController extends Controller
 
     private function redirectPaginationToLastPage($object, $settings)
     {
-        if ($object instanceof \Cake\Datasource\QueryInterface) {
-            $object = $object->getRepository()->getAlias();
-        } elseif (is_null($object)) {
-            $object = $this->modelClass;
-        }
-        $paging = $this->Paginator->getPagingParams();
-        $lastPage = $paging[$object]['pageCount'];
-        $currentUrl = $this->request->getRequestTarget();
-        $lastPageUrl = preg_replace('/\/page:\d+/', "/page:$lastPage", $currentUrl, 1);
-        $this->redirect($lastPageUrl);
+        $paging = $this->request->getParam('paging');
+        $lastPage = reset($paging)['page'];
+        $queryParams = $this->request->params['?'];
+        $queryParams['page'] = $lastPage;
+        $url = Router::url(array_merge(
+            [
+                'controller' => $this->request->params['controller'],
+                'action' => $this->request->params['action'],
+                '?' => $queryParams
+            ],
+            $this->request->params['pass']
+        ));
+        $this->redirect($url);
     }
 
     public function paginate($object = NULL, array $settings = array())

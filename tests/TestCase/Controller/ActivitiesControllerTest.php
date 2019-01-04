@@ -18,8 +18,8 @@ class ActivitiesControllerTest extends IntegrationTestCase {
         $userId = 7;
         $lastPage = 2;
 
-        $this->get("/eng/activities/translate_sentences_of/$user/page:9999999");
+        $this->get("/eng/activities/translate_sentences_of/$user?page=9999999");
 
-        $this->assertRedirect("/eng/activities/translate_sentences_of/$user/page:$lastPage");
+        $this->assertRedirect("/eng/activities/translate_sentences_of/$user?page=$lastPage");
     }
 }

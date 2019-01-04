@@ -41,8 +41,8 @@ class WallControllerTest extends IntegrationTestCase {
 
         $this->postNewPosts(15);
 
-        $this->get("/eng/wall/index/page:9999999");
-        $this->assertRedirect("/eng/wall/index/page:$lastPage");
+        $this->get("/eng/wall/index?page=9999999");
+        $this->assertRedirect("/eng/wall/index?page=$lastPage");
     }
 }
 ?>

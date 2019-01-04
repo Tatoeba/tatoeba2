@@ -13,6 +13,7 @@ class UsersControllerTest extends IntegrationTestCase {
 		'app.users',
 		'app.groups',
 		'app.users_languages',
+		'app.last_contributions',
 	];
 
 	function setUp() {
@@ -129,8 +130,8 @@ class UsersControllerTest extends IntegrationTestCase {
 		$entities = $users->newEntities($newUsers);
 		$result = $users->saveMany($entities);
 
-		$this->get('/eng/users/all/page:9999999/sort:User.group_id/direction:asc');
+		$this->get('/eng/users/all?page=9999999&sort=User.group_id&direction=asc');
 
-		$this->assertRedirect("/eng/users/all/page:$lastPage/sort:User.group_id/direction:asc");
+		$this->assertRedirect("/eng/users/all?page=$lastPage&sort=User.group_id&direction=asc");
 	}
 }
