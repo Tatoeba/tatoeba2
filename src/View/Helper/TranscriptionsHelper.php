@@ -54,8 +54,8 @@ class TranscriptionsHelper extends AppHelper
                }
                $ruby = '';
                for ($i = 0; $i < count($kanjis); $i++) {
-                   $kanji = h($kanjis[$i]);
-                   $reading = h($readings[$i]);
+                   $kanji = htmlentities($kanjis[$i]);
+                   $reading = htmlentities($readings[$i]);
                    $ruby .= "<ruby>$kanji<rp>（</rp><rt>$reading</rt><rp>）</rp></ruby>";
                }
                return $ruby;
@@ -310,7 +310,7 @@ class TranscriptionsHelper extends AppHelper
      * so that it may be displayed as HTML.
      */
     public function transcriptionAsHTML($lang, $transcr) {
-        $text = h($transcr['text']);
+        $text = htmlentities($transcr['text']);
 
         if (isset($transcr['highlight'])) {
             $text = $this->Search->highlightMatches($transcr['highlight'], $text);

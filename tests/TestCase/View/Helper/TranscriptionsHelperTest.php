@@ -34,15 +34,8 @@ class TranscriptionsHelperTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        $Controller = new Controller();
-        $View = new View($Controller);
+        $View = new View();
     	$this->T = new TranscriptionsHelper($View);
-    	$this->T->Html = new HtmlHelper($View);
-    }
-
-    function endTest($method) {
-    	unset($this->T);
-    	ClassRegistry::flush();
     }
 
     function assertFurigana($internal, $editable, $ruby) {
@@ -54,7 +47,7 @@ class TranscriptionsHelperTest extends TestCase {
             '<span style="display:none" class="markup">'.$editable.'</span>'.
             $ruby;
         $result = $this->T->transcriptionAsHTML('jpn', $transcription);
-        $this->assertEqual($expected, $result);
+        $this->assertEquals($expected, $result);
     }
 
     function testTranscriptionAsHTML_jpn() {
