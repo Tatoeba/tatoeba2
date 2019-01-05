@@ -3,6 +3,8 @@
 namespace App\Shell;
 
 use App\Shell\AppShell;
+use Cake\Utility\Hash;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 class Walker {
     private $model;
@@ -31,13 +33,14 @@ class Walker {
                 $fetchSize = $this->bufferSize;
             } else {
                 $last = end($this->buffer);
-                $lastId = $last[$this->model->alias][$this->model->primaryKey];
+                $lastId = $last['id'];
                 $fetchSize = $this->bufferSize - $this->allowRewindSize;
             }
-            $rows = $this->model->find('all', array(
-                'conditions' => array('id > ' => $lastId),
-                'limit' => $fetchSize,
-            ));
+            $rows = $this->model->find('all')
+                ->where(['id > ' => $lastId])
+                ->limit($fetchSize)
+                ->toList();
+
             if (empty($rows)) {
                 return false;
             }
@@ -120,8 +123,8 @@ class SentenceDerivationShell extends AppShell {
             return null;
         } else {
             // pattern link B-A, link A-B
-            $linkBA = $matches[0]['Contribution'];
-            $linkAB = $matches[1]['Contribution'];
+            $linkBA = $matches[0];
+            $linkAB = $matches[1];
             if ($linkAB['id'] >= $this->linkABrange[0] && $linkAB['id'] <= $this->linkABrange[1]) {
                 // pattern link A-B, link B-A
                 $tmp = $linkBA;
@@ -138,7 +141,6 @@ class SentenceDerivationShell extends AppShell {
 
     private function calcBasedOnId($walker, $log) {
         $matches = $walker->findAround($this->maxFindAroundRange, function ($elem) use ($log) {
-            $elem = $elem['Contribution'];
             $isSameAuthor = $elem['user_id'] == $log['user_id'];
             $isInsertLink = $elem['action'] == 'insert' && $elem['type'] == 'link';
             $creatDate = strtotime($log['datetime']);
@@ -153,22 +155,30 @@ class SentenceDerivationShell extends AppShell {
     }
 
     private function saveDerivations($derivations) {
-        if ($this->Sentence->saveAll($derivations)) {
-            $this->out('.', 0);
-            return count($derivations);
-        } else {
-            return 0;
+        $ids = Hash::extract($derivations, '{n}.id');
+        if (!empty($ids)) {
+            $oldData = $this->Sentences->find()
+            ->where(['id IN' => $ids])
+            ->toList();
+            $entities = $this->Sentences->patchEntities($oldData, $derivations);
+            if ($this->Sentences->saveMany($entities)) {
+                $this->out('.', 0);
+                return count($derivations);
+            }
         }
+         
+        return 0;
     }
 
     public function findDuplicateCreationRecords() {
         $this->out("Finding duplicate creation records... ", 0);
-        $result = $this->Contribution->find('all', array(
-            'fields' => array('min(id)' => 'id', 'sentence_id'),
-            'conditions' => array('action' => 'insert', 'type' => 'sentence'),
-            'group' => array('sentence_id having count(sentence_id) > 1'),
-        ));
-        $result = Set::combine($result, '{n}.Contribution.sentence_id', '{n}.Contribution.id');
+        $result = $this->Contributions->find()
+            ->select(['min' => 'MIN(id)', 'sentence_id'])
+            ->where(['action' => 'insert', 'type' => 'sentence']) 
+            ->group(['sentence_id'])
+            ->having('count(sentence_id) > 1')
+            ->toList();
+        $result = Hash::combine($result, '{n}.sentence_id', '{n}.min');
         $this->out('done ('.count($result).' sentences affected)');
         return $result;
     }
@@ -181,19 +191,22 @@ class SentenceDerivationShell extends AppShell {
             'callbacks' => false
         );
         $this->out("Setting 'based_on_id' field for all sentences", 0);
-        $walker = new Walker($this->Contribution, $this->linkEraFirstId);
+        $walker = new Walker($this->Contributions, $this->linkEraFirstId);
         $walker->allowRewindSize = $this->maxFindAroundRange;
         while ($log = $walker->next()) {
-            $log = $log['Contribution'];
             if ($log['action']   == 'insert' &&
                 $log['type']     == 'sentence' &&
-                $log['datetime'] != '0000-00-00 00:00:00')
+                $log['datetime'] != '0000-00-00 00:00:00' && !empty($log['datetime']))
             {
                 $sentenceId = $log['sentence_id'];
-                $sentence = $this->Sentence->findById($sentenceId, 'based_on_id');
-                if (!$sentence || !is_null($sentence['Sentence']['based_on_id']) ||
-                    (isset($creationDups[$sentenceId]) && $creationDups[$sentenceId] != $log['id'])
-                   ) {
+                try {
+                    $sentence = $this->Sentences->get($sentenceId, ['fields' => ['based_on_id']]);
+                    if (!is_null($sentence['based_on_id']) ||
+                        (isset($creationDups[$sentenceId]) && $creationDups[$sentenceId] != $log['id'])
+                    ) {
+                        continue;
+                    }
+                } catch (RecordNotFoundException $e) {
                     continue;
                 }
                 $basedOnId = $this->calcBasedOnId($walker, $log);
@@ -212,6 +225,8 @@ class SentenceDerivationShell extends AppShell {
     }
 
     public function run() {
+        $this->loadModel('Contributions');
+        $this->loadModel('Sentences');
         $creationDups = $this->findDuplicateCreationRecords();
         $total = $this->setSentenceBasedOnId($creationDups);
         return $total;

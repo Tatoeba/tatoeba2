@@ -1,11 +1,14 @@
 <?php
 namespace App\Test\TestCase\Shell;
 
-use App\Console\Command\SentenceDerivationShell;
-use Cake\Console\ConsoleInput;
-use Cake\Console\ConsoleOutput;
+use App\Shell\SentenceDerivationShell;
+use Cake\Console\ConsoleIo;
 use Cake\Console\Shell;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
+use App\Shell\Walker;
+use Cake\Utility\Hash;
+use Cake\Core\Configure;
 
 class SentenceDerivationShellTest extends TestCase
 {
@@ -21,17 +24,19 @@ class SentenceDerivationShellTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $out = $this->getMock('ConsoleOutput', array(), array(), '', false);
-        $in = $this->getMock('ConsoleInput', array(), array(), '', false);
+        Configure::write('Acl.database', 'test');
+        $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
+        $this->SentenceDerivationShell = $this->getMockBuilder(SentenceDerivationShell::class)
+            ->setMethods(['in', 'err', 'createFile', '_stop', 'clear'])
+            ->setConstructorArgs([$io])
+            ->getMock();
         
-        $this->SentenceDerivationShell = $this->getMock(
-            'SentenceDerivationShell', 
-            array('in', 'err', 'createFile', '_stop', 'clear'),
-            array($out, $out, $in)
-        );
         $this->SentenceDerivationShell->batchSize = 10;
         $this->SentenceDerivationShell->linkEraFirstId = 1;
         $this->SentenceDerivationShell->linkABrange = array(29, 31);
+
+        $this->Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
     }
     
     public function tearDown()
@@ -41,8 +46,8 @@ class SentenceDerivationShellTest extends TestCase
     }
 
     public function testWalkerLoops() {
-        $model = $this->SentenceDerivationShell->Contribution;
-        $expected = $model->find('all');
+        $model = $this->Contributions;
+        $expected = $model->find('all')->toList();
 
         $walker = new Walker($model);
         $walker->bufferSize = 10;
@@ -56,55 +61,52 @@ class SentenceDerivationShellTest extends TestCase
     }
 
     public function testWalkerFindAfter() {
-        $model = $this->SentenceDerivationShell->Contribution;
-        $expected = $model->find('all', array(
-            'conditions' => array(
+        $model = $this->Contributions;
+        $expected = $model->find()
+            ->where([
                 'type' => 'link',
                 'id >' => 2,
-            ),
-            'limit' => 2
-        ));
+            ])
+            ->limit(2)
+            ->toList();
 
         $walker = new Walker($model);
         $walker->next();
         $walker->next(); // set pointer on id 2
         $actual = $walker->findAfter(3, function ($row) {
-            return $row['Contribution']['type'] == 'link';
+            return $row['type'] == 'link';
         });
-
         $this->assertEquals($expected, $actual);
     }
 
     public function testWalkerFindBefore() {
-        $model = $this->SentenceDerivationShell->Contribution;
-        $expected = $model->find('all', array(
-            'conditions' => array(
-                'translation_id' => NULL,
+        $model = $this->Contributions;
+        $expected = $model->find()
+            ->where([
+                'translation_id IS' => NULL,
                 'id >' => 1,
                 'id <=' => 2,
-            )
-        ));
+            ])
+            ->toList();
 
         $walker = new Walker($model);
         $walker->next(); $walker->next();
         $walker->next(); $walker->next(); // set pointer on id 4
         $actual = $walker->findBefore(2, function ($row) {
-            return $row['Contribution']['translation_id'] == NULL;
+            return $row['translation_id'] == NULL;
         });
 
         $this->assertEquals($expected, $actual);
     }
 
     public function testWalkerFindBefore_justAfterBufferRefill() {
-        $model = $this->SentenceDerivationShell->Contribution;
+        $model = $this->Contributions;
         $walker = new Walker($model);
         $walker->bufferSize = 10; // make buffer refill occur when loading fixture with id = 11
         $walker->allowRewindSize = 2;
-        $expected = $model->find('all', array(
-            'conditions' => array(
-                'id' => array(9, 10)
-            )
-        ));
+        $expected = $model->find()
+            ->where(['id IN' => [9, 10]])
+            ->toList();
 
         // position pointer just after a buffer refill
         for ($i = 0; $i < $walker->bufferSize + 1; $i++) {
@@ -116,8 +118,8 @@ class SentenceDerivationShellTest extends TestCase
     }
 
     public function testWalkerFindBeforeHitsBufferStart() {
-        $model = $this->SentenceDerivationShell->Contribution;
-        $expected = $model->find('all', array('conditions' => array('id' => 1)));
+        $model = $this->Contributions;
+        $expected = $model->get(1);
 
         $walker = new Walker($model);
         $walker->next();
@@ -126,12 +128,12 @@ class SentenceDerivationShellTest extends TestCase
             return true;
         });
 
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $actual[0]);
     }
 
     public function testWalkerFindAfterHitsBufferEnd() {
-        $model = $this->SentenceDerivationShell->Contribution;
-        $all = $model->find('all');
+        $model = $this->Contributions;
+        $all = $model->find()->toList();
         $expected = array(end($all));
 
         $walker = new Walker($model);
@@ -146,17 +148,17 @@ class SentenceDerivationShellTest extends TestCase
     }
 
     public function testWalkerFindAround() {
-        $model = $this->SentenceDerivationShell->Contribution;
-        $expected = $model->find('all', array(
-            'conditions' => array(
-                'id' => array(1, 3, 5, 7),
-            ),
-        ));
+        $model = $this->Contributions;
+        $expected = $model->find()
+            ->where([
+                'id IN' => [1, 3, 5, 7],
+            ])
+            ->toList();
         $walker = new Walker($model);
         $walker->next(); $walker->next();
         $walker->next(); $walker->next(); // set pointer on id 4
         $actual = $walker->findAround(3, function ($row) {
-            return $row['Contribution']['id'] != 2 && $row['Contribution']['id'] != 6;
+            return $row['id'] != 2 && $row['id'] != 6;
         });
 
         $this->assertEquals($expected, $actual);
@@ -165,8 +167,11 @@ class SentenceDerivationShellTest extends TestCase
     private function findSentencesDerivation($ids = array())
     {
         $ids = array_keys($ids);
-        $result = $this->SentenceDerivationShell->Sentence->findAllById($ids, array('id', 'based_on_id'));
-        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.based_on_id');
+        $result = $this->Sentences->find()
+            ->where(['id IN' => $ids])
+            ->select(['id', 'based_on_id'])
+            ->toList();
+        return Hash::combine($result, '{n}.id', '{n}.based_on_id');
     }
 
     public function testRun_findsBasicDerivation()
@@ -198,7 +203,7 @@ class SentenceDerivationShellTest extends TestCase
 
         $this->SentenceDerivationShell->run();
 
-        $result = $this->SentenceDerivationShell->Sentence->findById($removedSentenceId);
+        $result = $this->Sentences->findById($removedSentenceId)->toList();
         $this->assertEmpty($result);
     }
 
@@ -283,7 +288,7 @@ class SentenceDerivationShellTest extends TestCase
     public function testRun_returnsNumberOfSentencesProceeded()
     {
         /* 
-        47 sentences, 10 of them are skipped:
+        53 sentences, 1 deleted, 15 skipped:
             #10: doesn't have logs
             #13: has been deleted
             #15: no log of type 'sentence'
@@ -294,8 +299,16 @@ class SentenceDerivationShellTest extends TestCase
             #22: no log of type 'sentence' 
             #43: Already has based_on_id
             #46: Only has one link logged
+            #48: Already has based_on_id
+            #49: Already has based_on_id
+            #50: Already has based_on_id
+            #51: Already has based_on_id
+            #52: Already has based_on_id
+            #53: Already has based_on_id
         */
-        $expected = 37;
+        
+        $totalSentences = $this->Sentences->find()->count();
+        $expected = $totalSentences - 15;
         $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }
@@ -416,9 +429,9 @@ class SentenceDerivationShellTest extends TestCase
     // Stuff the logs with $n concurrent entries
     private function stuffLogs($n)
     {
+        $Contributions = $this->Contributions;
         for ($i = 0; $i < $n%4; $i++) {
-            $this->SentenceDerivationShell->Contribution->create();
-            $this->SentenceDerivationShell->Contribution->save(array(
+            $contribution = $Contributions->newEntity([
                 'sentence_id' => 10000+$n,
                 'sentence_lang' => 'eng',
                 'translation_id' => null,
@@ -430,12 +443,13 @@ class SentenceDerivationShellTest extends TestCase
                 'datetime' => 'NOW()',
                 'ip' => '127.0.0.1',
                 'type' => 'sentence',
-            ));
+            ]);
+            $Contributions->save($contribution);
         }
         for ($i = 0; $i < (int)($n/4); $i++) {
             foreach (array('delete', 'insert') as $action) {
-                $this->SentenceDerivationShell->Contribution->saveLinkContribution(1, 2, $action);
-                $this->SentenceDerivationShell->Contribution->saveLinkContribution(2, 1, $action);
+                $Contributions->saveLinkContribution(1, 2, $action);
+                $Contributions->saveLinkContribution(2, 1, $action);
             }
         }
     }
@@ -443,12 +457,12 @@ class SentenceDerivationShellTest extends TestCase
     public function testRun_hugeNumberOfRowsBetweenCreationAndLink()
     {
         $linkTo = 1;
-        $sent = $this->SentenceDerivationShell->Sentence->saveNewSentence(
+        $sent = $this->Sentences->saveNewSentence(
             'I am terrible.', 'eng', 7, 0, null, 'CC BY 2.0 FR'
         );
-        $id = $sent['Sentence']['id'];
-        $this->stuffLogs(85);
-        $this->SentenceDerivationShell->Sentence->Link->add($linkTo, $id);
+        $id = $sent['id'];
+        $this->stuffLogs(84);
+        $this->Sentences->Links->add($linkTo, $id);
 
         $expectedDerivation = array(
             $id => $linkTo,
@@ -463,13 +477,13 @@ class SentenceDerivationShellTest extends TestCase
     public function testRun_lookAheadStepsOnOneLinkOfUnrelatedPair()
     {
         $linkTo = 1;
-        $this->SentenceDerivationShell->Contribution->deleteAll(array('1=1'));
-        $sent = $this->SentenceDerivationShell->Sentence->saveNewSentence(
+        $this->Contributions->deleteAll(['id > 0']);
+        $sent = $this->Sentences->saveNewSentence(
             'I am terrible too.', 'eng', 7, 0, null, 'CC BY 2.0 FR'
         );
-        $id = $sent['Sentence']['id'];
-        $this->stuffLogs(86);
-        $this->SentenceDerivationShell->Sentence->Link->add($id, $linkTo);
+        $id = $sent['id'];
+        $this->stuffLogs(85);
+        $this->Sentences->Links->add($id, $linkTo);
 
         $expectedDerivation = array(
             $id => null, // we don't handle this special case yet
