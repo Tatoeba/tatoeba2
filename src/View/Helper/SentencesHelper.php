@@ -316,9 +316,6 @@ class SentencesHelper extends AppHelper
     private function _translationForm($id, $langArray)
     {
         $preSelectedLang = $this->request->getSession()->read('contribute_lang');
-        if (!array_key_exists($preSelectedLang, $langArray)) {
-            $preSelectedLang = key($langArray);
-        }
 
         echo $this->Images->svgIcon(
             'translation',

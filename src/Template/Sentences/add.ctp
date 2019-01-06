@@ -90,10 +90,6 @@ $vocabularyUrl = $this->Url->build(array(
 
         } else {
             $preSelectedLang = $this->request->getSession()->read('contribute_lang');
-
-            if (!array_key_exists($preSelectedLang, $langArray)) {
-                $preSelectedLang = key($langArray);
-            }
             echo $this->Form->create('Sentence', [
                 'id' => 'sentence-form',
                 'url' => '/sentences/add_an_other_sentence',

@@ -241,11 +241,6 @@ class SentenceButtonsHelper extends AppHelper
                     false, true
                 );
             }
-
-            $preselectedLang = $lang;
-            if (!array_key_exists($lang, $langArray)) {
-                $preselectedLang = null;
-            }
             ?>
 
             <span id="<?php echo 'selectLangContainer_'.$id; ?>" class="selectLang">
@@ -255,7 +250,7 @@ class SentenceButtonsHelper extends AppHelper
                 $langArray,
                 array(
                     'id' => 'selectLang_'.$id,
-                    "value" => $preselectedLang,
+                    "value" => $lang,
                     "class"=>"language-selector",
                     "empty" => false
                 ),
