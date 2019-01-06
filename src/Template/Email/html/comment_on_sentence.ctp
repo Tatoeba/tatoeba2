@@ -1,4 +1,10 @@
 <?php
+$urlParams = array(
+    'controller' => 'sentence_comments',
+    'action' => 'show',
+    $sentenceId,
+    '#' => 'comments'
+);
 $author = "<strong>$author</strong>";
 
 if ($sentenceIsDeleted) {
@@ -23,6 +29,6 @@ echo $this->Html->div(null, $this->Messages->formatedContent($commentText),
 );
 
 echo "<p>";
-echo $this->Html->link($linkToSentence, $linkToSentence);
+echo $this->Url->build($urlParams, true);
 echo "</p>";
 ?>

@@ -25,7 +25,7 @@ class NotificationListenerTest extends TestCase {
         Configure::write('Mailer.username', 'tatoeba@example.com');
 
         $this->Email = $this->getMockBuilder(Email::class)
-            ->setMethods(['from', 'to', 'subject', 'send'])
+            ->setMethods(['from', 'to', 'subject', 'send', 'viewVars'])
             ->getMock();
         foreach (array('from', 'to', 'subject') as $method) {
             $this->Email->expects($this->any())
@@ -34,6 +34,7 @@ class NotificationListenerTest extends TestCase {
         }
 
         $this->NL = new NotificationListener($this->Email);
+        
     }
 
     public function tearDown() {
@@ -270,29 +271,14 @@ class NotificationListenerTest extends TestCase {
             )
         ));
 
-/*
-        // use this code instead after we upgrade to CakePHP 3
         $this->Email->expects($this->exactly(4))
                     ->method('to')
-                    ->withConsecutive(array(
-                        array('admin@example.com'),
-                        array('advanced_contributor@example.com'),
-                        array('corpus_maintainer@example.com'),
-                        array('contributor@example.com'),
-                    ));
-*/
-        $this->Email->expects($this->at(0))
-                    ->method('to')
-                    ->with('admin@example.com');
-        $this->Email->expects($this->at(4))
-                    ->method('to')
-                    ->with('corpus_maintainer@example.com');
-        $this->Email->expects($this->at(8))
-                    ->method('to')
-                    ->with('advanced_contributor@example.com');
-        $this->Email->expects($this->at(12))
-                    ->method('to')
-                    ->with('contributor@example.com');
+                    ->withConsecutive(
+                        ['admin@example.com'],
+                        ['corpus_maintainer@example.com'],
+                        ['advanced_contributor@example.com'],
+                        ['contributor@example.com']
+                    );
 
         $this->NL->sendSentenceCommentNotification($event);
     }
@@ -318,40 +304,25 @@ class NotificationListenerTest extends TestCase {
         $this->NL->sendSentenceCommentNotification($event);
     }
 
-    public function testSendSentenceCommentNotification_includesLinkToComment() {
-        $this->setUpLightMock();
-
+    public function testSendSentenceCommentNotification_hasCorrectViewVars() {
+        $comment = [
+            'sentence_id' => 9,
+            'text' => 'This sentence lacks a flag.',
+            'user_id' => 4,
+        ];
         $event = new Event('Model.SentenceComment.commentPosted', $this, array(
-            'comment' => array(
-                'sentence_id' => 9,
-                'text' => 'This sentence lacks a flag.',
-                'user_id' => 4,
-            )
+            'comment' => $comment
         ));
-        $expectedLink = 'https://example.net/sentence_comments/show/9#comments';
-
+        $this->Email->expects($this->once())
+            ->method('viewVars')
+            ->with([
+                'author' => 'contributor',
+                'commentText' => $comment['text'],
+                'sentenceIsDeleted' => false,
+                'sentenceText' => 'This sentences purposely misses its flag.',
+                'sentenceId' => 9
+            ]);
         $this->NL->sendSentenceCommentNotification($event);
-
-        $sentMessage = implode($this->Email->message());
-        $this->assertContains($expectedLink, $sentMessage);
-    }
-
-    public function testSendSentenceCommentNotification_includesCommentAuthor() {
-        $this->setUpLightMock();
-
-        $event = new Event('Model.SentenceComment.commentPosted', $this, array(
-            'comment' => array(
-                'sentence_id' => 9,
-                'text' => 'This sentence lacks a flag.',
-                'user_id' => 2,
-            )
-        ));
-        $expectedAuthor = 'corpus_maintainer';
-
-        $this->NL->sendSentenceCommentNotification($event);
-
-        $sentMessage = implode($this->Email->message());
-        $this->assertContains($expectedAuthor, $sentMessage);
     }
 
     private function _wallReply() {
@@ -387,18 +358,20 @@ class NotificationListenerTest extends TestCase {
         $this->NL->sendWallReplyNotification($event);
     }
 
-    public function testSendWallReplyNotification_includesLinkToPost() {
-        $this->setUpLightMock();
-
+    public function testSendWallReplyNotification_hasCorrectViewVars() {
         $event = new Event('Model.Wall.postPosted', $this, array(
             'post' => $this->_wallReply(),
         ));
         $expectedLink = 'https://example.net/wall/show_message/3#message_3';
+        $this->Email->expects($this->once())
+            ->method('viewVars')
+            ->with([
+                'author' => 'kazuki',
+                'postId' => 3,
+                'messageContent' => $this->_wallReply()['content']
+            ]);
 
-        $this->NL->sendWallReplyNotification($event);
-
-        $sentMessage = implode($this->Email->message());
-        $this->assertContains($expectedLink, $sentMessage);
+        $this->NL->sendWallReplyNotification($event);        
     }
 
     public function testSendWallReplyNotification_doesntSelfNotify() {

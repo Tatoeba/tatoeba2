@@ -21,7 +21,6 @@ namespace App\Event;
 use Cake\Event\EventListenerInterface;
 use Cake\Mailer\Email;
 use Cake\Core\Configure;
-use Cake\Routing\Router;
 use Cake\ORM\TableRegistry;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Utility\Hash;
@@ -78,13 +77,6 @@ class NotificationListener implements EventListenerInterface {
         $User = TableRegistry::getTableLocator()->get('Users');
         $author = $User->getUsernameFromId($post['owner']);
         $subject = 'Tatoeba - ' . $author . ' has replied to you on the Wall';
-        $url = array(
-            'controller' => 'wall',
-            'action' => 'show_message',
-            $post['id'],
-            '#' => 'message_'.$post['id']
-        );
-        $linkToMessage = Router::url($url, true);
 
         $this->Email
              ->to($recipient)
@@ -92,7 +84,7 @@ class NotificationListener implements EventListenerInterface {
              ->template('wall_reply')
              ->viewVars(array(
                  'author' => $author,
-                 'linkToMessage' => $linkToMessage,
+                 'postId' => $post['id'],
                  'messageContent' => $post['content']
              ));
 
@@ -193,13 +185,6 @@ class NotificationListener implements EventListenerInterface {
         } else {
             $subject = 'Tatoeba - Comment on sentence : ' . $sentenceText;
         }
-        $url = array(
-            'controller' => 'sentence_comments',
-            'action' => 'show',
-            $comment['sentence_id'],
-            '#' => 'comments'
-        );
-        $linkToSentence = Router::url($url, true);
         $commentText = $comment['text'];
 
         $this->Email
@@ -208,7 +193,6 @@ class NotificationListener implements EventListenerInterface {
             ->template('comment_on_sentence')
             ->viewVars(array(
               'author' => $comment['author'],
-              'linkToSentence' => $linkToSentence,
               'commentText' => $commentText,
               'sentenceIsDeleted' => $sentenceIsDeleted,
               'sentenceText' => $sentenceText,

@@ -1,6 +1,13 @@
 <?php
+$urlParams = array(
+    'controller' => 'wall',
+    'action' => 'show_message',
+    $postId,
+    '#' => 'message_'.$postId
+);
+
 echo "<p>";
-echo $this->Html->link($linkToMessage, $linkToMessage);
+echo $this->Url->build($urlParams, true);
 echo "</p>";
 
 echo $this->Html->div(null, $this->Messages->formatedContent($messageContent),
