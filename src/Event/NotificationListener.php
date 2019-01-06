@@ -207,7 +207,8 @@ class NotificationListener implements EventListenerInterface {
             return;
         }
 
-        $this->Email->transport('gmail')
+        $transport = Configure::read('Mailer.transport');
+        $this->Email->transport($transport)
             ->emailFormat('html')
             ->from([Configure::read('Mailer.username') => 'noreply'])
             ->send();

@@ -64,11 +64,15 @@ return [
             'username' => 'some.random.gmail.address@gmail.com',
             'password' => 'some.password',
             'className' => 'Smtp'
+        ],
+        'debug' => [
+            'className' => 'debug'
         ]
     ],
         
     'Mailer' => [
         'enabled' => false,
+        'transport' => 'debug',
         'username' => 'some.email@email.com',
     ],
 
