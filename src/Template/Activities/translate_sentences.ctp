@@ -151,22 +151,22 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
 
             <fieldset class="select">
                 <input type="radio" name="sort" value="{{sort}}" checked hidden
-                       ng-init="sort = 'created'"/>
+                       ng-init="sort = 'random'"/>
                 <label>
                     <?= __('Order:'); ?>
                 </label>
                 <md-radio-group ng-model='sort'>
-                    <md-radio-button value='created' class='md-primary'>
-                        <?= __('Last created first') ?>
-                    </md-radio-button>
-                    <md-radio-button value='modified' class='md-primary'>
-                        <?= __('Last modified first') ?>
+                    <md-radio-button value='random' class='md-primary'>
+                        <?= __('Random') ?>
                     </md-radio-button>
                     <md-radio-button value='words' class='md-primary'>
                         <?= __('Fewest words first') ?>
                     </md-radio-button>
-                    <md-radio-button value='random' class='md-primary'>
-                        <?= __('Random') ?>
+                    <md-radio-button value='modified' class='md-primary'>
+                        <?= __('Last modified first') ?>
+                    </md-radio-button>
+                    <md-radio-button value='created' class='md-primary'>
+                        <?= __('Last created first') ?>
                     </md-radio-button>
                 </md-radio-group>
             </fieldset>

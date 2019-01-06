@@ -77,7 +77,7 @@ echo $this->Form->create(
                 <?php echo __('Search'); ?>
             </label>
             <input id="SentenceQuery"
-                   type="text"
+                   type="search"
                    name="query"
                    ng-model="ctrl.searchQuery"
                    accesskey="4"

@@ -13,7 +13,7 @@ Contributing
 If you are interested in contributing to this project as a developer, please 
 read our [article about it][1] before you start coding anything.
 
-:warning: **We will start upgrading to CakePHP 3 at the beginning of November.**
+:warning: **We are working on upgrading to CakePHP 3.**
 
 This means:
 - If you're working on a pull request today, you should stop and wait for us to finish the migration.
