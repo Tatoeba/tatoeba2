@@ -32,6 +32,7 @@ use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Utility\Hash;
 
 /**
  * Controller for sentences.
@@ -710,14 +711,15 @@ class SentencesController extends AppController
 
         // filter self-identified natives
         if (!empty($native)) {
-            $natives = $this->UsersLanguages->find('all', array(
-                'conditions' => array(
+            $this->loadModel('UsersLanguages');
+            $natives = $this->UsersLanguages->find()
+                ->where([
                     'language_code' => $from,
                     'level' => 5,
-                ),
-                'fields' => array('of_user_id'),
-            ));
-            $natives = Set::extract($natives, '{n}.UsersLanguages.of_user_id');
+                ])
+                ->select(['of_user_id'])
+                ->toList();
+            $natives = Hash::extract($natives, '{n}.of_user_id');
             if ($natives) {
                 if ($user_id && !in_array($user_id, $natives)) {
                     $ignored[] = format(
