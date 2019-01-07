@@ -15,37 +15,22 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
-use App\Model\AppModel;
+use Cake\ORM\Table;
+use Cake\Core\Configure;
 
 
-/**
- * Model Class for users vocabulary.
- *
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-
-class UsersVocabulary extends AppModel
+class UsersVocabularyTable extends Table
 {
-    public $useTable = 'users_vocabulary';
-    public $actsAs = array('Containable', 'Hashable');
-    public $belongsTo = array(
-        'Vocabulary' => array('foreignKey' => 'vocabulary_id'),
-        'User' => array('foreignKey' => 'user_id')
-    );
+    public function initialize(Array $config)
+    {
+        $this->belongsTo('Vocabulary');
+        $this->belongsTo('Users');
+
+        $this->addBehavior('Hashable');
+    }
 
     /**
      * Add a vocabulary item to users_vocabulary pivot table.

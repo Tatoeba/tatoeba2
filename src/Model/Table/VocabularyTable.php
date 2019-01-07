@@ -15,41 +15,25 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
  */
-namespace App\Model;
+namespace App\Model\Table;
 
+use Cake\ORM\Table;
 use Cake\Core\Configure;
 
 
-/**
- * Model class for vocabulary.
- *
- * @package  Models
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     http://tatoeba.org
- */
-
-class Vocabulary extends AppModel
+class VocabularyTable extends Table
 {
-    public $useTable = 'vocabulary';
-    public $belongsTo = array('UsersVocabulary', 'Sentence');
-    public $actsAs = array('Hashable');
-
-    public function __construct($id = false, $table = null, $ds = null)
+    public function initialize(Array $config)
     {
-        parent::__construct($id, $table, $ds);
+        $this->setTable('vocabulary');
 
+        $this->belongsTo('UsersVocabulary');
+        $this->belongsTo('Sentences');
+
+        $this->addBehavior('Hashable');
         if (Configure::read('Search.enabled')) {
-            $this->Behaviors->attach('Sphinx');
+            $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
     }
 
