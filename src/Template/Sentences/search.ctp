@@ -110,7 +110,7 @@ if ($searchError) {
         );
     ?></p>
 <?
-} elseif (!empty($results)) {
+} elseif (count($results) > 0) {
 
     if (!$is_advanced_search && !empty($query)) {
         $keywords = $this->Languages->tagWithLang(
@@ -153,7 +153,7 @@ if ($searchError) {
 } else {
     echo $this->element('search_with_no_result');
 
-    echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
+    //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
 }
 ?>
 </div>
