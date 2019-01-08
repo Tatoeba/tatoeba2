@@ -29,6 +29,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use Cake\Datasource\Exception\RecordNotFoundException;
 
 /**
  * Controller for vocabulary.
@@ -171,15 +172,14 @@ class VocabularyController extends AppController
      */
     public function remove($vocabularyId)
     {
+        $this->loadModel('UsersVocabulary');
         $data = $this->UsersVocabulary->findFirst(
             $vocabularyId,
             CurrentUser::get('id')
         );
 
         if ($data) {
-            $id = $data['UsersVocabulary']['id'];
-
-            $this->UsersVocabulary->delete($id, false);
+            $this->UsersVocabulary->delete($data);
         }
 
         $this->set('vocabularyId', array('id' => $vocabularyId, 'data' => $data));

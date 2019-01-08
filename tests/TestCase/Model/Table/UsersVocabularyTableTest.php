@@ -25,4 +25,16 @@ class UsersVocabularyTableTest extends TestCase
 
         parent::tearDown();
     }
+
+    public function testFindFirst_returnsSomething()
+    {
+        $result = $this->UsersVocabulary->findFirst(1, 1);
+        $this->assertEquals(1, $result->id);
+    }
+
+    public function testFindFirst_returnsNothing()
+    {
+        $result = $this->UsersVocabulary->findFirst(1, 7);
+        $this->assertEmpty($result);
+    }
 }

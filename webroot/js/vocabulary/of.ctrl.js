@@ -29,7 +29,7 @@
         ///////////////////////////////////////////////////////////////////////////
 
         function remove(id) {
-            $http.post('/vocabulary/remove/' + id).then(
+            $http.get('/vocabulary/remove/' + id).then(
                 function(response) {
                     $('#vocabulary_' + id).hide();
                 }

@@ -94,14 +94,11 @@ class UsersVocabularyTable extends Table
      */
     public function findFirst($vocabularyId, $userId)
     {
-        return $this->find(
-            'first',
-            array(
-                'conditions' => array(
-                    'vocabulary_id' => $vocabularyId,
-                    'user_id' => $userId
-                )
-            )
-        );
+        return $this->find()
+            ->where([
+                'vocabulary_id' => $vocabularyId,
+                'user_id' => $userId
+            ])
+            ->first();
     }
 }
