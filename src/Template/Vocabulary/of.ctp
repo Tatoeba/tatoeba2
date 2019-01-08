@@ -26,9 +26,9 @@
  */
 ?>
 <?php
-$this->Html->script('/js/vocabulary/of.ctrl.js', ['block' => true]);
+$this->Html->script('/js/vocabulary/of.ctrl.js', ['block' => 'scriptBottom']);
 
-$count = $this->Paginator->counter('%count%');
+$count = $this->Paginator->param('count');
 $title = format(
     __("{username}'s vocabulary items ({number})", $count),
     array('username' => $username, 'number' => $count)
@@ -54,10 +54,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-list flex>
             <?php
             foreach($vocabulary as $item) {
-                $divId = $item['Vocabulary']['id'];
+                $item = $item->vocabulary;
+                $divId = $item->id;
                 ?>
                 <md-list-item id="vocabulary_<?= $divId ?>">
-                    <?= $this->Vocabulary->vocabulary($item['Vocabulary']); ?>
+                    <?= $this->Vocabulary->vocabulary($item); ?>
                     <? if ($canEdit) { ?>
                         <md-button ng-click="ctrl.remove('<?= $divId ?>')"
                                    class="md-icon-button">

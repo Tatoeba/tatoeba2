@@ -69,15 +69,17 @@ class UsersVocabularyTable extends Table
             $conditions['lang'] = $lang;
         }
 
-        $result = array(
+        $result = [
             'conditions' => $conditions,
-            'fields' => array('created'),
-            'contain' => array(
-                'Vocabulary' => array('id', 'lang', 'text', 'numSentences')
-            ),
+            'fields' => ['created'],
+            'contain' => [
+                'Vocabulary' => [
+                    'fields' => ['id', 'lang', 'text', 'numSentences']
+                ]
+            ],
             'limit' => 50,
-            'order' => 'created DESC'
-        );
+            'order' => ['created' => 'DESC']
+        ];
 
         return $result;
     }

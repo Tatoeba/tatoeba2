@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for vocabulary.
@@ -75,9 +76,8 @@ class VocabularyController extends AppController
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
 
-        $username = Sanitize::paranoid($username, array('_'));
-
-        $userId = $this->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
 
         if (!$userId) {
             $this->Flash->set(format(
@@ -89,13 +89,15 @@ class VocabularyController extends AppController
                   'action' => 'all')
             );
         }
-
+        
+        $this->loadModel('UsersVocabulary');
         $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
             $userId,
             $lang
         );
+        $results = $this->paginate('UsersVocabulary');
 
-        $vocabulary = $this->Vocabulary->syncNumSentences($this->paginate());
+        $vocabulary = $this->Vocabulary->syncNumSentences($results);
 
         $this->set('vocabulary', $vocabulary);
         $this->set('username', $username);

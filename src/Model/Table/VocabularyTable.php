@@ -20,10 +20,20 @@ namespace App\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Core\Configure;
+use Cake\Database\Schema\TableSchema;
 
 
 class VocabularyTable extends Table
 {
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('text', 'text');
+        $schema->setColumnType('created', 'string');
+        $schema->setColumnType('modified', 'string');
+        $schema->setColumnType('hash', 'string');
+        return $schema;
+    }
+
     public function initialize(Array $config)
     {
         $this->setTable('vocabulary');
@@ -129,11 +139,11 @@ class VocabularyTable extends Table
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2
         );
-        $query = $this->buildSphinxPhraseSearchQuery($text);
-        return $this->Sentence->find('count', array(
+        $query = $this->buildSphinxPhraseSearchQuery($this->getAlias(), $text);
+        return $this->Sentences->find('withSphinx', [
             'sphinx' => $sphinx,
             'search' => $query
-        ));
+        ])->count();
     }
 
     /**
@@ -214,24 +224,15 @@ class VocabularyTable extends Table
 
     /**
      * Sync the numSentences column on vocabulary items with the Sphinx index.
-     *
-     * @param  array $vocabulary Single Vocabulary item or array of items.
-     *
-     * @return array Array of vocabulary items.
      */
-    public function syncNumSentences($vocabulary)
+    public function syncNumSentences($results)
     {
-        if (!empty($vocabulary) && !isset($vocabulary[0])) {
-            $vocabulary = array($vocabulary);
-        }
-
-        return array_map(function ($item) {
-            $numSentences = $this->_updateNumSentences($item['Vocabulary']);
-
-            $item['Vocabulary']['numSentences'] = $numSentences;
-
+        return $results->map(function ($item) {
+            $vocabulary = $item->vocabulary;
+            $numSentences = $this->_updateNumSentences($vocabulary);
+            $item->vocabulary->numSentences = $numSentences;
             return $item;
-        }, $vocabulary);
+        });
     }
 
     /**
@@ -254,11 +255,8 @@ class VocabularyTable extends Table
             return $numSentences;
         } else {
             if ($numSentences !== $indexedNumSentences) {
-                $data = array(
-                    'id' => $vocabulary['id'],
-                    'numSentences' => $indexedNumSentences
-                );
-
+                $data = $this->get($vocabulary['id']);
+                $data->numSentences = $indexedNumSentences;
                 $this->save($data);
             }
             return $indexedNumSentences;

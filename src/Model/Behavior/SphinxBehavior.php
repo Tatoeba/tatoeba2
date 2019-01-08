@@ -292,8 +292,8 @@ class SphinxBehavior extends Behavior
         }
     }
 
-    public function buildSphinxPhraseSearchQuery($model, $text) {
-        $escaped = $this->runtime[$model->alias]['sphinx']->EscapeString($text);
+    public function buildSphinxPhraseSearchQuery($alias, $text) {
+        $escaped = $this->runtime[$alias]['sphinx']->EscapeString($text);
         return '="'.$escaped.'"';
     }
 }
