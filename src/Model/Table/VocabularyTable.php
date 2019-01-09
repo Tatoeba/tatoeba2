@@ -105,7 +105,7 @@ class VocabularyTable extends Table
      */
     private function _hasDuplicate($hash, $lang, $text)
     {
-        $vocabularyItems = $this->findAllByHash(hex2bin($hash))->toList();
+        $vocabularyItems = $this->findAllByHash($hash)->toList();
 
         foreach ($vocabularyItems as $vocabularyItem) {
             if ($this->confirmDuplicate($text, $lang, $vocabularyItem)) {

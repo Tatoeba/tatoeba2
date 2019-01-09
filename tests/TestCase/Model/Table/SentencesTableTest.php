@@ -910,4 +910,12 @@ class SentencesTableTest extends TestCase {
 		$result = $this->Sentence->unsetOwner(1, 1);
 		$this->assertFalse($result);
 	}
+
+	function testSave_doesntAddDuplicate() {
+		$sentence = $this->Sentence->saveNewSentence(
+			'This is a lonely sentence.', 'eng', 1
+		);
+		$this->assertEquals(7, $sentence->id);
+		$this->assertTrue($sentence->isDuplicate);
+	}
 }

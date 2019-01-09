@@ -853,9 +853,10 @@ class SentencesTable extends Table
         $hash = $this->makeHash($lang, $text);
         $hash = $this->padHashBinary($hash);
 
-        $sentences = $this->findAllByHash(hex2bin($hash));
+        $sentences = $this->findAllByHash($hash)->toList();
         foreach ($sentences as $sentence) {
             if ($this->confirmDuplicate($text, $lang, $sentence)) {
+                $sentence->isDuplicate = true;
                 return $sentence;
             }
         }
