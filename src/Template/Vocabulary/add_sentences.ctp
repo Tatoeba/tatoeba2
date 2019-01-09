@@ -26,7 +26,7 @@
  */
 ?>
 <?php
-$this->Html->script('/js/vocabulary/add-sentences.ctrl.js', ['block' => true]);
+$this->Html->script('/js/vocabulary/add-sentences.ctrl.js', ['block' => 'scriptBottom']);
 
 $title = __('Vocabulary that needs sentences');
 
@@ -58,11 +58,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-list flex>
             <?php
             foreach($vocabulary as $item) {
-                $id = $item['Vocabulary']['id'];
-                $lang = $item['Vocabulary']['lang'];
+                $id = $item->id;
+                $lang = $item->lang;
                 ?>
                 <md-list-item id="vocabulary_<?= $id ?>">
-                    <?= $this->Vocabulary->vocabulary($item['Vocabulary']); ?>
+                    <?= $this->Vocabulary->vocabulary($item); ?>
                     <md-button ng-click="ctrl.showForm('<?= $id ?>')"
                                class="md-icon-button">
                         <md-icon aria-label="Add">add</md-icon>
@@ -90,13 +90,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     <md-progress-linear></md-progress-linear>
                 </div>
 
-                <form id="form_<?= $id ?>" class="sentence-form"
-                      layout="column" flex ng-show="false"
-                      ng-submit="ctrl.saveSentence('<?= $id ?>', '<?= $lang ?>')">
+                <?= $this->Form->create('Vocabulary', [
+                    'id' => 'form_'.$id,
+                    'url' => ['controller' => 'vocabulary', 'action' => 'save_sentence', $id],
+                    'class' => 'sentence-form',
+                    'layout' => 'column',
+                    'flex' => '',
+                    'ng-show' => 'false',
+                    'ng-submit' => "ctrl.saveSentence($id, '$lang')",
+                    'onsubmit' => 'return false'
+                ]); ?>
+                    <?= $this->Form->hidden('lang', ['value' => $lang]) ?>
                     <md-input-container flex>
-                        <label><? echo __('Sentence'); ?></label>
-                        <input type="text" ng-disabled="ctrl.isAdding"
-                               ng-model="ctrl.sentence['<?= $id ?>']">
+                        <?= $this->Form->input('text', [
+                            'label' => __('Sentence'),
+                            'ng-model' => "ctrl.sentence['$id']"
+                        ]); ?>
                     </md-input-container>
                     <div layout="row" layout-align="end center">
                         <md-button class="md-raised"
@@ -109,7 +118,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             <? echo __('Submit') ?>
                         </md-button>
                     </div>
-                </form>
+                <?= $this->Form->end() ?>
                 <?php
             }
             ?>

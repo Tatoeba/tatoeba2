@@ -58,7 +58,21 @@
             loader.removeClass('ng-hide');
             hideForm(id);
 
-            $http.post('/vocabulary/save_sentence/' + id, body).then(
+            var csrfHeader = $('#form_' + id + ' [name="_csrfToken"]').val();
+            $('#form_' + id + ' input[name^="_Token"]').each(function() {
+                body[$(this).attr('name')] = $(this).val();
+            });
+            var rootUrl = get_tatoeba_root_url();
+            var req = {
+                method: 'POST',
+                url: rootUrl + '/vocabulary/save_sentence/' + id,
+                headers: {
+                    'X-CSRF-Token': csrfHeader
+                },
+                data: body
+            }
+
+            $http(req).then(
                 function(response) {
                     loader.addClass('ng-hide');
 

@@ -158,20 +158,20 @@ class VocabularyTable extends Table
      */
     public function getPaginatedVocabulary($lang = null)
     {
-        $conditions = array(
+        $conditions = [
             'numSentences <' => 10,
             'numAdded >' => 0
-        );
+        ];
         if (!empty($lang)) {
             $conditions['lang'] = $lang;
         }
 
-        $result = array(
+        $result = [
             'conditions' => $conditions,
-            'fields' => array('id', 'lang', 'text', 'numSentences'),
+            'fields' => ['id', 'lang', 'text', 'numSentences'],
             'limit' => 50,
-            'order' => 'numSentences ASC'
-        );
+            'order' => ['numSentences' => 'ASC']
+        ];
 
         return $result;
     }
@@ -187,25 +187,16 @@ class VocabularyTable extends Table
      */
     public function incrementNumSentences($id, $sentence)
     {
-        $vocabulary = $this->findById($id);
+        $vocabulary = $this->get($id);
 
-        $vocabularyText = $vocabulary['Vocabulary']['text'];
-        $numSentences = intval($vocabulary['Vocabulary']['numSentences']);
-
-        if ($this->_sentenceContainsText($sentence, $vocabularyText)) {
-            $numSentences ++;
-
-            $data = array(
-                'id' => $id,
-                'numSentences' => $numSentences
-            );
-
-            if ($numSentences) {
-                $this->save($data);
-            }
+        if ($this->_sentenceContainsText($sentence, $vocabulary->text)) {
+            $vocabulary->numSentences++;
+            $result = $this->save($vocabulary);
+        } else {
+            $result = $vocabulary;
         }
 
-        return $numSentences;
+        return $result->numSentences;
     }
 
     /**

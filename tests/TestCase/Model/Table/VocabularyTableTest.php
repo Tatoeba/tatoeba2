@@ -43,4 +43,16 @@ class VocabularyTableTest extends TestCase
         $result = $this->Vocabulary->addItem('eng', 'hashtag');
         $this->assertEquals(2, $result->id);
     }
+
+    public function testIncrementNumSentences_succeeds()
+    {
+        $result = $this->Vocabulary->incrementNumSentences(1, 'This happened out of the blue.');
+        $this->assertEquals(2, $result);
+    }
+
+    public function testIncrementNumSentences_fails()
+    {
+        $result = $this->Vocabulary->incrementNumSentences(1, 'This is just blue.');
+        $this->assertEquals(1, $result);
+    }
 }

@@ -201,31 +201,25 @@ class VocabularyController extends AppController
         $userId = CurrentUser::get('id');
         $username = CurrentUser::get('username');
 
-        $isSaved = $this->CommonSentence->addNewSentence(
+        $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,
             $sentenceText,
             $userId,
             $username
         );
 
-        $sentence = null;
-
-        if ($isSaved) {
-            $isDuplicate = $this->Sentence->duplicate;
-
-            if (!$isDuplicate) {
-                $numSentences = $this->Vocabulary->incrementNumSentences(
-                    $vocabularyId,
-                    $sentenceText
-                );
-            }
-
-            $sentence = array(
-                'id' => $this->Sentence->id,
-                'text' => $sentenceText,
-                'duplicate' => $isDuplicate
+        if (!$savedSentence->isDuplicate) {
+            $numSentences = $this->Vocabulary->incrementNumSentences(
+                $vocabularyId,
+                $sentenceText
             );
         }
+
+        $sentence = [
+            'id' => $savedSentence->id,
+            'text' => $sentenceText,
+            'duplicate' => $savedSentence->isDuplicate
+        ];
 
         $this->set('sentence', $sentence);
 
