@@ -42,14 +42,10 @@ class UsersVocabularyTable extends Table
      */
     public function add($vocabularyId, $userId)
     {
-        if ($item = $this->findFirst($vocabularyId, $userId)) {
-            return $item;
-        }
-
-        $data = array(
+        $data = $this->newEntity([
             'vocabulary_id' => $vocabularyId,
             'user_id' => $userId
-        );
+        ]);
 
         return $this->save($data);
     }

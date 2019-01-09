@@ -36,7 +36,21 @@
 
         function add() {
             vm.isAdding = true;
-            $http.post('/vocabulary/save', vm.data).then(
+
+            var csrfHeader = $('#add-vocabulary-form [name="_csrfToken"]').val();
+            $('#add-vocabulary-form input[name^="_Token"]').each(function() {
+                vm.data[$(this).attr('name')] = $(this).val();
+            });
+            var rootUrl = get_tatoeba_root_url();
+            var req = {
+                method: 'POST',
+                url: rootUrl + '/vocabulary/save',
+                headers: {
+                    'X-CSRF-Token': csrfHeader
+                },
+                data: vm.data
+            }
+            $http(req).then(
                 function(response) {
                     var data = response.data;
                     if (data.query) {
@@ -53,7 +67,7 @@
         }
 
         function remove(id) {
-            $http.post('/vocabulary/remove/' + id).then(
+            $http.get('/vocabulary/remove/' + id).then(
                 function(response) {
                     $('#vocabulary_' + id).hide();
                 }

@@ -26,7 +26,7 @@
  */
 ?>
 <?php
-$this->Html->script('/js/vocabulary/add.ctrl.js', ['block' => true]);
+$this->Html->script('/js/vocabulary/add.ctrl.js', ['block' => 'scriptBottom']);
 
 $title = __('Add vocabulary items');
 
@@ -51,7 +51,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     <div class="section" layout="column" md-whiteframe="1">
         <h2><?= $title ?></h2>
-        <form ng-submit="ctrl.add()">
+        <?= $this->Form->create('Vocabulary', [
+            'id' => 'add-vocabulary-form',
+            'ng-submit' => 'ctrl.add()',
+            'url' => ['action' => 'save'],
+            'onsubmit' => 'return false',
+        ]) ?>
             <div layout="row">
                 <div class="language" layout="column">
                     <label for="lang-select"><? echo __('Language'); ?></label>
@@ -61,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     );
                     $selectedLang = key($langArray);
                     echo $this->Form->select(
-                        null,
+                        'lang',
                         $langArray,
                         array(
                             'id' => 'lang-select',
@@ -75,10 +80,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 </div>
 
                 <md-input-container flex>
-                    <label><? echo __('Vocabulary item'); ?></label>
-                    <input type="text" ng-model="ctrl.data.text"
-                           autocomplete="off"
-                           ng-disabled="ctrl.isAdding">
+                    <?= $this->Form->input('text', [
+                        'label' => __('Vocabulary item'),
+                        'ng-model' => 'ctrl.data.text',
+                        'ng-disabled' => 'ctrl.isAdding',
+                        'autocomplete' => 'off'
+                    ]);
+                    ?>
                 </md-input-container>
             </div>
 
@@ -88,7 +96,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     <? echo __('Add'); ?>
                 </md-button>
             </div>
-        </form>
+        <?= $this->Form->end() ?>
 
     </div>
 

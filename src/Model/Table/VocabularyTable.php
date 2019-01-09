@@ -21,6 +21,7 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
+use App\Model\CurrentUser;
 
 
 class VocabularyTable extends Table
@@ -29,7 +30,6 @@ class VocabularyTable extends Table
     {
         $schema->setColumnType('text', 'text');
         $schema->setColumnType('created', 'string');
-        $schema->setColumnType('modified', 'string');
         $schema->setColumnType('hash', 'string');
         return $schema;
     }
@@ -41,9 +41,19 @@ class VocabularyTable extends Table
         $this->belongsTo('UsersVocabulary');
         $this->belongsTo('Sentences');
 
+        $this->addBehavior('Timestamp');
         $this->addBehavior('Hashable');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
+        }
+    }
+
+    public function beforeSave($event, $entity, $options)
+    {
+        if ($entity->isNew() || $entity->dirty('lang') || $entity->dirty('text')) {
+            $lang = $entity->lang;
+            $text = $entity->text;
+            $entity->numSentences = $this->_getNumberOfSentences($lang, $text);
         }
     }
 
@@ -63,37 +73,25 @@ class VocabularyTable extends Table
         }
 
         $hash = $this->makeHash($lang, $text);
+        $hash = $this->padHashBinary($hash);
+        $result = $this->_hasDuplicate($hash, $lang, $text);
 
-        $data = array(
-            'hash' => $hash,
-            'lang' => $lang,
-            'text' => $text
-        );
-
-        $duplicate = $this->_hasDuplicate($hash, $lang, $text);
-
-        if ($duplicate) {
-            $numSentences = $this->_updateNumSentences($duplicate['Vocabulary']);
-
-            $this->id = $duplicate['Vocabulary']['id'];
-
-            $data['numSentences'] = $numSentences;
-        } else {
-            $numSentences = $this->_getNumberOfSentences($lang, $text);
-
-            $data['numSentences'] = $numSentences;
-
-            $this->save($data);
+        if (!$result) {
+            $data = $this->newEntity([
+                'hash' => $hash,
+                'lang' => $lang,
+                'text' => $text,
+            ]);
+            $result = $this->save($data);
         }
 
-        $data['id'] = $this->id;
         if (Configure::read('Search.enabled')) {
-            $data['query'] = $this->buildSphinxPhraseSearchQuery($text);
+            $result->query = $this->buildSphinxPhraseSearchQuery($this->getAlias(), $text);
         }
 
-        $this->UsersVocabulary->add($this->id, CurrentUser::get('id'));
+        $this->UsersVocabulary->add($result->id, CurrentUser::get('id'));
 
-        return $data;
+        return $result;
     }
 
     /**
@@ -107,15 +105,16 @@ class VocabularyTable extends Table
      */
     private function _hasDuplicate($hash, $lang, $text)
     {
-        $vocabularyItems = $this->findAllByBinary($hash, 'hash');
+        $vocabularyItems = $this->findAllByHash(hex2bin($hash))->toList();
 
         foreach ($vocabularyItems as $vocabularyItem) {
-            if ($this->confirmDuplicate($text, $lang, $vocabularyItem['Vocabulary'])) {
+            if ($this->confirmDuplicate($text, $lang, $vocabularyItem)) {
+                $numSentences = $this->_updateNumSentences($vocabularyItem);
                 return $vocabularyItem;
             }
         }
 
-        return false;
+        return null;
     }
 
     /**
