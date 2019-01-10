@@ -71,14 +71,14 @@ if ($tagExists) {
                 $useNewDesign = !CurrentUser::isMember()
                     || CurrentUser::getSetting('use_new_design');
                 if ($useNewDesign) {
-                    foreach ($allSentences as $i=>$item) {
-                        $sentence = $item['Sentence'];
+                    foreach ($allSentences as $item) {
+                        $sentence = $item->sentence;
                         echo $this->element(
                             'sentences/sentence_and_translations',
                             array(
                                 'sentence' => $sentence,
-                                'translations' => $sentence['Translation'],
-                                'user' => $sentence['User']
+                                'translations' => $sentence->translations,
+                                'user' => $sentence->user
                             )
                         );
                     }
