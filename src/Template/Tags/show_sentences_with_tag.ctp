@@ -49,7 +49,7 @@ if ($tagExists) {
     <div id="main_content">
         <div class="section">
             <h2><?php
-            $n = $this->Paginator->counter(array('format' => '{{count}}'));
+            $n = $this->Paginator->param('count');
             echo format(
                 __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
                 compact('tagName', 'n')

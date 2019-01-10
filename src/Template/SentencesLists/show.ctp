@@ -29,7 +29,7 @@ use App\Model\Entity\SentencesList;
 
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
 
-$listCount = $this->Paginator->counter("{{count}}");
+$listCount = $this->Paginator->param('count');
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = $list['name'];

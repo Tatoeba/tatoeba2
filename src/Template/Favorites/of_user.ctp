@@ -28,7 +28,7 @@
 $username = h($username);
 
 if ($userExists) {
-    $numberOfSentences = (int) $this->Paginator->counter('{{count}}');
+    $numberOfSentences = $this->Paginator->param('count');
 
     $title = format(__("{user}'s favorite sentences"), array('user' => $username));
 } else {
