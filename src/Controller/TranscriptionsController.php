@@ -146,27 +146,19 @@ class TranscriptionsController extends AppController
     }
 
     public function of($username) {
-        $userId = $this->User->getIdFromUsername($username);
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
         if ($userId) {
-            $result = $this->paginate('Transcription', array(
-                'Transcription.user_id' => $userId
-            ));
-            $sentencesWithTranscription = array();
-            foreach ($result as $data) {
-                $sentenceId = $data['Sentence']['id'];
-                if (!isset($sentencesWithTranscription[$sentenceId])) {
-                    $sentencesWithTranscription[$sentenceId] = array(
-                        'Sentence' => $data['Sentence'],
-                        'Transcription' => array()
-                    );
-                }
-                $data['Transcription']['User'] = $data['User'];
-                $sentencesWithTranscription[$sentenceId]['Transcription'][] =
-                    $data['Transcription'];
-            }
-            $this->set(compact('sentencesWithTranscription'));
+            $this->paginate = [
+                'conditions' => [
+                    'Transcriptions.user_id' => $userId
+                ]
+            ];
+            $results = $this->paginate('Transcriptions');
+            $this->set('results', $results);
         }
-        $this->set(compact('username'));
+        $this->set('userId', $userId);
+        $this->set('username', $username);
     }
 
     private function setViewVars($transcriptions, $sentenceId, $sentence = null) {

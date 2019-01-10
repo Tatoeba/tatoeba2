@@ -40,8 +40,13 @@ if (isset($sentencesWithTranscription)) {
 <div id="main_content">
 <div class="module">
 <?php
-if (isset($sentencesWithTranscription)) {
-    if (count($sentencesWithTranscription) == 0) {
+if (empty($userId)) {
+    echo $this->Html->tag('h2', format(
+        __("There's no user called {username}"),
+        array('username' => $username)
+    ));
+} else if (isset($results)) {
+    if (count($results) == 0) {
         echo $this->Html->tag('h2', format(
             __('{username} does not have any transcriptions'),
             array('username' => $username)
@@ -49,7 +54,7 @@ if (isset($sentencesWithTranscription)) {
     } else {
         $title = $this->Paginator->counter(
             array(
-                'format' => $title . ' ' . __("(total %count%)")
+                'format' => $title . ' ' . __("(total {{count}})")
             )
         );
         echo $this->Html->tag('h2', $title);
@@ -59,7 +64,8 @@ if (isset($sentencesWithTranscription)) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = false;
-        foreach ($sentencesWithTranscription as $sentence) {
+        foreach ($results as $result) {
+            $sentence = $result->sentence;
             $this->Sentences->displayGenericSentence(
                 $sentence,
                 $type,
@@ -70,11 +76,6 @@ if (isset($sentencesWithTranscription)) {
 
         $this->Pagination->display();
     }
-} else {
-    echo $this->Html->tag('h2', format(
-        __("There's no user called {username}"),
-        array('username' => $username)
-    ));
 }
 ?>
 </div>
