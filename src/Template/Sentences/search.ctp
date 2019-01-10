@@ -83,9 +83,22 @@ if ($ignored) {
 <div id="main_content">
 <div class="section">
 <?php
-$searchError = false; // TODO
-if ($searchError) {
-?>
+if (!isset($results)) {
+    if (isset($sphinx_markers)) {
+    ?>
+        <h2><?php echo __('Search error'); ?></h2>
+        <p><?php
+            echo format(
+                __(
+                    'Invalid query. '.
+                    'Please refer to the '.
+                    '<a href="{}">search documentation</a> for more details.', true),
+                'http://en.wiki.tatoeba.org/articles/show/text-search'
+            );
+        ?></p>
+    <?
+    } else {
+    ?>
     <h2><?php echo __('Search error'); ?></h2>
     <p><?php
         echo format(
@@ -96,20 +109,8 @@ if ($searchError) {
             $this->Url->build(array('controller' => 'pages', 'action' => 'contact'))
         );
     ?></p>
-<?
-} elseif (isset($sphinx_markers)) {
-?>
-    <h2><?php echo __('Search error'); ?></h2>
-    <p><?php
-        echo format(
-            __(
-                'Invalid query. '.
-                'Please refer to the '.
-                '<a href="{}">search documentation</a> for more details.', true),
-            'http://en.wiki.tatoeba.org/articles/show/text-search'
-        );
-    ?></p>
-<?
+    <?
+    }
 } elseif (count($results) > 0) {
 
     if (!$is_advanced_search && !empty($query)) {

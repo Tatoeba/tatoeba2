@@ -13,6 +13,7 @@ use App\Lib\SphinxClient;
 use Cake\Core\Configure;
 use Cake\ORM\Behavior;
 use Cake\ORM\TableRegistry;
+use Exception;
 
 
 class SphinxBehavior extends Behavior
@@ -123,8 +124,7 @@ class SphinxBehavior extends Behavior
         $result = $sphinx->Query($options['search'], $indexes);
 
         if ($result === false) {
-            trigger_error("Search query failed: " . $sphinx->GetLastError());
-            return false;
+            throw new Exception($sphinx->GetLastError());
         } else if(isset($result['matches'])) {
             if ($sphinx->GetLastWarning()) {
                 trigger_error("Search query warning: " . $sphinx->GetLastWarning());

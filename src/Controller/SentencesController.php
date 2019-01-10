@@ -33,6 +33,7 @@ use App\Lib\SphinxClient;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Utility\Hash;
+use Exception;
 
 /**
  * Controller for sentences.
@@ -746,11 +747,6 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('has_audio', $audio);
         }
 
-        $sphinx_markers = $this->_find_sphinx_markers($query);
-        if (!empty($sphinx_markers)) {
-            $this->set(compact('sphinx_markers'));
-        }
-
         $limit = CurrentUser::getSetting('sentences_per_page');
         $sphinx['page'] = $this->request->query('page');
         $sphinx['limit'] = $limit;
@@ -771,10 +767,16 @@ class SentencesController extends AppController
         ];
 
         $this->paginate = $pagination;
-        $results = $this->paginate($model);
-
-        $real_total = $this->Sentences->getRealTotal();
-        $results = $this->Sentences->addHighlightMarkers($this->Sentences->getAlias(), $results, $query);
+        try {
+            $results = $this->paginate($model);
+            $real_total = $this->Sentences->getRealTotal();
+            $results = $this->Sentences->addHighlightMarkers($this->Sentences->getAlias(), $results, $query);
+        } catch (Exception $e) {
+            $sphinx_markers = $this->_find_sphinx_markers($query);
+            if (!empty($sphinx_markers)) {
+                $this->set(compact('sphinx_markers'));
+            }
+        }
 
         $strippedQuery = preg_replace('/"|=/', '', $query);
         $this->loadModel('Vocabulary');
