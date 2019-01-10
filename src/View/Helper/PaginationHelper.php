@@ -80,6 +80,10 @@ class PaginationHelper extends AppHelper
      */
     public function display($extramParams = array(), $extraNumbersOptions = array())
     {
+        if (!$this->Paginator->hasPrev() && !$this->Paginator->hasNext()) {
+            return;
+        }
+        
         $numberFirstLinks = 1;
         $numberLastLinks = 1;
         $numbersOptions = array(
@@ -106,7 +110,7 @@ class PaginationHelper extends AppHelper
         $numbersOptions = array_merge($numbersOptions, $extraNumbersOptions);
         ?>
         <ul class="paging">
-           <?php
+            <?php
             $prevIcon = $this->Html->tag('md-icon', 'keyboard_arrow_left', [
                 // @translators Appears on “previous page” links
                 // mouseover. Keyboard shortcut is between brackets.
