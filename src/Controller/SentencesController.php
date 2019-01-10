@@ -353,7 +353,7 @@ class SentencesController extends AppController
         // saving
         if ($savedSentence) {
             $sentence = $this->Sentences->getSentenceWithId($savedSentence->id);
-            $this->set('duplicate', !$sentence->isNew());
+            $this->set('duplicate', $savedSentence->isDuplicate);
             $this->set('sentence', $sentence);
         }
 
