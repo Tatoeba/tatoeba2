@@ -208,20 +208,14 @@ class ActivitiesController extends AppController
             $conditions['Sentences.lang'] = $lang;
         }
 
-        if (CurrentUser::isMember()) {
-            $contain = $this->Sentences->contain();
-        } else {
-            $contain = $this->Sentences->minimalContain();
-        }
-        $this->paginate = array(
-            'Sentences' => array(
-                'fields' => $this->Sentences->fields(),
-                'conditions' => $conditions,
-                'contain' => $contain,
-                'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['Sentences.created DESC'],
-            )
-        );
+        $this->paginate = [
+            'finder' => 'filteredTranslations',
+            'fields' => $this->Sentences->fields(),
+            'conditions' => $conditions,
+            'contain' => $this->Sentences->paginateContain(),
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+            'order' => ['Sentences.created' => 'DESC'],
+        ];
 
         $results = $this->paginate('Sentences');
 

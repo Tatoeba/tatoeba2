@@ -68,9 +68,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 echo $this->element(
                     'sentences/sentence_and_translations',
                     array(
-                        'sentence' => $sentence['Sentence'],
-                        'translations' => $sentence['Translation'],
-                        'user' => $sentence['User']
+                        'sentence' => $sentence,
+                        'translations' => $sentence->translations,
+                        'user' => $sentence->user
                     )
                 );
             }
