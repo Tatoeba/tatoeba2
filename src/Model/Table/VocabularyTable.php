@@ -22,6 +22,7 @@ use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use App\Model\CurrentUser;
+use App\Utility\Search;
 
 
 class VocabularyTable extends Table
@@ -85,10 +86,6 @@ class VocabularyTable extends Table
             $result = $this->save($data);
         }
 
-        if (Configure::read('Search.enabled')) {
-            $result->query = $this->buildSphinxPhraseSearchQuery($this->getAlias(), $text);
-        }
-
         $this->UsersVocabulary->add($result->id, CurrentUser::get('id'));
 
         return $result;
@@ -138,7 +135,7 @@ class VocabularyTable extends Table
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2
         );
-        $query = $this->buildSphinxPhraseSearchQuery($this->getAlias(), $text);
+        $query = Search::exactSearchQuery($text);
         return $this->Sentences->find('withSphinx', [
             'sphinx' => $sphinx,
             'search' => $query
@@ -250,23 +247,6 @@ class VocabularyTable extends Table
                 $this->save($data);
             }
             return $indexedNumSentences;
-        }
-    }
-
-    public function afterFind($results, $primary = false) {
-        if (Configure::read('Search.enabled')) {
-            $this->_setQueryString($results);
-        }
-        return $results;
-    }
-
-    private function _setQueryString(&$results) {
-        foreach ($results as &$result) {
-            if (isset($result[$this->alias])
-                && array_key_exists('text', $result[$this->alias])) {
-                $text = $result[$this->alias]['text'];
-                $result[$this->alias]['query'] = $this->buildSphinxPhraseSearchQuery($text);
-            }
         }
     }
 }

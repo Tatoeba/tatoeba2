@@ -19,12 +19,14 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
+use Cake\Core\Configure;
+use App\Utility\Search;
 
 
 class VocabularyHelper extends AppHelper
 {
     public $helpers = array(
-        'Html',
+        'Html', 'Url'
     );
 
     public function vocabulary($vocab) {
@@ -44,12 +46,12 @@ class VocabularyHelper extends AppHelper
                 array('number' => $numSentences)
             );
         }
-        if (isset($vocab['query'])) {
+        if (Configure::read('Search.enabled')) {
             $url = $this->Url->build(array(
                 'controller' => 'sentences',
                 'action' => 'search',
                 '?' => array(
-                    'query' => $vocab['query'],
+                    'query' => Search::exactSearchQuery($text),
                     'from' => $lang
                 )
             ));
