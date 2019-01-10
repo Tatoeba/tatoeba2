@@ -31,22 +31,31 @@ $(document).ready(function() {
     });
 
     function addTag() {
-        var sentenceId = $("#TagTagName").attr('data-sentence-id');
-        var tagName = $("#TagTagName").val();
+        var sentenceId = $("#tag-form [name='sentence_id']").val();
+        var tagName = $("#tag-form [name='tag_name']").val();
         var rootUrl = get_tatoeba_root_url();
+        var data = { "sentence_id": sentenceId, "tag_name": tagName };
+
+        var csrfHeader = $('#tag-form [name="_csrfToken"]').val();
+        $('#tag-form input[name^="_Token"]').each(function() {
+            data[$(this).attr('name')] = $(this).val();
+        });
 
         $("#TagTagName").val('');
         $(".tagsListOnSentence").append(
             "<div class='tags-loader loader'></div>"
         );
-        $.post(
-            rootUrl + "/tags/add_tag_post",
-            { "sentence_id": sentenceId, "tag_name": tagName },
-            function(data){
+        $.ajax({
+            method: 'POST',
+            url: rootUrl + '/tags/add_tag_post',
+            headers: {
+                'X-CSRF-Token': csrfHeader
+            },
+            data: data,
+            success: function(data){
                 $(".tags-loader").first().replaceWith(data);
             }
-        );
-
+        });
     }
 });
 

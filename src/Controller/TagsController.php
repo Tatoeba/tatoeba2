@@ -71,7 +71,7 @@ class TagsController extends AppController
             $this->helpers[] = 'Tags';
 
             $tagName = $this->request->getData('tag_name');
-            $sentenceId = Sanitize::paranoid($this->request->getData('sentence_id'));
+            $sentenceId = $this->request->getData('sentence_id');
             $userId = CurrentUser::get("id");
             $username = CurrentUser::get("username");
             $tagId = $this->Tags->addTag($tagName, $userId, $sentenceId);

@@ -124,7 +124,7 @@ class TagsTable extends Table
                 $tagId,
                 $userId
             );
-            return $tagged ? null : $tagId;
+            return $tagged ? $tagId : null;
         }
 
         return false;

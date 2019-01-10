@@ -59,7 +59,7 @@ class TagsHelper extends AppHelper
      */
     public function displayTagsModule($tagsArray, $sentenceId = null, $sentenceLang = null)
     {
-        $this->Html->script(JS_PATH . 'autocompletion.js', ['block' => true]);
+        $this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
         ?>
 
         <div class="module">
@@ -185,11 +185,12 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
-        $this->Html->script(JS_PATH . 'tags.add.js', ['block' => true]);
+        $this->Html->script('tags.add.js', ['block' => 'scriptBottom']);
 
         echo $this->Form->create('Tag', [
-            'id' => 'TagAddTagPostForm',
-            'url' => ['controller' => 'tags', 'action' => 'add_tag_post']
+            'id' => 'tag-form',
+            'url' => ['controller' => 'tags', 'action' => 'add_tag_post'],
+            'onsubmit' => 'return false'
         ]);
 
         // TODO replace me I'm dirty
@@ -198,19 +199,15 @@ class TagsHelper extends AppHelper
         echo '<div id="autocompletionDiv">';
         echo '</div>';
 
-        echo $this->Form->input(
-            'tag_name',
-            array(
-                "label" => '',
-                "lang" => '',
-                "dir" => 'auto',
-                "data-sentence-id" => $sentenceId
-            )
-        );
-        echo $this->Form->hidden(
-            'sentence_id',
-            array('value' => $sentenceId)
-        );
+        echo $this->Form->input('tag_name', [
+            'id' => 'TagTagName',
+            'label' => '',
+            'lang' => '',
+            'dir' => 'auto',
+        ]);
+        echo $this->Form->hidden('sentence_id', [
+            'value' => $sentenceId
+        ]);
 
         echo '<div class="input">';
         echo $this->Form->button('+', array('id' => 'addNewTag'));
