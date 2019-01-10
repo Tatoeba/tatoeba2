@@ -60,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <table class="usersLanguagesStats">
         <?php
         foreach($usersLanguages as $language) {
-            $langCode = $language['UsersLanguages']['language_code'];
+            $langCode = $language->language_code;
             $langName = $this->Html->link(
                 $this->Languages->codeToNameAlone($langCode),
                 array(
@@ -90,7 +90,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
         <?php
-        $total = $this->Paginator->counter("%count%");
+        $total = $this->Paginator->param('count');
         $title = format(
             __n('{lang} ({total} member)', '{lang} ({total} members)', $total),
             array('lang' => $this->Languages->codeToNameAlone($lang), 'total' => $total)
@@ -102,9 +102,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         $this->Pagination->display();
 
         foreach($users as $user) {
-            $username = $user['User']['username'];
-            $userImage = $user['User']['image'];
-            $languageLevel = $user['UsersLanguages']['level'];
+            
+            $username = $user->user->username;
+            $userImage = $user->user->image;
+            $languageLevel = $user->level;
 
             echo '<div class="user">';
             echo '<div class="profilePicture">';

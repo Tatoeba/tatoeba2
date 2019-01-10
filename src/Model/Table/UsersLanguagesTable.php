@@ -25,14 +25,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class UsersLanguagesTable extends Table
 {
-    public $name = 'UsersLanguages';
-    public $useTable = "users_languages";
-    public $actsAs = array("Containable");
-    public $belongsTo = array(
-        'User' => array('foreignKey' => 'of_user_id'),
-        'Language' => array('foreignKey' => 'language_code')
-    );
-
     // TODO Reimplement the update of language stats
 
     protected function _initializeSchema(TableSchema $schema)
@@ -45,6 +37,9 @@ class UsersLanguagesTable extends Table
 
     public function initialize(array $config)
     {
+        $this->belongsTo('Users', ['foreignKey' => 'of_user_id']);
+        $this->belongsTo('Languages', ['foreignKey' => 'language_code']);
+
         $this->addBehavior('Timestamp');
     }
 
@@ -107,14 +102,14 @@ class UsersLanguagesTable extends Table
         $result = array(
             'conditions' => array(
                 'language_code' => $lang,
-                'User.group_id NOT' => array(5,6)
+                'Users.group_id NOT IN' => array(5,6)
             ),
             'fields' => array(
                 'of_user_id',
                 'level',
             ),
             'contain' => array(
-                'User' => array(
+                'Users' => array(
                     'fields' => array(
                         'id',
                         'username',
@@ -122,7 +117,7 @@ class UsersLanguagesTable extends Table
                     )
                 )
             ),
-            'order' => 'UsersLanguages.level DESC',
+            'order' => ['UsersLanguages.level' => 'DESC'],
             'limit' => 30
         );
 
@@ -132,18 +127,16 @@ class UsersLanguagesTable extends Table
 
     public function getNumberOfUsersForEachLanguage()
     {
-        $result = $this->find(
-            'all',
-            array(
-                'fields' => array('language_code', 'COUNT(*) as total'),
-                'group' => 'language_code',
-                'conditions' => array(
-                    'User.group_id NOT' => array(5,6)
-                ),
-                'order' => 'total DESC',
-                'contain' => array('User')
-            )
-        );
+        $result = $this->find()
+            ->select([
+                'language_code',
+                'total' => 'COUNT(*)'
+            ])
+            ->where(['Users.group_id NOT IN' => [5, 6]])
+            ->order(['total' => 'DESC'])
+            ->contain(['Users'])
+            ->group(['language_code'])
+            ->toList();
 
         return $result;
     }
