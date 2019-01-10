@@ -48,7 +48,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         array(
             'format' => format(
                 __('{user}\'s messages on the Wall (total&nbsp;{n})'),
-                array('user' => $username, 'n' => '%count%')
+                array('user' => $username, 'n' => '{{count}}')
             )
         )
     );
