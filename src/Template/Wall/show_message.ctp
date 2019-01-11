@@ -34,10 +34,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$rootMessageId = $message['Wall']['id'];
 
 $this->set('title_for_layout', $this->Pages->formatTitle(
-    format(__('Thread #{number}'), array('number' => $rootMessageId))
+    format(__('Thread #{number}'), array('number' => $message->id))
 ));
 
 $this->Html->script('jquery.scrollTo.min.js', ['block' => true]);

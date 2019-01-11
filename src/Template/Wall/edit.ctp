@@ -25,10 +25,8 @@
  * @link     http://tatoeba.org
  */
 
-$messageId = $message['Wall']['id'];
-
 $this->set('title_for_layout', $this->Pages->formatTitle(
-    format(__("Edit message {number}"), array('number' => $messageId))
+    format(__("Edit message {number}"), array('number' => $message->id))
 ));
 ?>
 <div id="annexe_content">
@@ -41,7 +39,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                 array(
                     'controller' => 'wall',
                     'action' => 'index',
-                    "{$message['Wall']['id']}#message_{$message['Wall']['id']}"
+                    "{$message->id}#message_{$message->id}"
                 )
             );
             ?>

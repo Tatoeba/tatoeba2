@@ -119,15 +119,13 @@ class WallHelper extends AppHelper
      */
     public function displayEditMessageForm($message)
     {
-        $messageId = $message['Wall']['id'];
         ?>
         <div class="editWallMessage" >
         <?php
         echo $this->Form->create($message, [
             'url' => [
                 'controller' => 'wall',
-                'action' => 'edit',
-                $messageId
+                'action' => 'edit'
             ],
             'class' => 'message form'
         ]);
