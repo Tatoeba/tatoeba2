@@ -422,7 +422,7 @@ class MessagesHelper extends AppHelper
             }
             $confirm = null;
             if (!empty($item['confirm'])) {
-                $confirm = $item['confirm'];
+                $options['confirm'] = $item['confirm'];
             }
 
             if (empty($url)) {
@@ -435,8 +435,7 @@ class MessagesHelper extends AppHelper
                 echo $this->Html->link(
                     $item['text'], 
                     $url,
-                    $options,
-                    $confirm
+                    $options
                 );    
             }
             

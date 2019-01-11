@@ -438,8 +438,8 @@ class MenuHelper extends AppHelper
                     "escape" => false,
                     'alt'=> __('Delete'),
                     'title'=> $title,
-                ),
-                __('Are you sure?')
+                    'confirm' => __('Are you sure?')
+                )
             );
 
         }
