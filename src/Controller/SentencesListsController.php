@@ -62,6 +62,20 @@ class SentencesListsController extends AppController
 
     public $uses = array('SentencesList', 'SentencesSentencesLists', 'User');
 
+    public function initialize() {
+        parent::initialize();
+        $params = $this->request->params;
+        $noCsrfActions = [
+            'set_option',
+            'save_name',
+            'add_new_sentence_to_list'
+        ];
+        if (in_array($params['action'], $noCsrfActions)) {
+            $this->components()->unload('Csrf');
+        }
+    }
+
+
     /**
      * Before filter.
      *
@@ -79,15 +93,14 @@ class SentencesListsController extends AppController
             'collaborative'
         );
 
-        $this->Security->unlockedActions = array(
+        $this->Security->config('unlockedActions', [
             'set_option',
             'save_name',
             'add_new_sentence_to_list'
-        );
+        ]);
 
         return parent::beforeFilter($event);
     }
-
 
     /**
      * Displays all the lists. If user is logged in, it will also display a form to
@@ -216,7 +229,7 @@ class SentencesListsController extends AppController
         $listId = substr($_POST['id'], 1);
         $listName = $_POST['value'];
         
-        if ($this->SentencesList->editName($listId, $listName, $userId)) {
+        if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
         } else {
             $this->set('result', 'error');
@@ -373,11 +386,11 @@ class SentencesListsController extends AppController
     public function set_option()
     {
         $userId = CurrentUser::get('id');
-        $result = $this->SentencesList->editOption(
+        $result = $this->SentencesLists->editOption(
             $_POST['listId'], $_POST['option'], $_POST['value'], $userId
         );
 
-        $this->header('Content-Type: application/json');
+        $this->response->header('Content-Type: application/json');
         $this->set('result', json_encode($result['SentencesList']));
     }
 
