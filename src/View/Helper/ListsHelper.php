@@ -537,6 +537,7 @@ class ListsHelper extends AppHelper
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
+                $list = $list->sentences_list;
                 if ($list['visibility'] == 'public') {
                     $class = 'public-list';
                 } else {
