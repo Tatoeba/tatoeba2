@@ -41,6 +41,18 @@ use Cake\Event\Event;
  */
 class LinksController extends AppController
 {
+    public function initialize() {
+        parent::initialize();
+        $params = $this->request->params;
+        $noCsrfActions = [
+            'add',
+            'delete'
+        ];
+        if (in_array($params['action'], $noCsrfActions)) {
+            $this->components()->unload('Csrf');
+        }
+    }
+
     /**
      * Before filter.
      *
@@ -50,7 +62,10 @@ class LinksController extends AppController
     {
         // setting actions that are available to everyone, even guests
         if($this->request->is('ajax')) {
-          $this->Security->unlockedActions = array('add', 'delete');
+            $this->Security->config('unlockedActions', [
+                'add',
+                'delete'
+            ]);
         }
 
         return parent::beforeFilter($event);
@@ -58,9 +73,9 @@ class LinksController extends AppController
 
     private function _renderTranslationsOf($sentenceId, $message)
     {
-        $this->loadModel('Sentence');
+        $this->loadModel('Sentences');
         $langFilter = isset($this->request->data['langFilter']) ? $this->request->data['langFilter'] : 'und';
-        $translations = $this->Sentence->getTranslationsOf($sentenceId, $langFilter);
+        $translations = $this->Sentences->getTranslationsOf($sentenceId, $langFilter);
 
         $this->set('sentenceId', $sentenceId);
         $this->set('translations', $translations);
@@ -79,10 +94,7 @@ class LinksController extends AppController
      */
     public function add($sentenceId, $translationId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $translationId = Sanitize::paranoid($translationId);
-
-        $saved = $this->Link->add($sentenceId, $translationId);
+        $saved = $this->Links->add($sentenceId, $translationId);
 
         if ($saved) {
             $flashMessage = format(
@@ -123,10 +135,7 @@ class LinksController extends AppController
      */
     public function delete($sentenceId, $translationId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        $translationId = Sanitize::paranoid($translationId);
-
-        $saved = $this->Link->deletePair($sentenceId, $translationId);
+        $saved = $this->Links->deletePair($sentenceId, $translationId);
 
         if ($saved) {
             $flashMessage = format(

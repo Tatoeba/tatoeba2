@@ -735,8 +735,6 @@ class SentencesTable extends Table
      */
     public function getTranslationsOf($id,$lang = null)
     {
-        $id = Sanitize::paranoid($id);
-        $lang = Sanitize::paranoid($lang);
         if ( ! is_numeric($id) ) {
             return array();
         }
@@ -747,7 +745,13 @@ class SentencesTable extends Table
             $languages = CurrentUser::getLanguages();
         }
 
-        return $this->Translation->getTranslationsOf($id, $languages);
+        $translations = $this->Translations->getTranslationsOf($id, $languages);
+        $results = [0 => [], 1 => []];
+        foreach($translations as $translation) {
+            $results[$translation->type][] = $translation;
+        }
+
+        return $results;
     }
 
 

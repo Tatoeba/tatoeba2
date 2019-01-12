@@ -918,4 +918,12 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals(7, $sentence->id);
 		$this->assertTrue($sentence->isDuplicate);
 	}
+
+	function testGetTranslationsOf() {
+		$results = $this->Sentence->getTranslationsOf(1);
+		$directTranslationsIds = Hash::extract($results[0], '{n}.id');
+		$indirectTranslationsIds = Hash::extract($results[1], '{n}.id');
+		$this->assertEquals([2, 4, 3], $directTranslationsIds);
+		$this->assertEquals([5, 6], $indirectTranslationsIds);
+	}
 }
