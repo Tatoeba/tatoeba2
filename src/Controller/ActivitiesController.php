@@ -58,16 +58,6 @@ class ActivitiesController extends AppController
 
 
     /**
-     * Add new sentences.
-     *
-     * @return void
-     */
-    public function add_sentences()
-    {
-    }
-
-
-    /**
      * Adopt sentences.
      *
      * @param string $lang

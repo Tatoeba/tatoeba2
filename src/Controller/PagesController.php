@@ -233,15 +233,6 @@ class PagesController extends AppController
 
 
     /**
-     * Contribute page. Non registered users are redirected to "How to contribute".
-     *
-     * @return void
-     */
-    public function contribute()
-    {
-    }
-
-    /**
      *
      *
      */
