@@ -200,7 +200,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             );
         }
     } else {
-        foreach ($sentencesInList as $sentence) {
+        foreach ($sentencesInList as $item) {
+            $sentence = $item->sentence;
             $this->Lists->displaySentence(
                 $sentence, $permissions['canRemoveSentences']
             );

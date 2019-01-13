@@ -414,10 +414,9 @@ class ListsHelper extends AppHelper
      * @return void
      */
     public function displaySentence(
-        $sentenceInList,
+        $sentence,
         $canCurrentUserEdit = false
     ) {
-        $sentence = $sentenceInList->sentence;
         $sentenceId = $sentence->id;
         if (!$sentence) {
             // In case the sentence has been deleted, we don't want to display

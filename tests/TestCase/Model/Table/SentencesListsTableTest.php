@@ -175,16 +175,8 @@ class SentencesListsTableTest extends TestCase {
         $userId = 7;
         $data = $this->SentencesList->addNewSentenceToList($listId, $text, $lang, $userId);
         
-        $expectedSentence = array('lang' => $lang, 'text' => $text);
-        $expectedUser = array('id' => $userId);
-        $expected = array(
-            'Sentence' => $expectedSentence,
-            'User' => $expectedUser
-        );
-        $result = array(
-            'Sentence' => array_intersect_key($data['Sentence'], $expectedSentence),
-            'User' => array_intersect_key($data['User'], $expectedUser)
-        );
+        $expected = [$lang, $text, $userId];
+        $result = [$data->lang, $data->text, $data->user->id];
         
         $this->assertEquals($expected, $result);
     }

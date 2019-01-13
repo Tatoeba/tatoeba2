@@ -366,7 +366,7 @@ class SentencesListsController extends AppController
                 $userName
             );
 
-            $result = $this->SentencesList->addNewSentenceToList(
+            $result = $this->SentencesLists->addNewSentenceToList(
                 $listId,
                 $sentenceText,
                 $sentenceLang,

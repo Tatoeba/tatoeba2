@@ -27,8 +27,6 @@
 
 
 if (!empty($sentence)) {
-    $sentence['Translations'] = array();
-    $sentence['IndirectTranslations'] = array();
     $this->Lists->displaySentence(
         $sentence,
         true
