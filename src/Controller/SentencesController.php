@@ -555,9 +555,10 @@ class SentencesController extends AppController
             $transFilter[] = "t.d=$link";
         }
         if (!empty($trans_user)) {
-            $result = $this->User->findByUsername($trans_user, 'id');
+            $this->loadModel('Users');
+            $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
             if ($result) {
-                $transFilter[] = 't.u='.$result['User']['id'];
+                $transFilter[] = 't.u='.$result['id'];
                 if ($trans_orphan == 'yes') {
                     $ignored[] = format(
                         /* @translators: This string will be preceded by
@@ -604,9 +605,10 @@ class SentencesController extends AppController
         // filter by user
         $user_id = null;
         if (!empty($user)) {
-            $result = $this->User->findByUsername($user, 'id');
+            $this->loadModel('Users');
+            $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
             if ($result) {
-                $user_id = $result['User']['id'];
+                $user_id = $result['id'];
                 $sphinx['filter'][] = array('user_id', $user_id);
                 if ($orphans == 'yes') {
                     $ignored[] = format(
@@ -632,13 +634,14 @@ class SentencesController extends AppController
 
         // filter by tags
         if (!empty($tags)) {
+            $this->loadModel('Tags');
             $tagsArray = explode(',', $tags);
             $tagsArray = array_map('trim', $tagsArray);
-            $result = $this->Tag->find('all', array(
-                'conditions' => array('name' => $tagsArray),
-                'fields' => array('id', 'name')
-            ));
-            $tagsById = Set::combine($result, '{n}.Tag.id', '{n}.Tag.name');
+            $result = $this->Tags->find()
+                ->where(['name IN' => $tagsArray])
+                ->select(['id', 'name'])
+                ->toList();
+            $tagsById = Hash::combine($result, '{n}.id', '{n}.name');
             if ($tagsById) {
                 foreach (array_keys($tagsById) as $id)
                     $sphinx['filter'][] = array('tags_id', $id);
