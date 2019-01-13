@@ -68,7 +68,7 @@ class SentencesListsTableTest extends TestCase {
             'name' => $name,
             'user_id' => $userId
         );
-        $result = array_intersect_key($list['SentencesList'], $expected);
+        $result = array_intersect_key($list->toArray(), $expected);
 
         $this->assertEquals($expected, $result);
     }

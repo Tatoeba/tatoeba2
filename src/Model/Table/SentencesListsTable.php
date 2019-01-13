@@ -602,11 +602,12 @@ class SentencesListsTable extends Table
             return false;
         }
 
-        $data = $this->newEntity();
-        $data->name = $name;
-        $data->user_id = $currentUserId;
+        $data = $this->newEntity([
+            'name' => $name,
+            'user_id' => $currentUserId
+        ]);
 
-        return $this->save($data)->old_format;
+        return $this->save($data);
     }
 
     /**

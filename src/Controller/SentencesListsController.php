@@ -204,13 +204,13 @@ class SentencesListsController extends AppController
      */
     public function add()
     {
-        $list = $this->SentencesList->createList(
-            $this->request->data['SentencesList']['name'], 
+        $list = $this->SentencesLists->createList(
+            $this->request->getData('name'), 
             $this->Auth->user('id')
         );
         
-        if (isset($list['SentencesList']['id'])) {
-            $this->redirect(array('action' => 'show', $list['SentencesList']['id']));
+        if (isset($list->id)) {
+            $this->redirect(array('action' => 'show', $list['id']));
         } else {
             $this->redirect(array('action' => 'index'));
         }
@@ -247,7 +247,7 @@ class SentencesListsController extends AppController
     public function delete($listId)
     {
         $userId = $this->Auth->user('id');
-        if ($this->SentencesList->deleteList($listId, $userId)) {
+        if ($this->SentencesLists->deleteList($listId, $userId)) {
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
             // not been set, or has been set to false.
