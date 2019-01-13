@@ -1049,15 +1049,16 @@ class SentencesController extends AppController
 
     public function edit_audio()
     {
-        $sentenceId = $this->request->data['Sentence']['id'];
-        $ownerName = $this->request->data['Sentence']['ownerName'];
-        $hasaudio = $this->request->data['Sentence']['hasaudio'];
+        $sentenceId = $this->request->getData('id');
+        $ownerName = $this->request->getData('ownerName');
+        $hasaudio = $this->request->getData('hasaudio');
 
         if (CurrentUser::isAdmin()) {
+            $this->loadModel('Audios');
             if ($hasaudio) {
-                $this->Audio->assignAudioTo($sentenceId, $ownerName);
+                $this->Audios->assignAudioTo($sentenceId, $ownerName);
             } else {
-                $this->Audio->deleteAll(array('sentence_id' => $sentenceId), false, true);
+                $this->Audios->deleteAll(['sentence_id' => $sentenceId]);
             }
             $this->redirect(
                 array(

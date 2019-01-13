@@ -141,22 +141,21 @@ class AudiosTable extends Table
             'user_id' => null,
             'external' => null,
         );
-
-        $result = $this->User->findByUsername($ownerName);
+        
+        $result = $this->Users->findByUsername($ownerName)->first();
         if ($result) {
-            $data['user_id'] = $result[$this->User->alias]['id'];
+            $data['user_id'] = $result->id;
         } elseif ($allowExternal && !empty($ownerName)) {
             $data['external'] = array('username' => $ownerName);
         }
-
-        $result = $this->findBySentenceId($sentenceId, 'id');
-        if ($result) { // reassign audio
-            $data['id'] = $result[$this->alias]['id'];
+        $audio = $this->findBySentenceId($sentenceId, ['fields' => ['id']])->first();
+        if ($audio) {
+            $this->patchEntity($audio, $data);
         } else {
-            $this->create();
+            $audio = $this->newEntity($data);
         }
-
-        return $this->save($data);
+        
+        return $this->save($audio);
     }
 
     public function getFilesToImport() {
