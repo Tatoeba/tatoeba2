@@ -189,7 +189,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
         foreach ($sentencesInList as $item) {
             $sentence = $item->sentence;
-            $translations = $item->translations;
+            $translations = $sentence->translations;
             echo $this->element(
                 'sentences/sentence_and_translations',
                 array(
