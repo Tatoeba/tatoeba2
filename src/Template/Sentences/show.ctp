@@ -121,7 +121,7 @@ $this->Navigation->displaySentenceNavigation(
             'sentences/audio',
             array(
                 'sentenceId' => $sentenceId,
-                'audios' => $sentence['Audio']
+                'audios' => $sentence->audios
             )
         );
 

@@ -25,15 +25,7 @@ class AudioHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
-        'License' => array(
-            'availableLicences' => array(
-                '',
-                'CC BY 4.0',
-                'CC BY-NC 4.0',
-                'CC BY-SA 4.0',
-                'CC BY-NC-ND 3.0',
-            ),
-        ),
+        'License'
     );
 
     private function defaultAttribUrl($username) {
@@ -60,6 +52,13 @@ class AudioHelper extends AppHelper
         if (!empty($attribUrl)) {
             $username = $this->Html->link($username, $attribUrl);
         }
+        $this->License->config(['availableLicences' => [
+            '',
+            'CC BY 4.0',
+            'CC BY-NC 4.0',
+            'CC BY-SA 4.0',
+            'CC BY-NC-ND 3.0',
+        ]]);
         $license = $this->License->getLicenseName($license);
 ?>
 <ul>
