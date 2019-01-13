@@ -142,6 +142,14 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals(1, $after - $before);
     }
 
+    function testAddSentenceToList_incrementsCount() {
+        $before = $this->SentencesList->get(1)->numberOfSentences;
+        $this->SentencesList->addSentenceToList(1, 1, 7);
+        $after = $this->SentencesList->get(1)->numberOfSentences;
+
+        $this->assertEquals(1, $after - $before);
+    }
+
     function testAddSentenceToList_failsBecauseUserNotAllowed() {
         $before = $this->SentencesList->SentencesSentencesLists->find()
             ->where(['sentence_id' => 12, 'sentences_list_id' => 1])

@@ -409,9 +409,7 @@ class SentencesListsTable extends Table
 
         try {
             $this->Sentences->link($list, [$sentence]);
-            if (!empty($result)) {
-                $this->_incrementNumberOfSentencesToList($listId);
-            }
+            $this->_incrementNumberOfSentencesToList($listId);
             return true;
         } catch (\PDOException $e) {
             return false;
@@ -494,12 +492,9 @@ class SentencesListsTable extends Table
      */
     private function _incrementNumberOfSentencesToList($listId)
     {
-        return $this->updateAll(
-            array(
-                'numberOfSentences'=>'numberOfSentences+1'
-            ),
-            array('SentencesList.id'=>$listId)
-        );
+        $list = $this->get($listId);
+        $list->numberOfSentences++;
+        $this->save($list);
     }
 
 
