@@ -140,8 +140,6 @@ class SentenceCommentsController extends AppController
      */
     public function show($sentenceId)
     {
-
-        $sentenceId = Sanitize::paranoid($sentenceId);
         // redirect to sentences/show
         // we don't remove the method to be compatible with previous google indexing
         $this->redirect(

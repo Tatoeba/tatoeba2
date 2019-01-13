@@ -90,7 +90,6 @@ class SentenceAnnotationsController extends AppController
                 )
             );
         } else {
-            $sentenceId = Sanitize::html($sentenceId);
             $result = $this->SentenceAnnotation->getAnnotationsForSentenceId(
                 $sentenceId
             );
@@ -134,9 +133,6 @@ class SentenceAnnotationsController extends AppController
      */
     public function delete($id, $sentenceId)
     {
-        $id = Sanitize::paranoid($id);
-        $sentenceId = Sanitize::paranoid($sentenceId);
-
         if ($this->SentenceAnnotation->delete($id)) {
             $this->redirect(array("action" => "show", $sentenceId));
         }
@@ -158,8 +154,6 @@ class SentenceAnnotationsController extends AppController
             );
 
         } else {
-
-            $query = Sanitize::stripScripts($query);
 
             $annotations = null;
             if (trim($query) != '') {

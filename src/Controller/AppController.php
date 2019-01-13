@@ -28,7 +28,6 @@ namespace App\Controller;
 
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
-use App\Utility\Sanitize;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
