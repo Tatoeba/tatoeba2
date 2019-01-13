@@ -92,15 +92,15 @@ class UsersController extends AppController
     {
         $this->paginate = array(
             'limit' => 50,
-            'order' => 'group_id',
-            'fields' => array(
+            'order' => ['group_id'],
+            'fields' => [
                 'id', 'email', 'username', 'since', 'level'
-            ),
-            'contain' => array(
-                "Groups" => array(
-                    "fields" => "Groups.name"
-                )
-            )
+            ],
+            'contain' => [
+                'Groups' => [
+                    'fields' => ['name']
+                ]
+            ]
         );
         $this->set('users', $this->paginate());
 

@@ -38,7 +38,7 @@
 ?>
 <h2>
 <?php
-echo $this->Paginator->counter(array('format' => __d('admin', 'Users'). ' (' . __d('admin', 'total'). ': %count%)'));
+echo $this->Paginator->counter(__d('admin', 'Users'). ' (' . __d('admin', 'total'). ': {{count}})');
 ?>
 </h2>
 
@@ -65,32 +65,32 @@ foreach ($users as $user) {
         $class = ' class="altrow"';
     }
     ?>
-    <tr<?php echo $class; ?>>
+    <tr <?= $class; ?>>
         <td>
-            <?php echo $user['User']['id']; ?>
+            <?php echo $user->id; ?>
         </td>
         <td>
             <?php
             echo $this->Html->link(
-                $user['User']['username'],
+                $user->username,
                 array(
                     'action'=>'edit',
-                    $user['User']['id']
+                    $user->id
                 )
             );
             ?>
         </td>
         <td>
-            <?php echo $user['User']['email']; ?>
+            <?php echo $user->email; ?>
         </td>
         <td>
-            <?php echo $this->Date->ago($user['User']['since']); ?>
+            <?php echo $this->Date->ago($user->since); ?>
         </td>
         <td>
-            <?php echo $user['User']['level']; ?>
+            <?php echo $user->level; ?>
         </td>
         <td>
-            <?php echo $user['Group']['name']; ?>
+            <?php echo $user->name; ?>
         </td>
     </tr>
     <?php
