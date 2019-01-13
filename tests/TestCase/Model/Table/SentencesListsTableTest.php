@@ -130,20 +130,29 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testAddSentenceToList_succeeds() {
-        $sentenceInList = $this->SentencesList->addSentenceToList(12, 1, 7);
-        $expected = array(
-            'sentence_id' => 12,
-            'sentences_list_id' => 1
-        );
-        $result = array_intersect_key($sentenceInList['SentencesSentencesLists'], $expected);
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 1])
+            ->count();
+        $result = $this->SentencesList->addSentenceToList(12, 1, 7);
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 1])
+            ->count();
 
-        $this->assertEquals($expected, $result);
+        $this->assertTrue($result);
+        $this->assertEquals(1, $after - $before);
     }
 
     function testAddSentenceToList_failsBecauseUserNotAllowed() {
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 1])
+            ->count();
         $result = $this->SentencesList->addSentenceToList(4, 1, 1);
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 1])
+            ->count();
         
-        $this->assertEmpty($result);
+        $this->assertFalse($result);
+        $this->assertEquals($after, $before);
     }
 
     function testAddSentenceToList_failsBecauseSentenceAlreadyInList() {

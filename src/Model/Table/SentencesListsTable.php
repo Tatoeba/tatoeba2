@@ -394,29 +394,27 @@ class SentencesListsTable extends Table
         try {
             $sentence = $this->Sentences->get($sentenceId);
         } catch (RecordNotFoundException $e) {
-            return array();
+            return false;
         }
 
         try {
             $list = $this->get($listId);
         } catch (RecordNotFoundException $e) {
-            return array();
+            return false;
         }
 
         if (!$list->isEditableBy($currentUserId)) {
-            return array();
+            return false;
         }
 
-        $list->sentences = [$sentence];
-
         try {
-            $result = $this->save($list);
+            $this->Sentences->link($list, [$sentence]);
             if (!empty($result)) {
                 $this->_incrementNumberOfSentencesToList($listId);
             }
-            return $result->saved_old_format;
+            return true;
         } catch (\PDOException $e) {
-            return array();
+            return false;
         }
     }
 
