@@ -68,13 +68,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
                 array('format' => __('All tags (total {{count}})'))
             );
         } else {
-            $title = $this->Paginator->counter(
-                array(
-                    'format' => format(
-                        __('Tags containing: {search} (total {{count}})'),
-                        array('search' => $filter)
-                    )
-                )
+            $n = $this->Paginator->param('count');
+            $title = format(
+                __('Tags containing: {search} (total {count})'),
+                array('search' => $filter, 'count' => $n)
             );
         }
         echo $this->Html->tag('h2', $title, array('escape' => true));
