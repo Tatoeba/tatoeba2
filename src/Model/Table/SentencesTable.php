@@ -1115,8 +1115,9 @@ class SentencesTable extends Table
      */
     public function editCorrectness($sentenceId, $correctness)
     {
-        $this->id = $sentenceId;
-        return $this->saveField('correctness', $correctness);
+        $sentence = $this->get($sentenceId);
+        $sentence->correctness = $correctness;
+        return $this->save($sentence);
     }
 
     public function getSentencesLang($sentencesIds) {

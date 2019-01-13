@@ -1024,11 +1024,11 @@ class SentencesController extends AppController
      */
     public function edit_correctness()
     {
-        $sentenceId = $this->request->data['Sentence']['id'];
-        $correctness = $this->request->data['Sentence']['correctness'];
+        $sentenceId = $this->request->getData('id');
+        $correctness = $this->request->getData('correctness');
 
         if (CurrentUser::isModerator()) {
-            $this->Sentence->editCorrectness($sentenceId, $correctness);
+            $this->Sentences->editCorrectness($sentenceId, $correctness);
             $this->redirect(
                 array(
                     "controller" => "sentences",

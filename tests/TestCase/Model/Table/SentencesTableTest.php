@@ -926,4 +926,9 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals([2, 4, 3], $directTranslationsIds);
 		$this->assertEquals([5, 6], $indirectTranslationsIds);
 	}
+
+	function testEditCorrectness() {
+		$result = $this->Sentence->editCorrectness(1, -1);
+		$this->assertEquals(-1, $result->correctness);
+	}
 }
