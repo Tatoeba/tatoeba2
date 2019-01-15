@@ -25,7 +25,13 @@ class AudioHelper extends AppHelper
 {
     public $helpers = array(
         'Html',
-        'License'
+        'License' => ['availableLicences' => [
+            '',
+            'CC BY 4.0',
+            'CC BY-NC 4.0',
+            'CC BY-SA 4.0',
+            'CC BY-NC-ND 3.0',
+        ]]
     );
 
     private function defaultAttribUrl($username) {
@@ -37,28 +43,21 @@ class AudioHelper extends AppHelper
     }
 
     public function displayAudioInfo($audio) {
-        if ($audio['User']) {
-            $username  = $audio['User']['username'];
-            $license   = $audio['User']['audio_license'];
-            $attribUrl = $audio['User']['audio_attribution_url'];
+        if ($audio->user) {
+            $username  = $audio->user->username;
+            $license   = $audio->user->audio_license;
+            $attribUrl = $audio->user->audio_attribution_url;
             if (empty($attribUrl)) {
                 $attribUrl = $this->defaultAttribUrl($username);
             }
         } else {
-            $username  = $audio['external']['username'];
-            $license   = $audio['external']['license'];
-            $attribUrl = $audio['external']['attribution_url'];
+            $username  = $audio->external['username'];
+            $license   = $audio->external['license'];
+            $attribUrl = $audio->external['attribution_url'];
         }
         if (!empty($attribUrl)) {
             $username = $this->Html->link($username, $attribUrl);
         }
-        $this->License->config(['availableLicences' => [
-            '',
-            'CC BY 4.0',
-            'CC BY-NC 4.0',
-            'CC BY-SA 4.0',
-            'CC BY-NC-ND 3.0',
-        ]]);
         $license = $this->License->getLicenseName($license);
 ?>
 <ul>

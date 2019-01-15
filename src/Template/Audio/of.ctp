@@ -39,14 +39,13 @@ if (isset($sentencesWithAudio)) {
         <div class="section" md-whiteframe="1">
             <h2><?php echo __('My audio'); ?></h2>
             <?php
-               echo $this->Form->create('Audio', array(
+               echo $this->Form->create($audioSettings, array(
                    'url' => array('controller' => 'audio', 'action' => 'save_settings'),
                    'type' => 'post',
                ));
                echo $this->Form->input('audio_license', array(
                    'label' => __('License:'),
-                   'options' => $this->Audio->License->getLicenseOptions(),
-                   'value' => $audioSettings['User']['audio_license'],
+                   'options' => $this->Audio->License->getLicenseOptions()
                ));
             ?>
             <md-input-container class="md-block">
@@ -54,7 +53,6 @@ if (isset($sentencesWithAudio)) {
                $tip = __('Leave this field empty to use your profile page.');
                echo $this->Form->input('audio_attribution_url', array(
                    'label' => __('Attribution URL:'),
-                   'value' => $audioSettings['User']['audio_attribution_url'],
                    'after' => '<div class="hint">'.$tip.'</div>',
                ));
             ?>
@@ -90,7 +88,7 @@ if (isset($sentencesWithAudio)) {
         echo $this->Html->tag('h2', $title);
 
         $licenceMessage = $this->Audio->formatLicenceMessage(
-            $audioSettings['User'], $username
+            $audioSettings, $username
         );
         echo $this->Html->tag('p', $licenceMessage);
 
