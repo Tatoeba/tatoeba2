@@ -34,11 +34,12 @@ class TagsSentencesTableTest extends TestCase {
 
     function testTagSentence_succeeds() {
         $result = $this->TagsSentences->tagSentence(1, 1, 1);
-        $this->assertTrue($result);
+        $this->assertEquals(4, $result->id);
+        $this->assertFalse($result->alreadyExists);
     }
 
     function testTagSentence_failsBecauseAlreadyAdded() {
         $result = $this->TagsSentences->tagSentence(2, 2, 1);
-        $this->assertFalse($result);
+        $this->assertTrue($result->alreadyExists);
     }
 }

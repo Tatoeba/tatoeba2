@@ -65,20 +65,19 @@ class TagsSentencesTable extends Table
     {
         $isTagged = $this->isSentenceTagged($sentenceId, $tagId);
 
+        $data = $this->newEntity([
+            'user_id' => $userId,
+            'tag_id' => $tagId,
+            'sentence_id' => $sentenceId,
+            'added_time' => date('Y-m-d H:i:s'),
+            'alreadyExists' => $isTagged
+        ]);
+
         if (!$isTagged) {
-            $data = $this->newEntity([
-                'user_id' => $userId,
-                'tag_id' => $tagId,
-                'sentence_id' => $sentenceId,
-                'added_time' => date('Y-m-d H:i:s')
-            ]);
-
-            $this->save($data);
-
-            return true;
+            return $this->save($data);
+        } else {
+            return $data;
         }
-
-        return false;
     }
 
 

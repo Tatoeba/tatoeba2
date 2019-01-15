@@ -124,8 +124,8 @@ class TagsController extends AppController
         }
 
         // save and check if the tag has been added
-        $tag = $this->Tags->addTag($tagName, $userId, $sentenceId);
-        if (!empty($tag)) {
+        $savedTag = $this->Tags->addTag($tagName, $userId, $sentenceId);
+        if ($savedTag->alreadyExists) {
             $infoMessage = format(
                 __(
                     "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",

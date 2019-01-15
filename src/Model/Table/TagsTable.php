@@ -119,12 +119,12 @@ class TagsTable extends Table
         $this->getEventManager()->dispatch($event);
 
         if ($sentenceId != null) {
-            $tagged = $this->TagsSentences->tagSentence(
+            $savedTag = $this->TagsSentences->tagSentence(
                 $sentenceId,
                 $tagId,
                 $userId
             );
-            return $tagged ? $tagId : null;
+            return $savedTag;
         }
 
         return false;
