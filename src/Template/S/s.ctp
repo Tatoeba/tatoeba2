@@ -33,7 +33,7 @@ $this->layout = 'light';
   // display sentence and translations
   $this->Sentences->displaySGroup(
       $sentence,
-      $sentence->translations
+      $sentence->translations[0]
   );
 ?>
 <p>

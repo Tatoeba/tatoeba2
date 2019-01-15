@@ -784,9 +784,7 @@ class SentencesHelper extends AppHelper
             <div class="translations">
                 <?php
                 foreach ($translations as $translation) {
-                    if ($translation->type == 0) {
-                        $this->displayS($translation, 'directTranslation');
-                    }
+                    $this->displayS($translation, 'directTranslation');
                 }
                 ?>
             </div>
