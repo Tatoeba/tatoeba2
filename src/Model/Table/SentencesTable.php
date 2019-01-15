@@ -113,6 +113,7 @@ class SentencesTable extends Table
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
+            ->allowEmpty('lang')
             ->add('lang', [
                 'inList' => [
                     'rule' => ['inList', $languages]

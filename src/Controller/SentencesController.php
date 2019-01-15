@@ -368,6 +368,7 @@ class SentencesController extends AppController
     {
         $sentence = $this->Sentences->editSentence($this->request->data);
         if (empty($sentence)) {
+            // TODO Better error handling.
             $this->redirect(array('controller' => 'pages', 'action' => 'home'));
         } else {
             $this->layout = null;

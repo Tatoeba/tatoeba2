@@ -788,6 +788,26 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals($expected, $result);
 	}
 
+	function testEditSentence_succeedsWhenLangEmtpy() {
+		$user = $this->Sentence->Users->get(2);
+		CurrentUser::store($user);
+
+		$data = array(
+			'id' => '_53',
+			'value' => 'Sentence with unknown lang.'
+		);
+		$sentence = $this->Sentence->editSentence($data);
+
+		$expected = array(
+			'id' => 53,
+			'lang' => null,
+			'text' => 'Sentence with unknown lang.'
+		);
+		$result = array_intersect_key($sentence->toArray(), $expected);
+
+		$this->assertEquals($expected, $result);
+	}
+
 	function testEditSentence_failsBecauseHasAudio() {
 		$user = $this->Sentence->Users->get(7);
 		CurrentUser::store($user);
