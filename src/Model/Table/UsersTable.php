@@ -137,6 +137,7 @@ class UsersTable extends Table
             ->maxLength('audio_license', 50);
 
         $validator
+            ->allowEmpty('audio_attribution_url')
             ->scalar('audio_attribution_url')
             ->maxLength('audio_attribution_url', 255);
 

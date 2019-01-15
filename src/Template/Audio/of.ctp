@@ -62,7 +62,7 @@ if (isset($sentencesWithAudio)) {
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
-            <?php $this->Form->end(); ?>
+            <?= $this->Form->end(); ?>
         </div>
     <?php endif; ?>
     </div>

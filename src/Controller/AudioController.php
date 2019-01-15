@@ -21,6 +21,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use App\Lib\LanguagesLib;
+use App\Model\CurrentUser;
 
 class AudioController extends AppController
 {
@@ -116,9 +117,11 @@ class AudioController extends AppController
                 'audio_license',
                 'audio_attribution_url',
             );
-            $dataToSave = $this->filterKeys($this->request->data[$this->name], $allowedFields);
-            $dataToSave['id'] = $currentUserId;
-            if ($this->User->save($dataToSave)) {
+            $dataToSave = $this->filterKeys($this->request->data, $allowedFields);
+            $this->loadModel('Users');
+            $user = $this->Users->get($currentUserId);
+            $this->Users->patchEntity($user, $dataToSave);
+            if ($this->Users->save($user)) {
                 $flashMsg = __('Your audio settings have been saved.');
             } else {
                 $flashMsg = __(
