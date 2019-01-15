@@ -69,9 +69,9 @@ class FavoritesTable extends Table
             ],
             'contain' => [
                 'Sentences' => [
-                    'fields' => ['text', 'lang', 'correctness'],
+                    'fields' => ['id', 'text', 'lang', 'correctness'],
                     'Transcriptions' => array(
-                        'Users' => ['fields' => 'username'],
+                        'Users' => ['fields' => ['username']],
                     ),
                 ]
             ]

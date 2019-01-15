@@ -485,7 +485,7 @@ class SentencesHelper extends AppHelper
     ) {
         $sentenceId = $sentence->id;
         $sentenceLang = $sentence->lang;
-        $isFavoritePage = ($this->request->params['controller'] == 'favorites' && $this->request->params['action'] == 'of_user');
+        $isFavoritePage = ($this->request->params['controller'] == 'Favorites' && $this->request->params['action'] == 'of_user');
         $classes = array('sentence', $type);
         if ($isEditable && $type == 'directTranslation') {
             $classes[] = 'editableTranslation';
