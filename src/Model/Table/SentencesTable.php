@@ -767,21 +767,22 @@ class SentencesTable extends Table
      */
     public function getNeighborsSentenceIds($sourceId, $lang = null)
     {
-        $find = $this->find()->select('id');
-
+        $langCondition = [];
         if (!empty($lang) && $lang != 'und') {
-            $find = $find->where(['lang' => $lang]);
+            $langCondition = ['lang' => $lang];
         }
 
-        $prev = $find
-            ->orderDesc('id')
-            ->where(['id <' => $sourceId])
+        $prev = $this->find()
+            ->select('id')
+            ->order(['id' => 'DESC'])
+            ->where(['id <' => $sourceId] + $langCondition)
             ->first();
-        $next = $find
-            ->orderAsc('id', true)
-            ->where(['id >' => $sourceId], [], true)
+        $next = $this->find()
+            ->select('id')
+            ->orderAsc('id')
+            ->where(['id >' => $sourceId] + $langCondition)
             ->first();
-
+            
         $neighbors = [
             'prev' => $prev ? $prev->id : null,
             'next' => $next ? $next->id : null,

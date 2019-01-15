@@ -33,9 +33,8 @@ $(document).ready(function(){
         $("#randomLink a").attr("href",baseURL+lang);
         
         
-        $.post(
+        $.get(
             rootUrl + "/sentences/get_neighbors_for_ajax/"+currentId+"/"+ lang,
-            {},
             function(data){
                 neighbors = data.split(";");
                 prevId = neighbors[0];

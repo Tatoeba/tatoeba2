@@ -105,6 +105,7 @@ class NavigationHelper extends AppHelper
                 "randomLangChoiceInBrowse",
                 $langArray,
                 array(
+                    'id' => 'randomLangChoiceInBrowse',
                     "value" => $selectedLanguage,
                     'class' => 'language-selector',
                     'data-current-sentence-id' => $currentId,

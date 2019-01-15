@@ -979,7 +979,7 @@ class SentencesController extends AppController
     public function get_neighbors_for_ajax($id, $lang)
     {
         $this->request->getSession()->write('random_lang_selected', $lang);
-        $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
+        $neighbors = $this->Sentences->getNeighborsSentenceIds($id, $lang);
         $this->set('nextSentence', $neighbors['next']);
         $this->set('prevSentence', $neighbors['prev']);
     }

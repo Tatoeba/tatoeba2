@@ -951,4 +951,13 @@ class SentencesTableTest extends TestCase {
 		$result = $this->Sentence->editCorrectness(1, -1);
 		$this->assertEquals(-1, $result->correctness);
 	}
+
+	function testGetNeighborsSentenceIds() {
+		$result = $this->Sentence->getNeighborsSentenceIds(8, 'fra');
+		$expected = [
+			'prev' => 4,
+			'next' => 12
+		];
+		$this->assertEquals($expected, $result);
+	}
 }
