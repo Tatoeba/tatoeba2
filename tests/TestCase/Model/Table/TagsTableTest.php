@@ -31,12 +31,12 @@ class TagsTableTest extends TestCase {
         $sentenceId = 1;
         $before = $this->Tag->TagsSentences->find('all')->count();
 
-        $tagId = $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
+        $tag = $this->Tag->addTag('@needs_native_check', $contributorId, $sentenceId);
 
         $after = $this->Tag->TagsSentences->find('all')->count();
         $added = $after - $before;
         $this->assertEquals(1, $added);
-        $this->assertEquals(4, $tagId);
+        $this->assertEquals(4, $tag->id);
     }
 
     function testAddTagFiresEvent() {
@@ -63,7 +63,7 @@ class TagsTableTest extends TestCase {
 
     function testAddTag_tagAlreadyAdded() {
         $result = $this->Tag->addTag('OK', 1, 2);
-        $this->assertEmpty($result);
+        $this->assertTrue($result->alreadyExists);
     }
 
     function testSentenceOwnerCannotTagOwnSentenceAsOK() {

@@ -74,9 +74,9 @@ class TagsController extends AppController
             $sentenceId = $this->request->getData('sentence_id');
             $userId = CurrentUser::get("id");
             $username = CurrentUser::get("username");
-            $tagId = $this->Tags->addTag($tagName, $userId, $sentenceId);
+            $tag = $this->Tags->addTag($tagName, $userId, $sentenceId);
 
-            $isSaved = !empty($tagId);
+            $isSaved = $tag && $tag->id;
             $this->set('isSaved', $isSaved);
             if ($isSaved) {
                 $this->set('tagName', $tagName);
