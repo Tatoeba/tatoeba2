@@ -26,11 +26,6 @@
  */
 use App\Model\CurrentUser;
 
-// Workaround for error:
-//    The "License" alias has already been loaded with the following config
-// Until someone finds a good way to refactor the involved helpers.
-$this->helpers()->unload('License');
-
 $hasaudio = count($audios) > 0;
 $shouldDisplayBlock = $hasaudio || CurrentUser::isAdmin();
 if (!$shouldDisplayBlock) {

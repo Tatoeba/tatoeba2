@@ -60,6 +60,11 @@ if ($canEdit) {
     echo $this->Form->submit(__d('admin', 'Change'));
     echo $this->Form->end();
 }
+
+// Workaround for error:
+//    The "License" alias has already been loaded with the following config
+// Until someone finds a good way to refactor the involved helpers.
+$this->helpers()->unload('License');
 ?>
 </div>
 <? endif ; ?>
