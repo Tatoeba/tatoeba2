@@ -104,6 +104,7 @@ class UsersTable extends Table
             ->integer('group_id');
 
         $validator
+            ->allowEmpty('send_notifications')
             ->boolean('send_notifications');
 
         $validator

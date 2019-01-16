@@ -73,4 +73,16 @@ class UsersTableTest extends TestCase
         $result = array_keys($userSettings->toArray());
         $this->assertEquals($expected, $result);
     }
+
+    public function testSaveSettings_withNotificationsDisabled()
+    {
+        $userSettings = $this->Users->getSettings(4);
+        $userSettings->send_notifications = null;
+        $user = $this->Users->get(1);
+        $this->Users->patchEntity($user, $userSettings->toArray(), [
+            'fields' => ['send_notifications', 'settings']
+        ]);
+        $savedUser = $this->Users->save($user);
+        $this->assertNotFalse($savedUser);
+    }
 }
