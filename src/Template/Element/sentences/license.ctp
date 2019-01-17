@@ -24,9 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-use App\Model\CurrentUser;
-
-if (CurrentUser::isAdmin()) :
 ?>
 <div class="module">
     <h2><?php echo __('License') ?></h2>
@@ -67,4 +64,3 @@ if ($canEdit) {
 $this->helpers()->unload('License');
 ?>
 </div>
-<? endif ; ?>

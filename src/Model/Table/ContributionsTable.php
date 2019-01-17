@@ -173,10 +173,6 @@ class ContributionsTable extends Table
             }])
             ->order('datetime');
 
-        if (!CurrentUser::isAdmin()) {
-            $query = $query->where(['Contributions.type !=' => 'license']);
-        }
-
         return $query->all();
     }
 
