@@ -29,6 +29,9 @@ namespace App\Controller;
 use App\Controller\AppController;
 use App\Model\CurrentUser;
 use Cake\Event\Event;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+use Cake\I18n\I18n;
 
 /**
  * Controller for static content
@@ -306,7 +309,21 @@ class PagesController extends AppController
      */
     public function terms_of_use()
     {
+        $lang = I18n::getLocale();
+        $translated = true;
+        $dir = new Folder(APP . 'locale' . DS . $lang);
+        $file = new File($dir->pwd() . DS . 'terms-of-use.html');
 
+        if (!$file->exists()) {
+            $translated = false;
+            $dir = new Folder(APP . 'locale' . DS . 'fr');
+            $file = new File($dir->pwd() . DS . 'terms-of-use.html');
+        }
+
+        $content = $file->read();
+        
+        $this->set('content', $content);
+        $this->set('translated', $translated);
     }
 
 
