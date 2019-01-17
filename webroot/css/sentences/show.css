@@ -1,0 +1,149 @@
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/* 
+ * Navigation
+ */
+.languageSelect {
+    margin-bottom: 15px;
+}
+
+.languageSelect select {
+    width: 200px;
+}
+
+.smallTip {
+    font-size: 0.8em;
+    color: #888;
+}
+
+
+/* 
+ * Tags
+ * NOTE for the moment I've copied paste it in tags/view_all.css
+ */
+.tagsListOnSentence {
+    overflow: auto;
+}
+
+.tagName {
+    color: #333;
+    font-size: 1.2em;
+}
+
+.tag a:hover {
+    color: #7F6A27;
+}
+
+.removeTagFromSentenceButton {
+    border-left: 1px dotted #CCC;
+    padding-left: 5px;
+    margin-left: 5px;
+    color: red;
+}
+
+
+/* 
+ * Tags form
+ */
+#tag-form {
+    margin: 10px 0;
+}
+
+#tag-form .input {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#tag-form button[type="submit"] {
+    background: #4caf50;
+    color: #FFFFFF;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 26px;
+    width: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: -24px;
+    cursor: pointer;
+}
+
+#tag-form input {
+    border: 1px solid #cccccc;
+    padding: 2px 25px 2px 2px;
+    font-size: 16px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#TagTagName {
+    width: 150px;
+}
+
+#autocompletionDiv a{
+    width: 140px; /* This has to be 10px less than #TagTagName to compensate the
+                     text-indent and padding (in autocompletion.css) */
+}
+
+.tags-loader {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+/*
+ * Sentence correctness form
+ */
+#SentenceEditCorrectnessForm .radio label {
+    margin-right: 20px;
+}
+
+
+#annexe_content .sentence-lists .public-list {
+    list-style-type: disc;
+    margin: 5px 5px 5px 10px;
+}
+
+#annexe_content .sentence-lists .personal-list {
+    list-style-type: circle;
+    margin: 5px 5px 5px 10px;
+}
+
+
+/*
+ * Correctness by users
+ */
+.correctness-info .username,
+.correctness-info .info,
+.correctness-info svg {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2px 5px 0;
+}
+
+/*
+ * Logs
+ */
+.derivation {
+    font-size: small;
+}

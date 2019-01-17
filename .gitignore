@@ -2,26 +2,23 @@ info.php
 app-backup/
 
 # config
-app/Config/core.php
-app/Config/database.php
+config/app_local.php
 
 # audio files
-app/webroot/files/audio
+webroot/files/audio
 
 # robot.txt
-app/webroot/robots.txt
+webroot/robots.txt
 
 # cache
-app/tmp/queue
-app/tmp/cache
-app/tmp/cache/models
-app/tmp/cache/persistent
-app/tmp/cache/views
+tmp/cache
+tmp/cache/models
+tmp/cache/persistent
+tmp/cache/views
 
 # Composer / Vendor
 composer.phar
-app/Vendor/
-app/Plugin/
+vendor/
 
 ## python related files
 
@@ -35,7 +32,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-bin/
 build/
 develop-eggs/
 dist/

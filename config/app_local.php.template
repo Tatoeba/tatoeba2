@@ -1,0 +1,214 @@
+<?php
+
+define("TATOEBA_DOMAIN", "localhost");
+define("CSS_PATH", "");
+define("JS_PATH", "");
+define("IMG_PATH", "");
+
+return [
+    'Security' => [
+        'salt' => '{{security_salt}}',
+    ],
+
+    'Datasources' => [
+        'default' => [
+            'username' => '{{mysql_user}}',
+            'password' => '{{mysql_password}}',
+            'database' => '{{mysql_db_name}}',
+        ],
+        'test' => [
+            'username' => '{{mysql_test_user}}',
+            'password' => '{{mysql_test_password}}',
+            'database' => '{{mysql_test_db_name}}',
+        ],
+    ],
+
+    /**
+     * Sphinx configuration
+     */
+    'Sphinx' => [
+        'host' => 'localhost',
+        'port' => 9312,
+        'sphinxql_port' => 9306,
+        'indexdir' => '{{sphinx_index_dir}}',
+        'socket' => '{{sphinx_sql_socket}}',
+        'logdir' => '{{sphinx_log_dir}}',
+        'pidfile' => '{{sphinx_pid_file}}',
+        'binlog_path' => '{{sphinx_binlog_path}}',
+    ],
+
+    /**
+     * Recordings paths.
+     * The web server must serve <Recordings.path> under <Recordings.url>.
+     * <Recordings.url> can be a fully qualified URL (e.g.
+     * https://audio.example.com/sentences/) or a URL on the same host (e.g.
+     * /files/audio/). It must end with a slash character.
+     * Admins may import audio files located in <Recordings.uploadPath>,
+     * in which the webserver must have write access.
+     */
+    'Recordings' => [
+        'url' => '/files/audio/',
+        'path' => APP.DS.'webroot'.DS.'files'.DS.'audio',
+        'importPath' => APP.DS.'webroot'.DS.'files'.DS.'audio_import',
+    ],
+
+    /**
+     * For email notifications.
+     * Cf. src/Event/NotificationListener.php
+     */
+     'EmailTransport' => [
+        'gmail' => [
+            'host' => 'ssl://smtp.gmail.com',
+            'port' => '465',
+            'timeout' => '45',
+            'username' => 'some.random.gmail.address@gmail.com',
+            'password' => 'some.password',
+            'className' => 'Smtp'
+        ],
+        'debug' => [
+            'className' => 'Debug'
+        ]
+    ],
+        
+    'Mailer' => [
+        'enabled' => false,
+        'transport' => 'debug',
+        'username' => 'some.email@email.com',
+    ],
+
+    /**
+     * Enable or disable external tools.
+     * - Set Search.enabled to false if you don't have Sphinx installed.
+     * - Set AutoTranscriptions.enabled to false if you don't have the
+     *   various transcription tools installed, or if you simply don't
+     *   want to have transcriptions automatically generated for new
+     *   sentences.
+     */
+    'Search' => [
+        'enabled' => false,
+    ],
+    'AutoTranscriptions' => [
+        'enabled' => false,
+    ],
+
+    'Tatoeba' => [
+        /**
+         * Stylesheet for development website
+         */
+        'devStylesheet' => false,
+
+        /**
+         * Blocked IP addresses. Should be an array of strings containing the
+         * IP's you want to block. For instance:
+         *
+         *    'blockedIP' => [
+         *      "1.2.3.4",
+         *      "5.6.7.8",
+         *      "9.10.11.12"
+         *    ]
+         *
+         * Cf. src/Controller/AppController.php
+         */
+        'blockedIP' => [
+        ],
+    ],
+
+    /**
+     * Google Analytics.
+     * - Leave GoogleAnalytics.enabled to false if you don't want to
+     *   include the Google Analytics code.
+     * - If you do set GoogleAnalytics.enabled to true, then enter
+     *   the id for your Google Analytics account.
+     */
+    'GoogleAnalytics' => [
+        'enabled' => false,
+        'id' => '',
+    ],
+
+    /**
+     * Languages of the interface.
+     *
+     * Each item in the UI.languages is an array of 3 items:
+     *   [0] The URL language code. It should match a 'locale' folder.
+     *   [1] Optionnal region or script, as explained in
+     *       http://www.w3.org/International/articles/language-tags/
+     *       Most of the case, you can leave this to null.
+     *   [2] This is the name of the language. The name must be in the
+     *       language itself, so that people who speak that language can
+     *       recognize it.
+     */
+    'UI' => [
+        'languages' => [
+            ['ara', null, 'ﺎﻠﻋﺮﺒﻳﺓ'],
+            ['aze', null, 'Azərbaycanca'],
+            ['bel', null, 'Беларуская'],
+            ['ben', null, 'বাংলা'],
+            ['bre', null, 'Brezhoneg'],
+            ['cat', null, 'Català'],
+            ['ces', null, 'Čeština'],
+            ['cmn', 'Hans', '中文', ['chi']],
+            ['cym', null, 'Cymraeg'],
+            ['dan', null, 'Dansk'],
+            ['deu', null, 'Deutsch'],
+            ['eng', null, 'English'],
+            ['epo', null, 'Esperanto'],
+            ['est', null, 'Eesti'],
+            ['eus', null, 'Euskara'],
+            ['fin', null, 'Suomi'],
+            ['fra', null, 'Français', ['fre']],
+            ['fry', null, 'Frysk'],
+            ['glg', null, 'Galego'],
+            ['ell', null, 'Ελληνικά', ['gre']],
+            ['hin', null, 'हिन्दी'],
+            ['hun', null, 'Magyar'],
+            ['ina', null, 'Interlingua'],
+            ['ind', null, 'Bahasa Indonesia'],
+            ['ita', null, 'Italiano'],
+            ['jbo', null, 'Lojban'],
+            ['jpn', null, '日本語'],
+            ['kab', null, 'Taqbaylit'],
+            ['kat', null, 'ქართული'],
+            ['kor', null, '한국어'],
+            ['lat', null, 'Latina'],
+            ['lit', null, 'Lietuvių'],
+            ['mar', null, 'मराठी'],
+            ['nld', null, 'Nederlands'],
+            ['nds', null, 'Plattdüütsch'],
+            ['oci', null, 'Occitan'],
+            ['pol', null, 'Polski'],
+            ['por', 'BR', 'Português (Brasil)', ['pt_BR']],
+            ['ron', null, 'Română'],
+            ['rus', null, 'Русский'],
+            ['spa', null, 'Español'],
+            ['swe', null, 'Svenska'],
+            ['tgl', null, 'Tagalog'],
+            ['tur', null, 'Türkçe'],
+            ['ukr', null, 'Українська'],
+            ['uzb', null, 'Oʻzbekcha'],
+            ['vie', null, 'Tiếng Việt'],
+            ['zsm', null, 'Bahasa Melayu'],
+        ],
+    ],
+
+    /**
+     * Ids of users (bots) whose comments are hidden from homepage
+     * and index page to prevent spam.
+     */
+    'Bots' => [
+        'userIds' => [
+        ],
+    ],
+
+    /**
+     * Announcement message displayed below the search bar. This should be used
+     * when we want some information or message to have higher visibility, and
+     * not just something that will be noticed mostly by regular members who
+     * read the Wall.
+     *
+     * The message of the announcement has to be set in
+     * src/Template/Element/announcement.ctp
+     */
+    'Announcement' => [
+        'enabled' => false,
+    ],
+];
