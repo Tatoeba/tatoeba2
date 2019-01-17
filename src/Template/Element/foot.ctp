@@ -177,17 +177,12 @@
         </ul>
     </div>
 
-    <div class="license">
-        <a class="cc-by-icon" rel="license"
-           href="https://creativecommons.org/licenses/by/2.0/">
-            <img alt="Creative Commons License" style="border-width:0"
-                 src="/img/cc-by-2.0-88x31.png" />
-        </a>
+    <div layout="row" layout-align="start center" class="license">
+        <img alt="Creative Commons License" src="/img/cc-logo.png" />
         <div class="text">
             <?php
             echo __(
-                'Our written sentences and translations can be used under the '.
-                'Creative Commons Attribution 2.0 license (CC-BY 2.0).'
+                'Our data is released under various Creative Commons licenses.'
             );
             echo $this->Html->link(
                 __('More information'),

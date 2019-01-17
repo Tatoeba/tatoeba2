@@ -80,8 +80,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
     <h2><?php echo __('Creative commons'); ?></h2>
     <p><?php echo __('These files are released under CC-BY.'); ?></p>
     <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">
-    <img alt="Creative Commons License" style="border-width:0"
+    <img alt="Creative Commons License CC-BY" style="border-width:0"
         src="/img/cc-by-2.0-88x31.png" />
+    </a>
+    <p><?= __('A part of our sentences are also available under CC0.') ?></p>
+    <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">
+    <img alt="Creative Commons License CC0" style="border-width:0"
+        src="/img/cc0-1.0-88x31.png" />
     </a>
     </div>
 
@@ -196,6 +201,34 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 'for those who would like to filter the sentences based on the contributor '.
                 'who owns the sentence, or the date when it was added or last modified.'); 
             ?>
+            </dd>
+        </dl>
+        </div>
+
+        <!-- Sentences -->
+        <div  class="section" md-whiteframe="1">
+        <h2><?php echo __('Sentences (CC0)'); ?></h2>
+        <dl>
+            <dt><?php echo $download_str; ?></dt>
+            <dd>
+                <a href="http://downloads.tatoeba.org/exports/sentences_CC0.tar.bz2">
+                http://downloads.tatoeba.org/exports/sentences_CC0.tar.bz2
+                </a>
+            </dd>
+            <dt><?php echo $field_struct_str; ?></dt>
+            <dd>
+                <span class="param"><?php echo $sent_id_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $lang_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $text_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $date_last_mod_str; ?></span>
+            </dd>
+            
+            <dt><?php echo $file_desc_str; ?></dt>
+            <dd>
+            <?= __('Contains all the sentences available under CC0.') ?>
             </dd>
         </dl>
         </div>
