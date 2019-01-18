@@ -311,12 +311,12 @@ class PagesController extends AppController
     {
         $lang = I18n::getLocale();
         $translated = true;
-        $dir = new Folder(APP . 'locale' . DS . $lang);
+        $dir = new Folder(LOCALE . $lang);
         $file = new File($dir->pwd() . DS . 'terms-of-use.html');
 
         if (!$file->exists()) {
             $translated = false;
-            $dir = new Folder(APP . 'locale' . DS . 'fr');
+            $dir = new Folder(LOCALE . 'fr');
             $file = new File($dir->pwd() . DS . 'terms-of-use.html');
         }
 
