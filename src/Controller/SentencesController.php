@@ -557,7 +557,7 @@ class SentencesController extends AppController
         }
         if (!empty($trans_user)) {
             $this->loadModel('Users');
-            $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
+            $result = $this->Users->findByUsername($trans_user, ['fields' => ['id']])->first();
             if ($result) {
                 $transFilter[] = 't.u='.$result['id'];
                 if ($trans_orphan == 'yes') {
