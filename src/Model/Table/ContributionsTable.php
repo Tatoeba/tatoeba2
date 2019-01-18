@@ -61,7 +61,7 @@ class ContributionsTable extends Table
         $created = $event->getData('created');
         $sentenceId = $event->getData('id');
 
-        if ($data->text) {
+        if ($data->isDirty('text')) {
             $sentenceLang = $data->lang ? $data->lang : null;
             $sentenceScript = $data->script ? $data->script : null;
             $sentenceAction = 'update';
