@@ -377,4 +377,9 @@ class CurrentUser
         $canSwitchLicense = self::getSetting('can_switch_license');
         return ($isOwner && $canSwitchLicense) || self::isAdmin();
     }
+    
+    public static function hasAcceptedNewTermsOfUse()
+    {
+        return !self::isMember() || self::getSetting('new_terms_of_use');
+    }
 }

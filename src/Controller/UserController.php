@@ -82,7 +82,8 @@ class UserController extends AppController
     public function beforeFilter(Event $event)
     {
         $this->Auth->allowedActions = array(
-            'profile'
+            'profile',
+            'accept_new_terms_of_use'
         );
 
         return parent::beforeFilter($event);
@@ -737,5 +738,21 @@ class UserController extends AppController
         $this->set('userLanguage', $userLanguage);
         $this->set('ofUserId', $userId);
         $this->set('username', $username);
+    }
+
+    public function accept_new_terms_of_use()
+    {
+        $this->loadModel('Users');
+        $user = $this->Users->get(CurrentUser::get('id'));
+        $this->Users->patchEntity($user, [
+            'settings' => $this->request->getData('settings')
+        ]);
+        $savedUser = $this->Users->save($user);
+        if ($savedUser) {
+            $this->Auth->setUser($savedUser);
+        }
+
+        $this->Flash->set('You have accepted the new terms of use.');
+        return $this->redirect($this->referer());
     }
 }

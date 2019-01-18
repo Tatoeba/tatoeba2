@@ -26,6 +26,34 @@
  */
 
 use Cake\Core\Configure;
+use App\Model\CurrentUser;
+
+if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
+    $termsOfUseUrl = $this->Url->build([
+        'controller' => 'pages', 
+        'action' => 'terms_of_use'
+    ]);
+    $contactUrl = $this->Url->build([
+        'controller' => 'pages', 
+        'action' => 'contact'
+    ]);
+    echo $this->Form->create('Users', [
+        'class' => 'announcement',
+        'data-announcement-id' => 'new-terms-of-use',
+        'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
+    ]);
+    echo $this->Form->hidden('settings.new_terms_of_use', ['value' => true]);
+    echo $this->Form->button($this->Images->svgIcon('close'), [
+        'class' => 'close button'
+    ]);
+    echo $this->Html->div('terms-of-use-info', format(
+        __('We have updated our <a href="{termsOfUse}">Terms of Use</a>.
+        By closing this announcement, you agree with the new Terms of Use.
+        If you have any question, feel free to <a href="{contact}">contact us</a>.'),
+        ['termsOfUse' => $termsOfUseUrl, 'contact' => $contactUrl]
+    ));
+    echo $this->Form->end();
+}
 
 if (Configure::read('Announcement.enabled')) {
     $announcementId = 'looking-for-designers';
