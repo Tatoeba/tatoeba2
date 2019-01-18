@@ -370,4 +370,11 @@ class CurrentUser
 
         self::$_profileLanguages = $languageCodes;
     }
+
+    public static function canEditLicenseOfSentence($sentence)
+    {
+        $isOwner = self::get('id') == $sentence->user_id;
+        $canSwitchLicense = self::getSetting('can_switch_license');
+        return ($isOwner && $canSwitchLicense) || self::isAdmin();
+    }
 }

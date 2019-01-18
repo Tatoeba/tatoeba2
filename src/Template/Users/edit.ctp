@@ -95,9 +95,15 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
             )
         )
     );
+    echo '<br>';
     echo $this->Form->input('send_notifications', array(
         'label' => __d('admin', 'Send notifications')
     ));
+
+    echo $this->Form->input('settings.can_switch_license', [
+        'type' => 'checkbox',
+        'label' => __('Can switch license')
+    ]);
     ?>
     </fieldset>
 <?php

@@ -35,6 +35,13 @@ class LicensingController extends AppController {
     }
 
     public function switch_my_sentences() {
+        if (!CurrentUser::getSetting('can_switch_license')) {
+            return $this->redirect([
+                'controller' => 'pages', 
+                'action' => 'index'
+            ]);
+        }
+
         $currentUserId = CurrentUser::get('id');
 
         $this->loadModel('Queue.QueuedJobs');

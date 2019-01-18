@@ -113,7 +113,7 @@ $this->Navigation->displaySentenceNavigation(
             array(
                 'sentenceId' => $sentenceId,
                 'license' => $sentence->license,
-                'canEdit' => CurrentUser::get('id') == $sentence->user_id || CurrentUser::isAdmin(),
+                'canEdit' => CurrentUser::canEditLicenseOfSentence($sentence),
             )
         );
 

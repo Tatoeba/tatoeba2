@@ -27,6 +27,7 @@ class User extends Entity
         'hide_random_sentence' => false,
         'use_new_design' => false,
         'default_license' => 'CC BY 2.0 FR',
+        'can_switch_license' => false
     );
 
     private $settingsValidation = array(

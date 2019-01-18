@@ -116,7 +116,7 @@ $vocabularyUrl = $this->Url->build(array(
                         ?>
                     </div>
 
-                    <? if (CurrentUser::isAdmin()) : ?>
+                    <? if (CurrentUser::getSetting('can_switch_license')) : ?>
                     <div class="license-select" layout="row" layout-align="end center" flex>
                         <label><? echo __('License'); ?></label>
                         <?php
