@@ -1092,7 +1092,7 @@ class SentencesController extends AppController
         $sentence = $this->Sentences->get($sentenceId);
         $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
 
-        if (!CurrentUser::isModerator()) {
+        if (!CurrentUser::canEditLicenseOfSentence($sentence)) {
             $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
         } else {
             $errors = $sentence->getError('license');
