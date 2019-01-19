@@ -171,37 +171,11 @@ class SentencesControllerTest extends IntegrationTestCase {
 		$this->assertEquals($oldSentence->license, $newSentence->license);
 	}
 
-	public function testEditLicense_canEditIfCorpusMaintainer() {
-		$sentenceId = 48;
-		$sentences = TableRegistry::get('Sentences');
-		$oldSentence = $sentences->get($sentenceId);
-		$this->logInAs('corpus_maintainer');
-		$this->post('/jpn/sentences/edit_license', [
-			'id' => $sentenceId,
-			'license' => 'CC0 1.0',
-		]);
-		$newSentence = $sentences->get($sentenceId);
-		$this->assertNotEquals($oldSentence->license, $newSentence->license);
-	}
-
 	public function testEditLicense_canEditIfAdmin() {
 		$sentenceId = 48;
 		$sentences = TableRegistry::get('Sentences');
 		$oldSentence = $sentences->get($sentenceId);
 		$this->logInAs('admin');
-		$this->post('/jpn/sentences/edit_license', [
-			'id' => $sentenceId,
-			'license' => 'CC0 1.0',
-		]);
-		$newSentence = $sentences->get($sentenceId);
-		$this->assertNotEquals($oldSentence->license, $newSentence->license);
-	}
-
-	public function testEditLicense_bypassValidationIfCorpusMaintainer() {
-		$sentenceId = 50;
-		$sentences = TableRegistry::get('Sentences');
-		$oldSentence = $sentences->get($sentenceId);
-		$this->logInAs('corpus_maintainer');
 		$this->post('/jpn/sentences/edit_license', [
 			'id' => $sentenceId,
 			'license' => 'CC0 1.0',
