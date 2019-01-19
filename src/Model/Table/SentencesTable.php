@@ -506,7 +506,7 @@ class SentencesTable extends Table
 
 
         $arrayRandom = Cache::read($cacheKey);
-        if (!is_array($arrayRandom)) {
+        if (!is_array($arrayRandom) || empty($arrayRandom)) {
             $arrayRandom = $this->_getRandomsToCached($lang, 3);
         }
 
@@ -527,7 +527,6 @@ class SentencesTable extends Table
             }
         // we cache the random ids array less all the poped value, for latter use
         Cache::write($cacheKey, $arrayRandom);
-
 
             return $returnIds;
         }
@@ -558,11 +557,11 @@ class SentencesTable extends Table
                 array('user_id', 0, true), // exclude orphans
                 array('ucorrectness', 127, true), // exclude unapproved
             ),
+            'limit' => $numberOfIdWanted
         );
 
         $results = $this->find('all', [
             'fields' => ['id'],
-            'limit' => $numberOfIdWanted,
             'sphinx' => $sphinx,
             'search' => ''
         ])->toList();
