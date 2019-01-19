@@ -80,7 +80,7 @@ class TagsController extends AppController
             $this->set('isSaved', $isSaved);
             if ($isSaved) {
                 $this->set('tagName', $tagName);
-                $this->set('tagId', $tagId);
+                $this->set('tagId', $tag->id);
                 $this->set('userId', $userId);
                 $this->set('username', $username);
                 $this->set('sentenceId', $sentenceId);
