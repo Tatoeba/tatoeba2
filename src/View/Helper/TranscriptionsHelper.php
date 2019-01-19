@@ -104,8 +104,8 @@ class TranscriptionsHelper extends AppHelper
         $lang,
         $sentenceOwnerId
     ) {
-        $this->Html->script('jquery.jeditable.js', ['block' => true]);
-        $this->Html->script('transcriptions.js', ['block' => true]);
+        $this->Html->script('jquery.jeditable.js', ['block' => 'scriptBottom']);
+        $this->Html->script('transcriptions.js', ['block' => 'scriptBottom']);
 
         $canEdit = CurrentUser::canEditTranscription(
             $transcr['user_id'], $sentenceOwnerId

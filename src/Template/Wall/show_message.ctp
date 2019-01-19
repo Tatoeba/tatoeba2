@@ -39,9 +39,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__('Thread #{number}'), array('number' => $message->id))
 ));
 
-$this->Html->script('jquery.scrollTo.min.js', ['block' => true]);
-$this->Html->script('wall.reply.js', ['block' => true]);
-$this->Html->script('wall.show_and_hide_replies.js', ['block' => true]);
+$this->Html->script('jquery.scrollTo.min.js', ['block' => 'scriptBottom']);
+$this->Html->script('wall.reply.js', ['block' => 'scriptBottom']);
+$this->Html->script('wall.show_and_hide_replies.js', ['block' => 'scriptBottom']);
 ?>
 <div id="annexe_content">
     <div class="module">
