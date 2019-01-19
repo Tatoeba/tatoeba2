@@ -55,18 +55,10 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     echo $this->Form->end();
 }
 
+/*
 if (Configure::read('Announcement.enabled')) {
-    $announcementId = 'looking-for-designers';
-    $announcementText = '<p>Tatoeba needs help to re-design the website to be 
-        mobile-friendly! If you have experience in UI/UX design, please contact 
-        Trang at trang@tatoeba.org.</p>
-
-        <p>We are also continuously looking for developers. If you are interested to 
-        contribute to a non-profit open source project, please read our guide on how 
-        to <a href="https://github.com/Tatoeba/tatoeba2/wiki/Joining-the-dev-team">
-        join the dev team</a>.</p>
-
-        <p>Thank you!</p>';
+    $announcementId = 'announcement-123';
+    $announcementText = 'Announcement text here.';
 
     $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
     $content = $this->Html->div('content', $announcementText);
@@ -79,6 +71,7 @@ if (Configure::read('Announcement.enabled')) {
         )
     );
 }
+*/
 
 if (Configure::read('Tatoeba.devStylesheet')) {
     $content = __(
