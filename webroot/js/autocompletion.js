@@ -50,10 +50,9 @@ function sendToAutocomplete() {
     }
     var rootUrl = get_tatoeba_root_url();
     if ( tag != previousText) {
-        $.post(
-            rootUrl + "/autocompletions/request/" + tag
-            , {}
-            , function(data) {
+        $.get(
+            rootUrl + "/autocompletions/request/" + tag,
+            function(data) {
                 suggestShowResults(data);
             }
         );
