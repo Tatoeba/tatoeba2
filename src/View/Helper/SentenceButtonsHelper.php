@@ -182,12 +182,11 @@ class SentenceButtonsHelper extends AppHelper
             $path = Configure::read('Recordings.url')
                 .$sentenceLang.'/'.$sentenceId.'.mp3';
             $css = 'audioAvailable';
-
             $audio = isset($sentenceAudios[0]) ?
                      $sentenceAudios[0] :
                      $sentenceAudios;
-            $author = isset($audio['User']['username']) ?
-                      $audio['User']['username'] :
+            $author = isset($audio->user['username']) ?
+                      $audio->user['username'] :
                       $audio['external']['username'];
             if (empty($author)) {
                 $title = __('Play audio');
