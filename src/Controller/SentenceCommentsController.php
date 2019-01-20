@@ -67,9 +67,8 @@ class SentenceCommentsController extends AppController
             ],
             'Sentences' => [
                 'Users' => [
-                    'fields' => ['username']
-                ],
-                'fields' => ['id', 'text', 'lang', 'correctness']
+                    'fields' => ['id', 'username']
+                ]
             ]
         ],
         'limit' => 50,
