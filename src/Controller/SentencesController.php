@@ -680,7 +680,7 @@ class SentencesController extends AppController
                 $sphinx['filter'][] = array('lists_id', $list);
                 $found = false;
                 foreach ($searchableLists as $rec) {
-                    if ($list == $rec['SentencesList']['id']) {
+                    if ($list == $rec['id']) {
                         $found = true;
                         break;
                     }

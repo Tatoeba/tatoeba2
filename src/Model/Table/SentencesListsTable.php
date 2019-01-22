@@ -126,16 +126,16 @@ class SentencesListsTable extends Table
      */
     public function isSearchableList($listId)
     {
-        return $this->find('first', array(
-            'conditions' => array(
+        return $this->find()
+            ->where([
                 'id' => $listId,
-                'OR' => array(
+                'OR' => [
                     'user_id' => CurrentUser::get('id'),
-                    'NOT' => array('visibility' => 'private')
-                )
-            ),
-            'fields' => array('id', 'user_id', 'name'),
-        ));
+                    'NOT' => ['visibility' => 'private']
+                ]
+            ])
+            ->select(['id', 'user_id', 'name'])
+            ->first();
     }
 
     /**

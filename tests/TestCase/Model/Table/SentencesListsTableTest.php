@@ -289,4 +289,19 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals([4], $ids);
         $this->assertEquals(count($ids), count($translations));
     }
+
+    function testIsSearchableList_isSearchable() {
+        $result = $this->SentencesList->isSearchableList(1);
+        $expected = [
+            'id' => 1,
+            'user_id' => 7,
+            'name' => 'Interesting French sentences'
+        ];
+        $this->assertEquals($expected, $result->toArray());
+    }
+
+    function testIsSearchableList_isNotSearchable() {
+        $result = $this->SentencesList->isSearchableList(3);
+        $this->assertNull($result);
+    }
 }

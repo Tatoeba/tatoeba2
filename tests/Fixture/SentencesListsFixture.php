@@ -40,6 +40,16 @@ class SentencesListsFixture extends TestFixture {
 			'modified' => '2018-04-15 00:54:12',
 			'visibility' => 'public',
 			'editable_by' => 'creator'
+		),
+		array(
+			'id' => '3',
+			'name' => 'Private list',
+			'user_id' => 7,
+			'numberOfSentences' => 1,
+			'created' => '2018-04-15 00:54:01',
+			'modified' => '2018-04-15 00:54:12',
+			'visibility' => 'private',
+			'editable_by' => 'creator'
 		)
 	);
 }
