@@ -87,7 +87,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         $currentUserIsMember = CurrentUser::isMember();
         foreach ($userComments as $i => $comment) {
             $menu = $this->Comments->getMenuForComment(
-                $comment['SentenceComment'],
+                $comment,
                 $commentsPermissions[$i],
                 $currentUserIsMember
             );
