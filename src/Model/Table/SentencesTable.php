@@ -356,8 +356,12 @@ class SentencesTable extends Table
     }
 
     public function findFilteredTranslations($query, $options) {
-        return $query->formatResults(function($results) use ($options) {
-            return $results->map(function($result) use ($options) {
+        $translationLanguages = CurrentUser::getLanguages();
+        if (!empty($options['translationLang']) && $options['translationLang'] != 'und') {
+            $translationLanguages[] = $options['translationLang'];
+        }
+        return $query->formatResults(function($results) use ($translationLanguages) {
+            return $results->map(function($result) use ($translationLanguages) {
                 
                 $directTranslations = [];
                 $indirectTranslations = [];
@@ -378,10 +382,9 @@ class SentencesTable extends Table
                     }
                 }
 
-                if (!empty($options['translationLang']) && $options['translationLang'] != 'und') {
-                    $lang = $options['translationLang'];
-                    $filter = function ($item) use ($lang) {
-                        return !$lang || $lang == 'und' || $item->lang == $lang;
+                if (!empty($translationLanguages)) {
+                    $filter = function ($item) use ($translationLanguages) {
+                        return in_array($item->lang, $translationLanguages);
                     };
                     $directTranslations = array_filter($directTranslations, $filter);
                     $indirectTranslations = array_filter($indirectTranslations, $filter);
