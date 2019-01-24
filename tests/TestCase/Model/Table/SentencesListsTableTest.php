@@ -245,7 +245,8 @@ class SentencesListsTableTest extends TestCase {
         $expected = [
             'OfUser' => [
                 '1' => 'Interesting French sentences',
-                '2' => 'Public list'
+                '2' => 'Public list',
+                '3' => 'Private list'
             ],
             'Collaborative' => []
         ];
@@ -261,7 +262,7 @@ class SentencesListsTableTest extends TestCase {
     function testGetSearchableLists_asMember() {
         CurrentUser::store(['id' => 7]);
         $result = $this->SentencesList->getSearchableLists();
-        $this->assertEquals([1, 2], Hash::extract($result, '{n}.id'));
+        $this->assertEquals([1, 3, 2], Hash::extract($result, '{n}.id'));
     }
 
     function testGetNameForListWithId() {
@@ -301,6 +302,7 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testIsSearchableList_isNotSearchable() {
+        CurrentUser::store(null);
         $result = $this->SentencesList->isSearchableList(3);
         $this->assertNull($result);
     }
