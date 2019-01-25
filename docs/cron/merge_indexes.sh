@@ -1,4 +1,7 @@
 #!/bin/bash
 set -e
 
-/var/www-prod/app/Console/cake sphinx_indexes merge >/dev/null 2>&1
+PIDFILE=/var/run/sphinxsearch/searchd.pid
+
+systemctl show -p MainPID --value sphinxsearch > $PIDFILE
+/var/www-prod/bin/cake sphinx_indexes merge >/dev/null 2>&1
