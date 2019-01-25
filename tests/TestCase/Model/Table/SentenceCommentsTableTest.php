@@ -12,7 +12,9 @@ class SentenceCommentTest extends TestCase {
 
     public $fixtures = array(
         'app.sentence_comments',
-        'app.users_languages'
+        'app.users_languages',
+        'app.users',
+        'app.sentences',
     );
 
     public function setUp() {
@@ -120,5 +122,10 @@ class SentenceCommentTest extends TestCase {
         CurrentUser::store(['id' => 3]);
         $result = $this->SentenceComment->deleteComment(1);
         $this->assertFalse($result);
+    }
+
+    public function testGetLatestComments_hasSentenceOwnerInfo() {
+        $result = $this->SentenceComment->getLatestComments(1);
+        $this->assertEquals('contributor', $result[0]->sentence->user->username);
     }
 }

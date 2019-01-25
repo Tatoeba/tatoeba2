@@ -145,18 +145,17 @@ class SentenceCommentsTable extends Table
             ->where(['hidden' => 0])
             ->orderDesc('SentenceComments.created')
             ->contain([
-                'Users' => function ($q) {
-                    return $q->select(['id', 'username', 'image']);
-                },
-                'Sentences' => function ($q) {
-                    return $q->select(['id', 'text', 'lang'])
-                        ->contain(['Users' => function ($q) {
-                            return $q->select(['username']);
-                        }]);
-                }
+                'Users' => [
+                    'fields' => ['id', 'username', 'image']
+                ],
+                'Sentences' => [
+                    'Users' => [
+                        'fields' => ['id', 'username']
+                    ]
+                ]
             ]);
         $query = $this->excludeBots($query);
-        return $query->all();
+        return $query->toList();
     }
 
     /**
