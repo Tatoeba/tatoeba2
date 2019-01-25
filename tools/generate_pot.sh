@@ -1,6 +1,6 @@
 #!/bin/bash
 
-POT=app/Locale/default.pot
+POT=src/Locale/default.pot
 POT_DIR=$(dirname $POT)
 POT_TMP=$(mktemp --suffix=.po)
 
@@ -8,7 +8,7 @@ POT_TMP=$(mktemp --suffix=.po)
 trap "rm -f $POT_TMP; exit" SIGHUP SIGINT SIGTERM
 
 list_source_files() {
-    find app/ -path app/Vendor/cakephp -prune \
+    find src/ -path src \
         -o -iname '*.ctp' -print \
         -o -iname '*.php' -print \
         | LC_ALL=C sort
