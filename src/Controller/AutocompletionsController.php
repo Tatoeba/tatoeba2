@@ -40,9 +40,6 @@ use Cake\Event\Event;
  */
 class AutocompletionsController extends AppController
 {
-    public $name = 'Autocompletions';
-    public $components = array('RequestHandler');
-
     /**
      * Before filter.
      *
@@ -60,8 +57,7 @@ class AutocompletionsController extends AppController
      * @param string $searchString
      */
     public function request($searchString) {
-        $this->layout = '';
-        $this->RequestHandler->respondAs('xml');
+        $this->response = $this->response->withType('xml');
         $this->set("searchString", $searchString);
     }
 }
