@@ -28,7 +28,8 @@ echo $this->Html->div(null, $this->Messages->formatedContent($commentText),
     )
 );
 
+$url = $this->Url->build($urlParams, true);
 echo "<p>";
-echo $this->Url->build($urlParams, true);
+echo $this->Html->link($url);
 echo "</p>";
 ?>

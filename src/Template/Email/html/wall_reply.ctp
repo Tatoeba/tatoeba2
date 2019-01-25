@@ -6,8 +6,9 @@ $urlParams = array(
     '#' => 'message_'.$postId
 );
 
+$url = $this->Url->build($urlParams, true);
 echo "<p>";
-echo $this->Url->build($urlParams, true);
+echo $this->Html->link($url);
 echo "</p>";
 
 echo $this->Html->div(null, $this->Messages->formatedContent($messageContent),
