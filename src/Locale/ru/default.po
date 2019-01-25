@@ -4,10 +4,11 @@
 # 
 # Translators:
 # Dmitry K, 2014
-# Dmitry K, 2014-2018
+# Dmitry K, 2014-2019
 # Dmytro Kushnariov <rabina@insiberia.net>, 2018
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
 # Igor Aleksandrovich Ivanov <tovarishivanov1917@mail.ru>, 2014
+# Konstantin N <explanacion@gmail.com>, 2018
 # Nikolay Korotkiy <sikmir@gmail.com>, 2016
 # Trang, 2018
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-04 21:34+0000\n"
-"PO-Revision-Date: 2018-11-22 17:31+0000\n"
+"PO-Revision-Date: 2019-01-21 06:46+0000\n"
 "Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/tatoeba/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +28,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L79
 msgid "Result of license switch to CC0 1.0"
-msgstr ""
+msgstr "Результат смены лицензии на CC0 1.0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L106
 msgid ""
@@ -524,13 +525,13 @@ msgstr "Пользователя {username}, которому вы хотите 
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L135
 msgid "This is not a valid license."
-msgstr ""
+msgstr "Некорректная лицензия."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L142
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "На это предложение уже распространяется данная лицензия."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -2198,7 +2199,7 @@ msgstr "соединено {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L112
 msgid "license chosen by {user}"
-msgstr ""
+msgstr "лицензия выбрана {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L117
 msgid "edited by {user}"
@@ -2206,7 +2207,7 @@ msgstr "отредактировано {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L119
 msgid "license changed by {user}"
-msgstr ""
+msgstr "лицензия изменена {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L124
 msgid "deleted by {user}"

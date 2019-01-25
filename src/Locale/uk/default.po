@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-04 21:34+0000\n"
-"PO-Revision-Date: 2018-11-05 20:38+0000\n"
+"PO-Revision-Date: 2018-12-09 00:20+0000\n"
 "Last-Translator: older\n"
 "Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -22,36 +22,36 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L79
 msgid "Result of license switch to CC0 1.0"
-msgstr ""
+msgstr "Результат зміни ліцензії на CC0 1.0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L106
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
-msgstr ""
+msgstr "Неможливо змінити ліцензію речення {id} на “{newLicense}” тому що:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L146
 msgid "License switch started on {date} at {time} UTC."
-msgstr ""
+msgstr "Зміна ліцензії почалась {date} о {time} UTC."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L151
 msgid "Found {n} sentence that can be switched to {newLicense}."
 msgid_plural "Found {n} sentences that can be switched to {newLicense}."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Знайдено {n} речення ліцензію якого можливо змінити на {newLicense}."
+msgstr[1] "Знайдено {n} речення ліцензію яких можливо змінити на {newLicense}."
+msgstr[2] "Знайдено {n} речень ліцензію яких можливо змінити на {newLicense}."
+msgstr[3] "Знайдено {n} речень ліцензію яких можливо змінити на {newLicense}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L166
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Успішно змінено ліцензію {n} речення."
+msgstr[1] "Успішно змінено ліцензію {n} речень."
+msgstr[2] "Успішно змінено ліцензію {n} речень."
+msgstr[3] "Успішно змінено ліщензію {n} речень."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Console/Command/Task/QueueSwitchSentencesLicenseTask.php#L173
 msgid "License switch completed on {date} at {time} UTC."
-msgstr ""
+msgstr "Зміну ліцензії завершено {date} о {time} UTC."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/ActivitiesController.php#L186
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/of.ctp#L115
@@ -87,7 +87,7 @@ msgstr "Tatoeba, новий пароль."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LicensingController.php#L49
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "Зміна ліцензії вже почалась."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/LinksController.php#L85
 msgid ""
@@ -245,15 +245,15 @@ msgstr "“належить користувачу для якого ця мов
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1212
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "Ви не можете змінити ліцензію цього речення."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1216
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Ліцензію речення було змінено на “{newLicense}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesController.php#L1222
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "Неможливо змінити ліцензію на “{newLicense}” тому що:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L155
 msgid "You do not have permission to view this list."
@@ -261,7 +261,7 @@ msgstr "Ви не маєте дозволу для перегляду цього
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L387
 msgid "This list cannot be downloaded because it contains too many sentences."
-msgstr ""
+msgstr "Цей список не можна завантажити бо в ньому забагато речень."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L148
 msgid ""
@@ -327,7 +327,7 @@ msgstr "Новий пароль не може бути порожнім."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L623
 msgid "New passwords do not match."
-msgstr ""
+msgstr "Нові паролі не співпадають."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UserController.php#L628
 msgid "New password has been saved."
@@ -408,11 +408,11 @@ msgstr "Не існує користувача з ідентифікатором
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L52
 msgid "No language selected."
-msgstr ""
+msgstr "Не обрано мову."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L54
 msgid "You cannot save this language."
-msgstr ""
+msgstr "Ви не можете зберігти цю мову."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/UsersLanguagesController.php#L80
 msgid "Language deleted"
@@ -425,7 +425,7 @@ msgstr "Ви не можете видалити цю мову."
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/VocabularyHelper.php#L31
 msgid "Unknown number of sentences"
-msgstr ""
+msgstr "Невідома кількість речень."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/VocabularyController.php#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/VocabularyHelper.php#L36
@@ -525,7 +525,7 @@ msgstr ""
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L142
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "Це речення вже під цією ліцензією."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -538,7 +538,7 @@ msgstr ""
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L242
 msgid "You're not the owner of this sentence."
-msgstr ""
+msgstr "Ви не є власником цього речення."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -1289,11 +1289,11 @@ msgstr "Зареєструватись"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/language_dropdown.ctp#L5
 msgid "Select a language"
-msgstr ""
+msgstr "Оберіть мову"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/language_dropdown.ctp#L32
 msgid "No language found."
-msgstr ""
+msgstr "Не знайдено жодної мови."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/login.ctp#L109
@@ -2193,7 +2193,7 @@ msgstr "пов'язане користувачем {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L112
 msgid "license chosen by {user}"
-msgstr ""
+msgstr "ліцензія обрана користувачем {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L117
 msgid "edited by {user}"
@@ -2201,7 +2201,7 @@ msgstr "змінене користувачем {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L119
 msgid "license changed by {user}"
-msgstr ""
+msgstr "ліцензію змінено користувачем {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/LogsHelper.php#L124
 msgid "deleted by {user}"
@@ -2357,7 +2357,7 @@ msgstr "Відповісти"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L195
 msgid "Notification from Tatoeba"
-msgstr ""
+msgstr "Повідомлення від Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L197
 msgid "Former member"
@@ -2381,7 +2381,7 @@ msgstr "Чернетка"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L281
 msgid "notification from Tatoeba"
-msgstr ""
+msgstr "повідомлення від Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/MessagesHelper.php#L285
 msgid "from {sender}"
@@ -2679,29 +2679,29 @@ msgstr "користувача {messageAuthor}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
-msgstr ""
+msgstr "Змінити ліцензію моїх речень"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L29
 msgid ""
 "The license switch of your sentences will be started soon. You will receive "
 "a private message when it will be completed."
-msgstr ""
+msgstr "Зміна ліцензії ваших речень незабаром почнеться. Ви отримаєте приватне повідомлення коли її буде завершено."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L32
 msgid ""
 "The license switch of your sentences is in progress. You will receive a "
 "private message when it will be completed."
-msgstr ""
+msgstr "Зміна ліцензії ваших речень вже почаласть. Ви отримаєте приватне повідомлення коли її буде завершено."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L35
 msgid ""
 "The license switch of your sentences is completed. A report has been sent to"
 " you by private message."
-msgstr ""
+msgstr "Зміну ліцензії ваших речень завершено. Звіт буде надіслано вам у приватному повідомленні."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L40
 msgid "A problem occured while switching the license of your sentences."
-msgstr ""
+msgstr "В процесі зміни ліцензії ваших речень виникла помилка."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L45
 msgid ""
@@ -2712,7 +2712,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L49
 msgid "The current license of the sentence must be CC BY 2.0 FR."
-msgstr ""
+msgstr "Поточна ліцензія речення має бути CC BY 2.0 FR."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L50
 msgid "You must be the original creator of the sentence."
@@ -2730,11 +2730,11 @@ msgstr ""
 msgid ""
 "Be careful, this operation can not be undone. Switching from CC BY to CC0 is"
 " possible, but not the opposite."
-msgstr ""
+msgstr "Будьте уважні, цю операцію неможливо скасувати. Заміна ліцензії з CC BY на CC0 можлива, але не навпаки."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L63
 msgid "Switch license to CC0 1.0"
-msgstr ""
+msgstr "Змінити ліцензію на CC0 1.0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/about.ctp#L39
 msgid ""
@@ -2794,7 +2794,7 @@ msgstr "Також ви можете поділитись своїми думк�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L95
 msgid "Join our chatroom"
-msgstr ""
+msgstr "Долучайтесь до нашого чату"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/contact.ctp#L100
 msgid ""
@@ -3342,11 +3342,11 @@ msgstr "Зміст"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L39
 msgid "Translated version"
-msgstr ""
+msgstr "Перекладена версія"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L44
 msgid "Original version (French)"
-msgstr ""
+msgstr "Оригінальна версія (французькою)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Pages/terms_of_use.ctp#L59
 msgid "Information for contributors of text to the Tatoeba project"

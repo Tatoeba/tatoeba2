@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Guybrush88 <erpizzo@alice.it>, 2014-2018
+# Guybrush88 <erpizzo@alice.it>, 2014-2019
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-04 21:34+0000\n"
-"PO-Revision-Date: 2018-11-18 09:21+0000\n"
+"PO-Revision-Date: 2019-01-20 13:56+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -256,7 +256,7 @@ msgstr "Non hai il permesso di visualizzare questo elenco."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/SentencesListsController.php#L387
 msgid "This list cannot be downloaded because it contains too many sentences."
-msgstr ""
+msgstr "Questo elenco non può essere scaricato perché contiene troppe frasi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Controller/TagsController.php#L148
 msgid ""
@@ -483,7 +483,7 @@ msgstr[1] "I seguenti caratteri non sono trascritti: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/PrivateMessage.php#L68
 msgid "You must fill at least the content field."
-msgstr ""
+msgstr "Devi compilare almeno il campo dei contenuti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/PrivateMessage.php#L360
 msgid "You must fill at least the \"To\" field and the content field."
@@ -537,7 +537,7 @@ msgstr "Il proprietario della frase deve essere il suo creatore originale."
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Sentence.php#L262
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "Puoi passare solamente a una licenza più permissiva."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/SentenceComment.php#L49
 msgid "Comments cannot be empty."
@@ -720,7 +720,7 @@ msgstr "Se pensi che possano esserci diverse traduzioni possibili per un'unica f
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "Tradurre delle frasi implica che tu conosca almeno due lingue. Per favore, completa <a href=\"{}\">il tuo profilo</a> per indicare almeno due lingue."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Activities/translate_sentences.ctp#L99
 msgid "Search for untranslated sentences"
@@ -1359,7 +1359,7 @@ msgstr "Svuota il cestino"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/space.ctp#L215
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/PrivateMessages/folder.ctp#L30
 msgid "Inbox"
-msgstr "Messaggi in arrivo"
+msgstr "Messaggi ricevuti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/pmmenu.ctp#L61
 msgid "Unread"
@@ -2652,7 +2652,7 @@ msgstr "Cambia la licenza delle mie frasi"
 msgid ""
 "The license switch of your sentences will be started soon. You will receive "
 "a private message when it will be completed."
-msgstr ""
+msgstr "Il cambio di licenza delle tue frasi inizierà presto. Riceverai un messaggio privato quando sarà completato."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Licensing/switch_my_sentences.ctp#L32
 msgid ""
