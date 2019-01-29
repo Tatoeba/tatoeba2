@@ -74,8 +74,8 @@ class LinksController extends AppController
     private function _renderTranslationsOf($sentenceId, $message)
     {
         $this->loadModel('Sentences');
-        $langFilter = isset($this->request->data['langFilter']) ? $this->request->data['langFilter'] : 'und';
-        $translations = $this->Sentences->getTranslationsOf($sentenceId, $langFilter);
+        $langFilter = isset($this->request->data['langFilter']) ? $this->request->data['langFilter'] : 'und'; // not sure what this is for
+        $translations = $this->Sentences->getSentenceWithId($sentenceId)->translations;
 
         $this->set('sentenceId', $sentenceId);
         $this->set('translations', $translations);

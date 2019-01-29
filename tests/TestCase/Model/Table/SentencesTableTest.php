@@ -997,4 +997,22 @@ class SentencesTableTest extends TestCase {
 		$languages = array_unique($expected + $directTranslationsLangs + $indirectTranslationsLangs);
 		$this->assertEquals($expected, $languages);
 	}
+
+	function testGetSentenceWithId_translationsHaveAudioInfo() {
+		$sentence = $this->Sentence->getSentenceWithId(1);
+		$result = [];
+		foreach($sentence->translations as $translationsGroup) {
+			foreach($translationsGroup as $translation) {
+				$result[$translation->id] = $translation->audios[0]->user_id;
+			}
+		}
+		$expected = [
+			2 => null,
+			3 => 4,
+			4 => null,
+			5 => null,
+			6 => null,
+		];
+		$this->assertEquals($expected, $result);
+	}
 }
