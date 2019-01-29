@@ -22,6 +22,7 @@ use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Validation\Validator;
+use Cake\Utility\Hash;
 
 
 class AudiosTable extends Table
@@ -172,7 +173,7 @@ class AudiosTable extends Table
             if (is_file($file)) {
                 $fileInfos = array(
                     'fileName' => $filename,
-                    'sourcePath' => $importPath.$filename,
+                    'sourcePath' => $importPath.DS.$filename,
                     'valid'    => false,
                 );
                 if (preg_match('/^(\d+)\.mp3$/i', $filename, $matches)) {
@@ -183,20 +184,25 @@ class AudiosTable extends Table
         }
         closedir($dh);
 
-        $sentences = $this->Sentence->find('all', array(
-            'conditions' => array('Sentence.id' => $allSentenceIds),
-            'fields' => array('id', 'lang'),
-            'contain' => array('Audio'),
-        ));
-        $sentences = Set::combine($sentences, '{n}.Sentence.id', '{n}');
+        if (empty($allSentenceIds)) {
+            return [];
+        }
+
+        $sentences = $this->Sentences->find()
+            ->where(['Sentences.id IN' => $allSentenceIds])
+            ->select(['id', 'lang'])
+            ->contain(['Audios'])
+            ->toList();
+            
+        $sentences = Hash::combine($sentences, '{n}.id', '{n}');
 
         foreach ($audioFiles as &$file) {
             if (isset($file['sentenceId'])) {
                 $id = $file['sentenceId'];
                 if (isset($sentences[$id])) {
-                    $file['lang'] = $sentences[$id]['Sentence']['lang'];
+                    $file['lang'] = $sentences[$id]['lang'];
                     $file['hasaudio'] = count($sentences[$id]['Audio']) > 0;
-                    $file['valid'] = !is_null($sentences[$id]['Sentence']['lang']);
+                    $file['valid'] = !is_null($sentences[$id]['lang']);
                 }
             }
         }
