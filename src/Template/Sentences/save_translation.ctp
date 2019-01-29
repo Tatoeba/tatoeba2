@@ -31,6 +31,8 @@ if (isset($translation)) {
     $type = 'directTranslation';
     $isEditable = true;
 
+    $translation->audios = [];
+    
     $this->Sentences->displayGenericSentence(
         $translation,
         $type, 
