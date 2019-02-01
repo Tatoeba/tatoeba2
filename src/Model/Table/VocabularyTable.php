@@ -86,8 +86,12 @@ class VocabularyTable extends Table
             $result = $this->save($data);
         }
 
-        $this->UsersVocabulary->add($result->id, CurrentUser::get('id'));
-
+        try {
+            $this->UsersVocabulary->add($result->id, CurrentUser::get('id'));
+        } catch (\PDOException $e) {
+            $result->duplicate = true;
+        }
+        
         if (Configure::read('Search.enabled')) {
             $result->query = Search::exactSearchQuery($text);
         }

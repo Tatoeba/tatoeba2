@@ -114,6 +114,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                           ng-repeat="item in ctrl.vocabularyAdded">
                 <img class="vocabulary-lang" ng-src="/img/flags/{{item.lang}}.png"/>
                 <div class="vocabulary-text" flex>{{item.text}}</div>
+                <md-icon ng-show="item.duplicate">warning</md-icon>
+                <md-tooltip md-direction="top" ng-show="item.duplicate">
+                    <? echo __('You have already added this vocabulary item.') ?>
+                </md-tooltip>
                 <md-button class="md-primary" href="{{item.url}}" ng-disabled="!item.url">
                     {{item.numSentencesLabel}}
                 </md-button>

@@ -32,9 +32,10 @@ class VocabularyTableTest extends TestCase
 
     public function testAddItem_withExistingVocabulary()
     {
-        CurrentUser::store(['id' => 7]);
+        CurrentUser::store(['id' => 1]);
         $result = $this->Vocabulary->addItem('eng', 'out of the blue');
         $this->assertEquals(1, $result->id);
+        $this->assertTrue($result->duplicate);
     }
 
     public function testAddItem_withNewVocabulary()
