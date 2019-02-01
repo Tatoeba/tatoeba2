@@ -999,11 +999,13 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testGetSentenceWithId_translationsHaveAudioInfo() {
+		CurrentUser::store(null);
 		$sentence = $this->Sentence->getSentenceWithId(1);
 		$result = [];
 		foreach($sentence->translations as $translationsGroup) {
 			foreach($translationsGroup as $translation) {
-				$result[$translation->id] = $translation->audios[0]->user_id;
+				$audios = $translation->audios;
+				$result[$translation->id] = isset($audios[0]) ? $audios[0]->user_id : null;
 			}
 		}
 		$expected = [
