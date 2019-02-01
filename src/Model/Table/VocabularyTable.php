@@ -88,6 +88,10 @@ class VocabularyTable extends Table
 
         $this->UsersVocabulary->add($result->id, CurrentUser::get('id'));
 
+        if (Configure::read('Search.enabled')) {
+            $result->query = Search::exactSearchQuery($text);
+        }
+
         return $result;
     }
 
