@@ -16,6 +16,10 @@ class UsersTableTest extends TestCase
         'app.aros',
         'app.acos',
         'app.aros_acos',
+        'app.sentences',
+        'app.contributions',
+        'app.sentence_comments',
+        'app.walls',
     ];
 
     public function setUp()
@@ -84,5 +88,22 @@ class UsersTableTest extends TestCase
         ]);
         $savedUser = $this->Users->save($user);
         $this->assertNotFalse($savedUser);
+    }
+
+    public function testGetUserByIdWithExtraInfo_sentencesOrderedDesc()
+    {
+        $data = $this->Users->getUserByIdWithExtraInfo(4);
+        $firstSentence = $data->sentences[0];
+        $secondSentence = $data->sentences[1];
+        $this->assertGreaterThanOrEqual(
+            $secondSentence->modified, $firstSentence->modified
+        );
+    }
+
+    public function testGetUserByIdWithExtraInfo_commentsContainSentence()
+    {
+        $data = $this->Users->getUserByIdWithExtraInfo(7);
+        $comment = $data->sentence_comments[0];
+        $this->assertNotEmpty($comment->sentence);
     }
 }

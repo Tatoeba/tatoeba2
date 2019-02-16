@@ -283,9 +283,9 @@ class UsersTable extends Table
     {
         return $this->get($id, ['contain' => [
             'Sentences' => function ($q) {
-                return $q->select(['user_id', 'id', 'lang', 'correctness', 'text'])
+                return $q->select(['user_id', 'id', 'lang', 'correctness', 'text', 'modified'])
                          ->limit(10)
-                         ->orderAsc('modified');
+                         ->orderDesc('modified');
             },
             'Contributions' => function ($q) {
                 $fields = [
@@ -304,18 +304,9 @@ class UsersTable extends Table
                          ->orderDesc('datetime');
             },
             'SentenceComments' => function ($q) {
-                $fields = [
-                    'user_id',
-                    'id',
-                    'text',
-                    'created',
-                    'sentence_id',
-                    'hidden',
-                    'modified',
-                ];
-                return $q->select($fields)
-                         ->limit(10)
-                         ->orderDesc('created');
+                return $q->limit(10)
+                         ->contain('Sentences')
+                         ->orderDesc('SentenceComments.created');
             },
             'Wall' => function ($q) {
                 return $q->select(['owner', 'id', 'content', 'date', 'hidden', 'modified'])
