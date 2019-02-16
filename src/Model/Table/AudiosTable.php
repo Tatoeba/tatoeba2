@@ -201,7 +201,7 @@ class AudiosTable extends Table
                 $id = $file['sentenceId'];
                 if (isset($sentences[$id])) {
                     $file['lang'] = $sentences[$id]['lang'];
-                    $file['hasaudio'] = count($sentences[$id]['Audio']) > 0;
+                    $file['hasaudio'] = count($sentences[$id]->audios) > 0;
                     $file['valid'] = !is_null($sentences[$id]['lang']);
                 }
             }
