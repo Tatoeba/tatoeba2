@@ -507,12 +507,9 @@ class SentencesListsTable extends Table
      */
     private function _decrementNumberOfSentencesToList($listId)
     {
-        $success = $this->updateAll(
-            array('numberOfSentences'=>'numberOfSentences-1'),
-            array('SentencesList.id'=>$listId)
-        );
-
-        return $success;
+        $list = $this->get($listId);
+        $list->numberOfSentences--;
+        $this->save($list);
     }
 
 

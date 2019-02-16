@@ -206,13 +206,16 @@ class SentencesListsTableTest extends TestCase {
         $listId = 1;
         $userId = 7;
         $before = $this->SentencesList->SentencesSentencesLists->find()
-            ->where(['sentence_id' => $sentenceId])
+            ->where(['sentences_list_id' => $listId])
             ->count();
         $this->SentencesList->removeSentenceFromList($sentenceId, $listId, $userId);
         $after = $this->SentencesList->SentencesSentencesLists->find()
-            ->where(['sentence_id' => $sentenceId])
+            ->where(['sentences_list_id' => $listId])
             ->count();
         $this->assertEquals(1, $before - $after);
+
+        $list = $this->SentencesList->get($listId);
+        $this->assertEquals($after, $list->numberOfSentences);
     }
 
     function testRemoveSentenceFromList_succeeds() {
