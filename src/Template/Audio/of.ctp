@@ -98,8 +98,11 @@ if (isset($sentencesWithAudio)) {
         $parentId = null;
         $withAudio = true;
         foreach ($sentencesWithAudio as $audio) {
+            $sentence = $audio->sentence;
+            unset($audio->sentence);
+            $sentence->audios = [$audio];
             $this->Sentences->displayGenericSentence(
-                $audio->sentence,
+                $sentence,
                 $type,
                 $withAudio,
                 $parentId
