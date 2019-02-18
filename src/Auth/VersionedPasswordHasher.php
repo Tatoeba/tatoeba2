@@ -3,6 +3,7 @@ namespace App\Auth;
 
 use Cake\Auth\AbstractPasswordHasher;
 use Cake\Core\Configure;
+use Cake\Utility\Security;
 
 class VersionedPasswordHasher extends AbstractPasswordHasher {
 
@@ -29,7 +30,7 @@ class VersionedPasswordHasher extends AbstractPasswordHasher {
 
 		list($hashVersion, $storedHash) = $versionedHash;
 		// help mitigate timing attacks by computing md5 regardless of $hashVersion
-		$V0hash = md5(Configure::read('Security.salt') . $plainTextPassword);
+		$V0hash = md5(Security::getSalt() . $plainTextPassword);
 		if ($hashVersion == 0) {
 			$plainTextPassword = $V0hash;
 		}

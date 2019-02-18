@@ -33,6 +33,7 @@ use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Routing\Router;
+use Cake\Utility\Security;
 use Cake\I18n\I18n;
 use Locale;
 
@@ -99,7 +100,7 @@ class AppController extends Controller
     public function initialize()
     {
         $this->loadComponent('Cookie', [
-            'key' => Configure::read('Security.cookieSalt', Configure::read('Security.salt')),
+            'key' => Configure::read('Security.cookieSalt', Security::getSalt()),
         ]);
 
         $this->loadComponent('Csrf');
