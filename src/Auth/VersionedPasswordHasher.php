@@ -29,8 +29,9 @@ class VersionedPasswordHasher extends AbstractPasswordHasher {
 		}
 
 		list($hashVersion, $storedHash) = $versionedHash;
+		$salt = Configure::read('Security.oldSalt', Security::getSalt());
 		// help mitigate timing attacks by computing md5 regardless of $hashVersion
-		$V0hash = md5(Security::getSalt() . $plainTextPassword);
+		$V0hash = md5($salt . $plainTextPassword);
 		if ($hashVersion == 0) {
 			$plainTextPassword = $V0hash;
 		}

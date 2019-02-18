@@ -99,10 +99,7 @@ class AppController extends Controller
 
     public function initialize()
     {
-        $this->loadComponent('Cookie', [
-            'key' => Configure::read('Security.cookieSalt', Security::getSalt()),
-        ]);
-
+        $this->loadComponent('Cookie');
         $this->loadComponent('Csrf');
     }
 

@@ -21,7 +21,6 @@ class AppControllerTest extends IntegrationTestCase {
 			['jpn', null, '日本語'],
 			['pt_BR', 'BR', 'Português (BR)'],
 		]);
-		Configure::write('Security.cookieSalt', 'nCwygQoRC5EgFHDRNkdWS6hps74V3y9Z');
 	}
 
 	function setInterfaceLanguageCookie($lang = null) {
@@ -91,12 +90,7 @@ class AppControllerTest extends IntegrationTestCase {
 	}
 
 	function setRememberMeCookie($username, $password) {
-		$this->cookieEncrypted(
-			'User',
-			compact('username', 'password'),
-			'aes',
-			Configure::read('Security.cookieSalt')
-		);
+		$this->cookieEncrypted('User', compact('username', 'password'));
 	}
 
 	function testRememberMeAutomaticallyLogsInUser() {
