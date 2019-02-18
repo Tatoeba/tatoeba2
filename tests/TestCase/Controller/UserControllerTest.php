@@ -22,7 +22,6 @@ class UserControllerTest extends IntegrationTestCase
     public function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
-        Configure::write('Security.salt', 'ze@9422#5dS?!99xx');
 
         $users = TableRegistry::get('Users');
         $users = $users->find()->select(['username', 'password'])->all();

@@ -19,7 +19,6 @@ class TagsControllerTest extends IntegrationTestCase {
     public function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
-        Configure::write('Security.salt', 'ze@9422#5dS?!99xx');
     }
 
     private function logInAs($username) {
