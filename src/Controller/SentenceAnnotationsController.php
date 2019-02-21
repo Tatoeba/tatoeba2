@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for contributions.
@@ -110,12 +111,12 @@ class SentenceAnnotationsController extends AppController
             return;
         }
         
-        $savedAnnotation = $this->SentenceAnnotation->saveAnnotation(
-            $this->request->data['SentenceAnnotation'], CurrentUser::get('id')
+        $savedAnnotation = $this->SentenceAnnotations->saveAnnotation(
+            $this->request->getData(), CurrentUser::get('id')
         );
         
         if ($savedAnnotation) {
-            $sentenceId = $savedAnnotation['SentenceAnnotation']['sentence_id'];
+            $sentenceId = $savedAnnotation->sentence_id;
             $this->flash(
                 'Index saved.',
                 '/sentence_annotations/show/'.$sentenceId

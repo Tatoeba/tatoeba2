@@ -151,7 +151,6 @@ class SentenceAnnotationsTable extends Table
         $annotation->text = trim($data['text']);
         $annotation->user_id = $currentUserId;
 
-        $result = $this->save($annotation);
-        return $result->old_format;        
+        return $this->save($annotation);
     }
 }

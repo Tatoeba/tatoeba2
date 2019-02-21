@@ -52,7 +52,7 @@ class SentenceAnnotationsTableTest extends TestCase {
             'user_id' => $userId
         );
         $result = array_intersect_key(
-            $sentenceAnnotation['SentenceAnnotation'], $expected
+            $sentenceAnnotation->toArray(), $expected
         );
 
         $this->assertEquals($expected, $result);
@@ -78,7 +78,7 @@ class SentenceAnnotationsTableTest extends TestCase {
             'user_id' => $userId
         );
         $result = array_intersect_key(
-            $sentenceAnnotation['SentenceAnnotation'], $expected
+            $sentenceAnnotation->toArray(), $expected
         );
 
         $this->assertEquals($expected, $result);

@@ -56,38 +56,21 @@
             </p>
 
             <?php
-            echo $this->Form->create('SentenceAnnotation', array(
+            echo $this->Form->create($annotation, array(
                 "url" => array("action" => "save"))
             );
 
             // hidden ids necessary for saving
             echo '<div>';
-            echo $this->Form->hidden(
-                'SentenceAnnotation.id'
-                , array("value" => $annotation['id'])
-            );
-            echo $this->Form->hidden(
-                'SentenceAnnotation.sentence_id'
-                , array("value" => $annotation['sentence_id'])
-            );
+            echo $this->Form->hidden('id');
+            echo $this->Form->hidden('sentence_id');
             echo '</div>';
 
             // id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
-            echo $this->Form->input(
-                'meaning_id',
-                array(
-                    "type" => "text",
-                    "value" => $annotation['meaning_id']
-                )
-            );
+            echo $this->Form->input('meaning_id', ['type' => 'text']);
 
             // annotations text
-            echo $this->Form->textarea('text', array(
-                "label" => null
-                , "value" => $annotation['text']
-                , "cols" => 60
-                , "rows" => 3
-            ));
+            echo $this->Form->textarea('text', ['cols' => 60, 'rows' => 3]);
 
             // delete link
             echo $this->Html->link(

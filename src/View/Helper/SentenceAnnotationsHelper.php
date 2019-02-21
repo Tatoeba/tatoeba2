@@ -119,19 +119,9 @@ class SentenceAnnotationsHelper extends AppHelper
                 "url" => array("action" => "save")
             )
         );
-        echo $this->Form->hidden(
-            'SentenceAnnotation.sentence_id',
-            array("value" => $sentenceId)
-        );
-        echo $this->Form->input('meaning_id', array('type' => 'text'));
-        echo $this->Form->textarea(
-            'text',
-            array(
-                "label" => null,
-                "cols" => 24,
-                "rows" => 3
-            )
-        );
+        echo $this->Form->hidden('sentence_id', ['value' => $sentenceId]);
+        echo $this->Form->input('meaning_id', ['type' => 'text']);
+        echo $this->Form->textarea('text', ['cols' => 24, 'rows' => 3]);
         echo $this->Form->button('save');
         echo $this->Form->end();
         ?>
