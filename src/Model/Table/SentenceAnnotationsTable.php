@@ -35,6 +35,12 @@ class SentenceAnnotationsTable extends Table
         return $schema;
     }
 
+    public function initialize(array $config)
+    {
+        $this->belongsto('Sentences');
+        $this->belongsto('Users');
+    }
+
     /**
      * Get annotations for the sentence specified.
      *
@@ -67,18 +73,13 @@ class SentenceAnnotationsTable extends Table
      */
     public function getLatestAnnotations($limit)
     {
-        return $this->find(
-            'all',
-            array(
-                'order' => 'modified DESC',
-                'limit' => $limit,
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                )
-            )
-        );
+        return $this->find()
+            ->order(['modified' => 'DESC'])
+            ->limit($limit)
+            ->contain([
+                'Users' => ['fields' => ['username']]
+            ])
+            ->toList();
     }
 
 

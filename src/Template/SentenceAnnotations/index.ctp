@@ -57,15 +57,15 @@
     <?php
     //pr($annotations);
     foreach ($annotations as $annotation) {
-        $username = $annotation['User']['username'];
+        $username = $annotation->user->username;
         if (empty($username)) {
             $username = 'unknown';
         }
         $this->SentenceAnnotations->displayLogEntry(
-            $annotation['SentenceAnnotation']['sentence_id'],
-            $annotation['SentenceAnnotation']['text'],
+            $annotation->sentence_id,
+            $annotation->text,
             $username,
-            $annotation['SentenceAnnotation']['modified']
+            $annotation->modified
         );
     }
     ?>

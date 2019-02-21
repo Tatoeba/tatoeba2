@@ -63,7 +63,8 @@ class SentenceAnnotationsHelper extends AppHelper
                     "label" => "Sentence #"
                 )
             );
-            echo $this->Form->end('OK');
+            echo $this->Form->button('OK');
+            echo $this->Form->end();
         ?>
         </div>
         <?php
@@ -92,7 +93,8 @@ class SentenceAnnotationsHelper extends AppHelper
                     "type" => "text"
                 )
             );
-            echo $this->Form->end('OK');
+            echo $this->Form->button('OK');
+            echo $this->Form->end();
         ?>
         </div>
         <?php

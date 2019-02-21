@@ -4,20 +4,29 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\SentenceAnnotationsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\Core\Configure;
 
 class SentenceAnnotationsTableTest extends TestCase {
     public $fixtures = array(
-        'app.sentence_annotations'
+        'app.sentence_annotations',
+        'app.users',
+        'app.sentences',
     );
 
     function setUp() {
         parent::setUp();
+        Configure::write('Acl.database', 'test');
         $this->SentenceAnnotation = TableRegistry::getTableLocator()->get('SentenceAnnotations');
     }
 
     function tearDown() {
         unset($this->SentenceAnnotation);
         parent::tearDown();
+    }
+
+    function testGetLatestAnnotations() {
+        $result = $this->SentenceAnnotation->getLatestAnnotations(2);
+        $this->assertEquals(2, count($result));
     }
 
     function testSaveAnnotation_addsAnnotation() {

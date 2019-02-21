@@ -69,7 +69,7 @@ class SentenceAnnotationsController extends AppController
      */
     public function index()
     {
-        $annotations = $this->SentenceAnnotation->getLatestAnnotations(20);
+        $annotations = $this->SentenceAnnotations->getLatestAnnotations(20);
         $this->set('annotations', $annotations);
     }
 
