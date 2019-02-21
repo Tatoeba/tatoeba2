@@ -134,8 +134,9 @@ class SentenceAnnotationsController extends AppController
      */
     public function delete($id, $sentenceId)
     {
-        if ($this->SentenceAnnotation->delete($id)) {
-            $this->redirect(array("action" => "show", $sentenceId));
+        $annotation = $this->SentenceAnnotations->get($id);
+        if ($this->SentenceAnnotations->delete($annotation)) {
+            $this->redirect(['action' => 'show', $sentenceId]);
         }
     }
 

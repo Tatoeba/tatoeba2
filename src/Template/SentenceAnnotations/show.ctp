@@ -73,16 +73,17 @@
             echo $this->Form->textarea('text', ['cols' => 60, 'rows' => 3]);
 
             // delete link
-            echo $this->Html->link(
-                'delete'
-                , array(
-                    "controller" => "sentence_annotations"
-                    , "action" => "delete"
-                    , $annotation['id']
-                    , $annotation['sentence_id']
-                )
-                , array("style"=>"float:right")
-                , 'Are you sure?'
+            echo $this->Html->link('delete',
+                [
+                    'controller' => 'sentence_annotations',
+                    'action' => 'delete',
+                    $annotation->id,
+                    $annotation->sentence_id
+                ],
+                [
+                    'style' => 'float:right',
+                    'confirm' => 'Are you sure?'
+                ]
             );
 
             // save button
