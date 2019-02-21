@@ -151,17 +151,15 @@ class SentenceAnnotationsHelper extends AppHelper
                 )
             );
             echo '<div>';
-            echo $this->Form->hidden(
-                'SentenceAnnotation.textToReplace',
-                array("value" => $stringToReplace)
-            );
+            echo $this->Form->hidden('textToReplace', [
+                'id' => 'SentenceAnnotationTextToReplace',
+                'value' => $stringToReplace
+            ]);
             echo '</div>';
-            echo $this->Form->input(
-                'SentenceAnnotation.textReplacing',
-                array(
+            echo $this->Form->input('textReplacing', [
+                    'id' => 'SentenceAnnotationTextReplacing',
                     "label" => "Replace ". h($stringToReplace) ." by:"
-                )
-            );
+            ]);
             echo '<div>';
             echo $this->Form->button(
                 'Preview',

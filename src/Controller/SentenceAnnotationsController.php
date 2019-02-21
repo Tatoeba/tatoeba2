@@ -175,9 +175,9 @@ class SentenceAnnotationsController extends AppController
      */
     public function replace()
     {
-        $textToReplace = $this->request->data['SentenceAnnotation']['textToReplace'];
-        $textReplacing = $this->request->data['SentenceAnnotation']['textReplacing'];
-        $newAnnotations = $this->SentenceAnnotation->replaceTextInAnnotations(
+        $textToReplace = $this->request->getData('textToReplace');
+        $textReplacing = $this->request->getData('textReplacing');
+        $newAnnotations = $this->SentenceAnnotations->replaceTextInAnnotations(
             $textToReplace, $textReplacing
         );
         $this->set('textToReplace', $textToReplace);

@@ -21,6 +21,7 @@ namespace App\Model\Table;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
+use App\Model\CurrentUser;
 
 class SentenceAnnotationsTable extends Table
 {
@@ -113,18 +114,16 @@ class SentenceAnnotationsTable extends Table
             $pattern = preg_replace("/\|/", "\\|", $pattern);
                 // because the character | is not taken into account in quotemeta()
 
-            $annotation['SentenceAnnotation']['text'] = preg_replace(
+            $annotation->text = preg_replace(
                 "/$pattern/",
                 $textReplacing,
-                $annotation['SentenceAnnotation']['text']
+                $annotation->text
             );
 
             $newAnnotations[] = $annotation;
 
-            $this->id = $annotation['SentenceAnnotation']['id'];
-            $data['text'] = $annotation['SentenceAnnotation']['text'];
-            $data['user_id'] = CurrentUser::get('id');
-            $this->save($data);
+            $annotation->user_id = CurrentUser::get('id');
+            $this->save($annotation);
         }
 
         return $newAnnotations;

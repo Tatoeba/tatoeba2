@@ -20,17 +20,15 @@
             // sentence
             echo '<p>';
             echo $this->Html->link(
-                $annotation['Sentence']['text']
-                , array('action' => 'show', $annotation['Sentence']['id'])
+                $annotation->sentence->text
+                , array('action' => 'show', $annotation->sentence_id)
             );
             echo '</p>';
             
-            
             // annotation
             echo '<p class="annotation">';
-            echo $annotation['SentenceAnnotation']['text'];
+            echo $annotation->text;
             echo '</p>';
-            
             
             echo '<hr/>';
         }
