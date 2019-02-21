@@ -29,6 +29,11 @@ class SentenceAnnotationsTableTest extends TestCase {
         $this->assertEquals(2, count($result));
     }
 
+    function testGetAnnotationsForSentenceId() {
+        $result = $this->SentenceAnnotation->getAnnotationsForSentenceId(10);
+        $this->assertEquals('ちょっと待って。', $result->text);
+    }
+
     function testSaveAnnotation_addsAnnotation() {
         $userId = 1;
         $data = array(

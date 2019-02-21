@@ -132,7 +132,8 @@ class SentenceAnnotationsHelper extends AppHelper
                 "rows" => 3
             )
         );
-        echo $this->Form->end('save');
+        echo $this->Form->button('save');
+        echo $this->Form->end();
         ?>
         </div>
         <?php

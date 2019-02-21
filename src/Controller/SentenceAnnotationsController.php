@@ -86,16 +86,16 @@ class SentenceAnnotationsController extends AppController
             $this->redirect(
                 array(
                     "action" => "show",
-                    $this->request->data['SentenceAnnotation']['sentence_id']
+                    $this->request->getData('sentence_id')
                 )
             );
         } else {
-            $result = $this->SentenceAnnotation->getAnnotationsForSentenceId(
+            $result = $this->SentenceAnnotations->getAnnotationsForSentenceId(
                 $sentenceId
             );
 
-            $this->set('sentence', $result['Sentence']);
-            $this->set('annotations', $result['SentenceAnnotation']);
+            $this->set('sentence', $result);
+            $this->set('annotations', $result->sentence_annotations);
         }
     }
 

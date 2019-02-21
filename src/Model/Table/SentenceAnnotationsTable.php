@@ -50,16 +50,11 @@ class SentenceAnnotationsTable extends Table
      */
     public function getAnnotationsForSentenceId($sentenceId)
     {
-        return $this->Sentence->find(
-            'first',
-            array(
-                'limit' => 10,
-                'conditions' => array(
-                    'Sentence.id' => $sentenceId
-                ),
-                'contain' => array('SentenceAnnotation')
-            )
-        );
+        return $this->Sentences->find()
+            ->limit(10)
+            ->where(['Sentences.id' => $sentenceId])
+            ->contain(['SentenceAnnotations'])
+            ->first();
     }
 
 
