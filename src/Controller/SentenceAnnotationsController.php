@@ -152,14 +152,14 @@ class SentenceAnnotationsController extends AppController
         if ($query == null) {
 
             $this->redirect(
-                array('action'=>'search', $this->request->data['SentenceAnnotation']['text'])
+                ['action'=>'search', $this->request->getData('text')]
             );
 
         } else {
 
             $annotations = null;
             if (trim($query) != '') {
-                $annotations = $this->SentenceAnnotation->search($query);
+                $annotations = $this->SentenceAnnotations->search($query);
             }
             $this->set('query', $query);
             $this->set('annotations', $annotations);

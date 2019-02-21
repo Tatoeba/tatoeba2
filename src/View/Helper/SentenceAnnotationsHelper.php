@@ -171,7 +171,8 @@ class SentenceAnnotationsHelper extends AppHelper
                 )
             );
             echo '</div>';
-            echo $this->Form->end('Replace');
+            echo $this->Form->button('Replace');
+            echo $this->Form->end();
         ?>
         </div>
         <?php

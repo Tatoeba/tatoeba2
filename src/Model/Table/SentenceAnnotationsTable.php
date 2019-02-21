@@ -88,14 +88,10 @@ class SentenceAnnotationsTable extends Table
     public function search($query)
     {
         $query = preg_replace("/<space>/", " ", $query);
-        return $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'SentenceAnnotation.text LIKE' => '%'.$query.'%'
-                )
-            )
-        );
+        return $this->find()
+            ->where(['SentenceAnnotations.text LIKE' => '%'.$query.'%'])
+            ->contain(['Sentences'])
+            ->toList();
     }
 
     /**

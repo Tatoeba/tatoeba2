@@ -5,6 +5,7 @@ use App\Model\Table\SentenceAnnotationsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use Cake\Core\Configure;
+use Cake\Utility\Hash;
 
 class SentenceAnnotationsTableTest extends TestCase {
     public $fixtures = array(
@@ -82,5 +83,11 @@ class SentenceAnnotationsTableTest extends TestCase {
         );
 
         $this->assertEquals($expected, $result);
+    }
+
+    function testSeach() {
+        $result = $this->SentenceAnnotation->search('問題');
+        $resultIds = Hash::extract($result, '{n}.id');
+        $this->assertEquals([1], $resultIds);
     }
 }
