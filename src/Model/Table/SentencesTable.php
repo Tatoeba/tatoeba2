@@ -78,7 +78,9 @@ class SentencesTable extends Table
         
         $this->addBehavior('Hashable');
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Transcriptable');
+        if (Configure::read('AutoTranscriptions.enabled')) {
+            $this->addBehavior('Transcriptable');
+        }
         $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
 
         $this->getEventManager()->on(new ContributionListener());
