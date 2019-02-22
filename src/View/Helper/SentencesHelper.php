@@ -351,6 +351,7 @@ class SentencesHelper extends AppHelper
                 'id' => '_'.$id.'_text',
                 'class' => 'addTranslationsTextInput',
                 'dir' => 'auto',
+                'value' => ''
             )
         );
 
