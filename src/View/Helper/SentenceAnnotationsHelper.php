@@ -63,7 +63,8 @@ class SentenceAnnotationsHelper extends AppHelper
                     "label" => "Sentence #"
                 )
             );
-            echo $this->Form->end('OK');
+            echo $this->Form->button('OK');
+            echo $this->Form->end();
         ?>
         </div>
         <?php
@@ -92,7 +93,8 @@ class SentenceAnnotationsHelper extends AppHelper
                     "type" => "text"
                 )
             );
-            echo $this->Form->end('OK');
+            echo $this->Form->button('OK');
+            echo $this->Form->end();
         ?>
         </div>
         <?php
@@ -117,20 +119,11 @@ class SentenceAnnotationsHelper extends AppHelper
                 "url" => array("action" => "save")
             )
         );
-        echo $this->Form->hidden(
-            'SentenceAnnotation.sentence_id',
-            array("value" => $sentenceId)
-        );
-        echo $this->Form->input('meaning_id', array('type' => 'text'));
-        echo $this->Form->textarea(
-            'text',
-            array(
-                "label" => null,
-                "cols" => 24,
-                "rows" => 3
-            )
-        );
-        echo $this->Form->end('save');
+        echo $this->Form->hidden('sentence_id', ['value' => $sentenceId]);
+        echo $this->Form->input('meaning_id', ['type' => 'text']);
+        echo $this->Form->textarea('text', ['cols' => 24, 'rows' => 3]);
+        echo $this->Form->button('save');
+        echo $this->Form->end();
         ?>
         </div>
         <?php
@@ -158,17 +151,15 @@ class SentenceAnnotationsHelper extends AppHelper
                 )
             );
             echo '<div>';
-            echo $this->Form->hidden(
-                'SentenceAnnotation.textToReplace',
-                array("value" => $stringToReplace)
-            );
+            echo $this->Form->hidden('textToReplace', [
+                'id' => 'SentenceAnnotationTextToReplace',
+                'value' => $stringToReplace
+            ]);
             echo '</div>';
-            echo $this->Form->input(
-                'SentenceAnnotation.textReplacing',
-                array(
+            echo $this->Form->input('textReplacing', [
+                    'id' => 'SentenceAnnotationTextReplacing',
                     "label" => "Replace ". h($stringToReplace) ." by:"
-                )
-            );
+            ]);
             echo '<div>';
             echo $this->Form->button(
                 'Preview',
@@ -178,7 +169,8 @@ class SentenceAnnotationsHelper extends AppHelper
                 )
             );
             echo '</div>';
-            echo $this->Form->end('Replace');
+            echo $this->Form->button('Replace');
+            echo $this->Form->end();
         ?>
         </div>
         <?php

@@ -74,6 +74,7 @@ class SentencesTable extends Table
             'foreignKey' => 'favorite_id'
         ]);
         $this->hasMany('SentenceComments');
+        $this->hasMany('SentenceAnnotations');
         
         $this->addBehavior('Hashable');
         $this->addBehavior('Timestamp');

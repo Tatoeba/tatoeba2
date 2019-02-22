@@ -21,6 +21,7 @@ namespace App\Model\Table;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
+use App\Model\CurrentUser;
 
 class SentenceAnnotationsTable extends Table
 {
@@ -35,6 +36,12 @@ class SentenceAnnotationsTable extends Table
         return $schema;
     }
 
+    public function initialize(array $config)
+    {
+        $this->belongsto('Sentences');
+        $this->belongsto('Users');
+    }
+
     /**
      * Get annotations for the sentence specified.
      *
@@ -44,16 +51,11 @@ class SentenceAnnotationsTable extends Table
      */
     public function getAnnotationsForSentenceId($sentenceId)
     {
-        return $this->Sentence->find(
-            'first',
-            array(
-                'limit' => 10,
-                'conditions' => array(
-                    'Sentence.id' => $sentenceId
-                ),
-                'contain' => array('SentenceAnnotation')
-            )
-        );
+        return $this->Sentences->find()
+            ->limit(10)
+            ->where(['Sentences.id' => $sentenceId])
+            ->contain(['SentenceAnnotations'])
+            ->first();
     }
 
 
@@ -67,18 +69,13 @@ class SentenceAnnotationsTable extends Table
      */
     public function getLatestAnnotations($limit)
     {
-        return $this->find(
-            'all',
-            array(
-                'order' => 'modified DESC',
-                'limit' => $limit,
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                )
-            )
-        );
+        return $this->find()
+            ->order(['modified' => 'DESC'])
+            ->limit($limit)
+            ->contain([
+                'Users' => ['fields' => ['username']]
+            ])
+            ->toList();
     }
 
 
@@ -92,14 +89,10 @@ class SentenceAnnotationsTable extends Table
     public function search($query)
     {
         $query = preg_replace("/<space>/", " ", $query);
-        return $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'SentenceAnnotation.text LIKE' => '%'.$query.'%'
-                )
-            )
-        );
+        return $this->find()
+            ->where(['SentenceAnnotations.text LIKE' => '%'.$query.'%'])
+            ->contain(['Sentences'])
+            ->toList();
     }
 
     /**
@@ -121,18 +114,16 @@ class SentenceAnnotationsTable extends Table
             $pattern = preg_replace("/\|/", "\\|", $pattern);
                 // because the character | is not taken into account in quotemeta()
 
-            $annotation['SentenceAnnotation']['text'] = preg_replace(
+            $annotation->text = preg_replace(
                 "/$pattern/",
                 $textReplacing,
-                $annotation['SentenceAnnotation']['text']
+                $annotation->text
             );
 
             $newAnnotations[] = $annotation;
 
-            $this->id = $annotation['SentenceAnnotation']['id'];
-            $data['text'] = $annotation['SentenceAnnotation']['text'];
-            $data['user_id'] = CurrentUser::get('id');
-            $this->save($data);
+            $annotation->user_id = CurrentUser::get('id');
+            $this->save($annotation);
         }
 
         return $newAnnotations;
@@ -155,7 +146,6 @@ class SentenceAnnotationsTable extends Table
         $annotation->text = trim($data['text']);
         $annotation->user_id = $currentUserId;
 
-        $result = $this->save($annotation);
-        return $result->old_format;        
+        return $this->save($annotation);
     }
 }

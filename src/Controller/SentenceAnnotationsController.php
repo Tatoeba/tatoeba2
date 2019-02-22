@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use App\Model\CurrentUser;
 
 /**
  * Controller for contributions.
@@ -69,7 +70,7 @@ class SentenceAnnotationsController extends AppController
      */
     public function index()
     {
-        $annotations = $this->SentenceAnnotation->getLatestAnnotations(20);
+        $annotations = $this->SentenceAnnotations->getLatestAnnotations(20);
         $this->set('annotations', $annotations);
     }
 
@@ -86,16 +87,16 @@ class SentenceAnnotationsController extends AppController
             $this->redirect(
                 array(
                     "action" => "show",
-                    $this->request->data['SentenceAnnotation']['sentence_id']
+                    $this->request->getData('sentence_id')
                 )
             );
         } else {
-            $result = $this->SentenceAnnotation->getAnnotationsForSentenceId(
+            $result = $this->SentenceAnnotations->getAnnotationsForSentenceId(
                 $sentenceId
             );
 
-            $this->set('sentence', $result['Sentence']);
-            $this->set('annotations', $result['SentenceAnnotation']);
+            $this->set('sentence', $result);
+            $this->set('annotations', $result->sentence_annotations);
         }
     }
 
@@ -110,12 +111,12 @@ class SentenceAnnotationsController extends AppController
             return;
         }
         
-        $savedAnnotation = $this->SentenceAnnotation->saveAnnotation(
-            $this->request->data['SentenceAnnotation'], CurrentUser::get('id')
+        $savedAnnotation = $this->SentenceAnnotations->saveAnnotation(
+            $this->request->getData(), CurrentUser::get('id')
         );
         
         if ($savedAnnotation) {
-            $sentenceId = $savedAnnotation['SentenceAnnotation']['sentence_id'];
+            $sentenceId = $savedAnnotation->sentence_id;
             $this->flash(
                 'Index saved.',
                 '/sentence_annotations/show/'.$sentenceId
@@ -133,8 +134,9 @@ class SentenceAnnotationsController extends AppController
      */
     public function delete($id, $sentenceId)
     {
-        if ($this->SentenceAnnotation->delete($id)) {
-            $this->redirect(array("action" => "show", $sentenceId));
+        $annotation = $this->SentenceAnnotations->get($id);
+        if ($this->SentenceAnnotations->delete($annotation)) {
+            $this->redirect(['action' => 'show', $sentenceId]);
         }
     }
 
@@ -150,14 +152,14 @@ class SentenceAnnotationsController extends AppController
         if ($query == null) {
 
             $this->redirect(
-                array('action'=>'search', $this->request->data['SentenceAnnotation']['text'])
+                ['action'=>'search', $this->request->getData('text')]
             );
 
         } else {
 
             $annotations = null;
             if (trim($query) != '') {
-                $annotations = $this->SentenceAnnotation->search($query);
+                $annotations = $this->SentenceAnnotations->search($query);
             }
             $this->set('query', $query);
             $this->set('annotations', $annotations);
@@ -173,9 +175,9 @@ class SentenceAnnotationsController extends AppController
      */
     public function replace()
     {
-        $textToReplace = $this->request->data['SentenceAnnotation']['textToReplace'];
-        $textReplacing = $this->request->data['SentenceAnnotation']['textReplacing'];
-        $newAnnotations = $this->SentenceAnnotation->replaceTextInAnnotations(
+        $textToReplace = $this->request->getData('textToReplace');
+        $textReplacing = $this->request->getData('textReplacing');
+        $newAnnotations = $this->SentenceAnnotations->replaceTextInAnnotations(
             $textToReplace, $textReplacing
         );
         $this->set('textToReplace', $textToReplace);
@@ -190,23 +192,21 @@ class SentenceAnnotationsController extends AppController
      */
     public function last_modified()
     {
-        $pagination = array(
-            'SentenceAnnotation' => array(
-                'fields' => array(
-                    'sentence_id',
-                    'modified',
-                    'user_id',
-                    'text'
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                ),
-                'limit' => 200,
-                'order' => 'modified DESC'
-            )
-        );
+        $pagination = [
+            'fields' => [
+                'sentence_id',
+                'modified',
+                'user_id',
+                'text'
+            ],
+            'contain' => [
+                'Users' => [
+                    'fields' => ['username']
+                ]
+            ],
+            'limit' => 200,
+            'order' => ['modified' => 'DESC']
+        ];
 
         $this->paginate = $pagination;
         $results = $this->paginate();
