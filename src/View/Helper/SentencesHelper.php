@@ -408,7 +408,7 @@ class SentencesHelper extends AppHelper
             __('Cancel'),
             array(
                 'id' => '_'.$id.'_cancel',
-                'type' => 'reset',
+                'type' => 'button',
                 'class'=>'cancel button'
             )
         );
