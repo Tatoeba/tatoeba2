@@ -5,7 +5,7 @@
 # Translators:
 # Christian <kubi@online.ms>, 2014-2015
 # Fabian Becker <halfdan@xnorfz.de>, 2017
-# Lisa <pfirsichbaeumchen@tatoeba.org>, 2014-2018
+# Lisa <pfirsichbaeumchen@tatoeba.org>, 2014-2019
 # Tommy, 2014
 # Trang, 2014
 # Wasilis Mandratzis-Walz, 2015
@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 12:02+0000\n"
-"PO-Revision-Date: 2019-01-25 12:45+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-02-18 16:01+0000\n"
+"Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -459,11 +459,11 @@ msgstr[1] "Die folgenden Schriftzeichen sind noch nicht transkribiert: {charsEnu
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
-msgstr ""
+msgstr "Die Nachricht darf nicht leer sein."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L84
 msgid "You must fill the \"To\" field."
-msgstr ""
+msgstr "Es muss ein Empfänger angegeben werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L326
 msgid ""
@@ -813,7 +813,7 @@ msgstr "Es sind keine vertonten Sätze vorhanden."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L57
 msgid "(total {{count}})"
-msgstr ""
+msgstr "(insgesamt {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L22
 msgid "Audio contributed by {username}"
@@ -1112,7 +1112,7 @@ msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>.\n"
 "        By closing this announcement, you agree with the new Terms of Use.\n"
 "        If you have any question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr ""
+msgstr "Es gelten neue <a href=\"{termsOfUse}\">Nutzungsbedingungen</a>. Mit dem Schließen dieser Mitteilung erklärst du dich mit denselben einverstanden. Bei Fragen <a href=\"{contact}\">melde dich</a> bei uns."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L78
 msgid ""
@@ -1233,7 +1233,7 @@ msgstr "Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L185
 msgid "Our data is released under various Creative Commons licenses."
-msgstr ""
+msgstr "Unser Material wird unter verschiedenen Creative-Commons-Lizenzen veröffentlicht."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L188
 msgid "More information"
@@ -1729,11 +1729,11 @@ msgstr "Dieser Benutzer hat keine Lieblingssätze."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L35
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L43
 msgid "Back"
-msgstr ""
+msgstr "Zurück"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
@@ -1995,7 +1995,7 @@ msgstr "Die Dateien stehen unter der Lizenz CC-BY zur Verfügung."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
 msgid "A part of our sentences are also available under CC0."
-msgstr ""
+msgstr "Ein Teil unserer Sätze ist unter der Lizenz CC0 verfügbar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L95
 msgid "Licenses covering audio"
@@ -2136,11 +2136,11 @@ msgstr "Die erste Datei (sentences.tar.bz2) beinhaltet einzig diese Angaben. Die
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L210
 msgid "Sentences (CC0)"
-msgstr ""
+msgstr "Sätze (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L231
 msgid "Contains all the sentences available under CC0."
-msgstr ""
+msgstr "Enthalten: alle unter der Lizenz CC0 verfügbaren Sätze."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L238
 msgid "Links"
@@ -2439,7 +2439,7 @@ msgstr "Wir bitten, diese Unannehmlichkeit zu entschuldigen!"
 msgid ""
 "These Terms of Use have not been translated yet into your language. Below is"
 " the original version in French."
-msgstr ""
+msgstr "Diese Nutzungsbedingungen liegen in deiner Sprache noch nicht in Übersetzung vor. Es folgt die französische Originalfassung."
 
 #. @translators: this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
@@ -2465,7 +2465,7 @@ msgstr "- Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L38
 msgid "You have reached your message limit for today"
-msgstr ""
+msgstr "Du hast für heute die maximale Nachrichtenanzahl erreicht."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L40
 msgid ""
@@ -2519,7 +2519,7 @@ msgstr "Kommentare zu Sätzen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L39
 msgid "Comments on sentences (total {{count}})"
-msgstr ""
+msgstr "Kommentare zu Sätzen (insgesamt {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L40
 msgid "{user}'s comments"
@@ -3128,11 +3128,11 @@ msgstr "Alle Etiketten anzeigen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L68
 msgid "All tags (total {{count}})"
-msgstr ""
+msgstr "Alle Etiketten (insgesamt {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L73
 msgid "Tags containing: {search} (total {count})"
-msgstr ""
+msgstr "Etiketten mit dem Ausdruck „{search}“ (insgesamt {count})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L83
 msgid "count"
@@ -3517,7 +3517,7 @@ msgstr "Suche"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L80
 msgid "Members (total {number})"
-msgstr ""
+msgstr "Mitglieder (insgesamt {number})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L94
 msgid "Member status"
@@ -3525,7 +3525,7 @@ msgstr "Mitgliedstatus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Can switch license"
-msgstr ""
+msgstr "Lizenzänderung möglich"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
@@ -4325,8 +4325,8 @@ msgstr "alle Listen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L37
 msgid "{title} ({n} result)"
 msgid_plural "{title} ({n}&nbsp;results)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{title} ({n} Ergebnis)"
+msgstr[1] "{title} ({n}&nbsp;Ergebjisse)"
 
 #. @translators: this formats the title at the top of the search
 #. page by appending the number of results. Tatoeba is only able
@@ -4336,8 +4336,8 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L48
 msgid "{title} ({thousand}&nbsp;results out of {n} occurrence)"
 msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{title} ({thousand}&nbsp;Ergebnisse von {n}&nbsp;Treffer)"
+msgstr[1] "{title} ({thousand}&nbsp;Ergebnisse von {n}&nbsp;Treffern)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L79
 msgid "Recently added sentences may not appear in search results."

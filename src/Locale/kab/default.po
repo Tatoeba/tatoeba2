@@ -6,7 +6,7 @@
 # MozillaKab <belkacem77@gmail.com>, 2019
 # MozillaKab <belkacem77@gmail.com>, 2018
 # Slimane AMIRI, 2018
-# Slimane AMIRI, 2018
+# Slimane AMIRI, 2018-2019
 # Trang, 2018
 # Trang, 2018
 msgid ""
@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 12:02+0000\n"
-"PO-Revision-Date: 2019-01-25 12:45+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-02-02 15:51+0000\n"
+"Last-Translator: Slimane AMIRI\n"
 "Language-Team: Kabyle (http://www.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -458,11 +458,11 @@ msgstr[1] "Isekkilen-a ur ttwarun ara: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
-msgstr ""
+msgstr "Ur tezmireḍ ad tazneḍ tafyirt tilemt."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L84
 msgid "You must fill the \"To\" field."
-msgstr ""
+msgstr "Illaq ad teččareḍ urti \"Ɣeṛ\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L326
 msgid ""
@@ -812,7 +812,7 @@ msgstr "Ulac tifyar s umeslaw"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L57
 msgid "(total {{count}})"
-msgstr ""
+msgstr "(total {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L22
 msgid "Audio contributed by {username}"
@@ -1111,7 +1111,7 @@ msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>.\n"
 "        By closing this announcement, you agree with the new Terms of Use.\n"
 "        If you have any question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr ""
+msgstr "Nleqqem <a href=\"{termsOfUse}\">twtilin-nneɣ n useqdec</a>.\n      S umdel n ulɣy-a, ad tqebleḍ tiwtilin timaynutin n useqdec.\n      Ma tesεiḍ asteqsi, ur ttkukru ar <a href=\"{contact}\">ad aɣ-d-tremseḍ</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L78
 msgid ""
@@ -1728,11 +1728,11 @@ msgstr "Aseqdac-a ur ɣur-s ara inurifen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L35
 msgid "Error"
-msgstr ""
+msgstr "Tuccḍa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L43
 msgid "Back"
-msgstr ""
+msgstr "Uɣal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
@@ -2135,11 +2135,11 @@ msgstr "Afaylu amezwaru (sentences.tar.bz2) yegber talɣut i yiman-is. Afaylu wi
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L210
 msgid "Sentences (CC0)"
-msgstr ""
+msgstr "Tifyar (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L231
 msgid "Contains all the sentences available under CC0."
-msgstr ""
+msgstr "Igber akk tifyar illan ddaw  turagt CC0."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L238
 msgid "Links"
@@ -3127,11 +3127,11 @@ msgstr "Sken akk tibzimin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L68
 msgid "All tags (total {{count}})"
-msgstr ""
+msgstr "Akk tibzimin (total {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L73
 msgid "Tags containing: {search} (total {count})"
-msgstr ""
+msgstr "Tibzimin gebrent: {search} (total {count})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L83
 msgid "count"
@@ -3516,7 +3516,7 @@ msgstr "anadi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L80
 msgid "Members (total {number})"
-msgstr ""
+msgstr "Imttekiyen (total {number})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L94
 msgid "Member status"
@@ -3524,7 +3524,7 @@ msgstr "Addad n umedraw"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Can switch license"
-msgstr ""
+msgstr "Izmer ad ibeddel turagt"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 12:02+0000\n"
-"PO-Revision-Date: 2019-01-25 13:52+0000\n"
+"PO-Revision-Date: 2019-02-19 09:06+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/tatoeba/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -215,7 +215,7 @@ msgstr "Non ti è permesso cambiare la licenza di questa frase."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1102
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr "La licenza della frase è stata cambiata a “{newLicense}”."
+msgstr "La licenza della frase è stata cambiata in “{newLicense}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1107
 msgid "Unable to change the license to “{newLicense}” because:"
@@ -1744,7 +1744,7 @@ msgstr "Il cambio di licenza delle tue frasi è completato. Ti è stato mandato 
 msgid ""
 "The license switch of your sentences is in progress. You will receive a "
 "private message when it will be completed."
-msgstr ""
+msgstr "Il cambio di licenza delle tue frasi è in corso. Riceverai un messaggio privato quando sarà completato."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L28
 msgid ""
@@ -1761,7 +1761,7 @@ msgid ""
 "This page allows you to massively switch the license of your sentences to "
 "{CC0-link}. Among all your sentences, only the ones that meet the following "
 "conditions will be affected."
-msgstr ""
+msgstr "Questa pagina ti permette di cambiare in massa la licenza delle tue frasi in {CC0-link}. Fra tutte le tue frasi, solamente quelle che rispettano le seguenti condizioni saranno coinvolte."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L39
 msgid "The current license of the sentence must be CC BY 2.0 FR."
@@ -1777,7 +1777,7 @@ msgstr "La frase deve essere originale e non derivata da traduzioni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L45
 msgid "Press the following button to initiate the license switch."
-msgstr ""
+msgstr "Premi il seguente pulsante per iniziare il cambio di licenza."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L49
 msgid ""
@@ -2228,7 +2228,7 @@ msgstr "Puoi consultare le <a href=\"{}\">domande frequenti</a>."
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
-msgstr ""
+msgstr "Se non riesci a trovare la risposta alla tua domanda, non esitare a <a href=\"{}\">contattarci</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L61
 msgid "Getting started"
@@ -2239,7 +2239,7 @@ msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
-msgstr ""
+msgstr "Se non hai idea di cosa fare ora che sei registrato, puoi presentarti sulla <a href=\"{wall}\">bacheca</a>, oppure unirti alla nostra <a href=\"{chatroom}\">chat</a>. Ti daremo un obiettivo. :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L84
 msgid ""
@@ -3520,7 +3520,7 @@ msgstr "Ruolo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Can switch license"
-msgstr ""
+msgstr "Può cambiare la licenza"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
@@ -4332,7 +4332,7 @@ msgstr[1] "{title} ({n}&nbsp;risultati)"
 msgid "{title} ({thousand}&nbsp;results out of {n} occurrence)"
 msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
 msgstr[0] "{title} ({thousand}&nbsp;risultati su {n} occorrenza)"
-msgstr[1] "{title} ({thousand}&nbsp;risultati su{n}&nbsp;occorrenze)"
+msgstr[1] "{title} ({thousand}&nbsp;risultati su {n}&nbsp;occorrenze)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L79
 msgid "Recently added sentences may not appear in search results."
