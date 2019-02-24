@@ -5,6 +5,7 @@ use App\Controller\UserController;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\Utility\Security;
 
 class UserControllerTest extends IntegrationTestCase
 {
@@ -22,6 +23,7 @@ class UserControllerTest extends IntegrationTestCase
     public function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
+        Security::setSalt('ze@9422#5dS?!99xx');
 
         $users = TableRegistry::get('Users');
         $users = $users->find()->select(['username', 'password'])->all();
@@ -70,7 +72,7 @@ class UserControllerTest extends IntegrationTestCase
             'new_password' => $newPassword,
             'new_password2' => $newPassword,
         ]);
-        $this->assertFlashMessage('New password has been saved.');
+        $this->assertPassword('changed', $username);
     }
 
     public function testSavePassword_failsIfNewPasswordIsEmpty() {
