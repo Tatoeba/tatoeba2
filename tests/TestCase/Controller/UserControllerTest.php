@@ -70,7 +70,7 @@ class UserControllerTest extends IntegrationTestCase
             'new_password' => $newPassword,
             'new_password2' => $newPassword,
         ]);
-        $this->assertPassword('changed', $username);
+        $this->assertFlashMessage('New password has been saved.');
     }
 
     public function testSavePassword_failsIfNewPasswordIsEmpty() {
