@@ -21,4 +21,9 @@
   - { role: setup_nihongoparserd, force_install: no }
   - { role: setup_sinoparserd, force_install: no }
   - { role: setup_suggestd, force_install: no }
-  - { role: setup_tatodetect, force_install: no }
+
+  tasks:
+  - import_tasks: install.yml
+    vars:
+      repo: https://github.com/Tatoeba/Tatodetect
+      force_install: no
