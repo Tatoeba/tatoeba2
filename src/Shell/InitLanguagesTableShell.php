@@ -25,7 +25,11 @@ use Cake\Core\Configure;
 
 class InitLanguagesTableShell extends Shell {
 
-    public $uses = array('Language');
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadModel('Languages');
+    }
 
     private function get_tatoeba_languages() {
         Configure::write('Config.language', 'eng');
@@ -39,7 +43,7 @@ class InitLanguagesTableShell extends Shell {
     }
 
     private function removeStats() {
-        $this->Language->deleteAll(true, false);
+        $this->Languages->deleteAll('1=1');
     }
 
     private function insertLanguages() {
@@ -50,13 +54,14 @@ class InitLanguagesTableShell extends Shell {
             },
             $codes
         );
-        $this->Language->saveMany($data);
+        $entities = $this->Languages->newEntities($data);
+        $this->Languages->saveMany($entities);
     }
 
     private function insertStats() {
         $updateScript = ROOT . '/docs/database/scripts/update_languages_stats.sql';
         $script = file_get_contents($updateScript);
-        $this->Language->query($script);
+        $this->Languages->query($script);
     }
 
     private function run() {
