@@ -119,6 +119,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                     'langFrom',
                     $langsFrom,
                     array(
+                        'id' => 'ActivityLangFrom',
                         'value' => $currentLanguage,
                         'class' => 'language-selector',
                         "empty" => false
@@ -137,6 +138,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                     'langTo',
                     $langsTo,
                     array(
+                        'id' => 'ActivityLangTo',
                         'value' => $notTranslatedInto,
                         'class' => 'language-selector',
                         "empty" => false

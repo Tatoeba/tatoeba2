@@ -11,6 +11,9 @@ $this->Form->unlockField($name);
      title="{{vm.selectedItem.name}}">
      <?= $this->Form->hidden($name, array('value' => '{{vm.selectedItem.code}}')); ?>
     <md-autocomplete
+<? if (isset($id)): ?>
+        md-input-id="<?= $id ?>"
+<? endif; ?>
         md-menu-class="language-dropdown"
         md-selected-item="vm.selectedItem"
         md-selected-item-change="vm.onSelectedItemChange()"

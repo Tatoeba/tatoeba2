@@ -91,11 +91,12 @@ echo $this->Form->create(
 
     <div layout="row" layout-align="center end">
         <div layout="column">
-            <label for="SentenceTo"><?= __('From') ?></label>
+            <label for="SentenceFrom"><?= __('From') ?></label>
             <?php
             echo $this->element(
                 'language_dropdown', 
                 array(
+                    'id' => 'SentenceFrom',
                     'name' => 'from',
                     'selectedLanguage' => $selectedLanguageFrom,
                     'languages' => $this->Search->getLangs(),
@@ -117,6 +118,7 @@ echo $this->Form->create(
             echo $this->element(
                 'language_dropdown', 
                 array(
+                    'id' => 'SentenceTo',
                     'name' => 'to',
                     'selectedLanguage' => $selectedLanguageTo,
                     'languages' => $this->Search->getLangs(),
