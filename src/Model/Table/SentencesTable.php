@@ -172,7 +172,7 @@ class SentencesTable extends Table
     }
 
     public function canSwitchLicense($check, $context) {
-        if (CurrentUser::isModerator()) {
+        if (CurrentUser::isAdmin()) {
             return true;
         }
         
