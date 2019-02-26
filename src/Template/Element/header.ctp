@@ -29,7 +29,7 @@ use Cake\Core\Configure;
 <li id="logo">
     <?php
     if (Configure::read('Tatoeba.devStylesheet')) {
-        $name = 'TatoeDev';
+        $name = 'TatoDev';
     } else {
         $name = __('Tatoeba');
     }
