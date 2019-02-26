@@ -28,7 +28,7 @@
   notify: reload php-fpm
 
 - name: Drop php-fpm configuration
-  copy:
+  template:
     src: tatoeba.conf
     dest: /etc/php/7.0/fpm/pool.d
     owner: root

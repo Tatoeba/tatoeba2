@@ -1,5 +1,10 @@
 ---
 
+# Configure the machine to be a:
+# 'prod': production server
+# 'dev': development server
+deploy_for: 'dev'
+
 # Variables for ssh
 # -----------------
 ansible_ssh_user: vagrant
