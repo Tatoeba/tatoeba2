@@ -102,8 +102,8 @@ echo $this->Form->input(
     )
 );
 // Checkbox
-echo $this->Form->checkbox('rememberMe');
-echo '<label for="UserRememberMe" class="notInBlackBand">';
+echo $this->Form->checkbox('rememberMe', ['id' => 'rememberMe']);
+echo '<label for="rememberMe" class="notInBlackBand">';
 echo __('Remember me');
 echo '</label>';
 // Login button
