@@ -143,9 +143,12 @@ class SphinxBehavior extends Behavior
                 $ids = array(0);
             }
             $query->where(['Sentences.id IN' => $ids]);
-            if (in_array($options['sort'], ['created', 'modified'])) {
-                $query->order(['Sentences.'.$options['sort'] => 'DESC']);
-            }            
+
+            // Make sure that we order results according to the $ids array,
+            // which contains the order provided by Sphinx. 
+            // We have to set the second param of order() to true to override 
+            // some previous ordering on the created/modified columns.
+            $query->order(['FIND_IN_SET(Sentences.id, \'' . implode(',', $ids) . '\')'], true);
 
         /*}*/
 
