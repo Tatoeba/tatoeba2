@@ -53,7 +53,10 @@ use Cake\Core\Configure;
         $controller = $this->request->getParam("controller");
         $controller = Cake\Utility\Inflector::delimit($controller);
         $action = $this->request->getParam("action");
-        echo $this->Html->css(CSS_PATH . $controller."/".$action .".css");
+        $specificCSS = CSS_PATH . "$controller/$action.css";
+        if (file_exists(Configure::read('App.cssBaseUrl') . $specificCSS)) {
+            echo $this->Html->css($specificCSS);
+        }
 
         echo $this->element('seo_international_targeting');
     ?>
