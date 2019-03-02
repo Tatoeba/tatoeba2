@@ -1,5 +1,4 @@
 <?
-$this->Html->script(JS_PATH . 'directives/language-dropdown.dir.js', array('block' => 'scriptBottom'));
 $languagesJSON = htmlspecialchars(json_encode($languages), ENT_QUOTES, 'UTF-8');
 $selectedLanguage = isset($selectedLanguage) ? $selectedLanguage : '';
 $placeholder = isset($placeholder) ? $placeholder : __('Select a language');

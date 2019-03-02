@@ -24,8 +24,6 @@
 * @license  Affero General Public License
 * @link     http://tatoeba.org
 */
-
-$this->Html->script(JS_PATH . 'elements/search-bar.ctrl.js', array('block' => 'scriptBottom'));
 ?>
 
 <div class="topContent">
