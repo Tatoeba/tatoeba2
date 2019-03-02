@@ -727,16 +727,13 @@ class SentencesHelper extends AppHelper
     }
 
     /**
-     * Inline Javascript for AJAX loaded sentences group.
+     * Javascript for AJAX loaded sentences group.
      *
      * @return void
      */
-    public function javascriptForAJAXSentencesGroup($inline = true) {
-        if($inline) {
-            $options = [];
-        } else {
-            $options = array('block' => 'scriptBottom');
-        }
+    public function javascriptForAJAXSentencesGroup() {
+        $options = ['block' => 'scriptBottom'];
+
         // defined in config/asset_compress.ini
         $this->AssetCompress->script('sentences-block-for-members.js', $options);
         $this->Html->script('jquery.jeditable.js', $options);
