@@ -22,7 +22,7 @@ class PrivateMessagesFixture extends TestFixture {
 		'folder' => ['type' => 'string', 'null' => false, 'default' => 'Inbox', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'title' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'content' => ['type' => 'text', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
-		'isnonread' => ['type' => 'integer', 'null' => false, 'default' => '1', 'length' => 4, 'unsigned' => false],
+		'isnonread' => ['type' => 'boolean', 'null' => false, 'default' => '1', 'length' => 4, 'unsigned' => false],
 		'draft_recpts' => ['type' => 'string', 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'sent' => ['type' => 'integer', 'null' => false, 'default' => '1', 'length' => 4, 'unsigned' => false],
 		'_indexes' => [
