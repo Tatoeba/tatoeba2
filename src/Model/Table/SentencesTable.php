@@ -1239,7 +1239,7 @@ class SentencesTable extends Table
             $dirtyArray = explode("_", $sentenceId);
 
             return [
-                'id' => $dirtyArray[1],
+                'id' => (int)$dirtyArray[1],
                 'lang' => $dirtyArray[0]
             ];
         }
