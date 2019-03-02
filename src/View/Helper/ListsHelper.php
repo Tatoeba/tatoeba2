@@ -448,7 +448,6 @@ class ListsHelper extends AppHelper
 
 
     private function _displayRemoveButton($sentenceId) {
-        $this->Sentences->javascriptForAJAXSentencesGroup(false);
         $this->Html->script(
             JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
         );
