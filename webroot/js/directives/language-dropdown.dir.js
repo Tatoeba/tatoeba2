@@ -28,103 +28,101 @@
     function languageDropdown() {
         return {
             scope: true,
-            controller: LanguageDropdownController,
-            controllerAs: 'vm'
-        };
-    }
+            controllerAs: 'vm',
+            controller: ['$scope', function($scope) {
+                var vm = this;
+                var languages = [];
+                var name = '';
 
-    function LanguageDropdownController($scope) {
-        var vm = this;
-        var languages = [];
-        var name = '';
-
-        vm.previousSelectedItem = languages[0];
-        vm.selectedItem = null;
-        vm.searchText = '';
-
-        vm.init = init;
-        vm.querySearch = querySearch;
-        vm.onSelectedItemChange = onSelectedItemChange;
-        vm.onSearchTextChange = onSearchTextChange;
-        vm.onBlur = onBlur;
-        vm.onFocus = onFocus;
-
-        /////////////////////////////////////////////////////////////////////////
-
-        $scope.$on('setLang', function(event, data){
-            if (data.name && data.name === name) {
-                setLang(data.lang);
-            }
-        });
-
-        /////////////////////////////////////////////////////////////////////////
-
-        function init(data, selectedLang, dropdownName) {
-            var isPriority;
-            name = dropdownName;
-            
-            Object.keys(data).forEach(function (key1) {
-                if (typeof data[key1] === 'object'){
-                    var items = data[key1];
-                    isPriority = !isPriority && key1 !== '0';
-                    Object.keys(items).forEach(function (key2) {
-                        languages.push({code: key2, name: items[key2], isPriority: isPriority});
-                    });
-                } else {
-                    languages.push({code: key1, name: data[key1]});
-                }
-            });
-
-            if (selectedLang) {
-                setLang(selectedLang);
-            }
-        }
-
-        function querySearch(value) {
-            if (value) {
-                var search = value.toLowerCase();
-                return languages.filter(function (item) {
-                    var language = item.name.toLowerCase();
-                    return language.indexOf(search) > -1;
-                }).sort(function(itemA, itemB) {
-                    var nameA = itemA.name.toLowerCase();
-                    var nameB = itemB.name.toLowerCase();
-                    return nameA.indexOf(search) > nameB.indexOf(search);
-                });
-            } else {
-                return languages;
-            }
-        }
-
-        function onSelectedItemChange(item) {
-            if (vm.selectedItem) {
-                $scope.$parent.$broadcast('languageChange', {name: name, lang: vm.selectedItem.code});
-            }            
-        }
-
-        function setLang(lang) {
-            vm.selectedItem = languages.find(function (item) {
-                return item.code === lang;
-            });
-            $scope.$parent.$broadcast('languageChange', {name: name, lang: lang});
-        }
-
-        function onSearchTextChange() {
-            vm.searchText = vm.searchText.replace(/\t/, ' ');
-        }
-
-        function onBlur() {
-            if (!vm.selectedItem) {
-                vm.selectedItem = vm.previousSelectedItem;
-            }
-        }
-
-        function onFocus() {
-            if (vm.selectedItem) {
-                vm.previousSelectedItem = vm.selectedItem;
+                vm.previousSelectedItem = languages[0];
+                vm.selectedItem = null;
                 vm.searchText = '';
-            }
-        }
+
+                vm.init = init;
+                vm.querySearch = querySearch;
+                vm.onSelectedItemChange = onSelectedItemChange;
+                vm.onSearchTextChange = onSearchTextChange;
+                vm.onBlur = onBlur;
+                vm.onFocus = onFocus;
+
+                /////////////////////////////////////////////////////////////////////////
+
+                $scope.$on('setLang', function(event, data){
+                    if (data.name && data.name === name) {
+                        setLang(data.lang);
+                    }
+                });
+
+                /////////////////////////////////////////////////////////////////////////
+
+                function init(data, selectedLang, dropdownName) {
+                    var isPriority;
+                    name = dropdownName;
+                    
+                    Object.keys(data).forEach(function (key1) {
+                        if (typeof data[key1] === 'object'){
+                            var items = data[key1];
+                            isPriority = !isPriority && key1 !== '0';
+                            Object.keys(items).forEach(function (key2) {
+                                languages.push({code: key2, name: items[key2], isPriority: isPriority});
+                            });
+                        } else {
+                            languages.push({code: key1, name: data[key1]});
+                        }
+                    });
+
+                    if (selectedLang) {
+                        setLang(selectedLang);
+                    }
+                }
+
+                function querySearch(value) {
+                    if (value) {
+                        var search = value.toLowerCase();
+                        return languages.filter(function (item) {
+                            var language = item.name.toLowerCase();
+                            return language.indexOf(search) > -1;
+                        }).sort(function(itemA, itemB) {
+                            var nameA = itemA.name.toLowerCase();
+                            var nameB = itemB.name.toLowerCase();
+                            return nameA.indexOf(search) > nameB.indexOf(search);
+                        });
+                    } else {
+                        return languages;
+                    }
+                }
+
+                function onSelectedItemChange(item) {
+                    if (vm.selectedItem) {
+                        $scope.$parent.$broadcast('languageChange', {name: name, lang: vm.selectedItem.code});
+                    }            
+                }
+
+                function setLang(lang) {
+                    vm.selectedItem = languages.find(function (item) {
+                        return item.code === lang;
+                    });
+                    $scope.$parent.$broadcast('languageChange', {name: name, lang: lang});
+                }
+
+                function onSearchTextChange() {
+                    vm.searchText = vm.searchText.replace(/\t/, ' ');
+                }
+
+                function onBlur() {
+                    if (!vm.selectedItem) {
+                        vm.selectedItem = vm.previousSelectedItem;
+                    }
+                }
+
+                function onFocus() {
+                    if (vm.selectedItem) {
+                        vm.previousSelectedItem = vm.selectedItem;
+                        vm.searchText = '';
+                    }
+                }
+            }]
+        };
     }
 
 })();

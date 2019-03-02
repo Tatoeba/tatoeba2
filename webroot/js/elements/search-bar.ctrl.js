@@ -19,45 +19,43 @@
 
     angular
         .module('app')
-        .controller('SearchBarController', SearchBarController);
+        .controller('SearchBarController', ['$scope', function($scope) {
+            var vm = this;
 
-    function SearchBarController($scope) {
-        var vm = this;
+            vm.searchQuery = angular.element('#SentenceQuery').data('query');
+            vm.langFrom = '';
+            vm.langTo = '';
+            
+            vm.clearSearch = clearSearch;
+            vm.swapLanguages = swapLanguages;
 
-        vm.searchQuery = angular.element('#SentenceQuery').data('query');
-        vm.langFrom = '';
-        vm.langTo = '';
-        
-        vm.clearSearch = clearSearch;
-        vm.swapLanguages = swapLanguages;
+            ///////////////////////////////////////////////////////////////////////////
 
-        ///////////////////////////////////////////////////////////////////////////
+            $scope.$on('languageChange', function(event, data){
+                if (data.name === 'from') {
+                    vm.langFrom = data.lang;
+                }
+                if (data.name === 'to') {
+                    vm.langTo = data.lang;
+                }
+            });
 
-        $scope.$on('languageChange', function(event, data){
-            if (data.name === 'from') {
-                vm.langFrom = data.lang;
+            $scope.$on('langToChange', function(event, data){
+                vm.langTo = data;
+            });
+
+            ///////////////////////////////////////////////////////////////////////////
+
+            function clearSearch() {
+                vm.searchQuery = '';
+                angular.element('#SentenceQuery').focus();
             }
-            if (data.name === 'to') {
-                vm.langTo = data.lang;
+
+            function swapLanguages() {
+                var newLangFrom = vm.langTo;
+                var newLangTo = vm.langFrom;
+                $scope.$broadcast('setLang', { name: 'from', lang: newLangFrom});
+                $scope.$broadcast('setLang', { name: 'to', lang: newLangTo});
             }
-        });
-
-        $scope.$on('langToChange', function(event, data){
-            vm.langTo = data;
-        });
-
-        ///////////////////////////////////////////////////////////////////////////
-
-        function clearSearch() {
-            vm.searchQuery = '';
-            angular.element('#SentenceQuery').focus();
-        }
-
-        function swapLanguages() {
-            var newLangFrom = vm.langTo;
-            var newLangTo = vm.langFrom;
-            $scope.$broadcast('setLang', { name: 'from', lang: newLangFrom});
-            $scope.$broadcast('setLang', { name: 'to', lang: newLangTo});
-        }
-    }
+        }]);
 })();
