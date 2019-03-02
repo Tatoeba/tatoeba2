@@ -17,8 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$this->Sentences->javascriptForAJAXTranslationsGroup();
-
 if (!$saved) {
 ?>
 <div id="_<?php echo $sentenceId ?>_message" class="error"><?php echo htmlentities($message) ?></div>

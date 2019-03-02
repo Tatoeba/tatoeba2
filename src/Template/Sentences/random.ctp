@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-
-$this->Sentences->javascriptForAJAXSentencesGroup();
 if (is_null($random)) {
    echo $this->Html->tag('p', format(__('An error occurred while fetching the random sentence. '.
                                   'If this persists, please <a href="{}">let us know</a>.', true),

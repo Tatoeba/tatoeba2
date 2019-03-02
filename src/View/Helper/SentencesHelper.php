@@ -746,15 +746,7 @@ class SentencesHelper extends AppHelper
             $this->Html->script('clipboard.min.js', $options);
             $this->Html->script('sentences.copy.js', $options);
         }
-        $this->javascriptForAJAXTranslationsGroup($inline);
-    }
 
-    public function javascriptForAJAXTranslationsGroup($inline = true) {
-        if($inline) {
-            $options = [];
-        } else {
-            $options = array('block' => 'scriptBottom');
-        }
         $this->Html->script('sentences.play_audio.js', $options);
         $this->Html->script('links.add_and_delete.js', $options);
         $this->Html->script('sentences.logs.js', $options);
