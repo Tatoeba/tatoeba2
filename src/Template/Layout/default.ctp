@@ -46,9 +46,8 @@ use Cake\Core\Configure;
         // the name of the controller.
 
         // Generic
-        echo $this->Html->css(CSS_PATH . 'angular-material.min.css');
-        echo $this->Html->css(CSS_PATH . 'layouts/default.css');
-        echo $this->Html->css(CSS_PATH . 'layouts/elements.css');
+        // layout.css is defined in config/asset_compress.ini
+        echo $this->AssetCompress->css('layout.css');
 
         // Specific
         $controller = $this->request->getParam("controller");
