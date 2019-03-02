@@ -56,9 +56,7 @@ $(document).ready(function(){
                         favoriteOption.parent().parent().find(".lang.column").css("display", "");
                     }
                 }
-                favoriteOption.replaceWith(data);
-                $('.favorite').off();
-                $('.favorite').click(clickHandler);
+                favoriteOption.watch("replaceWith", data);
             });
         };
         $('.favorite').off();
