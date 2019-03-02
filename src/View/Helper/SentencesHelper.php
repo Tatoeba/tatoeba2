@@ -749,7 +749,6 @@ class SentencesHelper extends AppHelper
 
         $this->Html->script('sentences.play_audio.js', $options);
         $this->Html->script('sentences.logs.js', $options);
-        $this->Html->script('transcriptions.js', $options);
     }
 
 
