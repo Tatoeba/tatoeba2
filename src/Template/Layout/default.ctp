@@ -122,19 +122,8 @@ use Cake\Core\Configure;
     echo $this->element('foot');
     echo $this->element('sql_dump');
 
-    echo $this->Html->script(JS_PATH . 'jquery-1.11.3.min.js');
-    echo $this->Html->script(JS_PATH . 'angular/angular.min.js');
-    echo $this->Html->script(JS_PATH . 'angular/angular-animate.min.js');
-    echo $this->Html->script(JS_PATH . 'angular/angular-aria.min.js');
-    echo $this->Html->script(JS_PATH . 'angular/angular-material.min.js');
-    echo $this->Html->script(JS_PATH . 'angular/angular-messages.min.js');
-    echo $this->Html->script(JS_PATH . 'watch.js');
-    echo $this->Html->script(JS_PATH . 'responsive/app.module.js');
-
-    echo $this->Html->script(JS_PATH . 'generic_functions.js');
-    // Source: https://github.com/jonathantneal/svg4everybody
-    // This is needed to make "fill: currentColor" work on every browser.
-    echo $this->Html->script(JS_PATH . 'svg4everybody.min.js');
+    // layout.js is defined in config/asset_compress.ini
+    echo $this->AssetCompress->script('layout.js');
 
     echo $this->fetch('scriptBottom');
 
