@@ -95,9 +95,7 @@ class MenuHelper extends AppHelper
             echo '</a>';
 
         } else if ($isLogged) {
-            $this->Html->script('sentences.add_translation.js', array('block' => 'scriptBottom'));
             $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
             ?>
             <a><?php echo $translateButton;?></a>
            <?php
@@ -170,7 +168,6 @@ class MenuHelper extends AppHelper
             $svgIconOptions['class'] .= ' adopt-item uneditable';
             $contents = $this->Images->svgIcon($image, $svgIconOptions);
         } else {
-            $this->Html->script('sentences.adopt.js', array('block' => 'scriptBottom'));
             $contents = $this->Images->svgIcon($image, $svgIconOptions);
             $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
@@ -235,7 +232,6 @@ class MenuHelper extends AppHelper
         ));
 
         if ($isLogged) {
-            $this->Html->script('favorites.add.js', array('block' => 'scriptBottom'));
             ?>
             <a><?php echo $favoriteImage;?></a>
             <?php
@@ -299,7 +295,6 @@ class MenuHelper extends AppHelper
         ?>
         </li>
         <?php
-        $this->Html->script('sentences.link.js', array('block' => 'scriptBottom'));
     }
 
     /**
@@ -356,8 +351,6 @@ class MenuHelper extends AppHelper
         if (!$isLogged) {
             return;
         }
-
-        $this->Html->script('sentences_lists.menu.js', array('block' => 'scriptBottom'));
 
         $SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
         $lists = $SentencesLists->getUserChoices(
@@ -539,8 +532,6 @@ class MenuHelper extends AppHelper
 
     public function correctnessButton($sentenceId)
     {
-        $this->Html->script('collections.add_remove.js', array('block' => 'scriptBottom'));
-
         $userCorrectness = CurrentUser::correctnessForSentence($sentenceId);
 
         $icons = array(

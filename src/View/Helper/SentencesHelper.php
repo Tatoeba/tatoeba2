@@ -57,6 +57,7 @@ use Cake\Utility\Hash;
 class SentencesHelper extends AppHelper
 {
     public $helpers = array(
+        'AssetCompress.AssetCompress',
         'Html',
         'Form',
         'SentenceButtons',
@@ -90,6 +91,11 @@ class SentencesHelper extends AppHelper
         $options = array(),
         $duplicate = false
     ) {
+        if (CurrentUser::isMember()) {
+            // defined in config/asset_compress.ini
+            $this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
+        }
+
         $options = array_merge(
             array(
                 'withAudio' => true,
@@ -731,24 +737,17 @@ class SentencesHelper extends AppHelper
         } else {
             $options = array('block' => 'scriptBottom');
         }
-        $this->Html->script('sentences.add_translation.js', $options);
-        $this->Html->script('favorites.add.js', $options);
-        $this->Html->script('sentences_lists.menu.js', $options);
-        $this->Html->script('sentences.adopt.js', $options);
+        // defined in config/asset_compress.ini
+        $this->AssetCompress->script('sentences-block-for-members.js', $options);
         $this->Html->script('jquery.jeditable.js', $options);
-        $this->Html->script('sentences.edit_in_place.js', $options);
         $this->Html->script('transcriptions.js', $options);
-        $this->Html->script('sentences.change_language.js', $options);
-        $this->Html->script('sentences.link.js', $options);
         $this->Html->script('sentences.collapse.js', $options);
-        $this->Html->script('collections.add_remove.js', $options);
         if (CurrentUser::getSetting('copy_button')) {
             $this->Html->script('clipboard.min.js', $options);
             $this->Html->script('sentences.copy.js', $options);
         }
 
         $this->Html->script('sentences.play_audio.js', $options);
-        $this->Html->script('links.add_and_delete.js', $options);
         $this->Html->script('sentences.logs.js', $options);
         $this->Html->script('transcriptions.js', $options);
     }
