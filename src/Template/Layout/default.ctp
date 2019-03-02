@@ -131,24 +131,22 @@ use Cake\Core\Configure;
     echo $this->Html->script(JS_PATH . 'watch.js');
     echo $this->Html->script(JS_PATH . 'responsive/app.module.js');
 
-    $scriptOptions = array('block' => 'scriptBottom');
-
-    $this->Html->script(JS_PATH . 'generic_functions.js', $scriptOptions);
+    echo $this->Html->script(JS_PATH . 'generic_functions.js');
     // Source: https://github.com/jonathantneal/svg4everybody
     // This is needed to make "fill: currentColor" work on every browser.
-    $this->Html->script(JS_PATH . 'svg4everybody.min.js', $scriptOptions);
+    echo $this->Html->script(JS_PATH . 'svg4everybody.min.js');
+
+    echo $this->fetch('scriptBottom');
 
     if (CurrentUser::getSetting('copy_button')) {
-        $this->Html->script(JS_PATH . 'clipboard.min.js', $scriptOptions);
-        $this->Html->script(JS_PATH . 'sentences.copy.js', $scriptOptions);
+        echo $this->Html->script(JS_PATH . 'clipboard.min.js');
+        echo $this->Html->script(JS_PATH . 'sentences.copy.js');
     }
 
     if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        $this->Html->script(JS_PATH . 'jquery.cookie.js', $scriptOptions);
-        $this->Html->script(JS_PATH . 'announcement.js', $scriptOptions);
+        echo $this->Html->script(JS_PATH . 'jquery.cookie.js');
+        echo $this->Html->script(JS_PATH . 'announcement.js');
     }
-
-    echo $this->fetch('scriptBottom');
 
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', array('cache' => true));
