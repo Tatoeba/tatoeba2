@@ -28,6 +28,9 @@ use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
 $this->Sentences->javascriptForAJAXSentencesGroup(false);
+$this->Html->script(
+    JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
+);
 
 $listCount = $this->Paginator->param('count');
 $listId = $list['id'];
