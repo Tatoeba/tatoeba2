@@ -78,12 +78,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
     
     <div class="section" md-whiteframe="1">
     <h2><?php echo __('Creative commons'); ?></h2>
-    <p><?php echo __('These files are released under CC-BY.'); ?></p>
-    <a rel="license" href="https://creativecommons.org/licenses/by/2.0/">
+    <p><?php echo __('These files are released under CC BY 2.0 FR.'); ?></p>
+    <a rel="license" href="https://creativecommons.org/licenses/by/2.0/fr/">
     <img alt="Creative Commons License CC-BY" style="border-width:0"
         src="/img/cc-by-2.0-88x31.png" />
     </a>
-    <p><?= __('A part of our sentences are also available under CC0.') ?></p>
+    <p><?= __('A part of our sentences are also available under CC0 1.0.') ?></p>
     <a rel="license" href="https://creativecommons.org/publicdomain/zero/1.0/legalcode">
     <img alt="Creative Commons License CC0" style="border-width:0"
         src="/img/cc0-1.0-88x31.png" />
