@@ -53,7 +53,7 @@ use Cake\Core\Configure;
         $controller = $this->request->getParam("controller");
         $controller = Cake\Utility\Inflector::delimit($controller);
         $action = $this->request->getParam("action");
-        $specificCSS = CSS_PATH . "$controller/$action.css";
+        $specificCSS = "$controller/$action.css";
         if (file_exists(Configure::read('App.cssBaseUrl') . $specificCSS)) {
             echo $this->Html->css($specificCSS);
         }
