@@ -10,20 +10,18 @@
 
 - name: Copy CakePHP config files from remote host
   fetch:
-    src: "{{ code_dir }}/app/Config/{{ item }}.template"
+    src: "{{ code_dir }}/config/{{ item }}.template"
     dest: "roles/update_code/templates/{{ item }}.template"
     flat: yes
   with_items:
-  - database.php
-  - core.php
+  - app_local.php
 
 - name: Template out CakePHP config files
   template:
     src: "{{ item }}.template"
-    dest: "{{ code_dir }}/app/Config/{{ item }}"
+    dest: "{{ code_dir }}/config/{{ item }}"
   with_items:
-  - database.php
-  - core.php
+  - app_local.php
 
 - name: Fetch composer dependencies
   composer:
@@ -38,7 +36,8 @@
     recurse: yes
     mode: 0777
   with_items:
-  - app/webroot/img/profiles_128
-  - app/webroot/img/profiles_36
-  - app/tmp/logs
-  - app/tmp/cache
+  - webroot/img/profiles_128
+  - webroot/img/profiles_36
+  - tmp/logs
+  - tmp/cache
+  - logs

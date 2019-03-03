@@ -4,44 +4,50 @@
   command: service nihongoparserd stop
   when: install_state is success and force_install == true
   ignore_errors: yes
+
 - name: Install dependencies for nihongoparserd
-  apt: name={{item}} state=present
-  with_items:
-  - make
-  - cmake
-  - g++
-  - libevent-dev
-  - libexpat1-dev
-  - libgmm++-dev
-  - libmecab-dev
-  - mecab-naist-jdic
+  apt:
+    name: ['make', 'cmake', 'g++', 'libevent-dev', 'libexpat1-dev', 'libgmm++-dev', 'libmecab-dev', 'mecab-naist-jdic']
+    state: present
+
 - name: Fetch nihongoparserd source
   git: repo=https://github.com/allan-simon/nihongoparserd.git dest=/tmp/nihongoparserd
+
 - name: Generate Makefile
   shell: cmake . && cmake . chdir=/tmp/nihongoparserd
+
 - name: Compile
   command: make chdir=/tmp/nihongoparserd
+
 - name: Copy Binaries
   command: cp nihongoparserd /usr/local/bin/nihongoparserd chdir=/tmp/nihongoparserd
+
 - name: Copy init file to system-wide location
   command: cp conf/nihongoparserd /etc/init.d/ chdir=/tmp/nihongoparserd
+
 - name: Give execute permissions to the binaries
   file:
     path: /etc/init.d/nihongoparserd
     mode: 0755
+
 - name: Copy default file to system-wide location
   command: cp conf/default /etc/default/nihongoparserd chdir=/tmp/nihongoparserd
+
 - name: Create user nihongoparserd
   user: name=nihongoparserd system=yes
+
 - name: Start the daemon
   command: /etc/init.d/nihongoparserd start
+
 - name: Add startup entry
   command: update-rc.d nihongoparserd defaults
+
 - name: Remove temporary files
   command: rm -rf /tmp/nihongoparserd
+
 - name: Enable auto-transcriptions
   replace:
-    path: '{{code_dir}}/app/Config/core.php'
-    regexp: 'Configure::write\(.AutoTranscriptions\.enabled.,[^)]+\)'
-    replace: 'Configure::write(''AutoTranscriptions.enabled'', true)'
+    path: '{{code_dir}}/config/app_local.php'
+    regexp: "'AutoTranscriptions' => \\[[^\\]]+\\]"
+    replace: "'AutoTranscriptions' => [ 'enabled' => true ]"
     validate: 'php -l %s'

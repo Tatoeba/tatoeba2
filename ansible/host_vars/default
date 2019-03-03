@@ -22,7 +22,7 @@ ansible_ssh_pipelining: yes
 # ---------------------------------
 nginx_config_file: default
 main_server_name: localhost
-main_server_root: "{{code_dir}}/app/webroot"
+main_server_root: "{{code_dir}}/webroot"
 audio_server_name: audio.tatoeba.org
 audio_server_root: /var/www-audio/
 downloads_server_name: downloads.tatoeba.org
@@ -58,6 +58,7 @@ git_remote: origin
 # change the repository to your own fork to contribute
 git_rep: https://github.com/Tatoeba/tatoeba2.git
 
+security_salt: c0e82d920f0dbfb5e3c8d314278eed6c07b35e2bfcecdef4afc2136d391f01c2
 # Variables for test server (leave unchanged if you don't need them or don't know what they mean)
 mysql_test_user: tatouser
 mysql_test_password: tatoeba
