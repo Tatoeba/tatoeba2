@@ -122,7 +122,7 @@ $(document).ready(function() {
          */
         $( ".language-selector" ).change(function() {
             if ($(this).val()!='auto') {
-                var lang_flag_url = '/img/flags/'+$(this).val()+'.png';
+                var lang_flag_url = '/img/flags/'+$(this).val()+'.svg';
                 $(this).next().attr('src', lang_flag_url);
                 $(this).next().attr('alt', $(this).val());
                 $(this).next().show();
