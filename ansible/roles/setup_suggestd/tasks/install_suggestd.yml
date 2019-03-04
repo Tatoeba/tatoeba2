@@ -6,17 +6,10 @@
 
 - name: Install dependencies for suggestd
   apt:
-    name: "{{item}}"
+    name: ['gcc', 'automake',
+           'make', 'libevent-dev', 'libsqlite3-dev', 'libexpat1-dev', 'pkg-config',
+           'default-libmysqlclient-dev']
     state: present
-  with_items:
-  - gcc
-  - automake
-  - make
-  - libevent-dev
-  - libsqlite3-dev
-  - libexpat1-dev
-  - pkg-config
-  - default-libmysqlclient-dev
 
 - name: Fetch suggestd source
   git:
@@ -66,6 +59,11 @@
     dest: /etc/default/suggestd
     mode: 0644
 
+- name: Create user suggestd
+  user:
+    name: suggestd
+    system: yes
+
 - name: Copy config file to system-wide location
   template:
     src: suggestd.xml.j2
@@ -73,11 +71,6 @@
     owner: root
     group: suggestd
     mode: 0640
-
-- name: Create user suggestd
-  user:
-    name: suggestd
-    system: yes
 
 - name: Reload daemons
   systemd:

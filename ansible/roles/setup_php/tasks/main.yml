@@ -2,24 +2,12 @@
 
 - name: Install php
   apt:
-    name: '{{ item }}'
+    name: ['php-fpm', 'php-cli',
+           'php-mysql', 'php-intl', 'php-curl', 'php-memcached', 'php-imagick',
+           'php-mcrypt', 'php-xml', 'php-mbstring', 'php-zip', 'memcached', 'composer']
     update_cache: yes
     cache_valid_time: 36000
     state: latest
-  with_items:
-  - php-fpm
-  - php-cli
-  - php-mysql
-  - php-intl
-  - php-curl
-  - php-memcached
-  - php-imagick
-  - php-mcrypt
-  - php-xml
-  - php-mbstring
-  - php-zip
-  - memcached
-  - composer
 
 - name: Remove default fpm pool
   file:
