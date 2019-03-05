@@ -90,7 +90,7 @@ if ($sentenceOwnerLink) {
 ?>
 
 <? if (!isset($hideSentence) || !$hideSentence) { ?>
-<div class="comment sentence" md-whiteframe="2">
+<div class="comment sentence md-whiteframe-1dp">
     <div class="info">
         <?= format(
             $sentenceInfoLabel,
