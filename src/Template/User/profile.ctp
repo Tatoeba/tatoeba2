@@ -151,7 +151,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     'action' => 'settings'
                 ));
                 ?>
-                <div layout="row" layout-align="end center">
+                <div ng-cloak layout="row" layout-align="end center">
                     <md-button class="md-primary md-raised"
                                aria-label="<?= __('Edit') ?>"
                                href="<?= $editSettingsUrl ?>">
@@ -168,7 +168,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 </div>
 
 <div id="main_content">
-    <div id="profile" class="section with-title-button" layout="column" md-whiteframe="1">
+    <div ng-cloak id="profile" class="section with-title-button" layout="column" md-whiteframe="1">
 
         <div layout="row" class="header">
             <div>
@@ -303,7 +303,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         ?>
     </div>
 
-    <div class="section with-title-button" md-whiteframe="1">
+    <div ng-cloak class="section with-title-button" md-whiteframe="1">
         <div layout="row" layout-align="start center">
             <h2 flex><? echo __('Languages'); ?></h2>
             <?php
