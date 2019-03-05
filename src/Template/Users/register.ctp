@@ -49,15 +49,6 @@ echo $this->Form->create('User', array(
     'ng-controller' => 'UsersRegisterController as ctrl'
 ));
 
-
-echo $this->Form->checkbox(
-    'mask_password',
-    array(
-        'class' => 'ng-hide',
-        'value' => '{{registration.maskPassword}}'
-    )
-);
-
 $lang = Configure::read('Config.language');
 $label = format(
     __('I accept the <a href="{}">terms of use</a>'),
