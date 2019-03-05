@@ -359,8 +359,6 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                         echo $this->Languages->icon(
                             $langCode,
                             array(
-                                'width' => 30,
-                                'height' => 20,
                                 'class' => 'language-icon'
                             )
                         );

@@ -54,8 +54,6 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
         $langCode,
         array(
             'ng-cloak' => true,
-            'width' => 30,
-            'height' => 20,
             'class' => 'md-secondary lang'
         )
     );

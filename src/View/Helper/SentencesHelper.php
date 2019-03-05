@@ -385,8 +385,6 @@ class SentencesHelper extends AppHelper
             $preSelectedLang,
             array(
                 'class' => 'flag translationLang_flag',
-                'width' => '30',
-                'height' => '20',
                 'style' => $display
             )
         );

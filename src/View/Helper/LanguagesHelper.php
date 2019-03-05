@@ -381,13 +381,7 @@ class LanguagesHelper extends AppHelper
      */
     function stat($langCode, $numberOfSentences, $link)
     {
-        $flagImage = $this->icon(
-            $langCode,
-            array(
-                'width' => 30,
-                'height' => 20
-            )
-        );
+        $flagImage = $this->icon($langCode);
         $numberOfSentencesHtml = '<span class="total">'.$numberOfSentences.'</span>';
 
         if (empty($langCode)) {
@@ -417,7 +411,7 @@ class LanguagesHelper extends AppHelper
      *
      * @return string
      */
-    public function icon($lang, $options)
+    public function icon($lang, $options = array())
     {
         if (empty($lang)) {
             $lang = 'unknown';
@@ -425,6 +419,8 @@ class LanguagesHelper extends AppHelper
 
         $options["title"] = $this->codeToNameAlone($lang);
         $options["alt"] = $lang;
+        $options["width"] = 30;
+        $options["height"] = 20;
 
         return $this->Html->image(
             IMG_PATH . 'flags/'.$lang.'.png',

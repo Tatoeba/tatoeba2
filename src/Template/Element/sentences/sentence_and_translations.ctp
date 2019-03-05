@@ -67,13 +67,7 @@ if (isset($sentence->highlight)) {
              layout="row" layout-align="start center">
             <div class="lang">
                 <?
-                echo $this->Languages->icon(
-                    $sentence->lang,
-                    array(
-                        'width' => 30,
-                        'height' => 20
-                    )
-                );
+                echo $this->Languages->icon($sentence->lang);
                 ?>
             </div>
             <div class="text" flex
