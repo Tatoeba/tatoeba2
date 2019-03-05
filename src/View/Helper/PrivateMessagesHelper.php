@@ -79,14 +79,12 @@ class PrivateMessagesHelper extends AppHelper
 
         <div class="body">
             <div class="pmFields">
-            <div ng-hide="true">
             <?php
             if (!$isReply) {
-                echo $this->Form->input('messageId', array('value' => $pm->id));
+                echo $this->Form->hidden('messageId', array('value' => $pm->id));
             }
-            echo $this->Form->input('submitType', array('value' => ''));
+            echo $this->Form->hidden('submitType', array('value' => ''));
             ?>
-            </div>
             <?php
             echo $this->Form->control('recipients', [
                 'label' => __x('message', 'To'),
