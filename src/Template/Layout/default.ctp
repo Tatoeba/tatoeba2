@@ -62,7 +62,7 @@ use Cake\Core\Configure;
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
 </head>
-<body ng-app="app" ng-cloak>
+<body ng-app="app">
     <div id="audioPlayer"></div>
 
     <!--  TOP  -->
