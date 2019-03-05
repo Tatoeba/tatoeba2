@@ -747,6 +747,11 @@ md-button {
     vertical-align: middle;
 }
 
+md-icon {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .md-button {
     padding: 0 10px;
     font-size: 16px;
