@@ -108,13 +108,14 @@ if ($sentenceOwnerLink) {
         echo $this->Languages->icon(
             $sentenceLang,
             array(
+                'ng-cloak' => true,
                 'width' => 30,
                 'height' => 20,
                 'class' => 'lang'
             )
         );
         ?>
-        <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+        <md-button ng-cloak class="md-icon-button" href="<?= $sentenceUrl ?>">
             <md-icon>info</md-icon>
         </md-button>
     </div>
