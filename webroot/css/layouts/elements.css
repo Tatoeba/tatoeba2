@@ -643,6 +643,7 @@ html[dir="rtl"] .comment.sentence .text {
 .paging {
     margin: 20px 0;
     text-align: center;
+    min-height: 26px;
 }
 
 .paging li {
@@ -652,6 +653,7 @@ html[dir="rtl"] .comment.sentence .text {
 .paging li a {
     padding: 5px 8px;
     margin: 3px;
+    line-height: 24px;
     background: #EEEEEE;
     color: #757575;
 }

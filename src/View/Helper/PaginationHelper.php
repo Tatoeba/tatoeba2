@@ -112,6 +112,7 @@ class PaginationHelper extends AppHelper
         <ul class="paging">
             <?php
             $prevIcon = $this->Html->tag('md-icon', 'keyboard_arrow_left', [
+                'ng-cloak' => true,
                 // @translators Appears on “previous page” links
                 // mouseover. Keyboard shortcut is between brackets.
                 'title' => __('Previous page [Ctrl+←]'),
@@ -121,6 +122,7 @@ class PaginationHelper extends AppHelper
             echo $this->Paginator->numbers($numbersOptions);
 
             $nextIcon = $this->Html->tag('md-icon', 'keyboard_arrow_right', [
+                'ng-cloak' => true,
                 // @translators Appears on “next page” links
                 // mouseover. Keyboard shortcut is between brackets.
                 'title' => __('Next page [Ctrl+→]'),
