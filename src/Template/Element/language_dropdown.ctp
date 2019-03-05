@@ -11,6 +11,7 @@ $this->Form->unlockField($name);
      title="{{vm.selectedItem.name}}">
      <?= $this->Form->hidden($name, array('value' => '{{vm.selectedItem.code}}')); ?>
     <md-autocomplete
+        ng-cloak
 <? if (isset($id)): ?>
         md-input-id="<?= $id ?>"
 <? endif; ?>
