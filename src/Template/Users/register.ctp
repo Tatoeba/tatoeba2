@@ -58,15 +58,6 @@ echo $this->Form->checkbox(
     )
 );
 
-echo $this->Form->checkbox(
-    'acceptation_terms_of_use',
-    array(
-        'class' => 'ng-hide',
-        'checked' => '{{registration.termsOfUse}}',
-        'value' => '{{registration.termsOfUse ? 1 : 0 }}'
-    )
-);
-
 $lang = Configure::read('Config.language');
 $label = format(
     __('I accept the <a href="{}">terms of use</a>'),
@@ -75,6 +66,7 @@ $label = format(
 ?>
 <h2><? echo __('Register'); ?></h2>
 
+<div ng-cloak>
 <div layout="row" layout-align="center center">
     <md-input-container class="md-icon-float md-icon-left md-block" flex>
         <label for="registrationUsername"><?php echo __('Username'); ?></label>
@@ -259,6 +251,15 @@ $label = format(
     <md-checkbox ng-model="registration.termsOfUse" class="md-primary">
         <?= $label ?>
     </md-checkbox>
+    <? echo $this->Form->checkbox(
+        'acceptation_terms_of_use',
+        array(
+            'class' => 'ng-hide',
+            'class' => 'ng-hide',
+            'checked' => '{{registration.termsOfUse}}',
+            'value' => '{{registration.termsOfUse ? 1 : 0 }}'
+        )
+    ); ?>
 </md-input-container>
 
 <div layout="column">
@@ -266,7 +267,7 @@ $label = format(
         <?php echo __('Register'); ?>
     </md-button>
 </div>
-
+</div>
 
 <?php
 echo $this->Form->end();

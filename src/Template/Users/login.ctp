@@ -71,7 +71,8 @@ echo $this->Form->create(
 
 ?>
 <div md-whiteframe="1" id="login-form">
-    <h2><? echo __('Log in'); ?></h2>
+  <h2><? echo __('Log in'); ?></h2>
+  <div ng-cloak>
     <md-input-container class="md-block">
         <?php
         echo $this->Form->input(
@@ -123,6 +124,7 @@ echo $this->Form->create(
             <?php echo __('Register'); ?>
         </md-button>
     </div>
+  </div>
 </div>
 <?php
 echo $this->Form->end();
