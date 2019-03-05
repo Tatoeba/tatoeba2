@@ -147,7 +147,8 @@ if ($sentenceOwnerLink) {
                 $confirmation = 'onclick="return confirm(\''.$msg.'\');"';
             }
             ?>
-            <md-button class="md-icon-button" <?= $confirmation ?>
+            <md-button ng-cloak
+                       class="md-icon-button" <?= $confirmation ?>
                        href="<?= $this->Url->build($menuItem['url']) ?>"
                        aria-label="<?= $itemLabel ?>">
                 <md-icon><?= $menuItem['icon'] ?></md-icon>
