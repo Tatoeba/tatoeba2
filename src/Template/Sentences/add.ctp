@@ -93,7 +93,8 @@ $vocabularyUrl = $this->Url->build(array(
             echo $this->Form->create('Sentence', [
                 'id' => 'sentence-form',
                 'url' => '/sentences/add_an_other_sentence',
-                'onsubmit' => 'return false'
+                'onsubmit' => 'return false',
+                'ng-cloak' => true,
             ]);
             ?>
 
@@ -175,7 +176,7 @@ $vocabularyUrl = $this->Url->build(array(
         </div>
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div ng-cloak class="section" md-whiteframe="1">
         <div layout="column" layout-align="center center">
             <? echo __('Check out the vocabulary for which we need sentences'); ?>
             <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
