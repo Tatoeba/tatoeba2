@@ -50,6 +50,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         echo $this->Html->tag('h2', $title);
 
         echo $this->Form->create($userLanguage, [
+            'ng-cloak' => true,
             'url' => ['controller' => 'users_languages', 'action' => 'save']
         ]);
         echo $this->Form->hidden('id');
