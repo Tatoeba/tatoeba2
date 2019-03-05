@@ -117,7 +117,7 @@ class PrivateMessagesHelper extends AppHelper
             ]);
             ?>
             </div>
-            <div layout="row" layout-align="end center" layout-padding>
+            <div ng-cloak layout="row" layout-align="end center" layout-padding>
                 <md-button type="submit" name="submitType" value="saveDraft" class="md-raised">
                     <?php echo __('Save as draft'); ?>
                 </md-button>
