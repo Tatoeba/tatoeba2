@@ -739,6 +739,13 @@ md-toolbar {
     transition: none;
 }
 
+md-button {
+    display: inline-block;
+    margin: 6px 8px;
+    min-height: 36px;
+    min-width: 88px;
+}
+
 .md-button {
     padding: 0 10px;
     font-size: 16px;
