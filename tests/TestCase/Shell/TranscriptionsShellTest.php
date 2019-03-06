@@ -76,4 +76,10 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
         $this->assertNotEquals($before->text, $after->text);
     }
+
+    public function testAutogen_batched()
+    {
+        $this->TS->batchOperationSize = 2;
+        $this->testAutogen_forAllSentences();
+    }
 }

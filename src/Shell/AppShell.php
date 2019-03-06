@@ -67,8 +67,8 @@ class AppShell extends Shell {
             }
         }
 
-        $o1parts = explode('.', $order1);
-        $o2parts = explode('.', $order2);
+        $o1field = explode('.', $order1)[1];
+        $o2field = explode('.', $order2)[1];
         $proceeded = 0;
         $options = array_merge(
             array(
@@ -94,8 +94,8 @@ class AppShell extends Shell {
             $proceeded += call_user_func_array(array($this, $operation), $args);
             $lastRow = end($data);
             if ($lastRow) {
-                $lastValue1 = $lastRow[ $o1parts[0] ][ $o1parts[1] ];
-                $lastValue2 = $lastRow[ $o2parts[0] ][ $o2parts[1] ];
+                $lastValue1 = $lastRow->$o1field;
+                $lastValue2 = $lastRow->$o2field;
                 $options['conditions'][$conditionKey] = $this->_orderCondition($order1, $lastValue1, $order2, $lastValue2);
             }
         } while ($data);
