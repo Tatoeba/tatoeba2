@@ -90,40 +90,4 @@ class TranscriptableBehavior extends Behavior
             false
         );
     }
-
-    public function afterFind(Model $model, $results, $primary = false) {
-        foreach ($results as &$result) {
-            if ($primary) {
-                if (isset($result[$model->alias])) {
-                    $sentence = $result[$model->alias];
-                } else {
-                    continue;
-                }
-            } else {
-                $sentence = $result;
-            }
-
-            /* Add script on the fly if missing */
-            if (isset($result['Sentence'])
-                && !isset($sentence['script'])
-                && isset($sentence['lang'])
-                && isset($sentence['text'])) {
-                $sentence['script'] = $model->Transcription->detectScript(
-                    $sentence['lang'],
-                    $sentence['text']
-                );
-            }
-
-            /* Add transcriptions on the fly if missing */
-            if (isset($result['Transcription'])
-                && isset($sentence['lang'])
-                && isset($sentence['text'])) {
-                $result['Transcription'] =
-                    $model->Transcription->addGeneratedTranscriptions(
-                        $result['Transcription'], $sentence
-                    );
-            }
-        }
-        return $results;
-    }
 }
