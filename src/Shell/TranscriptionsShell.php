@@ -34,15 +34,14 @@ class TranscriptionsShell extends AppShell {
     private function detectTranscriptionsFor($data) {
         $result = array();
         foreach ($data as $row) {
-            $model = key($row);
-            $lang = isset($row[$model]['lang']) ?
-                    $row[$model]['lang'] :
-                    $row[$model]['sentence_lang'];
-            $text = $row[$model]['text'];
-            $script = $this->Transcription->detectScript($lang, $text);
+            $lang = isset($row->lang) ?
+                    $row->lang :
+                    $row->sentence_lang;
+            $text = $row->text;
+            $script = $this->Transcriptions->detectScript($lang, $text);
 
             $result[] = array(
-                'id' => $row[$model]['id'],
+                'id' => $row->id,
                 'script' => $script,
                 'modified' => false,
             );
@@ -122,7 +121,7 @@ class TranscriptionsShell extends AppShell {
             );
             $entities = $this->{$model}->newEntities($data);
             if ($this->{$model}->saveMany($entities, $options))
-                $proceeded += count($data);
+                $proceeded += count($entities);
         }
         $this->out('.', 0);
         return $proceeded;

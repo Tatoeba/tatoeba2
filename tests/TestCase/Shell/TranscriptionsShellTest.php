@@ -23,6 +23,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
             ->setMethods([
                 'jpn_Jpan_to_Hrkt_generate',
                 'jpn_Jpan_to_Hrkt_validate',
+                'cmn_detectScript',
             ])
             ->getMock();
         $AT->expects($this->any())
@@ -31,6 +32,10 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $AT->expects($this->any())
            ->method('jpn_Jpan_to_Hrkt_validate')
            ->will($this->returnValue(true));
+        $AT->expects($this->any())
+           ->method('cmn_detectScript')
+           ->will($this->returnValue('TEST'));
+
         return $AT;
     }
 
@@ -81,5 +86,20 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
     {
         $this->TS->batchOperationSize = 2;
         $this->testAutogen_forAllSentences();
+    }
+
+    public function testSetSentencesScript()
+    {
+        $expectedScripts = ['TEST'];
+
+        $this->TS->setSentencesScript('cmn');
+
+        $scripts = TableRegistry::get('Sentences')
+            ->find('list', ['valueField' => 'script'])
+            ->where(['lang' => 'cmn'])
+            ->toArray();
+
+        $scripts = array_keys(array_flip($scripts));
+        $this->assertEquals($expectedScripts, $scripts);
     }
 }
