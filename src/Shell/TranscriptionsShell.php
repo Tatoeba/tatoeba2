@@ -82,20 +82,21 @@ class TranscriptionsShell extends AppShell {
         return $generated;
     }
 
-    private function setContributionsScript($lang) {
+    public function setContributionsScript($lang) {
         $langs = $lang ?
                  array($lang) :
-                 $this->Transcription->langsInNeedOfScriptAutodetection();
+                 $this->Transcriptions->langsInNeedOfScriptAutodetection();
         $proceeded = $this->batchOperation(
-            'Contribution',
+            'Contributions',
             '_setScript',
             array(
-                'conditions' => array('sentence_lang' => $langs),
+                'conditions' => array('sentence_lang IN' => $langs),
                 'fields' => array('id', 'sentence_lang', 'script', 'text'),
             )
         );
         $langs = implode(', ', $langs);
-        echo "\nScript set for $proceeded contributions in lang(s) $langs.\n";
+        $this->out();
+        $this->out("Script set for $proceeded contributions in lang(s) $langs.");
     }
 
     public function setSentencesScript($lang) {

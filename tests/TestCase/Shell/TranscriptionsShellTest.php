@@ -13,6 +13,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         'app.sentences',
         'app.transcriptions',
         'app.users',
+        'app.contributions',
     ];
 
     public $io;
@@ -97,6 +98,21 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $scripts = TableRegistry::get('Sentences')
             ->find('list', ['valueField' => 'script'])
             ->where(['lang' => 'cmn'])
+            ->toArray();
+
+        $scripts = array_keys(array_flip($scripts));
+        $this->assertEquals($expectedScripts, $scripts);
+    }
+
+    public function testSetContributionsScript()
+    {
+        $expectedScripts = ['TEST'];
+
+        $this->TS->setContributionsScript('cmn');
+
+        $scripts = TableRegistry::get('Contributions')
+            ->find('list', ['valueField' => 'script'])
+            ->where(['sentence_lang' => 'cmn'])
             ->toArray();
 
         $scripts = array_keys(array_flip($scripts));
