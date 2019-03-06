@@ -230,14 +230,10 @@ class SentencesTable extends Table
         $this->getEventManager()->dispatch($event);
         
         $this->updateTags($entity);
-        if (isset($entity->modified)) {
+        if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
         }
-        $transIndexedAttr = array('lang', 'user_id');
-        $transNeedsReindex = array_intersect_key(
-            $entity->old_format['Sentence'],
-            array_flip($transIndexedAttr)
-        );
+        $transNeedsReindex = $entity->isDirty('lang') || $entity->isDirty('user_id');
         if ($transNeedsReindex) {
             $this->flagTranslationsToReindex($entity->id);
         }
