@@ -48,8 +48,9 @@ class AppShell extends Shell {
     }
 
     protected function batchOperation($model, $operation, $options) {
+        $this->loadModel($model);
         if (!isset($options['order'])) {
-            $options['order'] = $this->{$model}->alias.'.'.$this->{$model}->primaryKey;
+            $options['order'] = $this->{$model}->getAlias().'.'.$this->{$model}->getPrimaryKey();
         }
         if (is_string($options['order'])) {
             $options['order'] = array($options['order']);
@@ -87,7 +88,7 @@ class AppShell extends Shell {
 
         $data = array();
         do {
-            $data = $this->{$model}->find('all', $options);
+            $data = $this->{$model}->find('all', $options)->toList();
             $args = func_get_args();
             array_splice($args, 0, 3, array($data, $model));
             $proceeded += call_user_func_array(array($this, $operation), $args);

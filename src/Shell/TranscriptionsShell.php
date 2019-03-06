@@ -18,13 +18,18 @@
  */
 namespace App\Shell;
 
+use Cake\Utility\Hash;
 use App\Model\Sentence;
 use App\Model\Transcription;
 
 
 class TranscriptionsShell extends AppShell {
 
-    public $uses = array('Sentence', 'Transcription', 'Contribution');
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadModel('Transcriptions');
+    }
 
     private function detectTranscriptionsFor($data) {
         $result = array();
@@ -45,36 +50,36 @@ class TranscriptionsShell extends AppShell {
         return $result;
     }
 
-    private function autogen($lang) {
+    public function autogen($lang) {
         $langs = $lang ?
                  array($lang) :
-                 $this->Transcription->transcriptableLanguages();
+                 $this->Transcriptions->transcriptableLanguages();
 
         foreach ($langs as $lang) {
-            echo "=== Proccessing sentences in language '$lang' ===\n";
-            echo "Generating new transcriptions";
+            $this->out("=== Proccessing sentences in language '$lang' ===");
+            $this->out("Generating new transcriptions", 0);
             $proceeded = $this->allSentencesOperation('_autogen', array(
                 'lang' => $lang
             ));
-            echo "\n$proceeded transcriptions generated.\n";
+            $this->out();
+            $this->out("$proceeded transcriptions generated.");
         }
     }
 
     protected function _autogen($sentences) {
-        $sentenceIds = Set::classicExtract($sentences, '{n}.Sentence.id');
-        $this->Transcription->deleteAll(
-            array(
-                'Transcription.user_id' => null,
-                'Transcription.sentence_id' => $sentenceIds,
-            ),
-            false
-        );
-
         $generated = 0;
-        foreach ($sentences as $sentence) {
-           $generated += $this->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
+        if ($sentences) {
+            $sentenceIds = Hash::extract($sentences, '{n}.id');
+            $this->Transcriptions->deleteAll([
+                'user_id IS' => null,
+                'sentence_id IN' => $sentenceIds,
+            ]);
+
+            foreach ($sentences as $sentence) {
+               $generated += $this->Transcriptions->generateAndSaveAllTranscriptionsFor($sentence);
+            }
+            $this->out('.', 0);
         }
-        $this->out('.', 0);
         return $generated;
     }
 
@@ -94,33 +99,37 @@ class TranscriptionsShell extends AppShell {
         echo "\nScript set for $proceeded contributions in lang(s) $langs.\n";
     }
 
-    private function setSentencesScript($lang) {
+    public function setSentencesScript($lang) {
         $langs = $lang ?
                  array($lang) :
-                 $this->Transcription->langsInNeedOfScriptAutodetection();
+                 $this->Transcriptions->langsInNeedOfScriptAutodetection();
         $proceeded = $this->allSentencesOperation('_setScript', array(
-            'lang' => $langs,
+            'lang IN' => $langs,
         ));
         $langs = implode(', ', $langs);
-        echo "\nScript set for $proceeded sentences in lang(s) $lang.\n";
+        $this->out();
+        $this->out("Script set for $proceeded sentences in lang(s) $lang.");
     }
 
     protected function _setScript($rows, $model) {
         $proceeded = 0;
         $data = $this->detectTranscriptionsFor($rows);
-        $options = array(
-            'validate' => true,
-            'atomic' => false,
-            'callbacks' => false,
-        );
-        if ($data && $this->{$model}->saveAll($data, $options))
-            $proceeded += count($data);
+        if ($data) {
+            $options = array(
+                'validate' => true,
+                'atomic' => false,
+                'callbacks' => false,
+            );
+            $entities = $this->{$model}->newEntities($data);
+            if ($this->{$model}->saveMany($entities, $options))
+                $proceeded += count($data);
+        }
         $this->out('.', 0);
         return $proceeded;
     }
 
     private function allSentencesOperation($operation, $conditions) {
-        return $this->batchOperation('Sentence', $operation, array(
+        return $this->batchOperation('Sentences', $operation, array(
             'conditions' => $conditions,
             'fields' => array('id', 'lang', 'script', 'text'),
         ));
