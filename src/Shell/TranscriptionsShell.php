@@ -108,7 +108,7 @@ class TranscriptionsShell extends AppShell {
         ));
         $langs = implode(', ', $langs);
         $this->out();
-        $this->out("Script set for $proceeded sentences in lang(s) $lang.");
+        $this->out("Script set for $proceeded sentences in lang(s) $langs.");
     }
 
     protected function _setScript($rows, $model) {
