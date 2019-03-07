@@ -18,7 +18,12 @@
   - "{{sphinx_binlog_path}}"
 
 - name: Generate sphinx.conf
-  shell: ./bin/cake sphinx_conf > /etc/sphinxsearch/sphinx.conf chdir={{code_dir}}
+  become: false
+  command: ./bin/cake sphinx_conf chdir={{code_dir}}
+  register: sphinx_conf
+
+- name: Install sphinx.conf
+  copy: content="{{ sphinx_conf.stdout }}" dest="/etc/sphinxsearch/sphinx.conf"
 
 - name: Create indexes
   become: true
