@@ -174,7 +174,7 @@ class Autotranscription
         if (!$response->isOk()) {
             return false;
         }
-        $xml = new DOMDocument();
+        $xml = new \DOMDocument();
         $xml->loadXML($response->getStringBody(), LIBXML_NOBLANKS|LIBXML_NOCDATA);
 
         $furiganas = '';
