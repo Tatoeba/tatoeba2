@@ -147,4 +147,21 @@ class AutotranscriptionTest extends TestCase {
 
         $this->assertEquals($furigana, $expectedFurigana);
     }
+
+    function test_jpn_Jpan_to_Hrkt_generate_empty() {
+        $needsReview = false;
+        $sentence = '';
+        $expectedFurigana = '';
+        $response = '<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<parse>
+</parse>
+</root>
+';
+        $this->AT->HTTPClient($this->_mockHttpClient($response));
+
+        $furigana = $this->AT->jpn_Jpan_to_Hrkt_generate($sentence, $needsReview);
+
+        $this->assertEquals($furigana, $expectedFurigana);
+    }
 }
