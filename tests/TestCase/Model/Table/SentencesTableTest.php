@@ -45,6 +45,7 @@ class SentencesTableTest extends TestCase {
 		$autotranscription
 			->expects($this->any())
 			->method('jpn_Jpan_to_Hrkt_generate')
+			->with($this->logicalNot($this->isEmpty()), $this->anything())
 			->will($this->returnValue('transcription in furigana'));
 		$autotranscription
 			->expects($this->any())
