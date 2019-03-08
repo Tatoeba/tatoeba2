@@ -293,11 +293,11 @@ class SentencesTableTest extends TestCase {
 
 	function testSentenceFlagEditionUpdatesScript() {
 		$cmnSentenceId = 2;
-		$data = $this->Sentence->newEntity([
-			'id' => $cmnSentenceId,
-			'lang' => 'eng',
-		]);
-		$this->Sentence->save($data);
+		$user = $this->Sentence->Users->get(1);
+		CurrentUser::store($user);
+
+		$this->Sentence->changeLanguage($cmnSentenceId, 'eng');
+
 		$result = $this->Sentence->get($cmnSentenceId, ['fields' => ['script']]);
 		$this->assertNull($result->script);
 	}
@@ -321,32 +321,27 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testSentenceFlagEditionGeneratesTranscriptions() {
+		$user = $this->Sentence->Users->get(1);
+		CurrentUser::store($user);
 		$engSentenceId = 1;
-		$data = $this->Sentence->newEntity([
-			'id' => $engSentenceId,
-			'lang' => 'jpn',
-		]);
-		$this->Sentence->save($data);
+
+		$this->Sentence->changeLanguage($engSentenceId, 'jpn');
 
 		$nbTranscr = $this->Sentence->Transcriptions->find()
 			->where(['sentence_id' => $engSentenceId])
 			->count();
-
 		$this->assertTrue($nbTranscr > 0);
 	}
 
 	function testSentenceFlagEditionDeletesTranscriptions() {
+		$user = $this->Sentence->Users->get(1);
+		CurrentUser::store($user);
 		$jpnSentenceId = 6;
-		$conditions = array('sentence_id' => $jpnSentenceId);
 
-		$data = $this->Sentence->newEntity([
-			'id' => $jpnSentenceId,
-			'lang' => 'deu',
-		]);
-		$this->Sentence->save($data);
+		$this->Sentence->changeLanguage($jpnSentenceId, 'deu');
 
 		$nbTranscr = $this->Sentence->Transcriptions->find()
-			->where($conditions)
+			->where(['sentence_id' => $jpnSentenceId])
 			->count();			
 		$this->assertTrue($nbTranscr == 0);
 	}
@@ -706,6 +701,8 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testSentenceDontLoosesOKTagOnFlagChange() {
+		$user = $this->Sentence->Users->get(1);
+		CurrentUser::store($user);
 		$sentenceId = 2;
 		$OKTagId = $this->Sentence->Tags->getIdFromName(
 			$this->Sentence->Tags->getOKTagName()
@@ -713,11 +710,9 @@ class SentencesTableTest extends TestCase {
 		$this->assertTrue(
 			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
 		);
-		$sentence = $this->Sentence->newEntity([
-			'id' => $sentenceId,
-			'lang' => 'ita',
-		]);
-		$this->Sentence->save($sentence);
+
+		$this->Sentence->changeLanguage($sentenceId, 'ita');
+
 		$this->assertTrue(
 			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
 		);
