@@ -30,6 +30,7 @@ use Cake\Controller\Component;
 use Cake\Core\Configure;
 use Cake\Mailer\Email;
 use Cake\ORM\TableRegistry;
+use App\Model\CurrentUser;
 
 
 /**
