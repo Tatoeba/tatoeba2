@@ -181,14 +181,16 @@ class Autotranscription
         $parse = $xml->firstChild->firstChild;
         foreach ($parse->childNodes as $token) {
             $group = array('');
-            foreach ($token->childNodes as $reading) {
-                $text = $reading->nodeValue;
-                if ($reading->hasChildNodes()) {
-                    $furigana = $reading->getAttribute('furigana');
-                    $this->_append_furigana($group, $text, $furigana);
-                } else {
-                    $furiganas .= $this->_unpack_grouped_furigana($group);
-                    $furiganas .= $text;
+            if ($token->hasChildNodes()) {
+                foreach ($token->childNodes as $reading) {
+                    $text = $reading->nodeValue;
+                    if ($reading->hasChildNodes()) {
+                        $furigana = $reading->getAttribute('furigana');
+                        $this->_append_furigana($group, $text, $furigana);
+                    } else {
+                        $furiganas .= $this->_unpack_grouped_furigana($group);
+                        $furiganas .= $text;
+                    }
                 }
             }
             $furiganas .= $this->_unpack_grouped_furigana($group);
