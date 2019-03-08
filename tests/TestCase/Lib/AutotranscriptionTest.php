@@ -108,4 +108,43 @@ class AutotranscriptionTest extends TestCase {
         $this->assertValidTranscriptions('cmn', 'Hant', 'Latn', $testGood);
         $this->assertInvalidTranscriptions('cmn', 'Hant', 'Latn', $testBad);
     }
+
+    function _mockHttpClient($body) {
+        $response = $this->getMockBuilder(Cake\Http\Response::class)
+                       ->setMethods(['isOk', 'getStringBody'])
+                       ->getMock();
+        $response->expects($this->once())
+                 ->method('isOk')
+                 ->will($this->returnValue(true));
+        $response->expects($this->once())
+                 ->method('getStringBody')
+                 ->will($this->returnValue($body));
+        $client = $this->getMockBuilder(Cake\Network\Http\Client::class)
+                       ->setMethods(['get'])
+                       ->getMock();
+        $client->expects($this->once())
+               ->method('get')
+               ->will($this->returnValue($response));
+        return $client;
+    }
+
+    function test_jpn_Jpan_to_Hrkt_generate() {
+        $needsReview = false;
+        $sentence = '行こうよ。';
+        $expectedFurigana = '[行|い]こうよ。';
+        $response = '<?xml version="1.0" encoding="UTF-8"?>
+<root>
+<parse>
+<token><reading furigana="い"><![CDATA[行]]></reading><![CDATA[こう]]></token>
+<token><![CDATA[よ]]></token>
+<token><![CDATA[。]]></token>
+</parse>
+</root>
+';
+        $this->AT->HTTPClient($this->_mockHttpClient($response));
+
+        $furigana = $this->AT->jpn_Jpan_to_Hrkt_generate($sentence, $needsReview);
+
+        $this->assertEquals($furigana, $expectedFurigana);
+    }
 }

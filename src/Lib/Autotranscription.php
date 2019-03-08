@@ -26,6 +26,7 @@
  */
 namespace App\Lib;
 
+use Cake\Network\Http\Client;
 
 /**
  * Transcription/transliteration tools.
@@ -42,13 +43,19 @@ namespace App\Lib;
 
 class Autotranscription
 {
-    private $nihongoparserd_hdl;
     private $sinoparserd_hdl;
+    private $HttpClient;
+
+    public function HttpClient($client = null) {
+        if ($client) {
+            $this->HttpClient = $client;
+        } elseif (!$this->HttpClient) {
+            $this->HttpClient = new Client();
+        }
+        return $this->HttpClient;
+    }
 
     public function __destruct() {
-        if ($this->nihongoparserd_hdl) {
-            curl_close($this->nihongoparserd_hdl);
-        }
         if ($this->sinoparserd_hdl) {
             curl_close($this->sinoparserd_hdl);
         }
@@ -161,21 +168,14 @@ class Autotranscription
      */
     public function jpn_Jpan_to_Hrkt_generate($sentence, &$needsReview)
     {
-        if (!$this->nihongoparserd_hdl) {
-            $this->nihongoparserd_hdl = curl_init();
-            curl_setopt_array($this->nihongoparserd_hdl, array(
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_HEADER => false,
-            ));
-        }
         $url = "http://127.0.0.1:8842/furigana?str=".urlencode($sentence);
-        curl_setopt($this->nihongoparserd_hdl, CURLOPT_URL, $url);
-        $response = curl_exec($this->nihongoparserd_hdl);
-        if ($response === false) {
+        $response = $this->HttpClient()->get($url);
+
+        if (!$response->isOk()) {
             return false;
         }
         $xml = new DOMDocument();
-        $xml->loadXML($response, LIBXML_NOBLANKS|LIBXML_NOCDATA);
+        $xml->loadXML($response->getStringBody(), LIBXML_NOBLANKS|LIBXML_NOCDATA);
 
         $furiganas = '';
         $parse = $xml->firstChild->firstChild;
