@@ -1032,7 +1032,7 @@ class SentencesTable extends Table
     {
         try {
             $sentence = $this->get($sentenceId, [
-                'fields' => ['id', 'lang', 'user_id']
+                'fields' => ['id', 'lang', 'text', 'user_id']
             ]);
         } catch (RecordNotFoundException $e) {
             return false;
