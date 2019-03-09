@@ -295,7 +295,7 @@ class TranscriptionsTable extends Table
             method_exists($this->autotranscription, $transcrValidateMethod)) {
             $this->validationErrors = array();
             $ok = $this->autotranscription->{$transcrValidateMethod}(
-                $parentSentence['Sentence']['text'],
+                $parentSentence->text,
                 $entity->text,
                 $this->validationErrors
             );

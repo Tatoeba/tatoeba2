@@ -47,10 +47,10 @@ class TranscriptionsController extends AppController
             'of',
         );
 
-        $this->Security->unlockedActions = array(
+        $this->Security->config('unlockedActions', [
             'save',
             'reset'
-        );
+        ]);
 
         return parent::beforeFilter($event);
     }

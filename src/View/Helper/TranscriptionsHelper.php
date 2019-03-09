@@ -152,18 +152,20 @@ class TranscriptionsHelper extends AppHelper
                           'a piece of software', true);
             }
         }
+        $options = [
+            'data-script' => $transcr['script'],
+            'data-submit' => __('OK'),
+            'data-cancel' => __('Cancel'),
+            'data-reset' => __('Reset'),
+            'title' => $log,
+            'class' => $class,
+            'escape' => false,
+        ];
+        if ($isEditable) {
+            $options['data-csrf-token'] = $this->request->getParam('_csrfToken');
+        }
         $transcriptionDiv = $this->Languages->tagWithLang(
-            'div', $lang, $html,
-            array(
-                'data-script' => $transcr['script'],
-                'data-submit' => __('OK'),
-                'data-cancel' => __('Cancel'),
-                'data-reset' => __('Reset'),
-                'title' => $log,
-                'class' => $class,
-                'escape' => false,
-            ),
-            $transcr['script']
+            'div', $lang, $html, $options, $transcr['script']
         );
 
         $class = 'transcriptionContainer';
