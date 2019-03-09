@@ -90,6 +90,7 @@ class Transcription extends Entity
                 'needsReview' => $this->needsReview,
                 'readonly' => $this->readonly,
                 'type' => $this->type,
+                'modified' => $this->modified,
             ]
         ];
     }
