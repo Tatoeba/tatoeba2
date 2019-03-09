@@ -118,7 +118,6 @@ $(document).ready(function() {
                 cancel    : div.attr('data-cancel'),
                 submit    : div.attr('data-submit'),
                 event     : 'edit_transcription',
-                id        : 'divId',
                 height    : false, // disable autoheight, we'll set it in onedit()
                 onedit    : function(settings, self) {
                     $(self).find("rt").hide();
