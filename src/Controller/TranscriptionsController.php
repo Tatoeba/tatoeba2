@@ -26,12 +26,6 @@ class TranscriptionsController extends AppController
 {
     public $name = 'Transcriptions';
 
-    public $uses = array(
-        'Transcription',
-        'Sentence',
-        'User',
-    );
-
     public $components = array(
     );
 
@@ -62,10 +56,9 @@ class TranscriptionsController extends AppController
     }
 
     public function view($sentenceId) {
-        $transcr = $this->Transcription->find('all', array(
-            'conditions' => array('sentence_id' => $sentenceId),
-        ));
-        $transcr = Set::classicExtract($transcr, '{n}.Transcription');
+        $transcr = $this->Transcriptions->find()
+            ->where(['sentence_id' => $sentenceId])
+            ->toList();
         $this->setViewVars($transcr, $sentenceId);
     }
 
