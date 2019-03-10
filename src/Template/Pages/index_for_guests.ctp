@@ -99,7 +99,7 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
                         true),
                     array(
                         'number' => $numberOfSentences,
-                        'lang' => $this->Languages->codeToNameAlone($langCode)
+                        'lang' => $this->Languages->codeToNameToFormat($langCode)
                     )
                 );
                 $this->Languages->stat($langCode, $numberOfSentencesLabel, $link);
