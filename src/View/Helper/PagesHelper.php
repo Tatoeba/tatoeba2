@@ -90,6 +90,10 @@ class PagesHelper extends AppHelper
         return $this->getView()->get('deferredScripts', []);
     }
 
+    public function setDeferredScripts($scripts) {
+        $this->getView()->set('deferredScripts', array_unique($scripts));
+    }
+
     public function appendDeferredScript($script) {
         $this->appendDeferredUrl($this->Url->script($script));
     }
@@ -97,13 +101,13 @@ class PagesHelper extends AppHelper
     public function prependDeferredUrl($src) {
         $scripts = $this->getDeferredScripts();
         array_unshift($scripts, $src);
-        $this->getView()->set('deferredScripts', $scripts);
+        $this->setDeferredScripts($scripts);
     }
 
     public function appendDeferredUrl($src) {
         $scripts = $this->getDeferredScripts();
         $scripts[] = $src;
-        $this->getView()->set('deferredScripts', $scripts);
+        $this->setDeferredScripts($scripts);
     }
 }
 ?>
