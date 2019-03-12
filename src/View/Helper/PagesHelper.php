@@ -81,5 +81,21 @@ class PagesHelper extends AppHelper
             ));
         }
     }
+
+    public function getDeferredScripts() {
+        return $this->getView()->get('deferredScripts', []);
+    }
+
+    public function prependDeferredScript($src) {
+        $scripts = $this->getDeferredScripts();
+        array_unshift($scripts, $src);
+        $this->getView()->set('deferredScripts', $scripts);
+    }
+
+    public function appendDeferredScript($src) {
+        $scripts = $this->getDeferredScripts();
+        $scripts[] = $src;
+        $this->getView()->set('deferredScripts', $scripts);
+    }
 }
 ?>

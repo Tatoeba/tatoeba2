@@ -1,6 +1,6 @@
 <script type="text/javascript">
     function downloadJSAtOnload() {
-        var srcs = <?= json_encode($srcs); ?>;
+        var srcs = <?= json_encode($this->Pages->getDeferredScripts()); ?>;
         for (i = 0; i < srcs.length; i++) {
             var element = document.createElement("script");
             element.src = srcs[i];

@@ -127,26 +127,23 @@ use Cake\Core\Configure;
 
     echo $this->fetch('scriptBottom');
 
-    $deferredScripts = [
-        $this->AssetCompress->url('layout-deferred.js')
-    ];
+    $this->Pages->prependDeferredScript($this->AssetCompress->url('layout-deferred.js'));
+
     if (CurrentUser::getSetting('copy_button')) {
-        $deferredScripts[] = $this->Url->script(JS_PATH . 'clipboard.min.js');
-        $deferredScripts[] = $this->Url->script(JS_PATH . 'sentences.copy.js');
+        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'clipboard.min.js'));
+        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'sentences.copy.js'));
     }
 
     if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        $deferredScripts[] = $this->Url->script(JS_PATH . 'jquery.cookie.js');
-        $deferredScripts[] = $this->Url->script(JS_PATH . 'announcement.js');
+        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'jquery.cookie.js'));
+        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'announcement.js'));
     }
 
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', array('cache' => true));
     }
 
-    echo $this->element('deferred-javascript-load', [
-        'srcs' => $deferredScripts,
-    ]);
+    echo $this->element('deferred-javascript-load');
     ?>
 </body>
 </html>
