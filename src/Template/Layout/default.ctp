@@ -131,13 +131,13 @@ use Cake\Core\Configure;
         $this->AssetCompress->url('layout-deferred.js')
     ];
     if (CurrentUser::getSetting('copy_button')) {
-        echo $this->Html->script(JS_PATH . 'clipboard.min.js');
-        echo $this->Html->script(JS_PATH . 'sentences.copy.js');
+        $deferredScripts[] = $this->Url->script(JS_PATH . 'clipboard.min.js');
+        $deferredScripts[] = $this->Url->script(JS_PATH . 'sentences.copy.js');
     }
 
     if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        echo $this->Html->script(JS_PATH . 'jquery.cookie.js');
-        echo $this->Html->script(JS_PATH . 'announcement.js');
+        $deferredScripts[] = $this->Url->script(JS_PATH . 'jquery.cookie.js');
+        $deferredScripts[] = $this->Url->script(JS_PATH . 'announcement.js');
     }
 
     if (Configure::read('GoogleAnalytics.enabled')) {
