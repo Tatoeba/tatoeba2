@@ -127,6 +127,9 @@ use Cake\Core\Configure;
 
     echo $this->fetch('scriptBottom');
 
+    $deferredScripts = [
+        $this->AssetCompress->url('layout-deferred.js')
+    ];
     if (CurrentUser::getSetting('copy_button')) {
         echo $this->Html->script(JS_PATH . 'clipboard.min.js');
         echo $this->Html->script(JS_PATH . 'sentences.copy.js');
@@ -140,20 +143,10 @@ use Cake\Core\Configure;
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', array('cache' => true));
     }
-    ?>
 
-    <script type="text/javascript">
-        function downloadJSAtOnload() {
-            var element = document.createElement("script");
-            element.src = "<?= $this->AssetCompress->url('layout-deferred.js') ?>";
-            document.body.appendChild(element);
-        }
-        if (window.addEventListener)
-            window.addEventListener("load", downloadJSAtOnload, false);
-        else if (window.attachEvent)
-            window.attachEvent("onload", downloadJSAtOnload);
-        else
-            window.onload = downloadJSAtOnload;
-    </script>
+    echo $this->element('deferred-javascript-load', [
+        'srcs' => $deferredScripts,
+    ]);
+    ?>
 </body>
 </html>
