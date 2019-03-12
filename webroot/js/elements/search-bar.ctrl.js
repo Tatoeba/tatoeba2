@@ -22,7 +22,8 @@
         .controller('SearchBarController', ['$scope', function($scope) {
             var vm = this;
 
-            vm.searchQuery = angular.element('#SentenceQuery').data('query');
+            var queryElem = document.getElementById('SentenceQuery');
+            vm.searchQuery = angular.element(queryElem).data('query');
             vm.langFrom = '';
             vm.langTo = '';
             
@@ -48,7 +49,7 @@
 
             function clearSearch() {
                 vm.searchQuery = '';
-                angular.element('#SentenceQuery').focus();
+                angular.element(queryElem).focus();
             }
 
             function swapLanguages() {
