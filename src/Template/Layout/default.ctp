@@ -143,7 +143,7 @@ use Cake\Core\Configure;
         echo $this->element('google_analytics', array('cache' => true));
     }
 
-    echo $this->element('deferred-javascript-load');
+    echo $this->element('deferred_javascript_load');
     ?>
 </body>
 </html>
