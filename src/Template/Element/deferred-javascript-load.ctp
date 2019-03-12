@@ -4,6 +4,7 @@
         for (i = 0; i < srcs.length; i++) {
             var element = document.createElement("script");
             element.src = srcs[i];
+            element.async = false;
             document.body.appendChild(element);
         }
     }
