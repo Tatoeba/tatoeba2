@@ -48,6 +48,7 @@ class ListsHelper extends AppHelper
         'Sentences',
         'Date',
         'Images',
+        'Pages',
         'Url'
     );
 
@@ -322,9 +323,7 @@ class ListsHelper extends AppHelper
 
     public function displayVisibilityOption($listId, $value)
     {
-        $this->Html->script(
-            JS_PATH . 'sentences_lists.set_option.js', array('block' => 'scriptBottom')
-        );
+        $this->Pages->appendDeferredScript(JS_PATH . 'sentences_lists.set_option.js');
         ?>
         <dl>
             <?php
@@ -356,9 +355,7 @@ class ListsHelper extends AppHelper
      */
     public function displayEditableByOptions($listId, $value)
     {
-        $this->Html->script(
-            JS_PATH.'sentences_lists.set_option.js', array('block' => 'scriptBottom')
-        );
+        $this->Pages->appendDeferredScript(JS_PATH.'sentences_lists.set_option.js');
         ?>
         <dl>
             <?php
@@ -478,9 +475,7 @@ class ListsHelper extends AppHelper
      */
     public function displayAddSentenceForm($listId)
     {
-        $this->Html->script(
-            'sentences_lists.add_new_sentence_to_list.js', array('block' => 'scriptBottom')
-        );
+        $this->Pages->appendDeferredScript('sentences_lists.add_new_sentence_to_list.js');
         ?>
 
         <div id="newSentenceInList">

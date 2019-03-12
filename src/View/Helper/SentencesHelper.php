@@ -72,6 +72,7 @@ class SentencesHelper extends AppHelper
                 'CC BY 2.0 FR',
             ),
         ),
+        'Pages',
     );
 
 
@@ -93,7 +94,7 @@ class SentencesHelper extends AppHelper
     ) {
         if (CurrentUser::isMember()) {
             // defined in config/asset_compress.ini
-            $this->AssetCompress->script('sentences-block-for-members.js', ['block' => 'scriptBottom']);
+            $this->Pages->appendDeferredUrl($this->AssetCompress->url('sentences-block-for-members.js'));
         }
 
         $options = array_merge(
@@ -156,7 +157,7 @@ class SentencesHelper extends AppHelper
         <div id="_<?php echo $id; ?>_translations" class="translations">
 
             <?php
-            $this->Html->script('sentences.collapse.js', array('block' => 'scriptBottom'));
+            $this->Pages->appendDeferredScript('sentences.collapse.js');
 
             $totalDirectTranslations = count(array_keys($translations));
             $totalIndirectTranslations = count(array_keys($indirectTranslations));
@@ -694,8 +695,8 @@ class SentencesHelper extends AppHelper
         if ($isEditable) {
             $classes[] = 'editableSentence';
 
-            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
+            $this->Pages->appendDeferredScript('jquery.jeditable.js');
+            $this->Pages->appendDeferredScript('sentences.edit_in_place.js');
 
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
@@ -735,17 +736,17 @@ class SentencesHelper extends AppHelper
         $options = ['block' => 'scriptBottom'];
 
         // defined in config/asset_compress.ini
-        $this->AssetCompress->script('sentences-block-for-members.js', $options);
-        $this->Html->script('jquery.jeditable.js', $options);
-        $this->Html->script('transcriptions.js', $options);
-        $this->Html->script('sentences.collapse.js', $options);
+        $this->Pages->appendDeferredUrl($this->AssetCompress->url('sentences-block-for-members.js'));
+        $this->Pages->appendDeferredScript('jquery.jeditable.js');
+        $this->Pages->appendDeferredScript('transcriptions.js');
+        $this->Pages->appendDeferredScript('sentences.collapse.js');
         if (CurrentUser::getSetting('copy_button')) {
-            $this->Html->script('clipboard.min.js', $options);
-            $this->Html->script('sentences.copy.js', $options);
+            $this->Pages->appendDeferredScript('clipboard.min.js');
+            $this->Pages->appendDeferredScript('sentences.copy.js');
         }
 
-        $this->Html->script('sentences.play_audio.js', $options);
-        $this->Html->script('sentences.logs.js', $options);
+        $this->Pages->appendDeferredScript('sentences.play_audio.js');
+        $this->Pages->appendDeferredScript('sentences.logs.js');
     }
 
 

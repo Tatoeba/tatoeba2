@@ -26,7 +26,7 @@
  */
 use App\Model\CurrentUser;
 
-$this->Html->script('jquery.scrollTo.min.js', ['block' => 'scriptBottom']);
+$this->Pages->appendDeferredScript('jquery.scrollTo.min.js');
 
 if (!isset($searchProblem)) {
 if (isset($sentence)) {

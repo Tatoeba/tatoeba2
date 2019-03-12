@@ -28,8 +28,7 @@ use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
 $this->Sentences->javascriptForAJAXSentencesGroup();
-$this->Html->script(
-    JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
+$this->Pages->appendDeferredScript(JS_PATH . 'sentences_lists.remove_sentence_from_list.js');
 );
 
 $listCount = $this->Paginator->param('count');
@@ -143,8 +142,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     $class = '';
     if ($permissions['canEdit']) {
-        $this->Html->script('jquery.jeditable.js', ['block' => 'scriptBottom']);
-        $this->Html->script('sentences_lists.edit_name.js', ['block' => 'scriptBottom']);
+        $this->Pages->appendDeferredScript('jquery.jeditable.js');
+        $this->Pages->appendDeferredScript('sentences_lists.edit_name.js');
 
         $class = 'editable-list-name';
 

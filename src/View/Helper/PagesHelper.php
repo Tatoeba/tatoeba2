@@ -23,6 +23,10 @@ use Cake\Routing\Router;
 
 class PagesHelper extends AppHelper
 {
+    public $helpers = [
+        'Url',
+    ];
+
     public function formatTitle($pageTitle) {
         return $pageTitle . __(' - Tatoeba');
     }
@@ -86,13 +90,17 @@ class PagesHelper extends AppHelper
         return $this->getView()->get('deferredScripts', []);
     }
 
-    public function prependDeferredScript($src) {
+    public function appendDeferredScript($script) {
+        $this->appendDeferredUrl($this->Url->script($script));
+    }
+
+    public function prependDeferredUrl($src) {
         $scripts = $this->getDeferredScripts();
         array_unshift($scripts, $src);
         $this->getView()->set('deferredScripts', $scripts);
     }
 
-    public function appendDeferredScript($src) {
+    public function appendDeferredUrl($src) {
         $scripts = $this->getDeferredScripts();
         $scripts[] = $src;
         $this->getView()->set('deferredScripts', $scripts);

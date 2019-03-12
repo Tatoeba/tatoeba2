@@ -127,16 +127,16 @@ use Cake\Core\Configure;
 
     echo $this->fetch('scriptBottom');
 
-    $this->Pages->prependDeferredScript($this->AssetCompress->url('layout-deferred.js'));
+    $this->Pages->prependDeferredUrl($this->AssetCompress->url('layout-deferred.js'));
 
     if (CurrentUser::getSetting('copy_button')) {
-        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'clipboard.min.js'));
-        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'sentences.copy.js'));
+        $this->Pages->appendDeferredScript(JS_PATH . 'clipboard.min.js');
+        $this->Pages->appendDeferredScript(JS_PATH . 'sentences.copy.js');
     }
 
     if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'jquery.cookie.js'));
-        $this->Pages->appendDeferredScript($this->Url->script(JS_PATH . 'announcement.js'));
+        $this->Pages->appendDeferredScript(JS_PATH . 'jquery.cookie.js');
+        $this->Pages->appendDeferredScript(JS_PATH . 'announcement.js');
     }
 
     if (Configure::read('GoogleAnalytics.enabled')) {

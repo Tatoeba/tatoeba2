@@ -40,7 +40,7 @@ use App\View\Helper\AppHelper;
  */
 class SentenceAnnotationsHelper extends AppHelper
 {
-    public $helpers = array('Form', 'Html', 'Date');
+    public $helpers = array('Form', 'Html', 'Date', 'Pages');
 
     /**
      * Displays the form that lets you search annotations of a specific sentence.
@@ -144,7 +144,7 @@ class SentenceAnnotationsHelper extends AppHelper
         <?php
             echo '<h2>Replace</h2>';
 
-            $this->Html->script('sentence_annotations.preview.js', array('block' => 'scriptBottom'));
+            $this->Pages->appendDeferredScript('sentence_annotations.preview.js');
             echo $this->Form->create(
                 'SentenceAnnotation', array(
                     "url" => array("action" => "replace")

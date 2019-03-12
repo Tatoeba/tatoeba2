@@ -95,7 +95,7 @@ class MenuHelper extends AppHelper
             echo '</a>';
 
         } else if ($isLogged) {
-            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
+            $this->Pages->appendDeferredScript('jquery.jeditable.js');
             ?>
             <a><?php echo $translateButton;?></a>
            <?php

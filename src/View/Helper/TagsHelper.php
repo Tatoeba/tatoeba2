@@ -44,6 +44,7 @@ class TagsHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Form',
+        'Pages',
         'Sentences',
     );
 
@@ -184,8 +185,8 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
-        $this->Html->script('tags.add.js', ['block' => 'scriptBottom']);
-        $this->Html->script('autocompletion.js', ['block' => 'scriptBottom']);
+        $this->Pages->appendDeferredScript('tags.add.js');
+        $this->Pages->appendDeferredScript('autocompletion.js');
 
         echo $this->Form->create('Tag', [
             'id' => 'tag-form',

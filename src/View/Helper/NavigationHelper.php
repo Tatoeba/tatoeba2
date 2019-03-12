@@ -44,7 +44,8 @@ class NavigationHelper extends AppHelper
         'Html',
         'Form',
         'Languages',
-        'Images'
+        'Images',
+        'Pages',
     );
 
     /**
@@ -95,7 +96,7 @@ class NavigationHelper extends AppHelper
 
             <div class="languageSelect">
             <?php
-            $this->Html->script('sentences.random.js', array('block' => 'scriptBottom'));
+            $this->Pages->appendDeferredScript('sentences.random.js');
 
 
             $langArray = $this->Languages->languagesArrayAlone();
