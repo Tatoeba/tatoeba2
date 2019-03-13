@@ -10,6 +10,9 @@
   fail: msg="The code directory is not present in {{code_dir}}. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
   when: code_status is failed
 
+- name: Stop the search daemon
+  service: name=sphinxsearch state=stopped
+
 - name: Create directories for sphinx
   file: path={{item}} state=directory mode=0755 owner=sphinxsearch group=sphinxsearch
   with_items:
