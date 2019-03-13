@@ -1,24 +1,33 @@
 # Imouto
 
-Imouto is a collection of easy-to-use automation scripts for [tatoeba](http://tatoeba.org/eng/) website based on [vagrant](http://www.vagrantup.com/) and [ansible](http://www.ansible.com/home). It can be used to set up and provision both **development** and **production** servers.
+Imouto is a collection of automation scripts for installing an instance of [Tatoeba](https://tatoeba.org/) using [ansible](http://www.ansible.com/home).
 
 ## Requirements
 
-These requirements can usually be installed using your package manager. Make sure it provides the required versions, or download them from the official sites.
+Here are the basic requirements of the machine you’re using imouto from.
+
+* GNU/Linux
 * Git
-* VirtualBox 4.0 or later ([generic binaries](https://www.virtualbox.org/wiki/Downloads))
 * Ansible 1.4 or later (also available on pip: `pip install ansible`)
+
+## Use cases
+
+Imouto can be used in different ways to install Tatoeba depending on your setup and needs.
+
+### Install Tatoeba on a local VM
+
+This is the preferred way for developers to setup a local development environment. The additional requirements are:
+
+* VirtualBox 4.0 or later, which can be installed with a package manager or with the help of [generic binaries](https://www.virtualbox.org/wiki/Downloads))
 * Vagrant 1.7 or later
 
-## Usage Instructions
-
-### Imouto for development:
+#### Usage Instructions
 
 - Install the requirements above
 - Clone the github repo on your machine:
 
 ```bash
-$ git clone https://github.com/Tatoeba/imouto.git
+$ git clone https://github.com/Tatoeba/imouto
 ```
 
 - Use vagrant to first download the box and then provision it using ansible. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
@@ -55,7 +64,7 @@ $ vagrant up
   - Run `vagrant ssh` to ssh to the machine.
   - Use the script `mount.sh` (run it to get usage instructions) to mount any of the VM's directory on your host machine in order to modify files without ssh-ing to the VM. (Use 'vagrant' as the password if prompted after running `mount.sh`: `vagrant@127.0.0.1's password:`)
 
-### Post-provisioning tasks
+#### Post-provisioning tasks
 
 You may want to perform certain tasks independently without having to re-provision the whole machine again. To do that you can use the following command:
 
@@ -86,53 +95,11 @@ The following playbooks are included with imouto currently:
 - `setup_external_tools.yml`: To install and set up the external tools used by the website including sphinx and imagick.
 - `configure_sphinx.yml`: To configure sphinx search, create indexes and start the search daemon.
 - `setup_newrelic.yml`: To install and setup New Relic monitoring daemons.
-- `backup.yml`: To create a backup of the database, configurations and other static files of the VM on your machine.
-- `restore.yml`: To restore the backup created using `backup.yml`.
-- `restore_version.yml`: To restore to a particular revision of code that is available in `versions/` directory
 
-##### Usage
+### Install Tatoeba on a local machine
 
-The `restore.yml` playbook needs the name of the backup file to be restored, which can be specified in the `host_vars/default` file or through command line argument like this:
+TODO
 
-```bash
-$ imouto-devel -e restore_src=path/to/backup/file.tar.gz restore.yml
-```
+### Install Tatoeba on a remote machine
 
-The `restore_version` playbook needs the version number of the version to restore to. The versions are numbered from 1 to N where 1 is the latest version and N is oldest. The maximum value of N depends on the variable `revision_limit` that can be set in `host_vars/default`. If you enter an invalid value for `version`, the playbook will throw an error and tell you the possible valid values for it. The playbook can be run as follows:
-
-```bash
-$ imouto-devel -e version=3 restore_version.yml
-```
-
-##### Note:
-
-- This project is still in its development stage, so there are high chances of bugs. Please report them through github's bug tracker.
-- There are a lot of variables defined in `ansible/host_vars/default` that allow specifying further parameters related to various tools. Though the default values just work, it is recommended to change these values according to your need.
-
-### Imouto for production:
-
-The same set of scripts of imouto (with a few changes) can be used for setting up production servers as well. You need to follow these steps:
-
-- Install the requirements above
-- Clone the github repo on your machine (this should be different from the repo cloned for development server):
-
-```bash
-$ git clone https://github.com/Tatoeba/imouto.git
-```
-
-- Edit `imouto/ansible/ansible.cfg`:
-    * Uncomment the line `#ask_sudo_pass = True` if you want to enter sudo password through prompt. Alternatively, you can also specify `-K` flag with the `ansible-playbook` command given below to do so.
-    * Uncomment the line `#ask_pass = True` if you want to enter ssh password through prompt. Alternatively, you can also specify `-k` flag with the `ansible-playbook` command given below to do so. If you want to avoid typing ssh password repeatedly, you can set up passwordless ssh using the method described [here](http://www.linuxproblem.org/art_9.html).
-- Edit `imouto/ansible/host_vars/tatoeba`:
-    * Set value of `ansible_ssh_user` to ssh user (the user with which you want to ssh).
-    * Uncomment `ansible_ssh_port: 3022` and set the correct port number if you want to use a port other than `22` for ssh.
-- Edit `imouto/ansible/production-server` and replace `127.0.0.1` with the address of the server.
-- Run ansible-playbook command to run a playbook:
-
-```bash
-$ cd imouto/ansible
-$ ansible-playbook -i production-server playbook.yml
-```
-
-  To set up the whole server you can use `production.yml` playbook or to perform individual tasks you can use the other playbooks provided with imouto.
-
+TODO
