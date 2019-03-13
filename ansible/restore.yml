@@ -1,8 +1,0 @@
----
-# Playbook to restore previously backed up data
-
-- hosts: all
-  become: true
-  gather_facts: yes
-  roles:
-  - restore

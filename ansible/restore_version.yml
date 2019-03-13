@@ -1,8 +1,0 @@
----
-# Playbook to restore to Nth revision of the code
-
-- hosts: all
-  become: true
-  gather_facts: no
-  roles:
-  - restore_version
