@@ -115,6 +115,7 @@ cd ansible
 
 ```
 code_dir: /home/johndoe/tatoeba/
+git_rep: https://github.com/myfork/tatoeba2
 ```
 
 - Install everything
