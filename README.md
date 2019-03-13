@@ -103,12 +103,6 @@ This setup is for using Tatoeba on a dedicated machine. Please be aware that thi
 
 #### Usage Instructions
 
-- Edit the file `ansible.cfg` to set the `inventory` variable to `inventory.local`.
-
-```ini
-inventory = inventory.local
-```
-
 - Edit the file `host_vars/default` to set some variables according to your needs, such as:
 
 ```
