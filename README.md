@@ -101,6 +101,8 @@ This setup is for using Tatoeba on a dedicated machine. Please be aware that thi
 * Debian Stretch
 * sudo
 
+Note that Debian Stretch only packages Ansible 2.2 whereas we need 2.4. You can follow [these instructions](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#latest-releases-via-apt-debian) to get Ansible 2.4 on your Debian Stretch machine.
+
 #### Usage Instructions
 
 - Move to the ansible directory
