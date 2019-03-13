@@ -23,6 +23,12 @@ git clone https://github.com/Tatoeba/imouto
 cd imouto
 ```
 
+From there, you may install Tatoeba:
+
+- [On a local VM](#install-tatoeba-on-a-local-vm)
+- [On a local machine](#install-tatoeba-on-a-local-machine)
+- [On a remote machine](#install-tatoeba-on-a-remote-machine)
+
 ### Install Tatoeba on a local VM
 
 This is the preferred way for developers to setup a local development environment. The additional requirements are:
