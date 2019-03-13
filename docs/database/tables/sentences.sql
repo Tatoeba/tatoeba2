@@ -30,5 +30,7 @@ CREATE TABLE `sentences` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `lang` (`lang`),
-  KEY `modified_idx` (`modified`)
+  KEY `modified_idx` (`modified`),
+  KEY `hash` (`hash`),
+  KEY `dedup_idx` (`text`(767),`lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
