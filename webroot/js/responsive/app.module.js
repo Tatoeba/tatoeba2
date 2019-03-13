@@ -3,7 +3,7 @@
 
     angular
         .module('app', ['ngMaterial', 'ngMessages'])
-        .config(function($mdThemingProvider, $mdIconProvider, $httpProvider) {
+        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', function($mdThemingProvider, $mdIconProvider, $httpProvider) {
             $mdThemingProvider.theme('default')
                 .primaryPalette('green')
                 .accentPalette('grey')
@@ -18,5 +18,5 @@
                 'application/x-www-form-urlencoded; charset=UTF-8';
             $httpProvider.defaults.headers.common['X-Requested-With'] =
                 'XMLHttpRequest';
-        });
+        }]);
 })();

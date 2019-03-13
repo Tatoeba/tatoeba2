@@ -26,7 +26,6 @@
  */
 use App\Model\CurrentUser;
 
-$this->Sentences->javascriptForAJAXSentencesGroup(false);
 $this->Html->script('jquery.scrollTo.min.js', ['block' => 'scriptBottom']);
 
 if (!isset($searchProblem)) {

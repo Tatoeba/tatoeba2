@@ -58,10 +58,6 @@ class UserControllerTest extends IntegrationTestCase
         $this->fail("Failed to assert that password of user '$username' $what");
     }
 
-    private function assertFlashMessage($message) {
-        $this->assertSession($message, 'Flash.flash.0.message');
-    }
-
     public function testSavePassword_changesPassword() {
         $username = 'contributor';
         $oldPassword = '123456';

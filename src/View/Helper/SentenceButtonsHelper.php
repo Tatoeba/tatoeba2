@@ -90,8 +90,6 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function unlinkButton($sentenceId, $translationId, $langFilter = 'und')
     {
-        $this->Html->script('links.add_and_delete.js', array('block' => 'scriptBottom'));
-
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
         $image = $this->Images->svgIcon(
@@ -133,8 +131,6 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function linkButton($sentenceId, $translationId, $langFilter = 'und')
     {
-        $this->Html->script('links.add_and_delete.js', array('block' => 'scriptBottom'));
-
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
         $image = $this->Images->svgIcon(
@@ -229,7 +225,6 @@ class SentenceButtonsHelper extends AppHelper
     {
         $class = '';
         if ($editable) {
-            $this->Html->script('sentences.change_language.js', array('block' => 'scriptBottom'));
             $class = 'editableFlag';
 
             // language select

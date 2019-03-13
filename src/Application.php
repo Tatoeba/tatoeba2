@@ -43,6 +43,7 @@ class Application extends BaseApplication
 
         $this->addPlugin('Acl');
         $this->addPlugin('Queue', ['bootstrap' => true]);
+        $this->addPlugin('AssetCompress');
     }
 
     /**

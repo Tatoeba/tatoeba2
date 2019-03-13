@@ -69,6 +69,7 @@ class AppController extends Controller
     );
 
     public $helpers = array(
+        'AssetCompress.AssetCompress',
         'Sentences',
         'Comments',
         'Date',
