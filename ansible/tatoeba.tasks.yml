@@ -1,0 +1,58 @@
+---
+- name: Install and setup nginx
+  include_role:
+    name: setup_nginx
+
+- name: Install and setup PHP
+  include_role:
+    name: setup_php
+
+- name: Install and setup MySQL
+  include_role:
+    name: setup_mysql
+
+- name: Install and setup Tatoeba
+  include_role:
+    name: update_code
+  vars:
+    become: false
+
+- name: Install and setup Tatoeba's database
+  include_role:
+    name: setup_database
+  vars:
+    import_csv: 'no'
+
+- name: Install Sphinx search engine
+  include_role:
+    name: install_sphinx
+
+- name: Configure Sphinx search engine
+  include_role:
+    name: configure_sphinx
+  vars:
+    sphinx_create_indexes: true
+
+- name: Install and setup Nihongoparserd
+  include_role:
+    name: setup_nihongoparserd
+  vars:
+    force_install: no
+
+- name: Install and setup Sinoparserd
+  include_role:
+    name: setup_sinoparserd
+  vars:
+    force_install: no
+
+- name: Install and setup Suggestd
+  include_role:
+    name: setup_suggestd
+  vars:
+    force_install: no
+
+- name: Install and setup Tatodetect
+  import_tasks: install.yml
+  vars:
+    repo: https://github.com/Tatoeba/Tatodetect
+    force_install: no
