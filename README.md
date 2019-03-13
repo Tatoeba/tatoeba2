@@ -12,7 +12,16 @@ Here are the basic requirements of the machine you’re using imouto from.
 
 ## Use cases
 
-Imouto can be used in different ways to install Tatoeba depending on your setup and needs.
+Imouto can be used in different ways to install Tatoeba depending on your setup and needs. Whatever the way, you first need to:
+
+- Install the basic requirements above
+- Install the requirements for your use-case below
+- Clone the repository and go to its directory:
+
+```bash
+$ git clone https://github.com/Tatoeba/imouto
+$ cd imouto # ignore if already in the imouto directory
+```
 
 ### Install Tatoeba on a local VM
 
@@ -23,18 +32,7 @@ This is the preferred way for developers to setup a local development environmen
 
 #### Usage Instructions
 
-- Install the requirements above
-- Clone the github repo on your machine:
-
-```bash
-$ git clone https://github.com/Tatoeba/imouto
-```
-
 - Use vagrant to first download the box and then provision it using ansible. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
-
-```bash
-$ cd imouto #ignore if already in the imouto directory
-```
 
 - Configure proxy on Vagrant VM if you are behind proxy server:
   - Install proxyconf plugin:
@@ -98,7 +96,30 @@ The following playbooks are included with imouto currently:
 
 ### Install Tatoeba on a local machine
 
-TODO
+This setup is for using Tatoeba on a dedicated machine. Please be aware that this will install many things all over the place and may mess up with existing applications like nginx, mysql etc. The additional requirements are:
+
+* Debian Stretch
+* sudo
+
+#### Usage Instructions
+
+- Edit the file `ansible.cfg` to set the `inventory` variable to `inventory.local`.
+
+```ini
+inventory = inventory.local
+```
+
+- Edit the file `host_vars/default` to set some variables according to your needs, such as:
+
+```
+code_dir: /home/johndoe/tatoeba/
+```
+
+- Install everything
+
+```sh
+ansible-playbook ./local.yml
+```
 
 ### Install Tatoeba on a remote machine
 
