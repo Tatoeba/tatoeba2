@@ -48,11 +48,8 @@ download_url: http://downloads.tatoeba.org/exports/
 
 # Variables for Tatoeba's code and Cakephp
 # ----------------------------------------
-# Default directory for keeping all the back-up revisions of code
+# Where you want Tatoeba's code to be installed
 code_dir: /home/{{ansible_ssh_user}}/Tatoeba
-# Number of revisions to keep in verions directory (for later restore); should be greater than 0
-revision_limit: 3
-git_temp_dir: .temp_repo
 repo_version: HEAD
 git_remote: origin
 # change the repository to your own fork to contribute
@@ -79,30 +76,6 @@ sphinx_binlog_path: /var/lib/sphinxsearch/data
 ngrams_create_mode: download
 ngrams_db_download_url: https://downloads.tatoeba.org/tatodetect/ngrams.db
 ngrams_db_file: /etc/ngrams.db
-
-
-# Variables for backup tasks
-# --------------------------
-backup_dir: /home/{{ansible_ssh_user}}/.backup
-# Absolute paths of files/directories that are to be backup-ed along with the database and configs
-backup_items:
-- "{{audio_server_root}}"
-- "{{static_server_root}}"
-- "{{xcache_server_root}}"
-# - "{{downloads_server_root}}"
-- "/etc/nginx/sites-available"
-#Prefix for the backup file name
-backup_prefix: tatoeba
-#Destination on the host to copy backup to; append "/" if it's a directory
-backup_dest: ./
-
-
-# Variables for restore tasks
-# ---------------------------
-restore_dir: /home/{{ansible_ssh_user}}/.restore
-# Local path to the tar.gz backup file
-restore_src: LOL.tar.gz
-restore_items: "{{backup_items|default([])}}"
 
 
 # Variables for New Relic
