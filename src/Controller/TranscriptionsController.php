@@ -126,9 +126,7 @@ class TranscriptionsController extends AppController
             $saved = $this->Transcriptions->saveTranscription($data);
         }
 
-        if (!$saved) {
-            return $this->response->withStatus(400, 'Bad transcription');
-        } else {
+        if ($saved) {
             $saved['User'] = array(
                 'username' => CurrentUser::get('username')
             );
@@ -136,6 +134,9 @@ class TranscriptionsController extends AppController
 
         $this->setViewVars(array_filter(array($saved)), $sentenceId);
         $this->render('view');
+        if (!$saved) {
+            return $this->response->withStatus(400, 'Bad transcription');
+        }
     }
 
     public function of($username) {
