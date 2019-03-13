@@ -19,8 +19,8 @@ Imouto can be used in different ways to install Tatoeba depending on your setup 
 - Clone the repository and go to its directory:
 
 ```bash
-$ git clone https://github.com/Tatoeba/imouto
-$ cd imouto # ignore if already in the imouto directory
+git clone https://github.com/Tatoeba/imouto
+cd imouto
 ```
 
 ### Install Tatoeba on a local VM
@@ -36,7 +36,7 @@ This is the preferred way for developers to setup a local development environmen
   - Install proxyconf plugin:
 
 ```bash
-$ vagrant plugin install vagrant-proxyconf
+ vagrant plugin install vagrant-proxyconf
 ```
 
   - And then add the following to Vagrantfile:
@@ -54,7 +54,7 @@ end
 - Run this command to install everything. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
 
 ```bash
-$ vagrant up
+vagrant up
 ```
 
 - Once it completed, you should be able to:
@@ -67,21 +67,21 @@ $ vagrant up
 You may want to perform certain tasks independently without having to re-provision the whole machine again. To do that you can use the following command:
 
 ```bash
-$ cd ansible
-$ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root playbook-name.yml
+cd ansible
+ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root playbook-name.yml
 ```
 
 where `playbook-name.yml` is the name of the playbook that you want to run on the VM. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
 
 ```bash
-$ echo "alias imouto-devel='ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root'" >> ~/.bashrc 
-$ source ~/.bashrc
+echo "alias imouto-devel='ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root'" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 Now you can simply use the following command to run a playbook (inside the `ansible` directory):
 
 ```bash
-$ imouto-devel playbook-name.yml
+imouto-devel playbook-name.yml
 ```
 
 The following playbooks are included with imouto currently:
