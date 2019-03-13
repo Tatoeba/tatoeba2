@@ -8,7 +8,7 @@ Here are the basic requirements of the machine you’re using imouto from.
 
 * GNU/Linux
 * Git
-* Ansible 1.4 or later (also available on pip: `pip install ansible`)
+* Ansible 2.4 or later (also available on pip: `pip install ansible`)
 
 ## Use cases
 
@@ -102,6 +102,12 @@ This setup is for using Tatoeba on a dedicated machine. Please be aware that thi
 * sudo
 
 #### Usage Instructions
+
+- Move to the ansible directory
+
+```sh
+cd ansible
+```
 
 - Edit the file `host_vars/default` to set some variables according to your needs, such as:
 
