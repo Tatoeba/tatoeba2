@@ -32,8 +32,6 @@ This is the preferred way for developers to setup a local development environmen
 
 #### Usage Instructions
 
-- Use vagrant to first download the box and then provision it using ansible. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
-
 - Configure proxy on Vagrant VM if you are behind proxy server:
   - Install proxyconf plugin:
 
@@ -52,6 +50,8 @@ Vagrant.configure("2") do |config|
   end
 end
 ```
+
+- Run this command to install everything. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
 
 ```bash
 $ vagrant up
