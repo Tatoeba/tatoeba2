@@ -617,7 +617,6 @@ class LanguagesLib
             "urd",
             "yid",
             "pnb",
-            "ota",
             "apc",
             "oar",
             "ary",
@@ -627,8 +626,16 @@ class LanguagesLib
             "snd",
         );
 
+        $autoLangs = array(
+            "ota"
+        );
+
         if (in_array($lang, $rightToLeftLangs)) {
             $direction = "rtl";
+        }
+
+        if (in_array($lang, $autoLangs)) {
+            $direction = "auto";
         }
 
         return $direction;
