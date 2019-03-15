@@ -123,6 +123,15 @@ class SphinxBehavior extends Behavior
 
         $result = $sphinx->Query($options['search'], $indexes);
 
+        // avoid failing just because search operators are being misused
+        if ($result === false) {
+            $gotSyntaxError = strpos($sphinx->GetLastError(), 'syntax error,') !== FALSE;
+            if ($gotSyntaxError) {
+                $quotedQuery = $sphinx->EscapeString($options['search']);
+                $result = $sphinx->Query($quotedQuery, $indexes);
+            }
+        }
+
         if ($result === false) {
             throw new Exception($sphinx->GetLastError());
         } else if(isset($result['matches'])) {
