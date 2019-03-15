@@ -14,8 +14,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 end
 
 Vagrant.configure("2") do |config|
-  config.vm.provision "ansible" do |ansible|
-    # ansible.verbose = "vvvv"
-    ansible.playbook = "ansible/vagrant.yml"
+  if Vagrant::Util::Platform.windows?
+    config.vm.provision :guest_ansible do |ansible|
+      # ansible.verbose = "vvvv"
+      ansible.playbook = "ansible/vagrant.yml"
+    end
+  else
+    config.vm.provision :ansible do |ansible|
+      # ansible.verbose = "vvvv"
+      ansible.playbook = "ansible/vagrant.yml"
+    end
   end
 end
