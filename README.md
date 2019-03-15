@@ -6,7 +6,7 @@ Imouto is a collection of automation scripts for installing an instance of [Tato
 
 Here are the basic requirements of the machine you’re using imouto from.
 
-* GNU/Linux
+* GNU/Linux or MacOS
 * Git
 * Ansible 2.4 or later (also available on pip: `pip install ansible`)
 
