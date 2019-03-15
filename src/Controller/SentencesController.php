@@ -774,7 +774,7 @@ class SentencesController extends AppController
         try {
             $results = $this->paginate($model);
             $real_total = $this->Sentences->getRealTotal();
-            $results = $this->Sentences->addHighlightMarkers($this->Sentences->getAlias(), $results, $query);
+            $results = $this->Sentences->addHighlightMarkers($this->Sentences->getAlias(), $results);
         } catch (Exception $e) {
             $sphinx_markers = $this->_find_sphinx_markers($query);
             if (!empty($sphinx_markers)) {

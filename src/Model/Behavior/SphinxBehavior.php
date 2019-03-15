@@ -129,6 +129,9 @@ class SphinxBehavior extends Behavior
             if ($gotSyntaxError) {
                 $quotedQuery = $sphinx->EscapeString($options['search']);
                 $result = $sphinx->Query($quotedQuery, $indexes);
+                if ($result) {
+                    $options['search'] = $quotedQuery;
+                }
             }
         }
 
@@ -174,7 +177,7 @@ class SphinxBehavior extends Behavior
         return $this->_cached_result['total_found'];
     }
 
-    public function addHighlightMarkers($alias, $results, $search) {
+    public function addHighlightMarkers($alias, $results) {
         // Sort the results by lang, i.e. by index
         $docsByLang = array();
         $size = count($results);
@@ -213,7 +216,7 @@ class SphinxBehavior extends Behavior
             $excerpts = $this->runtime[$alias]['sphinx']->BuildExcerpts(
                 $documents,
                 $lang.'_main_index',
-                $search,
+                $this->_cached_query,
                 $options
             );
             if ($excerpts) {
