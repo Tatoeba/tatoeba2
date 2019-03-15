@@ -177,7 +177,9 @@ class SphinxBehavior extends Behavior
         return $this->_cached_result['total_found'];
     }
 
-    public function addHighlightMarkers($alias, $results) {
+    public function addHighlightMarkers($results) {
+        $alias = $this->getConfig('alias');
+
         // Sort the results by lang, i.e. by index
         $docsByLang = array();
         $size = count($results);
