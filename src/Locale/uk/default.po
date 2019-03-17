@@ -4,15 +4,15 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
-# older, 2016-2018
+# older, 2016-2019
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 12:02+0000\n"
-"PO-Revision-Date: 2019-01-25 12:45+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-03-10 00:37+0000\n"
+"Last-Translator: older\n"
 "Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -463,11 +463,11 @@ msgstr[3] "Наступні знаки не транскрибовано: {chars
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
-msgstr ""
+msgstr "Не можна надіслати порожнє повідомлення."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L84
 msgid "You must fill the \"To\" field."
-msgstr ""
+msgstr "Поле \"Кому\" має буте заповненим."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L326
 msgid ""
@@ -500,7 +500,7 @@ msgstr "Це речення вже під цією ліцензією."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L182
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "Це речення має бути оригінальним, а не результатом перекладу іншого."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -512,13 +512,13 @@ msgstr "Ви не є власником цього речення."
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L197
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "Власник цього речення має бути його оригінальним автором."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L210
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "Можна змінювати ліцензію тільки на таку що дозволяє більше можливостей."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L74
 msgid "You cannot save an empty message."
@@ -722,7 +722,7 @@ msgstr "Якщо ви вважаєте що існує кілька можлив
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "Аби перекладати речення ви маєте знати щонайменше дві мови. Заповніть, будь ласка, <a href=\"{}\">ваш профіль</a> із зазначенням якнайменше двох мов."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L102
 msgid "Search for untranslated sentences"
@@ -1747,11 +1747,11 @@ msgstr "Цей користувач не має жодних закладок."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L35
 msgid "Error"
-msgstr ""
+msgstr "Помилка"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L43
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
@@ -1792,15 +1792,15 @@ msgstr "Поточна ліцензія речення має бути CC BY 2.0
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L40
 msgid "You must be the original creator of the sentence."
-msgstr ""
+msgstr "Ви маєте бути оригінальним автором речення."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L41
 msgid "The sentence must be original and not derived from translation."
-msgstr ""
+msgstr "Це речення має бути оригінальним і не утвореним в результаті переклада."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L45
 msgid "Press the following button to initiate the license switch."
-msgstr ""
+msgstr "Натисніть наступну кнопку аби почати зміну ліцензії."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L49
 msgid ""
@@ -2013,7 +2013,7 @@ msgstr "Ці файли ліцензовані за CC-BY."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
 msgid "A part of our sentences are also available under CC0."
-msgstr ""
+msgstr "Частина наших речень також є доступною на умовах ліцензії CC0."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L95
 msgid "Licenses covering audio"
@@ -2154,7 +2154,7 @@ msgstr "Перший файл (sentences.tar.bz2) містить тільки ц
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L210
 msgid "Sentences (CC0)"
-msgstr ""
+msgstr "Речення (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L231
 msgid "Contains all the sentences available under CC0."
@@ -3565,7 +3565,7 @@ msgstr "Статус учасника"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Can switch license"
-msgstr ""
+msgstr "Можлива зміна ліцензії"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
@@ -3748,7 +3748,7 @@ msgstr "Перед тим як питати, ознайомтесь з <a href=\
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
-msgstr ""
+msgstr "Ми намагаємось підтримувати здорову атмосферу для цивілізованих дискусій. Прочитайте, будь ласка, наші <a href=\"{}\">правила для запобігання поганої поведінки</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L82
 msgid "{date}, by {author}"
@@ -4375,10 +4375,10 @@ msgstr "всі списки"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L37
 msgid "{title} ({n} result)"
 msgid_plural "{title} ({n}&nbsp;results)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{title} ({n} результат)"
+msgstr[1] "{title} ({n} результата)"
+msgstr[2] "{title} ({n} результатів)"
+msgstr[3] "{title} ({n}&nbsp;результатів)"
 
 #. @translators: this formats the title at the top of the search
 #. page by appending the number of results. Tatoeba is only able
@@ -4456,17 +4456,17 @@ msgstr "Надіслати переклад"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L846
 msgid "This sentence is original and was not derived from translation."
-msgstr ""
+msgstr "Це речення є оригінальним і не було результатом перекладу іншого речення."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L858
 msgid "This sentence was initially added as a translation of sentence #{n}."
-msgstr ""
+msgstr "Це речення було вперше додане як переклад речення #{n}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L863
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
-msgstr ""
+msgstr "Неможливо визначити чи це речення було спершу додане як переклад або ні."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L176
 msgid "NOTE: Both direct and indirect translations will be shown."
