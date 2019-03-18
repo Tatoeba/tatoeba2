@@ -70,5 +70,10 @@ class TranscriptionsHelperTest extends TestCase {
             '<ruby>&amp;<rp>（</rp><rt>アンド</rt><rp>）</rp></ruby>'.
             '<ruby>R<rp>（</rp><rt>アール</rt><rp>）</rp></ruby>'
         );
+        $this->assertFurigana(
+            '[行|い|]',
+            '行｛い｜｝',
+            '<ruby>行<rp>（</rp><rt>い</rt><rp>）</rp></ruby>'
+        );
     }
 }

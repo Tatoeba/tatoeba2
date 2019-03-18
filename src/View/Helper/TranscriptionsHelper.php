@@ -43,7 +43,9 @@ class TranscriptionsHelper extends AppHelper
                $readings = explode('|',$matches[2]);
                for ($i = 0; $i < count($readings); $i++) {
                    if ($i > 0 && empty($readings[$i])) {
-                       array_splice($kanjis, $i-1, 2, $kanjis[$i-1].$kanjis[$i]);
+                       if (array_key_exists($i, $kanjis)) {
+                           array_splice($kanjis, $i-1, 2, $kanjis[$i-1].$kanjis[$i]);
+                       }
                        array_splice($readings, $i, 1);
                        $i--;
                    }
