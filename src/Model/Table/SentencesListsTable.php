@@ -418,6 +418,37 @@ class SentencesListsTable extends Table
 
 
     /**
+     * Add sentences to list.
+     *
+     * @param array $sentences     Array of sentence entities.
+     * @param int   $listId        Id of the list.
+     * @param int   $currentUserId Id of the user performing the action.
+     *
+     * @return array
+     */
+    public function addSentencesToList($sentences, $listId, $currentUserId)
+    {
+        try {
+            $list = $this->get($listId);
+        } catch (RecordNotFoundException $e) {
+            return false;
+        }
+
+        if (!$list->isEditableBy($currentUserId)) {
+            return false;
+        }
+
+        try {
+            $this->Sentences->link($list, $sentences);
+            $this->_incrementNumberOfSentencesToList($listId, count($sentences));
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
+
+
+    /**
      * get all the list of a given user
      *
      * @param int $username Username of the user
@@ -487,13 +518,14 @@ class SentencesListsTable extends Table
      * Increment number of sentence to list.
      *
      * @param int $listId Id of the list.
+     * @param int $inc    The number to increment.
      *
      * @return boolean
      */
-    private function _incrementNumberOfSentencesToList($listId)
+    private function _incrementNumberOfSentencesToList($listId, $inc = 1)
     {
         $list = $this->get($listId);
-        $list->numberOfSentences++;
+        $list->numberOfSentences += $inc;
         $this->save($list);
     }
 
