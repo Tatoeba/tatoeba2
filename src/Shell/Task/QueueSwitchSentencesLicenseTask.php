@@ -138,13 +138,13 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                 'Sentences.user_id' => $options['userId'],
                 'based_on_id' => 0,
             ),
-            'joins' => array(array(
+            'join' => array(array(
                 'table' => 'contributions',
                 'alias' => 'Contributions',
                 'type' => 'INNER',
                 'conditions' => array(
-                    'Contributions.sentence_id = Sentence.id',
-                    'Contributions.user_id = Sentence.user_id',
+                    'Contributions.sentence_id = Sentences.id',
+                    'Contributions.user_id = Sentences.user_id',
                     'action' => 'insert',
                     'type' => 'sentence',
                 ),
