@@ -2,9 +2,12 @@
 
 namespace App\Shell;
 
+use Cake\Console\Shell;
 use App\Security\Utility;
 
-class UpdatePasswordVersionShell extends AppShell {
+class UpdatePasswordVersionShell extends Shell {
+
+    use BatchOperationTrait;
 
     public $uses = array('User');
 
