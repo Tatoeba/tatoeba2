@@ -193,13 +193,13 @@ class SentencesListsTableTest extends TestCase {
     function testAddSentenceToList_failsBecauseSentenceAlreadyInList() {
         $result = $this->SentencesList->addSentenceToList(4, 1, 7);
 
-        $this->assertEmpty($result);
+        $this->assertFalse($result);
     }
 
     function testAddSentenceToList_failsBecauseUnknownSentenceId() {
         $result = $this->SentencesList->addSentenceToList(10000, 1, 7);
 
-        $this->assertEmpty($result);
+        $this->assertFalse($result);
     }
 
 
