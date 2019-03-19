@@ -600,6 +600,19 @@ class SentencesListsTable extends Table
         return $this->save($data);
     }
 
+    public function emptyList($listId, $currentUserId)
+    {
+        $list = $this->get($listId);
+        if ($list->isEditableBy($currentUserId)) {
+            $this->SentencesSentencesLists->deleteAll([
+                'sentences_list_id' => $listId
+            ]);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * Delete list.
      */

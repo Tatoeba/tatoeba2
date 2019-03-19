@@ -93,6 +93,33 @@ class SentencesListsTableTest extends TestCase {
         $this->assertFalse($list);
     }
 
+    function testEmptyList_succeeds() {
+        $listId = 1;
+
+        $result = $this->SentencesList->emptyList($listId, 7);
+        $this->assertTrue($result);
+
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+                      ->where(['sentences_list_id' => $listId])->all();
+        $this->assertEmpty($after);
+
+        $all = $this->SentencesList->find()->all();
+        $this->assertNotEmpty($all);
+    }
+
+    function testEmptyList_fails() {
+        $listId = 1;
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+                       ->where(['sentences_list_id' => $listId])->all();
+
+        $result = $this->SentencesList->emptyList(1, 1);
+        $this->assertFalse($result);
+
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+                      ->where(['sentences_list_id' => $listId])->all();
+        $this->assertEquals($before, $after);
+    }
+
     function testEditName_suceeds() {
         $listId = 1;
         $newName = 'Very interesting French sentences';    
