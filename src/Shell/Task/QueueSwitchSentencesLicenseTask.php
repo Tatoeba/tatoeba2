@@ -79,12 +79,16 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         }
     }
 
+    public function getReport() {
+        return $this->report;
+    }
+
     private function sendReport($recipientId) {
         $this->loadModel('PrivateMessages');
         $now = date("Y/m/d H:i:s", time());
         $data = [
             'title' => __('Result of license switch to CC0 1.0'),
-            'content' => $this->report,
+            'content' => $this->getReport(),
             'messageId' => '',
         ];
         $this->PrivateMessages->notify($recipientId, $now, $data);
@@ -114,7 +118,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
                     __("Unable to change the license of sentence {id} to “{newLicense}” because:"),
                     compact('id', 'newLicense')
                 );
-                $errors = $this->Sentence->validationErrors['license'];
+                $errors = $data->errors('license');
                 $this->out($message."\n - ".implode("\n - ", $errors));
             }
         }

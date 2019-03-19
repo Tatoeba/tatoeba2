@@ -96,4 +96,22 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
 
         $this->assertEquals(1, $numPmAfter - $numPmBefore);
     }
+
+    public function testSwitchLicense_reportsErrors() {
+        $fakeError = "AAAAAH I'M DYIIIING";
+        $rule = function() use ($fakeError) {
+            return $fakeError;
+        };
+        $validator = $this->Sentences->getValidator();
+        $validator->add('license', 'always-fail', compact('rule'));
+
+        $options = array(
+            'userId' => 4,
+            'dryRun' => true,
+            'sendReport' => true,
+        );
+        $this->task->run($options);
+
+        $this->assertContains($fakeError, $this->task->getReport());
+    }
 }
