@@ -104,7 +104,7 @@ class UsersFixture extends TestFixture {
 			'name' => '',
 			'birthday' => NULL,
 			'description' => '',
-			'settings' => '{"is_public":"0","lang":"fra,deu"}',
+			'settings' => '{"is_public":"0","lang":"fra,deu","license_switch_list_id":4}',
 			'homepage' => '',
 			'image' => '',
 			'country_id' => NULL,
