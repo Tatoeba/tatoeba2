@@ -37,27 +37,6 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
  */
     public $failureMessage = '';
 
-    public function add() {
-        $username = isset($this->args[1]) ? $this->args[1] : '';
-        $this->loadModel('Users');
-        $user = $this->Users->findByUsername($username)->first();
-        if (!$user) {
-            if (!empty($username)) {
-                $this->out("Error: '$username' is not a valid username.");
-            }
-            $this->out('Usage: cake queue add RefreshLicenseSwitchList <username>');
-            return;
-        }
-
-        $userId = $user->id;
-        $options = compact('userId');
-        if ($this->QueuedJobs->createJob('RefreshLicenseSwitchList', $options)) {
-            $this->out('OK, job created, now run the worker');
-        } else {
-            $this->err('Could not create Job');
-        }
-    }
-
     public function addToList($sentences, $listId, $userId) {
         $this->SentencesLists->addSentencesToList($sentences, $listId, $userId);
         return count($sentences);

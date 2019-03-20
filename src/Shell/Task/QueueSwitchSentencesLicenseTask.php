@@ -59,28 +59,6 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         return parent::out($message, $newlines, $level);
     }
 
-    public function add() {
-        $username = isset($this->args[1]) ? $this->args[1] : '';
-        $dryRun = isset($this->args[2]) && $this->args[2] == 'dryrun';
-        $this->loadModel('Users');
-        $user = $this->Users->findByUsername($username)->first();
-        if (!$user) {
-            if (!empty($username)) {
-                $this->out("Error: '$username' is not a valid username.");
-            }
-            $this->out('Usage: cake queue add SwitchSentencesLicense <username> [dryrun]');
-            return;
-        }
-
-        $userId = $user->id;
-        $options = compact('userId', 'dryRun');
-        if ($this->QueuedJobs->createJob('SwitchSentencesLicense', $options)) {
-            $this->out('OK, job created, now run the worker');
-        } else {
-            $this->err('Could not create Job');
-        }
-    }
-
     public function getReport() {
         return $this->report;
     }
