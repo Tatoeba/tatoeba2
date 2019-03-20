@@ -438,13 +438,17 @@ class SentencesListsTable extends Table
             return false;
         }
 
-        try {
-            $this->Sentences->link($list, $sentences);
-            $this->_incrementNumberOfSentencesToList($listId, count($sentences));
-            return true;
-        } catch (\PDOException $e) {
-            return false;
+        $count = 0;
+        foreach ($sentences as $sentence) {
+            try {
+                $this->Sentences->link($list, [$sentence]);
+                $count++;
+            } catch (\PDOException $e) {
+                // Likely trying to add a sentence already in that list
+            }
         }
+        $this->_incrementNumberOfSentencesToList($listId, $count);
+        return $count == count($sentences);
     }
 
 

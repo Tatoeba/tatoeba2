@@ -61,4 +61,21 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
         $this->task->batchOperationSize = 1;
         $this->testRefreshList();
     }
+
+    public function testRefreshList_doesNotFailOnDuplicateLogRows()
+    {
+        $Contributions = TableRegistry::getTableLocator()->get('Contributions');
+        $row = $Contributions->find()
+            ->where([
+                'sentence_id' => 48,
+                'type' => 'sentence',
+                'action' => 'insert',
+            ])
+            ->first();
+        $row->id = null;
+        $row->isNew(true);
+        $Contributions->save($row);
+
+        $this->testRefreshList();
+    }
 }
