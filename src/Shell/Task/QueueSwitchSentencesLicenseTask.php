@@ -98,10 +98,6 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
 
     private function _switchLicense($entities, $dryRun) {
         $total = 0;
-        $saveParams = array(
-            'validate' => true,
-            'callbacks' => true,
-        );
         $newLicense = 'CC0 1.0';
         foreach ($entities as $ent) {
             $id = $ent->id;
