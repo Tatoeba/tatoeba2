@@ -58,7 +58,7 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
         }
     }
 
-    public function addToList($sentences, $modelName, $listId, $userId) {
+    public function addToList($sentences, $listId, $userId) {
         $this->SentencesLists->addSentencesToList($sentences, $listId, $userId);
         return count($sentences);
     }
@@ -67,33 +67,26 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
         extract($options); // $listId and $userId
 
         $this->loadModel('Sentences');
-        $findOptions = array(
-            'fields' => array('Sentences.id'),
-            'conditions' => array(
+        $query = $this->Sentences->find()
+            ->select('Sentences.id')->where([
                 'license' => 'CC BY 2.0 FR',
                 'Sentences.user_id' => $userId,
                 'based_on_id' => 0,
-            ),
-            'join' => array(array(
-                'table' => 'contributions',
-                'alias' => 'Contributions',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'Contributions.sentence_id = Sentences.id',
+            ])
+            ->innerJoinWith('Contributions', function ($q) {
+                return $q->where([
                     'Contributions.user_id = Sentences.user_id',
                     'action' => 'insert',
                     'type' => 'sentence',
-                ),
-            )),
-        );
+                ]);
+            });
 
         $this->loadModel('SentencesLists');
         $this->SentencesLists->emptyList($listId, $userId);
 
-        $proceeded = $this->batchOperation(
-            'Sentences',
-            'addToList',
-            $findOptions,
+        $proceeded = $this->batchOperationNewORM(
+            $query,
+            [$this, 'addToList'],
             $listId,
             $userId
         );
