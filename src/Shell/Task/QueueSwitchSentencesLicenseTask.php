@@ -96,22 +96,22 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         $this->PrivateMessages->notify($recipientId, $now, $data);
     }
 
-    public function _switchLicense($rows, $modelName, $dryRun) {
+    private function _switchLicense($entities, $dryRun) {
         $total = 0;
         $saveParams = array(
             'validate' => true,
             'callbacks' => true,
         );
         $newLicense = 'CC0 1.0';
-        foreach ($rows as $row) {
-            $id = $row->id;
-            $data = $this->{$modelName}->get($id);
+        foreach ($entities as $ent) {
+            $id = $ent->id;
+            $data = $this->Sentences->get($id);
             if ($dryRun) {
-                $this->{$modelName}->patchEntity($data, ['license' => $newLicense]);
+                $this->Sentences->patchEntity($data, ['license' => $newLicense]);
                 $ok = empty($data->getErrors());                
             } else {
-                $this->{$modelName}->patchEntity($data, ['license' => $newLicense]);
-                $ok = $this->{$modelName}->save($data);
+                $this->Sentences->patchEntity($data, ['license' => $newLicense]);
+                $ok = $this->Sentences->save($data);
             }
             if ($ok) {
                 $total++;
@@ -137,53 +137,24 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
 
     private function switchLicense($options) {
         $this->loadModel('Sentences');
-        $findOptions = array(
-            'fields' => array('Sentences.id'),
-            'conditions' => array(
-                'license' => 'CC BY 2.0 FR',
-                'Sentences.user_id' => $options['userId'],
-                'based_on_id' => 0,
-            ),
-            'join' => array(array(
-                'table' => 'contributions',
-                'alias' => 'Contributions',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'Contributions.sentence_id = Sentences.id',
-                    'Contributions.user_id = Sentences.user_id',
-                    'action' => 'insert',
-                    'type' => 'sentence',
-                ),
-            )),
-        );
+        $query = $this->Sentences->find()
+             ->select(['Sentences.id'])
+             ->matching('SentencesLists', function ($q) use ($options) {
+                 return $q->where(['SentencesLists.id' => $options['listId']]);
+             });
 
         $this->out(format(
             __('License switch started on {date} at {time} UTC.'),
             $this->dateAndTime()
         ));
-        $selected = $this->Sentences->find('all', $findOptions)->count();
+        $proceeded = $this->batchOperationNewORM($query, [$this, '_switchLicense'], $options['dryRun']);
         $this->out(format(
-            __n('Found {n} sentence that can be switched to {newLicense}.',
-                'Found {n} sentences that can be switched to {newLicense}.',
-                $selected),
-            array('n' => $selected,
-                  'newLicense' => 'CC0 1.0')
+            __n('Successfully changed the license of {n} sentence.',
+                'Successfully changed the license of {n} sentences.',
+                $proceeded),
+            array('n' => $proceeded)
         ));
 
-        if ($selected > 0) {
-            $proceeded = $this->batchOperation(
-                'Sentences',
-                '_switchLicense',
-                $findOptions,
-                $options['dryRun']
-            );
-            $this->out(format(
-                __n('Successfully changed the license of {n} sentence.',
-                    'Successfully changed the license of {n} sentences.',
-                    $proceeded),
-                array('n' => $proceeded)
-            ));
-        }
         $this->out(format(
             __('License switch completed on {date} at {time} UTC.'),
             $this->dateAndTime()

@@ -21,6 +21,47 @@ trait BatchOperationTrait {
         }
     }
 
+    public function batchOperationNewORM($query, $operation) {
+        if (!$query->clause('order')) {
+            $table = $query->getRepository();
+            $query = $query->order($table->getAlias().'.'.$table->getPrimaryKey());
+        }
+        $query = $query->limit($this->batchOperationSize);
+
+        $order = [];
+        $query->clause('order')->iterateParts(function($part) use (&$order) {
+            $order[] = $part;
+            return $part;
+        });
+        $order1 = $order[0];
+        if (count($order) == 2) {
+            $order2 = $order[1];
+        } else {
+            $order2 = $order1;
+        }
+
+        $o1field = explode('.', $order1)[1];
+        $o2field = explode('.', $order2)[1];
+
+        $baseQuery = clone $query;
+        $proceeded = 0;
+        $entities = array();
+        do {
+            $entities = $query->all();
+            $args = func_get_args();
+            array_splice($args, 0, 2, [$entities]);
+            $proceeded += call_user_func_array($operation, $args);
+            $lastEnt = $entities->last();
+            if ($lastEnt) {
+                $lastValue1 = $lastEnt->$o1field;
+                $lastValue2 = $lastEnt->$o2field;
+                $query = clone $baseQuery;
+                $query->where($this->_orderCondition($order1, $lastValue1, $order2, $lastValue2));
+            }
+        } while (!$entities->isEmpty());
+        return $proceeded;
+    }
+
     protected function batchOperation($model, $operation, $options) {
         $this->loadModel($model);
         if (!isset($options['order'])) {
