@@ -20,6 +20,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\CurrentUser;
+use App\Model\Licensing;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 
@@ -27,11 +28,24 @@ class LicensingController extends AppController {
 
     public function beforeFilter(Event $event)
     {
-        $this->Security->unlockedActions = array(
-            'switch_my_sentences',
-        );
+        $this->Security->config('unlockedActions', [
+            'refresh_license_switch_list',
+        ]);
 
         return parent::beforeFilter($event);
+    }
+
+    public function refresh_license_switch_list() {
+        if (!CurrentUser::getSetting('can_switch_license')) {
+            return $this->redirect([
+                'controller' => 'pages',
+                'action' => 'index'
+            ]);
+        }
+
+        $licensing = new Licensing();
+        $licensing->refresh_license_switch_list(CurrentUser::get('id'));
+        $this->autoRender = false;
     }
 
     public function switch_my_sentences() {
@@ -52,6 +66,8 @@ class LicensingController extends AppController {
             ])
             ->first();
 
+        $licensing = new Licensing();
+        $isRefreshing = $licensing->is_refreshing($currentUserId);
         if ($this->request->is('post')) {
             if ($currentJob) {
                 $this->Flash->set(__(
@@ -72,6 +88,6 @@ class LicensingController extends AppController {
             }
         }
 
-        $this->set(compact('currentJob'));
+        $this->set(compact('isRefreshing', 'currentJob'));
     }
 }

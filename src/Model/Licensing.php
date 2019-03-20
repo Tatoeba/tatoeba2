@@ -20,14 +20,7 @@ class Licensing {
 
     private function start_refresh_list($listId, $userId) {
         $this->loadModel('Queue.QueuedJobs');
-        $currentJob = $this->QueuedJobs->find()
-            ->where([
-                'job_type' => 'RefreshLicenseSwitchList',
-                'job_group' => $userId,
-            ])
-            ->first();
-
-        if (!$currentJob || $currentJob->completed) {
+        if (!$this->is_refreshing($userId)) {
             $this->QueuedJobs->createJob(
                 'RefreshLicenseSwitchList',
                 compact('listId', 'userId'),
@@ -39,5 +32,18 @@ class Licensing {
     public function refresh_license_switch_list($currentUserId) {
         $listId = $this->get_license_switch_list_id($currentUserId);
         $this->start_refresh_list($listId, $currentUserId);
+    }
+
+    public function is_refreshing($userId) {
+        $this->loadModel('Queue.QueuedJobs');
+        $job = $this->QueuedJobs->find()
+            ->where([
+                'job_type' => 'RefreshLicenseSwitchList',
+                'job_group' => $userId,
+                'completed IS' => null,
+            ])
+            ->first();
+
+        return (bool)$job;
     }
 }

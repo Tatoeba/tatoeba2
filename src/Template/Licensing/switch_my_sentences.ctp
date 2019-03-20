@@ -18,6 +18,7 @@
  */
 
 $this->set('title_for_layout', __("Switch my sentences' license"));
+echo $this->Html->script('licensing/switch-license.ctrl.js', ['block' => 'scriptBottom']);
 
 if ($currentJob) {
     if (isset($currentJob['completed'])) {
@@ -41,6 +42,19 @@ if ($currentJob) {
         __('The sentence must be original and not derived from translation.'),
     ));
 
+?>
+<div ng-controller="switchLicenseCtrl">
+<?
+    echo $this->Html->tag('md-button', __('Refresh list'), [
+        'type' => 'submit',
+        'class' => 'md-raised md-primary',
+        'ng-click' => 'refreshList()',
+        'ng-disabled' => 'isRefreshing',
+        'ng-init' => 'isRefreshing = '.($isRefreshing ? 'true' : 'false'),
+    ]);
+?>
+</div>
+<?
     echo $this->Html->tag('p', __(
         'Press the following button to initiate the license switch.'
     ));
