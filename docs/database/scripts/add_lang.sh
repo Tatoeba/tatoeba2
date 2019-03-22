@@ -58,7 +58,7 @@ LANGCODE=$1
 LANGNAME=$2
 LISTNUM=$3
 
-ICONNAME=$PREFIX"app/webroot/img/flags/$1.png"
+ICONNAME=$PREFIX"app/webroot/img/flags/$1.svg"
 
 if [ ! -e $ICONNAME ]; then
     echo "Please add icon for language and commit it as $ICONNAME ."

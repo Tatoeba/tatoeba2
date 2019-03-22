@@ -427,7 +427,7 @@ class LanguagesHelper extends AppHelper
         $options["alt"] = $lang;
 
         return $this->Html->image(
-            IMG_PATH . 'flags/'.$lang.'.png',
+            IMG_PATH . 'flags/'.$lang.'.svg',
             $options
         );
     }
