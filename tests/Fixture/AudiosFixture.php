@@ -14,7 +14,8 @@ class AudiosFixture extends TestFixture {
 		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
 		'external' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 500, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'created' => ['type' => 'datetime', 'null' => false, 'default' => null],
-		'modified' => ['type' => 'datetime', 'null' => false, 'default' => null],
+        'modified' => ['type' => 'datetime', 'null' => false, 'default' => null],
+        'lang' => ['type' => 'string', 'null' => true, 'default' => null, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB']
 	);
@@ -23,6 +24,7 @@ class AudiosFixture extends TestFixture {
         array(
             'id' => '1',
             'sentence_id' => '3',
+            'lang' => 'spa',
             'user_id' => '4',
             'external' => NULL,
             'created' => '2014-01-20 09:23:49',
@@ -31,6 +33,7 @@ class AudiosFixture extends TestFixture {
         array(
             'id' => '2',
             'sentence_id' => '4',
+            'lang' => 'fra',
             'user_id' => NULL,
             'external' => '{"username":"Philippe Petit"}',
             'created' => '2001-12-02 06:47:30',
@@ -39,6 +42,7 @@ class AudiosFixture extends TestFixture {
         array(
             'id' => '3',
             'sentence_id' => '12',
+            'lang' => 'fra',
             'user_id' => NULL,
             'external' => '{"username":"Philippe Petit"}',
             'created' => '2001-12-02 06:47:30',
