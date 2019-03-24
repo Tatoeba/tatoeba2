@@ -63,7 +63,14 @@ class AudiosTable extends Table
             'joinType' => 'inner',
         ]);
         $this->belongsTo('Users');
+        $this->belongsTo('Languages', [
+            'foreignKey' => 'lang',
+            'bindingKey' => 'code'
+        ]);
 
+        $this->addBehavior('CounterCache', [
+            'Languages' => ['audio']
+        ]);
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
@@ -137,8 +144,10 @@ class AudiosTable extends Table
     }
 
     public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {
+        $sentence = $this->Sentences->get($sentenceId, ['fields' => ['lang']]);
         $data = array(
             'sentence_id' => $sentenceId,
+            'lang' => $sentence->lang,
             'user_id' => null,
             'external' => null,
         );

@@ -75,7 +75,6 @@ class AudioController extends AppController
             $filesImported = $this->Audios->importFiles($errors, $author);
         }
         $filesToImport = $this->Audios->getFilesToImport();
-        $this->Audios->updateCount();
 
         $this->set(compact('filesToImport', 'errors', 'filesImported'));
     }
