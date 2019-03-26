@@ -562,6 +562,7 @@ class LanguagesLib
                 'aoz' => __d('languages', 'Uab Meto'), 
                 'shy' => __d('languages', 'Tachawit'),
                 'fkv' => __d('languages', 'Kven Finnish'),
+                'rap' => __d('languages', 'Rapa Nui'),
             );
         }
         return $languages;
