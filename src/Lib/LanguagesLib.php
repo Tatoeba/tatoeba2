@@ -309,7 +309,7 @@ class LanguagesLib
                 'ain' => __d('languages', 'Ainu'),
                 'scn' => __d('languages', 'Sicilian'),
                 'mal' => __d('languages', 'Malayalam'),
-                'nds' => __d('languages', 'Low Saxon'),
+                'nds' => __d('languages', 'Low German (Low Saxon)'),
                 'tlh' => __d('languages', 'Klingon'),
                 'slv' => __d('languages', 'Slovenian'),
                 'tha' => __d('languages', 'Thai'),
