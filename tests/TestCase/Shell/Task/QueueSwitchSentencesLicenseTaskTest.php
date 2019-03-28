@@ -65,7 +65,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
     public function testSwitchLicense_all()
     {
         $expected = [48, 53];
-        $options = ['dryRun' => false, 'userId' => 4, 'listId' => 4];
+        $options = ['userId' => 4, 'listId' => 4];
         $this->_testSwitchLicense($expected, $options);
     }
 
@@ -73,24 +73,13 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
     {
         $this->Sentences->SentencesLists->removeSentenceFromList(48, 4, 4);
         $expected = [53];
-        $options = ['dryRun' => false, 'userId' => 4, 'listId' => 4];
+        $options = ['userId' => 4, 'listId' => 4];
         $this->_testSwitchLicense($expected, $options);
-    }
-
-    public function testSwitchLicense_withDryRun()
-    {
-        $before = $this->Sentences->findAllByLicense('CC0 1.0');
-        $options = ['dryRun' => false, 'userId' => 4, 'listId' => 4];
-
-        $this->task->run($options);
-
-        $after = $this->Sentences->findAllByLicense('CC0 1.0');
-        $this->assertEquals($before, $after);
     }
 
     public function testSwitchLicense_sendsResultByPM()
     {
-        $options = ['dryRun' => false, 'userId' => 4, 'listId' => 4, 'sendReport' => true];
+        $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
         CurrentUser::store(['id' => 4]);
         $numPmBefore = $this->PrivateMessages->find('all')->count();
         $this->task->run($options);
@@ -108,7 +97,7 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $validator = $this->Sentences->getValidator();
         $validator->add('license', 'always-fail', compact('rule'));
 
-        $options = ['dryRun' => false, 'userId' => 4, 'listId' => 4, 'sendReport' => true];
+        $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
 
         $this->task->run($options);
 

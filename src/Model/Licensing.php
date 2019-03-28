@@ -53,7 +53,6 @@ class Licensing {
         $listId = $this->get_license_switch_list_id($userId);
         $options = array(
             'userId' => $userId,
-            'dryRun' => false,
             'UIlang' => $lang,
             'listId' => $listId,
             'sendReport' => true,

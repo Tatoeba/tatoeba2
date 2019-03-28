@@ -74,19 +74,14 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
         $this->PrivateMessages->notify($recipientId, $now, $data);
     }
 
-    private function _switchLicense($entities, $dryRun) {
+    private function _switchLicense($entities) {
         $total = 0;
         $newLicense = 'CC0 1.0';
         foreach ($entities as $ent) {
             $id = $ent->id;
             $data = $this->Sentences->get($id);
-            if ($dryRun) {
-                $this->Sentences->patchEntity($data, ['license' => $newLicense]);
-                $ok = empty($data->getErrors());                
-            } else {
-                $this->Sentences->patchEntity($data, ['license' => $newLicense]);
-                $ok = $this->Sentences->save($data);
-            }
+            $this->Sentences->patchEntity($data, ['license' => $newLicense]);
+            $ok = $this->Sentences->save($data);
             if ($ok) {
                 $total++;
             } else {
@@ -121,7 +116,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
             __('License switch started on {date} at {time} UTC.'),
             $this->dateAndTime()
         ));
-        $proceeded = $this->batchOperationNewORM($query, [$this, '_switchLicense'], $options['dryRun']);
+        $proceeded = $this->batchOperationNewORM($query, [$this, '_switchLicense']);
         $this->out(format(
             __n('Successfully changed the license of {n} sentence.',
                 'Successfully changed the license of {n} sentences.',
