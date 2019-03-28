@@ -563,6 +563,7 @@ class LanguagesLib
                 'shy' => __d('languages', 'Tachawit'),
                 'fkv' => __d('languages', 'Kven Finnish'),
                 'tig' => __d('languages', 'Tigre'),
+                'thv' => __d('languages', 'Tahaggart Tamahaq'),
             );
         }
         return $languages;
