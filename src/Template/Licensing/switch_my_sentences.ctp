@@ -70,6 +70,7 @@ if ($isSwitching) {
     echo $this->Html->tag('md-button', __('Switch license to CC0 1.0'), [
         'type' => 'submit',
         'class' => 'md-raised md-warn',
+        'ng-disabled' => 'isRefreshing || '.($isSwitching ? 'true' : 'false'),
     ]);
     echo $this->Form->end();
 ?>
