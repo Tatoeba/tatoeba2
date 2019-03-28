@@ -11,6 +11,7 @@ class LicensingTest extends TestCase
 {
     public $fixtures = array(
         'app.sentences_lists',
+        'app.sentences_sentences_lists',
         'app.users',
         'app.queued_jobs',
         'app.aros',
@@ -31,6 +32,13 @@ class LicensingTest extends TestCase
         unset($this->Licensing);
     }
 
+    private function assertIsSwitchListOf($list, $userId) {
+        $this->assertEquals('Sentences to switch to CC0', $list->name);
+        $this->assertEquals('unlisted', $list->visibility);
+        $this->assertEquals('creator', $list->editable_by);
+        $this->assertEquals($userId, $list->user_id);
+    }
+
     public function testRefresh_createsNewList() {
         $SentencesLists = TableRegistry::get('SentencesLists');
         $before = $SentencesLists->find()->all();
@@ -41,10 +49,18 @@ class LicensingTest extends TestCase
         $this->assertNotEquals($before, $after);
 
         $list = $SentencesLists->find()->last();
-        $this->assertEquals('Sentences to switch to CC0', $list->name);
-        $this->assertEquals('unlisted', $list->visibility);
-        $this->assertEquals('creator', $list->editable_by);
-        $this->assertEquals(7, $list->user_id);
+        $this->assertIsSwitchListOf($list, 7);
+    }
+
+    public function testRefresh_reCreatesNewList() {
+        $SentencesLists = TableRegistry::get('SentencesLists');
+        $oldList = $SentencesLists->get(4);
+        $SentencesLists->delete($oldList);
+
+        $this->Licensing->refresh_license_switch_list(4);
+
+        $list = $SentencesLists->find()->last();
+        $this->assertIsSwitchListOf($list, 4);
     }
 
     public function testRefresh_savesNewListId() {

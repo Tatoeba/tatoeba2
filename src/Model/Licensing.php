@@ -1,21 +1,36 @@
 <?php
 namespace App\Model;
 
+use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Datasource\Exception\InvalidPrimaryKeyException;
+
 class Licensing {
     use \Cake\Datasource\ModelAwareTrait;
+
+    private function create_licence_switch_list_for($user) {
+        $list = $this->SentencesLists->createList(__('Sentences to switch to CC0'), $user->id);
+        if ($list) {
+            $user->settings = ['license_switch_list_id' => $list->id];
+            $this->Users->save($user);
+        }
+        return $list;
+    }
 
     private function get_license_switch_list_id($userId) {
         $this->loadModel('Users');
         $user = $this->Users->get($userId);
-        if (!$user->settings['license_switch_list_id']) {
-            $this->loadModel('SentencesLists');
-            $list = $this->SentencesLists->createList(__('Sentences to switch to CC0'), $userId);
-            if ($list) {
-                $user->settings = ['license_switch_list_id' => $list->id];
-                $this->Users->save($user);
-            }
+
+        $this->loadModel('SentencesLists');
+        try {
+            $listId = $user->settings['license_switch_list_id'];
+            $list = $this->SentencesLists->get($listId);
+        } catch (RecordNotFoundException $e) {
+            $list = $this->create_licence_switch_list_for($user);
+        } catch (InvalidPrimaryKeyException $e) {
+            $list = $this->create_licence_switch_list_for($user);
         }
-        return $user->settings['license_switch_list_id'];
+
+        return $list->id;
     }
 
     private function start_refresh_list($listId, $userId) {
