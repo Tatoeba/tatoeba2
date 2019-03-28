@@ -108,4 +108,14 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $this->task->batchOperationSize = 1;
         $this->testSwitchLicense_all();
     }
+
+    public function testSwitchLicense_removesSentencesFromList()
+    {
+        $options = ['userId' => 4, 'listId' => 4];
+
+        $this->task->run($options);
+
+        $count = $this->Sentences->SentencesLists->getNumberOfSentences(4);
+        $this->assertEquals(0, $count);
+    }
 }
