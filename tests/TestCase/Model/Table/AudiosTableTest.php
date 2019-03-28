@@ -208,8 +208,7 @@ class AudiosTableTest extends TestCase {
         $result = $this->Audio->assignAudioTo(1, 'admin');
         $expected = [
             'sentence_id' => 1,
-            'user_id' => 1,
-            'lang' => 'eng'
+            'user_id' => 1
         ];
         $result = array_intersect_key($result->toArray(), $expected);
         $this->assertEquals($expected, $result);
