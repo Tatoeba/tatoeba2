@@ -49,11 +49,40 @@ class Licensing {
         $this->start_refresh_list($listId, $currentUserId);
     }
 
+    public function start_switch($userId, $lang) {
+        $listId = $this->get_license_switch_list_id($userId);
+        $options = array(
+            'userId' => $userId,
+            'dryRun' => false,
+            'UIlang' => $lang,
+            'listId' => $listId,
+            'sendReport' => true,
+        );
+        $this->QueuedJobs->createJob(
+            'SwitchSentencesLicense',
+            $options,
+            ['group' => $userId]
+        );
+    }
+
     public function is_refreshing($userId) {
         $this->loadModel('Queue.QueuedJobs');
         $job = $this->QueuedJobs->find()
             ->where([
                 'job_type' => 'RefreshLicenseSwitchList',
+                'job_group' => $userId,
+                'completed IS' => null,
+            ])
+            ->first();
+
+        return (bool)$job;
+    }
+
+    public function is_switching($userId) {
+        $this->loadModel('Queue.QueuedJobs');
+        $job = $this->QueuedJobs->find()
+            ->where([
+                'job_type' => 'SwitchSentencesLicense',
                 'job_group' => $userId,
                 'completed IS' => null,
             ])

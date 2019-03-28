@@ -85,22 +85,20 @@ class LicensingController extends AppController {
 
         $licensing = new Licensing();
         $isRefreshing = $licensing->is_refreshing($currentUserId);
+        $isSwitching = $licensing->is_switching($currentUserId);
         if ($this->request->is('post')) {
-            if ($currentJob) {
+            if ($isRefreshing) {
+                $this->Flash->set(__(
+                    'Please wait until the list is updated.'
+                ));
+            } elseif($isSwitching) {
                 $this->Flash->set(__(
                     'A license switch is already in progress.'
                 ));
             } else {
-                $options = array(
-                    'userId' => $currentUserId,
-                    'dryRun' => false,
-                    'UIlang' => Configure::read('Config.language'),
-                    'sendReport' => true,
-                );
-                $currentJob = $this->QueuedJobs->createJob(
-                    'SwitchSentencesLicense',
-                    $options,
-                    ['group' => $currentUserId]
+                $licensing->start_switch(
+                    $currentUserId,
+                    Configure::read('Config.language')
                 );
             }
         }
