@@ -142,7 +142,7 @@ WHERE l.code IS NULL;
 
 UPDATE `languages` SET audio = 0;
 UPDATE `languages` l,
-  (SELECT count(distinct sentence_id) as count, sentences.lang
+  (SELECT count(distinct sentence_id) as count, lang
    FROM audios JOIN sentences ON audios.sentence_id = sentences.id
    GROUP BY lang
   ) as s
