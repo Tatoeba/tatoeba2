@@ -38,10 +38,7 @@ if ($isSwitching) {
         __('The sentence must be original and not derived from translation.'),
     ));
 
-    echo $this->Html->tag('h3', __('List of affected sentences'));
 ?>
-    <md-progress-circular ng-show="isRefreshing" md-mode="indeterminate" class="block-loader">
-    </md-progress-circular>
     <div id="switchList" ng-show="!isRefreshing">
 <?
     if (!$list->isEmpty()) {
@@ -49,8 +46,13 @@ if ($isSwitching) {
     }
 ?>
     </div>
+    <md-progress-circular ng-show="isRefreshing" md-mode="indeterminate" class="block-loader">
+    </md-progress-circular>
 <?
-    echo $this->Html->tag('md-button', __('Refresh list'), [
+    echo $this->Html->tag('p', __(
+        'Press the following button to start or restart an analysis of which of your sentences can be switched to CC0.'
+    ));
+    echo $this->Html->tag('md-button', __('Start analysis'), [
         'type' => 'submit',
         'class' => 'md-raised md-primary',
         'ng-click' => 'refreshList()',
