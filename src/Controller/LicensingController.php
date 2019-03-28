@@ -96,7 +96,7 @@ class LicensingController extends AppController {
                     'A license switch is already in progress.'
                 ));
             } else {
-                $licensing->start_switch(
+                $isSwitching = $licensing->start_switch(
                     $currentUserId,
                     Configure::read('Config.language')
                 );
@@ -105,7 +105,7 @@ class LicensingController extends AppController {
 
         $listId = CurrentUser::getSetting('license_switch_list_id');
         $list = $this->paginateAffected($listId);
-        $this->set(compact('isRefreshing', 'currentJob', 'list'));
+        $this->set(compact('isSwitching', 'isRefreshing', 'currentJob', 'list'));
     }
 
     public function get_license_switch_list() {

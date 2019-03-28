@@ -58,7 +58,7 @@ class Licensing {
             'listId' => $listId,
             'sendReport' => true,
         );
-        $this->QueuedJobs->createJob(
+        return (bool)$this->QueuedJobs->createJob(
             'SwitchSentencesLicense',
             $options,
             ['group' => $userId]

@@ -25,17 +25,8 @@ echo $this->Html->script('licensing/switch-license.ctrl.js', ['block' => 'script
 <?
 echo $this->Html->tag('h2', __('Switch my sentences to CC0'));
 
-if ($currentJob) {
-    if (isset($currentJob['completed'])) {
-        $message = __('The license switch of your sentences is completed. A report has been sent to you by private message.');
-    } elseif (isset($currentJob['fetched'])) {
-        $message = __('The license switch of your sentences is in progress. You will receive a private message when it will be completed.');
-    } elseif (isset($currentJob['created'])) {
-        $message = __('The license switch of your sentences will be started soon. You will receive a private message when it will be completed.');
-    } else {
-        $message = __('A problem occured while switching the license of your sentences.');
-    }
-    echo $this->Html->tag('p', $message);
+if ($isSwitching) {
+    echo $this->Html->tag('p', __('The license switch of your sentences is in progress. You will receive a private message when it will be completed.'));
 } else {
     echo $this->Html->tag('p', format(
         __('This page allows you to massively switch the license of your sentences to {CC0-link}. Among all your sentences, only the ones that meet the following conditions will be affected.'),
