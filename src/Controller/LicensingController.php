@@ -35,6 +35,23 @@ class LicensingController extends AppController {
         return parent::beforeFilter($event);
     }
 
+    private function paginateAffected($listId) {
+        $this->loadModel('Sentences');
+
+        $pagination = [
+            'contain' => [
+                'Sentences' => function($q) {
+                    return $q->select(['id', 'lang', 'text', 'correctness']);
+                },
+            ],
+            'conditions' => ['sentences_list_id' => $listId],
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+            'order' => ['Sentences.created']
+        ];
+        $this->paginate = $pagination;
+        return $this->paginate('SentencesSentencesLists');
+    }
+
     public function refresh_license_switch_list() {
         if (!CurrentUser::getSetting('can_switch_license')) {
             return $this->redirect([
@@ -88,6 +105,21 @@ class LicensingController extends AppController {
             }
         }
 
-        $this->set(compact('isRefreshing', 'currentJob'));
+        $listId = CurrentUser::getSetting('license_switch_list_id');
+        $list = $this->paginateAffected($listId);
+        $this->set(compact('isRefreshing', 'currentJob', 'list'));
+    }
+
+    public function get_license_switch_list() {
+        $currentUserId = CurrentUser::get('id');
+        $licensing = new Licensing();
+        $isRefreshing = $licensing->is_refreshing($currentUserId);
+        if ($isRefreshing) {
+            return $this->response->withStatus(400, 'List not ready yet');
+        } else {
+            $listId = CurrentUser::getSetting('license_switch_list_id');
+            $list = $this->paginateAffected($listId);
+            $this->set(compact('list'));
+        }
     }
 }

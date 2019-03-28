@@ -20,6 +20,8 @@
 $this->set('title_for_layout', __("Switch my sentences' license"));
 echo $this->Html->script('licensing/switch-license.ctrl.js', ['block' => 'scriptBottom']);
 
+echo $this->Html->tag('h2', __('Switch my sentences to CC0'));
+
 if ($currentJob) {
     if (isset($currentJob['completed'])) {
         $message = __('The license switch of your sentences is completed. A report has been sent to you by private message.');
@@ -43,14 +45,25 @@ if ($currentJob) {
     ));
 
 ?>
-<div ng-controller="switchLicenseCtrl">
+<div ng-controller="switchLicenseCtrl" ng-init="init(<?= ($isRefreshing ? 'true' : 'false') ?>)">
+<?
+    echo $this->Html->tag('h3', __('List of affected sentences'));
+?>
+    <md-progress-circular ng-show="isRefreshing" md-mode="indeterminate" class="block-loader">
+    </md-progress-circular>
+    <div id="switchList" ng-show="!isRefreshing">
+<?
+    if (!$list->isEmpty()) {
+        echo $this->element('licensing/list', compact($list));
+    }
+?>
+    </div>
 <?
     echo $this->Html->tag('md-button', __('Refresh list'), [
         'type' => 'submit',
         'class' => 'md-raised md-primary',
         'ng-click' => 'refreshList()',
         'ng-disabled' => 'isRefreshing',
-        'ng-init' => 'isRefreshing = '.($isRefreshing ? 'true' : 'false'),
     ]);
 ?>
 </div>
