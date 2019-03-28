@@ -20,6 +20,9 @@
 $this->set('title_for_layout', __("Switch my sentences' license"));
 echo $this->Html->script('licensing/switch-license.ctrl.js', ['block' => 'scriptBottom']);
 
+?>
+<div ng-controller="switchLicenseCtrl" ng-init="init(<?= ($isRefreshing ? 'true' : 'false') ?>)">
+<?
 echo $this->Html->tag('h2', __('Switch my sentences to CC0'));
 
 if ($currentJob) {
@@ -44,9 +47,6 @@ if ($currentJob) {
         __('The sentence must be original and not derived from translation.'),
     ));
 
-?>
-<div ng-controller="switchLicenseCtrl" ng-init="init(<?= ($isRefreshing ? 'true' : 'false') ?>)">
-<?
     echo $this->Html->tag('h3', __('List of affected sentences'));
 ?>
     <md-progress-circular ng-show="isRefreshing" md-mode="indeterminate" class="block-loader">
@@ -65,11 +65,10 @@ if ($currentJob) {
         'ng-click' => 'refreshList()',
         'ng-disabled' => 'isRefreshing',
     ]);
-?>
-</div>
-<?
+
+    echo $this->Html->tag('h3', __('Switch license'));
     echo $this->Html->tag('p', __(
-        'Press the following button to initiate the license switch.'
+        'Press the following button to initiate the license switch of the above-listed sentences.'
     ));
     echo $this->Html->tag(
         'p',
@@ -77,7 +76,13 @@ if ($currentJob) {
         array('class' => 'warning')
     );
     echo $this->Form->create();
-    echo $this->Form->submit(__('Switch license to CC0 1.0'));
+    echo $this->Html->tag('md-button', __('Switch license to CC0 1.0'), [
+        'type' => 'submit',
+        'class' => 'md-raised md-warn',
+    ]);
     echo $this->Form->end();
+?>
+</div>
+<?
 }
 
