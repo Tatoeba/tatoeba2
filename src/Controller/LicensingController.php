@@ -61,7 +61,7 @@ class LicensingController extends AppController {
         }
 
         $licensing = new Licensing();
-        $licensing->refresh_license_switch_list(CurrentUser::get('id'));
+        $licensing->refreshLicenseSwitchList(CurrentUser::get('id'));
         $this->autoRender = false;
     }
 
@@ -96,14 +96,14 @@ class LicensingController extends AppController {
                     'A license switch is already in progress.'
                 ));
             } else {
-                $isSwitching = $licensing->start_switch(
+                $isSwitching = $licensing->startLicenseSwitch(
                     $currentUserId,
                     Configure::read('Config.language')
                 );
             }
         }
 
-        $listId = $licensing->get_license_switch_list_id($currentUserId);
+        $listId = $licensing->getLicenseSwitchListId($currentUserId);
         $list = $this->paginateAffected($listId);
         $this->set(compact('isSwitching', 'isRefreshing', 'currentJob', 'list'));
     }
@@ -115,7 +115,7 @@ class LicensingController extends AppController {
         if ($isRefreshing) {
             return $this->response->withStatus(400, 'List not ready yet');
         } else {
-            $listId = $licensing->get_license_switch_list_id($currentUserId);
+            $listId = $licensing->getLicenseSwitchListId($currentUserId);
             $list = $this->paginateAffected($listId);
             $this->set(compact('list'));
         }

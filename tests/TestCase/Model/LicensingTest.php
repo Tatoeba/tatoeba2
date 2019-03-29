@@ -43,7 +43,7 @@ class LicensingTest extends TestCase
         $SentencesLists = TableRegistry::get('SentencesLists');
         $before = $SentencesLists->find()->all();
 
-        $this->Licensing->refresh_license_switch_list(7);
+        $this->Licensing->refreshLicenseSwitchList(7);
 
         $after = $SentencesLists->find()->all();
         $this->assertNotEquals($before, $after);
@@ -57,14 +57,14 @@ class LicensingTest extends TestCase
         $oldList = $SentencesLists->get(4);
         $SentencesLists->delete($oldList);
 
-        $this->Licensing->refresh_license_switch_list(4);
+        $this->Licensing->refreshLicenseSwitchList(4);
 
         $list = $SentencesLists->find()->last();
         $this->assertIsSwitchListOf($list, 4);
     }
 
     public function testRefresh_savesNewListId() {
-        $this->Licensing->refresh_license_switch_list(7);
+        $this->Licensing->refreshLicenseSwitchList(7);
 
         $listId = $this->Licensing->SentencesLists->find()->last()->id;
         $settings = $this->Licensing->Users->get(7)->settings;
@@ -72,7 +72,7 @@ class LicensingTest extends TestCase
     }
 
     public function testRefresh_createsJob() {
-        $this->Licensing->refresh_license_switch_list(4);
+        $this->Licensing->refreshLicenseSwitchList(4);
 
         $QueuedJobs = TableRegistry::get('QueuedJobs');
         $job = $QueuedJobs->find()->last();
@@ -84,7 +84,7 @@ class LicensingTest extends TestCase
         $SentencesLists = TableRegistry::get('SentencesLists');
         $before = $SentencesLists->find()->all();
 
-        $this->Licensing->refresh_license_switch_list(4);
+        $this->Licensing->refreshLicenseSwitchList(4);
 
         $after = $SentencesLists->find()->all();
         $this->assertEquals($before, $after);
@@ -95,20 +95,20 @@ class LicensingTest extends TestCase
     }
 
     public function testRefresh_doesNotCreatesDuplicateJob() {
-        $this->Licensing->refresh_license_switch_list(4);
-        $this->Licensing->refresh_license_switch_list(4);
+        $this->Licensing->refreshLicenseSwitchList(4);
+        $this->Licensing->refreshLicenseSwitchList(4);
 
         $QueuedJobs = TableRegistry::get('QueuedJobs');
         $this->assertEquals(1, $QueuedJobs->find()->count());
     }
 
     public function testRefresh_createsDuplicateJobIfCompleted() {
-        $this->Licensing->refresh_license_switch_list(4);
+        $this->Licensing->refreshLicenseSwitchList(4);
         $QueuedJobs = TableRegistry::get('QueuedJobs');
         $job = $QueuedJobs->find()->last();
         $job->completed = '2019-01-01 01:02:03';
         $QueuedJobs->save($job);
-        $this->Licensing->refresh_license_switch_list(4);
+        $this->Licensing->refreshLicenseSwitchList(4);
 
         $QueuedJobs = TableRegistry::get('QueuedJobs');
         $this->assertEquals(2, $QueuedJobs->find()->count());
