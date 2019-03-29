@@ -16,7 +16,7 @@ class Licensing {
         return $list;
     }
 
-    private function get_license_switch_list_id($userId) {
+    public function get_license_switch_list_id($userId) {
         $this->loadModel('Users');
         $user = $this->Users->get($userId);
 

@@ -103,7 +103,7 @@ class LicensingController extends AppController {
             }
         }
 
-        $listId = CurrentUser::getSetting('license_switch_list_id');
+        $listId = $licensing->get_license_switch_list_id($currentUserId);
         $list = $this->paginateAffected($listId);
         $this->set(compact('isSwitching', 'isRefreshing', 'currentJob', 'list'));
     }
@@ -115,7 +115,7 @@ class LicensingController extends AppController {
         if ($isRefreshing) {
             return $this->response->withStatus(400, 'List not ready yet');
         } else {
-            $listId = CurrentUser::getSetting('license_switch_list_id');
+            $listId = $licensing->get_license_switch_list_id($currentUserId);
             $list = $this->paginateAffected($listId);
             $this->set(compact('list'));
         }
