@@ -26,7 +26,8 @@
                 $http.get(rootUrl + "/licensing/get_license_switch_list")
                 .then(
                     function(response) {
-                        angular.element('switchList').replaceWith(response);
+                        var switchList = document.getElementById('switchList');
+                        angular.element(switchList).replaceWith(response.data);
                         $scope.isRefreshing = false;
                     },
                     function() { /* a callback to prevent console warning */ }
