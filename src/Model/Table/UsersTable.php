@@ -48,7 +48,7 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->belongsTo('Groups');
+        $this->belongsTo('Groups', ['bindingKey' => 'id']);
 
         $this->hasMany('Audios');
         $this->hasMany('Contributions');
