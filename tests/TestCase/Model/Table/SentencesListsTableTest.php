@@ -103,6 +103,9 @@ class SentencesListsTableTest extends TestCase {
                       ->where(['sentences_list_id' => $listId])->all();
         $this->assertEmpty($after);
 
+        $count = $this->SentencesList->get($listId)->numberOfSentences;
+        $this->assertEquals(0, $count);
+
         $all = $this->SentencesList->find()->all();
         $this->assertNotEmpty($all);
     }

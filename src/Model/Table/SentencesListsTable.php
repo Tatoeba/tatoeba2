@@ -643,6 +643,8 @@ class SentencesListsTable extends Table
             $this->SentencesSentencesLists->deleteAll([
                 'sentences_list_id' => $listId
             ]);
+            $list->numberOfSentences = 0;
+            $this->save($list);
             return true;
         } else {
             return false;
