@@ -77,4 +77,28 @@ class ExportsTable extends Table
            ->select(['name', 'url', 'status'])
            ->where(['user_id' => $userId]);
     }
+
+    public function createExport($userId, $config)
+    {
+        $export = $this->newEntity();
+        $export->name        = $config['name'];
+        $export->description = $config['description'];
+        $export->status      = 'queued';
+        $export->user_id     = $userId;
+
+        if ($this->save($export)) {
+            $config['export_id'] = $export->id;
+            $job = $this->QueuedJobs->createJob(
+                'Export',
+                $config,
+                ['group' => $userId]
+            );
+            if ($job) {
+                $export->queued_job_id = $job->id;
+                if ($this->save($export)) {
+                    return $export->extract(['name', 'url', 'status']);
+                }
+            }
+        }
+    }
 }

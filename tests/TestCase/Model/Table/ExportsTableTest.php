@@ -11,12 +11,16 @@ class ExportsTableTest extends TestCase
 
     public $fixtures = [
         'app.Exports',
+        'app.QueuedJobs',
+        'app.Users'
     ];
 
     public function setUp()
     {
         parent::setUp();
 
+        \Cake\Core\Configure::write('Acl.database', 'test');
+        \Cake\Core\Plugin::load('Queue');
         $this->Exports = TableRegistry::get('Exports');
     }
 
@@ -44,5 +48,54 @@ class ExportsTableTest extends TestCase
         $result = $this->Exports->getExportsOf(7);
 
         $this->assertEquals($expected, $result->hydrate(false)->toArray());
+    }
+
+    public function testCreateExport_returnsExport()
+    {
+        $expected = [
+            'name' => 'foo',
+            'url' => null,
+            'status' => 'queued',
+        ];
+        $options = [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
+
+        $export = $this->Exports->createExport(4, $options);
+
+        $this->assertEquals($expected, $export);
+    }
+
+    public function testCreateExport_createsExport()
+    {
+        $expected = [
+            'id' => 4,
+            'name' => 'foo',
+            'description' => 'bar',
+            'url' => null,
+            'filename' => null,
+            'generated' => null,
+            'status' => 'queued',
+            'queued_job_id' => 4,
+            'user_id' => 4,
+        ];
+        $options = [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
+
+        $this->Exports->createExport(4, $options);
+
+        $export = $this->Exports->find()->hydrate(false)->last();
+        $this->assertEquals($expected, $export);
+    }
+
+    public function testCreateExport_createsJob()
+    {
+        $options = [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
+
+        $this->Exports->createExport(4, $options);
+
+        $job = $this->Exports->QueuedJobs->find()->last();
+        $this->assertEquals('Export', $job->job_type);
+        $this->assertEquals(4, $job->job_group);
+
+        $export = $this->Exports->find()->last();
+        $this->assertEquals($export->id, unserialize($job->data)['export_id']);
     }
 }
