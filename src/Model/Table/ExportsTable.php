@@ -70,4 +70,11 @@ class ExportsTable extends Table
 
         return $rules;
     }
+
+    public function getExportsOf($userId)
+    {
+        return $this->find()
+           ->select(['name', 'url', 'status'])
+           ->where(['user_id' => $userId]);
+    }
 }
