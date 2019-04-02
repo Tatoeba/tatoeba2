@@ -3,6 +3,7 @@ namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\ExportsTable;
 use Cake\Core\Configure;
+use Cake\Filesystem\Folder;
 use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
@@ -14,7 +15,8 @@ class ExportsTableTest extends TestCase
     public $fixtures = [
         'app.Exports',
         'app.QueuedJobs',
-        'app.Users'
+        'app.Users',
+        'app.Sentences',
     ];
 
     private $testExportDir = TMP.'export_tests'.DS;
@@ -30,12 +32,23 @@ class ExportsTableTest extends TestCase
         Configure::write('Acl.database', 'test');
 
         \Cake\Core\Plugin::load('Queue');
+
+        $folder = new Folder($this->testExportDir);
+        $folder->delete();
+        if (!$folder->create($this->testExportDir)) {
+            die("Couldn't create test directory '{$this->testExportDir}'");
+        }
+
         $this->Exports = TableRegistry::get('Exports');
     }
 
     public function tearDown()
     {
         unset($this->Exports);
+
+        $folder = new Folder($this->testExportDir);
+        $folder->delete();
+
         parent::tearDown();
     }
 
@@ -124,5 +137,17 @@ class ExportsTableTest extends TestCase
         $this->assertEquals(TMP.'export_tests/list_3.csv', $export->filename);
         $this->assertEquals('https://example.com/exports/list_3.csv', $export->url);
         $this->assertEquals('online', $export->status);
+    }
+
+    public function testRunExport_createsFile()
+    {
+        $jobId = 3;
+        $exportId = 3;
+        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+
+        $this->Exports->runExport($config, $jobId);
+
+        $filename = $this->Exports->get($exportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_3.csv', $filename);
     }
 }

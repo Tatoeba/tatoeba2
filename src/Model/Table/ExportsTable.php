@@ -6,10 +6,13 @@ use Cake\I18n\Time;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
+use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
 
 class ExportsTable extends Table
 {
+    use \App\Shell\BatchOperationTrait;
+
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -118,10 +121,30 @@ class ExportsTable extends Table
     public function runExport($config, $jobId)
     {
         if ($config['type'] == 'list') {
+            // TODO get exception
             $export = $this->get($config['export_id']);
             $filename = $this->newFilename($config);
             $export->generated = Time::now();
             $export->filename = $filename;
+            $this->save($export);
+
+            $Sentences = TableRegistry::get('Sentences');
+            $query = $Sentences->find()
+                ->select(['Sentences.lang', 'Sentences.text'])
+                ->matching('SentencesLists', function ($q) use ($config) {
+                    return $q->where(['SentencesLists.id' => $config['list_id']]);
+                });
+
+            $fh = fopen($filename, 'w');
+            $this->batchOperationNewORM($query, function ($entities) use ($config, $fh) {
+                foreach ($entities as $sentence) {
+                    $fields = $sentence->extract(['lang', 'text']);
+                    fputs($fh, implode($fields, "\t")."\n");
+                }
+            });
+            fclose($fh);
+
+            $export = $this->get($export->id);
             $export->url = $this->urlFromFilename($filename);
             $export->status = 'online';
             $this->save($export);
