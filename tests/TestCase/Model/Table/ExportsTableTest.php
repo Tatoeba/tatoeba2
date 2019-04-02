@@ -2,6 +2,8 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\ExportsTable;
+use Cake\Core\Configure;
+use Cake\I18n\Time;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
@@ -15,11 +17,18 @@ class ExportsTableTest extends TestCase
         'app.Users'
     ];
 
+    private $testExportDir = TMP.'export_tests'.DS;
+
     public function setUp()
     {
         parent::setUp();
 
-        \Cake\Core\Configure::write('Acl.database', 'test');
+        Configure::write('Exports', [
+            'path' => $this->testExportDir,
+            'url'  => 'https://example.com/exports/',
+        ]);
+        Configure::write('Acl.database', 'test');
+
         \Cake\Core\Plugin::load('Queue');
         $this->Exports = TableRegistry::get('Exports');
     }
@@ -97,5 +106,23 @@ class ExportsTableTest extends TestCase
 
         $export = $this->Exports->find()->last();
         $this->assertEquals($export->id, unserialize($job->data)['export_id']);
+    }
+
+    public function testRunExport_updatesExport()
+    {
+        $now = new Time('2019-02-01 15:04:30');
+        Time::setTestNow($now);
+
+        $jobId = 3;
+        $exportId = 3;
+        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+
+        $this->Exports->runExport($config, $jobId);
+
+        $export = $this->Exports->get($exportId);
+        $this->assertEquals($now, $export->generated);
+        $this->assertEquals(TMP.'export_tests/list_3.csv', $export->filename);
+        $this->assertEquals('https://example.com/exports/list_3.csv', $export->url);
+        $this->assertEquals('online', $export->status);
     }
 }

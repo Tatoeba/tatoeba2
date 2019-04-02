@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Table;
 
+use Cake\Core\Configure;
+use Cake\I18n\Time;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -99,6 +101,30 @@ class ExportsTable extends Table
                     return $export->extract(['name', 'url', 'status']);
                 }
             }
+        }
+    }
+
+    private function urlFromFilename($filename)
+    {
+        return Configure::read('Exports.url').basename($filename);
+    }
+
+    private function newFilename($config)
+    {
+        $filename = $config['type'].'_'.$config['export_id'].'.csv';
+        return Configure::read('Exports.path').$filename;
+    }
+
+    public function runExport($config, $jobId)
+    {
+        if ($config['type'] == 'list') {
+            $export = $this->get($config['export_id']);
+            $filename = $this->newFilename($config);
+            $export->generated = Time::now();
+            $export->filename = $filename;
+            $export->url = $this->urlFromFilename($filename);
+            $export->status = 'online';
+            $this->save($export);
         }
     }
 }

@@ -73,7 +73,7 @@ class QueuedJobsFixture extends TestFixture
                 /* Job waiting to be executed */
                 'id' => 3,
                 'job_type' => 'Export',
-                'data' => serialize(['export_id' => 3]),
+                'data' => serialize(['type' => 'list', 'export_id' => 3]),
                 'job_group' => '4',
                 'reference' => null,
                 'created' => '2019-02-01 15:03:56',
