@@ -12,8 +12,12 @@
     <p>{{export.name}}</p>
     <md-button class="md-raised md-primary"
                ng-href="{{export.url}}"
-               ng-show="export.url"><?= __x('button', 'Download') ?></md-button>
-    <span ng-show="!export.url"><?= __('Export in progress') ?></span>
+               ng-show="export.status == 'online'"><?= __x('button', 'Download') ?></md-button>
+    <span ng-show="export.status == 'queued'"><?= __('Export in progress') ?></span>
+    <span ng-show="export.status == 'failed'">
+        <md-icon>error</md-icon>
+        <?= __('Export failed') ?>
+    </span>
 </md-list-item>
 </div>
 
