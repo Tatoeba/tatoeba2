@@ -2,6 +2,7 @@
 namespace App\Model\Table;
 
 use Cake\Core\Configure;
+use Cake\Filesystem\File;
 use Cake\I18n\Time;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -146,14 +147,18 @@ class ExportsTable extends Table
                     return $q->where(['SentencesLists.id' => $config['list_id']]);
                 });
 
-            $fh = fopen($filename, 'w');
+            $file = new File($filename, true, 0600);
+            if (!$file->open('w')) {
+                return false;
+            }
+
             $this->batchOperationNewORM($query, function ($entities) use ($config, $fh) {
                 foreach ($entities as $sentence) {
                     $fields = $sentence->extract(['lang', 'text']);
-                    fputs($fh, implode($fields, "\t")."\n");
+                    $file->write(implode($fields, "\t")."\n");
                 }
             });
-            fclose($fh);
+            $file->close();
 
             $export = $this->get($export->id);
             $export->url = $this->urlFromFilename($filename);

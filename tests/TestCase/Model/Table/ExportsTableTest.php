@@ -217,4 +217,19 @@ class ExportsTableTest extends TestCase
         $filename = $this->Exports->get($exportId)->filename;
         $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_3.csv', $filename);
     }
+
+    public function testRunExport_failsIfExportDirNotWritable()
+    {
+        $readOnlyDir = $this->testExportDir.'readonly';
+        $folder = new Folder($readOnlyDir, true, 0444);
+        Configure::write('Exports.path', $folder->path.DS);
+
+        $jobId = 3;
+        $exportId = 3;
+        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+
+        $result = $this->Exports->runExport($config, $jobId);
+
+        $this->assertFalse($result);
+    }
 }
