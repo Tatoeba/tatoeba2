@@ -99,21 +99,23 @@ class ExportsTable extends Table
         $export->status      = 'queued';
         $export->user_id     = $userId;
 
-        if ($this->save($export)) {
-            $config['export_id'] = $export->id;
-            $job = $this->QueuedJobs->createJob(
-                'Export',
-                $config,
-                ['group' => $userId]
-            );
-            if ($job) {
-                $export->queued_job_id = $job->id;
-                if ($this->save($export)) {
-                    return $export->extract(['name', 'url', 'status']);
+        return $this->getConnection()->transactional(function () use ($export, $config) {
+            if ($this->save($export)) {
+                $config['export_id'] = $export->id;
+                $job = $this->QueuedJobs->createJob(
+                    'Export',
+                    $config,
+                    ['group' => $export->user_id]
+                );
+                if ($job) {
+                    $export->queued_job_id = $job->id;
+                    if ($this->save($export)) {
+                        return $export->extract(['name', 'url', 'status']);
+                    }
                 }
             }
-        }
-        return false;
+            return false;
+        });
     }
 
     private function urlFromFilename($filename)

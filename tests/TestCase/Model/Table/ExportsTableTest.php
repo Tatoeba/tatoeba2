@@ -140,6 +140,19 @@ class ExportsTableTest extends TestCase
         $this->assertFalse($result);
     }
 
+    public function testCreateExport_failsIfCreatingJobFails()
+    {
+        $rules = $this->Exports->QueuedJobs->rulesChecker();
+        $rules->add(function () {return false;}, 'always-fail');
+        $before = $this->Exports->find()->count();
+
+        $result = $this->Exports->createExport(4, $this->options());
+        $this->assertFalse($result);
+
+        $after = $this->Exports->find()->count();
+        $this->assertEquals($before, $after);
+    }
+
     public function testCreateExport_createsExport()
     {
         $expected = [
