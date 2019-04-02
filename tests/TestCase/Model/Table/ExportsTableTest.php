@@ -248,5 +248,41 @@ class ExportsTableTest extends TestCase
         $result = $this->Exports->runExport($config, $jobId);
 
         $this->assertFalse($result);
+        $this->assertEquals('failed', $this->Exports->get($exportId)->status);
     }
+
+    public function testRunExport_failsIfInvalidExportId()
+    {
+        $jobId = 3;
+        $config = ['type' => 'list', 'list_id' => 1, 'export_id' => 999999999];
+
+        $result = $this->Exports->runExport($config, $jobId);
+
+        $this->assertFalse($result);
+    }
+
+    public function testRunExport_failsIfInvalidListId()
+    {
+        $exportId = 3;
+        $jobId = 3;
+        $config = ['type' => 'list', 'list_id' => 'invalid', 'export_id' => $exportId];
+
+        $result = $this->Exports->runExport($config, $jobId);
+
+        $this->assertFalse($result);
+        $this->assertEquals('failed', $this->Exports->get($exportId)->status);
+    }
+
+    public function testRunExport_failsIfInvalidType()
+    {
+        $exportId = 3;
+        $jobId = 3;
+        $config = ['type' => 'invalid', 'export_id' => $exportId];
+
+        $result = $this->Exports->runExport($config, $jobId);
+
+        $this->assertFalse($result);
+        $this->assertEquals('failed', $this->Exports->get($exportId)->status);
+    }
+
 }

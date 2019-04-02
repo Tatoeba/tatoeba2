@@ -9,6 +9,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use Cake\Validation\Validator;
+use Exception;
 
 class ExportsTable extends Table
 {
@@ -132,40 +133,59 @@ class ExportsTable extends Table
 
     public function runExport($config, $jobId)
     {
-        if ($config['type'] == 'list') {
-            // TODO get exception
+        $export = $ok = false;
+        try {
             $export = $this->get($config['export_id']);
-            $filename = $this->newFilename($config);
-            $export->generated = Time::now();
-            $export->filename = $filename;
-            $this->save($export);
-
-            $Sentences = TableRegistry::get('Sentences');
-            $query = $Sentences->find()
-                ->select(['Sentences.id', 'Sentences.lang', 'Sentences.text'])
-                ->matching('SentencesLists', function ($q) use ($config) {
-                    return $q->where(['SentencesLists.id' => $config['list_id']]);
-                });
-
-            $file = new File($filename, true, 0600);
-            if (!$file->open('w')) {
-                return false;
-            }
-
-            $this->getConnection()->transactional(function () use ($query, $file) {
-                $this->batchOperationNewORM($query, function ($entities) use ($file) {
-                    foreach ($entities as $sentence) {
-                        $fields = $sentence->extract(['lang', 'text']);
-                        $file->write(implode($fields, "\t")."\n");
-                    }
-                });
-            });
-            $file->close();
-
-            $export = $this->get($export->id);
-            $export->url = $this->urlFromFilename($filename);
-            $export->status = 'online';
-            return (bool)$this->save($export);
+            $ok = $this->_runExport($export, $config);
         }
+        catch (Exception $e) {
+            $ok = false;
+        }
+
+        if ($export) {
+            $export->status = $ok ? 'online' : 'failed';
+            $this->save($export);
+        }
+        return $ok;
+    }
+
+    private function _runExport($export, $config)
+    {
+        if ($config['type'] != 'list') {
+            return false;
+        }
+
+        $filename = $this->newFilename($config);
+        $export->generated = Time::now();
+        $export->filename = $filename;
+        if (!$this->save($export)) {
+            return false;
+        }
+
+        $Sentences = TableRegistry::get('Sentences');
+        $query = $Sentences->find()
+            ->select(['Sentences.id', 'Sentences.lang', 'Sentences.text'])
+            ->matching('SentencesLists', function ($q) use ($config) {
+                return $q->where(['SentencesLists.id' => $config['list_id']]);
+            });
+
+        $file = new File($filename, true, 0600);
+        if (!$file->open('w')) {
+            return false;
+        }
+
+        $this->getConnection()->transactional(function () use ($query, $file) {
+            $this->batchOperationNewORM($query, function ($entities) use ($file) {
+                foreach ($entities as $sentence) {
+                    $fields = $sentence->extract(['lang', 'text']);
+                    $file->write(implode($fields, "\t")."\n");
+                }
+            });
+        });
+        $file->close();
+
+        $export = $this->get($export->id);
+        $export->url = $this->urlFromFilename($filename);
+        return (bool)$this->save($export);
     }
 }

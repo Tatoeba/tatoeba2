@@ -39,7 +39,7 @@ class CreateExports extends AbstractMigration
         $table->addColumn('status', 'enum', [
             'default' => null,
             'null' => false,
-            'values' => ['queued', 'exported', 'online'],
+            'values' => ['queued', 'exported', 'online', 'failed'],
         ]);
         $table->addColumn('queued_job_id', 'integer', [
             'default' => null,
