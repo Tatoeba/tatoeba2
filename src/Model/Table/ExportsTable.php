@@ -152,7 +152,7 @@ class ExportsTable extends Table
                 return false;
             }
 
-            $this->batchOperationNewORM($query, function ($entities) use ($config, $fh) {
+            $this->batchOperationNewORM($query, function ($entities) use ($file) {
                 foreach ($entities as $sentence) {
                     $fields = $sentence->extract(['lang', 'text']);
                     $file->write(implode($fields, "\t")."\n");
