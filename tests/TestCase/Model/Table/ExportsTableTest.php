@@ -62,6 +62,15 @@ class ExportsTableTest extends TestCase
         return array_merge($this->options(), $with);
     }
 
+    private function optionsWithout($without)
+    {
+        $options = $this->options();
+        foreach ($without as $field) {
+            unset($options[$field]);
+        }
+        return $options;
+    }
+
     public function testGetExportsOf()
     {
         $expected = [
@@ -100,6 +109,34 @@ class ExportsTableTest extends TestCase
     {
         $options = $this->optionsWith(['name' => '']);
         $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsWithoutName()
+    {
+        $options = $this->optionsWithout(['name']);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsIfEmptyDescription()
+    {
+        $options = $this->optionsWith(['description' => '']);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsWithoutDescription()
+    {
+        $options = $this->optionsWithout(['description']);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsIfInvalidUserId()
+    {
+        $options = $this->options();
+        $result = $this->Exports->createExport(9999999999, $options);
         $this->assertFalse($result);
     }
 
