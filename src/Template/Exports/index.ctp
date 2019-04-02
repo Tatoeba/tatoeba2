@@ -10,7 +10,9 @@
               ng-show="exports.length"
               ng-repeat="export in exports">
     <p>{{export.name}}</p>
-    <md-button ng-show="export.url" class="md-raised md-primary"><?= __x('button', 'Download') ?></md-button>
+    <md-button class="md-raised md-primary"
+               ng-href="{{export.url}}"
+               ng-show="export.url"><?= __x('button', 'Download') ?></md-button>
     <span ng-show="!export.url"><?= __('Export in progress') ?></span>
 </md-list-item>
 </div>
