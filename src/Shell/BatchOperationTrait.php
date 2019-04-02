@@ -1,6 +1,8 @@
 <?php
 namespace App\Shell;
 
+use Cake\Core\Exception\Exception;
+
 trait BatchOperationTrait {
     public $batchOperationSize = 1000;
 
@@ -18,6 +20,12 @@ trait BatchOperationTrait {
                     )),
                 )),
             ));
+        }
+    }
+
+    private function ensureHasField($entity, $field) {
+        if (!$entity->has($field)) {
+            throw new Exception("Field '$field' needs to be speficied in ->select() in the batch operation query");
         }
     }
 
@@ -53,7 +61,9 @@ trait BatchOperationTrait {
             $proceeded += call_user_func_array($operation, $args);
             $lastEnt = $entities->last();
             if ($lastEnt) {
+                $this->ensureHasField($lastEnt, $o1field);
                 $lastValue1 = $lastEnt->$o1field;
+                $this->ensureHasField($lastEnt, $o2field);
                 $lastValue2 = $lastEnt->$o2field;
                 $query = clone $baseQuery;
                 $query->where($this->_orderCondition($order1, $lastValue1, $order2, $lastValue2));
