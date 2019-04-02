@@ -163,7 +163,7 @@ class ExportsTable extends Table
             $export = $this->get($export->id);
             $export->url = $this->urlFromFilename($filename);
             $export->status = 'online';
-            $this->save($export);
+            return (bool)$this->save($export);
         }
     }
 }

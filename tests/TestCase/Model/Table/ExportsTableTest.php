@@ -188,6 +188,17 @@ class ExportsTableTest extends TestCase
         $this->assertEquals($export->id, unserialize($job->data)['export_id']);
     }
 
+    public function testRunExport_returnsTrue()
+    {
+        $jobId = 3;
+        $exportId = 3;
+        $config = (array)unserialize($this->Exports->QueuedJobs->get($jobId)->data);
+
+        $result = $this->Exports->runExport($config, $jobId);
+
+        $this->assertTrue($result);
+    }
+
     public function testRunExport_updatesExport()
     {
         $now = new Time('2019-02-01 15:04:30');
