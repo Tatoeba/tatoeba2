@@ -52,6 +52,20 @@ return [
     ],
 
     /**
+     * Exports paths.
+     * The web server must serve <Exports.path> under <Exports.url>.
+     * <Exports.url> can be a fully qualified URL (e.g.
+     * https://downloads.example.com/downloads/) or a URL on the same host (e.g.
+     * /downloads/).
+     * Both must end with a slash character.
+     * The PHP process must have write access in <Exports.path>.
+     */
+    'Exports' => [
+        'url'  => '/downloads/',
+        'path' => WWW_ROOT.'downloads/',
+    ],
+
+    /**
      * For email notifications.
      * Cf. src/Event/NotificationListener.php
      */
