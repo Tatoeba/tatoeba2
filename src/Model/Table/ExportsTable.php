@@ -142,7 +142,7 @@ class ExportsTable extends Table
 
             $Sentences = TableRegistry::get('Sentences');
             $query = $Sentences->find()
-                ->select(['Sentences.lang', 'Sentences.text'])
+                ->select(['Sentences.id', 'Sentences.lang', 'Sentences.text'])
                 ->matching('SentencesLists', function ($q) use ($config) {
                     return $q->where(['SentencesLists.id' => $config['list_id']]);
                 });

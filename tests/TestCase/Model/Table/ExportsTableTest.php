@@ -229,6 +229,12 @@ class ExportsTableTest extends TestCase
         $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_3.csv', $filename);
     }
 
+    public function testRunExport_withBatchOperation()
+    {
+        $this->Exports->batchOperationSize = 1;
+        $this->testRunExport_createsFile();
+    }
+
     public function testRunExport_failsIfExportDirNotWritable()
     {
         $readOnlyDir = $this->testExportDir.'readonly';
