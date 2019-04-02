@@ -52,6 +52,16 @@ class ExportsTableTest extends TestCase
         parent::tearDown();
     }
 
+    private function options()
+    {
+        return [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
+    }
+
+    private function optionsWith($with)
+    {
+        return array_merge($this->options(), $with);
+    }
+
     public function testGetExportsOf()
     {
         $expected = [
@@ -84,6 +94,13 @@ class ExportsTableTest extends TestCase
         $export = $this->Exports->createExport(4, $options);
 
         $this->assertEquals($expected, $export);
+    }
+
+    public function testCreateExport_failsIfEmptyName()
+    {
+        $options = $this->optionsWith(['name' => '']);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
     }
 
     public function testCreateExport_createsExport()

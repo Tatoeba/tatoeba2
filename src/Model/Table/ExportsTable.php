@@ -73,6 +73,14 @@ class ExportsTable extends Table
         $rules->add($rules->existsIn(['queued_job_id'], 'QueuedJobs'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
+        $rules->add(function ($entity) {
+            $data = $entity->extract($this->schema()->columns(), true);
+            $validator = $this->validator('default');
+            $errors = $validator->errors($data, $entity->isNew());
+            $entity->errors($errors);
+            return empty($errors);
+        });
+
         return $rules;
     }
 
@@ -105,6 +113,7 @@ class ExportsTable extends Table
                 }
             }
         }
+        return false;
     }
 
     private function urlFromFilename($filename)
