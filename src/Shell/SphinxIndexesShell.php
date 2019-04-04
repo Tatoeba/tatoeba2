@@ -40,14 +40,15 @@ class SphinxIndexesShell extends Shell {
     private function die_usage($message = '') {
         $myself = basename(__FILE__, '.php');
         $this->_die("$message\nThis manages the sphinx indexes.\n\n"
-           ."Usage:   $myself merge [lang]...\n"
+           ."Usage:   $myself [-w] merge [lang]...\n"
            ."Example: $myself merge eng fra epo\n"
            ."Merges the (big and slow to refresh) main index with "
            ."the (small and quick to refresh) delta index of the given "
            ."language ISO codes, or all the languages if none provided.\n\n"
-           ."Usage:   $myself update ( main | delta )\n"
+           ."Usage:   $myself [-w] update ( main | delta )\n"
            ."Example: $myself update delta\n"
-           ."Updates all the indexes of the given type.\n");
+           ."Updates all the indexes of the given type.\n\n"
+           ."-w:      wait for running $myself to exit\n");
     }
 
     private function merge_index($lang) {
@@ -85,6 +86,16 @@ class SphinxIndexesShell extends Shell {
         if (!posix_setuid($sphinxUserInfo['uid'])) {
             $this->_die("Unable to change uid. Make sure you're root.\n");
         }
+    }
+
+    public function getOptionParser()
+    {
+        $parser = parent::getOptionParser();
+        $parser->addOption('wait', [
+            'short' => 'w',
+            'boolean' => true,
+        ]);
+        return $parser;
     }
 
     private function process_args() {
@@ -129,15 +140,40 @@ class SphinxIndexesShell extends Shell {
         $this->process_args();
     }
 
+    private function waitFor($pid) {
+        echo "Waiting for process $pid to terminate...\n";
+        while ($this->isProcessRunning($pid)) {
+            sleep(1);
+        }
+    }
+
+    private function isProcessRunning($pid) {
+        return (bool)posix_getpgid($pid);
+    }
+
     public function main() {
         $this->become_sphinx_user();
+
         if (file_exists(LOCK_FILE)) {
-            die("Exiting because another instance of this script "
-               ."seems to be running. If you're sure it's not, "
-               ."remove the file '".LOCK_FILE."'.\n");
+            $pid = file_get_contents(LOCK_FILE);
+            if ($this->isProcessRunning($pid)) {
+                if ($this->param('wait')) {
+                    $this->waitFor($pid);
+                } else {
+                    die("Exiting because another instance of this script "
+                       ."seems to be running. If you're sure it's not, "
+                       ."remove the file '".LOCK_FILE."'.\n");
+                }
+            }
         }
 
-        touch(LOCK_FILE);
+        $fh = fopen(LOCK_FILE, 'w');
+        if ($fh) {
+            fwrite($fh, getmypid());
+            fclose($fh);
+        } else {
+            die("Cannot write lock file '".LOCK_FILE."'.\n");
+        }
         $this->run();
         $this->_die();
     }
