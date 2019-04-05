@@ -566,6 +566,7 @@ class LanguagesLib
                 'lij' => __d('languages', 'Ligurian'),
                 'tig' => __d('languages', 'Tigre'),
                 'thv' => __d('languages', 'Tahaggart Tamahaq'),
+                'div' => __d('languages', 'Dhivehi'),
             );
         }
         return $languages;
@@ -628,6 +629,7 @@ class LanguagesLib
             "afb",
             "pus",
             "snd",
+            "div",
         );
 
         $autoLangs = array(
