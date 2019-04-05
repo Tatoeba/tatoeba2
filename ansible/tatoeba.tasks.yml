@@ -15,7 +15,7 @@
   include_role:
     name: update_code
   vars:
-    become: false
+    ansible_become: false
 
 - name: Install and setup Tatoeba's database
   include_role:
