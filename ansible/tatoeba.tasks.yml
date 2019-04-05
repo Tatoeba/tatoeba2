@@ -23,15 +23,15 @@
   vars:
     import_csv: 'no'
 
-- name: Install Sphinx search engine
+- name: Install search engine
   include_role:
-    name: install_sphinx
+    name: install_manticore
 
-- name: Configure Sphinx search engine
+- name: Configure search engine
   include_role:
-    name: configure_sphinx
+    name: configure_manticore
   vars:
-    sphinx_create_indexes: true
+    create_indexes: true
 
 - name: Install and setup Nihongoparserd
   include_role:

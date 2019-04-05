@@ -1,0 +1,13 @@
+---
+
+- name: Install Manticore package
+  apt:
+    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/2.8.2/manticore_2.8.2-190402-4e81114d-release-stemmer.stretch_amd64-bin.deb
+
+- name: Increase Manticore max opened file limit
+  copy:
+    src: override.conf
+    dest: /etc/systemd/system/manticore.d/
+    owner: root
+    group: root
+    mode: 0644

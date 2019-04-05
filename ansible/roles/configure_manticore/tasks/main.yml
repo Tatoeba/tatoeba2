@@ -1,5 +1,5 @@
 ---
-# Playbook to setup sphinx server, index sentences and start the search daemon
+# Playbook to setup manticore server, index sentences and start the search daemon
 
 - name: Check whether code directory is present or not
   shell: ' [ -d  {{code_dir}} ] '
@@ -11,14 +11,14 @@
   when: code_status is failed
 
 - name: Stop the search daemon
-  service: name=sphinxsearch state=stopped
+  service: name=manticore state=stopped
 
-- name: Create directories for sphinx
-  file: path={{item}} state=directory mode=0755 owner=sphinxsearch group=sphinxsearch
+- name: Create directories for manticore
+  file: path={{item}} state=directory mode=0755 owner=manticore group=manticore
   with_items:
-  - "{{sphinx_index_dir}}"
-  - "{{sphinx_log_dir}}"
-  - "{{sphinx_binlog_path}}"
+  - "{{manticore_index_dir}}"
+  - "{{manticore_log_dir}}"
+  - "{{manticore_binlog_path}}"
 
 - name: Generate sphinx.conf
   become: false
@@ -30,12 +30,12 @@
 
 - name: Create indexes
   become: true
-  become_user: sphinxsearch
+  become_user: manticore
   command: indexer --all
-  when: sphinx_create_indexes == true
+  when: create_indexes == true
 
 - name: Start the search daemon
-  service: name=sphinxsearch state=started enabled=yes
+  service: name=manticore state=started enabled=yes
 
 - name: Enable search
   replace:

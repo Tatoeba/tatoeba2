@@ -5,7 +5,7 @@
   become: true
   gather_facts: yes
   roles:
-  - { role: configure_sphinx, sphinx_create_indexes: no }
+  - { role: configure_manticore, create_indexes: no }
   - { role: setup_nihongoparserd, force_install: no }
   - { role: setup_sinoparserd, force_install: no }
   - { role: setup_suggestd, force_install: no }

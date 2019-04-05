@@ -62,13 +62,13 @@ mysql_test_password: tatoeba
 mysql_test_db_name: tatoeba_test
 
 
-# Variables for sphinx search
+# Variables for manticore search
 # ---------------------------
-sphinx_index_dir: /var/sphinx/indices
-sphinx_log_dir: /var/sphinx/log
-sphinx_sql_socket: /run/mysqld/mysqld.sock
-sphinx_pid_file: /run/sphinxsearch/searchd.pid
-sphinx_binlog_path: /var/lib/sphinxsearch/data
+manticore_index_dir: /var/manticore/indices
+manticore_log_dir: /var/manticore/log
+manticore_sql_socket: /run/mysqld/mysqld.sock
+manticore_pid_file: /var/run/manticore/searchd.pid
+manticore_binlog_path: /var/lib/manticore/data
 
 # Variables for tatodetect
 # ------------------------
