@@ -153,17 +153,6 @@ class SphinxConfShell extends Shell {
         'U+0AB5..U+0AB9', 'U+0ABC..U+0AC5', 'U+0AC7..U+0AC9', 'U+0ACB..U+0ACD', 'U+0AD0', 'U+0AE0..U+0AE3', 'U+0AE6..U+0AEF',
         # Latin fullwidth to halfwidth
         'U+FF10..U+FF19->U+30..U+39', 'U+FF21..U+FF3A->U+61..U+7A', 'U+FF41..U+FF5A->U+61..U+7A',
-        # Katakana halfwidth to fullwidth
-        'U+FF66->U+30F2', 'U+FF67->U+30A1', 'U+FF68->U+30A3', 'U+FF69->U+30A5', 'U+FF6A->U+30A7',
-        'U+FF6B->U+30A9', 'U+FF6C->U+30E3', 'U+FF6D->U+30E5', 'U+FF6E->U+30E7', 'U+FF6F->U+30C3',
-        'U+FF70->U+30FC', 'U+FF71->U+30A2', 'U+FF72->U+30A4', 'U+FF73->U+30A6', 'U+FF74->U+30A8',
-        'U+FF75->U+30AA', 'U+FF76->U+30AB', 'U+FF77->U+30AD', 'U+FF78->U+30AF', 'U+FF79->U+30B1',
-        'U+FF7A->U+30B3', 'U+FF7B->U+30B5', 'U+FF7C->U+30B7', 'U+FF7D->U+30B9', 'U+FF7E->U+30BB',
-        'U+FF7F->U+30BD', 'U+FF80->U+30BF', 'U+FF81->U+30C1', 'U+FF82->U+30C4', 'U+FF83->U+30C6',
-        'U+FF84->U+30C8', 'U+FF85..U+FF8A->U+30CA..U+30CF', 'U+FF8B->U+30D2', 'U+FF8C->U+30D5',
-        'U+FF8D->U+30D8', 'U+FF8E->U+30DB', 'U+FF8F..U+FF93->U+30DE..U+30E2', 'U+FF94->U+30E4',
-        'U+FF95->U+30E6', 'U+FF96->U+30E8', 'U+FF97->U+30E9', 'U+FF98->U+30EA', 'U+FF99->U+30EB',
-        'U+FF9A->U+30EC', 'U+FF9B->U+30ED', 'U+FF9C->U+30EF', 'U+FF9D->U+30F3',
         # Hangul halfwidth to fullwidth
         'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
         'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
@@ -184,7 +173,19 @@ class SphinxConfShell extends Shell {
 
     public $scriptsWithoutWordBoundaries = array(
         # CJK
-        'U+3000..U+FEFF', 'U+FFF0..U+2FA1F',
+        'U+3000..U+312F', 'U+3300..U+4DFF', 'U+F900..U+FAFF',
+        'U+1B000..U+1B16F', 'U+20000..U+2EBEF', 'U+2F800..U+2FA1F',
+        # Katakana halfwidth to fullwidth
+        'U+FF66->U+30F2', 'U+FF67->U+30A1', 'U+FF68->U+30A3', 'U+FF69->U+30A5', 'U+FF6A->U+30A7',
+        'U+FF6B->U+30A9', 'U+FF6C->U+30E3', 'U+FF6D->U+30E5', 'U+FF6E->U+30E7', 'U+FF6F->U+30C3',
+        'U+FF70->U+30FC', 'U+FF71->U+30A2', 'U+FF72->U+30A4', 'U+FF73->U+30A6', 'U+FF74->U+30A8',
+        'U+FF75->U+30AA', 'U+FF76->U+30AB', 'U+FF77->U+30AD', 'U+FF78->U+30AF', 'U+FF79->U+30B1',
+        'U+FF7A->U+30B3', 'U+FF7B->U+30B5', 'U+FF7C->U+30B7', 'U+FF7D->U+30B9', 'U+FF7E->U+30BB',
+        'U+FF7F->U+30BD', 'U+FF80->U+30BF', 'U+FF81->U+30C1', 'U+FF82->U+30C4', 'U+FF83->U+30C6',
+        'U+FF84->U+30C8', 'U+FF85..U+FF8A->U+30CA..U+30CF', 'U+FF8B->U+30D2', 'U+FF8C->U+30D5',
+        'U+FF8D->U+30D8', 'U+FF8E->U+30DB', 'U+FF8F..U+FF93->U+30DE..U+30E2', 'U+FF94->U+30E4',
+        'U+FF95->U+30E6', 'U+FF96->U+30E8', 'U+FF97->U+30E9', 'U+FF98->U+30EA', 'U+FF99->U+30EB',
+        'U+FF9A->U+30EC', 'U+FF9B->U+30ED', 'U+FF9C->U+30EF', 'U+FF9D->U+30F3',
         # Lao (lao)
         'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
         'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
