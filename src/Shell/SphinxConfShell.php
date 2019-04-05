@@ -40,6 +40,9 @@ class SphinxConfShell extends Shell {
         'tur',
         'swe',
         'eng',
+        'dan', # Danish
+        'hun', # Hungarian
+        'ron', # Romanian
     );
 
     public $charsetTable = array(
