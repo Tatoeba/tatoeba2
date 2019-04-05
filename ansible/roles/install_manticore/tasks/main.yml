@@ -6,8 +6,8 @@
 
 - name: Increase Manticore max opened file limit
   copy:
-    src: override.conf
-    dest: /etc/systemd/system/manticore.d/
+    src: manticore.conf
+    dest: /etc/security/limits.d/
     owner: root
     group: root
     mode: 0644
