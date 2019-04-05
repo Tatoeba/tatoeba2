@@ -153,6 +153,8 @@ class SphinxConfShell extends Shell {
         'U+0AB5..U+0AB9', 'U+0ABC..U+0AC5', 'U+0AC7..U+0AC9', 'U+0ACB..U+0ACD', 'U+0AD0', 'U+0AE0..U+0AE3', 'U+0AE6..U+0AEF',
         # Latin fullwidth to halfwidth
         'U+FF10..U+FF19->U+30..U+39', 'U+FF21..U+FF3A->U+61..U+7A', 'U+FF41..U+FF5A->U+61..U+7A',
+        # Hangul
+        'U+1100..U+11FF', 'U+3130..U+318F', 'U+A960..U+A97F', 'U+AC00..U+D7FF',
         # Hangul halfwidth to fullwidth
         'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
         'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
