@@ -175,7 +175,7 @@ class SphinxConfShell extends Shell {
 
     public $scriptsWithoutWordBoundaries = array(
         # CJK
-        'U+3000..U+312F', 'U+3300..U+4DFF', 'U+F900..U+FAFF',
+        'U+3000..U+312F', 'U+3300..U+9FFF', 'U+F900..U+FAFF',
         'U+1B000..U+1B16F', 'U+20000..U+2EBEF', 'U+2F800..U+2FA1F',
         # Katakana halfwidth to fullwidth
         'U+FF66->U+30F2', 'U+FF67->U+30A1', 'U+FF68->U+30A3', 'U+FF69->U+30A5', 'U+FF6A->U+30A7',
