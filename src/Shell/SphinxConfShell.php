@@ -43,6 +43,7 @@ class SphinxConfShell extends Shell {
         'dan', # Danish
         'hun', # Hungarian
         'ron', # Romanian
+        'nob' => 'nor', # Norwegian (Bokmål)
     );
 
     public $charsetTable = array(
@@ -530,10 +531,18 @@ EOT;
         path = " . $sourcePath . DIRECTORY_SEPARATOR . $lang . '_' . $type;
 
                 if ($type == 'main') {
-                    if (in_array($lang, $this->languageWithStemmer)) {
+                    if (isset($this->languageWithStemmer[$lang])) {
+                        $libstemmmer_lang = $this->languageWithStemmer[$lang];
+                    } else if (in_array($lang, $this->languageWithStemmer)) {
+                        $libstemmmer_lang = $lang;
+                    } else {
+                        $libstemmmer_lang = false;
+                    }
+
+                    if ($libstemmmer_lang) {
                         $conf .= "
         index_exact_words       = 1
-        morphology              = libstemmer_$lang
+        morphology              = libstemmer_$libstemmmer_lang
         min_stemming_len        = 4";
                     }
                     if (isset($this->indexExtraOptions[$lang])) {
