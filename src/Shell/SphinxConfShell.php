@@ -42,17 +42,6 @@ class SphinxConfShell extends Shell {
         'eng',
     );
 
-    public $cjkLanguages = array(
-        'kor',
-        'cmn',
-        'wuu',
-        'jpn',
-        'yue',
-        'nan',
-        'ain',
-        'lzh',
-    );
-
     public $charsetTable = array(
         # Ascii
         '0..9', 'a..z', '_', 'A..Z->a..z',
@@ -178,8 +167,6 @@ class SphinxConfShell extends Shell {
         # Hangul halfwidth to fullwidth
         'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
         'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
-        # CJK
-        'U+3000..U+FEFF', 'U+FFF0..U+2FA1F',
         # Neo-Tifinagh (one of the Berber scripts)
         'U+2D30..U+2D67', 'U+2D6F',
         # Syriac (script of Assyrian)
@@ -195,22 +182,20 @@ class SphinxConfShell extends Shell {
         'U+0CD5..U+0CD6', 'U+0CDE', 'U+0CE0..U+0CE3', 'U+0CE6..U+0CEF', 'U+0CF1..U+0CF2',
     );
 
-    public $languagesWithoutWordBoundaries = array(
-        # Lao
-        'lao' => array(
-            'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
-            'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
-            'U+0EC0..U+0EC4', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
-        ),
-        # Tibetan (not sure about marks and signs)
-        'bod' => array(
-            'U+0F00', 'U+0F20..U+0F33', 'U+0F40..U+0F47', 'U+0F49..U+0F6C', 'U+0F71..U+0F87', 'U+0F90..U+0F97',
-            'U+0F99..U+0FBC', 'U+0FD0..U+0FD2',
-        ),
-        # Khmer
-        'khm' => array('U+1780..U+17D2', 'U+17E0..U+17E9', 'U+17F0..U+17F9', 'U+19E0..U+19FF'),
-        # Thai
-        'tha' => array('U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59'),
+    public $scriptsWithoutWordBoundaries = array(
+        # CJK
+        'U+3000..U+FEFF', 'U+FFF0..U+2FA1F',
+        # Lao (lao)
+        'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
+        'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
+        'U+0EC0..U+0EC4', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
+        # Tibetan (bod) (not sure about marks and signs)
+        'U+0F00', 'U+0F20..U+0F33', 'U+0F40..U+0F47', 'U+0F49..U+0F6C', 'U+0F71..U+0F87', 'U+0F90..U+0F97',
+        'U+0F99..U+0FBC', 'U+0FD0..U+0FD2',
+        # Khmer (khm)
+        'U+1780..U+17D2', 'U+17E0..U+17E9', 'U+17F0..U+17F9', 'U+19E0..U+19FF',
+        # Thai (tha)
+        'U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59',
     );
 
     public $regexpFilter = array(
@@ -225,14 +210,6 @@ class SphinxConfShell extends Shell {
 
     public function __construct() {
         parent::__construct();
-
-        $this->charsetTable = array_merge(
-            $this->charsetTable,
-            call_user_func_array(
-                'array_merge',
-                array_values($this->languagesWithoutWordBoundaries)
-            )
-        );
 
         $this->indexExtraOptions['lat'] =
             "
@@ -387,6 +364,7 @@ class SphinxConfShell extends Shell {
     // languages should be safe.
     private function conf_beginning() {
         $charset_table_opt = implode(", ", $this->charsetTable);
+        $ngram_chars_opt = implode(', ', $this->scriptsWithoutWordBoundaries);
         $regexp_filter = "";
         foreach ($this->regexpFilter as $regex) {
             $regexp_filter .= "    regexp_filter           = $regex\n";
@@ -415,12 +393,8 @@ $regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
     docinfo                 = extern
-}
-
-index cjk_common_index : common_index
-{
     ngram_len               = 1
-    ngram_chars             = U+3000..U+FEFF, U+FFF0..U+2FA1F
+    ngram_chars             = $ngram_chars_opt
 }
 
 #################################################
@@ -540,13 +514,8 @@ EOT;
     }
 ";
                 // generate index for this pair
-                $parent = "common_index" ;
-                if (in_array($lang, $this->cjkLanguages)) {
-                    $parent = "cjk_common_index";
-                }
-
                 $index = ($type == 'main') ?
-                    "${lang}_main_index : $parent" :
+                    "${lang}_main_index : common_index" :
                     "${lang}_delta_index : ${lang}_main_index";
                 $conf .= "
     index $index
@@ -560,11 +529,6 @@ EOT;
         index_exact_words       = 1
         morphology              = libstemmer_$lang
         min_stemming_len        = 4";
-                    }
-                    if (isset($this->languagesWithoutWordBoundaries[$lang])) {
-                        $conf .= "
-        ngram_len = 1
-        ngram_chars = ".implode(', ', $this->languagesWithoutWordBoundaries[$lang]);
                     }
                     if (isset($this->indexExtraOptions[$lang])) {
                         $conf .= $this->indexExtraOptions[$lang];
