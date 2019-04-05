@@ -28,7 +28,7 @@ define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
 
 class SphinxIndexesShell extends Shell {
 
-    public $sphinx_user = 'sphinxsearch';
+    public $sphinx_user = 'manticore';
 
     private $tatoeba_languages;
 
