@@ -71,6 +71,16 @@ class ExportsTableTest extends TestCase
         return $options;
     }
 
+    private function assertResultSet($expectedResultSet, $resultSet)
+    {
+        $i = 0;
+        foreach ($resultSet as $entity) {
+            $expected = $expectedResultSet[$i];
+            $this->assertEquals($expected, $entity->toArray(), "Item $i of result set is not as expected");
+            $i++;
+        }
+    }
+
     public function testGetExportsOf()
     {
         $expected = [
@@ -88,7 +98,7 @@ class ExportsTableTest extends TestCase
 
         $result = $this->Exports->getExportsOf(7);
 
-        $this->assertEquals($expected, $result->hydrate(false)->toArray());
+        $this->assertResultSet($expected, $result->all());
     }
 
     public function testCreateExport_returnsExport()
@@ -170,7 +180,7 @@ class ExportsTableTest extends TestCase
 
         $this->Exports->createExport(4, $options);
 
-        $export = $this->Exports->find()->hydrate(false)->last();
+        $export = $this->Exports->find()->last()->toArray();
         $this->assertEquals($expected, $export);
     }
 
