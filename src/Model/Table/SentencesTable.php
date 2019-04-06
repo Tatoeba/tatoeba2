@@ -509,7 +509,7 @@ class SentencesTable extends Table
 
         $arrayRandom = Cache::read($cacheKey);
         if (!is_array($arrayRandom) || empty($arrayRandom)) {
-            $arrayRandom = $this->_getRandomsToCached($lang, 3);
+            $arrayRandom = $this->_getRandomsToCached($lang, 500);
         }
 
         if(is_array($arrayRandom)){
@@ -518,7 +518,7 @@ class SentencesTable extends Table
                 $id = array_pop($arrayRandom);
                 // if we have take all the cached ids, then we request a new bunch
                 if ($id === NULL) {
-                    $arrayRandom = $this->_getRandomsToCached($lang, 5);
+                    $arrayRandom = $this->_getRandomsToCached($lang, 500);
                     $id = array_pop($arrayRandom);
                 }
                 array_push(
