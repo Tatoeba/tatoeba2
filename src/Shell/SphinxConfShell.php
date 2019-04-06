@@ -593,7 +593,6 @@ searchd
     query_log               = $query_log_opt
     binlog_path             = {$this->sphinxConfig['binlog_path']}
     read_timeout            = 5
-    max_children            = 30
 
     pid_file                = {$this->sphinxConfig['pidfile']}
     seamless_rotate         = 1
