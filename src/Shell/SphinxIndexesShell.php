@@ -69,13 +69,30 @@ class SphinxIndexesShell extends Shell {
     }
 
     private function update_index($type) {
-        echo "Updating all the $type indexes...\n";
-        $indexes = implode(' ', array_map(
-            function($lang) use ($type) { return "${lang}_${type}_index"; },
-            array_keys($this->tatoeba_languages)
-        ));
-        system("indexer --rotate $indexes", $return_value);
-        echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
+        if ($type == 'delta') {
+            $this->loadModel('ReindexFlags');
+            $langs = $this->ReindexFlags
+                 ->find('list', ['valueField' => 'lang'])
+                 ->select(['lang'])
+                 ->where(['lang is not' => null])
+                 ->group('lang')
+                 ->all()
+                 ->toArray();
+        } else {
+            $langs = array_keys($this->tatoeba_languages);
+        }
+
+        if (empty($langs)) {
+            echo "None of the $type indexes need updating\n";
+        } else {
+            echo "Updating $type indexes...\n";
+            $indexes = implode(' ', array_map(
+                function($lang) use ($type) { return "${lang}_${type}_index"; },
+                $langs
+            ));
+            system("indexer --rotate $indexes", $return_value);
+            echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
+        }
     }
 
     private function become_sphinx_user() {
