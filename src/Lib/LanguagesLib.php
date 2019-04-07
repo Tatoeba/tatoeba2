@@ -309,7 +309,7 @@ class LanguagesLib
                 'ain' => __d('languages', 'Ainu'),
                 'scn' => __d('languages', 'Sicilian'),
                 'mal' => __d('languages', 'Malayalam'),
-                'nds' => __d('languages', 'Low Saxon'),
+                'nds' => __d('languages', 'Low German (Low Saxon)'),
                 'tlh' => __d('languages', 'Klingon'),
                 'slv' => __d('languages', 'Slovenian'),
                 'tha' => __d('languages', 'Thai'),
@@ -563,6 +563,11 @@ class LanguagesLib
                 'shy' => __d('languages', 'Tachawit'),
                 'fkv' => __d('languages', 'Kven Finnish'),
                 'rap' => __d('languages', 'Rapa Nui'),
+                'gcf' => __d('languages', 'Guadeloupean Creole French'),
+                'gos' => __d('languages', 'Gronings'),
+                'lij' => __d('languages', 'Ligurian'),
+                'tig' => __d('languages', 'Tigre'),
+                'thv' => __d('languages', 'Tahaggart Tamahaq'),
             );
         }
         return $languages;

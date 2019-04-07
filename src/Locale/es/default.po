@@ -5,7 +5,7 @@
 # Translators:
 # Daniel, 2016
 # dani <pipisspam@gmail.com>, 2014
-# Eduardo Corrales <ecorralest101@gmail.com>, 2018
+# Eduardo Corrales <ecorralest101@gmail.com>, 2018-2019
 # Eduardo Corrales <ecorralest101@gmail.com>, 2014-2016
 # ficion <ficion22@gmail.com>, 2014
 # Gonçal Garcés, 2016
@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-01-25 12:02+0000\n"
-"PO-Revision-Date: 2019-01-25 12:45+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-03-21 13:07+0000\n"
+"Last-Translator: Eduardo Corrales <ecorralest101@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/tatoeba/tatoeba_website/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,7 +140,7 @@ msgstr "No tiene permiso para editar este comentario. "
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "Si ha recibido este mensaje por error, por favor contacte al administrador al {correo}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L251
 msgid "Changes to your comment have been saved."
@@ -217,15 +217,15 @@ msgstr "“con un dueño que se identificó como nativo”, porque se especific�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1096
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "No está permitido cambiar la licencia en esta oración."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1102
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "La licencia de la oración ha sido cambiada a “{newLicense}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1107
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "No es posible cambiar la licensia a “{nuevaLicensia}” debido a:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L172
 msgid "You do not have permission to view this list."
@@ -249,7 +249,7 @@ msgstr "No hay oraciones para esta etiqueta. La etiqueta que usted está buscand
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L85
 msgid "No user with this username: {username}"
-msgstr ""
+msgstr "Ningún usuario con este nombre de usuario: {usuario}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L181
 msgid "Failed to upload image"
@@ -299,7 +299,7 @@ msgstr "La contraseña nueva no puede estar en blanco."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L633
 msgid "New passwords do not match."
-msgstr ""
+msgstr "Las nuevas palabras de paso no concuerdan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L640
 msgid "New password has been saved."
