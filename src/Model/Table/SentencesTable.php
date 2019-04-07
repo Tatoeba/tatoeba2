@@ -500,7 +500,7 @@ class SentencesTable extends Table
      */
     public function getRandomId($lang = null)
     {
-        if (!$lang) {
+        if (!$lang || $lang == 'und') {
             return $this->getRandomIdAmongAllLanguages();
         } else {
             $arrayIds = $this->getSeveralRandomIds($lang, 1);
