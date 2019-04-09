@@ -266,7 +266,7 @@ class LanguagesLib
                 'hun' => __d('languages', 'Hungarian'),
                 'isl' => __d('languages', 'Icelandic'),
                 'sqi' => __d('languages', 'Albanian'),
-                'yue' => __d('languages', 'Shanghainese'),
+                'yue' => __d('languages', 'Cantonese'),
                 'afr' => __d('languages', 'Afrikaans'),
                 'fao' => __d('languages', 'Faroese'),
                 'fry' => __d('languages', 'Frisian'),
