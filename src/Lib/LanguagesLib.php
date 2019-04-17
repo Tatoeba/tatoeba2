@@ -138,7 +138,7 @@ class LanguagesLib
             'nau' => 'na', // Nauruan
             'nav' => 'nv', // Navajo
             'nld' => 'nl', // Dutch
-            'nob' => 'nb', // Norwegian (Bokmål)
+            'nob' => 'nb', // Norwegian Bokmål)
             'nya' => 'ny', // Chinyanja
             'oci' => 'oc', // Occitan
             'oji' => 'oj', // Ojibwe
@@ -238,7 +238,7 @@ class LanguagesLib
                 'ita' => __d('languages', 'Italian'),
                 'vie' => __d('languages', 'Vietnamese'),
                 'rus' => __d('languages', 'Russian'),
-                'cmn' => __d('languages', 'Chinese (Mandarin)'),
+                'cmn' => __d('languages', 'Mandarin Chinese'),
                 'kor' => __d('languages', 'Korean'),
                 'nld' => __d('languages', 'Dutch'),
                 'heb' => __d('languages', 'Hebrew'),
@@ -252,7 +252,7 @@ class LanguagesLib
                 'ell' => __d('languages', 'Greek'),
                 'tur' => __d('languages', 'Turkish'),
                 'swe' => __d('languages', 'Swedish'),
-                'nob' => __d('languages', 'Norwegian (Bokmål)'),
+                'nob' => __d('languages', 'Norwegian Bokmål'),
                 'zsm' => __d('languages', 'Malay'),
                 'est' => __d('languages', 'Estonian'),
                 'kat' => __d('languages', 'Georgian'),
@@ -274,7 +274,7 @@ class LanguagesLib
                 'ron' => __d('languages', 'Romanian'),
                 'uig' => __d('languages', 'Uyghur'),
                 'uzb' => __d('languages', 'Uzbek'),
-                'nno' => __d('languages', 'Norwegian (Nynorsk)'),
+                'nno' => __d('languages', 'Norwegian Nynorsk'),
                 'srp' => __d('languages', 'Serbian'),
                 'tat' => __d('languages', 'Tatar'),
                 'yid' => __d('languages', 'Yiddish'),
@@ -515,12 +515,12 @@ class LanguagesLib
                 'bvy' => __d('languages', 'Baybayanon'),
                 'mfe' => __d('languages', 'Morisyen'),
                 'mww' => __d('languages', 'Hmong Daw (White)'),
-                'bcl' => __d('languages', 'Bikol (Central)'),
+                'bcl' => __d('languages', 'Central Bikol'),
                 'nau' => __d('languages', 'Nauruan'),
                 'zlm' => __d('languages', 'Malay (Vernacular)'),
                 'nst' => __d('languages', 'Naga (Tangshang)'),
                 'quc' => __d('languages', "K'iche'"),
-                'afb' => __d('languages', 'Arabic (Gulf)'),
+                'afb' => __d('languages', 'Gulf Arabic'),
                 'min' => __d('languages', 'Minangkabau'),
                 'tmw' => __d('languages', 'Temuan'),
                 'cjy' => __d('languages', 'Chinese (Jin)'),
@@ -549,12 +549,12 @@ class LanguagesLib
                 'jam' => __d('languages', 'Jamaican Patois'),
                 'mwl' => __d('languages', 'Mirandese'),
                 'kpv' => __d('languages', 'Komi-Zyrian'),
-                'cmo' => __d('languages', 'Mnong, Central'),
+                'cmo' => __d('languages', 'Central Mnong'),
                 'koi' => __d('languages', 'Komi-Permyak'),
                 'ike' => __d('languages', 'Inuktitut'), 
                 'kab' => __d('languages', 'Kabyle'), 
                 'run' => __d('languages', 'Kirundi'), 
-                'aln' => __d('languages', 'Albanian (Gheg)'),
+                'aln' => __d('languages', 'Gheg Albanian'),
                 'akl' => __d('languages', 'Aklanon'),
                 'mnc' => __d('languages', 'Manchu'), 
                 'kas' => __d('languages', 'Kashmiri'),
