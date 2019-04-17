@@ -568,6 +568,7 @@ class LanguagesLib
                 'lij' => __d('languages', 'Ligurian'),
                 'tig' => __d('languages', 'Tigre'),
                 'thv' => __d('languages', 'Tahaggart Tamahaq'),
+                'hrx' => __d('languages', 'Hunsrik'),
                 'cay' => __d('languages', 'Cayuga'),
             );
         }
