@@ -112,4 +112,10 @@ class AppControllerTest extends IntegrationTestCase {
 
 		$this->assertSession(null, 'Auth.User.id');
 	}
+
+	function testError404InProduction() {
+		Configure::write('debug', false);
+		$this->get('/eng/this_does_no_exists');
+		$this->assertResponseCode(404);
+	}
 }

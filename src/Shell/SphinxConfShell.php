@@ -40,17 +40,10 @@ class SphinxConfShell extends Shell {
         'tur',
         'swe',
         'eng',
-    );
-
-    public $cjkLanguages = array(
-        'kor',
-        'cmn',
-        'wuu',
-        'jpn',
-        'yue',
-        'nan',
-        'ain',
-        'lzh',
+        'dan', # Danish
+        'hun', # Hungarian
+        'ron', # Romanian
+        'nob' => 'nor', # Norwegian (Bokmål)
     );
 
     public $charsetTable = array(
@@ -164,22 +157,11 @@ class SphinxConfShell extends Shell {
         'U+0AB5..U+0AB9', 'U+0ABC..U+0AC5', 'U+0AC7..U+0AC9', 'U+0ACB..U+0ACD', 'U+0AD0', 'U+0AE0..U+0AE3', 'U+0AE6..U+0AEF',
         # Latin fullwidth to halfwidth
         'U+FF10..U+FF19->U+30..U+39', 'U+FF21..U+FF3A->U+61..U+7A', 'U+FF41..U+FF5A->U+61..U+7A',
-        # Katakana halfwidth to fullwidth
-        'U+FF66->U+30F2', 'U+FF67->U+30A1', 'U+FF68->U+30A3', 'U+FF69->U+30A5', 'U+FF6A->U+30A7',
-        'U+FF6B->U+30A9', 'U+FF6C->U+30E3', 'U+FF6D->U+30E5', 'U+FF6E->U+30E7', 'U+FF6F->U+30C3',
-        'U+FF70->U+30FC', 'U+FF71->U+30A2', 'U+FF72->U+30A4', 'U+FF73->U+30A6', 'U+FF74->U+30A8',
-        'U+FF75->U+30AA', 'U+FF76->U+30AB', 'U+FF77->U+30AD', 'U+FF78->U+30AF', 'U+FF79->U+30B1',
-        'U+FF7A->U+30B3', 'U+FF7B->U+30B5', 'U+FF7C->U+30B7', 'U+FF7D->U+30B9', 'U+FF7E->U+30BB',
-        'U+FF7F->U+30BD', 'U+FF80->U+30BF', 'U+FF81->U+30C1', 'U+FF82->U+30C4', 'U+FF83->U+30C6',
-        'U+FF84->U+30C8', 'U+FF85..U+FF8A->U+30CA..U+30CF', 'U+FF8B->U+30D2', 'U+FF8C->U+30D5',
-        'U+FF8D->U+30D8', 'U+FF8E->U+30DB', 'U+FF8F..U+FF93->U+30DE..U+30E2', 'U+FF94->U+30E4',
-        'U+FF95->U+30E6', 'U+FF96->U+30E8', 'U+FF97->U+30E9', 'U+FF98->U+30EA', 'U+FF99->U+30EB',
-        'U+FF9A->U+30EC', 'U+FF9B->U+30ED', 'U+FF9C->U+30EF', 'U+FF9D->U+30F3',
+        # Hangul
+        'U+1100..U+11FF', 'U+3130..U+318F', 'U+A960..U+A97F', 'U+AC00..U+D7FF',
         # Hangul halfwidth to fullwidth
         'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
         'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
-        # CJK
-        'U+3000..U+FEFF', 'U+FFF0..U+2FA1F',
         # Neo-Tifinagh (one of the Berber scripts)
         'U+2D30..U+2D67', 'U+2D6F',
         # Syriac (script of Assyrian)
@@ -195,22 +177,32 @@ class SphinxConfShell extends Shell {
         'U+0CD5..U+0CD6', 'U+0CDE', 'U+0CE0..U+0CE3', 'U+0CE6..U+0CEF', 'U+0CF1..U+0CF2',
     );
 
-    public $languagesWithoutWordBoundaries = array(
-        # Lao
-        'lao' => array(
-            'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
-            'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
-            'U+0EC0..U+0EC4', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
-        ),
-        # Tibetan (not sure about marks and signs)
-        'bod' => array(
-            'U+0F00', 'U+0F20..U+0F33', 'U+0F40..U+0F47', 'U+0F49..U+0F6C', 'U+0F71..U+0F87', 'U+0F90..U+0F97',
-            'U+0F99..U+0FBC', 'U+0FD0..U+0FD2',
-        ),
-        # Khmer
-        'khm' => array('U+1780..U+17D2', 'U+17E0..U+17E9', 'U+17F0..U+17F9', 'U+19E0..U+19FF'),
-        # Thai
-        'tha' => array('U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59'),
+    public $scriptsWithoutWordBoundaries = array(
+        # CJK
+        'U+3000..U+312F', 'U+3300..U+9FFF', 'U+F900..U+FAFF',
+        'U+1B000..U+1B16F', 'U+20000..U+2EBEF', 'U+2F800..U+2FA1F',
+        # Katakana halfwidth to fullwidth
+        'U+FF66->U+30F2', 'U+FF67->U+30A1', 'U+FF68->U+30A3', 'U+FF69->U+30A5', 'U+FF6A->U+30A7',
+        'U+FF6B->U+30A9', 'U+FF6C->U+30E3', 'U+FF6D->U+30E5', 'U+FF6E->U+30E7', 'U+FF6F->U+30C3',
+        'U+FF70->U+30FC', 'U+FF71->U+30A2', 'U+FF72->U+30A4', 'U+FF73->U+30A6', 'U+FF74->U+30A8',
+        'U+FF75->U+30AA', 'U+FF76->U+30AB', 'U+FF77->U+30AD', 'U+FF78->U+30AF', 'U+FF79->U+30B1',
+        'U+FF7A->U+30B3', 'U+FF7B->U+30B5', 'U+FF7C->U+30B7', 'U+FF7D->U+30B9', 'U+FF7E->U+30BB',
+        'U+FF7F->U+30BD', 'U+FF80->U+30BF', 'U+FF81->U+30C1', 'U+FF82->U+30C4', 'U+FF83->U+30C6',
+        'U+FF84->U+30C8', 'U+FF85..U+FF8A->U+30CA..U+30CF', 'U+FF8B->U+30D2', 'U+FF8C->U+30D5',
+        'U+FF8D->U+30D8', 'U+FF8E->U+30DB', 'U+FF8F..U+FF93->U+30DE..U+30E2', 'U+FF94->U+30E4',
+        'U+FF95->U+30E6', 'U+FF96->U+30E8', 'U+FF97->U+30E9', 'U+FF98->U+30EA', 'U+FF99->U+30EB',
+        'U+FF9A->U+30EC', 'U+FF9B->U+30ED', 'U+FF9C->U+30EF', 'U+FF9D->U+30F3',
+        # Lao (lao)
+        'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
+        'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
+        'U+0EC0..U+0EC4', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
+        # Tibetan (bod) (not sure about marks and signs)
+        'U+0F00', 'U+0F20..U+0F33', 'U+0F40..U+0F47', 'U+0F49..U+0F6C', 'U+0F71..U+0F87', 'U+0F90..U+0F97',
+        'U+0F99..U+0FBC', 'U+0FD0..U+0FD2',
+        # Khmer (khm)
+        'U+1780..U+17D2', 'U+17E0..U+17E9', 'U+17F0..U+17F9', 'U+19E0..U+19FF',
+        # Thai (tha)
+        'U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59',
     );
 
     public $regexpFilter = array(
@@ -225,14 +217,6 @@ class SphinxConfShell extends Shell {
 
     public function __construct() {
         parent::__construct();
-
-        $this->charsetTable = array_merge(
-            $this->charsetTable,
-            call_user_func_array(
-                'array_merge',
-                array_values($this->languagesWithoutWordBoundaries)
-            )
-        );
 
         $this->indexExtraOptions['lat'] =
             "
@@ -387,6 +371,7 @@ class SphinxConfShell extends Shell {
     // languages should be safe.
     private function conf_beginning() {
         $charset_table_opt = implode(", ", $this->charsetTable);
+        $ngram_chars_opt = implode(', ', $this->scriptsWithoutWordBoundaries);
         $regexp_filter = "";
         foreach ($this->regexpFilter as $regex) {
             $regexp_filter .= "    regexp_filter           = $regex\n";
@@ -415,12 +400,8 @@ $regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
     docinfo                 = extern
-}
-
-index cjk_common_index : common_index
-{
     ngram_len               = 1
-    ngram_chars             = U+3000..U+FEFF, U+FFF0..U+2FA1F
+    ngram_chars             = $ngram_chars_opt
 }
 
 #################################################
@@ -540,13 +521,8 @@ EOT;
     }
 ";
                 // generate index for this pair
-                $parent = "common_index" ;
-                if (in_array($lang, $this->cjkLanguages)) {
-                    $parent = "cjk_common_index";
-                }
-
                 $index = ($type == 'main') ?
-                    "${lang}_main_index : $parent" :
+                    "${lang}_main_index : common_index" :
                     "${lang}_delta_index : ${lang}_main_index";
                 $conf .= "
     index $index
@@ -555,16 +531,19 @@ EOT;
         path = " . $sourcePath . DIRECTORY_SEPARATOR . $lang . '_' . $type;
 
                 if ($type == 'main') {
-                    if (in_array($lang, $this->languageWithStemmer)) {
+                    if (isset($this->languageWithStemmer[$lang])) {
+                        $libstemmmer_lang = $this->languageWithStemmer[$lang];
+                    } else if (in_array($lang, $this->languageWithStemmer)) {
+                        $libstemmmer_lang = $lang;
+                    } else {
+                        $libstemmmer_lang = false;
+                    }
+
+                    if ($libstemmmer_lang) {
                         $conf .= "
         index_exact_words       = 1
-        morphology              = libstemmer_$lang
+        morphology              = libstemmer_$libstemmmer_lang
         min_stemming_len        = 4";
-                    }
-                    if (isset($this->languagesWithoutWordBoundaries[$lang])) {
-                        $conf .= "
-        ngram_len = 1
-        ngram_chars = ".implode(', ', $this->languagesWithoutWordBoundaries[$lang]);
                     }
                     if (isset($this->indexExtraOptions[$lang])) {
                         $conf .= $this->indexExtraOptions[$lang];
@@ -614,7 +593,6 @@ searchd
     query_log               = $query_log_opt
     binlog_path             = {$this->sphinxConfig['binlog_path']}
     read_timeout            = 5
-    max_children            = 30
 
     pid_file                = {$this->sphinxConfig['pidfile']}
     seamless_rotate         = 1
