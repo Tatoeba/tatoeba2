@@ -28,22 +28,22 @@ class SphinxConfShell extends Shell {
 
     private $tatoeba_languages;
 
-    public $languageWithStemmer = array(
-        'deu',
-        'spa',
-        'fra',
-        'nld',
-        'por',
-        'rus',
-        'fin',
-        'ita',
-        'tur',
-        'swe',
-        'eng',
-        'dan', # Danish
-        'hun', # Hungarian
-        'ron', # Romanian
-        'nob' => 'nor', # Norwegian (Bokmål)
+    public $morphology = array(
+        'deu' => 'libstemmer_deu',
+        'spa' => 'libstemmer_spa',
+        'fra' => 'libstemmer_fra',
+        'nld' => 'libstemmer_nld',
+        'por' => 'libstemmer_por',
+        'rus' => 'libstemmer_rus',
+        'fin' => 'libstemmer_fin',
+        'ita' => 'libstemmer_ita',
+        'tur' => 'libstemmer_tur',
+        'swe' => 'libstemmer_swe',
+        'eng' => 'libstemmer_eng',
+        'dan' => 'libstemmer_dan', # Danish
+        'hun' => 'libstemmer_hun', # Hungarian
+        'ron' => 'libstemmer_ron', # Romanian
+        'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
     );
 
     public $charsetTable = array(
@@ -363,6 +363,16 @@ class SphinxConfShell extends Shell {
         $this->indexExtraOptions['jpn'] =
             "
         regexp_filter = \[[^|]*\| =>";
+
+        foreach ($this->morphology as $lang => $morphology) {
+            if (!isset($this->indexExtraOptions[$lang])) {
+                $this->indexExtraOptions[$lang] = "";
+            }
+            $this->indexExtraOptions[$lang] .= "
+        index_exact_words       = 1
+        morphology              = $morphology
+        min_stemming_len        = 4";
+        }
     }
 
     // In the following, the characters U+5B0..U+5C5, U+5C7 within
@@ -531,20 +541,6 @@ EOT;
         path = " . $sourcePath . DIRECTORY_SEPARATOR . $lang . '_' . $type;
 
                 if ($type == 'main') {
-                    if (isset($this->languageWithStemmer[$lang])) {
-                        $libstemmmer_lang = $this->languageWithStemmer[$lang];
-                    } else if (in_array($lang, $this->languageWithStemmer)) {
-                        $libstemmmer_lang = $lang;
-                    } else {
-                        $libstemmmer_lang = false;
-                    }
-
-                    if ($libstemmmer_lang) {
-                        $conf .= "
-        index_exact_words       = 1
-        morphology              = libstemmer_$libstemmmer_lang
-        min_stemming_len        = 4";
-                    }
                     if (isset($this->indexExtraOptions[$lang])) {
                         $conf .= $this->indexExtraOptions[$lang];
                     }
