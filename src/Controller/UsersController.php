@@ -119,7 +119,7 @@ class UsersController extends AppController
         $user = $this->Users->get($id);
         if (!$user) {
             $this->Flash->set('Invalid User');
-            $this->redirect(array('action'=>'index'));
+            return $this->redirect(array('action'=>'index'));
         }
         if (!empty($this->request->getData())) {
 
@@ -164,7 +164,7 @@ class UsersController extends AppController
         } elseif ($this->Users->delete($user)) {
             $this->Flash->set('User deleted');
         }
-        $this->redirect(array('action'=>'index'));
+        return $this->redirect(array('action'=>'index'));
     }
 
 
@@ -179,7 +179,7 @@ class UsersController extends AppController
         if (!$this->Auth->user()) {
             return;
         }
-        $this->_common_login($this->Auth->redirectUrl());
+        return $this->_common_login($this->Auth->redirectUrl());
 
     }
 
@@ -223,7 +223,7 @@ class UsersController extends AppController
                 );
             } else {
                 $this->Auth->setUser($user);
-                $this->_common_login($redirectUrl);
+                return $this->_common_login($redirectUrl);
             }
         } else {
             if (empty($this->request->getData('username'))) {
@@ -277,7 +277,7 @@ class UsersController extends AppController
             );
         }
 
-        $this->redirect($redirectUrl);
+        return $this->redirect($redirectUrl);
     }
 
 
@@ -290,7 +290,7 @@ class UsersController extends AppController
     {
         $this->RememberMe->delete();
         $this->request->getSession()->delete('last_used_lang');
-        $this->redirect($this->Auth->logout());
+        return $this->redirect($this->Auth->logout());
     }
 
 
@@ -307,7 +307,7 @@ class UsersController extends AppController
 
         // Already logged in
         if ($this->Auth->User('id')) {
-            $this->redirect('/');
+            return $this->redirect('/');
         }
 
         // No data
@@ -408,7 +408,7 @@ class UsersController extends AppController
                 .'</p>'
             );
 
-            $this->redirect(
+            return $this->redirect(
                 array(
                     'controller' => 'pages',
                     'action' => 'index'
@@ -476,7 +476,7 @@ class UsersController extends AppController
         $userId = $this->Users->getIdFromUsername($this->request->getData('username'));
 
         if ($userId != null) {
-            $this->redirect(array("action" => "show", $userId));
+            return $this->redirect(array("action" => "show", $userId));
         } else {
             $this->flash(
                 __(
