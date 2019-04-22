@@ -19,7 +19,6 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-use Cake\Routing\Router;
 
 class PagesHelper extends AppHelper
 {
@@ -56,7 +55,7 @@ class PagesHelper extends AppHelper
     }
 
     public function currentPageUrl() {
-        return Router::reverse($this->request);
+        return $this->request->here();
     }
 
     /**
