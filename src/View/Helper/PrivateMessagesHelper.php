@@ -84,6 +84,7 @@ class PrivateMessagesHelper extends AppHelper
                 echo $this->Form->hidden('messageId', array('value' => $pm->id));
             }
             echo $this->Form->hidden('submitType', array('value' => ''));
+            $this->Form->unlockField('submitType');
             ?>
             <?php
             echo $this->Form->control('recipients', [
