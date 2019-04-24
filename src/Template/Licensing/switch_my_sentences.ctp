@@ -75,8 +75,6 @@ if ($isSwitching) {
         'ng-disabled' => 'isRefreshing || '.($isSwitching ? 'true' : 'false'),
     ]);
     echo $this->Form->end();
+}
 ?>
 </div>
-<?
-}
-
