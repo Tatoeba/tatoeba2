@@ -85,6 +85,9 @@ class TagsController extends AppController
                 $this->set('username', $username);
                 $this->set('sentenceId', $sentenceId);
                 $this->set('date', date("Y-m-d H:i:s"));
+                $this->loadModel('Sentences');
+                $sentence = $this->Sentences->get($sentenceId, ['fields' => ['lang']]);
+                $this->set('sentenceLang', $sentence->lang);
             }
         } else {
             $tagName = $this->request->getData('tag_name');
