@@ -211,10 +211,6 @@ class PrivateMessagesTable extends Table
             'isnonread' => 1,
         );
 
-        if (isset($data['messageId'])) {
-            $message['id'] = $data['messageId']; // for drafts
-        }
-
         return $message;
     }
 
