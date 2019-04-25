@@ -80,7 +80,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
                 );
 
                 echo '<tr>';
-                echo $this->Html->tag('td', $this->Languages->icon($langCode, array()));
+                echo $this->Html->tag('td', $this->Languages->icon($langCode));
                 echo $this->Html->tag('td', $langName);
                 echo $this->Html->tag('td', $language->level_5);
                 echo $this->Html->tag('td', $language->level_4);

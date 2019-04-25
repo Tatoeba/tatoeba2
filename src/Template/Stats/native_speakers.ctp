@@ -90,9 +90,7 @@ $membersIcons = array(
                 $numContributors = $language->group_4;
                 $total = $language->total;
 
-                $languageIcon = $this->Languages->icon(
-                    $langCode, array('width' => 30, 'height' => 20)
-                );
+                $languageIcon = $this->Languages->icon($langCode);
 
                 $languageName = $this->Languages->codeToNameAlone($langCode);
                 if (empty($langCode)) {

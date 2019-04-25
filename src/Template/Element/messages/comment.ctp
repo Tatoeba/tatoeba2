@@ -90,7 +90,7 @@ if ($sentenceOwnerLink) {
 ?>
 
 <? if (!isset($hideSentence) || !$hideSentence) { ?>
-<div class="comment sentence" md-whiteframe="2">
+<div class="comment sentence md-whiteframe-1dp">
     <div class="info">
         <?= format(
             $sentenceInfoLabel,
@@ -108,13 +108,12 @@ if ($sentenceOwnerLink) {
         echo $this->Languages->icon(
             $sentenceLang,
             array(
-                'width' => 30,
-                'height' => 20,
+                'ng-cloak' => true,
                 'class' => 'lang'
             )
         );
         ?>
-        <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+        <md-button ng-cloak class="md-icon-button" href="<?= $sentenceUrl ?>">
             <md-icon>info</md-icon>
         </md-button>
     </div>
@@ -147,7 +146,8 @@ if ($sentenceOwnerLink) {
                 $confirmation = 'onclick="return confirm(\''.$msg.'\');"';
             }
             ?>
-            <md-button class="md-icon-button" <?= $confirmation ?>
+            <md-button ng-cloak
+                       class="md-icon-button" <?= $confirmation ?>
                        href="<?= $this->Url->build($menuItem['url']) ?>"
                        aria-label="<?= $itemLabel ?>">
                 <md-icon><?= $menuItem['icon'] ?></md-icon>

@@ -345,6 +345,11 @@ rt {
  * search bar
  */
 
+.search_bar {
+    min-height: 92px;
+    background-color: #4caf50; /* Material's green */
+}
+
 .search_bar a {
     color: white;
 }
@@ -536,6 +541,7 @@ rt {
     margin: 5px 0;
 }
 #footer .license {
+    display: flex;
     font-size: 15px;
     margin-top: 20px;
 }
@@ -733,6 +739,19 @@ rt {
 
 md-toolbar {
     transition: none;
+}
+
+md-button {
+    display: inline-block;
+    margin: 6px 8px;
+    min-height: 36px;
+    min-width: 88px;
+    vertical-align: middle;
+}
+
+md-icon {
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .md-button {

@@ -79,14 +79,13 @@ class PrivateMessagesHelper extends AppHelper
 
         <div class="body">
             <div class="pmFields">
-            <div ng-hide="true">
             <?php
             if (!$isReply) {
-                echo $this->Form->input('messageId', array('value' => $pm->id));
+                echo $this->Form->hidden('messageId', array('value' => $pm->id));
             }
-            echo $this->Form->input('submitType', array('value' => ''));
+            echo $this->Form->hidden('submitType', array('value' => ''));
+            $this->Form->unlockField('submitType');
             ?>
-            </div>
             <?php
             echo $this->Form->control('recipients', [
                 'label' => __x('message', 'To'),
@@ -119,7 +118,7 @@ class PrivateMessagesHelper extends AppHelper
             ]);
             ?>
             </div>
-            <div layout="row" layout-align="end center" layout-padding>
+            <div ng-cloak layout="row" layout-align="end center" layout-padding>
                 <md-button type="submit" name="submitType" value="saveDraft" class="md-raised">
                     <?php echo __('Save as draft'); ?>
                 </md-button>

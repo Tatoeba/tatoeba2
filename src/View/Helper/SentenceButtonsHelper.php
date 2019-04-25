@@ -261,8 +261,6 @@ class SentenceButtonsHelper extends AppHelper
             array(
                 "id" => "flag_".$id,
                 "class" => "languageFlag ".$class,
-                "width" => 30,
-                "height" => 20,
                 "data-sentence-id" => $id
             )
         );

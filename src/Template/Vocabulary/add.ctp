@@ -33,7 +33,7 @@ $title = __('Add vocabulary items');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<div id="annexe_content">
+<div ng-cloak id="annexe_content">
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <div class="section" layout="column" md-whiteframe="1">
@@ -52,6 +52,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <div class="section" layout="column" md-whiteframe="1">
         <h2><?= $title ?></h2>
         <?= $this->Form->create('Vocabulary', [
+            'ng-cloak' => true,
             'id' => 'add-vocabulary-form',
             'ng-submit' => 'ctrl.add()',
             'url' => ['action' => 'save'],
@@ -100,7 +101,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div ng-cloak class="section" md-whiteframe="1">
         <div layout="row">
             <h2 flex><? echo __('Vocabulary items added'); ?></h2>
             <md-progress-circular md-mode="indeterminate"

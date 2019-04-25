@@ -175,7 +175,7 @@ class MembersHelper extends AppHelper
 
     public function displayLanguageLevel($level)
     {
-        $result = '<div class="languageLevel">';
+        $result = '<div ng-cloak class="languageLevel">';
         $maxLanguageLevel = 5;
         if (isset($level)) {
             for ($i = 0; $i < $maxLanguageLevel; $i++) {
