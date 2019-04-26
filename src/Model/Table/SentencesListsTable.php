@@ -418,6 +418,41 @@ class SentencesListsTable extends Table
 
 
     /**
+     * Add sentences to list.
+     *
+     * @param array $sentences     Array of sentence entities.
+     * @param int   $listId        Id of the list.
+     * @param int   $currentUserId Id of the user performing the action.
+     *
+     * @return array
+     */
+    public function addSentencesToList($sentences, $listId, $currentUserId)
+    {
+        try {
+            $list = $this->get($listId);
+        } catch (RecordNotFoundException $e) {
+            return false;
+        }
+
+        if (!$list->isEditableBy($currentUserId)) {
+            return false;
+        }
+
+        $count = 0;
+        foreach ($sentences as $sentence) {
+            try {
+                $this->Sentences->link($list, [$sentence]);
+                $count++;
+            } catch (\PDOException $e) {
+                // Likely trying to add a sentence already in that list
+            }
+        }
+        $this->_incrementNumberOfSentencesToList($listId, $count);
+        return $count == count($sentences);
+    }
+
+
+    /**
      * get all the list of a given user
      *
      * @param int $username Username of the user
@@ -487,13 +522,14 @@ class SentencesListsTable extends Table
      * Increment number of sentence to list.
      *
      * @param int $listId Id of the list.
+     * @param int $inc    The number to increment.
      *
      * @return boolean
      */
-    private function _incrementNumberOfSentencesToList($listId)
+    private function _incrementNumberOfSentencesToList($listId, $inc = 1)
     {
         $list = $this->get($listId);
-        $list->numberOfSentences++;
+        $list->numberOfSentences += $inc;
         $this->save($list);
     }
 
@@ -598,6 +634,21 @@ class SentencesListsTable extends Table
         ]);
 
         return $this->save($data);
+    }
+
+    public function emptyList($listId, $currentUserId)
+    {
+        $list = $this->get($listId);
+        if ($list->isEditableBy($currentUserId)) {
+            $this->SentencesSentencesLists->deleteAll([
+                'sentences_list_id' => $listId
+            ]);
+            $list->numberOfSentences = 0;
+            $this->save($list);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

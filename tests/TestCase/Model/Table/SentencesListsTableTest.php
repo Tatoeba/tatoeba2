@@ -93,6 +93,36 @@ class SentencesListsTableTest extends TestCase {
         $this->assertFalse($list);
     }
 
+    function testEmptyList_succeeds() {
+        $listId = 1;
+
+        $result = $this->SentencesList->emptyList($listId, 7);
+        $this->assertTrue($result);
+
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+                      ->where(['sentences_list_id' => $listId])->all();
+        $this->assertEmpty($after);
+
+        $count = $this->SentencesList->get($listId)->numberOfSentences;
+        $this->assertEquals(0, $count);
+
+        $all = $this->SentencesList->find()->all();
+        $this->assertNotEmpty($all);
+    }
+
+    function testEmptyList_fails() {
+        $listId = 1;
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+                       ->where(['sentences_list_id' => $listId])->all();
+
+        $result = $this->SentencesList->emptyList(1, 1);
+        $this->assertFalse($result);
+
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+                      ->where(['sentences_list_id' => $listId])->all();
+        $this->assertEquals($before, $after);
+    }
+
     function testEditName_suceeds() {
         $listId = 1;
         $newName = 'Very interesting French sentences';    
@@ -166,13 +196,51 @@ class SentencesListsTableTest extends TestCase {
     function testAddSentenceToList_failsBecauseSentenceAlreadyInList() {
         $result = $this->SentencesList->addSentenceToList(4, 1, 7);
 
-        $this->assertEmpty($result);
+        $this->assertFalse($result);
     }
 
     function testAddSentenceToList_failsBecauseUnknownSentenceId() {
         $result = $this->SentencesList->addSentenceToList(10000, 1, 7);
 
-        $this->assertEmpty($result);
+        $this->assertFalse($result);
+    }
+
+
+    function testAddSentencesToList_succeeds() {
+        $listId = 1;
+        $sentences = $this->SentencesList->Sentences->find()
+                          ->where(['user_id' => 1])->toList();
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentences_list_id' => $listId])
+            ->count();
+
+        $result = $this->SentencesList->addSentencesToList($sentences, $listId, 7);
+        $this->assertTrue($result);
+
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentences_list_id' => $listId])
+            ->count();
+        $this->assertEquals(count($sentences), $after - $before);
+    }
+
+    function testAddSentencesToList_incrementsCount() {
+        $listId = 1;
+        $sentences = $this->SentencesList->Sentences->find()
+                          ->where(['user_id' => 1])->toList();
+        $before = $this->SentencesList->get($listId)->numberOfSentences;
+
+        $this->SentencesList->addSentencesToList($sentences, $listId, 7);
+
+        $after = $this->SentencesList->get($listId)->numberOfSentences;
+        $this->assertEquals(count($sentences), $after - $before);
+    }
+
+    function testAddSentencesToList_failsBecauseSentenceAlreadyInList() {
+        $sentences = $this->SentencesList->Sentences->find()
+                          ->where(['user_id' => 7])->toList();
+        $result = $this->SentencesList->addSentencesToList($sentences, 1, 7);
+
+        $this->assertFalse($result);
     }
 
 

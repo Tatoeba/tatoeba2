@@ -18,12 +18,15 @@
  */
 namespace App\Shell;
 
+use Cake\Console\Shell;
 use Cake\Utility\Hash;
 use App\Model\Sentence;
 use App\Model\Transcription;
 
 
-class TranscriptionsShell extends AppShell {
+class TranscriptionsShell extends Shell {
+
+    use BatchOperationTrait;
 
     public function initialize()
     {

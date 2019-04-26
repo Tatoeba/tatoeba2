@@ -666,7 +666,7 @@ class SentencesFixture extends TestFixture {
 			'lang' => 'eng',
 			'text' => 'An original sentence whose owner changed.',
 			'correctness' => '0',
-			'user_id' => '3',
+			'user_id' => '4',
 			'created' => '2017-04-10 01:24:00',
 			'modified' => '2017-04-10 01:25:00',
 			'script' => null,

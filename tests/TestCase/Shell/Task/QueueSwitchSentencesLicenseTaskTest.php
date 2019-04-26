@@ -15,12 +15,12 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
 {
     public $fixtures = array(
         'app.sentences',
+        'app.sentences_lists',
+        'app.sentences_sentences_lists',
+        'app.users_languages',
         'app.contributions',
         'app.reindex_flags',
-        'app.users_languages',
         'app.private_messages',
-        'app.links',
-        'app.users',
     );
 
     public function setUp()
@@ -46,15 +46,10 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         unset($this->task);
     }
 
-    public function testSwitchLicense()
+    public function _testSwitchLicense($expected, $options)
     {
         $before = $this->Sentences->findAllByLicense('CC0 1.0')->toList();
         $beforeIds = Hash::extract($before, '{n}.id');
-        $options = array(
-            'userId' => 4,
-            'dryRun' => false,
-        );
-        $expected = array(48, 53);
 
         $this->task->run($options);
 
@@ -67,27 +62,24 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $this->assertEquals($expected, $switched);
     }
 
-    public function testSwitchLicense_withDryRun()
+    public function testSwitchLicense_all()
     {
-        $before = $this->Sentences->findAllByLicense('CC0 1.0');
-        $options = array(
-            'userId' => 4,
-            'dryRun' => true,
-        );
+        $expected = [48, 53];
+        $options = ['userId' => 4, 'listId' => 4];
+        $this->_testSwitchLicense($expected, $options);
+    }
 
-        $this->task->run($options);
-
-        $after = $this->Sentences->findAllByLicense('CC0 1.0');
-        $this->assertEquals($before, $after);
+    public function testSwitchLicense_partial()
+    {
+        $this->Sentences->SentencesLists->removeSentenceFromList(48, 4, 4);
+        $expected = [53];
+        $options = ['userId' => 4, 'listId' => 4];
+        $this->_testSwitchLicense($expected, $options);
     }
 
     public function testSwitchLicense_sendsResultByPM()
     {
-        $options = array(
-            'userId' => 4,
-            'dryRun' => false,
-            'sendReport' => true,
-        );
+        $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
         CurrentUser::store(['id' => 4]);
         $numPmBefore = $this->PrivateMessages->find('all')->count();
         $this->task->run($options);
@@ -95,5 +87,35 @@ class QueueSwitchSentencesLicenseTaskTest extends TestCase
         $numPmAfter = $this->PrivateMessages->find('all')->count();
 
         $this->assertEquals(1, $numPmAfter - $numPmBefore);
+    }
+
+    public function testSwitchLicense_reportsErrors() {
+        $fakeError = "AAAAAH I'M DYIIIING";
+        $rule = function() use ($fakeError) {
+            return $fakeError;
+        };
+        $validator = $this->Sentences->getValidator();
+        $validator->add('license', 'always-fail', compact('rule'));
+
+        $options = ['userId' => 4, 'listId' => 4, 'sendReport' => true];
+
+        $this->task->run($options);
+
+        $this->assertContains($fakeError, $this->task->getReport());
+    }
+
+    public function testSwitchLicense_batchedOperation() {
+        $this->task->batchOperationSize = 1;
+        $this->testSwitchLicense_all();
+    }
+
+    public function testSwitchLicense_removesSentencesFromList()
+    {
+        $options = ['userId' => 4, 'listId' => 4];
+
+        $this->task->run($options);
+
+        $count = $this->Sentences->SentencesLists->getNumberOfSentences(4);
+        $this->assertEquals(0, $count);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Shell;
 
-use App\Shell\AppShell;
+use Cake\Console\Shell;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 
@@ -103,7 +103,9 @@ class Walker {
     }
 }
 
-class SentenceDerivationShell extends AppShell {
+class SentenceDerivationShell extends Shell {
+
+    use BatchOperationTrait;
 
     public $uses = array('Sentence', 'Contribution');
     public $batchSize = 1000;

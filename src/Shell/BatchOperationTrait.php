@@ -1,33 +1,7 @@
 <?php
-/**
- * AppShell file
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         CakePHP(tm) v 2.0
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
 namespace App\Shell;
 
-use Cake\Console\Shell;
-
-
-/**
- * Application Shell
- *
- * Add your application-wide methods in the class below, your shells
- * will inherit them.
- *
- * @package       app.Console.Command
- */
-class AppShell extends Shell {
+trait BatchOperationTrait {
     public $batchOperationSize = 1000;
 
     private function _orderCondition($nonUniqueField, $lastValue, $pKey, $lastId) {
@@ -45,6 +19,47 @@ class AppShell extends Shell {
                 )),
             ));
         }
+    }
+
+    public function batchOperationNewORM($query, $operation) {
+        if (!$query->clause('order')) {
+            $table = $query->getRepository();
+            $query = $query->order($table->getAlias().'.'.$table->getPrimaryKey());
+        }
+        $query = $query->limit($this->batchOperationSize);
+
+        $order = [];
+        $query->clause('order')->iterateParts(function($part) use (&$order) {
+            $order[] = $part;
+            return $part;
+        });
+        $order1 = $order[0];
+        if (count($order) == 2) {
+            $order2 = $order[1];
+        } else {
+            $order2 = $order1;
+        }
+
+        $o1field = explode('.', $order1)[1];
+        $o2field = explode('.', $order2)[1];
+
+        $baseQuery = clone $query;
+        $proceeded = 0;
+        $entities = array();
+        do {
+            $entities = $query->all();
+            $args = func_get_args();
+            array_splice($args, 0, 2, [$entities]);
+            $proceeded += call_user_func_array($operation, $args);
+            $lastEnt = $entities->last();
+            if ($lastEnt) {
+                $lastValue1 = $lastEnt->$o1field;
+                $lastValue2 = $lastEnt->$o2field;
+                $query = clone $baseQuery;
+                $query->where($this->_orderCondition($order1, $lastValue1, $order2, $lastValue2));
+            }
+        } while (!$entities->isEmpty());
+        return $proceeded;
     }
 
     protected function batchOperation($model, $operation, $options) {
