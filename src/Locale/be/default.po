@@ -5,14 +5,15 @@
 # Translators:
 # Dmytro Kushnariov <rabina@insiberia.net>, 2017
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010
+# Maxime Seveleu-Dubrovnik <seveleu_dubrovnik@fias.fr>, 2019
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-30 17:01+0000\n"
-"PO-Revision-Date: 2019-03-30 17:32+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-04-10 22:41+0000\n"
+"Last-Translator: Maxime Seveleu-Dubrovnik <seveleu_dubrovnik@fias.fr>\n"
 "Language-Team: Belarusian (http://www.transifex.com/tatoeba/tatoeba_website/language/be/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +55,7 @@ msgstr "Tatoeba, новы пароль"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L58
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "Пераключэнне ліцэнзій ужо адбываецца."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L102
 msgid ""
@@ -344,7 +345,7 @@ msgstr "Вы не пагадзіліся з умовамі выкарыстан�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L397
 msgid "Welcome to Tatoeba!"
-msgstr ""
+msgstr "Вітаем на Татоэбе!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
 msgid ""
@@ -375,19 +376,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L56
 msgid "No language selected."
-msgstr ""
+msgstr "Мова не выбраная."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L58
 msgid "You cannot save this language."
-msgstr ""
+msgstr "Вы не можаце запісаць гэтую мову."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L84
 msgid "Language deleted"
-msgstr ""
+msgstr "Мова выдаленая."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L86
 msgid "You cannot delete this language."
-msgstr ""
+msgstr "Вы не можаце выдалііць гэтую мову."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L149
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L37
@@ -506,7 +507,7 @@ msgstr ""
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L193
 msgid "You're not the owner of this sentence."
-msgstr ""
+msgstr "Вы — не ўласнік гэтага сказа."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -518,11 +519,11 @@ msgstr ""
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L213
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "Магчыма перайсці толькі да больш дазваляльнае ліцэнзіі."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L74
 msgid "You cannot save an empty message."
-msgstr ""
+msgstr "Вы не можаце запісаць пустое паведамленне."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L86
 msgid "Result of license switch to CC0 1.0"
@@ -745,27 +746,27 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L210
 msgid "Order:"
-msgstr ""
+msgstr "Упарадкванне:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L215
 msgid "Random"
-msgstr ""
+msgstr "Выпадковае"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L165
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L212
 msgid "Fewest words first"
-msgstr ""
+msgstr "Спярша кароткія"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L214
 msgid "Last modified first"
-msgstr ""
+msgstr "Спярша нядаўна змененыя"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L171
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L213
 msgid "Last created first"
-msgstr ""
+msgstr "Спярша нядаўна даданыя"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L179
 msgid "show sentences"
@@ -788,7 +789,7 @@ msgstr "Пераклад сказаў удзельніка ці ўдзельні
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L190
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L199
 msgid "Yes"
-msgstr ""
+msgstr "Так"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L112
@@ -799,7 +800,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L189
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L198
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
@@ -812,7 +813,7 @@ msgstr "Агучаныя сказы"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L48
 msgid "There are no sentences with audio"
-msgstr ""
+msgstr "З аўдыязапісамі няма сказаў"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
