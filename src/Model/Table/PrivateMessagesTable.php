@@ -186,7 +186,7 @@ class PrivateMessagesTable extends Table
             ->where([
                 'sender' => $userId,
                 'folder IN' => ['Sent', 'Trash'],
-                'date >=' => $yesterday->i18nFormat('yyyy-MM-dd HH:mm:ss')
+                'date >=' => $yesterday->format('Y-m-d H:i:s'),
             ])
             ->count();
     }
