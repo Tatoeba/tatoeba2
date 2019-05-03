@@ -36,4 +36,15 @@ class LogsHelperTest extends TestCase
 
         $this->assertTrue($latests[0]->obsolete);
     }
+
+    public function testObsoletize_withZeroDate()
+    {
+        $contributions = TableRegistry::get('Contributions');
+        $latests = $contributions->find()->where(['sentence_id' => 18])->toList();
+
+        $this->LogsHelper->obsoletize($latests);
+
+        $this->assertTrue($latests[0]->obsolete);
+        $this->assertFalse($latests[1]->obsolete);
+    }
 }
