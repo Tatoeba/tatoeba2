@@ -227,7 +227,7 @@ class ContributionsTable extends Table
     {
         return $this->find()
             ->where([
-                'datetime >' => Time::now()->format('Y-m-d H:i:s'),
+                'datetime >' => Time::now()->format('Y-m-d'),
                 'translation_id IS NULL',
                 'action' => 'insert',
                 'type !=' => 'license'
