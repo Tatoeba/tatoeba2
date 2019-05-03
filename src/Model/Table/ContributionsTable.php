@@ -273,7 +273,7 @@ class ContributionsTable extends Table
             'script' => $script,
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
-            'datetime' => Time::now()->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+            'datetime' => date("Y-m-d H:i:s"),
             'ip' => CurrentUser::getIp(),
             'type' => 'sentence',
             'action' => $action
