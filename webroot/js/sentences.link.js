@@ -81,7 +81,7 @@ function linkToSentence(sentenceId, langFilter) {
             },
             function(data){
                 $("#_" + sentenceId +"_in_process").hide();
-                $("#_" + sentenceId + "_translations").watch("replaceWith", data).show();
+                $("#_" + sentenceId + "_translations").watch("replaceWith", data);
                 $("#linkTo" + sentenceId).hide();
                 $("#linkToSentence" + sentenceId).val("");
                 $(this).click(linkTo);

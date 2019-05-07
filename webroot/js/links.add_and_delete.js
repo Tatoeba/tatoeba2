@@ -34,7 +34,7 @@ function translationLink(action, sentenceId, translationId, langFilter)
         },
         function(data){
             var wasExpanded = !$("#_" + sentenceId + "_translations .showLink").is(":visible");
-            $("#_" + sentenceId + "_translations").watch("replaceWith", data).show();
+            $("#_" + sentenceId + "_translations").watch("replaceWith", data);
             if (wasExpanded) {
                 $("#_" + sentenceId + "_translations .showLink").trigger("click");
             }
