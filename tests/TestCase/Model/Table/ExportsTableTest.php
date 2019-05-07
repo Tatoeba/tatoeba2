@@ -30,6 +30,7 @@ class ExportsTableTest extends TestCase
         Configure::write('Exports', [
             'path' => $this->testExportDir,
             'url'  => 'https://example.com/exports/',
+            'maxSizeInBytes' => 0,
         ]);
         Configure::write('Acl.database', 'test');
 
@@ -325,4 +326,42 @@ class ExportsTableTest extends TestCase
         $this->assertEquals('failed', $this->Exports->get($exportId)->status);
     }
 
+    public function testRunExport_removesOldExports()
+    {
+        $options = ['type' => 'list', 'list_id' => 3];
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $fileSize = filesize($this->Exports->get($firstExportId)->filename);
+        $this->assertGreaterThan(0, $fileSize);
+        Configure::write('Exports.maxSizeInBytes', $fileSize);
+
+        $options = ['type' => 'list', 'list_id' => 1];
+        $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+
+        try {
+            $this->Exports->get($firstExportId);
+            $this->fail('Export is not deleted');
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            $this->assertTrue(true);
+        }
+    }
+
+    public function testRemovingExportAlsoRemovesFile()
+    {
+        $options = ['type' => 'list', 'list_id' => 3];
+        $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $export = $this->Exports->get($config['export_id']);
+        $this->assertFileExists($export->filename);
+
+        $this->Exports->delete($export);
+
+        $this->assertFileNotExists($export->filename);
+    }
 }

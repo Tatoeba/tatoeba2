@@ -59,10 +59,13 @@ return [
      * /downloads/).
      * Both must end with a slash character.
      * The PHP process must have write access in <Exports.path>.
+     * If <Exports.maxSizeInBytes> if greater than zero, Tatoeba will try to keep
+     * <Exports.path> size below that value by removing old exports.
      */
     'Exports' => [
         'url'  => '/downloads/',
         'path' => WWW_ROOT.'downloads/',
+        'maxSizeInBytes' => 1024**3,
     ],
 
     /**

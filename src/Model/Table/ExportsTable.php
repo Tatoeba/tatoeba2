@@ -3,6 +3,7 @@ namespace App\Model\Table;
 
 use Cake\Core\Configure;
 use Cake\Filesystem\File;
+use Cake\Filesystem\Folder;
 use Cake\I18n\Time;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
@@ -147,6 +148,31 @@ class ExportsTable extends Table
         });
     }
 
+    public function afterDelete($event, $entity, $options)
+    {
+        if ($entity->filename) {
+            $file = new File($entity->filename);
+            if ($file->exists()) {
+                $file->delete();
+            }
+        }
+    }
+
+    private function removeOldExports()
+    {
+        $maxSize = Configure::read('Exports.maxSizeInBytes', 0);
+        if ($maxSize > 0) {
+            $exportPath = new Folder(Configure::read('Exports.path'));
+            while ($exportPath->dirsize() > $maxSize) {
+                $export = $this->find()->orderAsc('generated')->first();
+                if (!$export) {
+                    break;
+                }
+                $this->delete($export);
+            }
+        }
+    }
+
     private function urlFromFilename($filename)
     {
         return Configure::read('Exports.url').basename($filename);
@@ -158,7 +184,7 @@ class ExportsTable extends Table
         return Configure::read('Exports.path').$filename;
     }
 
-    public function runExport($config, $jobId)
+    public function runExport($config)
     {
         $export = $ok = false;
         try {
@@ -173,6 +199,8 @@ class ExportsTable extends Table
             $export->status = $ok ? 'online' : 'failed';
             $this->save($export);
         }
+
+        $this->removeOldExports();
         return $ok;
     }
 
