@@ -44,4 +44,19 @@ class ExportsController extends AppController
             $this->RequestHandler->renderAs($this, 'json');
         }
     }
+
+    public function download($exportId)
+    {
+        try {
+            $export = $this->Exports->get($exportId);
+        } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            throw new \Cake\Http\Exception\NotFoundException();
+        }
+
+        if ($export->user_id != CurrentUser::get('id')) {
+            throw new \Cake\Http\Exception\ForbiddenException();
+        } else {
+            return $this->redirect($export->url);
+        }
+    }
 }
