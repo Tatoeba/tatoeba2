@@ -17,6 +17,8 @@ class ExportsTableTest extends TestCase
         'app.QueuedJobs',
         'app.Users',
         'app.Sentences',
+        'app.SentencesLists',
+        'app.SentencesSentencesLists',
     ];
 
     private $testExportDir = TMP.'export_tests'.DS;
