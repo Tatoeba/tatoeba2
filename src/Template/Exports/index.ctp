@@ -10,6 +10,7 @@
               ng-show="exports.length"
               ng-repeat="export in exports">
     <p>{{export.name}}</p>
+    <span ng-show="export.generated_timestamp">{{export.generated | date:'yyyy-MM-dd'}}</span>
     <md-button class="md-raised md-primary"
                ng-href="{{export.url}}"
                ng-show="export.status == 'online'"><?= __x('button', 'Download') ?></md-button>

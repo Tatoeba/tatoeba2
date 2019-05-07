@@ -88,11 +88,13 @@ class ExportsTableTest extends TestCase
                 'name' => 'Kazuki\'s sentences',
                 'status' => 'online',
                 'url' => 'https://downloads.tatoeba.org/exports/kazuki_sentences.zip',
+                'generated' => new \Cake\I18n\FrozenTime('2019-02-01 14:54:13'),
             ],
             [
                 'name' => 'Japanese-Russian sentence pairs',
                 'status' => 'queued',
                 'url' => null,
+                'generated' => new \Cake\I18n\FrozenTime('2019-02-01 15:04:02'),
             ],
         ];
 
