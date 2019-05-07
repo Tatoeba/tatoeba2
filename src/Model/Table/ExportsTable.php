@@ -93,13 +93,40 @@ class ExportsTable extends Table
            ->where(['user_id' => $userId]);
     }
 
-    public function createExport($userId, $config)
+    private function createExportFromConfig($config, $userId)
     {
         $export = $this->newEntity();
-        $export->name        = $config['name'];
-        $export->description = $config['description'];
-        $export->status      = 'queued';
-        $export->user_id     = $userId;
+        $export->status = 'queued';
+        $export->user_id = $userId;
+
+        if (isset($config['type'])
+            && $config['type'] == 'list'
+            && isset($config['list_id'])) {
+
+            $SL = TableRegistry::get('SentencesLists');
+            $listId = $config['list_id'];
+            try {
+                $perms = $SL->getListWithPermissions($listId, $userId);
+            }
+            catch (Exception $e) {
+                return false;
+            }
+            if ($perms['Permissions']['canView']) {
+                $export->name = sprintf("List %d", $listId);
+                $export->description = sprintf("Sentences from list %d", $listId);
+                return $export;
+            }
+        }
+
+        return $export;
+    }
+
+    public function createExport($userId, $config)
+    {
+        $export = $this->createExportFromConfig($config, $userId);
+        if (!$export) {
+            return false;
+        }
 
         return $this->getConnection()->transactional(function () use ($export, $config) {
             if ($this->save($export)) {
@@ -112,7 +139,7 @@ class ExportsTable extends Table
                 if ($job) {
                     $export->queued_job_id = $job->id;
                     if ($this->save($export)) {
-                        return $export->extract(['name', 'url', 'status']);
+                        return $export->extract(['name', 'status']);
                     }
                 }
             }

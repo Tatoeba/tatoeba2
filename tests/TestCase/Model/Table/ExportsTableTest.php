@@ -56,7 +56,7 @@ class ExportsTableTest extends TestCase
 
     private function options()
     {
-        return [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
+        return [ 'type' => 'list', 'list_id' => 2 ];
     }
 
     private function optionsWith($with)
@@ -105,44 +105,43 @@ class ExportsTableTest extends TestCase
         $this->assertResultSet($expected, $result->all());
     }
 
-    public function testCreateExport_returnsExport()
+    public function testCreateListExport_returnsExport()
     {
         $expected = [
-            'name' => 'foo',
+            'name' => 'List 2',
             'url' => null,
             'status' => 'queued',
         ];
-        $options = [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
 
-        $export = $this->Exports->createExport(4, $options);
+        $export = $this->Exports->createExport(4, $this->options());
 
         $this->assertEquals($expected, $export);
     }
 
-    public function testCreateExport_failsIfEmptyName()
+    public function testCreateExport_failsIfNoType()
     {
-        $options = $this->optionsWith(['name' => '']);
+        $options = $this->optionsWithout(['type']);
         $result = $this->Exports->createExport(4, $options);
         $this->assertFalse($result);
     }
 
-    public function testCreateExport_failsWithoutName()
+    public function testCreateExport_failsIfInvalidType()
     {
-        $options = $this->optionsWithout(['name']);
+        $options = $this->optionsWith(['type' => 'invalid']);
         $result = $this->Exports->createExport(4, $options);
         $this->assertFalse($result);
     }
 
-    public function testCreateExport_failsIfEmptyDescription()
+    public function testCreateExport_failsIfNoListId()
     {
-        $options = $this->optionsWith(['description' => '']);
+        $options = $this->optionsWithout(['list_id']);
         $result = $this->Exports->createExport(4, $options);
         $this->assertFalse($result);
     }
 
-    public function testCreateExport_failsWithoutDescription()
+    public function testCreateExport_failsIfInvalidListId()
     {
-        $options = $this->optionsWithout(['description']);
+        $options = $this->optionsWith(['list_id' => 9999999999]);
         $result = $this->Exports->createExport(4, $options);
         $this->assertFalse($result);
     }
@@ -152,6 +151,34 @@ class ExportsTableTest extends TestCase
         $options = $this->options();
         $result = $this->Exports->createExport(9999999999, $options);
         $this->assertFalse($result);
+    }
+
+    public function testCreateExport_worksIfOwnedPrivateList()
+    {
+        $options = $this->optionsWith(['list_id' => 3]);
+        $result = $this->Exports->createExport(7, $options);
+        $this->assertTrue((bool)$result);
+    }
+
+    public function testCreateExport_failsIfOthersPrivateList()
+    {
+        $options = $this->optionsWith(['list_id' => 3]);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_worksIfUnlistedList()
+    {
+        $options = $this->optionsWith(['list_id' => 1]);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertTrue((bool)$result);
+    }
+
+    public function testCreateExport_worksIfPublicList()
+    {
+        $options = $this->options();
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertTrue((bool)$result);
     }
 
     public function testCreateExport_failsIfCreatingJobFails()
@@ -171,8 +198,8 @@ class ExportsTableTest extends TestCase
     {
         $expected = [
             'id' => 4,
-            'name' => 'foo',
-            'description' => 'bar',
+            'name' => 'List 2',
+            'description' => 'Sentences from list 2',
             'url' => null,
             'filename' => null,
             'generated' => null,
@@ -180,7 +207,7 @@ class ExportsTableTest extends TestCase
             'queued_job_id' => 4,
             'user_id' => 4,
         ];
-        $options = [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
+        $options = $this->options();
 
         $this->Exports->createExport(4, $options);
 

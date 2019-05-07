@@ -10,9 +10,7 @@
         $scope.addListExport = function () {
             $http.post(rootUrl + "/exports/add", {
                      'type': 'list',
-                     'list_id': $scope.selectedList,
-                     'name': 'List ' + $scope.selectedList,
-                     'description': 'Sentences from list ' + $scope.selectedList
+                     'list_id': $scope.selectedList
                  })
                  .then(
                     function(response) { $scope.exports.push(response.data.export); }
