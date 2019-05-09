@@ -178,7 +178,7 @@ class ExportsTable extends Table
         return Configure::read('Exports.url').basename($filename);
     }
 
-    private function newFilename($config)
+    private function newUniqueFilename($config)
     {
         $filename = $config['type'].'_'.$config['export_id'].'.csv';
         return Configure::read('Exports.path').$filename;
@@ -210,7 +210,7 @@ class ExportsTable extends Table
             return false;
         }
 
-        $filename = $this->newFilename($config);
+        $filename = $this->newUniqueFilename($config);
         $export->generated = Time::now();
         $export->filename = $filename;
         if (!$this->save($export)) {
