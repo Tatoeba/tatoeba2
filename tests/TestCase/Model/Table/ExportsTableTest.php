@@ -29,7 +29,7 @@ class ExportsTableTest extends TestCase
 
         Configure::write('Exports', [
             'path' => $this->testExportDir,
-            'url'  => 'https://example.com/exports/',
+            'url'  => '/export_tests/',
             'maxSizeInBytes' => 0,
         ]);
         Configure::write('Acl.database', 'test');
@@ -254,7 +254,7 @@ class ExportsTableTest extends TestCase
         $export = $this->Exports->get($exportId);
         $this->assertEquals($now, $export->generated);
         $this->assertEquals(TMP.'export_tests/list_3.csv', $export->filename);
-        $this->assertEquals('https://example.com/exports/list_3.csv', $export->url);
+        $this->assertEquals('/export_tests/list_3.csv', $export->url);
         $this->assertEquals('online', $export->status);
     }
 

@@ -56,7 +56,14 @@ class ExportsController extends AppController
         if ($export->user_id != CurrentUser::get('id')) {
             throw new \Cake\Http\Exception\ForbiddenException();
         } else {
-            return $this->redirect($export->url);
+            $this->autoRender = false;
+            return $this->getResponse()
+                        ->withFile($export->filename, ['download' => true])
+                        /* withFile() sets Content-Disposition, but we don't
+                           need it since the URL has the filename at the end */
+                        ->withoutHeader('Content-Disposition')
+                        ->withStringBody('')
+                        ->withHeader('X-Accel-Redirect', $export->url);
         }
     }
 }

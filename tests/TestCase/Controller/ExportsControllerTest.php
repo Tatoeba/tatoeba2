@@ -3,7 +3,10 @@ namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
+use Cake\TestSuite\Constraint\Response\HeaderNotSet;
 use Cake\TestSuite\IntegrationTestCase;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
 
 class ExportsControllerTest extends IntegrationTestCase
 {
@@ -13,9 +16,24 @@ class ExportsControllerTest extends IntegrationTestCase
         'app.UsersLanguages',
     ];
 
+    private $testExportDir = TMP.'export_tests'.DS;
+
     public function setUp() {
         parent::setUp();
+
         Configure::write('Acl.database', 'test');
+
+        $folder = new Folder($this->testExportDir);
+        $folder->delete();
+        if (!$folder->create($this->testExportDir)) {
+            die("Couldn't create test directory '{$this->testExportDir}'");
+        }
+    }
+
+    public function tearDown() {
+        $folder = new Folder($this->testExportDir);
+        $folder->delete();
+        parent::tearDown();
     }
 
     private function logInAs($username) {
@@ -25,14 +43,30 @@ class ExportsControllerTest extends IntegrationTestCase
         $this->enableCsrfToken();
     }
 
+    public function assertNoHeader($header, $message = '')
+    {
+        $verboseMessage = $this->extractVerboseMessage($message);
+        $this->assertThat(null, new HeaderNotSet($this->_response, $header), $verboseMessage);
+    }
+
     public function testDownload_asOwner()
     {
         $this->logInAs('kazuki');
-        $exportUrl = 'https://downloads.tatoeba.org/exports/kazuki_sentences.zip';
 
-        $this->get("/eng/exports/download/1");
+        $exportedFile = 'kazuki_sentences.zip';
+        $file = new File($this->testExportDir.$exportedFile, true);
+        $file->write("some zipped content");
+        $file->close();
 
-        $this->assertRedirect($exportUrl);
+        $this->get("/eng/exports/download/1/A pretty filename.zip");
+
+        $this->assertResponseOk();
+        $this->assertContentType('application/zip');
+        $this->assertHeader('Content-Length', '19');
+        $this->assertHeader('Accept-Ranges', 'bytes');
+        $this->assertNoHeader('Content-Disposition');
+        $this->assertHeader('X-Accel-Redirect', '/export_tests/kazuki_sentences.zip');
+        $this->assertResponseEquals('');
     }
 
     public function testDownload_asOtherMember()
