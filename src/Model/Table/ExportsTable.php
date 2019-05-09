@@ -90,7 +90,6 @@ class ExportsTable extends Table
     public function getExportsOf($userId)
     {
         return $this->find()
-           ->select(['name', 'id', 'status', 'generated'])
            ->where(['user_id' => $userId]);
     }
 

@@ -90,12 +90,14 @@ class ExportsTableTest extends TestCase
             [
                 'id' => 1,
                 'name' => 'Kazuki\'s sentences',
+                'description' => 'Sentence id [tab] Sentence text',
                 'status' => 'online',
                 'generated' => new \Cake\I18n\FrozenTime('2019-02-01 14:54:13'),
             ],
             [
                 'id' => 2,
                 'name' => 'Japanese-Russian sentence pairs',
+                'description' => 'Japanese sentence text [tab] Russian entence text',
                 'status' => 'queued',
                 'generated' => new \Cake\I18n\FrozenTime('2019-02-01 15:04:02'),
             ],
@@ -200,12 +202,8 @@ class ExportsTableTest extends TestCase
             'id' => 4,
             'name' => 'List 2',
             'description' => 'Sentences from list 2',
-            'url' => null,
-            'filename' => null,
             'generated' => null,
             'status' => 'queued',
-            'queued_job_id' => 4,
-            'user_id' => 4,
         ];
         $options = $this->options();
 

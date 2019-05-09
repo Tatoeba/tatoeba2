@@ -16,4 +16,6 @@ class Export extends Entity
     protected $_accessible = [
         '*' => false,
     ];
+
+    protected $_hidden = ['filename', 'url', 'queued_job_id', 'user_id'];
 }
