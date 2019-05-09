@@ -93,6 +93,7 @@ class ExportsTableTest extends TestCase
                 'description' => 'Sentence id [tab] Sentence text',
                 'status' => 'online',
                 'generated' => new \Cake\I18n\FrozenTime('2019-02-01 14:54:13'),
+                'pretty_filename' => "Kazuki's sentences - 2019-02-01.zip"
             ],
             [
                 'id' => 2,
@@ -100,6 +101,7 @@ class ExportsTableTest extends TestCase
                 'description' => 'Japanese sentence text [tab] Russian entence text',
                 'status' => 'queued',
                 'generated' => new \Cake\I18n\FrozenTime('2019-02-01 15:04:02'),
+                'pretty_filename' => 'Japanese-Russian sentence pairs - 2019-02-01.csv',
             ],
         ];
 
@@ -204,6 +206,7 @@ class ExportsTableTest extends TestCase
             'description' => 'Sentences from list 2',
             'generated' => null,
             'status' => 'queued',
+            'pretty_filename' => null,
         ];
         $options = $this->options();
 
