@@ -2,7 +2,7 @@ server {
 	listen	80;
 	server_name	tatoeba.org;
 
-	root	/var/www-prod/app/webroot/;
+	root	/var/www-prod/webroot/;
 	index	index.php index.html;
 	charset	utf-8;
 

@@ -49,7 +49,7 @@ server {
 	ssl_session_cache   shared:SSL:10m;
 	ssl_session_timeout 10m;
 
-	root	/var/www-prod/app/webroot/;
+	root	/var/www-prod/webroot/;
 	index	index.php index.html;
 	charset	utf-8;
 
@@ -118,7 +118,7 @@ server {
 	ssl_session_cache   shared:SSL:10m;
 	ssl_session_timeout 10m;
 
-	root	/var/www-dev/app/webroot/;
+	root	/var/www-dev/webroot/;
 	index	index.php index.html;
 	charset	utf-8;
 
