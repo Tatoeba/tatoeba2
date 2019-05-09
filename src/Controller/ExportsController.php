@@ -55,6 +55,8 @@ class ExportsController extends AppController
 
         if ($export->user_id != CurrentUser::get('id')) {
             throw new \Cake\Http\Exception\ForbiddenException();
+        } elseif ($export->status != 'online') {
+            throw new \Cake\Http\Exception\NotFoundException();
         } else {
             $this->autoRender = false;
             return $this->getResponse()

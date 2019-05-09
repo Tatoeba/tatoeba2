@@ -93,4 +93,18 @@ class ExportsControllerTest extends IntegrationTestCase
 
         $this->assertResponseCode(404);
     }
+
+    public function testDownload_cannotDownloadUntilReady()
+    {
+        $this->logInAs('kazuki');
+
+        $export = TableRegistry::get('Exports')->get(2);
+        $file = new File($export->filename, true);
+        $file->close();
+
+        $this->get("/eng/exports/download/2");
+
+        $this->assertResponseCode(404);
+        $this->assertResponseNotContains($export->filename);
+    }
 }
