@@ -28,6 +28,14 @@ class ExportsController extends AppController
         $this->set('searchableLists', $this->SentencesLists->getSearchableLists());
     }
 
+    public function list()
+    {
+        $exports = $this->Exports->getExportsOf(CurrentUser::get('id'));
+        $this->set(compact('exports'));
+        $this->set('_serialize', ['exports']);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
+
     public function add()
     {
         $export = false;
