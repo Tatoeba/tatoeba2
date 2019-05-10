@@ -106,14 +106,14 @@ class ExportsTable extends Table
             $SL = TableRegistry::get('SentencesLists');
             $listId = $config['list_id'];
             try {
-                $perms = $SL->getListWithPermissions($listId, $userId);
+                $list = $SL->getListWithPermissions($listId, $userId);
             }
             catch (Exception $e) {
                 return false;
             }
-            if ($perms['Permissions']['canView']) {
-                $export->name = sprintf("List %d", $listId);
-                $export->description = sprintf("Sentences from list %d", $listId);
+            if ($list['Permissions']['canView']) {
+                $export->name = format(__('List {listName}'), ['listName' => $list->name]);
+                $export->description = __("Sentence id [tab] Sentence text");
                 return $export;
             }
         }
