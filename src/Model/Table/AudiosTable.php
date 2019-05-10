@@ -18,9 +18,11 @@
  */
 namespace App\Model\Table;
 
+use App\Event\StatsListener;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
+use Cake\Event\Event;
 use Cake\Validation\Validator;
 use Cake\Utility\Hash;
 
@@ -68,6 +70,8 @@ class AudiosTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+
+        $this->getEventManager()->on(new StatsListener());
     }
 
     public function validationDefault(Validator $validator)
@@ -100,6 +104,13 @@ class AudiosTable extends Table
     }
 
     public function afterSave($event, $entity, $options = array()) {
+        if ($entity->isNew()) {
+            $event = new Event('Model.Audio.audioCreated', $this, [
+                'audio' => $entity,
+            ]);
+            $this->getEventManager()->dispatch($event);
+        }
+
         if ($entity->sentence_id) {
             $this->Sentences->flagSentenceAndTranslationsToReindex(
                 $entity->sentence_id
@@ -114,6 +125,11 @@ class AudiosTable extends Table
     }
 
     public function afterDelete($event, $entity, $options) {
+        $event = new Event('Model.Audio.audioDeleted', $this, [
+            'audio' => $entity,
+        ]);
+        $this->getEventManager()->dispatch($event);
+
         if ($entity->sentence_id) {
             $this->Sentences->flagSentenceAndTranslationsToReindex(
                 $entity->sentence_id
@@ -288,24 +304,5 @@ class AudiosTable extends Table
         }
         
         return $filesImported;
-    }
-
-    /**
-     * Update audio count.
-     *
-     * @return void
-     */
-    public function updateCount()
-    {
-        $query = "
-            UPDATE `languages` l,
-                (SELECT count(distinct sentence_id) as count, lang
-                FROM audios JOIN sentences ON audios.sentence_id = sentences.id
-                GROUP BY lang
-                ) as s
-            SET audio = s.count
-            WHERE l.code = s.lang;
-        ";
-        $this->query($query);
     }
 }

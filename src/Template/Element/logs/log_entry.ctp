@@ -53,8 +53,7 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
     echo $this->Languages->icon(
         $langCode,
         array(
-            'width' => 30,
-            'height' => 20,
+            'ng-cloak' => true,
             'class' => 'md-secondary lang'
         )
     );
@@ -73,7 +72,7 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
         </div>
         <p><?= $infoLabel ?></p>
     </div>
-    <md-button class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
+    <md-button ng-cloak class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
         <md-icon>info</md-icon>
     </md-button>
 </md-list-item>

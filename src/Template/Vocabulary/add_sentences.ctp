@@ -33,7 +33,7 @@ $title = __('Vocabulary that needs sentences');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<div id="annexe_content">
+<div ng-cloak id="annexe_content">
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <?php $this->CommonModules->createFilterByLangMod(); ?>

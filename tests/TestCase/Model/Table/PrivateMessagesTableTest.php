@@ -130,6 +130,25 @@ class PrivateMessageTest extends TestCase {
         $this->assertEquals(1, $after - $before);
     }
 
+    public function testSend_draft() {
+        $userId = 4;
+        CurrentUser::store(['id' => $userId]);
+        $date = '2017-10-13 01:07:10';
+        $postData = [
+            'messageId' => 5,
+            'submitType' => 'send',
+            'recipients' => 'admin',
+            'title' => 'Feelings',
+            'content' => 'I\'m worrying about Tom.',
+        ];
+
+        $before = $this->PrivateMessage->find()->count();
+        $this->PrivateMessage->send($userId, $date, $postData);
+        $after = $this->PrivateMessage->find()->count();
+
+        $this->assertEquals(1, $after - $before);
+    }
+
     public function testSend_toOneRecipent() {
         $date = '1999-12-31 23:59:59';
         $postData = array(

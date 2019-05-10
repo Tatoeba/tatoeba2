@@ -47,7 +47,11 @@ class LogsHelper extends AppHelper
         $latestContribs = array();
         foreach ($contributions as $contribution) {
             $sentenceId = $contribution->sentence_id;
-            $contribTime = (int)$contribution->datetime->toUnixString();
+            if ($contribution->datetime) {
+                $contribTime = (int)$contribution->datetime->toUnixString();
+            } else {
+                $contribTime = 0;
+            }
             if (!isset($latestContribs[$sentenceId]) ||
                 (isset($latestContribs[$sentenceId]) && $latestContribs[$sentenceId] < $contribTime)) {
                 $latestContribs[$sentenceId] = $contribTime;
@@ -68,7 +72,11 @@ class LogsHelper extends AppHelper
         $latestContribs = $this->_findLatestContributionDates($contributions);
         foreach ($contributions as $contribution) {
             $sentenceId = $contribution->sentence_id;
-            $contribTime = (int)$contribution->datetime->toUnixString();
+            if ($contribution->datetime) {
+                $contribTime = (int)$contribution->datetime->toUnixString();
+            } else {
+                $contribTime = 0;
+            }
             $contribution->obsolete = ($contribTime < $latestContribs[$sentenceId]);
         }
     }

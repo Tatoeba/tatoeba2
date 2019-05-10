@@ -48,7 +48,7 @@ $(document).ready(function() {
                     { "id": sentenceId, "newLang": newLang },
                     function(data){
                         $("#_" + sentenceId + "_in_process").hide();
-                        flagImage.attr('src', '/img/flags/' + data + '.png');
+                        flagImage.attr('src', '/img/flags/' + data + '.svg');
                     }
                 );
             });

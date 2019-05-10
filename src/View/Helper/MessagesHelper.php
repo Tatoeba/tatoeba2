@@ -509,7 +509,6 @@ class MessagesHelper extends AppHelper
                 $sentenceLang,
                 array(
                     "class" => "langIcon",
-                    "width" => 20
                 )
             );
 

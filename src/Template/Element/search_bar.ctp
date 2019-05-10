@@ -48,7 +48,8 @@ echo $this->Form->create(
     )
 );
 ?>
-<div layout-gt-sm="row" layout-align-gt-sm="center end" layout-margin
+<div ng-cloak
+     layout-gt-sm="row" layout-align-gt-sm="center end" layout-margin
      layout="column" layout-align="center center">
     <div layout="column" flex>
         <div layout="row" layout-align="end center" class="search-bar-extra">

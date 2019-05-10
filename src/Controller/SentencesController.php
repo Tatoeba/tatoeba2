@@ -1062,7 +1062,10 @@ class SentencesController extends AppController
             if ($hasaudio) {
                 $this->Audios->assignAudioTo($sentenceId, $ownerName);
             } else {
-                $this->Audios->deleteAll(['sentence_id' => $sentenceId]);
+                $audioToDelete = $this->Audios->find()
+                    ->where(['sentence_id' => $sentenceId])
+                    ->first();
+                $this->Audios->delete($audioToDelete);
             }
             $this->redirect(
                 array(

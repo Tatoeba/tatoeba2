@@ -23,17 +23,17 @@ return [
     ],
 
     /**
-     * Sphinx configuration
+     * Manticore configuration
      */
     'Sphinx' => [
         'host' => 'localhost',
         'port' => 9312,
         'sphinxql_port' => 9306,
-        'indexdir' => '{{sphinx_index_dir}}',
-        'socket' => '{{sphinx_sql_socket}}',
-        'logdir' => '{{sphinx_log_dir}}',
-        'pidfile' => '{{sphinx_pid_file}}',
-        'binlog_path' => '{{sphinx_binlog_path}}',
+        'indexdir' => '{{manticore_index_dir}}',
+        'socket' => '{{manticore_sql_socket}}',
+        'logdir' => '{{manticore_log_dir}}',
+        'pidfile' => '{{manticore_pid_file}}',
+        'binlog_path' => '{{manticore_binlog_path}}',
     ],
 
     /**

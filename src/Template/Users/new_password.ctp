@@ -38,14 +38,17 @@
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Send new password')));
 
 $this->Security->enableCSRFProtection();
-echo $this->Form->create('User', array(
-    "url" => array("action" => "new_password")
-));
 ?>
 
 <div md-whiteframe="1" id="reset-form">
     <h2><? echo __('Send new password'); ?></h2>
-        <md-input-container class="md-block">
+    <?
+        echo $this->Form->create('User', array(
+            "ng-cloak" => true,
+            "url" => array("action" => "new_password")
+        ));
+    ?>
+    <md-input-container class="md-block">
         <?php
         echo $this->Form->input(
             'email', array(
@@ -60,9 +63,9 @@ echo $this->Form->create('User', array(
             <?php echo __('Send'); ?>
         </md-button>
     </div>
+    <? echo $this->Form->end(); ?>
 </div>
 
 <?php
-echo $this->Form->end();
 $this->Security->disableCSRFProtection();
 ?>

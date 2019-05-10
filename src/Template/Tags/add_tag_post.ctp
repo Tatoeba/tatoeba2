@@ -26,7 +26,7 @@
  */
 
 if ($isSaved) {
-    $this->Tags->displayTag($tagName, $tagId, $sentenceId, $userId, $username, $date);
+    $this->Tags->displayTag($tagName, $tagId, $sentenceId, $userId, $username, $date, $sentenceLang);
 }
 ?>
 

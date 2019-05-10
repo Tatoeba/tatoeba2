@@ -114,7 +114,7 @@
 
             <fieldset class="submit">
                 <md-button type="submit" class="search-submit-button md-raised md-primary">
-                    <md-icon>search</md-icon>
+                    <md-icon ng-cloak>search</md-icon>
                 </md-button>
             </fieldset>
 

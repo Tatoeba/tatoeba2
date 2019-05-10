@@ -9,8 +9,7 @@ pipeline {
     stage('Check assets') {
       steps {
         // Check for flags that are too big
-        // You can compress them better with convert and/or optipng
-        sh '! find webroot/img/flags/ -name "*.png" -size +2k | grep .'
+        sh '! find webroot/img/flags/ -name "*.svg" -size +3k | grep .'
       }
     }
     stage('Test') {

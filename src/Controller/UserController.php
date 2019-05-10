@@ -89,12 +89,6 @@ class UserController extends AppController
         return parent::beforeFilter($event);
     }
 
-    public function updateAuthData($userId)
-    {
-        $userData = $this->User->read(null, $userId);
-        $this->request->getSession()->write(AuthComponent::$sessionKey, $userData['User']);
-    }
-
     /**
      * Display profile of given user.
      * If no username is given and no user is logged in,

@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\LanguagesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Hash;
 
 class LanguagesTableTest extends TestCase {
     public $fixtures = array(
@@ -27,10 +28,10 @@ class LanguagesTableTest extends TestCase {
     }
 
     function testGetAudioStats() {
-        $result = $this->Languages->getAudioStats();
-        $this->assertEquals(1, count($result));
-        $this->assertEquals(3, $result[0]->total);
-        $this->assertEquals('jpn', $result[0]->lang);
+        $stats = $this->Languages->getAudioStats();
+        $result = Hash::combine($stats, '{n}.lang', '{n}.total');
+        $expected = ['spa' => 1, 'fra' => 2];
+        $this->assertEquals($expected, $result);
     }
 
     function testGetNativeSpeakersStatistics() {

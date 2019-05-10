@@ -213,4 +213,21 @@ class AudiosTableTest extends TestCase {
         $result = array_intersect_key($result->toArray(), $expected);
         $this->assertEquals($expected, $result);
     }
+
+    function testAssignAudioTo_incrementsCount() {
+        $Languages = TableRegistry::getTableLocator()->get('Languages');
+        $before = $Languages->get(1)->audio; // eng audio
+        $result = $this->Audio->assignAudioTo(1, 'admin');
+        $after = $Languages->get(1)->audio;
+        $this->assertEquals(1, $after - $before);
+    }
+
+    function testDelete_decrementsCount() {
+        $Languages = TableRegistry::getTableLocator()->get('Languages');
+        $before = $Languages->get(4)->audio; // fra audio
+        $audioToDelete = $this->Audio->get(2);
+        $result = $this->Audio->delete($audioToDelete);
+        $after = $Languages->get(4)->audio;
+        $this->assertEquals(1, $before - $after);
+    }
 }

@@ -57,7 +57,7 @@ class VocabularyHelper extends AppHelper
             ));
         }
         ?>
-        <img class="vocabulary-lang" src="/img/flags/<?= $lang ?>.png"/>
+        <img class="vocabulary-lang" src="/img/flags/<?= $lang ?>.svg"/>
         <div class="vocabulary-text" flex><?= $text ?></div>
         <md-button class="md-primary" <?= isset($url) ? "href=\"$url\"" : 'ng-disabled="1"' ?>>
             <?= $numSentencesLabel ?>
