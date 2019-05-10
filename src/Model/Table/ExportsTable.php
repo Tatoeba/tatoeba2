@@ -228,6 +228,9 @@ class ExportsTable extends Table
             return false;
         }
 
+        $BOM = "\xEF\xBB\xBF";
+        $file->write($BOM);
+
         $this->getConnection()->transactional(function () use ($query, $file) {
             $this->batchOperationNewORM($query, function ($entities) use ($file) {
                 foreach ($entities as $sentence) {
