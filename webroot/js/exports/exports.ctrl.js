@@ -3,6 +3,18 @@
 
         var rootUrl = get_tatoeba_root_url();
 
+        function updateExports(newExports) {
+            for (var i = 0; i < newExports.length; i++) {
+                var newExport = newExports[i];
+                Object.getOwnPropertyNames(newExport).forEach(
+                    function (propName) {
+                        $scope.exports[i][propName] = newExport[propName];
+                    }
+                );
+            };
+            $scope.exports.length = newExports.length;
+        }
+
         $scope.maybeRefreshExportList = function() {
             $timeout.cancel($scope.refreshPromise);
             var notCompleted = $scope.exports
@@ -15,7 +27,7 @@
                     $http.get(rootUrl + "/exports/list")
                     .then(
                         function(response) {
-                            $scope.exports = response.data.exports;
+                            updateExports(response.data.exports);
                             $scope.maybeRefreshExportList();
                         },
                         function() {
