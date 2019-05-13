@@ -336,6 +336,7 @@ class ExportsTableTest extends TestCase
         $this->Exports->runExport($config);
         $firstExportId = $config['export_id'];
 
+        clearstatcache();
         $fileSize = filesize($this->Exports->get($firstExportId)->filename);
         $this->assertGreaterThan(0, $fileSize);
         Configure::write('Exports.maxSizeInBytes', $fileSize);
