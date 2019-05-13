@@ -252,6 +252,7 @@ class ExportsTableTest extends TestCase
 
         $this->Exports->runExport($config, $jobId);
 
+        Time::setTestNow();
         $export = $this->Exports->get($exportId);
         $this->assertEquals($now, $export->generated);
         $this->assertEquals(TMP.'export_tests/list_3.csv', $export->filename);
