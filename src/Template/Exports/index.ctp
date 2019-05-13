@@ -5,7 +5,7 @@
 
 <div class="section" md-whiteframe="1">
 <h2><?= __('My exports') ?></h2>
-<p ng-show="!exports.length"><?= __("There are no exports.") ?></p>
+<p ng-cloak ng-show="!exports.length"><?= __("There are no exports.") ?></p>
 <md-list-item ng-cloak
               ng-show="exports.length"
               ng-repeat="export in exports">
