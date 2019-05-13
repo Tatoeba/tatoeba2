@@ -216,12 +216,14 @@ class ExportsTable extends Table
             return false;
         }
 
-        $Sentences = TableRegistry::get('Sentences');
-        $query = $Sentences->find()
-            ->select(['Sentences.id', 'Sentences.lang', 'Sentences.text'])
-            ->matching('SentencesLists', function ($q) use ($config) {
-                return $q->where(['SentencesLists.id' => $config['list_id']]);
-            });
+        $SSL = TableRegistry::get('SentencesSentencesLists');
+        $query = $SSL->find()
+            ->select(['SentencesSentencesLists.sentence_id', 'Sentences.lang', 'Sentences.text'])
+            ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
+            ->contain('Sentences', function ($q) use ($config) {
+                return $q->select(['Sentences.lang', 'Sentences.text']);
+            })
+            ->order(['SentencesSentencesLists.sentence_id']);
 
         $file = new File($filename, true, 0600);
         if (!$file->open('w')) {
@@ -233,8 +235,8 @@ class ExportsTable extends Table
 
         $this->getConnection()->transactional(function () use ($query, $file) {
             $this->batchOperationNewORM($query, function ($entities) use ($file) {
-                foreach ($entities as $sentence) {
-                    $fields = $sentence->extract(['lang', 'text']);
+                foreach ($entities as $ssl) {
+                    $fields = $ssl->sentence->extract(['lang', 'text']);
                     $file->write(implode($fields, "\t")."\n");
                 }
             });
