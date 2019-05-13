@@ -10,7 +10,7 @@
               ng-show="exports.length"
               ng-repeat="export in exports">
     <p>{{export.name}}</p>
-    <span ng-show="export.generated">{{export.generated | date:'yyyy-MM-dd'}}</span>
+    <span ng-show="export.status == 'online' && export.generated">{{export.generated | date:'yyyy-MM-dd'}}</span>
     <md-button class="md-raised md-primary"
                ng-href="/exports/download/{{export.id}}/{{export.pretty_filename}}"
                ng-show="export.status == 'online'"><?= __x('button', 'Download') ?></md-button>
