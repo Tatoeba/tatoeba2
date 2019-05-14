@@ -9,5 +9,6 @@ TAGS_CSV=/var/www-downloads/exports/tags.csv
 
 sudo -u $TATODETECT_USER nice -n 19 tatodetect-generate-ngrams.py "$SENTENCES_DETAILED_CSV" "$NGRAMS_DB_TMP" "$TAGS_CSV"
 chown root:root "$NGRAMS_DB_TMP"
+cp "$NGRAMS_DB" "$NGRAMS_DB.old"
 mv "$NGRAMS_DB_TMP" "$NGRAMS_DB"
 systemctl restart tatodetect
