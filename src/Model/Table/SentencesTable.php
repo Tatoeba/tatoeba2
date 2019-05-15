@@ -1317,36 +1317,43 @@ class SentencesTable extends Table
         return $this->delete($sentence);
     }
 
+    private function orderby($expr, $order)
+    {
+        return $expr . ($order ? ' ASC' : ' DESC');
+    }
+
     public function sphinxOptions($query, $from, $sort, $sort_reverse)
     {
-        $ranking_formula = '-text_len';
-        $sortMode = '@rank';
         if ($sort == 'random') {
-            $sortMode = '@random';
-        } elseif ($sort == 'created') {
-            $ranking_formula = 'created';
-        } elseif ($sort == 'modified') {
-            $ranking_formula = 'modified';
+            $sortOrder = '@random';
+        } elseif (empty($query)) {
+            // When the query is empty, Sphinx does not perform any
+            // ranking, so we need to rely on ordering instead
+            if ($sort == 'created' || $sort == 'modified') {
+                $sortOrder = $this->orderby($sort, $sort_reverse);
+            } else {
+                $sortOrder = $this->orderby('text_len', !$sort_reverse);
+            }
+        } else {
+            // When there are keywords, Sphinx will perform ranking
+            $sortOrder = $this->orderby('@rank', $sort_reverse);
+            if ($sort == 'words') {
+                $rankingExpr = '-text_len';
+            } elseif ($sort == 'created' || $sort == 'modified') {
+                $rankingExpr = $sort;
+            }
         }
-        $sortMode .= empty($sort_reverse) ? ' DESC' : ' ASC';
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
         $sphinx = array(
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
-            'sortMode' => array(SPH_SORT_EXTENDED => $sortMode),
-            'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
+            'sortMode' => array(SPH_SORT_EXTENDED => $sortOrder),
         );
-        if (empty($query) && $sort != 'random') {
-            // When the query is empty, Sphinx changes matchMode into
-            // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
-            // sortMode instead.
-            if (!empty($sort_reverse)) {
-                $ranking_formula = "-($ranking_formula)";
-            }
-            $sphinx['sortMode'] = array(SPH_SORT_EXPR => $ranking_formula);
-        }
+        if (isset($rankingExpr)) {
+            $sphinx['rankingMode'] = array(SPH_RANK_EXPR => $rankingExpr);
+        };
 
         return $sphinx;
     }
