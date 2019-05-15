@@ -100,7 +100,7 @@ class SentencesController extends AppController
         'trans_unapproved' => '',
         'trans_has_audio' => '',
         'trans_filter' => 'limit',
-        'sort' => 'words',
+        'sort' => 'relevance',
         'sort_reverse' => '',
     );
 

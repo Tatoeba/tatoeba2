@@ -1339,6 +1339,8 @@ class SentencesTable extends Table
             $sortOrder = $this->orderby('@rank', $sort_reverse);
             if ($sort == 'words') {
                 $rankingExpr = '-text_len';
+            } elseif ($sort == 'relevance') {
+                $rankingExpr = '-text_len+top(lcs+exact_order*100)*100';
             } elseif ($sort == 'created' || $sort == 'modified') {
                 $rankingExpr = $sort;
             }
