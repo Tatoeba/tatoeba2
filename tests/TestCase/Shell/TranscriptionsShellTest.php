@@ -14,6 +14,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         'app.transcriptions',
         'app.users',
         'app.contributions',
+        'app.reindex_flags',
     ];
 
     public $io;
