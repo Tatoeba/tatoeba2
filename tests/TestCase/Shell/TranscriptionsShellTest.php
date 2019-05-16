@@ -36,7 +36,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
            ->will($this->returnValue(true));
         $AT->expects($this->any())
            ->method('cmn_detectScript')
-           ->will($this->returnValue('TEST'));
+           ->will($this->returnValue('Hant'));
 
         return $AT;
     }
@@ -53,6 +53,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $this->TS->Transcriptions->setAutotranscription($AT);
 
         Configure::write('Acl.database', 'test');
+        Configure::write('AutoTranscriptions.enabled', true);
     }
 
     public function tearDown()
@@ -92,7 +93,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
     public function testSetSentencesScript()
     {
-        $expectedScripts = ['TEST'];
+        $expectedScripts = ['Hant'];
 
         $this->TS->setSentencesScript('cmn');
 
@@ -107,7 +108,7 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
     public function testSetContributionsScript()
     {
-        $expectedScripts = ['TEST'];
+        $expectedScripts = ['Hant'];
 
         $this->TS->setContributionsScript('cmn');
 
@@ -118,5 +119,22 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
 
         $scripts = array_keys(array_flip($scripts));
         $this->assertEquals($expectedScripts, $scripts);
+    }
+
+    public function testSetSentencesScriptDoesNotUpdateModifiedField()
+    {
+        $before = TableRegistry::get('Sentences')
+            ->find('list', ['valueField' => 'modified'])
+            ->where(['lang' => 'cmn'])
+            ->toArray();
+
+        $this->TS->setSentencesScript('cmn');
+
+        $after = TableRegistry::get('Sentences')
+            ->find('list', ['valueField' => 'modified'])
+            ->where(['lang' => 'cmn'])
+            ->toArray();
+
+        $this->assertEquals($before, $after);
     }
 }
