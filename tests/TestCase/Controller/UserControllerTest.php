@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
+use App\Test\TestCase\Controller\LogInAsTrait;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
@@ -9,6 +10,8 @@ use Cake\Utility\Security;
 
 class UserControllerTest extends IntegrationTestCase
 {
+    use LogInAsTrait;
+
     public $fixtures = [
         'app.aros',
         'app.acos',
@@ -28,15 +31,6 @@ class UserControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $users = $users->find()->select(['username', 'password'])->all();
         $this->oldPasswords = $users->combine('username', 'password')->toArray();
-    }
-
-    private function logInAs($username) {
-        $users = TableRegistry::get('Users');
-        $user = $users->findByUsername($username)->first();
-        $this->session(['Auth' => [ 'User' => $user->toArray()]]);
-
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
     }
 
     private function assertPassword($what, $username) {

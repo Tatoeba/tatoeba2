@@ -4,8 +4,11 @@ namespace App\Test\TestCase\Controller;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
+use App\Test\TestCase\Controller\LogInAsTrait;
 
 class TagsControllerTest extends IntegrationTestCase {
+    use LogInAsTrait;
+
     public $fixtures = [
         'app.aros',
         'app.acos',
@@ -19,14 +22,6 @@ class TagsControllerTest extends IntegrationTestCase {
     public function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
-    }
-
-    private function logInAs($username) {
-        $users = TableRegistry::get('Users');
-        $user = $users->findByUsername($username)->first();
-        $this->session(['Auth' => ['User' => $user->toArray()]]);
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
     }
 
     private function _removeAsUser($username, $tagId, $sentenceId) {

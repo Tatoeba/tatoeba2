@@ -1,11 +1,14 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\TestCase\Controller\LogInAsTrait;
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
 
 class TranscriptionsControllerTest extends IntegrationTestCase {
+    use LogInAsTrait;
+
     public $fixtures = array(
         'app.aros',
         'app.acos',
@@ -20,7 +23,6 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         parent::setUp();
         Configure::write('Acl.database', 'test');
         $this->enableCsrfToken();
-        $this->enableSecurityToken();
     }
 
     public function controllerSpy($event, $controller = null) {
@@ -59,12 +61,6 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
 
     private function assertRedirectedToLoginPage() {
         $this->assertRedirect('/jpn/users/login');
-    }
-
-    private function logInAs($username) {
-        $users = TableRegistry::get('Users');
-        $user = $users->findByUsername($username)->first();
-        $this->session(['Auth' => ['User' => $user->toArray()]]);
     }
 
     private function _resetAsUser($username, $sentenceId, $script) {

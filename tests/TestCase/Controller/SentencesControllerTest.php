@@ -1,11 +1,14 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\TestCase\Controller\LogInAsTrait;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 
 class SentencesControllerTest extends IntegrationTestCase {
+	use LogInAsTrait;
+
 	public $fixtures = [
 		'app.sentences',
 		'app.users',
@@ -29,14 +32,6 @@ class SentencesControllerTest extends IntegrationTestCase {
 	public function setUp() {
 		parent::setUp();
 		Configure::write('Acl.database', 'test');
-	}
-
-	private function logInAs($username) {
-		$users = TableRegistry::get('Users');
-		$user = $users->findByUsername($username)->first();
-		$this->session(['Auth' => ['User' => $user->toArray()]]);
-		$this->enableCsrfToken();
-		$this->enableSecurityToken();
 	}
 
 	public function testAdd_redirectsGuestsToLogin() {
