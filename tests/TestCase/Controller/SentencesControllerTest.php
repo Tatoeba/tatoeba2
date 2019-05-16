@@ -48,6 +48,7 @@ class SentencesControllerTest extends IntegrationTestCase {
 		$this->logInAs('contributor');
 		$this->get('/jpn/sentences/add');
 		$this->assertNoRedirect();
+		$this->assertResponseOk();
 	}
 
 	public function testEditSentence_doesntWorkForUnknownSentence() {
