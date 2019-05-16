@@ -179,6 +179,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'quiz' => 'poloc',
         ]);
         $this->assertSession('polochon', 'Auth.User.username');
+        $this->assertRedirect('/eng');
     }
 
     public function testCheckLogin_cannotRegisterWithEmptyPassword() {

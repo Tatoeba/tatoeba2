@@ -109,13 +109,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect(
-        '/',
-        [
-            'controller' => 'Pages',
-            'action' => 'index'
-        ]
-    );
-    $routes->connect(
         '/:lang',
         [
             'lang' => ':lang',
@@ -125,6 +118,13 @@ Router::scope('/', function (RouteBuilder $routes) {
     )
     ->setPatterns(['lang' => $interfaceLanguages])
     ->setPersist(['lang']);
+    $routes->connect(
+        '/',
+        [
+            'controller' => 'Pages',
+            'action' => 'index'
+        ]
+    );
 
     $routes->connect(
         '/:lang/:action',
