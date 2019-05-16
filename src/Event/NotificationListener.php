@@ -213,9 +213,4 @@ class NotificationListener implements EventListenerInterface {
             ->from([Configure::read('Mailer.username') => 'noreply'])
             ->send();
     }
-
-    public function getTransport()
-    {
-        return 'Smtp';
-    }
 }
