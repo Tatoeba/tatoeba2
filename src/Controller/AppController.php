@@ -125,8 +125,6 @@ class AppController extends Controller
         $this->Auth->allow('display');
         $this->Auth->authorize = 'Actions';
         $this->Auth->authError = __('You need to be logged in.', true);
-        // very important for the "remember me" to work
-        $this->Auth->autoRedirect = false;
         $this->RememberMe->check();
 
         // So that we can access the current users info from models.
