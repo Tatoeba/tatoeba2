@@ -71,6 +71,8 @@ class UsersControllerTest extends IntegrationTestCase {
             [ '/eng/users/check_username/foobar', 'contributor', false ],
             [ '/eng/users/check_email/foobar@example.net', false, false ],
             [ '/eng/users/check_email/foobar@example.net', 'contributor', false ],
+            [ '/eng/users/for_language', false, false ],
+            [ '/eng/users/for_language', 'contributor', false ],
             [ '/eng/users/for_language/jav', false, false ],
             [ '/eng/users/for_language/jav', 'contributor', false ],
         ];
