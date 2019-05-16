@@ -117,14 +117,16 @@ class AppController extends Controller
 
         $this->Cookie->domain = TATOEBA_DOMAIN;
         $this->Cookie->configKey('CakeCookie', 'encryption', false);
-        // This line will call views/elements/session_expired.ctp.
-        // When one tries to do an AJAX action after the session is expired,
-        // the action will return the content of this file instead of
-        // the whole page.
-        $this->Auth->ajaxLogin = 'session_expired';
         $this->Auth->allow('display');
-        $this->Auth->authorize = 'Actions';
-        $this->Auth->authError = __('You need to be logged in.', true);
+        $this->Auth->setConfig([
+            // This line will call views/elements/session_expired.ctp.
+            // When one tries to do an AJAX action after the session is expired,
+            // the action will return the content of this file instead of
+            // the whole page.
+            'ajaxLogin' => 'session_expired',
+            'authError' => __('You need to be logged in.', true),
+            'authorize' => 'Actions',
+        ]);
         $this->RememberMe->check();
 
         // So that we can access the current users info from models.
