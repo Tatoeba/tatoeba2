@@ -10,7 +10,6 @@ bin/cake acl deny  Groups.2 SentenceComments/unhide_message all
 bin/cake acl grant Groups.2 Sentences all
 bin/cake acl deny  Groups.2 Sentences/edit_correctness all
 bin/cake acl deny  Groups.2 Sentences/edit_audio all
-bin/cake acl deny  Groups.2 Sentences/edit_license all
 bin/cake acl grant Groups.2 SentencesLists all
 bin/cake acl grant Groups.2 Tags all
 bin/cake acl grant Groups.2 User all
@@ -25,7 +24,6 @@ bin/cake acl grant Groups.2 Transcriptions all
 bin/cake acl grant Groups.2 Audio all
 bin/cake acl deny  Groups.2 Audio/import all
 bin/cake acl grant Groups.2 Vocabulary all
-bin/cake acl deny  Groups.2 Licensing/switch_my_sentences all
 
 bin/cake acl grant Groups.3 Favorites all
 bin/cake acl grant Groups.3 Links all
@@ -37,7 +35,6 @@ bin/cake acl deny  Groups.3 SentenceComments/unhide_message all
 bin/cake acl grant Groups.3 Sentences all
 bin/cake acl deny  Groups.3 Sentences/edit_correctness all
 bin/cake acl deny  Groups.3 Sentences/edit_audio all
-bin/cake acl deny  Groups.3 Sentences/edit_license all
 bin/cake acl grant Groups.3 SentencesLists all
 bin/cake acl grant Groups.3 Tags all
 bin/cake acl grant Groups.3 User all
@@ -52,7 +49,6 @@ bin/cake acl grant Groups.3 Transcriptions all
 bin/cake acl grant Groups.3 Audio all
 bin/cake acl deny  Groups.3 Audio/import all
 bin/cake acl grant Groups.3 Vocabulary all
-bin/cake acl deny  Groups.3 Licensing/switch_my_sentences all
 
 bin/cake acl grant Groups.4 Favorites all
 bin/cake acl grant Groups.4 PrivateMessages all
@@ -63,7 +59,6 @@ bin/cake acl deny  Groups.4 SentenceComments/unhide_message all
 bin/cake acl grant Groups.4 Sentences all
 bin/cake acl deny  Groups.4 Sentences/edit_correctness all
 bin/cake acl deny  Groups.4 Sentences/edit_audio all
-bin/cake acl deny  Groups.4 Sentences/edit_license all
 bin/cake acl grant Groups.4 SentencesLists all
 bin/cake acl grant Groups.4 User all
 bin/cake acl grant Groups.4 Users all
@@ -77,4 +72,3 @@ bin/cake acl grant Groups.4 Transcriptions all
 bin/cake acl grant Groups.4 Audio all
 bin/cake acl deny  Groups.4 Audio/import all
 bin/cake acl grant Groups.4 Vocabulary all
-bin/cake acl deny  Groups.4 Licensing/switch_my_sentences all
