@@ -125,7 +125,7 @@ class AppController extends Controller
             // the whole page.
             'ajaxLogin' => 'session_expired',
             'authError' => __('You need to be logged in.', true),
-            'authorize' => 'Actions',
+            'authorize' => 'Acl.Actions',
         ]);
         $this->RememberMe->check();
 
