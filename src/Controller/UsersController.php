@@ -27,6 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Routing\Router;
 
@@ -116,11 +117,13 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id);
-        if (!$user) {
+        try {
+            $user = $this->Users->get($id);
+        } catch (RecordNotFoundException $e) {
             $this->Flash->set('Invalid User');
             return $this->redirect(array('action'=>'index'));
         }
+
         if (!empty($this->request->getData())) {
 
             $wasBlocked = $user->level == -1;
@@ -158,11 +161,11 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
-        $user = $this->Users->get($id);
-        if (!$user) {
-            $this->Flash->set('Invalid id for User');
-        } elseif ($this->Users->delete($user)) {
+        try {
+            $user = $this->Users->get($id);
             $this->Flash->set('User deleted');
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->set('Invalid id for User');
         }
         return $this->redirect(array('action'=>'index'));
     }
