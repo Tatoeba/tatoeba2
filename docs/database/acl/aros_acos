@@ -15,6 +15,8 @@ bin/cake acl grant Groups.2 Tags all
 bin/cake acl grant Groups.2 User all
 bin/cake acl grant Groups.2 Users all
 bin/cake acl deny  Groups.2 Users/index all
+bin/cake acl deny  Groups.2 Users/edit all
+bin/cake acl deny  Groups.2 Users/delete all
 bin/cake acl grant Groups.2 UsersLanguages all
 bin/cake acl grant Groups.2 Collections all
 bin/cake acl grant Groups.2 Wall all
@@ -40,6 +42,8 @@ bin/cake acl grant Groups.3 Tags all
 bin/cake acl grant Groups.3 User all
 bin/cake acl grant Groups.3 Users all
 bin/cake acl deny  Groups.3 Users/index all
+bin/cake acl deny  Groups.3 Users/edit all
+bin/cake acl deny  Groups.3 Users/delete all
 bin/cake acl grant Groups.3 UsersLanguages all
 bin/cake acl grant Groups.3 Collections all
 bin/cake acl grant Groups.3 Wall all
@@ -63,6 +67,8 @@ bin/cake acl grant Groups.4 SentencesLists all
 bin/cake acl grant Groups.4 User all
 bin/cake acl grant Groups.4 Users all
 bin/cake acl deny  Groups.4 Users/index all
+bin/cake acl deny  Groups.4 Users/edit all
+bin/cake acl deny  Groups.4 Users/delete all
 bin/cake acl grant Groups.4 UsersLanguages all
 bin/cake acl grant Groups.4 Collections all
 bin/cake acl grant Groups.4 Wall all
