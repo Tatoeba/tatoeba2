@@ -236,7 +236,11 @@ class ExportsTable extends Table
         $this->getConnection()->transactional(function () use ($query, $file) {
             $this->batchOperationNewORM($query, function ($entities) use ($file) {
                 foreach ($entities as $ssl) {
-                    $fields = $ssl->sentence->extract(['lang', 'text']);
+                    $fields = [
+                        $ssl->sentence_id,
+                        $ssl->sentence->lang,
+                        $ssl->sentence->text,
+                    ];
                     $file->write(implode($fields, "\t")."\n");
                 }
             });
