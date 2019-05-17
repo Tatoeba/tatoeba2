@@ -12,7 +12,7 @@ trait TatoebaControllerTestTrait {
         $this->enableSecurityToken();
     }
 
-    public function assertRedirectionAs($url, $user, $redirect) {
+    public function assertAccessUrlAs($url, $user, $response) {
         if ($user) {
             $who = "user '$user'";
             $this->logInAs($user);
@@ -22,12 +22,13 @@ trait TatoebaControllerTestTrait {
 
         $this->get($url);
 
-        if ($redirect) {
-            $this->assertRedirect($redirect, "Failed asserting that $who is being redirected "
-                                            ."to '$redirect' when trying to access '$url'.");
+        if (is_string($response)) {
+            $this->assertRedirect($response, "Failed asserting that $who is being redirected "
+                                            ."to '$response' when trying to access '$url'.");
+        } elseif ($response) {
+            $this->assertResponseOk("Failed asserting that $who can access '$url'.");
         } else {
-            $this->assertNoRedirect("Failed asserting that $who can access '$url'.");
-            $this->assertResponseOk(); 
+            $this->assertResponseError("Failed asserting that $who cannot access '$url'.");
         }
     }
 }

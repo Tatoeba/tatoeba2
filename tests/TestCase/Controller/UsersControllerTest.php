@@ -34,55 +34,55 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->enableSecurityToken();
     }
 
-    public function redirectsProvider() {
+    public function accessesProvider() {
         return [
-            // url, user, redirection url
-            [ '/eng/users/index', false, '/eng/users/login?redirect=%2Feng%2Fusers%2Findex' ],
+            // url; user; is accessible or redirection url
+            [ '/eng/users/index', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Findex' ],
             [ '/eng/users/index', 'contributor', '/' ],
             [ '/eng/users/index', 'advanced_contributor', '/' ],
             [ '/eng/users/index', 'corpus_maintainer', '/' ],
-            [ '/eng/users/index', 'admin', false ],
-            [ '/eng/users/edit/1', false, '/eng/users/login?redirect=%2Feng%2Fusers%2Fedit%2F1' ],
+            [ '/eng/users/index', 'admin', true ],
+            [ '/eng/users/edit/1', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Fedit%2F1' ],
             [ '/eng/users/edit/1', 'contributor', '/' ],
             [ '/eng/users/edit/1', 'advanced_contributor', '/' ],
             [ '/eng/users/edit/1', 'corpus_maintainer', '/' ],
-            [ '/eng/users/edit/1', 'admin', false ],
+            [ '/eng/users/edit/1', 'admin', true ],
             [ '/eng/users/edit/999999999999999', 'admin', '/eng/users/index' ],
-            [ '/eng/users/delete/1', false, '/eng/users/login?redirect=%2Feng%2Fusers%2Fdelete%2F1' ],
+            [ '/eng/users/delete/1', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Fdelete%2F1' ],
             [ '/eng/users/delete/1', 'contributor', '/' ],
             [ '/eng/users/delete/1', 'advanced_contributor', '/' ],
             [ '/eng/users/delete/1', 'corpus_maintainer', '/' ],
             [ '/eng/users/delete/1', 'admin', '/eng/users/index' ],
             [ '/eng/users/delete/999999999999999', 'admin', '/eng/users/index' ],
-            [ '/eng/users/login', false, false ],
+            [ '/eng/users/login', null, true ],
             [ '/eng/users/login', 'contributor', '/' ],
-            [ '/eng/users/check_login', false, '/eng/users/login?redirectTo=%2F' ],
-            [ '/eng/users/logout', false, '/eng/users/login' ], // TODO we might want not to redirect to login page when trying to access the logout page as a guest
+            [ '/eng/users/check_login', null, '/eng/users/login?redirectTo=%2F' ],
+            [ '/eng/users/logout', null, '/eng/users/login' ], // TODO we might want not to redirect to login page when trying to access the logout page as a guest
             [ '/eng/users/logout', 'contributor', '/eng/users/login' ],
-            [ '/eng/users/register', false, false ],
+            [ '/eng/users/register', null, true ],
             [ '/eng/users/register', 'contributor', '/' ],
-            [ '/eng/users/new_password', false, false ],
-            [ '/eng/users/new_password', 'contributor', false ],
-            [ '/eng/users/show/1', false, false ],
-            [ '/eng/users/show/1', 'contributor', false ],
-            [ '/eng/users/all', false, false ],
-            [ '/eng/users/all', 'contributor', false ],
-            [ '/eng/users/check_username/foobar', false, false ],
-            [ '/eng/users/check_username/foobar', 'contributor', false ],
-            [ '/eng/users/check_email/foobar@example.net', false, false ],
-            [ '/eng/users/check_email/foobar@example.net', 'contributor', false ],
-            [ '/eng/users/for_language', false, false ],
-            [ '/eng/users/for_language', 'contributor', false ],
-            [ '/eng/users/for_language/jav', false, false ],
-            [ '/eng/users/for_language/jav', 'contributor', false ],
+            [ '/eng/users/new_password', null, true ],
+            [ '/eng/users/new_password', 'contributor', true ],
+            [ '/eng/users/show/1', null, true ],
+            [ '/eng/users/show/1', 'contributor', true ],
+            [ '/eng/users/all', null, true ],
+            [ '/eng/users/all', 'contributor', true ],
+            [ '/eng/users/check_username/foobar', null, true ],
+            [ '/eng/users/check_username/foobar', 'contributor', true ],
+            [ '/eng/users/check_email/foobar@example.net', null, true ],
+            [ '/eng/users/check_email/foobar@example.net', 'contributor', true ],
+            [ '/eng/users/for_language', null, true ],
+            [ '/eng/users/for_language', 'contributor', true ],
+            [ '/eng/users/for_language/jav', null, true ],
+            [ '/eng/users/for_language/jav', 'contributor', true ],
         ];
     }
 
     /**
-     * @dataProvider redirectsProvider
+     * @dataProvider accessesProvider
      */
-    public function testUsersControllerAccess($url, $user, $redirect) {
-        $this->assertRedirectionAs($url, $user, $redirect);
+    public function testUsersControllerAccess($url, $user, $response) {
+        $this->assertAccessUrlAs($url, $user, $response);
     }
 
     public function testSearch_found() {
