@@ -1,13 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Test\TestCase\Controller\LogInAsTrait;
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
 
 class TranscriptionsControllerTest extends IntegrationTestCase {
-    use LogInAsTrait;
+    use TatoebaControllerTestTrait;
 
     public $fixtures = array(
         'app.aros',

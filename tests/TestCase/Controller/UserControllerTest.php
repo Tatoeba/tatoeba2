@@ -2,7 +2,7 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
-use App\Test\TestCase\Controller\LogInAsTrait;
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
@@ -10,7 +10,7 @@ use Cake\Utility\Security;
 
 class UserControllerTest extends IntegrationTestCase
 {
-    use LogInAsTrait;
+    use TatoebaControllerTestTrait;
 
     public $fixtures = [
         'app.aros',

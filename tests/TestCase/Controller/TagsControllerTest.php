@@ -4,10 +4,10 @@ namespace App\Test\TestCase\Controller;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
-use App\Test\TestCase\Controller\LogInAsTrait;
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
 class TagsControllerTest extends IntegrationTestCase {
-    use LogInAsTrait;
+    use TatoebaControllerTestTrait;
 
     public $fixtures = [
         'app.aros',

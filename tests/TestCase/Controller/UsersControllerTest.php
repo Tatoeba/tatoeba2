@@ -5,10 +5,10 @@ use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
-use App\Test\TestCase\Controller\LogInAsTrait;
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
 class UsersControllerTest extends IntegrationTestCase {
-    use LogInAsTrait;
+    use TatoebaControllerTestTrait;
 
     public $fixtures = [
         'app.aros',
@@ -82,22 +82,7 @@ class UsersControllerTest extends IntegrationTestCase {
      * @dataProvider redirectsProvider
      */
     public function testUsersControllerAccess($url, $user, $redirect) {
-        if ($user) {
-            $who = "user '$user'";
-            $this->logInAs($user);
-        } else {
-            $who = "guest";
-        }
-
-        $this->get($url);
-
-        if ($redirect) {
-            $this->assertRedirect($redirect, "Failed asserting that $who is being redirected "
-                                            ."to '$redirect' when trying to access '$url'.");
-        } else {
-            $this->assertNoRedirect("Failed asserting that $who can access '$url'.");
-            $this->assertResponseOk();
-        }
+        $this->assertRedirectionAs($url, $user, $redirect);
     }
 
     public function testSearch_found() {
