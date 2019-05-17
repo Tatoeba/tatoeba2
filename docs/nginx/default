@@ -18,6 +18,11 @@ server {
         try_files $uri $uri/ /index.php?url=$uri&$args;
     }
 
+	location /exported_files {
+		internal;
+		alias /var/www-prod/exported_files;
+	}
+
 
 	location ~ \.php {
 		try_files $uri =404;

@@ -52,6 +52,28 @@ return [
     ],
 
     /**
+     * Exports paths.
+     * The webserver must serve <Exports.path> under <Exports.url>, to serve
+     * files using the X-Accel/X-Sendfile feature. For example, for Nginx:
+     *
+     *   location <Exports.url> {
+     *     internal;
+     *     alias <Exports.path>;
+     *   }
+     *
+     * Both must end with a slash character. <Exports.path> must be writable
+     * by the PHP process, and reside outside of webroot/, so that the exported
+     * files can only be served after authentication by CakePHP.
+     * If <Exports.maxSizeInBytes> if greater than zero, Tatoeba will try to keep
+     * <Exports.path> size below that value by removing old exports.
+     */
+    'Exports' => [
+        'url'  => '/exported_files/',
+        'path' => ROOT.'/exported_files/',
+        'maxSizeInBytes' => 1024**3,
+    ],
+
+    /**
      * For email notifications.
      * Cf. src/Event/NotificationListener.php
      */

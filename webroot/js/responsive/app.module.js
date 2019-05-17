@@ -20,5 +20,13 @@
                 'XMLHttpRequest';
             $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-Token';
             $httpProvider.defaults.xsrfCookieName = 'csrfToken';
-        }]);
+        }])
+        .filter('urlEncode', function() {
+            return function(input) {
+                if (input) {
+                    return window.encodeURIComponent(input);
+                }
+                return "";
+            };
+        });
 })();
