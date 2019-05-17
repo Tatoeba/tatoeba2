@@ -37,7 +37,7 @@ class UsersControllerTest extends IntegrationTestCase {
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/users/index', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Findex' ],
+            [ '/eng/users/index', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Findex' ], // FIXME Auth component use query param 'redirect' whereas we use 'redirectTo'
             [ '/eng/users/index', 'contributor', '/' ],
             [ '/eng/users/index', 'advanced_contributor', '/' ],
             [ '/eng/users/index', 'corpus_maintainer', '/' ],
