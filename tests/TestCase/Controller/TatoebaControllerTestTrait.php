@@ -25,10 +25,21 @@ trait TatoebaControllerTestTrait {
         if (is_string($response)) {
             $this->assertRedirect($response, "Failed asserting that $who is being redirected "
                                             ."to '$response' when trying to access '$url'.");
-        } elseif ($response) {
-            $this->assertResponseOk("Failed asserting that $who can access '$url'.");
-        } else {
-            $this->assertResponseError("Failed asserting that $who cannot access '$url'.");
+        } elseif (is_bool($response)) {
+            if ($response) {
+                $this->assertResponseOk("Failed asserting that $who can access '$url'.");
+            } else {
+                $this->assertResponseError("Failed asserting that $who cannot access '$url'.");
+            }
+        } elseif (is_int($response)) {
+            $this->assertResponseCode($response);
         }
+    }
+
+    public function assertAjaxAccessUrlAs($url, $user, $response) {
+        $this->configRequest([
+            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
+        ]);
+        $this->assertAccessUrlAs($url, $user, $response);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\Constraint\Response\HeaderNotSet;
@@ -10,10 +11,18 @@ use Cake\Filesystem\File;
 
 class ExportsControllerTest extends IntegrationTestCase
 {
+    use TatoebaControllerTestTrait;
+
     public $fixtures = [
+        'app.Acos',
+        'app.Aros',
+        'app.ArosAcos',
         'app.Exports',
+        'app.SentencesLists',
         'app.Users',
         'app.UsersLanguages',
+        'app.PrivateMessages',
+        'app.QueuedJobs',
     ];
 
     private $testExportDir = TMP.'export_tests'.DS;
@@ -36,17 +45,74 @@ class ExportsControllerTest extends IntegrationTestCase
         parent::tearDown();
     }
 
-    private function logInAs($username) {
-        $users = TableRegistry::get('Users');
-        $user = $users->findByUsername($username)->first();
-        $this->session(['Auth' => ['User' => $user->toArray()]]);
-        $this->enableCsrfToken();
+    public function accessesProvider()
+    {
+        return [
+            [ '/eng/exports/index', null, '/eng/users/login?redirect=%2Feng%2Fexports%2Findex' ],
+            [ '/eng/exports/index', 'contributor', true ],
+            [ '/eng/exports/index', 'advanced_contributor', true ],
+            [ '/eng/exports/index', 'corpus_maintainer', true ],
+            [ '/eng/exports/index', 'admin', true ],
+            [ '/eng/exports/download/1', null, '/eng/users/login?redirect=%2Feng%2Fexports%2Fdownload%2F1' ],
+            [ '/eng/exports/download/1', 'contributor', false ],
+            [ '/eng/exports/download/9999999', 'kazuki', 404 ],
+        ];
+    }
+
+    /**
+     * @dataProvider accessesProvider
+     */
+    public function testExportsControllerAccess($url, $user, $response)
+    {
+        $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    public function ajaxAccessesProvider()
+    {
+        return [
+            [ '/eng/exports/list', null, false ],
+            [ '/eng/exports/list', 'contributor', true ],
+            [ '/eng/exports/list', 'advanced_contributor', true ],
+            [ '/eng/exports/list', 'corpus_maintainer', true ],
+            [ '/eng/exports/list', 'admin', true ],
+        ];
+    }
+
+    /**
+     * @dataProvider ajaxAccessesProvider
+     */
+    public function testExportsControllerAjaxAccess($url, $user, $response)
+    {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
     public function assertNoHeader($header, $message = '')
     {
         $verboseMessage = $this->extractVerboseMessage($message);
         $this->assertThat(null, new HeaderNotSet($this->_response, $header), $verboseMessage);
+    }
+
+    public function testAdd()
+    {
+        $this->configRequest([
+            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
+        ]);
+        $this->logInAs('contributor');
+
+        $this->post('/eng/exports/add', [ 'type' => 'list', 'list_id' => 2 ]);
+
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+    }
+
+    public function testAdd_asGuest()
+    {
+        $this->configRequest([
+            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
+        ]);
+        $this->post('/eng/exports/add', [ 'type' => 'list', 'list_id' => 2 ]);
+
+        $this->assertResponseError();
     }
 
     public function testDownload_asOwner()
@@ -67,31 +133,6 @@ class ExportsControllerTest extends IntegrationTestCase
         $this->assertNoHeader('Content-Disposition');
         $this->assertHeader('X-Accel-Redirect', '/export_tests/kazuki_sentences.zip');
         $this->assertResponseEquals('');
-    }
-
-    public function testDownload_asOtherMember()
-    {
-        $this->logInAs('contributor');
-
-        $this->get("/eng/exports/download/1");
-
-        $this->assertResponseError();
-    }
-
-    public function testDownload_asGuest()
-    {
-        $this->get("/eng/exports/download/1");
-
-        $this->assertRedirectContains('/eng/users/login');
-    }
-
-    public function testDownload_invalidId()
-    {
-        $this->logInAs('kazuki');
-
-        $this->get("/eng/exports/download/9999999");
-
-        $this->assertResponseCode(404);
     }
 
     public function testDownload_cannotDownloadUntilReady()

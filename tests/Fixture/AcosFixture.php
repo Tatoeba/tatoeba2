@@ -54,7 +54,7 @@ class AcosFixture extends TestFixture
                 'foreign_key' => null,
                 'alias' => 'controllers',
                 'lft' => 1,
-                'rght' => 206
+                'rght' => 216
             ],
             [
                 'id' => 2,
@@ -973,6 +973,51 @@ class AcosFixture extends TestFixture
                 'alias' => 'switch_my_sentences',
                 'lft' => 203,
                 'rght' => 204
+            ],
+            [
+                'id' => 104,
+                'parent_id' => 1,
+                'model' => null,
+                'foreign_key' => null,
+                'alias' => 'Exports',
+                'lft' => 206,
+                'rght' => 215
+            ],
+            [
+                'id' => 105,
+                'parent_id' => 104,
+                'model' => null,
+                'foreign_key' => null,
+                'alias' => 'index',
+                'lft' => 207,
+                'rght' => 208
+            ],
+            [
+                'id' => 106,
+                'parent_id' => 104,
+                'model' => null,
+                'foreign_key' => null,
+                'alias' => 'list',
+                'lft' => 209,
+                'rght' => 210
+            ],
+            [
+                'id' => 107,
+                'parent_id' => 104,
+                'model' => null,
+                'foreign_key' => null,
+                'alias' => 'add',
+                'lft' => 211,
+                'rght' => 212
+            ],
+            [
+                'id' => 108,
+                'parent_id' => 104,
+                'model' => null,
+                'foreign_key' => null,
+                'alias' => 'download',
+                'lft' => 213,
+                'rght' => 214
             ],
         ];
         parent::init();
