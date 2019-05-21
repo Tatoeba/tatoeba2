@@ -54,10 +54,7 @@ class LicensingController extends AppController {
 
     public function refresh_license_switch_list() {
         if (!CurrentUser::getSetting('can_switch_license')) {
-            return $this->redirect([
-                'controller' => 'pages',
-                'action' => 'index'
-            ]);
+            return $this->response->withStatus(403);
         }
 
         $licensing = new Licensing();

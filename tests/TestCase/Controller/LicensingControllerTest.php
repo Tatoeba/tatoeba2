@@ -50,8 +50,8 @@ class LicensingControllerTest extends IntegrationTestCase {
             [ '/eng/licensing/get_license_switch_list', 'admin', false ],
             [ '/eng/licensing/refresh_license_switch_list', null, false ],
             [ '/eng/licensing/refresh_license_switch_list', 'contributor', true ],
-            [ '/eng/licensing/refresh_license_switch_list', 'kazuki', '/eng' ],
-            [ '/eng/licensing/refresh_license_switch_list', 'admin', '/eng' ],
+            [ '/eng/licensing/refresh_license_switch_list', 'kazuki', false ],
+            [ '/eng/licensing/refresh_license_switch_list', 'admin', false ],
         ];
     }
 
