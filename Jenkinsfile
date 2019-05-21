@@ -11,7 +11,7 @@ pipeline {
         // Check for flags that are too big
         sh '! find webroot/img/flags/ -name "*.svg" -size +3k | grep .'
         // Check for PHP short open tags
-        sh '! grep -norz '<?[[:space:]]' src/'
+        sh '! grep -norz "<?[[:space:]]" src/'
       }
     }
     stage('Test') {
