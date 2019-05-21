@@ -153,11 +153,24 @@ class SentencesControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(400);
 	}
 
-	public function testEditLicense_cannotEditAsUser() {
+	public function testEditLicense_canEditAsUserWithPerm() {
 		$sentenceId = 48;
 		$sentences = TableRegistry::get('Sentences');
 		$oldSentence = $sentences->get($sentenceId);
 		$this->logInAs('contributor');
+		$this->post('/jpn/sentences/edit_license', [
+			'id' => $sentenceId,
+			'license' => 'CC0 1.0',
+		]);
+		$newSentence = $sentences->get($sentenceId);
+		$this->assertNotEquals($oldSentence->license, $newSentence->license);
+	}
+
+	public function testEditLicense_cannotEditAsUserWithoutPerm() {
+		$sentenceId = 54;
+		$sentences = TableRegistry::get('Sentences');
+		$oldSentence = $sentences->get($sentenceId);
+		$this->logInAs('kazuki');
 		$this->post('/jpn/sentences/edit_license', [
 			'id' => $sentenceId,
 			'license' => 'CC0 1.0',

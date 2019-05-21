@@ -867,7 +867,7 @@ class SentencesTableTest extends TestCase {
 
 	function testNumberOfSentencesOwnedBy() {
 		$result = $this->Sentence->numberOfSentencesOwnedBy(7);
-		$this->assertEquals(18, $result);
+		$this->assertEquals(19, $result);
 	}
 
 	function testGetSentenceTextForId_succeeds() {

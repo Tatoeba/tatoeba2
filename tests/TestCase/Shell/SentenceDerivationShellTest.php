@@ -305,10 +305,11 @@ class SentenceDerivationShellTest extends TestCase
             #51: Already has based_on_id
             #52: Already has based_on_id
             #53: Already has based_on_id
+            #54: Already has based_on_id
         */
         
         $totalSentences = $this->Sentences->find()->count();
-        $expected = $totalSentences - 15;
+        $expected = $totalSentences - 16;
         $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }

@@ -713,5 +713,18 @@ class SentencesFixture extends TestFixture {
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '0',
 		),
+		array(
+			'id' => '54',
+			'lang' => 'eng',
+			'text' => 'Kazuki\'s original sentence (not initially added as a translation).',
+			'correctness' => '0',
+			'user_id' => '7',
+			'created' => '2017-04-13 01:12:43',
+			'modified' => '2017-04-13 01:12:43',
+			'script' => null,
+			'hash' => "1nba57l\0\0\0\0\0\0\0\0\0",
+			'license' => 'CC BY 2.0 FR',
+			'based_on_id' => '0',
+		),
 	);
 }
