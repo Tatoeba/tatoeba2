@@ -123,7 +123,7 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
 <div id="main_content">
     <?php if(!isset($searchProblem)) { ?>
     <div class="section">
-        <h2><? echo __('Random sentence'); ?></h2>
+        <h2><?= __('Random sentence'); ?></h2>
         <div class="random_sentences_set">
             <div id="random_sentence_display">
                 <?php

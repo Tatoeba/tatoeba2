@@ -55,7 +55,7 @@ $label = format(
     $this->Url->build(array("controller"=>"pages", "action"=>"terms_of_use", "#"=>$lang))
 );
 ?>
-<h2><? echo __('Register'); ?></h2>
+<h2><?= __('Register'); ?></h2>
 
 <div ng-cloak>
 <div layout="row" layout-align="center center">
@@ -80,16 +80,16 @@ $label = format(
         ?>
         <div ng-messages="registrationForm['username'].$error">
             <div ng-message="required">
-                <? echo __('Field required') ?>
+                <?= __('Field required') ?>
             </div>
             <div ng-message="minlength">
-                <? echo __('Username must be at least two characters long') ?>
+                <?= __('Username must be at least two characters long') ?>
             </div>
             <div ng-message="pattern">
-                <? echo __('Username can only contain letters, numbers, or underscore') ?>
+                <?= __('Username can only contain letters, numbers, or underscore') ?>
             </div>
             <div ng-message="uniqueUsername">
-                <? echo __('Username already taken.') ?>
+                <?= __('Username already taken.') ?>
             </div>
         </div>
     </md-input-container>
@@ -118,22 +118,22 @@ $label = format(
         ?>
         <div ng-messages="registrationForm['password'].$error">
             <div ng-message="required">
-                <? echo __('Field required') ?>
+                <?= __('Field required') ?>
             </div>
             <div ng-message="minlength">
-                <? echo __('Password must be at least 6 characters long') ?>
+                <?= __('Password must be at least 6 characters long') ?>
             </div>
         </div>
     </md-input-container>
     <md-input-container>
         <md-button class="md-icon-button"
                    ng-click="ctrl.togglePassword()"
-                   aria-label="<? echo __('unmask password') ?>"
+                   aria-label="<?= __('unmask password') ?>"
                    tabindex="-1">
             <md-icon ng-if="ctrl.isPasswordVisible">visibility</md-icon>
             <md-icon ng-if="!ctrl.isPasswordVisible">visibility_off</md-icon>
             <md-tooltip ng-if="!ctrl.isPasswordVisible">
-                <? echo __('unmask password') ?>
+                <?= __('unmask password') ?>
             </md-tooltip>
         </md-button>
     </md-input-container>
@@ -161,13 +161,13 @@ $label = format(
         ?>
         <div ng-messages="registrationForm['email'].$error">
             <div ng-message="required">
-                <? echo __('Field required') ?>
+                <?= __('Field required') ?>
             </div>
             <div ng-message="pattern">
-                <? echo __('Invalid email address') ?>
+                <?= __('Invalid email address') ?>
             </div>
             <div ng-message="uniqueEmail">
-                <? echo __('Email address already used.') ?>
+                <?= __('Email address already used.') ?>
             </div>
         </div>
     </md-input-container>
@@ -181,8 +181,8 @@ $label = format(
 <div id="native-language" layout="column">
     <div class="input" layout="row">
         <md-icon>language</md-icon>
-        <label for="UserLanguage" flex><? echo __('Native language:'); ?></label>
-        <?
+        <label for="UserLanguage" flex><?= __('Native language:'); ?></label>
+        <?php
         $languagesList = $this->Languages->languagesArrayWithNone(false);
         $language = $language ? $language : 'none';
         echo $this->Form->select(
@@ -198,7 +198,7 @@ $label = format(
         );
         ?>
     </div>
-    <?
+    <?php
     echo $this->Html->div('hint',
         __(
             "If you don't find your native language in the list, ".
@@ -212,16 +212,16 @@ $label = format(
     <div layout="row" layout-align="center start">
         <md-icon>verified_user</md-icon>
         <div class="title" flex>
-            <? echo __('We need to make sure you are human.'); ?>
+            <?= __('We need to make sure you are human.'); ?>
         </div>
     </div>
 
     <div class="instructions">
-        <? echo __('What are the first five characters of your email address?'); ?>
+        <?= __('What are the first five characters of your email address?'); ?>
     </div>
 
     <md-input-container class="md-block">
-        <?
+        <?php
         echo $this->Form->input(
             'quiz',
             array(
@@ -242,7 +242,7 @@ $label = format(
     <md-checkbox ng-model="registration.termsOfUse" class="md-primary">
         <?= $label ?>
     </md-checkbox>
-    <? echo $this->Form->checkbox(
+    <?= $this->Form->checkbox(
         'acceptation_terms_of_use',
         array(
             'class' => 'ng-hide',

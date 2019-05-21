@@ -37,9 +37,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <div class="section" layout="column" md-whiteframe="1">
-        <h2><? echo __('Tips'); ?></h2>
-        <p><?
-        echo __(
+        <h2><?= __('Tips'); ?></h2>
+        <p><?= __(
             'Add vocabulary that you are learning. If your vocabulary does not '.
             'exist yet in Tatoeba, other contributors can add sentences for it.'
         );
@@ -60,7 +59,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         ]) ?>
             <div layout="row">
                 <div class="language" layout="column">
-                    <label for="lang-select"><? echo __('Language'); ?></label>
+                    <label for="lang-select"><?= __('Language'); ?></label>
                     <?php
                     $langArray = $this->Languages->profileLanguagesArray(
                         false, false
@@ -94,7 +93,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary"
                            ng-disabled="ctrl.isAdding || !ctrl.data.text || !ctrl.data.lang">
-                    <? echo __('Add'); ?>
+                    <?= __('Add'); ?>
                 </md-button>
             </div>
         <?= $this->Form->end() ?>
@@ -103,7 +102,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     <div ng-cloak class="section" md-whiteframe="1">
         <div layout="row">
-            <h2 flex><? echo __('Vocabulary items added'); ?></h2>
+            <h2 flex><?= __('Vocabulary items added'); ?></h2>
             <md-progress-circular md-mode="indeterminate"
                                   md-diameter="32"
                                   ng-show="ctrl.isAdding">
@@ -117,7 +116,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 <div class="vocabulary-text" flex>{{item.text}}</div>
                 <md-icon ng-show="item.duplicate">warning</md-icon>
                 <md-tooltip md-direction="top" ng-show="item.duplicate">
-                    <? echo __('You have already added this vocabulary item.') ?>
+                    <?= __('You have already added this vocabulary item.') ?>
                 </md-tooltip>
                 <md-button class="md-primary" href="{{item.url}}" ng-disabled="!item.url">
                     {{item.numSentencesLabel}}

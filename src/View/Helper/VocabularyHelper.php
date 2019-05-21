@@ -62,7 +62,7 @@ class VocabularyHelper extends AppHelper
         <md-button class="md-primary" <?= isset($url) ? "href=\"$url\"" : 'ng-disabled="1"' ?>>
             <?= $numSentencesLabel ?>
         </md-button>
-        <?
+        <?php
     }
 }
 ?>

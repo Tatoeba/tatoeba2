@@ -1,4 +1,4 @@
-<?
+<?php
 $title = __('Search disabled');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>

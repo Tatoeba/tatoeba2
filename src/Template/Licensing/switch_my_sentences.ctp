@@ -22,7 +22,7 @@ echo $this->Html->script('licensing/switch-license.ctrl.js', ['block' => 'script
 
 ?>
 <div ng-controller="switchLicenseCtrl" ng-init="init(<?= ($isRefreshing ? 'true' : 'false') ?>)">
-<?
+<?php
 echo $this->Html->tag('h2', __('Switch my sentences to CC0'));
 
 if ($isSwitching) {
@@ -40,7 +40,7 @@ if ($isSwitching) {
 
 ?>
     <div id="switchList" ng-show="!isRefreshing">
-<?
+<?php
     if (!$list->isEmpty()) {
         echo $this->element('licensing/list', compact($list));
     }
@@ -48,7 +48,7 @@ if ($isSwitching) {
     </div>
     <md-progress-circular ng-show="isRefreshing" md-mode="indeterminate" class="block-loader">
     </md-progress-circular>
-<?
+<?php
     echo $this->Html->tag('p', __(
         'Press the following button to start or restart an analysis of which of your sentences can be switched to CC0.'
     ));

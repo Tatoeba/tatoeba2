@@ -71,7 +71,7 @@ echo $this->Form->create(
 
 ?>
 <div md-whiteframe="1" id="login-form">
-  <h2><? echo __('Log in'); ?></h2>
+  <h2><?= __('Log in'); ?></h2>
   <div ng-cloak>
     <md-input-container class="md-block">
         <?php
@@ -98,7 +98,7 @@ echo $this->Form->create(
         ng-false-value='0'
         ng-true-value='1' ng-init='rememberLogin = 0'
         class='md-primary'>
-        <label><? echo __('Remember me') ?></label>
+        <label><?= __('Remember me') ?></label>
     </md-checkbox>
     <?php
     echo $this->Form->checkbox(
@@ -117,7 +117,7 @@ echo $this->Form->create(
         </md-button>
 
         <md-button class="md-primary" href="<?= $passwordUrl ?>" flex>
-            <? echo __('Forgot your password?'); ?>
+            <?= __('Forgot your password?'); ?>
         </md-button>
 
         <md-button href="<?= $registerUrl; ?>">

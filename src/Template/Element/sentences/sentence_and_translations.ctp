@@ -36,7 +36,7 @@ if (isset($sentence->highlight)) {
      md-whiteframe="1">
     <div layout="column">
         <md-subheader>
-            <?
+            <?php
             if ($user) {
                 $userLink = $this->Html->link(
                     $user->username,
@@ -66,31 +66,29 @@ if (isset($sentence->highlight)) {
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
              layout="row" layout-align="start center">
             <div class="lang">
-                <?
-                echo $this->Languages->icon($sentence->lang);
-                ?>
+                <?= $this->Languages->icon($sentence->lang) ?>
             </div>
             <div class="text" flex
                  dir="<?= LanguagesLib::getLanguageDirection($sentence->lang) ?>">
                 <?= $sentenceText ?>
             </div>
-            <? if ($notReliable) { ?>
+            <?php if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>
                 <md-tooltip md-direction="top">
-                    <? echo __('This sentence is not reliable.') ?>
+                    <?= __('This sentence is not reliable.') ?>
                 </md-tooltip>
-            <? } ?>
+            <?php } ?>
             <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
                 <md-icon>info</md-icon>
             </md-button>
         </div>
     </div>
 
-    <? if (count($directTranslations) > 0) { ?>
+    <?php if (count($directTranslations) > 0) { ?>
         <div layout="column" class="direct translations">
             <md-divider></md-divider>
-            <md-subheader><? echo __('Translations') ?></md-subheader>
-            <? foreach ($directTranslations as $translation) {
+            <md-subheader><?= __('Translations') ?></md-subheader>
+            <?php foreach ($directTranslations as $translation) {
                 $isExtra = $numExtra > 1 && $displayedTranslations >= $maxDisplayed;
                 echo $this->element(
                     'sentences/translation',
@@ -104,16 +102,16 @@ if (isset($sentence->highlight)) {
             }
             ?>
         </div>
-    <? } ?>
+    <?php } ?>
 
-    <? if (count($indirectTranslations) > 0) {
+    <?php if (count($indirectTranslations) > 0) {
         if ($numExtra > 1 && $displayedTranslations >= $maxDisplayed) {
             $showExtra = 'ng-if="vm.isExpanded"';
         }
         ?>
         <div layout="column" <?= $showExtra ?> class="indirect translations">
-            <md-subheader><? echo __('Translations of translations') ?></md-subheader>
-            <? foreach ($indirectTranslations as $translation) {
+            <md-subheader><?= __('Translations of translations') ?></md-subheader>
+            <?php foreach ($indirectTranslations as $translation) {
                 $isExtra = $numExtra > 1 && $displayedTranslations >= $maxDisplayed;
                 echo $this->element(
                     'sentences/translation',
@@ -126,9 +124,9 @@ if (isset($sentence->highlight)) {
                 $displayedTranslations++;
             } ?>
         </div>
-    <? } ?>
+    <?php } ?>
 
-    <? if ($numExtra > 1) { ?>
+    <?php if ($numExtra > 1) { ?>
         <div layout="column">
             <md-button ng-click="vm.expandOrCollapse()">
                 <md-icon>{{vm.expandableIcon}}</md-icon>
@@ -147,5 +145,5 @@ if (isset($sentence->highlight)) {
                 </span>
             </md-button>
         </div>
-    <? } ?>
+    <?php } ?>
 </div>

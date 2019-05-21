@@ -219,7 +219,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <p><? echo __('Number of sentences per page'); ?></p>
+                <p><?= __('Number of sentences per page'); ?></p>
                 <?php echo $this->Form->input('settings.sentences_per_page', array(
                     'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
                     'label' => ''

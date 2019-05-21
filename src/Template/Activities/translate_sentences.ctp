@@ -82,7 +82,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
     <h2><?php echo __('Translate sentences'); ?></h2>
 
     <div class="section" md-whiteframe="1">
-        <? if (CurrentUser::isMember() && count($langsFrom) < 2) { ?>
+        <?php if (CurrentUser::isMember() && count($langsFrom) < 2) { ?>
         <div class="warning">
             <?= format(
                 __(
@@ -98,7 +98,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                 )
             ); ?>
         </div>
-        <? } ?>
+        <?php } ?>
         <h3><?php echo __('Search for untranslated sentences'); ?></h3>
         <div>
             <?php

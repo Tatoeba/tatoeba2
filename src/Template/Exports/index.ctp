@@ -1,4 +1,4 @@
-<? $this->Html->script('exports/exports.ctrl.js', ['block' => 'scriptBottom']); ?>
+<?php $this->Html->script('exports/exports.ctrl.js', ['block' => 'scriptBottom']); ?>
 
 <div ng-controller="exportsCtrl"
      ng-init="init(<?= h(json_encode($exports)); ?>)">

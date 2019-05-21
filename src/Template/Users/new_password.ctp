@@ -41,21 +41,16 @@ $this->Security->enableCSRFProtection();
 ?>
 
 <div md-whiteframe="1" id="reset-form">
-    <h2><? echo __('Send new password'); ?></h2>
-    <?
-        echo $this->Form->create('User', array(
+    <h2><?= __('Send new password'); ?></h2>
+    <?= $this->Form->create('User', array(
             "ng-cloak" => true,
             "url" => array("action" => "new_password")
         ));
     ?>
     <md-input-container class="md-block">
-        <?php
-        echo $this->Form->input(
-            'email', array(
+        <?= $this->Form->input('email', [
                 'label' => __('Email'),
-            )
-        );
-        ?>
+            ]) ?>
      </md-input-container>
 
     <div layout="column">
@@ -63,7 +58,7 @@ $this->Security->enableCSRFProtection();
             <?php echo __('Send'); ?>
         </md-button>
     </div>
-    <? echo $this->Form->end(); ?>
+    <?= $this->Form->end(); ?>
 </div>
 
 <?php

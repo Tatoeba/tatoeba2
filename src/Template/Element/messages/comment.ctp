@@ -89,7 +89,7 @@ if ($sentenceOwnerLink) {
 
 ?>
 
-<? if (!isset($hideSentence) || !$hideSentence) { ?>
+<?php if (!isset($hideSentence) || !$hideSentence) { ?>
 <div class="comment sentence md-whiteframe-1dp">
     <div class="info">
         <?= format(
@@ -118,7 +118,7 @@ if ($sentenceOwnerLink) {
         </md-button>
     </div>
 </div>
-<? } ?>
+<?php } ?>
 
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
@@ -134,7 +134,7 @@ if ($sentenceOwnerLink) {
             </span>
         </md-card-header-text>
 
-        <? foreach ($menu as $menuItem) {
+        <?php foreach ($menu as $menuItem) {
             if ($menuItem['text'] == '#') {
                 $itemLabel = $replyIcon ? __('reply') : __('permalink');
             } else {
@@ -153,13 +153,13 @@ if ($sentenceOwnerLink) {
                 <md-icon><?= $menuItem['icon'] ?></md-icon>
                 <md-tooltip><?= $itemLabel ?></md-tooltip>
             </md-button>
-        <? } ?>
+        <?php } ?>
     </md-card-header>
 
     <md-divider></md-divider>
 
     <md-card-content>
-        <? if ($commentHidden) { ?>
+        <?php if ($commentHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>
                 <p>
@@ -175,12 +175,12 @@ if ($sentenceOwnerLink) {
                     ); ?>
                 </p>
             </div>
-        <? } ?>
+        <?php } ?>
 
-        <? if (!$commentHidden || $canViewContent) { ?>
+        <?php if (!$commentHidden || $canViewContent) { ?>
             <p class="content" dir="auto">
                 <?= $this->Messages->formatedContent($commentText) ?>
             </p>
-        <? } ?>
+        <?php } ?>
     </md-card-content>
 </md-card>

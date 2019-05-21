@@ -48,7 +48,7 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
 ?>
 
 <md-list-item class="md-2-line <?= $type.'-'.$style ?>">
-    <?
+    <?php
     echo $this->Members->image($username, $avatar, array('class' => 'md-avatar'));
     echo $this->Languages->icon(
         $langCode,
@@ -60,7 +60,7 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
     ?>
     <div class="md-list-item-text" layout="column">
         <div class="content" dir="<?= $langDir ?>">
-            <?
+            <?php
             if ($type =='sentence') {
                 echo h($sentenceText);
             } elseif ($type == 'license') {

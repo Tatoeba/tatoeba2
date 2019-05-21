@@ -22,16 +22,16 @@ $addSentencesUrl = $this->Url->build(
 );
 ?>
 <div class="section" layout="column" md-whiteframe="1">
-    <h2><? echo __('Vocabulary items'); ?></h2>
+    <h2><?= __('Vocabulary items'); ?></h2>
     <md-list>
         <md-list-item href="<?= $indexUrl ?>">
-            <? echo __('My vocabulary items'); ?>
+            <?= __('My vocabulary items'); ?>
         </md-list-item>
         <md-list-item href="<?= $addUrl ?>">
-            <? echo __('Add vocabulary items'); ?>
+            <?= __('Add vocabulary items'); ?>
         </md-list-item>
         <md-list-item href="<?= $addSentencesUrl ?>">
-            <? echo __('Sentences wanted'); ?>
+            <?= __('Sentences wanted'); ?>
         </md-list-item>
     </md-list>
 </div>

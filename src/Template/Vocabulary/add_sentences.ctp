@@ -44,8 +44,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <h2><?= $title ?></h2>
 
         <p>
-            <?
-            echo __(
+            <?= __(
                 'Only vocabulary items that match fewer than 10 sentences are '.
                 'displayed here.'
             )
@@ -79,7 +78,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             <md-icon ng-show="sentence.duplicate">warning</md-icon>
                             <md-tooltip md-direction="top"
                                         ng-show="sentence.duplicate">
-                                <? echo __('This sentence already exists.') ?>
+                                <?= __('This sentence already exists.') ?>
                             </md-tooltip>
                         </md-button>
                         <div class="text" flex>{{sentence.text}}</div>
@@ -111,11 +110,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         <md-button class="md-raised"
                                    ng-disabled="ctrl.isAdding"
                                    ng-click="ctrl.hideForm('<?= $id ?>')">
-                            <? echo __('Cancel') ?>
+                            <?= __('Cancel') ?>
                         </md-button>
                         <md-button type="submit" class="md-raised md-primary"
                                    ng-disabled="ctrl.isAdding">
-                            <? echo __('Submit') ?>
+                            <?= __('Submit') ?>
                         </md-button>
                     </div>
                 <?= $this->Form->end() ?>
