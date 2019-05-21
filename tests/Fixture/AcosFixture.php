@@ -54,7 +54,7 @@ class AcosFixture extends TestFixture
                 'foreign_key' => null,
                 'alias' => 'controllers',
                 'lft' => 1,
-                'rght' => 216
+                'rght' => 220
             ],
             [
                 'id' => 2,
@@ -963,7 +963,7 @@ class AcosFixture extends TestFixture
                 'foreign_key' => null,
                 'alias' => 'Licensing',
                 'lft' => 202,
-                'rght' => 205
+                'rght' => 209
             ],
             [
                 'id' => 103,
@@ -976,48 +976,66 @@ class AcosFixture extends TestFixture
             ],
             [
                 'id' => 104,
-                'parent_id' => 1,
+                'parent_id' => 102,
                 'model' => null,
                 'foreign_key' => null,
-                'alias' => 'Exports',
-                'lft' => 206,
-                'rght' => 215
+                'alias' => 'get_license_switch_list',
+                'lft' => 205,
+                'rght' => 206
             ],
             [
                 'id' => 105,
-                'parent_id' => 104,
+                'parent_id' => 102,
                 'model' => null,
                 'foreign_key' => null,
-                'alias' => 'index',
+                'alias' => 'refresh_license_switch_list',
                 'lft' => 207,
                 'rght' => 208
             ],
             [
                 'id' => 106,
-                'parent_id' => 104,
+                'parent_id' => 1,
                 'model' => null,
                 'foreign_key' => null,
-                'alias' => 'list',
-                'lft' => 209,
-                'rght' => 210
+                'alias' => 'Exports',
+                'lft' => 210,
+                'rght' => 219
             ],
             [
                 'id' => 107,
-                'parent_id' => 104,
+                'parent_id' => 106,
                 'model' => null,
                 'foreign_key' => null,
-                'alias' => 'add',
+                'alias' => 'index',
                 'lft' => 211,
                 'rght' => 212
             ],
             [
                 'id' => 108,
-                'parent_id' => 104,
+                'parent_id' => 106,
+                'model' => null,
+                'foreign_key' => null,
+                'alias' => 'list',
+                'lft' => 213,
+                'rght' => 214
+            ],
+            [
+                'id' => 109,
+                'parent_id' => 106,
+                'model' => null,
+                'foreign_key' => null,
+                'alias' => 'add',
+                'lft' => 215,
+                'rght' => 216
+            ],
+            [
+                'id' => 110,
+                'parent_id' => 106,
                 'model' => null,
                 'foreign_key' => null,
                 'alias' => 'download',
-                'lft' => 213,
-                'rght' => 214
+                'lft' => 217,
+                'rght' => 218
             ],
         ];
         parent::init();

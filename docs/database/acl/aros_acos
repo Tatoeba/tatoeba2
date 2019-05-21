@@ -27,6 +27,7 @@ bin/cake acl grant Groups.2 Audio all
 bin/cake acl deny  Groups.2 Audio/import all
 bin/cake acl grant Groups.2 Vocabulary all
 bin/cake acl grant Groups.2 Exports all
+bin/cake acl grant Groups.2 Licensing all
 
 bin/cake acl grant Groups.3 Favorites all
 bin/cake acl grant Groups.3 Links all
@@ -55,6 +56,7 @@ bin/cake acl grant Groups.3 Audio all
 bin/cake acl deny  Groups.3 Audio/import all
 bin/cake acl grant Groups.3 Vocabulary all
 bin/cake acl grant Groups.3 Exports all
+bin/cake acl grant Groups.3 Licensing all
 
 bin/cake acl grant Groups.4 Favorites all
 bin/cake acl grant Groups.4 PrivateMessages all
@@ -81,3 +83,4 @@ bin/cake acl grant Groups.4 Audio all
 bin/cake acl deny  Groups.4 Audio/import all
 bin/cake acl grant Groups.4 Vocabulary all
 bin/cake acl grant Groups.4 Exports all
+bin/cake acl grant Groups.4 Licensing all

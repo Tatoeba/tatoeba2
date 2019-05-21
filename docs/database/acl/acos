@@ -119,6 +119,8 @@ bin/cake acl create aco Vocabulary save_sentence
 
 bin/cake acl create aco controllers Licensing
 bin/cake acl create aco Licensing switch_my_sentences
+bin/cake acl create aco Licensing get_license_switch_list
+bin/cake acl create aco Licensing refresh_license_switch_list
 
 bin/cake acl create aco controllers Exports
 bin/cake acl create aco Exports index
