@@ -28,6 +28,7 @@ namespace App\Model\Table;
 
 use App\Auth\VersionedPasswordHasher;
 use Cake\Database\Schema\TableSchema;
+use Cake\Filesystem\File;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -159,6 +160,27 @@ class UsersTable extends Table
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
 
         return $rules;
+    }
+
+    private function removeImages($file)
+    {
+        $images = [
+            WWW_ROOT . 'img' . DS . 'profiles_128' . DS . $file,
+            WWW_ROOT . 'img' . DS . 'profiles_36' . DS . $file,
+        ];
+        foreach ($images as $image) {
+            $file = new File($image);
+            if ($file->exists()) {
+                $file->delete();
+            }
+        }
+    }
+
+    public function afterSave($event, $entity, $options = array())
+    {
+        if (!$entity->isNew() && $entity->isDirty('image') && empty($entity->image)) {
+            $this->removeImages($entity->getOriginal('image'));
+        }
     }
 
     /**

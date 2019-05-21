@@ -106,7 +106,7 @@ class UsersFixture extends TestFixture {
 			'description' => '',
 			'settings' => '{"is_public":"0","lang":"fra,deu","can_switch_license":true,"license_switch_list_id":4}',
 			'homepage' => '',
-			'image' => '',
+			'image' => '93986962b3472786d9aea008f6160bfd.png',
 			'country_id' => NULL,
 			'audio_license' => NULL,
 			'audio_attribution_url' => NULL,

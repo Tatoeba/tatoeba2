@@ -7,6 +7,7 @@ use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
+use Cake\Filesystem\File;
 
 class UserControllerTest extends IntegrationTestCase
 {
@@ -158,5 +159,29 @@ class UserControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newGroup, $user->group_id);
+    }
+
+    public function testRemoveImage() {
+        $users = TableRegistry::get('Users');
+        $contributor = $users->get(4);
+        $images = [
+            WWW_ROOT.'img/profiles_128/'.$contributor->image,
+            WWW_ROOT.'img/profiles_36/'.$contributor->image,
+        ];
+        foreach ($images as $image) {
+            $file = new File($image, true);
+            $file->close();
+            $this->assertFileExists($image);
+        }
+
+        $this->logInAs('contributor');
+        $this->post('/eng/user/remove_image');
+        $this->assertRedirect('/eng/user/profile/contributor');
+
+        $contributor = $users->get(4);
+        $this->assertEmpty($contributor->image);
+        foreach ($images as $image) {
+            $this->assertFileNotExists($image);
+        }
     }
 }
