@@ -109,6 +109,10 @@ class LicensingController extends AppController {
     }
 
     public function get_license_switch_list() {
+        if (!CurrentUser::getSetting('can_switch_license')) {
+            return $this->response->withStatus(403);
+        }
+
         $currentUserId = CurrentUser::get('id');
         $licensing = new Licensing();
         $isRefreshing = $licensing->is_refreshing($currentUserId);
