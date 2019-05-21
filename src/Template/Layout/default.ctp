@@ -80,7 +80,7 @@ use Cake\Core\Configure;
         echo $this->element('search_bar', array(
             'selectedLanguageFrom' => $session->read('search_from'),
             'selectedLanguageTo' => $session->read('search_to'),
-            'searchQuery' => $query,
+            'searchQuery' => isset($query) ? $query : '',
             'cache' => array(
                 // Only use cache when search fields are not prefilled
                 'time' => is_null($session->read('search_from'))
