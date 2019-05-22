@@ -47,8 +47,8 @@ return [
      */
     'Recordings' => [
         'url' => '/files/audio/',
-        'path' => APP.DS.'webroot'.DS.'files'.DS.'audio',
-        'importPath' => APP.DS.'webroot'.DS.'files'.DS.'audio_import',
+        'path' => WWW_ROOT.'files'.DS.'audio',
+        'importPath' => WWW_ROOT.'files'.DS.'audio_import',
     ],
 
     /**
