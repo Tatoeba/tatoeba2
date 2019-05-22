@@ -118,4 +118,10 @@ class AppControllerTest extends IntegrationTestCase {
 		$this->get('/eng/this_does_no_exists');
 		$this->assertResponseCode(404);
 	}
+
+	function testLoginRedirectionDoesNotDisplayFlashMessage() {
+		$this->get('/eng/sentences/add');
+		$this->assertRedirect('/eng/users/login?redirect=%2Feng%2Fsentences%2Fadd');
+		$this->assertSession(null, 'Flash.flash.0.message');
+	}
 }

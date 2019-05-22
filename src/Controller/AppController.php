@@ -124,7 +124,7 @@ class AppController extends Controller
             // the action will return the content of this file instead of
             // the whole page.
             'ajaxLogin' => 'session_expired',
-            'authError' => __('You need to be logged in.', true),
+            'authError' => false,
             'authorize' => 'Acl.Actions',
         ]);
         $this->RememberMe->check();
