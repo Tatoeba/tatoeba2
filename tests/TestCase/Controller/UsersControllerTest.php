@@ -154,6 +154,36 @@ class UsersControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/eng/users/login?redirectTo=%2F');
     }
 
+    public function testCheckLogin_spammerCannotLogin() {
+        $this->enableRetainFlashMessages();
+        $this->post('/eng/users/check_login', [
+            'username' => 'spammer',
+            'password' => '123456',
+            'rememberMe' => 0,
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertFlashMessage(
+            'This account has been marked as a spammer. '.
+            'You cannot log in with it anymore. '.
+            'Please contact an admin if this is a mistake.'
+        );
+    }
+
+    public function testCheckLogin_inactiveCannotLogin() {
+        $this->enableRetainFlashMessages();
+        $this->post('/eng/users/check_login', [
+            'username' => 'inactive',
+            'password' => '123456',
+            'rememberMe' => 0,
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertFlashMessage(
+            'This account has been marked inactive. '.
+            'You cannot log in with it anymore. '.
+            'Please contact an admin if this is a mistake.'
+        );
+    }
+
     public function testCheckLogin_canRegister() {
         $this->post('/eng/users/register', [
             'username' => 'polochon',

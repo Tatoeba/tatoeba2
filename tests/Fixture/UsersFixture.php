@@ -134,7 +134,7 @@ class UsersFixture extends TestFixture {
 		array(
 			'id' => '6',
 			'username' => 'spammer',
-			'password' => '0 $2a$10$p6lW5xX5OXliZixaywnbjOj8Ye0cTGvfw2peMcqLNrisnydCjQnL', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
+			'password' => '0 $2y$10$rIQeJc3yxAAfFmPeL/spj.hVJQqoA6yzHfh/kxRNBjuHhxCUiqXqO', // blowfish(md5('ze@9422#5dS?!99xx' . '123456'))
 			'email' => 'spammer@example.com',
 			'since' => '2013-04-07 12:17:54',
 			'last_time_active' => '0',
