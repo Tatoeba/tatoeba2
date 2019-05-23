@@ -62,12 +62,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 ?>
                 <md-list-item id="vocabulary_<?= $id ?>">
                     <?= $this->Vocabulary->vocabulary($item); ?>
-                    <md-button ng-click="ctrl.showForm('<?= $id ?>')"
+                    <md-button ng-cloak ng-click="ctrl.showForm('<?= $id ?>')"
                                class="md-icon-button">
                         <md-icon aria-label="Add">add</md-icon>
                     </md-button>
                 </md-list-item>
-                <div id="sentences_<?= $id ?>" class="new-sentences"
+                <div ng-cloak id="sentences_<?= $id ?>" class="new-sentences"
                      ng-show="ctrl.sentencesAdded['<?= $id ?>']">
                     <div ng-repeat="sentence in ctrl.sentencesAdded['<?= $id ?>']"
                          class="new-sentence"
@@ -85,7 +85,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     </div>
                 </div>
 
-                <div id="loader_<?= $id ?>" flex ng-show="false">
+                <div ng-cloak id="loader_<?= $id ?>" flex ng-show="false">
                     <md-progress-linear></md-progress-linear>
                 </div>
 
@@ -96,6 +96,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     'layout' => 'column',
                     'flex' => '',
                     'ng-show' => 'false',
+                    'ng-cloak',
                     'ng-submit' => "ctrl.saveSentence($id, '$lang')",
                     'onsubmit' => 'return false'
                 ]); ?>
