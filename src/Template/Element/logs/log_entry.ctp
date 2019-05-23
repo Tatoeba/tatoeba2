@@ -29,8 +29,8 @@ $obsolete = false;
 if (isset($log->obsolete)) {
     $obsolete = $log->obsolete;
 }
-$username = $log->user->username;
-$avatar = $log->user->image;
+$username = $log->user ? $log->user->username : null;
+$avatar = $log->user ? $log->user->image : null;
 $action =  $log->action;
 $type = 'sentence';
 if (isset($log->type)) {

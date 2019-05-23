@@ -105,7 +105,7 @@ class MembersHelper extends AppHelper
     /**
      *
      */
-    public function image($username, $imageName = null, $options = array())
+    public function image($username = null, $imageName = null, $options = array())
     {
         if (empty($imageName)) {
             $imageName = 'unknown-avatar.png';
@@ -113,13 +113,17 @@ class MembersHelper extends AppHelper
         $options = $options + array(
             'width' => 36,
             'height' => 36,
-            'alt' => $username,
-            'url' => array(
+        );
+        if ($username) {
+            $options['url'] = [
                 'controller' => 'user',
                 'action' => 'profile',
                 $username
-            ),
-        );
+            ];
+            $options['alt'] = $username;
+        } else {
+            $options['alt'] = __('Former member');
+        }
         return $this->Html->image(
             '/img/profiles_36/'.$imageName,
             $options
