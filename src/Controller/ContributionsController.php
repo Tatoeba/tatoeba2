@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Event\Event;
+use Cake\I18n\Time;
 
 /**
  * Controller for contributions.
@@ -132,13 +133,14 @@ class ContributionsController extends AppController
     {
         $this->helpers[] = 'Date';
 
+        $now = Time::now();
         $redirect = false;
-        if ($year == null || $year > date('Y') || $year < 2007) {
-            $year = date('Y');
+        if ($year == null || $year > $now->format('Y') || $year < 2007) {
+            $year = $now->format('Y');
             $redirect = true;
         }
         if ($month == null || $month < 1 || $month > 12) {
-            $month = date('m');
+            $month = $now->format('m');
             $redirect = true;
         }
 
