@@ -54,4 +54,32 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
     public function testControllerAccess($url, $user, $response) {
         $this->assertAccessUrlAs($url, $user, $response);
     }
+
+    public function testSendAsGuest() {
+        $this->enableCsrfToken();
+        $this->post('/eng/private_messages/send');
+        $this->assertRedirect('/eng/users/login');
+    }
+
+    public function testSendDraft() {
+        $this->logInAs('contributor');
+        $this->post('/eng/private_messages/send', [
+            'submitType' => 'saveDraft',
+            'recipients' => 'admin',
+            'title' => 'Hello',
+            'content' => 'Hello world!',
+        ]);
+        $this->assertRedirect('/eng/private_messages/folder/Drafts');
+    }
+
+    public function testSendMessage() {
+        $this->logInAs('contributor');
+        $this->post('/eng/private_messages/send', [
+            'submitType' => 'send',
+            'recipients' => 'admin',
+            'title' => 'Hello',
+            'content' => 'Hello world!',
+        ]);
+        $this->assertRedirect('/eng/private_messages/folder/Sent');
+    }
 }

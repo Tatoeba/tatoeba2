@@ -236,7 +236,7 @@ class PrivateMessagesTable extends Table
             'sent'          => 0,
         );
 
-        if ($data['messageId']) {
+        if (isset($data['messageId'])) {
             $draft['id'] = $data['messageId'];
         }
 
