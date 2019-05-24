@@ -2,6 +2,7 @@
 namespace App\Test\TestCase\View\Helper;
 
 use App\View\Helper\MessagesHelper;
+use Cake\Http\ServerRequest;
 use Cake\TestSuite\TestCase;
 use Cake\View\Helper;
 use Cake\View\View;
@@ -14,7 +15,12 @@ class MessagesHelperTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        $View = new View();
+        $request = new ServerRequest([
+            'environment' => [
+                'HTTP_HOST' => 'example.net',
+            ]
+        ]);
+        $View = new View($request);
         $this->Messages = new MessagesHelper($View);
     }
 
@@ -46,6 +52,21 @@ class MessagesHelperTest extends TestCase {
               'link <a href="http://example.com/page&amp;" target="_blank">http://example.com/page&amp;</a>' ],
             [ 'link http://example.com/page;',
               'link <a href="http://example.com/page" target="_blank">http://example.com/page</a>;' ],
+            [ 'Link at the end #14',
+              'Link at the end <a href="https://example.net/sentences/show/14" '
+              .'title="An orphan sentence.">#14</a>' ],
+            [ '#14 link at the beginning',
+              '<a href="https://example.net/sentences/show/14" '
+              .'title="An orphan sentence.">#14</a> link at the beginning' ],
+            [ 'Link in #14 the middle',
+              'Link in <a href="https://example.net/sentences/show/14" '
+              .'title="An orphan sentence.">#14</a> the middle' ],
+            [ 'Link to non existing sentence #9999999999999',
+              'Link to non existing sentence '
+              .'<a href="https://example.net/sentences/show/9999999999999" '
+              .'title="">#9999999999999</a>' ],
+            [ 'Escaped \#14 pound sign',
+              'Escaped #14 pound sign' ],
         ];
     }
 
