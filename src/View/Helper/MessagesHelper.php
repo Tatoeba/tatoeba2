@@ -474,7 +474,7 @@ class MessagesHelper extends AppHelper
 
         if (!$hidden || $canViewContent) {
             echo $this->Languages->tagWithLang(
-                'div', '', $this->formatedContent($content),
+                'div', '', $this->formatContent($content),
                 array('class' => 'content', 'escape' => false)
             );
         }
@@ -575,7 +575,7 @@ class MessagesHelper extends AppHelper
      *
      * @return string The comment body formatted for HTML display.
      */
-    public function formatedContent($content) {
+    public function formatContent($content) {
         $content = htmlentities($content, ENT_QUOTES, Configure::read('App.encoding'));
 
         // Convert sentence mentions to links
@@ -647,7 +647,7 @@ class MessagesHelper extends AppHelper
         }
 
         if ($formatContent) {
-            $previewContent = $this->formatedContent($previewContent);
+            $previewContent = $this->formatContent($previewContent);
         } else {
             $previewContent = nl2br(h($previewContent));
         }

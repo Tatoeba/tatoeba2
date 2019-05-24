@@ -7,7 +7,7 @@ echo $this->Html->div(null,
 );
 
 echo $this->Html->div(null,
-    $this->Messages->formatedContent($message),
+    $this->Messages->formatContent($message),
     array('style' => 'background:#f1f1f1;padding:10px;')
 );
 

@@ -30,7 +30,7 @@ class MessagesHelperTest extends TestCase {
         parent::tearDown();
     }
 
-    public function formatedContentProvider() {
+    public function formatContentProvider() {
         return [
             [ 'a simple http://example.com/ URL',
               'a simple <a href="http://example.com/" target="_blank">http://example.com/</a> URL' ],
@@ -71,11 +71,11 @@ class MessagesHelperTest extends TestCase {
     }
 
     /**
-     * @dataProvider formatedContentProvider
+     * @dataProvider formatContentProvider
      */
-    public function testFormatedContent($text, $expected)
+    public function testFormatContent($text, $expected)
     {
-        $result = $this->Messages->formatedContent($text);
+        $result = $this->Messages->formatContent($text);
         $this->assertEquals($expected, $result);
     }
 }

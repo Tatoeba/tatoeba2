@@ -179,7 +179,7 @@ if ($sentenceOwnerLink) {
 
         <?php if (!$commentHidden || $canViewContent) { ?>
             <p class="content" dir="auto">
-                <?= $this->Messages->formatedContent($commentText) ?>
+                <?= $this->Messages->formatContent($commentText) ?>
             </p>
         <?php } ?>
     </md-card-content>

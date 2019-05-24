@@ -22,7 +22,7 @@ if ($sentenceIsDeleted) {
 }
 
 
-echo $this->Html->div(null, $this->Messages->formatedContent($commentText),
+echo $this->Html->div(null, $this->Messages->formatContent($commentText),
     array(
         'style' => 'background:#f1f1f1;padding:20px'
     )
