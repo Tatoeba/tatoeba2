@@ -13,16 +13,20 @@ class PagesControllerTest extends IntegrationTestCase
 
     public $fixtures = [
         'app.Audios',
+        'app.Contributions',
         'app.FavoritesUsers',
         'app.Languages',
+        'app.LastContributions',
         'app.Links',
         'app.PrivateMessages',
         'app.Sentences',
+        'app.SentenceComments',
         'app.SentencesLists',
         'app.SentencesSentencesLists',
         'app.Transcriptions',
         'app.Users',
-        'app.UsersLanguages'
+        'app.UsersLanguages',
+        'app.Walls'
     ];
 
     public function setUp() {
