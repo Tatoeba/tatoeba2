@@ -82,7 +82,7 @@ class SController extends AppController
             // If no sentence, we don't need to go further.
             // We just set some variable so we don't get warnings.
             if (!$sentence) {
-                throw new NotFoundException(format(
+                throw new \Cake\Http\Exception\NotFoundException(format(
                     __('There is no sentence with id {number}'),
                     array('number' => $id)
                 ));
