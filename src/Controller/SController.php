@@ -64,41 +64,25 @@ class SController extends AppController
 
 
     /**
-     * Show sentence of specified id (or a random one if no id specified).
+     * Show sentence of specified id
      *
-     * @param mixed $id Id of the sentence or language of the random sentence.
+     * @param mixed $id Id of the sentence
      *
      * @return void
      */
-    public function s($id = null)
+    public function s($id)
     {
         $this->loadModel('Sentences');
 
-        if (is_numeric($id)) {
+        $sentence = $this->Sentences->getSentenceWithId($id);
 
-            // And now we retrieve the sentence
-            $sentence = $this->Sentences->getSentenceWithId($id);
-
-            // If no sentence, we don't need to go further.
-            // We just set some variable so we don't get warnings.
-            if (!$sentence) {
-                throw new \Cake\Http\Exception\NotFoundException(format(
-                    __('There is no sentence with id {number}'),
-                    array('number' => $id)
-                ));
-            }
-
-            $this->set('sentence', $sentence);
+        if (!$sentence) {
+            throw new \Cake\Http\Exception\NotFoundException(format(
+                __('There is no sentence with id {number}'),
+                array('number' => $id)
+            ));
         } else {
-            $max = $this->Sentences->getMaxId();
-            $randId = rand(1, $max);
-
-            return $this->redirect(
-                array(
-                    "action"=>"s",
-                    $randId
-                )
-            );
+            $this->set('sentence', $sentence);
         }
     }
 }

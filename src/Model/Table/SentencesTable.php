@@ -453,17 +453,6 @@ class SentencesTable extends Table
     }
 
     /**
-     * Get the highest id for sentences.
-     *
-     * @return int The highest sentence id.
-     */
-    public function getMaxId()
-    {
-        $resultMax = $this->query('SELECT MAX(id) FROM sentences');
-        return $resultMax[0][0]['MAX(id)'];
-    }
-
-    /**
      * Fast random sentence id selection
      * when not selecting any particular language
      */
