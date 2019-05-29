@@ -273,17 +273,18 @@ $label = format(
 </div>
 
 <md-input-container class="md-block">
-    <md-checkbox ng-model="registration.termsOfUse" class="md-primary">
+    <md-checkbox ng-model="registration.termsOfUse"
+                 ng-change="registrationForm.acceptation_terms_of_use.$setDirty()"
+                 ng-init="registration.termsOfUse = 0"
+                 class="md-primary">
         <?= $label ?>
     </md-checkbox>
     <?= $this->Form->checkbox(
         'acceptation_terms_of_use',
         array(
             'class' => 'ng-hide',
-            'checked' => '{{registration.termsOfUse}}',
-            'value' => '{{registration.termsOfUse ? 1 : 0 }}',
             'ng-model' => 'registration.termsOfUse',
-            'server-error' => !$this->Form->getSourceValue('acceptation_terms_of_use'),
+            'server-error' => !($this->Form->getSourceValue('acceptation_terms_of_use') ?? true),
         )
     ); ?>
     <div ng-messages="registrationForm.acceptation_terms_of_use.$error">
