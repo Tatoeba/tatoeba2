@@ -91,14 +91,16 @@ echo '<fieldset>';
 echo $this->Form->input(
     'username',
     array(
-        'label' => __('Username: ')
+        'label' => __('Username: '),
+        'value' => false,
     )
 );
 // Password
 echo $this->Form->input(
     'password',
     array(
-        'label' => __('Password: ')
+        'label' => __('Password: '),
+        'value' => false,
     )
 );
 // Checkbox
