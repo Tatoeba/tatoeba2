@@ -304,121 +304,93 @@ class UsersController extends AppController
      */
     public function register()
     {
-        // --------------------------------------------------
-        //   Cases where registration shouldn't work.
-        // --------------------------------------------------
-
         // Already logged in
         if ($this->Auth->User('id')) {
             return $this->redirect('/');
         }
 
-        // No data
-        if (empty($this->request->getData())) {
-            $this->set('username', null);
-            $this->set('email', null);
-            $this->set('language', null);
-            return;
-        }
+        $newUser = $this->Users->newEntity();
 
-        $this->set('username', $this->request->getData('username'));
-        $this->set('email', $this->request->getData('email'));
-        $this->set('language', $this->request->getData('language'));
-
-        // Password is empty
-        if ($this->request->getData('password') == '') {
-            $this->Flash->set(
-                __('Password cannot be empty.')
+        if ($this->request->is('post')) {
+            $newUser = $this->Users->patchEntity(
+                $newUser,
+                $this->request->getData(),
+                ['fields' => ['username', 'password', 'email']]
             );
-            $this->request = $this->request
-                ->withoutData('password')
-                ->withoutData('quiz');
-            return;
-        }
+            $newUser->since = date("Y-m-d H:i:s");
+            $newUser->group_id = 4;
 
-        // Did not answer the quiz properly
-        $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
-        if ($this->request->getData('quiz') != $correctAnswer) {
-            $this->Flash->set(
-                __('Wrong answer to the question.')
-            );
-            $this->request = $this->request
-                ->withoutData('password')
-                ->withoutData('quiz');
-            return;
-        }
+            $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
 
-        // Did not accept terms of use
-        if (!$this->request->getData('acceptation_terms_of_use')) {
-            $this->Flash->set(
-                __('You did not accept the terms of use.')
-            );
-            $this->request = $this->request
-                ->withoutData('password')
-                ->withoutData('quiz');
-            return;
-        }
-
-        // --------------------------------------------------
-
-
-        // At this point, we're fine, so we can create the user
-        $newUser = $this->Users->newEntity(
-            $this->request->getData(),
-            ['fields' => ['username', 'password', 'email']]
-        );
-        $newUser->since = date("Y-m-d H:i:s");
-        $newUser->group_id = 4;
-
-        // And we save
-        if ($this->Users->save($newUser)) {
-            $this->loadModel('UsersLanguages');
-            // Save native language
-            $language = $this->request->getData('language');
-            if (!empty($language) && $language != 'none') {
-                $userLanguage = $this->UsersLanguages->newEntity([
-                    'of_user_id' => $newUser->id,
-                    'by_user_id' => $newUser->id,
-                    'level' => 5,
-                    'language_code' => $language
-                ]);
-                $this->UsersLanguages->save($userLanguage);
+            if ($this->request->getData('password') == '') {
+                // Password is empty
+                $this->Flash->set(
+                    __('Password cannot be empty.')
+                );
             }
+            elseif ($this->request->getData('quiz') != $correctAnswer) {
+                // Did not answer the quiz properly
+                $this->Flash->set(
+                    __('Wrong answer to the question.')
+                );
+            }
+            elseif (!$this->request->getData('acceptation_terms_of_use')) {
+                // Did not accept terms of use
+                $this->Flash->set(
+                    __('You did not accept the terms of use.')
+                );
+            }
+            elseif ($this->Users->save($newUser)) {
+                $this->loadModel('UsersLanguages');
+                // Save native language
+                $language = $this->request->getData('language');
+                if (!empty($language) && $language != 'none') {
+                    $userLanguage = $this->UsersLanguages->newEntity([
+                        'of_user_id' => $newUser->id,
+                        'by_user_id' => $newUser->id,
+                        'level' => 5,
+                        'language_code' => $language
+                    ]);
+                    $this->UsersLanguages->save($userLanguage);
+                }
 
-            $user = $this->Auth->identify();
-            $this->Auth->setUser($user);
+                $user = $this->Auth->identify();
+                $this->Auth->setUser($user);
 
-            $profileUrl = Router::url(
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $this->Auth->user('username')
-                )
-            );
-            $this->Flash->set(
-                '<p><strong>'
-                .__("Welcome to Tatoeba!")
-                .'</strong></p><p>'
-                .format(
-                    __(
-                        "To start things off, we encourage you to go to your ".
-                        "<a href='{url}'>profile</a> and let us know which ".
-                        "languages you speak or are interested in.",
-                        true
-                    ),
-                    array('url' => $profileUrl)
-                )
-                .'</p>'
-            );
+                $profileUrl = Router::url(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'profile',
+                        $this->Auth->user('username')
+                    )
+                );
+                $this->Flash->set(
+                    '<p><strong>'
+                    .__("Welcome to Tatoeba!")
+                    .'</strong></p><p>'
+                    .format(
+                        __(
+                            "To start things off, we encourage you to go to your ".
+                            "<a href='{url}'>profile</a> and let us know which ".
+                            "languages you speak or are interested in.",
+                            true
+                        ),
+                        array('url' => $profileUrl)
+                    )
+                    .'</p>'
+                );
 
-            return $this->redirect(
-                array(
-                    'controller' => 'pages',
-                    'action' => 'index'
-                )
-            );
+                return $this->redirect(
+                    array(
+                        'controller' => 'pages',
+                        'action' => 'index'
+                    )
+                );
+            }
         }
 
+        $this->set('user', $newUser);
+        $this->set('language', $this->request->getData('language'));
     }
 
 

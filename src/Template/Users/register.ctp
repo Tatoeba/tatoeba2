@@ -41,7 +41,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));
 $this->Html->script('users/register.ctrl.js', ['block' => 'scriptBottom']);
 
 $this->Security->enableCSRFProtection();
-echo $this->Form->create('User', array(
+echo $this->Form->create($user, array(
     'id' => 'UserRegisterForm',
     'name' => 'registrationForm',
     'url' => array('action' => 'register'),
@@ -75,7 +75,8 @@ $label = format(
                 'ng-pattern' => '/^\w{2,20}$/',
                 'unique-username' => '',
                 'ng-trim' => 'false',
-                'ng-init' => "user.username = '$username'"
+                'ng-init' => "user.username = ".json_encode($this->Form->getSourceValue('username')),
+                'value' => false,
             )
         );
         ?>
@@ -114,6 +115,7 @@ $label = format(
                 'ng-model' => 'user.password',
                 'required' => true,
                 'minlength' => 6,
+                'value' => false,
             )
         );
         ?>
@@ -156,7 +158,8 @@ $label = format(
                 'required' => true,
                 'ng-pattern' => $pattern,
                 'unique-email' => '',
-                'ng-init' => "user.email = '$email'"
+                'ng-init' => "user.email = ".json_encode($this->Form->getSourceValue('email')),
+                'value' => false,
             )
         );
         ?>
