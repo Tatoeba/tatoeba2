@@ -122,11 +122,18 @@ $label = format(
                 'ng-model' => 'user.password',
                 'required' => true,
                 'minlength' => 6,
+                'server-error' => $this->Form->isFieldError('password'),
                 'value' => false,
+                'error' => false,
             )
         );
         ?>
         <div ng-messages="registrationForm['password'].$error">
+            <?php if ($this->Form->isFieldError('password')): ?>
+                <div ng-message="serverError">
+                    <?= $this->Form->error('password') ?>
+                </div>
+            <?php endif; ?>
             <div ng-message="required">
                 <?= __('Field required') ?>
             </div>
@@ -162,15 +169,22 @@ $label = format(
                 'id' => 'registrationEmail',
                 'class' => 'registrationField',
                 'ng-model' => 'user.email',
+                'server-error' => $this->Form->isFieldError('email'),
                 'required' => true,
                 'ng-pattern' => $pattern,
                 'unique-email' => '',
                 'ng-init' => "user.email = ".json_encode($this->Form->getSourceValue('email')),
                 'value' => false,
+                'error' => false,
             )
         );
         ?>
         <div ng-messages="registrationForm['email'].$error">
+            <?php if ($this->Form->isFieldError('email')): ?>
+                <div ng-message="serverError">
+                    <?= $this->Form->error('email') ?>
+                </div>
+            <?php endif; ?>
             <div ng-message="required">
                 <?= __('Field required') ?>
             </div>
@@ -239,9 +253,20 @@ $label = format(
                 'label' => __('Answer'),
                 'ng-model' => 'registration.quizAnswer',
                 'required' => true,
+                'server-error' => !$quizOk,
+                'ng-init' => "registration.quizAnswer = ".json_encode($this->Form->getSourceValue('quiz')),
             )
         );
-
+        ?>
+        <div ng-messages="registrationForm.quiz.$error">
+            <div ng-message="serverError">
+                <?= __('Wrong answer to the question.') ?>
+            </div>
+            <div ng-message="required">
+                <?= __('Field required') ?>
+            </div>
+        </div>
+        <?php
         echo $this->Html->div('hint',
             __('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.')
         );
@@ -257,11 +282,17 @@ $label = format(
         'acceptation_terms_of_use',
         array(
             'class' => 'ng-hide',
-            'class' => 'ng-hide',
             'checked' => '{{registration.termsOfUse}}',
-            'value' => '{{registration.termsOfUse ? 1 : 0 }}'
+            'value' => '{{registration.termsOfUse ? 1 : 0 }}',
+            'ng-model' => 'registration.termsOfUse',
+            'server-error' => !$this->Form->getSourceValue('acceptation_terms_of_use'),
         )
     ); ?>
+    <div ng-messages="registrationForm.acceptation_terms_of_use.$error">
+        <div ng-message="serverError">
+            <?= __('You did not accept the terms of use.') ?>
+        </div>
+    </div>
 </md-input-container>
 
 <div layout="column">

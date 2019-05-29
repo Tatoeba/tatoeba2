@@ -79,20 +79,27 @@ class UsersTable extends Table
         $validator
             ->scalar('username')
             ->requirePresence('username', 'create')
-            ->lengthBetween('username', [2, 20])
+            ->notEmpty('username', __('Field required'))
+            ->minLength('username', 2, __('Username must be at least two characters long'))
+            ->maxLength('username', 20, __('Username must be at most 20 characters long'))
             ->add('username', 'alphanumeric', [
-                'rule' => ['custom', '/^\\w*$/']
+                'rule' => ['custom', '/^\\w*$/'],
+                'message' => __('Username can only contain letters, numbers, or underscore'),
             ]);
 
         $validator
             ->scalar('password')
-            ->requirePresence('password', 'create');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password', __('Field required'))
+            ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
+            ->notEmpty('email', __('Field required'))
             ->add('email', 'email', [
                 'rule' => ['custom', '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'],
+                'message' => __('Invalid email address'),
             ]);
 
         $validator
@@ -155,8 +162,8 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->isUnique(['username'], __('Username already taken.')));
+        $rules->add($rules->isUnique(['email'], __('Email address already used.')));
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
 
         return $rules;

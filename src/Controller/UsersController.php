@@ -311,6 +311,9 @@ class UsersController extends AppController
 
         $newUser = $this->Users->newEntity();
 
+        $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
+        $quizOk = $this->request->getData('quiz') == $correctAnswer;
+
         if ($this->request->is('post')) {
             $newUser = $this->Users->patchEntity(
                 $newUser,
@@ -320,27 +323,10 @@ class UsersController extends AppController
             $newUser->since = date("Y-m-d H:i:s");
             $newUser->group_id = 4;
 
-            $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
-
-            if ($this->request->getData('password') == '') {
-                // Password is empty
-                $this->Flash->set(
-                    __('Password cannot be empty.')
-                );
-            }
-            elseif ($this->request->getData('quiz') != $correctAnswer) {
-                // Did not answer the quiz properly
-                $this->Flash->set(
-                    __('Wrong answer to the question.')
-                );
-            }
-            elseif (!$this->request->getData('acceptation_terms_of_use')) {
-                // Did not accept terms of use
-                $this->Flash->set(
-                    __('You did not accept the terms of use.')
-                );
-            }
-            elseif ($this->Users->save($newUser)) {
+            if ($quizOk
+                && $this->request->getData('acceptation_terms_of_use')
+                && $this->Users->save($newUser)
+               ) {
                 $this->loadModel('UsersLanguages');
                 // Save native language
                 $language = $this->request->getData('language');
@@ -386,11 +372,14 @@ class UsersController extends AppController
                         'action' => 'index'
                     )
                 );
+            } else {
+                $this->Flash->set(__('Please fix the form errors.'));
             }
         }
 
         $this->set('user', $newUser);
         $this->set('language', $this->request->getData('language'));
+        $this->set('quizOk', $quizOk);
     }
 
 
