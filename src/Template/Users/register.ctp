@@ -74,6 +74,7 @@ $label = format(
                 'maxlength' => 20,
                 'ng-pattern' => '/^\w{2,20}$/',
                 'unique-username' => '',
+                'ng-trim' => 'false',
                 'ng-init' => "user.username = '$username'"
             )
         );
