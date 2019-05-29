@@ -22,7 +22,8 @@
         .module('app')
         .controller('UsersRegisterController', ['$http', UsersRegisterController])
         .directive('uniqueUsername', uniqueUsername)
-        .directive('uniqueEmail', uniqueEmail);
+        .directive('uniqueEmail', uniqueEmail)
+        .directive('serverError', serverError);
 
     function UsersRegisterController() {
         var vm = this;
@@ -79,6 +80,23 @@
                         }
                     );
                 }
+            }
+        };
+    }
+
+    function serverError() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function($scope, $elem, $attr, ngModel) {
+                ngModel.$validators.serverError = function() {
+                    return ngModel.$dirty;
+                };
+
+                window.setTimeout(function() {
+                    ngModel.$setTouched();
+                    $scope.$apply();
+                }, 0);
             }
         };
     }

@@ -70,6 +70,7 @@ $label = format(
                 'id' => 'registrationUsername',
                 'ng-model' => 'user.username',
                 'required' => true,
+                'server-error' => $this->Form->isFieldError('username'),
                 'minlength' => 2,
                 'maxlength' => 20,
                 'ng-pattern' => '/^\w{2,20}$/',
@@ -77,10 +78,16 @@ $label = format(
                 'ng-trim' => 'false',
                 'ng-init' => "user.username = ".json_encode($this->Form->getSourceValue('username')),
                 'value' => false,
+                'error' => false,
             )
         );
         ?>
         <div ng-messages="registrationForm['username'].$error">
+            <?php if ($this->Form->isFieldError('username')): ?>
+                <div ng-message="serverError">
+                    <?= $this->Form->error('username') ?>
+                </div>
+            <?php endif; ?>
             <div ng-message="required">
                 <?= __('Field required') ?>
             </div>
