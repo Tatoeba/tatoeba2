@@ -76,8 +76,7 @@ $label = format(
                 'ng-pattern' => '/^\w{2,20}$/',
                 'unique-username' => '',
                 'ng-trim' => 'false',
-                'ng-init' => "user.username = ".json_encode($this->Form->getSourceValue('username')),
-                'value' => false,
+                'value' => $this->Form->getSourceValue('username'),
                 'error' => false,
             )
         );
@@ -173,8 +172,7 @@ $label = format(
                 'required' => true,
                 'ng-pattern' => $pattern,
                 'unique-email' => '',
-                'ng-init' => "user.email = ".json_encode($this->Form->getSourceValue('email')),
-                'value' => false,
+                'value' => $this->Form->getSourceValue('email'),
                 'error' => false,
             )
         );
@@ -217,7 +215,7 @@ $label = format(
                 'class' => 'language-selector',
                 'empty' => false,
                 'ng-model' => 'user.language',
-                'ng-init' => "user.language = '$language'"
+                'value' => $language,
             ),
             false
         );
@@ -254,7 +252,7 @@ $label = format(
                 'ng-model' => 'registration.quizAnswer',
                 'required' => true,
                 'server-error' => !$quizOk,
-                'ng-init' => "registration.quizAnswer = ".json_encode($this->Form->getSourceValue('quiz')),
+                'value' => $this->Form->getSourceValue('quiz'),
             )
         );
         ?>

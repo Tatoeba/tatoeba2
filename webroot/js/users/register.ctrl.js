@@ -23,7 +23,29 @@
         .controller('UsersRegisterController', ['$http', UsersRegisterController])
         .directive('uniqueUsername', uniqueUsername)
         .directive('uniqueEmail', uniqueEmail)
-        .directive('serverError', serverError);
+        .directive('serverError', serverError)
+        .directive('input',  ['$parse', assignDefaultValuesToModel])
+        .directive('select', ['$parse', assignDefaultValuesToModel]);
+
+    function assignDefaultValuesToModel($parse) {
+        return {
+            restrict: 'E',
+            link: function (scope, element, attrs) {
+                if (attrs.ngModel) {
+                    var value;
+                    element = element[0];
+                    if (element.options) {
+                        value = element.options[element.selectedIndex].value;
+                    } else if (attrs.value) {
+                        value = attrs.value;
+                    }
+                    if (value) {
+                        $parse(attrs.ngModel).assign(scope, value);
+                    }
+                }
+            }
+        };
+    };
 
     function UsersRegisterController() {
         var vm = this;
