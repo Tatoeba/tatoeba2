@@ -54,89 +54,6 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/jpn/home');
     }
 
-    public function testEditSentence_canEditSentencesOfMyOwn() {
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get(1);
-        $this->logInAs('kazuki');
-        $this->post('/jpn/sentences/edit_sentence', [
-            'id' => 'eng_1', 'value' => 'Where are my…',
-        ]);
-        $newSentence = $sentences->get(1);
-        $this->assertNotEquals($oldSentence->text, $newSentence->text);
-    }
-
-    public function testEditSentence_cantEditSentencesOfOtherUsers() {
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get(1);
-        $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_sentence', [
-            'id' => 'eng_1', 'value' => 'Where are my…',
-        ]);
-        $newSentence = $sentences->get(1);
-        $this->assertEquals($oldSentence->text, $newSentence->text);
-    }
-
-    public function testEditSentence_canEditSentencesOfOtherUsersIfModerator() {
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get(1);
-        $this->logInAs('corpus_maintainer');
-        $this->post('/jpn/sentences/edit_sentence', [
-            'id' => 'eng_1', 'value' => 'Where are my…',
-        ]);
-        $newSentence = $sentences->get(1);
-        $this->assertNotEquals($oldSentence->text, $newSentence->text);
-    }
-
-    public function testAdopt_cantAdoptSentenceIfNotOrphan() {
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get(1);
-        $this->logInAs('contributor');
-        $this->get('/jpn/sentences/adopt/1');
-        $newSentence = $sentences->get(1);
-        $this->assertEquals($oldSentence->user_id, $newSentence->user_id);
-    }
-
-    public function testAdopt_cantLetGoSentenceIfNotOwner() {
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get(1);
-        $this->logInAs('contributor');
-        $this->get('/jpn/sentences/let_go/1');
-        $newSentence = $sentences->get(1);
-        $this->assertEquals($oldSentence->user_id, $newSentence->user_id);
-    }
-
-    public function testDelete_cantDeleteOwnSentenceAsRegularUser() {
-        $this->logInAs('kazuki');
-        $this->get('/jpn/sentences/delete/1');
-        $this->assertCount(1, $this->_controller->Sentences->findById(1));
-    }
-
-    public function testDelete_cantDeleteOthersSentenceAsRegularUser() {
-        $this->logInAs('contributor');
-        $this->get('/jpn/sentences/delete/1');
-        $this->assertCount(1, $this->_controller->Sentences->findById(1));
-    }
-
-    public function testDelete_canDeleteSentenceAsCorpusMaintainer() {
-        $this->logInAs('corpus_maintainer');
-        $this->get('/jpn/sentences/delete/1');
-        $this->assertCount(0, $this->_controller->Sentences->findById(1));
-    }
-
-    public function testDelete_canDeleteOwnSentenceIfLonely() {
-        $lonelySentenceId = 7;
-        $this->logInAs('kazuki');
-        $this->get("/jpn/sentences/delete/$lonelySentenceId");
-        $this->assertCount(0, $this->_controller->Sentences->findById($lonelySentenceId));
-    }
-
-    public function testDelete_cantDeleteOtherLonelySentences() {
-        $lonelySentenceId = 7;
-        $this->logInAs('contributor');
-        $this->get("/jpn/sentences/delete/$lonelySentenceId");
-        $this->assertCount(1, $this->_controller->Sentences->findById($lonelySentenceId));
-    }
-
     public function testEditLicense_returnsHTTP400IfNoId() {
         $this->logInAs('contributor');
         $this->post('/jpn/sentences/edit_license', [
@@ -174,45 +91,6 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->post('/jpn/sentences/edit_license', [
             'id' => $sentenceId,
             'license' => 'CC0 1.0',
-        ]);
-        $newSentence = $sentences->get($sentenceId);
-        $this->assertEquals($oldSentence->license, $newSentence->license);
-    }
-
-    public function testEditLicense_canEditIfAdmin() {
-        $sentenceId = 48;
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('admin');
-        $this->post('/jpn/sentences/edit_license', [
-            'id' => $sentenceId,
-            'license' => 'CC0 1.0',
-        ]);
-        $newSentence = $sentences->get($sentenceId);
-        $this->assertNotEquals($oldSentence->license, $newSentence->license);
-    }
-
-    public function testEditLicense_bypassValidationIfAdmin() {
-        $sentenceId = 50;
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('admin');
-        $this->post('/jpn/sentences/edit_license', [
-            'id' => $sentenceId,
-            'license' => 'CC0 1.0',
-        ]);
-        $newSentence = $sentences->get($sentenceId);
-        $this->assertNotEquals($oldSentence->license, $newSentence->license);
-    }
-
-    public function testEditLicense_cannotSetInvalidLicense() {
-        $sentenceId = 50;
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('admin');
-        $this->post('/jpn/sentences/edit_license', [
-            'id' => $sentenceId,
-            'license' => 'CL42 Crazy License',
         ]);
         $newSentence = $sentences->get($sentenceId);
         $this->assertEquals($oldSentence->license, $newSentence->license);
