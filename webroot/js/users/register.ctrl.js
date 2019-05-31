@@ -36,10 +36,11 @@
                     element = element[0];
                     if (element.options) {
                         value = element.options[element.selectedIndex].value;
-                    } else if (attrs.value) {
+                    } else if (attrs.value !== undefined) {
                         value = attrs.value;
                     }
-                    if (value) {
+
+                    if (value !== undefined) {
                         $parse(attrs.ngModel).assign(scope, value);
                     }
                 }

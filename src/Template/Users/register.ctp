@@ -122,7 +122,7 @@ $label = format(
                 'required' => true,
                 'minlength' => 6,
                 'server-error' => $this->Form->isFieldError('password'),
-                'value' => false,
+                'value' => '',
                 'error' => false,
             )
         );
