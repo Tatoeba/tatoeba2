@@ -187,10 +187,10 @@ class SentenceButtonsHelper extends AppHelper
             if (empty($author)) {
                 $title = __('Play audio');
             } else {
-                $title = __(format(
-                    'Play audio recorded by {author}',
+                $title = format(
+                    __('Play audio recorded by {author}', true),
                     array('author' => $author)
-                ), true);
+                );
             }
             $this->Html->script('sentences.play_audio.js', array('block' => 'scriptBottom'));
         } else {
