@@ -2,6 +2,7 @@
 # Tasks to fetch latest tatoeba-php code and optionally update cakephp configs
 
 - name: Fetch the code from github repository
+  become: false
   git:
     repo: "{{ git_rep }}"
     dest: "{{ code_dir }}"
@@ -9,6 +10,7 @@
     remote: "{{ git_remote }}"
 
 - name: Copy CakePHP config files from remote host
+  become: false
   fetch:
     src: "{{ code_dir }}/config/{{ item }}.template"
     dest: "roles/update_code/templates/{{ item }}.template"
@@ -17,6 +19,7 @@
   - app_local.php
 
 - name: Template out CakePHP config files
+  become: false
   template:
     src: "{{ item }}.template"
     dest: "{{ code_dir }}/config/{{ item }}"
@@ -24,12 +27,14 @@
   - app_local.php
 
 - name: Fetch composer dependencies
+  become: false
   composer:
     command: install
     global_command: no
     working_dir: "{{ code_dir }}"
 
 - name: Allow www-data to write avatars, logs and cache
+  become: false
   file:
     path: "{{ code_dir }}/{{ item }}"
     state: directory
@@ -41,3 +46,7 @@
   - tmp/logs
   - tmp/cache
   - logs
+
+- name: Install gettext
+  apt:
+    name: gettext

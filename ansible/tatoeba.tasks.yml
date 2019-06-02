@@ -14,8 +14,6 @@
 - name: Install and setup Tatoeba
   include_role:
     name: update_code
-  vars:
-    ansible_become: false
 
 - name: Install and setup Tatoeba's database
   include_role:
