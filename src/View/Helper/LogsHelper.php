@@ -118,25 +118,25 @@ class LogsHelper extends AppHelper
         switch ($action) {
             case 'insert' :
                 if ($type == 'sentence') {
-                    $label = $username ? __('added by {user}') : __('added by a former member');
+                    $label = $username ? __('added by {user}') : __('added by an unknown member');
                 } else if ($type == 'link') {
-                    $label = $username ? __('linked by {user}') : __('linked by a former member');
+                    $label = $username ? __('linked by {user}') : __('linked by an unknown member');
                 } else if ($type == 'license') {
-                    $label = $username ? __('license chosen by {user}') : __('license chosen by a former member');
+                    $label = $username ? __('license chosen by {user}') : __('license chosen by a unknown member');
                 }
                 break;
             case 'update' :
                 if ($type == 'sentence') {
-                    $label = $username ? __('edited by {user}') : __('edited by a former member');
+                    $label = $username ? __('edited by {user}') : __('edited by an unknown member');
                 } else if ($type == 'license') {
-                    $label = $username ? __('license changed by {user}') : __('license changed by a former member');
+                    $label = $username ? __('license changed by {user}') : __('license changed by an unknown member');
                 }
                 break;
             case 'delete' :
                 if ($type == 'sentence') {
-                    $label = $username ? __('deleted by {user}') : __('deleted by a former member');
+                    $label = $username ? __('deleted by {user}') : __('deleted by an unknown member');
                 } else if ($type == 'link') {
-                    $label = $username ? __('unlinked by {user}') : __('unlinked by a former member');
+                    $label = $username ? __('unlinked by {user}') : __('unlinked by an unknown member');
                 }
                 break;
             default:
