@@ -30,7 +30,10 @@ $(document).ready(function() {
             cancel    : $(this).attr('data-cancel'),
             cssclass  : 'edit-list-name-form',
             event     : 'edit_list_name',
-            onblur    : 'ignore'
+            onblur    : 'ignore',
+            data      : function (value, config) {
+                            return $('<div>').html(value).text(); // fix html entities
+                        },
         });
     });
 
