@@ -37,9 +37,19 @@ trait TatoebaControllerTestTrait {
     }
 
     public function assertAjaxAccessUrlAs($url, $user, $response) {
-        $this->configRequest([
-            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
-        ]);
+        $this->addHeader('X-Requested-With', 'XMLHttpRequest');
         $this->assertAccessUrlAs($url, $user, $response);
+    }
+
+    public function ajaxPost($url, $data = []) {
+        $this->addHeader('X-Requested-With', 'XMLHttpRequest');
+        $this->post($url, $data);
+    }
+
+    public function addHeader($header, $value) {
+        if (!isset($this->_request['headers'])) {
+            $this->_request['headers'] = [];
+        }
+        $this->_request['headers'][$header] = $value;
     }
 }
