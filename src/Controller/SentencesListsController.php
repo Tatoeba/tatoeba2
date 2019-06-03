@@ -110,9 +110,9 @@ class SentencesListsController extends AppController
      */
     public function index($filter = null)
     {
-        if (isset($this->request->query['search'])) {
-            $filter = $this->request->query['search'];
-            $this->redirect(array('action' => 'index', $filter));
+        $search = $this->request->getQuery('search');
+        if (!is_null($search)) {
+            $this->redirect(array('action' => 'index', $search));
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
@@ -127,9 +127,9 @@ class SentencesListsController extends AppController
 
     public function collaborative($filter = null)
     {
-        if (isset($this->request->query['search'])) {
-            $filter = $this->request->query['search'];
-            $this->redirect(array('action' => 'collaborative', $filter));
+        $search = $this->request->getQuery('search');
+        if (!is_null($search)) {
+            $this->redirect(array('action' => 'collaborative', $search));
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
@@ -307,14 +307,10 @@ class SentencesListsController extends AppController
      */
     public function of_user($username=null, $filter = null)
     {
-        if (isset($this->request->query['username'])) {
-            $usernameParam = $this->request->query['username'];
-        }
-        if (isset($this->request->query['search'])) {
-            $searchParam = $this->request->query['search'];
-        }
+        $usernameParam = $this->request->getQuery('username');
+        $searchParam   = $this->request->getQuery('search');
 
-        if (!empty($usernameParam)) {
+        if (!is_null($usernameParam)) {
             $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
         } else if (empty($username)) {
             $this->redirect(array('action' => 'index'));

@@ -267,7 +267,7 @@ class SentencesController extends AppController
 
     public function go_to_sentence()
     {
-        $id = intval($this->request->query['sentence_id']);
+        $id = intval($this->request->getQuery('sentence_id'));
         if ($id == 0) {
             $id = 'random';
         }
@@ -498,17 +498,14 @@ class SentencesController extends AppController
 
         $criteriaVars = array();
         foreach ($this->defaultSearchCriteria as $name => $default) {
-            $criteriaVars[$name] = $default;
-            if (isset($this->request->query[$name])) {
-                $criteriaVars[$name] = $this->request->query[$name];
-            }
+            $criteriaVars[$name] = $this->request->getQuery($name, $default);
         }
         extract($criteriaVars);
         $ignored = array();
 
         /* Convert simple search to advanced search parameters */
-        if (isset($this->request->query['to'])
-            && !isset($this->request->query['trans_to'])) {
+        if (!is_null($this->request->getQuery('to'))
+            && is_null($this->request->getQuery('trans_to'))) {
             $trans_to = $to;
         }
 
@@ -788,7 +785,7 @@ class SentencesController extends AppController
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
             'is_advanced_search',
-            isset($this->request->query['trans_to'])
+            !is_null($this->request->getQuery('trans_to'))
         );
     }
 
