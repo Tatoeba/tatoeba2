@@ -432,8 +432,8 @@ class SentencesController extends AppController
      */
     public function save_translation()
     {
-        $sentenceId = $_POST['id'];
-        $translationLang = $_POST['selectLang'];
+        $sentenceId = $this->request->getData('id');
+        $translationLang = $this->request->getData('selectLang');
         $userId = $this->Auth->user('id');
         $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
 
@@ -441,7 +441,7 @@ class SentencesController extends AppController
             return ;
         }
 
-        $translationText = $_POST['value'];
+        $translationText = $this->request->getData('value');
 
         // Store selected lang in cookie as default language for drop-downs
         $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
