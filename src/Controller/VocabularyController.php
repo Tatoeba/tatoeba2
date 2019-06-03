@@ -138,8 +138,8 @@ class VocabularyController extends AppController
      */
     public function save()
     {
-        $lang = $_POST['lang'];
-        $text = $_POST['text'];
+        $lang = $this->request->getData('lang');
+        $text = $this->request->getData('text');
 
         $result = $this->Vocabulary->addItem($lang, $text);
 
@@ -196,8 +196,8 @@ class VocabularyController extends AppController
      */
     public function save_sentence($vocabularyId)
     {
-        $sentenceLang = $_POST['lang'];
-        $sentenceText = $_POST['text'];
+        $sentenceLang = $this->request->getData('lang');
+        $sentenceText = $this->request->getData('text');
         $userId = CurrentUser::get('id');
         $username = CurrentUser::get('username');
 

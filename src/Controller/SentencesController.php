@@ -326,20 +326,16 @@ class SentencesController extends AppController
             return;
         }
 
-        if (!isset($_POST['value'])
-            || !isset($_POST['selectedLang'])
-        ) {
+        $sentenceLang = $this->request->getData('selectedLang');
+        $sentenceText = $this->request->getData('value');
+
+        if (is_null($sentenceText) || is_null($sentenceLang)) {
             //TODO add error handling
             return;
         }
 
         $userName = $this->Auth->user('username');
-
-        $data = $this->request->getData();
-        $sentenceLang = $data['selectedLang'];
-        $sentenceText = $data['value'];
-        $sentenceLicense = isset($data['sentenceLicense']) ?
-                           $data['sentenceLicense'] : null;
+        $sentenceLicense = $this->request->getData('sentenceLicense');
 
         $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,

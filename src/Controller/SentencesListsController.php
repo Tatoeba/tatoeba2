@@ -226,8 +226,8 @@ class SentencesListsController extends AppController
     public function save_name()
     {
         $userId = $this->Auth->user('id');
-        $listId = substr($_POST['id'], 1);
-        $listName = $_POST['value'];
+        $listId = substr($this->request->getData('id'), 1);
+        $listName = $this->request->getData('value');
         
         if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
@@ -356,11 +356,11 @@ class SentencesListsController extends AppController
     public function add_new_sentence_to_list()
     {
         $result = null;
+        $listId = $this->request->getData('listId');
+        $sentenceText = $this->request->getData('sentenceText');
 
-        if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
-            $listId = $_POST['listId'];
+        if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
-            $sentenceText = $_POST['sentenceText'];
             $sentenceLang = $this->LanguageDetection->detectLang(
                 $sentenceText,
                 $userName
@@ -387,7 +387,10 @@ class SentencesListsController extends AppController
     {
         $userId = CurrentUser::get('id');
         $result = $this->SentencesLists->editOption(
-            $_POST['listId'], $_POST['option'], $_POST['value'], $userId
+            $this->request->getData('listId'),
+            $this->request->getData('option'),
+            $this->request->getData('value'),
+            $userId
         );
 
         $this->response->header('Content-Type: application/json');
