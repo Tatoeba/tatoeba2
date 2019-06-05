@@ -991,7 +991,7 @@ class SentencesController extends AppController
             $this->redirect(
                 array(
                     "controller" => "pages",
-                    "action" => "home",
+                    "action" => "index",
                 )
             );
         }
