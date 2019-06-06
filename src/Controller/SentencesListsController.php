@@ -112,7 +112,7 @@ class SentencesListsController extends AppController
     {
         $search = $this->request->getQuery('search');
         if (!is_null($search)) {
-            $this->redirect(array('action' => 'index', $search));
+            return $this->redirect(array('action' => 'index', $search));
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
@@ -129,7 +129,7 @@ class SentencesListsController extends AppController
     {
         $search = $this->request->getQuery('search');
         if (!is_null($search)) {
-            $this->redirect(array('action' => 'collaborative', $search));
+            return $this->redirect(array('action' => 'collaborative', $search));
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
@@ -160,7 +160,7 @@ class SentencesListsController extends AppController
         }
 
         if (!isset($id)) {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $list = $this->SentencesLists->getListWithPermissions(
@@ -171,7 +171,7 @@ class SentencesListsController extends AppController
             $this->Flash->set(
                 __('You do not have permission to view this list.')
             );
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $this->loadModel('Sentences');
@@ -210,9 +210,9 @@ class SentencesListsController extends AppController
         );
         
         if (isset($list->id)) {
-            $this->redirect(array('action' => 'show', $list['id']));
+            return $this->redirect(array('action' => 'show', $list['id']));
         } else {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
     }
 
@@ -254,11 +254,11 @@ class SentencesListsController extends AppController
             $mostRecentList = $this->request->getSession()->read('most_recent_list');
             if ($mostRecentList == $listId)
             {
-                $mostRecentList = null;
+                $this->request->getSession()->delete('most_recent_list');
             }
         }
         
-        $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('action' => 'index'));
     }
 
     /**
@@ -311,9 +311,9 @@ class SentencesListsController extends AppController
         $searchParam   = $this->request->getQuery('search');
 
         if (!is_null($usernameParam)) {
-            $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
+            return $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
         } else if (empty($username)) {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $this->set('username', $username);
@@ -403,7 +403,7 @@ class SentencesListsController extends AppController
     public function download($listId = null)
     {
         if (empty($listId)) {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $list = $this->SentencesLists->getListWithPermissions(
