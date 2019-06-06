@@ -414,7 +414,7 @@ class SentencesListsController extends AppController
             $this->Flash->set(
                 __('You do not have permission to download this list.')
             );
-            return $this->redirect(array('action' => 'show', $listId));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $count = $this->SentencesLists->getNumberOfSentences($listId);
@@ -458,7 +458,7 @@ class SentencesListsController extends AppController
             $this->Flash->set(
                 __('You do not have permission to download this list.')
             );
-            return $this->redirect(array('action' => 'show', $listId));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $exportId = ($exportId === '1');

@@ -61,8 +61,8 @@ class SentencesListsControllerTest extends IntegrationTestCase
             [ '/eng/sentences_lists/download/1', null, true ], // unlisted public list
             [ '/eng/sentences_lists/download/1', 'contributor', true ],
             [ '/eng/sentences_lists/download/3', 'kazuki', true ], // kazuki's private list
-            [ '/eng/sentences_lists/download/3', null, '/eng/sentences_lists/show/3' ],
-            [ '/eng/sentences_lists/download/3', 'contributor', '/eng/sentences_lists/show/3' ],
+            [ '/eng/sentences_lists/download/3', null, '/eng/sentences_lists/index' ],
+            [ '/eng/sentences_lists/download/3', 'contributor', '/eng/sentences_lists/index' ],
         ];
     }
 
@@ -192,6 +192,6 @@ class SentencesListsControllerTest extends IntegrationTestCase
             'insertId' => 1,
             'TranslationsLang' => 'eng',
         ]);
-        $this->assertRedirect('/eng/sentences_lists/show/3');
+        $this->assertRedirect('/eng/sentences_lists/index');
     }
 }
