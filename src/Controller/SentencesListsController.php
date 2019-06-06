@@ -406,6 +406,17 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
+        $list = $this->SentencesLists->getListWithPermissions(
+            $listId, CurrentUser::get('id')
+        );
+
+        if (!$list['Permissions']['canView']) {
+            $this->Flash->set(
+                __('You do not have permission to download this list.')
+            );
+            return $this->redirect(array('action' => 'show', $listId));
+        }
+
         $count = $this->SentencesLists->getNumberOfSentences($listId);
         if ($count > SentencesList::MAX_COUNT_FOR_DOWNLOAD)
         {
@@ -437,6 +448,17 @@ class SentencesListsController extends AppController
 
         if ($translationsLang === 'none') {
             $translationsLang = null;
+        }
+
+        $list = $this->SentencesLists->getListWithPermissions(
+            $listId, CurrentUser::get('id')
+        );
+
+        if (!$list['Permissions']['canView']) {
+            $this->Flash->set(
+                __('You do not have permission to download this list.')
+            );
+            return $this->redirect(array('action' => 'show', $listId));
         }
 
         $exportId = ($exportId === '1');
