@@ -13,6 +13,7 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
         'app.aros',
         'app.acos',
         'app.aros_acos',
+        'app.private_messages',
         'app.transcriptions',
         'app.users',
         'app.users_languages',
@@ -168,5 +169,12 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
             ->where(['Transcriptions.sentence_id' => 11, 'Transcriptions.script' => 'Latn'])
             ->count();
         $this->assertEquals(1, $result);
+    }
+
+    public function testControllerAccess() {
+        $this->assertAccessUrlAs('/jpn/transcriptions/of/kazuki', null, true);
+        $this->assertAccessUrlAs('/jpn/transcriptions/of/kazuki', 'contributor', true);
+        $this->assertAjaxAccessUrlAs('/jpn/transcriptions/view/6', null, true);
+        $this->assertAjaxAccessUrlAs('/jpn/transcriptions/view/6', 'contributor', true);
     }
 }
