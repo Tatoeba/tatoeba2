@@ -2,17 +2,21 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\TagsTable;
+use App\Test\TestCase\Model\Table\TatoebaTableTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 
 class TagsTableTest extends TestCase {
+    use TatoebaTableTestTrait;
+
     public $fixtures = array(
         'app.sentences',
         'app.users',
         'app.tags',
         'app.tags_sentences',
+        'app.users_languages',
     );
 
     function setUp() {
@@ -106,5 +110,51 @@ class TagsTableTest extends TestCase {
     function testGetIdFromName_fails() {
         $result = $this->Tag->getIdFromName('OOK');
         $this->assertEquals(null, $result);
+    }
+
+    public function removeAsUser($username, $tagId, $sentenceId) {
+        $beforeCount = $this->Tag->TagsSentences->find()
+            ->where(['tag_id' => $tagId, 'sentence_id' => $sentenceId])
+            ->count();
+        if ($username) {
+            $this->logInAs($username);
+        }
+
+        $this->Tag->removeTagFromSentence($tagId, $sentenceId);
+
+        $afterCount = $this->Tag->TagsSentences->find()
+            ->where(['tag_id' => $tagId, 'sentence_id' => $sentenceId])
+            ->count();
+        return $afterCount - $beforeCount;
+    }
+
+    public function testGuestDoesntRemoveTag() {
+        $delta = $this->removeAsUser(null, 2, 2);
+        $this->assertEquals(0, $delta);
+    }
+
+    public function testRegularUserDoesNotRemoveTag() {
+        $delta = $this->removeAsUser('contributor', 1, 8);
+        $this->assertEquals(0, $delta);
+    }
+
+    public function testAdvancedUserAuthorDoesRemoveTag() {
+        $delta = $this->removeAsUser('advanced_contributor', 2, 2);
+        $this->assertEquals(-1, $delta);
+    }
+
+    public function testDifferentAdvancedUserDoesNotRemoveTag() {
+        $delta = $this->removeAsUser('advanced_contributor', 1, 8);
+        $this->assertEquals(0, $delta);
+    }
+
+    public function testCorpusMaintainerDoesRemoveTag() {
+        $delta = $this->removeAsUser('corpus_maintainer', 2, 2);
+        $this->assertEquals(-1, $delta);
+    }
+
+    public function testAdminDoesRemoveTag() {
+        $delta = $this->removeAsUser('admin', 2, 2);
+        $this->assertEquals(-1, $delta);
     }
 }
