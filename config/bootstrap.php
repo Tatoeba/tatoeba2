@@ -89,6 +89,20 @@ if (Configure::read('debug')) {
 }
 
 /*
+ * Make cache files world-writable on dev environments
+ * to ease file permissions setup.
+ */
+if (Configure::read('debug')) {
+    $confCache = Configure::read('Cache');
+    foreach ($confCache as $cache => $config) {
+        if (Configure::read('debug')) {
+            $confCache[$cache]['mask'] = 0666;
+        }
+    }
+    Configure::write('Cache', $confCache);
+}
+
+/*
  * Set the default server timezone. Using UTC makes time calculations / conversions easier.
  * Check http://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
