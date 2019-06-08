@@ -65,7 +65,6 @@ bin/cake acl create aco SentencesLists set_option
 
 bin/cake acl create aco controllers Tags
 bin/cake acl create aco Tags add_tag_post
-bin/cake acl create aco Tags add_tag
 bin/cake acl create aco Tags remove_tag_from_sentence
 bin/cake acl create aco Tags remove_tag_of_sentence_from_tags_show
 
