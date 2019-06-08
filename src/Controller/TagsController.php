@@ -157,7 +157,7 @@ class TagsController extends AppController
         if (!empty($tagId) && !empty($sentenceId)) {
             $this->Tags->removeTagFromSentence($tagId, $sentenceId);
         }
-        return $this->redirect($_SERVER['HTTP_REFERER']);
+        return $this->redirect($this->referer());
     }
 
 
