@@ -415,28 +415,6 @@ class SentencesTable extends Table
     }
 
     /**
-     * Search one random chinese/japanese sentence containing $sinogram.
-     *
-     * @param string $sinogram Sinogram to search an example sentence containing it.
-     *
-     * @return int The id of this sentence.
-     */
-    public function searchOneExampleSentenceWithSinogram($sinogram)
-    {
-        $results = $this->query(
-            "SELECT Sentence.id  FROM sentences AS Sentence
-                JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
-                WHERE Sentence.id >= r2.id
-                    AND Sentence.lang IN ( 'jpn','cmn','wuu')
-                    AND Sentence.text LIKE ('%$sinogram%')
-                ORDER BY Sentence.id ASC LIMIT 1
-            "
-        );
-
-        return !empty($results) ? $results[0]['Sentence']['id'] : null;
-    }
-
-    /**
      * Custom ->find('random', ...) function.
      */
     public function _findRandom($state, $query, $results = array())

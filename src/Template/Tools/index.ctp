@@ -48,19 +48,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Useful tools')));
             <li>
                 <?php
                 echo $this->Html->link(
-                    __('Sinogram search'),
-                    array(
-                        "controller" => "tools",
-                        "action" => "search_hanzi_kanji"
-                    )
-                );
-                echo ': ';
-                echo __("search all Chinese characters / kanjis by all possible methods.");
-                ?>
-            </li>
-            <li>
-                <?php
-                echo $this->Html->link(
                     __('Chinese simplified/traditional conversion'),
                     array(
                         "controller" => "tools",

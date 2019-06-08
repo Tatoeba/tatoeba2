@@ -63,47 +63,6 @@ Router::scope('/', function (RouteBuilder $routes) {
     $interfaceLanguages = join('|', $iso3LangArray);
 
     /**
-     * To route tools, in order to still have tools in the URL, which is
-     * clearer for users IMHO
-     * this rule appears first, that way /fre/tools/search_Sinograms  is
-     * not catch by the general rule for controllers
-     */
-    $routes->connect(
-        '/tools/search_hanzi_kanji',
-        [
-            'controller' => 'Sinograms',
-            'action' =>'index'
-        ]
-    );
-    $routes->connect(
-        '/tools/search_hanzi_kanji/:action',
-        [
-            'controller' => 'Sinograms',
-        ]
-    );
-
-    $routes->connect(
-        '/:lang/tools/search_hanzi_kanji',
-        [
-            'lang'=>'eng',
-            'controller' => 'Sinograms',
-            'action' =>'index'
-        ]
-    )
-    ->setPatterns(['lang' => $interfaceLanguages])
-    ->setPersist(['lang']);
-
-    $routes->connect(
-        '/:lang/tools/search_hanzi_kanji/:action',
-        [
-            'lang'=>'eng',
-            'controller' => 'Sinograms',
-        ]
-    )
-    ->setPatterns(['lang' => $interfaceLanguages])
-    ->setPersist(['lang']);
-
-    /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
