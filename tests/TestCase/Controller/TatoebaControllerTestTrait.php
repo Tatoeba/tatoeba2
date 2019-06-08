@@ -52,4 +52,8 @@ trait TatoebaControllerTestTrait {
         }
         $this->_request['headers'][$header] = $value;
     }
+
+    public function assertNoFlashMessage() {
+        $this->assertSession(null, 'Flash.flash.0.message');
+    }
 }

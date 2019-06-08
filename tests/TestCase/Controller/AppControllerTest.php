@@ -5,6 +5,8 @@ use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class AppControllerTest extends IntegrationTestCase {
+	use TatoebaControllerTestTrait;
+
 	public $fixtures = array(
 		'app.users',
 		'app.users_languages',
@@ -122,6 +124,6 @@ class AppControllerTest extends IntegrationTestCase {
 	function testLoginRedirectionDoesNotDisplayFlashMessage() {
 		$this->get('/eng/sentences/add');
 		$this->assertRedirect('/eng/users/login?redirect=%2Feng%2Fsentences%2Fadd');
-		$this->assertSession(null, 'Flash.flash.0.message');
+		$this->assertNoFlashMessage();
 	}
 }

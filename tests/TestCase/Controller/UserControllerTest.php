@@ -24,6 +24,8 @@ class UserControllerTest extends IntegrationTestCase
 
     private $oldPasswords = [];
 
+    private $tmpFile = TMP.'UserControllerTest_tmpFile';
+
     public function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
@@ -32,6 +34,14 @@ class UserControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $users = $users->find()->select(['username', 'password'])->all();
         $this->oldPasswords = $users->combine('username', 'password')->toArray();
+    }
+
+    public function tearDown() {
+        $file = new File($this->tmpFile);
+        if ($file->exists()) {
+            $file->delete();
+        }
+        parent::tearDown();
     }
 
     private function assertPassword($what, $username) {
@@ -159,6 +169,48 @@ class UserControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newGroup, $user->group_id);
+    }
+
+    private function prepareImageUpload() {
+        $someImage = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA'.
+                                   'AAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=');
+        $ok = file_put_contents($this->tmpFile, $someImage);
+        $this->assertNotFalse($ok);
+        return [
+            'tmp_name' => $this->tmpFile,
+            'error' => UPLOAD_ERR_OK,
+            'name' => '1x1_black.png',
+            'type' => 'image/png',
+            'size' => strlen($someImage),
+        ];
+    }
+
+    private function assertProfilePictureUploaded($username) {
+        $image = TableRegistry::get('Users')
+            ->findByUsername($username)
+            ->first()
+            ->image;
+        $images = [
+            WWW_ROOT.'img/profiles_128/'.$image,
+            WWW_ROOT.'img/profiles_36/'.$image,
+        ];
+        foreach ($images as $image) {
+            $file = new File($image);
+            $this->assertFileExists($image);
+            $file->delete();
+        }
+    }
+
+    public function testSaveImage() {
+        require __DIR__ . '/UserControllerTestFakeFunctions.php';
+        $username = 'contributor';
+        $this->logInAs($username);
+        $this->post('/eng/user/save_image', [
+            'image' => $this->prepareImageUpload()
+        ]);
+        $this->assertNoFlashMessage();
+        $this->assertRedirect("/eng/user/profile/$username");
+        $this->assertProfilePictureUploaded($username);
     }
 
     public function testRemoveImage() {
