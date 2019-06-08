@@ -19,18 +19,18 @@ class TagsTableTest extends TestCase {
         'app.users_languages',
     );
 
-    function setUp() {
+    public function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
         $this->Tag = TableRegistry::getTableLocator()->get('Tags');
     }
 
-    function tearDown() {
+    public function tearDown() {
         unset($this->Tag);
         parent::tearDown();
     }
 
-    function testAddTagAddsTag() {
+    public function testAddTagAddsTag() {
         $contributorId = 4;
         $sentenceId = 1;
         $before = $this->Tag->TagsSentences->find('all')->count();
@@ -43,7 +43,7 @@ class TagsTableTest extends TestCase {
         $this->assertEquals(4, $tag->id);
     }
 
-    function testAddTagFiresEvent() {
+    public function testAddTagFiresEvent() {
         $contributorId = 4;
         $sentenceId = 1;
         $expectedTagName = '@needs_native_check';
@@ -65,12 +65,12 @@ class TagsTableTest extends TestCase {
         $this->assertTrue($dispatched);
     }
 
-    function testAddTag_tagAlreadyAdded() {
+    public function testAddTag_tagAlreadyAdded() {
         $result = $this->Tag->addTag('OK', 1, 2);
         $this->assertTrue($result->alreadyExists);
     }
 
-    function testSentenceOwnerCannotTagOwnSentenceAsOK() {
+    public function testSentenceOwnerCannotTagOwnSentenceAsOK() {
         $sentenceId = 1;
         $ownerId = 7;
         $before = $this->Tag->TagsSentences->find('all')->count();
@@ -82,32 +82,32 @@ class TagsTableTest extends TestCase {
         $this->assertEquals(0, $added);
     }
 
-    function testGetIdFromInternalName_succeeds() {
+    public function testGetIdFromInternalName_succeeds() {
         $result = $this->Tag->getIdFromInternalName('OK');
         $this->assertEquals(2, $result);
     }
 
-    function testGetIdFromInternalName_fails() {
+    public function testGetIdFromInternalName_fails() {
         $result = $this->Tag->getIdFromInternalName('OOK');
         $this->assertNull($result);
     }
 
-    function testGetNameFromId_succeeds() {
+    public function testGetNameFromId_succeeds() {
         $result = $this->Tag->getNameFromId(2);
         $this->assertEquals('OK', $result);
     }
 
-    function testGetNameFromId_fails() {
+    public function testGetNameFromId_fails() {
         $result = $this->Tag->getNameFromId(4);
         $this->assertNull($result);
     }
 
-    function testGetIdFromName_succeeds() {
+    public function testGetIdFromName_succeeds() {
         $result = $this->Tag->getIdFromName('OK');
         $this->assertEquals(2, $result);
     }
 
-    function testGetIdFromName_fails() {
+    public function testGetIdFromName_fails() {
         $result = $this->Tag->getIdFromName('OOK');
         $this->assertEquals(null, $result);
     }
