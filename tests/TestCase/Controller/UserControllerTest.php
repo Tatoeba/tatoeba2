@@ -17,8 +17,12 @@ class UserControllerTest extends IntegrationTestCase
         'app.aros',
         'app.acos',
         'app.aros_acos',
+        'app.audios',
+        'app.contributions',
+        'app.favorites_users',
         'app.users',
         'app.groups',
+        'app.sentence_comments',
         'app.users_languages'
     ];
 
@@ -42,6 +46,31 @@ class UserControllerTest extends IntegrationTestCase
             $file->delete();
         }
         parent::tearDown();
+    }
+
+    public function accessesProvider() {
+        return [
+            // url; user; is accessible or redirection url
+            [ '/eng/user/profile/contributor', null, true ],
+            [ '/eng/user/profile/contributor', 'contributor', true ],
+            [ '/eng/user/profile', null, '/eng/home' ],
+            [ '/eng/user/profile', 'contributor', '/eng/user/profile/contributor' ],
+            [ '/eng/user/profile/nonexistent', null, '/eng/users/all' ],
+            [ '/eng/user/edit_profile', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Fedit_profile' ],
+            [ '/eng/user/edit_profile', 'contributor', true ],
+            [ '/eng/user/settings', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Fsettings' ],
+            [ '/eng/user/settings', 'contributor', true ],
+            [ '/eng/user/language', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Flanguage' ],
+            [ '/eng/user/language', 'contributor', true ],
+            [ '/eng/user/language/jpn', 'contributor', true ],
+        ];
+    }
+
+    /**
+     * @dataProvider accessesProvider
+     */
+    public function testControllerAccess($url, $user, $response) {
+        $this->assertAccessUrlAs($url, $user, $response);
     }
 
     private function assertPassword($what, $username) {
@@ -74,6 +103,7 @@ class UserControllerTest extends IntegrationTestCase
             'new_password2' => $newPassword,
         ]);
         $this->assertPassword('changed', $username);
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSavePassword_failsIfNewPasswordIsEmpty() {
@@ -89,6 +119,7 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New password cannot be empty.');
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSavePassword_failsIfOldPasswordDoesntMatch() {
@@ -103,6 +134,7 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('Password error. Please try again.');
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSavePassword_failsIfNewPasswordDoesntMatch() {
@@ -116,6 +148,7 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New passwords do not match.');
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSaveBasic_changingEmailUpdatesAuthData() {
@@ -127,6 +160,7 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertEquals($this->_controller->Auth->user('username'), $username);
         $this->assertEquals($this->_controller->Auth->user('email'), $newEmail);
+        $this->assertRedirect('/eng/user/profile/contributor');
     }
 
     public function testSaveBasic_ignoresUnallowedFields() {
@@ -150,6 +184,19 @@ class UserControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals($newGroup, $user->group_id);
+    }
+
+    public function testSaveSettings() {
+        $this->logInAs('contributor');
+
+        $this->post('/eng/user/save_settings', [
+            'send_notifications' => '1',
+            'settings' => [
+                'is_public' => '1',
+                'lang' => 'fra',
+            ],
+        ]);
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSaveSettings_ignoresUnallowedFields() {
@@ -235,5 +282,23 @@ class UserControllerTest extends IntegrationTestCase
         foreach ($images as $image) {
             $this->assertFileNotExists($image);
         }
+    }
+
+    public function testAcceptNewTermsOfUser_asGuest() {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/eng/user/accept_new_terms_of_use', [
+            'settings' => [ 'new_terms_of_use' => true ],
+        ]);
+        $this->assertResponseCode(404);
+    }
+
+    public function testAcceptNewTermsOfUser_asMember() {
+        $this->logInAs('contributor');
+        $this->addHeader('Referer', 'https://example.net/referer');
+        $this->post('/eng/user/accept_new_terms_of_use', [
+            'settings' => [ 'new_terms_of_use' => true ],
+        ]);
+        $this->assertRedirect('https://example.net/referer');
     }
 }
