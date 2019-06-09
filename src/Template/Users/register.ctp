@@ -103,7 +103,7 @@ $label = format(
     </md-input-container>
     <md-input-container class="registration-loader">
         <md-progress-circular md-diameter="16"
-                              ng-if="registrationForm['data[User][username]'].$pending">
+                              ng-if="registrationForm['username'].$pending">
         </md-progress-circular>
     </md-input-container>
 </div>
