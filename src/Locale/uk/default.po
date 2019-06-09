@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-27 12:17+0000\n"
-"PO-Revision-Date: 2019-04-27 13:06+0000\n"
-"Last-Translator: Trang\n"
+"POT-Creation-Date: 2019-05-19 21:02+0000\n"
+"PO-Revision-Date: 2019-05-26 22:30+0000\n"
+"Last-Translator: older\n"
 "Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -312,68 +312,68 @@ msgstr "При збереженні виникла помилка."
 msgid "Password error. Please try again."
 msgstr "Помилковий пароль. Спробуйте ще."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L210
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Цей обліковий запис було позначено як неактивний. Тепер ви не можете їм користуватись. Будь ласка зв'яжіться з адміністратором якщо ви вважаєте що це помилка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L221
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Цей обліковий запис було позначено як той що розповсюджує спам. Тепер ви не можете їм користуватись. Будь ласка зв'яжіться з адміністратором якщо ви вважаєте що це помилка."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L235
 msgid "You must fill in your username and password."
 msgstr "Ви маєте ввести ім'я користувача і пароль."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L243
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Помилка логіну. Перевірте стан перемикачів Caps Lock та Num Lock. Пароль є чутливим до регістру."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L331
 msgid "Password cannot be empty."
 msgstr "Пароль не може бути порожнім."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L340
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L343
 msgid "Wrong answer to the question."
 msgstr "Невірна відповідь на питання."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L351
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L354
 msgid "You did not accept the terms of use."
 msgstr "Ви не погодились з Умовами Використання.Ви не погодились з Умовами Використання."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L397
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L400
 msgid "Welcome to Tatoeba!"
 msgstr "Ласкаво просимо до Tatoeba!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L404
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
 msgstr "Для початку ми закликаємо вас зайти до власного <a href='{url}'>профіля</a> та зазначити мови якими ви володієте або якими цікавитесь."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L451
 msgid "Your new password has been sent to {email}."
 msgstr "Ваш новий пароль надіслано на адресу {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L453
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L456
 msgid "You may need to check your spam folder to find this message."
 msgstr "Вам може знадобитись перевірити теку зі спамом щоб знайти це повідомлення."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L464
 msgid "There is no registered user with this email address: "
 msgstr "Користувач с цією адресою електронної пошти не зареєстрований:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L483
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L486
 msgid "No user with this username: "
 msgstr "Не знайдено користувача з ім'ям:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L526
 msgid "No user with this ID: {id}"
 msgstr "Не існує користувача з ідентифікатором:  {id}"
 
@@ -467,6 +467,14 @@ msgstr[3] "Наступні знаки не транскрибовано: {chars
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L115
+msgid "List {listName}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L116
+msgid "Sentence id [tab] Sentence text"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
@@ -748,22 +756,22 @@ msgid "Order:"
 msgstr "Порядок:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L162
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L215
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L216
 msgid "Random"
 msgstr "Випадково"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L165
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L213
 msgid "Fewest words first"
 msgstr "Спершу з меншою кількістю слів"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L215
 msgid "Last modified first"
 msgstr "Спершу недавно змінені"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L171
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L214
 msgid "Last created first"
 msgstr "Спершу новіші"
 
@@ -1104,15 +1112,19 @@ msgstr "Непряме"
 msgid "Sort"
 msgstr "Сортування"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L212
+msgid "Relevance"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L223
 msgid "Reverse order"
 msgstr "У зворотньому порядку"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L232
 msgid "More search options"
 msgstr "Додаткові опції пошука"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L241
 msgctxt "button"
 msgid "Advanced search"
 msgstr "Розширений пошук"
@@ -1736,6 +1748,35 @@ msgstr "Ваш логін: "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L3
 msgid "Your new password: "
 msgstr "Новий пароль: "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L7
+msgid "My exports"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L8
+msgid "There are no exports."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L16
+msgctxt "button"
+msgid "Download"
+msgstr "Завантаження"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L17
+msgid "Export in progress"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L20
+msgid "Export failed"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L27
+msgid "New export"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L40
+msgid "Export list"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L33
 msgid "{user}'s favorite sentences"
@@ -4168,35 +4209,35 @@ msgstr "Незазначені"
 msgid "Other lists"
 msgstr "Інші списки"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by {user}"
 msgstr "додане користувачем {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by {user}"
 msgstr "пов'язане користувачем {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by {user}"
 msgstr "ліцензія обрана користувачем {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by {user}"
 msgstr "змінене користувачем {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
 msgstr "ліцензію змінено користувачем {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
 msgstr "видалене користувачем {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by {user}"
 msgstr "відокремлене користувачем {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
 msgstr "{info}, {date}"
 
