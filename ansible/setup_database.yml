@@ -1,8 +1,0 @@
----
-# Playbook to set up the tatoeba database
-
-- hosts: all
-  become: true
-  gather_facts: yes
-  roles:
-  - { role: setup_database }

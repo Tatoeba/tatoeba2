@@ -70,35 +70,24 @@ vagrant up
 
 #### Post-provisioning tasks
 
-You may want to perform certain tasks independently without having to re-provision the whole machine again. To do that you can use the following command:
+You may want to perform certain tasks or steps independently without having to re-provision the whole machine again. To do that you can use the following command:
 
 ```bash
-cd ansible
-ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root playbook-name.yml
+ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml --tag <tag>
 ```
 
-where `playbook-name.yml` is the name of the playbook that you want to run on the VM. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
+where `<tag>` is one of the tags present in the file `ansible/tatoeba.tasks.yml`. You can also use `--skip-tag` to run all the tasks *but* one in particular. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
 
 ```bash
-echo "alias imouto-devel='ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root'" >> ~/.bashrc
+echo "alias imouto-provision='ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml'" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-Now you can simply use the following command to run a playbook (inside the `ansible` directory):
+Now you can simply use the following command to run a particular step:
 
 ```bash
-imouto-devel playbook-name.yml
+imouto-provision --tag external_tools
 ```
-
-The following playbooks are included with imouto currently:
-
-- `local.yml`: To provision the whole machine (development) by calling each of the roles. Note that this can also be achieved by running `vagrant provision` command in the `imouto` directory.
-- `setup_lemp.yml`: To install and set up nginx, mysql and php5-fpm.
-- `update_code.yml`: To fetch the latest code from Tatoeba's github repository and update it on VM.
-- `setup_database.yml`: To re-initialize the whole Tatoeba database.
-- `setup_external_tools.yml`: To install and set up the external tools used by the website including manticore.
-- `configure_manticore.yml`: To configure manticore search, create indexes and start the search daemon.
-- `setup_newrelic.yml`: To install and setup New Relic monitoring daemons.
 
 ### Install Tatoeba on a local machine
 
