@@ -1,9 +1,0 @@
----
-# Tasks to install New Relic system monitoring daemon
-
-- name: Install New Relic system monitoring daemon
-  apt: name=newrelic-sysmond state=present
-- name: Copy New Relic configuration
-  template: src=nrsysmond.cfg dest=/etc/newrelic/nrsysmond.cfg group=newrelic owner=root mode=0640
-- name: Restart New Relic system monitoring daemon
-  service: name=newrelic-sysmond state=restarted enabled=yes

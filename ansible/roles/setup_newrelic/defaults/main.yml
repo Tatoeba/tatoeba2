@@ -1,8 +1,0 @@
----
-# Role defaults. These variables will be over-ridden any variables with same name
-newrelic_loglevel: info
-newrelic_logfile: /var/log/newrelic/nrsysmond.log
-newrelic_ssl: "false"
-newrelic_pidfile: /var/run/newrelic/nrsysmond.pid
-newrelic_collector_host: collector.newrelic.com
-newrelic_timeout: 30
