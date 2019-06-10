@@ -33,6 +33,7 @@ class UserControllerTest extends IntegrationTestCase
     public function setUp() {
         parent::setUp();
         Configure::write('Acl.database', 'test');
+        $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
 
         $users = TableRegistry::get('Users');
@@ -45,6 +46,7 @@ class UserControllerTest extends IntegrationTestCase
         if ($file->exists()) {
             $file->delete();
         }
+        Security::setSalt($this->previousSalt);
         parent::tearDown();
     }
 

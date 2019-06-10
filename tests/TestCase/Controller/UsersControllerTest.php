@@ -29,9 +29,14 @@ class UsersControllerTest extends IntegrationTestCase {
         parent::setUp();
 
         Configure::write('Acl.database', 'test');
+        $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
         $this->enableCsrfToken();
         $this->enableSecurityToken();
+    }
+
+    public function tearDown() {
+        Security::setSalt($this->previousSalt);
     }
 
     public function accessesProvider() {
