@@ -16,12 +16,14 @@
   - import/groups.sql
 
 - name: Fill languages table
+  become: true
+  become_user: vagrant
   shell: "{{code_dir}}/bin/cake init_languages_table"
 
 - name: Set up ACLs
   shell: chdir={{code_dir}} sh docs/database/acl/{{item}}
   become: true
-  become_user: www-data
+  become_user: vagrant
   with_items:
   - acos
   - aros
