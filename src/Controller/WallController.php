@@ -180,7 +180,7 @@ class WallController extends AppController
         try {
             $message = $this->Wall->get($messageId);
         } catch(RecordNotFoundException $e) {
-            $this->redirect($this->referer());
+            return $this->redirect($this->referer());
         }
 
         $messagePermissions = $this->Permissions->getWallMessageOptions(
@@ -190,7 +190,7 @@ class WallController extends AppController
             CurrentUser::get('group_id')
         );
         if ($messagePermissions['canEdit'] == false) {
-            $this->_cannotEdit();
+            return $this->_cannotEdit();
         }
         
         if ($this->request->is('put')) {
