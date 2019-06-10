@@ -14,8 +14,6 @@
   with_items:
   - import/users.sql
   - import/groups.sql
-  - import/sinograms.sql
-  - import/sinogram_subglyphs.sql
 
 - name: Fill languages table
   shell: "{{code_dir}}/bin/cake init_languages_table"
