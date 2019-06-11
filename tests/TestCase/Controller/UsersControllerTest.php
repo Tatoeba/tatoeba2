@@ -46,7 +46,7 @@ class UsersControllerTest extends IntegrationTestCase {
             [ '/eng/users/index', 'contributor', '/' ],
             [ '/eng/users/index', 'advanced_contributor', '/' ],
             [ '/eng/users/index', 'corpus_maintainer', '/' ],
-            [ '/eng/users/index', 'admin', true ],
+            [ '/eng/users/index', 'admin', '/eng/users/all' ],
             [ '/eng/users/edit/1', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Fedit%2F1' ],
             [ '/eng/users/edit/1', 'contributor', '/' ],
             [ '/eng/users/edit/1', 'advanced_contributor', '/' ],

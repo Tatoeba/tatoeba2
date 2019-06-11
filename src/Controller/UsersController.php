@@ -76,20 +76,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->paginate = array(
-            'limit' => 50,
-            'order' => ['group_id'],
-            'fields' => [
-                'id', 'email', 'username', 'since', 'level'
-            ],
-            'contain' => [
-                'Groups' => [
-                    'fields' => ['name']
-                ]
-            ]
-        );
-        $this->set('users', $this->paginate());
-
+        return $this->redirect(array('action' => 'all'));
     }
 
 
