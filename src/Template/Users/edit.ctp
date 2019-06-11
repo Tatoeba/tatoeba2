@@ -44,14 +44,17 @@ $username = $user->username;
         <li class="delete">
         <?php
         echo $this->Html->link(
-        __d('admin', 'Delete'),
-        array(
-            'action' => 'delete',
-            $userId
-        ),
-        array(),
-        format(__d('admin', 'Are you sure you want to delete user #{number}?'),
-               array('number' => $userId))
+            __d('admin', 'Delete'),
+            [
+                'action' => 'delete',
+                $userId
+            ],
+            [
+                'confirm' => format(
+                    __d('admin', 'Are you sure you want to delete user #{number}?'),
+                    ['number' => $userId]
+                )
+            ]
         );
         ?>
         </li>

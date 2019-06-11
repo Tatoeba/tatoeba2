@@ -150,6 +150,7 @@ class UsersController extends AppController
     {
         try {
             $user = $this->Users->get($id);
+            $this->Users->delete($user);
             $this->Flash->set('User deleted');
         } catch (RecordNotFoundException $e) {
             $this->Flash->set('Invalid id for User');
