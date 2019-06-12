@@ -13,7 +13,9 @@ class CollectionsControllerTest extends IntegrationTestCase
         'app.aros',
         'app.acos',
         'app.aros_acos',
+        'app.sentences',
         'app.users',
+        'app.users_languages',
         'app.users_sentences',
     ];
 
