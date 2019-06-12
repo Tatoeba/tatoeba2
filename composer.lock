@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ccc6ca6622d2cd30acde41a31fd3e792",
-    "content-hash": "e112941d522ce055cc4af73422194efe",
+    "hash": "766095da72ce5fd8f743fa828f30a6f2",
+    "content-hash": "ba0d899c5b5c3a088982c4d23cae5644",
     "packages": [
         {
             "name": "aura/intl",
@@ -338,6 +338,43 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2017-12-24 21:09:29"
+        },
+        {
+            "name": "codekanzlei/cake-auth-actions",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/scherersoftware/cake-auth-actions.git",
+                "reference": "5b64f5da6da203bcdd6c9890ddd81049ae5d6c96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/scherersoftware/cake-auth-actions/zipball/5b64f5da6da203bcdd6c9890ddd81049ae5d6c96",
+                "reference": "5b64f5da6da203bcdd6c9890ddd81049ae5d6c96",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/plugin-installer": "*"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "3.4.*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "AuthActions"
+            },
+            "autoload": {
+                "psr-4": {
+                    "AuthActions\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple ACL alternative for CakePHP 3",
+            "time": "2017-11-22 14:25:21"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -3414,7 +3451,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "codekanzlei/cake-auth-actions": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

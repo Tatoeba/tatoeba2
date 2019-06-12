@@ -51,6 +51,8 @@ use Locale;
 
 class AppController extends Controller
 {
+    use \AuthActions\Lib\AuthActionsTrait;
+
     public $components = array(
         'Acl' => array(
             'className' => 'Acl.Acl',
@@ -125,8 +127,12 @@ class AppController extends Controller
             // the whole page.
             'ajaxLogin' => 'session_expired',
             'authError' => false,
-            'authorize' => 'Acl.Actions',
+            'authorize' => ['Controller'],
+            'loginAction' => [ 'controller' => 'users', 'action' => 'login' ],
+            // namespace declaration of AuthUtilsComponent
+            'AuthActions.AuthUtils',
         ]);
+        $this->initAuthActions();
         $this->RememberMe->check();
 
         // So that we can access the current users info from models.
