@@ -15,8 +15,11 @@ class AudioControllerTest extends IntegrationTestCase
         'app.aros_acos',
         'app.audios',
         'app.languages',
+        'app.private_messages',
+        'app.sentences',
         'app.transcriptions',
         'app.users',
+        'app.users_languages',
     ];
 
     public function setUp() {
