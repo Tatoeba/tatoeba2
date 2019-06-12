@@ -49,8 +49,6 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->belongsTo('Groups', ['bindingKey' => 'id']);
-
         $this->hasMany('Audios');
         $this->hasMany('Contributions');
         $this->hasMany('Favorites');
@@ -109,7 +107,7 @@ class UsersTable extends Table
             ->date('last_time_active');
 
         $validator
-            ->integer('group_id');
+            ->scalar('role');
 
         $validator
             ->allowEmpty('send_notifications')
@@ -164,7 +162,6 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['username'], __('Username already taken.')));
         $rules->add($rules->isUnique(['email'], __('Email address already used.')));
-        $rules->add($rules->existsIn(['group_id'], 'Groups'));
 
         return $rules;
     }
@@ -254,7 +251,7 @@ class UsersTable extends Table
                 'settings',
                 'username',
                 'birthday',
-                'group_id',
+                'role',
                 'level',
                 'country_id',
             ])
@@ -469,14 +466,6 @@ class UsersTable extends Table
             ->where(['id' => $userId])
             ->first();
         return $user->level;
-    }
-
-
-    public function getGroupOfUser($userId)
-    {
-        $result = $this->findById($userId, 'group_id')->first();
-
-        return $result->group_id;
     }
 
     public function updatePasswordVersion($userId, $plainTextPassword)

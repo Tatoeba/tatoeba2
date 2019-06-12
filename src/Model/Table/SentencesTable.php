@@ -599,7 +599,7 @@ class SentencesTable extends Table
                 'fields' => array()
             ),
             'Users' => array(
-                'fields' => array('id', 'username', 'group_id', 'level')
+                'fields' => array('id', 'username', 'role', 'level')
             ),
             'SentencesLists' => array(
                 'fields' => array('id', 'SentencesSentencesLists.sentence_id')
@@ -645,7 +645,7 @@ class SentencesTable extends Table
     public function minimalContain() {
         $contain = array(
             'Users' => array(
-                'fields' => array('id', 'username', 'group_id', 'level')
+                'fields' => array('id', 'username', 'role', 'level')
             ),
             'Translations' => array(
                 'IndirectTranslations' => array(),
