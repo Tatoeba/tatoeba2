@@ -14,6 +14,7 @@ class AutocompletionsControllerTest extends IntegrationTestCase
         'app.acos',
         'app.aros_acos',
         'app.users',
+        'app.users_languages',
     ];
 
     public function setUp() {
@@ -21,7 +22,7 @@ class AutocompletionsControllerTest extends IntegrationTestCase
         Configure::write('Acl.database', 'test');
     }
 
-    public function accessesProvider() {
+    public function ajaxAccessesProvider() {
         return [
             // url; user; is accessible or redirection url
             [ '/eng/autocompletions/request/foobar', null, true ],
@@ -30,9 +31,9 @@ class AutocompletionsControllerTest extends IntegrationTestCase
     }
 
     /**
-     * @dataProvider accessesProvider
+     * @dataProvider ajaxAccessesProvider
      */
-    public function testAutocompletionsControllerAccess($url, $user, $response) {
-        $this->assertAccessUrlAs($url, $user, $response);
+    public function testControllerAjaxAccess($url, $user, $response) {
+        $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 }
