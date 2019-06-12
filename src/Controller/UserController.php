@@ -73,23 +73,6 @@ class UserController extends AppController
     public $components = array('Auth', 'Flash');
 
     /**
-     * ?
-     *
-     * @todo Restrict actions if needed. I don't know much about this stuff.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->allowedActions = array(
-            'profile',
-            'accept_new_terms_of_use'
-        );
-
-        return parent::beforeFilter($event);
-    }
-
-    /**
      * Display profile of given user.
      * If no username is given and no user is logged in,
      *     then redirect to home

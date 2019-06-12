@@ -62,21 +62,6 @@ class UsersController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
-        // no need to allow login
-        $this->Auth->allowedActions = array(
-            'all',
-            'search',
-            'show',
-            'login',
-            'check_login',
-            'logout',
-            'register',
-            'new_password',
-            'check_username',
-            'check_email',
-            'for_language'
-        );
         // prevent CSRF in this controller
         // since we're handling login and registration
         $this->Security->validatePost = true;

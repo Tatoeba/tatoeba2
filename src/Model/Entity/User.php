@@ -21,10 +21,6 @@ class User extends Entity
     const MIN_LEVEL = -1; // trustworthy
     const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
-    protected $_accessible = [
-	'role' => true,
-    ];
-
     public static $defaultSettings = array(
         'is_public' => false,
         'lang' => null,

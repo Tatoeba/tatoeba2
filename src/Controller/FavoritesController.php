@@ -48,20 +48,6 @@ class FavoritesController extends AppController
     public $uses = array('Favorite', 'User');
 
     /**
-     * to know who can do what
-     *
-     * @return void
-     */
-
-    public function beforeFilter(Event $event)
-    {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array('of_user');
-
-        return parent::beforeFilter($event);
-    }
-
-    /**
      * view all favorites sentences of a given user
      *
      * @param string $username User to retrieve favorites

@@ -47,22 +47,6 @@ class SentenceAnnotationsController extends AppController
         'Pagination'
     );
 
-
-    /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->allowedActions = array(
-            'last_modified'
-        );
-
-        return parent::beforeFilter($event);
-    }
-
-
     /**
      * Index page. Doesn't do anything, just displays text to explain how it works.
      *
