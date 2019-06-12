@@ -7,12 +7,23 @@ use Cake\ORM\TableRegistry;
 
 class User extends Entity
 {
+    const ROLE_ADMIN = 'admin';
+    const ROLE_CORPUS_MAINTAINER = 'corpus_maintainer';
+    const ROLE_ADV_CONTRIBUTOR = 'advanced_contributor';
+    const ROLE_CONTRIBUTOR = 'contributor';
+    const ROLE_INACTIVE = 'inactive';
+    const ROLE_SPAMMER = 'spammer';
+
     // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
 
     // trustworthy vs. untrustworthy
     const MIN_LEVEL = -1; // trustworthy
     const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
+
+    protected $_accessible = [
+	'role' => true,
+    ];
 
     public static $defaultSettings = array(
         'is_public' => false,
