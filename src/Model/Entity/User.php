@@ -14,6 +14,18 @@ class User extends Entity
     const ROLE_INACTIVE = 'inactive';
     const ROLE_SPAMMER = 'spammer';
 
+    const ROLE_CONTRIBUTOR_OR_HIGHER = [
+        self::ROLE_ADMIN, self::ROLE_CORPUS_MAINTAINER,
+        self::ROLE_ADV_CONTRIBUTOR, self::ROLE_CONTRIBUTOR
+    ];
+    const ROLE_ADV_CONTRIBUTOR_OR_HIGHER = [
+        self::ROLE_ADMIN, self::ROLE_CORPUS_MAINTAINER,
+        self::ROLE_ADV_CONTRIBUTOR
+    ];
+    const ROLE_CORPUS_MAINTAINER_OR_HIGHER = [
+        self::ROLE_ADMIN, self::ROLE_CORPUS_MAINTAINER
+    ];
+
     // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
 

@@ -66,5 +66,9 @@ $config = [
 
     // actions not available for guests or some users
     'auth_actions' => [
+        'audio' => [
+            'import' => [ User::ROLE_ADMIN ],
+            'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+        ],
     ],
 ];
