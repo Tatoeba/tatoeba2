@@ -54,9 +54,6 @@ class AppController extends Controller
     use \AuthActions\Lib\AuthActionsTrait;
 
     public $components = array(
-        'Acl' => array(
-            'className' => 'Acl.Acl',
-        ),
         'Auth' => array(
 		'authenticate' => array(
 			'Form' => array(

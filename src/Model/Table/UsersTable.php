@@ -64,8 +64,6 @@ class UsersTable extends Table
         $this->hasMany('Wall', [
             'foreignKey' => 'owner'
         ]);
-
-        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
     }
 
     public function validationDefault(Validator $validator)

@@ -41,7 +41,7 @@ use App\Model\CurrentUser;
  */
 class PermissionsComponent extends Component
 {
-    public $components = array('Auth', 'Acl');
+    public $components = array('Auth');
 
     /**
      * Check which options user can access to and returns
