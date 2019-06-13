@@ -3,9 +3,9 @@
   become: true
   gather_facts: yes
   roles:
-  - common
-  - common_debian
   - common_vagrant
+  - common_debian
+  - common
 
   tasks:
   - import_tasks: tatoeba.tasks.yml
