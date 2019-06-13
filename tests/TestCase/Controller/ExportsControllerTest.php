@@ -14,9 +14,6 @@ class ExportsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.Acos',
-        'app.Aros',
-        'app.ArosAcos',
         'app.Exports',
         'app.SentencesLists',
         'app.Users',

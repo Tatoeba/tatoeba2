@@ -12,10 +12,6 @@ class UsersTableTest extends TestCase
 
     public $fixtures = [
         'app.users',
-        'app.groups',
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.sentences',
         'app.contributions',
         'app.sentence_comments',

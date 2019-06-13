@@ -9,12 +9,8 @@ use Cake\View\View;
 
 class TranscriptionsHelperTest extends TestCase {
     public $fixtures = array(
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.contributions',
         'app.favorites_users',
-        'app.groups',
         'app.languages',
         'app.links',
         'app.reindex_flags',

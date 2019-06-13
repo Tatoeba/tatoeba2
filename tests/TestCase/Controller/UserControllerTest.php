@@ -18,7 +18,6 @@ class UserControllerTest extends IntegrationTestCase
         'app.contributions',
         'app.favorites_users',
         'app.users',
-        'app.groups',
         'app.private_messages',
         'app.sentence_comments',
         'app.sentences',

@@ -13,7 +13,6 @@ class UsersControllerTest extends IntegrationTestCase {
     public $fixtures = [
         'app.contributions',
         'app.users',
-        'app.groups',
         'app.users_languages',
         'app.last_contributions',
         'app.private_messages',

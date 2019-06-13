@@ -14,7 +14,6 @@ class LicensingTest extends TestCase
         'app.sentences_sentences_lists',
         'app.users',
         'app.queued_jobs',
-        'app.aros',
     );
 
     public function setUp()

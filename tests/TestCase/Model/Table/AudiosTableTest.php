@@ -13,7 +13,6 @@ class AudiosTableTest extends TestCase {
         'app.audios',
         'app.contributions',
         'app.favorites_users',
-        'app.groups',
         'app.languages',
         'app.links',
         'app.reindex_flags',

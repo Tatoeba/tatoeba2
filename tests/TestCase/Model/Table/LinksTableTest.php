@@ -11,7 +11,6 @@ class LinksTableTest extends TestCase {
 	public $fixtures = array(
 		'app.sentences',
 		'app.users',
-		'app.groups',
 		'app.sentence_comments',
 		'app.contributions',
 		'app.sentences_lists',
