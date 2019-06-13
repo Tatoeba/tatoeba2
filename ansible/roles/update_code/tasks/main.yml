@@ -34,14 +34,25 @@
     working_dir: "{{ code_dir }}"
 
 - name: Allow www-data to write avatars
-  become: false
   file:
     path: "{{ code_dir }}/{{ item }}"
     state: directory
-    mode: 0777
+    mode: 0775
+    group: www-data
   with_items:
   - webroot/img/profiles_128
   - webroot/img/profiles_36
+
+- name: Allow www-data to write cache and logs
+  file:
+    path: "{{ code_dir }}/{{ item }}"
+    state: directory
+    mode: 0775
+    group: www-data
+    recurse: yes
+  with_items:
+  - logs
+  - tmp
 
 - name: Install gettext
   apt:
