@@ -93,6 +93,32 @@ class CurrentUser
             $path = sprintf('User.%s', $path);
         }
 
+        // Get role from group_id.
+        // This code allows smooth transition from User.group_id
+        // to User.role for users who are logged-in while we
+        // update the code on the server.
+        // This code can be safely removed once it has been running
+        // on the server for longer than the session expiration time.
+        if ($path == 'User.role') {
+            $role = Hash::get(self::$_auth, $path);
+            if (is_null($role)) {
+                $group_id = Hash::get(self::$_auth, 'User.group_id');
+                if (!is_null($group_id)) {
+                    $map = [
+                        1 => User::ROLE_ADMIN,
+                        2 => User::ROLE_CORPUS_MAINTAINER,
+                        3 => User::ROLE_ADV_CONTRIBUTOR,
+                        4 => User::ROLE_CONTRIBUTOR,
+                        5 => User::ROLE_INACTIVE,
+                        6 => User::ROLE_SPAMMER
+                    ];
+                    if (isset($map[$group_id])) {
+                        self::$_auth['User']['role'] = $map[$group_id];
+                    }
+                }
+            }
+        }
+
         return Hash::get(self::$_auth, $path);
     }
 
