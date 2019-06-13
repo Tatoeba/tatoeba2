@@ -233,15 +233,16 @@ class UsersControllerTest extends IntegrationTestCase {
                 'username' => "foobar_$i",
                 'password' => "very_bad_password_$i",
                 'email' => "foobar_$i@example.com",
+                'role' => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
             ];
         }
         $users = TableRegistry::get('Users');
         $entities = $users->newEntities($newUsers);
         $result = $users->saveMany($entities);
 
-        $this->get('/eng/users/all?page=9999999&sort=User.group_id&direction=asc');
+        $this->get('/eng/users/all?page=9999999&sort=username&direction=asc');
 
-        $this->assertRedirect("/eng/users/all?page=$lastPage&sort=User.group_id&direction=asc");
+        $this->assertRedirect("/eng/users/all?page=$lastPage&sort=username&direction=asc");
     }
 
     public function testDelete() {

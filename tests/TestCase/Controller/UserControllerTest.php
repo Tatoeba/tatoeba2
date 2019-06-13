@@ -166,7 +166,7 @@ class UserControllerTest extends IntegrationTestCase
 
     public function testSaveBasic_ignoresUnallowedFields() {
         $username = 'contributor';
-        $newGroup = 1;
+        $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
         $this->post('/eng/user/save_basic', [
@@ -179,12 +179,12 @@ class UserControllerTest extends IntegrationTestCase
             ],
             'homepage' => '',
             'description' => '',
-            'group_id' => $newGroup,
+            'role' => $newRole,
         ]);
 
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
-        $this->assertNotEquals($newGroup, $user->group_id);
+        $this->assertNotEquals($newRole, $user->role);
     }
 
     public function testSaveSettings() {
@@ -202,7 +202,7 @@ class UserControllerTest extends IntegrationTestCase
 
     public function testSaveSettings_ignoresUnallowedFields() {
         $username = 'contributor';
-        $newGroup = 1;
+        $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
         $this->post('/eng/user/save_settings', [
@@ -211,12 +211,12 @@ class UserControllerTest extends IntegrationTestCase
                 'is_public' => '1',
                 'lang' => 'fra',
             ],
-            'group_id' => $newGroup,
+            'role' => $newRole,
         ]);
 
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
-        $this->assertNotEquals($newGroup, $user->group_id);
+        $this->assertNotEquals($newRole, $user->role);
     }
 
     private function prepareImageUpload() {

@@ -10,6 +10,7 @@ class CollectionsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
+        'app.private_messages',
         'app.sentences',
         'app.users',
         'app.users_languages',

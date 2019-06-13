@@ -126,6 +126,7 @@ class AppController extends Controller
             'authError' => false,
             'authorize' => ['Controller'],
             'loginAction' => [ 'controller' => 'users', 'action' => 'login' ],
+            'logoutRedirect' => [ 'controller' => 'users', 'action' => 'login' ],
             // namespace declaration of AuthUtilsComponent
             'AuthActions.AuthUtils',
         ]);
