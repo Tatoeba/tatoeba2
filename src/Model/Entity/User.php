@@ -14,6 +14,15 @@ class User extends Entity
     const ROLE_INACTIVE = 'inactive';
     const ROLE_SPAMMER = 'spammer';
 
+    const ALL_ROLES = [
+        self::ROLE_ADMIN,
+        self::ROLE_CORPUS_MAINTAINER,
+        self::ROLE_ADV_CONTRIBUTOR,
+        self::ROLE_CONTRIBUTOR,
+        self::ROLE_INACTIVE,
+        self::ROLE_SPAMMER,
+    ];
+
     const ROLE_CONTRIBUTOR_OR_HIGHER = [
         self::ROLE_ADMIN, self::ROLE_CORPUS_MAINTAINER,
         self::ROLE_ADV_CONTRIBUTOR, self::ROLE_CONTRIBUTOR

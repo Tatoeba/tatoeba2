@@ -369,7 +369,7 @@ class SentencesController extends AppController
     {
         $userId = $this->Auth->user('id');
 
-        $this->Sentences->setOwner($id, $userId, CurrentUser::get('group_id'));
+        $this->Sentences->setOwner($id, $userId, CurrentUser::get('role'));
 
         $this->renderAdopt($id);
     }

@@ -27,6 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\User;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Routing\Router;
@@ -99,9 +100,9 @@ class UsersController extends AppController
         if (!empty($this->request->getData())) {
 
             $wasBlocked = $user->level == -1;
-            $wasSuspended = $user->group_id == 6;
+            $wasSuspended = $user->role == User::ROLE_SPAMMER;
             $isBlocked = !$wasBlocked && $this->request->getData('level') == -1;
-            $isSuspended = !$wasSuspended && $this->request->getData('group_id') == 6;
+            $isSuspended = !$wasSuspended && $this->request->getData('role') == User::ROLE_SPAMMER;
 
             $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -119,7 +120,7 @@ class UsersController extends AppController
                 );
             }
         }
-        $groups = $this->Users->Groups->find('list');
+        $groups = User::ALL_ROLES;
         $this->set(compact('groups', 'user'));
     }
 
@@ -176,8 +177,7 @@ class UsersController extends AppController
         );
 
         if ($user) {
-            // group_id 5 => users is inactive
-            if ($user['group_id'] == 5) {
+            if ($user['role'] == User::ROLE_INACTIVE) {
                 $this->flash(
                     __(
                         'This account has been marked inactive. '.
@@ -187,8 +187,7 @@ class UsersController extends AppController
                     $failedUrl
                 );
             }
-            // group_id 6 => users is spammer
-            else if ($user['group_id'] == 6) {
+            else if ($user['role'] == User::ROLE_SPAMMER) {
                 $this->flash(
                     __(
                         'This account has been marked as a spammer. '.
@@ -294,7 +293,7 @@ class UsersController extends AppController
                 ['fields' => ['username', 'password', 'email']]
             );
             $newUser->since = date("Y-m-d H:i:s");
-            $newUser->group_id = 4;
+            $newUser->role = User::ROLE_CONTRIBUTOR;
 
             if ($quizOk
                 && $this->request->getData('acceptation_terms_of_use')
@@ -483,11 +482,11 @@ class UsersController extends AppController
 
         $this->paginate = array(
             'limit' => 20,
-            'order' => array('group_id', 'id'),
-            'fields' => array('id', 'username', 'since', 'image', 'group_id'),
+            'order' => array('role', 'id'),
+            'fields' => array('id', 'username', 'since', 'image', 'role'),
         );
 
-        $query = $this->Users->find()->where(['Users.group_id <' => 5]);
+        $query = $this->Users->find()->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
         $users = $this->paginate($query);
         $this->set('users', $users);
     }

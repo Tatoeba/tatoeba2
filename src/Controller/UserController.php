@@ -115,7 +115,6 @@ class UserController extends AppController
             );
         }
 
-        $groupId = $user->group_id;
         $userId = $user->id;
         $userStats = $this->_stats($userId);
         $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
@@ -126,7 +125,6 @@ class UserController extends AppController
 
         $this->set('userStats', $userStats);
         $this->set('user', $user);
-        $this->set('groupId', $groupId);
         $this->set('userLanguages', $userLanguages);
 
         $this->set('isPublic', $isPublic);

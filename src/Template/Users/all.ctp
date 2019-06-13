@@ -91,7 +91,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             echo ' | ';
             echo $this->Paginator->sort('since', __('Member since'));
             echo ' | ';
-            echo $this->Paginator->sort('group_id', __('Member status'));
+            echo $this->Paginator->sort('role', __('Member status'));
             ?>
         </div>
 
@@ -101,8 +101,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         <div class="users">
         <?php
         foreach ($users as $i=>$user):
-        $groupId = $user->group_id;
-        $status = "status".$groupId;
+        $role = $user->role;
+        $status = "status_$role";
         $username = $user->username;
         $userImage = null;
         if (isset($user->image)) {
@@ -138,7 +138,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
 
             <div class="statusName">
             <?php
-            echo $this->Members->groupName($groupId);
+            echo $this->Members->groupName($role);
             ?>
             </div>
         </div>

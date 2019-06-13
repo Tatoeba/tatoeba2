@@ -18,6 +18,7 @@
  */
 namespace App\Model\Table;
 
+use App\Model\Entity\User;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
 use Cake\Database\Schema\TableSchema;
@@ -102,7 +103,7 @@ class UsersLanguagesTable extends Table
         $result = array(
             'conditions' => array(
                 'language_code' => $lang,
-                'Users.group_id NOT IN' => array(5,6)
+                'Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             ),
             'fields' => array(
                 'of_user_id',
@@ -132,7 +133,7 @@ class UsersLanguagesTable extends Table
                 'language_code',
                 'total' => 'COUNT(*)'
             ])
-            ->where(['Users.group_id NOT IN' => [5, 6]])
+            ->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER])
             ->order(['total' => 'DESC'])
             ->contain(['Users'])
             ->group(['language_code'])

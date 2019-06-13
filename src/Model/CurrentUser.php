@@ -112,7 +112,7 @@ class CurrentUser
      */
     public static function isAdmin()
     {
-        return self::get('group_id') == 1;
+        return self::get('role') == User::ROLE_ADMIN;
     }
 
 
@@ -123,7 +123,7 @@ class CurrentUser
      */
     public static function isModerator()
     {
-        return self::get('group_id') && self::get('group_id') < 3;
+        return in_array(self::get('role'), User::ROLE_CORPUS_MAINTAINER_OR_HIGHER);
     }
 
 
@@ -134,7 +134,7 @@ class CurrentUser
      */
     public static function isTrusted()
     {
-        return self::get('group_id') && self::get('group_id') < 4;
+        return in_array(self::get('role'), User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER);
     }
 
 
@@ -146,7 +146,7 @@ class CurrentUser
      */
     public static function isMember()
     {
-        return self::get('group_id') && self::get('group_id') < 5;
+        return in_array(self::get('role'), User::ROLE_CONTRIBUTOR_OR_HIGHER);
     }
 
 
