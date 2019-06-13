@@ -10,9 +10,6 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = array(
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.private_messages',
         'app.transcriptions',
         'app.users',

@@ -11,9 +11,6 @@ class SentencesListsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.acos',
-        'app.aros',
-        'app.aros_acos',
         'app.audios',
         'app.contributions',
         'app.favorites_users',

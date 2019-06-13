@@ -10,9 +10,6 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.private_messages',
         'app.sentences',
         'app.users',

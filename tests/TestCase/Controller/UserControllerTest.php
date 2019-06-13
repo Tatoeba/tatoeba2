@@ -14,9 +14,6 @@ class UserControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.audios',
         'app.contributions',
         'app.favorites_users',

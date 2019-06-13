@@ -9,9 +9,6 @@ class LicensingControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.users',
         'app.users_languages',
         'app.queued_jobs',

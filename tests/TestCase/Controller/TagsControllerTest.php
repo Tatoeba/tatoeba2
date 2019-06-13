@@ -9,9 +9,6 @@ class TagsControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.audios',
         'app.favorites_users',
         'app.private_messages',

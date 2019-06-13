@@ -10,9 +10,6 @@ class CollectionsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.sentences',
         'app.users',
         'app.users_languages',

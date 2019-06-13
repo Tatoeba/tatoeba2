@@ -10,9 +10,6 @@ class ActivitiesControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = array(
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.audios',
         'app.favorites_users',
         'app.links',

@@ -10,9 +10,6 @@ class AudioControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.audios',
         'app.languages',
         'app.private_messages',

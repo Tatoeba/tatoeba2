@@ -10,9 +10,6 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.private_messages',
         'app.sentence_annotations',
         'app.sentences',

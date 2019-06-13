@@ -11,9 +11,6 @@ class ContributionsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.contributions',
         'app.contributions_stats',
         'app.last_contributions',
