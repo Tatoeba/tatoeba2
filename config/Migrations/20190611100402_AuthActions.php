@@ -52,7 +52,7 @@ class AuthActions extends AbstractMigration
             ->set('role', $rolesCase)
             ->execute();
 
-        $table->deleteColumn('group_id')->save();
+        $table->removeColumn('group_id')->save();
 
         $this->table('acos')->drop()->save();
         $this->table('aros')->drop()->save();
