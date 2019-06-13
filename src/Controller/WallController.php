@@ -85,14 +85,12 @@ class WallController extends AppController
         $tenLastMessages = $this->Wall->getLastMessages(10);
 
         $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
 
         $messageLftRght = $this->paginate();
         $messages = $this->Wall->getMessagesThreaded($messageLftRght);
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,
-            $userId,
-            $groupId
+            $userId
         );
 
         $isAuthenticated = !empty($userId);
@@ -180,8 +178,7 @@ class WallController extends AppController
         $messagePermissions = $this->Permissions->getWallMessageOptions(
             null,
             $message->owner,
-            CurrentUser::get('id'),
-            CurrentUser::get('group_id')
+            CurrentUser::get('id')
         );
         if ($messagePermissions['canEdit'] == false) {
             return $this->_cannotEdit();
@@ -252,7 +249,6 @@ class WallController extends AppController
     public function show_message($messageId)
     {
         $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
 
         $thread = $this->Wall->getWholeThreadContaining($messageId);
 
@@ -262,8 +258,7 @@ class WallController extends AppController
         */
         $thread = $this->Permissions->getWallMessagesOptions(
             $thread,
-            $userId,
-            $groupId
+            $userId
         );
 
         if (!empty($thread)) {
