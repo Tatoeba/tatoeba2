@@ -251,4 +251,11 @@ class UsersControllerTest extends IntegrationTestCase {
         $user = $users->find()->where(['id' => 6])->first();
         $this->assertNull($user);
     }
+
+    public function testDelete() {
+        $this->assertAccessUrlAs('/eng/users/delete/6', 'admin', '/eng/users/index');
+        $users = TableRegistry::get('Users');
+        $user = $users->find()->where(['id' => 6])->first();
+        $this->assertNull($user);
+    }
 }
