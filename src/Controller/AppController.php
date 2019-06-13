@@ -103,6 +103,29 @@ class AppController extends Controller
         $this->loadComponent('Csrf');
     }
 
+    // This code allows smooth transition from User.group_id
+    // to User.role for users who are logged-in while we
+    // update the code on the server.
+    // This code can be safely removed once it has been running
+    // on the server for longer than the session expiration time.
+    private function roleAuthCompat() {
+        $user = $this->Auth->user();
+        if (isset($user['group_id']) && !isset($user['role'])) {
+            $map = [
+                1 => \App\Model\Entity\User::ROLE_ADMIN,
+                2 => \App\Model\Entity\User::ROLE_CORPUS_MAINTAINER,
+                3 => \App\Model\Entity\User::ROLE_ADV_CONTRIBUTOR,
+                4 => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
+                5 => \App\Model\Entity\User::ROLE_INACTIVE,
+                6 => \App\Model\Entity\User::ROLE_SPAMMER
+            ];
+            if (isset($map[$user['group_id']])) {
+                $user['role'] = $map[$user['group_id']];
+                $this->Auth->setUser($user);
+            }
+        }
+    }
+
     /**
      *
      *
@@ -133,6 +156,7 @@ class AppController extends Controller
         $this->initAuthActions();
         $this->RememberMe->check();
 
+        $this->roleAuthCompat();
         // So that we can access the current users info from models.
         // Important: needs to be done after RememberMe->check().
         CurrentUser::store($this->Auth->user());
