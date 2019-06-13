@@ -62,6 +62,11 @@ $config = [
             'for_language',
         ],
         'vocabulary' => [ 'of' ],
+        'wall' => [
+            'index',
+            'show_message',
+            'messages_of_user',
+        ],
     ],
 
     // actions not available for guests or some users
@@ -102,5 +107,13 @@ $config = [
         'transcriptions'       => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'user'                 => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'users'                => [ '*' => [ User::ROLE_ADMIN ] ],
+        'wall' => [
+            'save'           => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'save_inside'    => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'edit'           => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'delete_message' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'hide_message'   => [ User::ROLE_ADMIN ],
+            'unhide_message' => [ User::ROLE_ADMIN ],
+        ],
     ],
 ];

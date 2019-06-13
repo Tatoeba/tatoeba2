@@ -69,12 +69,6 @@ class WallController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allowedActions = array(
-            'index',
-            'show_message',
-            'messages_of_user'
-        );
-
         $eventManager = $this->Wall->getEventManager();
         $eventManager->attach(new NotificationListener());
 
