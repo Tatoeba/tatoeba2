@@ -51,11 +51,11 @@ class ImportsController extends AppController
      */
     public function import_single_sentences()
     {
-        $sentenceLang = $this->request->data['Import']['sentences_lang'];
-        $userId = $this->request->data['Import']['user_id'];
-        $sentencesListFile = $this->request->data['Import']['file'];
+        $sentenceLang = $this->request->getData('sentences_lang');
+        $userId = $this->request->getData('user_id');
+        $sentencesListFile = $this->request->getData('file');
         if ( !$this->_common_upload_check($sentencesListFile)) {
-            $this->redirect(
+            return $this->redirect(
                 array(
                     'controller' => 'sentences',
                     'action' => 'import'
@@ -71,7 +71,7 @@ class ImportsController extends AppController
             $this->Sentence->saveNewSentence($sentence, $sentenceLang, $userId);
         }
 
-        $this->redirect(
+        return $this->redirect(
             array(
                 'controller' => 'sentences',
                 'action' => 'import'
@@ -88,13 +88,13 @@ class ImportsController extends AppController
      */
     public function import_sentences_with_translation()
     {
-        $sentenceLang = $this->request->data['Import']['sentences_lang'];
-        $translationLang = $this->request->data['Import']['translations_lang'];
-        $userId = $this->request->data['Import']['user_id'];
-        $sentencesListFile = $this->request->data['Import']['file'];
+        $sentenceLang = $this->request->getData('sentences_lang');
+        $translationLang = $this->request->getData('translations_lang');
+        $userId = $this->request->getData('user_id');
+        $sentencesListFile = $this->request->getData('file');
 
         if ( !$this->_common_upload_check($sentencesListFile)) {
-            $this->redirect(
+            return $this->redirect(
                 array(
                     'controller' => 'sentences',
                     'action' => 'import'
@@ -115,7 +115,7 @@ class ImportsController extends AppController
             );
         }
 
-        $this->redirect(
+        return $this->redirect(
             array(
                 'controller' => 'sentences',
                 'action' => 'import'

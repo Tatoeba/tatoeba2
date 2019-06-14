@@ -60,7 +60,6 @@ class LinksController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
         if($this->request->is('ajax')) {
             $this->Security->config('unlockedActions', [
                 'add',
