@@ -19,7 +19,6 @@ class NotificationListenerTest extends TestCase {
     public function setUp() {
         parent::setUp();
 
-        Configure::write('Acl.database', 'test');
         Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Mailer.enabled',   true);
         Configure::write('Mailer.username', 'tatoeba@example.com');

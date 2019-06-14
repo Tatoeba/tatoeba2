@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
@@ -30,7 +29,6 @@ class UserControllerTest extends IntegrationTestCase
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
 

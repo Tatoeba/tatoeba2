@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class CollectionsControllerTest extends IntegrationTestCase
@@ -16,11 +15,6 @@ class CollectionsControllerTest extends IntegrationTestCase
         'app.users_languages',
         'app.users_sentences',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

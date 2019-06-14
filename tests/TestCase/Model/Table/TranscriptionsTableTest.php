@@ -5,7 +5,6 @@ use App\Model\Table\TranscriptionsTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use App\Test\Fixture\TranscriptionsFixture;
-use Cake\Core\Configure;
 use Cake\Utility\Hash;
 
 class TranscriptionsTableTest extends TestCase {
@@ -17,7 +16,6 @@ class TranscriptionsTableTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->Transcription = TableRegistry::getTableLocator()->get('Transcriptions');
         $this->Fixtures = new TranscriptionsFixture();
         $this->AutoTranscr = $this->_installAutotranscriptionMock();

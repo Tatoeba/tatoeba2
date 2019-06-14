@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\LinksTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Utility\Hash;
 
 class LinksTableTest extends TestCase {
@@ -29,7 +28,6 @@ class LinksTableTest extends TestCase {
 
 	function setUp() {
 		parent::setUp();
-		Configure::write('Acl.database', 'test');
 		$this->Link = TableRegistry::getTableLocator()->get('Links');
 	}
 

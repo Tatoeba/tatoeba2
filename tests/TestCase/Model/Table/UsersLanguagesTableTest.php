@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersLanguagesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use Cake\Core\Configure;
 
 class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
@@ -15,7 +14,6 @@ class UsersLanguagesTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
     }
 

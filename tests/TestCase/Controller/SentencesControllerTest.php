@@ -31,7 +31,6 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         Configure::write('Search.enabled', false);
     }
 

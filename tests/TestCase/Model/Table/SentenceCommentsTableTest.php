@@ -5,7 +5,6 @@ use App\Model\Table\SentenceCommentsTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
-use Cake\Core\Configure;
 use App\Model\CurrentUser;
 
 class SentenceCommentTest extends TestCase {
@@ -19,7 +18,6 @@ class SentenceCommentTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->SentenceComment = TableRegistry::getTableLocator()->get('SentenceComments');
     }
 

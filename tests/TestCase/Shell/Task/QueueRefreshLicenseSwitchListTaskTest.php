@@ -8,7 +8,6 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Core\Plugin;
 use Cake\Utility\Hash;
-use Cake\Core\Configure;
 
 class QueueRefreshLicenseSwitchListTaskTest extends TestCase
 {
@@ -22,7 +21,6 @@ class QueueRefreshLicenseSwitchListTaskTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         Plugin::load('Queue');
 
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();

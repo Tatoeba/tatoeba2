@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model;
 use App\Model\Wall;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 
@@ -19,7 +18,6 @@ class WallTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
     }
 

@@ -35,7 +35,6 @@ class SentencesTableTest extends TestCase {
 
 	function setUp() {
 		parent::setUp();
-		Configure::write('Acl.database', 'test');
 		Configure::write('AutoTranscriptions.enabled', true);
 		$this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
 		$autotranscription = $this->_installAutotranscriptionMock();

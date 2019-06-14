@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class PrivateMessagesControllerTest extends IntegrationTestCase
@@ -15,11 +14,6 @@ class PrivateMessagesControllerTest extends IntegrationTestCase
         'app.users',
         'app.users_languages',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

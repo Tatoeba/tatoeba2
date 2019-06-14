@@ -1,7 +1,6 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
@@ -24,7 +23,6 @@ class UsersControllerTest extends IntegrationTestCase {
     public function setUp() {
         parent::setUp();
 
-        Configure::write('Acl.database', 'test');
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
         $this->enableCsrfToken();
