@@ -10,9 +10,6 @@ class ImportsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.acos',
-        'app.aros',
-        'app.aros_acos',
         'app.users',
         'app.users_languages',
     ];

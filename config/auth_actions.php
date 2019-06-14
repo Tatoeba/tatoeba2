@@ -78,6 +78,8 @@ $config = [
         'collections'          => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'exports'              => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'favorites'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
+        'links'                => [ '*' => User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER ],
+        'imports'              => [ '*' => [ User::ROLE_ADMIN ] ],
         'licensing'            => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'private_messages'     => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'sentence_annotations' => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
@@ -107,6 +109,8 @@ $config = [
         'transcriptions'       => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'user'                 => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'users'                => [ '*' => [ User::ROLE_ADMIN ] ],
+        'users_languages'      => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
+        'vocabulary'           => [ '*' => User::ROLE_CONTRIBUTOR_OR_HIGHER ],
         'wall' => [
             'save'           => User::ROLE_CONTRIBUTOR_OR_HIGHER,
             'save_inside'    => User::ROLE_CONTRIBUTOR_OR_HIGHER,

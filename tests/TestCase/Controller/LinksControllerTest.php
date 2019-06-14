@@ -10,9 +10,6 @@ class LinksControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.acos',
-        'app.aros',
-        'app.aros_acos',
         'app.contributions',
         'app.links',
         'app.reindex_flags',
