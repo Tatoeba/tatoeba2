@@ -207,7 +207,11 @@ class ActivitiesController extends AppController
             'order' => ['Sentences.created' => 'DESC'],
         ];
 
-        $results = $this->paginate('Sentences');
+        try {
+            $results = $this->paginate('Sentences');
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
 
         $this->set('results', $results);
         $this->set('lang', $lang);

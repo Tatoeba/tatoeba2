@@ -890,21 +890,7 @@ class SentencesController extends AppController
         }
 
         $this->set("userExists", true);
-        $this->_sentences_of_user_common($userId, $lang);
-        $this->set("lang", $lang);
 
-    }
-
-    /**
-     * Private function to factorize my_sentences and of_user
-     *
-     * @param int    $userId The id of the user whose we want the sentences.
-     * @param string $lang   Filter only the sentences in this language.
-     *
-     * @return void
-     */
-    private function _sentences_of_user_common($userId, $lang)
-    {
         $this->paginate = array(
             'Sentences' => array(
                 'fields' => array(
@@ -934,9 +920,14 @@ class SentencesController extends AppController
             $conditions = $conditions->where(['lang' => $lang]);
         }
 
-        $sentences = $this->paginate($conditions);
+        try {
+            $sentences = $this->paginate($conditions);
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
 
         $this->set('user_sentences', $sentences);
+        $this->set("lang", $lang);
     }
 
 

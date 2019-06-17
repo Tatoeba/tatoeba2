@@ -505,7 +505,11 @@ class UsersController extends AppController
         );
 
         $query = $this->Users->find()->where(['Users.group_id <' => 5]);
-        $users = $this->paginate($query);
+        try {
+            $users = $this->paginate($query);
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
         $this->set('users', $users);
     }
 
