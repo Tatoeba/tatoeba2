@@ -27,6 +27,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Controller\Component\AuthComponent;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Routing\Router;
@@ -184,10 +185,10 @@ class UsersController extends AppController
     {
         $user = $this->Auth->identify();
 
-        $redirectUrl = $this->request->getQuery('redirectTo', $this->Auth->redirectUrl());
+        $redirectUrl = $this->Auth->redirectUrl();
         $failedUrl = array(
             'action' => 'login',
-            '?' => array('redirectTo' => $redirectUrl)
+            '?' => array(AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl)
         );
 
         if ($user) {
