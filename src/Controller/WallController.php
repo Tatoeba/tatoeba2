@@ -93,7 +93,11 @@ class WallController extends AppController
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
-        $messageLftRght = $this->paginate();
+        try {
+            $messageLftRght = $this->paginate();
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
         $messages = $this->Wall->getMessagesThreaded($messageLftRght);
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,

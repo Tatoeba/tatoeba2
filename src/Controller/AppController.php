@@ -31,7 +31,6 @@ use App\Model\CurrentUser;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\Http\Exception\NotFoundException;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Cake\I18n\I18n;
@@ -281,7 +280,7 @@ class AppController extends Controller
         return parent::redirect($url, $status, $exit);
     }
 
-    private function redirectPaginationToLastPage($object, $settings)
+    protected function redirectPaginationToLastPage()
     {
         $paging = $this->request->getParam('paging');
         $lastPage = reset($paging)['page'];
@@ -295,17 +294,7 @@ class AppController extends Controller
             ],
             $this->request->params['pass']
         ));
-        $this->redirect($url);
-    }
-
-    public function paginate($object = NULL, array $settings = array())
-    {
-        try {
-            return parent::paginate($object, $settings);
-        } catch (NotFoundException $e) {
-            $this->redirectPaginationToLastPage($object, $settings);
-            return array();
-        }
+        return $this->redirect($url);
     }
 
     /**
