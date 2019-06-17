@@ -61,7 +61,7 @@ class UsersControllerTest extends IntegrationTestCase {
             [ '/eng/users/delete/999999999999999', 'admin', '/eng/users/index' ],
             [ '/eng/users/login', null, true ],
             [ '/eng/users/login', 'contributor', '/' ],
-            [ '/eng/users/check_login', null, '/eng/users/login?redirect=%2F' ],
+            [ '/eng/users/check_login', null, '/eng/users/login' ],
             [ '/eng/users/logout', null, '/eng/users/login' ], // TODO we might want not to redirect to login page when trying to access the logout page as a guest
             [ '/eng/users/logout', 'contributor', '/eng/users/login' ],
             [ '/eng/users/register', null, true ],
@@ -117,7 +117,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirect=%2F');
+        $this->assertRedirect('/eng/users/login');
     }
 
     public function testCheckLogin_incorrectLoginAndPassword() {
@@ -127,7 +127,17 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirect=%2F');
+        $this->assertRedirect('/eng/users/login');
+    }
+
+    public function testCheckLogin_incorrectLoginAndPassword_withRedirect() {
+        $this->post('/eng/users/check_login?redirect=%2Feng%2Fsentences%2Fadd', [
+            'username' => 'this_user_does_not_exist',
+            'password' => 'this_is_incorrect',
+            'rememberMe' => 0,
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertRedirect('/eng/users/login?redirect=%2Feng%2Fsentences%2Fadd');
     }
 
     public function testCheckLogin_correctLoginAndPassowrdV1() {
@@ -156,7 +166,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirect=%2F');
+        $this->assertRedirect('/eng/users/login');
     }
 
     public function testCheckLogin_userWithOldStylePasswordCannotLogin() {
@@ -166,7 +176,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirect=%2F');
+        $this->assertRedirect('/eng/users/login');
     }
 
     public function testCheckLogin_spammerCannotLogin() {

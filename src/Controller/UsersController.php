@@ -185,11 +185,12 @@ class UsersController extends AppController
     {
         $user = $this->Auth->identify();
 
+        $redirectParam = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
         $redirectUrl = $this->Auth->redirectUrl();
-        $failedUrl = array(
-            'action' => 'login',
-            '?' => array(AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl)
-        );
+        $failedUrl = ['action' => 'login'];
+        if (!is_null($redirectParam)) {
+            $failedUrl['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl];
+        };
 
         if ($user) {
             // group_id 5 => users is inactive
