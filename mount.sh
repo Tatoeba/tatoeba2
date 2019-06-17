@@ -38,7 +38,16 @@ elif [ "$#" -eq 3 ] ; then
 	else
 		HOST_DIR="$2"
 		GUEST_DIR="$3"
-		sshfs -o ssh_command="ssh -p $PORT -i $HOME/.vagrant.d/insecure_private_key" "$USER"@"$HOST":"$GUEST_DIR" "$HOST_DIR"
+		SCRIPT=$(readlink -f "$0")
+		SCRIPTPATH=$(dirname "$SCRIPT")
+		sshfs "$USER"@"$HOST":"$GUEST_DIR" "$HOST_DIR" \
+			-p "$PORT" \
+			-o LogLevel=FATAL \
+			-o Compression=yes \
+			-o IdentitiesOnly=yes \
+			-o StrictHostKeyChecking=no \
+			-o UserKnownHostsFile=/dev/null \
+			-o IdentityFile="$SCRIPTPATH/.vagrant/machines/default/virtualbox/private_key"
 		echo "Successfully mounted $HOST:$PORT's $GUEST_DIR at $HOST_DIR"
 		exit 0
 	fi
