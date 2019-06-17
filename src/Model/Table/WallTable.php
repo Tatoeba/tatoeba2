@@ -114,7 +114,7 @@ class WallTable extends Table
     /**
      * retrieve all the thread of the given root message
      *
-     * @param array $rootMessages Array of array with 'lft' and 'rght' field
+     * @param ResultSet $rootMessages Set of messages with 'lft' and 'rght' field
      *                            take a look at how to store hierarchical data
      *                            with mysql for more informations
      *
@@ -123,7 +123,7 @@ class WallTable extends Table
      */
     public function getMessagesThreaded($rootMessages)
     {
-        if (empty($rootMessages)) {
+        if ($rootMessages->isEmpty()) {
             return [];
         }
 
