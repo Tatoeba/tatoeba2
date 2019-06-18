@@ -57,3 +57,25 @@ Now you can simply use the following command to run a particular step:
 ```bash
 imouto-provision --tag external_tools
 ```
+
+## Publish the VM
+
+- Export the VM into a file
+
+```bash
+vagrant package --output tatoeba.box
+```
+
+- Upload the VM
+
+  - Log into https://app.vagrantup.com/
+
+  - Add a new version
+
+  - Add a new provider
+
+    - Type `virtualbox` for the Provider field
+
+    - Upload the exported VM
+
+  - Release the new version
