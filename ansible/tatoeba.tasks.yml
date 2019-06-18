@@ -1,60 +1,60 @@
 ---
 - name: Install and setup nginx
   tags: nginx, lemp
-  include_role:
+  import_role:
     name: setup_nginx
 
 - name: Install and setup PHP
   tags: php, lemp
-  include_role:
+  import_role:
     name: setup_php
 
 - name: Install and setup MySQL
   tags: mysql, lemp
-  include_role:
+  import_role:
     name: setup_mysql
 
 - name: Install and setup Tatoeba
   tags: tatoeba
-  include_role:
+  import_role:
     name: update_code
 
 - name: Install and setup Tatoeba's database
   tags: tatoeba, database
-  include_role:
+  import_role:
     name: setup_database
   vars:
     import_csv: 'no'
 
 - name: Install search engine
   tags: manticore
-  include_role:
+  import_role:
     name: install_manticore
 
 - name: Configure search engine
   tags: manticore
-  include_role:
+  import_role:
     name: configure_manticore
   vars:
     create_indexes: true
 
 - name: Install and setup Nihongoparserd
   tags: nihongoparserd, external_tools
-  include_role:
+  import_role:
     name: setup_nihongoparserd
   vars:
     force_install: no
 
 - name: Install and setup Sinoparserd
   tags: sinoparserd, external_tools
-  include_role:
+  import_role:
     name: setup_sinoparserd
   vars:
     force_install: no
 
 - name: Install and setup Suggestd
   tags: suggestd, external_tools
-  include_role:
+  import_role:
     name: setup_suggestd
   vars:
     force_install: no
