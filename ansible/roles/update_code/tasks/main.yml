@@ -26,10 +26,15 @@
   with_items:
   - app_local.php
 
+- set_fact:
+    composer_no_dev: "no"
+  when: deploy_for == 'dev'
+
 - name: Fetch composer dependencies
   become: false
   composer:
     command: install
+    no_dev: "{{ composer_no_dev | default('yes') }}"
     global_command: no
     working_dir: "{{ code_dir }}"
 
