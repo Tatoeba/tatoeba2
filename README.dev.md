@@ -28,7 +28,7 @@ cd imouto
 - Run this command to install everything. Please be patient, it takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible.
 
 ```bash
-vagrant up
+BUILD=1 vagrant up
 ```
 
 ## Post-provisioning tasks
@@ -57,3 +57,25 @@ Now you can simply use the following command to run a particular step:
 ```bash
 imouto-provision --tag external_tools
 ```
+
+## Publish the VM
+
+- Export the VM into a file
+
+```bash
+vagrant package --output tatoeba.box
+```
+
+- Upload the VM
+
+  - Log into https://app.vagrantup.com/
+
+  - Add a new version
+
+  - Add a new provider
+
+    - Type `virtualbox` for the Provider field
+
+    - Upload the exported VM
+
+  - Release the new version
