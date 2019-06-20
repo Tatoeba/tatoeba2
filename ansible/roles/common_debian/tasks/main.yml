@@ -14,3 +14,8 @@
   apt:
     update_cache: yes
   when: result is changed
+
+- name: Add extra PATH directories
+  copy:
+    dest: /etc/profile.d/custom-path.sh
+    content: 'PATH=$PATH:{{code_dir}}/bin:{{code_dir}}/vendor/bin'
