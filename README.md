@@ -34,8 +34,6 @@ vagrant up
 
 ## Hacking Tatoeba
 
-Run `vagrant ssh` to ssh to the machine and `cd Tatoeba` to enter the code. From there, you can execute development tools like `phpunit` or `cake`.
-
 ### Accessing the source code
 
 The source code is inside the VM. While can edit it using `vagrant ssh` and console editors, you might want to mount the code directory from your machine so that you can edit it with your favorite editor or IDE. There are several ways to do this.
@@ -57,4 +55,57 @@ If for some reason NFS doesn’t work for you, you can use the script `mount.sh`
 
 ```bash
 ./mount.sh -M ./Tatoeba /home/vagrant/Tatoeba/
+```
+
+### Editing the source code
+
+- We recommend that you create your own fork of Tatoeba on Github. Because of this, you will have to change the remote URL to point it to your fork:
+
+```bash
+cd Tatoeba/
+# Change <username> with your Github username
+git remote set-url origin git@github.com:<username>/tatoeba2.git
+```
+
+## Develpment tools
+
+Run `vagrant ssh` to ssh to the machine and `cd Tatoeba` to enter the code. From there, you can execute development tools such as:
+
+### Running tests
+
+```bash
+phpunit # runs the whole test suite (takes a while)
+phpunit tests/TestCase/Model/Table/SentencesTableTest.php # only a specific file
+```
+
+### Cake console
+
+```bash
+cake # gives help
+cake migrations create MyNewMigration # creates a new migration
+cake queue runworker # execute queued jobs (background jobs)
+```
+
+### MySQL console
+
+```bash
+mysql tatoeba
+
+    MariaDB [tatoeba]> SELECT * FROM users;
+    ...
+
+sudo mysql tatoeba # for operations requiring root privileges
+```
+
+### Search engine
+
+```bash
+sudo systemctl start manticore # starts the search engine
+
+sudo bin/cake sphinx_indexes # starts reindexation
+
+sphinxql # runs the SphinxQL console
+
+    sphinxQL> SELECT id FROM eng_main_index WHERE MATCH('hello');
+    ...
 ```
