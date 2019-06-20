@@ -18,11 +18,17 @@
     host: localhost
     password: "{{ mysql_root_password }}"
 
-- name: Copy .my.cnf file with root password credentials
+- name: Install root's my.cnf
   template:
-    src: templates/root/.my.cnf
+    src: my.cnf.root
     dest: /root/.my.cnf
-    owner: root
+    mode: 0600
+
+- name: Install user's my.cnf
+  become: false
+  template:
+    src: my.cnf.user
+    dest: /home/{{ansible_ssh_user}}/.my.cnf
     mode: 0600
 
 - name: Update mysql root password for all root accounts
