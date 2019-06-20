@@ -4,7 +4,8 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.network :forwarded_port, guest: 80, host: 8080   # HTTP
+  config.vm.network :forwarded_port, guest: 2049, host: 8049 # NFS
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
   config.vm.provider "virtualbox" do |v|
