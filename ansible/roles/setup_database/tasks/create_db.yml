@@ -14,6 +14,11 @@
   become_user: vagrant
   shell: "{{code_dir}}/bin/cake migrations migrate"
 
+- name: Initialize database schema (3)
+  become: true
+  become_user: vagrant
+  shell: "{{code_dir}}/bin/cake migrations migrate -p Queue"
+
 - name: Fill database with initial values
   shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/{{item}}
   with_items:
