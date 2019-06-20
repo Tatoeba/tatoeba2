@@ -26,8 +26,12 @@
     path: /etc/exports
     regexp: "^{{code_dir}}"
     line: "{{code_dir}}  {{ansible_default_ipv4.gateway}}(rw,sync,no_subtree_check,all_squash,anonuid=1000,anongid=1000)"
-  register: etcexports
+
+- name: Create exported directory
+  become: false
+  file:
+    path: "{{code_dir}}"
+    state: directory
 
 - name: Export NFS share
   shell: exportfs -a
-  when: etcexports.changed
