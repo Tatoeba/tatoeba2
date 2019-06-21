@@ -36,7 +36,7 @@ class UsersControllerTest extends IntegrationTestCase {
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/users/index', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Findex' ], // FIXME Auth component use query param 'redirect' whereas we use 'redirectTo'
+            [ '/eng/users/index', null, '/eng/users/login?redirect=%2Feng%2Fusers%2Findex' ],
             [ '/eng/users/index', 'contributor', '/' ],
             [ '/eng/users/index', 'advanced_contributor', '/' ],
             [ '/eng/users/index', 'corpus_maintainer', '/' ],
@@ -55,7 +55,7 @@ class UsersControllerTest extends IntegrationTestCase {
             [ '/eng/users/delete/999999999999999', 'admin', '/eng/users/index' ],
             [ '/eng/users/login', null, true ],
             [ '/eng/users/login', 'contributor', '/' ],
-            [ '/eng/users/check_login', null, '/eng/users/login?redirectTo=%2F' ],
+            [ '/eng/users/check_login', null, '/eng/users/login' ],
             [ '/eng/users/logout', null, '/eng/users/login' ], // TODO we might want not to redirect to login page when trying to access the logout page as a guest
             [ '/eng/users/logout', 'contributor', '/eng/users/login' ],
             [ '/eng/users/register', null, true ],
@@ -111,7 +111,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirectTo=%2F');
+        $this->assertRedirect('/eng/users/login');
     }
 
     public function testCheckLogin_incorrectLoginAndPassword() {
@@ -121,7 +121,17 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirectTo=%2F');
+        $this->assertRedirect('/eng/users/login');
+    }
+
+    public function testCheckLogin_incorrectLoginAndPassword_withRedirect() {
+        $this->post('/eng/users/check_login?redirect=%2Feng%2Fsentences%2Fadd', [
+            'username' => 'this_user_does_not_exist',
+            'password' => 'this_is_incorrect',
+            'rememberMe' => 0,
+        ]);
+        $this->assertSession(null, 'Auth.User.username');
+        $this->assertRedirect('/eng/users/login?redirect=%2Feng%2Fsentences%2Fadd');
     }
 
     public function testCheckLogin_correctLoginAndPassowrdV1() {
@@ -131,6 +141,16 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession('kazuki', 'Auth.User.username');
+        $this->assertRedirect('/');
+    }
+
+    public function testCheckLogin_correctLoginAndPassowrdV1_withRedirect() {
+        $this->post('/eng/users/check_login?redirect=%2Feng%2Fsentences%2Fadd', [
+            'username' => 'kazuki',
+            'password' => 'myAwesomePassword',
+            'rememberMe' => 0,
+        ]);
+        $this->assertRedirect('/eng/sentences/add');
     }
 
     public function testCheckLogin_correctLoginAndIncorrectPassowrdV1() {
@@ -140,7 +160,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirectTo=%2F');
+        $this->assertRedirect('/eng/users/login');
     }
 
     public function testCheckLogin_userWithOldStylePasswordCannotLogin() {
@@ -150,7 +170,7 @@ class UsersControllerTest extends IntegrationTestCase {
             'rememberMe' => 0,
         ]);
         $this->assertSession(null, 'Auth.User.username');
-        $this->assertRedirect('/eng/users/login?redirectTo=%2F');
+        $this->assertRedirect('/eng/users/login');
     }
 
     public function testCheckLogin_spammerCannotLogin() {

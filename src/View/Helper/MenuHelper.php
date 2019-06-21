@@ -29,6 +29,7 @@ namespace App\View\Helper;
 use App\View\Helper\AppHelper;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
+use Cake\Controller\Component\AuthComponent;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -106,7 +107,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
+                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -242,7 +243,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
+                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -338,7 +339,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
+                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false

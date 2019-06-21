@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\Entity\User;
+use Cake\Controller\Component\AuthComponent;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Routing\Router;
@@ -170,11 +171,12 @@ class UsersController extends AppController
     {
         $user = $this->Auth->identify();
 
-        $redirectUrl = $this->request->getQuery('redirectTo', $this->Auth->redirectUrl());
-        $failedUrl = array(
-            'action' => 'login',
-            '?' => array('redirectTo' => $redirectUrl)
-        );
+        $redirectParam = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
+        $redirectUrl = $this->Auth->redirectUrl();
+        $failedUrl = ['action' => 'login'];
+        if (!is_null($redirectParam)) {
+            $failedUrl['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl];
+        };
 
         if ($user) {
             if ($user['role'] == User::ROLE_INACTIVE) {
@@ -487,7 +489,11 @@ class UsersController extends AppController
         );
 
         $query = $this->Users->find()->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
-        $users = $this->paginate($query);
+        try {
+            $users = $this->paginate($query);
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
         $this->set('users', $users);
     }
 

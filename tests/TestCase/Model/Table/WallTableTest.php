@@ -193,9 +193,16 @@ class WallTest extends TestCase {
     public function testGetMessagesThreaded() {
         $rootMessages = $this->Wall->find()
             ->where(['parent_id IS NULL'])
-            ->toList();
+            ->all();
         $threads = $this->Wall->getMessagesThreaded($rootMessages);
         $this->assertEquals(1, count($threads[0]->children));
+    }
+
+    public function testGetMessagesThreaded_empty() {
+        $this->Wall->deleteAll([]);
+        $rootMessages = $this->Wall->find()->all();
+        $threads = $this->Wall->getMessagesThreaded($rootMessages);
+        $this->assertCount(0, $threads);
     }
 
     public function testDeleteMessage_succeeds() {
