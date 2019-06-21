@@ -37,7 +37,7 @@ CREATE TABLE `users` (
   `since` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_time_active` int(11) NOT NULL DEFAULT '0',
   `level` tinyint(2) NOT NULL DEFAULT '0',
-  `role` enum('admin','corpus_maintainer','advanced_contributor','contributor','inactive','spammer') NOT NULL,
+  `group_id` tinyint(4) NOT NULL,
   `send_notifications` tinyint(1) NOT NULL DEFAULT '1',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `birthday` datetime DEFAULT NULL,
