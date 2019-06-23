@@ -53,6 +53,17 @@ class ExportsController extends AppController
         }
     }
 
+    public function get($id)
+    {
+        $export = $this->Exports->get($id);
+
+        if ($export) {
+            $this->set(compact('export'));
+            $this->set('_serialize', ['export']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
+    }
+
     public function download($exportId)
     {
         try {
