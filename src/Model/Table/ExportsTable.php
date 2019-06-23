@@ -139,7 +139,7 @@ class ExportsTable extends Table
                     );
                     $export->queued_job_id = $job->id;
                     if ($this->save($export)) {
-                        return $export->extract(['name', 'status']);
+                        return $export->extract(['id', 'name', 'status']);
                     }
                 } catch (\Cake\ORM\Exception\PersistenceFailedException $e) {
                 }

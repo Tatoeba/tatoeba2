@@ -113,6 +113,7 @@ class ExportsTableTest extends TestCase
     public function testCreateListExport_returnsExport()
     {
         $expected = [
+            'id' => 4,
             'name' => 'List Public list',
             'status' => 'queued',
         ];
