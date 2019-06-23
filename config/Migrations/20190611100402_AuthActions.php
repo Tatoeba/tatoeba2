@@ -57,5 +57,6 @@ class AuthActions extends AbstractMigration
         $this->table('acos')->drop()->save();
         $this->table('aros')->drop()->save();
         $this->table('aros_acos')->drop()->save();
+        $this->table('groups')->drop()->save();
     }
 }
