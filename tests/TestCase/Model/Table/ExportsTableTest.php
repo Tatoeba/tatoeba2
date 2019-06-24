@@ -276,7 +276,7 @@ class ExportsTableTest extends TestCase
         $this->assertEquals('online', $export->status);
     }
 
-    public function testRunExport_createsFile()
+    public function testRunExport_fileHasExpectedContents()
     {
         $jobId = 3;
         $exportId = 3;
@@ -288,10 +288,22 @@ class ExportsTableTest extends TestCase
         $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_3.csv', $filename);
     }
 
+    public function testRunExport_fileHasExpectedContents_withoutId()
+    {
+        $options = $this->optionsWith(['list_id' => 1, 'fields' => ['lang', 'text']]);
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $filename = $this->Exports->get($firstExportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_without_id.csv', $filename);
+    }
+
     public function testRunExport_withBatchOperation()
     {
         $this->Exports->batchOperationSize = 1;
-        $this->testRunExport_createsFile();
+        $this->testRunExport_fileHasExpectedContents();
     }
 
     public function testRunExport_failsIfExportDirNotWritable()

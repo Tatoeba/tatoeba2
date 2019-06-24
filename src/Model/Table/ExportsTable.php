@@ -185,7 +185,14 @@ class ExportsTable extends Table
             return false;
         }
 
-        $sqlFields = $this->getSqlFields($config['fields']);
+        $fields = $config['fields'];
+        // Whatever the fields the user asked for, we always need the id
+        // for batched operations as it’s used in the ORDER BY clause
+        if (!in_array('id', $fields)) {
+            $fields[] = 'id';
+        }
+
+        $sqlFields = $this->getSqlFields($fields);
         if (!$sqlFields) {
             return false;
         }
