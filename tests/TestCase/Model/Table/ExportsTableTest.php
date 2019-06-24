@@ -113,7 +113,7 @@ class ExportsTableTest extends TestCase
     public function testCreateListExport_returnsExport()
     {
         $expected = [
-            'id' => 4,
+            'id' => 5,
             'name' => 'List Public list',
             'status' => 'queued',
         ];
@@ -202,7 +202,7 @@ class ExportsTableTest extends TestCase
     public function testCreateExport_createsExport()
     {
         $expected = [
-            'id' => 4,
+            'id' => 5,
             'name' => 'List Public list',
             'description' => 'Sentence id [tab] Sentence text',
             'generated' => null,
