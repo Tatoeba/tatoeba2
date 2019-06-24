@@ -34,9 +34,15 @@
 
         $scope.addListExport = function (listId) {
             $scope.preparingDownload = true;
+            var fields = [];
+            if ($scope.showid) {
+                fields.push('id');
+            }
+            fields.push('text');
             $http.post(rootUrl + "/exports/add", {
                      'type': 'list',
-                     'list_id': listId
+                     'list_id': listId,
+                     'fields': fields,
                  })
                  .then(
                     function(response) {

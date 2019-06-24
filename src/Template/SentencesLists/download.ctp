@@ -70,15 +70,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
                 ng-init="showid = 0;"
                 class="md-primary">
             </md-checkbox>
-            <?php
-            $this->Form->unlockField('insertId');
-            echo $this->Form->hidden(
-                'insertId',
-                array(
-                   'value' => '{{showid}}'
-                )
-            );
-            ?>
             </td>
             <td>
             <?php echo __('If you check this box, the id of each sentence will be written to the output.');
