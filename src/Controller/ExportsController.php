@@ -12,6 +12,7 @@ class ExportsController extends AppController
         $this->Security->config('unlockedActions', [
             'add',
         ]);
+        $this->Auth->allowedActions = ['add', 'get', 'download'];
 
         $this->loadComponent('RequestHandler');
 
@@ -72,7 +73,7 @@ class ExportsController extends AppController
             throw new \Cake\Http\Exception\NotFoundException();
         }
 
-        if ($export->user_id != CurrentUser::get('id')) {
+        if ($export->user_id !== CurrentUser::get('id')) {
             throw new \Cake\Http\Exception\ForbiddenException();
         } elseif ($export->status != 'online') {
             throw new \Cake\Http\Exception\NotFoundException();

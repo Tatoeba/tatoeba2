@@ -87,6 +87,24 @@ class QueuedJobsFixture extends TestFixture
                 'status' => null,
                 'priority' => 5
             ],
+            [
+                /* Job completed */
+                'id' => 4,
+                'job_type' => 'Export',
+                'data' => serialize(['param' => 'foo']),
+                'job_group' => null, // does not belong to any user
+                'reference' => null,
+                'created' => '2019-02-20 20:50:10',
+                'notbefore' => null,
+                'fetched' => '2019-02-20 20:50:13',
+                'completed' => '2019-02-20 20:50:13',
+                'progress' => null,
+                'failed' => 0,
+                'failure_message' => null,
+                'workerkey' => '5cc0b3dcea22457717fe2856ea6beb1329807ba2',
+                'status' => null,
+                'priority' => 5
+            ],
         ];
         parent::init();
     }
