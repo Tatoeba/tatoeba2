@@ -103,7 +103,8 @@ class ExportsTable extends Table
             && $config['type'] == 'list'
             && isset($config['list_id'])
             && isset($config['fields'])
-            && is_array($config['fields'])) {
+            && is_array($config['fields'])
+            && $this->getSqlFields($config['fields'])) {
 
             $SL = TableRegistry::get('SentencesLists');
             $listId = $config['list_id'];
@@ -160,6 +161,46 @@ class ExportsTable extends Table
         }
     }
 
+    private function getSqlFields($configFields)
+    {
+        $availableFields = [
+            'id' => 'SentencesSentencesLists.sentence_id',
+            'lang' => 'Sentences.lang',
+            'text' => 'Sentences.text',
+        ];
+        $sqlFields = [];
+        foreach ($configFields as $field) {
+            if (isset($availableFields[$field])) {
+                $sqlFields[$field] = $availableFields[$field];
+            } else {
+                return false;
+            }
+        }
+        return $sqlFields;
+    }
+
+    private function buildQueryFromConfig($config)
+    {
+        if ($config['type'] != 'list') {
+            return false;
+        }
+
+        $sqlFields = $this->getSqlFields($config['fields']);
+        if (!$sqlFields) {
+            return false;
+        }
+
+        $SSL = TableRegistry::get('SentencesSentencesLists');
+        $query = $SSL->find()
+            ->select($sqlFields)
+            ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
+            ->contain('Sentences', function ($q) {
+                return $q->select(['Sentences.lang', 'Sentences.text']);
+            })
+            ->order([$sqlFields['id']]);
+        return $query;
+    }
+
     private function removeOldExports()
     {
         $maxSize = Configure::read('Exports.maxSizeInBytes', 0);
@@ -208,7 +249,8 @@ class ExportsTable extends Table
 
     private function _runExport($export, $config)
     {
-        if ($config['type'] != 'list') {
+        $query = $this->buildQueryFromConfig($config);
+        if (!$query) {
             return false;
         }
 
@@ -219,15 +261,6 @@ class ExportsTable extends Table
             return false;
         }
 
-        $SSL = TableRegistry::get('SentencesSentencesLists');
-        $query = $SSL->find()
-            ->select(['SentencesSentencesLists.sentence_id', 'Sentences.lang', 'Sentences.text'])
-            ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
-            ->contain('Sentences', function ($q) use ($config) {
-                return $q->select(['Sentences.lang', 'Sentences.text']);
-            })
-            ->order(['SentencesSentencesLists.sentence_id']);
-
         $file = new File($filename, true, 0600);
         if (!$file->open('w')) {
             return false;
@@ -236,14 +269,15 @@ class ExportsTable extends Table
         $BOM = "\xEF\xBB\xBF";
         $file->write($BOM);
 
-        $this->getConnection()->transactional(function () use ($query, $file) {
-            $this->batchOperationNewORM($query, function ($entities) use ($file) {
+        $this->getConnection()->transactional(function () use ($query, $file, $config) {
+            $this->batchOperationNewORM($query, function ($entities) use ($file, $config) {
                 foreach ($entities as $ssl) {
-                    $fields = [
-                        $ssl->sentence_id,
-                        $ssl->sentence->lang,
-                        $ssl->sentence->text,
-                    ];
+                    $fields = array_map(
+                        function ($field) use ($ssl, $config) {
+                            return $ssl->{$field};
+                        },
+                        $config['fields']
+                    );
                     $file->write(implode($fields, "\t")."\n");
                 }
             });
