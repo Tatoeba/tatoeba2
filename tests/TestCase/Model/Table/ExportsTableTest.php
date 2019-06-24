@@ -57,7 +57,7 @@ class ExportsTableTest extends TestCase
 
     private function options()
     {
-        return [ 'type' => 'list', 'list_id' => 2 ];
+        return [ 'type' => 'list', 'list_id' => 2, 'fields' => ['id', 'lang', 'text'] ];
     }
 
     private function optionsWith($with)
@@ -147,6 +147,20 @@ class ExportsTableTest extends TestCase
     public function testCreateExport_failsIfInvalidListId()
     {
         $options = $this->optionsWith(['list_id' => 9999999999]);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsIfNoFields()
+    {
+        $options = $this->optionsWithout(['fields']);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsIfFieldsIsNotAnArray()
+    {
+        $options = $this->optionsWith(['fields' => 123]);
         $result = $this->Exports->createExport(4, $options);
         $this->assertFalse($result);
     }
@@ -299,7 +313,7 @@ class ExportsTableTest extends TestCase
     public function testRunExport_failsIfInvalidExportId()
     {
         $jobId = 3;
-        $config = ['type' => 'list', 'list_id' => 1, 'export_id' => 999999999];
+        $config = $this->optionsWith(['list_id' => 1, 'export_id' => 999999999]);
 
         $result = $this->Exports->runExport($config, $jobId);
 
@@ -310,7 +324,7 @@ class ExportsTableTest extends TestCase
     {
         $exportId = 3;
         $jobId = 3;
-        $config = ['type' => 'list', 'list_id' => 'invalid', 'export_id' => $exportId];
+        $config = $this->optionsWith(['list_id' => 'invalid', 'export_id' => $exportId]);
 
         $result = $this->Exports->runExport($config, $jobId);
 
@@ -332,7 +346,7 @@ class ExportsTableTest extends TestCase
 
     public function testRunExport_removesOldExports()
     {
-        $options = ['type' => 'list', 'list_id' => 3];
+        $options = $this->optionsWith(['list_id' => 3]);
         $export = $this->Exports->createExport(7, $options);
         $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
         $this->Exports->runExport($config);
@@ -343,7 +357,7 @@ class ExportsTableTest extends TestCase
         $this->assertGreaterThan(0, $fileSize);
         Configure::write('Exports.maxSizeInBytes', $fileSize);
 
-        $options = ['type' => 'list', 'list_id' => 1];
+        $options = $this->optionsWith(['list_id' => 2]);
         $this->Exports->createExport(7, $options);
         $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
         $this->Exports->runExport($config);
@@ -358,7 +372,7 @@ class ExportsTableTest extends TestCase
 
     public function testRemovingExportAlsoRemovesFile()
     {
-        $options = ['type' => 'list', 'list_id' => 3];
+        $options = $this->optionsWith(['list_id' => 3]);
         $this->Exports->createExport(7, $options);
         $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
         $this->Exports->runExport($config);

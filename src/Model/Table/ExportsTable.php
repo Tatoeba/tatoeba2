@@ -101,7 +101,9 @@ class ExportsTable extends Table
 
         if (isset($config['type'])
             && $config['type'] == 'list'
-            && isset($config['list_id'])) {
+            && isset($config['list_id'])
+            && isset($config['fields'])
+            && is_array($config['fields'])) {
 
             $SL = TableRegistry::get('SentencesLists');
             $listId = $config['list_id'];
