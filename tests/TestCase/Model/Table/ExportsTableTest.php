@@ -219,9 +219,10 @@ class ExportsTableTest extends TestCase
 
     public function testCreateExport_createsJob()
     {
-        $options = [ 'type' => 'list', 'name' => 'foo', 'description' => 'bar' ];
+        $this->Exports->deleteAll(['1=1']);
+        $this->Exports->QueuedJobs->deleteAll(['1=1']);
 
-        $this->Exports->createExport(4, $options);
+        $this->Exports->createExport(4, $this->options());
 
         $job = $this->Exports->QueuedJobs->find()->last();
         $this->assertEquals('Export', $job->job_type);
