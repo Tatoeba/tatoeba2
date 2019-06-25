@@ -39,10 +39,14 @@
                 fields.push('id');
             }
             fields.push('text');
+            if ($scope.trans_lang != 'none') {
+                fields.push('trans_text');
+            }
             $http.post(rootUrl + "/exports/add", {
                      'type': 'list',
                      'list_id': listId,
                      'fields': fields,
+                     'trans_lang': $scope.trans_lang,
                  })
                  .then(
                     function(response) {

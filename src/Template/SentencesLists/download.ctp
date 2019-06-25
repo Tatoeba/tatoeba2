@@ -87,7 +87,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
                 $langArray,
                 array(
                     'class' => 'language-selector',
-                    "empty" => false
+                    "empty" => false,
+                    'ng-model' => 'trans_lang',
+                    'ng-init' => 'trans_lang = "none"',
                 ),
                 false
             );
