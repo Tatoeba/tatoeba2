@@ -14,6 +14,7 @@ class ExportsTableTest extends TestCase
 
     public $fixtures = [
         'app.Exports',
+        'app.Links',
         'app.QueuedJobs',
         'app.Users',
         'app.Sentences',
@@ -158,6 +159,20 @@ class ExportsTableTest extends TestCase
         $this->assertFalse($result);
     }
 
+    public function testCreateExport_worksIfValidTransLang()
+    {
+        $options = $this->optionsWith(['trans_lang' => 'jpn']);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertNotFalse($result);
+    }
+
+    public function testCreateExport_failsIfInvalidTransLang()
+    {
+        $options = $this->optionsWith(['trans_lang' => 'invalid']);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
     public function testCreateExport_failsIfFieldsIsNotAnArray()
     {
         $options = $this->optionsWith(['fields' => 123]);
@@ -298,6 +313,18 @@ class ExportsTableTest extends TestCase
 
         $filename = $this->Exports->get($firstExportId)->filename;
         $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_without_id.csv', $filename);
+    }
+
+    public function testRunExport_fileHasExpectedContents_withTranslations()
+    {
+        $options = $this->optionsWith(['list_id' => 1, 'trans_lang' => 'jpn', 'fields' => ['id', 'text', 'trans_text']]);
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $filename = $this->Exports->get($firstExportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_with_translations.csv', $filename);
     }
 
     public function testRunExport_withBatchOperation()

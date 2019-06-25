@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
@@ -104,7 +105,9 @@ class ExportsTable extends Table
             && isset($config['list_id'])
             && isset($config['fields'])
             && is_array($config['fields'])
-            && $this->getSqlFields($config['fields'])) {
+            && $this->validateFields($config['fields'])
+            && (!isset($config['trans_lang'])
+                || LanguagesLib::languageExists($config['trans_lang']))) {
 
             $SL = TableRegistry::get('SentencesLists');
             $listId = $config['list_id'];
@@ -161,22 +164,33 @@ class ExportsTable extends Table
         }
     }
 
-    private function getSqlFields($configFields)
+    private function validateFields($configFields)
     {
         $availableFields = [
-            'id' => 'SentencesSentencesLists.sentence_id',
-            'lang' => 'Sentences.lang',
-            'text' => 'Sentences.text',
+            'id', 'lang', 'text', 'trans_text',
         ];
-        $sqlFields = [];
         foreach ($configFields as $field) {
-            if (isset($availableFields[$field])) {
-                $sqlFields[$field] = $availableFields[$field];
-            } else {
+            if (!in_array($field, $availableFields)) {
                 return false;
             }
         }
-        return $sqlFields;
+        return true;
+    }
+
+    private function getCSVFields($fields, $entity)
+    {
+        return array_map(
+            function ($field) use ($entity) {
+                switch ($field) {
+                    case 'id':         return $entity->id;
+                    case 'lang':       return $entity->_matchingData['Sentences']->lang;
+                    case 'text':       return $entity->_matchingData['Sentences']->text;
+                    case 'trans_text': return $entity->_matchingData['Translations']->text;
+                    default:           return '';
+                }
+            },
+            $fields
+        );
     }
 
     private function buildQueryFromConfig($config)
@@ -185,26 +199,29 @@ class ExportsTable extends Table
             return false;
         }
 
-        $fields = $config['fields'];
-        // Whatever the fields the user asked for, we always need the id
-        // for batched operations as it’s used in the ORDER BY clause
-        if (!in_array('id', $fields)) {
-            $fields[] = 'id';
-        }
-
-        $sqlFields = $this->getSqlFields($fields);
-        if (!$sqlFields) {
+        if (!$this->validateFields($config['fields'])) {
             return false;
         }
 
         $SSL = TableRegistry::get('SentencesSentencesLists');
         $query = $SSL->find()
-            ->select($sqlFields)
+            ->select(['id' => 'SentencesSentencesLists.sentence_id'])
             ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
-            ->contain('Sentences', function ($q) {
-                return $q->select(['Sentences.lang', 'Sentences.text']);
+            ->matching('Sentences', function ($q) use ($config) {
+                $q->select(['Sentences.lang', 'Sentences.text']);
+                if (in_array('trans_text', $config['fields'])) {
+                    $q->matching('Translations', function ($q) use ($config) {
+                        $q->select(['Translations.text']);
+                        if (isset($config['trans_lang']) && $config['trans_lang'] != 'none') {
+                            $q->where(['Translations.lang' => $config['trans_lang']]);
+                        }
+                        return $q;
+                    });
+                }
+                return $q;
             })
-            ->order([$sqlFields['id']]);
+            ->order('SentencesSentencesLists.sentence_id');
+
         return $query;
     }
 
@@ -277,14 +294,9 @@ class ExportsTable extends Table
         $file->write($BOM);
 
         $this->getConnection()->transactional(function () use ($query, $file, $config) {
-            $this->batchOperationNewORM($query, function ($entities) use ($file, $config) {
-                foreach ($entities as $ssl) {
-                    $fields = array_map(
-                        function ($field) use ($ssl, $config) {
-                            return $ssl->{$field};
-                        },
-                        $config['fields']
-                    );
+            $this->batchOperationNewORM($query, function ($results) use ($file, $config) {
+                foreach ($results as $entity) {
+                    $fields = $this->getCSVFields($config['fields'], $entity);
                     $file->write(implode($fields, "\t")."\n");
                 }
             });
