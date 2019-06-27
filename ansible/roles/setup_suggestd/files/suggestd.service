@@ -1,5 +1,6 @@
 [Unit]
 Description=Suggest Deamon
+After=mysql.service
 
 [Service]
 User=suggestd
