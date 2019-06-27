@@ -14,6 +14,11 @@ server {
     try_files $uri $uri/ /index.php?$args;
   }
 
+	location /exported_files {
+		internal;
+		alias {{code_dir}}/exported_files;
+	}
+
 	location ~ \.php$ {
 		try_files $uri =404;
 		include /etc/nginx/fastcgi_params;
