@@ -10,6 +10,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
+    if Vagrant::Util::Platform.windows?
+      # configure private network for samba share
+      # should be accessible at //172.19.119.178/tatoeba
+      config.vm.network "private_network", :adapter => 2, :type => "static",
+                        :ip => "172.19.119.178", :netmask => "255.255.255.254",
+                        :adapter_ip => "172.19.119.179"
+    end
   end
 
   if ENV['BUILD'] == '1'
