@@ -9,10 +9,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder '.', '/vagrant', disabled: true
 
   config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
+    # Adjust RAM allocated to the VM
+    # The value should be at least 1/4 of your machine's actual RAM.
+    v.memory = 2048 # in MB
+
     if Vagrant::Util::Platform.windows?
       # configure private network for samba share
-      # should be accessible at //172.19.119.178/tatoeba
+      # should be accessible at \\172.19.119.178\tatoeba
       config.vm.network "private_network", :adapter => 2, :type => "static",
                         :ip => "172.19.119.178", :netmask => "255.255.255.254",
                         :adapter_ip => "172.19.119.179"
