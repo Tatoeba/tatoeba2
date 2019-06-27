@@ -39,6 +39,8 @@ vagrant up
 
 - Once it completed, you should be able to access your local instance of Tatoeba at http://localhost:8080/
 
+- You can log in using one of these accounts: `admin`, `corpus_maintainer`, `advanced_contributor`, `contributor`, `inactive` and `spammer`. For all of them the password is `123456`.
+
 ## Hacking Tatoeba
 
 ### Accessing the source code
