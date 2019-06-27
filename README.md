@@ -83,7 +83,7 @@ phpunit tests/TestCase/Model/Table/SentencesTableTest.php # only a specific file
 ```bash
 cake # gives help
 cake migrations create MyNewMigration # creates a new migration
-cake queue runworker # execute queued jobs (background jobs)
+sudo -u www-data bin/cake queue runworker # execute queued jobs (background jobs)
 ```
 
 ### MySQL console
