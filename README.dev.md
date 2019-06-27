@@ -39,13 +39,7 @@ You may want to perform certain tasks or steps independently without having to r
 ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml --tag <tag>
 ```
 
-where `<tag>` is one of the tags present in the list of task printed by the following command:
-
-```bash
-ansible-playbook --list-tasks ansible/vagrant.yml
-```
-
-You can also use `--skip-tag` to run all the tasks *but* one in particular. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
+where `<tag>` is one of the tags present in the file `ansible/tatoeba.tasks.yml`. You can also use `--skip-tag` to run all the tasks *but* one in particular. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
 
 ```bash
 echo "alias imouto-provision='ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key ansible/vagrant.yml'" >> ~/.bashrc
