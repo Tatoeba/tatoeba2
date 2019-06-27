@@ -6,6 +6,7 @@ Imouto is a collection of automation scripts for building an instance of [Tatoeb
 
 Here are the basic requirements of the machine you’re using imouto from.
 
+* A machine with a 64-bit CPU (32-bit should be possible too but we do not support it)
 * GNU/Linux or MacOS
 * Git
 * VirtualBox 4.0 or later, which can be installed with a package manager or with the help of [generic binaries](https://www.virtualbox.org/wiki/Downloads))
