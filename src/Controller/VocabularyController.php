@@ -55,9 +55,6 @@ class VocabularyController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array('of');
-
         if($this->request->is('ajax')) {
           $this->Security->unlockedActions = array('save', 'save_sentence');
         }

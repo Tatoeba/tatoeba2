@@ -5,7 +5,6 @@ use App\Model\Table\TagsTable;
 use App\Test\TestCase\Model\Table\TatoebaTableTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Event\Event;
 
 class TagsTableTest extends TestCase {
@@ -21,7 +20,6 @@ class TagsTableTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->Tag = TableRegistry::getTableLocator()->get('Tags');
     }
 

@@ -1,7 +1,6 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
 
@@ -9,20 +8,12 @@ class WallControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.private_messages',
         'app.walls',
         'app.wall_threads',
         'app.users',
         'app.users_languages'
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

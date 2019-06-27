@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\Constraint\Response\HeaderNotSet;
 use Cake\TestSuite\IntegrationTestCase;
@@ -14,9 +13,6 @@ class ExportsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.Acos',
-        'app.Aros',
-        'app.ArosAcos',
         'app.Exports',
         'app.SentencesLists',
         'app.Users',
@@ -29,8 +25,6 @@ class ExportsControllerTest extends IntegrationTestCase
 
     public function setUp() {
         parent::setUp();
-
-        Configure::write('Acl.database', 'test');
 
         $folder = new Folder($this->testExportDir);
         $folder->delete();

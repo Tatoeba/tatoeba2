@@ -8,7 +8,6 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use App\Shell\Walker;
 use Cake\Utility\Hash;
-use Cake\Core\Configure;
 
 class SentenceDerivationShellTest extends TestCase
 {
@@ -24,7 +23,6 @@ class SentenceDerivationShellTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
         $this->SentenceDerivationShell = $this->getMockBuilder(SentenceDerivationShell::class)
             ->setMethods(['in', 'err', 'createFile', '_stop', 'clear'])

@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\ORM\TableRegistry;
 
@@ -10,9 +9,6 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = array(
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.private_messages',
         'app.transcriptions',
         'app.users',
@@ -22,7 +18,6 @@ class TranscriptionsControllerTest extends IntegrationTestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->enableCsrfToken();
     }
 

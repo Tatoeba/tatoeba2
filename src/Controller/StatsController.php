@@ -41,19 +41,6 @@ use Cake\Event\Event;
 class StatsController extends AppController
 {
     /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allow();
-
-        return parent::beforeFilter($event);
-    }
-
-    /**
      *
      */
     function sentences_by_language() {

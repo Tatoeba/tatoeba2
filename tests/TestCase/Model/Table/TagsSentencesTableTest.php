@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\TagsSentencesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 
 class TagsSentencesTableTest extends TestCase {
     public $fixtures = array(
@@ -14,7 +13,6 @@ class TagsSentencesTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->TagsSentences = TableRegistry::getTableLocator()->get('TagsSentences');
     }
 

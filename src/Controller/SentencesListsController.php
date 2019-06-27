@@ -83,16 +83,6 @@ class SentencesListsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allowedActions = array(
-            'index',
-            'show',
-            'export_to_csv',
-            'of_user',
-            'download',
-            'search',
-            'collaborative'
-        );
-
         $this->Security->config('unlockedActions', [
             'set_option',
             'save_name',

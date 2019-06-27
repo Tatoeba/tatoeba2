@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\SentencesListsTable;
-use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\CurrentUser;
@@ -26,7 +25,6 @@ class SentencesListsTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->SentencesList = TableRegistry::getTableLocator()->get('SentencesLists');
     }
 

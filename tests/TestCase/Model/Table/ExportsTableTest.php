@@ -32,7 +32,6 @@ class ExportsTableTest extends TestCase
             'url'  => '/export_tests/',
             'maxSizeInBytes' => 0,
         ]);
-        Configure::write('Acl.database', 'test');
 
         \Cake\Core\Plugin::load('Queue');
 

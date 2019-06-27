@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model;
 
 use App\Model\Licensing;
-use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
@@ -14,13 +13,11 @@ class LicensingTest extends TestCase
         'app.sentences_sentences_lists',
         'app.users',
         'app.queued_jobs',
-        'app.aros',
     );
 
     public function setUp()
     {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         Plugin::load('Queue');
 
         $this->Licensing = new Licensing();

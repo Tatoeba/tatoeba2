@@ -1,7 +1,6 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 
@@ -9,9 +8,6 @@ class LicensingControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.users',
         'app.users_languages',
         'app.queued_jobs',
@@ -20,11 +16,6 @@ class LicensingControllerTest extends IntegrationTestCase {
         'app.sentences',
         'app.private_messages',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

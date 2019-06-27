@@ -42,13 +42,6 @@ class TagsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = [
-            'show_sentences_with_tag',
-            'view_all',
-            'search'
-        ];
-
         $this->Security->unlockedActions = [
             'add_tag_post'
         ];

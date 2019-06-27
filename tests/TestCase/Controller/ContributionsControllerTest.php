@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\I18n\Time;
 use Cake\TestSuite\IntegrationTestCase;
 
@@ -11,9 +10,6 @@ class ContributionsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.contributions',
         'app.contributions_stats',
         'app.last_contributions',
@@ -21,11 +17,6 @@ class ContributionsControllerTest extends IntegrationTestCase
         'app.users_languages',
         'app.private_messages',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

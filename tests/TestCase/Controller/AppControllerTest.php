@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
@@ -16,6 +17,7 @@ class AppControllerTest extends IntegrationTestCase {
 	function setUp() {
 		parent::setUp();
 
+		Cache::disable();
 		Configure::write('UI.languages', [
 			['cmn', 'Hans', '中文', ['chi']],
 			['eng', null, 'English'],
@@ -23,6 +25,11 @@ class AppControllerTest extends IntegrationTestCase {
 			['jpn', null, '日本語'],
 			['pt_BR', 'BR', 'Português (BR)'],
 		]);
+	}
+
+	function tearDown() {
+		parent::tearDown();
+		Cache::enable();
 	}
 
 	function setInterfaceLanguageCookie($lang = null) {

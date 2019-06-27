@@ -41,7 +41,7 @@ use App\Model\CurrentUser;
  */
 class PermissionsComponent extends Component
 {
-    public $components = array('Auth', 'Acl');
+    public $components = array('Auth');
 
     /**
      * Check which options user can access to and returns
@@ -91,7 +91,7 @@ class PermissionsComponent extends Component
             }
 
             // -- edit --
-            if ($this->Auth->user('group_id') < 3) {
+            if (CurrentUser::isModerator()) {
                 $specialOptions['canEdit'] = true;
             }
 
@@ -103,12 +103,12 @@ class PermissionsComponent extends Component
 
             // -- link/unlink --
             // It's important to set this permission after canEdit has been set.
-            if ($this->Auth->user('group_id') < 4 && $specialOptions['canEdit']) {
+            if (CurrentUser::isTrusted() && $specialOptions['canEdit']) {
                 $specialOptions['canLinkAndUnlink'] = true;
             }
 
             // -- delete --
-            $specialOptions['canDelete'] = ($this->Auth->user('group_id') < 2);
+            $specialOptions['canDelete'] = CurrentUser::isAdmin();
 
 
             // -- add to list --
@@ -198,15 +198,13 @@ class PermissionsComponent extends Component
      * @param array $message          Message.
      * @param int   $ownerId          Id of the message owner.
      * @param int   $currentUserId    Id of currently logged in user.
-     * @param int   $currentUserGroup Id of the user's group.
      *
      * @return array
      */
     public function getWallMessageOptions(
         $message,
         $ownerId,
-        $currentUserId,
-        $currentUserGroup
+        $currentUserId
     ) {
         $rightsOnWallMessage = array(
             "canReply"  => false,
@@ -214,21 +212,21 @@ class PermissionsComponent extends Component
             "canEdit" => false
         );
         // TODO add functions to determine options
-        if (empty($currentUserId) || empty($currentUserGroup)) {
+        if (empty($currentUserId)) {
             return $rightsOnWallMessage;
         }
 
         if (empty($message['children'])) {
             if ($ownerId === $currentUserId) {
                 $rightsOnWallMessage['canDelete'] = true;
-            } elseif ($currentUserGroup < 2) {
+            } elseif (CurrentUser::isAdmin()) {
                 $rightsOnWallMessage['canDelete'] = true;
             }
         }
 
         if ($ownerId === $currentUserId) {
             $rightsOnWallMessage['canEdit'] = true;
-        } elseif ($currentUserGroup < 2) {
+        } elseif (CurrentUser::isAdmin()) {
             $rightsOnWallMessage['canEdit'] = true;
         }
 
@@ -242,30 +240,26 @@ class PermissionsComponent extends Component
      *
      * @param array $messages         Array of comments.
      * @param int   $currentUserId    Id of the requester.
-     * @param int   $currentUserGroup Group of the requester.
      *
      * @return array
      */
 
     public function  getWallMessagesOptions(
         $messages,
-        $currentUserId,
-        $currentUserGroup
+        $currentUserId
     ) {
 
         foreach ($messages as $i=>$message) {
             $messages[$i]['Permissions'] = $this->getWallMessageOptions(
                 $message,
                 $message->user->id,
-                $currentUserId,
-                $currentUserGroup
+                $currentUserId
             );
 
             if (!empty($message['children'])) {
                 $messages[$i]['children'] = $this->getWallMessagesOptions(
                     $message['children'],
-                    $currentUserId,
-                    $currentUserGroup
+                    $currentUserId
                 );
             }
 

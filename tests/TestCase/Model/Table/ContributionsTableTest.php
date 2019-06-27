@@ -5,7 +5,6 @@ use App\Model\CurrentUser;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
-use Cake\Core\Configure;
 
 /**
  * Contribution Test Case
@@ -21,7 +20,6 @@ class ContributionTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->Contribution = TableRegistry::getTableLocator()->get('Contributions');
     }
 

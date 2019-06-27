@@ -3,7 +3,6 @@ namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
@@ -14,14 +13,10 @@ class UserControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.audios',
         'app.contributions',
         'app.favorites_users',
         'app.users',
-        'app.groups',
         'app.private_messages',
         'app.sentence_comments',
         'app.sentences',
@@ -34,7 +29,6 @@ class UserControllerTest extends IntegrationTestCase
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
 
@@ -169,7 +163,7 @@ class UserControllerTest extends IntegrationTestCase
 
     public function testSaveBasic_ignoresUnallowedFields() {
         $username = 'contributor';
-        $newGroup = 1;
+        $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
         $this->post('/eng/user/save_basic', [
@@ -182,12 +176,12 @@ class UserControllerTest extends IntegrationTestCase
             ],
             'homepage' => '',
             'description' => '',
-            'group_id' => $newGroup,
+            'role' => $newRole,
         ]);
 
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
-        $this->assertNotEquals($newGroup, $user->group_id);
+        $this->assertNotEquals($newRole, $user->role);
     }
 
     public function testSaveSettings() {
@@ -205,7 +199,7 @@ class UserControllerTest extends IntegrationTestCase
 
     public function testSaveSettings_ignoresUnallowedFields() {
         $username = 'contributor';
-        $newGroup = 1;
+        $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
         $this->post('/eng/user/save_settings', [
@@ -214,12 +208,12 @@ class UserControllerTest extends IntegrationTestCase
                 'is_public' => '1',
                 'lang' => 'fra',
             ],
-            'group_id' => $newGroup,
+            'role' => $newRole,
         ]);
 
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
-        $this->assertNotEquals($newGroup, $user->group_id);
+        $this->assertNotEquals($newRole, $user->role);
     }
 
     private function prepareImageUpload() {

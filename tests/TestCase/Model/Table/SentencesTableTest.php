@@ -11,6 +11,7 @@ use App\Model\CurrentUser;
 use App\Lib\Autotranscription;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Model\Entity\Contribution;
+use App\Model\Entity\User;
 use Cake\Utility\Hash;
 
 class SentencesTableTest extends TestCase {
@@ -34,7 +35,6 @@ class SentencesTableTest extends TestCase {
 
 	function setUp() {
 		parent::setUp();
-		Configure::write('Acl.database', 'test');
 		Configure::write('AutoTranscriptions.enabled', true);
 		$this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
 		$autotranscription = $this->_installAutotranscriptionMock();
@@ -983,7 +983,7 @@ class SentencesTableTest extends TestCase {
 		$id = 14;
 		$before = $this->Sentence->get($id)->user_id;
 
-		$result = $this->Sentence->setOwner($id, 7, 4);
+		$result = $this->Sentence->setOwner($id, 7, User::ROLE_CONTRIBUTOR);
 		$this->assertTrue($result);
 
 		$after = $this->Sentence->get($id)->user_id;
@@ -994,7 +994,7 @@ class SentencesTableTest extends TestCase {
 		$id = 1;
 		$before = $this->Sentence->get($id)->user_id;
 
-		$result = $this->Sentence->setOwner($id, 1, 1);
+		$result = $this->Sentence->setOwner($id, 1, User::ROLE_ADMIN);
 		$this->assertFalse($result);
 
 		$after = $this->Sentence->get($id)->user_id;

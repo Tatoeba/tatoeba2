@@ -26,6 +26,7 @@ use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
 use App\Event\ContributionListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -599,7 +600,7 @@ class SentencesTable extends Table
                 'fields' => array()
             ),
             'Users' => array(
-                'fields' => array('id', 'username', 'group_id', 'level')
+                'fields' => array('id', 'username', 'role', 'level')
             ),
             'SentencesLists' => array(
                 'fields' => array('id', 'SentencesSentencesLists.sentence_id')
@@ -645,7 +646,7 @@ class SentencesTable extends Table
     public function minimalContain() {
         $contain = array(
             'Users' => array(
-                'fields' => array('id', 'username', 'group_id', 'level')
+                'fields' => array('id', 'username', 'role', 'level')
             ),
             'Translations' => array(
                 'IndirectTranslations' => array(),
@@ -960,19 +961,20 @@ class SentencesTable extends Table
      *
      * @param int $sentenceId         Id of the sentence.
      * @param int $userId             Id of the user.
-     * @param int $currentUserGroupId Group id of the user.
+     * @param int $currentUserRole    Role of the currently logged-in user.
      *
      * @return bool
      */
-    public function setOwner($sentenceId, $userId, $currentUserGroupId)
+    public function setOwner($sentenceId, $userId, $currentUserRole)
     {
         $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         $ownerId = $currentOwner['id'];
-        $ownerGroupId = $currentOwner['group_id'];
+        $ownerRole = $currentOwner['role'];
 
-        $isAdoptable = $ownerId == 0 || ($ownerGroupId > 4
-                && in_array($currentUserGroupId, range(1, 3)));
+        $isOwnerInactive = in_array($ownerRole, [User::ROLE_SPAMMER, User::ROLE_INACTIVE]);
+        $isCurrentUserTrusted = in_array($currentUserRole, User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER);
+        $isAdoptable = $ownerId == 0 || ($isOwnerInactive && $isCurrentUserTrusted);
 
         if ($isAdoptable) {
             $sentence->user_id = $userId;

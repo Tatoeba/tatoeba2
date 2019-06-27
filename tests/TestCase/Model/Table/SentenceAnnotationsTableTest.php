@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\SentenceAnnotationsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use Cake\Core\Configure;
 use Cake\Utility\Hash;
 
 class SentenceAnnotationsTableTest extends TestCase {
@@ -16,7 +15,6 @@ class SentenceAnnotationsTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->SentenceAnnotation = TableRegistry::getTableLocator()->get('SentenceAnnotations');
     }
 

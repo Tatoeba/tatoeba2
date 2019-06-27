@@ -50,20 +50,6 @@ class SController extends AppController
     );
 
     /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array('s');
-
-        return parent::beforeFilter($event);
-    }
-
-
-    /**
      * Show sentence of specified id
      *
      * @param mixed $id Id of the sentence
