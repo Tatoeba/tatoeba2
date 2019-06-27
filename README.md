@@ -25,6 +25,12 @@ cd imouto
 
 - If you need to use a proxy, follow the instructions in `README.proxy.md`.
 
+- If you have less than 8GB or RAM, edit the file `Vagrantfile` to reduce value of `v.memory`, the amount of RAM allocated to the virtual machine. It is recommended that you allocate no more than 1/4 of your actual RAM.
+
+```
+   v.memory = 1024 # only allocate 1GB of RAM to the VM
+```
+
 - Run this command to download and start up the Tatoeba VM. Please be patient, it takes a while.
 
 ```bash
