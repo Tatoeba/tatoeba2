@@ -26,15 +26,10 @@
   vars:
     import_csv: 'no'
 
-- name: Install search engine
+- name: Install and setup search engine
   tags: manticore
   import_role:
-    name: install_manticore
-
-- name: Configure search engine
-  tags: manticore
-  import_role:
-    name: configure_manticore
+    name: setup_manticore
   vars:
     create_indexes: true
 

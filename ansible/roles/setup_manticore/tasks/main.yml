@@ -10,6 +10,18 @@
   fail: msg="The code directory is not present in {{code_dir}}. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
   when: code_status is failed
 
+- name: Install Manticore package
+  apt:
+    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/2.8.2/manticore_2.8.2-190402-4e81114d-release-stemmer.stretch_amd64-bin.deb
+
+- name: Increase Manticore max opened file limit
+  copy:
+    src: manticore.conf
+    dest: /etc/security/limits.d/
+    owner: root
+    group: root
+    mode: 0644
+
 - name: Stop the search daemon
   service: name=manticore state=stopped
 
