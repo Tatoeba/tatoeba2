@@ -13,6 +13,10 @@
 - name: Install Manticore package
   apt:
     deb: https://github.com/manticoresoftware/manticoresearch/releases/download/2.8.2/manticore_2.8.2-190402-4e81114d-release-stemmer.stretch_amd64-bin.deb
+    dpkg_options: no-triggers
+
+- name: Enable Manticore
+  command: systemctl enable manticore
 
 - name: Increase Manticore max opened file limit
   copy:
@@ -21,9 +25,6 @@
     owner: root
     group: root
     mode: 0644
-
-- name: Stop the search daemon
-  service: name=manticore state=stopped
 
 - name: Create directories for manticore
   file: path={{item}} state=directory mode=0755 owner=manticore group=manticore
@@ -47,7 +48,7 @@
   when: create_indexes == true
 
 - name: Start the search daemon
-  service: name=manticore state=started enabled=yes
+  service: name=manticore state=started
 
 - name: Enable search
   replace:
