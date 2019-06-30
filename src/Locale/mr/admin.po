@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-02 16:55+0000\n"
+"POT-Creation-Date: 2019-06-16 17:47+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>, 2018\n"
 "Language-Team: Marathi (https://www.transifex.com/tatoeba/teams/28284/mr/)\n"
@@ -22,19 +22,19 @@ msgstr ""
 "Language: mr\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L257
 msgid "Invalid file “{file}” ignored."
 msgstr "“{file}” ही अवैध फाईल दुर्लक्ष करण्यात आली."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L267
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr "“{file}” ही फाईल आयात करण्यास “{dir}” ही डिरेक्टरी बनवता आली नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L277
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "“{file}” ही फाईल “{dir}” या डिरेक्टरीत कॉपी करता आली नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L286
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -42,7 +42,7 @@ msgstr ""
 "डेटाबेसमधील वाक्य क्र. {sentenceId} या वाक्यास “{author}” यांना ऑडिओ नियुक्त"
 " करता आले नाही. प्रयोक्ता नाव वैध आहे का नाही याची पुष्टी करा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/Model/Audio.php#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L295
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
@@ -50,186 +50,162 @@ msgstr ""
 "“{file}” ही फाईल यशस्वीरीत्या आयात करण्यात आली, पण ती आयात डिरेक्टरीमधून "
 "हटवता आली नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L25
 msgid "Import recordings"
 msgstr "रेकॉर्डिंग आयात करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
 msgid "Import report"
 msgstr "अहवाल आयात करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L59
 msgid "The following errors occurred during import."
 msgstr "आयात करताना खालील त्रुटी आढळल्या."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
 msgid "Files detected"
 msgstr "फायली आढळल्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L84
 msgid "File name"
 msgstr "फाइलचे नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L85
 msgid "Sentence id"
 msgstr "वाक्य ओळख"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "Language"
 msgstr "भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Already has audio"
 msgstr "आधीच ऑडिओ आहे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "May be imported"
 msgstr "आयात केले जाऊ शकते"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
 msgid "N/A"
 msgstr "लागू नाही"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L103
 msgid "Invalid"
 msgstr "अवैध"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L127
 msgid "No files have been detected inside the import directory."
 msgstr "आयात डिरेक्टरीच्या आत कोणत्याही फायली आढळल्या नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Audio/import.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L133
 msgid "Import"
 msgstr "आयात करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L59
 msgid "Enabled"
 msgstr "सक्षम"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/audio.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L55
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L112
 msgid "Submit"
 msgstr "सबमिट करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/correctness.ctp#L30
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L32
 msgid "Correctness"
 msgstr "अचूकपणा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Elements/sentences/license.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
 msgid "Change"
 msgstr "बदला"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L426
-msgid "unhide"
-msgstr "दाखवा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Helper/WallHelper.php#L429
-msgid "hide"
-msgstr "लपवा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
 msgstr "वाक्ये आयात करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
 msgstr "एकटी वाक्ये"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L51
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L89
 msgid "Language of the sentences:"
 msgstr "वाक्यांची भाषा:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L99
 msgid "File:"
 msgstr "फाइल:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
 msgstr "संख्यात्मक प्रयोक्ता ओळख.:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
 msgid "import"
 msgstr "आयात करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
 msgstr "वाक्ये व भाषांतरे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Sentences/import.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
 msgstr "भाषांतरांची भाषा:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
 msgstr "हटवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
 msgstr "आपल्याला प्रयोक्ता क्र. {number} नक्की हटवायचा आहे का?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
 msgstr "वापरकर्त्यांची यादी बनवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
 msgstr "प्रोफाइल"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
 msgstr "सदस्य संपादित करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
 msgstr "ओळख"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
 msgstr "प्रयोक्ता नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L53
-msgid "Email"
-msgstr "ईमेल"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L87
 msgid "Lang"
 msgstr "भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L88
 msgid "Group"
 msgstr "गट"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L93
 msgid "Level"
 msgstr "स्तर"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/edit.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L102
 msgid "Send notifications"
 msgstr "अधिसूचना पाठवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L41
-msgid "Users"
-msgstr "वापरकर्ते"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L429
+msgid "unhide"
+msgstr "दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L41
-msgid "total"
-msgstr "एकूण"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L51
-msgid "ID"
-msgstr "ओळख"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/View/Users/index.ctp#L54
-msgid "Since"
-msgstr "यापासून"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L432
+msgid "hide"
+msgstr "लपवा"
