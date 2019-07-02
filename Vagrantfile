@@ -17,8 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # configure private network for samba share
       # should be accessible at \\172.19.119.178\tatoeba
       config.vm.network "private_network", :adapter => 2, :type => "static",
-                        :ip => "172.19.119.178", :netmask => "255.255.255.254",
-                        :adapter_ip => "172.19.119.179"
+                        :ip => "172.19.119.178", :netmask => "255.255.255.252",
+                        :adapter_ip => "172.19.119.177"
     end
   end
 
