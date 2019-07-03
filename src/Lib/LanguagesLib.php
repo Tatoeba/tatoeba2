@@ -570,6 +570,7 @@ class LanguagesLib
                 'thv' => __d('languages', 'Tahaggart Tamahaq'),
                 'hrx' => __d('languages', 'Hunsrik'),
                 'cay' => __d('languages', 'Cayuga'),
+                'gaa' => __d('languages', 'Ga'),
             );
         }
         return $languages;
