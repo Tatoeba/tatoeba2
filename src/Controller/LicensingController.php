@@ -20,6 +20,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\CurrentUser;
+use App\Model\Licensing;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 
@@ -27,11 +28,38 @@ class LicensingController extends AppController {
 
     public function beforeFilter(Event $event)
     {
-        $this->Security->unlockedActions = array(
-            'switch_my_sentences',
-        );
+        $this->Security->config('unlockedActions', [
+            'refresh_license_switch_list',
+        ]);
 
         return parent::beforeFilter($event);
+    }
+
+    private function paginateAffected($listId) {
+        $this->loadModel('Sentences');
+
+        $pagination = [
+            'contain' => [
+                'Sentences' => function($q) {
+                    return $q->select(['id', 'lang', 'text', 'correctness']);
+                },
+            ],
+            'conditions' => ['sentences_list_id' => $listId],
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
+            'order' => ['Sentences.created']
+        ];
+        $this->paginate = $pagination;
+        return $this->paginate('SentencesSentencesLists');
+    }
+
+    public function refresh_license_switch_list() {
+        if (!CurrentUser::getSetting('can_switch_license')) {
+            return $this->response->withStatus(403);
+        }
+
+        $licensing = new Licensing();
+        $licensing->refreshLicenseSwitchList(CurrentUser::get('id'));
+        $this->autoRender = false;
     }
 
     public function switch_my_sentences() {
@@ -52,26 +80,45 @@ class LicensingController extends AppController {
             ])
             ->first();
 
+        $licensing = new Licensing();
+        $isRefreshing = $licensing->is_refreshing($currentUserId);
+        $isSwitching = $licensing->is_switching($currentUserId);
         if ($this->request->is('post')) {
-            if ($currentJob) {
+            if ($isRefreshing) {
+                $this->Flash->set(__(
+                    'Please wait until the list is updated.'
+                ));
+            } elseif($isSwitching) {
                 $this->Flash->set(__(
                     'A license switch is already in progress.'
                 ));
             } else {
-                $options = array(
-                    'userId' => $currentUserId,
-                    'dryRun' => false,
-                    'UIlang' => Configure::read('Config.language'),
-                    'sendReport' => true,
-                );
-                $currentJob = $this->QueuedJobs->createJob(
-                    'SwitchSentencesLicense',
-                    $options,
-                    ['group' => $currentUserId]
+                $isSwitching = $licensing->startLicenseSwitch(
+                    $currentUserId,
+                    Configure::read('Config.language')
                 );
             }
         }
 
-        $this->set(compact('currentJob'));
+        $listId = $licensing->getLicenseSwitchListId($currentUserId);
+        $list = $this->paginateAffected($listId);
+        $this->set(compact('isSwitching', 'isRefreshing', 'currentJob', 'list'));
+    }
+
+    public function get_license_switch_list() {
+        if (!CurrentUser::getSetting('can_switch_license')) {
+            return $this->response->withStatus(403);
+        }
+
+        $currentUserId = CurrentUser::get('id');
+        $licensing = new Licensing();
+        $isRefreshing = $licensing->is_refreshing($currentUserId);
+        if ($isRefreshing) {
+            return $this->response->withStatus(400, 'List not ready yet');
+        } else {
+            $listId = $licensing->getLicenseSwitchListId($currentUserId);
+            $list = $this->paginateAffected($listId);
+            $this->set(compact('list'));
+        }
     }
 }

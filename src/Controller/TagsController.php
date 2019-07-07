@@ -42,13 +42,6 @@ class TagsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = [
-            'show_sentences_with_tag',
-            'view_all',
-            'search'
-        ];
-
         $this->Security->unlockedActions = [
             'add_tag_post'
         ];
@@ -85,62 +78,11 @@ class TagsController extends AppController
                 $this->set('username', $username);
                 $this->set('sentenceId', $sentenceId);
                 $this->set('date', date("Y-m-d H:i:s"));
+                $this->loadModel('Sentences');
+                $sentence = $this->Sentences->get($sentenceId, ['fields' => ['lang']]);
+                $this->set('sentenceLang', $sentence->lang);
             }
-        } else {
-            $tagName = $this->request->getData('tag_name');
-            $sentenceId = $this->request->getData('sentence_id');
-            return $this->add_tag($tagName, $sentenceId);
         }
-    }
-
-    /**
-     * Add a tag to a Sentence
-     *
-     * @param string $tagName    Name of the tag to add
-     * @param int    $sentenceId Id of the sentence on which the tag will added
-     *
-     * @return void
-     */
-
-    public function add_tag($tagName, $sentenceId)
-    {
-        $userId = CurrentUser::get("id");
-
-        // If no sentence id, we redirect to homepage.
-        if (empty($sentenceId) || !is_numeric($sentenceId) ) {
-            return $this->redirect([
-                'controller' => 'pages',
-                'action' => 'home'
-            ]);
-        }
-
-        // If empty tag, we redirect to sentence's page.
-        if (empty($tagName)) {
-            return $this->redirect([
-                'controller' => 'sentences',
-                'action' => 'show',
-                $sentenceId
-            ]);
-        }
-
-        // save and check if the tag has been added
-        $savedTag = $this->Tags->addTag($tagName, $userId, $sentenceId);
-        if ($savedTag->alreadyExists) {
-            $infoMessage = format(
-                __(
-                    "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",
-                    true
-                ),
-                ['tagName' => $tagName, 'number' => $sentenceId]
-            );
-            $this->Flash->set($infoMessage);
-        }
-
-        return $this->redirect([
-            'controller' => 'sentences',
-            'action' => 'show',
-            $sentenceId
-        ]);
     }
 
     /**
@@ -208,7 +150,7 @@ class TagsController extends AppController
         if (!empty($tagId) && !empty($sentenceId)) {
             $this->Tags->removeTagFromSentence($tagId, $sentenceId);
         }
-        return $this->redirect($_SERVER['HTTP_REFERER']);
+        return $this->redirect($this->referer());
     }
 
 

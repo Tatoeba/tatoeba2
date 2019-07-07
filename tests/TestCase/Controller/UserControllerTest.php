@@ -2,27 +2,34 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Controller\UserController;
-use Cake\Core\Configure;
+use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
+use Cake\Filesystem\File;
 
 class UserControllerTest extends IntegrationTestCase
 {
+    use TatoebaControllerTestTrait;
+
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
+        'app.audios',
+        'app.contributions',
+        'app.favorites_users',
         'app.users',
-        'app.groups',
-        'app.users_languages'
+        'app.private_messages',
+        'app.sentence_comments',
+        'app.sentences',
+        'app.users_languages',
     ];
 
     private $oldPasswords = [];
 
+    private $tmpFile = TMP.'UserControllerTest_tmpFile';
+
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
+        $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
 
         $users = TableRegistry::get('Users');
@@ -30,13 +37,38 @@ class UserControllerTest extends IntegrationTestCase
         $this->oldPasswords = $users->combine('username', 'password')->toArray();
     }
 
-    private function logInAs($username) {
-        $users = TableRegistry::get('Users');
-        $user = $users->findByUsername($username)->first();
-        $this->session(['Auth' => [ 'User' => $user->toArray()]]);
+    public function tearDown() {
+        $file = new File($this->tmpFile);
+        if ($file->exists()) {
+            $file->delete();
+        }
+        Security::setSalt($this->previousSalt);
+        parent::tearDown();
+    }
 
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
+    public function accessesProvider() {
+        return [
+            // url; user; is accessible or redirection url
+            [ '/eng/user/profile/contributor', null, true ],
+            [ '/eng/user/profile/contributor', 'contributor', true ],
+            [ '/eng/user/profile', null, '/eng/home' ],
+            [ '/eng/user/profile', 'contributor', '/eng/user/profile/contributor' ],
+            [ '/eng/user/profile/nonexistent', null, '/eng/users/all' ],
+            [ '/eng/user/edit_profile', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Fedit_profile' ],
+            [ '/eng/user/edit_profile', 'contributor', true ],
+            [ '/eng/user/settings', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Fsettings' ],
+            [ '/eng/user/settings', 'contributor', true ],
+            [ '/eng/user/language', null, '/eng/users/login?redirect=%2Feng%2Fuser%2Flanguage' ],
+            [ '/eng/user/language', 'contributor', true ],
+            [ '/eng/user/language/jpn', 'contributor', true ],
+        ];
+    }
+
+    /**
+     * @dataProvider accessesProvider
+     */
+    public function testControllerAccess($url, $user, $response) {
+        $this->assertAccessUrlAs($url, $user, $response);
     }
 
     private function assertPassword($what, $username) {
@@ -69,6 +101,7 @@ class UserControllerTest extends IntegrationTestCase
             'new_password2' => $newPassword,
         ]);
         $this->assertPassword('changed', $username);
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSavePassword_failsIfNewPasswordIsEmpty() {
@@ -84,6 +117,7 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New password cannot be empty.');
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSavePassword_failsIfOldPasswordDoesntMatch() {
@@ -98,6 +132,7 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('Password error. Please try again.');
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSavePassword_failsIfNewPasswordDoesntMatch() {
@@ -111,6 +146,7 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertPassword("didn't change", $username);
         $this->assertFlashMessage('New passwords do not match.');
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSaveBasic_changingEmailUpdatesAuthData() {
@@ -122,11 +158,12 @@ class UserControllerTest extends IntegrationTestCase
         ]);
         $this->assertEquals($this->_controller->Auth->user('username'), $username);
         $this->assertEquals($this->_controller->Auth->user('email'), $newEmail);
+        $this->assertRedirect('/eng/user/profile/contributor');
     }
 
     public function testSaveBasic_ignoresUnallowedFields() {
         $username = 'contributor';
-        $newGroup = 1;
+        $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
         $this->post('/eng/user/save_basic', [
@@ -139,17 +176,30 @@ class UserControllerTest extends IntegrationTestCase
             ],
             'homepage' => '',
             'description' => '',
-            'group_id' => $newGroup,
+            'role' => $newRole,
         ]);
 
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
-        $this->assertNotEquals($newGroup, $user->group_id);
+        $this->assertNotEquals($newRole, $user->role);
+    }
+
+    public function testSaveSettings() {
+        $this->logInAs('contributor');
+
+        $this->post('/eng/user/save_settings', [
+            'send_notifications' => '1',
+            'settings' => [
+                'is_public' => '1',
+                'lang' => 'fra',
+            ],
+        ]);
+        $this->assertRedirect('/eng/user/settings');
     }
 
     public function testSaveSettings_ignoresUnallowedFields() {
         $username = 'contributor';
-        $newGroup = 1;
+        $newRole = \App\Model\Entity\User::ROLE_ADMIN;
         $this->logInAs($username);
 
         $this->post('/eng/user/save_settings', [
@@ -158,11 +208,95 @@ class UserControllerTest extends IntegrationTestCase
                 'is_public' => '1',
                 'lang' => 'fra',
             ],
-            'group_id' => $newGroup,
+            'role' => $newRole,
         ]);
 
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
-        $this->assertNotEquals($newGroup, $user->group_id);
+        $this->assertNotEquals($newRole, $user->role);
+    }
+
+    private function prepareImageUpload() {
+        $someImage = base64_decode('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAA'.
+                                   'AAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=');
+        $ok = file_put_contents($this->tmpFile, $someImage);
+        $this->assertNotFalse($ok);
+        return [
+            'tmp_name' => $this->tmpFile,
+            'error' => UPLOAD_ERR_OK,
+            'name' => '1x1_black.png',
+            'type' => 'image/png',
+            'size' => strlen($someImage),
+        ];
+    }
+
+    private function assertProfilePictureUploaded($username) {
+        $image = TableRegistry::get('Users')
+            ->findByUsername($username)
+            ->first()
+            ->image;
+        $images = [
+            WWW_ROOT.'img/profiles_128/'.$image,
+            WWW_ROOT.'img/profiles_36/'.$image,
+        ];
+        foreach ($images as $image) {
+            $file = new File($image);
+            $this->assertFileExists($image);
+            $file->delete();
+        }
+    }
+
+    public function testSaveImage() {
+        require __DIR__ . '/UserControllerTestFakeFunctions.php';
+        $username = 'contributor';
+        $this->logInAs($username);
+        $this->post('/eng/user/save_image', [
+            'image' => $this->prepareImageUpload()
+        ]);
+        $this->assertNoFlashMessage();
+        $this->assertRedirect("/eng/user/profile/$username");
+        $this->assertProfilePictureUploaded($username);
+    }
+
+    public function testRemoveImage() {
+        $users = TableRegistry::get('Users');
+        $contributor = $users->get(4);
+        $images = [
+            WWW_ROOT.'img/profiles_128/'.$contributor->image,
+            WWW_ROOT.'img/profiles_36/'.$contributor->image,
+        ];
+        foreach ($images as $image) {
+            $file = new File($image, true);
+            $file->close();
+            $this->assertFileExists($image);
+        }
+
+        $this->logInAs('contributor');
+        $this->post('/eng/user/remove_image');
+        $this->assertRedirect('/eng/user/profile/contributor');
+
+        $contributor = $users->get(4);
+        $this->assertEmpty($contributor->image);
+        foreach ($images as $image) {
+            $this->assertFileNotExists($image);
+        }
+    }
+
+    public function testAcceptNewTermsOfUser_asGuest() {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $this->post('/eng/user/accept_new_terms_of_use', [
+            'settings' => [ 'new_terms_of_use' => true ],
+        ]);
+        $this->assertResponseCode(404);
+    }
+
+    public function testAcceptNewTermsOfUser_asMember() {
+        $this->logInAs('contributor');
+        $this->addHeader('Referer', 'https://example.net/referer');
+        $this->post('/eng/user/accept_new_terms_of_use', [
+            'settings' => [ 'new_terms_of_use' => true ],
+        ]);
+        $this->assertRedirect('https://example.net/referer');
     }
 }

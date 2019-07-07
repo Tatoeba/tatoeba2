@@ -96,7 +96,7 @@ if (!isset($results)) {
                 'http://en.wiki.tatoeba.org/articles/show/text-search'
             );
         ?></p>
-    <?
+    <?php
     } else {
     ?>
     <h2><?php echo __('Search error'); ?></h2>
@@ -109,7 +109,7 @@ if (!isset($results)) {
             $this->Url->build(array('controller' => 'pages', 'action' => 'contact'))
         );
     ?></p>
-    <?
+    <?php
     }
 } elseif (count($results) > 0) {
 

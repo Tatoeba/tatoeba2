@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\LastContributionsTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Utility\Hash;
 
 class LastContributionsTableTest extends TestCase {
@@ -15,7 +14,6 @@ class LastContributionsTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
 		$this->LastContributions = TableRegistry::getTableLocator()->get('LastContributions');
 	}
 

@@ -45,6 +45,8 @@ use Cake\Core\Configure;
         // named with name of the view it is linked to, and put it in a folder with
         // the name of the controller.
 
+        $this->loadHelper('AssetCompress.AssetCompress');
+
         // Generic
         // layout.css is defined in config/asset_compress.ini
         echo $this->AssetCompress->css('layout.css');
@@ -64,7 +66,7 @@ use Cake\Core\Configure;
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
 </head>
-<body ng-app="app" ng-cloak>
+<body ng-app="app">
     <div id="audioPlayer"></div>
 
     <!--  TOP  -->
@@ -78,7 +80,7 @@ use Cake\Core\Configure;
         echo $this->element('search_bar', array(
             'selectedLanguageFrom' => $session->read('search_from'),
             'selectedLanguageTo' => $session->read('search_to'),
-            'searchQuery' => $query,
+            'searchQuery' => isset($query) ? $query : '',
             'cache' => array(
                 // Only use cache when search fields are not prefilled
                 'time' => is_null($session->read('search_from'))

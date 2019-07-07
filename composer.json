@@ -4,11 +4,11 @@
         "cakephp/cakephp": "3.7.*",
         "cakephp/plugin-installer": "^1.0",
         "dereuromark/cakephp-queue": "^3.11",
-        "cakephp/acl": "^0.4.0",
         "markstory/asset_compress": "^3.5",
         "patchwork/jsqueeze": "^2.0",
         "natxet/CssMin": "^3.0",
-        "cakephp/migrations": "^2.1"
+        "cakephp/migrations": "^2.1",
+        "codekanzlei/cake-auth-actions": "dev-master"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "2.*",

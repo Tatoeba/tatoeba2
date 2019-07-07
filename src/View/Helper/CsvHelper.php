@@ -32,7 +32,7 @@ class CsvHelper extends Helper {
 
     public $_tmpFile = false;
 
-    function __construct() {
+    function initialize(array $config) {
         $this->clear();
     }
 
@@ -210,12 +210,13 @@ class CsvHelper extends Helper {
             $this->filename = 'Data.csv';
         }
 
+        $response = $this->getView()->getResponse();
         if ($this->filename) {
-            header("Content-disposition:attachment;filename=".$this->filename);
+            $response = $response->withHeader("Content-disposition", "attachment;filename=".$this->filename);
         }
 
-        header("Content-type:application/vnd.ms-excel");
-
+        $response = $response->withHeader("Content-type", "application/vnd.ms-excel");
+        $this->getView()->setResponse($response);
     }
 
 /**

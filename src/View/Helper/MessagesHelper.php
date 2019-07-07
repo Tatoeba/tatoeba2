@@ -84,7 +84,8 @@ class MessagesHelper extends AppHelper
         }
 
         echo "<div class='message ${hiddenClass}'>";
-        $this->displayHeader($author, $created, $modified, $menu);
+        $type = isset($message['type']) ? $message['type'] : 'human';
+        $this->displayHeader($author, $created, $modified, $menu, $type);
         $this->_displayBody($content, $sentence, $hidden, $authorId);
         echo "</div>";
     }
@@ -140,12 +141,12 @@ class MessagesHelper extends AppHelper
      *
      *
      */
-    public function displayHeader($author, $created, $modified, $menu)
+    public function displayHeader($author, $created, $modified, $menu, $type = 'human')
     {
         ?>
         <div class="header">
         <?php
-            $this->_displayInfo($author, $created, $modified);
+            $this->_displayInfo($author, $created, $modified, $type);
 
             if (!empty($menu)) {
                 $this->_displayMenu($menu);    
@@ -185,7 +186,7 @@ class MessagesHelper extends AppHelper
      * 
      *
      */
-    private function _displayInfo($author, $created, $modified)
+    private function _displayInfo($author, $created, $modified, $type)
     {
         ?>
         <div class="info">
@@ -194,7 +195,7 @@ class MessagesHelper extends AppHelper
 
                 <div class="username">
                 <?php
-                if (isset($author['type']) && $author['type'] == 'machine') {
+                if ($type == 'machine') {
                     echo $this->Html->tag('i', __('Notification from Tatoeba'));
                 } elseif (!$author['username']) {
                     echo $this->Html->tag('i', __('Former member'));
@@ -473,7 +474,7 @@ class MessagesHelper extends AppHelper
 
         if (!$hidden || $canViewContent) {
             echo $this->Languages->tagWithLang(
-                'div', '', $this->formatedContent($content),
+                'div', '', $this->formatContent($content),
                 array('class' => 'content', 'escape' => false)
             );
         }
@@ -509,7 +510,6 @@ class MessagesHelper extends AppHelper
                 $sentenceLang,
                 array(
                     "class" => "langIcon",
-                    "width" => 20
                 )
             );
 
@@ -575,7 +575,7 @@ class MessagesHelper extends AppHelper
      *
      * @return string The comment body formatted for HTML display.
      */
-    public function formatedContent($content) {
+    public function formatContent($content) {
         $content = htmlentities($content, ENT_QUOTES, Configure::read('App.encoding'));
 
         // Convert sentence mentions to links
@@ -647,7 +647,7 @@ class MessagesHelper extends AppHelper
         }
 
         if ($formatContent) {
-            $previewContent = $this->formatedContent($previewContent);
+            $previewContent = $this->formatContent($previewContent);
         } else {
             $previewContent = nl2br(h($previewContent));
         }

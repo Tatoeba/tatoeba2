@@ -59,10 +59,10 @@ class VocabularyHelper extends AppHelper
         ?>
         <img class="vocabulary-lang" src="/img/flags/<?= $lang ?>.svg"/>
         <div class="vocabulary-text" flex><?= $text ?></div>
-        <md-button class="md-primary" <?= isset($url) ? "href=\"$url\"" : 'ng-disabled="1"' ?>>
+        <md-button ng-cloak class="md-primary" <?= isset($url) ? "href=\"$url\"" : 'ng-disabled="1"' ?>>
             <?= $numSentencesLabel ?>
         </md-button>
-        <?
+        <?php
     }
 }
 ?>

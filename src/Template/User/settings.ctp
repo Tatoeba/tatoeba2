@@ -39,10 +39,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
 <div id="main_content">
     <div md-whiteframe="1" class="options settings-form">
+        <h2><?php echo __('Options'); ?></h2>
         <?php echo $this->Form->create($userSettings, [
+            'ng-cloak' => true,
             'url' => ['controller' => 'user', 'action' => 'save_settings']
         ]); ?>
-        <h2><?php echo __('Options'); ?></h2>
         <md-list flex role="list" class="flex" >
             <md-subheader><?php echo __('Main options'); ?></md-subheader>
             <md-list-item>
@@ -218,7 +219,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <p><? echo __('Number of sentences per page'); ?></p>
+                <p><?= __('Number of sentences per page'); ?></p>
                 <?php echo $this->Form->input('settings.sentences_per_page', array(
                     'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
                     'label' => ''
@@ -342,7 +343,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
         <?php echo $this->Form->end(); ?>
     </div>
-    <div md-whiteframe="1" class="settings-form">
+    <div ng-cloak md-whiteframe="1" class="settings-form">
         <?php
         echo $this->Form->create($userSettings, [
             'url' => ['controller' => 'user', 'action' => 'save_basic']
@@ -366,7 +367,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         ?>
     </div>
 
-    <div md-whiteframe="1" class="settings-form">
+    <div ng-cloak md-whiteframe="1" class="settings-form">
         <?php
         echo $this->Form->create($userSettings, [
             'url' => ['controller' => 'user', 'action' => 'save_password']

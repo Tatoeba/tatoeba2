@@ -1,4 +1,4 @@
-<?
+<?php
 $languagesJSON = htmlspecialchars(json_encode($languages), ENT_QUOTES, 'UTF-8');
 $selectedLanguage = isset($selectedLanguage) ? $selectedLanguage : '';
 $placeholder = isset($placeholder) ? $placeholder : __('Select a language');
@@ -10,9 +10,10 @@ $this->Form->unlockField($name);
      title="{{vm.selectedItem.name}}">
      <?= $this->Form->hidden($name, array('value' => '{{vm.selectedItem.code}}')); ?>
     <md-autocomplete
-<? if (isset($id)): ?>
+        ng-cloak
+<?php if (isset($id)): ?>
         md-input-id="<?= $id ?>"
-<? endif; ?>
+<?php endif; ?>
         md-menu-class="language-dropdown"
         md-selected-item="vm.selectedItem"
         md-selected-item-change="vm.onSelectedItemChange()"

@@ -69,12 +69,6 @@ class WallController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allowedActions = array(
-            'index',
-            'show_message',
-            'messages_of_user'
-        );
-
         $eventManager = $this->Wall->getEventManager();
         $eventManager->attach(new NotificationListener());
 
@@ -91,14 +85,16 @@ class WallController extends AppController
         $tenLastMessages = $this->Wall->getLastMessages(10);
 
         $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
 
-        $messageLftRght = $this->paginate();
+        try {
+            $messageLftRght = $this->paginate();
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
         $messages = $this->Wall->getMessagesThreaded($messageLftRght);
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,
-            $userId,
-            $groupId
+            $userId
         );
 
         $isAuthenticated = !empty($userId);
@@ -180,17 +176,16 @@ class WallController extends AppController
         try {
             $message = $this->Wall->get($messageId);
         } catch(RecordNotFoundException $e) {
-            $this->redirect($this->referer());
+            return $this->redirect($this->referer());
         }
 
         $messagePermissions = $this->Permissions->getWallMessageOptions(
             null,
             $message->owner,
-            CurrentUser::get('id'),
-            CurrentUser::get('group_id')
+            CurrentUser::get('id')
         );
         if ($messagePermissions['canEdit'] == false) {
-            $this->_cannotEdit();
+            return $this->_cannotEdit();
         }
         
         if ($this->request->is('put')) {
@@ -258,7 +253,6 @@ class WallController extends AppController
     public function show_message($messageId)
     {
         $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
 
         $thread = $this->Wall->getWholeThreadContaining($messageId);
 
@@ -268,8 +262,7 @@ class WallController extends AppController
         */
         $thread = $this->Permissions->getWallMessagesOptions(
             $thread,
-            $userId,
-            $groupId
+            $userId
         );
 
         if (!empty($thread)) {

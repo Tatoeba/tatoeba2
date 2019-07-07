@@ -24,6 +24,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+use Cake\Controller\Component\AuthComponent;
+
 ?>
 
 <script type="text/javascript">
@@ -60,7 +63,7 @@
         array(
             'controller' => 'users',
             'action' => 'login',
-            '?' => array('redirectTo' => $this->Pages->currentPageUrl()),
+            '?' => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
         ),
         array(
             'onclick' => 'javascript:openLoginForm(); return false;',
@@ -79,7 +82,7 @@ echo $this->Form->create(
         'url' => array(
             'controller' => 'users',
             'action' => 'check_login',
-            '?' => array('redirectTo' => $this->Pages->currentPageUrl()),
+            '?' => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
         ),
         'id' => 'UserLoginForm_FromBar',
         'style' => 'display:none;'
@@ -91,14 +94,16 @@ echo '<fieldset>';
 echo $this->Form->input(
     'username',
     array(
-        'label' => __('Username: ')
+        'label' => __('Username: '),
+        'value' => false,
     )
 );
 // Password
 echo $this->Form->input(
     'password',
     array(
-        'label' => __('Password: ')
+        'label' => __('Password: '),
+        'value' => false,
     )
 );
 // Checkbox

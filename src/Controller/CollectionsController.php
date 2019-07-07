@@ -48,10 +48,6 @@ class CollectionsController extends AppController
     {
         $this->loadModel('UsersSentences');
 
-        $this->Auth->allowedActions = array(
-            'of'
-        );
-
         return parent::beforeFilter($event);
     }
 

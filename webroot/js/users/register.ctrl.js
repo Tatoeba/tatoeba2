@@ -22,7 +22,31 @@
         .module('app')
         .controller('UsersRegisterController', ['$http', UsersRegisterController])
         .directive('uniqueUsername', uniqueUsername)
-        .directive('uniqueEmail', uniqueEmail);
+        .directive('uniqueEmail', uniqueEmail)
+        .directive('serverError', serverError)
+        .directive('input',  ['$parse', assignDefaultValuesToModel])
+        .directive('select', ['$parse', assignDefaultValuesToModel]);
+
+    function assignDefaultValuesToModel($parse) {
+        return {
+            restrict: 'E',
+            link: function (scope, element, attrs) {
+                if (attrs.ngModel) {
+                    var value;
+                    element = element[0];
+                    if (element.options) {
+                        value = element.options[element.selectedIndex].value;
+                    } else if (attrs.value !== undefined) {
+                        value = attrs.value;
+                    }
+
+                    if (value !== undefined) {
+                        $parse(attrs.ngModel).assign(scope, value);
+                    }
+                }
+            }
+        };
+    };
 
     function UsersRegisterController() {
         var vm = this;
@@ -79,6 +103,23 @@
                         }
                     );
                 }
+            }
+        };
+    }
+
+    function serverError() {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function($scope, $elem, $attr, ngModel) {
+                ngModel.$validators.serverError = function() {
+                    return ngModel.$dirty;
+                };
+
+                window.setTimeout(function() {
+                    ngModel.$setTouched();
+                    $scope.$apply();
+                }, 0);
             }
         };
     }

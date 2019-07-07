@@ -100,7 +100,7 @@ class SentencesController extends AppController
         'trans_unapproved' => '',
         'trans_has_audio' => '',
         'trans_filter' => 'limit',
-        'sort' => 'words',
+        'sort' => 'relevance',
         'sort_reverse' => '',
     );
 
@@ -121,21 +121,6 @@ class SentencesController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array(
-            'index',
-            'show',
-            'search',
-            'advanced_search',
-            'of_user',
-            'random',
-            'go_to_sentence',
-            'several_random_sentences',
-            'get_neighbors_for_ajax',
-            'show_all_in',
-            'with_audio'
-        );
-
         $this->Security->config('unlockedActions', [
           'add_an_other_sentence',
           'save_translation',
@@ -267,7 +252,7 @@ class SentencesController extends AppController
 
     public function go_to_sentence()
     {
-        $id = intval($this->request->query['sentence_id']);
+        $id = intval($this->request->getQuery('sentence_id'));
         if ($id == 0) {
             $id = 'random';
         }
@@ -326,20 +311,16 @@ class SentencesController extends AppController
             return;
         }
 
-        if (!isset($_POST['value'])
-            || !isset($_POST['selectedLang'])
-        ) {
+        $sentenceLang = $this->request->getData('selectedLang');
+        $sentenceText = $this->request->getData('value');
+
+        if (is_null($sentenceText) || is_null($sentenceLang)) {
             //TODO add error handling
             return;
         }
 
         $userName = $this->Auth->user('username');
-
-        $data = $this->request->getData();
-        $sentenceLang = $data['selectedLang'];
-        $sentenceText = $data['value'];
-        $sentenceLicense = isset($data['sentenceLicense']) ?
-                           $data['sentenceLicense'] : null;
+        $sentenceLicense = $this->request->getData('sentenceLicense');
 
         $savedSentence = $this->CommonSentence->addNewSentence(
             $sentenceLang,
@@ -388,7 +369,7 @@ class SentencesController extends AppController
     {
         $userId = $this->Auth->user('id');
 
-        $this->Sentences->setOwner($id, $userId, CurrentUser::get('group_id'));
+        $this->Sentences->setOwner($id, $userId, CurrentUser::get('role'));
 
         $this->renderAdopt($id);
     }
@@ -432,8 +413,8 @@ class SentencesController extends AppController
      */
     public function save_translation()
     {
-        $sentenceId = $_POST['id'];
-        $translationLang = $_POST['selectLang'];
+        $sentenceId = $this->request->getData('id');
+        $translationLang = $this->request->getData('selectLang');
         $userId = $this->Auth->user('id');
         $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
 
@@ -441,7 +422,7 @@ class SentencesController extends AppController
             return ;
         }
 
-        $translationText = $_POST['value'];
+        $translationText = $this->request->getData('value');
 
         // Store selected lang in cookie as default language for drop-downs
         $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
@@ -502,17 +483,14 @@ class SentencesController extends AppController
 
         $criteriaVars = array();
         foreach ($this->defaultSearchCriteria as $name => $default) {
-            $criteriaVars[$name] = $default;
-            if (isset($this->request->query[$name])) {
-                $criteriaVars[$name] = $this->request->query[$name];
-            }
+            $criteriaVars[$name] = $this->request->getQuery($name, $default);
         }
         extract($criteriaVars);
         $ignored = array();
 
         /* Convert simple search to advanced search parameters */
-        if (isset($this->request->query['to'])
-            && !isset($this->request->query['trans_to'])) {
+        if (!is_null($this->request->getQuery('to'))
+            && is_null($this->request->getQuery('trans_to'))) {
             $trans_to = $to;
         }
 
@@ -792,7 +770,7 @@ class SentencesController extends AppController
         $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
         $this->set(
             'is_advanced_search',
-            isset($this->request->query['trans_to'])
+            !is_null($this->request->getQuery('trans_to'))
         );
     }
 
@@ -897,21 +875,7 @@ class SentencesController extends AppController
         }
 
         $this->set("userExists", true);
-        $this->_sentences_of_user_common($userId, $lang);
-        $this->set("lang", $lang);
 
-    }
-
-    /**
-     * Private function to factorize my_sentences and of_user
-     *
-     * @param int    $userId The id of the user whose we want the sentences.
-     * @param string $lang   Filter only the sentences in this language.
-     *
-     * @return void
-     */
-    private function _sentences_of_user_common($userId, $lang)
-    {
         $this->paginate = array(
             'Sentences' => array(
                 'fields' => array(
@@ -941,9 +905,14 @@ class SentencesController extends AppController
             $conditions = $conditions->where(['lang' => $lang]);
         }
 
-        $sentences = $this->paginate($conditions);
+        try {
+            $sentences = $this->paginate($conditions);
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
 
         $this->set('user_sentences', $sentences);
+        $this->set("lang", $lang);
     }
 
 
@@ -998,7 +967,7 @@ class SentencesController extends AppController
             $this->redirect(
                 array(
                     "controller" => "pages",
-                    "action" => "home",
+                    "action" => "index",
                 )
             );
         }

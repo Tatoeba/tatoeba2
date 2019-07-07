@@ -19,10 +19,10 @@ class NotificationListenerTest extends TestCase {
     public function setUp() {
         parent::setUp();
 
-        Configure::write('Acl.database', 'test');
         Configure::write('App.fullBaseUrl', 'https://example.net');
         Configure::write('Mailer.enabled',   true);
         Configure::write('Mailer.username', 'tatoeba@example.com');
+        Configure::write('Mailer.transport', 'debug');
 
         $this->Email = $this->getMockBuilder(Email::class)
             ->setMethods(['from', 'to', 'subject', 'send', 'viewVars'])
@@ -40,20 +40,6 @@ class NotificationListenerTest extends TestCase {
     public function tearDown() {
         unset($this->NL);
         parent::tearDown();
-    }
-
-    /**
-     * Do not mock $this->Email but prevent it from sending out emails.
-     * Useful to test email contents.
-     */
-    private function setUpLightMock() {
-        $this->Email = new Email();
-        $this->NL = $this->getMockBuilder(NotificationListener::class)
-            ->setMethods(['getTransport'])
-            ->getMock();
-        $this->NL->expects($this->any())
-                 ->method('getTransport')
-                 ->will($this->returnValue('Debug'));
     }
 
     private function _message($recpt = 3) {
@@ -93,7 +79,11 @@ class NotificationListenerTest extends TestCase {
     }
 
     public function testSendPmNotification_noUnwantedHeaderAndFooter() {
-        $this->setUpLightMock();
+        // Use a real Email object instead of a mock, so that we can
+        // check the email contents. The debug transport will prevent
+        // it from actually sending out emails.
+        $this->Email = new Email();
+        $this->NL = new NotificationListener($this->Email);
 
         $event = new Event('Model.PrivateMessage.messageSent', $this, array(
             'message' => $this->_message(),
@@ -102,6 +92,7 @@ class NotificationListenerTest extends TestCase {
         $this->NL->sendPmNotification($event);
 
         $sentMessage = implode($this->Email->message());
+        $this->assertNotEmpty($sentMessage);
         $this->assertNotContains('CakePHP Framework', $sentMessage);
         $this->assertNotContains('Emails/html', $sentMessage);
     }

@@ -29,5 +29,23 @@ class SentencesSentencesListsFixture extends TestFixture {
 			'sentence_id' => '8',
 			'created' => '2018-03-14 12:15:18',
 		),
+		array(
+			'id' => '3',
+			'sentences_list_id' => '3',
+			'sentence_id' => '50',
+			'created' => '2018-04-08 02:08:51',
+		),
+		array(
+			'id' => '4',
+			'sentences_list_id' => '4',
+			'sentence_id' => '48',
+			'created' => '2018-10-10 10:10:09',
+		),
+		array(
+			'id' => '5',
+			'sentences_list_id' => '4',
+			'sentence_id' => '53',
+			'created' => '2018-10-10 10:10:09',
+		),
 	);
 }

@@ -227,7 +227,7 @@ class ContributionsTable extends Table
     {
         return $this->find()
             ->where([
-                'datetime >' => Time::now()->i18nFormat('yyyy-MM-dd'),
+                'datetime >' => Time::now()->format('Y-m-d'),
                 'translation_id IS NULL',
                 'action' => 'insert',
                 'type !=' => 'license'
@@ -273,7 +273,7 @@ class ContributionsTable extends Table
             'script' => $script,
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
-            'datetime' => Time::now()->i18nFormat('yyyy-MM-dd HH:mm:ss'),
+            'datetime' => date("Y-m-d H:i:s"),
             'ip' => CurrentUser::getIp(),
             'type' => 'sentence',
             'action' => $action

@@ -16,26 +16,24 @@ $notReliable = $translation->correctness == -1;
      class="translation <?= $notReliable ? 'not-reliable' : '' ?>">
     <md-icon class="chevron">chevron_right</md-icon>
     <div class="lang">
-        <?
-        echo $this->Languages->icon(
-            $translation->lang,
-            array(
-                'width' => 30,
-                'height' => 20
-            )
-        );
-        ?>
+        <?= $this->Languages->icon(
+                $translation->lang,
+                [
+                    'width' => 30,
+                    'height' => 20
+                ]
+            ) ?>
     </div>
     <div class="text" flex
          dir="<?= LanguagesLib::getLanguageDirection($translation->lang) ?>">
         <?= h($translation->text) ?>
     </div>
-    <? if ($notReliable) { ?>
+    <?php if ($notReliable) { ?>
         <md-icon class="md-warn">warning</md-icon>
         <md-tooltip md-direction="top">
-            <? echo __('This sentence is not reliable.') ?>
+            <?= __('This sentence is not reliable.') ?>
         </md-tooltip>
-    <? } ?>
+    <?php } ?>
     <md-button class="md-icon-button"
                href="<?= $translationUrl ?>">
         <md-icon>info</md-icon>

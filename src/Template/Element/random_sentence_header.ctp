@@ -26,6 +26,7 @@
  */
 
 $this->Html->script(JS_PATH . 'sentences.show_another.js', array('block' => 'scriptBottom'));
+$this->Sentences->javascriptForAJAXSentencesGroup();
 
 $langArray = $this->Languages->languagesArrayAlone();
 $selectedLanguage = $this->request->getSession()->read('random_lang_selected');

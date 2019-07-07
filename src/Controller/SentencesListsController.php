@@ -83,16 +83,6 @@ class SentencesListsController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allowedActions = array(
-            'index',
-            'show',
-            'export_to_csv',
-            'of_user',
-            'download',
-            'search',
-            'collaborative'
-        );
-
         $this->Security->config('unlockedActions', [
             'set_option',
             'save_name',
@@ -110,9 +100,9 @@ class SentencesListsController extends AppController
      */
     public function index($filter = null)
     {
-        if (isset($this->request->query['search'])) {
-            $filter = $this->request->query['search'];
-            $this->redirect(array('action' => 'index', $filter));
+        $search = $this->request->getQuery('search');
+        if (!is_null($search)) {
+            return $this->redirect(array('action' => 'index', $search));
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
@@ -127,9 +117,9 @@ class SentencesListsController extends AppController
 
     public function collaborative($filter = null)
     {
-        if (isset($this->request->query['search'])) {
-            $filter = $this->request->query['search'];
-            $this->redirect(array('action' => 'collaborative', $filter));
+        $search = $this->request->getQuery('search');
+        if (!is_null($search)) {
+            return $this->redirect(array('action' => 'collaborative', $search));
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
@@ -160,7 +150,7 @@ class SentencesListsController extends AppController
         }
 
         if (!isset($id)) {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $list = $this->SentencesLists->getListWithPermissions(
@@ -171,7 +161,7 @@ class SentencesListsController extends AppController
             $this->Flash->set(
                 __('You do not have permission to view this list.')
             );
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $this->loadModel('Sentences');
@@ -210,9 +200,9 @@ class SentencesListsController extends AppController
         );
         
         if (isset($list->id)) {
-            $this->redirect(array('action' => 'show', $list['id']));
+            return $this->redirect(array('action' => 'show', $list['id']));
         } else {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
     }
 
@@ -226,8 +216,8 @@ class SentencesListsController extends AppController
     public function save_name()
     {
         $userId = $this->Auth->user('id');
-        $listId = substr($_POST['id'], 1);
-        $listName = $_POST['value'];
+        $listId = substr($this->request->getData('id'), 1);
+        $listName = $this->request->getData('value');
         
         if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
@@ -254,11 +244,11 @@ class SentencesListsController extends AppController
             $mostRecentList = $this->request->getSession()->read('most_recent_list');
             if ($mostRecentList == $listId)
             {
-                $mostRecentList = null;
+                $this->request->getSession()->delete('most_recent_list');
             }
         }
         
-        $this->redirect(array('action' => 'index'));
+        return $this->redirect(array('action' => 'index'));
     }
 
     /**
@@ -307,17 +297,13 @@ class SentencesListsController extends AppController
      */
     public function of_user($username=null, $filter = null)
     {
-        if (isset($this->request->query['username'])) {
-            $usernameParam = $this->request->query['username'];
-        }
-        if (isset($this->request->query['search'])) {
-            $searchParam = $this->request->query['search'];
-        }
+        $usernameParam = $this->request->getQuery('username');
+        $searchParam   = $this->request->getQuery('search');
 
-        if (!empty($usernameParam)) {
-            $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
+        if (!is_null($usernameParam)) {
+            return $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
         } else if (empty($username)) {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
         }
 
         $this->set('username', $username);
@@ -356,11 +342,11 @@ class SentencesListsController extends AppController
     public function add_new_sentence_to_list()
     {
         $result = null;
+        $listId = $this->request->getData('listId');
+        $sentenceText = $this->request->getData('sentenceText');
 
-        if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
-            $listId = $_POST['listId'];
+        if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
-            $sentenceText = $_POST['sentenceText'];
             $sentenceLang = $this->LanguageDetection->detectLang(
                 $sentenceText,
                 $userName
@@ -387,7 +373,10 @@ class SentencesListsController extends AppController
     {
         $userId = CurrentUser::get('id');
         $result = $this->SentencesLists->editOption(
-            $_POST['listId'], $_POST['option'], $_POST['value'], $userId
+            $this->request->getData('listId'),
+            $this->request->getData('option'),
+            $this->request->getData('value'),
+            $userId
         );
 
         $this->response->header('Content-Type: application/json');
@@ -404,7 +393,18 @@ class SentencesListsController extends AppController
     public function download($listId = null)
     {
         if (empty($listId)) {
-            $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'index'));
+        }
+
+        $list = $this->SentencesLists->getListWithPermissions(
+            $listId, CurrentUser::get('id')
+        );
+
+        if (!$list['Permissions']['canView']) {
+            $this->Flash->set(
+                __('You do not have permission to download this list.')
+            );
+            return $this->redirect(array('action' => 'index'));
         }
 
         $count = $this->SentencesLists->getNumberOfSentences($listId);
@@ -438,6 +438,17 @@ class SentencesListsController extends AppController
 
         if ($translationsLang === 'none') {
             $translationsLang = null;
+        }
+
+        $list = $this->SentencesLists->getListWithPermissions(
+            $listId, CurrentUser::get('id')
+        );
+
+        if (!$list['Permissions']['canView']) {
+            $this->Flash->set(
+                __('You do not have permission to download this list.')
+            );
+            return $this->redirect(array('action' => 'index'));
         }
 
         $exportId = ($exportId === '1');

@@ -24,7 +24,7 @@ class LanguagesHelperTest extends TestCase {
 	function _beRegularUser() {
 		$admin = array(
 			'id' => 7,
-			'group_id' => 4,
+			'role' => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
 			'settings' => array(
 				'lang' => 'jpn,epo,ara,deu'
 			)

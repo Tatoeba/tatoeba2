@@ -35,6 +35,8 @@
  * @link     http://tatoeba.org
  */
 
+use \Cake\Controller\Component\AuthComponent;
+
 $title = __('Log in');
 $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 
@@ -42,8 +44,9 @@ if  ($this->request->getSession()->check('Message.auth')) $this->Flash->render('
 
 $formTarget = array('controller' => 'users', 'action' => 'check_login');
 
-if (isset($this->request->query['redirectTo'])) {
-    $formTarget['?'] = array('redirectTo' => $this->request->query['redirectTo']);
+$redirect = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
+if (!is_null($redirect)) {
+    $formTarget['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirect];
 }
 
 $passwordUrl = $this->Url->build(
@@ -71,7 +74,8 @@ echo $this->Form->create(
 
 ?>
 <div md-whiteframe="1" id="login-form">
-    <h2><? echo __('Log in'); ?></h2>
+  <h2><?= __('Log in'); ?></h2>
+  <div ng-cloak>
     <md-input-container class="md-block">
         <?php
         echo $this->Form->input(
@@ -97,7 +101,7 @@ echo $this->Form->create(
         ng-false-value='0'
         ng-true-value='1' ng-init='rememberLogin = 0'
         class='md-primary'>
-        <label><? echo __('Remember me') ?></label>
+        <label><?= __('Remember me') ?></label>
     </md-checkbox>
     <?php
     echo $this->Form->checkbox(
@@ -116,13 +120,14 @@ echo $this->Form->create(
         </md-button>
 
         <md-button class="md-primary" href="<?= $passwordUrl ?>" flex>
-            <? echo __('Forgot your password?'); ?>
+            <?= __('Forgot your password?'); ?>
         </md-button>
 
         <md-button href="<?= $registerUrl; ?>">
             <?php echo __('Register'); ?>
         </md-button>
     </div>
+  </div>
 </div>
 <?php
 echo $this->Form->end();

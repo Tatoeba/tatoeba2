@@ -46,8 +46,8 @@ $homepage = $user['homepage'];
 $birthday = $user['birthday'];
 $userSince = $user['since'];
 $userSince = date($dateFormat, strtotime($userSince));
-$userStatus = $this->Members->groupName($groupId);
-$statusClass = 'status'.$groupId;
+$userStatus = $this->Members->groupName($user->role);
+$statusClass = 'status_'.$user->role;
 $currentMember = CurrentUser::get('username');
 $languagesSettings = $user['settings']['lang'];
 $level = $user['level'];
@@ -151,7 +151,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     'action' => 'settings'
                 ));
                 ?>
-                <div layout="row" layout-align="end center">
+                <div ng-cloak layout="row" layout-align="end center">
                     <md-button class="md-primary md-raised"
                                aria-label="<?= __('Edit') ?>"
                                href="<?= $editSettingsUrl ?>">
@@ -168,7 +168,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 </div>
 
 <div id="main_content">
-    <div id="profile" class="section with-title-button" layout="column" md-whiteframe="1">
+    <div ng-cloak id="profile" class="section with-title-button" layout="column" md-whiteframe="1">
 
         <div layout="row" class="header">
             <div>
@@ -187,7 +187,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             <div layout="column" class="info" flex>
                 <div layout="row" layout-align="space-between center">
                     <h2 flex><?= $username ?></h2>
-                    <?
+                    <?php
                     $editUrl = null;
                     if ($username == $currentMember) {
                         $editUrl = $this->Url->build(
@@ -212,7 +212,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                                    href="<?= $editUrl ?>">
                             <?= __('Edit') ?>
                         </md-button>
-                        <?
+                        <?php
                     }
                     ?>
                 </div>
@@ -220,7 +220,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 
                 <div layout="column" flex layout-margin>
                     <div layout="row">
-                        <div class="label"><? echo __('Member since') ?></div>
+                        <div class="label"><?= __('Member since') ?></div>
                         <div flex><?= $userSince ?></div>
                     </div>
 
@@ -265,12 +265,12 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             <md-divider></md-divider>
 
             <div class="personal-info" layout-margin>
-                <? foreach ($personalInfo as $label => $value) { ?>
+                <?php foreach ($personalInfo as $label => $value) { ?>
                     <div layout="row">
                         <div flex="33" class="label"><?= $label ?></div>
                         <div flex><?= $value ? $value : '-' ?></div>
                     </div>
-                <? } ?>
+                <?php } ?>
             </div>
             <?php
         }
@@ -291,7 +291,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         if ($isDisplayed) {
             ?>
             <md-divider></md-divider>
-            <?
+            <?php
             echo $this->Languages->tagWithLang(
                 'div', '', $descriptionContent,
                 array(
@@ -303,9 +303,9 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         ?>
     </div>
 
-    <div class="section with-title-button" md-whiteframe="1">
+    <div ng-cloak class="section with-title-button" md-whiteframe="1">
         <div layout="row" layout-align="start center">
-            <h2 flex><? echo __('Languages'); ?></h2>
+            <h2 flex><?= __('Languages'); ?></h2>
             <?php
             if ($username == $currentMember) {
                 $addLangUrl = $this->Url->build(array(
@@ -314,11 +314,11 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                 ));
                 ?>
                 <div layout="row" layout-align="end center">
-                    <md-button aria-label="<? echo __('Add a language') ?>" class="md-primary md-raised" href="<?= $addLangUrl ?>">
-                        <? echo __('Add a language') ?>
+                    <md-button aria-label="<?= __('Add a language') ?>" class="md-primary md-raised" href="<?= $addLangUrl ?>">
+                        <?= __('Add a language') ?>
                     </md-button>
                 </div>
-            <? } ?>
+            <?php } ?>
         </div>
 
         <?php
@@ -343,7 +343,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         {
             ?>
             <md-list>
-                <? foreach($userLanguages as $languageInfo) {
+                <?php foreach($userLanguages as $languageInfo) {
                     $langCode = $languageInfo->language_code;
                     $level = $languageInfo->level;
                     $details = $languageInfo->details;
@@ -354,13 +354,11 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     ));
                     ?>
                     <md-list-item class="md-2-line">
-                        <?
+                        <?php
                         // Icon
                         echo $this->Languages->icon(
                             $langCode,
                             array(
-                                'width' => 30,
-                                'height' => 20,
                                 'class' => 'language-icon'
                             )
                         );
@@ -374,7 +372,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                                 <?= $details ?>
                             </p>
                         </div>
-                        <? if ($username == $currentMember) {
+                        <?php if ($username == $currentMember) {
                             $deleteUrl = $this->Url->build(
                                 array(
                                     'controller' => 'users_languages',
@@ -399,9 +397,9 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                                     delete
                                 </md-icon>
                             </md-button>
-                        <? } ?>
+                        <?php } ?>
                     </md-list-item>
-                <? } ?>
+                <?php } ?>
             </md-list>
             <?php
         }

@@ -28,6 +28,8 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
+use Cake\Controller\Component\AuthComponent;
 use Cake\ORM\TableRegistry;
 
 /**
@@ -105,7 +107,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
+                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -134,9 +136,9 @@ class MenuHelper extends AppHelper
         $ownerName = $owner ? $owner['username'] : null;
         $isNative = isset($owner['is_native']) ? $owner['is_native'] : false;
         $isAdopted = !empty($ownerName);
-        $userAccountDeactivated = isset($owner['group_id']) ?
-            $owner['group_id'] > 4 : false;
-        $currentUserIsAdvanced = in_array(CurrentUser::get('group_id'), range(1, 3));
+        $userAccountDeactivated = isset($owner['role']) ?
+            in_array($owner['role'], [User::ROLE_SPAMMER, User::ROLE_INACTIVE]) : false;
+        $currentUserIsAdvanced = CurrentUser::isTrusted();
         $isAdoptable = !$isAdopted || ($userAccountDeactivated
                 && $currentUserIsAdvanced);
         $currentUserName = CurrentUser::get('username');
@@ -241,7 +243,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
+                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false
@@ -337,7 +339,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
-                    "?" => array("redirectTo" => $this->Pages->currentPageUrl()),
+                    "?" => array(AuthComponent::QUERY_STRING_REDIRECT => $this->Pages->currentPageUrl()),
                 ),
                 array(
                     "escape" => false

@@ -93,14 +93,15 @@ $vocabularyUrl = $this->Url->build(array(
             echo $this->Form->create('Sentence', [
                 'id' => 'sentence-form',
                 'url' => '/sentences/add_an_other_sentence',
-                'onsubmit' => 'return false'
+                'onsubmit' => 'return false',
+                'ng-cloak' => true,
             ]);
             ?>
 
             <div layout="column">
                 <div layout="row">
                     <div class="language-select" layout="row" layout-align="start center" flex>
-                        <label><? echo __('Language'); ?></label>
+                        <label><?= __('Language'); ?></label>
                         <?php
                         echo $this->Form->select(
                             'contributionLang',
@@ -116,9 +117,9 @@ $vocabularyUrl = $this->Url->build(array(
                         ?>
                     </div>
 
-                    <? if (CurrentUser::getSetting('can_switch_license')) : ?>
+                    <?php if (CurrentUser::getSetting('can_switch_license')) : ?>
                     <div class="license-select" layout="row" layout-align="end center" flex>
-                        <label><? echo __('License'); ?></label>
+                        <label><?= __('License'); ?></label>
                         <?php
                         echo $this->Form->select(
                             'sentenceLicense',
@@ -133,11 +134,11 @@ $vocabularyUrl = $this->Url->build(array(
                         );
                         ?>
                     </div>
-                    <? endif; ?>
+                    <?php endif; ?>
                 </div>
 
                 <md-input-container flex>
-                    <label><? echo __('Sentence'); ?></label>
+                    <label><?= __('Sentence'); ?></label>
                     <input id="SentenceText" type="text" ng-model="ctrl.data.text"
                            autocomplete="off"
                            ng-disabled="ctrl.isAdding">
@@ -146,7 +147,7 @@ $vocabularyUrl = $this->Url->build(array(
 
                 <div layout="row" layout-align="center center">
                     <md-button id="submitNewSentence" class="md-raised md-primary">
-                        <? echo __('OK') ?>
+                        <?= __('OK') ?>
                     </md-button>
                 </div>
             </div>
@@ -175,11 +176,11 @@ $vocabularyUrl = $this->Url->build(array(
         </div>
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div ng-cloak class="section" md-whiteframe="1">
         <div layout="column" layout-align="center center">
-            <? echo __('Check out the vocabulary for which we need sentences'); ?>
+            <?= __('Check out the vocabulary for which we need sentences'); ?>
             <md-button class="md-primary" href="<?= $vocabularyUrl ?>">
-                <? echo __('Sentences wanted') ?>
+                <?= __('Sentences wanted') ?>
                 <md-icon>keyboard_arrow_right</md-icon>
             </md-button>
         </div>

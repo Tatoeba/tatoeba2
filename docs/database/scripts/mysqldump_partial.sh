@@ -26,8 +26,6 @@ run_mysqldump --routines "$DB" \
   languages \
   private_messages \
   sentences_lists \
-  sinogram_subglyphs \
-  sinograms \
   tags \
   users \
   users_languages \

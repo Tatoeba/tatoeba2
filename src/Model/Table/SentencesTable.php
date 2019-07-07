@@ -26,6 +26,7 @@ use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
+use App\Model\Entity\User;
 use App\Event\ContributionListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
@@ -415,28 +416,6 @@ class SentencesTable extends Table
     }
 
     /**
-     * Search one random chinese/japanese sentence containing $sinogram.
-     *
-     * @param string $sinogram Sinogram to search an example sentence containing it.
-     *
-     * @return int The id of this sentence.
-     */
-    public function searchOneExampleSentenceWithSinogram($sinogram)
-    {
-        $results = $this->query(
-            "SELECT Sentence.id  FROM sentences AS Sentence
-                JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
-                WHERE Sentence.id >= r2.id
-                    AND Sentence.lang IN ( 'jpn','cmn','wuu')
-                    AND Sentence.text LIKE ('%$sinogram%')
-                ORDER BY Sentence.id ASC LIMIT 1
-            "
-        );
-
-        return !empty($results) ? $results[0]['Sentence']['id'] : null;
-    }
-
-    /**
      * Custom ->find('random', ...) function.
      */
     public function _findRandom($state, $query, $results = array())
@@ -453,14 +432,31 @@ class SentencesTable extends Table
     }
 
     /**
-     * Get the highest id for sentences.
-     *
-     * @return int The highest sentence id.
+     * Fast random sentence id selection
+     * when not selecting any particular language
      */
-    public function getMaxId()
+    public function getRandomIdAmongAllLanguages()
     {
-        $resultMax = $this->query('SELECT MAX(id) FROM sentences');
-        return $resultMax[0][0]['MAX(id)'];
+        $res = $this->find()
+                    ->select(['min' => 'min(id)', 'max' => 'max(id)'])
+                    ->first();
+        if ($res) {
+            $potentialIds = [];
+            for ($i = 0; $i < 100; $i++) {
+                $potentialIds[] = mt_rand($res->min, $res->max);
+            }
+            $res = $this->find()
+                        ->select(['id'])
+                        ->where(['id in' => $potentialIds])
+                        ->where(['user_id !=' => 0, 'correctness' => 0])
+                        ->order(['rand()'])
+                        ->first();
+            if ($res) {
+                return $res->id;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -470,14 +466,18 @@ class SentencesTable extends Table
      *
      * @return int A random id.
      */
-    public function getRandomId($lang = 'und')
+    public function getRandomId($lang = null)
     {
-        $arrayIds = $this->getSeveralRandomIds($lang, 1);
-        if (is_bool($arrayIds)) {
-            return $arrayIds;
-        }
+        if (!$lang || $lang == 'und') {
+            return $this->getRandomIdAmongAllLanguages();
+        } else {
+            $arrayIds = $this->getSeveralRandomIds($lang, 1);
+            if (is_bool($arrayIds)) {
+                return $arrayIds;
+            }
 
-        return  $arrayIds[0];//$results['Sentence']['id'];
+            return $arrayIds[0];
+        }
     }
 
     /**
@@ -509,7 +509,7 @@ class SentencesTable extends Table
 
         $arrayRandom = Cache::read($cacheKey);
         if (!is_array($arrayRandom) || empty($arrayRandom)) {
-            $arrayRandom = $this->_getRandomsToCached($lang, 3);
+            $arrayRandom = $this->_getRandomsToCached($lang, 500);
         }
 
         if(is_array($arrayRandom)){
@@ -518,7 +518,7 @@ class SentencesTable extends Table
                 $id = array_pop($arrayRandom);
                 // if we have take all the cached ids, then we request a new bunch
                 if ($id === NULL) {
-                    $arrayRandom = $this->_getRandomsToCached($lang, 5);
+                    $arrayRandom = $this->_getRandomsToCached($lang, 500);
                     $id = array_pop($arrayRandom);
                 }
                 array_push(
@@ -600,7 +600,7 @@ class SentencesTable extends Table
                 'fields' => array()
             ),
             'Users' => array(
-                'fields' => array('id', 'username', 'group_id', 'level')
+                'fields' => array('id', 'username', 'role', 'level')
             ),
             'SentencesLists' => array(
                 'fields' => array('id', 'SentencesSentencesLists.sentence_id')
@@ -646,7 +646,7 @@ class SentencesTable extends Table
     public function minimalContain() {
         $contain = array(
             'Users' => array(
-                'fields' => array('id', 'username', 'group_id', 'level')
+                'fields' => array('id', 'username', 'role', 'level')
             ),
             'Translations' => array(
                 'IndirectTranslations' => array(),
@@ -961,19 +961,20 @@ class SentencesTable extends Table
      *
      * @param int $sentenceId         Id of the sentence.
      * @param int $userId             Id of the user.
-     * @param int $currentUserGroupId Group id of the user.
+     * @param int $currentUserRole    Role of the currently logged-in user.
      *
      * @return bool
      */
-    public function setOwner($sentenceId, $userId, $currentUserGroupId)
+    public function setOwner($sentenceId, $userId, $currentUserRole)
     {
         $sentence = $this->get($sentenceId, ['fields' => ['id', 'user_id']]);
         $currentOwner = $this->getOwnerInfoOfSentence($sentenceId);
         $ownerId = $currentOwner['id'];
-        $ownerGroupId = $currentOwner['group_id'];
+        $ownerRole = $currentOwner['role'];
 
-        $isAdoptable = $ownerId == 0 || ($ownerGroupId > 4
-                && in_array($currentUserGroupId, range(1, 3)));
+        $isOwnerInactive = in_array($ownerRole, [User::ROLE_SPAMMER, User::ROLE_INACTIVE]);
+        $isCurrentUserTrusted = in_array($currentUserRole, User::ROLE_ADV_CONTRIBUTOR_OR_HIGHER);
+        $isAdoptable = $ownerId == 0 || ($isOwnerInactive && $isCurrentUserTrusted);
 
         if ($isAdoptable) {
             $sentence->user_id = $userId;
@@ -1285,36 +1286,45 @@ class SentencesTable extends Table
         return $this->delete($sentence);
     }
 
+    private function orderby($expr, $order)
+    {
+        return $expr . ($order ? ' ASC' : ' DESC');
+    }
+
     public function sphinxOptions($query, $from, $sort, $sort_reverse)
     {
-        $ranking_formula = '-text_len';
-        $sortMode = '@rank';
         if ($sort == 'random') {
-            $sortMode = '@random';
-        } elseif ($sort == 'created') {
-            $ranking_formula = 'created';
-        } elseif ($sort == 'modified') {
-            $ranking_formula = 'modified';
+            $sortOrder = '@random';
+        } elseif (empty($query)) {
+            // When the query is empty, Sphinx does not perform any
+            // ranking, so we need to rely on ordering instead
+            if ($sort == 'created' || $sort == 'modified') {
+                $sortOrder = $this->orderby($sort, $sort_reverse);
+            } else {
+                $sortOrder = $this->orderby('text_len', !$sort_reverse);
+            }
+        } else {
+            // When there are keywords, Sphinx will perform ranking
+            $sortOrder = $this->orderby('@rank', $sort_reverse);
+            if ($sort == 'words') {
+                $rankingExpr = '-text_len';
+            } elseif ($sort == 'relevance') {
+                $rankingExpr = '-text_len+top(lcs+exact_order*100)*100';
+            } elseif ($sort == 'created' || $sort == 'modified') {
+                $rankingExpr = $sort;
+            }
         }
-        $sortMode .= empty($sort_reverse) ? ' DESC' : ' ASC';
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
         $sphinx = array(
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
-            'sortMode' => array(SPH_SORT_EXTENDED => $sortMode),
-            'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
+            'sortMode' => array(SPH_SORT_EXTENDED => $sortOrder),
         );
-        if (empty($query) && $sort != 'random') {
-            // When the query is empty, Sphinx changes matchMode into
-            // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
-            // sortMode instead.
-            if (!empty($sort_reverse)) {
-                $ranking_formula = "-($ranking_formula)";
-            }
-            $sphinx['sortMode'] = array(SPH_SORT_EXPR => $ranking_formula);
-        }
+        if (isset($rankingExpr)) {
+            $sphinx['rankingMode'] = array(SPH_RANK_EXPR => $rankingExpr);
+        };
 
         return $sphinx;
     }

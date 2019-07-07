@@ -1,10 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class AppControllerTest extends IntegrationTestCase {
+	use TatoebaControllerTestTrait;
+
 	public $fixtures = array(
 		'app.users',
 		'app.users_languages',
@@ -14,6 +17,7 @@ class AppControllerTest extends IntegrationTestCase {
 	function setUp() {
 		parent::setUp();
 
+		Cache::disable();
 		Configure::write('UI.languages', [
 			['cmn', 'Hans', '中文', ['chi']],
 			['eng', null, 'English'],
@@ -21,6 +25,11 @@ class AppControllerTest extends IntegrationTestCase {
 			['jpn', null, '日本語'],
 			['pt_BR', 'BR', 'Português (BR)'],
 		]);
+	}
+
+	function tearDown() {
+		parent::tearDown();
+		Cache::enable();
 	}
 
 	function setInterfaceLanguageCookie($lang = null) {
@@ -111,5 +120,17 @@ class AppControllerTest extends IntegrationTestCase {
 		$this->get('/eng/about');
 
 		$this->assertSession(null, 'Auth.User.id');
+	}
+
+	function testError404InProduction() {
+		Configure::write('debug', false);
+		$this->get('/eng/this_does_no_exists');
+		$this->assertResponseCode(404);
+	}
+
+	function testLoginRedirectionDoesNotDisplayFlashMessage() {
+		$this->get('/eng/sentences/add');
+		$this->assertRedirect('/eng/users/login?redirect=%2Feng%2Fsentences%2Fadd');
+		$this->assertNoFlashMessage();
 	}
 }

@@ -27,6 +27,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\User;
+use Cake\Controller\Component\AuthComponent;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Event\Event;
 use Cake\Routing\Router;
 
@@ -61,21 +64,6 @@ class UsersController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
-        // no need to allow login
-        $this->Auth->allowedActions = array(
-            'all',
-            'search',
-            'show',
-            'login',
-            'check_login',
-            'logout',
-            'register',
-            'new_password',
-            'check_username',
-            'check_email',
-            'for_language'
-        );
         // prevent CSRF in this controller
         // since we're handling login and registration
         $this->Security->validatePost = true;
@@ -90,20 +78,7 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->paginate = array(
-            'limit' => 50,
-            'order' => ['group_id'],
-            'fields' => [
-                'id', 'email', 'username', 'since', 'level'
-            ],
-            'contain' => [
-                'Groups' => [
-                    'fields' => ['name']
-                ]
-            ]
-        );
-        $this->set('users', $this->paginate());
-
+        return $this->redirect(array('action' => 'all'));
     }
 
 
@@ -116,17 +91,19 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id);
-        if (!$user) {
+        try {
+            $user = $this->Users->get($id);
+        } catch (RecordNotFoundException $e) {
             $this->Flash->set('Invalid User');
-            $this->redirect(array('action'=>'index'));
+            return $this->redirect(array('action'=>'index'));
         }
+
         if (!empty($this->request->getData())) {
 
             $wasBlocked = $user->level == -1;
-            $wasSuspended = $user->group_id == 6;
+            $wasSuspended = $user->role == User::ROLE_SPAMMER;
             $isBlocked = !$wasBlocked && $this->request->getData('level') == -1;
-            $isSuspended = !$wasSuspended && $this->request->getData('group_id') == 6;
+            $isSuspended = !$wasSuspended && $this->request->getData('role') == User::ROLE_SPAMMER;
 
             $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -144,7 +121,7 @@ class UsersController extends AppController
                 );
             }
         }
-        $groups = $this->Users->Groups->find('list');
+        $groups = User::ALL_ROLES;
         $this->set(compact('groups', 'user'));
     }
 
@@ -158,13 +135,14 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
-        $user = $this->Users->get($id);
-        if (!$user) {
-            $this->Flash->set('Invalid id for User');
-        } elseif ($this->Users->delete($user)) {
+        try {
+            $user = $this->Users->get($id);
+            $this->Users->delete($user);
             $this->Flash->set('User deleted');
+        } catch (RecordNotFoundException $e) {
+            $this->Flash->set('Invalid id for User');
         }
-        $this->redirect(array('action'=>'index'));
+        return $this->redirect(array('action'=>'index'));
     }
 
 
@@ -179,7 +157,7 @@ class UsersController extends AppController
         if (!$this->Auth->user()) {
             return;
         }
-        $this->_common_login($this->Auth->redirectUrl());
+        return $this->_common_login($this->Auth->redirectUrl());
 
     }
 
@@ -193,15 +171,15 @@ class UsersController extends AppController
     {
         $user = $this->Auth->identify();
 
-        $redirectUrl = $this->request->getQuery('redirectTo', $this->Auth->redirectUrl());
-        $failedUrl = array(
-            'action' => 'login',
-            '?' => array('redirectTo' => $redirectUrl)
-        );
+        $redirectParam = $this->request->getQuery(AuthComponent::QUERY_STRING_REDIRECT);
+        $redirectUrl = $this->Auth->redirectUrl();
+        $failedUrl = ['action' => 'login'];
+        if (!is_null($redirectParam)) {
+            $failedUrl['?'] = [AuthComponent::QUERY_STRING_REDIRECT => $redirectUrl];
+        };
 
         if ($user) {
-            // group_id 5 => users is inactive
-            if ($user['group_id'] == 5) {
+            if ($user['role'] == User::ROLE_INACTIVE) {
                 $this->flash(
                     __(
                         'This account has been marked inactive. '.
@@ -211,8 +189,7 @@ class UsersController extends AppController
                     $failedUrl
                 );
             }
-            // group_id 6 => users is spammer
-            else if ($user['group_id'] == 6) {
+            else if ($user['role'] == User::ROLE_SPAMMER) {
                 $this->flash(
                     __(
                         'This account has been marked as a spammer. '.
@@ -223,7 +200,7 @@ class UsersController extends AppController
                 );
             } else {
                 $this->Auth->setUser($user);
-                $this->_common_login($redirectUrl);
+                return $this->_common_login($redirectUrl);
             }
         } else {
             if (empty($this->request->getData('username'))) {
@@ -277,7 +254,7 @@ class UsersController extends AppController
             );
         }
 
-        $this->redirect($redirectUrl);
+        return $this->redirect($redirectUrl);
     }
 
 
@@ -290,7 +267,7 @@ class UsersController extends AppController
     {
         $this->RememberMe->delete();
         $this->request->getSession()->delete('last_used_lang');
-        $this->redirect($this->Auth->logout());
+        return $this->redirect($this->Auth->logout());
     }
 
 
@@ -301,121 +278,82 @@ class UsersController extends AppController
      */
     public function register()
     {
-        // --------------------------------------------------
-        //   Cases where registration shouldn't work.
-        // --------------------------------------------------
-
         // Already logged in
         if ($this->Auth->User('id')) {
-            $this->redirect('/');
+            return $this->redirect('/');
         }
 
-        // No data
-        if (empty($this->request->getData())) {
-            $this->set('username', null);
-            $this->set('email', null);
-            $this->set('language', null);
-            return;
-        }
+        $newUser = $this->Users->newEntity();
 
-        $this->set('username', $this->request->getData('username'));
-        $this->set('email', $this->request->getData('email'));
-        $this->set('language', $this->request->getData('language'));
-
-        // Password is empty
-        if ($this->request->getData('password') == '') {
-            $this->Flash->set(
-                __('Password cannot be empty.')
-            );
-            $this->request = $this->request
-                ->withoutData('password')
-                ->withoutData('quiz');
-            return;
-        }
-
-        // Did not answer the quiz properly
         $correctAnswer = mb_substr($this->request->getData('email'), 0, 5, 'UTF-8');
-        if ($this->request->getData('quiz') != $correctAnswer) {
-            $this->Flash->set(
-                __('Wrong answer to the question.')
+        $quizOk = $this->request->getData('quiz') == $correctAnswer;
+
+        if ($this->request->is('post')) {
+            $newUser = $this->Users->patchEntity(
+                $newUser,
+                $this->request->getData(),
+                ['fields' => ['username', 'password', 'email']]
             );
-            $this->request = $this->request
-                ->withoutData('password')
-                ->withoutData('quiz');
-            return;
-        }
+            $newUser->since = date("Y-m-d H:i:s");
+            $newUser->role = User::ROLE_CONTRIBUTOR;
 
-        // Did not accept terms of use
-        if (!$this->request->getData('acceptation_terms_of_use')) {
-            $this->Flash->set(
-                __('You did not accept the terms of use.')
-            );
-            $this->request = $this->request
-                ->withoutData('password')
-                ->withoutData('quiz');
-            return;
-        }
+            if ($quizOk
+                && $this->request->getData('acceptation_terms_of_use')
+                && $this->Users->save($newUser)
+               ) {
+                $this->loadModel('UsersLanguages');
+                // Save native language
+                $language = $this->request->getData('language');
+                if (!empty($language) && $language != 'none') {
+                    $userLanguage = $this->UsersLanguages->newEntity([
+                        'of_user_id' => $newUser->id,
+                        'by_user_id' => $newUser->id,
+                        'level' => 5,
+                        'language_code' => $language
+                    ]);
+                    $this->UsersLanguages->save($userLanguage);
+                }
 
-        // --------------------------------------------------
+                $user = $this->Auth->identify();
+                $this->Auth->setUser($user);
 
+                $profileUrl = Router::url(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'profile',
+                        $this->Auth->user('username')
+                    )
+                );
+                $this->Flash->set(
+                    '<p><strong>'
+                    .__("Welcome to Tatoeba!")
+                    .'</strong></p><p>'
+                    .format(
+                        __(
+                            "To start things off, we encourage you to go to your ".
+                            "<a href='{url}'>profile</a> and let us know which ".
+                            "languages you speak or are interested in.",
+                            true
+                        ),
+                        array('url' => $profileUrl)
+                    )
+                    .'</p>'
+                );
 
-        // At this point, we're fine, so we can create the user
-        $newUser = $this->Users->newEntity(
-            $this->request->getData(),
-            ['fields' => ['username', 'password', 'email']]
-        );
-        $newUser->since = date("Y-m-d H:i:s");
-        $newUser->group_id = 4;
-
-        // And we save
-        if ($this->Users->save($newUser)) {
-            $this->loadModel('UsersLanguages');
-            // Save native language
-            $language = $this->request->getData('language');
-            if (!empty($language) && $language != 'none') {
-                $userLanguage = $this->UsersLanguages->newEntity([
-                    'of_user_id' => $newUser->id,
-                    'by_user_id' => $newUser->id,
-                    'level' => 5,
-                    'language_code' => $language
-                ]);
-                $this->UsersLanguages->save($userLanguage);
+                return $this->redirect(
+                    array(
+                        'controller' => 'pages',
+                        'action' => 'index'
+                    )
+                );
+            } else {
+                $this->Flash->set(__('Please fix the form errors.'));
             }
-
-            $user = $this->Auth->identify();
-            $this->Auth->setUser($user);
-
-            $profileUrl = Router::url(
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $this->Auth->user('username')
-                )
-            );
-            $this->Flash->set(
-                '<p><strong>'
-                .__("Welcome to Tatoeba!")
-                .'</strong></p><p>'
-                .format(
-                    __(
-                        "To start things off, we encourage you to go to your ".
-                        "<a href='{url}'>profile</a> and let us know which ".
-                        "languages you speak or are interested in.",
-                        true
-                    ),
-                    array('url' => $profileUrl)
-                )
-                .'</p>'
-            );
-
-            $this->redirect(
-                array(
-                    'controller' => 'pages',
-                    'action' => 'index'
-                )
-            );
         }
 
+        $this->set('user', $newUser);
+        $this->set('language', $this->request->getData('language'));
+        $this->set('quizOk', $quizOk);
     }
 
 
@@ -476,7 +414,7 @@ class UsersController extends AppController
         $userId = $this->Users->getIdFromUsername($this->request->getData('username'));
 
         if ($userId != null) {
-            $this->redirect(array("action" => "show", $userId));
+            return $this->redirect(array("action" => "show", $userId));
         } else {
             $this->flash(
                 __(
@@ -546,12 +484,16 @@ class UsersController extends AppController
 
         $this->paginate = array(
             'limit' => 20,
-            'order' => array('group_id', 'id'),
-            'fields' => array('id', 'username', 'since', 'image', 'group_id'),
+            'order' => array('role', 'id'),
+            'fields' => array('id', 'username', 'since', 'image', 'role'),
         );
 
-        $query = $this->Users->find()->where(['Users.group_id <' => 5]);
-        $users = $this->paginate($query);
+        $query = $this->Users->find()->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
+        try {
+            $users = $this->paginate($query);
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
         $this->set('users', $users);
     }
 
@@ -604,7 +546,7 @@ class UsersController extends AppController
         $usersLanguages = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
 
         if (empty($lang)) {
-            $lang = $usersLanguages->first()->language_code;
+            $lang = $usersLanguages[0]->language_code;
         }
 
         $this->paginate = $this->UsersLanguages->getUsersForLanguage($lang);

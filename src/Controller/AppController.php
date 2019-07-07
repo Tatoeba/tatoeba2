@@ -31,7 +31,6 @@ use App\Model\CurrentUser;
 use Cake\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\Http\Exception\NotFoundException;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Cake\I18n\I18n;
@@ -51,10 +50,9 @@ use Locale;
 
 class AppController extends Controller
 {
+    use \AuthActions\Lib\AuthActionsTrait;
+
     public $components = array(
-        'Acl' => array(
-            'className' => 'Acl.Acl',
-        ),
         'Auth' => array(
 		'authenticate' => array(
 			'Form' => array(
@@ -104,6 +102,29 @@ class AppController extends Controller
         $this->loadComponent('Csrf');
     }
 
+    // This code allows smooth transition from User.group_id
+    // to User.role for users who are logged-in while we
+    // update the code on the server.
+    // This code can be safely removed once it has been running
+    // on the server for longer than the session expiration time.
+    private function roleAuthCompat() {
+        $user = $this->Auth->user();
+        if (isset($user['group_id']) && !isset($user['role'])) {
+            $map = [
+                1 => \App\Model\Entity\User::ROLE_ADMIN,
+                2 => \App\Model\Entity\User::ROLE_CORPUS_MAINTAINER,
+                3 => \App\Model\Entity\User::ROLE_ADV_CONTRIBUTOR,
+                4 => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
+                5 => \App\Model\Entity\User::ROLE_INACTIVE,
+                6 => \App\Model\Entity\User::ROLE_SPAMMER
+            ];
+            if (isset($map[$user['group_id']])) {
+                $user['role'] = $map[$user['group_id']];
+                $this->Auth->setUser($user);
+            }
+        }
+    }
+
     /**
      *
      *
@@ -117,24 +138,27 @@ class AppController extends Controller
 
         $this->Cookie->domain = TATOEBA_DOMAIN;
         $this->Cookie->configKey('CakeCookie', 'encryption', false);
-        // This line will call views/elements/session_expired.ctp.
-        // When one tries to do an AJAX action after the session is expired,
-        // the action will return the content of this file instead of
-        // the whole page.
-        $this->Auth->ajaxLogin = 'session_expired';
         $this->Auth->allow('display');
-        $this->Auth->authorize = 'Actions';
-        $this->Auth->authError = __('You need to be logged in.', true);
-        // very important for the "remember me" to work
-        $this->Auth->autoRedirect = false;
+        $this->Auth->setConfig([
+            // This line will call views/elements/session_expired.ctp.
+            // When one tries to do an AJAX action after the session is expired,
+            // the action will return the content of this file instead of
+            // the whole page.
+            'ajaxLogin' => 'session_expired',
+            'authError' => false,
+            'authorize' => ['Controller'],
+            'loginAction' => [ 'controller' => 'users', 'action' => 'login' ],
+            'logoutRedirect' => [ 'controller' => 'users', 'action' => 'login' ],
+            // namespace declaration of AuthUtilsComponent
+            'AuthActions.AuthUtils',
+        ]);
+        $this->initAuthActions();
         $this->RememberMe->check();
 
+        $this->roleAuthCompat();
         // So that we can access the current users info from models.
         // Important: needs to be done after RememberMe->check().
         CurrentUser::store($this->Auth->user());
-
-        // Set view variables for the search bar
-        $this->set('query', '');
 
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the
@@ -284,7 +308,7 @@ class AppController extends Controller
         return parent::redirect($url, $status, $exit);
     }
 
-    private function redirectPaginationToLastPage($object, $settings)
+    protected function redirectPaginationToLastPage()
     {
         $paging = $this->request->getParam('paging');
         $lastPage = reset($paging)['page'];
@@ -298,17 +322,7 @@ class AppController extends Controller
             ],
             $this->request->params['pass']
         ));
-        $this->redirect($url);
-    }
-
-    public function paginate($object = NULL, array $settings = array())
-    {
-        try {
-            return parent::paginate($object, $settings);
-        } catch (NotFoundException $e) {
-            $this->redirectPaginationToLastPage($object, $settings);
-            return array();
-        }
+        return $this->redirect($url);
     }
 
     /**

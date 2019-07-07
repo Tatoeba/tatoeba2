@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Model\Table;
 
 use App\Model\Table\UsersTable;
-use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
@@ -12,10 +11,6 @@ class UsersTableTest extends TestCase
 
     public $fixtures = [
         'app.users',
-        'app.groups',
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.sentences',
         'app.contributions',
         'app.sentence_comments',
@@ -25,8 +20,6 @@ class UsersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        Configure::write('Acl.database', 'test');
 
         $config = TableRegistry::getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
         $this->Users = TableRegistry::getTableLocator()->get('Users', $config);

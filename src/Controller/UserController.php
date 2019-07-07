@@ -73,29 +73,6 @@ class UserController extends AppController
     public $components = array('Auth', 'Flash');
 
     /**
-     * ?
-     *
-     * @todo Restrict actions if needed. I don't know much about this stuff.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->allowedActions = array(
-            'profile',
-            'accept_new_terms_of_use'
-        );
-
-        return parent::beforeFilter($event);
-    }
-
-    public function updateAuthData($userId)
-    {
-        $userData = $this->User->read(null, $userId);
-        $this->request->getSession()->write(AuthComponent::$sessionKey, $userData['User']);
-    }
-
-    /**
      * Display profile of given user.
      * If no username is given and no user is logged in,
      *     then redirect to home
@@ -138,7 +115,6 @@ class UserController extends AppController
             );
         }
 
-        $groupId = $user->group_id;
         $userId = $user->id;
         $userStats = $this->_stats($userId);
         $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
@@ -149,7 +125,6 @@ class UserController extends AppController
 
         $this->set('userStats', $userStats);
         $this->set('user', $user);
-        $this->set('groupId', $groupId);
         $this->set('userLanguages', $userLanguages);
 
         $this->set('isPublic', $isPublic);

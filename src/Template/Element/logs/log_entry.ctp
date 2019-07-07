@@ -29,8 +29,8 @@ $obsolete = false;
 if (isset($log->obsolete)) {
     $obsolete = $log->obsolete;
 }
-$username = $log->user->username;
-$avatar = $log->user->image;
+$username = $log->user ? $log->user->username : null;
+$avatar = $log->user ? $log->user->image : null;
 $action =  $log->action;
 $type = 'sentence';
 if (isset($log->type)) {
@@ -48,20 +48,19 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
 ?>
 
 <md-list-item class="md-2-line <?= $type.'-'.$style ?>">
-    <?
+    <?php
     echo $this->Members->image($username, $avatar, array('class' => 'md-avatar'));
     echo $this->Languages->icon(
         $langCode,
         array(
-            'width' => 30,
-            'height' => 20,
+            'ng-cloak' => true,
             'class' => 'md-secondary lang'
         )
     );
     ?>
     <div class="md-list-item-text" layout="column">
         <div class="content" dir="<?= $langDir ?>">
-            <?
+            <?php
             if ($type =='sentence') {
                 echo h($sentenceText);
             } elseif ($type == 'license') {
@@ -73,7 +72,7 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
         </div>
         <p><?= $infoLabel ?></p>
     </div>
-    <md-button class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
+    <md-button ng-cloak class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
         <md-icon>info</md-icon>
     </md-button>
 </md-list-item>

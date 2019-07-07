@@ -28,6 +28,7 @@ namespace App\Model\Table;
 
 use App\Auth\VersionedPasswordHasher;
 use Cake\Database\Schema\TableSchema;
+use Cake\Filesystem\File;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -48,8 +49,6 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->belongsTo('Groups');
-
         $this->hasMany('Audios');
         $this->hasMany('Contributions');
         $this->hasMany('Favorites');
@@ -65,8 +64,6 @@ class UsersTable extends Table
         $this->hasMany('Wall', [
             'foreignKey' => 'owner'
         ]);
-
-        $this->addBehavior('Acl.Acl', ['type' => 'requester']);
     }
 
     public function validationDefault(Validator $validator)
@@ -78,20 +75,27 @@ class UsersTable extends Table
         $validator
             ->scalar('username')
             ->requirePresence('username', 'create')
-            ->lengthBetween('username', [2, 20])
+            ->notEmpty('username', __('Field required'))
+            ->minLength('username', 2, __('Username must be at least two characters long'))
+            ->maxLength('username', 20, __('Username must be at most 20 characters long'))
             ->add('username', 'alphanumeric', [
-                'rule' => ['custom', '/^\\w*$/']
+                'rule' => ['custom', '/^\\w*$/'],
+                'message' => __('Username can only contain letters, numbers, or underscore'),
             ]);
 
         $validator
             ->scalar('password')
-            ->requirePresence('password', 'create');
+            ->requirePresence('password', 'create')
+            ->notEmpty('password', __('Field required'))
+            ->minLength('password', 6, __('Password must be at least 6 characters long'));
 
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
+            ->notEmpty('email', __('Field required'))
             ->add('email', 'email', [
                 'rule' => ['custom', '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'],
+                'message' => __('Invalid email address'),
             ]);
 
         $validator
@@ -101,7 +105,7 @@ class UsersTable extends Table
             ->date('last_time_active');
 
         $validator
-            ->integer('group_id');
+            ->scalar('role');
 
         $validator
             ->allowEmpty('send_notifications')
@@ -154,11 +158,31 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->existsIn(['group_id'], 'Groups'));
+        $rules->add($rules->isUnique(['username'], __('Username already taken.')));
+        $rules->add($rules->isUnique(['email'], __('Email address already used.')));
 
         return $rules;
+    }
+
+    private function removeImages($file)
+    {
+        $images = [
+            WWW_ROOT . 'img' . DS . 'profiles_128' . DS . $file,
+            WWW_ROOT . 'img' . DS . 'profiles_36' . DS . $file,
+        ];
+        foreach ($images as $image) {
+            $file = new File($image);
+            if ($file->exists()) {
+                $file->delete();
+            }
+        }
+    }
+
+    public function afterSave($event, $entity, $options = array())
+    {
+        if (!$entity->isNew() && $entity->isDirty('image') && empty($entity->image)) {
+            $this->removeImages($entity->getOriginal('image'));
+        }
     }
 
     /**
@@ -225,7 +249,7 @@ class UsersTable extends Table
                 'settings',
                 'username',
                 'birthday',
-                'group_id',
+                'role',
                 'level',
                 'country_id',
             ])
@@ -440,14 +464,6 @@ class UsersTable extends Table
             ->where(['id' => $userId])
             ->first();
         return $user->level;
-    }
-
-
-    public function getGroupOfUser($userId)
-    {
-        $result = $this->findById($userId, 'group_id')->first();
-
-        return $result->group_id;
     }
 
     public function updatePasswordVersion($userId, $plainTextPassword)

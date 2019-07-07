@@ -44,20 +44,6 @@ class ActivitiesController extends AppController
     public $components = array ('CommonSentence', 'Flash');
 
     /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allow();
-
-        return parent::beforeFilter($event);
-    }
-
-
-    /**
      * Adopt sentences.
      *
      * @param string $lang
@@ -207,7 +193,11 @@ class ActivitiesController extends AppController
             'order' => ['Sentences.created' => 'DESC'],
         ];
 
-        $results = $this->paginate('Sentences');
+        try {
+            $results = $this->paginate('Sentences');
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
 
         $this->set('results', $results);
         $this->set('lang', $lang);

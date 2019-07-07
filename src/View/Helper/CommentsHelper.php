@@ -89,7 +89,7 @@ class CommentsHelper extends AppHelper
             ?>
             </div>
 
-            <div layout="row" layout-align="end center" layout-padding>
+            <div ng-cloak layout="row" layout-align="end center" layout-padding>
                 <md-button type="submit" class="md-raised md-primary">
                     <?php echo __('Submit comment'); ?>
                 </md-button>

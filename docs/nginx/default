@@ -2,7 +2,7 @@ server {
 	listen	80;
 	server_name	tatoeba.org;
 
-	root	/var/www-prod/app/webroot/;
+	root	/var/www-prod/webroot/;
 	index	index.php index.html;
 	charset	utf-8;
 
@@ -17,6 +17,11 @@ server {
     location / {
         try_files $uri $uri/ /index.php?url=$uri&$args;
     }
+
+	location /exported_files {
+		internal;
+		alias /var/www-prod/exported_files;
+	}
 
 
 	location ~ \.php {

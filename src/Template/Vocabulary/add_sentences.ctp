@@ -33,7 +33,7 @@ $title = __('Vocabulary that needs sentences');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<div id="annexe_content">
+<div ng-cloak id="annexe_content">
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <?php $this->CommonModules->createFilterByLangMod(); ?>
@@ -44,8 +44,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <h2><?= $title ?></h2>
 
         <p>
-            <?
-            echo __(
+            <?= __(
                 'Only vocabulary items that match fewer than 10 sentences are '.
                 'displayed here.'
             )
@@ -63,12 +62,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 ?>
                 <md-list-item id="vocabulary_<?= $id ?>">
                     <?= $this->Vocabulary->vocabulary($item); ?>
-                    <md-button ng-click="ctrl.showForm('<?= $id ?>')"
+                    <md-button ng-cloak ng-click="ctrl.showForm('<?= $id ?>')"
                                class="md-icon-button">
                         <md-icon aria-label="Add">add</md-icon>
                     </md-button>
                 </md-list-item>
-                <div id="sentences_<?= $id ?>" class="new-sentences"
+                <div ng-cloak id="sentences_<?= $id ?>" class="new-sentences"
                      ng-show="ctrl.sentencesAdded['<?= $id ?>']">
                     <div ng-repeat="sentence in ctrl.sentencesAdded['<?= $id ?>']"
                          class="new-sentence"
@@ -79,14 +78,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                             <md-icon ng-show="sentence.duplicate">warning</md-icon>
                             <md-tooltip md-direction="top"
                                         ng-show="sentence.duplicate">
-                                <? echo __('This sentence already exists.') ?>
+                                <?= __('This sentence already exists.') ?>
                             </md-tooltip>
                         </md-button>
                         <div class="text" flex>{{sentence.text}}</div>
                     </div>
                 </div>
 
-                <div id="loader_<?= $id ?>" flex ng-show="false">
+                <div ng-cloak id="loader_<?= $id ?>" flex ng-show="false">
                     <md-progress-linear></md-progress-linear>
                 </div>
 
@@ -97,6 +96,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                     'layout' => 'column',
                     'flex' => '',
                     'ng-show' => 'false',
+                    'ng-cloak',
                     'ng-submit' => "ctrl.saveSentence($id, '$lang')",
                     'onsubmit' => 'return false'
                 ]); ?>
@@ -111,11 +111,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                         <md-button class="md-raised"
                                    ng-disabled="ctrl.isAdding"
                                    ng-click="ctrl.hideForm('<?= $id ?>')">
-                            <? echo __('Cancel') ?>
+                            <?= __('Cancel') ?>
                         </md-button>
                         <md-button type="submit" class="md-raised md-primary"
                                    ng-disabled="ctrl.isAdding">
-                            <? echo __('Submit') ?>
+                            <?= __('Submit') ?>
                         </md-button>
                     </div>
                 <?= $this->Form->end() ?>

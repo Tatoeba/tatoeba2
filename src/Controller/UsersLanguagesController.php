@@ -51,7 +51,7 @@ class UsersLanguagesController extends AppController
         );
 
         if (empty($savedLanguage)) {
-            $lang = $savedLanguage->language_code;
+            $lang = $this->request->getData('lang');
             if (empty($lang) || $lang == 'und') {
                 $this->Flash->set(__('No language selected.'));
             } else {

@@ -89,8 +89,8 @@ if ($sentenceOwnerLink) {
 
 ?>
 
-<? if (!isset($hideSentence) || !$hideSentence) { ?>
-<div class="comment sentence" md-whiteframe="2">
+<?php if (!isset($hideSentence) || !$hideSentence) { ?>
+<div class="comment sentence md-whiteframe-1dp">
     <div class="info">
         <?= format(
             $sentenceInfoLabel,
@@ -108,18 +108,17 @@ if ($sentenceOwnerLink) {
         echo $this->Languages->icon(
             $sentenceLang,
             array(
-                'width' => 30,
-                'height' => 20,
+                'ng-cloak' => true,
                 'class' => 'lang'
             )
         );
         ?>
-        <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+        <md-button ng-cloak class="md-icon-button" href="<?= $sentenceUrl ?>">
             <md-icon>info</md-icon>
         </md-button>
     </div>
 </div>
-<? } ?>
+<?php } ?>
 
 <md-card class="comment <?= $commentHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
@@ -135,7 +134,7 @@ if ($sentenceOwnerLink) {
             </span>
         </md-card-header-text>
 
-        <? foreach ($menu as $menuItem) {
+        <?php foreach ($menu as $menuItem) {
             if ($menuItem['text'] == '#') {
                 $itemLabel = $replyIcon ? __('reply') : __('permalink');
             } else {
@@ -147,19 +146,20 @@ if ($sentenceOwnerLink) {
                 $confirmation = 'onclick="return confirm(\''.$msg.'\');"';
             }
             ?>
-            <md-button class="md-icon-button" <?= $confirmation ?>
+            <md-button ng-cloak
+                       class="md-icon-button" <?= $confirmation ?>
                        href="<?= $this->Url->build($menuItem['url']) ?>"
                        aria-label="<?= $itemLabel ?>">
                 <md-icon><?= $menuItem['icon'] ?></md-icon>
                 <md-tooltip><?= $itemLabel ?></md-tooltip>
             </md-button>
-        <? } ?>
+        <?php } ?>
     </md-card-header>
 
     <md-divider></md-divider>
 
     <md-card-content>
-        <? if ($commentHidden) { ?>
+        <?php if ($commentHidden) { ?>
             <div class="warning-info" layout="row" layout-align="start center">
                 <md-icon>warning</md-icon>
                 <p>
@@ -175,12 +175,12 @@ if ($sentenceOwnerLink) {
                     ); ?>
                 </p>
             </div>
-        <? } ?>
+        <?php } ?>
 
-        <? if (!$commentHidden || $canViewContent) { ?>
+        <?php if (!$commentHidden || $canViewContent) { ?>
             <p class="content" dir="auto">
-                <?= $this->Messages->formatedContent($commentText) ?>
+                <?= $this->Messages->formatContent($commentText) ?>
             </p>
-        <? } ?>
+        <?php } ?>
     </md-card-content>
 </md-card>

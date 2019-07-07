@@ -50,6 +50,16 @@ class SentencesListsFixture extends TestFixture {
 			'modified' => '2018-04-15 00:54:12',
 			'visibility' => 'private',
 			'editable_by' => 'creator'
-		)
+		),
+		array(
+			'id' => '4',
+			'name' => 'Sentences to switch to CC0',
+			'user_id' => 4,
+			'numberOfSentences' => 1,
+			'created' => '2018-10-10 10:10:01',
+			'modified' => '2018-10-10 10:10:09',
+			'visibility' => 'private',
+			'editable_by' => 'creator'
+		),
 	);
 }

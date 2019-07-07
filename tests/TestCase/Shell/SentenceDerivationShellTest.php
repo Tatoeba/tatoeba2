@@ -8,7 +8,6 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use App\Shell\Walker;
 use Cake\Utility\Hash;
-use Cake\Core\Configure;
 
 class SentenceDerivationShellTest extends TestCase
 {
@@ -24,7 +23,6 @@ class SentenceDerivationShellTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $io = $this->getMockBuilder(ConsoleIo::class)->getMock();
         $this->SentenceDerivationShell = $this->getMockBuilder(SentenceDerivationShell::class)
             ->setMethods(['in', 'err', 'createFile', '_stop', 'clear'])
@@ -305,10 +303,11 @@ class SentenceDerivationShellTest extends TestCase
             #51: Already has based_on_id
             #52: Already has based_on_id
             #53: Already has based_on_id
+            #54: Already has based_on_id
         */
         
         $totalSentences = $this->Sentences->find()->count();
-        $expected = $totalSentences - 15;
+        $expected = $totalSentences - 16;
         $actual = $this->SentenceDerivationShell->run();
         $this->assertEquals($expected, $actual);
     }

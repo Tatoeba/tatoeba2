@@ -1614,5 +1614,19 @@ class ContributionsFixture extends TestFixture {
 			'type' => 'sentence',
 			'id' => '112'
 		),
+		array(
+			'sentence_id' => '54',
+			'sentence_lang' => 'eng',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => 'Kazuki\'s original sentence (not initially added as a translation).',
+			'action' => 'insert',
+			'user_id' => '7',
+			'datetime' => '2017-04-13 01:12:43',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '113'
+		),
 	);
 }

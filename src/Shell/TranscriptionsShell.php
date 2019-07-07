@@ -18,12 +18,15 @@
  */
 namespace App\Shell;
 
+use Cake\Console\Shell;
 use Cake\Utility\Hash;
 use App\Model\Sentence;
 use App\Model\Transcription;
 
 
-class TranscriptionsShell extends AppShell {
+class TranscriptionsShell extends Shell {
+
+    use BatchOperationTrait;
 
     public function initialize()
     {
@@ -31,22 +34,17 @@ class TranscriptionsShell extends AppShell {
         $this->loadModel('Transcriptions');
     }
 
-    private function detectTranscriptionsFor($data) {
-        $result = array();
-        foreach ($data as $row) {
-            $lang = isset($row->lang) ?
-                    $row->lang :
-                    $row->sentence_lang;
-            $text = $row->text;
-            $script = $this->Transcriptions->detectScript($lang, $text);
-
-            $result[] = array(
-                'id' => $row->id,
-                'script' => $script,
-                'modified' => false,
-            );
+    private function detectTranscriptionsFor($entities) {
+        foreach ($entities as $entity) {
+            $lang = isset($entity->lang) ?
+                    $entity->lang :
+                    $entity->sentence_lang;
+            $text = $entity->text;
+            $entity->script = $this->Transcriptions->detectScript($lang, $text);
+            if ($entity->has('modified'))
+                $entity->dirty('modified', true);
         }
-        return $result;
+        return $entities;
     }
 
     public function autogen($lang) {
@@ -111,16 +109,15 @@ class TranscriptionsShell extends AppShell {
         $this->out("Script set for $proceeded sentences in lang(s) $langs.");
     }
 
-    protected function _setScript($rows, $model) {
+    protected function _setScript($entities, $model) {
         $proceeded = 0;
-        $data = $this->detectTranscriptionsFor($rows);
-        if ($data) {
+        $entities = $this->detectTranscriptionsFor($entities);
+        if ($entities) {
             $options = array(
                 'validate' => true,
                 'atomic' => false,
                 'callbacks' => false,
             );
-            $entities = $this->{$model}->newEntities($data);
             if ($this->{$model}->saveMany($entities, $options))
                 $proceeded += count($entities);
         }
@@ -131,7 +128,7 @@ class TranscriptionsShell extends AppShell {
     private function allSentencesOperation($operation, $conditions) {
         return $this->batchOperation('Sentences', $operation, array(
             'conditions' => $conditions,
-            'fields' => array('id', 'lang', 'script', 'text'),
+            'fields' => array('id', 'lang', 'script', 'text', 'modified'),
         ));
     }
 

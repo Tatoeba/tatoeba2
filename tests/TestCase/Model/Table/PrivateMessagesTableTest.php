@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\PrivateMessagesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 
@@ -18,7 +17,6 @@ class PrivateMessageTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->PrivateMessage = TableRegistry::getTableLocator()->get('PrivateMessages');
     }
 
@@ -125,6 +123,25 @@ class PrivateMessageTest extends TestCase {
 
         $before = $this->PrivateMessage->find()->count();
         $this->PrivateMessage->saveDraft($userId, $date, $postData);
+        $after = $this->PrivateMessage->find()->count();
+
+        $this->assertEquals(1, $after - $before);
+    }
+
+    public function testSend_draft() {
+        $userId = 4;
+        CurrentUser::store(['id' => $userId]);
+        $date = '2017-10-13 01:07:10';
+        $postData = [
+            'messageId' => 5,
+            'submitType' => 'send',
+            'recipients' => 'admin',
+            'title' => 'Feelings',
+            'content' => 'I\'m worrying about Tom.',
+        ];
+
+        $before = $this->PrivateMessage->find()->count();
+        $this->PrivateMessage->send($userId, $date, $postData);
         $after = $this->PrivateMessage->find()->count();
 
         $this->assertEquals(1, $after - $before);

@@ -209,6 +209,7 @@ echo $this->Form->create(
       echo $this->Form->input('sort', array(
           'label' => __('Order:'),
           'options' => array(
+              'relevance' => __('Relevance'),
               'words' => __('Fewest words first'),
               'created' => __('Last created first'),
               'modified' => __('Last modified first'),

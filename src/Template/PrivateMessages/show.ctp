@@ -25,10 +25,10 @@
  * @link     http://tatoeba.org
  */
 
-if (empty($title)) {
+if (empty($message->title)) {
     $messageTitle = __('[no subject]');
 } else {
-    $messageTitle = $title;
+    $messageTitle = $message->title;
 }
 $this->set('title_for_layout', $this->Pages->formatTitle(
     $messageTitle

@@ -47,7 +47,11 @@ class LogsHelper extends AppHelper
         $latestContribs = array();
         foreach ($contributions as $contribution) {
             $sentenceId = $contribution->sentence_id;
-            $contribTime = (int)$contribution->datetime->toUnixString();
+            if ($contribution->datetime) {
+                $contribTime = (int)$contribution->datetime->toUnixString();
+            } else {
+                $contribTime = 0;
+            }
             if (!isset($latestContribs[$sentenceId]) ||
                 (isset($latestContribs[$sentenceId]) && $latestContribs[$sentenceId] < $contribTime)) {
                 $latestContribs[$sentenceId] = $contribTime;
@@ -68,7 +72,11 @@ class LogsHelper extends AppHelper
         $latestContribs = $this->_findLatestContributionDates($contributions);
         foreach ($contributions as $contribution) {
             $sentenceId = $contribution->sentence_id;
-            $contribTime = (int)$contribution->datetime->toUnixString();
+            if ($contribution->datetime) {
+                $contribTime = (int)$contribution->datetime->toUnixString();
+            } else {
+                $contribTime = 0;
+            }
             $contribution->obsolete = ($contribTime < $latestContribs[$sentenceId]);
         }
     }
@@ -102,33 +110,33 @@ class LogsHelper extends AppHelper
      *
      * @return string
      */
-    public function getInfoLabel($type, $action, $username, $date) {
+    public function getInfoLabel($type, $action, $username = null, $date = null) {
         $date = $date ? $date->format('Y-m-d H:i:s') : null;
-        $userProfileLink = $this->_linkToUserProfile($username);
+        $userProfileLink = $username ? $this->_linkToUserProfile($username) : null;
         $dateLabel = $this->Date->ago($date);
 
         switch ($action) {
             case 'insert' :
                 if ($type == 'sentence') {
-                    $label = __('added by {user}');
+                    $label = $username ? __('added by {user}') : __('added by an unknown member');
                 } else if ($type == 'link') {
-                    $label = __('linked by {user}');
+                    $label = $username ? __('linked by {user}') : __('linked by an unknown member');
                 } else if ($type == 'license') {
-                    $label = __('license chosen by {user}');
+                    $label = $username ? __('license chosen by {user}') : __('license chosen by a unknown member');
                 }
                 break;
             case 'update' :
                 if ($type == 'sentence') {
-                    $label = __('edited by {user}');
+                    $label = $username ? __('edited by {user}') : __('edited by an unknown member');
                 } else if ($type == 'license') {
-                    $label = __('license changed by {user}');
+                    $label = $username ? __('license changed by {user}') : __('license changed by an unknown member');
                 }
                 break;
             case 'delete' :
                 if ($type == 'sentence') {
-                    $label = __('deleted by {user}');
+                    $label = $username ? __('deleted by {user}') : __('deleted by an unknown member');
                 } else if ($type == 'link') {
-                    $label = __('unlinked by {user}');
+                    $label = $username ? __('unlinked by {user}') : __('unlinked by an unknown member');
                 }
                 break;
             default:

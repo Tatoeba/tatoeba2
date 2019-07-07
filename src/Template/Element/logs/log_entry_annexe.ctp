@@ -43,7 +43,7 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
               data-translation-id="<?= $translationId ?>">
     <div class="md-list-item-text" layout="column">
         <div class="content" dir="<?= $langDir ?>">
-            <?
+            <?php
             if ($type =='sentence') {
                 echo $sentenceLink.' '.h($sentenceText);
             } elseif ($type == 'license') {

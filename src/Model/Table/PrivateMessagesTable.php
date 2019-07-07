@@ -186,7 +186,7 @@ class PrivateMessagesTable extends Table
             ->where([
                 'sender' => $userId,
                 'folder IN' => ['Sent', 'Trash'],
-                'date >=' => $yesterday->i18nFormat('yyyy-MM-dd HH:mm:ss')
+                'date >=' => $yesterday->format('Y-m-d H:i:s'),
             ])
             ->count();
     }
@@ -210,10 +210,6 @@ class PrivateMessagesTable extends Table
             'content'   => $data['content'],
             'isnonread' => 1,
         );
-
-        if (isset($data['messageId'])) {
-            $message['id'] = $data['messageId']; // for drafts
-        }
 
         return $message;
     }
@@ -240,7 +236,7 @@ class PrivateMessagesTable extends Table
             'sent'          => 0,
         );
 
-        if ($data['messageId']) {
+        if (isset($data['messageId'])) {
             $draft['id'] = $data['messageId'];
         }
 

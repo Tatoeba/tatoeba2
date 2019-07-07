@@ -37,7 +37,7 @@ $title = format(
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<div id="annexe_content">
+<div ng-cloak id="annexe_content">
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <?php $this->CommonModules->createFilterByLangMod(2); ?>
@@ -59,12 +59,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 ?>
                 <md-list-item id="vocabulary_<?= $divId ?>">
                     <?= $this->Vocabulary->vocabulary($item); ?>
-                    <? if ($canEdit) { ?>
-                        <md-button ng-click="ctrl.remove('<?= $divId ?>')"
+                    <?php if ($canEdit) { ?>
+                        <md-button ng-cloak ng-click="ctrl.remove('<?= $divId ?>')"
                                    class="md-icon-button">
                             <md-icon aria-label="Remove">delete</md-icon>
                         </md-button>
-                    <? } ?>
+                    <?php } ?>
                 </md-list-item>
                 <?php
             }

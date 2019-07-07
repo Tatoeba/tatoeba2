@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model;
 use App\Model\Wall;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 
@@ -19,7 +18,6 @@ class WallTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->Wall = TableRegistry::getTableLocator()->get('Wall');
     }
 
@@ -195,9 +193,16 @@ class WallTest extends TestCase {
     public function testGetMessagesThreaded() {
         $rootMessages = $this->Wall->find()
             ->where(['parent_id IS NULL'])
-            ->toList();
+            ->all();
         $threads = $this->Wall->getMessagesThreaded($rootMessages);
         $this->assertEquals(1, count($threads[0]->children));
+    }
+
+    public function testGetMessagesThreaded_empty() {
+        $this->Wall->deleteAll([]);
+        $rootMessages = $this->Wall->find()->all();
+        $threads = $this->Wall->getMessagesThreaded($rootMessages);
+        $this->assertCount(0, $threads);
     }
 
     public function testDeleteMessage_succeeds() {

@@ -35,7 +35,7 @@ $this->Html->script(
 $listCount = $this->Paginator->param('count');
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
-$listName = $list['name'];
+$listName = h($list['name']);
 $maxCountForDownload = SentencesList::MAX_COUNT_FOR_DOWNLOAD;
 
 $this->set('title_for_layout', $this->Pages->formatTitle($listName));

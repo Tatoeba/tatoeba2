@@ -71,9 +71,7 @@ $max = $stats[0]['sentences'];
         $numSentencesDiv  = '<div class="bar" style="width:'.$percent.'%"></div>';
         $numSentencesDiv .= $numSentences;
 
-        $languageIcon = $this->Languages->icon(
-            $langCode, array('width' => 30, 'height' => 20)
-        );
+        $languageIcon = $this->Languages->icon($langCode);
 
         $langName = $this->Languages->codeToNameAlone($langCode);
         if (empty($langCode)) {

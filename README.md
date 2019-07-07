@@ -50,7 +50,7 @@ message in our [Google group][5], ask in our [Gitter chatroom][6] or in our
 [1]: https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer
 [2]: https://github.com/Tatoeba/imouto
 [3]: https://github.com/Tatoeba/imouto/blob/master/README.md#imouto-for-development
-[4]: https://github.com/Tatoeba/tatoeba2/wiki/How-to-install-Tatoeba
+[4]: https://github.com/Tatoeba/tatoeba2/wiki/How-to-install-Tatoeba-on-Windows-(minimal)
 [5]: https://groups.google.com/group/tatoebaproject
 [6]: https://gitter.im/Tatoeba/tatoeba2
 [7]: https://chat.tatoeba.org/

@@ -11,7 +11,7 @@ echo "<p>";
 echo $this->Html->link($url);
 echo "</p>";
 
-echo $this->Html->div(null, $this->Messages->formatedContent($messageContent),
+echo $this->Html->div(null, $this->Messages->formatContent($messageContent),
     array(
         'style' => 'background:#f1f1f1;padding:20px'
     )

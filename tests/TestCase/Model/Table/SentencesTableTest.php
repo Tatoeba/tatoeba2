@@ -11,6 +11,7 @@ use App\Model\CurrentUser;
 use App\Lib\Autotranscription;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Model\Entity\Contribution;
+use App\Model\Entity\User;
 use Cake\Utility\Hash;
 
 class SentencesTableTest extends TestCase {
@@ -34,7 +35,6 @@ class SentencesTableTest extends TestCase {
 
 	function setUp() {
 		parent::setUp();
-		Configure::write('Acl.database', 'test');
 		Configure::write('AutoTranscriptions.enabled', true);
 		$this->Sentence = TableRegistry::getTableLocator()->get('Sentences');
 		$autotranscription = $this->_installAutotranscriptionMock();
@@ -196,6 +196,14 @@ class SentencesTableTest extends TestCase {
 		$this->assertFalse((bool)$result);
 	}
 
+	function testSave_checksLicenseDoesUpdateIfAdmin() {
+		CurrentUser::store($this->Sentence->Users->get(1));
+		$data = $this->Sentence->get(48);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
+		$result = $this->Sentence->save($data);
+		$this->assertTrue((bool)$result);
+	}
+
 	function testSave_checksLicenseDoesntUpdateIfBasedOnIdIsNull() {
 		$this->beOwnerOfCurrentSentence(1);
 		$data = $this->Sentence->get(1);
@@ -240,6 +248,22 @@ class SentencesTableTest extends TestCase {
 		$this->beOwnerOfCurrentSentence(50);
 		$data = $this->Sentence->get(50);
 		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
+		$result = $this->Sentence->save($data);
+		$this->assertFalse((bool)$result);
+	}
+
+	function testSave_checksLicenseBypassValidationIfAdmin() {
+		CurrentUser::store($this->Sentence->Users->get(1));
+		$data = $this->Sentence->get(50);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CC0 1.0']);
+		$result = $this->Sentence->save($data);
+		$this->assertTrue((bool)$result);
+	}
+
+	function testSave_checksLicenseDoesntUpdateToInvalidLicense() {
+		CurrentUser::store($this->Sentence->Users->get(1));
+		$data = $this->Sentence->get(50);
+		$data = $this->Sentence->patchEntity($data, ['license' => 'CL42 Crazy License']);
 		$result = $this->Sentence->save($data);
 		$this->assertFalse((bool)$result);
 	}
@@ -765,10 +789,20 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals($expectedValues, $values);
 	}
 
-	function testEditSentence_succeeds() {
+	function testEditSentence_succeedsForSentenceOwner() {
+		$user = $this->Sentence->Users->get(4);
+		CurrentUser::store($user);
+		$this->editSentenceWithSuccess();
+	}
+
+	function testEditSentence_succeedsForCorpusMaintainer() {
 		$user = $this->Sentence->Users->get(2);
 		CurrentUser::store($user);
+		$this->editSentenceWithSuccess();
+	}
 
+	function editSentenceWithSuccess() {
+		$before = $this->Sentence->get(53);
 		$data = array(
 			'id' => 'eng_53',
 			'value' => 'Edited sentence.'
@@ -781,8 +815,11 @@ class SentencesTableTest extends TestCase {
 			'text' => 'Edited sentence.'
 		);
 		$result = array_intersect_key($sentence->toArray(), $expected);
-
 		$this->assertEquals($expected, $result);
+
+		$after = $this->Sentence->get(53);
+		$this->assertNotEquals($before->text, $after->text);
+		$this->assertNotEquals($before->modified, $after->modified);
 	}
 
 	function testEditSentence_succeedsWhenLangEmtpy() {
@@ -813,8 +850,8 @@ class SentencesTableTest extends TestCase {
 			'id' => 'spa_3',
 			'value' => 'changing'
 		);
-		$result = $this->Sentence->editSentence($data);
 		$expected = $this->Sentence->get(3);
+		$result = $this->Sentence->editSentence($data);
 		
 		$this->assertEquals($expected, $result);
 	}
@@ -827,9 +864,13 @@ class SentencesTableTest extends TestCase {
 			'id' => 'eng_1',
 			'value' => 'Edited sentence.'
 		);
+		$before = $this->Sentence->get(1);
+
 		$result = $this->Sentence->editSentence($data);
-		$expected = $this->Sentence->get(1);
-		$this->assertEquals($expected, $result);
+		$this->assertNotFalse($result);
+
+		$after = $this->Sentence->get(1);
+		$this->assertEquals($before, $after);
 	}
 
 	function testEditSentence_failsBecauseWrongId() {
@@ -845,29 +886,59 @@ class SentencesTableTest extends TestCase {
 		$this->assertEmpty($result);
 	}
 
-	function testDeleteSentence_succeeds()
+	function testDeleteSentence_succeedsBecauseIsOwnerAndHasNoTranslations()
 	{
 		$user = $this->Sentence->Users->get(4);
 		CurrentUser::store($user);
-
-		$result = $this->Sentence->deleteSentence(53);
-
-		$this->assertTrue($result);
+		$this->deleteSentenceWithSuccess(53);
 	}
 
-	function testDeleteSentence_fails()
+	function testDeleteSentence_succeedsBecauseIsCorpusMaintainer()
+	{
+		$user = $this->Sentence->Users->get(2);
+		CurrentUser::store($user);
+		$this->deleteSentenceWithSuccess(53);
+	}
+
+	function testDeleteSentence_succeedsBecauseIsAdmin()
+	{
+		$user = $this->Sentence->Users->get(2);
+		CurrentUser::store($user);
+		$this->deleteSentenceWithSuccess(53);
+	}
+
+	function deleteSentenceWithSuccess($id) {
+		$result = $this->Sentence->deleteSentence($id);
+		$this->assertTrue($result);
+
+		$count = $this->Sentence->find()->where(['id' => $id])->count();
+		$this->assertEquals(0, $count);
+	}
+
+	function testDeleteSentence_failsIfNotOwnerAndHasNoTranslations()
 	{
 		$user = $this->Sentence->Users->get(4);
 		CurrentUser::store($user);
+		$this->deleteSentenceWithFailure(52);
+	}
 
-		$result = $this->Sentence->deleteSentence(52);
+	function testDeleteSentence_failsIfOwnerAndHasTranslations()
+	{
+		$this->beOwnerOfCurrentSentence(1);
+		$this->deleteSentenceWithFailure(1);
+	}
 
+	function deleteSentenceWithFailure($id) {
+		$result = $this->Sentence->deleteSentence($id);
 		$this->assertFalse($result);
+
+		$count = $this->Sentence->find()->where(['id' => $id])->count();
+		$this->assertEquals(1, $count);
 	}
 
 	function testNumberOfSentencesOwnedBy() {
 		$result = $this->Sentence->numberOfSentencesOwnedBy(7);
-		$this->assertEquals(18, $result);
+		$this->assertEquals(19, $result);
 	}
 
 	function testGetSentenceTextForId_succeeds() {
@@ -909,23 +980,47 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testSetOwner_succeeds() {
-		$result = $this->Sentence->setOwner(14, 7, 4);
+		$id = 14;
+		$before = $this->Sentence->get($id)->user_id;
+
+		$result = $this->Sentence->setOwner($id, 7, User::ROLE_CONTRIBUTOR);
 		$this->assertTrue($result);
+
+		$after = $this->Sentence->get($id)->user_id;
+		$this->assertNotEquals($before, $after);
 	}
 
-	function testSetOwner_fails() {
-		$result = $this->Sentence->setOwner(1, 1, 1);
+	function testSetOwner_failsIfNotOrphan() {
+		$id = 1;
+		$before = $this->Sentence->get($id)->user_id;
+
+		$result = $this->Sentence->setOwner($id, 1, User::ROLE_ADMIN);
 		$this->assertFalse($result);
+
+		$after = $this->Sentence->get($id)->user_id;
+		$this->assertEquals($before, $after);
 	}
 
 	function testUnsetOwner_succeeds() {
-		$result = $this->Sentence->unsetOwner(1, 7);
+		$id = 1;
+		$before = $this->Sentence->get($id)->user_id;
+
+		$result = $this->Sentence->unsetOwner($id, 7);
 		$this->assertTrue($result);
+
+		$after = $this->Sentence->get($id)->user_id;
+		$this->assertNotEquals($before, $after);
 	}
 
-	function testUnsetOwner_fails() {
-		$result = $this->Sentence->unsetOwner(1, 1);
+	function testUnsetOwner_failsIfNotOwner() {
+		$id = 1;
+		$before = $this->Sentence->get($id)->user_id;
+
+		$result = $this->Sentence->unsetOwner($id, 1);
 		$this->assertFalse($result);
+
+		$after = $this->Sentence->get($id)->user_id;
+		$this->assertEquals($before, $after);
 	}
 
 	function testSave_doesntAddDuplicate() {
