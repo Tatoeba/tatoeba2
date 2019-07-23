@@ -12,11 +12,11 @@ Here are the basic requirements of the machine you’re using imouto from.
 * VirtualBox 4.0 or later (via package manager or [generic binaries](https://www.virtualbox.org/wiki/Downloads))
 * Vagrant 1.7 or later (via package manager or [generic binaries](https://www.vagrantup.com/downloads.html))
 
-## Installing a new instance
+## Installing a local instance
 
 - Install the requirements above.
 
-- Clone the repository and go to its directory:
+- Open a terminal. Windows users can run Git Bash (which comes with Git for Windows). In the terminal, clone Imouto’s repository and go inside by running the following commands:
 
 ```bash
 git clone https://github.com/Tatoeba/imouto
