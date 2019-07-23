@@ -7,10 +7,10 @@ Imouto is a collection of automation scripts for building an instance of [Tatoeb
 Here are the basic requirements of the machine you’re using imouto from.
 
 * A machine with a 64-bit CPU (32-bit should be possible too but we do not support it)
-* GNU/Linux or MacOS
-* Git
-* VirtualBox 4.0 or later, which can be installed with a package manager or with the help of [generic binaries](https://www.virtualbox.org/wiki/Downloads))
-* Vagrant 1.7 or later
+* GNU/Linux, MacOS or Windows
+* Git (Windows users can use [Git for Windows](https://gitforwindows.org/))
+* VirtualBox 4.0 or later (via package manager or [generic binaries](https://www.virtualbox.org/wiki/Downloads))
+* Vagrant 1.7 or later (via package manager or [generic binaries](https://www.vagrantup.com/downloads.html))
 
 ## Installing a new instance
 
@@ -49,7 +49,7 @@ The source code is inside the VM. While you can edit it using `vagrant ssh` and 
 
 #### Using NFS (Unix/MacOS)
 
-We recommend NFS because it’s fast and allows to run `git` without noticeable delay. The source code is served over NFS by the VM. Add the following line to your /etc/fstab:
+If you’re using GNU/Linux or MacOS, we recommend NFS because it’s fast and allows to run `git` without noticeable delay. The source code is served over NFS by the VM. Add the following line to your /etc/fstab:
 
 ```
 # Change /your/path/to/imouto/Tatoeba/ to the actual path of Imouto
@@ -58,9 +58,13 @@ localhost:/home/vagrant/Tatoeba /your/path/to/imouto/Tatoeba/ nfs noauto,user,ex
 
 Now you should be able to run `mount Tatoeba/` and access the source code there.
 
-#### Using SSHFS
+#### Using Windows Shared Folder
 
-If for some reason NFS doesn’t work for you, you can use the script `mount.sh`:
+If you’re using Windows, the source code is served as a Windows share. Open *Run* from the Start menu, the search or by pressing Win+R. In the Run prompt, type `\\172.19.119.178\tatoeba`. This should open the source code of Tatoeba in the file explorer.
+
+#### Using SSHFS (Unix/MacOS)
+
+If for some reason the above options do not work for you, you can use the script `mount.sh`:
 
 ```bash
 ./mount.sh -M ./Tatoeba /home/vagrant/Tatoeba/
@@ -68,7 +72,7 @@ If for some reason NFS doesn’t work for you, you can use the script `mount.sh`
 
 ### Editing the source code
 
-- We recommend that you create your own fork of Tatoeba on Github. Because of this, you will have to change the remote URL to point it to your fork:
+We recommend that you create your own fork of Tatoeba on Github. Because of this, you will have to change the remote URL to point it to your fork:
 
 ```bash
 cd Tatoeba/
@@ -76,9 +80,25 @@ cd Tatoeba/
 git remote set-url origin git@github.com:<username>/tatoeba2.git
 ```
 
+To Windows users: you may see unwanted changes when running `git diff`, such as:
+
+```
+$ git diff
+diff --git a/bin/cake b/bin/cake
+old mode 100755
+new mode 100644
+```
+
+You can avoid this problem either by running `git config core.fileMode false`, or by creating a file named `.gitconfig` in the repository containing:
+
+```
+[core]
+	fileMode = false
+```
+
 ## Develpment tools
 
-Run `vagrant ssh` to ssh to the machine and `cd Tatoeba` to enter the code. From there, you can execute development tools such as:
+Development tools are all run from the command line. Windows users can run Git Bash (which comes with Git for Windows) while Unix and MacOS users have to open a terminal. From there, `cd` to Imouto’s directory and run `vagrant ssh` to ssh into the VM. Then, run `cd Tatoeba` to enter the code. From there, you can execute development tools such as:
 
 ### Running tests
 
