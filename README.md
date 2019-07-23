@@ -45,7 +45,7 @@ vagrant up
 
 ### Accessing the source code
 
-The source code is inside the VM. While can edit it using `vagrant ssh` and console editors, you might want to mount the code directory from your machine so that you can edit it with your favorite editor or IDE. There are several ways to do this.
+The source code is inside the VM. While you can edit it using `vagrant ssh` and console editors, you might want to access the code directory from your machine so that you can edit it with your favorite editor or IDE. There are several ways to do this.
 
 #### Using NFS (Unix/MacOS)
 
