@@ -75,7 +75,6 @@ If for some reason the above options do not work for you, you can use the script
 We recommend that you create your own fork of Tatoeba on Github. Because of this, you will have to change the remote URL to point it to your fork:
 
 ```bash
-cd Tatoeba/
 # Change <username> with your Github username
 git remote set-url origin git@github.com:<username>/tatoeba2.git
 ```
