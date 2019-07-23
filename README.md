@@ -53,7 +53,7 @@ We recommend NFS because it’s fast and allows to run `git` without noticeable 
 
 ```
 # Change /your/path/to/imouto/Tatoeba/ to the actual path of Imouto
-localhost:/home/vagrant/Tatoeba /your/path/to/imouto/Tatoeba/ nfs user,exec,port=8049,soft,timeo=10
+localhost:/home/vagrant/Tatoeba /your/path/to/imouto/Tatoeba/ nfs noauto,user,exec,port=8049,soft,timeo=10
 ```
 
 Now you should be able to run `mount Tatoeba/` and access the source code there.
