@@ -21,12 +21,14 @@
                         $scope.export = response.data.export;
                         if ($scope.export.status == 'online') {
                             startDownload();
+                        } else if ($scope.export.status == 'failed') {
+                            $scope.preparingDownload = false;
                         } else {
                             $scope.tryToDownloadList();
                         }
                     },
                     function() {
-                        $scope.tryToDownloadList();
+                        $scope.preparingDownload = false;
                     }
                 );
             }, 5000);
