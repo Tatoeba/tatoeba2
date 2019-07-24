@@ -37,19 +37,17 @@
         $scope.addListExport = function (listId) {
             $scope.preparingDownload = true;
             var fields = [];
+            var options = {'type': 'list', 'list_id': listId};
             if ($scope.showid) {
                 fields.push('id');
             }
             fields.push('text');
             if ($scope.trans_lang != 'none') {
                 fields.push('trans_text');
+                options['trans_lang'] = $scope.trans_lang;
             }
-            $http.post(rootUrl + "/exports/add", {
-                     'type': 'list',
-                     'list_id': listId,
-                     'fields': fields,
-                     'trans_lang': $scope.trans_lang,
-                 })
+            options['fields'] = fields;
+            $http.post(rootUrl + "/exports/add", options)
                  .then(
                     function(response) {
                         $scope.export = response.data.export;
