@@ -35,6 +35,7 @@
         }
 
         $scope.addListExport = function (listId) {
+            $scope.export = {};
             $scope.preparingDownload = true;
             var fields = [];
             var options = {'type': 'list', 'list_id': listId};

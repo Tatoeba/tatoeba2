@@ -138,6 +138,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
 
             <td>
                 <span ng-if="preparingDownload"><?= __('Preparing download, please wait.'); ?></span>
+                <span ng-if="export.status == 'failed'"><?= __('Failed to prepare download, please try again.'); ?></span>
             </td>
         </tr>
     </table>
