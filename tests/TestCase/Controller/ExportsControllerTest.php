@@ -92,14 +92,20 @@ class ExportsControllerTest extends IntegrationTestCase
         $this->assertThat(null, new HeaderNotSet($this->_response, $header), $verboseMessage);
     }
 
+    private function exportsAdd()
+    {
+        $this->ajaxPost('/eng/exports/add', [
+            'type' => 'list',
+            'list_id' => 2,
+            'fields' => ['id', 'lang', 'text']
+        ]);
+    }
+
     public function testAdd_asMember()
     {
-        $this->configRequest([
-            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
-        ]);
         $this->logInAs('contributor');
 
-        $this->post('/eng/exports/add', [ 'type' => 'list', 'list_id' => 2 ]);
+        $this->exportsAdd();
 
         $this->assertResponseOk();
         $this->assertContentType('application/json');
@@ -108,10 +114,7 @@ class ExportsControllerTest extends IntegrationTestCase
     public function testAdd_asGuest()
     {
         $this->enableCsrfToken();
-        $this->configRequest([
-            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
-        ]);
-        $this->post('/eng/exports/add', [ 'type' => 'list', 'list_id' => 2 ]);
+        $this->exportsAdd();
 
         $this->assertResponseOk();
         $this->assertContentType('application/json');
