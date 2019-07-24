@@ -36,7 +36,6 @@ $listCount = $this->Paginator->param('count');
 $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = h($list['name']);
-$maxCountForDownload = SentencesList::MAX_COUNT_FOR_DOWNLOAD;
 
 $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 ?>
@@ -108,30 +107,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             $this->Lists->displayDeleteButton($listId);
         }
 
-        if ($permissions['canDownload']) {
-            $this->Lists->displayDownloadLink($listId);
-        } else {
-            $firstSentence = __n('The download feature has been disabled for '.
-                'this list because it contains a sentence.',
-                'The download feature has been disabled for '.
-                'this list because it contains {n}&nbsp;sentences.',
-                $listCount, true);
-
-            $secondSentence = __n('Only lists containing one sentence or fewer can be '.
-                'downloaded. If you can edit the list, you may want '.
-                'to split it into multiple lists.',
-                'Only lists containing {max} or fewer sentences can be '.
-                'downloaded. If you can edit the list, you may want '.
-                'to split it into multiple lists.',
-                $maxCountForDownload, true);
-
-            echo $this->Html->tag(
-                'div', format($firstSentence, array('n' => $listCount))
-            );
-            echo $this->Html->tag(
-                'div', format($secondSentence, array('max' => $maxCountForDownload))
-            );
-        }
+        $this->Lists->displayDownloadLink($listId);
         ?>
     </div>
     </div>

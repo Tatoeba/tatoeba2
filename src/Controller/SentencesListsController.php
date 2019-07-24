@@ -417,18 +417,6 @@ class SentencesListsController extends AppController
             return $this->redirect(array('action' => 'index'));
         }
 
-        $count = $this->SentencesLists->getNumberOfSentences($listId);
-        if ($count > SentencesList::MAX_COUNT_FOR_DOWNLOAD)
-        {
-            $this->flash(
-                __(
-                    'This list cannot be downloaded '.
-                    'because it contains too many sentences.'
-                ),
-                array('action' => 'show', $listId)
-            );
-        }
-
         $listName = $this->SentencesLists->getNameForListWithId($listId);
         $this->set('listId', $listId);
         $this->set('listName', $listName);

@@ -90,7 +90,6 @@ class SentencesListsTable extends Table
             'canEdit' => $belongsToUser,
             'canAddSentences' => $belongsToUser && $editableBy !== 'no_one',
             'canRemoveSentences' => $belongsToUser || $editableBy == 'anyone',
-            'canDownload' => $numberOfSentences <= SentencesList::MAX_COUNT_FOR_DOWNLOAD
         );
 
         return $permissions;
