@@ -111,13 +111,19 @@ class ExportsControllerTest extends IntegrationTestCase
         $this->assertContentType('application/json');
     }
 
-    public function testAdd_asGuest()
+    public function testAdd_asGuest_success()
     {
         $this->enableCsrfToken();
         $this->exportsAdd();
 
         $this->assertResponseOk();
         $this->assertContentType('application/json');
+    }
+
+    public function testAdd_asGuest_failsWithoutCsrfToken()
+    {
+        $this->exportsAdd();
+        $this->assertResponseError();
     }
 
     private function createDownloadFile($filename)
