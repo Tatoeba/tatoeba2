@@ -112,7 +112,7 @@ class QueueSwitchSentencesLicenseTask extends QueueTask {
     private function switchLicense($options) {
         $this->loadModel('Sentences');
         $query = $this->Sentences->find()
-             ->select(['Sentences.id'])
+             ->select(['id' => 'Sentences.id'])
              ->matching('SentencesLists', function ($q) use ($options) {
                  return $q->where(['SentencesLists.id' => $options['listId']]);
              });

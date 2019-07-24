@@ -42,7 +42,6 @@ class SentencesListsTableTest extends TestCase {
             'canEdit' => true,
             'canAddSentences' => true,
             'canRemoveSentences' => true,
-            'canDownload' => true
         );
         $this->assertEquals($expected, $list['Permissions']);
     }
@@ -54,7 +53,6 @@ class SentencesListsTableTest extends TestCase {
             'canEdit' => false,
             'canAddSentences' => false,
             'canRemoveSentences' => false,
-            'canDownload' => true
         );
         $this->assertEquals($expected, $list['Permissions']);
     }
