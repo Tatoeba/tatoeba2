@@ -42,14 +42,14 @@ class LastContributionsTable extends Table
             ->contain([
                 'Users' => [
                     'fields' => [
-                        'username', 'group_id', 'image'
+                        'username', 'role', 'image'
                     ]
                 ]
             ])
             ->select([
                 'total' => 'COUNT(LastContributions.id)',
                 'Users.username',
-                'Users.group_id',
+                'Users.role',
                 'Users.image'
             ])
             ->order(['total' => 'DESC'])

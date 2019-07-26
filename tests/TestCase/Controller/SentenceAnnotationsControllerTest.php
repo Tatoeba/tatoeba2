@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class SentenceAnnotationsControllerTest extends IntegrationTestCase
@@ -10,20 +9,12 @@ class SentenceAnnotationsControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.private_messages',
         'app.sentence_annotations',
         'app.sentences',
         'app.users',
         'app.users_languages',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

@@ -85,7 +85,10 @@ echo $this->Form->create($user, array('id' => 'UserEditForm'));
     echo $this->Form->input('id',       array('label' => __d('admin', 'Id')));
     echo $this->Form->input('username', array('label' => __d('admin', 'Username')));
     echo $this->Form->input('settings.lang',     array('label' => __d('admin', 'Lang')));
-    echo $this->Form->input('group_id', array('label' => __d('admin', 'Group')));
+    echo $this->Form->input('role', array(
+        'options' => array_combine($groups, $groups),
+        'label' => __d('admin', 'Group'),
+    ));
     echo $this->Form->input(
         'level', 
         array(

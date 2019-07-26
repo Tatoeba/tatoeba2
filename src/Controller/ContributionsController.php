@@ -57,18 +57,6 @@ class ContributionsController extends AppController
     public $uses = array('Contribution', 'ContributionsStats');
 
     /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->allow();
-
-        return parent::beforeFilter($event);
-    }
-
-    /**
      * Display all contributions in specified language (or all languages).
      *
      * @param string $filter Language of the contributions.

@@ -55,11 +55,6 @@ class AudioController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allowedActions = array(
-            'of',
-            'index',
-        );
-
         $this->Security->unlockedActions = array(
             'save_settings' // can't figure out why this is blackholed
         );

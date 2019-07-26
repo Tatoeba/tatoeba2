@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class VocabularyControllerTest extends IntegrationTestCase
@@ -10,9 +9,6 @@ class VocabularyControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.acos',
-        'app.aros',
-        'app.aros_acos',
         'app.private_messages',
         'app.sentences',
         'app.users',
@@ -20,11 +16,6 @@ class VocabularyControllerTest extends IntegrationTestCase
         'app.users_vocabulary',
         'app.vocabulary',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

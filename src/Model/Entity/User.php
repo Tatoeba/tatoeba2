@@ -7,6 +7,34 @@ use Cake\ORM\TableRegistry;
 
 class User extends Entity
 {
+    const ROLE_ADMIN = 'admin';
+    const ROLE_CORPUS_MAINTAINER = 'corpus_maintainer';
+    const ROLE_ADV_CONTRIBUTOR = 'advanced_contributor';
+    const ROLE_CONTRIBUTOR = 'contributor';
+    const ROLE_INACTIVE = 'inactive';
+    const ROLE_SPAMMER = 'spammer';
+
+    const ALL_ROLES = [
+        self::ROLE_ADMIN,
+        self::ROLE_CORPUS_MAINTAINER,
+        self::ROLE_ADV_CONTRIBUTOR,
+        self::ROLE_CONTRIBUTOR,
+        self::ROLE_INACTIVE,
+        self::ROLE_SPAMMER,
+    ];
+
+    const ROLE_CONTRIBUTOR_OR_HIGHER = [
+        self::ROLE_ADMIN, self::ROLE_CORPUS_MAINTAINER,
+        self::ROLE_ADV_CONTRIBUTOR, self::ROLE_CONTRIBUTOR
+    ];
+    const ROLE_ADV_CONTRIBUTOR_OR_HIGHER = [
+        self::ROLE_ADMIN, self::ROLE_CORPUS_MAINTAINER,
+        self::ROLE_ADV_CONTRIBUTOR
+    ];
+    const ROLE_CORPUS_MAINTAINER_OR_HIGHER = [
+        self::ROLE_ADMIN, self::ROLE_CORPUS_MAINTAINER
+    ];
+
     // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
 
@@ -60,28 +88,5 @@ class User extends Entity
                 $settings[$setting] = self::$defaultSettings[$setting];
             }
         }
-    }
-
-    /**
-     * ?
-     *
-     * @return array
-     */
-    public function parentNode()
-    {
-	if (!$this->id) {
-		return null;
-	}
-	if (isset($this->group_id)) {
-		$groupId = $this->group_id;
-	} else {
-		$Users = TableRegistry::get('Users');
-		$user = $Users->find('all', ['fields' => ['group_id']])->where(['id' => $this->id])->first();
-		$groupId = $user->group_id;
-	}
-	if (!$groupId) {
-		return null;
-	}
-	return ['Groups' => ['id' => $groupId]];
     }
 }

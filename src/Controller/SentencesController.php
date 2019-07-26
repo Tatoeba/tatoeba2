@@ -121,21 +121,6 @@ class SentencesController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array(
-            'index',
-            'show',
-            'search',
-            'advanced_search',
-            'of_user',
-            'random',
-            'go_to_sentence',
-            'several_random_sentences',
-            'get_neighbors_for_ajax',
-            'show_all_in',
-            'with_audio'
-        );
-
         $this->Security->config('unlockedActions', [
           'add_an_other_sentence',
           'save_translation',
@@ -384,7 +369,7 @@ class SentencesController extends AppController
     {
         $userId = $this->Auth->user('id');
 
-        $this->Sentences->setOwner($id, $userId, CurrentUser::get('group_id'));
+        $this->Sentences->setOwner($id, $userId, CurrentUser::get('role'));
 
         $this->renderAdopt($id);
     }

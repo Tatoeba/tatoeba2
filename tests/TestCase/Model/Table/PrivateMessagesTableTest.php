@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\PrivateMessagesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
 
@@ -18,7 +17,6 @@ class PrivateMessageTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->PrivateMessage = TableRegistry::getTableLocator()->get('PrivateMessages');
     }
 

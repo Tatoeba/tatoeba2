@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\TranslationsTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
-use Cake\Core\Configure;
 use Cake\Utility\Hash;
 
 class TranslationsTableTest extends TestCase {
@@ -17,7 +16,6 @@ class TranslationsTableTest extends TestCase {
 
     function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->Translation = TableRegistry::getTableLocator()->get('Translations');
     }
 

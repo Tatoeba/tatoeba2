@@ -40,9 +40,17 @@ ORDER BY sl.id ASC, s_sl.sentence_id
 INTO OUTFILE '/var/tmp/sentences_in_lists.csv';
 
 -- Users
-SELECT u.id, u.username, g.name
-FROM users u JOIN groups g ON u.group_id = g.id
-WHERE g.id BETWEEN 1 AND 5  -- no spammers, who have id = 6
+SELECT
+  u.id,
+  u.username,
+  CASE u.role -- backward compatibility crap
+    WHEN 'corpus_maintainer' THEN 'moderator'
+    WHEN 'advanced_contributor' THEN 'trusted_user'
+    WHEN 'contributor' THEN 'user'
+    ELSE u.role
+  END
+FROM users u
+WHERE u.role != 'spammer'
 ORDER BY u.id ASC
 INTO OUTFILE '/var/tmp/users.csv';
 

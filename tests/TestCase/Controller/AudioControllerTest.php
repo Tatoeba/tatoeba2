@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class AudioControllerTest extends IntegrationTestCase
@@ -10,9 +9,6 @@ class AudioControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.audios',
         'app.languages',
         'app.private_messages',
@@ -21,11 +17,6 @@ class AudioControllerTest extends IntegrationTestCase
         'app.users',
         'app.users_languages',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

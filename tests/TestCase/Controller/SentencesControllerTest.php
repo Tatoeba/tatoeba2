@@ -16,9 +16,6 @@ class SentencesControllerTest extends IntegrationTestCase {
         'app.sentences_sentences_lists',
         'app.languages',
         'app.links',
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.private_messages',
         'app.reindex_flags',
         'app.audios',
@@ -34,7 +31,6 @@ class SentencesControllerTest extends IntegrationTestCase {
 
     public function setUp() {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         Configure::write('Search.enabled', false);
     }
 

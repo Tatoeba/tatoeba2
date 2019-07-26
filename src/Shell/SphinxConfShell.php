@@ -175,6 +175,8 @@ class SphinxConfShell extends Shell {
         'U+0C80..U+0C8C', 'U+0C8E..U+0C90', 'U+0C92..U+0CA8', 'U+0CAA..U+0CB3',
         'U+0CB5..U+0CB9', 'U+0CBC..U+0CC4', 'U+0CC6..U+0CC8', 'U+0CCA..U+0CCD',
         'U+0CD5..U+0CD6', 'U+0CDE', 'U+0CE0..U+0CE3', 'U+0CE6..U+0CEF', 'U+0CF1..U+0CF2',
+		# Dhivehi 
+		'U+0780..U+07B1',
     );
 
     public $scriptsWithoutWordBoundaries = array(
@@ -409,7 +411,6 @@ index common_index
 $regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
-    docinfo                 = extern
     ngram_len               = 1
     ngram_chars             = $ngram_chars_opt
 }
@@ -446,10 +447,7 @@ EOT;
                     $conf .= "
         sql_query_pre = UPDATE reindex_flags SET indexed = 1 \
                         WHERE lang = '$lang' \
-                        AND indexed = 0
-        sql_query_killlist = SELECT sentence_id FROM reindex_flags \
-                             WHERE lang = '$lang' \
-                             AND indexed = 1";
+                        AND indexed = 0";
                 }
 
                 $delta_join = ($type == 'main') ?
@@ -544,6 +542,9 @@ EOT;
                     if (isset($this->indexExtraOptions[$lang])) {
                         $conf .= $this->indexExtraOptions[$lang];
                     }
+                } else {
+                    $conf .= "
+        killlist_target = ${lang}_main_index:id";
                 }
                 $conf .= "
     }
@@ -594,7 +595,6 @@ searchd
     seamless_rotate         = 1
     preopen_indexes         = 1
     unlink_old              = 1
-    mva_updates_pool        = 16M
 }
 
 EOT;

@@ -2,7 +2,6 @@
 namespace App\Test\TestCase\Controller;
 
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestCase;
 
 class LinksControllerTest extends IntegrationTestCase
@@ -10,9 +9,6 @@ class LinksControllerTest extends IntegrationTestCase
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.acos',
-        'app.aros',
-        'app.aros_acos',
         'app.contributions',
         'app.links',
         'app.reindex_flags',
@@ -20,11 +16,6 @@ class LinksControllerTest extends IntegrationTestCase
         'app.users',
         'app.users_languages',
     ];
-
-    public function setUp() {
-        parent::setUp();
-        Configure::write('Acl.database', 'test');
-    }
 
     public function accessesProvider() {
         return [

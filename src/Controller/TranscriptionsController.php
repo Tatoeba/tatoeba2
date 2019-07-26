@@ -42,11 +42,6 @@ class TranscriptionsController extends AppController
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allowedActions = array(
-            'view',
-            'of',
-        );
-
         $this->Security->config('unlockedActions', [
             'save',
             'reset'

@@ -4,7 +4,6 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\VocabularyTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
-use Cake\Core\Configure;
 use App\Model\CurrentUser;
 
 class VocabularyTableTest extends TestCase
@@ -19,7 +18,6 @@ class VocabularyTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Configure::write('Acl.database', 'test');
         $this->Vocabulary = TableRegistry::getTableLocator()->get('Vocabulary');
     }
 

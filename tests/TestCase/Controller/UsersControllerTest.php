@@ -1,7 +1,6 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestCase;
 use Cake\Utility\Security;
@@ -11,12 +10,8 @@ class UsersControllerTest extends IntegrationTestCase {
     use TatoebaControllerTestTrait;
 
     public $fixtures = [
-        'app.aros',
-        'app.acos',
-        'app.aros_acos',
         'app.contributions',
         'app.users',
-        'app.groups',
         'app.users_languages',
         'app.last_contributions',
         'app.private_messages',
@@ -28,7 +23,6 @@ class UsersControllerTest extends IntegrationTestCase {
     public function setUp() {
         parent::setUp();
 
-        Configure::write('Acl.database', 'test');
         $this->previousSalt = Security::getSalt();
         Security::setSalt('ze@9422#5dS?!99xx');
         $this->enableCsrfToken();
@@ -256,15 +250,16 @@ class UsersControllerTest extends IntegrationTestCase {
                 'username' => "foobar_$i",
                 'password' => "very_bad_password_$i",
                 'email' => "foobar_$i@example.com",
+                'role' => \App\Model\Entity\User::ROLE_CONTRIBUTOR,
             ];
         }
         $users = TableRegistry::get('Users');
         $entities = $users->newEntities($newUsers);
         $result = $users->saveMany($entities);
 
-        $this->get('/eng/users/all?page=9999999&sort=User.group_id&direction=asc');
+        $this->get('/eng/users/all?page=9999999&sort=username&direction=asc');
 
-        $this->assertRedirect("/eng/users/all?page=$lastPage&sort=User.group_id&direction=asc");
+        $this->assertRedirect("/eng/users/all?page=$lastPage&sort=username&direction=asc");
     }
 
     public function testDelete() {

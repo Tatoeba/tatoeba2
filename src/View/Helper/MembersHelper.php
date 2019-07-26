@@ -26,6 +26,7 @@
  */
 namespace App\View\Helper;
 
+use App\Model\Entity\User;
 use App\View\Helper\AppHelper;
 
 
@@ -157,22 +158,22 @@ class MembersHelper extends AppHelper
 
 
     /**
-     * Gives i18n for a group name.
+     * Gives i18n for a role name.
      *
-     * @param string groupDbName Name of the group in the database.
+     * @param string $role Name of the role in the database.
      *
      * @return string
      */
-    public function groupName($groupId)
+    public function groupName($role)
     {
-        switch ($groupId) {
-            case 1  : return __('admin');
-            case 2  : return __('corpus maintainer');
-            case 3  : return __('advanced contributor');
-            case 4  : return __('contributor');
-            case 5  : return __('inactive');
-            case 6  : return __('suspended');
-            default : return null;
+        switch ($role) {
+            case User::ROLE_ADMIN             : return __('admin');
+            case User::ROLE_CORPUS_MAINTAINER : return __('corpus maintainer');
+            case User::ROLE_ADV_CONTRIBUTOR   : return __('advanced contributor');
+            case User::ROLE_CONTRIBUTOR       : return __('contributor');
+            case User::ROLE_INACTIVE          : return __('inactive');
+            case User::ROLE_SPAMMER           : return __('suspended');
+            default                           : return null;
         }
     }
 

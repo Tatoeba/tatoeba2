@@ -43,21 +43,6 @@ class ImportsController extends AppController
     public $name = "Imports";
     public $uses = "Sentence";
 
-
-    /**
-     * Before filter.
-     *
-     * @return void
-     */
-    public function beforeFilter(Event $event)
-    {
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array();
-
-        return parent::beforeFilter($event);
-    }
-
-
     /**
      * Used to treat data send from import form
      * will import a list of single sentences from a file

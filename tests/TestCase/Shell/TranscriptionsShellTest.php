@@ -52,7 +52,6 @@ class TranscriptionsShellTest extends ConsoleIntegrationTestCase
         $AT = $this->getAutotranscriptionMock();
         $this->TS->Transcriptions->setAutotranscription($AT);
 
-        Configure::write('Acl.database', 'test');
         Configure::write('AutoTranscriptions.enabled', true);
     }
 
