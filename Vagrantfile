@@ -24,10 +24,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if ENV['BUILD'] == '1'
     config.vm.box = "debian/stretch64"
-    config.vm.provision :ansible do |ansible|
+    config.vm.provision "install", :type => "ansible" do |ansible|
       # ansible.verbose = "vvvv"
       ansible.playbook = "ansible/vagrant.yml"
     end
+    config.vm.provision "strip", :type => "shell", :path => "reduce_box_size.sh"
   else
     config.vm.box = "tatoeba/tatoeba"
   end
