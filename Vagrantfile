@@ -24,16 +24,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   if ENV['BUILD'] == '1'
     config.vm.box = "debian/stretch64"
-    if Vagrant::Util::Platform.windows?
-      config.vm.provision :guest_ansible do |ansible|
-        # ansible.verbose = "vvvv"
-        ansible.playbook = "ansible/vagrant.yml"
-      end
-    else
-      config.vm.provision :ansible do |ansible|
-        # ansible.verbose = "vvvv"
-        ansible.playbook = "ansible/vagrant.yml"
-      end
+    config.vm.provision :ansible do |ansible|
+      # ansible.verbose = "vvvv"
+      ansible.playbook = "ansible/vagrant.yml"
     end
   else
     config.vm.box = "tatoeba/tatoeba"
