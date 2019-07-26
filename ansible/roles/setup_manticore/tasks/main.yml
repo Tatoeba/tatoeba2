@@ -12,8 +12,12 @@
 
 - name: Install Manticore package
   apt:
-    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/2.8.2/manticore_2.8.2-190402-4e81114d-release-stemmer.stretch_amd64-bin.deb
-    dpkg_options: no-triggers
+    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/3.1.0/manticore_3.1.0-190716-445e806e-release.stretch_amd64-bin.deb
+
+- name: Work around bug that prevents enabling Manticore
+  file:
+    path: /lib/systemd/system-generators/manticore-generator
+    state: absent
 
 - name: Enable Manticore
   command: systemctl enable manticore
