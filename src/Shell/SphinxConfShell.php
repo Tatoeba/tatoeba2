@@ -411,7 +411,6 @@ index common_index
 $regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
-    docinfo                 = extern
     ngram_len               = 1
     ngram_chars             = $ngram_chars_opt
 }
@@ -448,10 +447,7 @@ EOT;
                     $conf .= "
         sql_query_pre = UPDATE reindex_flags SET indexed = 1 \
                         WHERE lang = '$lang' \
-                        AND indexed = 0
-        sql_query_killlist = SELECT sentence_id FROM reindex_flags \
-                             WHERE lang = '$lang' \
-                             AND indexed = 1";
+                        AND indexed = 0";
                 }
 
                 $delta_join = ($type == 'main') ?
@@ -546,6 +542,9 @@ EOT;
                     if (isset($this->indexExtraOptions[$lang])) {
                         $conf .= $this->indexExtraOptions[$lang];
                     }
+                } else {
+                    $conf .= "
+        killlist_target = ${lang}_main_index:id";
                 }
                 $conf .= "
     }
@@ -596,7 +595,6 @@ searchd
     seamless_rotate         = 1
     preopen_indexes         = 1
     unlink_old              = 1
-    mva_updates_pool        = 16M
 }
 
 EOT;
