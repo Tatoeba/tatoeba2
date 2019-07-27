@@ -326,6 +326,12 @@ class ExportsTableTest extends TestCase
         $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_with_translations.csv', $filename);
     }
 
+    public function testRunExport_fileHasExpectedContents_withTranslations_batchOperationSplitOnMultipleTranslations()
+    {
+        $this->Exports->batchOperationSize = 2;
+        $this->testRunExport_fileHasExpectedContents_withTranslations();
+    }
+
     public function testRunExport_withBatchOperation()
     {
         $this->Exports->batchOperationSize = 1;

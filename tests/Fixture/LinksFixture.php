@@ -27,9 +27,9 @@ class LinksFixture extends TestFixture {
 		/* Here is a little ASCII chart of these fixtures.
 		 * Let's try to keep it updated!
 		 *
-		 *   5-2-1-3
-		 *      \|
-		 *       4-6-10
+		 *   5-2-1-3     55-57
+		 *      \|       |
+		 *       4-6-10  56
 		 */
 		array(
 			'id' => '1',
@@ -141,6 +141,38 @@ class LinksFixture extends TestFixture {
 			'translation_id' => '10',
 			'sentence_lang' => NULL,
 			'translation_lang' => NULL,
+			'distance' => '1'
+		),
+		array(
+			'id' => '15',
+			'sentence_id' => '55',
+			'translation_id' => '56',
+			'sentence_lang' => 'fra',
+			'translation_lang' => 'jpn',
+			'distance' => '1'
+		),
+		array(
+			'id' => '16',
+			'sentence_id' => '56',
+			'translation_id' => '55',
+			'sentence_lang' => 'jpn',
+			'translation_lang' => 'fra',
+			'distance' => '1'
+		),
+		array(
+			'id' => '17',
+			'sentence_id' => '55',
+			'translation_id' => '57',
+			'sentence_lang' => 'fra',
+			'translation_lang' => 'jpn',
+			'distance' => '1'
+		),
+		array(
+			'id' => '18',
+			'sentence_id' => '57',
+			'translation_id' => '55',
+			'sentence_lang' => 'jpn',
+			'translation_lang' => 'fra',
 			'distance' => '1'
 		),
 	);
