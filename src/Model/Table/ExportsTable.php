@@ -205,7 +205,6 @@ class ExportsTable extends Table
 
         $SSL = TableRegistry::get('SentencesSentencesLists');
         $query = $SSL->find()
-            ->select(['id' => 'SentencesSentencesLists.sentence_id'])
             ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
             ->matching('Sentences', function ($q) use ($config) {
                 $q->select(['Sentences.lang', 'Sentences.text']);
@@ -219,8 +218,20 @@ class ExportsTable extends Table
                     });
                 }
                 return $q;
-            })
-            ->order('SentencesSentencesLists.sentence_id');
+            });
+        if (in_array('trans_text', $config['fields'])) {
+            $query->select([
+                      'id' => 'SentencesTranslations.sentence_id',
+                      'tid' => 'SentencesTranslations.translation_id'
+                  ])
+                  ->order([
+                      'SentencesTranslations.sentence_id',
+                      'SentencesTranslations.translation_id'
+                  ]);
+        } else {
+            $query->select(['id' => 'SentencesSentencesLists.sentence_id'])
+                  ->order('SentencesSentencesLists.sentence_id');
+        }
 
         return $query;
     }
