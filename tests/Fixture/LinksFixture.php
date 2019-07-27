@@ -35,112 +35,112 @@ class LinksFixture extends TestFixture {
 			'id' => '1',
 			'sentence_id' => '1',
 			'translation_id' => '2',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'eng',
+			'translation_lang' => 'cmn',
 			'distance' => '1'
 		),
 		array(
 			'id' => '2',
 			'sentence_id' => '2',
 			'translation_id' => '1',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'cmn',
+			'translation_lang' => 'eng',
 			'distance' => '1'
 		),
 		array(
 			'id' => '3',
 			'sentence_id' => '1',
 			'translation_id' => '3',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'eng',
+			'translation_lang' => 'spa',
 			'distance' => '1'
 		),
 		array(
 			'id' => '4',
 			'sentence_id' => '3',
 			'translation_id' => '1',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'spa',
+			'translation_lang' => 'eng',
 			'distance' => '1'
 		),
 		array(
 			'id' => '5',
 			'sentence_id' => '1',
 			'translation_id' => '4',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'eng',
+			'translation_lang' => 'fra',
 			'distance' => '1'
 		),
 		array(
 			'id' => '6',
 			'sentence_id' => '4',
 			'translation_id' => '1',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'fra',
+			'translation_lang' => 'eng',
 			'distance' => '1'
 		),
 		array(
 			'id' => '7',
 			'sentence_id' => '2',
 			'translation_id' => '4',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'cmn',
+			'translation_lang' => 'fra',
 			'distance' => '1'
 		),
 		array(
 			'id' => '8',
 			'sentence_id' => '4',
 			'translation_id' => '2',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'fra',
+			'translation_lang' => 'cmn',
 			'distance' => '1'
 		),
 		array(
 			'id' => '9',
 			'sentence_id' => '2',
 			'translation_id' => '5',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'cmn',
+			'translation_lang' => 'deu',
 			'distance' => '1'
 		),
 		array(
 			'id' => '10',
 			'sentence_id' => '5',
 			'translation_id' => '2',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'deu',
+			'translation_lang' => 'cmn',
 			'distance' => '1'
 		),
 		array(
 			'id' => '11',
 			'sentence_id' => '4',
 			'translation_id' => '6',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'fra',
+			'translation_lang' => 'jpn',
 			'distance' => '1'
 		),
 		array(
 			'id' => '12',
 			'sentence_id' => '6',
 			'translation_id' => '4',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'jpn',
+			'translation_lang' => 'fra',
 			'distance' => '1'
 		),
 		array(
 			'id' => '13',
 			'sentence_id' => '10',
 			'translation_id' => '6',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'jpn',
+			'translation_lang' => 'jpn',
 			'distance' => '1'
 		),
 		array(
 			'id' => '14',
 			'sentence_id' => '6',
 			'translation_id' => '10',
-			'sentence_lang' => NULL,
-			'translation_lang' => NULL,
+			'sentence_lang' => 'jpn',
+			'translation_lang' => 'jpn',
 			'distance' => '1'
 		),
 		array(

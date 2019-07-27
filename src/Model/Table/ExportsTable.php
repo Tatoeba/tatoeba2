@@ -212,7 +212,7 @@ class ExportsTable extends Table
                     $q->matching('Translations', function ($q) use ($config) {
                         $q->select(['Translations.text']);
                         if (isset($config['trans_lang']) && $config['trans_lang'] != 'none') {
-                            $q->where(['Translations.lang' => $config['trans_lang']]);
+                            $q->where(['SentencesTranslations.translation_lang' => $config['trans_lang']]);
                         }
                         return $q;
                     });
