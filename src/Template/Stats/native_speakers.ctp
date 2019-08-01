@@ -28,10 +28,10 @@
 $title = __('Native speakers');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 $membersIcons = array(
-    'status1' => __('Admins'),
-    'status2' => __('Corpus maintainers'),
-    'status3' => __('Advanced contributors'),
-    'status4' => __('Contributors')
+    'status_admin' => __('Admins'),
+    'status_corpus_maintainer' => __('Corpus maintainers'),
+    'status_advanced_contributor' => __('Advanced contributors'),
+    'status_contributor' => __('Contributors')
 );
 ?>
 <div id="annexe_content">
