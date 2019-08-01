@@ -38,8 +38,7 @@ elif [ "$#" -eq 3 ] ; then
 	else
 		HOST_DIR="$2"
 		GUEST_DIR="$3"
-		SCRIPT=$(readlink -f "$0")
-		SCRIPTPATH=$(dirname "$SCRIPT")
+		KEY_PATH=$(vagrant ssh-config | awk '/IdentityFile/ {print $2}')
 		sshfs "$USER"@"$HOST":"$GUEST_DIR" "$HOST_DIR" \
 			-p "$PORT" \
 			-o LogLevel=FATAL \
@@ -47,7 +46,7 @@ elif [ "$#" -eq 3 ] ; then
 			-o IdentitiesOnly=yes \
 			-o StrictHostKeyChecking=no \
 			-o UserKnownHostsFile=/dev/null \
-			-o IdentityFile="$SCRIPTPATH/.vagrant/machines/default/virtualbox/private_key"
+			-o IdentityFile="$KEY_PATH"
 		echo "Successfully mounted $HOST:$PORT's $GUEST_DIR at $HOST_DIR"
 		exit 0
 	fi
