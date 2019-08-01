@@ -47,7 +47,7 @@ class ActivitiesControllerTest extends IntegrationTestCase {
     public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
         $user = 'kazuki';
         $userId = 7;
-        $lastPage = 2;
+        $lastPage = 3;
 
         $this->get("/eng/activities/translate_sentences_of/$user?page=9999999");
 

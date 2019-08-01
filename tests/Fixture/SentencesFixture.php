@@ -731,7 +731,7 @@ class SentencesFixture extends TestFixture {
 			'lang' => 'fra',
 			'text' => 'Je peux utiliser ton téléphone ?',
 			'correctness' => '0',
-			'user_id' => '1',
+			'user_id' => '2',
 			'created' => '2018-04-12 06:43:01',
 			'modified' => '2018-04-12 06:43:01',
 			'script' => null,
