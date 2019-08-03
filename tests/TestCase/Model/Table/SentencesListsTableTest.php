@@ -40,7 +40,6 @@ class SentencesListsTableTest extends TestCase {
             'canEdit' => true,
             'canAddSentences' => true,
             'canRemoveSentences' => true,
-            'canDownload' => true
         );
         $this->assertEquals($expected, $list['Permissions']);
     }
@@ -52,7 +51,6 @@ class SentencesListsTableTest extends TestCase {
             'canEdit' => false,
             'canAddSentences' => false,
             'canRemoveSentences' => false,
-            'canDownload' => true
         );
         $this->assertEquals($expected, $list['Permissions']);
     }
@@ -341,14 +339,14 @@ class SentencesListsTableTest extends TestCase {
 
     function testGetNumberOfSentences() {
         $result = $this->SentencesList->getNumberOfSentences(1);
-        $this->assertEquals(2, $result);
+        $this->assertEquals(3, $result);
     }
 
     function testGetSentencesAndTranslationsOnly_withoutTranslations() {
         $result = $this->SentencesList->getSentencesAndTranslationsOnly(1);
         $ids = Hash::extract($result, '{n}.id');
         $texts = Hash::extract($result, '{n}.text');
-        $this->assertEquals([4, 8], $ids);
+        $this->assertEquals([4, 8, 55], $ids);
         $this->assertEquals(count($ids), count($texts));
     }
 

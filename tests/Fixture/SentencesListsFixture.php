@@ -25,7 +25,7 @@ class SentencesListsFixture extends TestFixture {
 			'id' => '1',
 			'name' => 'Interesting French sentences',
 			'user_id' => 7,
-			'numberOfSentences' => 2,
+			'numberOfSentences' => 3,
 			'created' => '2014-04-15 00:54:01',
 			'modified' => '2014-04-15 00:54:12',
 			'visibility' => 'unlisted',

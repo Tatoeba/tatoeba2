@@ -48,8 +48,17 @@ trait BatchOperationTrait {
             $order2 = $order1;
         }
 
-        $o1field = explode('.', $order1)[1];
-        $o2field = explode('.', $order2)[1];
+        $sqlToEntityMap = [];
+        foreach ($query->clause('select') as $key => $field) {
+            $key = trim($key, '"`[]');
+            $sqlToEntityMap[$field] = $key;
+        }
+        if (!isset($sqlToEntityMap[$order1]) ||
+            !isset($sqlToEntityMap[$order2])) {
+            throw new Exception("Fields used in ->order() needs to be speficied in ->select() too in the batch operation query");
+        }
+        $o1field = $sqlToEntityMap[$order1];
+        $o2field = $sqlToEntityMap[$order2];
 
         $baseQuery = clone $query;
         $proceeded = 0;

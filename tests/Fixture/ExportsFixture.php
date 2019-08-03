@@ -28,7 +28,7 @@ class ExportsFixture extends TestFixture
     {
         $this->records = [
             [
-                /* Export completed */
+                /* Export completed, by kazuki */
                 'id' => 1,
                 'name' => 'Kazuki\'s sentences',
                 'description' => 'Sentence id [tab] Sentence text',
@@ -62,6 +62,18 @@ class ExportsFixture extends TestFixture
                 'status' => 'queued',
                 'queued_job_id' => 3,
                 'user_id' => 4
+            ],
+            [
+                /* Export completed, by guest */
+                'id' => 4,
+                'name' => 'Kazuki\'s sentences',
+                'description' => 'Sentence id [tab] Sentence text',
+                'url' => '/export_tests/kazuki_sentences.zip',
+                'filename' => TMP.'/export_tests/kazuki_sentences.zip',
+                'generated' => '2019-02-20 20:50:13',
+                'status' => 'online',
+                'queued_job_id' => 4,
+                'user_id' => null
             ],
         ];
         parent::init();

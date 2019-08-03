@@ -73,7 +73,7 @@ class QueuedJobsFixture extends TestFixture
                 /* Job waiting to be executed */
                 'id' => 3,
                 'job_type' => 'Export',
-                'data' => serialize(['type' => 'list', 'list_id' => 1, 'export_id' => 3]),
+                'data' => serialize(['type' => 'list', 'list_id' => 1, 'export_id' => 3, 'fields' => ['id', 'lang', 'text']]),
                 'job_group' => '4',
                 'reference' => null,
                 'created' => '2019-02-01 15:03:56',
@@ -84,6 +84,24 @@ class QueuedJobsFixture extends TestFixture
                 'failed' => 0,
                 'failure_message' => null,
                 'workerkey' => null,
+                'status' => null,
+                'priority' => 5
+            ],
+            [
+                /* Job completed */
+                'id' => 4,
+                'job_type' => 'Export',
+                'data' => serialize(['param' => 'foo']),
+                'job_group' => null, // does not belong to any user
+                'reference' => null,
+                'created' => '2019-02-20 20:50:10',
+                'notbefore' => null,
+                'fetched' => '2019-02-20 20:50:13',
+                'completed' => '2019-02-20 20:50:13',
+                'progress' => null,
+                'failed' => 0,
+                'failure_message' => null,
+                'workerkey' => '5cc0b3dcea22457717fe2856ea6beb1329807ba2',
                 'status' => null,
                 'priority' => 5
             ],

@@ -47,7 +47,7 @@ class QueueRefreshLicenseSwitchListTask extends QueueTask {
 
         $this->loadModel('Sentences');
         $query = $this->Sentences->find()
-            ->select('Sentences.id')->where([
+            ->select(['id' => 'Sentences.id'])->where([
                 'license' => 'CC BY 2.0 FR',
                 'Sentences.user_id' => $userId,
                 'based_on_id' => 0,

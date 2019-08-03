@@ -35,6 +35,7 @@
  * @link     http://tatoeba.org
  */
 
+$this->Html->script('sentences_lists/download.ctrl.js', ['block' => 'scriptBottom']);
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') . $listName));
 ?>
 <div id="annexe_content">
@@ -56,27 +57,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
 
 
     <h3><?php echo __('Download'); ?></h3>
-    <?php
-    // ------------- DOWNLOAD FORM -------------
-    echo $this->Form->create(
-        'SentencesList',
-        array(
-            'id' => 'SentencesListExportToCsvForm',
-            'url' => array('action' => 'export_to_csv'),
-            'class' => 'downloadForm'
-        )
-    );
-    ?>
 
-    <div>
-    <?php
-    echo $this->Form->hidden(
-        'id',
-        array('value' => $listId)
-    );
-    ?>
-    </div>
-
+    <div id="SentencesListExportToCsvForm" ng-controller="SentencesListsDownloadCtrl">
     <table>
         <tr>
             <td><?php echo __('Id (optional)'); ?></td>
@@ -88,15 +70,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
                 ng-init="showid = 0;"
                 class="md-primary">
             </md-checkbox>
-            <?php
-            $this->Form->unlockField('insertId');
-            echo $this->Form->hidden(
-                'insertId',
-                array(
-                   'value' => '{{showid}}'
-                )
-            );
-            ?>
             </td>
             <td>
             <?php echo __('If you check this box, the id of each sentence will be written to the output.');
@@ -114,7 +87,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
                 $langArray,
                 array(
                     'class' => 'language-selector',
-                    "empty" => false
+                    "empty" => false,
+                    'ng-model' => 'trans_lang',
+                    'ng-init' => 'trans_lang = "none"',
                 ),
                 false
             );
@@ -148,24 +123,26 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             </td>
         </tr>
 
-        <tr>
+        <tr ng-cloak>
             <td></td>
 
-            <td>
-                <md-button type="submit" class="md-raised md-primary">
-                    <?php echo __('Download'); ?>
+            <td id="downloadButton">
+                <md-button ng-click="addListExport(<?= $listId ?>)"
+                           ng-disabled="preparingDownload"
+                           class="md-raised md-primary">
+                    <span><?php echo __('Download'); ?></span>
                 </md-button>
+                <md-progress-circular md-diameter="16" ng-if="preparingDownload"/>
+                </md-progress-circular>
             </td>
 
             <td>
+                <span ng-if="preparingDownload"><?= __('Preparing download, please wait.'); ?></span>
+                <span ng-if="export.status == 'failed'"><?= __('Failed to prepare download, please try again.'); ?></span>
             </td>
         </tr>
     </table>
-    <?php
-    echo $this->Form->end();
-    // -------------------------------------------
-    ?>
-
+    </div>
 
     <h3><?php echo __('Fields and structure'); ?></h3>
     <p>

@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Lib\LanguagesLib;
 use Cake\Core\Configure;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
@@ -101,7 +102,12 @@ class ExportsTable extends Table
 
         if (isset($config['type'])
             && $config['type'] == 'list'
-            && isset($config['list_id'])) {
+            && isset($config['list_id'])
+            && isset($config['fields'])
+            && is_array($config['fields'])
+            && $this->validateFields($config['fields'])
+            && (!isset($config['trans_lang'])
+                || LanguagesLib::languageExists($config['trans_lang']))) {
 
             $SL = TableRegistry::get('SentencesLists');
             $listId = $config['list_id'];
@@ -139,7 +145,7 @@ class ExportsTable extends Table
                     );
                     $export->queued_job_id = $job->id;
                     if ($this->save($export)) {
-                        return $export->extract(['name', 'status']);
+                        return $export->extract(['id', 'name', 'status']);
                     }
                 } catch (\Cake\ORM\Exception\PersistenceFailedException $e) {
                 }
@@ -156,6 +162,78 @@ class ExportsTable extends Table
                 $file->delete();
             }
         }
+    }
+
+    private function validateFields($configFields)
+    {
+        $availableFields = [
+            'id', 'lang', 'text', 'trans_text',
+        ];
+        foreach ($configFields as $field) {
+            if (!in_array($field, $availableFields)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private function getCSVFields($fields, $entity)
+    {
+        return array_map(
+            function ($field) use ($entity) {
+                switch ($field) {
+                    case 'id':         return $entity->id;
+                    case 'lang':       return $entity->_matchingData['Sentences']->lang;
+                    case 'text':       return $entity->_matchingData['Sentences']->text;
+                    case 'trans_text': return $entity->_matchingData['Translations']->text;
+                    default:           return '';
+                }
+            },
+            $fields
+        );
+    }
+
+    private function buildQueryFromConfig($config)
+    {
+        if ($config['type'] != 'list') {
+            return false;
+        }
+
+        if (!$this->validateFields($config['fields'])) {
+            return false;
+        }
+
+        $SSL = TableRegistry::get('SentencesSentencesLists');
+        $query = $SSL->find()
+            ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
+            ->matching('Sentences', function ($q) use ($config) {
+                $q->select(['Sentences.lang', 'Sentences.text']);
+                if (in_array('trans_text', $config['fields'])) {
+                    $q->matching('Translations', function ($q) use ($config) {
+                        $q->select(['Translations.text']);
+                        if (isset($config['trans_lang']) && $config['trans_lang'] != 'none') {
+                            $q->where(['SentencesTranslations.translation_lang' => $config['trans_lang']]);
+                        }
+                        return $q;
+                    });
+                }
+                return $q;
+            });
+        if (in_array('trans_text', $config['fields'])) {
+            $query->select([
+                      'id' => 'SentencesTranslations.sentence_id',
+                      'tid' => 'SentencesTranslations.translation_id'
+                  ])
+                  ->order([
+                      'SentencesTranslations.sentence_id',
+                      'SentencesTranslations.translation_id'
+                  ]);
+        } else {
+            $query->select(['id' => 'SentencesSentencesLists.sentence_id'])
+                  ->order('SentencesSentencesLists.sentence_id');
+        }
+
+        return $query;
     }
 
     private function removeOldExports()
@@ -206,7 +284,8 @@ class ExportsTable extends Table
 
     private function _runExport($export, $config)
     {
-        if ($config['type'] != 'list') {
+        $query = $this->buildQueryFromConfig($config);
+        if (!$query) {
             return false;
         }
 
@@ -217,15 +296,6 @@ class ExportsTable extends Table
             return false;
         }
 
-        $SSL = TableRegistry::get('SentencesSentencesLists');
-        $query = $SSL->find()
-            ->select(['SentencesSentencesLists.sentence_id', 'Sentences.lang', 'Sentences.text'])
-            ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
-            ->contain('Sentences', function ($q) use ($config) {
-                return $q->select(['Sentences.lang', 'Sentences.text']);
-            })
-            ->order(['SentencesSentencesLists.sentence_id']);
-
         $file = new File($filename, true, 0600);
         if (!$file->open('w')) {
             return false;
@@ -234,14 +304,10 @@ class ExportsTable extends Table
         $BOM = "\xEF\xBB\xBF";
         $file->write($BOM);
 
-        $this->getConnection()->transactional(function () use ($query, $file) {
-            $this->batchOperationNewORM($query, function ($entities) use ($file) {
-                foreach ($entities as $ssl) {
-                    $fields = [
-                        $ssl->sentence_id,
-                        $ssl->sentence->lang,
-                        $ssl->sentence->text,
-                    ];
+        $this->getConnection()->transactional(function () use ($query, $file, $config) {
+            $this->batchOperationNewORM($query, function ($results) use ($file, $config) {
+                foreach ($results as $entity) {
+                    $fields = $this->getCSVFields($config['fields'], $entity);
                     $file->write(implode($fields, "\t")."\n");
                 }
             });

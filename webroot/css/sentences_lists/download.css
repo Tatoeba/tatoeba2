@@ -54,3 +54,7 @@ dt {
     padding: 10px;
     border-bottom: 1px dotted #CCC;
 }
+
+#downloadButton md-progress-circular {
+    display: inline;
+}

@@ -47,7 +47,7 @@ class ExportsControllerTest extends IntegrationTestCase
             [ '/eng/exports/index', 'advanced_contributor', true ],
             [ '/eng/exports/index', 'corpus_maintainer', true ],
             [ '/eng/exports/index', 'admin', true ],
-            [ '/eng/exports/download/1', null, '/eng/users/login?redirect=%2Feng%2Fexports%2Fdownload%2F1' ],
+            [ '/eng/exports/download/1', null, false ],
             [ '/eng/exports/download/1', 'contributor', false ],
             [ '/eng/exports/download/9999999', 'kazuki', 404 ],
         ];
@@ -86,47 +86,89 @@ class ExportsControllerTest extends IntegrationTestCase
         $this->assertThat(null, new HeaderNotSet($this->_response, $header), $verboseMessage);
     }
 
-    public function testAdd()
+    private function exportsAdd()
     {
-        $this->configRequest([
-            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
+        $this->ajaxPost('/eng/exports/add', [
+            'type' => 'list',
+            'list_id' => 2,
+            'fields' => ['id', 'lang', 'text']
         ]);
+    }
+
+    public function testAdd_asMember()
+    {
         $this->logInAs('contributor');
 
-        $this->post('/eng/exports/add', [ 'type' => 'list', 'list_id' => 2 ]);
+        $this->exportsAdd();
 
         $this->assertResponseOk();
         $this->assertContentType('application/json');
     }
 
-    public function testAdd_asGuest()
+    public function testAdd_asGuest_success()
     {
-        $this->configRequest([
-            'headers' => [ 'X-Requested-With' => 'XMLHttpRequest']
-        ]);
-        $this->post('/eng/exports/add', [ 'type' => 'list', 'list_id' => 2 ]);
+        $this->enableCsrfToken();
+        $this->exportsAdd();
 
+        $this->assertResponseOk();
+        $this->assertContentType('application/json');
+    }
+
+    public function testAdd_asGuest_failsWithoutCsrfToken()
+    {
+        $this->exportsAdd();
         $this->assertResponseError();
     }
 
-    public function testDownload_asOwner()
+    private function createDownloadFile($filename)
     {
-        $this->logInAs('kazuki');
-
-        $exportedFile = 'kazuki_sentences.zip';
-        $file = new File($this->testExportDir.$exportedFile, true);
-        $file->write("some zipped content");
+        $contents = "some zipped content";
+        $file = new File($this->testExportDir.$filename, true);
+        $file->write($contents);
         $file->close();
 
-        $this->get("/eng/exports/download/1/A pretty filename.zip");
+        return strlen($contents);
+    }
 
+    private function assertFileDownload($filename, $filesize)
+    {
         $this->assertResponseOk();
         $this->assertContentType('application/zip');
-        $this->assertHeader('Content-Length', '19');
+        $this->assertHeader('Content-Length', (string)$filesize);
         $this->assertHeader('Accept-Ranges', 'bytes');
         $this->assertNoHeader('Content-Disposition');
-        $this->assertHeader('X-Accel-Redirect', '/export_tests/kazuki_sentences.zip');
+        $this->assertHeader('X-Accel-Redirect', "/export_tests/$filename");
         $this->assertResponseEquals('');
+    }
+
+    public function testDownload_guestExport_asGuest()
+    {
+        $filesize = $this->createDownloadFile('kazuki_sentences.zip');
+        $this->get("/eng/exports/download/4/A pretty filename.zip");
+        $this->assertFileDownload('kazuki_sentences.zip', $filesize);
+    }
+
+    public function testDownload_membersExport_asGuest()
+    {
+        $this->createDownloadFile('kazuki_sentences.zip');
+        $this->get("/eng/exports/download/1/A pretty filename.zip");
+        $this->assertResponseCode(403);
+    }
+
+    public function testDownload_ownExport_asMember()
+    {
+        $this->logInAs('kazuki');
+        $filesize = $this->createDownloadFile('kazuki_sentences.zip');
+        $this->get("/eng/exports/download/1/A pretty filename.zip");
+        $this->assertFileDownload('kazuki_sentences.zip', $filesize);
+    }
+
+    public function testDownload_guestExport_asMember()
+    {
+        $this->logInAs('kazuki');
+        $filesize = $this->createDownloadFile('kazuki_sentences.zip');
+        $this->get("/eng/exports/download/4/A pretty filename.zip");
+        $this->assertResponseCode(403);
     }
 
     public function testDownload_cannotDownloadUntilReady()
