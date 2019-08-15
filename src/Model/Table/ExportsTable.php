@@ -206,7 +206,12 @@ class ExportsTable extends Table
             ->enableBufferedResults(false)
             ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
             ->matching('Sentences', function ($q) use ($config) {
-                $q->select(['Sentences.lang', 'Sentences.text']);
+                if (in_array('lang', $config['fields'])) {
+                    $q->select('Sentences.lang');
+                }
+                if (in_array('text', $config['fields'])) {
+                    $q->select('Sentences.text');
+                }
                 if (in_array('trans_text', $config['fields'])) {
                     $q->matching('Translations', function ($q) use ($config) {
                         $q->select(['Translations.text']);
