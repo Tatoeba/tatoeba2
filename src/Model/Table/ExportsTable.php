@@ -15,8 +15,6 @@ use Exception;
 
 class ExportsTable extends Table
 {
-    use \App\Shell\BatchOperationTrait;
-
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -205,6 +203,7 @@ class ExportsTable extends Table
 
         $SSL = TableRegistry::get('SentencesSentencesLists');
         $query = $SSL->find()
+            ->enableBufferedResults(false)
             ->where(['SentencesSentencesLists.sentences_list_id' => $config['list_id']])
             ->matching('Sentences', function ($q) use ($config) {
                 $q->select(['Sentences.lang', 'Sentences.text']);
@@ -219,18 +218,9 @@ class ExportsTable extends Table
                 }
                 return $q;
             });
-        if (in_array('trans_text', $config['fields'])) {
-            $query->select([
-                      'id' => 'SentencesTranslations.sentence_id',
-                      'tid' => 'SentencesTranslations.translation_id'
-                  ])
-                  ->order([
-                      'SentencesTranslations.sentence_id',
-                      'SentencesTranslations.translation_id'
-                  ]);
-        } else {
-            $query->select(['id' => 'SentencesSentencesLists.sentence_id'])
-                  ->order('SentencesSentencesLists.sentence_id');
+
+        if (in_array('id', $config['fields'])) {
+            $query->select(['id' => 'SentencesSentencesLists.sentence_id']);
         }
 
         return $query;
@@ -304,14 +294,11 @@ class ExportsTable extends Table
         $BOM = "\xEF\xBB\xBF";
         $file->write($BOM);
 
-        $this->getConnection()->transactional(function () use ($query, $file, $config) {
-            $this->batchOperationNewORM($query, function ($results) use ($file, $config) {
-                foreach ($results as $entity) {
-                    $fields = $this->getCSVFields($config['fields'], $entity);
-                    $file->write(implode($fields, "\t")."\n");
-                }
-            });
-        });
+        $results = $query->all();
+        foreach ($results as $entity) {
+            $fields = $this->getCSVFields($config['fields'], $entity);
+            $file->write(implode($fields, "\t")."\n");
+        }
         $file->close();
 
         $export = $this->get($export->id);
