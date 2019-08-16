@@ -104,7 +104,7 @@ class TagsController extends AppController
         $this->paginate = [
             'limit' => 50,
             'fields' => ['name', 'id', 'nbrOfSentences'],
-            'order' => ['id' => 'DESC'],
+            'order' => ['nbrOfSentences' => 'DESC', 'id' => 'ASC'],
             'conditions' => $conditions
         ];
 
