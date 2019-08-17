@@ -132,11 +132,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
             <li>
                 <?php
                 echo format(
-                    __('From the <a href="{}">Contribute</a> section'),
+                    __(
+                        'Choose <a href="{}">Add sentences</a> from the '.
+                        '<strong>Contribute</strong> menu at the top of each page.'
+                    ),
                     $this->Url->build(
                         array(
-                            'controller' => 'pages',
-                            'action' => 'contribute'
+                            'controller' => 'sentences',
+                            'action' => 'add'
                         )
                     )
                 );
