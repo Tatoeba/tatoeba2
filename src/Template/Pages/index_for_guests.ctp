@@ -25,13 +25,42 @@
  * @link     http://tatoeba.org
  */
 
-use App\Lib\LanguagesLib;
-
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
+$statsUrl = $this->Url->build([
+    'controller' => 'stats',
+    'action' => 'sentences_by_language'
+]);
 ?>
 
-<div id="annexe_content">
-    <div class="module join-us">
+<div layout="row" layout-align="center center">
+<div layout="column" flex="80">
+
+<?php if(!isset($searchProblem)) { ?>
+<div class="section">
+    <h2><?= __('Random sentence'); ?></h2>
+    <div class="random_sentences_set">
+        <div id="random_sentence_display">
+            <?php
+            $sentence = $random;
+            $translations = $random->translations;
+            $sentenceOwner = $random->user;
+
+            echo $this->element(
+                'sentences/sentence_and_translations',
+                array(
+                    'sentence' => $sentence,
+                    'translations' => $translations,
+                    'user' => $sentenceOwner
+                )
+            );
+            ?>
+        </div>
+    </div>
+</div>
+<?php } ?>
+
+<div layout="row" layout-margin="">
+    <div class="section" md-whiteframe="1" flex>
         <?php
         echo $this->Html->tag('h2', __('Want to help?'));
         echo $this->Html->tag('p', __(
@@ -45,16 +74,17 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
             )
         );
         ?>
-        <md-button class="md-raised md-primary" href="<?= $registerUrl; ?>">
-            <?php echo __('Join the community'); ?>
-        </md-button>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-primary" href="<?= $registerUrl; ?>">
+                <?php echo __('Join the community'); ?>
+                <md-icon>keyboard_arrow_right</md-icon>
+            </md-button>
+        </div>
     </div>
 
-    <div class="module stats">
+    <div class="section" md-whiteframe="1" flex>
         <?php
         echo $this->Html->tag('h2', __('Stats'));
-
-        $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
 
         echo $this->Html->div('stat', format(
             __n('{number} contribution today',
@@ -79,69 +109,14 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
         ));
         ?>
 
-        <ul class="guest-sentences-stats">
-            <?php
-            foreach ($stats as $stat) {
-                $langCode = $stat->code;
-                $numberOfSentences = $stat->sentences;
-                $link = array(
-                    "controller" => "sentences",
-                    "action" => "show_all_in",
-                    $langCode,
-                    'none',
-                    'none',
-                    'indifferent',
-                );
-                $numberOfSentencesLabel = format(
-                    __n('{number} sentence in {lang}',
-                        '{number} sentences in {lang}',
-                        $numberOfSentences,
-                        true),
-                    array(
-                        'number' => $numberOfSentences,
-                        'lang' => $this->Languages->codeToNameToFormat($langCode)
-                    )
-                );
-                $this->Languages->stat($langCode, $numberOfSentencesLabel, $link);
-            }
-            ?>
-
-            <li>
-                <?php
-                echo $this->Html->link(
-                    __('show all languages'),
-                    array(
-                        'controller' => 'stats',
-                        'action' => 'sentences_by_language'
-                    )
-                );
-                ?>
-            </li>
-        </ul>
-    </div>
-</div>
-<div id="main_content">
-    <?php if(!isset($searchProblem)) { ?>
-    <div class="section">
-        <h2><?= __('Random sentence'); ?></h2>
-        <div class="random_sentences_set">
-            <div id="random_sentence_display">
-                <?php
-                $sentence = $random;
-                $translations = $random->translations;
-                $sentenceOwner = $random->user;
-
-                echo $this->element(
-                    'sentences/sentence_and_translations',
-                    array(
-                        'sentence' => $sentence,
-                        'translations' => $translations,
-                        'user' => $sentenceOwner
-                    )
-                );
-                ?>
-            </div>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-primary" href="<?= $statsUrl ?>">
+                <?= __('stats per languages') ?>
+                <md-icon>keyboard_arrow_right</md-icon>
+            </md-button>
         </div>
     </div>
-    <?php } ?>
+</div>
+
+</div>
 </div>

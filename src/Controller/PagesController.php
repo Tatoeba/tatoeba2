@@ -32,6 +32,7 @@ use Cake\Event\Event;
 use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 use Cake\I18n\I18n;
+use App\Lib\LanguagesLib;
 
 /**
  * Controller for static content
@@ -102,12 +103,8 @@ class PagesController extends AppController
         }
 
         // Stats
-        $this->loadModel('Languages');
-        $stats = $this->Languages->getSentencesStatistics(5);
         $this->loadModel('Sentences');
         $numSentences = $this->Sentences->find()->count();
-
-        $this->set('stats', $stats);
         $this->set('numSentences', $numSentences);
 
         if ($isLogged) {
@@ -121,8 +118,11 @@ class PagesController extends AppController
     private function _homepageForGuests() {
         $this->loadModel('Contributions');
         $contribToday = $this->Contributions->getTodayContributions();
-
         $this->set('contribToday', $contribToday);
+
+        $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
+        $this->set('numberOfLanguages', $numberOfLanguages);
+
         $this->render('index_for_guests');
     }
 
@@ -130,7 +130,7 @@ class PagesController extends AppController
         $this->helpers[] = 'Wall';
         $this->helpers[] = 'Messages';
 
-        /*latest comments part */
+        // latest comments
         $this->loadModel('SentenceComments');
         $latestComments = $this->SentenceComments->getLatestComments(5);
         $commentsPermissions = $this->Permissions->getCommentsOptions(
@@ -141,11 +141,16 @@ class PagesController extends AppController
         $this->set('commentsPermissions', $commentsPermissions);
 
 
-        /*latest messages part */
+        // latest messages
         $this->loadModel('Wall');
         $latestMessages = $this->Wall->getLastMessages(5);
 
         $this->set('latestMessages', $latestMessages);
+
+        // stats
+        $this->loadModel('Languages');
+        $stats = $this->Languages->getSentencesStatistics(5);
+        $this->set('stats', $stats);
     }
 
     /**
