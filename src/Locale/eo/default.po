@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-16 17:47+0000\n"
-"PO-Revision-Date: 2019-06-16 20:23+0000\n"
+"PO-Revision-Date: 2019-08-06 14:42+0000\n"
 "Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/tatoeba/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -1537,7 +1537,7 @@ msgstr "Ĝi estas kunlabora, malferma, senpaga kaj eĉ dependiga."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L84
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
-msgstr "Serĉi frazojn en la {langFrom}, tradukitaj en la {langTo} enhavantaj:"
+msgstr "Serĉi frazojn en {langFrom}, tradukitaj al {langTo}, enhavantajn:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L96
 msgid "Clear search"
@@ -2501,7 +2501,7 @@ msgstr[1] "{number} lingvoj uzataj "
 msgid "{number} sentence in {lang}"
 msgid_plural "{number} sentences in {lang}"
 msgstr[0] "{number} frazo en la {lang}"
-msgstr[1] "{number} frazoj en la {lang}"
+msgstr[1] "{number} frazoj en {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
