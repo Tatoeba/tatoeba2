@@ -34,6 +34,9 @@ $notReliable = $translation->correctness == -1;
             <?= __('This sentence is not reliable.') ?>
         </md-tooltip>
     <?php } ?>
+
+    <?= $this->element('sentence_buttons/audio', ['sentence' => $translation]); ?>
+    
     <md-button class="md-icon-button"
                href="<?= $translationUrl ?>">
         <md-icon>info</md-icon>

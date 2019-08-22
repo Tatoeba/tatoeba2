@@ -40,6 +40,7 @@
         vm.expandableIcon = 'expand_more';
 
         vm.expandOrCollapse = expandOrCollapse;
+        vm.playAudio = playAudio;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -51,6 +52,11 @@
             } else {
                 vm.expandableIcon = 'expand_more';
             }
+        }
+
+        function playAudio(audioURL) {
+            var audio = new Audio(audioURL);
+            audio.play();
         }
     }
 

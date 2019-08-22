@@ -1278,12 +1278,16 @@ input.sentenceId {
     height: 20px;
 }
 
-.audioAvailable {
+.audioButton.audioAvailable {
     background: url(../../img/audio.svg);
 }
 
-.audioUnavailable {
+.audioButton.audioUnavailable {
     background: url(../../img/audio-unavailable.svg);
+    opacity: 0.3;
+}
+
+.md-icon-button.audioUnavailable {
     opacity: 0.3;
 }
 
