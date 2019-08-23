@@ -68,7 +68,7 @@ $this->Navigation->displaySentenceNavigation(
     $prevSentence
 );
 ?>
-
+<br>
 <div id="annexe_content">
     <?php
     if (CurrentUser::get('settings.users_collections_ratings')) {
@@ -166,25 +166,38 @@ $this->Navigation->displaySentenceNavigation(
 </div>
 
 <div id="main_content">
-    <h2><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
-    <div class="section" md-whiteframe="1">
-        <?php
-        if (isset($sentence)) {
-            // display sentence and translations
+    <?php
+    if (isset($sentence)) {
+        if (CurrentUser::isMember()) {
+            ?>
+            <div class="section" md-whiteframe="1">
+            <h2><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
+            <?php
             $this->Sentences->displaySentencesGroup($sentence);
+            ?></div><?php
         } else {
-            echo '<div class="error">';
-                echo format(
-                    __(
-                        'There is no sentence with id {number}',
-                        true
-                    ),
-                    array('number' => $this->request->params['pass'][0])
-                );
-            echo '</div>';
+            echo $this->element(
+                'sentences/sentence_and_translations',
+                array(
+                    'sentence' => $sentence,
+                    'translations' => $sentence->translations,
+                    'user' => $sentence->user
+                )
+            );
         }
-        ?>
-    </div>
+    } else {
+        echo '<div class="error">';
+            echo format(
+                __(
+                    'There is no sentence with id {number}',
+                    true
+                ),
+                array('number' => $this->request->params['pass'][0])
+            );
+        echo '</div>';
+    }
+    ?>
+    <br>
 
     <div class="section">
         <h2><?= __('Comments'); ?></h2>
