@@ -650,6 +650,18 @@ class SentencesTable extends Table
             ),
             'Translations' => array(
                 'IndirectTranslations' => array(),
+                'Audios' => array(
+                    'Users' => array('fields' => array('username')),
+                    'fields' => array('user_id', 'external', 'sentence_id'),
+                ),
+            ),
+            'Audios' => array(
+                'Users' => array('fields' => array(
+                    'username',
+                    'audio_license',
+                    'audio_attribution_url',
+                )),
+                'fields' => array('user_id', 'external', 'sentence_id'),
             ),
         );
 
