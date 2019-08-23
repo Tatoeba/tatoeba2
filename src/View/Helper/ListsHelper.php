@@ -528,7 +528,7 @@ class ListsHelper extends AppHelper
     public function displayListsModule($listsArray)
     {
         if (count($listsArray) > 0) {
-            echo '<div class="module">';
+            echo '<div class="section" md-whiteframe="1">';
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {

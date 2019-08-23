@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 ?>
-<div class="module">
+<div class="section" md-whiteframe="1">
     <h2><?php echo __('License') ?></h2>
 
 <?php

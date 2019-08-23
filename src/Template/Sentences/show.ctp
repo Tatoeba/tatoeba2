@@ -57,6 +57,7 @@ if (isset($sentence)) {
     $this->set('title_for_layout', $this->Pages->formatTitle(
         __('Sentence does not exist: ') . $this->request->params['pass'][0]
     ));
+    $sentenceId = $this->request->params['pass'][0];
 }
 
 
@@ -71,7 +72,7 @@ $this->Navigation->displaySentenceNavigation(
 <div id="annexe_content">
     <?php
     if (CurrentUser::get('settings.users_collections_ratings')) {
-        echo '<div class="module correctness-info">';
+        echo '<div class="section correctness-info" md-whiteframe="1">';
 
         echo $this->Html->tag('h2', __('Reviewed by'));
         foreach($correctnessArray as $correctness) {
@@ -138,7 +139,7 @@ $this->Navigation->displaySentenceNavigation(
     }
     ?>
 
-    <div class="section">
+    <div class="section" md-whiteframe="1">
         <?php
         echo '<h2>';
         echo __('Logs');
@@ -165,27 +166,13 @@ $this->Navigation->displaySentenceNavigation(
 </div>
 
 <div id="main_content">
-    <div class="module">
+    <h2><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
+    <div class="section" md-whiteframe="1">
         <?php
         if (isset($sentence)) {
-        ?>
-            <h2>
-            <?php
-            echo format(__('Sentence #{number}'), array('number' => $sentenceId));
-            ?>
-            </h2>
-
-            <?php
             // display sentence and translations
             $this->Sentences->displaySentencesGroup($sentence);
-
         } else {
-
-            echo '<h2>' .
-                format(__('Sentence #{number}'),
-                       array('number' => $this->request->params['pass'][0])) .
-                '</h2>';
-
             echo '<div class="error">';
                 echo format(
                     __(
@@ -245,7 +232,7 @@ $this->Navigation->displaySentenceNavigation(
 } else {
 ?>
     <div id="main_content">
-        <div class="module">
+        <div class="section">
             <?php
             echo $this->Html->tag('h2', __('Random Sentence'));
             if($searchProblem == 'disabled') {

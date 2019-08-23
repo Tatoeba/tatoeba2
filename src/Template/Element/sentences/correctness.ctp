@@ -28,7 +28,7 @@
 use App\Model\Table\SentencesTable;
 ?>
 
-<div class="module">
+<div class="section" md-whiteframe="1">
     <h2><?php echo __d('admin', 'Correctness') ?></h2>
     <?php
     echo $this->Form->create(
