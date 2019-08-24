@@ -33,13 +33,7 @@ $this->Paginator->options(
 
 <div id="main_content">
     <div class="section">
-        <h2>
-            <?php
-            echo $this->Paginator->counter(
-                __('Comments on sentences (total {{count}})')
-            );
-            ?>
-        </h2>
+        <h2><?= __('Latest comments'); ?></h2>
 
         <?php
         $this->Pagination->display();
