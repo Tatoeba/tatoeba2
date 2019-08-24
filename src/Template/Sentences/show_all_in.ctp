@@ -29,7 +29,7 @@ use App\Model\CurrentUser;
 $languageName = $this->Languages->codeToNameToFormat($lang);
 
 $title = format(
-    __('All sentences in {language}'), 
+    __('Sentences in {language}'), 
     array('language' => $languageName)
 );
 
@@ -48,7 +48,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?php
     if (!empty($results)) {
 
-        echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
+        echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $total, true);
+
+        if ($total > 1000) {
+            echo $this->Html->tag('p', __('Only the last 1000 sentences are displayed here.'));
+        }
 
         $this->Pagination->display();
 

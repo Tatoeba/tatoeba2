@@ -26,9 +26,9 @@ class PagesHelper extends AppHelper
         return $pageTitle . __(' - Tatoeba');
     }
 
-    public function formatTitleWithResultCount($paginator, $title, $real_total = 0) {
-        $n = $paginator->param('count');
-        if ($real_total == 0 || $real_total == $n) {
+    public function formatTitleWithResultCount($paginator, $title, $real_total = 0, $totalOnly = false) {
+        $n = $totalOnly ? $real_total : $paginator->param('count');
+        if ($real_total == 0 || $real_total == $n || $totalOnly) {
             /* @translators: this formats the title at the top of every page
                that shows a list of sentences (search, browse by language,
                adopt sentences…) by appending the number of results. Note
