@@ -35,7 +35,7 @@
 
 $username = h($username);
 if ($userExists) {
-    $title = format(__("Logs of {user}'s contributions"), array('user' => $username));
+    $title = format(__("Latest contributions of {user}"), array('user' => $username));
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
 }
@@ -61,7 +61,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         echo $this->Html->tag('h2', $title);
     
         if (isset($contributions)) {
-            
+            echo $this->Html->tag('p', __('Only the last 1000 log entries are displayed here.'));
+
             $this->Pagination->display(['last' => false]);
             ?>
 
