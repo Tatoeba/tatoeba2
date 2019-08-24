@@ -63,29 +63,9 @@ class ContributionsController extends AppController
      *
      * @return void
      */
-    public function index($filter = 'und')
+    public function index($filter = null)
     {
-        $this->helpers[] = 'Pagination';
-
-        $conditions = [];
-        if ($filter != 'und') {
-            $conditions = array('sentence_lang' => $filter);
-        }
-
-        $this->paginate = [
-            'conditions' => $conditions,
-            'contain' => [
-                'Users' => [
-                    'fields' => ['username', 'image']
-                ]
-            ],
-            'limit' => 200,
-            'order' => ['id' => 'DESC'],
-        ];
-        $contributions = $this->paginate();
-
-        $this->set('contributions', $contributions);
-        $this->set('langFilter', $filter);
+        return $this->redirect(['action' => 'latest', $filter]);
     }
 
 
