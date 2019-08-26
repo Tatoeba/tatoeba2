@@ -119,7 +119,8 @@ class SentenceCommentsController extends AppController
 
         $this->paginate['conditions'] = $conditions;
 
-        $latestComments = $this->paginateLatest($this->SentenceComments, 1000);
+        $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+        $latestComments = $this->paginateLatest($this->SentenceComments, $totalLimit);
 
         $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 

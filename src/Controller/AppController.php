@@ -52,6 +52,8 @@ class AppController extends Controller
 {
     use \AuthActions\Lib\AuthActionsTrait;
 
+    const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
+
     public $components = array(
         'Auth' => array(
 		'authenticate' => array(

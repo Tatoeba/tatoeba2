@@ -50,8 +50,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $total, true);
 
-        if ($total > 1000) {
-            echo $this->Html->tag('p', __('Only the last 1000 sentences are displayed here.'));
+        if ($total > $totalLimit) {
+            echo $this->Html->tag('p', format(
+                __('Only the last {n} sentences are displayed here.'), ['n' => $totalLimit])
+            );
         }
 
         $this->Pagination->display();

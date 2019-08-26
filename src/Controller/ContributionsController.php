@@ -169,8 +169,10 @@ class ContributionsController extends AppController
             'limit' => 200,
             'order' => ['Contributions.id' => 'DESC'],
         ];
-        $contributions = $this->paginateLatest($this->Contributions, 1000);
+        $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+        $contributions = $this->paginateLatest($this->Contributions, $totalLimit);
         $this->set('contributions', $contributions);
         $this->set('userExists', true);
+        $this->set('totalLimit', $totalLimit);
     }
 }
