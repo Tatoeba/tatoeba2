@@ -963,13 +963,19 @@ class SentencesTableTest extends TestCase {
 	}
 
 	function testChangeLanguage_succeeds() {
-		CurrentUser::store(['id' => 7]);
+		CurrentUser::store($this->Sentence->Users->get(7));
+		$result = $this->Sentence->changeLanguage(1, 'jpn');
+		$this->assertEquals('jpn', $result);
+	}
+
+	function testChangeLanguage_succeedsAsCorpusMaintainter() {
+		CurrentUser::store($this->Sentence->Users->get(2));
 		$result = $this->Sentence->changeLanguage(1, 'jpn');
 		$this->assertEquals('jpn', $result);
 	}
 
 	function testChangeLanguage_failsBecauseNowAllowed() {
-		CurrentUser::store(['id' => 4]);
+		CurrentUser::store($this->Sentence->Users->get(4));
 		$result = $this->Sentence->changeLanguage(1, 'jpn');
 		$this->assertEquals('eng', $result);
 	}
@@ -977,6 +983,12 @@ class SentencesTableTest extends TestCase {
 	function testChangeLanguage_failsBecauseWrongSentenceId() {
 		$result = $this->Sentence->changeLanguage(9999999, 'jpn');
 		$this->assertFalse($result);
+	}
+
+	function testChangeLanguage_failsBecauseAudio() {
+		CurrentUser::store($this->Sentence->Users->get(2));
+		$result = $this->Sentence->changeLanguage(3, 'eng');
+		$this->assertEquals('spa', $result);
 	}
 
 	function testSetOwner_succeeds() {

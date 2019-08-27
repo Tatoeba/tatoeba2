@@ -1055,7 +1055,7 @@ class SentencesTable extends Table
         $prevLang = $sentence->lang;
         $currentUserId = CurrentUser::get('id');
 
-        if ($ownerId == $currentUserId || CurrentUser::isModerator()) {
+        if (($ownerId == $currentUserId || CurrentUser::isModerator()) && !$this->hasAudio($sentence->id)) {
 
             // Making sure the language is not saved as an empty string but as NULL.
             if ($newLang == '' ) {
