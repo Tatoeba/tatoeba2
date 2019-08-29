@@ -21,10 +21,10 @@ class ContributionsControllerTest extends IntegrationTestCase
     public function accessesProvider() {
         return [
             // url; user; is accessible or redirection url
-            [ '/eng/contributions/index', null, true ],
-            [ '/eng/contributions/index', 'contributor', true ],
-            [ '/eng/contributions/index/eng', null, true ],
-            [ '/eng/contributions/index/eng', 'contributor', true ],
+            [ '/eng/contributions/index', null, '/eng/contributions/latest' ],
+            [ '/eng/contributions/index', 'contributor', '/eng/contributions/latest' ],
+            [ '/eng/contributions/index/eng', null, '/eng/contributions/latest/eng' ],
+            [ '/eng/contributions/index/eng', 'contributor', '/eng/contributions/latest/eng' ],
             [ '/eng/contributions/latest', null, true ],
             [ '/eng/contributions/latest', 'contributor', true ],
             [ '/eng/contributions/latest/eng', null, true ],

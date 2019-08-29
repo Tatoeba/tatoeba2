@@ -41,21 +41,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
 <div id="annexe_content">
     <?php $this->CommonModules->createFilterByLangMod(); ?>
 
-    <div class="section" md-whiteframe="1">
-        <h2><?php echo __('View all'); ?></h2>
-        <p>
-        <?php
-        echo $this->Html->link(
-            __('Browse all contributions'),
-            array(
-                'controller' => 'contributions',
-                'action' => 'index'
-            )
-        );
-        ?>
-        </p>
-    </div>
-
     <div class="module">
     <?php
     echo $this->element(

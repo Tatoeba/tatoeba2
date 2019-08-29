@@ -52,6 +52,8 @@ class AppController extends Controller
 {
     use \AuthActions\Lib\AuthActionsTrait;
 
+    const PAGINATION_DEFAULT_TOTAL_LIMIT = 1000;
+
     public $components = array(
         'Auth' => array(
 		'authenticate' => array(
@@ -323,6 +325,32 @@ class AppController extends Controller
             $this->request->params['pass']
         ));
         return $this->redirect($url);
+    }
+
+    public function paginateLatest($model, $totalLimit) {
+        $alias = $model->getAlias();
+        $conditions = isset($this->paginate['conditions']) ? $this->paginate['conditions'] : [];
+        $contain = isset($this->paginate['contain']) ? $this->paginate['contain'] : [];
+        $order = isset($this->paginate['order']) ? $this->paginate['order'] : [];
+        $order += [$alias . '.id' => 'DESC'];
+
+        $result = $model->find()
+            ->select([$alias . '.id'])
+            ->where($conditions)
+            ->contain($contain)
+            ->order($order)
+            ->limit($totalLimit)
+            ->toList();
+
+        $last = end($result);
+
+        $this->paginate['conditions'][$alias . '.id >='] = $last->id;
+
+        try {
+            return $this->paginate();
+        } catch (\Cake\Http\Exception\NotFoundException $e) {
+            return $this->redirectPaginationToLastPage();
+        }
     }
 
     /**

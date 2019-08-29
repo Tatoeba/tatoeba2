@@ -815,11 +815,17 @@ class SentencesController extends AppController
         ];
 
         $this->paginate = $pagination;
-        $allSentences = $this->paginate();
+
+        $totalLimit = $this::PAGINATION_DEFAULT_TOTAL_LIMIT;
+        $allSentences = $this->paginateLatest($this->Sentences, $totalLimit);
+
+        $total = $this->Sentences->find()->where($conditions)->count();
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);
         $this->set('results', $allSentences);
+        $this->set('total', $total);
+        $this->set('totalLimit', $totalLimit);
 
         $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
         $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
