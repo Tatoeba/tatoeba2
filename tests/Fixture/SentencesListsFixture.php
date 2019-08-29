@@ -61,5 +61,15 @@ class SentencesListsFixture extends TestFixture {
 			'visibility' => 'private',
 			'editable_by' => 'creator'
 		),
+		array(
+			'id' => '5',
+			'name' => 'Collaborative list',
+			'user_id' => 1,
+			'numberOfSentences' => 0,
+			'created' => '2018-10-10 10:10:01',
+			'modified' => '2018-10-10 10:10:09',
+			'visibility' => 'public',
+			'editable_by' => 'anyone'
+		),
 	);
 }

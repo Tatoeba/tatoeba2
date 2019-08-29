@@ -54,6 +54,6 @@ class SentencesList extends Entity
 
     public function isEditableBy($userId)
     {
-        return $this->user_id == $userId || $this->editably_by == 'anyone';
+        return $this->user_id == $userId || $this->editable_by == 'anyone';
     }
 }

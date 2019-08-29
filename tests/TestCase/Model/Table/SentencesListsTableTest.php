@@ -155,13 +155,26 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEmpty($list);
     }
 
-    function testAddSentenceToList_succeeds() {
+    function testAddSentenceToList_succeedsForOwnList() {
         $before = $this->SentencesList->SentencesSentencesLists->find()
             ->where(['sentence_id' => 12, 'sentences_list_id' => 1])
             ->count();
         $result = $this->SentencesList->addSentenceToList(12, 1, 7);
         $after = $this->SentencesList->SentencesSentencesLists->find()
             ->where(['sentence_id' => 12, 'sentences_list_id' => 1])
+            ->count();
+
+        $this->assertTrue($result);
+        $this->assertEquals(1, $after - $before);
+    }
+
+    function testAddSentenceToList_succeedsForCollaborativeList() {
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 5])
+            ->count();
+        $result = $this->SentencesList->addSentenceToList(12, 5, 7);
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 5])
             ->count();
 
         $this->assertTrue($result);
