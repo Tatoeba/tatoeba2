@@ -561,17 +561,24 @@ class ListsHelper extends AppHelper
         <div class="section" md-whiteframe="1">
             <h2><?php echo __('Create a new list'); ?></h2>
             <?php
-            echo $this->Form->create(
-                'SentencesList',
-                array(
-                    "url" => array("action" => "add"),
-                    "type" => "post",
-                )
-            );
-            echo $this->Form->control('name', [
-                'label' => __x('list', 'Name')
+            echo $this->Form->create('SentencesList', [
+                'url' => ['action' => 'add'],
+                'type' => 'post',
             ]);
-            echo $this->Form->button(__('create'));
+            ?>
+            
+            <md-input-container layout="column">
+                <?php
+                echo $this->Form->control('name', [
+                    'label' => __x('list', 'Name')
+                ]);
+                ?>
+                <md-button type="submit" class="md-raised md-primary">
+                    <?= __('create') ?>
+                </md-button>
+            </md-input-container>
+
+            <?php
             echo $this->Form->end();
             ?>
         </div>
@@ -586,24 +593,29 @@ class ListsHelper extends AppHelper
             <?php
             echo $this->Html->tag('h2', __('Search'));
 
-            echo $this->Form->create('SentencesList', array('type' => 'get'));
+            echo $this->Form->create('SentencesList', ['type' => 'get']);
 
             if (!empty($extraHiddenParams)) {
                 foreach ($extraHiddenParams as $key => $value) {
                     echo $this->Form->hidden($key, array('value' => $value));
                 }
             }
-
-            echo $this->Form->input(
-                'search',
-                array(
+            ?>
+            
+            <md-input-container layout="column">
+                <?php
+                echo $this->Form->input('search', [
                     'value' => $search,
                     'label' => false
-                )
-            );
+                ]);
+                ?>
+                
+                <md-button type="submit" class="md-raised">
+                    <?= __('Search') ?>
+                </md-button>
+            </md-input-container>
 
-            echo $this->Form->submit(__('Search'));
-
+            <?php
             echo $this->Form->end();
             ?>
         </div>
