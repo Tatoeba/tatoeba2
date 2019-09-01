@@ -483,7 +483,7 @@ class ListsHelper extends AppHelper
         );
         ?>
 
-        <div id="newSentenceInList">
+        <div id="newSentenceInList" class="section" md-whiteframe="1">
         <?php
         echo $this->Form->input(
             'text',
@@ -558,7 +558,7 @@ class ListsHelper extends AppHelper
     public function displayCreateListForm()
     {
         ?>
-        <div class="module">
+        <div class="section" md-whiteframe="1">
             <h2><?php echo __('Create a new list'); ?></h2>
             <?php
             echo $this->Form->create(
@@ -582,7 +582,7 @@ class ListsHelper extends AppHelper
     public function displaySearchForm($search, $extraHiddenParams = null)
     {
         ?>
-        <div class="module">
+        <div class="section" md-whiteframe="1">
             <?php
             echo $this->Html->tag('h2', __('Search'));
 
@@ -613,7 +613,7 @@ class ListsHelper extends AppHelper
     public function displayListsLinks()
     {
         ?>
-        <div class="module">
+        <div class="section" md-whiteframe="1">
             <?php
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="annexeMenu">';

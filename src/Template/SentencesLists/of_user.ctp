@@ -61,13 +61,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="module">
+    
         <?php
         if (!$userExists) {
             $this->CommonModules->displayNoSuchUser($username);
         } else {
-            echo $this->Html->tag('h2', $title, array('escape' => true)); ?>
-
+            ?>
+            <div class="section" md-whiteframe="1">
+            <?php echo $this->Html->tag('h2', $title, array('escape' => true)); ?>
             <div class="sortBy">
                 <strong><?php echo __("Sort by:") ?> </strong>
                 <?php
@@ -92,7 +93,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $this->Lists->displayListTable($userLists);
 
             $this->Pagination->display();
+            
+            ?> </div> <?php
         }
         ?>
-    </div>
 </div>

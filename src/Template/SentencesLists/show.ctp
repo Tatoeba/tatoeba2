@@ -43,7 +43,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 <div id="annexe_content">
     <?php $this->Lists->displayListsLinks(); ?>
 
-    <div class="module">
+    <div class="section" md-whiteframe="1">
         <h2><?php echo __('About this list'); ?></h2>
         <?php
         $linkToAuthorProfile = $this->Html->link(
@@ -79,7 +79,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     if ($permissions['canEdit']) {
         ?>
-        <div class="module">
+        <div class="section" md-whiteframe="1">
             <h2><?php echo __('Options'); ?></h2>
             <ul class="sentencesListActions">
                 <?php
@@ -96,7 +96,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     }
     ?>
 
-    <div class="module">
+    <div class="section" md-whiteframe="1">
     <h2><?php echo __('Actions'); ?></h2>
     <?php
     $this->Lists->displayTranslationsDropdown($listId, $translationsLang);
@@ -148,9 +148,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         echo $this->Html->div('edit-list-name', $editImage);
         $this->Lists->displayAddSentenceForm($listId);
     }
-
-    $this->Pagination->display();
-
     ?>
 
     <div class="sortBy" id="sortBy">
@@ -165,6 +162,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div class="sentencesList" id="sentencesList"
          data-list-id="<?php echo $listId; ?>">
     <?php
+    $this->Pagination->display();
     if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
         foreach ($sentencesInList as $item) {
             $sentence = $item->sentence;
