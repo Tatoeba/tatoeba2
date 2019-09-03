@@ -38,7 +38,7 @@ $vocabularyUrl = $this->Url->build(array(
 ?>
 
 <div id="annexe_content">
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Important'); ?></h2>
     <p>
     <?php
@@ -72,7 +72,7 @@ $vocabularyUrl = $this->Url->build(array(
 
 <div id="main_content">
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Add new sentences'); ?></h2>
 
         <?php
@@ -152,7 +152,7 @@ $vocabularyUrl = $this->Url->build(array(
 
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentences added'); ?></h2>
 
         <div class="sentencesAddedloading" style="display:none">
@@ -170,7 +170,7 @@ $vocabularyUrl = $this->Url->build(array(
         </div>
     </div>
 
-    <div ng-cloak class="section" md-whiteframe="1">
+    <div ng-cloak class="section md-whiteframe-1dp">
         <div layout="column" layout-align="center center">
             <?= __('Check out the vocabulary for which we need sentences'); ?>
             <md-button class="md-primary" href="<?= $vocabularyUrl ?>">

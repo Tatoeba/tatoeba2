@@ -3,7 +3,7 @@
 <div ng-controller="exportsCtrl"
      ng-init="init(<?= h(json_encode($exports)); ?>)">
 
-<div class="section" md-whiteframe="1">
+<div class="section md-whiteframe-1dp">
 <h2><?= __('My exports') ?></h2>
 <p ng-cloak ng-show="!exports.length"><?= __("There are no exports.") ?></p>
 <md-list-item ng-cloak
@@ -23,7 +23,7 @@
 </div>
 
 
-<div class="section" md-whiteframe="1">
+<div class="section md-whiteframe-1dp">
 <h2><?= __('New export') ?></h2>
 <?php
     $this->loadHelper('Lists');

@@ -53,7 +53,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <?php
     if (!$userExists) {
         $this->CommonModules->displayNoSuchUser($username);

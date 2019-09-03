@@ -61,7 +61,7 @@ class TagsHelper extends AppHelper
     {
         ?>
 
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Tags'); ?></h2>
 
             <div class="tagsListOnSentence" >

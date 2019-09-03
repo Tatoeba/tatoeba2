@@ -29,7 +29,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
 ?>
 
 <div id="annexe_content">
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Note'); ?></h2>
     <p>
     <?php
@@ -52,7 +52,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
     </p>
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('General information about the files'); ?></h2>
         <p>
             <?php
@@ -76,7 +76,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </p>
     </div>
     
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Creative commons'); ?></h2>
     <p><?php echo __('These files are released under CC BY 2.0 FR.'); ?></p>
     <a rel="license" href="https://creativecommons.org/licenses/by/2.0/fr/">
@@ -91,7 +91,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
     </div>
 
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <h2><?= __('Licenses covering audio') ?></h2>
         <p>
             <?= __(
@@ -102,7 +102,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </p>
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Questions?'); ?></h2>
     <p>
     <?php
@@ -151,7 +151,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         <h1><?php echo $downloads_str; ?></h1>
 
         <!-- Sentences -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentences'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -206,7 +206,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- Sentences -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentences (CC0)'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -234,7 +234,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- Links -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Links'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -283,7 +283,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- Tags -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Tags'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -325,7 +325,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- Lists -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Lists'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -363,7 +363,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </dl>
         </div>
 
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentences in lists'); ?></h2>
         <dl>       
             <dt><?php echo $download_str; ?></dt>   
@@ -399,7 +399,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- Indices -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Japanese indices'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -441,7 +441,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- Sentences with audio -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentences with audio'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -478,7 +478,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- User skill level per language -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('User skill level per language'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
@@ -507,7 +507,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         </div>
 
         <!-- Users' collections/ratings -->
-        <div  class="section" md-whiteframe="1">
+        <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Users\' sentence ratings'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>

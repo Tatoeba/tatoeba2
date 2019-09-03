@@ -135,7 +135,7 @@ class ShowAllHelper extends AppHelper
     public function displayShowAllInSelect($selectedLanguage)
     {
         ?>
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Sentences in:'); ?></h2>
             <?php
             $langs = $this->Languages->unknownLanguagesArray();
@@ -161,7 +161,7 @@ class ShowAllHelper extends AppHelper
     public function displayShowOnlyTranslationInSelect($selectedLanguage = 'none')
     {
         ?>
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Show translations in:'); ?></h2>
             <?php
             $langs = $this->Languages->languagesArrayForPositiveLists();

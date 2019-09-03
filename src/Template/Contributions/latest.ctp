@@ -54,7 +54,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
 </div>
 
 <div id="main_content">
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Latest contributions'); ?></h2>
         <md-list id="logs">
         <?php

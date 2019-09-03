@@ -39,7 +39,7 @@
  * ```
  */
 ?>
-<div class="section" md-whiteframe="1">
+<div class="section md-whiteframe-1dp">
     <h2><?= __('Page temporarily disabled') ?></h2>
 
     <p>

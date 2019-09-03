@@ -42,7 +42,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
 ?>
 
 <div id="annexe_content">
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __("How to add a translation"); ?></h2>
         <p>
             <?php
@@ -57,7 +57,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
         </p>
     </div>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('About translations'); ?></h2>
 
     <h4><?php echo __("Good translations"); ?></h4>
@@ -81,7 +81,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
 <div id="main_content">
     <h2><?php echo __('Translate sentences'); ?></h2>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <?php if (CurrentUser::isMember() && count($langsFrom) < 2) { ?>
         <div class="warning">
             <?= format(

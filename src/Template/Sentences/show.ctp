@@ -139,7 +139,7 @@ $this->Navigation->displaySentenceNavigation(
     }
     ?>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <?php
         echo '<h2>';
         echo __('Logs');
@@ -170,7 +170,7 @@ $this->Navigation->displaySentenceNavigation(
     if (isset($sentence)) {
         if (CurrentUser::isMember()) {
             ?>
-            <div class="section" md-whiteframe="1">
+            <div class="section md-whiteframe-1dp">
             <h2><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
             <?php
             $this->Sentences->displaySentencesGroup($sentence);

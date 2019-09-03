@@ -41,7 +41,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
 <div id="annexe_content">
     <?php $this->Lists->displayListsLinks(); ?>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Actions'); ?></h2>
     <ul class="sentencesListActions">
     <?php
@@ -52,7 +52,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
 </div>
 
 <div id="main_content">
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
     <h2><?php echo $listName; ?></h2>
 
     <h3><?php echo __('Download'); ?></h3>

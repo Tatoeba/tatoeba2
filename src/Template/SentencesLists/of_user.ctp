@@ -67,7 +67,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $this->CommonModules->displayNoSuchUser($username);
         } else {
             ?>
-            <div class="section" md-whiteframe="1">
+            <div class="section md-whiteframe-1dp">
             <?php echo $this->Html->tag('h2', $title, array('escape' => true)); ?>
             <div class="sortBy">
                 <strong><?php echo __("Sort by:") ?> </strong>

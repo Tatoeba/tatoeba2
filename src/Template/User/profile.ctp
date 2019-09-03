@@ -70,7 +70,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
     );
     ?>
 
-    <div class="section" md-whiteframe="1">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Stats'); ?></h2>
         <dl>
             <dt><?php echo __('Comments posted'); ?></dt>
@@ -102,7 +102,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
     <?php
     if ($isDisplayed) {
         ?>
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Settings'); ?></h2>
 
             <ul class="annexeMenu">

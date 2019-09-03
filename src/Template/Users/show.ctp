@@ -38,7 +38,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
     /* Latest contributions from the user */
     if (count($user->contributions) > 0) {
         ?>
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Latest contributions'); ?></h2>
             <md-list id="logs">
             <?php

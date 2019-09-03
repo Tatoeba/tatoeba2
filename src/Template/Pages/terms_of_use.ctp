@@ -10,6 +10,6 @@
 <?php } ?>
 
 
-<div id="terms-of-use" class="section" md-whiteframe="1">
+<div id="terms-of-use" class="section md-whiteframe-1dp">
     <?= $content ?>
 </div>

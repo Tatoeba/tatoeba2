@@ -100,7 +100,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     </div>
 
-    <div ng-cloak class="section" md-whiteframe="1">
+    <div ng-cloak class="section md-whiteframe-1dp">
         <div layout="row">
             <h2 flex><?= __('Vocabulary items added'); ?></h2>
             <md-progress-circular md-mode="indeterminate"

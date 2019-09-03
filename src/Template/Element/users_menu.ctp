@@ -27,7 +27,7 @@
 use App\Model\CurrentUser;
 ?>
 
-<div class="section" md-whiteframe="1">
+<div class="section md-whiteframe-1dp">
     <h2><?php echo $username; ?></h2>
 
     <ul class="annexeMenu">

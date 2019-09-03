@@ -483,7 +483,7 @@ class ListsHelper extends AppHelper
         );
         ?>
 
-        <div id="newSentenceInList" class="section" md-whiteframe="1">
+        <div id="newSentenceInList" class="section md-whiteframe-1dp">
         <?php
         echo $this->Form->input(
             'text',
@@ -528,7 +528,7 @@ class ListsHelper extends AppHelper
     public function displayListsModule($listsArray)
     {
         if (count($listsArray) > 0) {
-            echo '<div class="section" md-whiteframe="1">';
+            echo '<div class="section md-whiteframe-1dp">';
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
@@ -558,7 +558,7 @@ class ListsHelper extends AppHelper
     public function displayCreateListForm()
     {
         ?>
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <h2><?php echo __('Create a new list'); ?></h2>
             <?php
             echo $this->Form->create('SentencesList', [
@@ -589,7 +589,7 @@ class ListsHelper extends AppHelper
     public function displaySearchForm($search, $extraHiddenParams = null)
     {
         ?>
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <?php
             echo $this->Html->tag('h2', __('Search'));
 
@@ -625,7 +625,7 @@ class ListsHelper extends AppHelper
     public function displayListsLinks()
     {
         ?>
-        <div class="section" md-whiteframe="1">
+        <div class="section md-whiteframe-1dp">
             <?php
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="annexeMenu">';
