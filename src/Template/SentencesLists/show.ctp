@@ -27,7 +27,6 @@
 use App\Model\CurrentUser;
 use App\Model\Entity\SentencesList;
 
-$this->Sentences->javascriptForAJAXSentencesGroup();
 $this->Html->script(
     JS_PATH . 'sentences_lists.remove_sentence_from_list.js', array('block' => 'scriptBottom')
 );
@@ -177,6 +176,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             );
         }
     } else {
+        $this->Sentences->javascriptForAJAXSentencesGroup();
         foreach ($sentencesInList as $item) {
             $sentence = $item->sentence;
             $this->Lists->displaySentence(
