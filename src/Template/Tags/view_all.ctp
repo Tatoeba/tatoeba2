@@ -26,34 +26,39 @@
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')));
+$tagsIndexUrl = $this->Url->build([
+    'controller' => 'tags',
+    'action' => 'view_all'
+]);
 ?>
 
 <div id="annexe_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp" layout="column">
         <?php
         echo $this->Html->tag('h2', __('Search tags'));
         echo $this->Form->create('Tags', [
             'url' => array('action' => 'search'),
         ]);
-        echo $this->Form->input(
-            'search',
-            array(
+        ?>
+        <md-input-container layout="column">
+            <?php
+            echo $this->Form->input('search', [
                 'value' => $filter,
                 'label' => false
-            )
-        );
-        echo $this->Form->submit(__('Search'));
-        echo $this->Form->end();
+            ]);
+            ?>
+            <md-button type="submit" class="md-raised md-default">
+                <?= __('Search') ?>
+            </md-button>
+        </md-input-container>
 
-        echo '<p>';
-        echo $this->Html->link(
-            __('Show all tags'),
-            array(
-                'controller' => 'tags',
-                'action' => 'view_all'
-            )
-        );
-        echo '</p>';
+        <?php if ($filter) { ?>
+            <md-button class="md-primary" href="<?= $tagsIndexUrl ?>">
+                <?= __('Show all tags') ?>
+            </md-button>
+        <?php } ?>
+        <?php
+        echo $this->Form->end();
         ?>
     </div>
 </div>
@@ -61,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
 
 
 <div id="main_content">
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <?php
         if (empty($filter)) {
             $title = $this->Paginator->counter(
@@ -90,22 +95,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')
             $this->Pagination->display();
         ?>
 
-        <div>
-            <?php
-            foreach( $allTags as $tag) {
+        <md-list>
+            <?php foreach( $allTags as $tag) {
+                $tagName = $tag->name;
+                $tagUrl = $this->Url->build([
+                    'controller' => 'tags',
+                    'action' => 'show_sentences_with_tag',
+                    $tag->id
+                ]);
+                $count = $tag->nbrOfSentences;
                 ?>
-                <span class="tag">
-                    <?php
-                    $tagName = $tag->name;
-                    $tagId = $tag->id;
-                    $count = $tag->nbrOfSentences;
-                    $this->Tags->displayTagInCloud($tagName, $tagId, $count);
-                    ?>
-                </span>
-            <?php
-            }
-            ?>
-        </div>
+                <md-list-item href="<?= $tagUrl ?>" class="secondary-button-padding">
+                    <p><span class="tag"><?= $tagName ?></span></p>
+                    <span class="number-of-sentences"><?= format(__('{n} sentences'),['n' => $count]) ?></span>
+                </md-list-item>
+            <?php } ?>
+        </md-list>
 
         <div>
         <?php

@@ -21,31 +21,14 @@
 /* 
  * Tags
  */
-.tagsListOnSentence {
-    overflow: auto;
+.number-of-sentences {
+    color: #aaa;
 }
 
 .tag {
-    width: 45%;
+    line-height: 20px;
 }
 
-.tagName {
-    color: #333;
-    font-size: 1.2em;
+md-list-item {
+    border-top: 1px solid #f1f1f1;
 }
-
-.tag a:hover {
-    color: #7F6A27;
-}
-
-.removeTagFromSentenceButton {
-    border-left: 1px dotted #CCC;
-    padding-left: 5px;
-    margin-left: 5px;
-    color: red;
-}
-
-.numSentences {
-    color: #9E8D52;
-}
-
