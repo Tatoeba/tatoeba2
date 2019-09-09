@@ -328,21 +328,27 @@ class SentencesListsTableTest extends TestCase {
                 '2' => 'Public list',
                 '3' => 'Private list'
             ],
-            'Collaborative' => []
+            'Collaborative' => [
+                '5' => 'Collaborative list'
+            ]
         ];
         $this->assertEquals($expected, $result);
     }
 
     function testGetSearchableLists_asGuests() {
         CurrentUser::store(['id' => null]);
-        $result = $this->SentencesList->getSearchableLists();
-        $this->assertEquals([2], Hash::extract($result, '{n}.id'));
+        $lists = $this->SentencesList->getSearchableLists();
+        $result = Hash::extract($lists, '{n}.id');
+        $expected = [2, 5];
+        $this->assertEquals(asort($expected), asort($result));
     }
 
     function testGetSearchableLists_asMember() {
         CurrentUser::store(['id' => 7]);
-        $result = $this->SentencesList->getSearchableLists();
-        $this->assertEquals([1, 3, 2], Hash::extract($result, '{n}.id'));
+        $lists = $this->SentencesList->getSearchableLists();
+        $result = Hash::extract($lists, '{n}.id');
+        $expected = [1, 3, 2, 5];
+        $this->assertEquals(asort($expected), asort($result));
     }
 
     function testGetNameForListWithId() {

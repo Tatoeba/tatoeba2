@@ -37,7 +37,7 @@ class TagsControllerTest extends IntegrationTestCase {
             [ '/fra/tags/show_sentences_with_tag/2', null, true ],
             [ '/fra/tags/show_sentences_with_tag/2', 'contributor', true ],
             [ '/fra/tags/show_sentences_with_tag/2/cmn', null, true ],
-            [ '/fra/tags/show_sentences_with_tag/9999999999', null, true ],
+            [ '/fra/tags/show_sentences_with_tag/9999999999', null, '/fra/tags/view_all' ],
             [ '/fra/tags/show_sentences_with_tag/@needs_native_check', null, '/fra/tags/show_sentences_with_tag/1' ],
             [ '/fra/tags/show_sentences_with_tag/@needs_native_check/fra', null, '/fra/tags/show_sentences_with_tag/1/fra' ],
         ];
