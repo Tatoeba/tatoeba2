@@ -45,7 +45,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 </div>
 
 <div id="main_content">
-    <div class="user-language section" md-whiteframe="1">
+    <div class="user-language section md-whiteframe-1dp">
         <?php
         echo $this->Html->tag('h2', $title);
 

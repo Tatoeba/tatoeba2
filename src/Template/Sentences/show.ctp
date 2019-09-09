@@ -72,7 +72,7 @@ $this->Navigation->displaySentenceNavigation(
 <div id="annexe_content">
     <?php
     if (CurrentUser::get('settings.users_collections_ratings')) {
-        echo '<div class="section correctness-info" md-whiteframe="1">';
+        echo '<div class="section correctness-info md-whiteframe-1dp">';
 
         echo $this->Html->tag('h2', __('Reviewed by'));
         foreach($correctnessArray as $correctness) {

@@ -21,7 +21,7 @@ $addSentencesUrl = $this->Url->build(
     )
 );
 ?>
-<div class="section" layout="column" md-whiteframe="1">
+<div class="section md-whiteframe-1dp" layout="column">
     <h2><?= __('Vocabulary items'); ?></h2>
     <md-list>
         <md-list-item href="<?= $indexUrl ?>">

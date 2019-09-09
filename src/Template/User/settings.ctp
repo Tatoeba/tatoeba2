@@ -38,7 +38,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 </div>
 
 <div id="main_content">
-    <div md-whiteframe="1" class="options settings-form">
+    <div class="options settings-form md-whiteframe-1dp">
         <h2><?php echo __('Options'); ?></h2>
         <?php echo $this->Form->create($userSettings, [
             'ng-cloak' => true,
@@ -343,7 +343,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
         <?php echo $this->Form->end(); ?>
     </div>
-    <div ng-cloak md-whiteframe="1" class="settings-form">
+    <div ng-cloak class="settings-form md-whiteframe-1dp">
         <?php
         echo $this->Form->create($userSettings, [
             'url' => ['controller' => 'user', 'action' => 'save_basic']
@@ -367,7 +367,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         ?>
     </div>
 
-    <div ng-cloak md-whiteframe="1" class="settings-form">
+    <div ng-cloak class="settings-form md-whiteframe-1dp">
         <?php
         echo $this->Form->create($userSettings, [
             'url' => ['controller' => 'user', 'action' => 'save_password']

@@ -32,8 +32,7 @@ if (isset($sentence->highlight)) {
 ?>
 <div ng-cloak
      sentence-and-translations
-     class="sentence-and-translations"
-     md-whiteframe="1">
+     class="sentence-and-translations md-whiteframe-1dp">
     <div layout="column">
         <md-subheader>
             <?php
