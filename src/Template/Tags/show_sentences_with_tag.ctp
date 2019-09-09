@@ -26,101 +26,77 @@
  */
 use App\Model\CurrentUser;
 
-if ($tagExists) {
-    $tagName = h($tagName);
-    $title = format(__('Sentences with tag {tagName}'), compact('tagName'));
-    ?>
-
-    <div id="annexe_content">
-        <?php $this->CommonModules->createFilterByLangMod(2); ?>
-        <div class="module">
-            <?php
-            echo $this->Html->link(
-                __('View all tags'),
-                array(
-                    "controller" => "tags",
-                    "action" => "view_all",
-                )
-            );
-            ?>
-        </div>
-    </div>
-
-    <div id="main_content">
-        <div class="section">
-            <h2><?php
-            $n = $this->Paginator->param('count');
-            echo format(
-                __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
-                compact('tagName', 'n')
-            ); ?></h2>
-
-            <div class="sortBy">
-                <strong><?php echo __("Sort by:") ?></strong>
-                <?php
-                echo $this->Paginator->sort('added_time', __("date of tag"));
-                ?>
-            </div>
-
-            <?php
-            $this->Pagination->display();
-            ?>
-
-            <div class="sentencesList" id="sentencesList">
-                <?php
-                $useNewDesign = !CurrentUser::isMember()
-                    || CurrentUser::getSetting('use_new_design');
-                if ($useNewDesign) {
-                    foreach ($allSentences as $item) {
-                        $sentence = $item->sentence;
-                        echo $this->element(
-                            'sentences/sentence_and_translations',
-                            array(
-                                'sentence' => $sentence,
-                                'translations' => $sentence->translations,
-                                'user' => $sentence->user
-                            )
-                        );
-                    }
-                } else {
-                    foreach ($allSentences as $i=>$sentence) {
-                        // this should be done in the controller but this way
-                        // we avoid another full loop on the sentence Array
-                        $canUserRemove = CurrentUser::canRemoveTagFromSentence(
-                            $taggerIds[$i]
-                        );
-                        $this->Tags->displaySentence(
-                            $sentence->sentence,
-                            $canUserRemove,
-                            $tagId
-                        );
-                    }
-                }
-                ?>
-            </div>
-
-            <?php
-            $this->Pagination->display();
-            ?>
-
-        </div>
-    </div>
-    <?php
-} else {
-    $title = format(__('No tag with id {tagId}'), compact('tagId'));
-    ?>
-    <div id="main_content">
-        <?php
-        echo $this->Html->link(
-            __('View all tags'),
-            array(
-                "controller" => "tags",
-                "action" => "view_all",
-            )
-        );
-        ?>
-    </div>
-    <?php
-}
+$tagName = h($tagName);
+$title = format(__('Sentences with tag {tagName}'), compact('tagName'));
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
+
+$tagsIndexUrl = $this->Url->build([
+    'controller' => 'tags',
+    'action' => 'view_all'
+]);
 ?>
+
+<div id="annexe_content">
+    <?php $this->CommonModules->createFilterByLangMod(2); ?>
+    <div class="section md-whiteframe-1dp">
+        <md-button class="md-primary" href="<?= $tagsIndexUrl ?>">
+            <?= __('Show all tags') ?>
+        </md-button>
+    </div>
+</div>
+
+<div id="main_content">
+    <div class="section">
+        <h2><?php
+        $n = $this->Paginator->param('count');
+        echo format(
+            __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
+            compact('tagName', 'n')
+        ); ?></h2>
+
+        <div class="sortBy">
+            <strong><?php echo __("Sort by:") ?></strong>
+            <?php
+            echo $this->Paginator->sort('added_time', __("date of tag"));
+            ?>
+        </div>
+
+        <?php $this->Pagination->display(); ?>
+
+        <div class="sentencesList" id="sentencesList">
+            <?php
+            $useNewDesign = !CurrentUser::isMember()
+                || CurrentUser::getSetting('use_new_design');
+            if ($useNewDesign) {
+                foreach ($allSentences as $item) {
+                    $sentence = $item->sentence;
+                    echo $this->element(
+                        'sentences/sentence_and_translations',
+                        array(
+                            'sentence' => $sentence,
+                            'translations' => $sentence->translations,
+                            'user' => $sentence->user
+                        )
+                    );
+                }
+            } else {
+                foreach ($allSentences as $i=>$sentence) {
+                    // this should be done in the controller but this way
+                    // we avoid another full loop on the sentence Array
+                    $canUserRemove = CurrentUser::canRemoveTagFromSentence(
+                        $taggerIds[$i]
+                    );
+                    $this->Tags->displaySentence(
+                        $sentence->sentence,
+                        $canUserRemove,
+                        $tagId
+                    );
+                }
+            }
+            ?>
+        </div>
+
+        <?php $this->Pagination->display(); ?>
+        
+    </div>
+</div>

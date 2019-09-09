@@ -162,12 +162,12 @@ class TagsController extends AppController
      *
      * @return void
      */
-    public function show_sentences_with_tag($tagId, $lang = null)
+    public function show_sentences_with_tag($tagId = null, $lang = null)
     {
         // In case the $tagId is not an int we assume that the user
         // comes from an old URL with the internal name, so we
         // redirect them to the right URL.
-        if ($tagId != '0' && intval($tagId) == 0) {
+        if ($tagId && $tagId != '0' && intval($tagId) == 0) {
             $actualTagId = $this->Tags->getIdFromInternalName($tagId);
             return $this->redirect(
                 [
@@ -224,6 +224,10 @@ class TagsController extends AppController
                     'for has been deleted or does not exist.', true
                 )
             );
+            return $this->redirect([
+                'controller' => 'tags',
+                'action' => 'view_all'
+            ]);
         }
     }
 
