@@ -1079,15 +1079,29 @@ class SentencesTableTest extends TestCase {
 		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
 		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
 		
-		$languages = array_unique($expected + $directTranslationsLangs + $indirectTranslationsLangs);
-		$this->assertEquals($expected, $languages);
+		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
+		$this->assertEquals(asort($expected), asort($languages));
 	}
 
-	function testFindFilteredTranslations_withoutLangSettings() {
+	function testFindFilteredTranslations_withLangSettingsAndTranslationLang() {
 		$Users = TableRegistry::getTableLocator()->get('Users');
 		$user = $Users->get(4)->toArray();
 		CurrentUser::store($user);
 
+		$result = $this->Sentence->find('filteredTranslations', ['translationLang' => 'jpn'])
+			->where(['Sentences.id' => 1])
+			->contain($this->Sentence->contain())
+			->first();
+		
+		$expected = ['jpn'];
+		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
+		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
+		
+		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
+		$this->assertEquals(asort($expected), asort($languages));
+	}
+
+	function testFindFilteredTranslations_withoutLangSettings() {
 		$result = $this->Sentence->find('filteredTranslations')
 			->where(['Sentences.id' => 1])
 			->contain($this->Sentence->contain())
@@ -1096,9 +1110,9 @@ class SentencesTableTest extends TestCase {
 		$expected = ['fra', 'spa', 'deu', 'cmn', 'jpn'];
 		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
 		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
-		
-		$languages = array_unique($expected + $directTranslationsLangs + $indirectTranslationsLangs);
-		$this->assertEquals($expected, $languages);
+
+		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
+		$this->assertEquals(asort($expected), asort($languages));
 	}
 
 	function testGetSentenceWithId_translationsHaveAudioInfo() {

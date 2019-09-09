@@ -356,9 +356,10 @@ class SentencesTable extends Table
     }
 
     public function findFilteredTranslations($query, $options) {
-        $translationLanguages = CurrentUser::getLanguages();
         if (!empty($options['translationLang']) && $options['translationLang'] != 'und') {
-            $translationLanguages[] = $options['translationLang'];
+            $translationLanguages = [$options['translationLang']];
+        } else {
+            $translationLanguages = CurrentUser::getLanguages();
         }
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
