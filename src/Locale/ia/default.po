@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-20 17:01+0000\n"
-"PO-Revision-Date: 2019-08-20 17:06+0000\n"
+"POT-Creation-Date: 2019-09-01 17:24+0000\n"
+"PO-Revision-Date: 2019-09-03 19:38+0000\n"
 "Last-Translator: Trang\n"
 "Language-Team: Interlingua (http://www.transifex.com/tatoeba/tatoeba_website/language/ia/)\n"
 "MIME-Version: 1.0\n"
@@ -119,15 +119,15 @@ msgstr "Dossier \"{name}\" vacuate."
 msgid "There is no sentence with id {number}"
 msgstr "Il non ha phrase con ID {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
 msgstr "Tu commento ha essite salveguardate."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
 msgstr "Tu non ha le permission de modificar iste commento."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L230
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L219
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L47
 msgid ""
@@ -135,7 +135,7 @@ msgid ""
 " {email}."
 msgstr "Si tu ha recipite iste message in error, contacta le administratores a {email}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
 msgstr "Le cambiamentos in tu commento ha essite salveguardate."
 
@@ -208,15 +208,15 @@ msgid ""
 "language you're searching into"
 msgstr "“possedite per un persona qui se identifica como parlante native”, perque le criterio “possedite per: {username}” es active ben que ille o illa non se identifica como parlante native del lingua in le qual tu cerca"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1068
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1074
 msgid "You are not allowed to change the license of this sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1074
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1080
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1079
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1085
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr ""
 
@@ -966,30 +966,20 @@ msgid_plural "Daily Average: {n} sentences"
 msgstr[0] "Media quotidian: {n} phrase"
 msgstr[1] "Media quotidian: {n} phrases"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L81
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Ultime contributiones"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/index.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L84
-msgid "Contributions"
-msgstr "Contributiones"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L45
-msgid "View all"
-msgstr "Vider totes"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L49
-msgid "Browse all contributions"
-msgstr "Percurrer tote le contributiones"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
-msgid "Logs of {user}'s contributions"
-msgstr "Registro del contributiones de {user}"
+msgid "Latest contributions of {user}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L65
+msgid "Only the last {n} log entries are displayed here."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L50
@@ -1082,7 +1072,7 @@ msgid "Any"
 msgstr "Qualcunque"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L93
 msgid "Translations"
 msgstr "Traductiones"
 
@@ -1464,6 +1454,21 @@ msgstr "Nulle resultato trovate."
 msgid "No results found for: {search}"
 msgstr "Nulle resultato trovate pro: {search}"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L13
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L188
+msgid "Play audio"
+msgstr "Sonar audio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L16
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L191
+msgid "Play audio recorded by {author}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L200
+msgid "No audio for this sentence. Click to learn how to contribute."
+msgstr "Nulle audio pro iste phrase. Clicca pro apprender como contribuer."
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L128
 msgid "Audio"
@@ -1480,18 +1485,18 @@ msgstr "Licentia"
 msgid "This sentence is not reliable."
 msgstr "Iste phrase non es digne de fide."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L116
 msgid "Translations of translations"
 msgstr "Traductiones de traductiones"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L209
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Monstrar 1 altere traduction"
 msgstr[1] "Monstrar {number} altere traductiones"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L241
 msgid "Fewer translations"
 msgstr "Minus traductiones"
@@ -1715,7 +1720,7 @@ msgid "Wall messages"
 msgstr "Messages de muro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L180
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L145
 msgid "Logs"
 msgstr "Registros"
 
@@ -2453,6 +2458,7 @@ msgid "show more..."
 msgstr "monstrar plus..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Ultime commentos"
@@ -2570,7 +2576,6 @@ msgstr "Clicca sur le prime phrase pro visitar tatoeba.org pro traducer lo o las
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L174
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L185
 msgid "Sentence #{number}"
 msgstr "Phrase № {number}"
 
@@ -2585,10 +2590,6 @@ msgstr "Modificar commento sur phrase № {number}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
 msgstr "Commentos sur phrases"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L39
-msgid "Comments on sentences (total {{count}})"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L40
 msgid "{user}'s comments"
@@ -2710,6 +2711,7 @@ msgid "Sentences in {language} translated into {translationLanguage}"
 msgstr "Phrases in {language} traducite in {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L32
 msgid "Sentences in {language}"
 msgstr "Phrases in {language}"
 
@@ -2776,15 +2778,15 @@ msgstr "Percurre exemplos de phrases traducite. Iste pagina monstra traductiones
 msgid "Sentence does not exist: "
 msgstr "Phrase non existe:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L77
 msgid "Reviewed by"
 msgstr "Revidite per"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L96
 msgid "(outdated)"
 msgstr "(obsolete)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L161
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L162
 msgid "There is no log for this sentence"
 msgstr "Il non ha registro pro iste phrase"
 
@@ -2811,9 +2813,9 @@ msgid ""
 "<a href=\"{}\">let us know</a>."
 msgstr "Un error ha occurrite durante le recuperation de phrases aleatori. Si isto persiste, per favor <a href=\"{}\">contacta nos</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L32
-msgid "All sentences in {language}"
-msgstr "Tote le phrases in {language} "
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L55
+msgid "Only the last {n} sentences are displayed here."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
@@ -3245,6 +3247,10 @@ msgstr "Registrationes audio"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L82
 msgid "Sentences favorited"
 msgstr "Phrases favorite"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L84
+msgid "Contributions"
+msgstr "Contributiones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L91
 msgid "Show latest activity"
@@ -4294,18 +4300,6 @@ msgstr "{sender} ha scribite:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
 msgstr "Monstrar detalios del phrase"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L188
-msgid "Play audio"
-msgstr "Sonar audio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L191
-msgid "Play audio recorded by {author}"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L200
-msgid "No audio for this sentence. Click to learn how to contribute."
-msgstr "Nulle audio pro iste phrase. Clicca pro apprender como contribuer."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L280
 msgid "Copy sentence"
