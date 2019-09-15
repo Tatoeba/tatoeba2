@@ -25,20 +25,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
 <?php
-if (isset($sentencesWithTranscription)) {
-    echo $this->Html->div(
-        null,
-        $this->element(
-            'users_menu',
-            array('username' => $username)
-        ),
-        array('id' => 'annexe_content')
-    );
-}
+echo $this->Html->div(
+    null,
+    $this->element(
+        'users_menu',
+        array('username' => $username)
+    ),
+    array('id' => 'annexe_content')
+);
 ?>
 
 <div id="main_content">
-<div class="module">
+<div class="section md-whiteframe-1dp">
 <?php
 if (empty($userId)) {
     echo $this->Html->tag('h2', format(

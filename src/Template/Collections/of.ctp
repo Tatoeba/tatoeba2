@@ -68,7 +68,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         echo '</div>';
     }
     ?>
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <?php
         echo $this->Html->tag('h2', __('Filter'));
 
@@ -94,7 +94,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="module correctness-info">
+    <div class="section md-whiteframe-1dp correctness-info">
 
         <?php
         if (!$userExists) {

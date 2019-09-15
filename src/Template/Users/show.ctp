@@ -61,7 +61,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
     <?php
     /* Latest sentences, translations or adoptions from the user */
     if (count($user->sentences) > 0) {
-        echo '<div class="module">';
+        echo '<div class="section md-whiteframe-1dp">';
             echo '<h2>';
             echo __('Latest sentences');
 
@@ -94,7 +94,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 
     /* Latest comments from the user */
     if (count($user->sentence_comments) > 0) {
-        echo '<div class="module">';
+        echo '<div class="section">';
             echo '<h2>';
             echo __('Latest comments');
 
@@ -137,7 +137,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 
     /* Latest messages on the Wall */
     if (count($user->wall) > 0) {
-        echo '<div class="module">';
+        echo '<div class="section">';
             echo '<h2>';
             echo __('Latest Wall messages');
 

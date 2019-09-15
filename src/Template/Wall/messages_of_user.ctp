@@ -41,7 +41,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 
 
 <div id="main_content">
-<div class="module">
+<div class="section">
     <h2>
     <?php 
     echo $this->Paginator->counter(
