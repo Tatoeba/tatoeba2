@@ -1862,3 +1862,21 @@ div.hideLink {
     border-width: 8px;
 }
 
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Menu in sidebar
+ *
+ * --------------------------------------------------------------------
+ */
+
+.annexe-menu {
+    padding: 0;
+}
+.annexe-menu md-list-item:first-child {
+    border-top: 1px solid #f1f1f1;
+}
+.annexe-menu md-list-item {
+    border-bottom: 1px solid #f1f1f1;
+}

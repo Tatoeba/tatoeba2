@@ -25,211 +25,148 @@
  * @link     http://tatoeba.org
  */
 use App\Model\CurrentUser;
-?>
 
-<div class="section md-whiteframe-1dp">
-    <h2><?php echo $username; ?></h2>
-
-    <ul class="annexeMenu">
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Profile'),
-            array(
-                'controller' => 'user',
-                'action' => 'profile',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Sentences'),
-            array(
-                'controller' => 'sentences',
-                'action' => 'of_user',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-            <?php
-            echo $this->Html->link(
-                __('Vocabulary'),
-                array(
-                    'controller' => 'vocabulary',
-                    'action' => 'of',
-                    $username
-                )
-            );
-            ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Collection'),
-            array(
-                'controller' => 'collections',
-                'action' => 'of',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Transcriptions'),
-            array(
-                'controller' => 'transcriptions',
-                'action' => 'of',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Lists'),
-            array(
-                'controller' => 'sentences_lists',
-                'action' => 'of_user',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Favorites'),
-            array(
-                'controller' => 'favorites',
-                'action' => 'of_user',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Audio'),
-            array(
-                'controller' => 'audio',
-                'action' => 'of',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Comments'),
-            array(
-                'controller' => 'sentence_comments',
-                'action' => 'of_user',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            format(__("Comments on {user}'s sentences"), array('user' => $username)),
-            array(
-                'controller' => 'sentence_comments',
-                'action' => 'on_sentences_of_user',
-                $username
-            )
-        );
-        ?>
-        </li>
-
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Wall messages'),
-            array(
-                'controller' => 'wall',
-                'action' => 'messages_of_user',
-                $username
-            )
-        );
-        ?>
-        </li>
-        
-        <li class="item">
-        <?php
-        echo $this->Html->link(
-            __('Logs'),
-            array(
-                'controller' => 'contributions',
-                'action' => 'of_user',
-                $username
-            )
-        );
-        ?>
-        </li>
-    </ul>
-
-    <div class="profile-actions">
-    <?php
-    $translateIcon = $this->Images->svgIcon(
-        'translate', array('width' => 20, 'height' => 20)
-    );
-    $translateText = $this->Html->tag('span', format(
-        __("Translate {user}'s sentences"), array('user' => $username)
-    ));
-    echo $this->Html->link(
-        $translateIcon . $translateText,
-        array(
+$menu = [
+    [
+        'label' => __('Profile'),
+        'url' => [
+            'controller' => 'user',
+            'action' => 'profile',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Sentences'),
+        'url' => [
+            'controller' => 'sentences',
+            'action' => 'of_user',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Vocabulary'),
+        'url' => [
+            'controller' => 'vocabulary',
+            'action' => 'of',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Collection'),
+        'url' => [
+            'controller' => 'collections',
+            'action' => 'of',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Lists'),
+        'url' => [
+            'controller' => 'sentences_lists',
+            'action' => 'of_user',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Favorites'),
+        'url' => [
+            'controller' => 'favorites',
+            'action' => 'of_user',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Comments'),
+        'url' => [
+            'controller' => 'sentence_comments',
+            'action' => 'of_user',
+            $username
+        ]
+    ],
+    [
+        'label' => format(__("Comments on {user}'s sentences"), ['user' => $username]),
+        'url' => [
+            'controller' => 'sentence_comments',
+            'action' => 'on_sentences_of_user',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Wall messages'),
+        'url' => [
+            'controller' => 'wall',
+            'action' => 'messages_of_user',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Logs'),
+        'url' => [
+            'controller' => 'contributions',
+            'action' => 'of_user',
+            $username
+        ]
+    ],
+    [
+        'separator'
+    ],
+    [
+        'label' => __('Audio'),
+        'url' => [
+            'controller' => 'audio',
+            'action' => 'of',
+            $username
+        ]
+    ],
+    [
+        'label' => __('Transcriptions'),
+        'url' => [
+            'controller' => 'transcriptions',
+            'action' => 'of',
+            $username
+        ]
+    ],
+    [
+        'separator'
+    ],
+    [
+        'icon' => 'translate',
+        'label' => format(__("Translate {user}'s sentences"), ['user' => $username]),
+        'url' => [
             'controller' => 'activities',
             'action' => 'translate_sentences_of',
             $username
-        ),
-        array(
-            'escape' => false,
-            'class' => 'profile-action-item'
-        )
-    );
+        ]
+    ],
+    [
+        'icon' => 'email',
+        'label' => format(__('Contact {user}'), ['user' => $username]),
+        'url' => [
+            'controller' => 'private_messages',
+            'action' => 'write',
+            $username
+        ]
+    ],
+]
+?>
 
+<md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+    <md-subheader><?= $username ?></md-subheader>
 
-    if ($username != CurrentUser::get('username')) {
-        $contactIcon = $this->Images->svgIcon(
-            'pm', array('width' => 20, 'height' => 20)
-        );
-        $contactText = $this->Html->tag('span', format(
-            __('Contact {user}'), array('user' => $username)
-        ));
-        echo $this->Html->link(
-            $contactIcon . $contactText,
-            array(
-                'controller' => 'private_messages',
-                'action' => 'write',
-                $username
-            ),
-            array(
-                'escape' => false,
-                'class' => 'profile-action-item'
-            )
-        );
-    }
-    ?>
-    </div>
-</div>
+    <?php foreach($menu as $item) { 
+        if (isset($item['label']) && isset($item['url'])) {
+            $url = $this->Url->build($item['url']);
+            ?>
+            <md-list-item href="<?= $url ?>">
+                <md-icon>
+                    <?= isset($item['icon']) ? $item['icon'] : 'keyboard_arrow_right' ?>
+                </md-icon>
+                <p><?= $item['label'] ?></p>
+            </md-list-item>
+        <? } else { ?>
+            <md-divider></md-divider>
+        <? } ?>    
+    <? } ?>
+</md-list>
+
+<br>
