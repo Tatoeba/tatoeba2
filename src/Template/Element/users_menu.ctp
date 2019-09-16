@@ -163,10 +163,10 @@ $menu = [
                 </md-icon>
                 <p><?= $item['label'] ?></p>
             </md-list-item>
-        <? } else { ?>
+        <?php } else { ?>
             <md-divider></md-divider>
-        <? } ?>    
-    <? } ?>
+        <?php } ?>    
+    <?php } ?>
 </md-list>
 
 <br>
