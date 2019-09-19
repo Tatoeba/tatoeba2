@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-01 17:24+0000\n"
-"PO-Revision-Date: 2019-09-03 19:38+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-09-12 13:37+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -996,11 +996,11 @@ msgstr "Degasadennoù diwezhañ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
 msgid "Latest contributions of {user}"
-msgstr ""
+msgstr "Degasadennoù diwezhañ {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L65
 msgid "Only the last {n} log entries are displayed here."
-msgstr ""
+msgstr "N'eus nemet an/ar/al {n} enmont diwezhañ eus ar renabl hag a zo diskouezet amañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L50
@@ -2383,7 +2383,7 @@ msgstr "Daou zoare 'zo da ouzhpennañ frazennoù nevez."
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Choazit <a href=\"{}\">Ouzhpennañ frazennoù</a> diwar al lañser <strong>Kendeurel</strong> e-krec'h kement pajenn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L152
 msgid ""
@@ -2674,20 +2674,20 @@ msgstr "A-bouez"
 msgid ""
 "<strong>We like quality.</strong> Every detail matters. Please do not forget"
 " punctuation and capital letters."
-msgstr ""
+msgstr "<strong>Kavout a reomp plijus ar c'halite.</strong> Kement kudenn munudoù. Klaskit chom hep ankounac’haat ar poentadur hag ar pennlizherennoù."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L55
 msgid ""
 "<strong>We like diversity.</strong> Unleash your creativity! Avoid using the"
 " same words, names, topics, or patterns over and over again."
-msgstr ""
+msgstr "<strong>Kavout a reomp plijus al liesseurtegezh.</strong> Digabestrit ho krouidigezh! Klaskit chom hep implijout ar memes gerioù, anvioù, sujedoù, pe patromoù c'hoazh hag adarre."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L64
 msgid ""
 "<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, or "
 "at least make sure they are not copyrighted and are compatible with the CC "
 "BY license. Otherwise we cannot use them."
-msgstr ""
+msgstr "<strong>Plijout a ra deomp rannañ ho roadennoù.</strong> Klaskit chom hep eilañ-pegañ frazennoù, pe da vihanañ bezit asur n'emaint ket dindan gwirioù miret strizh hag emaint kenglotus gant ul lisañs CC BY. Mod-all n'hallfemp ket implijout anezho."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L76
 msgid "Add new sentences"
@@ -2863,7 +2863,7 @@ msgstr "C'hoarvezet ez eus bet ur fazi en ur glask frazennoù dre zegouezh. Ma k
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L55
 msgid "Only the last {n} sentences are displayed here."
-msgstr ""
+msgstr "N'eus nemet an/ar/al {n} frazenn ziwezhañ hag a zo diskouezet amañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
@@ -2901,11 +2901,11 @@ msgstr "Ma tibabit ur yezh, troidigezh pep frazenn er yezh-mañ (ma 'z eus diout
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L140
 msgid "Preparing download, please wait."
-msgstr ""
+msgstr "O prientiñ ar bellgargadenn, gortozit mar plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L141
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "C'hwitet ez eus bet da brientiñ ar bellgargadenn, klaskit en-dro mar plij."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L151
 msgid "Fields will be written out in the following sequence:"
