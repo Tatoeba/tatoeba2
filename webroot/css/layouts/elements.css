@@ -1445,11 +1445,13 @@ div.hideLink {
 }
 
 .stat .total {
-    margin: 0 5px;
+    overflow: hidden;
 }
 
 .stat img {
     float: left;
+    width: 30px;
+    margin-right: 5px;
 }
 
 
