@@ -41,7 +41,7 @@ $max = $stats[0]['sentences'];
 </div>
 
 <div id="main_content">
-<div class="module">
+<div class="section md-whiteframe-1dp">
     <h2>
     <?php 
     echo format(__n('One sentence', '{n}&nbsp;sentences', $totalSentences),
