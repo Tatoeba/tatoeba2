@@ -24,22 +24,29 @@
     width: 200px;
 }
 
+#random_sentence_display {
+    padding: 10px;
+}
+
+#random_sentence_display .sentence .content.column {
+    width: 500px;
+}
 
 /*
  * Latest messages on Wall
  */
 .lastWallMessages {
-    margin: 15px 0;
+    border-top: 1px solid #D1D1D1;
+    padding: 10px 0;
 }
 
 .lastWallMessages .header {
-    padding: 5px;
+    color: #777;
+    margin-bottom: 10px;
 }
 
 .lastWallMessages .body {
-    padding: 5px 5px 0 5px;
-    border-top: 1px solid #D1D1D1;
-    color: #656565;
+    font-size: 0.9em;
 }
 
 .lastWallMessages .link {

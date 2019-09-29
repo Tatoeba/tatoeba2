@@ -28,7 +28,7 @@ use Cake\ORM\TableRegistry;
 
 $contributions = TableRegistry::get('Contributions')->getLastContributions(10);
 ?>
-<md-list id="logs">
+<md-list id="logs" class="md-whiteframe-1dp">
 <?php
 $this->Logs->obsoletize($contributions);
 foreach ($contributions as $contribution) {

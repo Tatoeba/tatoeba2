@@ -42,7 +42,7 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
     ));
     ?>
         
-    <div class="module">
+    <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Latest messages'); ?></h2>
         <?php
         foreach ($latestMessages as $message) {
@@ -63,11 +63,11 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
 
 <div id="main_content">
     <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
-        <div class="module">
+        <div class="section">
             <?php echo $this->element('random_sentence_header'); ?>
             <div class="random_sentences_set">
                 <md-progress-circular md-mode="indeterminate" class="block-loader" id="random-progress" style="display: none;"></md-progress-circular>
-                <div id="random_sentence_display">
+                <div id="random_sentence_display" class="md-whiteframe-1dp">
                     <?php
                     $this->Sentences->displaySentencesGroup($random);
                     ?>
