@@ -41,7 +41,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
 <div id="annexe_content">
     <?php $this->CommonModules->createFilterByLangMod(); ?>
 
-    <div class="module">
     <?php
     echo $this->element(
         'currently_active_members',
@@ -50,7 +49,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Latest contribution
         )
     );
     ?>
-    </div>
 </div>
 
 <div id="main_content">

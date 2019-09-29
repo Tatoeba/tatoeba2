@@ -766,6 +766,8 @@ md-list-item.md-3-line > ._md-no-style .md-list-item-text h3 {
     line-height: inherit;
 }
 
-md-card md-card-header md-card-avatar .md-user-avatar, md-list-item .md-avatar {
+md-card md-card-header md-card-avatar .md-user-avatar, 
+md-list-item .md-avatar,  
+md-list-item .md-list-item-inner .md-avatar {
     border-radius: 10%;
 }

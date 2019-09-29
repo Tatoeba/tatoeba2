@@ -1874,7 +1874,7 @@ div.hideLink {
 .annexe-menu {
     padding: 0;
 }
-.annexe-menu md-list-item:first-child {
+.annexe-menu md-list-item:first-of-type {
     border-top: 1px solid #f1f1f1;
 }
 .annexe-menu md-list-item {

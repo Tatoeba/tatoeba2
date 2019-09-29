@@ -59,7 +59,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
     ?>
     </div>
 
-    <div class="module">
     <?php
     echo $this->element(
         'currently_active_members',
@@ -68,7 +67,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         )
     );
     ?>
-    </div>
 </div>
 
 <div id="main_content">
