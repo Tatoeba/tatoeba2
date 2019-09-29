@@ -122,7 +122,6 @@ use Cake\Core\Configure;
     <!--  FOOT -->
     <?php
     echo $this->element('foot');
-    echo $this->element('sql_dump');
 
     // layout.js is defined in config/asset_compress.ini
     echo $this->AssetCompress->script('layout.js');
