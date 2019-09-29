@@ -205,14 +205,13 @@ $this->Navigation->displaySentenceNavigation(
         if (!empty($sentenceComments)) {
             echo '<div class="comments">';
             foreach ($sentenceComments as $i=>$comment) {
-                $commentId = $comment['SentenceComment']['id'];
                 $menu = $this->Comments->getMenuForComment(
                     $comment,
                     $commentsPermissions[$i],
                     false
                 );
 
-                echo '<a id="comment-'.$commentId.'"></a>';
+                echo '<a id="comment-'.$comment->id.'"></a>';
 
                 echo $this->element(
                     'messages/comment',
