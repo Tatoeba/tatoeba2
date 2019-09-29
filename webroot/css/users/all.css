@@ -21,17 +21,17 @@
  * Users
  */
 .users {
-    margin: 20px 0;
+    margin: 40px 0;
     overflow: hidden;
+    text-align: center;
 }
 
 .user {
-    border: 1px solid #CCC;
+    text-align: left;
     padding: 7px;
     display: inline-block;
-    width: 240px;
+    width: 270px;
     margin: 10px;
-    border-radius: 4px;
 }
 
 .user .memberSince {
@@ -45,7 +45,7 @@
 }
 
 .user .username {
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 36px;
 }
 
