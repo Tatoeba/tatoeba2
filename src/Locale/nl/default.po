@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-01 17:24+0000\n"
-"PO-Revision-Date: 2019-09-03 19:38+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-09-21 15:43+0000\n"
+"Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/tatoeba/tatoeba_website/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,13 +66,13 @@ msgstr ""
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr "Zinnen #{firstNumber} en #{secondNumber} zijn nu directe vertalingen van elkaar."
+msgstr "Zinnen {firstNumber} en {secondNumber} zijn nu directe vertalingen van elkaar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L142
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr "Zinnen #{firstNumber} en #{secondNumber} zijn niet meer directe vertalingen van elkaar."
+msgstr "Zinnen {firstNumber} en {secondNumber} zijn niet meer directe vertalingen van elkaar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L150
 msgid ""
@@ -149,11 +149,11 @@ msgstr "De veranderingen aan je opmerking zijn opgeslagen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L284
 msgid "The sentence #{id} has been deleted."
-msgstr "De zin #{id} is verwijderd."
+msgstr "De zin nr. {id} is verwijderd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L290
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr "Fout: de zin #{id} kon niet worden verwijderd."
+msgstr "Fout: zin nr. {id} kon niet worden verwijderd."
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -235,7 +235,7 @@ msgstr "Je hebt geen toestemming om deze lijst te bekijken."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L405
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L437
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "Je mag deze zin niet downloaden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L223
 msgid ""
@@ -535,7 +535,7 @@ msgstr "Gebruikersnaam moet minstens twee tekens lang zijn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L80
 msgid "Username must be at most 20 characters long"
-msgstr ""
+msgstr "De gebruikersnaam moet minstens uit 20 tekens bestaan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
@@ -582,8 +582,8 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L126
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "De licentie van {n} zin werd met succes veranderd."
+msgstr[1] "De licentie van {n} zinnen werd met succes veranderd."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L133
 msgid "License switch completed on {date} at {time} UTC."
@@ -771,7 +771,7 @@ msgstr "Niet direct vertaald naar het:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L150
 msgid "Best practice: translate only into your native language."
-msgstr ""
+msgstr "Een goede gewoonte: vertaal alleen naar je moedertaal."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L210
@@ -907,7 +907,7 @@ msgstr "Alle zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L34
 msgid "Outdated ratings"
-msgstr ""
+msgstr "Vervallen beoordelingen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L46
 msgid "{user}'s collection - {category}"
@@ -941,7 +941,7 @@ msgstr "Sorteren op:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L111
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L99
 msgid "date modified"
-msgstr "aangepast op "
+msgstr "datum aanpassing "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L101
@@ -972,7 +972,7 @@ msgstr "{month} {year}"
 msgid "Daily Average: {n} sentence"
 msgid_plural "Daily Average: {n} sentences"
 msgstr[0] "Dagelijkse Gemiddelde: {n} zin"
-msgstr[1] "Dagelijkse Gemiddelde: {n} zinnen"
+msgstr[1] "Dagelijks Gemiddelde: {n} zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
@@ -983,11 +983,11 @@ msgstr "Laatste bijdragen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
 msgid "Latest contributions of {user}"
-msgstr ""
+msgstr "Laatste bijdragen van {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L65
 msgid "Only the last {n} log entries are displayed here."
-msgstr ""
+msgstr "Alleen de laatste {n} zinnen worden hier getoond."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L50
@@ -1125,7 +1125,7 @@ msgstr "Sorteren"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L212
 msgid "Relevance"
-msgstr ""
+msgstr "Belangrijkheid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L223
 msgid "Reverse order"
@@ -1266,7 +1266,7 @@ msgstr "Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L185
 msgid "Our data is released under various Creative Commons licenses."
-msgstr ""
+msgstr "Onze gegevens zijn uitgebracht onder verschillende licenties van Creative Commons."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L188
 msgid "More information"
@@ -1274,7 +1274,7 @@ msgstr "Meer informatie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L202
 msgid "If you love this content, please consider a <a href={}>donation</a>."
-msgstr ""
+msgstr "Als je van deze webstek houdt, denk dan aan een <a href={}>gift</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/header.ctp#L34
 msgid "Tatoeba"
@@ -1365,7 +1365,7 @@ msgstr "Zin {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L139
 msgid "permalink"
-msgstr ""
+msgstr "permalink"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L561
@@ -1664,7 +1664,7 @@ msgstr "Zinnen bespreken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L104
 msgid "Show activity timeline"
-msgstr "Tijdlijn van activteit"
+msgstr "Activiteitstijdlijn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L110
 msgid "Community"
@@ -1961,7 +1961,7 @@ msgstr "Je kan ons ook vertellen wat je ergens van vindt door een bericht op de 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L95
 msgid "Join our chatroom"
-msgstr ""
+msgstr "Kom naar onze babbelbox"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L100
 msgid ""
@@ -2075,7 +2075,7 @@ msgstr "Creative Commons"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L81
 msgid "These files are released under CC BY 2.0 FR."
-msgstr ""
+msgstr "Deze bestanden zijn uitgebracht onder CC BY 2.0."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L86
 msgid "A part of our sentences are also available under CC0 1.0."
@@ -2236,7 +2236,7 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr "Bevat de koppelingen tussen de zinnen. {sampleLinkLine} betekent dat zin #77 de vertaling is van zin #1. De wederzijdse link is ook aanwezig, zodat het bestand ook een lijn bevat waar {sampleLinkLineReversed} in staat."
+msgstr "Bevat de koppelingen tussen de zinnen. {sampleLinkLine} betekent dat zin nr. 77 de vertaling is van zin nr. 1. De wederzijdse link is ook aanwezig, zodat het bestand ook een lijn bevat waar {sampleLinkLineReversed} in staat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L65
@@ -2248,7 +2248,7 @@ msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr "Bevat de lijst van <a href=\"{url}\">tags</a> die horen bij elke zin. {sampleTagLine} betekent dat zin #381279 de \"proverb\"-tag is toegekend."
+msgstr "Bevat de lijst van <a href=\"{url}\">tags</a> die horen bij elke zin. {sampleTagLine} betekent dat zin nr. 381279 de \"proverb\"-tag is toegekend."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L359
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
@@ -2262,7 +2262,7 @@ msgstr "Zinnen in lijsten"
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr "Geeft de zinnen aan die zich in een lijst bevinden. {sampleListLine} betekent dat zin #381279 zich in een lijst bevat met het ID 13."
+msgstr "Geeft de zinnen aan die zich in een lijst bevinden. {sampleListLine} betekent dat zin nr. 381279 zich in een lijst bevat met het nummer 13."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L403
 msgid "Japanese indices"
@@ -2585,7 +2585,7 @@ msgstr "Klik op de bovenste zin om naar tatoeba.org te gaan en de zin te vertale
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L174
 msgid "Sentence #{number}"
-msgstr "Zin #{number}"
+msgstr "Zin nr. {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
@@ -2593,7 +2593,7 @@ msgstr "Opmerking bewerken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L28
 msgid "Edit Comment on Sentence #{number}"
-msgstr "Opmerking bij zin #{number} bewerken"
+msgstr "Opmerking bij zin {number} bewerken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L21
 msgid "Comments on sentences"
@@ -2823,7 +2823,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L55
 msgid "Only the last {n} sentences are displayed here."
-msgstr ""
+msgstr "Alleen de laatste {n} zinnen worden hier getoond."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
@@ -3637,7 +3637,7 @@ msgstr "Berichten van {user} op de muur (in totaal&nbsp;{n})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L39
 msgid "Thread #{number}"
-msgstr "Topic #{number}"
+msgstr "Topic {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L64
 msgid "Recorded by: {username}"
@@ -3813,7 +3813,7 @@ msgstr "Automatisch detecteren"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L174
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L294
 msgid "Any language"
-msgstr "Taal maakt niet uit"
+msgstr "Alle talen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L177
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L242
@@ -3839,7 +3839,7 @@ msgstr "Geen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L323
 msgctxt "searchbar"
 msgid "Any language"
-msgstr "Taal maakt niet uit"
+msgstr "Alle talen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L356
 msgid "unknown"
@@ -4229,7 +4229,7 @@ msgstr "Bekijk het profiel van deze gebruiker"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L86
 msgid "Show sentence #: "
-msgstr "Toon zin #: "
+msgstr "Toon zin nummer: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L120
 msgid "Language for previous, next or random sentence"

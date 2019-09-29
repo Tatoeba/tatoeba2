@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-01 17:24+0000\n"
-"PO-Revision-Date: 2019-09-17 14:14+0000\n"
+"PO-Revision-Date: 2019-09-24 01:51+0000\n"
 "Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -982,7 +982,7 @@ msgstr "Neueste Beiträge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
 msgid "Latest contributions of {user}"
-msgstr "Letzte Beiträge ([user])"
+msgstr "Letzte Beiträge ({user})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L65
 msgid "Only the last {n} log entries are displayed here."
