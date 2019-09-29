@@ -229,13 +229,9 @@ $this->Navigation->displaySentenceNavigation(
         }
 
         if ($canComment) {
-            if(!isset($sentence['Sentence'])) {
-                $sentenceText = __('Sentence deleted');
-            }
-            $this->Comments->displayCommentForm(
-                $sentenceId,
-                $sentenceText
-            );
+            echo $this->element('messages/comment_form', [
+                'sentenceId' => $sentenceId
+            ]);
         }
         ?>
     </div>

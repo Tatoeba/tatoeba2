@@ -282,6 +282,16 @@ html[dir="rtl"] .comment.sentence .text {
     color: #d50000;
 }
 
+.comment.form .content{
+    background: #f1f1f1;
+}
+.comment.form .md-subhead {
+    cursor: initial;
+}
+.comment.form textarea {
+    width: 100%;
+}
+
 /*
  * --------------------------------------------------------------------
  *
