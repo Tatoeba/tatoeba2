@@ -36,26 +36,22 @@ $statsUrl = $this->Url->build([
 <div layout="column" flex="80">
 
 <?php if(!isset($searchProblem)) { ?>
-<div class="section">
+<div layout="column" layout-margin="">
     <h2><?= __('Random sentence'); ?></h2>
-    <div class="random_sentences_set">
-        <div id="random_sentence_display">
-            <?php
-            $sentence = $random;
-            $translations = $random->translations;
-            $sentenceOwner = $random->user;
+    <?php
+    $sentence = $random;
+    $translations = $random->translations;
+    $sentenceOwner = $random->user;
 
-            echo $this->element(
-                'sentences/sentence_and_translations',
-                array(
-                    'sentence' => $sentence,
-                    'translations' => $translations,
-                    'user' => $sentenceOwner
-                )
-            );
-            ?>
-        </div>
-    </div>
+    echo $this->element(
+        'sentences/sentence_and_translations',
+        array(
+            'sentence' => $sentence,
+            'translations' => $translations,
+            'user' => $sentenceOwner
+        )
+    );
+    ?>
 </div>
 <?php } ?>
 
