@@ -90,7 +90,7 @@ class SphinxIndexesShell extends Shell {
                 function($lang) use ($type) { return "${lang}_${type}_index"; },
                 $langs
             ));
-            system("indexer --rotate $indexes", $return_value);
+            system("indexer --sighup-each --rotate $indexes", $return_value);
             echo ($return_value == 0) ? "OK.\n" : "Failed.\n";
         }
     }
