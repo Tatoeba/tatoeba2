@@ -54,7 +54,7 @@ class SphinxConfShell extends Shell {
         # Latin-1 Supplement, with case folding (0080-00FF)
         'U+C0..U+D6->U+E0..U+F6', 'U+D8..U+DE->U+F8..U+FE', 'U+DF', 'U+E0..U+F6', 'U+F8..U+FF',
         # Latin extended-A, with case folding (0100-017F)
-        'U+100..U+177/2', 'U+178->U+FF', 'U+179..U+17E/2', 'U+017F',
+        'U+100..U+137/2', 'U+138', 'U+139..U+148/2', 'U+149', 'U+14A..U+177/2', 'U+178->U+FF', 'U+179..U+17E/2', 'U+017F',
         # Latin extended-B, with case folding (0180-024F)
         'U+0180', 'U+0181->U+0253', 'U+0182..U+0185/2', 'U+0186->U+0254', 'U+0187->U+0188', 'U+0188',
         'U+0189->U+0256', 'U+018A->U+0257', 'U+018B->U+018C', 'U+018C', 'U+018D', 'U+018E->U+01DD', 'U+018F->U+0259',
