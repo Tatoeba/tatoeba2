@@ -181,6 +181,9 @@ class SphinxConfShell extends Shell {
         'U+10330..U+1034A',
         # Old Turkic (otk)
         'U+10C00..U+10C48',
+        # Warang Citi, for Ho (hoc)
+        'U+118A0..U+118BF->U+118C0..U+118DF',
+        'U+118C0..U+118DF', 'U+118E0..U+118F2', 'U+118FF',
     );
 
     public $scriptsWithoutWordBoundaries = array(
