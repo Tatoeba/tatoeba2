@@ -179,6 +179,8 @@ class SphinxConfShell extends Shell {
         'U+0780..U+07B1',
         # Gothic
         'U+10330..U+1034A',
+        # Old Turkic (otk)
+        'U+10C00..U+10C48',
     );
 
     public $scriptsWithoutWordBoundaries = array(

@@ -638,6 +638,7 @@ class LanguagesLib
             "pus",
             "snd",
             "div",
+            "otk",
         );
 
         $autoLangs = array(
