@@ -209,6 +209,8 @@ class SphinxConfShell extends Shell {
         'U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59',
         # Yi syllables, used by Nuosu (iii)
         'U+A000..U+A48C',
+        # Javanese (jav)
+        'U+A980..U+A9C0', 'U+A9CF..U+A9D9',
     );
 
     public $regexpFilter = array(
