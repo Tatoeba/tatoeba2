@@ -207,6 +207,8 @@ class SphinxConfShell extends Shell {
         'U+1780..U+17D2', 'U+17E0..U+17E9', 'U+17F0..U+17F9', 'U+19E0..U+19FF',
         # Thai (tha)
         'U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59',
+        # Yi syllables, used by Nuosu (iii)
+        'U+A000..U+A48C',
     );
 
     public $regexpFilter = array(
