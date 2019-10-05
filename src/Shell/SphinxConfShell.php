@@ -194,6 +194,8 @@ class SphinxConfShell extends Shell {
         'U+FF8D->U+30D8', 'U+FF8E->U+30DB', 'U+FF8F..U+FF93->U+30DE..U+30E2', 'U+FF94->U+30E4',
         'U+FF95->U+30E6', 'U+FF96->U+30E8', 'U+FF97->U+30E9', 'U+FF98->U+30EA', 'U+FF99->U+30EB',
         'U+FF9A->U+30EC', 'U+FF9B->U+30ED', 'U+FF9C->U+30EF', 'U+FF9D->U+30F3',
+        # Katakana Phonetic Extensions
+        'U+31F0..U+31FF',
         # Lao (lao)
         'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
         'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
