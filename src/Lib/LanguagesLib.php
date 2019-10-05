@@ -573,6 +573,7 @@ class LanguagesLib
                 'cay' => __d('languages', 'Cayuga'),
                 'gaa' => __d('languages', 'Ga'),
                 'cpi' => __d('languages', 'Chinese Pidgin English'),
+                'bzt' => __d('languages', 'Brithenig'),
             );
         }
         return $languages;
