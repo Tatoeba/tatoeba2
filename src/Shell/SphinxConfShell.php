@@ -124,7 +124,7 @@ class SphinxConfShell extends Shell {
         # Armenian + Alphabetic Presentation Forms (Armenian Small Ligatures)
         'U+531..U+58A', 'U+FB13..U+FB17',
         # Malayalam
-        'U+D00..U+D77',
+        'U+D00..U+D7F',
         # Ethiopic
         'U+1200..U+1248', 'U+124A..U+124D', 'U+1250..U+1256', 'U+1258', 'U+125A..U+125D', 'U+1260..U+1288',
         'U+128A..U+128D', 'U+1290..U+12B0', 'U+12B2..U+12B5', 'U+12B8..U+12BE', 'U+12C0', 'U+12C2..U+12C5',
