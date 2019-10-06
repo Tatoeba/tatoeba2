@@ -184,6 +184,8 @@ class SphinxConfShell extends Shell {
         # Warang Citi, for Ho (hoc)
         'U+118A0..U+118BF->U+118C0..U+118DF',
         'U+118C0..U+118DF', 'U+118E0..U+118F2', 'U+118FF',
+        # Mongolian (mon) and Manchu (mnc)
+        'U+1810..U+1819', 'U+1820..U+1878', 'U+1880..U+18AA',
     );
 
     public $scriptsWithoutWordBoundaries = array(
