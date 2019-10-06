@@ -72,6 +72,8 @@ class SphinxConfShell extends Shell {
         'U+0240', 'U+0241->U+0242', 'U+0242', 'U+0243->U+0180', 'U+0244->U+0289', 'U+0245->U+028C', 'U+0246..U+024F/2',
         # Latin Extended Additional, with case folding (1E00-1EFF)
         'U+1E00..U+1E95/2', 'U+1E96..U+1E9F', 'U+1EA0..U+1EFF/2',
+        # Spacing Modifier Letters
+        'U+2BB', 'U+2BF', 'U+2C0', 'U+2D0',
         # Combining Diacritical Marks
         'U+300..U+36F',
         # Arabic
