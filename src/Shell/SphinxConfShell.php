@@ -52,7 +52,7 @@ class SphinxConfShell extends Shell {
         # Searchable symbols
         '$',
         # Latin-1 Supplement, with case folding (0080-00FF)
-        'U+C0..U+D6->U+E0..U+F6', 'U+D8..U+DE->U+F8..U+FE', 'U+E0..U+F6', 'U+F8..U+FF',
+        'U+C0..U+D6->U+E0..U+F6', 'U+D8..U+DE->U+F8..U+FE', 'U+DF', 'U+E0..U+F6', 'U+F8..U+FF',
         # Latin extended-A, with case folding (0100-017F)
         'U+100..U+177/2', 'U+178->U+FF', 'U+179..U+17E/2', 'U+017F',
         # Latin extended-B, with case folding (0180-024F)
