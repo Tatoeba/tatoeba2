@@ -199,7 +199,7 @@ class SphinxConfShell extends Shell {
         # Lao (lao)
         'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
         'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
-        'U+0EC0..U+0EC4', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
+        'U+0EBC', 'U+0EBD', 'U+0EC0..U+0EC4', 'U+EC6', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
         # Tibetan (bod) (not sure about marks and signs)
         'U+0F00', 'U+0F20..U+0F33', 'U+0F40..U+0F47', 'U+0F49..U+0F6C', 'U+0F71..U+0F87', 'U+0F90..U+0F97',
         'U+0F99..U+0FBC', 'U+0FD0..U+0FD2',
