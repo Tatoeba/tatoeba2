@@ -211,6 +211,8 @@ class SphinxConfShell extends Shell {
         'U+A000..U+A48C',
         # Javanese (jav)
         'U+A980..U+A9C0', 'U+A9CF..U+A9D9',
+        # Cuneiform, used by Sumerian (sux):
+        'U+12000..U+12399', 'U+12400..U+1246E', 'U+12480..U+12543',
     );
 
     public $regexpFilter = array(
