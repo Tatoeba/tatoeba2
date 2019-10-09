@@ -62,7 +62,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     
         if (isset($contributions)) {
             echo $this->Html->tag('p', format(
-                __('Only the last {n} log entries are displayed here.'), ['n' => $totalLimit]
+                __('Only the last {n} log entries are displayed here.'),
+                ['n' => $this->Number->format($totalLimit)]
             ));
 
             $this->Pagination->display(['last' => false]);

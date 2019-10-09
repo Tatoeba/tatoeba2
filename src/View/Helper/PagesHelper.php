@@ -22,6 +22,8 @@ use App\View\Helper\AppHelper;
 
 class PagesHelper extends AppHelper
 {
+    public $helpers = ['Number'];
+
     public function formatTitle($pageTitle) {
         return $pageTitle . __(' - Tatoeba');
     }
@@ -36,7 +38,7 @@ class PagesHelper extends AppHelper
             $title = format(__n('{title} ({n} result)',
                                 '{title} ({n}&nbsp;results)',
                                 $n, true),
-                            compact('title', 'n')
+                            array('title' => $title, 'n' => $this->Number->format($n))
             );
         } else {
             /* @translators: this formats the title at the top of the search
@@ -47,7 +49,11 @@ class PagesHelper extends AppHelper
             $title = format(__n('{title} ({thousand}&nbsp;results out of {n} occurrence)',
                                 '{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)',
                                 $real_total, true),
-                            array('title' => $title, 'thousand' => $n, 'n' => $real_total)
+                            array(
+                                'title' => $title,
+                                'thousand' => $this->Number->format($n),
+                                'n' => $this->Number->format($real_total)
+                            )
             );
         }
         $title = sprintf('<h2>%s</h2>', $title);

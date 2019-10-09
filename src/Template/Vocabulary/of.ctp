@@ -31,7 +31,7 @@ $this->Html->script('/js/vocabulary/of.ctrl.js', ['block' => 'scriptBottom']);
 $count = $this->Paginator->param('count');
 $title = format(
     __("{username}'s vocabulary items ({number})", $count),
-    array('username' => $username, 'number' => $count)
+    array('username' => $username, 'number' => $this->Number->format($count))
 );
 
 $this->set('title_for_layout', $this->Pages->formatTitle($title));

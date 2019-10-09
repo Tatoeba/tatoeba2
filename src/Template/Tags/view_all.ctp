@@ -73,10 +73,9 @@ $tagsIndexUrl = $this->Url->build([
                 array('format' => __('All tags (total {{count}})'))
             );
         } else {
-            $n = $this->Paginator->param('count');
             $title = format(
-                __('Tags containing: {search} (total {count})'),
-                array('search' => $filter, 'count' => $n)
+                $this->Paginator->counter(__('Tags containing: {search} (total {{count}})')),
+                array('search' => $filter)
             );
         }
         echo $this->Html->tag('h2', $title, array('escape' => true));
@@ -103,11 +102,15 @@ $tagsIndexUrl = $this->Url->build([
                     'action' => 'show_sentences_with_tag',
                     $tag->id
                 ]);
-                $count = $tag->nbrOfSentences;
+                $n = $tag->nbrOfSentences;
+                $tagCount = format(
+                    __n('One sentence', '{n}&nbsp;sentences', $n),
+                    ['n' => $this->Number->format($n)]
+                )
                 ?>
                 <md-list-item href="<?= $tagUrl ?>" class="secondary-button-padding">
                     <p><span class="tag"><?= $tagName ?></span></p>
-                    <span class="number-of-sentences"><?= format(__('{n} sentences'),['n' => $count]) ?></span>
+                    <span class="number-of-sentences"><?= $tagCount ?></span>
                 </md-list-item>
             <?php } ?>
         </md-list>

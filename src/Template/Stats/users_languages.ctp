@@ -82,14 +82,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
                 echo '<tr>';
                 echo $this->Html->tag('td', $this->Languages->icon($langCode));
                 echo $this->Html->tag('td', $langName);
-                echo $this->Html->tag('td', $language->level_5);
-                echo $this->Html->tag('td', $language->level_4);
-                echo $this->Html->tag('td', $language->level_3);
-                echo $this->Html->tag('td', $language->level_2);
-                echo $this->Html->tag('td', $language->level_1);
-                echo $this->Html->tag('td', $language->level_0);
-                echo $this->Html->tag('td', $language->level_unknown);
-                echo $this->Html->tag('td', $language->total);
+                echo $this->Html->tag('td', $this->Number->format($language->level_5));
+                echo $this->Html->tag('td', $this->Number->format($language->level_4));
+                echo $this->Html->tag('td', $this->Number->format($language->level_3));
+                echo $this->Html->tag('td', $this->Number->format($language->level_2));
+                echo $this->Html->tag('td', $this->Number->format($language->level_1));
+                echo $this->Html->tag('td', $this->Number->format($language->level_0));
+                echo $this->Html->tag('td', $this->Number->format($language->level_unknown));
+                echo $this->Html->tag('td', $this->Number->format($language->total));
                 echo '</tr>';
             }
             ?>

@@ -48,7 +48,8 @@ class ListsHelper extends AppHelper
         'Sentences',
         'Date',
         'Images',
-        'Url'
+        'Url',
+        'Number'
     );
 
     /**
@@ -207,7 +208,7 @@ class ListsHelper extends AppHelper
 
         <td>
             <div class="count" title="<?php echo __('Number of sentences') ?>">
-                <?php echo $count; ?>
+                <?php echo $this->Number->format($count); ?>
             </div>
         </td>
 

@@ -52,7 +52,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         if ($total > $totalLimit) {
             echo $this->Html->tag('p', format(
-                __('Only the last {n} sentences are displayed here.'), ['n' => $totalLimit])
+                __('Only the last {n} sentences are displayed here.'),
+                ['n' => $this->Number->format($totalLimit)])
             );
         }
 
