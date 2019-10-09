@@ -51,7 +51,7 @@ $tagsIndexUrl = $this->Url->build([
         $n = $this->Paginator->param('count');
         echo format(
             __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
-            compact('tagName', 'n')
+            array('tagName' => 'tagName', 'n' => $this->Number->format($n))
         ); ?></h2>
 
         <div class="sortBy">

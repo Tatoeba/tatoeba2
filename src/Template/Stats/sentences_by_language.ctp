@@ -45,7 +45,7 @@ $max = $stats[0]['sentences'];
     <h2>
     <?php 
     echo format(__n('One sentence', '{n}&nbsp;sentences', $totalSentences),
-                array('n' => $totalSentences));
+                array('n' => $this->Number->format($totalSentences)));
     ?>
     </h2>
     
@@ -69,7 +69,7 @@ $max = $stats[0]['sentences'];
             $percent = ($numSentences / $max) * 100;
         }
         $numSentencesDiv  = '<div class="bar" style="width:'.$percent.'%"></div>';
-        $numSentencesDiv .= $numSentences;
+        $numSentencesDiv .= $this->Number->format($numSentences);
 
         $languageIcon = $this->Languages->icon($langCode);
 
@@ -91,7 +91,7 @@ $max = $stats[0]['sentences'];
 
         echo '<tr>';
 
-        echo $this->Html->tag('td', $rank);
+        echo $this->Html->tag('td', $this->Number->format($rank));
         echo $this->Html->tag('td', $languageIcon);
         echo $this->Html->tag('td', $langCode);
         echo $this->Html->tag('td', $languageLink);

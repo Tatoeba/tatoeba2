@@ -33,7 +33,7 @@
 <?php 
 echo format(
     __n('User who did the last contribution.','Users who participated in the last {n}&nbsp;contributions.', $total),
-    array('n' => $total)
+    array('n' => $this->Number->format($total))
 );
 ?>
 </p>
@@ -59,7 +59,7 @@ foreach($currentContributors as $i=>$currentContributor){
             <?php
             echo format(
                 __n('{n}&nbsp;sentence', '{n}&nbsp;sentences', $numberOfContributions, true),
-                ['n' => $numberOfContributions]
+                ['n' => $this->Number->format($numberOfContributions)]
             );
             ?>
             </p>

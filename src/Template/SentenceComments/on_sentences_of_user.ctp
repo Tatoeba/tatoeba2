@@ -71,7 +71,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
             <?php 
             echo format(
                 __('Comments on {user}\'s sentences (total&nbsp;{n})'),
-                array('user' => $userName, 'n' => $paging['count'])
+                array('user' => $userName, 'n' => $this->Number->format($paging['count']))
             ); 
             ?>
         </h2>

@@ -91,21 +91,21 @@ $statsUrl = $this->Url->build([
                 '{number} contributions today',
                 $contribToday,
                 true),
-            array('number' => $this->Html->tag('strong', $contribToday))
+            ['number' => $this->Html->tag('strong', $this->Number->format($contribToday))]
         ));
         echo $this->Html->div('stat', format(
             __n('{number} supported language',
                 '{number} supported languages',
                 $numberOfLanguages,
                 true),
-            array('number' => $this->Html->tag('strong', $numberOfLanguages))
+            ['number' => $this->Html->tag('strong', $this->Number->format($numberOfLanguages))]
         ));
         echo $this->Html->div('stat', format(
             __n('{number} sentence',
                 '{number} sentences',
                 $numSentences,
                 true),
-            array('number' => $this->Html->tag('strong', $numSentences))
+            ['number' => $this->Html->tag('strong', $this->Number->format($numSentences))]
         ));
         ?>
 

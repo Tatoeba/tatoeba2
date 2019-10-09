@@ -222,7 +222,7 @@ use Cake\ORM\TableRegistry;
 
 
     echo $this->Html->link(
-        $mailIcon .' '. $newMessages,
+        $mailIcon .' '. $this->Number->format($newMessages),
         array(
             'controller' => 'private_messages',
             'action' => 'folder',

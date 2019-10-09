@@ -126,7 +126,7 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
             <?php
             $threadsCount = $this->Paginator->param('count');
             echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
-                        array('n' => $threadsCount));
+                        array('n' => $this->Number->format($threadsCount)));
             ?>
         </h2>
 

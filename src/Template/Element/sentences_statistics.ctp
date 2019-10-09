@@ -30,7 +30,7 @@
     <h2>
     <?php 
     echo format(__n('One sentence','{n}&nbsp;sentences', $numSentences),
-                array('n' => $numSentences));
+                array('n' => $this->Number->format($numSentences)));
     ?>
     </h2>
     

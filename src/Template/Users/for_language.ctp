@@ -93,7 +93,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         $total = $this->Paginator->param('count');
         $title = format(
             __n('{lang} ({total} member)', '{lang} ({total} members)', $total),
-            array('lang' => $this->Languages->codeToNameAlone($lang), 'total' => $total)
+            array('lang' => $this->Languages->codeToNameAlone($lang),
+                  'total' => $this->Number->format($total))
         );
         ?>
         <h2><?php echo $title; ?></h2>

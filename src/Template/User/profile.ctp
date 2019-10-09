@@ -74,15 +74,15 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <h2><?php echo __('Stats'); ?></h2>
         <dl>
             <dt><?php echo __('Comments posted'); ?></dt>
-            <dd><?php echo $userStats['numberOfComments']; ?></dd>
+            <dd><?php echo $this->Number->format($userStats['numberOfComments']); ?></dd>
             <dt><?php echo __('Sentences owned'); ?></dt>
-            <dd><?php echo $userStats['numberOfSentences']; ?></dd>
+            <dd><?php echo $this->Number->format($userStats['numberOfSentences']); ?></dd>
             <dt><?php echo __('Audio recordings'); ?></dt>
-            <dd><?php echo $userStats['numberOfAudios']; ?></dd>
+            <dd><?php echo $this->Number->format($userStats['numberOfAudios']); ?></dd>
             <dt><?php echo __('Sentences favorited'); ?></dt>
-            <dd><?php echo $userStats['numberOfFavorites']; ?></dd>
+            <dd><?php echo $this->Number->format($userStats['numberOfFavorites']); ?></dd>
             <dt><?php echo __('Contributions'); ?></dt>
-            <dd><?php echo $userStats['numberOfContributions']; ?></dd>
+            <dd><?php echo $this->Number->format($userStats['numberOfContributions']); ?></dd>
         </dl>
 
         <div>

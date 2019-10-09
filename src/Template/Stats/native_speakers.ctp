@@ -107,14 +107,14 @@ $membersIcons = array(
 
                 echo '<tr>';
 
-                echo $this->Html->tag('td', $rank);
+                echo $this->Html->tag('td', $this->Number->format($rank));
                 echo $this->Html->tag('td', $languageIcon);
                 echo $this->Html->tag('td', $languageName);
-                echo $this->Html->tag('td', $numAdmins);
-                echo $this->Html->tag('td', $numCorpusMaintainers);
-                echo $this->Html->tag('td', $numAdvancedContributors);
-                echo $this->Html->tag('td', $numContributors);
-                echo $this->Html->tag('td', $total);
+                echo $this->Html->tag('td', $this->Number->format($numAdmins));
+                echo $this->Html->tag('td', $this->Number->format($numCorpusMaintainers));
+                echo $this->Html->tag('td', $this->Number->format($numAdvancedContributors));
+                echo $this->Html->tag('td', $this->Number->format($numContributors));
+                echo $this->Html->tag('td', $this->Number->format($total));
 
                 echo '</tr>';
 

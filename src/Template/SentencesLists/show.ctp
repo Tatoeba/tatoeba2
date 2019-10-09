@@ -68,7 +68,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 $listCount,
                 true
             ),
-            array('n' => $listCount)
+            array('n' => $this->Number->format($listCount))
         );
         echo $this->Html->tag('p', $numberOfSentencesMsg);
         ?>
