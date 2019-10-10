@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 use Cake\Core\Configure;
 
@@ -33,7 +33,7 @@ use Cake\Core\Configure;
  * @package  Views
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));

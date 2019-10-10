@@ -14,7 +14,7 @@
 USAGE=$'Usage:\n./add_lang code EnglishName list_id local|dev|prod MySQLUser MySQLPasswd MySQLDB update|run|update_and_run\n\n'
 USAGE=$USAGE$'Example: Add Nepali to your development machine. Update the files and then run them.\n'
 USAGE=$USAGE$'First, search for \"Nepali\" on this page:\n'
-USAGE=$USAGE$'    http://tatoeba.org/eng/sentences_lists/index\n\n' 
+USAGE=$USAGE$'    https://tatoeba.org/eng/sentences_lists/index\n\n' 
 USAGE=$USAGE$'From the URL for the \"Nepali\" list, you can see that its id is 1297.\n'
 USAGE=$USAGE$'Hence, the command is:\n'
 USAGE=$USAGE$'    ./add_lang nep Nepali 1297 dev someuser somepwd somedb update_and_run\n'

@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\Model\Table;
 
@@ -40,7 +40,7 @@ use Cake\I18n\Time;
  * @package  Models
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 class ContributionsTable extends Table
 {

@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\Controller;
 
@@ -40,7 +40,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  * @package  Controllers
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 class SentenceCommentsController extends AppController
 {

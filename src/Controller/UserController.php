@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\Controller;
 
@@ -41,7 +41,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 class UserController extends AppController
 {

@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\Model\Table;
 

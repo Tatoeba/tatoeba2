@@ -23,7 +23,7 @@
  * @package  Tatoeba
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 use App\Model\CurrentUser;
 
@@ -34,7 +34,7 @@ use App\Model\CurrentUser;
  * @package  View
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 $dateFormat = 'Y-m-d';

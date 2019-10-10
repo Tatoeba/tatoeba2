@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\View\Helper;
 
@@ -36,7 +36,7 @@ use App\View\Helper\AppHelper;
  * @package  Helpers
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 class DateHelper extends AppHelper
 {

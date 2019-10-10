@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 /**
@@ -32,7 +32,7 @@
  * @package  View
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 if ($data) {

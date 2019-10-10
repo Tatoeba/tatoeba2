@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   DEPARIS Étienne <etienne.deparis@umaneti.net>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\Controller;
 
@@ -38,7 +38,7 @@ use App\Event\NotificationListener;
  * @package  Controllers
  * @author   DEPARIS Étienne <etienne.deparis@umaneti.net>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 class PrivateMessagesController extends AppController
 {

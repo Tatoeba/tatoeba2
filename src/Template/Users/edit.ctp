@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 use App\Model\Entity\User;
 
@@ -33,7 +33,7 @@ use App\Model\Entity\User;
  * @package  View
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 $userId = $user->id;
