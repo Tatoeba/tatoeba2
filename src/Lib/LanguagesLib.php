@@ -574,6 +574,7 @@ class LanguagesLib
                 'gaa' => __d('languages', 'Ga'),
                 'cpi' => __d('languages', 'Chinese Pidgin English'),
                 'bzt' => __d('languages', 'Brithenig'),
+                'ltg' => __d('languages', 'Latgalian'),
             );
         }
         return $languages;
