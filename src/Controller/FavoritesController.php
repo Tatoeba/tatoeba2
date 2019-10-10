@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\Controller;
 
@@ -36,7 +36,7 @@ use Cake\Event\Event;
  * @package  Controllers
  * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 class FavoritesController extends AppController

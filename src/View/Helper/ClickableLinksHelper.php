@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\View\Helper;
 
@@ -37,7 +37,7 @@ use Cake\ORM\TableRegistry;
  * @package  Helpers
  * @author   SIMON Allan <allan.simon@supinfo.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 class ClickableLinksHelper extends AppHelper
@@ -95,10 +95,10 @@ class ClickableLinksHelper extends AppHelper
                 }
 
                 // There was a problem when one URL is included in another one.
-                // For instance, http://tatoeba.org is included in
-                // http://tatoeba.org/wall.
-                // Because of the presence of http://tatoeba.org, the other URLS
-                // beginning with http://tatoeba.org would be messed up.
+                // For instance, https://tatoeba.org is included in
+                // https://tatoeba.org/wall.
+                // Because of the presence of https://tatoeba.org, the other URLS
+                // beginning with https://tatoeba.org would be messed up.
                 // That's why we need to replace only if there's a stop character.
                 $escapedUrl = quotemeta($url);  // meta characters
                 $escapedUrl = str_replace('/', '\/', $escapedUrl); // identifier

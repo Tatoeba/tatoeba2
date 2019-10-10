@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('All existing tags')));

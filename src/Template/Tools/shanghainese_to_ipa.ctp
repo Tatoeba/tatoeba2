@@ -23,7 +23,7 @@
  * @package  Tatoeba
  * @author   Allan Simon <allan.simon@supinfo.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 //TODO to factorize with pinyin converter in a tool helper

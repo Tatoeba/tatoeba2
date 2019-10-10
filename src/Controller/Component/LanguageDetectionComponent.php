@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 namespace App\Controller\Component;
 
@@ -36,7 +36,7 @@ use Cake\Controller\Component;
  * @package  Components
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 class LanguageDetectionComponent extends Component
 {
@@ -58,7 +58,7 @@ class LanguageDetectionComponent extends Component
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_REFERER, "http://tatoeba.org");
+        curl_setopt($ch, CURLOPT_REFERER, "https://tatoeba.org");
 
         $body = curl_exec($ch);
 

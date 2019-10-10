@@ -22,7 +22,7 @@
  * @package  Tatoeba
  * @author   Etienne Deparis <etienne.deparis@umaneti.net>
  * @license  Affero General Public License
- * @link     http://tatoeba.org
+ * @link     https://tatoeba.org
  */
 
 ?>
