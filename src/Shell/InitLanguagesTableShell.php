@@ -21,6 +21,7 @@ namespace App\Shell;
 use App\Lib\LanguagesLib;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
 
 
 class InitLanguagesTableShell extends Shell {
@@ -61,7 +62,8 @@ class InitLanguagesTableShell extends Shell {
     private function insertStats() {
         $updateScript = ROOT . '/docs/database/scripts/update_languages_stats.sql';
         $script = file_get_contents($updateScript);
-        $this->Languages->query($script);
+        $conn = ConnectionManager::get('default');
+        $conn->execute($script);
     }
 
     private function run() {
