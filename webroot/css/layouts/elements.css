@@ -1462,6 +1462,10 @@ div.hideLink {
     float: left;
 }
 
+.sentences-stats p {
+    padding-left: 10px;
+}
+
 
 /*
  * --------------------------------------------------------------------
@@ -1883,6 +1887,7 @@ div.hideLink {
 
 .annexe-menu {
     padding: 0;
+    margin-bottom: 20px;
 }
 .annexe-menu md-list-item:first-of-type {
     border-top: 1px solid #f1f1f1;

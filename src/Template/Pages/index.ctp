@@ -42,22 +42,29 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
     ));
     ?>
         
-    <div class="section md-whiteframe-1dp">
-        <h2><?php echo __('Latest messages'); ?></h2>
+    <md-list class="annexe-menu md-whiteframe-1dp">
+        <md-subheader><?= __('Latest messages'); ?></md-subheader>
+
         <?php
         foreach ($latestMessages as $message) {
             $messageOwner = $message->user->username;
             $messageContent = $message->content;
             $messageDate = $message->date;
             $messageId = $message->id;
-            
-            $this->Wall->messagePreview(
-                $messageId, $messageOwner, $messageContent, $messageDate
-            );
-            
+            ?>
+            <md-list-item>
+                <p>
+                <?php 
+                $this->Wall->messagePreview(
+                    $messageId, $messageOwner, $messageContent, $messageDate
+                );
+                ?>
+                </p>
+            </md-list-item>
+            <?php            
         }
         ?>
-    </div>
+    </md-list>
     
 </div>
 

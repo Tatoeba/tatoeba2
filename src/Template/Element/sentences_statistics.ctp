@@ -26,43 +26,45 @@
  */
 ?>
 
-<div class="section md-whiteframe-1dp">
-    <h2>
-    <?php 
-    echo format(__n('One sentence','{n}&nbsp;sentences', $numSentences),
-                array('n' => $this->Number->format($numSentences)));
-    ?>
-    </h2>
+<md-list class="annexe-menu sentences-stats md-whiteframe-1dp">
+    <md-subheader>
+        <?= format(
+            __n('One sentence','{n}&nbsp;sentences', $numSentences),
+            ['n' => $this->Number->format($numSentences)]
+        ); ?>
+    </md-subheader>
     
-    <div>
-        <ul class="sentencesStats">
-            <?php
-            foreach ($stats as $stat) {
-                $langCode = $stat->code;
-                $numberOfSentences = $stat->sentences;
-                $link = array(
-                    "controller" => "sentences",
-                    "action" => "show_all_in",
-                    $langCode,
-                    'none',
-                    'none',
-                    'indifferent',
-                );
-                $this->Languages->stat($langCode, $numberOfSentences, $link);
-            }
-            ?>
-            
-            <li>
-            <?php 
-            echo $this->Html->link(
-                __('show all languages'),
-                array(
-                    'controller' => 'stats',
-                    'action' => 'sentences_by_language'
-                )
-            );
-            ?>
-            </li>
-        </ul>    
-    </div>
-</div>
+    <?php
+    foreach ($stats as $stat) {
+        $langCode = $stat->code;
+        $numberOfSentences = $stat->sentences;
+        $url = $this->Url->build([
+            'controller' => 'sentences',
+            'action' => 'show_all_in',
+            $langCode,
+            'none',
+            'none',
+            'indifferent',
+        ]);
+        ?>
+        <md-list-item href="<?= $url ?>">
+            <?= $this->Languages->icon($langCode) ?>
+            <p><?= $this->Number->format($numberOfSentences) ?></p>
+        </md-list-item>
+        <?php
+    }
+    ?>
+    
+    <md-list-item>
+    <?php 
+    echo $this->Html->link(
+        __('show all languages'),
+        array(
+            'controller' => 'stats',
+            'action' => 'sentences_by_language'
+        )
+    );
+    ?>
+    </md-list-item>
+
+</md-list>
