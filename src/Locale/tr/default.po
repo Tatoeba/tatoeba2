@@ -4,7 +4,7 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009
-# İlker Yürüyen <i.ilker.yuruyen@gmail.com>, 2014-2018
+# İlker Yürüyen <i.ilker.yuruyen@gmail.com>, 2014-2019
 # Nilüfer Aksu <aksunilufer94@gmail.com>, 2019
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-01 17:24+0000\n"
-"PO-Revision-Date: 2019-09-03 19:38+0000\n"
-"Last-Translator: Trang\n"
+"PO-Revision-Date: 2019-10-03 20:40+0000\n"
+"Last-Translator: İlker Yürüyen <i.ilker.yuruyen@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/tatoeba/tatoeba_website/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,7 +213,7 @@ msgstr "“kendini belirtmiş ana dil sahibine ait” çünkü “sahip: {userna
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1074
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "Bu cümlenin lisansını değiştirme yetkiniz yok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1080
 msgid "The license of the sentence has been changed to “{newLicense}”."
@@ -230,7 +230,7 @@ msgstr "Bu listeyi görüntüleme izniniz yok."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L405
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L437
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "Bu listeyi indirme izniniz yok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L223
 msgid ""
@@ -368,7 +368,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L58
 msgid "You cannot save this language."
-msgstr ""
+msgstr "Bu dili kaydedemezsiniz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L84
 msgid "Language deleted"
@@ -456,7 +456,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
-msgstr ""
+msgstr "Boş mesaj gönderemezsiniz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L84
 msgid "You must fill the \"To\" field."
@@ -978,7 +978,7 @@ msgstr "Son katkılar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
 msgid "Latest contributions of {user}"
-msgstr ""
+msgstr "{user} kullanıcısının son katkıları"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L65
 msgid "Only the last {n} log entries are displayed here."
@@ -1804,11 +1804,11 @@ msgstr "Bu kullanıcının hiç favorisi yok."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L35
 msgid "Error"
-msgstr ""
+msgstr "Hata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L43
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
@@ -1956,7 +1956,7 @@ msgstr "<a href=\"{}\">Duvar</a>'a yazarak da düşüncelerinizi bizimle paylaş
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L95
 msgid "Join our chatroom"
-msgstr ""
+msgstr "Sohbet odamıza katılın"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L100
 msgid ""
@@ -2547,7 +2547,7 @@ msgstr " - Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L38
 msgid "You have reached your message limit for today"
-msgstr ""
+msgstr "Bugünlük mesaj sınırınıza ulaştınız"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L40
 msgid ""
@@ -2856,7 +2856,7 @@ msgstr "Bir dil seçerseniz (varsa) o dile olan cümle çevirileri çıktınıza
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L140
 msgid "Preparing download, please wait."
-msgstr ""
+msgstr "İndirme hazırlanıyor. Lütfen bekleyin."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L141
 msgid "Failed to prepare download, please try again."
