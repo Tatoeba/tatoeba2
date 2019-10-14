@@ -42,7 +42,7 @@ echo '</h2>';
 </div>
 
 <?php
-echo $this->element('messages/comment_edit_form', [
+echo $this->element('sentence_comments/edit_form', [
     'comment' => $sentenceComment
 ]);
 ?>

@@ -122,7 +122,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
                 );
 
                 echo $this->element(
-                    'messages/comment',
+                    'sentence_comments/comment',
                     array(
                         'comment' => $sentenceComment,
                         'menu' => $menu,
