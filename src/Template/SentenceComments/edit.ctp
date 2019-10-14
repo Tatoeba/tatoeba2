@@ -21,16 +21,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Edit Comment')));
 ?>
 
 <div id="main_content">
-<div class="module">
-    <?php
-    echo '<h2>';
-    echo format(
-        __('Edit Comment on Sentence #{number}'),
-        array('number' => $sentenceComment->sentence_id)
-    );
-    echo '</h2>';
-    ?>
-    
+<?php
+echo '<h2>';
+echo format(
+    __('Edit Comment on Sentence #{number}'),
+    array('number' => $sentenceComment->sentence_id)
+);
+echo '</h2>';
+?>
+
+<div class="section md-whiteframe-1dp">
     <div id="sentence<?php 
         echo $sentenceComment->sentence_id;
         ?>" 
@@ -39,11 +39,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Edit Comment')));
     $this->Comments->displaySentence($sentenceComment->sentence);
     ?>
     </div>
-    
-    <?php
-    $this->Comments->displayCommentEditForm(
-        $sentenceComment,
-        $sentenceComment->user
-    );
-    ?>
+</div>
+
+<?php
+echo $this->element('messages/comment_edit_form', [
+    'comment' => $sentenceComment
+]);
+?>
 </div>
