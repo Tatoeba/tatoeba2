@@ -25,31 +25,15 @@
  * @link     https://tatoeba.org
  */
 
-$this->set('title_for_layout', $this->Pages->formatTitle(
-    format(__("Edit message {number}"), array('number' => $message->id))
-));
+$title = format(__("Edit message {number}"), array('number' => $message->id));
+$this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
-<div id="annexe_content">
-    <div class="module">
-        <h2><?php echo __("Menu"); ?></h2>
-        <p>
-            <?php
-            echo $this->Html->link(
-                __('Back to Wall'),
-                array(
-                    'controller' => 'wall',
-                    'action' => 'index',
-                    "{$message->id}#message_{$message->id}"
-                )
-            );
-            ?>
-        </p>
-    </div>
-</div>
 
 <div id="main_content">
-    <div class="module" >
-    <?php $this->Wall->displayEditMessageForm($message); ?>
-    </div>
-    
+<h2><?= $title ?></h2>
+<?php 
+echo $this->element('wall/edit_form', [
+    'message' => $message
+]);
+?>
 </div>

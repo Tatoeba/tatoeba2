@@ -174,7 +174,7 @@ class WallController extends AppController
     public function edit($messageId)
     {
         try {
-            $message = $this->Wall->get($messageId);
+            $message = $this->Wall->get($messageId, ['contain' => 'Users']);
         } catch(RecordNotFoundException $e) {
             return $this->redirect($this->referer());
         }
