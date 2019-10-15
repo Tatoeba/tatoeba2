@@ -78,8 +78,12 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
             ?>
             <md-button ng-cloak
                        class="md-icon-button" <?= $confirmation ?>
-                       href="<?= $this->Url->build($menuItem['url']) ?>"
-                       aria-label="<?= $itemLabel ?>">
+                       aria-label="<?= $itemLabel ?>"
+                       <?php if (isset($menuItem['url'])) { ?>
+                            href="<?= $this->Url->build($menuItem['url']) ?>"
+                       <?php } else if ($menuItem['icon'] === 'reply') { ?>
+                            ng-click="vm.showForm(<?= $message->id ?>)"
+                       <?php } ?>>
                 <md-icon><?= $menuItem['icon'] ?></md-icon>
                 <md-tooltip><?= $itemLabel ?></md-tooltip>
             </md-button>
@@ -117,4 +121,6 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
         echo $this->element('wall/message', ['message' => $child]);
     }
     ?>
+
+    <?= $this->element('wall/reply_form', ['parentId' => $message->id]); ?>
 </md-card>

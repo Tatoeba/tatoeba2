@@ -37,9 +37,7 @@
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Wall')));
 
-echo $this->Html->script('jquery.scrollTo.min.js', array('block' => 'scriptBottom'));
-echo $this->Html->script('wall.reply.js', array('block' => 'scriptBottom'));
-echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scriptBottom'));
+echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
 
 ?>
 <div id="annexe_content" >
@@ -120,7 +118,7 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
 
 </div>
 
-<div id="main_content">
+<div id="main_content" ng-app="app" ng-controller="WallController as vm">
     <div>
         <h2>
             <?php

@@ -6,7 +6,8 @@ $username = $user['username'];
 $avatar = $user['image'];
 ?>
 
-<md-card class="comment form">
+<md-card id="form-<?= $parentId ?>" ng-hide="true"
+         class="wall comment form" ng-cloak>
 
     <md-card-header>
         <md-card-avatar>
@@ -27,7 +28,8 @@ $avatar = $user['image'];
     <md-card-content class="content">
         <?php
         echo $this->Form->create('', [
-            'url' => ['controller' => 'wall', 'action' => 'save']
+            'ng-submit' => 'vm.saveReply('.$parentId.')',
+            'onsubmit' => 'event.preventDefault()'
         ]);
         ?>
 
@@ -37,13 +39,19 @@ $avatar = $user['image'];
 
         <?php
         echo $this->Form->textarea('content', [
+            'id' => 'reply-input-'.$parentId,
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
+            'ng-model' => 'vm.replies['.$parentId.']'
         ]);
         ?>
 
         <div ng-cloak layout="row" layout-align="end center">
+            <md-button class="md-raised" ng-click="vm.hideForm(<?= $parentId ?>)">
+                <?php echo __('Cancel'); ?>
+            </md-button>
+
             <md-button type="submit" class="md-raised md-primary submit">
                 <?php echo __('Send'); ?>
             </md-button>
@@ -51,5 +59,9 @@ $avatar = $user['image'];
         <?php
         echo $this->Form->end();
         ?>
+    </md-card-content>
+
+    <md-card-content class="reply-saved" ng-hide="true">
+        {{vm.replies[<?= $parentId ?>]}}
     </md-card-content>
 </md-card>

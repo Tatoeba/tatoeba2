@@ -69,6 +69,10 @@ class WallController extends AppController
 
     public function beforeFilter(Event $event)
     {
+        $this->Security->config('unlockedActions', [
+            'save_inside',
+        ]);
+        
         $eventManager = $this->Wall->getEventManager();
         $eventManager->attach(new NotificationListener());
 
