@@ -76,17 +76,13 @@ $this->Html->script('wall.show_and_hide_replies.js', ['block' => 'scriptBottom']
         ?>
     </div>
     
-    <div class="module">    
-        <div class="wall">
-            <?php
-            $this->Wall->createThread(
-                $message,
-                $message->user,
-                $message['Permissions'],
-                $message['children']
-            );
-            ?>
-        </div>
+    <div class="wall">
+    <?php
+    echo $this->element('wall/message', [
+        'message' => $message,
+        'isRoot' => true
+    ]);
+    ?>
     </div>
     
 </div>

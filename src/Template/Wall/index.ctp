@@ -147,14 +147,11 @@ echo $this->Html->script('wall.show_and_hide_replies.js', array('block' => 'scri
 
         <div class="wall">
         <?php
-        // display comment part
         foreach ($allMessages as $message) {
-            $this->Wall->createThread(
-                $message,
-                $message->user,
-                $message['Permissions'],
-                $message->children
-            );
+            echo $this->element('wall/message', [
+                'message' => $message,
+                'isRoot' => true
+            ]);
         }
         ?>
         </div>

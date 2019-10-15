@@ -418,7 +418,7 @@ class WallHelper extends AppHelper
     }
 
 
-    private function _getMenuFromPermissions($message, $permissions)
+    public function getMenuFromPermissions($message, $permissions)
     {
         $menu = array();
         $messageId = $message['id'];
@@ -436,6 +436,7 @@ class WallHelper extends AppHelper
             // hide/unhide link, for when people start acting like kids and stuff
             $menu[] = array(
                 'text' => $hiddenLinkText,
+                'icon' => 'visibility_off',
                 'url' => array(
                     "controller" => "wall",
                     "action" => $hiddenLinkAction,
@@ -447,6 +448,7 @@ class WallHelper extends AppHelper
         if ($permissions['canEdit']) {
             $menu[] = array(
                 'text' => __("edit"),
+                'icon' => 'edit',
                 'url' => array(
                     'controller' => 'wall',
                     'action' => 'edit',
@@ -460,6 +462,7 @@ class WallHelper extends AppHelper
             // delete link
             $menu[] = array(
                 'text' => __('delete'),
+                'icon' => 'delete',
                 'url' => array(
                     "controller"=>"wall",
                     "action"=>"delete_message",
@@ -474,6 +477,7 @@ class WallHelper extends AppHelper
             $replyClasses = 'replyLink ' . $messageId;
             $menu[] = array(
                 'text' => __("reply"),
+                'icon' => 'reply',
                 'url' => null,
                 'class' => $replyClasses,
                 'id' => $replyLinkId
@@ -483,6 +487,7 @@ class WallHelper extends AppHelper
         // message link
         $menu[] = array(
             'text' => '#',
+            'icon' => 'link',
             'url' => array(
                 'controller' => 'wall',
                 'action' => 'show_message',
