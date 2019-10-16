@@ -15,6 +15,7 @@
         vm.saveReply = saveReply;
 
         vm.replies = {};
+        vm.isSaving = {};
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -28,6 +29,8 @@
         }
 
         function saveReply(id) {
+            vm.isSaving[id] = true;
+
             var body = {
                 'content': vm.replies[id],
                 'replyTo': id,
@@ -42,6 +45,7 @@
 
             $http(req).then(
                 function() {
+                    vm.isSaving[id] = false;
                     $('#form-' + id + ' .reply-saved').removeClass('ng-hide');
                     $('#form-' + id + ' .content').addClass('ng-hide');
                 }

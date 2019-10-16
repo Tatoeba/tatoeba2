@@ -25,6 +25,9 @@ $avatar = $user['image'];
 
     <md-divider></md-divider>
 
+    <md-progress-linear ng-if="vm.isSaving[<?= $parentId ?>]" 
+                        md-mode="indeterminate"></md-progress-linear>
+
     <md-card-content class="content">
         <?php
         echo $this->Form->create('', [
@@ -52,7 +55,8 @@ $avatar = $user['image'];
                 <?php echo __('Cancel'); ?>
             </md-button>
 
-            <md-button type="submit" class="md-raised md-primary submit">
+            <md-button type="submit" class="md-raised md-primary submit"
+                       ng-disabled="vm.isSaving[<?= $parentId ?>]">
                 <?php echo __('Send'); ?>
             </md-button>
         </div>
