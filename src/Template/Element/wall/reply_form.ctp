@@ -6,6 +6,7 @@ $username = $user['username'];
 $avatar = $user['image'];
 ?>
 
+<a id="reply-form-<?= $parentId ?>"></a>
 <md-card id="form-<?= $parentId ?>" ng-hide="true"
          class="wall comment form" ng-cloak>
 

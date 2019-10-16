@@ -4,10 +4,10 @@
     angular
         .module('app')
         .controller('WallController', [
-            '$http', WallController
+            '$http', '$location', '$anchorScroll', WallController
         ]);
 
-    function WallController($http) {
+    function WallController($http, $location, $anchorScroll) {
         var vm = this;
 
         vm.showForm = showForm;
@@ -20,6 +20,10 @@
         ///////////////////////////////////////////////////////////////////////////
 
         function showForm(id) {
+            $location.hash('reply-form-' + id);
+            $anchorScroll.yOffset = 50;
+            $anchorScroll();
+
             $('#form-' + id).removeClass('ng-hide');
             $('#form-' + id + ' input').focus();
         }
