@@ -26,22 +26,5 @@
  * @link     https://tatoeba.org
  */
 
-
-if ($message) {
-    $messageId = $message->id;
-    $userName = $user->username;
-    $userImage = $user->image;
-    $messageContent =  $message->content;
-
-    echo '<div class="new thread" id="message_' . $messageId . '">'."\n";
-
-    $this->Messages->displayMessage(
-        $message,
-        $user,
-        null,
-        null
-    );
-
-    echo '</div>';
-}
+echo json_encode($message);
 ?>

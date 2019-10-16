@@ -162,10 +162,8 @@ class WallController extends AppController
 
         // now save to database
         $message = $this->Wall->saveReply($parentId, $content, $userId);
-        if ($message) {
-            $this->set('user', $message->user);
-            $this->set('message', $message);
-        }
+        $this->set('message', $message);
+        $this->layout = 'json';
     }
 
     /**

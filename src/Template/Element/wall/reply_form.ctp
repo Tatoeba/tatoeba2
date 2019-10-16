@@ -4,6 +4,10 @@ use App\Model\CurrentUser;
 $user = CurrentUser::get('User');
 $username = $user['username'];
 $avatar = $user['image'];
+$editUrl = $this->Url->build([
+    'controller' => 'wall',
+    'action' => 'edit'
+]);
 ?>
 
 <a id="reply-form-<?= $parentId ?>"></a>
@@ -22,6 +26,13 @@ $avatar = $user['image'];
                 <?= __('Add a message: '); ?>
             </span>
         </md-card-header-text>
+
+        <md-button class="md-icon-button" aria-label="<?= __('edit') ?>" 
+                   ng-if="vm.savedReplies[<?= $parentId ?>].id"
+                   ng-href="<?= $editUrl ?>/{{vm.savedReplies[<?= $parentId ?>].id}}">
+            <md-icon>edit</md-icon>
+            <md-tooltip><?= __('edit') ?></md-tooltip>
+        </md-button>
     </md-card-header>
 
     <md-divider></md-divider>
@@ -67,6 +78,6 @@ $avatar = $user['image'];
     </md-card-content>
 
     <md-card-content class="reply-saved" ng-hide="true">
-        {{vm.replies[<?= $parentId ?>]}}
+        {{vm.savedReplies[<?= $parentId ?>].content}}
     </md-card-content>
 </md-card>
