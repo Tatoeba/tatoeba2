@@ -13,10 +13,12 @@
         vm.showForm = showForm;
         vm.hideForm = hideForm;
         vm.saveReply = saveReply;
+        vm.expandOrCollapse = expandOrCollapse;
 
         vm.replies = {};
         vm.isSaving = {};
         vm.savedReplies = {};
+        vm.hiddenReplies = {};
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -58,5 +60,8 @@
             );
         }
 
+        function expandOrCollapse(id) {
+            vm.hiddenReplies[id] = !vm.hiddenReplies[id];
+        }
     }
 })();

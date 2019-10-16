@@ -54,7 +54,7 @@ $children = $message->children;
 $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
 ?>
 
-<md-card class="<?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
+<md-card class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>
             <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
@@ -116,11 +116,25 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
         <?php } ?>
     </md-card-content>
 
+    <?php if (count($children) > 0) { ?>
+        <md-button ng-click="vm.expandOrCollapse(<?= $message->id ?>)" ng-cloak>
+            <md-icon>{{vm.hiddenReplies[<?= $message->id ?>] ? 'expand_more' : 'expand_less'}}</md-icon>
+            <span ng-if="!vm.hiddenReplies[<?= $message->id ?>]">
+                <?= __('hide replies') ?>
+            </span>
+            <span ng-if="vm.hiddenReplies[<?= $message->id ?>]">
+                <?= __('show replies') ?>
+            </span>
+        </md-button>
+    <?php } ?>
+
+    <div ng-if="!vm.hiddenReplies[<?= $message->id ?>]">
     <?php
     foreach ($children as $child) {
         echo $this->element('wall/message', ['message' => $child]);
     }
     ?>
+    </div>
 
     <?= $this->element('wall/reply_form', ['parentId' => $message->id]); ?>
 </md-card>
