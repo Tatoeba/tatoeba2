@@ -35,8 +35,6 @@ $editUrl = $this->Url->build([
         </md-button>
     </md-card-header>
 
-    <md-divider></md-divider>
-
     <md-progress-linear ng-if="vm.isSaving[<?= $parentId ?>]" 
                         md-mode="indeterminate"></md-progress-linear>
 

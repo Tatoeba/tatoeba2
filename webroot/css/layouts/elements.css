@@ -284,12 +284,20 @@ html[dir="rtl"] .comment.sentence .text {
 
 .comment.form .content{
     background: #f1f1f1;
+    border-top: 1px solid #ddd;
 }
+
 .comment.form .md-subhead {
     cursor: initial;
 }
+
+.comment.form md-card-header {
+    background: #fafafa;
+}
+
 .comment.form textarea {
     width: 100%;
+    height: 200px;
 }
 
 /*

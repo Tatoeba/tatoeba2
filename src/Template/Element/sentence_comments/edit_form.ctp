@@ -53,8 +53,6 @@ $cancelUrl = $this->Url->build([
         </md-card-header-text>
     </md-card-header>
 
-    <md-divider></md-divider>
-
     <md-card-content class="content">
         <?php
         echo $this->Form->create($comment);
