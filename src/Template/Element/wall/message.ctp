@@ -2,8 +2,8 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$username = $message->user->username;
-$avatar = $message->user->image;
+$username = isset($message->user) ? $message->user->username : CurrentUser::get('username');
+$avatar = isset($message->user) ? $message->user->image : CurrentUser::get('image');
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 $messageId = $message->id;
@@ -45,13 +45,28 @@ $userProfileUrl = $this->Url->build(array(
     $username
 ));
 
-$menu = $this->Wall->getMenuFromPermissions(
-    $message,
-    $message['Permissions']
-);
+if (isset($message['Permissions'])) {
+    $menu = $this->Wall->getMenuFromPermissions(
+        $message,
+        $message['Permissions']
+    );
+} else {
+    $menu = [];
+}
+$menu[] = [
+    'text' => 'permalink',
+    'icon' => 'link',
+    'url' => [
+        'controller' => 'wall',
+        'action' => 'show_message',
+        $messageId,
+        '#' => "message_" .$messageId
+    ]
+];
 
 $children = $message->children;
 $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
+$canReply = false;
 ?>
 
 <md-card class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
@@ -74,6 +89,9 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
             if (isset($menuItem['confirm'])) {
                 $msg = $menuItem['confirm'];
                 $confirmation = 'onclick="return confirm(\''.$msg.'\');"';
+            }
+            if ($menuItem['icon'] === 'reply') {
+                $canReply = true;
             }
             ?>
             <md-button ng-cloak
@@ -126,15 +144,19 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
                 <?= __('show replies') ?>
             </span>
         </md-button>
-    <?php } ?>
 
-    <div ng-if="!vm.hiddenReplies[<?= $message->id ?>]">
+        <div ng-if="!vm.hiddenReplies[<?= $message->id ?>]">
+        <?php
+        foreach ($children as $child) {
+            echo $this->element('wall/message', ['message' => $child]);
+        }
+        ?>
+        </div>
+    <?php } ?>
+    
     <?php
-    foreach ($children as $child) {
-        echo $this->element('wall/message', ['message' => $child]);
+    if ($canReply) {
+        echo $this->element('wall/reply_form', ['parentId' => $message->id]);
     }
     ?>
-    </div>
-
-    <?= $this->element('wall/reply_form', ['parentId' => $message->id]); ?>
 </md-card>

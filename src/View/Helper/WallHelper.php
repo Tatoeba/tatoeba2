@@ -171,18 +171,6 @@ class WallHelper extends AppHelper
             );
         }
 
-        // message link
-        $menu[] = array(
-            'text' => '#',
-            'icon' => 'link',
-            'url' => array(
-                'controller' => 'wall',
-                'action' => 'show_message',
-                $messageId,
-                '#' => "message_" .$messageId
-            )
-        );
-
         return $menu;
     }
 

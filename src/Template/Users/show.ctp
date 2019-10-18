@@ -155,13 +155,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
             echo '</h2>';
 
             echo '<div class="wall">';
-            foreach ($user->wall as $comment) {
-                $this->Wall->createThread(
-                    $comment,
-                    $user,
-                    null,
-                    null
-                );
+            foreach ($user->wall as $message) {
+                echo $this->element('wall/message', [
+                    'message' => $message,
+                    'isRoot' => true
+                ]);
             }
             echo '</div>';
         echo '</div>';
