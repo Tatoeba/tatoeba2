@@ -626,47 +626,47 @@ class ListsHelper extends AppHelper
     public function displayListsLinks()
     {
         ?>
-        <div class="section md-whiteframe-1dp">
+        <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+            <md-subheader><?= __('Lists') ?></md-subheader>
+            
             <?php
-            echo $this->Html->tag('h2', __('Lists'));
-            echo '<ul class="annexeMenu">';
-
-            echo '<li class="item">';
-            $listScope = __('All public lists');
-            echo $this->Html->link(
-                $listScope,
-                array(
-                    'controller' => 'sentences_lists',
-                    'action' => 'index'
-                )
-            );
-            echo '</li>';
-
-            echo '<li class="item">';
-            echo $this->Html->link(
-                __('Collaborative lists'),
-                array(
-                    'controller' => 'sentences_lists',
-                    'action' => 'collaborative'
-                )
-            );
-            echo '</li>';
-
-            if (CurrentUser::isMember()) {
-                echo '<li class="item">';
-                echo $this->Html->link(
-                    __('My lists'),
-                    array(
-                        'controller' => 'sentences_lists',
-                        'action' => 'of_user',
-                        CurrentUser::get('username')
-                    )
-                );
-                echo '</li>';
-            }
-            echo '</ul>';
+            $url = $this->Url->build([
+                'controller' => 'sentences_lists',
+                'action' => 'index'
+            ]);
             ?>
-        </div>
+            <md-list-item href="<?= $url ?>">
+                <md-icon>keyboard_arrow_right</md-icon>
+                <p><?= __('All public lists') ?></p>
+            </md-list-item>
+
+            <?php
+            $url = $this->Url->build([
+                'controller' => 'sentences_lists',
+                'action' => 'collaborative'
+            ]);
+            ?>
+            <md-list-item href="<?= $url ?>">
+                <md-icon>keyboard_arrow_right</md-icon>
+                <p><?= __('Collaborative lists') ?></p>
+            </md-list-item>
+
+            <?php
+            if (CurrentUser::isMember()) {
+                $url = $this->Url->build([
+                    'controller' => 'sentences_lists',
+                    'action' => 'of_user',
+                    CurrentUser::get('username')
+                ]);
+                ?>
+                <md-list-item href="<?= $url ?>">
+                    <md-icon>keyboard_arrow_right</md-icon>
+                    <p><?= __('My lists') ?></p>
+                </md-list-item>
+                <?php
+            }
+            ?>
+        </md-list>
         <?php
     }
 

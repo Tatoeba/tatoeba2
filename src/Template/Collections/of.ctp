@@ -27,11 +27,11 @@
 use App\Model\CurrentUser;
 
 $categories = array(
-    'ok' => __('Sentences marked as "OK"'),
-    'unsure' => __('Sentences marked as "unsure"'),
-    'not-ok' => __('Sentences marked as "not OK"'),
-    'all' => __("All sentences"),
-    'outdated' => __("Outdated ratings")
+    'ok' => ['check_circle', __('Sentences marked as "OK"')],
+    'unsure' => ['help', __('Sentences marked as "unsure"')],
+    'not-ok' => ['error', __('Sentences marked as "not OK"')],
+    'all' => ['keyboard_arrow_right', __("All sentences")],
+    'outdated' => ['keyboard_arrow_right', __("Outdated ratings")]
 );
 
 if ($correctnessLabel) {
@@ -68,29 +68,25 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         echo '</div>';
     }
     ?>
-    <div class="section md-whiteframe-1dp">
+
+    <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+        <md-subheader><?= __('Filter') ?></md-subheader>
         <?php
-        echo $this->Html->tag('h2', __('Filter'));
-
-        $menu = array();
         foreach($categories as $categoryKey => $categoryValue) {
-            $menu[] = $this->Html->link(
-                $categoryValue,
-                array(
-                    'action' => 'of',
-                    $username,
-                    $categoryKey
-                )
-            );
+            $url = $this->Url->build([
+                'action' => 'of',
+                $username,
+                $categoryKey
+            ]);
+            ?>
+            <md-list-item href="<?= $url ?>">
+                <md-icon><?= $categoryValue[0] ?></md-icon>
+                <p><?= $categoryValue[1] ?></p>
+            </md-list-item>
+            <?php
         }
-
-        echo '<ul class="annexeMenu">';
-        foreach($menu as $item) {
-            echo $this->Html->tag('li', $item, array('class' => 'item'));
-        }
-        echo '</ul>';
         ?>
-    </div>
+    </md-list>
 </div>
 
 <div id="main_content">

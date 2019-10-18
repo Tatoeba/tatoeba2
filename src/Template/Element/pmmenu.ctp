@@ -24,63 +24,59 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
+$newMessageUrl = $this->Url->build(['action' => 'write']);
+$inboxUrl = $this->Url->build(['action' => 'folder', 'Inbox']);
+$unreadUrl = $this->Url->build(['action' => 'folder', 'Inbox', 'unread']);
+$dratftsUrl = $this->Url->build(['action' => 'folder', 'Drafts']);
+$sentUrl = $this->Url->build(['action' => 'folder', 'Sent']);
+$trashUrl = $this->Url->build(['action' => 'folder', 'Trash']);
 
+$isTrashFolder = $this->request->params['action'] == 'folder'
+    && $this->request->params['pass']
+    && $this->request->params['pass'][0] == 'Trash';
 ?>
 <div id="annexe_content">
-    <div class="section md-whiteframe-1dp">
-        <h2><?php echo __('Private messages'); ?></h2>
-        <ul>
-            <li>
-                <?php
-                echo $this->Html->link(
-                    __('New message'), array('action' => 'write')
-                ); 
-                ?>
-            </li>
-            <?php
-                if ($this->request->params['action'] == 'folder'
-                    && $this->request->params['pass']
-                    && $this->request->params['pass'][0] == 'Trash') {
-                    echo $this->Html->tag('li', $this->Html->link(
-                        __('Empty trash'),
-                        array('action' => 'empty_folder', 'Trash'),
-                        array('confirm' => __('Are you sure?'))
-                    ));
-                }
+    <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+        <md-subheader><?= __('Private messages') ?></md-subheader>
+        
+        <md-list-item href="<?= $newMessageUrl ?>">
+            <md-icon>email</md-icon>
+            <p><?= __('New message') ?></p>
+        </md-list-item>
+
+        <?php if ($isTrashFolder) { 
+            $url = $this->Url->build(['empty_folder', 'Trash']);
+            $msg = __('Are you sure?');
             ?>
-            <li>&nbsp;</li>
-            <li>
-                <?php
-                echo $this->Html->link(
-                    __('Inbox'), array('action' => 'folder', 'Inbox')
-                ); 
-                ?>
-                &gt;
-                <?php
-                echo $this->Html->link(
-                    __('Unread'), array('action' => 'folder', 'Inbox', 'unread')
-                ); 
-                ?>
-            </li>
-            <li><?php
-                echo $this->Html->link(
-                    __('Drafts'), array('action' => 'folder', 'Drafts')
-                );
-                ?>
-            </li>
-            <li>
-                <?php
-                echo $this->Html->link(
-                    __('Sent'), array('action' => 'folder', 'Sent')
-                );
-                ?>
-            </li>
-            <li><?php
-                echo $this->Html->link(
-                    __('Trash'), array('action' => 'folder', 'Trash')
-                );
-                ?>
-            </li>
-        </ul>
-    </div>
+            <md-list-item href="<?= $url ?>" onclick="return confirm('<?= $msg ?>')">
+                <md-icon>delete_forever</md-icon>
+                <p><?= __('Empty trash') ?></p>
+            </md-list-item>
+        <?php } ?>
+
+        <md-list-item href="<?= $inboxUrl ?>">
+            <md-icon>keyboard_arrow_right</md-icon>
+            <p><?= __('Inbox') ?></p>
+        </md-list-item>
+
+        <md-list-item href="<?= $unreadUrl ?>">
+            <md-icon>keyboard_arrow_right</md-icon>
+            <p><?= __('Unread') ?></p>
+        </md-list-item>
+            
+        <md-list-item href="<?= $dratftsUrl ?>">
+            <md-icon>keyboard_arrow_right</md-icon>
+            <p><?= __('Drafts') ?></p>
+        </md-list-item>
+
+        <md-list-item href="<?= $sentUrl ?>">
+            <md-icon>keyboard_arrow_right</md-icon>
+            <p><?= __('Sent') ?></p>
+        </md-list-item>
+
+        <md-list-item href="<?= $trashUrl ?>">
+            <md-icon>keyboard_arrow_right</md-icon>
+            <p><?= __('Trash') ?></p>
+        </md-list-item>
+    </md-list>
 </div>
