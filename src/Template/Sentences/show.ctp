@@ -62,11 +62,11 @@ if (isset($sentence)) {
 
 
 // navigation (previous, random, next)
-$this->Navigation->displaySentenceNavigation(
-    $sentenceId,
-    $nextSentence,
-    $prevSentence
-);
+echo $this->element('/sentences/navigation', [
+    'currentId' => $sentenceId,
+    'next' => $nextSentence,
+    'prev' => $prevSentence
+]);
 ?>
 <br>
 <div id="annexe_content">

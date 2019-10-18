@@ -562,65 +562,6 @@ html[dir="rtl"] .comment.sentence .text {
 /*
  * --------------------------------------------------------------------
  *
- *   navigation.css
- *
- * --------------------------------------------------------------------
- */
-
-/*
- * Navigation links (previous, next, random)
- */
-.navigation {
-    margin: 40px 20px 10px 20px;
-}
-
-.navigation .options {
-    display: inline;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navigation .options li {
-    display: inline;
-    padding: 3px 6px;
-    margin-right: 10px;
-}
-
-.navigation .active {
-    background: #D3F3B9;
-}
-
-.navigation .active a{
-    color: #257D0C;
-}
-
-.navigation .inactive {
-    color: #849684;
-    background: #F1F1F1;
-}
-
-
-/*
- * Navigation "go to" form
- */
-#SentenceGoToSentenceForm {
-    float: right;
-}
-
-#SentenceGoToSentenceForm input#sentence-id {
-    width: 80px;
-    text-align: right;
-}
-
-#SentenceGoToSentenceForm div.submit, #SentenceGoToSentenceForm div.input, #UserSearchForm div.submit, #UserSearchForm div.input {
-    display: inline;
-}
-
-
-/*
- * --------------------------------------------------------------------
- *
  *   new_sentence_form.css
  *
  * --------------------------------------------------------------------

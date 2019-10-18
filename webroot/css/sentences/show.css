@@ -17,20 +17,30 @@
  */
 
 
-/* 
- * Navigation
+/*
+ * Navigation links (previous, next, random)
  */
-.languageSelect {
-    margin-bottom: 15px;
+.navigation {
+    background: #fafafa;
+    border: 1px solid #f1f1f1;
+    margin-top: -20px;
 }
-
-.languageSelect select {
-    width: 200px;
+.navigation .md-errors-spacer {
+    display: none;
 }
-
-.smallTip {
-    font-size: 0.8em;
-    color: #888;
+.navigation form {
+    width: 270px;
+}
+.navigation .go-button {
+    min-width: initial;
+}
+#go-to-form {
+    border-left: 1px solid #f1f1f1;
+    padding: 10px 0 0 20px;
+}
+#randomLangChoiceInBrowse,
+#loadingAnimationForNavigation {
+    margin: 20px 5px 0 5px;
 }
 
 
