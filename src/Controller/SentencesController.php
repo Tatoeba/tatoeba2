@@ -955,8 +955,8 @@ class SentencesController extends AppController
     {
         $this->request->getSession()->write('random_lang_selected', $lang);
         $neighbors = $this->Sentences->getNeighborsSentenceIds($id, $lang);
-        $this->set('nextSentence', $neighbors['next']);
-        $this->set('prevSentence', $neighbors['prev']);
+        $this->set('result', $neighbors);
+        $this->layout = 'json';
     }
 
 

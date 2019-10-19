@@ -1,3 +1,3 @@
 <?php
-echo "$prevSentence;$nextSentence";
+echo json_encode($result);
 ?>
