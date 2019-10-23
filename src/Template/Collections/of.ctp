@@ -44,7 +44,7 @@ if ($correctnessLabel) {
 if ($userExists) {
     $title = format(
         __("{user}'s collection - {category}"),
-        array('user' => $username, 'category' => $categories[$category])
+        array('user' => $username, 'category' => $categories[$category][1])
     );
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
