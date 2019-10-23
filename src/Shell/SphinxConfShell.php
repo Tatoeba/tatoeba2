@@ -109,6 +109,8 @@ class SphinxConfShell extends Shell {
         'U+400..U+40F->U+450..U+45F', 'U+450..U+45F',
         # Cyrillic: first checkerboard range (alternate capital and small letters)
         'U+460..U+481/2',
+        # Cyrillic: combining marks
+        'U+483..U+489',
         # Cyrillic: second checkerboard range
         'U+48A..U+4BF/2',
         # Cyrillic: palochka
@@ -117,6 +119,14 @@ class SphinxConfShell extends Shell {
         'U+4C1..U+4CE/2',
         # Cyrillic: fourth checkerboard range
         'U+4D0..U+4FF/2',
+        # Cyrillic Supplement
+        'U+500..U+52F/2',
+        # Cyrillic Extended-A
+        'U+2DE0..U+2DFF',
+        # Cyrillic Extended-B
+        'U+A640..U+A66D/2', 'U+A66E..U+A672', 'U+A674..U+A67D', 'U+A67F', 'U+A680..U+A69B/2', 'U+A69C..U+A69F',
+        # Cyrillic Extended-C: historical variants
+        'U+1C80->U+432', 'U+1C81->U+434', 'U+1C82->U+43E', 'U+1C83->U+441', 'U+1C84->U+442', 'U+1C85->U+442', 'U+1C86->U+44A', 'U+1C87->U+463', 'U+1C88->U+A64B',
         # Georgian
         'U+10a0..U+10c5->U+2d00..U+2d25', 'U+10d0..U+10fa', 'U+10fc', 'U+2d00..U+2d25',
         # Bengali
