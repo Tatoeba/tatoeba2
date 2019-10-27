@@ -71,12 +71,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         if (!empty($lang)) {
             $langName = $this->Languages->codeToNameToFormat($lang);
             echo format(
-                __('{user} does not have any sentence in {language}'),
+                __('{user} does not own any sentences in {language}'),
                 array('user' => $userName, 'language' => $langName)
             );
         } else {
             echo format(
-                __("{user} does not have any sentence"),
+                __("{user} does not own any sentences"),
                 array('user' => $userName)
             );
         }
