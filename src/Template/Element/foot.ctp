@@ -188,7 +188,7 @@
                 __('More information'),
                 array(
                     'controller' => 'pages',
-                    'action' => 'downloads'
+                    'action' => 'terms_of_use#section-6'
                 ),
                 array(
                     'class' => 'more-info'
