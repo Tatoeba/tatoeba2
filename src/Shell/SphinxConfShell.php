@@ -52,6 +52,7 @@ class SphinxConfShell extends Shell {
         # Searchable symbols
         '$',
         # Latin-1 Supplement, with case folding (0080-00FF)
+        'U+A8->U+308', 'U+AA->U+61', 'U+AF->U+304', 'U+B2..U+B3->U+32..U+33', 'U+B4->U+301', 'U+B5->U+3BC', 'U+B8->U+327', 'U+B9->U+31', 'U+BA->U+6F',
         'U+C0..U+D6->U+E0..U+F6', 'U+D8..U+DE->U+F8..U+FE', 'U+DF', 'U+E0..U+F6', 'U+F8..U+FF',
         # Latin extended-A, with case folding (0100-017F)
         'U+100..U+137/2', 'U+138', 'U+139..U+148/2', 'U+149', 'U+14A..U+177/2', 'U+178->U+FF', 'U+179..U+17E/2', 'U+017F',
@@ -62,14 +63,25 @@ class SphinxConfShell extends Shell {
         'U+0199..U+019B', 'U+019C->U+026F', 'U+019D->U+0272', 'U+019E', 'U+019F->U+0275',
         'U+01A0..U+01A5/2', 'U+01A6->U+0280', 'U+01A7->U+01A8', 'U+01A8',
         'U+01A9->U+0283', 'U+01AA', 'U+01AB', 'U+01AC->U+01AD', 'U+01AD', 'U+01AE->U+0288', 'U+01AF->U+01B0',
-        'U+01B0', 'U+01B1->U+028A', 'U+01B2->U+028B', 'U+01B3..U+01B6/2', 'U+01B7->U+0292', 'U+01B8->U+01B9',
+        'U+01B0', 'U+01B1->U+028A', 'U+01B2->U+028B', 'U+01B3..U+01B6/2', 'U+01B7->U+0292', 'U+01B8->U+01B9', 'U+01B9',
         'U+01BA', 'U+01BB', 'U+01BC->U+01BD', 'U+01BD..U+01BF',
         'U+01C0..U+01C3', 'U+01C4->U+01C6', 'U+01C5', 'U+01C6', 'U+01C7->U+01C9', 'U+01C8',
-        'U+01C9..U+01CC', 'U+01CD..U+01DC/2', 'U+01DE..U+01EF/2',
+        'U+01C9..U+01CC', 'U+01CD..U+01DC/2', 'U+01DD', 'U+01DE..U+01EF/2',
         'U+01F0', 'U+01F1->U+01F3', 'U+01F2', 'U+01F3', 'U+01F4->U+01F5', 'U+01F5', 'U+01F6->U+0195', 'U+01F7->U+01BF', 'U+01F8..U+021F/2',
         'U+0220->U+019E', 'U+0221', 'U+0222..U+0233/2', 'U+0234..U+0238',
         'U+0239', 'U+023A->U+2C65', 'U+023B->U+023C', 'U+023C', 'U+023D->U+019A', 'U+023E->U+2C66', 'U+023F',
         'U+0240', 'U+0241->U+0242', 'U+0242', 'U+0243->U+0180', 'U+0244->U+0289', 'U+0245->U+028C', 'U+0246..U+024F/2',
+        # IPA Extensions
+        'U+0250..U+02AF',
+        # Phonetic Extensions
+        'U+1D00..U+1D2B', 'U+1D2C->U+61', 'U+1D2D->U+E6', 'U+1D2E->U+62', 'U+1D2F', 'U+1D30..U+1D31->U+64..U+65', 'U+1D32->U+1DD',
+        'U+1D33..U+1D3A->U+67..U+6E', 'U+1D3B', 'U+1D3C->U+6F', 'U+1D3D->U+223', 'U+1D3E->U+70', 'U+1D3F->U+72', 'U+1D40..U+1D41->U+74..U+75',
+        'U+1D42->U+77', 'U+1D43->U+61', 'U+1D44..U+1D45->U+250..U+251', 'U+1D46->U+1D02', 'U+1D47->U+62', 'U+1D48..U+1D49->U+64..U+65',
+        'U+1D4A->U+259', 'U+1D4B..U+1D4C->U+25B..U+25C', 'U+1D4D->U+67', 'U+1D4E', 'U+1D4F->U+6B', 'U+1D50->U+6D', 'U+1D51->U+14B',
+        'U+1D52->U+6F', 'U+1D53->U+254', 'U+1D54..U+1D55->U+1D16..U+1D17', 'U+1D56->U+70', 'U+1D57..U+1D58->U+74..U+75', 'U+1D59->U+1D1D',
+        'U+1D5A->U+26F', 'U+1D5B->U+76', 'U+1D5C->U+1D25', 'U+1D5D..U+1D5F->U+3B2..U+3B4','U+1D60..U+1D61->U+3C6..U+3C7', 'U+1D62->U+69',
+        'U+1D63->U+72', 'U+1D64..U+1D65->U+75..U+76', 'U+1D66..U+1D67->U+3B2..U+3B3', 'U+1D68->U+3C1', 'U+1D69..U+1D6A->U+3C6..U+3C7',
+        'U+1D6B..U+1D77', 'U+1D78->U+43D', 'U+1D79..U+1D7F',
         # Latin Extended Additional, with case folding (1E00-1EFF)
         'U+1E00..U+1E95/2', 'U+1E96..U+1E9F', 'U+1EA0..U+1EFF/2',
         # Spacing Modifier Letters
