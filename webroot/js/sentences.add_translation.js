@@ -28,7 +28,6 @@ $(document).ready(function() {
             var textArea = $("#_" + sentenceId + "_text");
             var langSelect = $("#translationLang_" + sentenceId);
             var translations = $("#_" + sentenceId + "_translations");
-            var addTranslations = $(".addTranslations");
             var translationFor = $("#translation_for_" + sentenceId);
             var loadingIcon = $("#_" + sentenceId + "_loading");
             var sessionExpired = $("#session_expired");
@@ -54,7 +53,7 @@ $(document).ready(function() {
 
                     translations.show();
                     loadingIcon.show();
-                    addTranslations.hide();
+                    translationFor.hide();
 
                     var data = {
                         'id': sentenceId,
@@ -112,7 +111,7 @@ $(document).ready(function() {
             cancelButton.unbind("click");
             cancelButton.click(function(){
                 translations.show();
-                addTranslations.hide();
+                translationFor.hide();
             });
         });
 
