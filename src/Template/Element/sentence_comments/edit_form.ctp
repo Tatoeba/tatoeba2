@@ -47,8 +47,9 @@ $cancelUrl = $this->Url->build([
             <span class="md-title">
                 <?= $username ?>
             </span>
-            <span class="md-subhead ellipsis" title="<?= $fullDateLabel ?>">
+            <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
+                <md-tooltip ng-cloak><?= $fullDateLabel ?></md-tooltip>
             </span>
         </md-card-header-text>
     </md-card-header>
