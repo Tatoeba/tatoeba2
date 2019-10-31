@@ -194,10 +194,12 @@ class SphinxConfShell extends Shell {
         'U+FF8D->U+30D8', 'U+FF8E->U+30DB', 'U+FF8F..U+FF93->U+30DE..U+30E2', 'U+FF94->U+30E4',
         'U+FF95->U+30E6', 'U+FF96->U+30E8', 'U+FF97->U+30E9', 'U+FF98->U+30EA', 'U+FF99->U+30EB',
         'U+FF9A->U+30EC', 'U+FF9B->U+30ED', 'U+FF9C->U+30EF', 'U+FF9D->U+30F3',
+        # Katakana Phonetic Extensions
+        'U+31F0..U+31FF',
         # Lao (lao)
         'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
         'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
-        'U+0EC0..U+0EC4', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
+        'U+0EBC', 'U+0EBD', 'U+0EC0..U+0EC4', 'U+EC6', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
         # Tibetan (bod) (not sure about marks and signs)
         'U+0F00', 'U+0F20..U+0F33', 'U+0F40..U+0F47', 'U+0F49..U+0F6C', 'U+0F71..U+0F87', 'U+0F90..U+0F97',
         'U+0F99..U+0FBC', 'U+0FD0..U+0FD2',
@@ -205,6 +207,12 @@ class SphinxConfShell extends Shell {
         'U+1780..U+17D2', 'U+17E0..U+17E9', 'U+17F0..U+17F9', 'U+19E0..U+19FF',
         # Thai (tha)
         'U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59',
+        # Yi syllables, used by Nuosu (iii)
+        'U+A000..U+A48C',
+        # Javanese (jav)
+        'U+A980..U+A9C0', 'U+A9CF..U+A9D9',
+        # Cuneiform, used by Sumerian (sux):
+        'U+12000..U+12399', 'U+12400..U+1246E', 'U+12480..U+12543',
     );
 
     public $regexpFilter = array(
