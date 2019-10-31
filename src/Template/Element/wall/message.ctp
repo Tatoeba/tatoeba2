@@ -69,7 +69,7 @@ $cssClass = isset($isRoot) ? 'wall-thread' : 'reply';
 $canReply = false;
 ?>
 
-<md-card class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
+<md-card id="message_<?= $messageId ?>" class="comment <?= $cssClass ?> <?= $messageHidden ? 'inappropriate' : '' ?>">
     <md-card-header>
         <md-card-avatar>
             <?= $this->Members->image($username, $avatar, array('class' => 'md-user-avatar')); ?>
