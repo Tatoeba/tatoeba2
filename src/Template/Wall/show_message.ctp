@@ -59,21 +59,7 @@ echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
 </div>
 
 <div id="main_content" ng-app="app" ng-controller="WallController as vm">
-    
-    <div class="module" style="display:none">
-        <?php
-        // Users are not suppoed to the able to post new message from here,
-        // but we need the form so that the Javascript works properly.
-        // TODO display:none is hackish for accessibility reason 
-        // but i agree it's my own :(
-        if ($isAuthenticated) {
-            echo '<div id="sendMessageForm">'."\n";
-            echo $this->Wall->displayAddMessageToWallForm(true);
-            echo '</div>'."\n";
-        }
-        ?>
-    </div>
-    
+
     <div class="wall">
     <?php
     echo $this->element('wall/message', [
