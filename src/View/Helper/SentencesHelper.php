@@ -532,8 +532,9 @@ class SentencesHelper extends AppHelper
 
         // Copy
         if (CurrentUser::getSetting('copy_button')) {
+            $targetId = $sentenceLang . "_" . $sentenceId;
             echo '<div class="copy column">';
-            $this->SentenceButtons->displayCopyButton($sentence->text);
+            $this->SentenceButtons->displayCopyButton($targetId);
             echo '</div>';
         }
 
@@ -682,6 +683,7 @@ class SentencesHelper extends AppHelper
             'text',
             $this->getCorrectnessLabel($correctness),
         );
+        $elementId = $sentenceLang.'_'.$sentenceId;
         $sentenceEscaped = false;
         if ($highlight) {
             $sentenceText = h($sentenceText);
@@ -702,7 +704,7 @@ class SentencesHelper extends AppHelper
                 'div', $sentenceLang, $sentenceText,
                 array(
                     'class' => join(' ', $classes),
-                    'id' => $sentenceLang.'_'.$sentenceId,
+                    'id' => $elementId,
                     'data-submit' => __('OK'),
                     'data-cancel' => __('Cancel'),
                     'escape' => !$sentenceEscaped,
@@ -716,6 +718,7 @@ class SentencesHelper extends AppHelper
                 'div', $sentenceLang, $sentenceText,
                 array(
                     'class' => join(' ', $classes),
+                    'id' => $elementId,
                     'escape' => !$sentenceEscaped,
                 ),
                 $sentenceScript

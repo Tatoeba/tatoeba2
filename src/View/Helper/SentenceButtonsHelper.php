@@ -269,15 +269,21 @@ class SentenceButtonsHelper extends AppHelper
 
 
     /**
+     * Copy to clipboard
      *
+     * @param string  $targetId   Id of the element whose content is copied
+     *                            to the clipboard.
+     *
+     * @return void
      */
-    public function displayCopyButton($text)
+    public function displayCopyButton($targetId)
     {
         $this->Html->script('clipboard.min.js', array('block' => 'scriptBottom'));
         $copyButton = $this->Images->svgIcon('copy');
         echo $this->Html->div('copy-btn', $copyButton,
             array(
-                'title' => __('Copy sentence')
+                'title' => __('Copy sentence'),
+                'data-target-id' => $targetId
             )
         );
     }
