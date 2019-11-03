@@ -47,14 +47,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Donate')));
     </div>
 
     <div class="section md-whiteframe-1dp">
-        <h2><?php echo __("Latest donations"); ?></h2>
-        <ol>
-            <li>Hamzah  - 15 €</li>
-            <li>Michael  - 5 €</li>
-            <li>EDRDG - 50 €</li>
-            <li>Zdenek - 20 €</li>
-            <li>Jane - 10 €</li>
-        </ol>
         <?php echo $this->Html->link(
             __("All donations"),
             'http://en.wiki.tatoeba.org/articles/show/donations'
