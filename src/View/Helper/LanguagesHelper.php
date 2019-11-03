@@ -419,6 +419,12 @@ class LanguagesHelper extends AppHelper
             $lang = 'unknown';
         }
 
+        if (isset($options['class'])) {
+            $options['class'] .= ' language-icon';
+        } else {
+            $options['class'] = 'language-icon';
+        }
+
         $options["title"] = $this->codeToNameAlone($lang);
         $options["alt"] = $lang;
         $options["width"] = 30;
