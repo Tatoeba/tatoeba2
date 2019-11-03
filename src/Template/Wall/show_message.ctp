@@ -39,9 +39,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     format(__('Thread #{number}'), array('number' => $message->id))
 ));
 
-$this->Html->script('jquery.scrollTo.min.js', ['block' => 'scriptBottom']);
-$this->Html->script('wall.reply.js', ['block' => 'scriptBottom']);
-$this->Html->script('wall.show_and_hide_replies.js', ['block' => 'scriptBottom']);
+echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -60,33 +58,15 @@ $this->Html->script('wall.show_and_hide_replies.js', ['block' => 'scriptBottom']
     </div>
 </div>
 
-<div id="main_content">
-    
-    <div class="module" style="display:none">
-        <?php
-        // Users are not suppoed to the able to post new message from here,
-        // but we need the form so that the Javascript works properly.
-        // TODO display:none is hackish for accessibility reason 
-        // but i agree it's my own :(
-        if ($isAuthenticated) {
-            echo '<div id="sendMessageForm">'."\n";
-            echo $this->Wall->displayAddMessageToWallForm(true);
-            echo '</div>'."\n";
-        }
-        ?>
-    </div>
-    
-    <div class="module">    
-        <div class="wall">
-            <?php
-            $this->Wall->createThread(
-                $message,
-                $message->user,
-                $message['Permissions'],
-                $message['children']
-            );
-            ?>
-        </div>
+<div id="main_content" ng-app="app" ng-controller="WallController as vm">
+
+    <div class="wall">
+    <?php
+    echo $this->element('wall/message', [
+        'message' => $message,
+        'isRoot' => true
+    ]);
+    ?>
     </div>
     
 </div>

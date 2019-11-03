@@ -36,7 +36,7 @@ foreach ($sentenceComments as $i=>$comment) {
     );
 
     echo $this->element(
-        'messages/comment',
+        'sentence_comments/comment',
         array(
             'comment' => $comment,
             'menu' => $menu,

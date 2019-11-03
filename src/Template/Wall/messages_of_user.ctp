@@ -62,12 +62,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     <div class="wall">
     <?php
     foreach ($messages as $message) {
-        $this->Wall->createThread(
-            $message,
-            $message->user,
-            null,
-            null
-        );
+        echo $this->element('wall/message', [
+            'message' => $message,
+            'isRoot' => true
+        ]);
     }
     ?>
     </div>

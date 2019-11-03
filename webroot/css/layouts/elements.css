@@ -272,24 +272,31 @@ html[dir="rtl"] .comment.sentence .text {
 
 .comment.inappropriate .warning-info p {
     padding: 0 10px;
-}
-
-.comment.inappropriate {
-    opacity: 0.6;
+    margin: 0;
 }
 
 .comment.inappropriate .content {
     color: #d50000;
+    border-top: 1px #f1f1f1 solid;
+    padding-top: 10px;
 }
 
 .comment.form .content{
     background: #f1f1f1;
+    border-top: 1px solid #ddd;
 }
+
 .comment.form .md-subhead {
     cursor: initial;
 }
+
+.comment.form md-card-header {
+    background: #fafafa;
+}
+
 .comment.form textarea {
     width: 100%;
+    height: 200px;
 }
 
 /*
@@ -1485,68 +1492,39 @@ div.hideLink {
  * --------------------------------------------------------------------
  */
 
-.wall {
-    font-size: 14px;
-}
-
-.wall .message {
-    border-left: none;
-    border-bottom: none;
-}
-
-.wall .message .body {
-    border-right: none;
-}
-
-.root .message .header {
-    border-right: 1px solid #fff;
-    margin-right: -1px;
-}
-
-.root .message, .replies .message {
-    margin: 5px 0 0 0;
-    padding-bottom: 15px;
-}
-
-.topThread {
-    border-left: 9px solid #cae2aa;
-    border-bottom: 1px solid #ddd;
+.wall-thread {
     margin: 40px 0;
-    border-right: 1px solid #ddd;
 }
 
-.thread {
-    border-left: 7px solid #eaf2e6;
-    margin-left: 2px;
-    padding-top: 1px;
+.wall.form md-card-header,
+.wall-thread md-card-header {
+    background: #fafafa;
+    border-top: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
 }
 
-.new.thread {
-    border-left: 7px solid #D3F2A9;
+.wall-thread {
+    border-left: 7px solid #cae2aa;
+}
+
+.wall-thread .reply {
+    border-left: 5px solid #eaf2e6;
+}
+
+.wall-thread .form,
+.wall-thread .reply {
+    box-shadow: none;
+    margin: 5px 0 0 1px;
+}
+
+.wall.form textarea {
+    width: 100%;
+    height: 200px;
+}
+
+.wall .reply-saved {
     background: #E8FFCC;
 }
-
-.wall .toggleRepliesButton {
-    cursor: pointer;
-    display: inline-block;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.wall .showReplies {
-    background: #06A;
-    color: #fff;
-    padding: 3px 10px;
-}
-
-.wall .hideReplies {
-    background: rgba(0, 102, 170, 0.1);
-    color: #06A;
-    border: 1px solid rgba(0, 102, 170, 0.2);
-    border-left: none;
-    padding: 2px 10px;
-}
-
 
 /*
  * --------------------------------------------------------------------

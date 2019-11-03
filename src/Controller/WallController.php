@@ -69,6 +69,10 @@ class WallController extends AppController
 
     public function beforeFilter(Event $event)
     {
+        $this->Security->config('unlockedActions', [
+            'save_inside',
+        ]);
+        
         $eventManager = $this->Wall->getEventManager();
         $eventManager->attach(new NotificationListener());
 
@@ -158,10 +162,8 @@ class WallController extends AppController
 
         // now save to database
         $message = $this->Wall->saveReply($parentId, $content, $userId);
-        if ($message) {
-            $this->set('user', $message->user);
-            $this->set('message', $message);
-        }
+        $this->set('message', $message);
+        $this->layout = 'json';
     }
 
     /**
@@ -174,7 +176,7 @@ class WallController extends AppController
     public function edit($messageId)
     {
         try {
-            $message = $this->Wall->get($messageId);
+            $message = $this->Wall->get($messageId, ['contain' => 'Users']);
         } catch(RecordNotFoundException $e) {
             return $this->redirect($this->referer());
         }

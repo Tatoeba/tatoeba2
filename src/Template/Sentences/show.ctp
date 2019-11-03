@@ -214,7 +214,7 @@ echo $this->element('/sentences/navigation', [
                 echo '<a id="comment-'.$comment->id.'"></a>';
 
                 echo $this->element(
-                    'messages/comment',
+                    'sentence_comments/comment',
                     array(
                         'comment' => $comment,
                         'menu' => $menu,
@@ -229,7 +229,7 @@ echo $this->element('/sentences/navigation', [
         }
 
         if ($canComment) {
-            echo $this->element('messages/comment_form', [
+            echo $this->element('sentence_comments/add_form', [
                 'sentenceId' => $sentenceId
             ]);
         }

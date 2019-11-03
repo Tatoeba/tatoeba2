@@ -47,7 +47,7 @@ $this->Paginator->options(
             );
 
             echo $this->element(
-                'messages/comment',
+                'sentence_comments/comment',
                 array(
                     'comment' => $comment,
                     'menu' => $menu,

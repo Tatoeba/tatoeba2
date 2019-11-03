@@ -62,61 +62,6 @@ class CommentsHelper extends AppHelper
         }        
     }
 
-
-    /**
-     *
-     *
-     *
-     */
-    public function displayCommentEditForm($message, $author) {
-        $created = $message['created'];
-        $modified = null;
-        if (isset($message['modified'])) {
-            $modified = $message['modified'];
-        }
-
-        $content = $message['text'];
-        $authorId = $author['id'];
-
-        echo $this->Form->create($message, [
-            'class' => 'message form',
-        ]);
-
-        $this->Messages->displayHeader($author, $created, $modified, null);
-        ?>
-
-        <div class="body">
-            <div class="textarea">
-            <?php
-            echo $this->Form->textarea('text');
-            ?>
-            </div>
-
-            <?php
-            $cancelUrl = $this->Url->build(
-                array(
-                    "controller" => "sentences",
-                    "action" => "show",
-                    $message['sentence_id'],
-                    "#" => "comment-".$message['id'],
-                )
-            );
-            ?>
-            <div layout="row" layout-align="end center" layout-padding>
-                <md-button class="md-raised" href="<?= $cancelUrl; ?>">
-                    <?php echo __('Cancel'); ?>
-                </md-button>
-
-                <md-button type="submit" class="md-raised md-primary">
-                    <?php echo __('Save changes'); ?>
-                </md-button>
-            </div>
-        </div>
-        <?php
-        echo $this->Form->end();
-    }
-
-
     /**
      *
      *

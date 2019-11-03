@@ -129,8 +129,9 @@ if ($sentenceOwnerLink) {
             <span class="md-title">
                 <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
             </span>
-            <span class="md-subhead ellipsis" title="<?= $fullDateLabel ?>">
+            <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
+                <md-tooltip ng-cloak><?= $fullDateLabel ?></md-tooltip>
             </span>
         </md-card-header-text>
 

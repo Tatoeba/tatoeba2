@@ -47,319 +47,6 @@ class WallHelper extends AppHelper
         'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages', 'Languages', 'Url'
     );
 
-
-    /**
-     * create the form to add a new message
-     *
-     * @return void
-     */
-
-    public function displayAddMessageToWallForm($isReply = false)
-    {
-        if ($isReply) {
-            $formId = 'reply-form';
-            $action = 'save_inside';
-        } else {
-            $formId = 'WallSaveForm';
-            $action = 'save';
-        }       
-        
-        echo $this->Form->create('', [
-            'id' => $formId,
-            'url' => ['controller' => 'wall', 'action' => $action],
-            'class' => 'message form'
-        ]);
-        ?>
-        <div class="hidden">
-        <?= $this->Form->input('replyTo', array('value' => '')); ?>
-        </div>
-
-        <div class="header">
-            <div class="info">
-            <?php
-            $user = CurrentUser::get('User');
-            $this->Messages->displayAvatar($user);
-            ?>
-            </div>
-            <div class="title">
-            <?php echo __('Add a message: '); ?>
-            </div>
-        </div>
-
-        <div class="body">
-            <div class="textarea">
-            <?php
-            echo $this->Form->textarea('content', array('lang' => '', 'dir' => 'auto'));
-            ?>
-            </div>
-
-            <div layout="row" layout-align="end center" layout-padding>
-                <md-button type="submit" class="cancelFormLink md-raised">
-                    <?php echo __('Cancel'); ?>
-                </md-button>
-
-                <md-button type="submit" class="md-raised md-primary submit">
-                    <?php echo __('Send'); ?>
-                </md-button>
-            </div>
-        </div>
-
-        <?php
-        echo $this->Form->end();
-
-    }
-
-
-    /**
-     * Create form for editing a wall message
-     *
-     * @param string $message The message
-     *
-     * @return void
-     */
-    public function displayEditMessageForm($message)
-    {
-        ?>
-        <div class="editWallMessage" >
-        <?php
-        echo $this->Form->create($message, [
-            'url' => [
-                'controller' => 'wall',
-                'action' => 'edit'
-            ],
-            'class' => 'message form'
-        ]);
-
-        echo $this->Form->hidden('id');
-
-        $this->Messages->displayFormHeader(__("Edit Wall Message"));
-        ?>
-
-        <div class="body">
-            <div class="textarea">
-            <?php echo $this->Form->textarea('content'); ?>
-            </div>
-
-            <?php
-            $cancelUrl = $this->Url->build([
-                'action' => 'show_message',
-                $message->id,
-                "#" => "message_".$message->id
-            ]);
-            ?>
-            <div layout="row" layout-align="end center" layout-padding>
-                <md-button class="md-raised" href="<?= $cancelUrl; ?>">
-                    <?php echo __('Cancel'); ?>
-                </md-button>
-
-                <md-button type="submit" class="md-raised md-primary">
-                    <?php echo __('Save changes'); ?>
-                </md-button>
-            </div>
-
-        </div>
-
-        <?php
-        echo $this->Form->end();
-        ?>
-        </div>
-        <?php
-    }
-
-
-
-    /**
-     * display username as a link to his profile
-     *
-     * @param string $userName nickname of the user
-     *
-     * @return void
-     */
-
-    public function displayLinkToUserProfile($userName)
-    {
-        echo $this->Html->link(
-            $userName,
-            array(
-                "controller"=>"user",
-                "action"=>"profile",
-                $userName
-            ),
-            array(
-                "title"=>__("View this user's profile")
-            )
-        );
-    }
-
-    /**
-     * Create the ul containing all the replies and subreplies
-     *
-     * @param array $children the reply to be displayed with nested inside
-     *                        "Wall" (message itselft)
-     *                        "User" the owner of this message
-     *                        "children" the replies of this message
-     *                        "Permission" the right current user have on this
-     *                         message
-     *
-     * @return void
-     */
-    private function _displayAllReplies($children)
-    {
-        if (!empty($children)) {
-            foreach ($children as $child) {
-                $this->createReplyDiv(
-                    // this is because the allMessages array
-                    // is indexed with message Id
-                    $child,
-                    $child->user,
-                    $child->children,
-                    $child['Permissions']
-                );
-            }
-        }
-    }
-
-    /**
-     * create the visual representation of the root message of a thread
-     *
-     * @param array $message     A simple array with only the information about
-     *                           the message
-     * @param array $author      Same as $message but for the message's author
-     * @param array $permissions Array of the permisions current user have on
-     *                           This message
-     *
-     * @return void
-     */
-
-    public function createRootDiv($message, $author, $permissions)
-    {
-        $writerImage = $author['image'];
-        $writerName  = $author['username'];
-
-        if (empty($writerImage)) {
-            $writerImage = 'unknown-avatar.png';
-        }
-
-        $messageId = $message['id'];
-        $menu = $this->_getMenuFromPermissions($message, $permissions);
-        ?>
-        <div class="root">
-            <?php
-            $this->Messages->displayMessage(
-                $message,
-                $author,
-                null,
-                $menu
-            );
-            ?>
-        </div>
-    <?php
-    }
-
-    /**
-     * Create the div containing a reply to a message and all the sub reply
-     * the call is recursive
-     *
-     * @param array $message           the reply to be displayed
-     * @param array $owner             Information about the message's author
-     * @param array $children          Replies for this message
-     * @param array $permissions permisions the current user have
-     *                                 on this message
-     *
-     * @return void
-     */
-    public function createReplyDiv($message, $owner, $children, $permissions)
-    {
-        $messageId = $message['id'];
-        ?>
-        <div class="thread" id="message_<?php echo $messageId; ?>">
-
-        <?php
-        $menu = $this->_getMenuFromPermissions($message, $permissions);
-        $this->Messages->displayMessage(
-            $message,
-            $owner,
-            null,
-            $menu
-        );
-        ?>
-
-        <?php ?><div class="replies" id="messageBody_<?php echo $messageId; ?>"><?php
-        if (!empty($children)) {
-            $this->_displayToggleButton($messageId);
-
-            $this->_displayAllReplies(
-                $children
-            );
-        }
-        ?></div>
-        <?php echo "<md-progress-circular id='loader_" . $messageId ."' class='block-loader' style='display: none;'></md-progress-circular>"; ?>
-        </div>
-    <?php
-    }
-
-    private function _displayToggleButton($messageId)
-    {
-        echo '<div class="toggleRepliesButton hideReplies"
-                id="hide_replies_button_'.$messageId.'"
-                onclick="toggleReplies('.$messageId.')">
-                '.__('hide replies').'</div>';
-        echo '<div class="toggleRepliesButton showReplies"
-                style="display:none;"
-                id="show_replies_button_'.$messageId.'"
-                onclick="toggleReplies('.$messageId.')">
-                '.__('show replies').'</div>';
-    }
-
-
-    /**
-     * Create a whole thread from a root message and its children
-     *
-     * @param array $message     Root message array
-     * @param array $author      Root message's author array.
-     * @param array $permissions Root message permissions for current user.
-     * @param array $children    Nested array of children and children of
-     *                           children.
-     *
-     * @return return void
-     */
-
-    public function createThread($message, $author, $permissions, $children)
-    {
-        $message = $message->toArray();
-        $messageId = $message['id'];
-
-        echo '<div id="message_'.$messageId.'" class="topThread" >'."\n";
-        // Root message
-        $this->createRootDiv(
-            $message,
-            $author,
-            $permissions
-        );
-
-        // replies
-        echo '<div class="replies" id="messageBody_'.$messageId .'" >';
-        if (!empty($children)) {
-            $this->_displayToggleButton($messageId);
-
-            foreach ($children as $child ) {
-                $this->createReplyDiv(
-                    // this is because the allMessages array
-                    // is indexed with message Id
-                    $child,
-                    $child->user,
-                    $child->children,
-                    $child['Permissions']
-                );
-            }
-        }
-        echo '</div>';
-        echo '</div>';
-
-
-    }
-
-
     /**
      * Display wall message preview (on homepage).
      *
@@ -418,7 +105,7 @@ class WallHelper extends AppHelper
     }
 
 
-    private function _getMenuFromPermissions($message, $permissions)
+    public function getMenuFromPermissions($message, $permissions)
     {
         $menu = array();
         $messageId = $message['id'];
@@ -436,6 +123,7 @@ class WallHelper extends AppHelper
             // hide/unhide link, for when people start acting like kids and stuff
             $menu[] = array(
                 'text' => $hiddenLinkText,
+                'icon' => 'visibility_off',
                 'url' => array(
                     "controller" => "wall",
                     "action" => $hiddenLinkAction,
@@ -447,6 +135,7 @@ class WallHelper extends AppHelper
         if ($permissions['canEdit']) {
             $menu[] = array(
                 'text' => __("edit"),
+                'icon' => 'edit',
                 'url' => array(
                     'controller' => 'wall',
                     'action' => 'edit',
@@ -460,6 +149,7 @@ class WallHelper extends AppHelper
             // delete link
             $menu[] = array(
                 'text' => __('delete'),
+                'icon' => 'delete',
                 'url' => array(
                     "controller"=>"wall",
                     "action"=>"delete_message",
@@ -474,22 +164,12 @@ class WallHelper extends AppHelper
             $replyClasses = 'replyLink ' . $messageId;
             $menu[] = array(
                 'text' => __("reply"),
+                'icon' => 'reply',
                 'url' => null,
                 'class' => $replyClasses,
                 'id' => $replyLinkId
             );
         }
-
-        // message link
-        $menu[] = array(
-            'text' => '#',
-            'url' => array(
-                'controller' => 'wall',
-                'action' => 'show_message',
-                $messageId,
-                '#' => "message_" .$messageId
-            )
-        );
 
         return $menu;
     }
