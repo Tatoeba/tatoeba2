@@ -72,10 +72,11 @@ if ($ignored) {
 ?>
 
 <div id="annexe_content">
-    <div class="module advanced-search">
-    <h2><?php echo __('More search criteria'); ?></h2>
+    <div class="md-whiteframe-1dp">
+    <md-subheader><?php echo __('More search criteria'); ?></md-subheader>
     <?php echo $this->element('advanced_search_form', array(
                    'searchableLists' => $searchableLists,
+                   'isSidebar' => true
           )); ?>
     </div>
 </div>

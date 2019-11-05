@@ -17,231 +17,336 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-echo $this->Form->create(
-    'AdvancedSearch',
-    array(
-        'url' => array(
-            'controller' => 'sentences',
-            'action' => 'search',
-        ),
-        'type' => 'get',
-        'id' => 'AdvancedSearchSearchForm',
-        'class' => 'form'
-    )
-);
+$layout = isset($isSidebar) && $isSidebar ? 'column' : 'row';
+
+echo $this->Form->create('AdvancedSearch', [
+    'id' => 'advanced-search',
+    'type' => 'get',
+    'url' => [
+        'controller' => 'sentences',
+        'action' => 'search',
+    ]
+]);
 ?>
-<fieldset id="advsearch-sentences">
-<legend><?php echo __('Sentences'); ?></legend>
-<?php
-    echo $this->Form->input('query', array(
-        'label' => __('Words:'),
-        'value' => $query,
-        'lang' => '',
-        'dir' => 'auto',
-    ));
 
-    echo $this->Search->selectLang('from', $from, array(
-        'label' => __('Language:'),
-    ));
+<div layout="column" ng-app="app" ng-cloak>
+    <div layout="<?= $layout ?>">
+        <div class="column-1" layout="column" flex>
+            <h3><?= __('Sentences'); ?></h3>
 
-    echo $this->Search->selectLang('to', $to, array(
-        'label' => __('Show translations in:'),
-        'options' => $this->Languages->languagesArrayForPositiveLists(),
-    ));
+            <md-input-container>
+                <?php
+                echo $this->Form->input('query', array(
+                    'label' => __('Words:'),
+                    'value' => $query,
+                    'lang' => '',
+                    'dir' => 'auto',
+                ));
+                ?>
+                <div class="hint"><?= __('Enter a word or a phrase') ?></div>
+            </md-input-container>
 
-    echo $this->Form->input('orphans', array(
-        'label' => __('Is orphan:'),
-        'options' => array(
-            '' => __x('orphan', 'Any'),
-            'no' => __('No'),
-            'yes' => __('Yes'),
-        ),
-        'value' => $orphans,
-    ));
-    echo $this->Html->tag(
-        'div',
-        __('Orphan sentences are likely to be incorrect.'),
-        array(
-            'class' => 'note',
-        )
-    );
+            <div class="param" layout="<?= $layout ?>" layout-align="center">
+                <label for="from" flex><?= __('Language:') ?></label>
+                <?php
+                echo $this->Search->selectLang('from', $from, ['label' => '']);
+                ?>
+            </div>
 
-    echo $this->Form->input('unapproved', array(
-        'label' => __('Is unapproved:'),
-        'options' => array(
-            '' => __x('unapproved', 'Any'),
-            'no' => __('No'),
-            'yes' => __('Yes'),
-        ),
-        'value' => $unapproved,
-    ));
-    echo $this->Html->tag(
-        'div',
-        __('Unapproved sentences are likely to be incorrect.'),
-        array(
-            'class' => 'note',
-        )
-    );
+            <div class="param" layout="<?= $layout ?>" layout-align="center">
+                <label for="to" flex><?= __('Show translations in:') ?></label>
+                <?php
+                echo $this->Search->selectLang('to', $to, [
+                    'label' => '',
+                    'options' => $this->Languages->languagesArrayForPositiveLists(),
+                ]);
+                ?>
+            </div>
 
-    echo $this->Form->input('native', array(
-        'type' => 'checkbox',
-        'hiddenField' => false,
-        'label' => __('Owned by a self-identified native'),
-        'value' => 'yes',
-        'checked' => $native,
-    ));
+            <md-input-container>
+                <?php
+                echo $this->Form->input('user', array(
+                    'label' => __('Owner:'),
+                    'value' => $user,
+                ));
+                ?>
+                <div class="hint"><?= __('Enter a username') ?></div>
+            </md-input-container>
 
-    echo $this->Form->input('user', array(
-        'label' => __('Owner:'),
-        'placeholder' => __('Enter a username'),
-        'value' => $user,
-    ));
+            <div class="param">
+                <div layout="row" layout-align="center">
+                    <label for="orphans" flex><?= __('Is orphan:') ?></label>
+                    <?php
+                    echo $this->Form->input('orphans', [
+                        'label' => '',
+                        'options' => [
+                            '' => __x('orphan', 'Any'),
+                            'no' => __('No'),
+                            'yes' => __('Yes'),
+                        ],
+                        'value' => $orphans,
+                    ]);
+                    ?>
+                </div>
+                <div class="hint">
+                    <?= __('Orphan sentences are likely to be incorrect.') ?>
+                </div>
+            </div>
 
-    $tagsNote = $this->Html->tag(
-        'div',
-        __('Separate tags with commas.'),
-        array(
-            'class' => 'note',
-        )
-    );
-    echo $this->Form->input('tags', array(
-        'label' => __('Tags:'),
-        'value' => $tags,
-        'after' => $tagsNote,
-    ));
+            <div class="param">
+                <div layout="row" layout-align="center">
+                    <label for="unapproved" flex><?= __('Is unapproved:') ?></label>
+                    <?php
+                    echo $this->Form->input('unapproved', array(
+                        'label' => '',
+                        'options' => array(
+                            '' => __x('unapproved', 'Any'),
+                            'no' => __('No'),
+                            'yes' => __('Yes'),
+                        ),
+                        'value' => $unapproved,
+                    ));
+                    ?>
+                </div>
+                <div class="hint">
+                    <?= __('Unapproved sentences are likely to be incorrect.') ?>
+                </div>
+            </div>
+            
+            <div class="param" layout="row" layout-align="center">
+                <label for="has_audio" flex><?= __('Has audio:') ?></label>
+                <?php
+                echo $this->Form->input('has-audio', array(
+                    'label' => '',
+                    'options' => array(
+                        '' => __x('audio', 'Any'),
+                        'no' => __('No'),
+                        'yes' => __('Yes'),
+                    ),
+                    'value' => $has_audio,
+                ));
+                ?>
+            </div>
 
-    $listOptions = $this->Lists->listsAsSelectable($searchableLists);
-    echo $this->Form->input('list', array(
-        'label' => __('Belongs to list:'),
-        'value' => $list,
-        'options' => $listOptions,
-    ));
+            <md-input-container>
+            <?php
+            echo $this->Form->input('tags', array(
+                'label' => __('Tags:'),
+                'value' => $tags
+            ));
+            ?>
+            <div class="hint">
+                <?= __('Separate tags with commas.') ?>
+            </div>
+            </md-input-container>
 
-    echo $this->Form->input('has_audio', array(
-        'label' => __('Has audio:'),
-        'options' => array(
-            '' => __x('audio', 'Any'),
-            'no' => __('No'),
-            'yes' => __('Yes'),
-        ),
-        'value' => $has_audio,
-    ));
-?>
-</fieldset>
+            <div class="param" layout="<?= $layout ?>" layout-align="center">
+                <label for="list" flex><?= __('Belongs to list:') ?></label>
+                <div flex>
+                <?php
+                $listOptions = $this->Lists->listsAsSelectable($searchableLists);
+                echo $this->Form->input('list', [
+                    'class' => 'list-select',
+                    'label' => '',
+                    'value' => $list,
+                    'options' => $listOptions,
+                ]);
+                ?>
+                </div>
+            </div>
 
-<div class="right-side">
-  <fieldset id="advsearch-translations">
-  <legend><?php echo __('Translations'); ?></legend>
-  <?php
-      $filterOption = $this->Form->select(
-          'trans_filter',
-          array(
-              /* @translators This is inserted into another sentence
-                              that begins with {action} */
-              'limit' => __('Limit to'),
-              /* @translators This is inserted into another sentence
-                              that begins with {action} */
-              'exclude' => __('Exclude'),
-          ),
-          array(
-              'value' => $trans_filter,
-              'empty' => false
-          )
-      );
-      $label = format(
-          __('{action} sentences having translations that match'
-            .' all the following criteria.', true),
-          array('action' => $filterOption)
-      );
-      echo "<label>$label</label>";
+            <div class="param" layout="row" layout-align="center">
+                <md-checkbox
+                    ng-false-value="0"
+                    ng-true-value="1"
+                    ng-model="native"
+                    ng-init="native = <?= isset($native) && $native == 'yes' ? 1 : 0 ?>"
+                    class="md-primary">
+                </md-checkbox>
+                <div ng-hide="true">
+                    <?php
+                    echo $this->Form->input('native', [
+                        'value' => '{{native ? "yes" : ""}}',
+                    ]);
+                    ?>
+                </div>
+                <label for="native" flex><?= __('Owned by a self-identified native') ?></label>
+            </div>
+        </div>
 
-      echo $this->Search->selectLang('trans_to', $trans_to, array(
-          'label' => __('Language:'),
-          'options' => $this->Languages->getSearchableLanguagesArray(),
-      ));
-      echo $this->Form->input('trans_link', array(
-          'label' => __('Link:'),
-          'options' => array(
-              '' => __x('link', 'Any'),
-              'direct' => __('Direct'),
-              'indirect' => __('Indirect'),
-          ),
-          'value' => $trans_link,
-      ));
-      echo $this->Form->input('trans_user', array(
-          'label' => __('Owner:'),
-          'placeholder' => __('Enter a username'),
-          'value' => $trans_user,
-      ));
-      echo $this->Form->input('trans_orphan', array(
-          'label' => __('Is orphan:'),
-          'options' => array(
-              '' => __x('orphan', 'Any'),
-              'no' => __('No'),
-              'yes' => __('Yes'),
-          ),
-          'value' => $trans_orphan,
-      ));
-      echo $this->Form->input('trans_unapproved', array(
-          'label' => __('Is unapproved:'),
-          'options' => array(
-              '' => __x('unapproved', 'Any'),
-              'no' => __('No'),
-              'yes' => __('Yes'),
-          ),
-          'value' => $trans_unapproved,
-      ));
-      echo $this->Form->input('trans_has_audio', array(
-          'label' => __('Has audio:'),
-          'options' => array(
-              '' => __x('audio', 'Any'),
-              'no' => __('No'),
-              'yes' => __('Yes'),
-          ),
-          'value' => $trans_has_audio,
-      ));
-  ?>
-  </fieldset>
+        <div class="column-2" <?= isset($isSidebar) && $isSidebar ? '' : 'flex' ?>>
+            <div layout="column">
+                <h3><?php echo __('Translations'); ?></h3>
 
-  <fieldset id="advsearch-sort">
-  <legend><?php echo __('Sort'); ?></legend>
-  <?php
-      echo $this->Form->input('sort', array(
-          'label' => __('Order:'),
-          'options' => array(
-              'relevance' => __('Relevance'),
-              'words' => __('Fewest words first'),
-              'created' => __('Last created first'),
-              'modified' => __('Last modified first'),
-              'random' => __('Random'),
-          ),
-          'value' => $sort,
-      ));
-      echo $this->Form->input('sort_reverse', array(
-          'type' => 'checkbox',
-          'hiddenField' => false,
-          'label' => __('Reverse order'),
-          'value' => 'yes',
-          'checked' => $sort_reverse,
-      ));
-  ?>
-  </fieldset>
-<?php
-echo '<p>';
-echo $this->Html->link(
-    __('More search options'),
-    'http://en.wiki.tatoeba.org/articles/show/text-search',
-    array(
-        'target' => '_blank'
-    )
-);
-echo '</p>';
+                <div class="param">
+                <?php
+                $filterOption = $this->Form->select(
+                    'trans_filter',
+                    array(
+                        /* @translators This is inserted into another sentence
+                                        that begins with {action} */
+                        'limit' => __('Limit to'),
+                        /* @translators This is inserted into another sentence
+                                        that begins with {action} */
+                        'exclude' => __('Exclude'),
+                    ),
+                    array(
+                        'value' => $trans_filter,
+                        'empty' => false
+                    )
+                );
+                $label = format(
+                    __('{action} sentences having translations that match'
+                    .' all the following criteria.', true),
+                    array('action' => $filterOption)
+                );
+                echo "<label>$label</label>";
+                ?>
+                </div>
 
-echo $this->Form->button(
-    __x('button', 'Advanced search'),
-    array('class' => 'button submit')
-);
-?>
+                <div class="param" layout="<?= $layout ?>" layout-align="center">
+                    <label for="trans-to" flex><?= __('Language:') ?></label>
+                    <?php
+                    echo $this->Search->selectLang('trans_to', $trans_to, array(
+                        'label' => '',
+                        'options' => $this->Languages->getSearchableLanguagesArray(),
+                    ));
+                    ?>
+                </div>
+
+                <div class="param" layout="row" layout-align="center">
+                    <label for="trans-link" flex><?= __('Link:') ?></label>
+                    <?php
+                    echo $this->Form->input('trans_link', array(
+                        'label' => '',
+                        'options' => array(
+                            '' => __x('link', 'Any'),
+                            'direct' => __('Direct'),
+                            'indirect' => __('Indirect'),
+                        ),
+                        'value' => $trans_link,
+                    ));
+                    ?>
+                </div>
+
+                <md-input-container>
+                    <?php
+                    echo $this->Form->input('trans_user', array(
+                        'label' => __('Owner:'),
+                        'value' => $trans_user,
+                    ));
+                    ?>
+                    <div class="hint"><?= __('Enter a username') ?></div>
+                </md-input-container>
+
+                <div class="param">
+                    <div layout="row" layout-align="center">
+                        <label for="trans-orphan" flex><?= __('Is orphan:') ?></label>
+                        <?php
+                        echo $this->Form->input('trans_orphan', array(
+                            'label' => '',
+                            'options' => array(
+                                '' => __x('orphan', 'Any'),
+                                'no' => __('No'),
+                                'yes' => __('Yes'),
+                            ),
+                            'value' => $trans_orphan,
+                        ));
+                        ?>
+                    </div>
+                    <div class="hint">
+                        <?= __('Orphan sentences are likely to be incorrect.') ?>
+                    </div>
+                </div>
+
+                <div class="param">
+                    <div layout="row" layout-align="center">
+                        <label for="trans-unapproved" flex><?= __('Is unapproved:') ?></label>
+                        <?php
+                        echo $this->Form->input('trans_unapproved', array(
+                            'label' => '',
+                            'options' => array(
+                                '' => __x('unapproved', 'Any'),
+                                'no' => __('No'),
+                                'yes' => __('Yes'),
+                            ),
+                            'value' => $trans_unapproved,
+                        ));
+                        ?>
+                    </div>
+                    <div class="hint">
+                        <?= __('Unapproved sentences are likely to be incorrect.') ?>
+                    </div>
+                </div>
+
+                <div class="param" layout="row" layout-align="center">
+                    <label for="trans-has-audio" flex><?= __('Has audio:') ?></label>
+                    <?php
+                    echo $this->Form->input('trans_has_audio', array(
+                        'label' => '',
+                        'options' => array(
+                            '' => __x('audio', 'Any'),
+                            'no' => __('No'),
+                            'yes' => __('Yes'),
+                        ),
+                        'value' => $trans_has_audio,
+                    ));
+                    ?>
+                </div>
+            </div>
+
+            <div layout="column">
+                <h3><?php echo __('Sort'); ?></h3>
+
+                <div class="param" layout="<?= $layout ?>" layout-align="center">
+                    <label for="sort" flex><?= __('Order:') ?></label>
+                    <?php
+                    echo $this->Form->input('sort', array(
+                        'label' => '',
+                        'options' => array(
+                            'relevance' => __('Relevance'),
+                            'words' => __('Fewest words first'),
+                            'created' => __('Last created first'),
+                            'modified' => __('Last modified first'),
+                            'random' => __('Random'),
+                        ),
+                        'value' => $sort,
+                    ));
+                    ?>
+                </div>
+
+                <div class="param" layout="row" layout-align="center">
+                    <md-checkbox
+                        ng-false-value="0"
+                        ng-true-value="1"
+                        ng-model="sortReverse"
+                        ng-init="sortReverse = <?= $sort_reverse == 'yes' ? 1 : 0 ?>"
+                        class="md-primary">
+                    </md-checkbox>
+                    <div ng-hide="true">
+                        <?php
+                        echo $this->Form->input('sort_reverse', [
+                            'value' => '{{sortReverse ? "yes" : ""}}',
+                        ]);
+                        ?>
+                    </div>
+                    <label for="sort-reverse" flex><?= __('Reverse order') ?></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons" layout="<?= $layout ?>">
+        <md-button type="submit" class="md-primary md-raised">
+            <?= __x('button', 'Search') ?>
+        </md-button>
+
+        <md-button class="md-primary" target="_blank"
+                   href="http://en.wiki.tatoeba.org/articles/show/text-search">
+            <?= __('More search options') ?>
+        </md-button>
+    </div>
 </div>
+
 <?php
 echo $this->Form->end();

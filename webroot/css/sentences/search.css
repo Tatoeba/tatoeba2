@@ -45,75 +45,22 @@
 /*
  * Advanced search form
  */
-#annexe_content {
-    width: auto;
+#advanced-search {
+    margin: 0 20px;    
 }
 
-#annexe_content .advanced-search {
-    padding: 10px 0;
-    max-width: 285px;
-}
-
-legend {
-    font-size: 15px;
-}
-
-#AdvancedSearchSearchForm {
-    text-align: right;
-}
-
-#AdvancedSearchSearchForm label:first-child {
-    padding-right: 5px;
-    text-align: right;
-    width: 110px;
-    display: inline-block;
-}
-
-#AdvancedSearchSearchForm .checkbox label:first-child {
-    width: inherit;
-}
-
-#AdvancedSearchSearchForm input {
-    border: 1px solid #DDDDDD;
-}
-
-#AdvancedSearchSearchForm input + label {
-    vertical-align: middle;
-    display: inline-block;
-    width: 50%;
-}
-
-#AdvancedSearchSearchForm input[type="text"]:first-child {
-    margin-left: 100px;
-}
-#AdvancedSearchSearchForm div.note {
-    margin-left: 118px;
-}
-
-#AdvancedSearchSearchForm .input {
+#advanced-search .param {
     margin: 10px 0;
 }
 
-.note {
-    font-size: 85%;
-    margin-left: 5px;
+#advanced-search .md-errors-spacer {
+    display: none;
 }
 
-#AdvancedSearchSearchForm fieldset {
-    text-align: left;
-    border: 1px solid #DDD;
-    vertical-align: top;
-    width: 260px;
-    margin-bottom: 10px;
+#advanced-search .select select {
+    width: 100%;
 }
 
-#AdvancedSearchSearchForm select,
-#AdvancedSearchSearchForm input[type="text"] {
-    width: 140px;
-    margin-bottom: 3px;
+#advanced-search .buttons {
+    margin: 20px 0;
 }
-
-#AdvancedSearchSearchForm .submit {
-    margin: 0 5px;
-}
-
