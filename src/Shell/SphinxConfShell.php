@@ -178,7 +178,7 @@ class SphinxConfShell extends Shell {
         'U+2DC8..U+2DCE', 'U+2DD0..U+2DD6', 'U+2DD8..U+2DDE', 'U+AB01..U+AB06', 'U+AB09..U+AB0E', 'U+AB11..U+AB16',
         'U+AB20..U+AB26', 'U+AB28..U+AB2E',
         # Cherokee
-        'U+13A0..U+13F4',
+        'U+13A0..U+13EF->U+AB70..U+ABBF', 'U+13F0..U+13F5->U+13F8..U+13FD', 'U+13F8..U+13FD', 'U+AB70..U+ABBF',
         # Mon (called Myanmar by Unicode)
         'U+1000..U+1049', 'U+104C..U+109F', 'U+AA60..U+AA7F', 'U+A9E0..U+A9FE',
         # Sinhala
