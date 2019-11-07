@@ -167,7 +167,7 @@ class SphinxConfShell extends Shell {
         # Devanagari + Devanagari Extended
         'U+900..U+963', 'U+966..U+97F', 'U+A8E0..U+A8FB',
         # Armenian + Alphabetic Presentation Forms (Armenian Small Ligatures)
-        'U+531..U+58A', 'U+FB13..U+FB17',
+        'U+531..U+556->U+561..U+586', 'U+559', 'U+561..U+586', 'U+FB13..U+FB17',
         # Malayalam
         'U+D00..U+D7F',
         # Ethiopic
