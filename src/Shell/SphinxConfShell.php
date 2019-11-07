@@ -55,24 +55,24 @@ class SphinxConfShell extends Shell {
         'U+A8->U+308', 'U+AA->U+61', 'U+AF->U+304', 'U+B2..U+B3->U+32..U+33', 'U+B4->U+301', 'U+B5->U+3BC', 'U+B8->U+327', 'U+B9->U+31', 'U+BA->U+6F',
         'U+C0..U+D6->U+E0..U+F6', 'U+D8..U+DE->U+F8..U+FE', 'U+DF', 'U+E0..U+F6', 'U+F8..U+FF',
         # Latin extended-A, with case folding (0100-017F)
-        'U+100..U+137/2', 'U+138', 'U+139..U+148/2', 'U+149', 'U+14A..U+177/2', 'U+178->U+FF', 'U+179..U+17E/2', 'U+017F',
+        'U+100..U+137/2', 'U+138', 'U+139..U+148/2', 'U+149', 'U+14A..U+177/2', 'U+178->U+FF', 'U+179..U+17E/2', 'U+17F',
         # Latin extended-B, with case folding (0180-024F)
-        'U+0180', 'U+0181->U+0253', 'U+0182..U+0185/2', 'U+0186->U+0254', 'U+0187->U+0188', 'U+0188',
-        'U+0189->U+0256', 'U+018A->U+0257', 'U+018B->U+018C', 'U+018C', 'U+018D', 'U+018E->U+01DD', 'U+018F->U+0259',
-        'U+0190->U+025B', 'U+0191->U+0192', 'U+0192', 'U+0193->U+0260', 'U+0194->U+0263', 'U+0195', 'U+0196->U+0269', 'U+0197->U+0268', 'U+0198->U+0199',
-        'U+0199..U+019B', 'U+019C->U+026F', 'U+019D->U+0272', 'U+019E', 'U+019F->U+0275',
-        'U+01A0..U+01A5/2', 'U+01A6->U+0280', 'U+01A7->U+01A8', 'U+01A8',
-        'U+01A9->U+0283', 'U+01AA', 'U+01AB', 'U+01AC->U+01AD', 'U+01AD', 'U+01AE->U+0288', 'U+01AF->U+01B0',
-        'U+01B0', 'U+01B1->U+028A', 'U+01B2->U+028B', 'U+01B3..U+01B6/2', 'U+01B7->U+0292', 'U+01B8->U+01B9', 'U+01B9',
-        'U+01BA', 'U+01BB', 'U+01BC->U+01BD', 'U+01BD..U+01BF',
-        'U+01C0..U+01C3', 'U+01C4->U+01C6', 'U+01C5', 'U+01C6', 'U+01C7->U+01C9', 'U+01C8',
-        'U+01C9..U+01CC', 'U+01CD..U+01DC/2', 'U+01DD', 'U+01DE..U+01EF/2',
-        'U+01F0', 'U+01F1->U+01F3', 'U+01F2', 'U+01F3', 'U+01F4->U+01F5', 'U+01F5', 'U+01F6->U+0195', 'U+01F7->U+01BF', 'U+01F8..U+021F/2',
-        'U+0220->U+019E', 'U+0221', 'U+0222..U+0233/2', 'U+0234..U+0238',
-        'U+0239', 'U+023A->U+2C65', 'U+023B->U+023C', 'U+023C', 'U+023D->U+019A', 'U+023E->U+2C66', 'U+023F',
-        'U+0240', 'U+0241->U+0242', 'U+0242', 'U+0243->U+0180', 'U+0244->U+0289', 'U+0245->U+028C', 'U+0246..U+024F/2',
+        'U+180', 'U+181->U+253', 'U+182..U+185/2', 'U+186->U+254', 'U+187->U+188', 'U+188',
+        'U+189->U+256', 'U+18A->U+257', 'U+18B->U+18C', 'U+18C', 'U+18D', 'U+18E->U+1DD', 'U+18F->U+259',
+        'U+190->U+25B', 'U+191->U+192', 'U+192', 'U+193->U+260', 'U+194->U+263', 'U+195', 'U+196->U+269', 'U+197->U+268', 'U+198->U+199',
+        'U+199..U+19B', 'U+19C->U+26F', 'U+19D->U+272', 'U+19E', 'U+19F->U+275',
+        'U+1A0..U+1A5/2', 'U+1A6->U+280', 'U+1A7->U+1A8', 'U+1A8',
+        'U+1A9->U+283', 'U+1AA', 'U+1AB', 'U+1AC->U+1AD', 'U+1AD', 'U+1AE->U+288', 'U+1AF->U+1B0',
+        'U+1B0', 'U+1B1->U+28A', 'U+1B2->U+28B', 'U+1B3..U+1B6/2', 'U+1B7->U+292', 'U+1B8->U+1B9', 'U+1B9',
+        'U+1BA', 'U+1BB', 'U+1BC->U+1BD', 'U+1BD..U+1BF',
+        'U+1C0..U+1C3', 'U+1C4->U+1C6', 'U+1C5', 'U+1C6', 'U+1C7->U+1C9', 'U+1C8',
+        'U+1C9..U+1CC', 'U+1CD..U+1DC/2', 'U+1DD', 'U+1DE..U+1EF/2',
+        'U+1F0', 'U+1F1->U+1F3', 'U+1F2', 'U+1F3', 'U+1F4->U+1F5', 'U+1F5', 'U+1F6->U+195', 'U+1F7->U+1BF', 'U+1F8..U+21F/2',
+        'U+220->U+19E', 'U+221', 'U+222..U+233/2', 'U+234..U+238',
+        'U+239', 'U+23A->U+2C65', 'U+23B->U+23C', 'U+23C', 'U+23D->U+19A', 'U+23E->U+2C66', 'U+23F',
+        'U+240', 'U+241->U+242', 'U+242', 'U+243->U+180', 'U+244->U+289', 'U+245->U+28C', 'U+246..U+24F/2',
         # IPA Extensions
-        'U+0250..U+02AF',
+        'U+250..U+2AF',
         # Phonetic Extensions
         'U+1D00..U+1D2B', 'U+1D2C->U+61', 'U+1D2D->U+E6', 'U+1D2E->U+62', 'U+1D2F', 'U+1D30..U+1D31->U+64..U+65', 'U+1D32->U+1DD',
         'U+1D33..U+1D3A->U+67..U+6E', 'U+1D3B', 'U+1D3C->U+6F', 'U+1D3D->U+223', 'U+1D3E->U+70', 'U+1D3F->U+72', 'U+1D40..U+1D41->U+74..U+75',
@@ -182,24 +182,24 @@ class SphinxConfShell extends Shell {
         # Mon (called Myanmar by Unicode)
         'U+1000..U+1049', 'U+104C..U+109F', 'U+AA60..U+AA7F', 'U+A9E0..U+A9FE',
         # Sinhala
-        'U+0D82', 'U+0D83', 'U+0D85..U+0D96', 'U+0D9A..U+0DB1', 'U+0DB3..U+0DBB', 'U+0DBD', 'U+0DC0..U+0DC6',
-        'U+0DCA', 'U+0DCF..U+0DD4', 'U+0DD6', 'U+0DD8..U+0DDF', 'U+0DE6..U+0DEF', 'U+0DF2', 'U+0DF3',
+        'U+D82', 'U+D83', 'U+D85..U+D96', 'U+D9A..U+DB1', 'U+DB3..U+DBB', 'U+DBD', 'U+DC0..U+DC6',
+        'U+DCA', 'U+DCF..U+DD4', 'U+DD6', 'U+DD8..U+DDF', 'U+DE6..U+DEF', 'U+DF2', 'U+DF3',
         'U+111E1..U+111E9', 'U+111EA..U+111F4',
         # Tamil
-        'U+0B82', 'U+0B83', 'U+0B85..U+0B8A', 'U+0B8E..U+0B90', 'U+0B92..U+0B95', 'U+0B99', 'U+0B9A', 'U+0B9C',
-        'U+0B9E', 'U+0B9F', 'U+0BA3', 'U+0BA4', 'U+0BA8..U+0BAA', 'U+0BAE..U+0BB9', 'U+0BBE..U+0BC2', 'U+0BC6..U+0BC8',
-        'U+0BCA..U+0BCD', 'U+0BD0', 'U+0BD7', 'U+0BE6..U+0BFA',
+        'U+B82', 'U+B83', 'U+B85..U+B8A', 'U+B8E..U+B90', 'U+B92..U+B95', 'U+B99', 'U+B9A', 'U+B9C',
+        'U+B9E', 'U+B9F', 'U+BA3', 'U+BA4', 'U+BA8..U+BAA', 'U+BAE..U+BB9', 'U+BBE..U+BC2', 'U+BC6..U+BC8',
+        'U+BCA..U+BCD', 'U+BD0', 'U+BD7', 'U+BE6..U+BFA',
         # Telugu
-        'U+0C00..U+0C03', 'U+0C05..U+0C0C', 'U+0C0E..U+0C10', 'U+0C12..U+0C28', 'U+0C2A..U+0C39', 'U+0C3D..U+0C44',
-        'U+0C46..U+0C48', 'U+0C4A..U+0C4D', 'U+0C55', 'U+0C56', 'U+0C58', 'U+0C59', 'U+0C60..U+0C63', 'U+0C66..U+0C6F',
-        'U+0C78..U+0C7F',
+        'U+C00..U+C03', 'U+C05..U+C0C', 'U+C0E..U+C10', 'U+C12..U+C28', 'U+C2A..U+C39', 'U+C3D..U+C44',
+        'U+C46..U+C48', 'U+C4A..U+C4D', 'U+C55', 'U+C56', 'U+C58', 'U+C59', 'U+C60..U+C63', 'U+C66..U+C6F',
+        'U+C78..U+C7F',
         # Gurmukhi (one of the scripts for [Eastern] Punjabi)
-        'U+0A01..U+0A03', 'U+0A05..U+0A0A', 'U+0A0F', 'U+0A10', 'U+0A13..U+0A19', 'U+0A1A..U+0A28', 'U+0A2A..U+0A30',
-        'U+0A32', 'U+0A33', 'U+0A35', 'U+0A36', 'U+0A38', 'U+0A39', 'U+0A3C', 'U+0A3E..U+0A42', 'U+0A47', 'U+0A48',
-        'U+0A4B..U+0A4D', 'U+0A51', 'U+0A59..U+0A5C', 'U+0A5E', 'U+0A66..U+0A75',
+        'U+A01..U+A03', 'U+A05..U+A0A', 'U+A0F', 'U+A10', 'U+A13..U+A19', 'U+A1A..U+A28', 'U+A2A..U+A30',
+        'U+A32', 'U+A33', 'U+A35', 'U+A36', 'U+A38', 'U+A39', 'U+A3C', 'U+A3E..U+A42', 'U+A47', 'U+A48',
+        'U+A4B..U+A4D', 'U+A51', 'U+A59..U+A5C', 'U+A5E', 'U+A66..U+A75',
         # Gujarati
-        'U+0A81..U+0A83', 'U+0A85..U+0A8D', 'U+0A8F..U+0A91', 'U+0A93..U+0AA8', 'U+0AAA..U+0AB0', 'U+0AB2', 'U+0AB3',
-        'U+0AB5..U+0AB9', 'U+0ABC..U+0AC5', 'U+0AC7..U+0AC9', 'U+0ACB..U+0ACD', 'U+0AD0', 'U+0AE0..U+0AE3', 'U+0AE6..U+0AEF',
+        'U+A81..U+A83', 'U+A85..U+A8D', 'U+A8F..U+A91', 'U+A93..U+AA8', 'U+AAA..U+AB0', 'U+AB2', 'U+AB3',
+        'U+AB5..U+AB9', 'U+ABC..U+AC5', 'U+AC7..U+AC9', 'U+ACB..U+ACD', 'U+AD0', 'U+AE0..U+AE3', 'U+AE6..U+AEF',
         # Latin fullwidth to halfwidth
         'U+FF10..U+FF19->U+30..U+39', 'U+FF21..U+FF3A->U+61..U+7A', 'U+FF41..U+FF5A->U+61..U+7A',
         # Hangul
@@ -210,18 +210,18 @@ class SphinxConfShell extends Shell {
         # Neo-Tifinagh (one of the Berber scripts)
         'U+2D30..U+2D67', 'U+2D6F',
         # Syriac (script of Assyrian)
-        'U+0710..U+074A', 'U+074D..U+074F',
+        'U+710..U+74A', 'U+74D..U+74F',
         # Odia/Oriya
-        'U+0B01..U+0B03', 'U+0B05..U+0B0C', 'U+0B0F..U+0B10', 'U+0B13..U+0B28',
-        'U+0B2A..U+0B30', 'U+0B32..U+0B33', 'U+0B35..U+0B39', 'U+0B3C..U+0B44',
-        'U+0B47..U+0B48', 'U+0B4B..U+0B4D', 'U+0B56..U+0B57', 'U+0B5C..U+0B5D',
-        'U+0B5F..U+0B63', 'U+0B66..U+0B77',
+        'U+B01..U+B03', 'U+B05..U+B0C', 'U+B0F..U+B10', 'U+B13..U+B28',
+        'U+B2A..U+B30', 'U+B32..U+B33', 'U+B35..U+B39', 'U+B3C..U+B44',
+        'U+B47..U+B48', 'U+B4B..U+B4D', 'U+B56..U+B57', 'U+B5C..U+B5D',
+        'U+B5F..U+B63', 'U+B66..U+B77',
         # Kannada
-        'U+0C80..U+0C8C', 'U+0C8E..U+0C90', 'U+0C92..U+0CA8', 'U+0CAA..U+0CB3',
-        'U+0CB5..U+0CB9', 'U+0CBC..U+0CC4', 'U+0CC6..U+0CC8', 'U+0CCA..U+0CCD',
-        'U+0CD5..U+0CD6', 'U+0CDE', 'U+0CE0..U+0CE3', 'U+0CE6..U+0CEF', 'U+0CF1..U+0CF2',
+        'U+C80..U+C8C', 'U+C8E..U+C90', 'U+C92..U+CA8', 'U+CAA..U+CB3',
+        'U+CB5..U+CB9', 'U+CBC..U+CC4', 'U+CC6..U+CC8', 'U+CCA..U+CCD',
+        'U+CD5..U+CD6', 'U+CDE', 'U+CE0..U+CE3', 'U+CE6..U+CEF', 'U+CF1..U+CF2',
         # Dhivehi
-        'U+0780..U+07B1',
+        'U+780..U+7B1',
         # Gothic
         'U+10330..U+1034A',
         # Old Turkic (otk)
@@ -251,16 +251,16 @@ class SphinxConfShell extends Shell {
         # Katakana Phonetic Extensions
         'U+31F0..U+31FF',
         # Lao (lao)
-        'U+0E81', 'U+0E82', 'U+0E84', 'U+0E87', 'U+0E88', 'U+0E8A', 'U+0E8D', 'U+0E94..U+0E97', 'U+0E99..U+0E9F',
-        'U+0EA1..U+0EA3', 'U+0EA5', 'U+0EA7', 'U+0EAA', 'U+0EAB', 'U+0EAD', 'U+0EAE', 'U+0EB0..U+0EB9', 'U+0EBB',
-        'U+0EBC', 'U+0EBD', 'U+0EC0..U+0EC4', 'U+EC6', 'U+0EC8..U+0ECD', 'U+0ED0..U+0ED9', 'U+0EDC..U+0EDF',
+        'U+E81', 'U+E82', 'U+E84', 'U+E87', 'U+E88', 'U+E8A', 'U+E8D', 'U+E94..U+E97', 'U+E99..U+E9F',
+        'U+EA1..U+EA3', 'U+EA5', 'U+EA7', 'U+EAA', 'U+EAB', 'U+EAD', 'U+EAE', 'U+EB0..U+EB9', 'U+EBB',
+        'U+EBC', 'U+EBD', 'U+EC0..U+EC4', 'U+EC6', 'U+EC8..U+ECD', 'U+ED0..U+ED9', 'U+EDC..U+EDF',
         # Tibetan (bod) (not sure about marks and signs)
-        'U+0F00', 'U+0F20..U+0F33', 'U+0F40..U+0F47', 'U+0F49..U+0F6C', 'U+0F71..U+0F87', 'U+0F90..U+0F97',
-        'U+0F99..U+0FBC', 'U+0FD0..U+0FD2',
+        'U+F00', 'U+F20..U+F33', 'U+F40..U+F47', 'U+F49..U+F6C', 'U+F71..U+F87', 'U+F90..U+F97',
+        'U+F99..U+FBC', 'U+FD0..U+FD2',
         # Khmer (khm)
         'U+1780..U+17D2', 'U+17E0..U+17E9', 'U+17F0..U+17F9', 'U+19E0..U+19FF',
         # Thai (tha)
-        'U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59',
+        'U+E01..U+E2E', 'U+E30..U+E3A', 'U+E40..U+E4E', 'U+E50..U+E59',
         # Yi syllables, used by Nuosu (iii)
         'U+A000..U+A48C',
         # Javanese (jav)
@@ -336,7 +336,7 @@ class SphinxConfShell extends Shell {
                     $v != 'U+E0..U+F6' &&
                     $v != 'U+F8..U+FF' &&
                     $v != 'U+100..U+177/2' &&
-                    $v != 'U+01DE..U+01EF/2' &&
+                    $v != 'U+1DE..U+1EF/2' &&
                     $v != 'U+300..U+36F'
                 ; }
             )
@@ -396,9 +396,9 @@ class SphinxConfShell extends Shell {
                 'C->c', 'c',
                 'U+C7->U+E7', 'U+E7', # case-folding: c-cedilla
                 'D..H->d..h', 'd..h',
-                'I->U+0131', 'U+CE->U+0131', 'U+EE->U+0131', 'U+0131', # case-folding: dotless i
-                'U+CE->U+0131', 'U+EE->U+0131', # strip circumflex from I,i and map to dotless i
-                'U+0130->i', 'i', # case-folding: dotted i
+                'I->U+131', 'U+CE->U+131', 'U+EE->U+131', 'U+131', # case-folding: dotless i
+                'U+CE->U+131', 'U+EE->U+131', # strip circumflex from I,i and map to dotless i
+                'U+130->i', 'i', # case-folding: dotted i
                 'J..N->j..n', 'j..n',
                 'O->o', 'o',
                 'U+D6->U+F6', 'U+F6', # case-folding: o-umlaut
