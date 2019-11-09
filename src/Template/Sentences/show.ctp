@@ -26,8 +26,6 @@
  */
 use App\Model\CurrentUser;
 
-$this->Html->script('jquery.scrollTo.min.js', ['block' => 'scriptBottom']);
-
 if (!isset($searchProblem)) {
 if (isset($sentence)) {
     $sentenceId = $sentence->id;

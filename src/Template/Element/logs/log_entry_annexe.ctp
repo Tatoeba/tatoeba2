@@ -49,6 +49,8 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
             } elseif ($type == 'license') {
                 echo $sentenceLink.' ➜ '.$this->Html->tag('span', $sentenceText, array('class' => 'license'));
             } else { // link
+                $this->Html->script(['jquery.scrollTo.min.js', 'sentences.logs.js'],
+                                    ['block' => 'scriptBottom']);
                 echo $sentenceLink.' ➜ '.$translationLink;
             }
             ?>
