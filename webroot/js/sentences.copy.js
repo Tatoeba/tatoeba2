@@ -1,4 +1,4 @@
-var clipboard = new Clipboard('.copy-btn', {
+var clipboard = new ClipboardJS('.copy-btn', {
     text: function(button) {
         var sentence = $(button).closest('.content')
                                 .find('.sentenceContent > .text');
