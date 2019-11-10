@@ -75,7 +75,5 @@ $editUrl = $this->Url->build([
         ?>
     </md-card-content>
 
-    <md-card-content class="reply-saved" ng-hide="true">
-        {{vm.savedReplies[<?= $parentId ?>].content}}
-    </md-card-content>
+    <md-card-content class="reply-saved" ng-hide="true">{{vm.savedReplies[<?= $parentId ?>].content}}</md-card-content>
 </md-card>
