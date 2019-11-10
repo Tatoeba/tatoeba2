@@ -65,14 +65,14 @@ if ($ignored) {
         compact('list')
     );
     echo $this->Html->tag('div', $warn, array(
-        'id' => 'searchWarning',
+        'id' => 'flashMessage',
         'class' => 'message',
     ));
 }
 ?>
 
 <div id="annexe_content">
-    <div class="md-whiteframe-1dp">
+    <div class="md-whiteframe-1dp" ng-cloak>
     <md-subheader><?php echo __('More search criteria'); ?></md-subheader>
     <?php echo $this->element('advanced_search_form', array(
                    'searchableLists' => $searchableLists,
@@ -82,7 +82,7 @@ if ($ignored) {
 </div>
 
 <div id="main_content">
-<div class="section">
+<div class="section md-whiteframe-1dp">
 <?php
 if (!isset($results)) {
     if (isset($sphinx_markers)) {
