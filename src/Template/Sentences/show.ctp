@@ -36,7 +36,7 @@ if (isset($sentence)) {
     $sentenceCorrectness = $sentence->correctness;
 
     $languageName = $this->Languages->codeToNameToFormat($sentenceLang);
-    $title = format(__('{language} example sentence: {sentence}'),
+    $title = format(__('{sentence} - {language} example sentence'),
                     array('language' => $languageName, 'sentence' => $sentenceText));
     $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
