@@ -114,9 +114,9 @@ echo $this->Form->create('AdvancedSearch', [
             </div>
             
             <div class="param" layout="row" layout-align="center">
-                <label for="has_audio" flex><?= __('Has audio:') ?></label>
+                <label for="has-audio" flex><?= __('Has audio:') ?></label>
                 <?php
-                echo $this->Form->input('has-audio', array(
+                echo $this->Form->input('has_audio', array(
                     'label' => '',
                     'options' => array(
                         '' => __x('audio', 'Any'),
