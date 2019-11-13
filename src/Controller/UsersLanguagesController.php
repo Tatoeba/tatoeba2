@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -45,10 +46,20 @@ class UsersLanguagesController extends AppController
 
     public function save()
     {
-        $savedLanguage = $this->UsersLanguages->saveUserLanguage(
-            $this->request->getData(),
-            CurrentUser::get('id')
-        );
+        try {
+            $savedLanguage = $this->UsersLanguages->saveUserLanguage(
+                $this->request->getData(),
+                CurrentUser::get('id')
+            );
+        } catch (\PDOException $e) {
+            $this->Flash->set(__('This language is in database yet.'));
+            return $this->redirect(
+                array(
+                    'controller' => 'user',
+                    'action' => 'language'
+                )
+            );
+        }
 
         if (empty($savedLanguage)) {
             $lang = $this->request->getData('lang');
@@ -79,7 +90,7 @@ class UsersLanguagesController extends AppController
     {
         $userId = CurrentUser::get('id');
         $isDeleted = $this->UsersLanguages->deleteUserLanguage($id, $userId);
-        
+
         if ($isDeleted) {
             $this->Flash->set(__('Language deleted'));
         } else {
