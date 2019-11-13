@@ -52,13 +52,13 @@ class UsersLanguagesController extends AppController
                 CurrentUser::get('id')
             );
         } catch (\PDOException $e) {
-            $this->Flash->set(__('This language is in database yet.'));
+            $this->Flash->set(__('This language is assigned.'));
             return $this->redirect(
                 array(
                     'controller' => 'user',
                     'action' => 'language'
                 )
-            );
+             );
         }
 
         if (empty($savedLanguage)) {
