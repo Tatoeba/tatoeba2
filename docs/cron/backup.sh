@@ -5,7 +5,7 @@ BACKUP_LIST=(
     "/var/www-prod/app/webroot/img/profiles_36"
     "/home/debian/tatowiki/tatowiki/app"
     "/var/www-audio/sentences"
-    "/home/debian/dump/db.sql.gz"
+    "/home/debian/dump/db.gz"
 )
 
 CONFIG_DIR="/home/debian/.gdrive/"
