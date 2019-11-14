@@ -148,14 +148,25 @@ echo $this->element('/sentences/navigation', [
         }
 
         if (!empty($contributions)) {
+            $active_links = array();
             echo '<md-list id="logs">';
             foreach ($contributions as $contribution) {
                 echo $this->element(
                     'logs/log_entry_annexe',
                     array('log' => $contribution)
                 );
+                if ($contribution->type == "link" and $contribution->action == "insert") {
+                    $active_links[$contribution->translation_id] = 1;
+                }
+                if ($contribution->type == "link" and $contribution->action == "delete") {
+                    unset($active_links[$contribution->translation_id]);
+                }
             }
             echo '</md-list>';
+            if (!empty($active_links)) {
+                $this->Html->script(['jquery.scrollTo.min.js', 'sentences.logs.js'],
+                                    ['block' => 'scriptBottom']);
+            }
         } else {
             echo '<em>'. __('There is no log for this sentence') .'</em>';
         }
