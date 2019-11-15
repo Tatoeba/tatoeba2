@@ -52,7 +52,7 @@ class UsersLanguagesController extends AppController
                 CurrentUser::get('id')
             );
         } catch (\PDOException $e) {
-            $this->Flash->set(__('This language is assigned.'));
+            $this->Flash->set(__('This language has already been added to your profile.'));
             return $this->redirect(
                 array(
                     'controller' => 'user',
