@@ -148,7 +148,7 @@ echo $this->element('/sentences/navigation', [
         }
 
         if ($contributions->count() > 0) {
-            if (!empty($sentence->translations)) {
+            if (!empty($sentence->translations[0])) {
                 $this->Html->script(['jquery.scrollTo.min.js', 'sentences.logs.js'],
                                     ['block' => 'scriptBottom']);
             }
