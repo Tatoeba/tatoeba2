@@ -307,17 +307,6 @@ html[dir="rtl"] .comment.sentence .text {
  * --------------------------------------------------------------------
  */
 
-.message {
-    border-left: 9px solid #cae2aa;
-    border-bottom: 1px solid #ddd;
-    margin: 40px 0;
-}
-
-.message a:hover {
-    color: #DD8800;
-}
-
-
 /*
  * Message header (general)
  */
@@ -666,27 +655,12 @@ html[dir="rtl"] .comment.sentence .text {
  * --------------------------------------------------------------------
  */
 
-#private-message-form {
-    margin-top: 0;
+ #private-message-form { 
+    background: #f1f1f1;
 }
 
-#private-message-form .pmFields {
-    margin: 20px 20px -10px 20px;
-}
-
-#private-message-form label {
-    width: 100px;
-    display: block;
-    float: left;
-}
-
-#private-message-form .input {
-    margin: 3px 0;
-}
-
-#private-message-form .input input {
-    width: 455px;
-    border: 1px solid #ddd;
+#private-message-form .md-errors-spacer {
+    display: none;
 }
 
 

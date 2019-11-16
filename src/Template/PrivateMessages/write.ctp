@@ -30,7 +30,6 @@ $this->set('title_for_layout', __('New message') . __(' - Tatoeba'));
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-    <div>
     <?php
     if ($isNewUser && !$canSend) {
         ?>
@@ -51,28 +50,33 @@ echo $this->element('pmmenu');
         </div>
         <?php
     } else if ($isNewUser) {
-         echo "<p>";
-             __(
-                 "To help keep Tatoeba free of spam and other malicious messages
-                 new users can send only 5 messages per day."
-             );
-         echo "</p>";
-         echo "<p>";
-         echo format(
-             __n(
-                 'You have sent one message today.',
-                 'You have sent {n}&nbsp;messages today.',
-                 $messagesToday, true
-             ),
-             array('n' => $messagesToday)
-         );
-         echo "</p>";
-         echo "<br/>";
-    }
+        ?>
+        <div class="section md-whiteframe-1dp">
+        <p><?= __(
+            "To help keep Tatoeba free of spam and other malicious messages
+            new users can send only 5 messages per day."
+        ); ?></p>
 
-    if ($canSend) {
-        $this->PrivateMessages->displayForm($pm, $recipients);
+        <p><?= format(
+            __n(
+                'You have sent one message today.',
+                'You have sent {n}&nbsp;messages today.',
+                $messagesToday, true
+            ),
+            array('n' => $messagesToday)
+         ); ?></p>
+        </div>
+        <?php
     }
     ?>
-    </div>
+
+    <?php
+    if ($canSend) {
+        echo $this->element('private_messages/form', [
+            'headerTitle' => __('New message'),
+            'pm' => $pm,
+            'recipients' => $recipients
+        ]);
+    }
+    ?>
 </div>

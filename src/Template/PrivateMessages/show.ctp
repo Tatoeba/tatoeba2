@@ -39,7 +39,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-    <div class="module">
+    <div class="section">
     <?php
     echo $this->Languages->tagWithLang(
         'h2', '', $message->title
@@ -59,7 +59,12 @@ echo $this->element('pmmenu');
     <a name="reply"></a>
     <?php
     if ($message->folder == 'Inbox' && $message->type == 'human') {
-        $this->PrivateMessages->displayForm($message, $author->username);
+        echo $this->element('private_messages/form', [
+            'headerTitle' => __('Reply'),
+            'pm' => $message,
+            'recipients' => $author->username,
+            'isReply' => true
+        ]);
     }
     ?>
     
