@@ -21,40 +21,12 @@
 /*
  * Folder content
  */
-.pm_module {
-    min-height: 150px;
+
+#pm-list md-list-item {
+    border-top: 1px solid #f1f1f1;
 }
 
-.pm_folder th {
-    text-align: left;
-}
-
-.messageHeader {
-    border-top: 1px dotted #CCC;
-}
-
-.messageHeader .userAndDate {
-    color: #999;
-    font-style: italic;
-    font-size: 11px;
-    display: block;
-    font-weight: normal;
-}
-
-.linkToMessage {
-    padding: 5px;
-    display: block;
-}
-
-.linkToMessage:hover {
-    background: #E4FFD1;
-}
-
-.unread a {
+#pm-list .unread .md-list-item-text h3 {
     font-weight: bold; 
     color: #FF6A00;
-}
-
-.senderImage {
-    width: 50px;
 }
