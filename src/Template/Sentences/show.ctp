@@ -26,8 +26,6 @@
  */
 use App\Model\CurrentUser;
 
-$this->Html->script('jquery.scrollTo.min.js', ['block' => 'scriptBottom']);
-
 if (!isset($searchProblem)) {
 if (isset($sentence)) {
     $sentenceId = $sentence->id;
@@ -149,7 +147,11 @@ echo $this->element('/sentences/navigation', [
             echo $this->Sentences->originText($sentence);
         }
 
-        if (!empty($contributions)) {
+        if ($contributions->count() > 0) {
+            if (!empty($sentence->translations[0])) {
+                $this->Html->script(['jquery.scrollTo.min.js', 'sentences.logs.js'],
+                                    ['block' => 'scriptBottom']);
+            }
             echo '<md-list id="logs">';
             foreach ($contributions as $contribution) {
                 echo $this->element(
