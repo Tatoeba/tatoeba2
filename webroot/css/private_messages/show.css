@@ -16,6 +16,17 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-/*
- * TODO Emtpy CSS. Delete me.
- */
+.comment {
+    margin: 0 0 40px 0;
+}
+
+.comment md-card-header {
+    background: #fafafa;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.comment h3 {
+    padding: 16px;
+    margin: 0;
+    border-bottom: 1px solid #f1f1f1;
+}

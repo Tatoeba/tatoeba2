@@ -39,21 +39,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-    <div class="section">
-    <?php
-    echo $this->Languages->tagWithLang(
-        'h2', '', $message->title
-    );
-    ?>
-
     <?php
     $author = $message->author;
-    $this->Messages->displayMessage(
-        $message,
-        $author,
-        null,
-        $messageMenu
-    );
+    echo $this->element('private_messages/message', [
+        'message' => $message,
+        'user' => $author
+    ]);
     ?>
     
     <a name="reply"></a>
@@ -67,6 +58,4 @@ echo $this->element('pmmenu');
         ]);
     }
     ?>
-    
-    </div>
 </div>

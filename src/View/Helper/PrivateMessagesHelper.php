@@ -150,5 +150,62 @@ class PrivateMessagesHelper extends AppHelper
         return "\n" . format(__('{sender} wrote:'), compact('sender')) . "\n> "
             . $messNextRegExp;
     }
+
+    public function getMenu($folder, $messageId, $type)
+    {
+        $menu = array();
+
+        if ($folder == 'Trash') {
+            $menu[] = array(
+                'text' => __('restore'),
+                'icon' => 'restore',
+                'url' => array(
+                    'action' => 'restore',
+                    $messageId
+                )
+            );
+
+            $menu[] = array(
+                'text' => __('permanently delete'),
+                'icon' => 'delete',
+                'url' => array(
+                    'action' => 'delete',
+                    $messageId
+                ),
+                'confirm' => __('Are you sure?')
+            );
+        } else {
+            $menu[] = array(
+                'text' => __('delete'),
+                'icon' => 'delete',
+                'url' => array(
+                    'action' => 'delete',
+                    $messageId
+                )
+            );
+        }
+
+        if ($folder == 'Inbox') {
+            $menu[] = array(
+                'text' => __('mark as unread'),
+                'icon' => 'markunread_mailbox',
+                'url' => array(
+                    'action' => 'mark',
+                    'Inbox',
+                    $messageId
+                )
+            );
+
+            if ($type == 'human') {
+                $menu[] = array(
+                    'text' => __('reply'),
+                    'icon' => 'reply',
+                    'url' => '#reply'
+                );
+            }
+        }
+
+        return $menu;
+    }
 }
 ?>
