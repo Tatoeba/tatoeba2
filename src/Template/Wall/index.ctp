@@ -40,6 +40,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Wall')));
 echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
 
 ?>
+
+<h2>
+<?php
+$threadsCount = $this->Paginator->param('count');
+echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
+            array('n' => $this->Number->format($threadsCount)));
+?>
+</h2>
+
 <div id="annexe_content" >
     <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Tips'); ?></h2>
@@ -66,6 +75,22 @@ echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
         );
         ?>
         </p>
+    </div>
+    
+    <div id="wall-language-banner" class="md-whiteframe-1dp">
+    <?php
+    echo $this->Html->link(
+        __(
+            'You may write in any language you want. '.
+            'On Tatoeba, all languages are equal.', true
+        ),
+        array(
+            "controller" => "sentences",
+            "action" => "show",
+            785667
+        )
+    );
+    ?>
     </div>
 
     <div class="md-whiteframe-1dp">
@@ -96,63 +121,36 @@ echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
         ?>
         </md-list>
     </div>
-
-    <div class="wallBanner">
-    <?php
-    echo $this->Html->link(
-        __(
-            'You may write in any language you want. '.
-            'At Tatoeba, all languages are equal.', true
-        ),
-        array(
-            "controller" => "sentences",
-            "action" => "show",
-            785667
-        )
-    );
-    ?>
-    </div>
-
 </div>
 
 <div id="main_content" ng-app="app" ng-controller="WallController as vm">
-    <div>
-        <h2>
-            <?php
-            $threadsCount = $this->Paginator->param('count');
-            echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
-                        array('n' => $this->Number->format($threadsCount)));
-            ?>
-        </h2>
+    <?php
+    // leave a comment part
+    if ($isAuthenticated) {
+        echo $this->element('wall/add_form');
 
-        <?php
-        // leave a comment part
-        if ($isAuthenticated) {
-            echo $this->element('wall/add_form');
+        echo '<div style="display:none">'."\n";
+        echo $this->element('wall/add_form', ['isReply' => true]);
+        echo '</div>'."\n";
+    }
+    ?>
 
-            echo '<div style="display:none">'."\n";
-            echo $this->element('wall/add_form', ['isReply' => true]);
-            echo '</div>'."\n";
-        }
-        ?>
+    <?php
+    $this->Pagination->display();
+    ?>
 
-        <?php
-        $this->Pagination->display();
-        ?>
-
-        <div class="wall">
-        <?php
-        foreach ($allMessages as $message) {
-            echo $this->element('wall/message', [
-                'message' => $message,
-                'isRoot' => true
-            ]);
-        }
-        ?>
-        </div>
-
-        <?php
-        $this->Pagination->display();
-        ?>
+    <div class="wall">
+    <?php
+    foreach ($allMessages as $message) {
+        echo $this->element('wall/message', [
+            'message' => $message,
+            'isRoot' => true
+        ]);
+    }
+    ?>
     </div>
+
+    <?php
+    $this->Pagination->display();
+    ?>
 </div>

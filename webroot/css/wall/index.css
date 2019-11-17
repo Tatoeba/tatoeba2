@@ -16,24 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-.wallBanner {
-    border: 5px solid #9EAF85;
-    margin: 5px;
-    background: #CAE2AA;
+#wall-language-banner {
+    margin: 20px 0;
+    background: #4caf50;
     padding: 10px;
-    font-size: 15px;
     text-align: center;
 }
 
-.wallBanner a {
-    color: #47704B;
+#wall-language-banner a {
+    color: #fff;
 }
 
 .initial-post {
     font-weight: bold;
 }
 
-.latest-messages li {
-    margin: 10px 0;
+.comment.form {
+    margin: 0;
 }
