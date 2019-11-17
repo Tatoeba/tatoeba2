@@ -68,36 +68,33 @@ echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
         </p>
     </div>
 
-    <div class="section md-whiteframe-1dp">
-        <h2><?php echo __('Latest messages'); ?></h2>
-        <ul class="latest-messages">
-            <?php
-            $mesg = count($tenLastMessages);
+    <div class="md-whiteframe-1dp">
+        <md-subheader><?php echo __('Latest messages'); ?></md-subheader>
+        <md-list class="annexe-menu">
+        <?php
+        $mesg = count($tenLastMessages);
 
-            foreach ($tenLastMessages as $currentMessage) {
-                echo '<li>';
-                // text of the link
-                $text = format(__('{date}, by {author}'),
-                               array(
-                                   'date' => $this->Date->ago($currentMessage->date),
-                                   'author' => $currentMessage->user->username
-                               ));
+        foreach ($tenLastMessages as $currentMessage) {
+            $url = $this->Url->build([
+                'controller' => 'wall',
+                'action' => 'index',
+                '#' => 'message_'.$currentMessage->id
+            ]);
 
-                $path = array(
-                    'controller' => 'wall',
-                    'action' => 'index',
-                    '#' => 'message_'.$currentMessage->id
-                    );
-                // link
-                $isInitialPost = $currentMessage->parent_id == null;
-                echo $this->Html->link($text, $path, array(
-                    'escape' => false,
-                    'class' => $isInitialPost ? 'initial-post' : null,
-                ));
-                echo '</li>';
-            };
+            $css = $currentMessage->parent_id == null ? 'initial-post' : '';
+            $icon = $currentMessage->parent_id == null ? 'feedback' : 'subdirectory_arrow_right';
             ?>
-        </ul>
+            <md-list-item class="md-2-line <?= $css ?>" href="<?= $url ?>">
+                <md-icon><?= $icon ?></md-icon>
+                <div class="md-list-item-text">
+                    <h3><?= $currentMessage->user->username ?></h3>
+                    <p><?= $this->Date->ago($currentMessage->date) ?></p>
+                </div>
+            </md-list-item>
+            <?php
+        };
+        ?>
+        </md-list>
     </div>
 
     <div class="wallBanner">
