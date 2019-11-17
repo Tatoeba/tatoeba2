@@ -167,9 +167,9 @@ class PrivateMessagesHelper extends AppHelper
 
             $menu[] = array(
                 'text' => __('permanently delete'),
-                'icon' => 'delete',
+                'icon' => 'delete_forever',
                 'url' => array(
-                    'action' => 'delete',
+                    'action' => 'delete_forever',
                     $messageId
                 ),
                 'confirm' => __('Are you sure?')

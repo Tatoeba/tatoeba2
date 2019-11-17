@@ -43,17 +43,7 @@ $isTrashFolder = $this->request->params['action'] == 'folder'
             <md-icon>email</md-icon>
             <p><?= __('New message') ?></p>
         </md-list-item>
-
-        <?php if ($isTrashFolder) { 
-            $url = $this->Url->build(['empty_folder', 'Trash']);
-            $msg = __('Are you sure?');
-            ?>
-            <md-list-item href="<?= $url ?>" onclick="return confirm('<?= $msg ?>')">
-                <md-icon>delete_forever</md-icon>
-                <p><?= __('Empty trash') ?></p>
-            </md-list-item>
-        <?php } ?>
-
+        
         <md-list-item href="<?= $inboxUrl ?>">
             <md-icon>keyboard_arrow_right</md-icon>
             <p><?= __('Inbox') ?></p>

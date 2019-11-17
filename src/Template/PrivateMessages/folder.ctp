@@ -46,7 +46,8 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
-        <h2>
+        <div layout="row" layout-align="center start">
+        <h2 flex>
             <?php 
             $n = $this->Paginator->param('count');
             echo format(__n('{folderName} ({n}&nbsp;message)',
@@ -55,6 +56,17 @@ echo $this->element('pmmenu');
                         compact('folderName', 'n'));
             ?>
         </h2>
+
+        <?php if ($folder == 'Trash') { 
+            $url = $this->Url->build(['empty_folder', 'Trash']);
+            $msg = __('Are you sure?');
+            ?>
+            <md-button href="<?= $url ?>" onclick="return confirm('<?= $msg ?>')">
+                <md-icon>delete_forever</md-icon>
+                <?= __('Empty trash') ?>
+            </md-button>
+        <?php } ?>
+        </div>
         
         <?php
         $this->Pagination->display();
@@ -96,9 +108,11 @@ echo $this->element('pmmenu');
                     ]);
                     $deleteConfirmation = 'onclick="return confirm(\''.__('Are you sure?').'\');"';
                     $deleteLabel = __('permanently delete');
+                    $deleteIcon = 'delete_forever';
                 } else {
                     $deleteConfirmation = '';
                     $deleteLabel = __('delete');
+                    $deleteIcon = 'delete';
                 }
 
                 $deleteUrl = $this->Url->build([
@@ -128,7 +142,7 @@ echo $this->element('pmmenu');
                     <?php } ?>
 
                     <md-button class="md-icon-button" href="<?= $deleteUrl ?>" <?= $deleteConfirmation ?>>
-                        <md-icon>delete</md-icon>
+                        <md-icon><?= $deleteIcon ?></md-icon>
                         <md-tooltip><?= $deleteLabel ?></md-tooltip>
                     </md-button>
                 </md-list-item>
