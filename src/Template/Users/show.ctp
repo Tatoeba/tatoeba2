@@ -156,6 +156,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(format(
 
             echo '<div class="wall">';
             foreach ($user->wall as $message) {
+                $message->user = $user;
                 echo $this->element('wall/message', [
                     'message' => $message,
                     'isRoot' => true
