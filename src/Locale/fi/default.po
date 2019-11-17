@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-01 17:24+0000\n"
-"PO-Revision-Date: 2019-09-04 12:21+0000\n"
+"POT-Creation-Date: 2019-11-10 18:01+0000\n"
+"PO-Revision-Date: 2019-11-15 10:06+0000\n"
 "Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/tatoeba/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L128
 msgid "There's no user called {username}"
 msgstr "{username}-nimistä käyttäjää ei ole"
@@ -86,20 +86,20 @@ msgid "permanently delete"
 msgstr "Poista lopullisesti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L383
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L240
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L397
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L437
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L158
 msgid "Are you sure?"
 msgstr "Oletko varma?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L187
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L233
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L462
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L151
 msgid "delete"
 msgstr "Poista"
 
@@ -108,8 +108,8 @@ msgid "mark as unread"
 msgstr "Merkitse lukemattomaksi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L207
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L166
 msgid "reply"
 msgstr "Vastaa"
 
@@ -131,7 +131,7 @@ msgid "You do not have permission to edit this comment. "
 msgstr "Sinulla ei ole oikeuksia muokata tätä kommenttia. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L219
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L47
 msgid ""
 "If you have received this message in error, please contact administrators at"
@@ -384,22 +384,22 @@ msgid "Unknown number of sentences"
 msgstr "Tuntematon määrä lauseita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
 msgstr[0] "{number} lause"
 msgstr[1] "{number} lausetta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L200
 msgid "Message saved."
 msgstr "Viesti tallennettu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L218
 msgid "You do not have permission to edit this message."
 msgstr "Sinulla ei ole oikeuksia muokata tätä viestiä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L274
 msgid "The message you are trying to view does not exist or has been deleted."
 msgstr "Viestiä, jota yrität katsella, ei ole olemassa tai se on poistettu."
 
@@ -612,7 +612,7 @@ msgstr "Joten jos haluat auttaa meitä tarkistamaan ja korjaamaan lauseita, niin
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L45
 msgid "Tips"
 msgstr "Vinkit"
 
@@ -769,27 +769,27 @@ msgid "Best practice: translate only into your native language."
 msgstr "Paras käytäntö: käännä vain omalle äidinkielellesi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L158
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L210
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L302
 msgid "Order:"
 msgstr "Järjestys:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L162
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L311
 msgid "Random"
 msgstr "Satunnainen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L165
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L308
 msgid "Fewest words first"
 msgstr "Vähiten sanoja ensin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L215
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L310
 msgid "Last modified first"
 msgstr "Viimeksi muokattu ensin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L171
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L309
 msgid "Last created first"
 msgstr "Viimeksi lisätty ensin"
 
@@ -807,23 +807,23 @@ msgstr "Käännä lauseita, jotka kuuluvat käyttäjälle {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L111
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L181
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L190
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L271
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L290
 msgid "Yes"
 msgstr "Kyllä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L112
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L124
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L180
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L189
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L270
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L289
 msgid "No"
 msgstr "Ei"
 
@@ -842,10 +842,10 @@ msgstr "Äänitettyjä lauseita ei ole"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L92
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L55
 msgid "(total {{count}})"
 msgstr "(yhteensä {{count}})"
 
@@ -922,35 +922,36 @@ msgstr "Voit ottaa sen käyttöön asetuksissasi: ”Ota käyttöön lauseiden a
 msgid "Filter"
 msgstr "Suodata"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L97
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L65
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L72
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L157
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L59
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L81
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L91
 msgid "Sort by:"
 msgstr "Lajitteluperuste:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L99
 msgid "date modified"
 msgstr "muokkauspäivämäärä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L101
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L76
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L161
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L60
 msgid "date created"
 msgstr "Luontipäivämäärä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L111
 msgid "sentence id"
 msgstr "lausenumero"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L137
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L84
 msgid "Sentence {id} has been deleted."
 msgstr "Lause {id} on poistettu."
@@ -970,8 +971,8 @@ msgstr[0] "Päivittäinen keskiarvo: {n} lause"
 msgstr[1] "Päivittäinen keskiarvo: {n} lausetta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Viimeksi annetut työpanokset"
@@ -984,156 +985,163 @@ msgstr "Käyttäjän {user} viimeisimmät työpanokset"
 msgid "Only the last {n} log entries are displayed here."
 msgstr "Vain viimeiset {n} lokikirjausta näytetään tässä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L58
 msgid "Sentences"
 msgstr "Lauseet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L37
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L40
 msgid "Words:"
 msgstr "Sanat:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L44
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L109
+msgid "Enter a word or a phrase"
+msgstr "Syötä sana tai lause"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L208
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L368
 msgid "Language:"
 msgstr "Kieli:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L165
 msgid "Show translations in:"
 msgstr "Näytä käännökset kielellä:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L235
+msgid "Owner:"
+msgstr "Omistaja:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L239
+msgid "Enter a username"
+msgstr "Syötä käyttäjätunnus"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L244
 msgid "Is orphan:"
 msgstr "On orpo:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L55
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L249
 msgctxt "orphan"
 msgid "Any"
 msgstr "Kaikki käy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L258
 msgid "Orphan sentences are likely to be incorrect."
 msgstr "Orvot lauseet ovat todennäköisesti virheellisiä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L264
 msgid "Is unapproved:"
 msgstr "On vahvistamaton:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L72
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L188
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L269
 msgctxt "unapproved"
 msgid "Any"
 msgstr "Kaikki käy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L278
 msgid "Unapproved sentences are likely to be incorrect."
 msgstr "Vahvistamattomat lauseet ovat todennäköisesti virheellisiä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L89
-msgid "Owned by a self-identified native"
-msgstr "Omistaja määrittelee itsensä äidinkieliseksi puhujaksi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L95
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L172
-msgid "Owner:"
-msgstr "Omistaja:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L173
-msgid "Enter a username"
-msgstr "Syötä käyttäjätunnus"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L102
-msgid "Separate tags with commas."
-msgstr "Erottele tunnisteet pilkuilla."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L108
-msgid "Tags:"
-msgstr "Tunnisteet:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L115
-msgid "Belongs to list:"
-msgstr "Kuuluu listaan:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L121
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L283
 msgid "Has audio:"
 msgstr "On äänite:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L197
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L288
 msgctxt "audio"
 msgid "Any"
 msgstr "Kaikki käy"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L93
+msgid "Tags:"
+msgstr "Tunnisteet:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L139
+msgid "Separate tags with commas."
+msgstr "Erottele tunnisteet pilkuilla."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L144
+msgid "Belongs to list:"
+msgstr "Kuuluu listaan:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L173
+msgid "Owned by a self-identified native"
+msgstr "Omistaja määrittelee itsensä äidinkieliseksi puhujaksi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L92
 msgid "Translations"
 msgstr "Käännökset"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L188
 msgid "Limit to"
 msgstr "Huomioi vain"
 
 #. @translators This is inserted into another sentence
 #. that begins with {action}
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L191
 msgid "Exclude"
 msgstr "Jätä huomiotta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L199
 msgid ""
 "{action} sentences having translations that match all the following "
 "criteria."
 msgstr "{action} lauseet käännöksillä, jotka vastaavat kaikkia seuraavia kriteereitä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L218
 msgid "Link:"
 msgstr "Linkitys:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L223
 msgctxt "link"
 msgid "Any"
 msgstr "Kaikki käy"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L166
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L224
 msgid "Direct"
 msgstr "Suora"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L225
 msgid "Indirect"
 msgstr "Epäsuora"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L299
 msgid "Sort"
 msgstr "Lajittelu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L307
 msgid "Relevance"
 msgstr "Relevanssi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L333
 msgid "Reverse order"
 msgstr "Käänteinen järjestys"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L341
+msgctxt "button"
+msgid "Search"
+msgstr "Haku"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L346
 msgid "More search options"
 msgstr "Lisää hakuvalintoja"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L241
-msgctxt "button"
-msgid "Advanced search"
-msgstr "Tarkennettu haku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L50
 msgid ""
@@ -1164,21 +1172,21 @@ msgstr "Kuukausi"
 msgid "Year"
 msgstr "Vuosi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L30
 msgid "Currently contributing"
 msgstr "Tällä hetkellä aktiiviset jäsenet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L35
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
 msgstr[0] "Käyttäjä, joka lisäsi viimeisimmän työpanoksen."
 msgstr[1] "Viimeisten {n}&nbsp;työpanoksen lisäämiseen osallistuneet käyttäjät."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L77
-msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
-msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
-msgstr[0] "Nro {rank} – {n}&nbsp;lause – {percentage}&nbsp;%"
-msgstr[1] "Nro {rank} – {n}&nbsp;lausetta – {percentage}&nbsp;%"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L61
+msgid "{n}&nbsp;sentence"
+msgid_plural "{n}&nbsp;sentences"
+msgstr[0] "{n}&nbsp;lause"
+msgstr[1] "{n}&nbsp;lausetta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L32
 msgid "Need some help?"
@@ -1275,26 +1283,6 @@ msgstr "Jos pidät Tatoebasta, tee <a href={}>lahjoitus</a>."
 msgid "Tatoeba"
 msgstr "Tatoeba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/join_us.ctp#L30
-msgid "Join the community!"
-msgstr "Liity yhteisöön!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/join_us.ctp#L33
-msgid ""
-"The more contributors there are, the more useful Tatoeba will become! "
-"Besides, by contributing, not only will you be helpful to the rest of the "
-"world, but you will also get to learn a lot."
-msgstr "Mitä enemmän osallistujia on, sitä hyödyllisemmäksi Tatoeba tulee! Sitä paitsi osallistumalla et ole vain hyödyksi koko muulle maailmalle, vaan opit myös itse paljon."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/join_us.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L127
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L299
-msgid "Register"
-msgstr "Luo käyttäjätili"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L4
 msgid "Select a language"
 msgstr "Valitse kieli"
@@ -1306,6 +1294,14 @@ msgstr "Kieltä ei löytynyt."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
 msgstr "Lista lauseista, joihin muutos vaikuttaa (yhteensä {{count}})"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L299
+msgid "Register"
+msgstr "Luo käyttäjätili"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L115
@@ -1337,56 +1333,23 @@ msgstr "Unohditko salasanasi?"
 msgid "Close"
 msgstr "Sulje"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L138
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L544
-msgid "sentence deleted"
-msgstr "lause poistettu lopullisesti"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L71
-msgid "{createdDate}, edited {modifiedDate}"
-msgstr "{createdDate}, muokattu {modifiedDate}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L50
-msgid "Sentence {number} — belongs to {username}"
-msgstr "Lause {number} – kuuluu käyttäjälle {username}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L87
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L58
-msgid "Sentence {number}"
-msgstr "Lause {number}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L139
-msgid "permalink"
-msgstr "ikilinkki"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/messages/comment.ctp#L168
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L561
-msgid ""
-"The content of this message goes against <a href=\"{}\">our rules</a> and "
-"was therefore hidden. It is displayed only to admins and to the author of "
-"the message."
-msgstr "Tämän viestin sisältö on <a href=\"{}\">sääntöjemme</a> vastainen ja se on siksi piilotettu. Viesti näkyy vain ylläpitäjille ja viestin kirjoittajalle."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L36
 msgid "Private messages"
 msgstr "Yksityisviestit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L110
 msgid "New message"
 msgstr "Uusi viesti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L53
 msgid "Empty trash"
 msgstr "Tyhjennä roskakori"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L211
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L217
@@ -1394,11 +1357,11 @@ msgstr "Tyhjennä roskakori"
 msgid "Inbox"
 msgstr "Saapuneet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L64
 msgid "Unread"
 msgstr "Lukemattomat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L36
 msgid "Drafts"
 msgstr "Luonnokset"
@@ -1409,7 +1372,7 @@ msgstr "Luonnokset"
 msgid "Sent"
 msgstr "Lähetetyt"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L34
 msgid "Trash"
@@ -1421,7 +1384,7 @@ msgstr "Kansiot"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L40
 msgid "Random sentence"
 msgstr "Satunnainen lause"
 
@@ -1434,9 +1397,10 @@ msgid "Advanced search"
 msgstr "Tarkennettu haku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L76
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L45
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L587
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L605
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L595
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L615
 msgid "Search"
 msgstr "Haku"
 
@@ -1472,8 +1436,85 @@ msgstr "Toista jäsenen {author} tallentama äänite"
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Tällä lauseella ei ole äänitettä. Klikkaa ja lue miten voit osallistua."
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L20
+msgid "Add a comment"
+msgstr "Kommentoi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L43
+msgid "Submit comment"
+msgstr "Kommentoi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L55
+msgid "Good practices"
+msgstr "Hyviä käytäntöjä"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L57
+msgid "Say \"welcome\" to new users."
+msgstr "Toivota uudet käyttäjät tervetulleiksi."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L58
+msgid "Use private messages to discuss things unrelated to the sentence."
+msgstr "Käytä yksityisviestejä, jos haluat keskustella tähän lauseeseen liittymättömistä asioista."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L544
+msgid "sentence deleted"
+msgstr "lause poistettu lopullisesti"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L17
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L24
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L13
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L34
+msgid "{createdDate}, edited {modifiedDate}"
+msgstr "{createdDate}, muokattu {modifiedDate}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L49
+msgid "Sentence {number} — belongs to {username}"
+msgstr "Lause {number} – kuuluu käyttäjälle {username}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L57
+msgid "Sentence {number}"
+msgstr "Lause {number}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L140
+msgid "permalink"
+msgstr "ikilinkki"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L561
+msgid ""
+"The content of this message goes against <a href=\"{}\">our rules</a> and "
+"was therefore hidden. It is displayed only to admins and to the author of "
+"the message."
+msgstr "Tämän viestin sisältö on <a href=\"{}\">sääntöjemme</a> vastainen ja se on siksi piilotettu. Viesti näkyy vain ylläpitäjille ja viestin kirjoittajalle."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L412
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L159
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L65
+msgid "Save changes"
+msgstr "Tallenna muutokset"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L37
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L114
 msgid "Audio"
 msgstr "Äänite"
 
@@ -1483,36 +1524,61 @@ msgstr "Äänite"
 msgid "License"
 msgstr "Lisenssi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L24
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L130
+msgid "previous"
+msgstr "edellinen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L183
+msgid "random"
+msgstr "satunnainen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L155
+msgid "next"
+msgstr "seuraava"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L120
+msgid "Language for previous, next or random sentence"
+msgstr "Edellisen, seuraavan tai satunnaisen lauseen kieli"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L86
+msgid "Show sentence #: "
+msgstr "Näytä lause nro: "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L34
 msgid "This sentence is not reliable."
 msgstr "Tämä lause ei ole luotettava."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L115
 msgid "Translations of translations"
 msgstr "Käännösten käännökset"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L209
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Näytä 1 käännös lisää"
 msgstr[1] "Näytä {number} käännöstä lisää "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L241
 msgid "Fewer translations"
 msgstr "Vähemmän käännöksiä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_statistics.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L107
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "{n}&nbsp;lause"
 msgstr[1] "{n}&nbsp;lausetta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_statistics.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_statistics.ctp#L61
 msgid "show all languages"
 msgstr "Näytä kaikki kielet"
 
@@ -1540,10 +1606,6 @@ msgstr "Etsi {langFrom.genetive}kielisiä lauseita, jotka on käännetty {langTo
 msgid "Clear search"
 msgstr "Tyhjennä haku"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L109
-msgid "Enter a word or a phrase"
-msgstr "Syötä sana tai lause"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/advanced_search.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L30
@@ -1562,7 +1624,7 @@ msgid "More tips"
 msgstr "Lisää vinkkejä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L37
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L79
 msgid "Profile"
 msgstr "Profiili"
@@ -1584,8 +1646,8 @@ msgid "My collection"
 msgstr "Minun kokoelmani"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L645
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L676
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L664
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L689
 msgid "My lists"
 msgstr "Minun listani"
 
@@ -1685,53 +1747,53 @@ msgstr "Jäsenten kielet"
 msgid "Native speakers"
 msgstr "Äidinkieliset puhujat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L47
 msgid "Vocabulary"
 msgstr "Sanasto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L55
 msgid "Collection"
 msgstr "Kokoelma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L89
-msgid "Transcriptions"
-msgstr "Transkriptiot"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L329
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L532
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L618
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L533
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L630
 msgid "Lists"
 msgstr "Listat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L71
 msgid "Favorites"
 msgstr "Suosikit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L203
 msgid "Comments"
 msgstr "Kommentit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L154
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L40
 msgid "Comments on {user}'s sentences"
 msgstr "Käyttäjän {user} lauseiden kommentit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L95
 msgid "Wall messages"
 msgstr "Seinäviestit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L145
 msgid "Logs"
 msgstr "Lokit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L197
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L122
+msgid "Transcriptions"
+msgstr "Transkriptiot"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L134
 msgid "Translate {user}'s sentences"
 msgstr "Käännä käyttäjän {user} lauseita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L143
 msgid "Contact {user}"
 msgstr "Ota yhteyttä käyttäjään {user}"
 
@@ -1739,19 +1801,46 @@ msgstr "Ota yhteyttä käyttäjään {user}"
 msgid "Vocabulary items"
 msgstr "Sanat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L30
 msgid "My vocabulary items"
 msgstr "Minun sanani"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L31
 msgid "Add vocabulary items"
 msgstr "Lisää sanoja"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L177
 msgid "Sentences wanted"
 msgstr "Toivotut lauseet"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L20
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L26
+msgid "Add a message: "
+msgstr "Lisää viesti: "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L126
+msgid "Send"
+msgstr "Lähetä"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L142
+msgid "hide replies"
+msgstr "piilota vastaukset"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L145
+msgid "show replies"
+msgstr "näytä vastaukset"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L30
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L137
+msgid "edit"
+msgstr "Muokkaa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L2
 msgid "Your login: "
@@ -1981,49 +2070,45 @@ msgid ""
 "href=\"{teamEmail}\">team</a>."
 msgstr "Jos sinulla on jotain kysyttävää lahjoituksiin liittyen tai jos haluat lahjoittaa jollain muulla tavalla kuin tässä mainituilla tavoin, voit ottaa yhteyttä joko <a href=\"{trangEmail}\">Trangiin</a> tai koko <a href=\"{teamEmail}\">tiimiin</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L50
-msgid "Latest donations"
-msgstr "Viimeisimmät lahjoitukset"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L51
 msgid "All donations"
 msgstr "Kaikki lahjoitukset"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L60
 msgid "How to donate"
 msgstr "Miten tehdä lahjoitus"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L61
 msgid "You have two possible ways to make a donation:"
 msgstr "On kaksi mahdollista lahjoitustapaa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L66
 msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
 msgstr "<b>IBAN-tilisiirto.</b> Tämä on todennäköisesti halvin lahjoitustapa. Tatoeban pankki on ranskalainen, joten jos olet EU-maasta, tilisiirto on ilmainen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L75
 msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
 msgstr "<b>PayPal.</b> Jos et voi tehdä IBAN-tilisiirtoa, voit tehdä lahjoituksen PayPalilla. Tiedoksesi, että PayPal pidättää itsellään tietyn prosentin lahjoituksestasi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L85
 msgid "IBAN transfer"
 msgstr "IBAN-tilisiirto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L86
 msgid "Titular:"
 msgstr "Saajan nimi:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L87
 msgid "IBAN:"
 msgstr "IBAN:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L88
 msgid "BIC/SWIFT:"
 msgstr "BIC/SWIFT:"
 
@@ -2106,13 +2191,13 @@ msgid "{firstSentence} {secondSentence}"
 msgstr "{firstSentence} {secondSentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L126
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L59
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L132
 msgid "Download"
 msgstr "Lataa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L128
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L146
 msgid "Fields and structure"
 msgstr "Kentät ja rakenne"
 
@@ -2121,7 +2206,7 @@ msgid "File description"
 msgstr "Tiedoston kuvaus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L130
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L155
 msgid "Sentence id"
 msgstr "Lausenumero"
 
@@ -2130,7 +2215,7 @@ msgid "Rating"
 msgstr "Arvostelu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L132
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
 msgid "Text"
 msgstr "Teksti"
 
@@ -2139,7 +2224,7 @@ msgid "Lang"
 msgstr "Kieli"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L63
 msgid "Username"
@@ -2194,8 +2279,8 @@ msgid "Attribution URL"
 msgstr "Tekijän nimeämisessä käytettävä URL"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L148
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L158
 msgid "tab"
 msgstr "sarkain"
 
@@ -2446,62 +2531,60 @@ msgid ""
 msgstr "On kuitenkin mahdollista antaa kenentahansa Tatoeban jäsenen lisätä ja poistaa lauseita listalta määrittämällä lista <strong>yhteistyölistaksi</strong>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L30
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L28
 msgid "Tatoeba: Collection of sentences and translations"
 msgstr "Tatoeba: lause- ja käännöskokoelma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L72
 msgid "Latest messages"
 msgstr "Uusimmat viestit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L109
 msgid "show more..."
 msgstr "Näytä lisää..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L106
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Uusimmat kommentit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L61
 msgid "Want to help?"
 msgstr "Haluatko auttaa?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L63
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "Me keräämme lauseita ja niiden käännöksiä. Voit auttaa meitä kääntämällä tai lisäämällä uusia lauseita."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
 msgid "Join the community"
 msgstr "Liity yhteisöön"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
 msgid "Stats"
 msgstr "Tilastot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
 msgstr[0] "{number} työpanos tänään"
 msgstr[1] "{number} työpanosta tänään"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L93
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
 msgstr[0] "{number} tuettu kieli"
 msgstr[1] "{number} tuettua kieltä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
-msgid "{number} sentence in {lang}"
-msgid_plural "{number} sentences in {lang}"
-msgstr[0] "{number} lause {lang.translative}"
-msgstr[1] "{number} lausetta {lang.translative}"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L110
+msgid "stats per languages"
+msgstr "tilastot kielittäin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -2541,7 +2624,7 @@ msgid "[no subject]"
 msgstr "[ei aihetta]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L26
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L28
 msgid " - Tatoeba"
 msgstr " - Tatoeba"
 
@@ -2586,7 +2669,7 @@ msgstr "Lause nro {number}"
 msgid "Edit Comment"
 msgstr "Muokkaa kommenttia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L27
 msgid "Edit Comment on Sentence #{number}"
 msgstr "Muokkaa kommenttia lauseeseen #{number}"
 
@@ -2662,8 +2745,8 @@ msgid "Sentence"
 msgstr "Lause"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L144
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L142
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L496
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L497
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L385
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L706
@@ -2734,42 +2817,42 @@ msgstr "Varoitus: seuraavat hakukriteerit on jätetty huomioimatta: {list}"
 msgid "More search criteria"
 msgstr "Lisää hakukriteereitä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L89
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L103
 msgid "Search error"
 msgstr "Hakuvirhe"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L94
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
 msgstr "Virheellinen kysely. Tutustu tarkempia tietoja halutessasi <a href=\"{}\">haku-dokumentaatioon</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L107
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
 msgstr "Hakua tehtäessä tapahtui virhe. Jos ongelma toistuu, <a href=\"{}\">kerrothan siitä meille</a>."
 
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L125
 msgid "Search: {keywords}"
 msgstr "Hakutulos: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L6
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
 msgid "Search disabled"
 msgstr "Haku poistettu käytöstä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L10
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
 msgstr "Teknisistä syistä johtuen hakutoiminto on tällä hetkellä poistettu käytöstä. Pahoittelemme tästä aiheutuvaa haittaa. Yritäthän myöhemmin uudelleen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L39
-msgid "{language} example sentence: {sentence}"
-msgstr "{language.genitive}kielinen esimerkkilause: {sentence}"
+msgid "{sentence} - {language} example sentence"
+msgstr "{sentence} - {language.genitive}kielinen esimerkkilause"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L47
 msgid ""
@@ -2793,24 +2876,20 @@ msgstr "(vanhentunut)"
 msgid "There is no log for this sentence"
 msgstr "Tällä lauseella ei ole lokia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L229
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L228
 msgid "There are no comments for now."
 msgstr "Lausetta ei ole vielä kommentoitu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L234
-msgid "Sentence deleted"
-msgstr "Lause poistettu lopullisesti"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L245
 msgid "Random Sentence"
 msgstr "Satunnainen lause"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L247
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
 msgstr "Satunnainen lause -ominaisuus on tällä hetkellä poistettu käytöstä. Yritä myöhemmin uudelleen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L254
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L249
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
@@ -2829,48 +2908,48 @@ msgid "Download list: "
 msgstr "Lataa lista: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L45
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L99
 msgid "Actions"
 msgstr "Toiminnot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L63
 msgid "Id (optional)"
 msgstr "Lauseen numero (valinnainen)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L74
 msgid ""
 "If you check this box, the id of each sentence will be written to the "
 "output."
 msgstr "Jos laitat merkin tähän valintalaatikkoon, jokaisen lauseen lausenumero kirjoitetaan tulosteeseen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L80
 msgid "Translation (optional)"
 msgstr "Käännös (valinnainen)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L115
 msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the {Anki} program."
 msgstr "Jos valitset kielen, jokaisen lauseen käännös kyseiselle kielelle (jos käännös on olemassa) kirjoitetaan tulosteeseesi. Voit sitten viedä tiedoston {Anki}-ohjelmaan ja luoda pakan sanastonopiskelukortteja."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L139
 msgid "Preparing download, please wait."
 msgstr "Valmistellaan latausta, odota hetki."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L140
 msgid "Failed to prepare download, please try again."
 msgstr "Latauksen valmistelu epäonnistui, yritä uudelleen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L150
 msgid "Fields will be written out in the following sequence:"
 msgstr "Kentät kirjoitetaan seuraavassa järjestyksessä:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
 msgid "Translation"
 msgstr "Käännös"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L163
 msgid ""
 "Optional fields that are not selected above will not be written to the "
 "output."
@@ -2892,19 +2971,19 @@ msgstr "Yhteistyölistat, joihin sisältyy ”{search}” ({total})"
 msgid "All public lists containing \"{search}\" ({total})"
 msgstr "Kaikki julkiset listat, jotka sisältävät ”{search}” ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L75
 msgid "list name"
 msgstr "Listan nimi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L81
 msgid "number of sentences"
 msgstr "Lauseiden lukumäärä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L77
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L80
 msgid "last updated"
 msgstr "viimeksi päivitetty"
 
@@ -2920,28 +2999,28 @@ msgstr "Käyttäjän {username} listat, joihin sisältyy ”{search}” ({total}
 msgid "Sentence successfully removed."
 msgstr "Lause poistettu listalta onnistuneesti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L46
 msgid "About this list"
 msgstr "Tietoja tästä listasta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L177
 msgid "created by {listAuthor}"
 msgstr "Luonut {listAuthor}"
 
 #. @translators: number of sentences contained in the list
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L66
 msgid "Contains {n}&nbsp;sentence"
 msgid_plural "Contains {n}&nbsp;sentences"
 msgstr[0] "Sisältää yhden lauseen"
 msgstr[1] "Sisältää {n}&nbsp;lausetta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L42
 msgid "Options"
 msgstr "Valinnat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L211
@@ -2953,27 +3032,15 @@ msgstr "Valinnat"
 msgid "Edit"
 msgstr "Muokkaa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L130
 msgid "Edit name"
 msgstr "Muokkaa nimeä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L143
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L150
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L184
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L412
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L159
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L98
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L152
-msgid "Cancel"
-msgstr "Peruuta"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L144
 msgid "Click to edit..."
 msgstr "Klikkaa muokataksesi..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L155
 msgid "date added to list"
 msgstr "listaan lisäyspäivämäärä"
 
@@ -3011,55 +3078,46 @@ msgstr "Lauseiden lukumäärä kielittäin"
 msgid "Unspecified"
 msgstr "Määrittelemätön"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
 msgstr "Lauseet, joissa on tunniste {tagName}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L91
-msgid "View all tags"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L57
+msgid "Show all tags"
 msgstr "Näytä kaikki tunnisteet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L53
 msgid "{tagName} ({n} sentence)"
 msgid_plural "{tagName} ({n} sentences)"
 msgstr[0] "{tagName} ({n} lause)"
 msgstr[1] "{tagName} ({n} lausetta)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L64
 msgid "date of tag"
 msgstr "tunnisteen päivämäärä"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L110
-msgid "No tag with id {tagId}"
-msgstr "Ei tunnistetta numerolla {tagId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L28
 msgid "All existing tags"
 msgstr "Kaikki tunnisteet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L38
 msgid "Search tags"
 msgstr "Etsi tunnisteita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L50
-msgid "Show all tags"
-msgstr "Näytä kaikki tunnisteet"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L73
 msgid "All tags (total {{count}})"
 msgstr "Kaikki tunnisteet (yhteensä {{count}})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L73
-msgid "Tags containing: {search} (total {count})"
-msgstr "Tunnisteet, jotka sisältävät: {search} (yhteensä {count})"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L77
+msgid "Tags containing: {search} (total {{count}})"
+msgstr "Tunnisteet, jotka sisältävät: {search} (yhteensä {{count}})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L87
 msgid "count"
 msgstr "lukumäärä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L89
 msgid "name"
 msgstr "nimi"
 
@@ -3150,7 +3208,7 @@ msgstr "Syötä shanghainmurteella kirjoitettua tekstiä"
 msgid "Transcriptions of {username}"
 msgstr "Käyttäjän {username} transkriptiot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L49
 msgid "{username} does not have any transcriptions"
 msgstr "Käyttäjällä {username} ei ole yhtään transkriptiota"
 
@@ -3209,7 +3267,7 @@ msgstr "Kuvaus"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L317
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L318
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L470
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L478
 msgid "Add a language"
 msgstr "Lisää kieli"
 
@@ -3280,8 +3338,8 @@ msgid ""
 msgstr "Tähän profiiliin pääsy on RAJOITETTUA. Vain Tatoeban jäsenet voivat nähdä henkilötiedot ja kuvauksen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L223
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L92
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L135
 msgid "Member since"
 msgstr "Liittymispäivämäärä"
 
@@ -3428,15 +3486,11 @@ msgstr "Jäsenet"
 msgid "Search user"
 msgstr "Etsi käyttäjää"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L56
-msgid "search"
-msgstr "Haku"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L83
 msgid "Members (total {number})"
 msgstr "Jäsenet (yhteensä {number})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L97
 msgid "Member status"
 msgstr "Jäsenen asema"
 
@@ -3471,12 +3525,6 @@ msgstr "Lähetä uusi salasana"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L52
 msgid "Email"
 msgstr "Sähköpostiosoite"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L126
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L102
-msgid "Send"
-msgstr "Lähetä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L54
 msgid "I accept the <a href=\"{}\">terms of use</a>"
@@ -3583,40 +3631,30 @@ msgstr "Lähetä"
 msgid "{username}'s vocabulary items ({number})"
 msgstr "Käyttäjän {username} sanat ({number})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/edit.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/edit.ctp#L28
 msgid "Edit message {number}"
 msgstr "Muokkaa viestiä {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/edit.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L48
-msgid "Menu"
-msgstr "Valikko"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/edit.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L52
-msgid "Back to Wall"
-msgstr "Takaisin seinälle"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L50
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
 msgstr "Ennen kun esität kysymyksen, varmista, että olet lukenut <a href=\"{}\">UKK:n</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L61
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
 msgstr "Pyrimme ylläpitämään tervettä ilmapiiriä sivistyneelle keskustelulle. Luethan meidän <a href=\"{}\">sääntömme huonoa käytöstä vastaan</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L80
 msgid "{date}, by {author}"
 msgstr "{date}, käyttäjältä {author}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L107
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
 msgstr "Voit kirjoittaa millä tahansa haluamallasi kielellä. Tatoebassa kaikki kielet ovat samanarvoisia."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L126
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "Seinä (yksi viestiketju)"
@@ -3633,6 +3671,14 @@ msgstr "Käyttäjän {user} viestit seinällä (yhteensä&nbsp;{n})"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L39
 msgid "Thread #{number}"
 msgstr "Viestiketju nro {number}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L46
+msgid "Menu"
+msgstr "Valikko"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/show_message.ctp#L50
+msgid "Back to Wall"
+msgstr "Takaisin seinälle"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L64
 msgid "Recorded by: {username}"
@@ -3666,43 +3712,13 @@ msgid ""
 "license."
 msgstr "Käyttäjän {userName} seuraavat äänitteet ovat lisenssoitu tuntemattomalla lisenssillä."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L74
-msgid "Add a comment"
-msgstr "Kommentoi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L94
-msgid "Submit comment"
-msgstr "Kommentoi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L103
-msgid "Good practices"
-msgstr "Hyviä käytäntöjä"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L108
-msgid "Say \"welcome\" to new users."
-msgstr "Toivota uudet käyttäjät tervetulleiksi."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L116
-msgid "Use private messages to discuss things unrelated to the sentence."
-msgstr "Käytä yksityisviestejä, jos haluat keskustella tähän lauseeseen liittymättömistä asioista."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L188
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L156
-msgid "Save changes"
-msgstr "Tallenna muutokset"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L80
 msgid "unhide"
 msgstr "Tuo esiin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L215
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L83
 msgid "hide"
 msgstr "Piilota"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L247
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L449
-msgid "edit"
-msgstr "Muokkaa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
@@ -3840,44 +3856,44 @@ msgstr "mikä tahansa kieli"
 msgid "unknown"
 msgstr "; nominative: tuntematon; genitive: tuntemattoman; partitive: tuntematonta; inessive: tuntemattomassa; elative: tuntemattomasta; illative: tuntemattomaan; translative: tuntemattomaksi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L459
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
 msgstr "Et voi lisätä lauseita, koska et ole lisännyt yhtään kieltä profiiliisi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L464
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
 msgstr "Et voi kääntää lauseita, koska et ole lisännyt yhtään kieltä profiiliisi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L481
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L489
 msgctxt "level"
 msgid "Unspecified"
 msgstr "Määrittelemätön"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L482
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L490
 msgid "0: Almost no knowledge"
 msgstr "0: Käytännössä olemattomat tiedot"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L483
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L491
 msgid "1: Beginner"
 msgstr "1: Aloittelijataso"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L484
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L492
 msgid "2: Intermediate"
 msgstr "2: Keskitaso"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L485
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L493
 msgid "3: Advanced"
 msgstr "3: Edistynyt taso"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L494
 msgid "4: Fluent"
 msgstr "4: Sujuva taso"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L487
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L495
 msgid "5: Native level"
 msgstr "5: Äidinkielen taso"
 
@@ -3895,117 +3911,117 @@ msgctxt "license"
 msgid "for Tatoeba only"
 msgstr "Vain Tatoebaa varten"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L75
 msgid "created"
 msgstr "luotu"
 
 #. @translators: string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L151
 msgid "(unnamed list)"
 msgstr "(nimetön lista)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L210
 msgid "Number of sentences"
 msgstr "Lauseiden lukumäärä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L230
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L231
 msgid "Back to all lists"
 msgstr "Takaisin kaikkiin listoihin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L254
 msgid "Back to this list"
 msgstr "Takaisin tähän listaan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L282
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L283
 msgid "Download this list"
 msgstr "Lataa tämä lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L298
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L299
 msgid "Show translations :"
 msgstr "Näytä käännökset:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L332
 msgid "List visibility"
 msgstr "Listan näkyvyys"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L338
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L339
 msgid "Public"
 msgstr "Julkinen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L341
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L342
 msgid "Unlisted"
 msgstr "Luetteloimaton"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L345
 msgid "Private"
 msgstr "Yksityinen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L368
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L369
 msgid "Who can add/remove sentences"
 msgstr "Kuka voi lisätä/poistaa lauseita"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L375
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L376
 msgid "Anyone"
 msgstr "Kuka tahansa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L378
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L379
 msgid "Only me"
 msgstr "Vain minä"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L381
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L382
 msgid "No one (list inactive)"
 msgstr "Ei kukaan (lista epäaktiivinen)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L403
 msgid "Delete this list"
 msgstr "Poista tämä lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L457
 msgid "Remove sentence {number} from list"
 msgstr "Poista lause {number} listalta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L466
 msgid "Remove from list"
 msgstr "Poista listalta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L491
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L492
 msgid "Add a sentence to this list : "
 msgstr "Lisää lause tälle listalle: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L509
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L510
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
 msgstr "HUOM: Voi myös lisätä olemassa olevia lauseita käyttämällä tätä kuvaketta {addToListButton} (esimerkiksi kun <a href=\"{url}\">selailet</a>)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L562
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L563
 msgid "Create a new list"
 msgstr "Luo uusi lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L572
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L574
 msgctxt "list"
 msgid "Name"
 msgstr "Nimi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L574
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L578
 msgid "create"
 msgstr "Luo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L622
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L640
 msgid "All public lists"
 msgstr "Kaikki julkiset listat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L634
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L651
 msgid "Collaborative lists"
 msgstr "Yhteistyölistat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L665
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L678
 msgctxt "list"
 msgid "Unspecified"
 msgstr "Määrittelemätön"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L677
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L690
 msgid "Other lists"
 msgstr "Muut listat"
 
@@ -4218,29 +4234,8 @@ msgid "from {sender}"
 msgstr "lähettäjä {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L365
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L189
 msgid "View this user's profile"
 msgstr "Katso tämän käyttäjän profiilia"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L86
-msgid "Show sentence #: "
-msgstr "Näytä lause nro: "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L120
-msgid "Language for previous, next or random sentence"
-msgstr "Edellisen, seuraavan tai satunnaisen lauseen kieli"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L130
-msgid "previous"
-msgstr "edellinen"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L155
-msgid "next"
-msgstr "seuraava"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L183
-msgid "random"
-msgstr "satunnainen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L214
 msgid "all lists"
@@ -4250,7 +4245,7 @@ msgstr "kaikki listat"
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results. Note
 #. the use of &nbsp; which is a non-breaking space.
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L38
 msgid "{title} ({n} result)"
 msgid_plural "{title} ({n}&nbsp;results)"
 msgstr[0] "{title} ({n}&nbsp;hakutulos)"
@@ -4261,13 +4256,13 @@ msgstr[1] "{title} ({n}&nbsp;hakutulosta)"
 #. to display {thousand} results (that should always be turned
 #. into “1000”), but {n} results actually exist in the corpus.
 #. Note the use of &nbsp; which is a non-breaking space.
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L49
 msgid "{title} ({thousand}&nbsp;results out of {n} occurrence)"
 msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
 msgstr[0] "{title} ({thousand}&nbsp;hakutulosta {n} esiintymästä)"
 msgstr[1] "{title} ({thousand}&nbsp;hakutulosta {n}&nbsp;esiintymästä)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L84
 msgid "Recently added sentences may not appear in search results."
 msgstr "Hiljattain lisätyt lauseet eivät välttämättä näy hakutuloksissa."
 
@@ -4358,7 +4353,11 @@ msgstr "kyllä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L243
 msgid "NOTE: Not all languages have audio at the moment."
-msgstr "HUOM: Vain muutamilla kielillä on äänitiedostoja tällä hetkellä."
+msgstr "HUOM: Kaikilla kielillä ei ole vielä äänitteitä."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L91
+msgid "View all tags"
+msgstr "Näytä kaikki tunnisteet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L143
 msgid "Added by {username}, {date}"
@@ -4435,22 +4434,6 @@ msgctxt "transcription"
 msgid "Click to mark it as reviewed."
 msgstr "Klikkaa merkitäksesi sen arvioiduksi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L85
-msgid "Add a message: "
-msgstr "Lisää viesti: "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L135
-msgid "Edit Wall Message"
-msgstr "Muokkaa seinäviestiä"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L306
-msgid "hide replies"
-msgstr "piilota vastaukset"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L311
-msgid "show replies"
-msgstr "näytä vastaukset"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L383
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
 msgid "by {messageAuthor}"
 msgstr "tekijä {messageAuthor}"
