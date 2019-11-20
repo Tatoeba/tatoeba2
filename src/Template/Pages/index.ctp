@@ -31,16 +31,15 @@ $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translat
 $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
 ?>
 <div id="annexe_content">
-    <?php 
-    echo $this->element('sentences_statistics', array(
-        'stats' => $stats,
+    <?= $this->element('stats/homepage_stats', [
+        'contribToday' => $contribToday,
+        'numberOfLanguages' => $numberOfLanguages,
         'numSentences' => $numSentences,
         'cache' => array(
             'time' => '+15 minutes',
             'key' => Configure::read('Config.language')
         )
-    ));
-    ?>
+    ]); ?>
         
     <md-list class="annexe-menu md-whiteframe-1dp">
         <md-subheader><?= __('Latest messages'); ?></md-subheader>

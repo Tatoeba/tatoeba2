@@ -107,6 +107,13 @@ class PagesController extends AppController
         $numSentences = $this->Sentences->find()->count();
         $this->set('numSentences', $numSentences);
 
+        $this->loadModel('Contributions');
+        $contribToday = $this->Contributions->getTodayContributions();
+        $this->set('contribToday', $contribToday);
+
+        $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
+        $this->set('numberOfLanguages', $numberOfLanguages);
+
         if ($isLogged) {
             $this->_homepageForMembers();
         } else {
@@ -116,13 +123,6 @@ class PagesController extends AppController
 
 
     private function _homepageForGuests() {
-        $this->loadModel('Contributions');
-        $contribToday = $this->Contributions->getTodayContributions();
-        $this->set('contribToday', $contribToday);
-
-        $numberOfLanguages = count(LanguagesLib::languagesInTatoeba());
-        $this->set('numberOfLanguages', $numberOfLanguages);
-
         $this->render('index_for_guests');
     }
 
@@ -146,11 +146,6 @@ class PagesController extends AppController
         $latestMessages = $this->Wall->getLastMessages(5);
 
         $this->set('latestMessages', $latestMessages);
-
-        // stats
-        $this->loadModel('Languages');
-        $stats = $this->Languages->getSentencesStatistics(5);
-        $this->set('stats', $stats);
     }
 
     /**
