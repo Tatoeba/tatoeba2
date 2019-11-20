@@ -24,12 +24,16 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
+use Cake\Core\Configure;
 
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
-$statsUrl = $this->Url->build([
-    'controller' => 'stats',
-    'action' => 'sentences_by_language'
-]);
+
+$registerUrl = $this->Url->build(
+    array(
+        "controller" => "users",
+        "action" => "register"
+    )
+);
 ?>
 
 <div layout="row" layout-align="center center">
@@ -56,20 +60,14 @@ $statsUrl = $this->Url->build([
 <?php } ?>
 
 <div layout="row" layout-margin="">
-    <div class="section" md-whiteframe="1" flex>
-        <?php
-        echo $this->Html->tag('h2', __('Want to help?'));
-        echo $this->Html->tag('p', __(
+    <div class="join-us md-whiteframe-1dp" layout="column" flex>
+        <md-subheader><?= __('Want to help?')?></md-subheader>
+        <p flex>
+        <?= __(
             'We are collecting sentences and their translations. '.
             'You can help us by translating or adding new sentences.', true
-        ));
-        $registerUrl = $this->Url->build(
-            array(
-                "controller" => "users",
-                "action" => "register"
-            )
-        );
-        ?>
+        ); ?>
+        </p>
         <div layout="row" layout-align="center center">
             <md-button class="md-primary" href="<?= $registerUrl; ?>">
                 <?php echo __('Join the community'); ?>
@@ -77,41 +75,16 @@ $statsUrl = $this->Url->build([
             </md-button>
         </div>
     </div>
-
-    <div class="section" md-whiteframe="1" flex>
-        <?php
-        echo $this->Html->tag('h2', __('Stats'));
-
-        echo $this->Html->div('stat', format(
-            __n('{number} contribution today',
-                '{number} contributions today',
-                $contribToday,
-                true),
-            ['number' => $this->Html->tag('strong', $this->Number->format($contribToday))]
-        ));
-        echo $this->Html->div('stat', format(
-            __n('{number} supported language',
-                '{number} supported languages',
-                $numberOfLanguages,
-                true),
-            ['number' => $this->Html->tag('strong', $this->Number->format($numberOfLanguages))]
-        ));
-        echo $this->Html->div('stat', format(
-            __n('{number} sentence',
-                '{number} sentences',
-                $numSentences,
-                true),
-            ['number' => $this->Html->tag('strong', $this->Number->format($numSentences))]
-        ));
-        ?>
-
-        <div layout="row" layout-align="center center">
-            <md-button class="md-primary" href="<?= $statsUrl ?>">
-                <?= __('stats per languages') ?>
-                <md-icon>keyboard_arrow_right</md-icon>
-            </md-button>
-        </div>
-    </div>
+    
+    <?= $this->element('stats/homepage_stats', [
+        'contribToday' => $contribToday,
+        'numberOfLanguages' => $numberOfLanguages,
+        'numSentences' => $numSentences,
+        'cache' => array(
+            'time' => '+15 minutes',
+            'key' => Configure::read('Config.language')
+        )
+    ]); ?>
 </div>
 
 </div>

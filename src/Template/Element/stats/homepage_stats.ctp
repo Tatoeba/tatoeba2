@@ -5,31 +5,39 @@ $statsUrl = $this->Url->build([
 ]);
 ?>
 
-<div class="annexe-menu md-whiteframe-1dp" flex>
+<div class="stats annexe-menu md-whiteframe-1dp" layout="column" flex>
     <md-subheader><?= __('Stats') ?></md-subheader>
-    <?php
-    echo $this->Html->div('stat', format(
-        __n('{number} contribution today',
-            '{number} contributions today',
-            $contribToday,
-            true),
-        ['number' => $this->Html->tag('strong', $this->Number->format($contribToday))]
-    ));
-    echo $this->Html->div('stat', format(
-        __n('{number} supported language',
-            '{number} supported languages',
-            $numberOfLanguages,
-            true),
-        ['number' => $this->Html->tag('strong', $this->Number->format($numberOfLanguages))]
-    ));
-    echo $this->Html->div('stat', format(
-        __n('{number} sentence',
-            '{number} sentences',
-            $numSentences,
-            true),
-        ['number' => $this->Html->tag('strong', $this->Number->format($numSentences))]
-    ));
-    ?>
+    <div class="content" flex>
+        <div>
+        <?=  format(
+            __n('{number} contribution today',
+                '{number} contributions today',
+                $contribToday,
+                true),
+            ['number' => $this->Html->tag('strong', $this->Number->format($contribToday))]
+        ) ?>
+        </div>
+
+        <div>
+        <?= format(
+            __n('{number} supported language',
+                '{number} supported languages',
+                $numberOfLanguages,
+                true),
+            ['number' => $this->Html->tag('strong', $this->Number->format($numberOfLanguages))]
+        ) ?>
+        </div>
+
+        <div>
+        <?= format(
+            __n('{number} sentence',
+                '{number} sentences',
+                $numSentences,
+                true),
+            ['number' => $this->Html->tag('strong', $this->Number->format($numSentences))]
+        ) ?>
+        </div>
+    </div>
 
     <div layout="row" layout-align="center center">
         <md-button class="md-primary" href="<?= $statsUrl ?>">

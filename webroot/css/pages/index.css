@@ -160,7 +160,14 @@
 /*
  *
  */
+.stats .content {
+    margin: 10px 0;
+}
 
-.stat {
-    padding: 5px 16px;
+.stats .content div {
+    padding: 2px 16px;
+}
+
+.join-us p {
+    padding: 0px 16px;
 }
