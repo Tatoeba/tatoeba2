@@ -57,7 +57,8 @@
                         var query = encodeURIComponent(data.query);
                         data.url = '/sentences/search?' +
                             'query=' + query + '&' +
-                            'from=' + data.lang;
+                            'from=' + data.lang +
+                            '&orphans=&unapproved=';
                     }
                     vm.vocabularyAdded.unshift(data);
                     vm.data.text = '';
