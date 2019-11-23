@@ -39,7 +39,7 @@ if (!$pm->id) {
     </div>
 </md-toolbar>
 
-<section layout="row" flex>
+<section layout="row" flex ng-cloak>
     <?= $this->element('pmmenu'); ?>
 
     <md-content class="md-whiteframe-1dp" flex>
