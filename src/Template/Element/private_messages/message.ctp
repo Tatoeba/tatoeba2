@@ -44,8 +44,6 @@ $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message
         <?php } ?>
     </md-card-header>
     
-    <h3><?= $message->title ?></h3>
-    
     <md-card-content>
         <p class="content" dir="auto">
             <?= $this->Messages->formatContent($message->content) ?>

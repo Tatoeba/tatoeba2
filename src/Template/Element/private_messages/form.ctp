@@ -12,8 +12,17 @@ if ($isReply) {
 }
 ?>
 
-<div id="private-message-form" class="section md-whiteframe-1dp">
-    <h2><?= $headerTitle ?></h2>
+<?php if (isset($headerTitle)) { ?>
+    <md-toolbar class="md-hue-1">
+        <div class="md-toolbar-tools">
+            <h2 flex>
+                <?= $headerTitle ?>
+            </h2>
+        </div>
+    </md-toolbar>
+<?php } ?>
+
+<div id="private-message-form" class="section">
     <div>
         <?php
         echo $this->Form->create($pm, [

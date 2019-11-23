@@ -36,26 +36,46 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     .__('Private messages') 
 ));
 
-echo $this->element('pmmenu');
 ?>
-<div id="main_content">
-    <?php
-    $author = $message->author;
-    echo $this->element('private_messages/message', [
-        'message' => $message,
-        'user' => $author
-    ]);
-    ?>
-    
-    <a name="reply"></a>
-    <?php
-    if ($message->folder == 'Inbox' && $message->type == 'human') {
-        echo $this->element('private_messages/form', [
-            'headerTitle' => __('Reply'),
-            'pm' => $message,
-            'recipients' => $author->username,
-            'isReply' => true
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <h2 flex><?= __('Private messages') ?></h2>
+        
+        <?php
+        $this->Pagination->display();
+        ?>
+    </div>
+</md-toolbar>
+
+<section layout="row" flex>
+    <?= $this->element('pmmenu'); ?>
+
+    <md-content class="md-whiteframe-1dp" flex>
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h2 flex>
+                    <?= $message->title ?>
+                </h2>
+            </div>
+        </md-toolbar>
+        <?php
+        $author = $message->author;
+        echo $this->element('private_messages/message', [
+            'message' => $message,
+            'user' => $author
         ]);
-    }
-    ?>
-</div>
+        ?>
+        
+        <a name="reply"></a>
+        <?php
+        if ($message->folder == 'Inbox' && $message->type == 'human') {
+            echo $this->element('private_messages/form', [
+                'headerTitle' => __('Reply'),
+                'pm' => $message,
+                'recipients' => $author->username,
+                'isReply' => true
+            ]);
+        }
+        ?>
+    </md-content>
+</section>

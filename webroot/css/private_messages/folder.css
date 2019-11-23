@@ -22,8 +22,13 @@
  * Folder content
  */
 
+#pm-list {
+    padding: 0;
+}
+
 #pm-list md-list-item {
     border-top: 1px solid #f1f1f1;
+    background: #fff;
 }
 
 #pm-list .unread .md-list-item-text h3 {

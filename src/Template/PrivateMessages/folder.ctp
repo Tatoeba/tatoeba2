@@ -41,37 +41,44 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
        whatever you translated "Inbox", "Sent" or "Trash" as. */
     format(__('Private messages - {folderName}'), compact('folderName'))
 ));
-
-echo $this->element('pmmenu');
 ?>
-<div id="main_content">
-    <div class="section md-whiteframe-1dp">
-        <div layout="row" layout-align="center start">
-        <h2 flex>
-            <?php 
-            $n = $this->Paginator->param('count');
-            echo format(__n('{folderName} ({n}&nbsp;message)',
-                            '{folderName} ({n}&nbsp;messages)',
-                            $n, true),
-                        compact('folderName', 'n'));
-            ?>
-        </h2>
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <h2 flex><?= __('Private messages') ?></h2>
+    </div>
+</md-toolbar>
 
-        <?php if ($folder == 'Trash') { 
-            $url = $this->Url->build(['empty_folder', 'Trash']);
-            $msg = __('Are you sure?');
-            ?>
-            <md-button href="<?= $url ?>" onclick="return confirm('<?= $msg ?>')">
-                <md-icon>delete_forever</md-icon>
-                <?= __('Empty trash') ?>
-            </md-button>
-        <?php } ?>
-        </div>
-        
+<section layout="row" flex>
+    <?= $this->element('pmmenu'); ?>
+
+    <md-content class="md-whiteframe-1dp" flex>
+        <md-toolbar class="md-hue-1">
+            <div class="md-toolbar-tools">
+                <h2 flex>
+                    <?php 
+                    $n = $this->Paginator->param('count');
+                    echo format(__n('{folderName} ({n}&nbsp;message)',
+                                    '{folderName} ({n}&nbsp;messages)',
+                                    $n, true),
+                                compact('folderName', 'n'));
+                    ?>
+                </h2>
+
+                <?php if ($folder == 'Trash') { 
+                    $url = $this->Url->build(['empty_folder', 'Trash']);
+                    $msg = __('Are you sure?');
+                    ?>
+                    <md-button href="<?= $url ?>" onclick="return confirm('<?= $msg ?>')">
+                        <md-icon>delete_forever</md-icon>
+                        <?= __('Empty trash') ?>
+                    </md-button>
+                <?php } ?>
+            </div>
+        </md-toolbar>
+
         <?php
         $this->Pagination->display();
         ?>
-
         <md-list id="pm-list" ng-cloak>
             <?php 
             foreach ($content as $msg) {             
@@ -150,9 +157,8 @@ echo $this->element('pmmenu');
             } 
             ?>
         </md-list>
-        
         <?php
         $this->Pagination->display();
         ?>
     </div>
-</div>
+</section>

@@ -27,56 +27,70 @@
 
 $this->set('title_for_layout', __('New message') . __(' - Tatoeba'));
 
-echo $this->element('pmmenu');
+if (!$pm->id) {
+    $headerTitle = __('New message');
+} else {
+    $headerTitle = __('Message');
+}
 ?>
-<div id="main_content">
-    <?php
-    if ($isNewUser && !$canSend) {
-        ?>
-        <div class="section md-whiteframe-1dp">
-        <h2><?= __('You have reached your message limit for today') ?></h2>
-        <p>
-            <?= __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day.") ?>
-        </p>
-        <p>
-            <?= __("Please wait until you can send more messages.") ?>
-        </p>
-        <p>
-            <?= format(__(
-                'If you have received this message in error, '.
-                'please contact administrators at {email}.', true
-            ), array('email' => 'team@tatoeba.org')) ?>
-        </p>
-        </div>
-        <?php
-    } else if ($isNewUser) {
-        ?>
-        <div class="section md-whiteframe-1dp">
-        <p><?= __(
-            "To help keep Tatoeba free of spam and other malicious messages
-            new users can send only 5 messages per day."
-        ); ?></p>
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <h2 flex><?= __('Private messages') ?></h2>
+    </div>
+</md-toolbar>
 
-        <p><?= format(
-            __n(
-                'You have sent one message today.',
-                'You have sent {n}&nbsp;messages today.',
-                $messagesToday, true
-            ),
-            array('n' => $messagesToday)
-         ); ?></p>
-        </div>
-        <?php
-    }
-    ?>
+<section layout="row" flex>
+    <?= $this->element('pmmenu'); ?>
 
-    <?php
-    if ($canSend) {
-        echo $this->element('private_messages/form', [
-            'headerTitle' => __('New message'),
-            'pm' => $pm,
-            'recipients' => $recipients
-        ]);
-    }
-    ?>
-</div>
+    <md-content class="md-whiteframe-1dp" flex>
+        <?php
+        if ($isNewUser && !$canSend) {
+            ?>
+            <div class="section md-whiteframe-1dp">
+            <h2><?= __('You have reached your message limit for today') ?></h2>
+            <p>
+                <?= __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day.") ?>
+            </p>
+            <p>
+                <?= __("Please wait until you can send more messages.") ?>
+            </p>
+            <p>
+                <?= format(__(
+                    'If you have received this message in error, '.
+                    'please contact administrators at {email}.', true
+                ), array('email' => 'team@tatoeba.org')) ?>
+            </p>
+            </div>
+            <?php
+        } else if ($isNewUser) {
+            ?>
+            <div class="section md-whiteframe-1dp">
+            <p><?= __(
+                "To help keep Tatoeba free of spam and other malicious messages
+                new users can send only 5 messages per day."
+            ); ?></p>
+
+            <p><?= format(
+                __n(
+                    'You have sent one message today.',
+                    'You have sent {n}&nbsp;messages today.',
+                    $messagesToday, true
+                ),
+                array('n' => $messagesToday)
+            ); ?></p>
+            </div>
+            <?php
+        }
+        ?>
+
+        <?php
+        if ($canSend) {
+            echo $this->element('private_messages/form', [
+                'headerTitle' => __('New message'),
+                'pm' => $pm,
+                'recipients' => $recipients
+            ]);
+        }
+        ?>
+    </md-content>
+</section>
