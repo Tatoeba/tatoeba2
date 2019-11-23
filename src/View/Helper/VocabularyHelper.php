@@ -52,7 +52,9 @@ class VocabularyHelper extends AppHelper
                 'action' => 'search',
                 '?' => array(
                     'query' => Search::exactSearchQuery($text),
-                    'from' => $lang
+                    'from' => $lang,
+                    'orphans' => '',
+                    'unapproved' => ''
                 )
             ));
         }
