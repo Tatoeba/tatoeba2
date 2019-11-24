@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-10 18:01+0000\n"
-"PO-Revision-Date: 2019-11-14 23:21+0000\n"
-"Last-Translator: Martijn Dekker <mcdutchie@hotmail.com>\n"
+"POT-Creation-Date: 2019-11-17 14:22+0000\n"
+"PO-Revision-Date: 2019-11-18 00:43+0000\n"
+"Last-Translator: gillux\n"
 "Language-Team: Interlingua (http://www.transifex.com/tatoeba/tatoeba_website/language/ia/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +115,7 @@ msgid "Folder \"{name}\" emptied."
 msgstr "Dossier \"{name}\" vacuate."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L194
 msgid "There is no sentence with id {number}"
 msgstr "Il non ha phrase con ID {number}"
 
@@ -609,7 +609,7 @@ msgstr "Dunque, si tu vole adjutar nos a verificar e corriger phrases, alora ado
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L54
 msgid "Tips"
 msgstr "Consilios"
 
@@ -1764,7 +1764,7 @@ msgid "Favorites"
 msgstr "Favorites"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L205
 msgid "Comments"
 msgstr "Commentos"
 
@@ -1778,7 +1778,7 @@ msgid "Wall messages"
 msgstr "Messages de muro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L143
 msgid "Logs"
 msgstr "Registros"
 
@@ -2533,7 +2533,7 @@ msgid "Tatoeba: Collection of sentences and translations"
 msgstr "Tatoeba: Collection de phrases e traductiones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L97
 msgid "Latest messages"
 msgstr "Ultime messages"
 
@@ -2658,7 +2658,7 @@ msgid ""
 msgstr "Clicca sur le prime phrase pro visitar tatoeba.org pro traducer lo o lassar un commento."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L176
 msgid "Sentence #{number}"
 msgstr "Phrase № {number}"
 
@@ -2847,46 +2847,46 @@ msgid ""
 "sorry for the inconvenience. Please try again later."
 msgstr "A causa de rationes technic, le function de recerca es actualmente disactivate. Nos regretta le incommoditate. Per favor reproba plus tarde."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
 msgstr "Percurre exemplos de phrases traducite. Iste pagina monstra traductiones e information sur le phrase: {sentenceText}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
 msgstr "Phrase non existe:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
 msgstr "Revidite per"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L94
 msgid "(outdated)"
 msgstr "(obsolete)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L164
 msgid "There is no log for this sentence"
 msgstr "Il non ha registro pro iste phrase"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L230
 msgid "There are no comments for now."
 msgstr "Il non ha commentos in iste momento."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L247
 msgid "Random Sentence"
 msgstr "Phrase aleatori"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L249
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
 msgstr "Le function de phrase aleatori es actualmente disactivate. Per favor, reproba plus tarde."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L251
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
@@ -3632,30 +3632,26 @@ msgstr "Entratas de vocabulario de {username} ({number})"
 msgid "Edit message {number}"
 msgstr "Modificar message {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L47
+msgid "Wall (one thread)"
+msgid_plural "Wall ({n}&nbsp;threads)"
+msgstr[0] "Wall (1 discussion)"
+msgstr[1] "Wall ({n}&nbsp;discussiones)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L59
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
 msgstr "Ante de poner un question, assecura te de haber legite le <a href=\"{}\">FAQ</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L70
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L80
-msgid "{date}, by {author}"
-msgstr "{date}, per {author}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L84
 msgid ""
-"You may write in any language you want. At Tatoeba, all languages are equal."
-msgstr "Tu pote scriber in non importa qual lingua. A Tatoeba, tote le linguas es equal."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L126
-msgid "Wall (one thread)"
-msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] "Wall (1 discussion)"
-msgstr[1] "Wall ({n}&nbsp;discussiones)"
+"You may write in any language you want. On Tatoeba, all languages are equal."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
@@ -4312,15 +4308,15 @@ msgstr "Traduction:"
 msgid "Submit translation"
 msgstr "Submitter traduction"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L832
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L831
 msgid "This sentence is original and was not derived from translation."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L844
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L843
 msgid "This sentence was initially added as a translation of sentence #{n}."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L849
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L848
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
