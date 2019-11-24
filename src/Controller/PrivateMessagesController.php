@@ -87,6 +87,7 @@ class PrivateMessagesController extends AppController
 
         $this->set('folder', $folder);
         $this->set('content', $content);
+        $this->set('status', $status);
     }
 
     /**

@@ -27,7 +27,11 @@
  
 $folderName = '';
 if ($folder == 'Inbox') {
-    $folderName = __('Inbox');
+    if ($status == 'unread') {
+        $folderName = __('Unread');
+    } else {
+        $folderName = __('Inbox');
+    }    
 } elseif ($folder == 'Sent') {
     $folderName = __('Sent');
 } elseif ($folder == 'Trash') {
