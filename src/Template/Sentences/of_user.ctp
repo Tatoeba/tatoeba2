@@ -56,9 +56,19 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     );
 
     $this->CommonModules->createFilterByLangMod(2);
-    ?>
-</div>
 
+    echo $this->Html->script('sentences/only_original.ctrl.js', ['block' => 'scriptBottom']);
+    ?>
+    <div ng-controller="OriginalSentencesController" class="section md-whiteframe-1dp" layout="column">
+        <md-checkbox
+            class="md-primary"
+            ng-model="original"
+            ng-checked="<?= $onlyOriginal ?>"
+            ng-click="toggle()">
+            <?= __('Only show original sentences') ?>
+        </md-checkbox>
+    </div>
+</div>
 
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
@@ -96,6 +106,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
+            if ($onlyOriginal) {
+                $urlOptions = $this->Paginator->generateUrlParams(
+                    array('?' => array('only_original' => ''))
+                );
+                $this->Paginator->options(array('url' => $urlOptions));
+            }
             echo $this->Paginator->sort('modified', __('date modified'));
             echo " | ";
             echo $this->Paginator->sort('created', __('date created'));

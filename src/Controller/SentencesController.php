@@ -875,12 +875,14 @@ class SentencesController extends AppController
         // if there's no such user no need to do more computation
         $this->set("userName", $userName);
         if (empty($userId)) {
-
             $this->set("userExists", false);
             return;
         }
 
         $this->set("userExists", true);
+
+        $onlyOriginal = array_key_exists('only_original', $this->request->getQueryParams());
+        $this->set('onlyOriginal', $onlyOriginal);
 
         $this->paginate = array(
             'Sentences' => array(
@@ -904,11 +906,14 @@ class SentencesController extends AppController
             )
         );
 
-
         $conditions = $this->Sentences->find()->where(['user_id' => $userId]);
         // if the lang is specified then we also filter on the language
         if (!empty($lang)) {
             $conditions = $conditions->where(['lang' => $lang]);
+        }
+
+        if ($onlyOriginal) {
+            $conditions = $conditions->where('based_on_id = 0');
         }
 
         try {
