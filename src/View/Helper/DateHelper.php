@@ -27,7 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-
+use Cake\I18n\Time;
 
 /**
  * Helper to display date.
@@ -107,6 +107,8 @@ class DateHelper extends AppHelper
     }
 
     /**
+     * Get the name for a given month number
+     *
      * @param string $mm Month number in 2 digit format (ex: '01' for January).
      *
      * @return string
@@ -121,10 +123,11 @@ class DateHelper extends AppHelper
     /**
      * Format a user birthday. This method accepts incomplete dates.
      *
-     * @param  string $dateTime   [mysql date|datetime format]
-     * @param  string $dateFormat [supported: 'Y-m-d']
+     * @param  string $dateTime   mysql date|datetime format
+     * @param  string $dateFormat ICU date format string (see
+     *                            https://www.php.net/manual/en/class.intldateformatter.php)
      *
-     * @return string             [formatted date string]
+     * @return string             formatted date string
      */
     public function formatBirthday($dateTime, $dateFormat)
     {
@@ -138,12 +141,11 @@ class DateHelper extends AppHelper
         }
 
         if ($this->_isCompleteDate($dateArray)) {
-            return date($dateFormat, strtotime($dateTime));
+            return Time::createFromFormat('Y-m-d H:i:s', $dateTime)
+                   ->i18nFormat($dateFormat);
         }
 
-        $formatMethod = '_formatTo'.str_replace('-', '', $dateFormat);
-
-        return $this->{$formatMethod}($dateArray);
+        return $this->_formatIncompleteDate($dateArray);
     }
 
     /**
@@ -181,15 +183,31 @@ class DateHelper extends AppHelper
     }
 
     /**
-     * Format date to Y-m-d.
+     * Format an incomplete date
      *
-     * @param  array $dateArray
+     * An incomplete date is either just a year, a month and a year
+     * or a day and a month.
+     *
+     * @param  array $dateArray  Three-element array containing the year, month,
+     *                           day (in that order)
      *
      * @return string
      */
-    private function _formatToYmd($dateArray)
+    private function _formatIncompleteDate($dateArray)
     {
-        return implode('-', $dateArray);
+        list($year, $month, $day) = $dateArray;
+
+        if ($year == '0000') {
+            return format(__x('incomplete date', '{month} {day}'),
+                          (array ('day' => $day, 'month' => $this->monthName($month))));
+        } else {
+            if ($month == '00') {
+                return $year;
+            } else {
+                return format(__x('incomplete date', '{month} {year}'),
+                              (array ('month' => $this->monthName($month), 'year' => $year)));
+            }
+        }
     }
 }
 ?>

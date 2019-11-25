@@ -37,15 +37,14 @@ use App\Model\CurrentUser;
  * @link     https://tatoeba.org
  */
 
-$dateFormat = 'Y-m-d';
+$dateFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::NONE];
 $userId = $user['id'];
 $realName = $user['name'];
 $username = $user['username'];
 $userDescription = h($user['description']);
 $homepage = $user['homepage'];
 $birthday = $user['birthday'];
-$userSince = $user['since'];
-$userSince = date($dateFormat, strtotime($userSince));
+$userSince = $this->Time->i18nFormat($user['since'], $dateFormat);
 $userStatus = $this->Members->groupName($user->role);
 $statusClass = 'status_'.$user->role;
 $currentMember = CurrentUser::get('username');
