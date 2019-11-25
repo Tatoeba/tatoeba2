@@ -45,40 +45,41 @@ class DateHelper extends AppHelper
     /**
      * Display how long ago compared to now.
      *
-     * @param string $date        Format for the date is '%d/%m/%Y %H:%M:%S'.
-     * @param bool   $isTimestamp Instead of giving a date to the format indicated,
-     *                            it is possible to give a timestamp. But then this
-     *                            $isTimestamp has to be set to true.
+     * @param string  $date        Format for the date is 'Y-m-d H:i:s'.
+     * @param boolean $alone       Indicates whether the date is shown alone or in a phrase
      *
      * @return string
      */
-    public function ago($date)
+    public function ago($date, $alone=true)
     {
-        $year = substr($date, 0, 4);
-        $month = substr($date, 5, 2);
-        $day = substr($date, 8, 2);
-        $hour = substr($date, 11, 2);
-        $min = substr($date, 14, 2);
-
-        $pureNumberDate = $year.$month.$day.','.$hour.$min;
-        $timestamp = strtotime($pureNumberDate);
-        
-        if (empty($date) || $date == '0000-00-00 00:00:00' || $timestamp == 0) {
+        if (empty($date) || $date == '0000-00-00 00:00:00') {
             return __('date unknown');
         }
 
-        $now = time();
-        $days = intval(($now-$timestamp)/(3600*24));
-        $hours = intval(($now-$timestamp) / 3600);
-        $minutes = intval(($now-$timestamp) / 60);
-        if ($days > 30) {
-            // e.g., "2015-06-20 13:12"
-            return date("Y-m-d H:i", $timestamp);
-        } elseif ($days > 0) {
-            return format(__n('yesterday', '{n}&nbsp;days ago', $days), array('n' => $days));
-        } elseif ($hours > 0) {
-            return format(__n('an hour ago', '{n}&nbsp;hours ago', $hours), array('n' => $hours));
+        $dateObj = Time::createFromFormat('Y-m-d H:i:s', $date);
+
+        $diff = Time::fromNow($dateObj);
+
+        if ($diff->days > 30) {
+            $formattedDate = $dateObj->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT]);
+
+            if ($alone) {
+                return $formattedDate;
+            } else {
+                return format(
+                    /* @translators: This date appears in a phrase (e.g. "edited April 1, 2012"), so you
+                       may want to add a preposition or an article. */
+                    __('{date}'),
+                    array('date' => $formattedDate)
+                );
+            }
+        } elseif ($diff->days > 0) {
+            return format(__n('yesterday', '{n}&nbsp;days ago', $diff->days), array('n' => $diff->days));
+        } elseif ($diff->h > 0) {
+            return format(__n('an hour ago', '{n}&nbsp;hours ago', $diff->h), array('n' => $diff->h));
         } else {
+            // we stop at minute accuracy
+            $minutes = max($diff->i, 1);
             return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes), array('n' => $minutes));
         }
     }
