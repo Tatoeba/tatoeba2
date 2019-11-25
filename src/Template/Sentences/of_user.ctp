@@ -57,17 +57,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
     $this->CommonModules->createFilterByLangMod(2);
 
-    echo $this->Html->script('sentences/only_original.ctrl.js', ['block' => 'scriptBottom']);
-    ?>
-    <div ng-controller="OriginalSentencesController" class="section md-whiteframe-1dp" layout="column">
-        <md-checkbox
-            class="md-primary"
-            ng-model="original"
-            ng-checked="<?= $onlyOriginal ?>"
-            ng-click="toggle()">
-            <?= __('Only show original sentences') ?>
-        </md-checkbox>
-    </div>
+    if (isset($onlyOriginal)) {
+        echo $this->Html->script('sentences/only_original.ctrl.js', ['block' => 'scriptBottom']);
+        ?>
+        <div ng-controller="OriginalSentencesController" class="section md-whiteframe-1dp" layout="column">
+            <md-checkbox
+                class="md-primary"
+                ng-model="original"
+                ng-checked="<?= $onlyOriginal ?>"
+                ng-click="toggle()">
+                <?= __('Only show original sentences') ?>
+            </md-checkbox>
+        </div>
+        <?php
+     } ?>
 </div>
 
 <div id="main_content">
