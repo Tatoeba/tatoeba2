@@ -26,17 +26,13 @@
 
     function OriginalSentencesController($scope, $window) {
         $scope.toggle = function() {
-            var oldQuery = $window.location.search;
+            var searchParams = new URLSearchParams($window.location.search);
             if ($scope.original) {
-                    var newQuery = oldQuery.replace(/only_original=&?/, '');
+                searchParams.delete('only_original');
             } else {
-                if (oldQuery.indexOf('?') > -1) {
-                    var newQuery = oldQuery.replace('?', '?only_original=&');
-                } else {
-                    var newQuery = oldQuery + '?only_original=';
-                }
+                searchParams.set('only_original', '');
             }
-            $window.location.search = newQuery;
+            $window.location.search = searchParams.toString();
         }
     }
 
