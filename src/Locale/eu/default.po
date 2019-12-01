@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-17 14:22+0000\n"
-"PO-Revision-Date: 2019-11-18 00:43+0000\n"
+"POT-Creation-Date: 2019-11-24 11:36+0000\n"
+"PO-Revision-Date: 2019-11-24 12:05+0000\n"
 "Last-Translator: gillux\n"
 "Language-Team: Basque (http://www.transifex.com/tatoeba/tatoeba_website/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -362,19 +362,23 @@ msgstr "Ez dago inongo erabiltzailerik izen honekin: "
 msgid "No user with this ID: {id}"
 msgstr "Erabiltzailerik ez dago ID honekin: {id}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L55
+msgid "This language has already been added to your profile."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L67
 msgid "No language selected."
 msgstr "Ez da hizkuntzarik hautatu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L69
 msgid "You cannot save this language."
 msgstr "Ezin duzu hizkuntza hau gorde."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L95
 msgid "Language deleted"
 msgstr "Hizkuntza ezabatuta"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L97
 msgid "You cannot delete this language."
 msgstr "Ezin duzu hizkuntza hau ezabatu."
 
@@ -384,7 +388,7 @@ msgid "Unknown number of sentences"
 msgstr "Esaldi kopuru ezezaguna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
@@ -972,7 +976,7 @@ msgstr[1] "Eguneroko batez bestekoa: {n} esaldi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Lanean aritutako azkenak"
@@ -1384,7 +1388,7 @@ msgstr "Karpetak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L44
 msgid "Random sentence"
 msgstr "Ausazko esaldia"
 
@@ -1681,6 +1685,27 @@ msgstr "Ezarpenak"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L245
 msgid "Log out"
 msgstr "Amaitu saioa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
+msgid "Stats"
+msgstr "Estatistikak"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L13
+msgid "{number} contribution today"
+msgid_plural "{number} contributions today"
+msgstr[0] "{number} gaurko ekarpena"
+msgstr[1] "{number} gaurko ekarpen kopurua"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L23
+msgid "{number} supported language"
+msgid_plural "{number} supported languages"
+msgstr[0] "{number} hizkuntza oraingoz"
+msgstr[1] "{number} hizkuntza oraingoz"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L44
+msgid "stats per languages"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L47
 msgid "Browse"
@@ -2531,60 +2556,39 @@ msgid ""
 msgstr "Hala ere, posiblea da Tatoebako edozein erabiltzaile baimentzea esaldiak gehitzen eta ezabatzen, horretarako ezarri behar <strong>auzolan</strong> zerrenda bat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L29
 msgid "Tatoeba: Collection of sentences and translations"
 msgstr "Tatoeba: esaldi eta itzulpenen bilduma erraldoia"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L97
 msgid "Latest messages"
 msgstr "Azken mezuak"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L108
 msgid "show more..."
 msgstr "erakutsi gehiago..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Azken iruzkinak"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L64
 msgid "Want to help?"
 msgstr "Lagundu nahi?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "Esaldien bilduma handi bat egiten ari gara. Esaldiak eta beraien itzulpenak gordetzen ditugu. Lagun dezakezu esaldi berriekin edo itzulpenekin."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L73
 msgid "Join the community"
 msgstr "Elkar zaitez komunitatera"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
-msgid "Stats"
-msgstr "Estatistikak"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
-msgid "{number} contribution today"
-msgid_plural "{number} contributions today"
-msgstr[0] "{number} gaurko ekarpena"
-msgstr[1] "{number} gaurko ekarpen kopurua"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L93
-msgid "{number} supported language"
-msgid_plural "{number} supported languages"
-msgstr[0] "{number} hizkuntza oraingoz"
-msgstr[1] "{number} hizkuntza oraingoz"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L110
-msgid "stats per languages"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"

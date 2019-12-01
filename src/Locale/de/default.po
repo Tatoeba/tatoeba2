@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-17 14:22+0000\n"
-"PO-Revision-Date: 2019-11-18 00:43+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2019-11-24 11:36+0000\n"
+"PO-Revision-Date: 2019-11-25 20:10+0000\n"
+"Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/tatoeba/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -366,19 +366,23 @@ msgstr "Es gibt keinen Benutzer mit diesem Benutzernamen: "
 msgid "No user with this ID: {id}"
 msgstr "Die Benutzernummer {id} ist nicht registriert."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L55
+msgid "This language has already been added to your profile."
+msgstr "Diese Sprache ist schon in dein Profil eingetragen."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L67
 msgid "No language selected."
 msgstr "Es wurde keine Sprache gewählt."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L69
 msgid "You cannot save this language."
 msgstr "Diese Sprache kann nicht gespeichert werden."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L95
 msgid "Language deleted"
 msgstr "Sprache entfernt."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L97
 msgid "You cannot delete this language."
 msgstr "Diese Sprache kann nicht gelöscht werden."
 
@@ -388,7 +392,7 @@ msgid "Unknown number of sentences"
 msgstr "Unbekannte Satzanzahl."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
@@ -976,7 +980,7 @@ msgstr[1] "Täglicher Durchschnitt: {n} Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Neueste Beiträge"
@@ -1388,7 +1392,7 @@ msgstr "Ordner"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L44
 msgid "Random sentence"
 msgstr "Zufälliger Satz"
 
@@ -1685,6 +1689,27 @@ msgstr "Einstellungen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L245
 msgid "Log out"
 msgstr "Abmelden"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
+msgid "Stats"
+msgstr "Statistik"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L13
+msgid "{number} contribution today"
+msgid_plural "{number} contributions today"
+msgstr[0] "Heute {number} Beitrag"
+msgstr[1] "Heute {number} Beiträge"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L23
+msgid "{number} supported language"
+msgid_plural "{number} supported languages"
+msgstr[0] "{number} unterstützte Sprache"
+msgstr[1] "{number} unterstützte Sprachen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L44
+msgid "stats per languages"
+msgstr "Statistik pro Sprache"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L47
 msgid "Browse"
@@ -2535,60 +2560,39 @@ msgid ""
 msgstr "Durch <strong>öffentliches Freigeben</strong> einer Liste ist es jedoch auch möglich, jedes Tatoebamitglied Sätze hinzufügen und entfernen zu lassen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L29
 msgid "Tatoeba: Collection of sentences and translations"
 msgstr "Tatoeba – eine Sammlung übersetzter Beispielsätze"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L97
 msgid "Latest messages"
 msgstr "Neueste Nachrichten"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L108
 msgid "show more..."
 msgstr "mehr anzeigen ..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Neueste Kommentare"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L64
 msgid "Want to help?"
 msgstr "Hast du Lust, uns zu helfen?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "Wir sammeln Sätze und übersetzen diese. Du kannst uns also helfen, indem du Sätze übersetzt oder neue beiträgst."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L73
 msgid "Join the community"
 msgstr "Werde Mitglied bei uns!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
-msgid "Stats"
-msgstr "Statistik"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
-msgid "{number} contribution today"
-msgid_plural "{number} contributions today"
-msgstr[0] "Heute {number} Beitrag"
-msgstr[1] "Heute {number} Beiträge"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L93
-msgid "{number} supported language"
-msgid_plural "{number} supported languages"
-msgstr[0] "{number} unterstützte Sprache"
-msgstr[1] "{number} unterstützte Sprachen"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L110
-msgid "stats per languages"
-msgstr "Statistik pro Sprache"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -3658,7 +3662,7 @@ msgstr "Wir möchten eine angenehme Atmosphäre, in der gesittete Diskussionen g
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L84
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr ""
+msgstr "Du darfst hier in jeder beliebigen Sprache schreiben. Bei Tatoeba sind alle Sprachen gleich."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-17 14:22+0000\n"
-"PO-Revision-Date: 2019-11-18 00:43+0000\n"
+"POT-Creation-Date: 2019-11-24 11:36+0000\n"
+"PO-Revision-Date: 2019-11-24 12:05+0000\n"
 "Last-Translator: gillux\n"
 "Language-Team: Dutch (http://www.transifex.com/tatoeba/tatoeba_website/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -367,19 +367,23 @@ msgstr "Geen gebruiker met deze gebruikersnaam: "
 msgid "No user with this ID: {id}"
 msgstr "Geen gebruiker met dit ID: {id}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L55
+msgid "This language has already been added to your profile."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L67
 msgid "No language selected."
 msgstr "Geen taal geselecteerd."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L69
 msgid "You cannot save this language."
 msgstr "Je kunt deze taal niet opslaan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L95
 msgid "Language deleted"
 msgstr "Taal verwijderd"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L97
 msgid "You cannot delete this language."
 msgstr "Je kunt deze taal niet verwijderen."
 
@@ -389,7 +393,7 @@ msgid "Unknown number of sentences"
 msgstr "Onbekend aantal zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
@@ -977,7 +981,7 @@ msgstr[1] "Dagelijks Gemiddelde: {n} zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Laatste bijdragen"
@@ -1389,7 +1393,7 @@ msgstr "Mappen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L44
 msgid "Random sentence"
 msgstr "Willekeurige zin"
 
@@ -1686,6 +1690,27 @@ msgstr "Instellingen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L245
 msgid "Log out"
 msgstr "Uitloggen"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
+msgid "Stats"
+msgstr "Statistieken"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L13
+msgid "{number} contribution today"
+msgid_plural "{number} contributions today"
+msgstr[0] "Aantal zinnen vandaag: {number}"
+msgstr[1] "Aantal zinnen vandaag: {number}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L23
+msgid "{number} supported language"
+msgid_plural "{number} supported languages"
+msgstr[0] "Aantal ondersteunde talen: {number}"
+msgstr[1] "Aantal ondersteunde talen: {number}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L44
+msgid "stats per languages"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L47
 msgid "Browse"
@@ -2536,60 +2561,39 @@ msgid ""
 msgstr "Maar je kan ook ieder lid van Tatoeba toestemming geven zinnen toe te voegen en te verwijderen door een lijst in te stellen als een <strong>gezamenlijke lijst</strong>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L29
 msgid "Tatoeba: Collection of sentences and translations"
 msgstr "Tatoeba: Een collectie van zinnen en vertalingen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L97
 msgid "Latest messages"
 msgstr "Nieuwste berichten"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L108
 msgid "show more..."
 msgstr "toon meer ..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Nieuwste opmerkingen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L64
 msgid "Want to help?"
 msgstr "Wil je helpen?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "We verzamelen zinnen en hun vertalingen. Je kan ons helpen door te vertalen of nieuwe zinnen toe te voegen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L73
 msgid "Join the community"
 msgstr "Word lid van de community"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
-msgid "Stats"
-msgstr "Statistieken"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
-msgid "{number} contribution today"
-msgid_plural "{number} contributions today"
-msgstr[0] "Aantal zinnen vandaag: {number}"
-msgstr[1] "Aantal zinnen vandaag: {number}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L93
-msgid "{number} supported language"
-msgid_plural "{number} supported languages"
-msgstr[0] "Aantal ondersteunde talen: {number}"
-msgstr[1] "Aantal ondersteunde talen: {number}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L110
-msgid "stats per languages"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
