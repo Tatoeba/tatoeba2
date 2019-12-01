@@ -36,7 +36,7 @@ $registerUrl = $this->Url->build(
 );
 ?>
 
-<div layout="row" layout-align="center center">
+<div layout="row" layout-align="center center" ng-cloak>
 <div layout="column" flex="80">
 
 <?php if(!isset($searchProblem)) { ?>

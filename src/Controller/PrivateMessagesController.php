@@ -87,6 +87,7 @@ class PrivateMessagesController extends AppController
 
         $this->set('folder', $folder);
         $this->set('content', $content);
+        $this->set('status', $status);
     }
 
     /**
@@ -146,71 +147,7 @@ class PrivateMessagesController extends AppController
             return $this->redirect(['action' => 'folder', 'Inbox']);
         }
 
-        $menu = $this->_getMenu($message->folder, $messageId, $message->type);
-
         $this->set('message', $message);
-        $this->set('messageMenu', $menu);
-    }
-
-    /**
-     * Get menu for folder.
-     *
-     * @param string $folder    Folder name: 'Inbox', 'Sent', 'Trash'
-     * @param int    $messageId Id of private message.
-     * @param string $type      Message type: 'human', 'machine'
-     *
-     * @return array
-     */
-    private function _getMenu($folder, $messageId, $type)
-    {
-        $menu = array();
-
-        if ($folder == 'Trash') {
-            $menu[] = array(
-                'text' => __('restore'),
-                'url' => array(
-                    'action' => 'restore',
-                    $messageId
-                )
-            );
-
-            $menu[] = array(
-                'text' => __('permanently delete'),
-                'url' => array(
-                    'action' => 'delete',
-                    $messageId
-                ),
-                'confirm' => __('Are you sure?')
-            );
-        } else {
-            $menu[] = array(
-                'text' => __('delete'),
-                'url' => array(
-                    'action' => 'delete',
-                    $messageId
-                )
-            );
-        }
-
-        if ($folder == 'Inbox') {
-            $menu[] = array(
-                'text' => __('mark as unread'),
-                'url' => array(
-                    'action' => 'mark',
-                    'Inbox',
-                    $messageId
-                )
-            );
-
-            if ($type == 'human') {
-                $menu[] = array(
-                    'text' => __('reply'),
-                    'url' => '#reply'
-                );
-            }
-        }
-
-        return $menu;
     }
 
     /**

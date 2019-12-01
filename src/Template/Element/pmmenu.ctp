@@ -35,25 +35,18 @@ $isTrashFolder = $this->request->params['action'] == 'folder'
     && $this->request->params['pass']
     && $this->request->params['pass'][0] == 'Trash';
 ?>
-<div id="annexe_content">
-    <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
-        <md-subheader><?= __('Private messages') ?></md-subheader>
-        
-        <md-list-item href="<?= $newMessageUrl ?>">
+
+<md-sidenav class="md-sidenav-left md-whiteframe-1dp"
+            md-component-id="left"
+            md-is-locked-open="true">
+    <div layout="column" layout-margin>
+        <md-button class="md-raised md-primary" href="<?= $newMessageUrl ?>">
             <md-icon>email</md-icon>
-            <p><?= __('New message') ?></p>
-        </md-list-item>
+            <?= __('Compose') ?>
+        </md-button>
+    </div>
 
-        <?php if ($isTrashFolder) { 
-            $url = $this->Url->build(['empty_folder', 'Trash']);
-            $msg = __('Are you sure?');
-            ?>
-            <md-list-item href="<?= $url ?>" onclick="return confirm('<?= $msg ?>')">
-                <md-icon>delete_forever</md-icon>
-                <p><?= __('Empty trash') ?></p>
-            </md-list-item>
-        <?php } ?>
-
+    <md-list class="annexe-menu" ng-cloak>
         <md-list-item href="<?= $inboxUrl ?>">
             <md-icon>keyboard_arrow_right</md-icon>
             <p><?= __('Inbox') ?></p>
@@ -79,4 +72,4 @@ $isTrashFolder = $this->request->params['action'] == 'folder'
             <p><?= __('Trash') ?></p>
         </md-list-item>
     </md-list>
-</div>
+</md-sidenav>
