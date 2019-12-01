@@ -50,11 +50,11 @@ class CommonModulesHelper extends AppHelper
     );
 
     /**
-     * create a module where one can filter the page by lang
+     * Create a module for filtering a page by language
      *
-     * @param int $maxNumberOfParams The numbers of params use in the controller
-     *                               to generate the view where you include this
-     *                               NOTE: the lang must be the last params
+     * @param int $maxNumberOfParams The number of parameters used in the controller
+     *                               for the view which uses this module
+     *                               NOTE: the language must be the last parameter
      *
      * @return void
      */
@@ -64,8 +64,8 @@ class CommonModulesHelper extends AppHelper
         <div class="section md-whiteframe-1dp" layout="column">
             <h2><?php echo __('Filter by language'); ?></h2>
             <?php
-            /*to stay on the same page except language filter option*/
-            // we reconstruct the path
+            // In order to stay on the same page we reconstruct the path
+            // without the language parameter
             $path ='/';
             // language of the interface
             $path .= $this->request->params['lang'] .'/';
@@ -73,15 +73,14 @@ class CommonModulesHelper extends AppHelper
             $path .= $this->request->params['action'].'/';
 
             $params = $this->request->params['pass'];
-
             $numberOfParams = count($params);
 
-            $paramsWitoutLang = $numberOfParams;
+            $paramsWithoutLang = $numberOfParams;
             if ($numberOfParams === $maxNumberOfParams) {
-                $paramsWitoutLang--;
+                $paramsWithoutLang--;
             }
 
-            for ($i = 0; $i < $paramsWitoutLang; $i++) {
+            for ($i = 0; $i < $paramsWithoutLang; $i++) {
                 $path .= $params[$i] .'/';
             }
 
@@ -92,6 +91,12 @@ class CommonModulesHelper extends AppHelper
 
             $langs = $this->Languages->languagesArrayAlone();
 
+            // Avoid loosing the query parameters
+            $query = parse_url($this->request->getRequestTarget(), PHP_URL_QUERY);
+            if (!empty($query)) {
+                $query = '?' . $query;
+            }
+
             echo $this->Form->select(
                 'filterLanguageSelect',
                 $langs,
@@ -99,9 +104,9 @@ class CommonModulesHelper extends AppHelper
                     "value" => $lang,
                     "onchange" => "
                         if (this.value == 'und') {
-                            $(location).attr('href','$path');
+                            $(location).attr('href','$path' + '$query');
                         } else {
-                            $(location).attr('href','$path' + this.value);
+                            $(location).attr('href','$path' + this.value + '$query');
                         }",
                     // the if is to avoid a duplicate page (with and without "und")
                     "class" => "language-selector",
