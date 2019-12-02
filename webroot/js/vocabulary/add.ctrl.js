@@ -37,7 +37,6 @@
         function add() {
             vm.isAdding = true;
 
-            var csrfHeader = $('#add-vocabulary-form [name="_csrfToken"]').val();
             $('#add-vocabulary-form input[name^="_Token"]').each(function() {
                 vm.data[$(this).attr('name')] = $(this).val();
             });
@@ -46,7 +45,7 @@
                 method: 'POST',
                 url: rootUrl + '/vocabulary/save',
                 headers: {
-                    'X-CSRF-Token': csrfHeader
+                    'X-CSRF-Token': get_csrf_token()
                 },
                 data: vm.data
             }

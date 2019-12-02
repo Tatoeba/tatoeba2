@@ -60,7 +60,6 @@ $(document).ready(function() {
                         'selectLang': selectLang,
                         'value': sentenceText
                     };
-                    var csrfHeader = $('#translation-form [name="_csrfToken"]').val();
                     $('#translation-form input[name^="_Token"]').each(function() {
                         data[$(this).attr('name')] = $(this).val();
                     });
@@ -70,7 +69,7 @@ $(document).ready(function() {
                         url: rootUrl + '/sentences/save_translation', 
                         data: data,
                         headers: {
-                            'X-CSRF-Token': csrfHeader
+                            'X-CSRF-Token': get_csrf_token()
                         },
                         success: function(data) {
                             translating = false;

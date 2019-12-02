@@ -31,6 +31,11 @@ function get_tatoeba_root_url() {
     return "//" + host + "/"+ interfaceLang;
 }
 
+function get_csrf_token() {
+    // Probably not worth importing jquery.cookie for this.
+    return document.cookie.replace(/^.*csrfToken=([^;]*);.*$/, "$1");
+}
+
 /**
  * Returns string without the new lines and stuff.
  */

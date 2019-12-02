@@ -58,7 +58,6 @@
             loader.removeClass('ng-hide');
             hideForm(id);
 
-            var csrfHeader = $('#form_' + id + ' [name="_csrfToken"]').val();
             $('#form_' + id + ' input[name^="_Token"]').each(function() {
                 body[$(this).attr('name')] = $(this).val();
             });
@@ -67,7 +66,7 @@
                 method: 'POST',
                 url: rootUrl + '/vocabulary/save_sentence/' + id,
                 headers: {
-                    'X-CSRF-Token': csrfHeader
+                    'X-CSRF-Token': get_csrf_token()
                 },
                 data: body
             }

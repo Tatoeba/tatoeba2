@@ -162,9 +162,6 @@ class TranscriptionsHelper extends AppHelper
             'class' => $class,
             'escape' => false,
         ];
-        if ($isEditable) {
-            $options['data-csrf-token'] = $this->request->getParam('_csrfToken');
-        }
         $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html, $options, $transcr['script']
         );
