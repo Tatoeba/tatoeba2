@@ -97,6 +97,25 @@ function linkToSentence(sentenceId, langFilter) {
         linkTo.hide();
     } else {
         linkTo.show();
-        $("#linkToSentence" + sentenceId).focus();
+        var inputField = $("#linkToSentence" + sentenceId);
+
+        navigator.clipboard && navigator.clipboard.readText().then(clipText => {
+            var inputText;
+            clipText = clipText.trim();
+            if (/^\d+$/.test(clipText)) {
+                inputText = clipText;
+            } else {
+                inputText = URLToSentenceId(clipText);
+                if (clipText === inputText) {
+                    inputText = undefined;
+                }
+            }
+            if (inputText) {
+                inputField.val(inputText);
+                inputField.select();
+            }
+        });
+        
+        inputField.focus();
     }
 }
