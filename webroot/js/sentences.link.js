@@ -114,6 +114,11 @@ function linkToSentence(sentenceId, langFilter) {
                 inputField.val(inputText);
                 inputField.select();
             }
+        }, exception => {
+            if (exception instanceof DOMException) {
+                if (exception.name === "NotAllowedError") return;
+            }
+            throw(exception);
         });
         
         inputField.focus();
