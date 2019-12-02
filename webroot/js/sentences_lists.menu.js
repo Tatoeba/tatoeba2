@@ -52,6 +52,7 @@ $(document).ready(function() {
         // directly after the selection in the <select>.
         $(".validateButton").off();
         $(".validateButton").click(function(){
+            sentenceId = $(this).parent().attr("id").replace("addToList", "");
             var listId = $("#listSelection"+sentenceId).val();
             var rootUrl = get_tatoeba_root_url();
 
