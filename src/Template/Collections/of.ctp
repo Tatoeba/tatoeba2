@@ -151,7 +151,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 echo $this->Html->div(
                     'correctness',
                     $this->Images->correctnessIcon($correctness),
-                    array('title' => $item->modified)
+                    array('title' => $this->Time->nice($item->modified))
                 );
 
                 echo '</div>';

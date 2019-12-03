@@ -23,13 +23,9 @@ if (empty($modifiedDate) || $createdDate == $modifiedDate) {
     $dateLabel = $this->Date->ago($createdDate);
 } else {
     $dateLabel = format(
-        /* @translators: If you need to conjugate the verb "edited" you can indicate
-           the correct form here. The word itself and all its derived forms should be
-           translated at another place in this file. */
-        __x('wall message', '{createdDate}, {edited} {modifiedDate}'),
+        __x('wall message', '{createdDate}, edited {modifiedDate}'),
         array(
             'createdDate' => $this->Date->ago($createdDate),
-            'edited' => __('edited'),
             'modifiedDate' => $this->Date->ago($modifiedDate, false)
         )
     );

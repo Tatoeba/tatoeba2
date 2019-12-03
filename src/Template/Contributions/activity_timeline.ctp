@@ -87,8 +87,9 @@ foreach ($stats as $stat) {
             array('style' => 'width:'.$width.'%')
         );
 
+        $formattedDate = $this->Time->i18nFormat($date, [IntlDateFormatter::SHORT, IntlDateFormatter::NONE]);
         echo '<tr>';
-        echo $this->Html->tag('td', $date, array('class' => 'date'));
+        echo $this->Html->tag('td', $formattedDate, array('class' => 'date'));
         echo $this->Html->tag('td', $this->Number->format($numSentences), array('class' => 'number'));
         echo $this->Html->tag('td', $bar, array('class' => 'bar'));
         echo '</tr>';
