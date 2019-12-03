@@ -56,12 +56,12 @@ class DateHelper extends AppHelper
             return __('date unknown');
         }
 
-        $dateObj = Time::createFromFormat('Y-m-d H:i:s', $date);
+        $dateObj = Time::parseDateTime($date);
 
         $diff = Time::fromNow($dateObj);
 
         if ($diff->days > 30) {
-            $formattedDate = $dateObj->i18nFormat([\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT]);
+            $formattedDate = $dateObj->nice();
 
             if ($alone) {
                 return $formattedDate;
@@ -142,8 +142,7 @@ class DateHelper extends AppHelper
         }
 
         if ($this->_isCompleteDate($dateArray)) {
-            return Time::createFromFormat('Y-m-d H:i:s', $dateTime)
-                   ->i18nFormat($dateFormat);
+            return Time::parseDateTime($dateTime)->i18nFormat($dateFormat);
         }
 
         return $this->_formatIncompleteDate($dateArray);
