@@ -99,7 +99,7 @@ function linkToSentence(sentenceId, langFilter) {
         linkTo.show();
         var inputField = $("#linkToSentence" + sentenceId);
 
-        navigator.clipboard && navigator.clipboard.readText().then(clipText => {
+        navigator.clipboard && navigator.clipboard.readText && navigator.clipboard.readText().then(clipText => {
             var inputText;
             clipText = clipText.trim();
             if (/^\d+$/.test(clipText)) {
