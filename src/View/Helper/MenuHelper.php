@@ -386,6 +386,7 @@ class MenuHelper extends AppHelper
             array(
                 'type' => 'button',
                 'class' => 'validateButton',
+                'data-sentence-id' => $sentenceId
             )
         );
         ?>
