@@ -19,17 +19,9 @@ $editUrl = $this->Url->build(array(
     $messageId
 ));
 
-if (empty($modifiedDate) || $createdDate == $modifiedDate) {
-    $dateLabel = $this->Date->ago($createdDate);
-} else {
-    $dateLabel = format(
-        __x('wall message', '{createdDate}, edited {modifiedDate}'),
-        array(
-            'createdDate' => $this->Date->ago($createdDate),
-            'modifiedDate' => $this->Date->ago($modifiedDate, false)
-        )
-    );
-}
+$labelText = __x('wall message', '{createdDate}, edited {modifiedDate}');
+$dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
+$dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true);
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
 $userProfileUrl = $this->Url->build(array(
     'controller' => 'user',
@@ -72,7 +64,7 @@ $canReply = false;
             </span>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
-                <md-tooltip ng-cloak><?= $dateLabel ?></md-tooltip>
+                <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
             </span>
         </md-card-header-text>
 

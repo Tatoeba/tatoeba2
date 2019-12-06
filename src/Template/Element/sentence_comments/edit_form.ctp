@@ -9,17 +9,9 @@ $text = $comment->text;
 $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 
-if (empty($modifiedDate) || $createdDate == $modifiedDate) {
-    $dateLabel = $this->Date->ago($createdDate);
-} else {
-    $dateLabel = format(
-        __x('sentence comment', '{createdDate}, edited {modifiedDate}'),
-        array(
-            'createdDate' => $this->Date->ago($createdDate),
-            'modifiedDate' => $this->Date->ago($modifiedDate, false)
-        )
-    );
-}
+$labelText = __x('sentence comment', '{createdDate}, edited {modifiedDate}');
+$dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
+$dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true); 
 
 $cancelUrl = $this->Url->build([
     "controller" => "sentences",
@@ -41,7 +33,7 @@ $cancelUrl = $this->Url->build([
             </span>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
-                <md-tooltip ng-cloak><?= $dateLabel ?></md-tooltip>
+                <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
             </span>
         </md-card-header-text>
     </md-card-header>
