@@ -87,4 +87,37 @@ class DateHelperTest extends TestCase {
         $result = $this->DateHelper->formatBirthday($dateTime, $dateFormat);
         $this->assertEquals($expected, $result);
     }
+
+    public function getDateLabelContentProvider() {
+        return [
+            'created within 30 days eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-09-29 09:12:34', false, 'en', '25&nbsp;days ago'],
+            'created within 30 days tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-09-09 09:12:34', true, 'en', 'September 9, 2018 at 9:12 AM'],
+            'created and modified within 30 days eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-10-10 01:23:45', false, 'en', '25&nbsp;days ago, edited 14&nbsp;days ago'],
+            'created and modified within 30 days tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-10-10 01:23:45', true, 'en', 'September 9, 2018 at 9:12 AM, edited October 10, 2018 at 1:23 AM'],
+            'created eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-09-29 09:12:34', false, 'en', 'September 29, 2017 at 9:12 AM'],
+            'created tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2017-09-09 09:12:34', '2017-09-09 09:12:34', true, 'en', 'September 9, 2017 at 9:12 AM'],
+            'created and modified eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-10-10 01:23:45', false, 'en', 'September 29, 2017 at 9:12 AM, edited October 10, 2017 at 1:23 AM'],
+            'created and modified tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-02-09 09:12:34', '2018-02-10 01:23:45', true, 'en', 'February 9, 2018 at 9:12 AM, edited February 10, 2018 at 1:23 AM'],
+        ];
+    }
+
+    /**
+     * @dataProvider getDateLabelContentProvider
+     */
+    public function testGetDateLabel($text, $created, $modified, $tooltip, $locale, $expected)
+    {
+        I18n::setLocale($locale);
+        Time::setTestNow(new Time('2018-10-24 17:28:36'));
+        $result = $this->DateHelper->getDateLabel($text, $created, $modified, $tooltip);
+        $this->assertEquals($expected, $result);
+        Time::setTestNow();
+    }
 }

@@ -42,6 +42,41 @@ class DateHelper extends AppHelper
 {
     private $_months;
 
+    public $helpers = array('Time');
+
+    /**
+     * Create the date label used for comments, wall messages, ...
+     *
+     * @param string  $text     Text for the label. It must contain both
+     *                          "{createdDate}" and "{modifiedDate}" placeholders.
+     * @param string  $created  Creation datetime (in MySQL format)
+     * @param string  $modified Modification datetime (in MySQL format)
+     * @param boolean $tooltip  When the label is used for a tooltip the dates will
+     *                          always be exact.
+     *
+     * @return string
+     */
+    public function getDateLabel($text, $created, $modified, $tooltip=false)
+    {
+        if (empty($modified) || $created == $modified) {
+            if ($tooltip) {
+                return $this->Time->nice($created);
+            } else {
+                return $this->ago($created);
+            }
+        } else {
+            if ($tooltip) {
+                return format($text,
+                              array('createdDate' => $this->Time->nice($created),
+                                    'modifiedDate' => $this->Time->nice($modified)));
+            } else {
+                return format($text,
+                              array('createdDate' => $this->ago($created),
+                                    'modifiedDate' => $this->ago($modified, false)));
+            }
+        }
+    }
+
     /**
      * Display how long ago compared to now.
      *
