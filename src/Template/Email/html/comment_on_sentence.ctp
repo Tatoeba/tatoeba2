@@ -9,13 +9,13 @@ $author = "<strong>$author</strong>";
 
 if ($sentenceIsDeleted) {
     echo $this->Html->tag('p', sprintf(
-        "%s has posted a comment on deleted sentence #%d.",
+        "%s has posted a comment on the deleted sentence #%d.",
         $author,
         $sentenceId
     ));
 } else {
     echo $this->Html->tag('p', sprintf(
-        "%s has posted a comment on sentence '%s'.",
+        "%s has posted a comment on the sentence '%s'.",
         $author,
         $sentenceText
     ));
