@@ -45,6 +45,24 @@ class DateHelper extends AppHelper
     public $helpers = array('Time');
 
     /**
+     * Wrap CakePHP nice() function/method
+     *
+     * @param $date string|DateTime Datetime to format
+     *
+     * @return string
+     */
+    public function nice($date)
+    {
+        if (empty($date) || $date == '0000-00-00 00:00:00') {
+            return __('date unknown');
+        } elseif ($date instanceof DateTime) {
+            return $date->nice();
+        } else {
+            return $this->Time->nice($date);
+        }
+    }
+
+    /**
      * Create the date label used for comments, wall messages, ...
      *
      * @param string  $text     Text for the label. It must contain both
@@ -60,15 +78,15 @@ class DateHelper extends AppHelper
     {
         if (empty($modified) || $created == $modified) {
             if ($tooltip) {
-                return $this->Time->nice($created);
+                return $this->nice($created);
             } else {
                 return $this->ago($created);
             }
         } else {
             if ($tooltip) {
                 return format($text,
-                              array('createdDate' => $this->Time->nice($created),
-                                    'modifiedDate' => $this->Time->nice($modified)));
+                              array('createdDate' => $this->nice($created),
+                                    'modifiedDate' => $this->nice($modified)));
             } else {
                 return format($text,
                               array('createdDate' => $this->ago($created),
