@@ -45,6 +45,7 @@ class TagsHelper extends AppHelper
         'Html',
         'Form',
         'Sentences',
+        'Time'
     );
 
     /**
@@ -141,7 +142,7 @@ class TagsHelper extends AppHelper
         if ($username != null) {
             $options["title"] = format(
                 __("Added by {username}, {date}"),
-                compact('username', 'date')
+                array('username' => $username, 'date' => $this->Time->nice($date))
             );
         }
         echo $this->Html->link(

@@ -5,25 +5,9 @@ $avatar = $user['image'];
 $createdDate = $message->date;
 $modifiedDate = $message->modified;
 
-if (empty($modifiedDate) || $createdDate == $modifiedDate) {
-    $dateLabel = $this->Date->ago($createdDate);
-    $fullDateLabel = $createdDate;
-} else {
-    $dateLabel = format(
-        __('{createdDate}, edited {modifiedDate}'),
-        array(
-            'createdDate' => $this->Date->ago($createdDate),
-            'modifiedDate' => $this->Date->ago($modifiedDate)
-        )
-    );
-    $fullDateLabel = format(
-        __('{createdDate}, edited {modifiedDate}'),
-        array(
-            'createdDate' => $createdDate,
-            'modifiedDate' => $modifiedDate
-        )
-    );
-}
+$labelText = __x('wall message', '{createdDate}, edited {modifiedDate}');
+$dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
+$dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true);
 
 $cancelUrl = $this->Url->build([
     'action' => 'show_message',
@@ -44,7 +28,7 @@ $cancelUrl = $this->Url->build([
             </span>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
-                <md-tooltip ng-cloak><?= $fullDateLabel ?></md-tooltip>
+                <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
             </span>
         </md-card-header-text>
     </md-card-header>

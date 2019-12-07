@@ -56,25 +56,9 @@ $sentenceUrl = $this->Url->build(array(
     'action' => 'show',
     $sentenceId
 ));
-if (empty($modifiedDate) || $createdDate == $modifiedDate) {
-    $dateLabel = $this->Date->ago($createdDate);
-    $fullDateLabel = $createdDate;
-} else {
-    $dateLabel = format(
-        __('{createdDate}, edited {modifiedDate}'),
-        array(
-            'createdDate' => $this->Date->ago($createdDate),
-            'modifiedDate' => $this->Date->ago($modifiedDate)
-        )
-    );
-    $fullDateLabel = format(
-        __('{createdDate}, edited {modifiedDate}'),
-        array(
-            'createdDate' => $createdDate,
-            'modifiedDate' => $modifiedDate
-        )
-    );
-}
+$labelText = __x('sentence comment', '{createdDate}, edited {modifiedDate}');
+$dateLabel = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate);
+$dateTooltip = $this->Date->getDateLabel($labelText, $createdDate, $modifiedDate, true);
 $canViewContent = CurrentUser::isAdmin() || CurrentUser::get('id') == $authorId;
 $userProfileUrl = $this->Url->build(array(
     'controller' => 'user',
@@ -131,7 +115,7 @@ if ($sentenceOwnerLink) {
             </span>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
-                <md-tooltip ng-cloak><?= $fullDateLabel ?></md-tooltip>
+                <md-tooltip ng-cloak><?= $dateTooltip ?></md-tooltip>
             </span>
         </md-card-header-text>
 

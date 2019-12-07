@@ -87,7 +87,7 @@ echo $this->element('/sentences/navigation', [
                 ),
                 array(
                     'class' => 'username',
-                    'title' => $correctness->modified
+                    'title' => $this->Time->nice($correctness->modified)
                 )
             );
             if ($correctness->dirty != 0) {

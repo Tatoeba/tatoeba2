@@ -27,7 +27,7 @@
 namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
-
+use Cake\I18n\Time;
 
 /**
  * Helper to display date.
@@ -42,43 +42,79 @@ class DateHelper extends AppHelper
 {
     private $_months;
 
+    public $helpers = array('Time');
+
     /**
-     * Display how long ago compared to now.
+     * Create the date label used for comments, wall messages, ...
      *
-     * @param string $date        Format for the date is '%d/%m/%Y %H:%M:%S'.
-     * @param bool   $isTimestamp Instead of giving a date to the format indicated,
-     *                            it is possible to give a timestamp. But then this
-     *                            $isTimestamp has to be set to true.
+     * @param string  $text     Text for the label. It must contain both
+     *                          "{createdDate}" and "{modifiedDate}" placeholders.
+     * @param string  $created  Creation datetime (in MySQL format)
+     * @param string  $modified Modification datetime (in MySQL format)
+     * @param boolean $tooltip  When the label is used for a tooltip the dates will
+     *                          always be exact.
      *
      * @return string
      */
-    public function ago($date)
+    public function getDateLabel($text, $created, $modified, $tooltip=false)
     {
-        $year = substr($date, 0, 4);
-        $month = substr($date, 5, 2);
-        $day = substr($date, 8, 2);
-        $hour = substr($date, 11, 2);
-        $min = substr($date, 14, 2);
+        if (empty($modified) || $created == $modified) {
+            if ($tooltip) {
+                return $this->Time->nice($created);
+            } else {
+                return $this->ago($created);
+            }
+        } else {
+            if ($tooltip) {
+                return format($text,
+                              array('createdDate' => $this->Time->nice($created),
+                                    'modifiedDate' => $this->Time->nice($modified)));
+            } else {
+                return format($text,
+                              array('createdDate' => $this->ago($created),
+                                    'modifiedDate' => $this->ago($modified, false)));
+            }
+        }
+    }
 
-        $pureNumberDate = $year.$month.$day.','.$hour.$min;
-        $timestamp = strtotime($pureNumberDate);
-        
-        if (empty($date) || $date == '0000-00-00 00:00:00' || $timestamp == 0) {
+    /**
+     * Display how long ago compared to now.
+     *
+     * @param string  $date        Format for the date is 'Y-m-d H:i:s'.
+     * @param boolean $alone       Indicates whether the date is shown alone or in a phrase
+     *
+     * @return string
+     */
+    public function ago($date, $alone=true)
+    {
+        if (empty($date) || $date == '0000-00-00 00:00:00') {
             return __('date unknown');
         }
 
-        $now = time();
-        $days = intval(($now-$timestamp)/(3600*24));
-        $hours = intval(($now-$timestamp) / 3600);
-        $minutes = intval(($now-$timestamp) / 60);
-        if ($days > 30) {
-            // e.g., "2015-06-20 13:12"
-            return date("Y-m-d H:i", $timestamp);
-        } elseif ($days > 0) {
-            return format(__n('yesterday', '{n}&nbsp;days ago', $days), array('n' => $days));
-        } elseif ($hours > 0) {
-            return format(__n('an hour ago', '{n}&nbsp;hours ago', $hours), array('n' => $hours));
+        $dateObj = Time::parseDateTime($date);
+
+        $diff = Time::fromNow($dateObj);
+
+        if ($diff->days > 30) {
+            $formattedDate = $dateObj->nice();
+
+            if ($alone) {
+                return $formattedDate;
+            } else {
+                return format(
+                    /* @translators: This date appears in a phrase (e.g. "edited April 1, 2012"), so you
+                       may want to add a preposition or an article. */
+                    __('{date}'),
+                    array('date' => $formattedDate)
+                );
+            }
+        } elseif ($diff->days > 0) {
+            return format(__n('yesterday', '{n}&nbsp;days ago', $diff->days), array('n' => $diff->days));
+        } elseif ($diff->h > 0) {
+            return format(__n('an hour ago', '{n}&nbsp;hours ago', $diff->h), array('n' => $diff->h));
         } else {
+            // we stop at minute accuracy
+            $minutes = max($diff->i, 1);
             return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes), array('n' => $minutes));
         }
     }
@@ -107,6 +143,8 @@ class DateHelper extends AppHelper
     }
 
     /**
+     * Get the name for a given month number
+     *
      * @param string $mm Month number in 2 digit format (ex: '01' for January).
      *
      * @return string
@@ -121,10 +159,11 @@ class DateHelper extends AppHelper
     /**
      * Format a user birthday. This method accepts incomplete dates.
      *
-     * @param  string $dateTime   [mysql date|datetime format]
-     * @param  string $dateFormat [supported: 'Y-m-d']
+     * @param  string $dateTime   mysql date|datetime format
+     * @param  string $dateFormat ICU date format string (see
+     *                            https://www.php.net/manual/en/class.intldateformatter.php)
      *
-     * @return string             [formatted date string]
+     * @return string             formatted date string
      */
     public function formatBirthday($dateTime, $dateFormat)
     {
@@ -138,12 +177,10 @@ class DateHelper extends AppHelper
         }
 
         if ($this->_isCompleteDate($dateArray)) {
-            return date($dateFormat, strtotime($dateTime));
+            return Time::parseDateTime($dateTime)->i18nFormat($dateFormat);
         }
 
-        $formatMethod = '_formatTo'.str_replace('-', '', $dateFormat);
-
-        return $this->{$formatMethod}($dateArray);
+        return $this->_formatIncompleteDate($dateArray);
     }
 
     /**
@@ -181,15 +218,31 @@ class DateHelper extends AppHelper
     }
 
     /**
-     * Format date to Y-m-d.
+     * Format an incomplete date
      *
-     * @param  array $dateArray
+     * An incomplete date is either just a year, a month and a year
+     * or a day and a month.
+     *
+     * @param  array $dateArray  Three-element array containing the year, month,
+     *                           day (in that order)
      *
      * @return string
      */
-    private function _formatToYmd($dateArray)
+    private function _formatIncompleteDate($dateArray)
     {
-        return implode('-', $dateArray);
+        list($year, $month, $day) = $dateArray;
+
+        if ($year == '0000') {
+            return format(__x('incomplete date', '{month} {day}'),
+                          (array ('day' => $day, 'month' => $this->monthName($month))));
+        } else {
+            if ($month == '00') {
+                return $year;
+            } else {
+                return format(__x('incomplete date', '{month} {year}'),
+                              (array ('month' => $this->monthName($month), 'year' => $year)));
+            }
+        }
     }
 }
 ?>

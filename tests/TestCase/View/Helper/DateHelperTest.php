@@ -1,0 +1,123 @@
+<?php
+namespace App\Test\TestCase\View\Helper;
+
+use App\View\Helper\DateHelper;
+use Cake\TestSuite\TestCase;
+use Cake\View\View;
+use Cake\I18n\I18n;
+use Cake\I18n\Time;
+
+class DateHelperTest extends TestCase {
+
+    public $DateHelper;
+
+    public function setUp() {
+        parent::setUp();
+        $View = new View();
+        $this->DateHelper = new DateHelper($View);
+    }
+
+    public function tearDown() {
+        unset($this->DateHelper);
+        parent::tearDown();
+    }
+
+    public function agoContentProvider() {
+        return [
+            'null date eng' => [NULL, true, 'en', 'date unknown'],
+            '0000-00-00 00:00:00 eng' => ['0000-00-00 00:00:00', false, 'en', 'date unknown'],
+            'old valid date alone eng' => ['2010-01-02 12:34:56', true, 'en', 'January 2, 2010 at 12:34 PM'],
+            'old valid date in phrase eng' => ['2013-04-25 02:37:23', false, 'en', 'April 25, 2013 at 2:37 AM'],
+            'date within 30 days eng' => ['2016-06-06 14:52:11', true, 'en', '17&nbsp;days ago'],
+            'date yesterday eng' => ['2016-06-23 13:32:12', false, 'en', 'yesterday'],
+            'date within last 24 hours eng' => ['2016-06-24 09:43:17', false, 'en', '4&nbsp;hours ago'],
+            'date one hour ago eng' => ['2016-06-24 12:45:34', true, 'en', 'an hour ago'],
+            'date within last hour eng' => ['2016-06-24 13:06:16', true, 'en', '44&nbsp;minutes ago'],
+            'date one minute ago eng' => ['2016-06-24 13:49:20', false, 'en', 'a minute ago'],
+            /*
+            'null date fra' => [NULL, false, 'fr', 'date inconnue'],
+            '0000-00-00 00:00:00 fra' => ['0000-00-00 00:00:00', true, 'fr', 'date inconnue'],
+            'old valid date alone fra' => ['1965-02-01 11:35:36', true, 'fr', '1 février 1965 à 11:35'],
+            'old valid date in phrase fra' => ['1969-05-10 21:39:21', false, 'fr', 'le 10 mai 1969 à 21:39'],
+            'date within 30 days fra' => ['2016-06-20 10:23:42', true, 'fr', 'il y a 4&nbsp;jours'],
+            'date yesterday fra' => ['2016-06-23 12:32:19', true, 'fr', 'hier'],
+            'date within last 24 hours fra' => ['2016-06-23 19:40:32', false, 'fr', 'il y a 18&nbsp;heures'],
+            'date one hour ago fra' => ['2016-06-24 11:59:12', false, 'fr', 'il y a une heure'],
+            'date within last hour fra' => ['2016-06-24 12:58:36', true, 'fr', 'il y a 52&nbsp;minutes'],
+            'date one minute ago fra' => ['2016-06-24 13:50:22', true, 'fr', 'il y a une minute']
+             */
+        ];
+    }
+
+    /**
+     * @dataProvider agoContentProvider
+     */
+    public function testAgo($dateTime, $alone, $locale, $expected) {
+        I18n::setLocale($locale);
+        Time::setTestNow(new Time('2016-06-24 13:50:43'));
+        $result = $this->DateHelper->ago($dateTime, $alone);
+        $this->assertEquals($expected, $result);
+        Time::setTestNow();
+    }
+
+    public function formatBirthdayContentProvider() {
+        $longFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::NONE];
+        $shortFormat = [\IntlDateFormatter::SHORT, \IntlDateFormatter::NONE];
+        return [
+            'complete birthday date long format eng' => ['2013-04-30 12:21:14', $longFormat, 'en', 'April 30, 2013'],
+            'complete birthday date short format eng' => ['1973-05-20 12:21:14', $shortFormat, 'en', '5/20/73'],
+            'only year eng' => ['1958-00-00 12:34:56', null, 'en', '1958'],
+            'month and year eng' => ['1995-04-00 00:43:21', [], 'en', 'April 1995'],
+            'day and month eng' => ['0000-03-18 00:00:00', null, 'en', 'March 18'],
+            /*
+            'complete birthday date long format fra' => ['1956-09-18 23:45:18', $longFormat, 'fr', '18 septembre 1956'],
+            'complete birthday date short format fra' => ['1966-10-11 12:21:14', $shortFormat, 'fr', '11/10/1966'],
+            'only year fra' => ['2000-00-00 23:12:54', false, 'fr', '2000'],
+            'month and year fra' => ['1962-12-00 22:51:12', null, 'fr', 'Décembre 1962'],
+            'day and month fra' => ['0000-06-22 00:00:00', 1, 'fr', 'Juin 22']
+             */
+        ];
+    }
+
+    /**
+     * @dataProvider formatBirthdayContentProvider
+     */
+    public function testFormatBirthday($dateTime, $dateFormat, $locale, $expected) {
+        I18n::setLocale($locale);
+        $result = $this->DateHelper->formatBirthday($dateTime, $dateFormat);
+        $this->assertEquals($expected, $result);
+    }
+
+    public function getDateLabelContentProvider() {
+        return [
+            'created within 30 days eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-09-29 09:12:34', false, 'en', '25&nbsp;days ago'],
+            'created within 30 days tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-09-09 09:12:34', true, 'en', 'September 9, 2018 at 9:12 AM'],
+            'created and modified within 30 days eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-10-10 01:23:45', false, 'en', '25&nbsp;days ago, edited 14&nbsp;days ago'],
+            'created and modified within 30 days tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-10-10 01:23:45', true, 'en', 'September 9, 2018 at 9:12 AM, edited October 10, 2018 at 1:23 AM'],
+            'created eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-09-29 09:12:34', false, 'en', 'September 29, 2017 at 9:12 AM'],
+            'created tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2017-09-09 09:12:34', '2017-09-09 09:12:34', true, 'en', 'September 9, 2017 at 9:12 AM'],
+            'created and modified eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-10-10 01:23:45', false, 'en', 'September 29, 2017 at 9:12 AM, edited October 10, 2017 at 1:23 AM'],
+            'created and modified tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '2018-02-09 09:12:34', '2018-02-10 01:23:45', true, 'en', 'February 9, 2018 at 9:12 AM, edited February 10, 2018 at 1:23 AM'],
+        ];
+    }
+
+    /**
+     * @dataProvider getDateLabelContentProvider
+     */
+    public function testGetDateLabel($text, $created, $modified, $tooltip, $locale, $expected)
+    {
+        I18n::setLocale($locale);
+        Time::setTestNow(new Time('2018-10-24 17:28:36'));
+        $result = $this->DateHelper->getDateLabel($text, $created, $modified, $tooltip);
+        $this->assertEquals($expected, $result);
+        Time::setTestNow();
+    }
+}

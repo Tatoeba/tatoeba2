@@ -113,7 +113,7 @@ class LogsHelper extends AppHelper
     public function getInfoLabel($type, $action, $username = null, $date = null) {
         $date = $date ? $date->format('Y-m-d H:i:s') : null;
         $userProfileLink = $username ? $this->_linkToUserProfile($username) : null;
-        $dateLabel = $this->Date->ago($date);
+        $dateLabel = $this->Date->ago($date, false);
 
         switch ($action) {
             case 'insert' :
