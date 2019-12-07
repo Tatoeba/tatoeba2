@@ -106,6 +106,10 @@ class DateHelperTest extends TestCase {
             ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-10-10 01:23:45', false, 'en', 'September 29, 2017 at 9:12 AM, edited October 10, 2017 at 1:23 AM'],
             'created and modified tooltip eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-02-09 09:12:34', '2018-02-10 01:23:45', true, 'en', 'February 9, 2018 at 9:12 AM, edited February 10, 2018 at 1:23 AM'],
+            'empty date eng' =>
+            ['{createdDate}, edited {modifiedDate}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', false, 'en', 'date unknown'],
+            'empty date tooltip eng' =>
+            ['{createdDate}, edited {modifiedDate}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', true, 'en', 'date unknown']
         ];
     }
 
@@ -119,5 +123,23 @@ class DateHelperTest extends TestCase {
         $result = $this->DateHelper->getDateLabel($text, $created, $modified, $tooltip);
         $this->assertEquals($expected, $result);
         Time::setTestNow();
+    }
+
+    public function niceContentProvider() {
+        return [
+            'null' => [null, 'date unknown'],
+            '0000-00-00 00:00:00' => ['0000-00-00 00:00:00', 'date unknown'],
+            'CakePHP Time instance' => [new Time('1987-06-05 23:45:19'), 'June 5, 1987 at 11:45 PM'],
+            'string' => ['2000-12-07 01:23:45', 'December 7, 2000 at 1:23 AM']
+        ];
+    }
+
+    /**
+     * @dataProvider niceContentProvider
+     */
+    public function testNice($date, $expected)
+    {
+        $result = $this->DateHelper->nice($date);
+        $this->assertEquals($expected, $result);
     }
 }
