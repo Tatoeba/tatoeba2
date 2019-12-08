@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-11-24 11:36+0000\n"
-"PO-Revision-Date: 2019-11-24 12:05+0000\n"
-"Last-Translator: gillux\n"
+"PO-Revision-Date: 2019-12-02 22:50+0000\n"
+"Last-Translator: Gorka Azkarate Zubiaur <gorkaazkarate@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/tatoeba/tatoeba_website/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -230,7 +230,7 @@ msgstr "Ez duzu zerrenda ikusteko baimenik."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L405
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L437
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "Ez duzu zerrenda hau deskargatzeko baimenik."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L223
 msgid ""
@@ -340,7 +340,7 @@ msgstr "Ezer baino lehen, horra gure proposamena. Zoaz zure <a href='{url}'>prof
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L350
 msgid "Please fix the form errors."
-msgstr ""
+msgstr "Mesedez, konpondu inprimakiko erroreak."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L386
 msgid "Your new password has been sent to {email}."
@@ -364,7 +364,7 @@ msgstr "Erabiltzailerik ez dago ID honekin: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L55
 msgid "This language has already been added to your profile."
-msgstr ""
+msgstr "Dagoeneko hizkuntza hau zure profilean gehitu egin da."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L67
 msgid "No language selected."
@@ -452,11 +452,11 @@ msgstr "Esaldiak CC0 lizentzia librera aldatzeko:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L119
 msgid "List {listName}"
-msgstr ""
+msgstr "Zerrenda {listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L120
 msgid "Sentence id [tab] Sentence text"
-msgstr ""
+msgstr "Esaldia id [tab] Esaldiko testua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
@@ -534,7 +534,7 @@ msgstr "Erabiltzaile izenak, gutxienez, bi karakterekoa beharko"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L80
 msgid "Username must be at most 20 characters long"
-msgstr ""
+msgstr "Erabiltzaile-izenak 20 karaktere baino gehiago, mesedez"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
@@ -983,11 +983,11 @@ msgstr "Lanean aritutako azkenak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L38
 msgid "Latest contributions of {user}"
-msgstr ""
+msgstr "{user} horren azken ekarpenak "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L65
 msgid "Only the last {n} log entries are displayed here."
-msgstr ""
+msgstr "Bakar-bakarri azken {n} saioko sarrerak ikustarazten dira hemen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L39
@@ -1132,7 +1132,7 @@ msgstr "Sailkatu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L307
 msgid "Relevance"
-msgstr ""
+msgstr "Egokitasuna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L333
 msgid "Reverse order"
@@ -1189,8 +1189,8 @@ msgstr[1] "Nortzuk parte hartu duten azken  {n}&nbsp;ekarpenetan."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L61
 msgid "{n}&nbsp;sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}&nbsp;esaldia"
+msgstr[1] "{n}&nbsp;esaldiak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L32
 msgid "Need some help?"
@@ -1433,7 +1433,7 @@ msgstr "audioa entzun"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L191
 msgid "Play audio recorded by {author}"
-msgstr ""
+msgstr "Erreproduzitu {author} egilearen audioa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L200
@@ -1705,7 +1705,7 @@ msgstr[1] "{number} hizkuntza oraingoz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L44
 msgid "stats per languages"
-msgstr ""
+msgstr "hizkuntzen estatistikak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L47
 msgid "Browse"
@@ -1881,7 +1881,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L8
 msgid "There are no exports."
-msgstr ""
+msgstr "Esportaziorik ez dago."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L16
 msgctxt "button"
@@ -1890,19 +1890,19 @@ msgstr "Deskargatu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L17
 msgid "Export in progress"
-msgstr ""
+msgstr "Esportazio prozesuan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L20
 msgid "Export failed"
-msgstr ""
+msgstr "Esportazio prozesuak kale egin du"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L27
 msgid "New export"
-msgstr ""
+msgstr "Esportazio berria"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L40
 msgid "Export list"
-msgstr ""
+msgstr "Esportazioen zerrenda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L33
 msgid "{user}'s favorite sentences"
@@ -2463,7 +2463,7 @@ msgstr "Esaldi berriak gehitzeko bi bide daude."
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Hautatu <a href=\"{}\">Gehitu esaldiak</a> hemendik: <strong>Ekarpenen</strong> menutik, orrialdearen goiko aldean."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L152
 msgid ""
@@ -2716,7 +2716,7 @@ msgstr "Garrantzitsua"
 msgid ""
 "<strong>We like quality.</strong> Every detail matters. Please do not forget"
 " punctuation and capital letters."
-msgstr ""
+msgstr "<strong>Kalitatea estimatzen dugu.</strong> Xehetasunek ere balio dute. Mesedez, ez ahaztu puntuazio markak, letra larriak, etab."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L55
 msgid ""
@@ -2856,7 +2856,7 @@ msgstr "Arrazoi teknikoengatik, bilatzeko eginbidea une honetan desgaituta dago.
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
-msgstr ""
+msgstr "{sentence} - {language} esaldi-adibide"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
@@ -2901,7 +2901,7 @@ msgstr "Errore bat gertatu da ausazko esaldiak ekartzerakoan. Behin eta berriro 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L55
 msgid "Only the last {n} sentences are displayed here."
-msgstr ""
+msgstr "Azken {n} esaldiak bakarrik ikus daitezke hemen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
@@ -2939,11 +2939,11 @@ msgstr "Hizkuntza bat hautatzen baduzu, hizkuntza horretara egiten duzun itzulpe
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L139
 msgid "Preparing download, please wait."
-msgstr ""
+msgstr "Deskarga prestatzen, itxaron, mesedez."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L140
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "Huts egin du deskargaren prestaketak, mesedez saia zaitez berriro."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L150
 msgid "Fields will be written out in the following sequence:"
@@ -3115,7 +3115,7 @@ msgstr "Etiketa guztiak (guztira {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L77
 msgid "Tags containing: {search} (total {{count}})"
-msgstr ""
+msgstr "Etiketek hau daukate: {search} (total {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L87
 msgid "count"
@@ -3658,7 +3658,7 @@ msgstr "Giro atsegina mantendu nahiko genuke gure eztabaidetan ere. Mesedez, ira
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L84
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr ""
+msgstr "Idatz dezakezu nahi duzun hizkuntza. Tatoeban hizkuntza guztiak baloratzen dira."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
@@ -4031,7 +4031,7 @@ msgstr "{user} erabiltzaileak gehitutakoak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by an unknown member"
-msgstr ""
+msgstr "erabiltzaile ezezagun batek gehituta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by {user}"
@@ -4039,7 +4039,7 @@ msgstr "{user} erabiltzaileak estekatutakoak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by an unknown member"
-msgstr ""
+msgstr "erabiltzaile ezezagun batek estekatu du"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by {user}"
@@ -4047,7 +4047,7 @@ msgstr "lizentzia erabiltzaile honek hautatu zuen: {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by a unknown member"
-msgstr ""
+msgstr "erabiltzaile ezezagun batek hautatu du lizentzia mota hau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by {user}"
@@ -4055,7 +4055,7 @@ msgstr "{user} erabiltzaileak editatutakoak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by an unknown member"
-msgstr ""
+msgstr "erabiltzaile ezezagun batek editatu du"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
@@ -4063,7 +4063,7 @@ msgstr "lizentzia erabiltzaile honek aldatu zuen: {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by an unknown member"
-msgstr ""
+msgstr "erabiltzaile ezezagun batek aldatu egin du lizentzia mota"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
@@ -4071,7 +4071,7 @@ msgstr "{user} erabiltzaileak ezabatutakoak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by an unknown member"
-msgstr ""
+msgstr "erabiltzaile ezezagun batek detektatu du"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by {user}"
@@ -4079,7 +4079,7 @@ msgstr "{user} erabiltzaileak kendu ditu estekak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by an unknown member"
-msgstr ""
+msgstr "erabiltzaile ezezagun batek desatsegintzat jo du"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
