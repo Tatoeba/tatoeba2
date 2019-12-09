@@ -85,9 +85,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div>
+
+<section class="md-whiteframe-1dp">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2><?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title) ?></h2>
+        </div>
+    </md-toolbar>
+
+    <md-content layout-padding>
     <?php 
-    echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title);
 
     $this->Pagination->display();
     
@@ -98,5 +105,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         
     $this->Pagination->display();
     ?>
-    </div>
+    </md-content>
+</section>
+
 </div>

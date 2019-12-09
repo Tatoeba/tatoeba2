@@ -74,8 +74,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="section md-whiteframe-1dp">
 
+    <section class="md-whiteframe-1dp">
     <?php
     if ($userExists === false) {
         $this->CommonModules->displayNoSuchUser($userName);
@@ -100,12 +100,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     } else {
         ?>
 
-        <h2>
-            <?php
-            echo $this->Paginator->counter($title . ' ' . __("(total {{count}})"));
-            ?>
-        </h2>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $this->Paginator->counter($title . ' ' . __("(total {{count}})")); ?></h2>
+            </div>
+        </md-toolbar>
 
+        <md-content layout-padding>
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
@@ -137,9 +138,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             );
         }
 
-
         $this->Pagination->display();
+        ?>
+        </md-content>
+        <?php
     }
     ?>
-    </div>
+    </section>
 </div>

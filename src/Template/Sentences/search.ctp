@@ -82,9 +82,11 @@ if ($ignored) {
 </div>
 
 <div id="main_content">
+
+<section class="md-whiteframe-1dp">   
 <?php
 if (!isset($results)) {
-    ?><div class="section md-whiteframe-1dp"><?php
+    ?><div class="section"><?php
     if (isset($sphinx_markers)) {
     ?>
         <h2><?php echo __('Search error'); ?></h2>
@@ -114,8 +116,6 @@ if (!isset($results)) {
     }
     ?></div><?php
 } elseif (count($results) > 0) {
-    ?><div class="section"><?php
-
     if (!$is_advanced_search && !empty($query)) {
         $keywords = $this->Languages->tagWithLang(
             'span', '', $query
@@ -126,8 +126,16 @@ if (!isset($results)) {
             compact('keywords')
         );
     }
-    echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total);
 
+    ?>
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2><?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?></h2>
+        </div>
+    </md-toolbar>
+
+    <md-content layout-padding>
+    <?php
     //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
     
     $this->Pagination->display();
@@ -153,7 +161,7 @@ if (!isset($results)) {
     }
 
     $this->Pagination->display();
-    ?></div><?php
+    ?></md-content><?php
 
 } else {
     echo $this->element('search_with_no_result');
@@ -161,4 +169,5 @@ if (!isset($results)) {
     //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
 }
 ?>
+</section>
 </div>

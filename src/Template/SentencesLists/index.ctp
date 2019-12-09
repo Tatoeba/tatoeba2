@@ -58,8 +58,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="section md-whiteframe-1dp">
-        <?php echo $this->Html->tag('h2', $title, array('escape' => true)); ?>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
+
+        <div layout-padding>
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
@@ -82,5 +88,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         $this->Lists->displayListTable($allLists);
         $this->Pagination->display();
         ?>
-    </div>
+        </div>
+    </section>
 </div>

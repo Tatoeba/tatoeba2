@@ -32,9 +32,14 @@ $this->Paginator->options(
 </div>
 
 <div id="main_content">
-    <div class="section">
-        <h2><?= __('Latest comments'); ?></h2>
-
+    <section>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2 flex><?= __('Latest comments'); ?></h2>
+            </div>
+        </md-toolbar>
+        
+        <md-content class="md-whiteframe-1dp">
         <?php
         $this->Pagination->display();
         $currentUserIsMember = CurrentUser::isMember();
@@ -58,6 +63,6 @@ $this->Paginator->options(
 
         $this->Pagination->display();
         ?>
-
-    </div>
+        </md-content>
+    </section>
 </div>

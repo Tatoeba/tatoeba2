@@ -75,18 +75,23 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
 </div>
 
 <div id="main_content">
-    <div class="section">
-        <h2>
-        <?php
-        echo $this->Paginator->counter(
-            format(
-                __('Members (total {number})'),
-                ['number' => '{{count}}']
-            )
-        );
-        ?>
-        </h2>
-
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+            <h2>
+            <?php
+            echo $this->Paginator->counter(
+                format(
+                    __('Members (total {number})'),
+                    ['number' => '{{count}}']
+                )
+            );
+            ?>
+            </h2>
+            </div>
+        </md-toolbar>
+        
+        <md-content>
         <div class="sortBy">
             <strong><?php echo __('Sort by:'); ?></strong>
             <?php
@@ -151,5 +156,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
         <?php
         $this->Pagination->display();
         ?>
-    </div>
+        </md-content>
+    </section>
 </div>

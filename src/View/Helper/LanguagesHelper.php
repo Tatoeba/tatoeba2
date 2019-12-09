@@ -471,7 +471,7 @@ class LanguagesHelper extends AppHelper
             'action' => 'language'
         ));
         ?>
-        <p><?= $warningMessage ?></p>
+        <p layout-margin><?= $warningMessage ?></p>
 
         <div layout="row" layout-align="center center">
             <md-button class="md-raised md-primary" href="<?= $newLangUrl ?>">

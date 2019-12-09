@@ -88,7 +88,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 
 <div id="main_content">
-    <div class="section md-whiteframe-1dp">
+    <section class="md-whiteframe-1dp">
         <?php
         $total = $this->Paginator->param('count');
         $title = format(
@@ -97,8 +97,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                   'total' => $this->Number->format($total))
         );
         ?>
-        <h2><?php echo $title; ?></h2>
-        <div class="usersLanguages">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
+        
+        <md-content class="usersLanguages">
         <?php
         $this->Pagination->display();
 
@@ -128,6 +133,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         $this->Pagination->display();
         ?>
-        </div>
+        </md-content>
     </div>
 </div>

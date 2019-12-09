@@ -143,6 +143,7 @@
     padding: 5px 15px;
     border-width: 12px;
     border-left-style: solid;
+    background: #fff;
 }
 
 html[dir="rtl"] #logs md-list-item {
@@ -228,10 +229,6 @@ html[dir="rtl"] #logs .content {
  * --------------------------------------------------------------------
  */
 
-.comment {
-    margin: 40px 0px;
-}
-
 .comment .md-title {
     font-weight: 700;
 }
@@ -245,28 +242,28 @@ html[dir="rtl"] #logs .content {
     cursor: help;
 }
 
-.comment.sentence {
-    background: #fafafa;
-    padding: 10px 16px;
-    margin-bottom: -38px;
+.comment-sentence {
+    padding: 16px 16px 10px 16px;
+    margin: 8px 7px -8px 7px;
+    border: 1px solid #ccc;
 }
 
-.comment.sentence .info {
+.comment-sentence .info {
     font-size: 14px;
     margin: 0 10px;
 }
 
-.comment.sentence .lang {
+.comment-sentence .lang {
     margin: 0 10px;
     display: block;
 }
 
-.comment.sentence .text {
+.comment-sentence .text {
     margin: 5px 10px;
     text-align: left;
 }
 
-html[dir="rtl"] .comment.sentence .text {
+html[dir="rtl"] .comment-sentence .text {
     text-align: right;
 }
 
@@ -795,6 +792,7 @@ html[dir="rtl"] .comment.sentence .text {
 
 .sentence {
     padding: 4px 0px;
+    background: #fff;
 }
 
 .sentences_set .sentence:hover {

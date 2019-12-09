@@ -74,7 +74,7 @@ if ($sentenceOwnerLink) {
 ?>
 
 <?php if (!isset($hideSentence) || !$hideSentence) { ?>
-<div class="comment sentence md-whiteframe-1dp">
+<div class="comment-sentence">
     <div class="info">
         <?= format(
             $sentenceInfoLabel,

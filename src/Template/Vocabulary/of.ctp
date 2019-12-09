@@ -44,9 +44,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content" ng-controller="VocabularyOfController as ctrl">
-    <div class="section md-whiteframe-1dp">
-        <h2><?= $title ?></h2>
-
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
+    
+        <md-content>
         <?php
         $this->Pagination->display();
         ?>
@@ -74,6 +79,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <?php
         $this->Pagination->display();
         ?>
+        </md-content>
     </div>
 
 </div>

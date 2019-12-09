@@ -79,9 +79,13 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
 </div>
 
 <div id="main_content">
-    <h2><?php echo __('Translate sentences'); ?></h2>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Translate sentences'); ?></h2>
+            </div>
+        </md-toolbar>
 
-    <div class="section md-whiteframe-1dp">
         <?php if (CurrentUser::isMember() && count($langsFrom) < 2) { ?>
         <div class="warning">
             <?= format(
@@ -99,8 +103,9 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
             ); ?>
         </div>
         <?php } ?>
-        <h3><?php echo __('Search for untranslated sentences'); ?></h3>
-        <div>
+
+        <md-subheader><?php echo __('Search for untranslated sentences'); ?></md-subheader>
+        <div layout-margin>
             <?php
             echo $this->Form->create(
                 'Activity',
@@ -181,6 +186,6 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
             </fieldset>
             <?php echo $this->Form->end(); ?>
         </div>
-    </div>
+    </section>
 
 </div>

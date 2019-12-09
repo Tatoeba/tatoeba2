@@ -55,9 +55,13 @@ $membersIcons = array(
 </div>
 
 <div id="main_content">
-    <div class="section md-whiteframe-1dp">
-        <h2><?php echo $title ?></h2>
-
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
+        
         <table class="languages-stats">
             <tr>
                 <th></th>
@@ -122,5 +126,5 @@ $membersIcons = array(
             }
             ?>
         </table>
-    </div>
+    </section>
 </div>

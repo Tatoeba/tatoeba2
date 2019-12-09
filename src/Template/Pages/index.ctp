@@ -29,17 +29,29 @@ use Cake\Core\Configure;
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 
 $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
+
+$moreContribUrl = $this->Url->build([
+    'controller' => 'contributions',
+    'action' => 'latest'
+]);
+
+$moreCommentsUrl = $this->Url->build([
+    'controller' => 'sentence_comments'
+]);
 ?>
 <div id="annexe_content">
-    <?= $this->element('stats/homepage_stats', [
-        'contribToday' => $contribToday,
-        'numberOfLanguages' => $numberOfLanguages,
-        'numSentences' => $numSentences,
-        'cache' => array(
-            'time' => '+15 minutes',
-            'key' => Configure::read('Config.language')
-        )
-    ]); ?>
+    <div class="stats annexe-menu md-whiteframe-1dp" layout="column" flex>
+        <md-subheader><?= __('Stats')?></md-subheader>
+        <?= $this->element('stats/homepage_stats', [
+            'contribToday' => $contribToday,
+            'numberOfLanguages' => $numberOfLanguages,
+            'numSentences' => $numSentences,
+            'cache' => array(
+                'time' => '+15 minutes',
+                'key' => Configure::read('Config.language')
+            )
+        ]); ?>
+    </div>
         
     <md-list class="annexe-menu md-whiteframe-1dp">
         <md-subheader><?= __('Latest messages'); ?></md-subheader>
@@ -69,7 +81,7 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
 
 <div id="main_content">
     <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
-        <div class="section">
+        <section>
             <?php echo $this->element('random_sentence_header'); ?>
             <div class="random_sentences_set">
                 <md-progress-circular md-mode="indeterminate" class="block-loader" id="random-progress" style="display: none;"></md-progress-circular>
@@ -79,42 +91,33 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
                     ?>
                 </div>
             </div>
-        </div>
+     </section>
     <?php } ?>
 
-    <div class="section">
-        <h2>
-        <?php echo __('Latest contributions');
+    <section>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2 flex><?= __('Latest contributions'); ?></h2>
+                <md-button href="<?= $moreContribUrl ?>">
+                    <?= __('show more...') ?>
+                </md-button>
+            </div>
+        </md-toolbar>
 
-        echo $this->Html->link(
-            __('show more...'),
-            array(
-                'controller' => 'contributions',
-                'action' => 'latest'
-            ),
-            array(
-                'class' => 'titleAnnexeLink'
-            )
-        );
-        ?>
-        </h2>
         <?php echo $this->element('latest_contributions'); ?>
-    </div>
-    <div class="section">
-        <h2>
-        <?php echo __('Latest comments');
+    </section>
 
-        echo $this->Html->link(
-            __('show more...'),
-            array(
-                'controller' => 'sentence_comments'
-            ),
-            array(
-                'class' => 'titleAnnexeLink'
-            )
-        );
-        ?>
-        </h2>
+    <section>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2 flex><?= __('Latest comments'); ?></h2>
+                <md-button href="<?= $moreCommentsUrl ?>">
+                    <?= __('show more...') ?>
+                </md-button>
+            </div>
+        </md-toolbar>
+        
+        <md-content class="md-whiteframe-1dp" flex>
         <?php
         echo $this->element(
             'latest_sentence_comments',
@@ -124,6 +127,7 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
             )
         ); 
         ?>
-    </div>
+        </md-content>
+    </section>
 </div>
 

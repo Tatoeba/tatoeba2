@@ -48,14 +48,20 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 <div ng-controller="VocabularyAddController as ctrl" id="main_content">
 
-    <div class="section md-whiteframe-1dp" layout="column">
-        <h2><?= $title ?></h2>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
+    
         <?= $this->Form->create('Vocabulary', [
             'ng-cloak' => true,
             'id' => 'add-vocabulary-form',
             'ng-submit' => 'ctrl.add()',
             'url' => ['action' => 'save'],
             'onsubmit' => 'return false',
+            'layout-padding'
         ]) ?>
             <div layout="row">
                 <div class="language" layout="column">
@@ -98,16 +104,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             </div>
         <?= $this->Form->end() ?>
 
-    </div>
+    </section>
 
-    <div ng-cloak class="section md-whiteframe-1dp">
-        <div layout="row">
-            <h2 flex><?= __('Vocabulary items added'); ?></h2>
-            <md-progress-circular md-mode="indeterminate"
-                                  md-diameter="32"
-                                  ng-show="ctrl.isAdding">
-            </md-progress-circular>
-        </div>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2 flex><?= __('Vocabulary items added'); ?></h2>
+                <md-progress-circular md-mode="indeterminate"
+                                      md-diameter="32"
+                                      ng-show="ctrl.isAdding">
+                </md-progress-circular>
+            </div>
+        </md-toolbar>
 
         <md-list flex ng-show="ctrl.vocabularyAdded.length > 0">
             <md-list-item id="vocabulary_{{item.id}}"

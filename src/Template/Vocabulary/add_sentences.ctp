@@ -40,16 +40,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content" ng-controller="VocabularyAddSentencesController as ctrl">
-    <div class="section md-whiteframe-1dp">
-        <h2><?= $title ?></h2>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
 
-        <p>
+        <md-content>
+        <div layout-padding>
             <?= __(
                 'Only vocabulary items that match fewer than 10 sentences are '.
                 'displayed here.'
             )
             ?>
-        </p>
+        </div>
+
         <?php
         $this->Pagination->display();
         ?>
@@ -127,6 +133,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <?php
         $this->Pagination->display();
         ?>
-    </div>
+        </md-content>
+    </section>
 
 </div>

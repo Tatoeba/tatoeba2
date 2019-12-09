@@ -168,44 +168,53 @@ echo $this->element('/sentences/navigation', [
 </div>
 
 <div id="main_content">
-    <?php
-    if (isset($sentence)) {
-        if (CurrentUser::isMember()) {
-            ?>
-            <div class="section md-whiteframe-1dp">
-            <h2><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
-            <?php
-            $this->Sentences->displaySentencesGroup($sentence);
-            ?></div><?php
-        } else {
-            echo $this->element(
-                'sentences/sentence_and_translations',
-                array(
-                    'sentence' => $sentence,
-                    'translations' => $sentence->translations,
-                    'user' => $sentence->user
-                )
-            );
-        }
-    } else {
-        echo '<div class="error">';
-            echo format(
-                __(
-                    'There is no sentence with id {number}',
-                    true
-                ),
-                array('number' => $this->request->params['pass'][0])
-            );
-        echo '</div>';
-    }
-    ?>
-    <br>
+    <section>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= format(__('Sentence #{number}'), array('number' => $sentenceId)); ?></h2>
+            </div>
+        </md-toolbar>
 
-    <div class="section">
-        <h2><?= __('Comments'); ?></h2>
         <?php
-        if (!empty($sentenceComments)) {
-            echo '<div class="comments">';
+        if (isset($sentence)) {
+            if (CurrentUser::isMember()) {
+                ?><div class="section md-whiteframe-1dp"><?php
+                $this->Sentences->displaySentencesGroup($sentence);
+                ?></div><?php
+            } else {
+                echo $this->element(
+                    'sentences/sentence_and_translations',
+                    array(
+                        'sentence' => $sentence,
+                        'translations' => $sentence->translations,
+                        'user' => $sentence->user
+                    )
+                );
+            }
+        } else {
+            echo '<div class="error">';
+                echo format(
+                    __(
+                        'There is no sentence with id {number}',
+                        true
+                    ),
+                    array('number' => $this->request->params['pass'][0])
+                );
+            echo '</div>';
+        }
+        ?>
+    </section>
+
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= __('Comments'); ?></h2>
+            </div>
+        </md-toolbar>
+        
+        <md-content>
+        <?php
+        if (!$sentenceComments->isEmpty()) {
             foreach ($sentenceComments as $i=>$comment) {
                 $menu = $this->Comments->getMenuForComment(
                     $comment,
@@ -225,9 +234,12 @@ echo $this->element('/sentences/navigation', [
                     )
                 );
             }
-            echo '</div>';
         } else {
-            echo '<em>' . __('There are no comments for now.') .'</em>';
+            ?>
+            <div layout-padding class="center">
+                <p><?= __('There are no comments for now.') ?></p>
+            </div>
+            <?php
         }
 
         if ($canComment) {
@@ -236,7 +248,8 @@ echo $this->element('/sentences/navigation', [
             ]);
         }
         ?>
-    </div>
+        </md-content>
+    </section>
 </div>
 <?php
 } else {

@@ -40,8 +40,15 @@ $registerUrl = $this->Url->build(
 <div layout="column" flex="80">
 
 <?php if(!isset($searchProblem)) { ?>
-<div layout="column" layout-margin="">
-    <h2><?= __('Random sentence'); ?></h2>
+<div layout-margin>
+<div layout="column">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2><?= __('Random sentence'); ?></h2>
+        </div>
+    </md-toolbar>
+
+    <section flex ng-cloak>
     <?php
     $sentence = $random;
     $translations = $random->translations;
@@ -56,12 +63,18 @@ $registerUrl = $this->Url->build(
         )
     );
     ?>
+    </section>
+</div>
 </div>
 <?php } ?>
 
-<div layout="row" layout-margin="">
+<div layout="row" layout-margin>
     <div class="join-us md-whiteframe-1dp" layout="column" flex>
-        <md-subheader><?= __('Want to help?')?></md-subheader>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= __('Want to help?') ?></h2>
+            </div>
+        </md-toolbar>
         <p flex>
         <?= __(
             'We are collecting sentences and their translations. '.
@@ -76,15 +89,22 @@ $registerUrl = $this->Url->build(
         </div>
     </div>
     
-    <?= $this->element('stats/homepage_stats', [
-        'contribToday' => $contribToday,
-        'numberOfLanguages' => $numberOfLanguages,
-        'numSentences' => $numSentences,
-        'cache' => array(
-            'time' => '+15 minutes',
-            'key' => Configure::read('Config.language')
-        )
-    ]); ?>
+    <div class="stats annexe-menu md-whiteframe-1dp" layout="column" flex>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= __('Stats')?></h2>
+            </div>
+        </md-toolbar>
+        <?= $this->element('stats/homepage_stats', [
+            'contribToday' => $contribToday,
+            'numberOfLanguages' => $numberOfLanguages,
+            'numSentences' => $numSentences,
+            'cache' => array(
+                'time' => '+15 minutes',
+                'key' => Configure::read('Config.language')
+            )
+        ]); ?>
+    </div>
 </div>
 
 </div>

@@ -72,9 +72,13 @@ $vocabularyUrl = $this->Url->build(array(
 
 <div id="main_content">
 
-    <div class="section md-whiteframe-1dp">
-        <h2><?php echo __('Add new sentences'); ?></h2>
-
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Add new sentences'); ?></h2>
+            </div>
+        </md-toolbar>
+        
         <?php
         $langArray = $this->Languages->profileLanguagesArray(true, false);
         $currentUserLanguages = CurrentUser::getProfileLanguages();
@@ -92,7 +96,7 @@ $vocabularyUrl = $this->Url->build(array(
             ]);
             ?>
 
-            <div layout="column">
+            <div layout="column" layout-margin>
                 <div layout="row">
                     <div class="language-select" layout="row" layout-align="start center" flex>
                         <label><?= __('Language'); ?></label>
@@ -138,7 +142,6 @@ $vocabularyUrl = $this->Url->build(array(
                            ng-disabled="ctrl.isAdding">
                 </md-input-container>
 
-
                 <div layout="row" layout-align="center center">
                     <md-button id="submitNewSentence" class="md-raised md-primary">
                         <?= __('OK') ?>
@@ -149,18 +152,22 @@ $vocabularyUrl = $this->Url->build(array(
             echo $this->Form->end();
         }
         ?>
+    </section>
 
-    </div>
-
-    <div class="section md-whiteframe-1dp">
-        <h2><?php echo __('Sentences added'); ?></h2>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Sentences added'); ?></h2>
+            </div>
+        </md-toolbar>
+        
 
         <div class="sentencesAddedloading" style="display:none">
             <md-progress-circular md-mode="indeterminate" class="block-loader">
             </md-progress-circular>
         </div>
 
-        <div id="sentencesAdded">
+        <div id="sentencesAdded" layout-margin>
         <?php
         if (isset($sentence)) {
             $sentence['Translation'] = array();
@@ -168,7 +175,7 @@ $vocabularyUrl = $this->Url->build(array(
         }
         ?>
         </div>
-    </div>
+    </section>
 
     <div ng-cloak class="section md-whiteframe-1dp">
         <div layout="column" layout-align="center center">

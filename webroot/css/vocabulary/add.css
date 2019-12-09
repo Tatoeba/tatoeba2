@@ -18,7 +18,7 @@
 
 .vocabulary-lang,
 .vocabulary-text {
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 #annexe_content .md-button {
@@ -42,4 +42,8 @@ md-list-item {
 .language select {
     margin-top: 5px;
     width: 150px;
+}
+
+.md-errors-spacer {
+    display: none;
 }

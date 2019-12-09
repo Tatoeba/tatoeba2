@@ -34,11 +34,14 @@ $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
 if ($selectedLanguage == null) {
     $selectedLanguage == 'und';
 }
+
 ?>
 
-<h2>
-    <?php echo __('Random sentence'); ?>
-    <span>
+
+<md-toolbar class="md-hue-2">
+    <div class="md-toolbar-tools">
+        <h2 flex><?= __('Random sentence') ?></h2>
+        <span>
         <?php
         echo $this->Form->select(
             "randomLangChoice",
@@ -51,16 +54,11 @@ if ($selectedLanguage == null) {
             ),
             false
         );
-        echo ' ';
-        echo $this->Html->link(
-            __('show another '),
-            array(),
-            array(
-                "id" => "showRandom",
-                "class" => "titleAnnexeLink",
-                "onclick" => "return false;"
-            )
-        );
         ?>
-    </span>
-</h2>
+        </span>
+
+        <md-button id="showRandom" onclick="return false;">
+            <?= __('show another ') ?>
+        </md-button>
+    </div>
+</md-toolbar>

@@ -40,7 +40,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-<div class="section md-whiteframe-1dp">
+
+<section class="md-whiteframe-1dp">
 <?php
 if (isset($sentencesWithAudio)) {
     if (count($sentencesWithAudio) == 0) {
@@ -53,8 +54,15 @@ if (isset($sentencesWithAudio)) {
                 'format' => $title . ' ' . __("(total {{count}})")
             )
         );
-        echo $this->Html->tag('h2', $title);
+        ?>        
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
 
+        <md-content layout-padding>
+        <?php
         $this->Pagination->display();
 
         $type = 'mainSentence';
@@ -73,9 +81,12 @@ if (isset($sentencesWithAudio)) {
         }
 
         $this->Pagination->display();
+        ?>
+        </md-content>
+        <?php
     }
 } else {
 }
 ?>
-</div>
+</section>
 </div>

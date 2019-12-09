@@ -100,7 +100,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     $this->Lists->displayTranslationsDropdown($listId, $translationsLang);
     ?>
-    <div layout="column" layout-align="end center" layout-padding>
+    <div layout="column" layout-align="end center">
         <?php
         if ($permissions['canEdit']) {
             $this->Lists->displayDeleteButton($listId);

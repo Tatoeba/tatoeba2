@@ -133,6 +133,9 @@ a:hover {
     cursor: pointer;
     color: #DD8800;
 }
+a.md-button:hover {
+    color: inherit;
+}
 
 .titleAnnexeLink {
     font-weight: normal;
@@ -479,11 +482,15 @@ rt {
     margin-right: 290px;
 }
 
+#main_content section {
+    margin-bottom: 20px;
+}
+
 .section {
     padding: 20px;
     margin-bottom: 20px;
 }
-.section h1, .section h2 {
+.section > h1, .section > h2 {
     margin-top: 5px;
 }
 
@@ -746,24 +753,6 @@ md-toolbar {
     transition: none;
 }
 
-md-button {
-    display: inline-block;
-    margin: 6px 8px;
-    min-height: 36px;
-    min-width: 88px;
-    vertical-align: middle;
-}
-
-md-icon {
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.md-button {
-    padding: 0 10px;
-    font-size: 16px;
-}
-
 md-list-item.md-2-line .md-list-item-text h3,
 md-list-item.md-2-line > ._md-no-style .md-list-item-text h3,
 md-list-item.md-3-line .md-list-item-text h3,
@@ -775,4 +764,8 @@ md-card md-card-header md-card-avatar .md-user-avatar,
 md-list-item .md-avatar,  
 md-list-item .md-list-item-inner .md-avatar {
     border-radius: 10%;
+}
+
+md-list {
+    padding: 0;
 }

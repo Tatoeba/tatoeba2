@@ -52,7 +52,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 </div>
 
 <div id="main_content">
-    <div class="section">
+
+<section class="md-whiteframe-1dp">
     <?php
     $paging = $this->Paginator->params();
     if ($userExists === false) {
@@ -69,18 +70,21 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 
     } else {
         ?>
-        <h2>
-            <?php 
-            echo format(
-                __('{user}\'s comments (total&nbsp;{n})'),
-                array('user' => $userName, 'n' => $this->Number->format($paging['count']))
-            ); 
-            ?>
-        </h2>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2>
+                    <?php 
+                    echo format(
+                        __('{user}\'s comments (total&nbsp;{n})'),
+                        array('user' => $userName, 'n' => $this->Number->format($paging['count']))
+                    ); 
+                    ?>
+                </h2>
+            </div>
+        </md-toolbar>
         
-        <?php
-        $this->Pagination->display();
-        ?>
+        <md-content>
+        <?php $this->Pagination->display(); ?>
         
         <div class="comments">
         <?php
@@ -104,12 +108,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         ?>
         </div>
         
-       <?php
-        $this->Pagination->display();
-        
+        <?php $this->Pagination->display(); ?>
+
+        </md-content>
+        <?php
     }
     ?>
-    </div>
+</section>
+
 </div>
 
 

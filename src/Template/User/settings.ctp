@@ -38,8 +38,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 </div>
 
 <div id="main_content">
-    <div class="options settings-form md-whiteframe-1dp">
-        <h2><?php echo __('Options'); ?></h2>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Options'); ?></h2>
+            </div>
+        </md-toolbar>
+        
         <?php echo $this->Form->create($userSettings, [
             'ng-cloak' => true,
             'url' => ['controller' => 'user', 'action' => 'save_settings']
@@ -226,6 +231,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 )); ?>
             </md-list-item>
         </md-list>
+        <br>
 
         <md-list flex role="list" class="flex">
             <md-subheader><?php echo __('Experimental options'); ?></md-subheader>
@@ -334,22 +340,31 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
         </md-list>
+        <br>
 
         <div layout="row" layout-align="center center">
             <md-button type="submit" class="md-raised md-primary">
                 <?php echo __('Save'); ?>
             </md-button>
         </div>
+        <br>
 
         <?php echo $this->Form->end(); ?>
-    </div>
-    <div ng-cloak class="settings-form md-whiteframe-1dp">
+    </section>
+
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Change email address'); ?></h2>
+            </div>
+        </md-toolbar>
+
+        <div layout-padding>
         <?php
         echo $this->Form->create($userSettings, [
             'url' => ['controller' => 'user', 'action' => 'save_basic']
         ]);
         ?>
-            <h2><?php echo __('Change email address'); ?></h2>
             <md-input-container class="md-block">
                 <?php
                 echo $this->Form->control('email', [
@@ -365,15 +380,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         <?php
         echo $this->Form->end();
         ?>
-    </div>
+        </div>
+    </section>
 
-    <div ng-cloak class="settings-form md-whiteframe-1dp">
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?php echo __('Change password'); ?></h2>
+            </div>
+        </md-toolbar>
+
+        <div layout-padding>
         <?php
         echo $this->Form->create($userSettings, [
             'url' => ['controller' => 'user', 'action' => 'save_password']
         ]);
         ?>
-        <h2><?php echo __('Change password'); ?></h2>
             <md-input-container class="md-block">
                 <?php
                 echo $this->Form->control('old_password', [
@@ -406,5 +428,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
         <?php
         echo $this->Form->end();
         ?>
-    </div>
+        </div>
+    </section>
 </div>

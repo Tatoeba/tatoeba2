@@ -30,15 +30,14 @@
     min-width: 200px;
 }
 
-#main_content > :first-child {
-    height: 220px;
-}
-
 /*
  * Sentences added
  */
+#sentencesAdded {
+    padding: 10px;
+}
 #sentencesAdded .sentences_set {
-    margin: 40px 0;
+    margin: 0 0 20px 0;
 }
 
 .sentences_duplicate_icon {

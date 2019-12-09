@@ -21,8 +21,7 @@
  * Users
  */
 .users {
-    margin: 40px 0;
-    overflow: hidden;
+    margin: 20px;
     text-align: center;
 }
 
@@ -32,6 +31,7 @@
     display: inline-block;
     width: 270px;
     margin: 10px;
+    background: #fff;
 }
 
 .user .memberSince {

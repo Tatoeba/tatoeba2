@@ -41,20 +41,25 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
 
 
 <div id="main_content">
-<div class="section">
-    <h2>
-    <?php 
-    echo $this->Paginator->counter(
-        array(
-            'format' => format(
-                __('{user}\'s messages on the Wall (total&nbsp;{n})'),
-                array('user' => $username, 'n' => '{{count}}')
+<section class="md-whiteframe-1dp">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+        <h2>
+        <?php 
+        echo $this->Paginator->counter(
+            array(
+                'format' => format(
+                    __('{user}\'s messages on the Wall (total&nbsp;{n})'),
+                    array('user' => $username, 'n' => '{{count}}')
+                )
             )
-        )
-    );
-    ?>
-    </h2>
+        );
+        ?>
+        </h2>
+        </div>
+    </md-toolbar>
     
+    <md-content>
     <?php
     $this->Pagination->display();
     ?>
@@ -73,5 +78,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     <?php
     $this->Pagination->display();
     ?>
-</div>
+    </md-content>
+</section>
 </div>

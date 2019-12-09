@@ -44,17 +44,26 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="section">
+
+<section class="md-whiteframe-1dp">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <h2><?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $total, true); ?></h2>
+        </div>
+    </md-toolbar>
+
+    <md-content layout-padding>
     <?php
     if (!empty($results)) {
-
-        echo $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $total, true);
-
         if ($total > $totalLimit) {
-            echo $this->Html->tag('p', format(
+            ?>
+            <div layout-padding>
+            <?= format(
                 __('Only the last {n} sentences are displayed here.'),
-                ['n' => $this->Number->format($totalLimit)])
-            );
+                ['n' => $this->Number->format($totalLimit)]
+            ); ?>
+            </div>
+            <?php
         }
 
         $this->Pagination->display();
@@ -81,5 +90,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         $this->Pagination->display();
     }
     ?>
-    </div>
+    </md-content>
+</section>
+
 </div>

@@ -66,7 +66,7 @@ $tagsIndexUrl = $this->Url->build([
 
 
 <div id="main_content">
-    <div class="section md-whiteframe-1dp">
+    <section class="md-whiteframe-1dp">
         <?php
         if (empty($filter)) {
             $title = $this->Paginator->counter(
@@ -78,9 +78,15 @@ $tagsIndexUrl = $this->Url->build([
                 array('search' => $filter)
             );
         }
-        echo $this->Html->tag('h2', $title, array('escape' => true));
         ?>
 
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
+
+        <div layout-padding>
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
@@ -90,9 +96,7 @@ $tagsIndexUrl = $this->Url->build([
             ?>
         </div>
 
-        <?php
-            $this->Pagination->display();
-        ?>
+        <?php $this->Pagination->display(); ?>
 
         <md-list>
             <?php foreach( $allTags as $tag) {
@@ -114,11 +118,9 @@ $tagsIndexUrl = $this->Url->build([
                 </md-list-item>
             <?php } ?>
         </md-list>
-
-        <div>
-        <?php
-            $this->Pagination->display();
-        ?>
+        
+        <?php $this->Pagination->display(); ?>
+        
         </div>
-    </div>
+    </section>
 </div>

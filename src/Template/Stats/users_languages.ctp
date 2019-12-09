@@ -49,8 +49,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
 </div>
 
 <div id="main_content">
-    <div class="section md-whiteframe-1dp">
-        <h2><?php echo __('Languages of members'); ?></h2>
+    <section class="md-whiteframe-1dp">
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= __('Languages of members'); ?></h2>
+            </div>
+        </md-toolbar>
+        
         <table class="usersLanguagesStats">
             <tr>
                 <th></th>
@@ -94,5 +99,5 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
             }
             ?>
         </table>
-    </div>
+    </section>
 </div>

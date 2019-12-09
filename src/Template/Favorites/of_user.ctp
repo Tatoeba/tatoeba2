@@ -48,14 +48,23 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 </div>
 
 <div id="main_content">
-    <div class="section md-whiteframe-1dp" id="favorites-list" data-success="<?php echo __("Favorite successfully removed."); ?>" >
+    <section class="md-whiteframe-1dp" id="favorites-list" data-success="<?php echo __("Favorite successfully removed."); ?>" >
 
     <?php
     if (!$userExists) {
         $this->CommonModules->displayNoSuchUser($username);
     } else {
         $title = $this->Paginator->counter($title . ' ' . __('(total {{count}})'));
-        echo $this->Html->tag('h2', $title);
+
+        ?>
+        <md-toolbar class="md-hue-2">
+            <div class="md-toolbar-tools">
+                <h2><?= $title ?></h2>
+            </div>
+        </md-toolbar>
+
+        <md-content layout-padding>
+        <?php
         if ($numberOfSentences > 0) {
 
             $this->Pagination->display();
@@ -101,11 +110,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 }
             }
             $this->Pagination->display();
-
+            ?>
+            </md-content>
+            <?php
         } else {
             echo __('This user does not have any favorites.');
         }
     }
     ?>
-    </div>
+    </section>
 </div>
