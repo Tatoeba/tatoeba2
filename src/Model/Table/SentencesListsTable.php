@@ -140,11 +140,14 @@ class SentencesListsTable extends Table
     /**
      * Returns the sentences lists that the given user can add sentences to.
      *
-     * @param int $userId Id of the user.
+     * @param int $userId     Id of the user.
+     * @param int $sentenceId Id of the sentence the user wants to add to a list.
+     *                        Used for filtering out the lists which already contain the
+     *                        sentence.
      *
      * @return array
      */
-    public function getUserChoices($userId)
+    public function getUserChoices($userId, $sentenceId)
     {
         $results = $this->find()
             ->where([
@@ -156,6 +159,9 @@ class SentencesListsTable extends Table
                     'editable_by' => 'no_one'
                 ]
             ])
+            ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
+                return $q->where(['SentencesSentencesLists.sentence_id' => $sentenceId]);
+            })
             ->select(['id', 'name', 'user_id'])
             ->order(['name']);
 
