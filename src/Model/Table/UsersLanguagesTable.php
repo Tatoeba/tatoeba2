@@ -19,6 +19,7 @@
 namespace App\Model\Table;
 
 use App\Model\Entity\User;
+use App\Model\CurrentUser;
 use Cake\ORM\Table;
 use Cake\ORM\Entity;
 use Cake\Database\Schema\TableSchema;
@@ -143,27 +144,30 @@ class UsersLanguagesTable extends Table
     /**
      * Executed on Sentence's beforeFind
      */
-    public function reportNativeness($event) {
-        $query = $event->data[0];
+    public function reportNativeness($event, $query) {
         if (CurrentUser::getSetting('native_indicator')) {
-            if (is_array($query['fields']) &&
-                in_array('lang', $query['fields']) &&
-                in_array('user_id', $query['fields']) &&
-                in_array('User.level', $query['fields']) &&
-                in_array('User.group_id', $query['fields'])
+            $defaultTypes = $query->getDefaultTypes();
+            if (is_array($defaultTypes) &&
+                array_key_exists('lang', $defaultTypes) &&
+                array_key_exists('user_id', $defaultTypes) &&
+                array_key_exists('Users.level', $defaultTypes) &&
+                array_key_exists('Users.role', $defaultTypes)
                ) {
-                $this->User->virtualFields['is_native'] = 0;
-                $query['fields'][] = '`UsersLanguages`.`id` IS NOT NULL AND User.group_id != 6 AND User.level > -1 AS User__is_native';
-                $query['joins'][] = array(
-                    'alias' => 'UsersLanguages',
-                    'table' => 'users_languages',
-                    'type' => 'left',
-                    'conditions' => array(
-                        'Sentence.user_id = UsersLanguages.of_user_id',
-                        'Sentence.lang = UsersLanguages.language_code',
-                        'UsersLanguages.level' => 5,
-                    )
-                );
+                   $query->join([
+                       'table' => 'users_languages',
+                       'alias' => 'UsersLanguages',
+                       'type' => 'LEFT',
+                       'conditions' => [
+                           'Sentences.user_id = UsersLanguages.of_user_id',
+                           'Sentences.lang = UsersLanguages.language_code',
+                           'UsersLanguages.level' => 5
+                       ]
+                   ]);
+                   $isNative = $query->newExpr()
+                                      ->isNotNull('UsersLanguages.id')
+                                      ->notEq('Users.role', 'spammer')
+                                      ->gt('Users.level', '-1');
+                   $query->select(['Users__is_native' => $isNative]);
             }
         }
         return $query;
