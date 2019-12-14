@@ -41,7 +41,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__("Activity timeline")
 $monthName = $this->Date->monthName($month);
 $selectedMonth = format(
     __('{month} {year}'),
-    array('month' => $monthName, 'year' => $year)
+    array('month' => $monthName,
+          'year' => $this->Number->format($year, array('pattern' => '####'))
+    )
 );
  
 $maxWidth = 400;

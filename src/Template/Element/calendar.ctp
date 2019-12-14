@@ -78,7 +78,7 @@ $months = $this->Date->months();
         }
         
         echo $this->Html->link(
-            $year,
+            $this->Number->format($year, array('pattern' => '####')),
             array(
                 'controller' => 'contributions',
                 'action' => 'activity_timeline',

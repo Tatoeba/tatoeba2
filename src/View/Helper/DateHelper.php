@@ -43,7 +43,7 @@ class DateHelper extends AppHelper
 {
     private $_months;
 
-    public $helpers = array('Time');
+    public $helpers = array('Time', 'Number');
 
     /**
      * Format the given date for the activity timeline
@@ -147,13 +147,16 @@ class DateHelper extends AppHelper
                 );
             }
         } elseif ($diff->days > 0) {
-            return format(__n('yesterday', '{n}&nbsp;days ago', $diff->days), array('n' => $diff->days));
+            return format(__n('yesterday', '{n}&nbsp;days ago', $diff->days),
+                          array('n' => $this->Number->format($diff->days)));
         } elseif ($diff->h > 0) {
-            return format(__n('an hour ago', '{n}&nbsp;hours ago', $diff->h), array('n' => $diff->h));
+            return format(__n('an hour ago', '{n}&nbsp;hours ago', $diff->h),
+                          array('n' => $this->Number->format($diff->h)));
         } else {
             // we stop at minute accuracy
             $minutes = max($diff->i, 1);
-            return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes), array('n' => $minutes));
+            return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes),
+                          array('n' => $this->Number->format($minutes)));
         }
     }
 
@@ -272,13 +275,16 @@ class DateHelper extends AppHelper
 
         if ($year == '0000') {
             return format(__x('incomplete date', '{month} {day}'),
-                          (array ('day' => $day, 'month' => $this->monthName($month))));
+                          array ('day' => $this->Number->format($day),
+                                 'month' => $this->monthName($month)));
         } else {
+            $formattedYear = $this->Number->format($year, array('pattern' => '####'));
             if ($month == '00') {
-                return $year;
+                return $formattedYear;
             } else {
                 return format(__x('incomplete date', '{month} {year}'),
-                              (array ('month' => $this->monthName($month), 'year' => $year)));
+                              array ('month' => $this->monthName($month),
+                                     'year' => $formattedYear));
             }
         }
     }
