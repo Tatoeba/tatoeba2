@@ -19,30 +19,11 @@
 
 $(document).ready(function() {
     $(document).watch("addrule", function() {
-        var sentenceId = -1;
-        /*
-         * Display the "check" green icon for a short time
-         * after sentence has been added to list.
-         */
-        function feedbackValid(){
-            $("#sentence"+sentenceId+"_saved_in_list").show(); // TODO Set up a better system for this thing.
-            // Because you can't have the "in process" AND the "valid" at the same time.
-            // It will be useful for favoriting as well.
-            setTimeout(removeFeedback, 500);
-        }
-
-        /*
-         * Remove the "check" green icon.
-         */
-        function removeFeedback(){
-            $("#sentence"+sentenceId+"_saved_in_list").hide();
-        }
-
         // Clicking on "Add to list" displays the list selection.
         // Reclicking on it hides the list selection.
         $(".addToList").off();
         $(".addToList").click(function(){
-            sentenceId = $(this).attr("data-sentence-id");
+            let sentenceId = $(this).attr("data-sentence-id");
             $("#addToList"+sentenceId).toggle();
         });
 
@@ -52,13 +33,16 @@ $(document).ready(function() {
         // directly after the selection in the <select>.
         $(".validateButton").off();
         $(".validateButton").click(function(){
-            sentenceId = this.dataset.sentenceId;
-            var listId = $("#listSelection"+sentenceId).val();
-            var rootUrl = get_tatoeba_root_url();
+            let sentenceId = this.dataset.sentenceId;
+            let listId = $("#listSelection"+sentenceId).val();
+            let rootUrl = get_tatoeba_root_url();
+            let inProcess = $("#_" + sentenceId + "_in_process");
+            let listSelection = $("#listSelection" + sentenceId);
+            let feedback = $("#sentence" + sentenceId + "_saved_in_list"); 
 
             // Add sentence to selected list
             if(listId > 0){
-                $("#_"+sentenceId+"_in_process").show();
+                inProcess.show();
 
                 $.get(
                     rootUrl
@@ -66,12 +50,11 @@ $(document).ready(function() {
                     + sentenceId + "/" + listId
                     , {}
                     ,function(data){
+                        inProcess.hide();
                         if(!data.match('error')){
-                            $('#listSelection'+sentenceId).val(-1);
-                            $('#listSelection'+sentenceId+' option[value="'+data+'"]').remove();
-                            feedbackValid(sentenceId);
+                            listSelection.find('option[value="' + data + '"]').remove();
+                            feedback.show(0).delay(500).hide(0);
                         }
-                        $("#_"+sentenceId+"_in_process").hide();
                     },
                     'html'
                 );
