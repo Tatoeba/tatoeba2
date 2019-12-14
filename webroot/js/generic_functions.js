@@ -31,6 +31,14 @@ function get_tatoeba_root_url() {
     return "//" + host + "/"+ interfaceLang;
 }
 
+function get_csrf_token() {
+    // Adapted from https://stackoverflow.com/a/15724300
+    // Licensed under CC BY-SA 4.0
+    var value = "; " + document.cookie;
+    var parts = value.split("; csrfToken=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
 /**
  * Returns string without the new lines and stuff.
  */

@@ -57,7 +57,6 @@ function linkToSentence(sentenceId, langFilter) {
     };
 
     var linkTo = function(){
-        var rootUrl = get_tatoeba_root_url();
         var linkToSentenceId = $("#linkToSentence" + sentenceId).val();
 
         // if the field appears to contain a link to another sentence,
@@ -73,21 +72,16 @@ function linkToSentence(sentenceId, langFilter) {
         $("#_" + sentenceId +"_in_process").show();
 
         $(this).unbind('click', linkTo); // to prevent double submission
-        $.post(
-            rootUrl + "/links/add/" + sentenceId + "/" + linkToSentenceId,
-            {
-                'returnTranslations': true,
-                'langFilter': langFilter
-            },
-            function(data){
-                $("#_" + sentenceId +"_in_process").hide();
-                $("#_" + sentenceId + "_translations").watch("replaceWith", data);
-                $("#linkTo" + sentenceId).hide();
-                $("#linkToSentence" + sentenceId).val("");
-                $(this).click(linkTo);
-            },
-            'html'
-        );
+
+        function success(data){
+            $("#_" + sentenceId +"_in_process").hide();
+            $("#_" + sentenceId + "_translations").watch("replaceWith", data);
+            $("#linkTo" + sentenceId).hide();
+            $("#linkToSentence" + sentenceId).val("");
+            $(this).click(linkTo);
+        }
+
+        postLink("add", sentenceId, linkToSentenceId, langFilter, success);
     };
 
     $("#linkToSubmitButton" + sentenceId).unbind('click').click(linkTo);
@@ -99,4 +93,18 @@ function linkToSentence(sentenceId, langFilter) {
         linkTo.show();
         $("#linkToSentence" + sentenceId).focus();
     }
+}
+
+function postLink(action, sentenceId, translationId, langFilter, success)
+{
+    var rootUrl = get_tatoeba_root_url();
+    $.post(
+        rootUrl + "/links/" + action + "/" + sentenceId + "/" + translationId,
+        {
+            'returnTranslations': true,
+            'langFilter': langFilter,
+        },
+        success,
+        'html'
+    );
 }

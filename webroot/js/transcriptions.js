@@ -129,7 +129,7 @@ $(document).ready(function() {
                     return contents.find('.markup').text() || contents.text();
                 },
                 ajaxoptions : {
-                    headers : { 'X-CSRF-Token': div.attr('data-csrf-token') },
+                    headers : { 'X-CSRF-Token': get_csrf_token() },
                     success : function(result, status) {
                         div.editing = false;
                         div.parent().watch("replaceWith", result);

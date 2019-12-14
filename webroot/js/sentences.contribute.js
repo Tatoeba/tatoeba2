@@ -48,7 +48,6 @@ $(document).ready(function() {
                 'selectedLang': selectedLang,
                 'sentenceLicense': sentenceLicense
             };
-            var csrfHeader = $('#sentence-form input[name="_csrfToken"]').val();
             $('#sentence-form input[name^="_Token"]').each(function() {
                 data[$(this).attr('name')] = $(this).val();
             });
@@ -58,7 +57,7 @@ $(document).ready(function() {
                 url: rootUrl + '/sentences/add_an_other_sentence',
                 data: data,
                 headers: {
-                    'X-CSRF-Token': csrfHeader
+                    'X-CSRF-Token': get_csrf_token()
                 },
                 success: function(data) {
                     $("#SentenceText").val("");

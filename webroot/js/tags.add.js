@@ -37,7 +37,6 @@ $(document).ready(function() {
 			var rootUrl = get_tatoeba_root_url();
 			var data = { "sentence_id": sentenceId, "tag_name": tagName };
 
-			var csrfHeader = $('#tag-form [name="_csrfToken"]').val();
 			$('#tag-form input[name^="_Token"]').each(function() {
 				data[$(this).attr('name')] = $(this).val();
 			});
@@ -50,7 +49,7 @@ $(document).ready(function() {
 				method: 'POST',
 				url: rootUrl + '/tags/add_tag_post',
 				headers: {
-					'X-CSRF-Token': csrfHeader
+					'X-CSRF-Token': get_csrf_token()
 				},
 				data: data,
 				success: function(data){

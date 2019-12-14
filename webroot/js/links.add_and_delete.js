@@ -18,27 +18,19 @@
  
 function translationLink(action, sentenceId, translationId, langFilter)
 {
-    var rootUrl = get_tatoeba_root_url();
-
     // Show the loading icon
     $('#link_' + sentenceId + '_' + translationId).blur().html(
         "<div class='loader-small loader'></div>"
     );
     $("#_" + sentenceId + "_message").remove();
 
-    $.post(
-        rootUrl + "/links/" + action + "/" + sentenceId + "/" + translationId,
-        {
-            'returnTranslations': true,
-            'langFilter' : langFilter
-        },
-        function(data){
-            var wasExpanded = !$("#_" + sentenceId + "_translations .showLink").is(":visible");
-            $("#_" + sentenceId + "_translations").watch("replaceWith", data);
-            if (wasExpanded) {
-                $("#_" + sentenceId + "_translations .showLink").trigger("click");
-            }
-        },
-        'html'
-    );
+    function success(data){
+        var wasExpanded = !$("#_" + sentenceId + "_translations .showLink").is(":visible");
+        $("#_" + sentenceId + "_translations").watch("replaceWith", data);
+        if (wasExpanded) {
+            $("#_" + sentenceId + "_translations .showLink").trigger("click");
+        }
+    }
+
+    postLink(action, sentenceId, translationId, langFilter, success);
 }
