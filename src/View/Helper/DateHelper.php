@@ -28,6 +28,7 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use Cake\I18n\Time;
+use Cake\I18n\I18n;
 
 /**
  * Helper to display date.
@@ -43,6 +44,25 @@ class DateHelper extends AppHelper
     private $_months;
 
     public $helpers = array('Time');
+
+    /**
+     * Format the given date for the activity timeline
+     *
+     * @param $date string date in Y-m-d format
+     *
+     * @return string
+     */
+    public function date_for_timeline($date)
+    {
+        $locale = I18n::getLocale();
+        $formatter = datefmt_create($locale, NULL, NULL, NULL, NULL, 'EEE MMM d');
+        $dateObj = date_create_from_format('Y-m-d', $date);
+        list($weekday, $month, $day) = explode(' ', datefmt_format($formatter, $dateObj));
+        /* @translators: This string formats the date for the activity timeline.
+           Change the order of the placeholders and the punctuation as necessary. */
+        return format(__('{weekday},&nbsp;{month}&nbsp;{day}'),
+                      compact('weekday', 'month', 'day'));
+    }
 
     /**
      * Wrap CakePHP nice() function/method

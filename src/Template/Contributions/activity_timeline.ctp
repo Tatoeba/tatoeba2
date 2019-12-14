@@ -73,7 +73,6 @@ foreach ($stats as $stat) {
     <?php
     echo '<table id="timeline">';
 
-    $currentDate = null;
     $totalSentences = 0;
     $numberOfDays = 0;
 
@@ -87,7 +86,7 @@ foreach ($stats as $stat) {
             array('style' => 'width:'.$width.'%')
         );
 
-        $formattedDate = $this->Time->i18nFormat($date, [IntlDateFormatter::SHORT, IntlDateFormatter::NONE]);
+        $formattedDate = $this->Date->date_for_timeline($date);
         echo '<tr>';
         echo $this->Html->tag('td', $formattedDate, array('class' => 'date'));
         echo $this->Html->tag('td', $this->Number->format($numSentences), array('class' => 'number'));
