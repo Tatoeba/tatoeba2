@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-24 11:36+0000\n"
-"PO-Revision-Date: 2019-11-24 12:05+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2019-12-08 15:01+0000\n"
+"PO-Revision-Date: 2019-12-09 09:01+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L43
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L133
 msgid "There's no user called {username}"
 msgstr "N'eus implijer ebet anvet {username}"
 
@@ -75,45 +75,7 @@ msgid ""
 "this."
 msgstr "C'hoarvezet ez eus bet ur fazi pa oa o tiliammañ. Klaskit ur wech adarre pe kit e darempred ganeomp evit danevellañ an dra-mañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L170
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L126
-msgid "restore"
-msgstr "adober"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L178
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L137
-msgid "permanently delete"
-msgstr "dilemel da virviken"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L49
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L135
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L383
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L437
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L158
-msgid "Are you sure?"
-msgstr "Ha sur oc'h?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L187
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L101
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L151
-msgid "delete"
-msgstr "dilemel"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L197
-msgid "mark as unread"
-msgstr "merkañ evel am-lennet"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L207
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L140
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L166
-msgid "reply"
-msgstr "respont"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
 msgstr "Goullonderet eo bet an teul \"{name}\"."
 
@@ -132,7 +94,7 @@ msgstr "N'ho peus ket ar gwir evit kemmañ an evezhiadenn-mañ."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L59
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
@@ -211,15 +173,15 @@ msgid ""
 "language you're searching into"
 msgstr "\"perc'hennet gant un den genidik emanavezet\", dre ma 'z eo lakaet an dezverk \"perc'hennet gant: {username}\" ha koulskoude n'eo ket un den emanavezet genidik er yezh bet klasket ganeoc'h"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1074
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1079
 msgid "You are not allowed to change the license of this sentence."
 msgstr "N'hoc'h ket aotreet da cheñch lisañs ar frazenn-mañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1080
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1085
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "Cheñchet eo bet lisañs ar frazenn e “{newLicense}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1085
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1090
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "N'heller ket cheñch lisañs da “{newLicense}” abalamour ma:"
 
@@ -364,7 +326,7 @@ msgstr "N'eus implijer ebet gant an ID-mañ: {id}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L55
 msgid "This language has already been added to your profile."
-msgstr ""
+msgstr "Ar yezh-mañ a zo bet ouzhpennet d'ho profil endeo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L67
 msgid "No language selected."
@@ -863,7 +825,7 @@ msgstr "N'eus frazenn ebet gant an aodio"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L55
 msgid "(total {{count}})"
 msgstr "(hollad {{count}})"
@@ -942,7 +904,7 @@ msgid "Filter"
 msgstr "Sil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L105
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L153
@@ -953,12 +915,12 @@ msgid "Sort by:"
 msgstr "Rummañ dre:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L107
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L118
 msgid "date modified"
 msgstr "deiziad ar c'hemm"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L157
@@ -983,7 +945,7 @@ msgstr "Oberiantiz ar frizenn gronologel"
 msgid "{month} {year}"
 msgstr "{month} {year}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L111
 msgid "Daily Average: {n} sentence"
 msgid_plural "Daily Average: {n} sentences"
 msgstr[0] "Keidenn bemdeziek: {n} frazenn"
@@ -1361,54 +1323,100 @@ msgstr "Disoñjet ho peus ho ker-tremen?"
 msgid "Close"
 msgstr "Serriñ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L36
-msgid "Private messages"
-msgstr "Kemennadennoù prevez"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L45
+msgid "Compose"
+msgstr "Skrivit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L217
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L33
+msgid "Inbox"
+msgstr "Boest Degemer"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L31
+msgid "Unread"
+msgstr "Chomet dilennet"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L40
+msgid "Drafts"
+msgstr "Brouilhedoù"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L36
+msgid "Sent"
+msgstr "Kaset"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L38
+msgid "Trash"
+msgstr "Pod-lastez"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L110
 msgid "New message"
 msgstr "Kemennadenn nevez"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L53
-msgid "Empty trash"
-msgstr "Goullo emañ ar boubellenn"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L59
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L211
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L217
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L30
-msgid "Inbox"
-msgstr "Boest Degemer"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L64
-msgid "Unread"
-msgstr "Chomet dilennet"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L36
-msgid "Drafts"
-msgstr "Brouilhedoù"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L32
-msgid "Sent"
-msgstr "Kaset"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L34
-msgid "Trash"
-msgstr "Pod-lastez"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L35
 msgid "Folders"
 msgstr "Teuliadoù"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L7
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L107
+msgid "Reply"
+msgstr "Respont"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L11
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L105
+msgid "Message"
+msgstr "Kemennadenn"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
+msgctxt "message"
+msgid "To"
+msgstr "Da"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L100
+msgid "Title"
+msgstr "Titl"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L123
+msgid "Save as draft"
+msgstr "Enrollañ evel ur brouilhed"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L126
+msgid "Send"
+msgstr "Kas"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L166
+msgid "reply"
+msgstr "respont"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L27
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L124
+msgid "permalink"
+msgstr "liamm-peurbadus"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
@@ -1490,33 +1498,24 @@ msgstr "Grit gant kemennoù prevez evit komz eus traoù ha n'o deus liamm ebet g
 msgid "sentence deleted"
 msgstr "frazenn dilamet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L17
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L24
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L13
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L20
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L27
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L12
+msgctxt "sentence comment"
 msgid "{createdDate}, edited {modifiedDate}"
 msgstr "{createdDate}, aozet {modifiedDate}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L49
 msgid "Sentence {number} — belongs to {username}"
 msgstr "Frazenn {number} — perc'hennet gant {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L57
 msgid "Sentence {number}"
 msgstr "Frazenn {number}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L140
-msgid "permalink"
-msgstr "liamm-peurbadus"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L169
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L561
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
@@ -1524,8 +1523,8 @@ msgid ""
 "the message."
 msgstr "Endalc'had ar gemennadenn-mañ az a a-enep d'hor <a href=\"{}\">reolennoù</a> ha kuzhet eo bet abalamour da-se. Diskouezet eo d'ar verourien ha da aozer ar gemennadenn hepken."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L150
@@ -1536,8 +1535,8 @@ msgstr "Endalc'had ar gemennadenn-mañ az a a-enep d'hor <a href=\"{}\">reolenno
 msgid "Cancel"
 msgstr "Nullañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L49
 msgid "Save changes"
 msgstr "Enrollañ ar cheñchamantoù"
 
@@ -1706,7 +1705,7 @@ msgid "My sentence logs"
 msgstr "Roll-istor ma frazennoù"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L187
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L29
 msgid "Settings"
 msgstr "Arventennoù"
@@ -1717,7 +1716,7 @@ msgid "Log out"
 msgstr "Digevreañ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L9
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L73
 msgid "Stats"
 msgstr "Statistikoù"
 
@@ -1881,18 +1880,17 @@ msgstr "Frazennoù c'hoantaet"
 msgid "Add a message: "
 msgstr "Ouzhpennañ ur gemennadenn:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/add_form.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L126
-msgid "Send"
-msgstr "Kas"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L8
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L22
+msgctxt "wall message"
+msgid "{createdDate}, edited {modifiedDate}"
+msgstr "{createdDate}, aozet {modifiedDate}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L126
 msgid "hide replies"
 msgstr "kuzhat ar respontoù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L129
 msgid "show replies"
 msgstr "diskouez ar respontoù"
 
@@ -2380,7 +2378,7 @@ msgid ""
 msgstr "Enderc'hel a ra al liammoù etre ar frazennoù. {sampleLinkLine} a dalvez ez eo #77 troidigezh ar frazenn #1. Al liamm daouduek a zo ivez anezhañ, ar restr a endalc'ho ivez ul linenn hag a lavar {sampleLinkLineReversed}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L287
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L66
 msgid "Tags"
 msgstr "Balizoù"
 
@@ -2648,11 +2646,18 @@ msgstr "N'eo ket bet troet an Termoù Implij-mañ en ho yezh deoc'h-c'hwi evit a
 
 #. @translators: this is used as a title. The folderName can be
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L46
 msgid "Private messages - {folderName}"
 msgstr "Kemennadennoù prevez - {folderName}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L38
+msgid "Private messages"
+msgstr "Kemennadennoù prevez"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L64
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} ({n}&nbsp;gemennadenn)"
@@ -2661,37 +2666,69 @@ msgstr[2] "{folderName} ({n}&nbsp;a gemennadennoù)"
 msgstr[3] "{folderName} ({n}&nbsp;a gemennadennoù)"
 msgstr[4] "{folderName} ({n}&nbsp;a gemennadennoù)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L158
+msgid "Are you sure?"
+msgstr "Ha sur oc'h?"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L77
+msgid "Empty trash"
+msgstr "Goullo emañ ar boubellenn"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L29
 msgid "[no subject]"
 msgstr "[sujed ebet]"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L169
+msgid "permanently delete"
+msgstr "dilemel da virviken"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L151
+msgid "delete"
+msgstr "dilemel"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L160
+msgid "restore"
+msgstr "adober"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L28
 msgid " - Tatoeba"
 msgstr " - Tatoeba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L50
 msgid "You have reached your message limit for today"
 msgstr "Tizhet eo bet ganeoc'h ho pevenn kemennadennoù evit hiziv"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L52
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
 msgstr "Evit sikour Tatoeba da chom hep kaout spam ebet pe kemennadennoù all ken malisius all, n'hall ket an implijerien nevez-deuet e-barzh al lec'hienn kas muioc'h evit 5 kemennadenn an deiz. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L55
 msgid "Please wait until you can send more messages."
 msgstr "Gortozit betek ma c'hellfec'h kas muioc'h a gemennadennoù, mar plij."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L69
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
-"                 new users can send only 5 messages per day."
-msgstr "Evit sikour Tatoeba da chom hep kaout spam ebet pe kemennadennoù all ken malisius all\nn'hall ket an implijerien nevez-deuet e-barzh al lec'hienn kas muioc'h evit 5 kemennadenn an deiz."
+"                new users can send only 5 messages per day."
+msgstr "Evit sikour Tatoeba da chom hep kaout spam ebet pe kemennadennoù all ken malisius all\n  n'hall ket an implijerien nevez-deuet e-barzh al lec'hienn kas muioc'h evit 5 kemennadenn an deiz."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L75
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "Kaset ho peus ur gemennadenn hiziv."
@@ -2733,8 +2770,8 @@ msgstr "{user} n'eus embannet evezhiadenn ebet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L138
 msgid "Go back to previous page"
 msgstr "Mont d'ar bajenn gent"
 
@@ -2816,13 +2853,17 @@ msgstr "frazennoù {user}"
 msgid "{user}'s sentences in {language}"
 msgstr "frazennoù {user} e {language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L74
-msgid "{user} does not have any sentence in {language}"
-msgstr "{user} n'en deus frazenn ebet e {language}"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L69
+msgid "Only show original sentences"
+msgstr "Diskouez ar frazennoù orin hepken"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L79
-msgid "{user} does not have any sentence"
-msgstr "{user} n'en/n'he deus frazenn ebet dezhañ/dezhi"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L87
+msgid "{user} does not own any sentences in {language}"
+msgstr "\"{user}\", n'en/n'he deus frazenn ebet e {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L92
+msgid "{user} does not own any sentences"
+msgstr "\"{user}\", n'en/n'he deus frazenn ebet dezhañ/dezhi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
 msgid ""
@@ -3070,14 +3111,14 @@ msgid "Options"
 msgstr "Dibarzhioù"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L129
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L156
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L158
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L211
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L213
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L386
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L210
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L387
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L145
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L476
 msgid "Edit"
 msgstr "Aozañ"
 
@@ -3295,23 +3336,23 @@ msgid "Upload"
 msgstr "Pellgas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L259
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L258
 msgctxt "user"
 msgid "Name"
 msgstr "Anv"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L260
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L259
 msgid "Country"
 msgstr "Bro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L260
 msgid "Birthday"
 msgstr "Deiz-ha-bloaz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L142
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L261
 msgid "Homepage"
 msgstr "Pajenn degemer"
 
@@ -3320,8 +3361,8 @@ msgid "Description"
 msgstr "Deskrivadur"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L316
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L317
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L318
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L478
 msgid "Add a language"
 msgstr "Ouzhpennañ ur yezh"
@@ -3348,85 +3389,85 @@ msgstr "Peseurt live ho peus?"
 msgid "Details (optional). For instance, which dialect or from which country."
 msgstr "Munudoù (diret). Da skouer, peseurt rannyezh pe eus peseurt bro."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L75
 msgid "Comments posted"
 msgstr "Evezhiadennoù kaset"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L77
 msgid "Sentences owned"
 msgstr "Frazennoù perc'hennet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L79
 msgid "Audio recordings"
 msgstr "Enrolladennoù aodio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L81
 msgid "Sentences favorited"
 msgstr "Frazennoù karetañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L83
 msgid "Contributions"
 msgstr "Degasadennoù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L90
 msgid "Show latest activity"
 msgstr "Diskouez an oberiantiz diwezhañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L111
 msgid "Email notifications are ENABLED."
 msgstr "ENAOUET emañ ar c'hemennoù dre bostel."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L113
 msgid "Email notifications are DISABLED."
 msgstr "LAZHET emañ ar c'hemennoù dre bostel."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L122
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
 msgstr "Ar moned d'ar profil-mañ a zo FORAN. Gant an holl e c'hall bezañ gwelet an titouroù."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L127
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
 msgstr "Ar moned d'ar profil-mañ a zo dindan STRISHADURIOÙ. N'eus nemet izili Tatoeba hag a c'hall gwelet an titouroù personel hag an deskrivadur."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L222
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L135
 msgid "Member since"
 msgstr "Ezel abaoe"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L231
 msgid "Contributions blocked"
 msgstr "Degasadennoù nac'het"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L284
 msgid "No description."
 msgstr "Diskrivadur ebet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L307
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L214
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L46
 msgid "Languages"
 msgstr "Yezhoù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L327
 msgid "No language added."
 msgstr "N'eus bet ouzhpennet yezh ebet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L332
 msgid "TIP: We encourage you to indicate the languages you know."
 msgstr "ALI: Broudañ a reomp ac'hanoc'h da spisaat ar yezhoù a ouzit."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L335
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "ALI: Broudit an implijer-mañ da spisaat ar yezhoù gouezet gantañ pe ganti."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L396
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L425
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L426
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L436
 msgid "Delete"
 msgstr "Dilemel"
 
@@ -3781,11 +3822,19 @@ msgstr "kuzhañ"
 msgid "Filter by language"
 msgstr "Silañ dre yezh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L109
 msgid "date unknown"
 msgstr "deiziad dianav"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L78
+#. @translators: This date appears in a phrase (e.g. "edited April 1, 2012"),
+#. so you
+#. may want to add a preposition or an article.
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L125
+msgid "{date}"
+msgstr "{date}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L130
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
 msgstr[0] "dec'h"
@@ -3794,7 +3843,7 @@ msgstr[2] "{n}&nbsp;devezh 'zo"
 msgstr[3] "{n}&nbsp;devezh 'zo"
 msgstr[4] "{n}&nbsp;devezh 'zo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L132
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
 msgstr[0] "un eur 'zo"
@@ -3803,7 +3852,7 @@ msgstr[2] "{n}&nbsp;eur 'zo"
 msgstr[3] "{n}&nbsp;eur 'zo"
 msgstr[4] "{n}&nbsp;eur 'zo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L136
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
 msgstr[0] "ur vunutenn 'zo"
@@ -3812,53 +3861,63 @@ msgstr[2] "{n}&nbsp;munutenn 'zo"
 msgstr[3] "{n}&nbsp;munutenn 'zo"
 msgstr[4] "{n}&nbsp;munutenn 'zo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L145
 msgid "January"
 msgstr "Genver"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L146
 msgid "February"
 msgstr "C'hwevrer"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L147
 msgid "March"
 msgstr "Meurzh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L148
 msgid "April"
 msgstr "Ebrel"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L149
 msgid "May"
 msgstr "Mae"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L150
 msgid "June"
 msgstr "Mezheven"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L151
 msgid "July"
 msgstr "Gouere"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L152
 msgid "August"
 msgstr "Eost"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L153
 msgid "September"
 msgstr "Gwengolo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L154
 msgid "October"
 msgstr "Here"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L155
 msgid "November"
 msgstr "Du"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L156
 msgid "December"
 msgstr "Kerzu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L254
+msgctxt "incomplete date"
+msgid "{month} {day}"
+msgstr "{month} {day}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L260
+msgctxt "incomplete date"
+msgid "{month} {year}"
+msgstr "{month} {year}"
 
 #. @translators: this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -4231,45 +4290,37 @@ msgstr "Ouzhpennañ d'ul listenn deoc'h"
 msgid "Add to a collaborative list"
 msgstr "Ouzhpennañ d'ul listenn genlabourus"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L417
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L418
 msgid "You cannot delete this sentence because it has audio."
 msgstr "N'hallit ket dilemel al listenn-mañ rak un aodio he deus."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L470
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L471
 msgid "You cannot edit this sentence because it has audio."
 msgstr "N'hallit ket aozañ ar frazenn-mañ rak un aodio he deus."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L506
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L507
 msgid "belongs to {user}"
 msgstr "perc'hennet eo gant {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L526
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L527
 msgid "(native)"
 msgstr "(genidik)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L544
 msgid "Mark as \"OK\""
 msgstr "Merkañ evel \"OK\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L548
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L549
 msgid "Mark as \"unsure\""
 msgstr "Merkañ evel \"diasur\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L553
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L554
 msgid "Mark as \"not OK\""
 msgstr "Merkañ evel \"nann OK\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L565
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L566
 msgid "Unmark sentence"
 msgstr "Dilemel merk ar frazenn"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L105
-msgid "Message"
-msgstr "Kemennadenn"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L107
-msgid "Reply"
-msgstr "Respont"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L199
 msgid "Notification from Tatoeba"
@@ -4350,22 +4401,13 @@ msgstr "Pajenn gent [Ctrl+←]"
 msgid "Next page [Ctrl+→]"
 msgstr "Pajenn da-heul [Ctrl+→]"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
-msgctxt "message"
-msgid "To"
-msgstr "Da"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L100
-msgid "Title"
-msgstr "Titl"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L123
-msgid "Save as draft"
-msgstr "Enrollañ evel ur brouilhed"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L150
 msgid "{sender} wrote:"
 msgstr "{sender} en deus skrivet:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L190
+msgid "mark as unread"
+msgstr "merkañ evel am-lennet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -4427,19 +4469,19 @@ msgstr "ya"
 msgid "NOTE: Not all languages have audio at the moment."
 msgstr "NOTENN: N'eus ket an aodio gant an holl yezhoù evit ar mare."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L92
 msgid "View all tags"
 msgstr "Gwelet an holl valizoù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L144
 msgid "Added by {username}, {date}"
 msgstr "Ouzhpennet gant {username}, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L263
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L264
 msgid "remove tag '{tagName}' from this sentence."
 msgstr "dilemel ar baliz '{tagName}' diwar ar frazenn-mañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L298
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L299
 msgid "remove tag from sentence"
 msgstr "dilamet eo bet ar baliz diwar ar frazenn"
 
