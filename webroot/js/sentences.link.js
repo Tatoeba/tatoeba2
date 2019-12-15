@@ -99,7 +99,7 @@ function linkToSentence(sentenceId, langFilter) {
         linkTo.show();
         var inputField = $("#linkToSentence" + sentenceId);
 
-        navigator.clipboard && navigator.clipboard.readText && navigator.clipboard.readText().then(clipText => {
+        navigator.clipboard && navigator.clipboard.readText && navigator.clipboard.readText().then(function(clipText) {
             var inputText;
             clipText = clipText.trim();
             if (/^\d+$/.test(clipText)) {
@@ -114,7 +114,7 @@ function linkToSentence(sentenceId, langFilter) {
                 inputField.val(inputText);
                 inputField.select();
             }
-        }, exception => {
+        }, function(exception) {
             if (exception instanceof DOMException) {
                 if (exception.name === "NotAllowedError") return;
             }
