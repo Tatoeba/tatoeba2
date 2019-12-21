@@ -1,5 +1,6 @@
 <?php
 use App\Lib\LanguagesLib;
+use App\Model\CurrentUser;
 
 $this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom'));
 
@@ -29,39 +30,58 @@ if (isset($sentence->highlight)) {
     $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);
 }
 
+$username = $user ? $user->username : null;
+$sentenceMenu = [
+    'canEdit' => CurrentUser::canEditSentenceOfUser($username),
+    'canRate' => CurrentUser::get('settings.users_collections_ratings'),
+    'canAdopt' => CurrentUser::isTrusted() && !$user,
+    'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
+    'canLink' => CurrentUser::isTrusted(),
+];
 ?>
 <div ng-cloak
      sentence-and-translations
      class="sentence-and-translations md-whiteframe-1dp">
     <div layout="column">
-        <md-subheader>
+        <div layout="row" class="header">
+            <md-subheader flex class="ellipsis">
+                <?php
+                if ($user) {
+                    $userLink = $this->Html->link(
+                        $user->username,
+                        array(
+                            'controller' => 'user',
+                            'action' => 'profile',
+                            $user->username
+                        )
+                    );
+                    echo format(
+                        __('Sentence {number} — belongs to {username}'),
+                        array(
+                            'number' => $sentenceLink,
+                            'username' => $userLink
+                        )
+                    );
+                } else {
+                    echo format(
+                        __('Sentence {number}'),
+                        array(
+                            'number' => $sentenceLink
+                        )
+                    );
+                }            
+                ?>
+            </md-subheader>
+
             <?php
-            if ($user) {
-                $userLink = $this->Html->link(
-                    $user->username,
-                    array(
-                        'controller' => 'user',
-                        'action' => 'profile',
-                        $user->username
-                    )
-                );
-                echo format(
-                    __('Sentence {number} — belongs to {username}'),
-                    array(
-                        'number' => $sentenceLink,
-                        'username' => $userLink
-                    )
-                );
-            } else {
-                echo format(
-                    __('Sentence {number}'),
-                    array(
-                        'number' => $sentenceLink
-                    )
-                );
-            }            
+            if (CurrentUser::isMember()) {
+                echo $this->element('sentences/sentence_menu', [
+                    'menu' => $sentenceMenu
+                ]);
+            }
             ?>
-        </md-subheader>
+        </div>
+
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
              layout="row" layout-align="start center">
             <div class="lang">

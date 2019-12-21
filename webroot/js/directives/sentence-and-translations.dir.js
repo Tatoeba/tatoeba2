@@ -37,9 +37,11 @@
         var vm = this;
 
         vm.isExpanded = false;
+        vm.isMenuExpanded = false;
         vm.expandableIcon = 'expand_more';
 
         vm.expandOrCollapse = expandOrCollapse;
+        vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
 
         /////////////////////////////////////////////////////////////////////////
@@ -52,6 +54,10 @@
             } else {
                 vm.expandableIcon = 'expand_more';
             }
+        }
+
+        function toggleMenu() {
+            vm.isMenuExpanded = !vm.isMenuExpanded;
         }
 
         function playAudio(audioURL) {
