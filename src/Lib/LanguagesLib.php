@@ -575,6 +575,7 @@ class LanguagesLib
                 'cpi' => __d('languages', 'Chinese Pidgin English'),
                 'bzt' => __d('languages', 'Brithenig'),
                 'ltg' => __d('languages', 'Latgalian'),
+                'emx' => __d('languages', 'Erromintxela'),
             );
         }
         return $languages;
