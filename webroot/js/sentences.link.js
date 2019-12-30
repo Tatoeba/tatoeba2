@@ -87,6 +87,8 @@ function linkToSentence(sentenceId, langFilter) {
     $("#linkToSubmitButton" + sentenceId).unbind('click').click(linkTo);
     $("#linkToSentence" + sentenceId).unbind('keypress').keypress(keyPressed);
     linkTo = $("#linkTo" + sentenceId);
+    warning = $("#linkWarning" + sentenceId);
+    
     if (linkTo.is(":visible")) {
         linkTo.hide();
     } else {
@@ -97,7 +99,7 @@ function linkToSentence(sentenceId, langFilter) {
             navigator.permissions.query({name:'clipboard-read'})
             .then(function(permissionStatus) {
                 if (permissionStatus.state === 'prompt') {
-                    alert("In order to allow automatic pasting of sentence numbers and links from the clipboard, the corresponding permission is required.");
+                    warning.show();
                 }
                 return navigator.clipboard.readText();
             })
@@ -116,6 +118,7 @@ function linkToSentence(sentenceId, langFilter) {
                     inputField.val(inputText);
                     inputField.select();
                 }
+                warning.hide();
             }, function(exception) {
                 if (exception instanceof DOMException) {
                     if (exception.name === "NotAllowedError") return;

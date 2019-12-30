@@ -664,6 +664,9 @@ class MenuHelper extends AppHelper
         </li>
 
         </ul>
+        <div id="linkWarning<?= $sentenceId ?>" style="padding: 10px; border: 1px solid red; display: none;">
+            <?= __('Tatoeba can automatically enter the sentence ID when you have copied a sentence URL. To enable this, please allow your browser to read from the clipboard.'); ?>
+        </div>
     <?php
     }
 }
