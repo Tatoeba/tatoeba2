@@ -91,7 +91,40 @@ function linkToSentence(sentenceId, langFilter) {
         linkTo.hide();
     } else {
         linkTo.show();
-        $("#linkToSentence" + sentenceId).focus();
+        var inputField = $("#linkToSentence" + sentenceId);
+
+        if (navigator.clipboard && navigator.clipboard.readText) {
+            navigator.permissions.query({name:'clipboard-read'})
+            .then(function(permissionStatus) {
+                if (permissionStatus.state === 'prompt') {
+                    alert("In order to allow automatic pasting of sentence numbers and links from the clipboard, the corresponding permission is required.");
+                }
+                return navigator.clipboard.readText();
+            })
+            .then(function(clipText) {
+                var inputText;
+                clipText = clipText.trim();
+                if (/^\d+$/.test(clipText)) {
+                    inputText = clipText;
+                } else {
+                    inputText = URLToSentenceId(clipText);
+                    if (clipText === inputText) {
+                        inputText = undefined;
+                    }
+                }
+                if (inputText) {
+                    inputField.val(inputText);
+                    inputField.select();
+                }
+            }, function(exception) {
+                if (exception instanceof DOMException) {
+                    if (exception.name === "NotAllowedError") return;
+                }
+                throw(exception);
+            });
+        }
+        
+        inputField.focus();
     }
 }
 
