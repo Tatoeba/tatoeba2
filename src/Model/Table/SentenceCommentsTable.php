@@ -33,8 +33,6 @@ class SentenceCommentsTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('modified', 'string');
-        $schema->setColumnType('created', 'string');
         return $schema;
     }
 
@@ -62,6 +60,10 @@ class SentenceCommentsTable extends Table
                 'rule' => 'notBlank',
                 'message' => __('Comments cannot be empty.')
             ]);
+
+        $validator->dateTime('created');
+
+        $validator->dateTime('modified');
 
         return $validator;
     }

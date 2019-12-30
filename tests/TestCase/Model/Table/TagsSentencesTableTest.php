@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\TagsSentencesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\I18n;
 
 class TagsSentencesTableTest extends TestCase {
     public $fixtures = array(
@@ -39,5 +40,12 @@ class TagsSentencesTableTest extends TestCase {
     function testTagSentence_failsBecauseAlreadyAdded() {
         $result = $this->TagsSentences->tagSentence(2, 2, 1);
         $this->assertTrue($result->alreadyExists);
+    }
+
+    function testTagSentence_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $added = $this->TagsSentences->tagSentence(1, 2, 3);
+        $returned = $this->TagsSentences->get($added->id);
+        $this->assertEquals($added->added_time, $returned->added_time);
     }
 }

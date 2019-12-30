@@ -6,6 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use App\Test\Fixture\AudiosFixture;
 use Cake\Utility\Hash;
+use Cake\I18n\I18n;
 
 class AudiosTableTest extends TestCase {
     public $fixtures = array(
@@ -226,5 +227,13 @@ class AudiosTableTest extends TestCase {
         $result = $this->Audio->delete($audioToDelete);
         $after = $Languages->get(4)->audio;
         $this->assertEquals(1, $before - $after);
+    }
+
+    function testAssignAudioTo_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $added = $this->Audio->assignAudioTo(2, 'contributor');
+        $returned = $this->Audio->get($added->id);
+        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->modified, $returned->modified);
     }
 }

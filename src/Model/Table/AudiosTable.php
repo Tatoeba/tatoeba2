@@ -54,8 +54,6 @@ class AudiosTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('external', 'json');
-        $schema->setColumnType('modified', 'string');
-        $schema->setColumnType('created', 'string');
         return $schema;
     }
 
@@ -81,10 +79,10 @@ class AudiosTable extends Table
             ->numeric('sentence_id');
 
         $validator
-            ->notBlank('created');
+            ->dateTime('created');
 
         $validator
-            ->notBlank('modified');
+            ->dateTime('modified');
 
         return $validator;
     }
@@ -152,6 +150,15 @@ class AudiosTable extends Table
             ->count();
     }
 
+    /**
+     * Assign audio to a sentence.
+     *
+     * @param int     $sentenceId                  ID of sentence.
+     * @param string  $ownerName                   Owner of the audio file.
+     * @param boolean $allowedExternal (optional)  Whether metadata is stored as JSON.
+     *
+     * @return Cake\ORM\Entity|false
+     */
     public function assignAudioTo($sentenceId, $ownerName, $allowExternal = true) {
         $data = array(
             'sentence_id' => $sentenceId,

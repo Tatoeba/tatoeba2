@@ -46,12 +46,6 @@ class TagsTable extends Table
         return 'OK';
     }
 
-    protected function _initializeSchema(TableSchema $schema)
-    {
-        $schema->setColumnType('created', 'string');
-        return $schema;
-    }
-
     public function initialize(array $config) 
     {
         $this->hasMany('TagsSentences');
@@ -75,8 +69,13 @@ class TagsTable extends Table
     }
 
     /**
+     * Add a tag (and optionally tag a sentence)
      *
+     * @param string   $tagName
+     * @param int      $userId
+     * @param int|null $sentenceId
      *
+     * @return Cake\ORM\Entity|false
      */
     public function addTag($tagName, $userId, $sentenceId = null)
     {
@@ -100,7 +99,6 @@ class TagsTable extends Table
         $data = $this->newEntity([
             'name' => $tagName,
             'user_id' => $userId,
-            'created' => date('Y-m-d H:i:s')
         ]);
         // try to add it as a new tag
         $added = $this->save($data);

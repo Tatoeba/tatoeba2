@@ -30,6 +30,7 @@ class UsersVocabularyTable extends Table
         $this->belongsTo('Users');
 
         $this->addBehavior('Hashable');
+        $this->addBehavior('Timestamp');
     }
 
     /**
@@ -38,7 +39,7 @@ class UsersVocabularyTable extends Table
      * @param string $vocabularyId Binary version of vocabulary_id.
      * @param int    $userId       Id of current user.
      *
-     * @return array               UsersVocabulary item.
+     * @return Cake\ORM\Entity|false
      */
     public function add($vocabularyId, $userId)
     {

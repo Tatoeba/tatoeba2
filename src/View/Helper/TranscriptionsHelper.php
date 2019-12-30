@@ -30,6 +30,7 @@ class TranscriptionsHelper extends AppHelper
         'Languages',
         'Pinyin',
         'Search',
+        'Date',
     );
 
     /**
@@ -138,10 +139,10 @@ class TranscriptionsHelper extends AppHelper
         if (isset($transcr['User']['username'])) {
             $log = format(
                 /* @translators: refers to a transcription */
-                __('Last edited by {author} the {date}'),
+                __('Last edited by {author} on {date}'),
                 array(
                     'author' => $transcr['User']['username'],
-                    'date' => $transcr['modified'],
+                    'date' => $this->Date->nice($transcr['modified']),
                 )
             );
         } else {

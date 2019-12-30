@@ -30,7 +30,6 @@ class VocabularyTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('created', 'string');
         $schema->setColumnType('hash', 'string');
         return $schema;
     }
@@ -61,16 +60,16 @@ class VocabularyTable extends Table
     /**
      * Adds an item into the vocabulary list of current user.
      *
-     * @param $lang string Language of the vocabulary item.
-     * @param $text string Text of the vocabulary item.
+     * @param string $lang Language of the vocabulary item.
+     * @param string $text Text of the vocabulary item.
      *
-     * @return $data array
+     * @return Cake\ORM\Entity|false
      */
     public function addItem($lang, $text)
     {
         $text = trim($text);
         if (empty($text) || empty($lang)) {
-            return null;
+            return false;
         }
 
         $hash = $this->makeHash($lang, $text);

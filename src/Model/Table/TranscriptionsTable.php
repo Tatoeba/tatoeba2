@@ -133,8 +133,6 @@ class TranscriptionsTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('created', 'string');
-        $schema->setColumnType('modified', 'string');
         return $schema;
     }
 
@@ -155,10 +153,10 @@ class TranscriptionsTable extends Table
             ->requirePresence('text', 'create');
 
         $validator
-            ->notBlank('created');
+            ->dateTime('created');
 
         $validator
-            ->notBlank('modified');
+            ->dateTime('modified');
 
         $validator
             ->numeric('user_id')

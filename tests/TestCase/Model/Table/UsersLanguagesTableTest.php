@@ -4,6 +4,8 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersLanguagesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\I18n\I18n;
+use Cake\I18n\Time;
 
 class UsersLanguagesTableTest extends TestCase {
     public $fixtures = array(
@@ -141,8 +143,22 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals(null, $result);
     }
 
-    function testGetNumberOfUsersForEachLanguage() {{
+    function testGetNumberOfUsersForEachLanguage() {
         $result = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
         $this->assertEquals(1, count($result));
-    }}
+    }
+
+    function testSaveUserLanguage_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $now = Time::now();
+        Time::setTestNow($now);
+        $added = $this->UsersLanguages->saveUserLanguage(
+            ['language_code' => 'npi', 'details' => ''],
+            100
+        );
+        $id = $added['UsersLanguages']['id'];
+        $returned = $this->UsersLanguages->get($id);
+        $this->assertEquals($now, $returned->created);
+        $this->assertEquals($now, $returned->modified);
+    }
 }

@@ -6,6 +6,7 @@ use App\Test\TestCase\Model\Table\TatoebaTableTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
+use Cake\I18n\I18n;
 
 class TagsTableTest extends TestCase {
     use TatoebaTableTestTrait;
@@ -154,5 +155,12 @@ class TagsTableTest extends TestCase {
     public function testAdminDoesRemoveTag() {
         $delta = $this->removeAsUser('admin', 2, 2);
         $this->assertEquals(-1, $delta);
+    }
+
+    public function testAddTag_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $added = $this->Tag->addTag('arabic', 4, 1);
+        $returned = $this->Tag->get($added->id);
+        $this->assertEquals($added->added_time, $returned->created);
     }
 }

@@ -269,3 +269,5 @@ if (!function_exists('__format_decompose_list')) {
 Cake\I18n\I18n::setDefaultFormatter('sprintf');
 Cake\I18n\Time::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 Cake\I18n\Time::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT];
+Cake\I18n\FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss');
+Cake\I18n\FrozenTime::$niceFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::SHORT];
