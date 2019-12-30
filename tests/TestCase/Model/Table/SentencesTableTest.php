@@ -13,6 +13,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Model\Entity\Contribution;
 use App\Model\Entity\User;
 use Cake\Utility\Hash;
+use Cake\I18n\I18n;
 
 class SentencesTableTest extends TestCase {
 	public $fixtures = array(
@@ -1134,4 +1135,12 @@ class SentencesTableTest extends TestCase {
 		];
 		$this->assertEquals($expected, $result);
 	}
+
+    function testSaveNewSentence_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $added = $this->Sentence->saveNewSentence('test', 'eng', 1);
+        $returned = $this->Sentence->get($added->id);
+        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->modified, $returned->modified);
+    }
 }

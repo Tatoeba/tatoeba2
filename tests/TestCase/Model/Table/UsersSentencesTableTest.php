@@ -4,6 +4,8 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersSentencesTable;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
+use Cake\I18n\I18n;
+use Cake\I18n\Time;
 
 class UsersSentencesTest extends TestCase {
     public $fixtures = array(
@@ -107,5 +109,14 @@ class UsersSentencesTest extends TestCase {
     function testGetCorrectnessForSentence_hasNoResult() {
         $result = $this->UsersSentences->getCorrectnessForSentence(999);
         $this->assertEquals(0, count($result));
+    }
+
+    function testSaveSentence_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $now = Time::now();
+        Time::setTestNow($now);
+        $this->UsersSentences->saveSentence(1, 1, 4);
+        $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
+        $this->assertEquals($now, $returned->created);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Model\Table;
 use App\Model\Table\UsersVocabularyTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\I18n\I18n;
 
 class UsersVocabularyTableTest extends TestCase
 {
@@ -40,12 +41,16 @@ class UsersVocabularyTableTest extends TestCase
 
     public function testAdd()
     {
-        $result = $this->UsersVocabulary->add(1, 2);
-        $expected = [
-            'id' => 2,
-            'vocabulary_id' => 1,
-            'user_id' => 2
-        ];
-        $this->assertEquals($expected, $result->toArray());
+        $added = $this->UsersVocabulary->add(1, 2);
+        $returned = $this->UsersVocabulary->get($added->id);
+        $this->assertEquals($added->user_id, $returned->user_id);
+        $this->assertEquals($added->vocabulary_id, $returned->vocabulary_id);
+    }
+
+    public function testAdd_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $added = $this->UsersVocabulary->add(1, 3);
+        $returned = $this->UsersVocabulary->get($added->id);
+        $this->assertEquals($added->created, $returned->created);
     }
 }

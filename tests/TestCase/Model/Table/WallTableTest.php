@@ -6,6 +6,8 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use Cake\I18n\I18n;
+use Cake\I18n\Time;
 
 class WallTest extends TestCase {
 
@@ -93,7 +95,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesExistingThreadDate() {
-        $date = '2018-01-02 03:04:05';
+        $date = new Time('2018-01-02 03:04:05');
         $reply = $this->Wall->newEntity([
             'owner' => 7,
             'date' => $date,
@@ -108,7 +110,7 @@ class WallTest extends TestCase {
     }
 
     public function testSave_newPostUpdatesNewThreadDate() {
-        $date = '2018-01-02 03:04:05';
+        $date = new Time('2018-01-02 03:04:05');
         $newPost = $this->Wall->newEntity([
             'owner' => 2,
             'date' => $date,
@@ -130,7 +132,7 @@ class WallTest extends TestCase {
 
         $this->Wall->save($post);
 
-        $this->_assertThreadDate($postId, '2014-04-15 16:38:36');
+        $this->_assertThreadDate($postId, new Time('2014-04-15 16:38:36'));
     }
 
     public function testSave_editExistingPostUpdatesModifiedDate() {
@@ -261,5 +263,14 @@ class WallTest extends TestCase {
     public function testGetWholeThreadContaining_failsBecauseWrongId() {
         $result = $this->Wall->getWholeThreadContaining(999999);
         $this->assertEquals([], $result);
+    }
+
+    public function testSave_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $post = $this->Wall->newEntity(['content' => 'test', 'owner' => 1]);
+        $added = $this->Wall->save($post);
+        $returned = $this->Wall->get($added->id);
+        $this->assertEquals($added->date, $returned->date);
+        $this->assertEquals($added->modified, $returned->modified);
     }
 }

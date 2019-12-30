@@ -31,8 +31,6 @@ class WallTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('content', 'text');
-        $schema->setColumnType('modified', 'string');
-        $schema->setColumnType('date', 'string');
         return $schema;
     }
 
@@ -73,6 +71,10 @@ class WallTable extends Table
                 'rule' => 'notBlank',
                 'message'    => __('You cannot save an empty message.'),
             ]);
+
+        $validator->dateTime('date');
+
+        $validator->dateTime('modified');
 
         return $validator;
     }

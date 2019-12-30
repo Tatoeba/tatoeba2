@@ -6,6 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Event\Event;
 use App\Model\CurrentUser;
+use Cake\I18n\I18n;
 
 class SentenceCommentTest extends TestCase {
 
@@ -125,5 +126,18 @@ class SentenceCommentTest extends TestCase {
     public function testGetLatestComments_hasSentenceOwnerInfo() {
         $result = $this->SentenceComment->getLatestComments(1);
         $this->assertEquals('contributor', $result[0]->sentence->user->username);
+    }
+
+    public function testSave_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $comment = $this->SentenceComment->newEntity([
+            'sentence_id' => 1,
+            'text' => 'test',
+            'user_id' => 1,
+        ]);
+        $added = $this->SentenceComment->save($comment);
+        $returned = $this->SentenceComment->get($added->id);
+        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->modified, $returned->modified);
     }
 }

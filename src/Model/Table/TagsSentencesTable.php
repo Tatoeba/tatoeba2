@@ -36,12 +36,6 @@ class TagsSentencesTable extends Table
         'Tag',
         );
 
-    protected function _initializeSchema(TableSchema $schema)
-    {
-        $schema->setColumnType('added_time', 'string');
-        return $schema;
-    }
-
     public function initialize(array $config)
     {
         $this->belongsTo('Users');
@@ -51,6 +45,12 @@ class TagsSentencesTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+
+        $this->addBehavior('Timestamp', [
+            'events' => [
+                'Model.beforeSave' => ['added_time' => 'new']
+            ]
+        ]);
     }
 
     protected function _findCount($state, $query, $results = array()) {
@@ -69,7 +69,6 @@ class TagsSentencesTable extends Table
             'user_id' => $userId,
             'tag_id' => $tagId,
             'sentence_id' => $sentenceId,
-            'added_time' => date('Y-m-d H:i:s'),
             'alreadyExists' => $isTagged
         ]);
 

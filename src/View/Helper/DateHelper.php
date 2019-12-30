@@ -28,6 +28,7 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use Cake\I18n\Time;
+use DateTimeInterface;
 
 /**
  * Helper to display date.
@@ -47,15 +48,16 @@ class DateHelper extends AppHelper
     /**
      * Wrap CakePHP nice() function/method
      *
-     * @param $date string|DateTime Datetime to format
+     * @param $date DateTime|string Datetime to format
      *
      * @return string
      */
     public function nice($date)
     {
+
         if (empty($date) || $date == '0000-00-00 00:00:00') {
             return __('date unknown');
-        } elseif ($date instanceof DateTime) {
+        } elseif ($date instanceof DateTimeInterface) {
             return $date->nice();
         } else {
             return $this->Time->nice($date);
@@ -65,12 +67,12 @@ class DateHelper extends AppHelper
     /**
      * Create the date label used for comments, wall messages, ...
      *
-     * @param string  $text     Text for the label. It must contain both
-     *                          "{createdDate}" and "{modifiedDate}" placeholders.
-     * @param string  $created  Creation datetime (in MySQL format)
-     * @param string  $modified Modification datetime (in MySQL format)
-     * @param boolean $tooltip  When the label is used for a tooltip the dates will
-     *                          always be exact.
+     * @param string          $text     Text for the label. It must contain both
+     *                                  "{createdDate}" and "{modifiedDate}" placeholders.
+     * @param DateTime|string $created  Creation datetime (in MySQL format if string)
+     * @param DateTime|string $modified Modification datetime (in MySQL format if string)
+     * @param boolean         $tooltip  When the label is used for a tooltip the dates will
+     *                                  always be exact.
      *
      * @return string
      */
@@ -98,18 +100,26 @@ class DateHelper extends AppHelper
     /**
      * Display how long ago compared to now.
      *
-     * @param string  $date        Format for the date is 'Y-m-d H:i:s'.
-     * @param boolean $alone       Indicates whether the date is shown alone or in a phrase
+     * @param DateTime|string $date  If the date is given as a string, the format should be
+     *                               'Y-m-d H:i:s' (MySQL format).
+     * @param boolean         $alone Indicates whether the date is shown alone or in a phrase
      *
      * @return string
      */
     public function ago($date, $alone=true)
     {
-        if (empty($date) || $date == '0000-00-00 00:00:00') {
-            return __('date unknown');
+        if (!($date instanceof DateTimeInterface)) {
+            if (empty($date) || $date == '0000-00-00 00:00:00') {
+                return __('date unknown');
+            } else {
+                $dateObj = Time::parseDateTime($date);
+                if (!$dateObj) {
+                    return __('date unknown');
+                }
+            }
+        } else {
+            $dateObj = $date;
         }
-
-        $dateObj = Time::parseDateTime($date);
 
         $diff = Time::fromNow($dateObj);
 

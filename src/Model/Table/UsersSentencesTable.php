@@ -24,13 +24,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class UsersSentencesTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
-    {
-        $schema->setColumnType('created', 'string');
-        $schema->setColumnType('modified', 'string');
-        return $schema;
-    }
-
     public function initialize(array $config)
     {
         $this->setTable('users_sentences');
@@ -42,7 +35,13 @@ class UsersSentencesTable extends Table
     }
 
     /**
-     * 
+     * Add sentence to users collection
+     *
+     * @param int $sentenceId
+     * @param int $correctness
+     * @param int $userId
+     *
+     * @return array
      */
     public function saveSentence($sentenceId, $correctness, $userId) 
     {
@@ -65,7 +64,12 @@ class UsersSentencesTable extends Table
     }
 
     /**
-     * 
+     * Delete sentence from users collection
+     *
+     * @param int $sentenceId
+     * @param int $userId
+     *
+     * @return boolean
      */
     public function deleteSentence($sentenceId, $userId) 
     {

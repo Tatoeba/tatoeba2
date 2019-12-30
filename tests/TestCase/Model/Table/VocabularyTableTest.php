@@ -5,6 +5,7 @@ use App\Model\Table\VocabularyTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\CurrentUser;
+use Cake\I18n\I18n;
 
 class VocabularyTableTest extends TestCase
 {
@@ -53,5 +54,12 @@ class VocabularyTableTest extends TestCase
     {
         $result = $this->Vocabulary->incrementNumSentences(1, 'This is just blue.');
         $this->assertEquals(1, $result);
+    }
+
+    public function testAddItem_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $added = $this->Vocabulary->addItem('eng', 'test');
+        $returned = $this->Vocabulary->get($added->id);
+        $this->assertEquals($added->created, $returned->created);
     }
 }

@@ -26,13 +26,6 @@ use App\Model\CurrentUser;
 
 class SentencesListsTable extends Table
 {
-    protected function _initializeSchema(TableSchema $schema)
-    {
-        $schema->setColumnType('created', 'string');
-        $schema->setColumnType('modified', 'string');
-        return $schema;
-    }
-
     public function initialize(array $config)
     {
         parent::initialize($config);
@@ -392,7 +385,7 @@ class SentencesListsTable extends Table
      * @param int $sentenceId Id of the sentence.
      * @param int $listId     Id of the list.
      *
-     * @return array
+     * @return boolean
      */
     public function addSentenceToList($sentenceId, $listId, $currentUserId)
     {
@@ -429,7 +422,7 @@ class SentencesListsTable extends Table
      * @param int   $listId        Id of the list.
      * @param int   $currentUserId Id of the user performing the action.
      *
-     * @return array
+     * @return boolean
      */
     public function addSentencesToList($sentences, $listId, $currentUserId)
     {
@@ -623,7 +616,12 @@ class SentencesListsTable extends Table
     }
 
     /**
-     * Create new list.
+     * Create a new list.
+     *
+     * @param string $name           Name of the list.
+     * @param int    $currentUserId  ID of user who creates the list.
+     *
+     * @return Cake\ORM\Entity|false
      */
     public function createList($name, $currentUserId) 
     {

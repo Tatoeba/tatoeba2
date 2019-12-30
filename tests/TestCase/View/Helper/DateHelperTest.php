@@ -6,6 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\View\View;
 use Cake\I18n\I18n;
 use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
 
 class DateHelperTest extends TestCase {
 
@@ -129,7 +130,10 @@ class DateHelperTest extends TestCase {
         return [
             'null' => [null, 'date unknown'],
             '0000-00-00 00:00:00' => ['0000-00-00 00:00:00', 'date unknown'],
-            'CakePHP Time instance' => [new Time('1987-06-05 23:45:19'), 'June 5, 1987 at 11:45 PM'],
+            'CakePHP Time instance' =>
+                [new Time('1987-06-05 23:45:19'), 'June 5, 1987 at 11:45 PM'],
+            'CakePHP FrozenTime instance' =>
+                [new FrozenTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45 PM'],
             'string' => ['2000-12-07 01:23:45', 'December 7, 2000 at 1:23 AM']
         ];
     }
@@ -141,5 +145,27 @@ class DateHelperTest extends TestCase {
     {
         $result = $this->DateHelper->nice($date);
         $this->assertEquals($expected, $result);
+    }
+
+    public function testAgoWorksWithEmptyObject() {
+        $this->assertEquals('date unknown', $this->DateHelper->ago(null));
+    }
+
+    public function testAgoWorksWithStrings() {
+        $this->assertEquals('date unknown', $this->DateHelper->ago('0000-00-00 00:00:00'));
+        $this->assertEquals('date unknown', $this->DateHelper->ago(''));
+        $this->assertEquals('date unknown', $this->DateHelper->ago('2017-03-04'));
+        $expected = 'March 5, 2004 at 9:27 AM';
+        $this->assertEquals($expected, $this->DateHelper->ago('2004-03-05 09:27:00'));
+    }
+
+    public function testAgoWorksWithDateTimeObjects() {
+        $expected = 'November 23, 1988 at 1:45 PM';
+        $this->assertEquals($expected, $this->DateHelper->ago(new Time('1988-11-23 13:45:00')));
+    }
+
+    public function testAgoWorksWithFrozenTimeObjects() {
+        $expected = 'November 24, 1988 at 1:45 PM';
+        $this->assertEquals($expected, $this->DateHelper->ago(new FrozenTime('1988-11-24 13:45:00')));
     }
 }

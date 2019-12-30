@@ -40,8 +40,6 @@ class SentencesTable extends Table
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
-        $schema->setColumnType('created', 'string');
-        $schema->setColumnType('modified', 'string');
         $schema->setColumnType('hash', 'string');
         return $schema;
     }
@@ -123,7 +121,11 @@ class SentencesTable extends Table
                     'rule' => ['inList', $languages]
                 ]
             ]);
-            
+
+        $validator->dateTime('created');
+
+        $validator->dateTime('modified');
+
         return $validator;
     }
 
@@ -826,7 +828,7 @@ class SentencesTable extends Table
      * @param string $translationText Text of the translation.
      * @param string $translationLang Language of the translation.
      *
-     * @return boolean
+     * @return Cake\ORM\Entity|false
      */
     public function saveTranslation(
         $sentenceId,
@@ -858,15 +860,15 @@ class SentencesTable extends Table
     /**
      * Add a new sentence in the database
      *
-     * @param string $text        The text of the sentence.
-     * @param string $lang        The lang of the sentence.
-     * @param int    $userId      The id of the user who added this sentence.
-     * @param int    $correctness Correctness level of sentence.
-     * @param in     $basedOnId   The ID of the sentence this sentence is translated from,
-     *                            or 0 if it's an original sentence, or null if unknown.
-     * @param string $license     The license of the sentence.
+     * @param string   $text        The text of the sentence.
+     * @param string   $lang        The lang of the sentence.
+     * @param int      $userId      The id of the user who added this sentence.
+     * @param int      $correctness Correctness level of sentence.
+     * @param int|null $basedOnId   The ID of the sentence this sentence is translated from,
+     *                              or 0 if it's an original sentence, or null if unknown.
+     * @param string   $license     The license of the sentence.
      *
-     * @return bool
+     * @return Cake\ORM\Entity|false
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0, $basedOnId = 0, $license = null)
     {
@@ -906,7 +908,7 @@ class SentencesTable extends Table
      * @param string $translationLang The lang of the translation.
      * @param int    $userId          The id of the user who added them.
      *
-     * @return bool
+     * @return void
      */
     public function saveNewSentenceWithTranslation(
         $sentenceText,
@@ -1091,7 +1093,7 @@ class SentencesTable extends Table
      *
      * @param int $sentenceId Id of the sentence
      *
-     * @return void
+     * @return string
      */
     public function getSentenceTextForId($sentenceId)
     {

@@ -6,6 +6,7 @@ use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use App\Test\Fixture\TranscriptionsFixture;
 use Cake\Utility\Hash;
+use Cake\I18n\I18n;
 
 class TranscriptionsTableTest extends TestCase {
     public $fixtures = array(
@@ -598,5 +599,17 @@ class TranscriptionsTableTest extends TestCase {
             $cmnSentence->lang,
             $cmnSentence->text
         );
+    }
+
+    function testSave_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $data = $this->_getRecord(0);
+        $this->Transcription->deleteAll('true');
+        unset($data['id'], $data['created'], $data['modified']);
+        $transcription = $this->Transcription->newEntity($data);
+        $added = $this->Transcription->save($transcription);
+        $returned = $this->Transcription->get($added->id);
+        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->modified, $returned->modified);
     }
 }

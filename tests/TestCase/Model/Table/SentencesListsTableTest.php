@@ -6,6 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 use App\Model\CurrentUser;
 use Cake\Utility\Hash;
+use Cake\I18n\I18n;
 
 class SentencesListsTableTest extends TestCase {
     public $fixtures = array(
@@ -406,5 +407,13 @@ class SentencesListsTableTest extends TestCase {
         CurrentUser::store(null);
         $result = $this->SentencesList->isSearchableList(3);
         $this->assertNull($result);
+    }
+
+    function testCreateList_correctDateUsingArabicLocale() {
+        I18n::setLocale('ar');
+        $added = $this->SentencesList->createList('arabic', 1);
+        $returned = $this->SentencesList->get($added->id);
+        $this->assertEquals($added->created, $returned->created);
+        $this->assertEquals($added->modified, $returned->modified);
     }
 }

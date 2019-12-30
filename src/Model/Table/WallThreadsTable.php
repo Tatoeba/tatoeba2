@@ -34,12 +34,6 @@ class WallThreadsTable extends Table
         )
     );
 
-    protected function _initializeSchema(TableSchema $schema)
-    {
-        $schema->setColumnType('last_message_date', 'string');
-        return $schema;
-    }
-
     public function initialize(array $config)
     {
         $this->setTable('wall_threads_last_message');
