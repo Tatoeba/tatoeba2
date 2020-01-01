@@ -356,13 +356,17 @@ class MenuHelper extends AppHelper
 
         $SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
         $lists = $SentencesLists->getUserChoices(
-            CurrentUser::get('id')
+            CurrentUser::get('id'), $sentenceId
         );
 
-        $listsOfCurrentUser = __('Add to one of your lists');
-        $listsEditableByAnyone = __('Add to a collaborative list');
-        $selectItems[$listsOfCurrentUser] = $lists['OfUser'];
-        $selectItems[$listsEditableByAnyone] = $lists['Collaborative'];
+        if (empty($lists['OfUser']) && empty($lists['Collaborative'])) {
+            $selectItems[__('Sentence already in all possible lists')] = [];
+        } else {
+            $listsOfCurrentUser = __('Add to one of your lists');
+            $listsEditableByAnyone = __('Add to a collaborative list');
+            $selectItems[$listsOfCurrentUser] = $lists['OfUser'];
+            $selectItems[$listsEditableByAnyone] = $lists['Collaborative'];
+        }
         ?>
 
         <li style="display:none" id="addToList<?php echo $sentenceId; ?>">

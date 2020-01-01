@@ -319,12 +319,27 @@ class SentencesListsTableTest extends TestCase {
         $this->assertFalse($result);
     }
 
-    function testGetUserChoices() {
+    function testGetUserChoices_sentenceNotInLists() {
         CurrentUser::store(['id' => 7]);
-        $result = $this->SentencesList->getUserChoices(7);
+        $result = $this->SentencesList->getUserChoices(7, 1);
         $expected = [
             'OfUser' => [
                 '1' => 'Interesting French sentences',
+                '2' => 'Public list',
+                '3' => 'Private list'
+            ],
+            'Collaborative' => [
+                '5' => 'Collaborative list'
+            ]
+        ];
+        $this->assertEquals($expected, $result);
+    }
+
+    function testGetUserChoices_sentenceInOneList() {
+        CurrentUser::store(['id' => 7]);
+        $result = $this->SentencesList->getUserChoices(7, 4);
+        $expected = [
+            'OfUser' => [
                 '2' => 'Public list',
                 '3' => 'Private list'
             ],
