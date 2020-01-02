@@ -76,6 +76,7 @@ $sentenceMenu = [
             <?php
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
+                    'sentenceId' => $sentence->id,
                     'menu' => $sentenceMenu
                 ]);
             }
@@ -106,8 +107,16 @@ $sentenceMenu = [
         </div>
     </div>
 
+    <?php
+    if (CurrentUser::isMember()) { 
+        echo $this->element('sentences/translation_form', [
+            'sentenceId' => $sentence->id
+        ]);
+    }
+    ?>
+
     <?php if (count($directTranslations) > 0) { ?>
-        <div layout="column" class="direct translations">
+        <div layout="column" class="direct translations" ng-if="!vm.isTranslationFormVisible">
             <md-divider></md-divider>
             <md-subheader><?= __('Translations') ?></md-subheader>
             <?php foreach ($directTranslations as $translation) {
@@ -131,7 +140,7 @@ $sentenceMenu = [
             $showExtra = 'ng-if="vm.isExpanded"';
         }
         ?>
-        <div layout="column" <?= $showExtra ?> class="indirect translations">
+        <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="!vm.isTranslationFormVisible">
             <md-subheader><?= __('Translations of translations') ?></md-subheader>
             <?php foreach ($indirectTranslations as $translation) {
                 $isExtra = $numExtra > 1 && $displayedTranslations >= $maxDisplayed;
@@ -149,7 +158,7 @@ $sentenceMenu = [
     <?php } ?>
 
     <?php if ($numExtra > 1) { ?>
-        <div layout="column">
+        <div layout="column" ng-if="!vm.isTranslationFormVisible">
             <md-button ng-click="vm.expandOrCollapse()">
                 <md-icon>{{vm.expandableIcon}}</md-icon>
                 <span ng-if="!vm.isExpanded">

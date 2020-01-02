@@ -38,13 +38,22 @@
 
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
+        vm.isTranslationFormVisible = false;
         vm.expandableIcon = 'expand_more';
+        vm.userLanguages = [];
 
+        vm.initUserLanguages = initUserLanguages;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
+        vm.translate = translate;
 
         /////////////////////////////////////////////////////////////////////////
+
+        function initUserLanguages(data) {
+            vm.userLanguages = data;
+            console.log(vm.userLanguages);
+        }
 
         function expandOrCollapse() {
             vm.isExpanded = !vm.isExpanded;
@@ -63,6 +72,14 @@
         function playAudio(audioURL) {
             var audio = new Audio(audioURL);
             audio.play();
+        }
+
+        function translate(id) {
+            vm.isTranslationFormVisible = true;
+            setTimeout(function() {
+                var input = angular.element('#translation-form-' + id);
+                input.focus();
+            }, 100);
         }
     }
 
