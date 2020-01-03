@@ -6,7 +6,6 @@ $this->Html->script('/js/directives/sentence-and-translations.dir.js', array('bl
 
 list($directTranslations, $indirectTranslations) = $translations;
 $maxDisplayed = 5;
-$displayedTranslations = 0;
 $showExtra = '';
 $numExtra = count($directTranslations) + count($indirectTranslations) - $maxDisplayed;
 $sentenceLink = $this->Html->link(
@@ -38,9 +37,13 @@ $sentenceMenu = [
     'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
     'canLink' => CurrentUser::isTrusted(),
 ];
+
+$directTranslationsJSON = $this->Sentences->translationsForAngular($directTranslations);
+$indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTranslations);
 ?>
 <div ng-cloak
      sentence-and-translations
+     ng-init="vm.initTranslations(<?= $directTranslationsJSON ?>, <?= $indirectTranslationsJSON ?>)"
      class="sentence-and-translations md-whiteframe-1dp">
     <div layout="column">
         <div layout="row" class="header">
@@ -119,41 +122,25 @@ $sentenceMenu = [
         <div layout="column" class="direct translations" ng-if="!vm.isTranslationFormVisible">
             <md-divider></md-divider>
             <md-subheader><?= __('Translations') ?></md-subheader>
-            <?php foreach ($directTranslations as $translation) {
-                $isExtra = $numExtra > 1 && $displayedTranslations >= $maxDisplayed;
-                echo $this->element(
-                    'sentences/translation',
-                    array(
-                        'sentenceId' => $sentence->id,
-                        'translation' => $translation,
-                        'isExtra' => $isExtra
-                    )
-                );
-                $displayedTranslations++;
-            }
+
+            <?php
+            echo $this->element('sentences/translation', [
+                'translations' => 'vm.directTranslations'
+            ]);
             ?>
         </div>
     <?php } ?>
 
-    <?php if (count($indirectTranslations) > 0) {
-        if ($numExtra > 1 && $displayedTranslations >= $maxDisplayed) {
-            $showExtra = 'ng-if="vm.isExpanded"';
-        }
-        ?>
-        <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="!vm.isTranslationFormVisible">
+    <?php if (count($indirectTranslations) > 0) { ?>
+        <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="!vm.isTranslationFormVisible && vm.indirectTranslations.length > 1"
+             ng-init="vm.initIndirectTranslations(<?= $this->Sentences->translationsForAngular($indirectTranslations) ?>)">
             <md-subheader><?= __('Translations of translations') ?></md-subheader>
-            <?php foreach ($indirectTranslations as $translation) {
-                $isExtra = $numExtra > 1 && $displayedTranslations >= $maxDisplayed;
-                echo $this->element(
-                    'sentences/translation',
-                    array(
-                        'sentenceId' => $sentence->id,
-                        'translation' => $translation,
-                        'isExtra' => $isExtra
-                    )
-                );
-                $displayedTranslations++;
-            } ?>
+            
+            <?php
+            echo $this->element('sentences/translation', [
+                'translations' => 'vm.indirectTranslations'
+            ]);
+            ?>
         </div>
     <?php } ?>
 

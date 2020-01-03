@@ -34,25 +34,38 @@
     }
 
     function SentenceAndTranslationsController() {
+        const MAX_TRANSLATIONS = 3;
+
         var vm = this;
+        var allDirectTranslations = [];
+        var alIndirectTranslations = [];
 
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
         vm.isTranslationFormVisible = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
+        vm.directTranslations = [];
+        vm.indirectTranslations = [];
 
         vm.initUserLanguages = initUserLanguages;
+        vm.initTranslations = initTranslations;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
+        vm.getAudioAuthor = getAudioAuthor;
         vm.translate = translate;
 
         /////////////////////////////////////////////////////////////////////////
 
         function initUserLanguages(data) {
             vm.userLanguages = data;
-            console.log(vm.userLanguages);
+        }
+
+        function initTranslations(directTranslations, indirectTranslations) {
+            allDirectTranslations = directTranslations;
+            alIndirectTranslations = indirectTranslations;
+            showFewerTranslations();
         }
 
         function expandOrCollapse() {
@@ -60,18 +73,50 @@
 
             if (vm.isExpanded) {
                 vm.expandableIcon = 'expand_less';
+                showAllTranslations();
             } else {
                 vm.expandableIcon = 'expand_more';
+                showFewerTranslations();
             }
+        }
+
+        function showAllTranslations() {
+            vm.directTranslations = allDirectTranslations;
+            vm.indirectTranslations = alIndirectTranslations;
+        }
+
+        function showFewerTranslations() {
+            vm.directTranslations = allDirectTranslations.filter(function(item, index) {
+                return index <= MAX_TRANSLATIONS - 1;
+            });
+            vm.indirectTranslations = alIndirectTranslations.filter(function(item, index) {
+                return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
+            });
         }
 
         function toggleMenu() {
             vm.isMenuExpanded = !vm.isMenuExpanded;
         }
 
-        function playAudio(audioURL) {
+        function playAudio($event) {
+            $event.stopPropagation();
+            $event.preventDefault();
+
+            var audioURL = $event.currentTarget.href;
             var audio = new Audio(audioURL);
             audio.play();
+        }
+
+        function getAudioAuthor(sentence) {
+            var audio = sentence.audios ? sentence.audios[0] : null;
+
+            if (audio && audio.user) {
+                return audio.user.username;
+            } else if (audio && audio.external) {
+                return audio.external.username;
+            } else {
+                return null;
+            }
         }
 
         function translate(id) {
