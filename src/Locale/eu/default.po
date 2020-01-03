@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-08 15:01+0000\n"
-"PO-Revision-Date: 2019-12-09 00:55+0000\n"
+"PO-Revision-Date: 2019-12-15 23:26+0000\n"
 "Last-Translator: Gorka Azkarate Zubiaur <gorkaazkarate@gmail.com>\n"
 "Language-Team: Basque (http://www.transifex.com/tatoeba/tatoeba_website/language/eu/)\n"
 "MIME-Version: 1.0\n"
@@ -1301,7 +1301,7 @@ msgstr "Itxi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L45
 msgid "Compose"
-msgstr ""
+msgstr "Editatu, idatzi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmtoolbox.ctp#L41
@@ -1875,7 +1875,7 @@ msgstr "Zure pasahitz berria: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L7
 msgid "My exports"
-msgstr ""
+msgstr "Nire esportazioak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L8
 msgid "There are no exports."
@@ -2687,7 +2687,7 @@ msgstr "Mesedez, itxaron mezu gehiago bidali ahal izan arte."
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                new users can send only 5 messages per day."
-msgstr ""
+msgstr "Hasieran, Tatoeba spamik gabe mantentzeko eta mezu txatxuez ez kargatzeko\n                erabiltzaile berriek 5 mezu eguneko besterik ezin izango dute bidali."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L75
 msgid "You have sent one message today."
@@ -2759,14 +2759,14 @@ msgstr "<strong>Kalitatea estimatzen dugu.</strong> Xehetasunek ere balio dute. 
 msgid ""
 "<strong>We like diversity.</strong> Unleash your creativity! Avoid using the"
 " same words, names, topics, or patterns over and over again."
-msgstr ""
+msgstr "<strong>Dibertsitatea estimatzen dugu.</strong> Izan sortzaile! Saihestu hitzak errepikatzea, izenak, gaiak, moldeak errepikatzea."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L64
 msgid ""
 "<strong>We like sharing our data.</strong> Avoid copy-pasting sentences, or "
 "at least make sure they are not copyrighted and are compatible with the CC "
 "BY license. Otherwise we cannot use them."
-msgstr ""
+msgstr "<strong>Gustatzen zaigu gure datuak partekatzea.</strong> Saihestu kopiatu-itsatsi sistemaz idatzitakoak, edo gutxienez saihestu copyright lizentzia izan dezaketenak. Hobetsi CC BY edo CC0 lizentziadunak. Bestela ezin ditugu erabili."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L76
 msgid "Add new sentences"
@@ -2813,15 +2813,15 @@ msgstr "{user}aren esaldiak honako hizkuntzan: {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L69
 msgid "Only show original sentences"
-msgstr ""
+msgstr "Erakutsi bakarrik jatorrizko esaldiak"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L87
 msgid "{user} does not own any sentences in {language}"
-msgstr ""
+msgstr "{user} erabiltzaileak ez dauka esaldirik hizkuntza honetan: {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L92
 msgid "{user} does not own any sentences"
-msgstr ""
+msgstr "{user} erabiltzaileak ez dauka berea den esaldirik"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/random.ctp#L29
 msgid ""
@@ -3775,7 +3775,7 @@ msgstr "data, eguna, ezezaguna"
 #. may want to add a preposition or an article.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L125
 msgid "{date}"
-msgstr ""
+msgstr "{date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L130
 msgid "yesterday"
@@ -3846,7 +3846,7 @@ msgstr "Abendua"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L254
 msgctxt "incomplete date"
 msgid "{month} {day}"
-msgstr ""
+msgstr "{month} {day}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L260
 msgctxt "incomplete date"

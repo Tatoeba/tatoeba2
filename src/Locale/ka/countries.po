@@ -1,1086 +1,1054 @@
-# This file is based on modified data files from Unicode, Inc.
-# COPYRIGHT AND PERMISSION NOTICE
-# Copyright © 1991-2015 Unicode, Inc. All rights reserved.
-# Distributed under the Terms of Use in 
-# http://www.unicode.org/copyright.html.
-#
-# Permission is hereby granted, free of charge, to any person obtaining
-# a copy of the Unicode data files and any associated documentation
-# (the "Data Files") or Unicode software and any associated documentation
-# (the "Software") to deal in the Data Files or Software
-# without restriction, including without limitation the rights to use,
-# copy, modify, merge, publish, distribute, and/or sell copies of
-# the Data Files or Software, and to permit persons to whom the Data Files
-# or Software are furnished to do so, provided that
-# (a) this copyright and permission notice appear with all copies 
-# of the Data Files or Software,
-# (b) this copyright and permission notice appear in associated 
-# documentation, and
-# (c) there is clear notice in each modified Data File or in the Software
-# as well as in the documentation associated with the Data File(s) or
-# Software that the data or software has been modified.
-#
-# THE DATA FILES AND SOFTWARE ARE PROVIDED "AS IS", WITHOUT WARRANTY OF
-# ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
-# WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NONINFRINGEMENT OF THIRD PARTY RIGHTS.
-# IN NO EVENT SHALL THE COPYRIGHT HOLDER OR HOLDERS INCLUDED IN THIS
-# NOTICE BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL
-# DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
-# DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
-# TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-# PERFORMANCE OF THE DATA FILES OR SOFTWARE.
-#
-# Except as contained in this notice, the name of a copyright holder
-# shall not be used in advertising or otherwise to promote the sale,
-# use or other dealings in these Data Files or Software without prior
-# written authorization of the copyright holder.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-11 16:41+0000\n"
-"PO-Revision-Date: 2015-07-11 16:45+0000\n"
-"Last-Translator: Trang Ho\n"
-"Language-Team: Georgian (http://www.transifex.com/p/tatoeba_website/language/ka/)\n"
+"POT-Creation-Date: 2019-12-08 15:01+0000\n"
+"PO-Revision-Date: 2017-09-22 03:35+0000\n"
+"Last-Translator: gillux\n"
+"Language-Team: Georgian (http://www.transifex.com/tatoeba/tatoeba_website/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ka\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L53
 msgid "Ascension Island"
 msgstr "ამაღლების კუნძული"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L54
 msgid "Andorra"
 msgstr "ანდორა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L55
 msgid "United Arab Emirates"
 msgstr "არაბთა გაერთიანებული საამიროები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L56
 msgid "Afghanistan"
 msgstr "ავღანეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L57
 msgid "Antigua & Barbuda"
 msgstr "ანტიგუა და ბარბუდა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L58
 msgid "Anguilla"
 msgstr "ანგილია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L59
 msgid "Albania"
 msgstr "ალბანეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L60
 msgid "Armenia"
 msgstr "სომხეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L61
 msgid "Netherlands Antilles"
 msgstr "ნიდერლანდების ანტილები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L62
 msgid "Angola"
 msgstr "ანგოლა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L63
 msgid "Antarctica"
 msgstr "ანტარქტიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L64
 msgid "Argentina"
 msgstr "არგენტინა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L65
 msgid "American Samoa"
 msgstr "ამერიკის სამოა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L66
 msgid "Austria"
 msgstr "ავსტრია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L67
 msgid "Australia"
 msgstr "ავსტრალია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L68
 msgid "Aruba"
 msgstr "არუბა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L69
 msgid "Åland Islands"
 msgstr "ალანდის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L70
 msgid "Azerbaijan"
 msgstr "აზერბაიჯანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L71
 msgid "Bosnia"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L72
 msgid "Barbados"
 msgstr "ბარბადოსი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L73
 msgid "Bangladesh"
 msgstr "ბანგლადეში"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L74
 msgid "Belgium"
 msgstr "ბელგია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L75
 msgid "Burkina Faso"
 msgstr "ბურკინა-ფასო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L76
 msgid "Bulgaria"
 msgstr "ბულგარეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L77
 msgid "Bahrain"
 msgstr "ბაჰრეინი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L78
 msgid "Burundi"
 msgstr "ბურუნდი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L79
 msgid "Benin"
 msgstr "ბენინი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L80
 msgid "St. Barthélemy"
 msgstr "სენ-ბართელმი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L81
 msgid "Bermuda"
 msgstr "ბერმუდი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L82
 msgid "Brunei"
 msgstr "ბრუნეი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L83
 msgid "Bolivia"
 msgstr "ბოლივია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L84
 msgid "Caribbean Netherlands"
 msgstr "კარიბის ნიდერლანდები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L85
 msgid "Brazil"
 msgstr "ბრაზილია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L86
 msgid "Bahamas"
 msgstr "ბაჰამის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L87
 msgid "Bhutan"
 msgstr "ბჰუტანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L88
 msgid "Bouvet Island"
 msgstr "ბუვე"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L89
 msgid "Botswana"
 msgstr "ბოტსვანა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L90
 msgid "Belarus"
 msgstr "ბელარუსი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L91
 msgid "Belize"
 msgstr "ბელიზი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L92
 msgid "Canada"
 msgstr "კანადა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L93
 msgid "Cocos (Keeling) Islands"
 msgstr "ქოქოსის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L94
 msgid "Congo - Kinshasa"
 msgstr "კონგო - კინშასა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L95
 msgid "Central African Republic"
 msgstr "ცენტრალური აფრიკის რესპუბლიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L96
 msgid "Congo - Brazzaville"
 msgstr "კონგო - ბრაზავილი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L97
 msgid "Switzerland"
 msgstr "შვეიცარია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L98
 msgid "Côte d’Ivoire"
 msgstr "კოტ-დივუარი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L99
 msgid "Cook Islands"
 msgstr "კუკის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L100
 msgid "Chile"
 msgstr "ჩილე"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L101
 msgid "Cameroon"
 msgstr "კამერუნი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L102
 msgid "China"
 msgstr "ჩინეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L103
 msgid "Colombia"
 msgstr "კოლუმბია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L104
 msgid "Clipperton Island"
 msgstr "კლიპერტონის კუნძული"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L105
 msgid "Costa Rica"
 msgstr "კოსტა-რიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L106
 msgid "Cuba"
 msgstr "კუბა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L107
 msgid "Cape Verde"
 msgstr "კაბო-ვერდე"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L108
 msgid "Curaçao"
 msgstr "კიურასაო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L109
 msgid "Christmas Island"
 msgstr "შობის კუნძული"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L110
 msgid "Cyprus"
 msgstr "კვიპროსი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L111
 msgid "Czech Republic"
 msgstr "ჩეხეთის რესპუბლიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L112
 msgid "Germany"
 msgstr "გერმანია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L113
 msgid "Diego Garcia"
 msgstr "დიეგო-გარსია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L114
 msgid "Djibouti"
 msgstr "ჯიბუტი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L115
 msgid "Denmark"
 msgstr "დანია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L116
 msgid "Dominica"
 msgstr "დომინიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L117
 msgid "Dominican Republic"
 msgstr "დომინიკელთა რესპუბლიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L118
 msgid "Algeria"
 msgstr "ალჟირი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L119
 msgid "Ceuta & Melilla"
 msgstr "სეუტა და მელილა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L120
 msgid "Ecuador"
 msgstr "ეკვადორი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L121
 msgid "Estonia"
 msgstr "ესტონეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L122
 msgid "Egypt"
 msgstr "ეგვიპტე"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L123
 msgid "Western Sahara"
 msgstr "დასავლეთი საჰარა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L124
 msgid "Eritrea"
 msgstr "ერიტრეა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L125
 msgid "Spain"
 msgstr "ესპანეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L126
 msgid "Ethiopia"
 msgstr "ეთიოპია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L127
 msgid "European Union"
 msgstr "ევროკავშირი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L128
 msgid "Finland"
 msgstr "ფინეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L129
 msgid "Fiji"
 msgstr "ფიჯი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L130
 msgid "Falkland Islands"
 msgstr "ფოლკლენდის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L131
 msgid "Micronesia"
 msgstr "მიკრონეზია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L132
 msgid "Faroe Islands"
 msgstr "ფარერის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L133
 msgid "France"
 msgstr "საფრანგეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L134
 msgid "Gabon"
 msgstr "გაბონი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L135
 msgid "United Kingdom"
 msgstr "დიდი ბრიტანეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L136
 msgid "Grenada"
 msgstr "გრენადა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L137
 msgid "Georgia"
 msgstr "საქართველო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L138
 msgid "French Guiana"
 msgstr "საფრანგეთის გვიანა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L139
 msgid "Guernsey"
 msgstr "გერნსი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L140
 msgid "Ghana"
 msgstr "განა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L141
 msgid "Gibraltar"
 msgstr "გიბრალტარი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L142
 msgid "Greenland"
 msgstr "გრენლანდია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L143
 msgid "Gambia"
 msgstr "გამბია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L144
 msgid "Guinea"
 msgstr "გვინეა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L145
 msgid "Guadeloupe"
 msgstr "გვადელუპა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L146
 msgid "Equatorial Guinea"
 msgstr "ეკვატორული გვინეა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L147
 msgid "Greece"
 msgstr "საბერძნეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L148
 msgid "South Georgia & South Sandwich Islands"
 msgstr "სამხრეთი გეორგია და სამხრეთ სენდვიჩის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L149
 msgid "Guatemala"
 msgstr "გვატემალა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L150
 msgid "Guam"
 msgstr "გუამი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L151
 msgid "Guinea-Bissau"
 msgstr "გვინეა-ბისაუ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L152
 msgid "Guyana"
 msgstr "გაიანა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L153
 msgid "Hong Kong"
 msgstr "ჰონკონგი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L154
 msgid "Heard & McDonald Islands"
 msgstr "ჰერდი და მაკდონალდის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L155
 msgid "Honduras"
 msgstr "ჰონდურასი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L154
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L156
 msgid "Croatia"
 msgstr "ხორვატია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L157
 msgid "Haiti"
 msgstr "ჰაიტი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L158
 msgid "Hungary"
 msgstr "უნგრეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L159
 msgid "Canary Islands"
 msgstr "კანარის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L160
 msgid "Indonesia"
 msgstr "ინდონეზია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L161
 msgid "Ireland"
 msgstr "ირლანდია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L162
 msgid "Israel"
 msgstr "ისრაელი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L161
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L163
 msgid "Isle of Man"
 msgstr "მენის კუნძული"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L164
 msgid "India"
 msgstr "ინდოეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L165
 msgid "British Indian Ocean Territory"
 msgstr "ბრიტ. ტერიტ. ინდ. ოკეანეში"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L166
 msgid "Iraq"
 msgstr "ერაყი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L167
 msgid "Iran"
 msgstr "ირანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L166
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L168
 msgid "Iceland"
 msgstr "ისლანდია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L169
 msgid "Italy"
 msgstr "იტალია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L170
 msgid "Jersey"
 msgstr "ჯერსი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L171
 msgid "Jamaica"
 msgstr "იამაიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L170
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L172
 msgid "Jordan"
 msgstr "იორდანია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L173
 msgid "Japan"
 msgstr "იაპონია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L174
 msgid "Kenya"
 msgstr "კენია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L175
 msgid "Kyrgyzstan"
 msgstr "ყირგიზეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L176
 msgid "Cambodia"
 msgstr "კამბოჯა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L177
 msgid "Kiribati"
 msgstr "კირიბატი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L178
 msgid "Comoros"
 msgstr "კომორის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L179
 msgid "St. Kitts & Nevis"
 msgstr "სენტ-კიტსი და ნევისი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L180
 msgid "North Korea"
 msgstr "ჩრდილოეთი კორეა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L181
 msgid "South Korea"
 msgstr "სამხრეთი კორეა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L182
 msgid "Kuwait"
 msgstr "ქუვეითი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L183
 msgid "Cayman Islands"
 msgstr "კაიმანის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L184
 msgid "Kazakhstan"
 msgstr "ყაზახეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L183
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L185
 msgid "Laos"
 msgstr "ლაოსი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L186
 msgid "Lebanon"
 msgstr "ლიბანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L187
 msgid "St. Lucia"
 msgstr "სენტ-ლუსია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L188
 msgid "Liechtenstein"
 msgstr "ლიხტენშტაინი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L187
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L189
 msgid "Sri Lanka"
 msgstr "შრი-ლანკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L188
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L190
 msgid "Liberia"
 msgstr "ლიბერია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L191
 msgid "Lesotho"
 msgstr "ლესოთო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L190
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L192
 msgid "Lithuania"
 msgstr "ლიტვა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L191
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L193
 msgid "Luxembourg"
 msgstr "ლუქსემბურგი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L194
 msgid "Latvia"
 msgstr "ლატვია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L195
 msgid "Libya"
 msgstr "ლიბია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L196
 msgid "Morocco"
 msgstr "მაროკო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L197
 msgid "Monaco"
 msgstr "მონაკო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L198
 msgid "Moldova"
 msgstr "მოლდოვა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L197
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L199
 msgid "Montenegro"
 msgstr "მონტენეგრო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L198
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L200
 msgid "St. Martin"
 msgstr "სენ-მარტენი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L201
 msgid "Madagascar"
 msgstr "მადაგასკარი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L200
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L202
 msgid "Marshall Islands"
 msgstr "მარშალის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L203
 msgid "Macedonia"
 msgstr "მაკედონია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L204
 msgid "Mali"
 msgstr "მალი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L205
 msgid "Myanmar"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L206
 msgid "Mongolia"
 msgstr "მონღოლეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L207
 msgid "Macau"
 msgstr "მაკაო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L208
 msgid "Northern Mariana Islands"
 msgstr "ჩრდილოეთ მარიანას კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L209
 msgid "Martinique"
 msgstr "მარტინიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L210
 msgid "Mauritania"
 msgstr "მავრიტანია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L211
 msgid "Montserrat"
 msgstr "მონსერატი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L210
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L212
 msgid "Malta"
 msgstr "მალტა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L213
 msgid "Mauritius"
 msgstr "მავრიკი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L214
 msgid "Maldives"
 msgstr "მალდივის რესპუბლიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L215
 msgid "Malawi"
 msgstr "მალავი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L216
 msgid "Mexico"
 msgstr "მექსიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L215
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L217
 msgid "Malaysia"
 msgstr "მალაიზია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L218
 msgid "Mozambique"
 msgstr "მოზამბიკი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L217
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L219
 msgid "Namibia"
 msgstr "ნამიბია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L220
 msgid "New Caledonia"
 msgstr "ახალი კალედონია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L219
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L221
 msgid "Niger"
 msgstr "ნიგერი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L220
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L222
 msgid "Norfolk Island"
 msgstr "ნორფოლკის კუნძული"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L223
 msgid "Nigeria"
 msgstr "ნიგერია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L224
 msgid "Nicaragua"
 msgstr "ნიკარაგუა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L225
 msgid "Netherlands"
 msgstr "ნიდერლანდები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L226
 msgid "Norway"
 msgstr "ნორვეგია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L227
 msgid "Nepal"
 msgstr "ნეპალი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L228
 msgid "Nauru"
 msgstr "ნაურუ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L229
 msgid "Niue"
 msgstr "ნიუე"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L230
 msgid "New Zealand"
 msgstr "ახალი ზელანდია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L229
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L231
 msgid "Oman"
 msgstr "ომანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L230
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L232
 msgid "Panama"
 msgstr "პანამა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L233
 msgid "Peru"
 msgstr "პერუ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L234
 msgid "French Polynesia"
 msgstr "საფრანგეთის პოლინეზია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L235
 msgid "Papua New Guinea"
 msgstr "პაპუა-ახალი გვინეა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L234
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L236
 msgid "Philippines"
 msgstr "ფილიპინები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L235
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L237
 msgid "Pakistan"
 msgstr "პაკისტანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L238
 msgid "Poland"
 msgstr "პოლონეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L239
 msgid "St. Pierre & Miquelon"
 msgstr "სენ-პიერი და მიკელონი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L238
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L240
 msgid "Pitcairn Islands"
 msgstr "პიტკერნის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L241
 msgid "Puerto Rico"
 msgstr "პუერტო-რიკო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L242
 msgid "Palestine"
 msgstr "პალესტინა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L241
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L243
 msgid "Portugal"
 msgstr "პორტუგალია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L244
 msgid "Palau"
 msgstr "პალაუ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L243
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L245
 msgid "Paraguay"
 msgstr "პარაგვაი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L246
 msgid "Qatar"
 msgstr "კატარი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L247
 msgid "Outlying Oceania"
 msgstr "შორეული ოკეანეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L248
 msgid "Réunion"
 msgstr "რეუნიონი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L249
 msgid "Romania"
 msgstr "რუმინეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L248
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L250
 msgid "Serbia"
 msgstr "სერბეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L251
 msgid "Russia"
 msgstr "რუსეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L252
 msgid "Rwanda"
 msgstr "რუანდა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L253
 msgid "Saudi Arabia"
 msgstr "საუდის არაბეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L254
 msgid "Solomon Islands"
 msgstr "სოლომონის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L255
 msgid "Seychelles"
 msgstr "სეიშელის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L254
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L256
 msgid "Sudan"
 msgstr "სუდანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L257
 msgid "Sweden"
 msgstr "შვედეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L256
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L258
 msgid "Singapore"
 msgstr "სინგაპური"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L257
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L259
 msgid "St. Helena"
 msgstr "წმინდა ელენეს კუნძული"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L260
 msgid "Slovenia"
 msgstr "სლოვენია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L259
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L261
 msgid "Svalbard & Jan Mayen"
 msgstr "შპიცბერგენი და იან-მაიენი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L260
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L262
 msgid "Slovakia"
 msgstr "სლოვაკეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L263
 msgid "Sierra Leone"
 msgstr "სიერა-ლეონე"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L264
 msgid "San Marino"
 msgstr "სან-მარინო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L263
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L265
 msgid "Senegal"
 msgstr "სენეგალი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L266
 msgid "Somalia"
 msgstr "სომალი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L267
 msgid "Suriname"
 msgstr "სურინამი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L268
 msgid "South Sudan"
 msgstr "სამხრეთი სუდანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L269
 msgid "São Tomé & Príncipe"
 msgstr "სან-ტომე და პრინსიპი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L268
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L270
 msgid "El Salvador"
 msgstr "სალვადორი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L271
 msgid "Sint Maarten"
 msgstr "სინტ-მარტენი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L270
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L272
 msgid "Syria"
 msgstr "სირია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L271
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L273
 msgid "Swaziland"
 msgstr "სვაზილენდი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L274
 msgid "Tristan da Cunha"
 msgstr "ტრისტან-და-კუნია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L273
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L275
 msgid "Turks & Caicos Islands"
 msgstr "ტერქსისა და კაიკოსის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L274
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L276
 msgid "Chad"
 msgstr "ჩადი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L277
 msgid "French Southern Territories"
 msgstr "ფრანგული სამხრეთის ტერიტორიები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L278
 msgid "Togo"
 msgstr "ტოგო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L279
 msgid "Thailand"
 msgstr "ტაილანდი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L280
 msgid "Tajikistan"
 msgstr "ტაჯიკეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L281
 msgid "Tokelau"
 msgstr "ტოკელაუ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L280
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L282
 msgid "Timor-Leste"
 msgstr "აღმოსავლეთი ტიმორი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L283
 msgid "Turkmenistan"
 msgstr "თურქმენეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L282
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L284
 msgid "Tunisia"
 msgstr "ტუნისი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L283
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L285
 msgid "Tonga"
 msgstr "ტონგა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L286
 msgid "Turkey"
 msgstr "თურქეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L287
 msgid "Trinidad & Tobago"
 msgstr "ტრინიდადი და ტობაგო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L286
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L288
 msgid "Tuvalu"
 msgstr "ტუვალუ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L289
 msgid "Taiwan"
 msgstr "ტაივანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L290
 msgid "Tanzania"
 msgstr "ტანზანია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L289
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L291
 msgid "Ukraine"
 msgstr "უკრაინა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L292
 msgid "Uganda"
 msgstr "უგანდა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L291
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L293
 msgid "U.S. Outlying Islands"
 msgstr "აშშ-ის შორეული კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L294
 msgid "United States"
 msgstr "ამერიკის შეერთებული შტატები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L293
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L295
 msgid "Uruguay"
 msgstr "ურუგვაი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L296
 msgid "Uzbekistan"
 msgstr "უზბეკეთი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L297
 msgid "Vatican City"
 msgstr "ქალაქი ვატიკანი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L298
 msgid "St. Vincent & Grenadines"
 msgstr "სენტ-ვინსენტი და გრენადინები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L297
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L299
 msgid "Venezuela"
 msgstr "ვენესუელა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L298
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L300
 msgid "British Virgin Islands"
 msgstr "ბრიტანეთის ვირჯინის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L299
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L301
 msgid "U.S. Virgin Islands"
 msgstr "აშშ-ის ვირჯინის კუნძულები"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L302
 msgid "Vietnam"
 msgstr "ვიეტნამი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L303
 msgid "Vanuatu"
 msgstr "ვანუატუ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L302
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L304
 msgid "Wallis & Futuna"
 msgstr "უოლისი და ფუტუნა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L305
 msgid "Samoa"
 msgstr "სამოა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L306
 msgid "Kosovo"
 msgstr "კოსოვო"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L307
 msgid "Yemen"
 msgstr "იემენი"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L306
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L308
 msgid "Mayotte"
 msgstr "მაიოტა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L307
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L309
 msgid "South Africa"
 msgstr "სამხრეთ აფრიკის რესპუბლიკა"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L310
 msgid "Zambia"
 msgstr "ზამბია"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/countries_list.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/CountriesList.php#L311
 msgid "Zimbabwe"
 msgstr "ზიმბაბვე"
