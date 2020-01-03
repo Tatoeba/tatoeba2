@@ -27,7 +27,11 @@
 ?>
 
 <?php
-if (isset($translation)) {
+if ($type == 'json') {
+    
+    echo json_encode($translation);
+
+} else if (isset($translation)) {
     $type = 'directTranslation';
     $isEditable = true;
 

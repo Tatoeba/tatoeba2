@@ -411,7 +411,7 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function save_translation()
+    public function save_translation($type = 'html')
     {
         $sentenceId = $this->request->getData('id');
         $translationLang = $this->request->getData('selectLang');
@@ -454,6 +454,12 @@ class SentencesController extends AppController
                 $this->set('parentId', $sentenceId);
             }
         }
+
+        if ($type == 'json') {
+            $this->layout = 'json';
+        }
+        
+        $this->set('type', $type);
     }
 
     private function _find_sphinx_markers($query)

@@ -118,31 +118,28 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
     }
     ?>
 
-    <?php if (count($directTranslations) > 0) { ?>
-        <div layout="column" class="direct translations" ng-if="!vm.isTranslationFormVisible">
-            <md-divider></md-divider>
-            <md-subheader><?= __('Translations') ?></md-subheader>
+    <div layout="column" class="direct translations" ng-if="!vm.isTranslationFormVisible && vm.directTranslations.length > 0">
+        <md-divider></md-divider>
+        <md-subheader><?= __('Translations') ?></md-subheader>
 
-            <?php
-            echo $this->element('sentences/translation', [
-                'translations' => 'vm.directTranslations'
-            ]);
-            ?>
-        </div>
-    <?php } ?>
+        <?php
+        echo $this->element('sentences/translation', [
+            'translations' => 'vm.directTranslations'
+        ]);
+        ?>
+    </div>
+    
+    <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="!vm.isTranslationFormVisible && vm.indirectTranslations.length > 0"
+            ng-init="vm.initIndirectTranslations(<?= $this->Sentences->translationsForAngular($indirectTranslations) ?>)">
+        <md-subheader><?= __('Translations of translations') ?></md-subheader>
+        
+        <?php
+        echo $this->element('sentences/translation', [
+            'translations' => 'vm.indirectTranslations'
+        ]);
+        ?>
+    </div>
 
-    <?php if (count($indirectTranslations) > 0) { ?>
-        <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="!vm.isTranslationFormVisible && vm.indirectTranslations.length > 1"
-             ng-init="vm.initIndirectTranslations(<?= $this->Sentences->translationsForAngular($indirectTranslations) ?>)">
-            <md-subheader><?= __('Translations of translations') ?></md-subheader>
-            
-            <?php
-            echo $this->element('sentences/translation', [
-                'translations' => 'vm.indirectTranslations'
-            ]);
-            ?>
-        </div>
-    <?php } ?>
 
     <?php if ($numExtra > 1) { ?>
         <div layout="column" ng-if="!vm.isTranslationFormVisible">

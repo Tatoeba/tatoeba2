@@ -41,7 +41,7 @@ $audioBaseUrl = Configure::read('Recordings.url');
         </md-tooltip>
     </md-button>
 
-    <md-button class="md-icon-button audioUnavailable" target="_blank" ng-if="translation.audios && translation.audios.length === 0"
+    <md-button class="md-icon-button audioUnavailable" target="_blank" ng-if="!translation.audios || translation.audios.length === 0"
                 href="https://en.wiki.tatoeba.org/articles/show/contribute-audio">
         <md-icon>volume_off</md-icon>
         <md-tooltip md-direction="top">
