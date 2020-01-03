@@ -79,7 +79,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
             <?php
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
-                    'sentenceId' => $sentence->id,
+                    'sentence' => $sentence,
                     'menu' => $sentenceMenu
                 ]);
             }

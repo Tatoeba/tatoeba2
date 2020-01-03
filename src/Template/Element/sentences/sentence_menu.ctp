@@ -2,12 +2,13 @@
 extract($menu);
 $activeItems = array_filter($menu);
 $menuJSON = htmlspecialchars(json_encode($activeItems), ENT_QUOTES, 'UTF-8');
+$isUnapproved = $sentence->correctness == -1;
 ?>
 
 <div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>
-            <md-button class="md-icon-button" ng-click="vm.translate(<?= $sentenceId ?>)">
+            <md-button class="md-icon-button" ng-click="vm.translate(<?= $sentence->id ?>)" ng-disabled="<?= $isUnapproved ? 'true' : 'false' ?>">
                 <md-icon>translate</md-icon>
                 <md-tooltip><?= __('Translate') ?></md-tooltip>
             </md-button>
