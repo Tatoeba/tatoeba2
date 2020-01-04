@@ -144,12 +144,11 @@
                 vm.newTranslation = {};
             }
 
-            if ($cookies.get('translationLang') && !vm.newTranslation.lang) {
+            if ($cookies.get('translationLang') && !vm.newTranslation.text) {
                 vm.newTranslation.lang = $cookies.get('translationLang');
-            } else {
+            } else if (!vm.newTranslation.lang) {
                 vm.newTranslation.lang = 'auto';
             }
-
             focusTranslationInput(id);
         }
 
