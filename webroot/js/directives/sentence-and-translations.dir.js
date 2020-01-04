@@ -46,7 +46,7 @@
         };
     }
 
-    function SentenceAndTranslationsController($http) {
+    function SentenceAndTranslationsController($http, $cookies) {
         const MAX_TRANSLATIONS = 5;
 
         var vm = this;
@@ -61,7 +61,7 @@
         vm.userLanguages = [];
         vm.directTranslations = [];
         vm.indirectTranslations = [];
-        vm.newTranslation = { lang: 'auto' };
+        vm.newTranslation = {};
 
         vm.initUserLanguages = initUserLanguages;
         vm.initTranslations = initTranslations;
@@ -137,6 +137,13 @@
 
         function translate(id) {
             vm.isTranslationFormVisible = true;
+            
+            if ($cookies.get('translationLang') && !vm.newTranslation.lang) {
+                vm.newTranslation.lang = $cookies.get('translationLang');
+            } else {
+                vm.newTranslation.lang = 'auto';
+            }
+
             setTimeout(function() {
                 var input = angular.element('#translation-form-' + id);
                 input.focus();
@@ -144,6 +151,8 @@
         }
 
         function saveTranslation(sentenceId) {
+            $cookies.put('translationLang', vm.newTranslation.lang);
+
             if (vm.newTranslation) {
                 if (vm.newTranslation.text) {
                     vm.inProgress = true;
@@ -154,7 +163,7 @@
                     };
                     $http.post('/eng/sentences/save_translation/json', data).then(function(result) {
                         allDirectTranslations.unshift(result.data);
-                        vm.newTranslation.text = null;
+                        vm.newTranslation = {};
                         vm.isTranslationFormVisible = false;
                         vm.inProgress = false;
                         showFewerTranslations();
