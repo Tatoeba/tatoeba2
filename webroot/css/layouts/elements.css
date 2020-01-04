@@ -1787,3 +1787,12 @@ div.hideLink {
 .annexe-menu md-list-item {
     border-bottom: 1px solid #f1f1f1;
 }
+.annexe-menu .md-subheader-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.annexe-menu md-icon {
+    margin: auto 0;
+}

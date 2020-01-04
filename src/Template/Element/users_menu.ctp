@@ -26,6 +26,7 @@
  */
 use App\Model\CurrentUser;
 
+$this->Html->script('elements/user-menu.ctrl.js', ['block' => 'scriptBottom']);
 $menu = [
     [
         'label' => __('Profile'),
@@ -150,14 +151,17 @@ $menu = [
 ]
 ?>
 
-<md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
-    <md-subheader><?= $username ?></md-subheader>
+<md-list class="annexe-menu md-whiteframe-1dp" ng-cloak ng-controller="UserMenuController">
+    <md-subheader ng-click="toggle()">
+        <?= $username ?>
+        <md-icon>{{ icon }}</md-icon>
+    </md-subheader>
 
     <?php foreach($menu as $item) { 
         if (isset($item['label']) && isset($item['url'])) {
             $url = $this->Url->build($item['url']);
             ?>
-            <md-list-item href="<?= $url ?>">
+            <md-list-item ng-show="expanded" href="<?= $url ?>">
                 <md-icon>
                     <?= isset($item['icon']) ? $item['icon'] : 'keyboard_arrow_right' ?>
                 </md-icon>
