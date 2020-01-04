@@ -13,7 +13,7 @@ $audioBaseUrl = Configure::read('Recordings.url');
     <md-icon class="chevron">chevron_right</md-icon>
 
     <div class="lang">
-        <img class="language-icon" src="/img/flags/{{translation.lang}}.svg" />
+        <img class="language-icon" src="/img/flags/{{translation.lang ? translation.lang : 'unknown'}}.svg" />
     </div>
 
     <div class="text" dir="{{translation.dir}}" flex>
