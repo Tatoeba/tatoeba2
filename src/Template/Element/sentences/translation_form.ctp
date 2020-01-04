@@ -1,10 +1,13 @@
 <?php
 $langs = $this->Languages->profileLanguagesArray(false, false);
-$userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
 ?>
-<div ng-if="vm.isTranslationFormVisible" style="background: #fafafa; padding-top: 10px; border-top: 1px solid #f1f1f1"
-     ng-init="vm.initUserLanguages(<?= $userLanguagesJSON ?>)">
-    <form layout="column" layout-margin>
+<div ng-if="vm.isTranslationFormVisible" style="background: #fafafa; padding-top: 10px; border-top: 1px solid #f1f1f1">
+
+<?php 
+if (!empty($langs)) { 
+    $userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
+    ?>
+    <form layout="column" layout-margin ng-init="vm.initUserLanguages(<?= $userLanguagesJSON ?>)">
         <md-input-container>
             <label><?= __('Translation') ?></label>
             <textarea id="translation-form-<?= $sentenceId ?>" ng-model="vm.newTranslation.text"></textarea>
@@ -36,4 +39,12 @@ $userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
             </md-button>
         </div>
     </form>
+<?php 
+} else {
+    ?><div layout-padding><?php
+    $this->Languages->displayAddLanguageMessage(false);
+    ?></div><?php
+} 
+?>
+
 </div>
