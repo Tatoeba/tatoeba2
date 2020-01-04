@@ -37,7 +37,12 @@ if (!empty($langs)) {
                 <?= __('Cancel') ?>
             </md-button>
             <md-button class="md-raised md-primary" ng-click="vm.saveTranslation(<?= $sentenceId ?>)">
-                <?= __('Submit translation') ?>
+                <span ng-if="!vm.newTranslation.editable">
+                    <?= __('Submit translation') ?>
+                </span>
+                <span ng-if="vm.newTranslation.editable">
+                    <?= __('Edit translation') ?>
+                </span>
             </md-button>
         </div>
     </form>

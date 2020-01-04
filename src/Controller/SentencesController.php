@@ -33,6 +33,7 @@ use App\Lib\SphinxClient;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Utility\Hash;
+use Cake\View\ViewBuilder;
 use Exception;
 
 /**
@@ -345,15 +346,21 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function edit_sentence()
+    public function edit_sentence($type = 'html')
     {
         $sentence = $this->Sentences->editSentence($this->request->data);
-        if (empty($sentence)) {
-            // TODO Better error handling.
-            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+        if ($type == 'json') {
+            $this->set('result', $sentence);
+            $this->layout = 'json';
+            $this->render('/Generic/json');
         } else {
-            $this->layout = null;
-            $this->set('sentence_text', $sentence->text);
+            if (empty($sentence)) {
+                // TODO Better error handling.
+                $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+            } else {
+                $this->layout = null;
+                $this->set('sentence_text', $sentence->text);
+            }
         }
     }
 
@@ -456,10 +463,10 @@ class SentencesController extends AppController
         }
 
         if ($type == 'json') {
+            $this->set('result', $translation);
             $this->layout = 'json';
+            $this->render('/Generic/json');
         }
-        
-        $this->set('type', $type);
     }
 
     private function _find_sphinx_markers($query)

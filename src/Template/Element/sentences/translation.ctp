@@ -27,6 +27,13 @@ $audioBaseUrl = Configure::read('Recordings.url');
         </md-tooltip>
     </div>
 
+    <md-button class="md-icon-button" ng-if="translation.editable" ng-click="vm.editTranslation(translation)">
+        <md-icon>edit</md-icon>
+        <md-tooltip>
+            <?= __('Edit this translation'); ?>
+        </md-tooltip>
+    </md-button>
+
     <md-button class="md-icon-button audioAvailable" href="<?= $audioBaseUrl ?>{{translation.lang}}/{{translation.id}}.mp3"
                 ng-click="vm.playAudio($event)" ng-if="translation.audios && translation.audios.length > 0">
         <md-icon>volume_up</md-icon>

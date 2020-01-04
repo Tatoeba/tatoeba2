@@ -48,6 +48,7 @@
 
     function SentenceAndTranslationsController($http, $cookies) {
         const MAX_TRANSLATIONS = 5;
+        const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
         var allDirectTranslations = [];
@@ -71,6 +72,7 @@
         vm.getAudioAuthor = getAudioAuthor;
         vm.translate = translate;
         vm.saveTranslation = saveTranslation;
+        vm.editTranslation = editTranslation;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -138,30 +140,43 @@
         function translate(id) {
             vm.isTranslationFormVisible = true;
             
+            if (vm.newTranslation.editable) {
+                vm.newTranslation = {};
+            }
+
             if ($cookies.get('translationLang') && !vm.newTranslation.lang) {
                 vm.newTranslation.lang = $cookies.get('translationLang');
             } else {
                 vm.newTranslation.lang = 'auto';
             }
 
-            setTimeout(function() {
-                var input = angular.element('#translation-form-' + id);
-                input.focus();
-            }, 100);
+            focusTranslationInput(id);
         }
 
         function saveTranslation(sentenceId) {
             $cookies.put('translationLang', vm.newTranslation.lang);
 
-            if (vm.newTranslation) {
-                if (vm.newTranslation.text) {
-                    vm.inProgress = true;
+            if (vm.newTranslation && vm.newTranslation.text) {
+                vm.inProgress = true;
+                if (vm.newTranslation.editable) {
+                    var sentence = {
+                        id: [vm.newTranslation.lang, vm.newTranslation.id].join('_'),
+                        value: vm.newTranslation.text
+                    };
+                    $http.post(rootUrl + '/sentences/edit_sentence/json', sentence).then(function(result) {
+                        vm.isTranslationFormVisible = false;
+                        vm.inProgress = false;
+                        vm.newTranslation = {};
+                    });
+                } else {
                     var data = {
                         id: sentenceId,
                         selectLang: vm.newTranslation.lang,
                         value: vm.newTranslation.text
                     };
-                    $http.post('/eng/sentences/save_translation/json', data).then(function(result) {
+                    $http.post(rootUrl + '/sentences/save_translation/json', data).then(function(result) {
+                        result.data.editable = true;
+                        result.data.parentId = sentenceId;
                         allDirectTranslations.unshift(result.data);
                         vm.newTranslation = {};
                         vm.isTranslationFormVisible = false;
@@ -170,6 +185,19 @@
                     });
                 }
             }
+        }
+
+        function editTranslation(translation) {
+            vm.isTranslationFormVisible = true;
+            vm.newTranslation = translation;
+            focusTranslationInput(translation.parentId);
+        }
+
+        function focusTranslationInput(id) {
+            setTimeout(function() {
+                var input = angular.element('#translation-form-' + id);
+                input.focus();
+            }, 100);
         }
     }
 
