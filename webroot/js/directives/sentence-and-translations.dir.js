@@ -53,6 +53,7 @@
         var allDirectTranslations = [];
         var alIndirectTranslations = [];
 
+        vm.inProgress = false;
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
         vm.isTranslationFormVisible = false;
@@ -145,6 +146,7 @@
         function saveTranslation(sentenceId) {
             if (vm.newTranslation) {
                 if (vm.newTranslation.text) {
+                    vm.inProgress = true;
                     var data = {
                         id: sentenceId,
                         selectLang: vm.newTranslation.lang,
@@ -154,6 +156,7 @@
                         allDirectTranslations.unshift(result.data);
                         vm.newTranslation.text = null;
                         vm.isTranslationFormVisible = false;
+                        vm.inProgress = false;
                         showFewerTranslations();
                     });
                 }
