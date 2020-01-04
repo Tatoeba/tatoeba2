@@ -10,7 +10,8 @@ if (!empty($langs)) {
     <form layout="column" layout-margin ng-init="vm.initUserLanguages(<?= $userLanguagesJSON ?>)">
         <md-input-container>
             <label><?= __('Translation') ?></label>
-            <textarea id="translation-form-<?= $sentenceId ?>" ng-model="vm.newTranslation.text"></textarea>
+            <textarea id="translation-form-<?= $sentenceId ?>" ng-model="vm.newTranslation.text" 
+                      ng-enter="vm.saveTranslation(<?= $sentenceId ?>)"></textarea>
         </md-input-container>
         
         <div layout="row" layout-align="start center">
