@@ -631,7 +631,6 @@ class LanguagesLib
             "urd",
             "yid",
             "pnb",
-            "apc",
             "oar",
             "ary",
             "aii",
@@ -643,7 +642,8 @@ class LanguagesLib
         );
 
         $autoLangs = array(
-            "ota"
+            "apc",
+            "ota",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
