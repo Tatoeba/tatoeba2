@@ -1,7 +1,11 @@
 <?php
 $username = $user->username;
 $avatar = $user->image;
-$userProfileUrl = '';
+$userProfileUrl = $this->Url->build(array(
+    'controller' => 'user',
+    'action' => 'profile',
+    $username
+));
 $dateLabel = $this->Date->ago($message->date);
 $fullDateLabel = $message->date;
 $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message->type);
