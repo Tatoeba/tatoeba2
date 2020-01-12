@@ -576,7 +576,7 @@ class LanguagesLib
                 'bzt' => __d('languages', 'Brithenig'),
                 'ltg' => __d('languages', 'Latgalian'),
                 'emx' => __d('languages', 'Erromintxela'),
-                'gom' => __d('languages', 'Konkani (Goan)',
+                'gom' => __d('languages', 'Konkani (Goan)'),
             );
         }
         return $languages;
