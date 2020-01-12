@@ -351,14 +351,14 @@ class SentencesController extends AppController
         $sentence = $this->Sentences->editSentence($this->request->data);
         if ($type == 'json') {
             $this->set('result', $sentence);
-            $this->layout = 'json';
+            $this->viewBuilder()->setLayout('json');
             $this->render('/Generic/json');
         } else {
             if (empty($sentence)) {
                 // TODO Better error handling.
                 $this->redirect(array('controller' => 'pages', 'action' => 'home'));
             } else {
-                $this->layout = null;
+                $this->viewBuilder()->setLayout('ajax');
                 $this->set('sentence_text', $sentence->text);
             }
         }
@@ -408,7 +408,7 @@ class SentencesController extends AppController
 
         $this->set('sentenceId', $id);
         $this->set('owner', $sentence->user);
-        $this->layout = null;
+        $this->viewBuilder()->setLayout('ajax');
         $this->render('adopt');
     }
 
@@ -464,7 +464,7 @@ class SentencesController extends AppController
 
         if ($type == 'json') {
             $this->set('result', $translation);
-            $this->layout = 'json';
+            $this->viewBuilder()->setLayout('json');
             $this->render('/Generic/json');
         }
     }
@@ -974,7 +974,7 @@ class SentencesController extends AppController
         $this->request->getSession()->write('random_lang_selected', $lang);
         $neighbors = $this->Sentences->getNeighborsSentenceIds($id, $lang);
         $this->set('result', $neighbors);
-        $this->layout = 'json';
+        $this->viewBuilder()->setLayout('json');
     }
 
 

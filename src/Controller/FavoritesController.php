@@ -117,7 +117,7 @@ class FavoritesController extends AppController
         $this->set('isLogged', $isLogged);
         $this->set('withRemoveOrUndo', $withRemoveOrUndo);
 
-        $this->layout = null;
+        $this->viewBuilder()->setLayout('ajax');
         $this->render('add_remove_favorite');
 
     }
