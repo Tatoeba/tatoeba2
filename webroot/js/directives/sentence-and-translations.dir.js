@@ -52,7 +52,7 @@
 
         var vm = this;
         var allDirectTranslations = [];
-        var alIndirectTranslations = [];
+        var allIndirectTranslations = [];
 
         vm.inProgress = false;
         vm.isExpanded = false;
@@ -82,7 +82,7 @@
 
         function initTranslations(directTranslations, indirectTranslations) {
             allDirectTranslations = directTranslations;
-            alIndirectTranslations = indirectTranslations;
+            allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
         }
 
@@ -100,14 +100,14 @@
 
         function showAllTranslations() {
             vm.directTranslations = allDirectTranslations;
-            vm.indirectTranslations = alIndirectTranslations;
+            vm.indirectTranslations = allIndirectTranslations;
         }
 
         function showFewerTranslations() {
             vm.directTranslations = allDirectTranslations.filter(function(item, index) {
                 return index <= MAX_TRANSLATIONS - 1;
             });
-            vm.indirectTranslations = alIndirectTranslations.filter(function(item, index) {
+            vm.indirectTranslations = allIndirectTranslations.filter(function(item, index) {
                 return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
             });
         }
