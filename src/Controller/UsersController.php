@@ -507,7 +507,7 @@ class UsersController extends AppController
      */
     public function check_username($username)
     {
-        $this->layout = null;
+        $this->viewBuilder()->setLayout('ajax');
         $user = $this->Users->getIdFromUsername($username);
 
         if ($user) {
@@ -527,7 +527,7 @@ class UsersController extends AppController
      */
     public function check_email($email)
     {
-        $this->layout = null;
+        $this->viewBuilder()->setLayout('ajax');
         $userId = $this->Users->getIdFromEmail($email);
 
         if ($userId) {

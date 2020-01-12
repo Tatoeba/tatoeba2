@@ -1,44 +1,62 @@
 <?php
-use App\Lib\LanguagesLib;
+use Cake\Core\Configure;
 
-$showExtra = '';
-if ($isExtra) {
-    $showExtra = 'ng-if="vm.isExpanded"';
-}
-$translationUrl = $this->Url->build(array(
+$sentenceBaseUrl = $this->Url->build([
     'controller' => 'sentences',
     'action' => 'show',
-    $translation->id
-));
-$notReliable = $translation->correctness == -1;
+]);
+$audioBaseUrl = Configure::read('Recordings.url');
 ?>
-<div layout="row" layout-align="start center" <?= $showExtra ?>
-     class="translation <?= $notReliable ? 'not-reliable' : '' ?>">
+<div ng-repeat="translation in <?= $translations ?>" layout="row" layout-align="start center"
+     class="translation" ng-class="{'not-reliable' : translation.correctness === -1}">
+    
     <md-icon class="chevron">chevron_right</md-icon>
+
     <div class="lang">
-        <?= $this->Languages->icon(
-                $translation->lang,
-                [
-                    'width' => 30,
-                    'height' => 20
-                ]
-            ) ?>
+        <img class="language-icon" ng-src="/img/flags/{{translation.lang ? translation.lang : 'unknown'}}.svg" />
     </div>
-    <div class="text" flex
-         dir="<?= LanguagesLib::getLanguageDirection($translation->lang) ?>">
-        <?= h($translation->text) ?>
+
+    <div class="text" dir="{{translation.dir}}" flex>
+        {{translation.text}}
     </div>
-    <?php if ($notReliable) { ?>
-        <md-icon class="md-warn">warning</md-icon>
+    
+    <div ng-if="translation.correctness === -1">
+        <md-icon class="md-warn" >warning</md-icon>
         <md-tooltip md-direction="top">
             <?= __('This sentence is not reliable.') ?>
         </md-tooltip>
-    <?php } ?>
+    </div>
 
-    <?= $this->element('sentence_buttons/audio', ['sentence' => $translation]); ?>
+    <md-button class="md-icon-button" ng-if="translation.editable" ng-click="vm.editTranslation(translation)">
+        <md-icon>edit</md-icon>
+        <md-tooltip>
+            <?= __('Edit this translation'); ?>
+        </md-tooltip>
+    </md-button>
+
+    <md-button class="md-icon-button audioAvailable" href="<?= $audioBaseUrl ?>{{translation.lang}}/{{translation.id}}.mp3"
+                ng-click="vm.playAudio($event)" ng-if="translation.audios && translation.audios.length > 0">
+        <md-icon>volume_up</md-icon>
+        <md-tooltip md-direction="top" ng-if="!vm.getAudioAuthor(translation)">
+            <?= __('Play audio'); ?>
+        </md-tooltip>
+        <md-tooltip md-direction="top" ng-if="vm.getAudioAuthor(translation)">
+            <?= format(
+                __('Play audio recorded by {author}', true),
+                ['author' => '{{vm.getAudioAuthor(translation)}}']
+            ); ?>
+        </md-tooltip>
+    </md-button>
+
+    <md-button class="md-icon-button audioUnavailable" target="_blank" ng-if="!translation.audios || translation.audios.length === 0"
+                href="https://en.wiki.tatoeba.org/articles/show/contribute-audio">
+        <md-icon>volume_off</md-icon>
+        <md-tooltip md-direction="top">
+            <?= __('No audio for this sentence. Click to learn how to contribute.') ?>
+        </md-tooltip>
+    </md-button>
     
-    <md-button class="md-icon-button"
-               href="<?= $translationUrl ?>">
+    <md-button class="md-icon-button" href="<?= $sentenceBaseUrl ?>/{{translation.id}}">
         <md-icon>info</md-icon>
     </md-button>
 </div>

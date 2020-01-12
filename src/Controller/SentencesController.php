@@ -33,6 +33,7 @@ use App\Lib\SphinxClient;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Utility\Hash;
+use Cake\View\ViewBuilder;
 use Exception;
 
 /**
@@ -345,15 +346,21 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function edit_sentence()
+    public function edit_sentence($type = 'html')
     {
         $sentence = $this->Sentences->editSentence($this->request->data);
-        if (empty($sentence)) {
-            // TODO Better error handling.
-            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+        if ($type == 'json') {
+            $this->set('result', $sentence);
+            $this->viewBuilder()->setLayout('json');
+            $this->render('/Generic/json');
         } else {
-            $this->layout = null;
-            $this->set('sentence_text', $sentence->text);
+            if (empty($sentence)) {
+                // TODO Better error handling.
+                $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+            } else {
+                $this->viewBuilder()->setLayout('ajax');
+                $this->set('sentence_text', $sentence->text);
+            }
         }
     }
 
@@ -401,7 +408,7 @@ class SentencesController extends AppController
 
         $this->set('sentenceId', $id);
         $this->set('owner', $sentence->user);
-        $this->layout = null;
+        $this->viewBuilder()->setLayout('ajax');
         $this->render('adopt');
     }
 
@@ -411,7 +418,7 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function save_translation()
+    public function save_translation($type = 'html')
     {
         $sentenceId = $this->request->getData('id');
         $translationLang = $this->request->getData('selectLang');
@@ -453,6 +460,12 @@ class SentencesController extends AppController
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
             }
+        }
+
+        if ($type == 'json') {
+            $this->set('result', $translation);
+            $this->viewBuilder()->setLayout('json');
+            $this->render('/Generic/json');
         }
     }
 
@@ -961,7 +974,7 @@ class SentencesController extends AppController
         $this->request->getSession()->write('random_lang_selected', $lang);
         $neighbors = $this->Sentences->getNeighborsSentenceIds($id, $lang);
         $this->set('result', $neighbors);
-        $this->layout = 'json';
+        $this->viewBuilder()->setLayout('json');
     }
 
 

@@ -134,7 +134,7 @@ if (!isset($results)) {
         </div>
     </md-toolbar>
 
-    <md-content layout-padding>
+    <md-content>
     <?php
     //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
     

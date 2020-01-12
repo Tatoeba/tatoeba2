@@ -52,7 +52,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         </div>
     </md-toolbar>
 
-    <md-content layout-padding>
+    <md-content>
     <?php
     if (!empty($results)) {
         if ($total > $totalLimit) {

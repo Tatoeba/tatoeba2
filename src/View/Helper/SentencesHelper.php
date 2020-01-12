@@ -850,5 +850,13 @@ class SentencesHelper extends AppHelper
         }
         return $this->Html->tag('p', $msg, array('class' => 'derivation'));
     }
+
+    public function translationsForAngular($translations) {
+        foreach($translations as $translation) {
+            $translation->dir = LanguagesLib::getLanguageDirection($translation->lang);
+        }
+
+        return htmlspecialchars(json_encode($translations), ENT_QUOTES, 'UTF-8');
+    }
 }
 ?>

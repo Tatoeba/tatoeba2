@@ -158,7 +158,7 @@ class VocabularyController extends AppController
         $result['numSentencesLabel'] = $numSentencesLabel;
 
         $this->set('result', $result);
-        $this->layout = 'json';
+        $this->viewBuilder()->setLayout('json');
     }
 
 
@@ -181,7 +181,7 @@ class VocabularyController extends AppController
 
         $this->set('vocabularyId', array('id' => $vocabularyId, 'data' => $data));
 
-        $this->layout = 'json';
+        $this->viewBuilder()->setLayout('json');
     }
 
 
@@ -220,6 +220,6 @@ class VocabularyController extends AppController
 
         $this->set('sentence', $sentence);
 
-        $this->layout = 'json';
+        $this->viewBuilder()->setLayout('json');
     }
 }

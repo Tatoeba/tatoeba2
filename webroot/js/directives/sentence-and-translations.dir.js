@@ -23,7 +23,20 @@
         .directive(
             'sentenceAndTranslations',
             sentenceAndTranslations
-        );
+        )
+        // https://stackoverflow.com/questions/28851893/angularjs-textaera-enter-key-submit-form-with-autocomplete
+        .directive('ngEnter', function() {
+            return function(scope, element, attrs) {
+                element.bind('keydown', function(e) {
+                    if(e.which === 13) {
+                        scope.$apply(function(){
+                            scope.$eval(attrs.ngEnter, {'e': e});
+                        });
+                        e.preventDefault();
+                    }
+                });
+            };
+        });
 
     function sentenceAndTranslations() {
         return {
@@ -33,30 +46,157 @@
         };
     }
 
-    function SentenceAndTranslationsController() {
+    function SentenceAndTranslationsController($http, $cookies) {
+        const MAX_TRANSLATIONS = 5;
+        const rootUrl = get_tatoeba_root_url();
+
         var vm = this;
+        var allDirectTranslations = [];
+        var allIndirectTranslations = [];
 
+        vm.inProgress = false;
         vm.isExpanded = false;
+        vm.isMenuExpanded = false;
+        vm.isTranslationFormVisible = false;
         vm.expandableIcon = 'expand_more';
+        vm.userLanguages = [];
+        vm.directTranslations = [];
+        vm.indirectTranslations = [];
+        vm.newTranslation = {};
 
+        vm.initUserLanguages = initUserLanguages;
+        vm.initTranslations = initTranslations;
         vm.expandOrCollapse = expandOrCollapse;
+        vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
+        vm.getAudioAuthor = getAudioAuthor;
+        vm.translate = translate;
+        vm.saveTranslation = saveTranslation;
+        vm.editTranslation = editTranslation;
 
         /////////////////////////////////////////////////////////////////////////
+
+        function initUserLanguages(data) {
+            vm.userLanguages = data;
+        }
+
+        function initTranslations(directTranslations, indirectTranslations) {
+            allDirectTranslations = directTranslations;
+            allIndirectTranslations = indirectTranslations;
+            showFewerTranslations();
+        }
 
         function expandOrCollapse() {
             vm.isExpanded = !vm.isExpanded;
 
             if (vm.isExpanded) {
                 vm.expandableIcon = 'expand_less';
+                showAllTranslations();
             } else {
                 vm.expandableIcon = 'expand_more';
+                showFewerTranslations();
             }
         }
 
-        function playAudio(audioURL) {
+        function showAllTranslations() {
+            vm.directTranslations = allDirectTranslations;
+            vm.indirectTranslations = allIndirectTranslations;
+        }
+
+        function showFewerTranslations() {
+            vm.directTranslations = allDirectTranslations.filter(function(item, index) {
+                return index <= MAX_TRANSLATIONS - 1;
+            });
+            vm.indirectTranslations = allIndirectTranslations.filter(function(item, index) {
+                return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
+            });
+        }
+
+        function toggleMenu() {
+            vm.isMenuExpanded = !vm.isMenuExpanded;
+        }
+
+        function playAudio($event) {
+            $event.stopPropagation();
+            $event.preventDefault();
+
+            var audioURL = $event.currentTarget.href;
             var audio = new Audio(audioURL);
             audio.play();
+        }
+
+        function getAudioAuthor(sentence) {
+            var audio = sentence.audios ? sentence.audios[0] : null;
+
+            if (audio && audio.user) {
+                return audio.user.username;
+            } else if (audio && audio.external) {
+                return audio.external.username;
+            } else {
+                return null;
+            }
+        }
+
+        function translate(id) {
+            vm.isTranslationFormVisible = true;
+            
+            if (vm.newTranslation.editable) {
+                vm.newTranslation = {};
+            }
+
+            if ($cookies.get('translationLang') && !vm.newTranslation.text) {
+                vm.newTranslation.lang = $cookies.get('translationLang');
+            } else if (!vm.newTranslation.lang) {
+                vm.newTranslation.lang = 'auto';
+            }
+            focusTranslationInput(id);
+        }
+
+        function saveTranslation(sentenceId) {
+            $cookies.put('translationLang', vm.newTranslation.lang);
+
+            if (vm.newTranslation && vm.newTranslation.text) {
+                vm.inProgress = true;
+                if (vm.newTranslation.editable) {
+                    var sentence = {
+                        id: [vm.newTranslation.lang, vm.newTranslation.id].join('_'),
+                        value: vm.newTranslation.text
+                    };
+                    $http.post(rootUrl + '/sentences/edit_sentence/json', sentence).then(function(result) {
+                        vm.isTranslationFormVisible = false;
+                        vm.inProgress = false;
+                        vm.newTranslation = {};
+                    });
+                } else {
+                    var data = {
+                        id: sentenceId,
+                        selectLang: vm.newTranslation.lang,
+                        value: vm.newTranslation.text
+                    };
+                    $http.post(rootUrl + '/sentences/save_translation/json', data).then(function(result) {
+                        result.data.editable = true;
+                        result.data.parentId = sentenceId;
+                        allDirectTranslations.unshift(result.data);
+                        vm.newTranslation = {};
+                        vm.isTranslationFormVisible = false;
+                        vm.inProgress = false;
+                        showFewerTranslations();
+                    });
+                }
+            }
+        }
+
+        function editTranslation(translation) {
+            vm.isTranslationFormVisible = true;
+            vm.newTranslation = translation;
+            focusTranslationInput(translation.parentId);
+        }
+
+        function focusTranslationInput(id) {
+            setTimeout(function() {
+                var input = angular.element('#translation-form-' + id);
+                input.focus();
+            }, 100);
         }
     }
 

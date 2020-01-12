@@ -1300,9 +1300,16 @@ div.hideLink {
 /*
  *
  */
+.sentence-and-translations .header {
+    background: #fafafa;
+}
 
-.sentence-and-translations {
-    padding: 10px;
+.sentence-and-translations .menu-wrapper {
+    background: #fff;
+}
+.sentence-and-translations .menu {
+    background: #fafafa;
+    border-bottom-left-radius: 15px;
 }
 
 .sentence-and-translations .text,
@@ -1313,10 +1320,16 @@ div.hideLink {
 
 .sentence-and-translations .sentence {
     font-size: 24px;
+    padding: 10px;
+}
+
+.sentence-and-translations .translation {
+    padding: 2px 10px;
 }
 
 .sentence-and-translations .md-subheader {
-    background: transparent;
+    background: #fff;
+    border-top-right-radius: 15px;
 }
 
 .sentence-and-translations .md-subheader ._md-subheader-inner {
@@ -1342,6 +1355,10 @@ div.hideLink {
 
 .sentence-and-translations .not-reliable .text {
     color: #D32F2F;
+}
+
+.sentence-and-translations .md-errors-spacer {
+    display: none;
 }
 
 
