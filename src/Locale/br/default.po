@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Gwenn M <tornoz@laposte.net>, 2016
-# Irriep Nala Novram <allannkorh@yahoo.fr>, 2017-2019
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2017-2020
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 # Irriep Nala Novram <allannkorh@yahoo.fr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-08 15:01+0000\n"
-"PO-Revision-Date: 2019-12-09 09:01+0000\n"
+"POT-Creation-Date: 2020-01-03 18:39+0000\n"
+"PO-Revision-Date: 2020-01-05 18:28+0000\n"
 "Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>\n"
 "Language-Team: Breton (http://www.transifex.com/tatoeba/tatoeba_website/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -80,7 +80,7 @@ msgid "Folder \"{name}\" emptied."
 msgstr "Goullonderet eo bet an teul \"{name}\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L198
 msgid "There is no sentence with id {number}"
 msgstr "N'eus frazenn ebet gant an id {number}"
 
@@ -350,7 +350,7 @@ msgid "Unknown number of sentences"
 msgstr "Niver a frazennoù dianav"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
@@ -450,7 +450,7 @@ msgstr "N'eus ket eus an implijer {username} ho poa c'hoant kas ur gemennadenn d
 msgid "Comments cannot be empty."
 msgstr "Ne c'hall ket bezañ goullo an evezhiadennoù."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesListsTable.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesListsTable.php#L178
 msgid "unnamed list"
 msgstr "listenn dizanv"
 
@@ -688,7 +688,7 @@ msgid ""
 msgstr "Ur wech m'eo bet tretet ur frazenn gudennek, lakait ar baliz {tagOK}. En un doare hollekoc'h, gellout a rit merdeiñ e mesk ha gwiriañ frazennoù ar re all ha lakaat balizoù warno gant {tagOK}. Nemet pa 'vezer sur da vat e vezont reizh, ha na implijit ket al balizoù-mañ war ho frazennoù deoc'h c'hwi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L87
 msgid "Translate sentences"
 msgstr "Treiñ frazennoù"
@@ -725,56 +725,56 @@ msgid ""
 "translations in the same language. "
 msgstr "Ma kav deoc'h ez eus meur a droidigezh, gellout a rit ouzhpennañ meur a droidigezh evit ar memes yezh."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L93
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
 msgstr "Treiñ frazennoù a dalvez e ouzit div yezh da vihanañ. Klokait <a href=\"{}\">ho profil</a> mar plij evit lakaat hewel d'an dud e ouzoc'h div yezh da vihanañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L107
 msgid "Search for untranslated sentences"
 msgstr "Klask war-lerc'h frazennoù n'int ket bet troet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L139
 msgid "Sentences in:"
 msgstr "Frazennoù e:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ShowAllHelper.php#L198
 msgid "Not directly translated into:"
 msgstr "N'eo ket bet troet war-eeun e:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L155
 msgid "Best practice: translate only into your native language."
 msgstr "Boaz gwellañ: troit en ho yezh-vamm hepken."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L163
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L302
 msgid "Order:"
 msgstr "Urzh:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L311
 msgid "Random"
 msgstr "Dre zegouezh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L170
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L308
 msgid "Fewest words first"
 msgstr "Gerioù berr da gentañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L173
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L310
 msgid "Last modified first"
 msgstr "Kemmet da ziwezhañ da gentañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L176
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L309
 msgid "Last created first"
 msgstr "Graet e diwezhañ da gentañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L184
 msgid "show sentences"
 msgstr "diskouez frazennoù"
 
@@ -817,13 +817,13 @@ msgstr "Frazennoù e {language} gant an aodio"
 msgid "Sentences with audio"
 msgstr "Frazennoù gant an aodio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L49
 msgid "There are no sentences with audio"
 msgstr "N'eus frazenn ebet gant an aodio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L55
@@ -854,9 +854,9 @@ msgstr "Testeni URL:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L340
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L362
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L425
 msgid "Save"
 msgstr "Enrollañ"
 
@@ -903,37 +903,37 @@ msgstr "Gellout a rit enaouiñ en arventennoù: \"Enaouiñ an arc'hweladur da no
 msgid "Filter"
 msgstr "Sil"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L105
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L110
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L96
 msgid "Sort by:"
 msgstr "Rummañ dre:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L107
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L119
 msgid "date modified"
 msgstr "deiziad ar c'hemm"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L120
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L60
 msgid "date created"
 msgstr "deiziad krouidigezh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L115
 msgid "sentence id"
 msgstr "id ar frazenn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L137
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L93
 msgid "Sentence {id} has been deleted."
 msgstr "Ar frazenn {id} a zo bet dilamet."
 
@@ -955,8 +955,8 @@ msgstr[3] "Keidenn bemdeziek: {n} frazenn"
 msgstr[4] "Keidenn bemdeziek: {n} frazenn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L42
 msgid "Latest contributions"
 msgstr "Degasadennoù diwezhañ"
@@ -965,7 +965,7 @@ msgstr "Degasadennoù diwezhañ"
 msgid "Latest contributions of {user}"
 msgstr "Degasadennoù diwezhañ {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L75
 msgid "Only the last {n} log entries are displayed here."
 msgstr "N'eus nemet an/ar/al {n} enmont diwezhañ eus ar renabl hag a zo diskouezet amañ."
 
@@ -1418,13 +1418,13 @@ msgstr "respont"
 msgid "permalink"
 msgstr "liamm-peurbadus"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L47
 msgid "Random sentence"
 msgstr "Frazenn dre zegouezh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L61
 msgid "show another "
 msgstr "diskouez unan all"
 
@@ -1528,7 +1528,7 @@ msgstr "Endalc'had ar gemennadenn-mañ az a a-enep d'hor <a href=\"{}\">reolenno
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L150
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L159
@@ -1547,7 +1547,7 @@ msgstr "Aodio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L146
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L120
 msgid "License"
 msgstr "Lisañs"
 
@@ -1602,7 +1602,7 @@ msgstr "Nebeutoc'h a droidigezhioù"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_statistics.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L111
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "Ur frazenn"
@@ -1715,12 +1715,7 @@ msgstr "Arventennoù"
 msgid "Log out"
 msgstr "Digevreañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L9
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L73
-msgid "Stats"
-msgstr "Statistikoù"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L13
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L11
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
 msgstr[0] "{number} degasadenn hiziv"
@@ -1729,7 +1724,7 @@ msgstr[2] "{number} degasadenn hiziv"
 msgstr[3] "{number} degasadenn hiziv"
 msgstr[4] "{number} degasadenn hiziv"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L23
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L21
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
 msgstr[0] "{number} yezh degemeret"
@@ -1738,7 +1733,7 @@ msgstr[2] "{number} yezh degemeret"
 msgstr[3] "{number} yezh degemeret"
 msgstr[4] "{number} yezh degemeret"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
 msgid "stats per languages"
 msgstr "statistikoù dre yezh"
 
@@ -1798,7 +1793,7 @@ msgstr "Listenn an holl Izili"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L55
 msgid "Languages of members"
 msgstr "Yezhoù an Izili"
 
@@ -1827,7 +1822,7 @@ msgid "Favorites"
 msgstr "Sinedoù"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L211
 msgid "Comments"
 msgstr "Evezhiadennoù"
 
@@ -1871,7 +1866,7 @@ msgid "Add vocabulary items"
 msgstr "Ouzhpennañ elfennoù er c'heriaoueg"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L184
 msgid "Sentences wanted"
 msgstr "Frazennoù c'hoantaet"
 
@@ -1946,7 +1941,7 @@ msgstr "Frazennoù karetañ {user}"
 msgid "Favorite successfully removed."
 msgstr "Karetañ dilamet gant berzh."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L117
 msgid "This user does not have any favorites."
 msgstr "N'eus karetañ ebet ken gant an implijer-mañ."
 
@@ -2283,7 +2278,7 @@ msgid "Lang"
 msgstr "Yezh"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L63
 msgid "Username"
@@ -2594,33 +2589,39 @@ msgstr "Posupl eo ivez, koulskoude, lezel un ezel eus Tatoeba ouzhpennañ ha dil
 msgid "Tatoeba: Collection of sentences and translations"
 msgstr "Tatoeba: Dastumadeg frazennoù ha troidigezhioù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L73
+msgid "Stats"
+msgstr "Statistikoù"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L97
 msgid "Latest messages"
 msgstr "Kemennadennoù diwezhañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L115
 msgid "show more..."
 msgstr "diskouez muioc'h..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L105
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/show.ctp#L99
 msgid "Latest comments"
 msgstr "Evezhiadennoù diwezhañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
 msgid "Want to help?"
 msgstr "C'hoant ho peus da reiñ an dorn?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L67
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L80
 msgid ""
 "We are collecting sentences and their translations. You can help us by "
 "translating or adding new sentences."
 msgstr "Dastum a reomp frazennoù hag o zroidigezh. Gellout a rit reiñ an dorn deomp en ur dreiñ pe en ur ouzhpennañ frazennoù nevez."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 msgid "Join the community"
 msgstr "Dont er gumuniezh"
 
@@ -2671,7 +2672,7 @@ msgstr[4] "{folderName} ({n}&nbsp;a gemennadennoù)"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L382
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L442
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L175
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L158
 msgid "Are you sure?"
@@ -2744,7 +2745,7 @@ msgid ""
 msgstr "Klikit war ar frazenn a zo e-krec'h da vont war tatoeba.org evit treiñ anezhi pe lezel un evezhiadenn."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L174
 msgid "Sentence #{number}"
 msgstr "Frazenn #{number}"
 
@@ -2764,26 +2765,26 @@ msgstr "Evezhiadennoù war ar frazennoù"
 msgid "{user}'s comments"
 msgstr "Evezhiadennoù {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L64
 msgid "{user} has posted no comment"
 msgstr "{user} n'eus embannet evezhiadenn ebet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L138
 msgid "Go back to previous page"
 msgstr "Mont d'ar bajenn gent"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/of_user.ctp#L78
 msgid "{user}'s comments (total&nbsp;{n})"
 msgstr "evezhiadennoù {user} (total&nbsp;{n})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L62
 msgid "{user} has no comment posted on his/her sentences"
 msgstr "{user} n'eus evezhiadenn ebet war e/he frazennoù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/on_sentences_of_user.ctp#L77
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
 msgstr "Evezhiadennoù war frazennoù {user} (total&nbsp;{n})"
 
@@ -2810,38 +2811,38 @@ msgid ""
 "BY license. Otherwise we cannot use them."
 msgstr "<strong>Plijout a ra deomp rannañ ho roadennoù.</strong> Klaskit chom hep eilañ-pegañ frazennoù, pe da vihanañ bezit asur n'emaint ket dindan gwirioù miret strizh hag emaint kenglotus gant ul lisañs CC BY. Mod-all n'hallfemp ket implijout anezho."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L78
 msgid "Add new sentences"
 msgstr "Ouzhpennañ frazennoù nevez"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L98
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L57
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L68
 msgid "Language"
 msgstr "Yezh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L135
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L112
 msgid "Sentence"
 msgstr "Frazenn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L141
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L497
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L389
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L706
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L158
 msgid "OK"
 msgstr "Mat eo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L160
 msgid "Sentences added"
 msgstr "Frazennoù ouzhpennet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L182
 msgid "Check out the vocabulary for which we need sentences"
 msgstr "Gwiriekait ar c'heriaoueg hor beus ezhomm frazennoù eviti"
 
@@ -2904,18 +2905,18 @@ msgstr "Diwallit: an dezverk da heul a zo bet graet fae outañ:{list}"
 msgid "More search criteria"
 msgstr "Muioc'h a zezverkoù gant an enklask"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L90
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L105
 msgid "Search error"
 msgstr "Fazi gant an enklask"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L96
 msgid ""
 "Invalid query. Please refer to the <a href=\"{}\">search documentation</a> "
 "for more details."
 msgstr "Goulenn fall. Kit da welet an <a href=\"{}\">titouroù enklask</a> evit muioc'h a vunudoù."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L109
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
@@ -2963,26 +2964,26 @@ msgstr "(diamzeriet)"
 msgid "There is no log for this sentence"
 msgstr "N'eus roll-istor ebet evit ar frazenn-mañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L230
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L240
 msgid "There are no comments for now."
 msgstr "N'eus evezhiadenn ebet evit ar mare."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L260
 msgid "Random Sentence"
 msgstr "Frazenn dre zegouezh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L262
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
 msgstr "Lazhet eo arc'hweladur ar frazenn dre zegouezh bremañ, klaskit diwezhatoc'h mar plij."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L264
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
 msgstr "C'hoarvezet ez eus bet ur fazi en ur glask frazennoù dre zegouezh. Ma kendalc'h, <a href=\"{}\">lavarit deomp</a> mar plij."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L62
 msgid "Only the last {n} sentences are displayed here."
 msgstr "N'eus nemet an/ar/al {n} frazenn ziwezhañ hag a zo diskouezet amañ."
 
@@ -3058,18 +3059,18 @@ msgstr "Listennoù kenlabourus oc'h enderc'hel \"{search}\" ({total})"
 msgid "All public lists containing \"{search}\" ({total})"
 msgstr "An holl listennoù foran oc'h enderc'hel '{search}\" ({total})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L81
 msgid "list name"
 msgstr "listenn an anvioù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L72
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L87
 msgid "number of sentences"
 msgstr "niver a frazennoù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L76
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L80
 msgid "last updated"
 msgstr "hivizadur diwezhañ"
@@ -3106,7 +3107,7 @@ msgstr[3] "Oc'h ebarzhiñ {n}&nbsp;frazenn"
 msgstr[4] "Oc'h ebarzhiñ {n}&nbsp;frazenn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L44
 msgid "Options"
 msgstr "Dibarzhioù"
 
@@ -3118,7 +3119,7 @@ msgstr "Dibarzhioù"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L385
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L387
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L145
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L476
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L480
 msgid "Edit"
 msgstr "Aozañ"
 
@@ -3155,8 +3156,8 @@ msgstr "Degaserien"
 msgid "Legend"
 msgstr "Alc'hwez"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L73
 msgid "Total"
 msgstr "Hollad"
 
@@ -3206,11 +3207,11 @@ msgstr "An holl valizoù (hollad {{count}})"
 msgid "Tags containing: {search} (total {{count}})"
 msgstr "Balizoù oc'h enderc'hel: {search} (total {{count}})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L93
 msgid "count"
 msgstr "kont"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L95
 msgid "name"
 msgstr "anv"
 
@@ -3434,8 +3435,8 @@ msgid ""
 msgstr "Ar moned d'ar profil-mañ a zo dindan STRISHADURIOÙ. N'eus nemet izili Tatoeba hag a c'hall gwelet an titouroù personel hag an deskrivadur."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L222
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L95
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L140
 msgid "Member since"
 msgstr "Ezel abaoe"
 
@@ -3448,7 +3449,7 @@ msgid "No description."
 msgstr "Diskrivadur ebet."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L307
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L219
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L46
 msgid "Languages"
 msgstr "Yezhoù"
@@ -3466,44 +3467,44 @@ msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "ALI: Broudit an implijer-mañ da spisaat ar yezhoù gouezet gantañ pe ganti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L395
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L426
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L436
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L440
 msgid "Delete"
 msgstr "Dilemel"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L53
 msgid "Main options"
 msgstr "Dibarzhioù pennañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L63
 msgid "Email notifications"
 msgstr "Kemennoù dre bostel"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L86
 msgid "Set your profile public?"
 msgstr "Lakaat foran ho profil?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L111
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default."
 msgstr "Dalc'hit-soñj eus al listenn ziwezhañ ho peus ouzhpennet ur frazenn enni, ha dibabit dre-ziouer."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L137
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations."
 msgstr "Diskouez ul liamm da ziruilhañ an troidigezhioù/diskar pa vez re a droidigezhioù."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L161
 msgid "Always show transcriptions and alternative scripts"
 msgstr "Diskouez an treuzskrivadurioù hag ar skridoù pebeilat dalc'hmat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L183
 msgid "Hide random sentence on the homepage"
 msgstr "Kuzhat ar frazenn dre-zegouezh war ar bajenn degemer"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L206
 msgid ""
 "Enter <a href=\"{url}\">ISO 639-3 codes</a>, separated with a comma (e.g.: "
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
@@ -3511,66 +3512,66 @@ msgid ""
 " all languages."
 msgstr "Ebarzhit <a href=\"{url}\">Kodoù ISO 639-3</a>, skejet gant skejoù (d.sk.: jpn,epo,ara,deu). Tatoeba a ziskouezo troidigezhioù a-benn neuze  er yezhoù ho peus meneget nemetken. Gellout a rit lezel an dra-mañ goullo evit diskouez frazennoù en holl yezhoù."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L227
 msgid "Number of sentences per page"
 msgstr "Niver a frazennoù dre bajenn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L237
 msgid "Experimental options"
 msgstr "Opsionoù o vezañ arnodet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L242
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
 msgstr "N'eo ket hegerz da vat an opsionoù-mañ a zo er rumm-mañ, gellout a reont chom hep mont en-dro gant an holl hag/pe a zo en un test beta. Gellout a reont bezañ pe cheñchet pe dilec'hiet en amzer da zont."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L259
 msgid ""
 "Activate the feature to rate sentences and build your collection of "
 "sentences."
 msgstr "Enaouiñ an arc'hweladur da notenniñ ar frazennoù ha sevel ho tastumad frazennoù."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L281
 msgid ""
 "Display \"(native)\" next to username on sentences when the owner indicated "
 "in their profile that they have a native level in the language of the "
 "sentence."
 msgstr "Diskouez \"(genidik)\" e-kichen d'an anv-implijer pe d'ar frazennoù p'en deus meneget ar perc'henner en e brofil e oa ul live genidik e yezh ar frazenn."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L299
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L305
 msgid "Display button to copy a sentence to the clipboard."
 msgstr "Diskouez ar bouton da eilañ ur frazenn er golver."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L327
 msgid ""
 "Display sentences with the new design. Note that you will not have all the "
 "features from the old design."
 msgstr "Diskouez ar frazennoù gant an neuz nevez. Notennit ne c'hellit ket kaout an holl arc'hweladurioù a oa gant an neuz kozh."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L352
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L358
 msgid "Change email address"
 msgstr "Cheñch ar chomlec'h postel"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L371
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L160
 msgid "Email address"
 msgstr "Chomlec'h postel"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L376
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L389
 msgid "Change password"
 msgstr "Cheñch ar ger-tremen"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L380
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L402
 msgid "Old password"
 msgstr "Ger-tremen kozh"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L410
 msgid "New password"
 msgstr "Ger-tremen nevez"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L418
 msgid "New password again"
 msgstr "Ger-tremen nevez adarre"
 
@@ -3582,11 +3583,11 @@ msgstr "Izili"
 msgid "Search user"
 msgstr "Klask war-lerc'h an implijer"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L85
 msgid "Members (total {number})"
 msgstr "Izili (hollad {number})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L102
 msgid "Member status"
 msgstr "Statud an ezel"
 
@@ -3693,19 +3694,19 @@ msgid ""
 "in Tatoeba, other contributors can add sentences for it."
 msgstr "Ouzhpennit geriaoueg emaoc'h o paouez deskiñ. Ma n'eus ket eus ho keriaoueg e-barzh Tatoeba evit ar mare, degaserien all a c'hall ouzhpennañ frazennoù eviti."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L90
 msgid "Vocabulary item"
 msgstr "Elfennoù ar c'heriaoueg"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L102
 msgid "Add"
 msgstr "Ouzhpennañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L112
 msgid "Vocabulary items added"
 msgstr "Elfennoù ar c'heriaoueg ouzhpennet"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L127
 msgid "You have already added this vocabulary item."
 msgstr "Bez ho peus ouzhpennet an elfenn-c'heriaoueg-mañ endeo."
 
@@ -3713,16 +3714,16 @@ msgstr "Bez ho peus ouzhpennet an elfenn-c'heriaoueg-mañ endeo."
 msgid "Vocabulary that needs sentences"
 msgstr "Geriaoueg a c'houlenn kaout frazennoù"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L53
 msgid ""
 "Only vocabulary items that match fewer than 10 sentences are displayed here."
 msgstr "An elfennoù geriaougel o devez nebeutoc'h evit 10 frazenn hag a genglot ganto a vez diskouezet amañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L87
 msgid "This sentence already exists."
 msgstr "Ar frazenn-mañ 'zo anezhi dija."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L124
 msgid "Submit"
 msgstr "Kas"
 
@@ -3762,7 +3763,7 @@ msgstr "Gellout a rit skrivañ er yezh a blij deoc'h. E Tatoeba, pep yezh 'zo pa
 msgid "{user}'s Wall messages"
 msgstr "Kemennadennoù moger {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L52
 msgid "{user}'s messages on the Wall (total&nbsp;{n})"
 msgstr "{user}'s kemennadennoù war ar voger (hollad&nbsp;{n})"
 
@@ -4282,45 +4283,56 @@ msgstr "Niverenn ar frazenn"
 msgid "Add to list"
 msgstr "Ouzhpennañ d'ul listenn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L363
+msgid "Sentence already in all possible lists"
+msgstr "Ar frazenn-mañ 'zo anezhi dija en holl listennadoù posubl"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L365
 msgid "Add to one of your lists"
 msgstr "Ouzhpennañ d'ul listenn deoc'h"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L363
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L366
 msgid "Add to a collaborative list"
 msgstr "Ouzhpennañ d'ul listenn genlabourus"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L422
 msgid "You cannot delete this sentence because it has audio."
 msgstr "N'hallit ket dilemel al listenn-mañ rak un aodio he deus."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L471
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L475
 msgid "You cannot edit this sentence because it has audio."
 msgstr "N'hallit ket aozañ ar frazenn-mañ rak un aodio he deus."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L507
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L511
 msgid "belongs to {user}"
 msgstr "perc'hennet eo gant {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L527
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L531
 msgid "(native)"
 msgstr "(genidik)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L544
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L548
 msgid "Mark as \"OK\""
 msgstr "Merkañ evel \"OK\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L549
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L553
 msgid "Mark as \"unsure\""
 msgstr "Merkañ evel \"diasur\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L554
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L558
 msgid "Mark as \"not OK\""
 msgstr "Merkañ evel \"nann OK\""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L566
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L570
 msgid "Unmark sentence"
 msgstr "Dilemel merk ar frazenn"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L672
+msgid ""
+"Tatoeba can automatically enter the sentence ID when you have copied a "
+"sentence URL. To enable this, please allow your browser to read from the "
+"clipboard."
+msgstr "Tatoeba a c'hall em-ebarzhiñ ID ar frazenn ur wech m'eo bet eilet ganeoc'h URL ur frazenn. Evit enaouiñ an dra-se roit an aotre d'ho merdeer da lenn adalek ar golver."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L199
 msgid "Notification from Tatoeba"
@@ -4502,48 +4514,48 @@ msgstr "An treizskrivadurioù a zo bet graet gant ur meziant"
 msgid "Reset"
 msgstr "Adloc'hañ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L190
 msgid "Show alternative script"
 msgstr "Diskouez ar skridoù pebeilat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L192
 msgid "Show transcription"
 msgstr "Diskouez an dreuzskrivadenn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L238
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L235
 msgid "Edit alternative script"
 msgstr "Aozañ ar skridoù pebeilat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L240
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L237
 msgid "Edit transcription"
 msgstr "Diskouez an dreuzskrivadenn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L243
 msgid "You cannot edit this script."
 msgstr "Ne c'hallit ket aozañ ar skrid-mañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L248
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L245
 msgid "You cannot edit this transcription."
 msgstr "Ne c'hellit ket aozañ an dreuzskrivadenn-mañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L269
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L266
 msgid ""
 "This alternative script may contain errors because it has been generated by "
 "a piece of software that is not perfect."
 msgstr "Ar skrid-mañ a c'hallfe kaout fazioù ennañ rak graet eo bet gant ur meziant ha n'eo ket peurvat anezhañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L273
 msgid ""
 "This transcription may contain errors because it has been generated by a "
 "piece of software that is not perfect."
 msgstr "An dreuzskrivadenn-mañ a c'hallfe bezañ fazioù ennañ rak graet eo bet gant ur meziant ha n'eo ket peurvat anezhañ."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L287
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
 msgstr "Klikit evit merkañ evel adwelet."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L293
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
 msgstr "Klikit evit merkañ evel adwelet."
