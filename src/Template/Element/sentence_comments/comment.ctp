@@ -112,6 +112,11 @@ if ($sentenceOwnerLink) {
         <md-card-header-text>
             <span class="md-title">
                 <a href="<?= $userProfileUrl ?>"><?= $username ?></a>
+                <span>
+                    <md-button ng-cloak class="md-icon-button" href="<?= $this->Url->build(['controller' => 'private_messages', 'action' => 'write']); ?>">
+                        <md-icon>mail</md-icon>
+                    </md-button> 
+                </span>    
             </span>
             <span class="md-subhead ellipsis">
                 <?= $dateLabel ?>
