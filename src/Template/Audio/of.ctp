@@ -28,7 +28,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 <?php
 if (isset($sentencesWithAudio)) {
 ?>
-    <div id="annexe_content">
+    <div id="annexe_content" ng-cloak>
     <?php
         echo $this->element(
         'users_menu',

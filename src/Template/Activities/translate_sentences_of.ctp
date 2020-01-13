@@ -43,7 +43,7 @@ if (!empty($lang)) {
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<div id="annexe_content">    
+<div id="annexe_content" ng-cloak>
     <?php     
     echo $this->element(
         'users_menu', 
