@@ -61,7 +61,7 @@ $title = empty($realName) ? $username : "$username ($realName)";
 $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
 ?>
 
-<div id="annexe_content">
+<div id="annexe_content" ng-cloak>
     <?php
         echo $this->element(
         'users_menu',

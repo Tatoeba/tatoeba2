@@ -53,7 +53,7 @@ if ($userExists) {
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<div id="annexe_content">
+<div id="annexe_content" ng-cloak>
     <?php
     if (!CurrentUser::get('settings.users_collections_ratings')) {
         echo '<div class="module">';
