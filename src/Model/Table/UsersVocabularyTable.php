@@ -29,7 +29,6 @@ class UsersVocabularyTable extends Table
         $this->belongsTo('Vocabulary');
         $this->belongsTo('Users');
 
-        $this->addBehavior('Hashable');
         $this->addBehavior('Timestamp');
     }
 
