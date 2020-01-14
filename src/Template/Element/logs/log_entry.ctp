@@ -50,13 +50,15 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
 <md-list-item class="md-2-line <?= $type.'-'.$style ?>">
     <?php
     echo $this->Members->image($username, $avatar, array('class' => 'md-avatar'));
-    echo $this->Languages->icon(
-        $langCode,
-        array(
-            'ng-cloak' => true,
-            'class' => 'md-secondary lang'
-        )
-    );
+    if ($type != 'link') {
+        echo $this->Languages->icon(
+            $langCode,
+            array(
+                'ng-cloak' => true,
+                'class' => 'md-secondary lang'
+            )
+        );
+    }
     ?>
     <div class="md-list-item-text" layout="column">
         <div class="content" dir="<?= $langDir ?>">
