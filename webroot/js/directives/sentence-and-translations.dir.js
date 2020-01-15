@@ -58,14 +58,15 @@
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
         vm.isTranslationFormVisible = false;
+        vm.isSentenceFormVisible = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
+        vm.sentence = null;
         vm.directTranslations = [];
         vm.indirectTranslations = [];
         vm.newTranslation = {};
 
-        vm.initUserLanguages = initUserLanguages;
-        vm.initTranslations = initTranslations;
+        vm.init = init;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
@@ -73,14 +74,13 @@
         vm.translate = translate;
         vm.saveTranslation = saveTranslation;
         vm.editTranslation = editTranslation;
+        vm.edit = edit;
 
         /////////////////////////////////////////////////////////////////////////
 
-        function initUserLanguages(data) {
-            vm.userLanguages = data;
-        }
-
-        function initTranslations(directTranslations, indirectTranslations) {
+        function init(langs, sentence, directTranslations, indirectTranslations) {
+            vm.userLanguages = langs;
+            vm.sentence = sentence;
             allDirectTranslations = directTranslations;
             allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
@@ -197,6 +197,10 @@
                 var input = angular.element('#translation-form-' + id);
                 input.focus();
             }, 100);
+        }
+
+        function edit() {
+            vm.isSentenceFormVisible = true;
         }
     }
 

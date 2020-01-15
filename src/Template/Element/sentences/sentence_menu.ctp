@@ -14,7 +14,7 @@ $isUnapproved = $sentence->correctness == -1;
             </md-button>
 
             <?php if ($canEdit) { ?>
-            <md-button class="md-icon-button" ng-disabled="true">
+            <md-button class="md-icon-button" ng-click="vm.edit()">
                 <md-icon>edit</md-icon>
             </md-button>
             <?php } ?>

@@ -37,13 +37,16 @@ $sentenceMenu = [
     'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
     'canLink' => CurrentUser::isTrusted(),
 ];
+$langs = $this->Languages->profileLanguagesArray(false, false);
 
+$userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
+$sentenceJSON = $this->Sentences->sentenceForAngular($sentence);
 $directTranslationsJSON = $this->Sentences->translationsForAngular($directTranslations);
 $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTranslations);
 ?>
 <div ng-cloak
      sentence-and-translations
-     ng-init="vm.initTranslations(<?= $directTranslationsJSON ?>, <?= $indirectTranslationsJSON ?>)"
+     ng-init="vm.init(<?= $userLanguagesJSON ?>, <?= $sentenceJSON ?>, <?= $directTranslationsJSON ?>, <?= $indirectTranslationsJSON ?>)"
      class="sentence-and-translations md-whiteframe-1dp">
     <div layout="column">
         <div layout="row" class="header">
@@ -87,13 +90,12 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
         </div>
 
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
-             layout="row" layout-align="start center">
+             layout="row" layout-align="start center" ng-if="!vm.isSentenceFormVisible">
             <div class="lang">
-                <?= $this->Languages->icon($sentence->lang) ?>
+            <img class="language-icon" ng-src="/img/flags/{{vm.sentence.lang ? vm.sentence.lang : 'unknown'}}.svg" />
             </div>
-            <div class="text" flex
-                 dir="<?= LanguagesLib::getLanguageDirection($sentence->lang) ?>">
-                <?= $sentenceText ?>
+            <div class="text" flex dir="{{vm.sentence.dir}}">
+                {{vm.sentence.text}}
             </div>
             <?php if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>
@@ -113,7 +115,14 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
     <?php
     if (CurrentUser::isMember()) { 
         echo $this->element('sentences/translation_form', [
-            'sentenceId' => $sentence->id
+            'sentenceId' => $sentence->id,
+            'langs' => $langs
+        ]);
+    }
+
+    if ($sentenceMenu['canEdit']) {
+        echo $this->element('sentences/sentence_form', [
+            'sentence' => $sentence
         ]);
     }
     ?>
