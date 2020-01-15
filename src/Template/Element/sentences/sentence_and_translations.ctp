@@ -112,6 +112,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
         </div>
     </div>
 
+    <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
     <?php
     if (CurrentUser::isMember()) { 
         echo $this->element('sentences/translation_form', [

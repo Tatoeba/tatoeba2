@@ -1,7 +1,6 @@
 <?php 
 $hasAudio = count($sentence->audios) > 0;
 ?>
-
 <form layout="column" layout-margin style="padding-top: 10px" ng-if="vm.isSentenceFormVisible">
 <?php if ($hasAudio) { ?>
 
@@ -34,14 +33,14 @@ $hasAudio = count($sentence->audios) > 0;
 
     <md-input-container>
         <label><?= __('Sentence') ?></label>
-        <textarea ng-model="vm.sentence.text" ng-enter="vm.saveSentence()"></textarea>
+        <textarea ng-model="vm.sentence.text" ng-enter="vm.editSentence()"></textarea>
     </md-input-container>
 
     <div layout="row" layout-align="end center">
         <md-button class="md-raised" ng-click="vm.isSentenceFormVisible = false">
             <?= __('Cancel') ?>
         </md-button>
-        <md-button class="md-raised md-primary" ng-click="vm.saveSentence()">
+        <md-button class="md-raised md-primary" ng-click="vm.editSentence()">
             <?= __('Save') ?>
         </md-button>
     </div>

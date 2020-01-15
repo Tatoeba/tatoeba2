@@ -75,6 +75,7 @@
         vm.saveTranslation = saveTranslation;
         vm.editTranslation = editTranslation;
         vm.edit = edit;
+        vm.editSentence = editSentence;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -139,6 +140,7 @@
 
         function translate(id) {
             vm.isTranslationFormVisible = true;
+            vm.isSentenceFormVisible = false;
             
             if (vm.newTranslation.editable) {
                 vm.newTranslation = {};
@@ -158,11 +160,7 @@
             if (vm.newTranslation && vm.newTranslation.text) {
                 vm.inProgress = true;
                 if (vm.newTranslation.editable) {
-                    var sentence = {
-                        id: [vm.newTranslation.lang, vm.newTranslation.id].join('_'),
-                        value: vm.newTranslation.text
-                    };
-                    $http.post(rootUrl + '/sentences/edit_sentence/json', sentence).then(function(result) {
+                    saveSentence(vm.newTranslation).then(function(result) {
                         vm.isTranslationFormVisible = false;
                         vm.inProgress = false;
                         vm.newTranslation = {};
@@ -201,6 +199,25 @@
 
         function edit() {
             vm.isSentenceFormVisible = true;
+            vm.isTranslationFormVisible = false;
+        }
+
+        function editSentence() {
+            vm.inProgress = true;
+
+            saveSentence(vm.sentence).then(function(result) {
+                vm.isSentenceFormVisible = false;
+                vm.inProgress = false;
+                vm.sentence = result.data;
+            });
+        }
+
+        function saveSentence(sentence) {
+            var data = {
+                id: [sentence.lang, sentence.id].join('_'),
+                value: sentence.text
+            };
+            return $http.post(rootUrl + '/sentences/edit_sentence/json', data);
         }
     }
 

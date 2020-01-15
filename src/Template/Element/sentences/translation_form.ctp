@@ -1,7 +1,6 @@
 <div ng-if="vm.isTranslationFormVisible" style="background: #fafafa; border-top: 1px solid #f1f1f1">
 
 <?php if (!empty($langs)) { ?>
-    <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
     <form layout="column" layout-margin style="padding-top: 10px">
         <md-input-container>
             <label><?= __('Translation') ?></label>
