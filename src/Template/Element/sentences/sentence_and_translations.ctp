@@ -23,12 +23,6 @@ $sentenceUrl = $this->Url->build(array(
 ));
 $notReliable = $sentence->correctness == -1;
 
-$sentenceText = h($sentence->text);
-if (isset($sentence->highlight)) {
-    $highlight = $sentence->highlight;
-    $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);
-}
-
 $username = $user ? $user->username : null;
 $sentenceMenu = [
     'canEdit' => CurrentUser::canEditSentenceOfUser($username),
@@ -94,9 +88,8 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
             <div class="lang">
             <img class="language-icon" ng-src="/img/flags/{{vm.sentence.lang ? vm.sentence.lang : 'unknown'}}.svg" />
             </div>
-            <div class="text" flex dir="{{vm.sentence.dir}}">
-                {{vm.sentence.text}}
-            </div>
+            <div class="text" flex dir="{{vm.sentence.dir}}" 
+                 ng-bind-html="vm.sentence.highlightedText ? vm.sentence.highlightedText : vm.sentence.text"></div>
             <?php if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>
                 <md-tooltip md-direction="top">

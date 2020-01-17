@@ -853,6 +853,12 @@ class SentencesHelper extends AppHelper
 
     public function sentenceForAngular($sentence) {
         $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
+        
+        if (isset($sentence->highlight)) {
+            $sentenceText = h($sentence->text);
+            $highlight = $sentence->highlight;
+            $sentence->highlightedText = $this->Search->highlightMatches($highlight, $sentenceText);
+        }
 
         return htmlspecialchars(json_encode($sentence), ENT_QUOTES, 'UTF-8');
     }
