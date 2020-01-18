@@ -37,7 +37,7 @@ $hasAudio = count($sentence->audios) > 0;
     </md-input-container>
 
     <div layout="row" layout-align="end center">
-        <md-button class="md-raised" ng-click="vm.isSentenceFormVisible = false">
+        <md-button class="md-raised" ng-click="vm.cancelEdit()">
             <?= __('Cancel') ?>
         </md-button>
         <md-button class="md-raised md-primary" ng-click="vm.editSentence()">

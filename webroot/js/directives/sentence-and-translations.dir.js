@@ -51,6 +51,7 @@
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
+        var oldSentence = null;
         var allDirectTranslations = [];
         var allIndirectTranslations = [];
 
@@ -75,13 +76,14 @@
         vm.saveTranslation = saveTranslation;
         vm.editTranslation = editTranslation;
         vm.edit = edit;
+        vm.cancelEdit = cancelEdit;
         vm.editSentence = editSentence;
 
         /////////////////////////////////////////////////////////////////////////
 
         function init(langs, sentence, directTranslations, indirectTranslations) {
             vm.userLanguages = langs;
-            vm.sentence = sentence;
+            initSentence(sentence);
             allDirectTranslations = directTranslations;
             allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
@@ -202,6 +204,11 @@
             vm.isTranslationFormVisible = false;
             focusInput('#sentence-form-' + vm.sentence.id);
         }
+        
+        function cancelEdit() {
+            vm.isSentenceFormVisible = false;
+            initSentence(oldSentence);
+        }
 
         function editSentence() {
             vm.inProgress = true;
@@ -209,7 +216,7 @@
             saveSentence(vm.sentence).then(function(result) {
                 vm.isSentenceFormVisible = false;
                 vm.inProgress = false;
-                vm.sentence = result.data;
+                initSentence(result.data);
             });
         }
 
@@ -219,6 +226,11 @@
                 value: sentence.text
             };
             return $http.post(rootUrl + '/sentences/edit_sentence/json', data);
+        }
+
+        function initSentence(data) {
+            oldSentence = data;
+            vm.sentence = Object.assign({}, data);
         }
     }
 
