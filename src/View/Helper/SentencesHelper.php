@@ -852,23 +852,36 @@ class SentencesHelper extends AppHelper
     }
 
     public function sentenceForAngular($sentence) {
-        $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
+        $data = $this->getSentenceData($sentence);
         
         if (isset($sentence->highlight)) {
             $sentenceText = h($sentence->text);
             $highlight = $sentence->highlight;
-            $sentence->highlightedText = $this->Search->highlightMatches($highlight, $sentenceText);
+            $data['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
         }
 
-        return htmlspecialchars(json_encode($sentence), ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
     }
 
     public function translationsForAngular($translations) {
+        $data = [];
         foreach($translations as $translation) {
-            $translation->dir = LanguagesLib::getLanguageDirection($translation->lang);
+            $data[] = $this->getSentenceData($translation);
         }
 
-        return htmlspecialchars(json_encode($translations), ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
+    }
+
+    private function getSentenceData($sentence) {
+        return [
+            'id' => $sentence->id,
+            'text' => $sentence->text,
+            'lang' => $sentence->lang,
+            'script' => $sentence->script,
+            'dir' => LanguagesLib::getLanguageDirection($sentence->lang),
+            'audios' => $sentence->audios,
+            'correctness' => $sentence->correctness
+        ];
     }
 }
 ?>
