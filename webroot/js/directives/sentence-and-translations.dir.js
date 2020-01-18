@@ -221,14 +221,16 @@
         }
 
         function saveSentence(sentence) {
+            var lang = sentence.lang === 'unknown' ? '' : $sentence.lang;
             var data = {
-                id: [sentence.lang, sentence.id].join('_'),
+                id: [lang, sentence.id].join('_'),
                 value: sentence.text
             };
             return $http.post(rootUrl + '/sentences/edit_sentence/json', data);
         }
 
         function initSentence(data) {
+            data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
             vm.sentence = Object.assign({}, data);
         }

@@ -18,7 +18,7 @@ $hasAudio = count($sentence->audios) > 0;
         <md-input-container flex="50">
             <label><?= __('Language') ?></label>
             <md-select ng-model="vm.sentence.lang">
-                <md-option value="auto"><?= __('Auto detect') ?></md-option>
+                <md-option value="unknown"><?= __('Other language') ?></md-option>
                 <md-option ng-repeat="(code, name) in vm.userLanguages" ng-value="code">
                     {{name}}
                 </md-option>
@@ -26,7 +26,7 @@ $hasAudio = count($sentence->audios) > 0;
         </md-input-container>
         
         <div style="padding: 10px 10px 0 10px">
-            <img ng-src="/img/flags/{{vm.sentence.lang}}.svg" ng-if="vm.sentence.lang && vm.sentence.lang !== 'auto'" 
+            <img ng-src="/img/flags/{{vm.sentence.lang}}.svg"
                  width="30" height="20" class="language-icon"/>
         </div>
     </div>
