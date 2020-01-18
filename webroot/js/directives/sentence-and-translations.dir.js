@@ -151,7 +151,7 @@
             } else if (!vm.newTranslation.lang) {
                 vm.newTranslation.lang = 'auto';
             }
-            focusTranslationInput(id);
+            focusInput('#translation-form-' + id);
         }
 
         function saveTranslation(sentenceId) {
@@ -187,12 +187,12 @@
         function editTranslation(translation) {
             vm.isTranslationFormVisible = true;
             vm.newTranslation = translation;
-            focusTranslationInput(translation.parentId);
+            focusInput('#translation-form-' + translation.parentId);
         }
 
-        function focusTranslationInput(id) {
+        function focusInput(id) {
             setTimeout(function() {
-                var input = angular.element('#translation-form-' + id);
+                var input = angular.element(id);
                 input.focus();
             }, 100);
         }
@@ -200,6 +200,7 @@
         function edit() {
             vm.isSentenceFormVisible = true;
             vm.isTranslationFormVisible = false;
+            focusInput('#sentence-form-' + vm.sentence.id);
         }
 
         function editSentence() {
