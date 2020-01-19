@@ -95,6 +95,16 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
                  dir="<?= LanguagesLib::getLanguageDirection($sentence->lang) ?>">
                 <?= $sentenceText ?>
             </div>
+
+            <?php if (!empty($user->is_native)) { ?>
+                <md-icon>
+                    star
+                    <md-tooltip md-direction="top">
+                        <?= __('This sentence belongs to a native speaker.') ?>
+                    </md-tooltip>
+                </md-icon>
+            <?php } ?>
+
             <?php if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>
                 <md-tooltip md-direction="top">
