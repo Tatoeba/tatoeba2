@@ -35,7 +35,7 @@ function loadRandom(lang){
     
     $.ajax({
       type: "GET",
-      url: "/sentences/random/" + lang,
+      url: get_tatoeba_root_url() + "/sentences/random/" + lang,
       success: function (data){ 
           $("#random_sentence_display").watch("html", data);
           $("#random-progress").hide();
