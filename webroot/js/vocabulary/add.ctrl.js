@@ -32,6 +32,7 @@
         vm.remove = remove;
         vm.isAdding = false;
 
+        const rootUrl = get_tatoeba_root_url();
         ///////////////////////////////////////////////////////////////////////////
 
         function add() {
@@ -40,7 +41,6 @@
             $('#add-vocabulary-form input[name^="_Token"]').each(function() {
                 vm.data[$(this).attr('name')] = $(this).val();
             });
-            var rootUrl = get_tatoeba_root_url();
             var req = {
                 method: 'POST',
                 url: rootUrl + '/vocabulary/save',
@@ -54,7 +54,7 @@
                     var data = response.data;
                     if (data.query) {
                         var query = encodeURIComponent(data.query);
-                        data.url = '/sentences/search?' +
+                        data.url = rootUrl + '/sentences/search?' +
                             'query=' + query + '&' +
                             'from=' + data.lang +
                             '&orphans=&unapproved=';
@@ -67,7 +67,7 @@
         }
 
         function remove(id) {
-            $http.get('/vocabulary/remove/' + id).then(
+            $http.get(rootUrl + '/vocabulary/remove/' + id).then(
                 function(response) {
                     $('#vocabulary_' + id).hide();
                 }

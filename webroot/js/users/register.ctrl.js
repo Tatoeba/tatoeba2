@@ -27,6 +27,8 @@
         .directive('input',  ['$parse', assignDefaultValuesToModel])
         .directive('select', ['$parse', assignDefaultValuesToModel]);
 
+    const rootUrl = get_tatoeba_root_url();
+
     function assignDefaultValuesToModel($parse) {
         return {
             restrict: 'E',
@@ -71,7 +73,7 @@
                     if (!value) {
                         return $q.resolve();
                     }
-                    return $http.get('/users/check_username/' + value).then(
+                    return $http.get(rootUrl + '/users/check_username/' + value).then(
                         function(response) {
                             if (response.data === 'valid') {
                                 return $q.resolve();
@@ -93,7 +95,7 @@
                     if (!value) {
                         return $q.resolve();
                     }
-                    return $http.get('/users/check_email/' + value).then(
+                    return $http.get(rootUrl + '/users/check_email/' + value).then(
                         function(response) {
                             if (response.data === 'valid') {
                                 return $q.resolve();

@@ -29,7 +29,7 @@
         ///////////////////////////////////////////////////////////////////////////
 
         function remove(id) {
-            $http.get('/vocabulary/remove/' + id).then(
+            $http.get(get_tatoeba_root_url() + '/vocabulary/remove/' + id).then(
                 function(response) {
                     $('#vocabulary_' + id).hide();
                 }
