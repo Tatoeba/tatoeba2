@@ -221,7 +221,7 @@
         }
 
         function saveSentence(sentence) {
-            var lang = sentence.lang === 'unknown' ? '' : $sentence.lang;
+            var lang = sentence.lang === 'unknown' ? '' : sentence.lang;
             var data = {
                 id: [lang, sentence.id].join('_'),
                 value: sentence.text
