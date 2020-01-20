@@ -73,15 +73,17 @@ class CommentsHelper extends AppHelper
         $commentId = $comment['id'];
 
         //send message
-        $menu[] = array(
-            'text' => __('send message'),
-            'icon' => 'mail',
-            'url' => array(
-                'controller' => 'private_messages', 
-                'action' => 'write', 
-                $comment->user->username      
-            )
-        );
+        if ($permissions['canPM']) {
+            $menu[] = array(
+                'text' => __('send message'),
+                'icon' => 'mail',
+                'url' => array(
+                    'controller' => 'private_messages', 
+                    'action' => 'write', 
+                    $comment->user->username      
+                )
+            );
+        }
 
         // hide
         if ($permissions['canHide']) {
