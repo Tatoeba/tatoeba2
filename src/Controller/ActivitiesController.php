@@ -53,6 +53,9 @@ class ActivitiesController extends AppController
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Pagination';
 
+        if (empty($this->Auth->user('id'))) { 
+            return $this->redirect(array('controller' => 'pages', 'action' => 'index'));
+        }    
         $conditions = array('user_id IS' => null);
         if(!empty($lang)) {
             $conditions['lang'] = $lang;
@@ -117,6 +120,9 @@ class ActivitiesController extends AppController
     {
         $this->helpers[] = 'Languages';
 
+        if (empty($this->Auth->user('id'))) { 
+            return $this->redirect(array('controller' => 'pages', 'action' => 'index'));
+        }        
         $langFrom = $this->request->getQuery('langFrom');
         $langTo = $this->request->getQuery('langTo');
         if ($langFrom && $langTo)
@@ -143,7 +149,6 @@ class ActivitiesController extends AppController
             ));
         }
     }
-
 
     /**
      * Translate sentences of a specific user.
