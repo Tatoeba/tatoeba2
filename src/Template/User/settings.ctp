@@ -44,7 +44,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <h2><?php echo __('Options'); ?></h2>
             </div>
         </md-toolbar>
-        
+
         <?php echo $this->Form->create($userSettings, [
             'ng-cloak' => true,
             'url' => ['controller' => 'user', 'action' => 'save_settings']
@@ -83,7 +83,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
                 </md-checkbox>
 
-                <p><?php echo __('Set your profile public?') ?></p>
+                <p><?php echo __('Set your profile public') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
