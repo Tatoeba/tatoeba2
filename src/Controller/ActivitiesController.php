@@ -149,6 +149,7 @@ class ActivitiesController extends AppController
             ));
         }
     }
+    
 
     /**
      * Translate sentences of a specific user.
