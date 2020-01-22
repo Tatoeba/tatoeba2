@@ -566,7 +566,7 @@ class SentencesFixture extends TestFixture {
 			'created' => '2017-04-09 11:39:02',
 			'modified' => '2017-04-09 11:39:02',
 			'script' => null,
-			'hash' => "23jrk2o\0\0\0\0\0\0\0\0\0",  // wrong hash should be 23jek2o
+			'hash' => "23jrk2o\0\0\0\0\0\0\0\0\0",  // wrong hash, should be 23jek2o
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => NULL,
 		),
@@ -644,7 +644,7 @@ class SentencesFixture extends TestFixture {
 			'created' => '2017-04-10 01:22:00',
 			'modified' => '2017-04-10 01:22:00',
 			'script' => null,
-			'hash' => "2qkarjg\0\0\0\0\0\0\0\0\0",
+			'hash' => "2qkarjg\0\0\0\0\0\0\0\0\0",  // wrong hash, should be pk4rjj
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '0',
 		),
@@ -657,7 +657,7 @@ class SentencesFixture extends TestFixture {
 			'created' => '2017-04-10 01:23:00',
 			'modified' => '2017-04-10 01:23:00',
 			'script' => null,
-			'hash' => "pk4rjj\0\0\0\0\0\0\0\0\0\0",
+			'hash' => "pk4rjj\0\0\0\0\0\0\0\0\0\0",  // wrong hash, should be 2qkarjg
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => '48',
 		),
@@ -696,7 +696,7 @@ class SentencesFixture extends TestFixture {
 			'created' => '2017-04-10 01:27:00',
 			'modified' => '2017-04-10 01:27:00',
 			'script' => null,
-			'hash' => "25b050m\0\0\0\0\0\0\0\0\0",
+			'hash' => "25b050m\0\0\0\0\0\0\0\0\0",  // wrong hash, should be ffuo96
 			'license' => null,
 			'based_on_id' => '0',
 		),
