@@ -53,9 +53,9 @@ $menu = [
         ]
     ],
     [
-        'label' => __('Collection'),
+        'label' => __('Ratings'),
         'url' => [
-            'controller' => 'collections',
+            'controller' => 'ratings',
             'action' => 'of',
             $username
         ]
@@ -157,7 +157,7 @@ $menu = [
         <md-icon>{{ icon }}</md-icon>
     </md-subheader>
 
-    <?php foreach($menu as $item) { 
+    <?php foreach($menu as $item) {
         if (isset($item['label']) && isset($item['url'])) {
             $url = $this->Url->build($item['url']);
             ?>
@@ -169,7 +169,7 @@ $menu = [
             </md-list-item>
         <?php } else { ?>
             <md-divider></md-divider>
-        <?php } ?>    
+        <?php } ?>
     <?php } ?>
 </md-list>
 

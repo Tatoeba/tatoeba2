@@ -43,7 +43,7 @@ if ($correctnessLabel) {
 
 if ($userExists) {
     $title = format(
-        __("{user}'s collection - {category}"),
+        __("{user}'s ratings - {category}"),
         array('user' => $username, 'category' => $categories[$category][1])
     );
 } else {
@@ -60,8 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         echo $this->Html->tag('p', __('This feature is currently deactivated.'));
         echo $this->Html->tag('p',
             __(
-                'You can activate it in your settings: "Activate the feature '.
-                'to rate sentences and build your collection..."',
+                'You can activate it in your settings: "Activate the feature to rate sentences."',
                 true
             )
         );
@@ -98,7 +97,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             $title = $this->Paginator->counter(array(
                 'format' => $title . ' ' . __("(total {{count}})")
             ));
-            ?>            
+            ?>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $title ?></h2>

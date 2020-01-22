@@ -25,7 +25,7 @@ $(document).ready(function(){
             var correctness = $(this).attr("data-sentence-correctness");
             var addToCorpusOption = $(this);
 
-            var requestUrl = "/collections";
+            var requestUrl = "/ratings";
             if ($(this).hasClass("selected")){
                 requestUrl += "/delete_sentence/" + sentenceId + "/" + correctness;
             } else {
