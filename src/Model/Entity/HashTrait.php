@@ -18,6 +18,13 @@ trait HashTrait
      **/
     private $_hash = null;
 
+    /*+
+     * Flag for updating the hash
+     *
+     * @var boolean
+     **/
+    private $_needsUpdate = false;
+
     /**
      * The fields the hash is based on
      *
@@ -28,6 +35,22 @@ trait HashTrait
     private $_hashFields = [];
 
     /**
+     * Initializes the hash
+     *
+     * Should be called by entity's constructor.
+     *
+     * @param string|null $hash   Initial value of the hash
+     * @param array       $fields Fields the hash is based on
+     *
+     * @return void
+     **/
+    public function initializeHash($hash, $fields) {
+        $this->_hash = $hash;
+        $this->_hashFields = $fields;
+        $this->_needsUpdate = false;
+    }
+
+    /**
      * Setter method
      *
      * @param string $value New value for the hash
@@ -36,18 +59,19 @@ trait HashTrait
      **/
     public function _setHash($value) {
         $this->_hash = $value;
+        $this->_needsUpdate = false;
         return $value;
     }
 
     /**
      * Getter method
      *
-     * Returns the cached value or recalculates the hash if needed.
+     * Returns the current value or recalculates the hash if needed.
      *
      * @return string
      **/
     public function _getHash() {
-        if ($this->_hash === null) {
+        if ($this->_needsUpdate) {
             $str = array_reduce(
                 $this->_hashFields,
                 function ($carry, $item) {
@@ -56,6 +80,7 @@ trait HashTrait
                 ''
             );
             $this->_hash = $this->makeHash($str);
+            $this->_needsUpdate = false;
         }
         return $this->_hash;
     }
@@ -69,27 +94,15 @@ trait HashTrait
      **/
     public function updateHash() {
         $this->_hash = null;
+        $this->_needsUpdate = true;
         $this->setDirty('hash');
-    }
-
-    /**
-     * Sets the fields for hashing
-     *
-     * Should be called by the entity.
-     *
-     * @var array $fields
-     *
-     * @return void
-     **/
-    public function setHashFields($fields) {
-        $this->_hashFields = $fields;
     }
 
     /**
      * Create hash from given string
      *
      * The hash will be 16 characters long (padded with NUL
-         * characters if necessary).
+     * characters if necessary).
      *
      * @param  string $str
      *

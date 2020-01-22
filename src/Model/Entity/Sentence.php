@@ -27,7 +27,8 @@ class Sentence extends Entity
 
     public function __construct($properties = [], $options = []) {
         parent::__construct($properties, $options);
-        $this->setHashFields(['lang', 'text']);
+        $hash = $properties['hash'] ?? null;
+        $this->initializeHash($hash, ['lang', 'text']);
     }
 
     protected function _setLang($value)

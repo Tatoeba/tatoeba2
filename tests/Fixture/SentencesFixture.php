@@ -66,7 +66,7 @@ class SentencesFixture extends TestFixture {
 			'created' => '2014-04-15 00:33:18',
 			'modified' => '2014-04-15 00:33:18',
 			'script' => null,
-			'hash' => "2hfhma4\0\0\0\0\0\0\0\0\0",
+			'hash' => "2hfxma4\0\0\0\0\0\0\0\0\0",  // wrong hash, should be 2hfhma4
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => NULL,
 		),
@@ -566,7 +566,7 @@ class SentencesFixture extends TestFixture {
 			'created' => '2017-04-09 11:39:02',
 			'modified' => '2017-04-09 11:39:02',
 			'script' => null,
-			'hash' => "23jek2o\0\0\0\0\0\0\0\0\0",
+			'hash' => "23jrk2o\0\0\0\0\0\0\0\0\0",  // wrong hash should be 23jek2o
 			'license' => 'CC BY 2.0 FR',
 			'based_on_id' => NULL,
 		),
