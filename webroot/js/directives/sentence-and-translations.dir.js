@@ -36,6 +36,18 @@
                     }
                 });
             };
+        })
+        .directive('ngEscape', function() {
+            return function(scope, element, attrs) {
+                element.bind('keydown', function(e) {
+                    if(e.which === 27) {
+                        scope.$apply(function(){
+                            scope.$eval(attrs.ngEscape, {'e': e});
+                        });
+                        e.preventDefault();
+                    }
+                });
+            };
         });
 
     function sentenceAndTranslations() {

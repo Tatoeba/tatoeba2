@@ -33,7 +33,8 @@ $hasAudio = count($sentence->audios) > 0;
 
     <md-input-container>
         <label><?= __('Sentence') ?></label>
-        <textarea id="sentence-form-<?= $sentence->id ?>" ng-model="vm.sentence.text" ng-enter="vm.editSentence()"></textarea>
+        <textarea id="sentence-form-<?= $sentence->id ?>" ng-model="vm.sentence.text" 
+                  ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()"></textarea>
     </md-input-container>
 
     <div layout="row" layout-align="end center">
