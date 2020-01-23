@@ -97,7 +97,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
                 </md-tooltip>
             <?php } ?>
             
-            <?= $this->element('sentence_buttons/audio', ['sentence' => $sentence]); ?>
+            <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
 
             <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
                 <md-icon>info</md-icon>
