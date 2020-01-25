@@ -577,6 +577,7 @@ class LanguagesLib
                 'ltg' => __d('languages', 'Latgalian'),
                 'emx' => __d('languages', 'Erromintxela'),
                 'gom' => __d('languages', 'Konkani (Goan)'),
+                'chg' => __d('languages', 'Chagatai'),
             );
         }
         return $languages;
@@ -640,6 +641,7 @@ class LanguagesLib
             "snd",
             "div",
             "otk",
+            "chg"
         );
 
         $autoLangs = array(
