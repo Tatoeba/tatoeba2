@@ -36,6 +36,18 @@
                     }
                 });
             };
+        })
+        .directive('ngEscape', function() {
+            return function(scope, element, attrs) {
+                element.bind('keydown', function(e) {
+                    if(e.which === 27) {
+                        scope.$apply(function(){
+                            scope.$eval(attrs.ngEscape, {'e': e});
+                        });
+                        e.preventDefault();
+                    }
+                });
+            };
         });
 
     function sentenceAndTranslations() {
@@ -51,6 +63,7 @@
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
+        var oldSentence = null;
         var allDirectTranslations = [];
         var allIndirectTranslations = [];
 
@@ -58,14 +71,15 @@
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
         vm.isTranslationFormVisible = false;
+        vm.isSentenceFormVisible = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
+        vm.sentence = null;
         vm.directTranslations = [];
         vm.indirectTranslations = [];
         vm.newTranslation = {};
 
-        vm.initUserLanguages = initUserLanguages;
-        vm.initTranslations = initTranslations;
+        vm.init = init;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
@@ -73,14 +87,15 @@
         vm.translate = translate;
         vm.saveTranslation = saveTranslation;
         vm.editTranslation = editTranslation;
+        vm.edit = edit;
+        vm.cancelEdit = cancelEdit;
+        vm.editSentence = editSentence;
 
         /////////////////////////////////////////////////////////////////////////
 
-        function initUserLanguages(data) {
-            vm.userLanguages = data;
-        }
-
-        function initTranslations(directTranslations, indirectTranslations) {
+        function init(langs, sentence, directTranslations, indirectTranslations) {
+            vm.userLanguages = langs;
+            initSentence(sentence);
             allDirectTranslations = directTranslations;
             allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
@@ -139,6 +154,7 @@
 
         function translate(id) {
             vm.isTranslationFormVisible = true;
+            vm.isSentenceFormVisible = false;
             
             if (vm.newTranslation.editable) {
                 vm.newTranslation = {};
@@ -149,7 +165,7 @@
             } else if (!vm.newTranslation.lang) {
                 vm.newTranslation.lang = 'auto';
             }
-            focusTranslationInput(id);
+            focusInput('#translation-form-' + id);
         }
 
         function saveTranslation(sentenceId) {
@@ -158,11 +174,7 @@
             if (vm.newTranslation && vm.newTranslation.text) {
                 vm.inProgress = true;
                 if (vm.newTranslation.editable) {
-                    var sentence = {
-                        id: [vm.newTranslation.lang, vm.newTranslation.id].join('_'),
-                        value: vm.newTranslation.text
-                    };
-                    $http.post(rootUrl + '/sentences/edit_sentence/json', sentence).then(function(result) {
+                    saveSentence(vm.newTranslation).then(function(result) {
                         vm.isTranslationFormVisible = false;
                         vm.inProgress = false;
                         vm.newTranslation = {};
@@ -189,14 +201,50 @@
         function editTranslation(translation) {
             vm.isTranslationFormVisible = true;
             vm.newTranslation = translation;
-            focusTranslationInput(translation.parentId);
+            focusInput('#translation-form-' + translation.parentId);
         }
 
-        function focusTranslationInput(id) {
+        function focusInput(id) {
             setTimeout(function() {
-                var input = angular.element('#translation-form-' + id);
+                var input = angular.element(id);
                 input.focus();
             }, 100);
+        }
+
+        function edit() {
+            vm.isSentenceFormVisible = true;
+            vm.isTranslationFormVisible = false;
+            focusInput('#sentence-form-' + vm.sentence.id);
+        }
+        
+        function cancelEdit() {
+            vm.isSentenceFormVisible = false;
+            initSentence(oldSentence);
+        }
+
+        function editSentence() {
+            vm.inProgress = true;
+
+            saveSentence(vm.sentence).then(function(result) {
+                vm.isSentenceFormVisible = false;
+                vm.inProgress = false;
+                initSentence(result.data);
+            });
+        }
+
+        function saveSentence(sentence) {
+            var lang = sentence.lang === 'unknown' ? '' : sentence.lang;
+            var data = {
+                id: [lang, sentence.id].join('_'),
+                value: sentence.text
+            };
+            return $http.post(rootUrl + '/sentences/edit_sentence/json', data);
+        }
+
+        function initSentence(data) {
+            data.lang = data.lang ? data.lang : 'unknown';
+            oldSentence = data;
+            vm.sentence = Object.assign({}, data);
         }
     }
 

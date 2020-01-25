@@ -23,12 +23,6 @@ $sentenceUrl = $this->Url->build(array(
 ));
 $notReliable = $sentence->correctness == -1;
 
-$sentenceText = h($sentence->text);
-if (isset($sentence->highlight)) {
-    $highlight = $sentence->highlight;
-    $sentenceText = $this->Search->highlightMatches($highlight, $sentenceText);
-}
-
 $username = $user ? $user->username : null;
 $sentenceMenu = [
     'canEdit' => CurrentUser::canEditSentenceOfUser($username),
@@ -37,13 +31,16 @@ $sentenceMenu = [
     'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
     'canLink' => CurrentUser::isTrusted(),
 ];
+$langs = $this->Languages->profileLanguagesArray(false, false);
 
+$userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
+$sentenceJSON = $this->Sentences->sentenceForAngular($sentence);
 $directTranslationsJSON = $this->Sentences->translationsForAngular($directTranslations);
 $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTranslations);
 ?>
 <div ng-cloak
      sentence-and-translations
-     ng-init="vm.initTranslations(<?= $directTranslationsJSON ?>, <?= $indirectTranslationsJSON ?>)"
+     ng-init="vm.init(<?= $userLanguagesJSON ?>, <?= $sentenceJSON ?>, <?= $directTranslationsJSON ?>, <?= $indirectTranslationsJSON ?>)"
      class="sentence-and-translations md-whiteframe-1dp">
     <div layout="column">
         <div layout="row" class="header">
@@ -87,14 +84,12 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
         </div>
 
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
-             layout="row" layout-align="start center">
+             layout="row" layout-align="start center" ng-if="!vm.isSentenceFormVisible">
             <div class="lang">
-                <?= $this->Languages->icon($sentence->lang) ?>
+            <img class="language-icon" ng-src="/img/flags/{{vm.sentence.lang ? vm.sentence.lang : 'unknown'}}.svg" />
             </div>
-            <div class="text" flex
-                 dir="<?= LanguagesLib::getLanguageDirection($sentence->lang) ?>">
-                <?= $sentenceText ?>
-            </div>
+            <div class="text" flex dir="{{vm.sentence.dir}}" 
+                 ng-bind-html="vm.sentence.highlightedText ? vm.sentence.highlightedText : vm.sentence.text"></div>
             <?php if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>
                 <md-tooltip md-direction="top">
@@ -102,7 +97,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
                 </md-tooltip>
             <?php } ?>
             
-            <?= $this->element('sentence_buttons/audio', ['sentence' => $sentence]); ?>
+            <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
 
             <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
                 <md-icon>info</md-icon>
@@ -110,10 +105,18 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
         </div>
     </div>
 
+    <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
     <?php
     if (CurrentUser::isMember()) { 
         echo $this->element('sentences/translation_form', [
-            'sentenceId' => $sentence->id
+            'sentenceId' => $sentence->id,
+            'langs' => $langs
+        ]);
+    }
+
+    if ($sentenceMenu['canEdit']) {
+        echo $this->element('sentences/sentence_form', [
+            'sentence' => $sentence
         ]);
     }
     ?>
