@@ -641,12 +641,12 @@ class LanguagesLib
             "snd",
             "div",
             "otk",
-            "chg"
         );
 
         $autoLangs = array(
             "apc",
             "ota",
+            "chg",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
