@@ -19,9 +19,47 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Entity\HashTrait;
 
 class Sentence extends Entity
 {
+    use HashTrait;
+
+    public function __construct($properties = [], $options = []) {
+        parent::__construct($properties, $options);
+        $hash = $properties['hash'] ?? null;
+        $this->initializeHash($hash, ['lang', 'text']);
+    }
+
+    protected function _setLang($value)
+    {
+        $this->updateHash();
+        return empty($value) ? null : $value;
+    }
+
+    protected function _setText($value)
+    {
+        $this->updateHash();
+        return $this->_clean($value);
+    }
+
+    private function _clean($text)
+    {
+        $text = trim($text);
+        // Strip out any byte-order mark that might be present.
+        $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
+        // Replace any series of spaces, newlines, tabs, or other
+        // ASCII whitespace characters with a single space.
+        $text = preg_replace('/\s+/', ' ', $text);
+        // MySQL will truncate to a byte length of 1500, which may split
+        // a multibyte character. To avoid this, we preemptively
+        // truncate to a maximum byte length of 1500. If a multibyte
+        // character would be split, the entire character will be
+        // truncated.
+        $text = mb_strcut($text, 0, 1500, "UTF-8");
+        return $text;
+    }
+
     protected function _getOldFormat() 
     {
         $result['Sentence'] = [
