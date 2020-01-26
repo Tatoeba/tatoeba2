@@ -4,7 +4,7 @@ use App\Model\Entity\User;
 $config = [
     // actions available to everyone, even guests
     'public_actions' => [
-        'activities' => '*',
+        'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
         'audio' => [ 'of', 'index' ],
         'autocompletions' => '*',
         'collections' => [ 'of' ],
@@ -71,6 +71,10 @@ $config = [
 
     // actions not available for guests or some users
     'auth_actions' => [
+        'activities' => [
+            'translate_sentences'  => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+            'adopt_sentences'      => User::ROLE_CONTRIBUTOR_OR_HIGHER,
+        ],    
         'audio' => [
             'import' => [ User::ROLE_ADMIN ],
             'save_settings' => User::ROLE_CONTRIBUTOR_OR_HIGHER,
