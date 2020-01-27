@@ -206,6 +206,7 @@ class UsersFixture extends TestFixture
                 'birthday' => NULL,
                 'description' => '',
                 'settings' => [
+                    'sentences_per_page' => 20,
                     'is_public' => false,
                     'lang' => null,
                     'default_license' => 'CC0 1.0',
