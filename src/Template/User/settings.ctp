@@ -44,7 +44,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <h2><?php echo __('Options'); ?></h2>
             </div>
         </md-toolbar>
-        
+
         <?php echo $this->Form->create($userSettings, [
             'ng-cloak' => true,
             'url' => ['controller' => 'user', 'action' => 'save_settings']
@@ -172,21 +172,21 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $hideRandomSentence = $userSettings->settings['hide_random_sentence']; ?>
+                <?php $showRandomSentence = 1 - $userSettings->settings['hide_random_sentence']; ?>
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
-                    ng-model="hideRandomSentence"
-                    ng-init="hideRandomSentence = <?= $hideRandomSentence ?>"
+                    ng-model="showRandomSentence"
+                    ng-init="showRandomSentence = <?= $showRandomSentence ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Hide random sentence on the homepage') ?> </p>
+                <p><?php echo __('Show random sentence on the homepage') ?> </p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
                         'settings.hide_random_sentence',
                         array(
-                            'value' => '{{hideRandomSentence}}'
+                            'value' => '{{1 - showRandomSentence}}'
                         )
                     );
                 ?>
