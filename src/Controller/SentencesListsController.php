@@ -165,7 +165,7 @@ class SentencesListsController extends AppController
         }
 
         $this->loadModel('Sentences');
-        
+
         $contain = $this->Sentences->paginateContain();
         $contain['finder'] = ['filteredTranslations' => [
             'translationLang' => $translationsLang
@@ -195,10 +195,10 @@ class SentencesListsController extends AppController
     public function add()
     {
         $list = $this->SentencesLists->createList(
-            $this->request->getData('name'), 
+            $this->request->getData('name'),
             $this->Auth->user('id')
         );
-        
+
         if (isset($list->id)) {
             return $this->redirect(array('action' => 'show', $list['id']));
         } else {
@@ -218,7 +218,7 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         $listId = substr($this->request->getData('id'), 1);
         $listName = $this->request->getData('value');
-        
+
         if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
         } else {
@@ -247,7 +247,7 @@ class SentencesListsController extends AppController
                 $this->request->getSession()->delete('most_recent_list');
             }
         }
-        
+
         return $this->redirect(array('action' => 'index'));
     }
 
@@ -371,16 +371,28 @@ class SentencesListsController extends AppController
      */
     public function set_option()
     {
+        $reload = false;
         $userId = CurrentUser::get('id');
+        $listId = $this->request->getData('listId');
+        $option = $this->request->getData('option');
+        $value = $this->request->getData('value');
+        if ($option == 'editable_by' &&
+            ($value == 'no_one' || $this->SentencesLists->get($listId)->editable_by == 'no_one')) {
+            $reload = true;
+        }
+
         $result = $this->SentencesLists->editOption(
-            $this->request->getData('listId'),
-            $this->request->getData('option'),
-            $this->request->getData('value'),
+            $listId,
+            $option,
+            $value,
             $userId
         );
 
         $this->response->header('Content-Type: application/json');
-        $this->set('result', json_encode($result['SentencesList']));
+        if (empty($result['SentencesList'])) {
+            $reload = false;
+        }
+        $this->set('result', json_encode(array('reload' => $reload)));
     }
 
     /**
