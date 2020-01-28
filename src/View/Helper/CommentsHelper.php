@@ -59,7 +59,7 @@ class CommentsHelper extends AppHelper
             $this->Sentences->displaySimpleSentencesGroup($sentence);
         } else {
             echo '<em>'.__('sentence deleted').'</em>';
-        }        
+        }
     }
 
     /**
@@ -75,12 +75,12 @@ class CommentsHelper extends AppHelper
         //send message
         if ($permissions['canPM']) {
             $menu[] = array(
-                'text' => __('send message'),
+                'text' => __('Send message'),
                 'icon' => 'mail',
                 'url' => array(
-                    'controller' => 'private_messages', 
-                    'action' => 'write', 
-                    $comment->user->username      
+                    'controller' => 'private_messages',
+                    'action' => 'write',
+                    $comment->user->username
                 )
             );
         }
@@ -90,10 +90,10 @@ class CommentsHelper extends AppHelper
             $hidden = $comment['hidden'];
 
             if ($hidden) {
-                $hiddenLinkText = __('unhide');
+                $hiddenLinkText = __('Unhide');
                 $hiddenLinkAction = 'unhide_message';
             } else {
-                $hiddenLinkText = __('hide');
+                $hiddenLinkText = __('Hide');
                 $hiddenLinkAction = 'hide_message';
             }
 
@@ -111,7 +111,7 @@ class CommentsHelper extends AppHelper
         // delete
         if ($permissions['canDelete']) {
             $menu[] = array(
-                'text' => __('delete'),
+                'text' => __('Delete'),
                 'icon' => 'delete',
                 'url' => array(
                     "controller" => "sentence_comments",
@@ -125,7 +125,7 @@ class CommentsHelper extends AppHelper
         // edit
         if ($permissions['canEdit']) {
             $menu[] = array(
-                'text' => __('edit'),
+                'text' => __('Edit'),
                 'icon' => 'edit',
                 'url' => array(
                     "controller" => "sentence_comments",
