@@ -1143,4 +1143,52 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
     }
+
+    function testSaveNewSentence_correctHashStored() {
+        $expectedHash = "if0kln\0\0\0\0\0\0\0\0\0\0";
+        $sentence = $this->Sentence->saveNewSentence('  spaces   everywhere   ', 'eng', 1);
+        $storedHash = $this->Sentence->get($sentence->id)->hash;
+        $this->assertEquals($expectedHash, $storedHash);
+    }
+
+    function testSaveNewSentence_doesntAddDuplicateWithExtraSpaces() {
+        // Duplicate ending with space
+        $sentence = $this->Sentence->saveNewSentence('What are you doing? ', 'eng', 1);
+        $this->assertEquals(27, $sentence->id);
+        $this->assertTrue($sentence->isDuplicate);
+
+        // Duplicate beginning with space
+        $sentence = $this->Sentence->saveNewSentence(' What are you doing?', 'eng', 1);
+        $this->assertEquals(27, $sentence->id);
+        $this->assertTrue($sentence->isDuplicate);
+
+        // Duplicate with extra spaces between words
+        $sentence = $this->Sentence->saveNewSentence('What  are you   doing?', 'eng', 1);
+        $this->assertEquals(27, $sentence->id);
+        $this->assertTrue($sentence->isDuplicate);
+    }
+
+    function testEditSentence_recognizeDuplicateWithExtraSpaces() {
+        $user = $this->Sentence->Users->get(7);
+        CurrentUser::store($user);
+
+        $old = $this->Sentence->get(7);
+        $data = array(
+            'id' => 'eng_7',
+            'value' => 'This  is  a   lonely sentence. '
+        );
+        $result = $this->Sentence->editSentence($data);
+
+        $this->assertEquals($old->id, $result->id);
+        $this->assertEquals($old->text, $result->text);
+        $this->assertEquals($old->hash, $result->hash);
+    }
+
+    function testChangeLanguage_hashChanged() {
+        CurrentUser::store($this->Sentence->Users->get(7));
+        $old = $this->Sentence->get(1);
+        $result = $this->Sentence->changeLanguage(1, 'jpn');
+        $new = $this->Sentence->get(1);
+        $this->assertNotEquals($old->hash, $new->hash);
+    }
 }

@@ -578,6 +578,7 @@ class LanguagesLib
                 'emx' => __d('languages', 'Erromintxela'),
                 'gom' => __d('languages', 'Konkani (Goan)'),
                 'chg' => __d('languages', 'Chagatai'),
+                'xmf' => __d('languages', 'Mingrelian'),
             );
         }
         return $languages;

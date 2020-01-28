@@ -28,6 +28,7 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Event\ContributionListener;
+use App\Event\UsersLanguagesListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
@@ -75,7 +76,7 @@ class SentencesTable extends Table
         $this->hasMany('SentenceComments');
         $this->hasMany('SentenceAnnotations');
         
-        $this->addBehavior('Hashable');
+        $this->addBehavior('Duplicate');
         $this->addBehavior('Timestamp');
         if (Configure::read('AutoTranscriptions.enabled')) {
             $this->addBehavior('Transcriptable');
@@ -83,7 +84,7 @@ class SentencesTable extends Table
         $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
 
         $this->getEventManager()->on(new ContributionListener());
-        //$this->getEventManager()->attach(new UsersLanguagesListener());
+        $this->getEventManager()->on(new UsersLanguagesListener());
     }
 
     public function validationDefault(Validator $validator)
@@ -129,33 +130,8 @@ class SentencesTable extends Table
         return $validator;
     }
 
-
-    private function clean($text)
-    {
-        $text = trim($text);
-        // Strip out any byte-order mark that might be present.
-        $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
-        // Replace any series of spaces, newlines, tabs, or other
-        // ASCII whitespace characters with a single space.
-        $text = preg_replace('/\s+/', ' ', $text);
-        // MySQL will truncate to a byte length of 1500, which may split
-        // a multibyte character. To avoid this, we preemptively
-        // truncate to a maximum byte length of 1500. If a multibyte
-        // character would be split, the entire character will be
-        // truncated.
-        $text = mb_strcut($text, 0, 1500, "UTF-8");
-        return $text;
-    }
-
     public function beforeSave($event, $entity, $options)
     {
-        if ($entity->text) {
-            $cleanedText = $this->clean($entity->text);
-            if ($cleanedText !== $entity->text) {
-                $entity->text = $cleanedText;
-            }
-        }        
-
         if ($entity->isNew()) { // creating a new sentence
             if (!$entity->license && $entity->user_id) {
                 $user = $this->Users->get($entity->user_id);
@@ -872,31 +848,22 @@ class SentencesTable extends Table
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0, $basedOnId = 0, $license = null)
     {
-        $hash = $this->makeHash($lang, $text);
-        $hash = $this->padHashBinary($hash);
+        $newSentence = $this->newEntity(
+            [
+                'text' => $text,
+                'lang' => $lang,
+                'user_id' => $userId,
+                'correctness' => $correctness,
+                'based_on_id' => $basedOnId,
+                'license' => $license
+            ]
+        );
 
-        $sentences = $this->findAllByHash($hash)->toList();
-        foreach ($sentences as $sentence) {
-            if ($this->confirmDuplicate($text, $lang, $sentence)) {
-                $sentence->isDuplicate = true;
-                return $sentence;
-            }
+        if ($newSentence->hasErrors()) {
+            return false;
         }
 
-        $data['text'] = $text;
-        $data['user_id'] = $userId;
-        $data['correctness'] = $correctness;
-        $data['hash'] = $hash;
-        $data['license'] = $license;
-        $data['based_on_id'] = $basedOnId;
-
-        if (!empty($lang)) {
-            $data['lang'] = $lang;
-        }
-
-        $sentence = $this->newEntity($data);
-
-        return $this->save($sentence);
+        return $this->saveWithDuplicateCheck($newSentence);
     }
 
     /**
@@ -1059,12 +1026,6 @@ class SentencesTable extends Table
         $currentUserId = CurrentUser::get('id');
 
         if (($ownerId == $currentUserId || CurrentUser::isModerator()) && !$this->hasAudio($sentence->id)) {
-
-            // Making sure the language is not saved as an empty string but as NULL.
-            if ($newLang == '' ) {
-                $newLang = null;
-            }
-
             $sentence->lang = $newLang;
             $result = $this->save($sentence);
 
@@ -1202,11 +1163,8 @@ class SentencesTable extends Table
             return $sentence;
         }
 
-        $hash = $this->makeHash($lang, $text);
-        $hash = $this->padHashBinary($hash);
         $this->patchEntity($sentence, [
             'text' => $text,
-            'hash' => $hash,
             'lang' => $lang
         ]);
 

@@ -21,9 +21,10 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
+use Cake\Validation\Validator;
 use App\Model\CurrentUser;
 use App\Utility\Search;
-
+use App\Lib\LanguagesLib;
 
 class VocabularyTable extends Table
 {
@@ -37,15 +38,33 @@ class VocabularyTable extends Table
     public function initialize(Array $config)
     {
         $this->setTable('vocabulary');
+        $this->setEntityClass('App\Model\Entity\Vocable');
 
         $this->belongsTo('UsersVocabulary');
         $this->belongsTo('Sentences');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Hashable');
+        $this->addBehavior('Duplicate');
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator
+            ->notEmpty('text');
+
+        $languages = array_keys(LanguagesLib::languagesInTatoeba());
+        $validator
+            ->allowEmpty('lang')
+            ->add('lang', [
+                'inList' => [
+                    'rule' => ['inList', $languages]
+                ]
+            ]);
+
+        return $validator;
     }
 
     public function beforeSave($event, $entity, $options)
@@ -67,22 +86,14 @@ class VocabularyTable extends Table
      */
     public function addItem($lang, $text)
     {
-        $text = trim($text);
-        if (empty($text) || empty($lang)) {
+        $newVocable = $this->newEntity(compact('lang', 'text'));
+        if ($newVocable->hasErrors()) {
             return false;
         }
 
-        $hash = $this->makeHash($lang, $text);
-        $hash = $this->padHashBinary($hash);
-        $result = $this->_hasDuplicate($hash, $lang, $text);
-
-        if (!$result) {
-            $data = $this->newEntity([
-                'hash' => $hash,
-                'lang' => $lang,
-                'text' => $text,
-            ]);
-            $result = $this->save($data);
+        $result = $this->saveWithDuplicateCheck($newVocable);
+        if ($result->isDuplicate) {
+            $this->_updateNumSentences($result);
         }
 
         try {
@@ -96,29 +107,6 @@ class VocabularyTable extends Table
         }
 
         return $result;
-    }
-
-    /**
-     * Return true if land and text have true duplicate.
-     *
-     * @param  string  $hash Vocabulary hash value.
-     * @param  string  $lang Vocabulary language.
-     * @param  string  $text Vocabulary text.
-     *
-     * @return boolean|array
-     */
-    private function _hasDuplicate($hash, $lang, $text)
-    {
-        $vocabularyItems = $this->findAllByHash($hash)->toList();
-
-        foreach ($vocabularyItems as $vocabularyItem) {
-            if ($this->confirmDuplicate($text, $lang, $vocabularyItem)) {
-                $numSentences = $this->_updateNumSentences($vocabularyItem);
-                return $vocabularyItem;
-            }
-        }
-
-        return null;
     }
 
     /**

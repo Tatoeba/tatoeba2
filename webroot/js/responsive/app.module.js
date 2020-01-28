@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngMaterial', 'ngMessages', 'ngCookies'])
+        .module('app', ['ngMaterial', 'ngMessages', 'ngCookies', 'ngSanitize'])
         .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', function($mdThemingProvider, $mdIconProvider, $httpProvider) {
             $mdThemingProvider.theme('default')
                 .primaryPalette('green')

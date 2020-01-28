@@ -277,10 +277,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="nativeIndicator = <?= $nativeIndicator ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __(
-                'Display "(native)" next to username on sentences ' .
-                'when the owner indicated in their profile that they have a native '.
-                'level in the language of the sentence.'
+                <p><?php echo format(
+                    __(
+                        'Mark sentences when the owner indicated in their profile that ' .
+                        'they have a native level in the language of the sentence. In ' .
+                        'the old design "(native)" is displayed next to the username. In ' .
+                        'the new design a {star} is displayed next to the sentence.'
+                    ),
+                    ['star' => '<md-icon>star</md-icon>']
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
