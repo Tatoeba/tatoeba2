@@ -88,8 +88,19 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.langName"></language-icon>
             </div>
+            
             <div class="text" flex dir="{{vm.sentence.dir}}" 
                  ng-bind-html="vm.sentence.highlightedText ? vm.sentence.highlightedText : vm.sentence.text"></div>
+
+            <?php if (!empty($user->is_native)) { ?>
+                <md-icon>
+                    star
+                    <md-tooltip md-direction="top">
+                        <?= __('This sentence belongs to a native speaker.') ?>
+                    </md-tooltip>
+                </md-icon>
+            <?php } ?>
+
             <?php if ($notReliable) { ?>
                 <md-icon class="md-warn">warning</md-icon>
                 <md-tooltip md-direction="top">
