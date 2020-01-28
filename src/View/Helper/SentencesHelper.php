@@ -877,6 +877,7 @@ class SentencesHelper extends AppHelper
             'id' => $sentence->id,
             'text' => $sentence->text,
             'lang' => $sentence->lang,
+            'langName' => $this->Languages->codeToNameAlone($sentence->lang),
             'script' => $sentence->script,
             'dir' => LanguagesLib::getLanguageDirection($sentence->lang),
             'audios' => $sentence->audios,
