@@ -86,7 +86,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
              layout="row" layout-align="start center" ng-if="!vm.isSentenceFormVisible">
             <div class="lang">
-            <img class="language-icon" ng-src="/img/flags/{{vm.sentence.lang ? vm.sentence.lang : 'unknown'}}.svg" />
+                <language-icon lang="vm.sentence.lang"></language-icon>
             </div>
             <div class="text" flex dir="{{vm.sentence.dir}}" 
                  ng-bind-html="vm.sentence.highlightedText ? vm.sentence.highlightedText : vm.sentence.text"></div>

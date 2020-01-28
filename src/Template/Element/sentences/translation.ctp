@@ -12,7 +12,7 @@ $sentenceBaseUrl = $this->Url->build([
     <md-icon class="chevron">chevron_right</md-icon>
 
     <div class="lang">
-        <img class="language-icon" ng-src="/img/flags/{{translation.lang ? translation.lang : 'unknown'}}.svg" />
+        <language-icon lang="translation.lang"></language-icon>
     </div>
 
     <div class="text" dir="{{translation.dir}}" flex>

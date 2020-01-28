@@ -48,6 +48,25 @@
                     }
                 });
             };
+        })
+        .directive('languageIcon', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                    lang: '=',
+                    title: '='
+                },
+                link: function($scope) {
+                    if (!$scope.lang) {
+                        $scope.lang = 'unknown';
+                    }
+                },
+                template: `
+                    <img class="language-icon" width="30" heigth="20" 
+                      ng-attr-title="{{title ? title : lang}}"
+                      ng-src="/img/flags/{{lang}}.svg" />
+                `
+            }
         });
 
     function sentenceAndTranslations() {
