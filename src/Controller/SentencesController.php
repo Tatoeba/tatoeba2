@@ -350,6 +350,7 @@ class SentencesController extends AppController
     {
         $sentence = $this->Sentences->editSentence($this->request->data);
         if ($type == 'json') {
+            $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
             $this->set('result', $sentence);
             $this->viewBuilder()->setLayout('json');
             $this->render('/Generic/json');

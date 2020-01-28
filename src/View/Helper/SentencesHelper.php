@@ -851,12 +851,38 @@ class SentencesHelper extends AppHelper
         return $this->Html->tag('p', $msg, array('class' => 'derivation'));
     }
 
-    public function translationsForAngular($translations) {
-        foreach($translations as $translation) {
-            $translation->dir = LanguagesLib::getLanguageDirection($translation->lang);
+    public function sentenceForAngular($sentence) {
+        $data = $this->getSentenceData($sentence);
+        
+        if (isset($sentence->highlight)) {
+            $sentenceText = h($sentence->text);
+            $highlight = $sentence->highlight;
+            $data['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
         }
 
-        return htmlspecialchars(json_encode($translations), ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
+    }
+
+    public function translationsForAngular($translations) {
+        $data = [];
+        foreach($translations as $translation) {
+            $data[] = $this->getSentenceData($translation);
+        }
+
+        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
+    }
+
+    private function getSentenceData($sentence) {
+        return [
+            'id' => $sentence->id,
+            'text' => $sentence->text,
+            'lang' => $sentence->lang,
+            'langName' => $this->Languages->codeToNameAlone($sentence->lang),
+            'script' => $sentence->script,
+            'dir' => LanguagesLib::getLanguageDirection($sentence->lang),
+            'audios' => $sentence->audios,
+            'correctness' => $sentence->correctness
+        ];
     }
 }
 ?>

@@ -35,7 +35,7 @@ $(document).ready(function(){
                 action = 'add_favorite';
             }
 
-            var requestUrl = "/favorites/" + action + "/" + favoriteId;
+            var requestUrl = get_tatoeba_root_url() + "/favorites/" + action + "/" + favoriteId;
             if(favoriteOption.parent().hasClass("favorite-page")){
                 requestUrl += "/true";
             }

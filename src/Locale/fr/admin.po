@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-03 18:39+0000\n"
+"POT-Creation-Date: 2020-01-19 15:43+0000\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: gillux, 2019\n"
 "Language-Team: French (https://www.transifex.com/tatoeba/teams/28284/fr/)\n"
@@ -24,21 +24,21 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L257
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L264
 msgid "Invalid file “{file}” ignored."
 msgstr "Fichier invalide « {file} » ignoré."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L274
 msgid "Failed to create directory “{dir}” to import file “{file}”."
 msgstr ""
 "Échec de la création du répertoire « {dir} » pour importer le fichier « "
 "{file} »."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid "Failed to copy file “{file}” to directory “{dir}”."
 msgstr "Échec de la copie du fichier « {file} » dans le répertoire « {dir} »."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L286
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L293
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
@@ -47,7 +47,7 @@ msgstr ""
 " {sentenceId} dans la base de donnée. Vérifiez qu’il s’agit d'un nom "
 "d'utilisateur valide."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L302
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."

@@ -14,7 +14,7 @@ $isUnapproved = $sentence->correctness == -1;
             </md-button>
 
             <?php if ($canEdit) { ?>
-            <md-button class="md-icon-button" ng-disabled="true">
+            <md-button class="md-icon-button" ng-click="vm.edit()">
                 <md-icon>edit</md-icon>
             </md-button>
             <?php } ?>
@@ -34,7 +34,9 @@ $isUnapproved = $sentence->correctness == -1;
             <?php } ?>
             
             <?php if ($canDelete) { ?>
-            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-disabled="true">
+            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded"
+                       onclick="return confirm('<?= __('Are you sure?') ?>');"
+                       href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'delete', $sentence->id]) ?>">
                 <md-icon>delete</md-icon>
             </md-button>
             <?php } ?>
