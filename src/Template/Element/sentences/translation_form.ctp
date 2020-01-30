@@ -12,7 +12,7 @@
             <md-input-container flex="50">
                 <label><?= __('Language') ?></label>
                 <md-select ng-model="vm.newTranslation.lang">
-                    <md-option value="auto"><?= __('Auto detect') ?></md-option>
+                    <md-option value="auto" ng-if="vm.userLanguages.length > 1"><?= __('Auto detect') ?></md-option>
                     <md-option ng-repeat="(code, name) in vm.userLanguages" ng-value="code">
                         {{name}}
                     </md-option>

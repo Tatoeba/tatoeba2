@@ -182,7 +182,7 @@
             if ($cookies.get('translationLang') && !vm.newTranslation.text) {
                 vm.newTranslation.lang = $cookies.get('translationLang');
             } else if (!vm.newTranslation.lang) {
-                vm.newTranslation.lang = 'auto';
+                vm.newTranslation.lang = vm.userLanguages.length > 1 ? 'auto' : Object.keys(vm.userLanguages)[0];
             }
             focusInput('#translation-form-' + id);
         }
