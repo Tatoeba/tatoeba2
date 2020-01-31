@@ -60,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="sendNotifications = <?= $sendNotifications ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p> <?php echo __('Email notifications') ?></p>
+                <p> <?php echo __('Send email notifications.') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->text(
@@ -83,7 +83,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     class="md-primary">
                 </md-checkbox>
 
-                <p><?php echo __('Set your profile public') ?></p>
+                <p><?php echo __('Set your profile public.') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -158,7 +158,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="showTranscriptions = <?= $showTranscriptions ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Always show transcriptions and alternative scripts') ?> </p>
+                <p><?php echo __('Always show transcriptions and alternative scripts.') ?> </p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
