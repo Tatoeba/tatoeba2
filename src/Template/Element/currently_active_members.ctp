@@ -39,7 +39,7 @@ echo format(
 </p>
 
 <?php
-$highestNumberOfContributions = $currentContributors[0]->total;
+$highestNumberOfContributions = $currentContributors ? $currentContributors[0]->total : 0;
 foreach($currentContributors as $i=>$currentContributor){
     $numberOfContributions = $currentContributor->total;
     $percentage = ($numberOfContributions/$total)*100;
