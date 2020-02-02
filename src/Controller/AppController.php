@@ -327,24 +327,55 @@ class AppController extends Controller
         return $this->redirect($url);
     }
 
+    /**
+     * Calculate minimal associations for a query
+     *
+     * Helper function for paginateLatest which filters the associations to
+     * load for the given query. Only the associations mentioned in the 'select'
+     * and 'order' part are necessary for calculating the lowest id we need.
+     *
+     * @param array $conditions The conditions for the query
+     * @param array $order      The ordering for the query
+     * @param array $contain    The original contain part of the query
+     *
+     * @return array
+     **/
+    private function getMinimalContain($conditions, $order, $contain) {
+        $neededAssociations = array_map(function ($key) {
+            $splitPos = strpos($key, '.');
+            if ($splitPos) {
+                return substr($key, 0, $splitPos);
+            } else {
+                return '';
+            }
+        }, array_keys(array_merge($conditions, $order)));
+
+        return array_filter(
+            $contain,
+            function ($key) use ($neededAssociations) {
+                return in_array($key, $neededAssociations);
+            },
+            ARRAY_FILTER_USE_KEY);
+    }
+
     public function paginateLatest($model, $totalLimit) {
         $alias = $model->getAlias();
-        $conditions = isset($this->paginate['conditions']) ? $this->paginate['conditions'] : [];
-        $contain = isset($this->paginate['contain']) ? $this->paginate['contain'] : [];
-        $order = isset($this->paginate['order']) ? $this->paginate['order'] : [];
+        $conditions = $this->paginate['conditions'] ?? [];
+        $contain = $this->paginate['contain'] ?? [];
+        $order = $this->paginate['order'] ?? [];
         $order += [$alias . '.id' => 'DESC'];
 
-        $result = $model->find()
+        $contain = $this->getMinimalContain($conditions, $order, $contain);
+
+        $lastId = $model->find('list')
             ->select([$alias . '.id'])
             ->where($conditions)
             ->contain($contain)
             ->order($order)
             ->limit($totalLimit)
-            ->toList();
+            ->last();
 
-        $last = end($result);
-
-        $this->paginate['conditions'][$alias . '.id >='] = $last->id;
+        $this->paginate['conditions'][$alias . '.id >='] = $lastId;
 
         try {
             return $this->paginate();
