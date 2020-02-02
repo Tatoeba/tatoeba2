@@ -579,6 +579,7 @@ class LanguagesLib
                 'gom' => __d('languages', 'Konkani (Goan)'),
                 'chg' => __d('languages', 'Chagatai'),
                 'xmf' => __d('languages', 'Mingrelian'),
+                'osp' => __d('languages', 'Old Spanish'),
             );
         }
         return $languages;
