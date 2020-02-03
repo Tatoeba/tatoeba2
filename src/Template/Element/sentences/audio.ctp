@@ -63,8 +63,8 @@ if (CurrentUser::isAdmin()) {
             "label" => false,
             "type" => "radio",
             "options" => array(
-                1 => __("Yes"),
-                0 => __("No")
+                1 => __d("admin", "Yes"),
+                0 => __d("admin", "No")
             ),
             "value" => $hasaudio
         )
@@ -81,7 +81,7 @@ if (CurrentUser::isAdmin()) {
     }
     echo $this->Form->control("ownerName",
         array(
-            'label' => __("Owner name"),
+            'label' => __d("admin", "Owner name"),
             "value" => $ownerName
         )
     );
