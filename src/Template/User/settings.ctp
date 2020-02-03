@@ -256,7 +256,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="collectionRatings = <?= $collectionRatings ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Activate the feature to rate sentences and build your collection of sentences.') ?></p>
+                <p><?php echo __('Activate the feature to review sentences.') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(

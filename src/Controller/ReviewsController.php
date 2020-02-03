@@ -39,7 +39,7 @@ use App\Model\CurrentUser;
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-class CollectionsController extends AppController
+class ReviewsController extends AppController
 {
     public $uses = array('UsersSentences', 'User');
     public $helpers = array('CommonModules');
@@ -52,7 +52,7 @@ class CollectionsController extends AppController
     }
 
     /**
-     * Add a sentence to the user's sentence collection.
+     * Add a sentence to the user's sentence reviews.
      *
      * @param int $sentenceId  Sentence ID.
      * @param int $correctness Correctness value.
@@ -69,7 +69,7 @@ class CollectionsController extends AppController
     }
 
     /**
-     * Delete a sentence from the user's sentence collection.
+     * Delete a sentence from the user's sentence reviews.
      *
      * @param int $sentenceId Sentence ID
      */

@@ -35,7 +35,7 @@ class UsersSentencesTable extends Table
     }
 
     /**
-     * Add sentence to users collection
+     * Add sentence to users review
      *
      * @param int $sentenceId
      * @param int $correctness
@@ -43,7 +43,7 @@ class UsersSentencesTable extends Table
      *
      * @return array
      */
-    public function saveSentence($sentenceId, $correctness, $userId) 
+    public function saveSentence($sentenceId, $correctness, $userId)
     {
         $userSentence = $this->findBySentenceIdAndUserId(
             $sentenceId, $userId
@@ -64,14 +64,14 @@ class UsersSentencesTable extends Table
     }
 
     /**
-     * Delete sentence from users collection
+     * Delete sentence from users review
      *
      * @param int $sentenceId
      * @param int $userId
      *
      * @return boolean
      */
-    public function deleteSentence($sentenceId, $userId) 
+    public function deleteSentence($sentenceId, $userId)
     {
         $userSentence = $this->findBySentenceIdAndUserId(
             $sentenceId, $userId
@@ -89,7 +89,7 @@ class UsersSentencesTable extends Table
      *
      * @param  int $sentenceId Sentence ID.
      * @param  int $userId     User ID.
-     * 
+     *
      * @return int
      */
     public function correctnessForSentence($sentenceId, $userId)
