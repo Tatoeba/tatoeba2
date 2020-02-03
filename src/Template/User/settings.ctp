@@ -177,7 +177,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-false-value="1"
                     ng-true-value="0"
                     ng-model="showRandomSentence"
-                    ng-init="showRandomSentence = <?= $hideRandomSentence == false ? 0 : (int)$hideRandomSentence ?>"
+                    ng-init="showRandomSentence = <?= (int)$hideRandomSentence ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Show random sentence on the homepage.') ?> </p>
