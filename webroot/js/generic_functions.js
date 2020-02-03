@@ -146,3 +146,15 @@ if (!Array.prototype.find) {
       writable: true
     });
   }
+
+// Fix for Chrome: prevent copy-pasting furigana when selecting a sentence
+// https://stackoverflow.com/questions/13438391
+$(document).on('copy', function (e) {
+    var sel = window.getSelection();
+    if (sel.rangeCount > 0) {
+        e.preventDefault();
+        $('rt').css('visibility', 'hidden');
+        e.originalEvent.clipboardData.setData('text', sel.toString());
+        $('rt').css('visibility', 'visible');
+    }
+});
