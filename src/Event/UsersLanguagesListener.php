@@ -29,8 +29,11 @@ class UsersLanguagesListener implements EventListenerInterface {
         );
     }
 
-    public function reportNativeness($event, $query) {
-        $UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
-        $UsersLanguages->reportNativeness($event, $query);
+    public function reportNativeness($event, $query, $options) {
+        $nativeMarker = $options['nativeMarker'] ?? false;
+        if ($nativeMarker) {
+            $UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
+            $UsersLanguages->reportNativeness($query);
+        }
     }
 }
