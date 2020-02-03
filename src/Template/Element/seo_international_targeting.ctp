@@ -32,7 +32,7 @@ $uiLanguages = Configure::read('UI.languages');
 $currentLang = $this->request->getParam('lang');
 
 if ($currentLang) {
-    $pathWithoutLang = substr($this->request->getPath(), 4);
+    $pathWithoutLang = substr($this->request->getPath(), strlen($currentLang) + 1);
     $host = $this->request->host();
     $scheme = $this->request->scheme();
     foreach ($uiLanguages as $lang) {
