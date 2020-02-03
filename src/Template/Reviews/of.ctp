@@ -31,7 +31,7 @@ $categories = array(
     'unsure' => ['help', __('Sentences marked as "unsure"')],
     'not-ok' => ['error', __('Sentences marked as "not OK"')],
     'all' => ['keyboard_arrow_right', __("All sentences")],
-    'outdated' => ['keyboard_arrow_right', __("Outdated ratings")]
+    'outdated' => ['keyboard_arrow_right', __("Outdated reviews")]
 );
 
 if ($correctnessLabel) {
@@ -43,7 +43,7 @@ if ($correctnessLabel) {
 
 if ($userExists) {
     $title = format(
-        __("{user}'s ratings - {category}"),
+        __("{user}'s reviews - {category}"),
         array('user' => $username, 'category' => $categories[$category][1])
     );
 } else {
@@ -60,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         echo $this->Html->tag('p', __('This feature is currently deactivated.'));
         echo $this->Html->tag('p',
             __(
-                'You can activate it in your settings: "Activate the feature to rate sentences."',
+                'You can activate it in your settings: "Activate the feature to review sentences."',
                 true
             )
         );

@@ -93,9 +93,9 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
-                __('My ratings'),
+                __('My reviews'),
                 array(
-                    'controller' => 'ratings',
+                    'controller' => 'reviews',
                     'action' => 'of',
                     $username
                 )

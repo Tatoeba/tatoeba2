@@ -53,9 +53,9 @@ $menu = [
         ]
     ],
     [
-        'label' => __('Ratings'),
+        'label' => __('Reviews'),
         'url' => [
-            'controller' => 'ratings',
+            'controller' => 'reviews',
             'action' => 'of',
             $username
         ]
