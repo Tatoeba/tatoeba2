@@ -26,7 +26,7 @@ $notReliable = $sentence->correctness == -1;
 $username = $user ? $user->username : null;
 $sentenceMenu = [
     'canEdit' => CurrentUser::canEditSentenceOfUser($username),
-    'canRate' => CurrentUser::get('settings.users_collections_ratings'),
+    'canReview' => CurrentUser::get('settings.users_collections_ratings'),
     'canAdopt' => CurrentUser::isTrusted() && !$user,
     'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
     'canLink' => CurrentUser::isTrusted(),
@@ -69,7 +69,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
                             'number' => $sentenceLink
                         )
                     );
-                }            
+                }
                 ?>
             </md-subheader>
 
@@ -107,7 +107,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
                     <?= __('This sentence is not reliable.') ?>
                 </md-tooltip>
             <?php } ?>
-            
+
             <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
 
             <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
@@ -118,7 +118,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
 
     <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
     <?php
-    if (CurrentUser::isMember()) { 
+    if (CurrentUser::isMember()) {
         echo $this->element('sentences/translation_form', [
             'sentenceId' => $sentence->id,
             'langs' => $langs
@@ -142,11 +142,11 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
         ]);
         ?>
     </div>
-    
+
     <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="!vm.isTranslationFormVisible && vm.indirectTranslations.length > 0"
             ng-init="vm.initIndirectTranslations(<?= $this->Sentences->translationsForAngular($indirectTranslations) ?>)">
         <md-subheader><?= __('Translations of translations') ?></md-subheader>
-        
+
         <?php
         echo $this->element('sentences/translation', [
             'translations' => 'vm.indirectTranslations'

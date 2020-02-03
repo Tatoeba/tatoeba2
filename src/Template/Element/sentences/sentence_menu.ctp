@@ -22,7 +22,7 @@ $isUnapproved = $sentence->correctness == -1;
             <md-button class="md-icon-button" ng-disabled="true">
                 <md-icon>list</md-icon>
             </md-button>
-            
+
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-disabled="true">
                 <md-icon>favorite</md-icon>
             </md-button>
@@ -32,7 +32,7 @@ $isUnapproved = $sentence->correctness == -1;
                 <md-icon>link</md-icon>
             </md-button>
             <?php } ?>
-            
+
             <?php if ($canDelete) { ?>
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded"
                        onclick="return confirm('<?= __('Are you sure?') ?>');"
@@ -43,7 +43,7 @@ $isUnapproved = $sentence->correctness == -1;
         </div>
 
         <div ng-if="vm.isMenuExpanded">
-        <?php if ($canRate) { ?>
+        <?php if ($canReview) { ?>
             <md-button class="md-icon-button" ng-disabled="true">
                 <md-icon>check_circle</md-icon>
             </md-button>
