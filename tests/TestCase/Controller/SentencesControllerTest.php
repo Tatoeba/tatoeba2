@@ -283,7 +283,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $userId = 7;
         $defaultNbPerPage = User::$defaultSettings['sentences_per_page'];
         $newSentences = array();
-        for ($i = 1; $i <= rand(1,100); $i++) {
+        for ($i = 1; $i <= $defaultNbPerPage + 1; $i++) {
             $newSentences[] = [
                 'lang' => 'eng',
                 'text' => "Ay ay ay $i.",
@@ -312,7 +312,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $users = TableRegistry::getTableLocator()->get('Users');
         $NbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
         $newSentences = array();
-        for ($i = 1; $i <= rand(1,100); $i++) {
+        for ($i = 1; $i <= $NbPerPageSetting + 1; $i++) {
             $newSentences[] = [
                 'lang' => 'eng',
                 'text' => "Ay ay ay $i.",
