@@ -98,6 +98,27 @@ class SentencesControllerTest extends IntegrationTestCase {
         ];
     }
 
+    private function addSentencesOfUser($userId, $nbSentences) {
+        $newSentences = array();
+        for ($i = 1; $i <= $nbSentences; $i++) {
+            $newSentences[] = [
+                'lang' => 'eng',
+                'text' => "Ay ay ay $i.",
+                'user_id' => $userId,
+            ];
+            $newSentences[] = [
+                'lang' => 'eng',
+                'text' => "Oy oy oy $i.",
+                'user_id' => 1,
+            ];
+        }
+        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $entities = $sentences->newEntities($newSentences);
+        $sentences->saveMany($entities);
+
+        return count($sentences->find()->where(['user_id' => $userId])->all());
+    }
+
     /**
      * @dataProvider ajaxAccessesProvider
      */
@@ -282,24 +303,9 @@ class SentencesControllerTest extends IntegrationTestCase {
         $user = 'kazuki';
         $userId = 7;
         $defaultNbPerPage = User::$defaultSettings['sentences_per_page'];
-        $newSentences = array();
-        for ($i = 1; $i <= $defaultNbPerPage + 1; $i++) {
-            $newSentences[] = [
-                'lang' => 'eng',
-                'text' => "Ay ay ay $i.",
-                'user_id' => $userId,
-            ];
-            $newSentences[] = [
-                'lang' => 'eng',
-                'text' => "Oy oy oy $i.",
-                'user_id' => 1,
-            ];
-        }
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
-        $entities = $sentences->newEntities($newSentences);
-        $sentences->saveMany($entities);
 
-        $nbSentences = count($sentences->find()->where(['user_id' => $userId])->all());
+        $nbSentences = $this->addSentencesOfUser($userId, $defaultNbPerPage + 1);
+
         $lastPage = ceil($nbSentences / $defaultNbPerPage);
 
         $this->get("/eng/sentences/of_user/$user?page=9999999");
@@ -310,28 +316,13 @@ class SentencesControllerTest extends IntegrationTestCase {
         $user = 'kazuki';
         $userId = 7;
         $users = TableRegistry::getTableLocator()->get('Users');
-        $NbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
-        $newSentences = array();
-        for ($i = 1; $i <= $NbPerPageSetting + 1; $i++) {
-            $newSentences[] = [
-                'lang' => 'eng',
-                'text' => "Ay ay ay $i.",
-                'user_id' => $userId,
-            ];
-            $newSentences[] = [
-                'lang' => 'eng',
-                'text' => "Oy oy oy $i.",
-                'user_id' => 1,
-            ];
-        }
-        $sentences = TableRegistry::getTableLocator()->get('Sentences');
-        $entities = $sentences->newEntities($newSentences);
-        $sentences->saveMany($entities);
+        $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
 
-        $nbSentences = count($sentences->find()->where(['user_id' => $userId])->all());
-        $lastPage = ceil($nbSentences / $NbPerPageSetting);
+        $nbSentences = $this->addSentencesOfUser($userId, $nbPerPageSetting + 1);
 
-        $this->logInAs('kazuki');
+        $lastPage = ceil($nbSentences / $nbPerPageSetting);
+
+        $this->logInAs($user);
         $this->get("/eng/sentences/of_user/$user?page=9999999");
         $this->assertRedirect("/eng/sentences/of_user/$user?page=$lastPage");
     }
