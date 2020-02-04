@@ -754,7 +754,10 @@ class SentencesController extends AppController
             $contain = $this->Sentences->minimalContain();
         }
         $pagination = [
-            'finder' => ['withSphinx' => ['translationLang' => $to]],
+            'finder' => ['withSphinx' => [
+                'translationLang' => $to,
+                'nativeMarker' => CurrentUser::getSetting('native_indicator')
+            ]],
             'fields' => $this->Sentences->fields(),
             'contain' => $contain,
             'limit' => CurrentUser::getSetting('sentences_per_page'),
@@ -819,7 +822,8 @@ class SentencesController extends AppController
 
         $pagination = [
             'finder' => ['filteredTranslations' => [
-                'translationLang' => $translationLang
+                'translationLang' => $translationLang,
+                'nativeMarker' => CurrentUser::getSetting('native_indicator')
             ]],
             'fields' => $this->Sentences->fields(),
             'contain' => $this->Sentences->paginateContain($translationLang),

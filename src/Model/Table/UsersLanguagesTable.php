@@ -144,32 +144,22 @@ class UsersLanguagesTable extends Table
     /**
      * Executed on Sentence's beforeFind
      */
-    public function reportNativeness($event, $query) {
-        if (CurrentUser::getSetting('native_indicator')) {
-            $defaultTypes = $query->getDefaultTypes();
-            if (is_array($defaultTypes) &&
-                array_key_exists('lang', $defaultTypes) &&
-                array_key_exists('user_id', $defaultTypes) &&
-                array_key_exists('Users.level', $defaultTypes) &&
-                array_key_exists('Users.role', $defaultTypes)
-               ) {
-                   $query->join([
-                       'table' => 'users_languages',
-                       'alias' => 'UsersLanguages',
-                       'type' => 'LEFT',
-                       'conditions' => [
-                           'Sentences.user_id = UsersLanguages.of_user_id',
-                           'Sentences.lang = UsersLanguages.language_code',
-                           'UsersLanguages.level' => 5
-                       ]
-                   ]);
-                   $isNative = $query->newExpr()
-                                      ->isNotNull('UsersLanguages.id')
-                                      ->notEq('Users.role', 'spammer')
-                                      ->gt('Users.level', '-1');
-                   $query->select(['Users__is_native' => $isNative]);
-            }
-        }
+    public function reportNativeness($query) {
+        $query->join([
+            'table' => 'users_languages',
+            'alias' => 'UsersLanguages',
+            'type' => 'LEFT',
+            'conditions' => [
+                'Sentences.user_id = UsersLanguages.of_user_id',
+                'Sentences.lang = UsersLanguages.language_code',
+                'UsersLanguages.level' => 5
+            ]
+        ]);
+        $isNative = $query->newExpr()
+                          ->isNotNull('UsersLanguages.id')
+                          ->notEq('Users.role', 'spammer')
+                          ->gt('Users.level', '-1');
+        $query->select(['Users__is_native' => $isNative]);
         return $query;
     }
 

@@ -691,7 +691,10 @@ class SentencesTable extends Table
      */
     public function getSentenceWithId($id)
     {
-        $result = $this->find('filteredTranslations')
+        $result = $this->find(
+                'filteredTranslations',
+                ['nativeMarker' => CurrentUser::getSetting('native_indicator')]
+            )
             ->where(['Sentences.id' => $id])
             ->contain($this->contain())
             ->select($this->fields())
