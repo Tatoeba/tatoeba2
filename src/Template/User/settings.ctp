@@ -172,12 +172,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $hideRandomSentence = $userSettings->settings['hide_random_sentence']; ?>
+                <?php
+                    // The setting is "hide" but we display "show"
+                    $hideRandomSentence = $userSettings->settings['hide_random_sentence'];
+                ?>
                 <md-checkbox
                     ng-false-value="1"
                     ng-true-value="0"
-                    ng-model="showRandomSentence"
-                    ng-init="showRandomSentence = <?= (int)$hideRandomSentence ?>"
+                    ng-model="hideRandomSentence"
+                    ng-init="hideRandomSentence = <?= (int)$hideRandomSentence ?>"
                     class="md-primary">
                 </md-checkbox>
                 <p><?php echo __('Show random sentence on the homepage.') ?> </p>
@@ -186,7 +189,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     echo $this->Form->input(
                         'settings.hide_random_sentence',
                         array(
-                            'value' => '{{showRandomSentence}}'
+                            'value' => '{{hideRandomSentence}}'
                         )
                     );
                 ?>
