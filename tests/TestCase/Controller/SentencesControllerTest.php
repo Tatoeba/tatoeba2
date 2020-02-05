@@ -116,7 +116,7 @@ class SentencesControllerTest extends IntegrationTestCase {
         $entities = $sentences->newEntities($newSentences);
         $sentences->saveMany($entities);
 
-        return count($sentences->find()->where(['user_id' => $userId])->all());
+        return $sentences->find()->where(['user_id' => $userId])->count();
     }
 
     /**
