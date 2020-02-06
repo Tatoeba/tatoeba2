@@ -285,7 +285,7 @@ class SentencesController extends AppController
                 __('The sentence #{id} has been deleted.'),
                 array('id' => $id)
             );
-            
+
         } else {
             $flashMessage = format(
                 __('Error: the sentence #{id} could not be deleted.'),
@@ -746,7 +746,7 @@ class SentencesController extends AppController
         $limit = CurrentUser::getSetting('sentences_per_page');
         $sphinx['page'] = $this->request->query('page');
         $sphinx['limit'] = $limit;
-        
+
         $model = 'Sentences';
         if (CurrentUser::isMember()) {
             $contain = $this->Sentences->contain();
@@ -849,7 +849,7 @@ class SentencesController extends AppController
         $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
         $this->render(null);
     }
-    
+
     /**
      * Show random sentence.
      *
@@ -919,7 +919,7 @@ class SentencesController extends AppController
                         'fields' => array('username')
                     )
                 ),
-                'limit' => 100,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => ['Sentences.modified' => 'DESC']
             )
         );
