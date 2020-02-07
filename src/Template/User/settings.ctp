@@ -183,7 +183,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="hideRandomSentence = <?= (int)$hideRandomSentence ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Show random sentence on the homepage.') ?> </p>
+                <p><?php echo __('Show random sentence on the homepage') ?> </p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
