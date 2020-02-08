@@ -109,6 +109,7 @@
         vm.edit = edit;
         vm.cancelEdit = cancelEdit;
         vm.editSentence = editSentence;
+        vm.favorite = favorite;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -264,6 +265,14 @@
             data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
             vm.sentence = Object.assign({}, data);
+        }
+
+        function favorite() {
+            var action = vm.sentence.isFavorite ? 'remove_favorite' : 'add_favorite';
+            
+            $http.get(rootUrl + '/favorites/' + action + '/' + vm.sentence.id).then(function(result) {
+                vm.sentence.isFavorite = !vm.sentence.isFavorite;
+            });
         }
     }
 

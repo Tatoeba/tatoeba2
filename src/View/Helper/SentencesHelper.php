@@ -881,7 +881,8 @@ class SentencesHelper extends AppHelper
             'script' => $sentence->script,
             'dir' => LanguagesLib::getLanguageDirection($sentence->lang),
             'audios' => $sentence->audios,
-            'correctness' => $sentence->correctness
+            'correctness' => $sentence->correctness,
+            'isFavorite' => CurrentUser::hasFavorited($sentence->id)
         ];
     }
 }

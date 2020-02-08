@@ -23,8 +23,10 @@ $isUnapproved = $sentence->correctness == -1;
                 <md-icon>list</md-icon>
             </md-button>
 
-            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-disabled="true">
-                <md-icon>favorite</md-icon>
+            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-click="vm.favorite()">
+                <md-icon>{{vm.sentence.isFavorite ? 'favorite' : 'favorite_border'}}</md-icon>
+                <md-tooltip ng-if="!vm.sentence.isFavorite"><?= __('Add to favorites') ?></md-tooltip>
+                <md-tooltip ng-if="vm.sentence.isFavorite"><?= __('Remove from favorites') ?></md-tooltip>
             </md-button>
 
             <?php if ($canLink) { ?>
