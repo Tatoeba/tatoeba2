@@ -24,14 +24,14 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
- 
+
 $folderName = '';
 if ($folder == 'Inbox') {
     if ($status == 'unread') {
         $folderName = __('Unread');
     } else {
         $folderName = __('Inbox');
-    }    
+    }
 } elseif ($folder == 'Sent') {
     $folderName = __('Sent');
 } elseif ($folder == 'Trash') {
@@ -59,7 +59,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         <md-toolbar class="md-hue-1">
             <div class="md-toolbar-tools">
                 <h2 flex>
-                    <?php 
+                    <?php
                     $n = $this->Paginator->param('count');
                     echo format(__n('{folderName} ({n}&nbsp;message)',
                                     '{folderName} ({n}&nbsp;messages)',
@@ -68,7 +68,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     ?>
                 </h2>
 
-                <?php if ($folder == 'Trash') { 
+                <?php if ($folder == 'Trash') {
                     $url = $this->Url->build(['empty_folder', 'Trash']);
                     $msg = __('Are you sure?');
                     ?>
@@ -84,8 +84,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         $this->Pagination->display();
         ?>
         <md-list id="pm-list" ng-cloak>
-            <?php 
-            foreach ($content as $msg) {             
+            <?php
+            foreach ($content as $msg) {
                 list($user, $label) = $this->Messages->getUserAndLabel($msg, $folder);
 
                 $unread = $msg->isnonread == 1 ? 'unread' : '';
@@ -118,11 +118,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                         $msg->id
                     ]);
                     $deleteConfirmation = 'onclick="return confirm(\''.__('Are you sure?').'\');"';
-                    $deleteLabel = __('permanently delete');
+                    $deleteLabel = __('Permanently delete');
                     $deleteIcon = 'delete_forever';
                 } else {
                     $deleteConfirmation = '';
-                    $deleteLabel = __('delete');
+                    $deleteLabel = __('Delete');
                     $deleteIcon = 'delete';
                 }
 
@@ -148,7 +148,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     <?php if ($folder == 'Trash') { ?>
                     <md-button class="md-icon-button" href="<?= $restoreUrl ?>">
                         <md-icon>restore</md-icon>
-                        <md-tooltip><?= __('restore') ?></md-tooltip>
+                        <md-tooltip><?= __('Restore') ?></md-tooltip>
                     </md-button>
                     <?php } ?>
 
@@ -157,8 +157,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                         <md-tooltip><?= $deleteLabel ?></md-tooltip>
                     </md-button>
                 </md-list-item>
-                <?php 
-            } 
+                <?php
+            }
             ?>
         </md-list>
         <?php

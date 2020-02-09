@@ -149,7 +149,7 @@ $label = format(
             <md-icon ng-if="ctrl.isPasswordVisible">visibility</md-icon>
             <md-icon ng-if="!ctrl.isPasswordVisible">visibility_off</md-icon>
             <md-tooltip ng-if="!ctrl.isPasswordVisible">
-                <?= __('unmask password') ?>
+                <?= __('Unmask password') ?>
             </md-tooltip>
         </md-button>
     </md-input-container>
