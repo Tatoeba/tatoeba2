@@ -4,6 +4,10 @@ use App\Model\CurrentUser;
 
 $this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom'));
 
+if (!isset($menuExpanded)) {
+    $menuExpanded = false;
+}
+
 list($directTranslations, $indirectTranslations) = $translations;
 $maxDisplayed = 5;
 $showExtra = '';
@@ -73,7 +77,8 @@ $sentenceUrl = $this->Url->build([
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
                     'sentence' => $sentence,
-                    'menu' => $sentenceMenu
+                    'menu' => $sentenceMenu,
+                    'expanded' => $menuExpanded
                 ]);
             }
             ?>

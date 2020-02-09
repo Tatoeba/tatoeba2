@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
+use App\Model\CurrentUser;
 
 if (empty($lang)){
     $title = __('Orphan sentences');
@@ -93,14 +94,28 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         </div>
     </md-toolbar>
 
-    <md-content layout-padding>
+    <md-content>
     <?php 
 
     $this->Pagination->display();
     
-    foreach ($results as $sentence) {
-        $sentence->translations = [];
-        $this->Sentences->displaySentencesGroup($sentence);
+    if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+        foreach ($results as $sentence) {
+            echo $this->element(
+                'sentences/sentence_and_translations',
+                array(
+                    'sentence' => $sentence,
+                    'translations' => [0 =>[], 1 => []],
+                    'user' => $sentence->user,
+                    'menuExpanded' => true
+                )
+            );
+        }
+    } else {
+        foreach ($results as $sentence) {
+            $sentence->translations = [];
+            $this->Sentences->displaySentencesGroup($sentence);
+        }
     }
         
     $this->Pagination->display();

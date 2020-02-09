@@ -5,7 +5,7 @@ $menuJSON = htmlspecialchars(json_encode($activeItems), ENT_QUOTES, 'UTF-8');
 $isUnapproved = $sentence->correctness == -1;
 ?>
 
-<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}">
+<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}" ng-init="vm.isMenuExpanded = <?= $expanded ?>">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>
             <md-button class="md-icon-button" ng-click="vm.translate(<?= $sentence->id ?>)" ng-disabled="<?= $isUnapproved ? 'true' : 'false' ?>">
