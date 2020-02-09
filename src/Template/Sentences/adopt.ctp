@@ -37,4 +37,10 @@
  * @link     https://tatoeba.org
  */
 
-$this->Menu->adoptButton($sentenceId, $owner);
+if ($type === 'json') {
+    $result = $this->Sentences->getSentenceData($sentence);
+    echo json_encode($result);
+} else {
+    $this->Menu->adoptButton($sentenceId, $owner);
+}
+

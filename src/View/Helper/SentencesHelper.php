@@ -872,7 +872,7 @@ class SentencesHelper extends AppHelper
         return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
     }
 
-    private function getSentenceData($sentence) {
+    public function getSentenceData($sentence) {
         return [
             'id' => $sentence->id,
             'text' => $sentence->text,
@@ -883,7 +883,8 @@ class SentencesHelper extends AppHelper
             'audios' => $sentence->audios,
             'correctness' => $sentence->correctness,
             'isFavorite' => CurrentUser::hasFavorited($sentence->id),
-            'isOwnedByCurrentUser' => $sentence->user && $sentence->user->id === CurrentUser::get('id')
+            'isOwnedByCurrentUser' => $sentence->user && $sentence->user->username === CurrentUser::get('username'),
+            'user' => $sentence->user
         ];
     }
 }

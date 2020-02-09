@@ -279,8 +279,8 @@
         function adopt() {
             var action = vm.sentence.isOwnedByCurrentUser ? 'let_go' : 'adopt';
             
-            $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
-                vm.sentence.isOwnedByCurrentUser = !vm.sentence.isOwnedByCurrentUser;
+            $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id + '/json').then(function(result) {
+                vm.sentence = result.data;
             });
         }
     }

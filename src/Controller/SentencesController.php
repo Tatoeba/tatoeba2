@@ -373,13 +373,13 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function adopt($id)
+    public function adopt($id, $type = 'html')
     {
         $userId = $this->Auth->user('id');
 
         $this->Sentences->setOwner($id, $userId, CurrentUser::get('role'));
 
-        $this->renderAdopt($id);
+        $this->renderAdopt($id, $type);
     }
 
     /**
@@ -391,25 +391,30 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function let_go($id)
+    public function let_go($id, $type = 'html')
     {
         $userId = $this->Auth->user('id');
 
         $this->Sentences->unsetOwner($id, $userId);
 
-        $this->renderAdopt($id);
+        $this->renderAdopt($id, $type);
     }
 
-    private function renderAdopt($id)
+    private function renderAdopt($id, $type)
     {
         $sentence = $this->Sentences->get($id, [
-            'contain' => ['Users' => ['fields' => ['username']]],
-            'fields' => ['id'],
+            'contain' => ['Users' => ['fields' => ['username']]]
         ]);
 
-        $this->set('sentenceId', $id);
-        $this->set('owner', $sentence->user);
-        $this->viewBuilder()->setLayout('ajax');
+        if ($type == 'json') {
+            $this->set('sentence', $sentence);
+            $this->viewBuilder()->setLayout('json');
+        } else {
+            $this->set('sentenceId', $id);
+            $this->set('owner', $sentence->user);
+            $this->viewBuilder()->setLayout('ajax');
+        }
+        $this->set('type', $type);
         $this->render('adopt');
     }
 
