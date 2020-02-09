@@ -60,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="sendNotifications = <?= $sendNotifications ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p> <?php echo __('Email notifications') ?></p>
+                <p> <?php echo __('Send email notifications') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->text(
@@ -109,7 +109,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
                 <p><?php echo __(
                 'Remember the last list to which you assigned' .
-                ' a sentence, and select it by default.'
+                ' a sentence, and select it by default'
                 ) ?> </p>
                 <div ng-hide="true">
                 <?php
@@ -135,7 +135,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
                 <p><?php echo __(
                 'Display a link to expand/collapse translations ' .
-                'when there are too many translations.'
+                'when there are too many translations'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
@@ -259,7 +259,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="collectionRatings = <?= $collectionRatings ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Activate the feature to review sentences.') ?></p>
+                <p><?php echo __('Activate the feature to review sentences') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -309,7 +309,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="copyButton = <?= $copyButton ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Display button to copy a sentence to the clipboard.') ?></p>
+                <p><?php echo __('Display button to copy a sentence to the clipboard') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -333,7 +333,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <p><?php echo __(
                     'Display sentences with the new design. '.
                     'Note that you will not have all the features '.
-                    'from the old design.'
+                    'from the old design'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php

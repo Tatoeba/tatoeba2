@@ -157,7 +157,7 @@ class PrivateMessagesHelper extends AppHelper
 
         if ($folder == 'Trash') {
             $menu[] = array(
-                'text' => __('restore'),
+                'text' => __('Restore'),
                 'icon' => 'restore',
                 'url' => array(
                     'action' => 'restore',
@@ -166,7 +166,7 @@ class PrivateMessagesHelper extends AppHelper
             );
 
             $menu[] = array(
-                'text' => __('permanently delete'),
+                'text' => __('Permanently delete'),
                 'icon' => 'delete_forever',
                 'url' => array(
                     'action' => 'delete_forever',
@@ -176,7 +176,7 @@ class PrivateMessagesHelper extends AppHelper
             );
         } else {
             $menu[] = array(
-                'text' => __('delete'),
+                'text' => __('Delete'),
                 'icon' => 'delete',
                 'url' => array(
                     'action' => 'delete',
@@ -187,7 +187,7 @@ class PrivateMessagesHelper extends AppHelper
 
         if ($folder == 'Inbox') {
             $menu[] = array(
-                'text' => __('mark as unread'),
+                'text' => __('Mark as unread'),
                 'icon' => 'markunread_mailbox',
                 'url' => array(
                     'action' => 'mark',
@@ -198,7 +198,7 @@ class PrivateMessagesHelper extends AppHelper
 
             if ($type == 'human') {
                 $menu[] = array(
-                    'text' => __('reply'),
+                    'text' => __('Reply'),
                     'icon' => 'reply',
                     'url' => '#reply'
                 );
