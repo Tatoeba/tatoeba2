@@ -60,8 +60,10 @@ $isUnapproved = $sentence->correctness == -1;
 
         <div>
             <?php if ($canAdopt) { ?>
-            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-disabled="true">
-                <md-icon>person</md-icon>
+            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-click="vm.adopt()">
+                <md-icon>{{vm.sentence.isOwnedByCurrentUser ? 'person' : 'person_outline'}}</md-icon>
+                <md-tooltip ng-if="!vm.sentence.isOwnedByCurrentUser"><?= __('Click to adopt') ?></md-tooltip>
+                <md-tooltip ng-if="vm.sentence.isOwnedByCurrentUser"><?= __('Click to unadopt') ?></md-tooltip>
             </md-button>
             <?php } ?>
 

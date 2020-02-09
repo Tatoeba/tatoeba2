@@ -382,4 +382,15 @@ class CurrentUser
     {
         return !self::isMember() || self::getSetting('new_terms_of_use');
     }
+    
+    public static function canAdoptOrUnadoptSentenceOfUser($user)
+    {
+        if (!$user || !$user->id || $user->id === self::get('id')) {
+            return self::isMember();
+        } else {
+            $userAccountDeactivated = isset($user['role']) ?
+                in_array($user['role'], [User::ROLE_SPAMMER, User::ROLE_INACTIVE]) : false;
+            return self::isTrusted() && $userAccountDeactivated;
+        }
+    }
 }

@@ -27,7 +27,7 @@ $username = $user ? $user->username : null;
 $sentenceMenu = [
     'canEdit' => CurrentUser::canEditSentenceOfUser($username),
     'canReview' => CurrentUser::get('settings.users_collections_ratings'),
-    'canAdopt' => CurrentUser::isTrusted() && !$user,
+    'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
     'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
     'canLink' => CurrentUser::isTrusted(),
 ];
