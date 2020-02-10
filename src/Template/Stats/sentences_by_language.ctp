@@ -31,13 +31,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Number of sentences
 $max = $stats[0]['sentences'];
 ?>
 <div id="annexe_content">
-    <?php echo $this->element('audio_stats', array(
-        'stats' => $audioStats,
-        'cache' => array(
+    <?= $this->element('audio_stats',
+        [ 'stats' => $audioStats ],
+        [ 'cache' => [
             'time'=> '+6 hours',
             'key'=> Configure::read('Config.language')
-        )
-    )); ?>
+        ]]
+    ); ?>
 </div>
 
 <div id="main_content">

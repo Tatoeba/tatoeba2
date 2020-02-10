@@ -95,15 +95,16 @@ $registerUrl = $this->Url->build(
                 <h2><?= __('Stats')?></h2>
             </div>
         </md-toolbar>
-        <?= $this->element('stats/homepage_stats', [
-            'contribToday' => $contribToday,
-            'numberOfLanguages' => $numberOfLanguages,
-            'sentencesToCount' => $sentencesToCount,
-            'cache' => array(
-                'time' => '+15 minutes',
-                'key' => Configure::read('Config.language')
-            )
-        ]); ?>
+        <?= $this->element('stats/homepage_stats',
+                [ 'contribToday' => $contribToday,
+                  'numberOfLanguages' => $numberOfLanguages,
+                  'sentencesToCount' => $sentencesToCount,
+                ],
+                [ 'cache' => [
+                    'time' => '+15 minutes',
+                    'key' => 'homepage_stats_'.Configure::read('Config.language')
+                ]]
+        ); ?>
     </div>
 </div>
 

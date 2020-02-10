@@ -77,27 +77,29 @@ use Cake\Core\Configure;
     $isHomepage = $controller == 'pages' && $action == 'index';
     if (CurrentUser::isMember() || !$isHomepage) {
         $session = $this->request->getSession();
-        echo $this->element('search_bar', array(
-            'selectedLanguageFrom' => $session->read('search_from'),
-            'selectedLanguageTo' => $session->read('search_to'),
-            'searchQuery' => isset($query) ? $query : '',
-            'cache' => array(
+        $searchCriteriaEmpty =
+            is_null($session->read('search_from'))
+            && is_null($session->read('search_to'))
+            && empty($query)
+            && !$this->Languages->preferredLanguageFilter();
+        echo $this->element('search_bar',
+            [ 'selectedLanguageFrom' => $session->read('search_from'),
+              'selectedLanguageTo' => $session->read('search_to'),
+              'searchQuery' => isset($query) ? $query : '',
+            ],
+            [ 'cache' => [
                 // Only use cache when search fields are not prefilled
-                'time' => is_null($session->read('search_from'))
-                && is_null($session->read('search_to'))
-                && empty($query)
-                && !$this->Languages->preferredLanguageFilter()
-                    ? '+1 day' : false,
-                'key' => Configure::read('Config.language')
-            )
-        ));
+                'time' => $searchCriteriaEmpty ? '+1 day' : false,
+                'key' => 'search_bar_'.Configure::read('Config.language')
+            ]]
+        );
     } else {
-        echo $this->element('short_description', array(
-            'cache' => array(
+        echo $this->element('short_description', [], [
+            'cache' => [
                 'time' => '+1 day',
-                'key' => Configure::read('Config.language')
-            )
-        ));
+                'key' => 'short_description_'.Configure::read('Config.language')
+            ]
+        ]);
     }
     ?>
 
@@ -139,7 +141,7 @@ use Cake\Core\Configure;
     }
 
     if (Configure::read('GoogleAnalytics.enabled')) {
-        echo $this->element('google_analytics', array('cache' => true));
+        echo $this->element('google_analytics', [], [ 'cache' => true ]);
     }
     ?>
 </body>
