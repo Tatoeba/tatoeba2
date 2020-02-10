@@ -124,6 +124,10 @@ $sentenceUrl = $this->Url->build([
             'sentenceId' => $sentence->id,
             'langs' => $langs
         ]);
+
+        echo $this->element('sentences/list_form', [
+            'sentenceId' => $sentence->id
+        ]);
     }
 
     if ($sentenceMenu['canEdit']) {

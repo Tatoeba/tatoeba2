@@ -90,14 +90,18 @@
         vm.isMenuExpanded = false;
         vm.isTranslationFormVisible = false;
         vm.isSentenceFormVisible = false;
+        vm.isListFormVisible = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
         vm.sentence = null;
         vm.directTranslations = [];
         vm.indirectTranslations = [];
         vm.newTranslation = {};
+        vm.lists = [];
+        vm.listSearch = '';
 
         vm.init = init;
+        vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
@@ -110,6 +114,8 @@
         vm.editSentence = editSentence;
         vm.favorite = favorite;
         vm.adopt = adopt;
+        vm.list = list;
+        vm.toggleList = toggleList;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -119,6 +125,10 @@
             allDirectTranslations = directTranslations;
             allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
+        }
+
+        function initLists(lists) {
+            vm.lists = lists;
         }
 
         function expandOrCollapse() {
@@ -282,6 +292,16 @@
                 vm.sentence.user = result.data.user;
                 vm.sentence.isOwnedByCurrentUser = vm.sentence.user && vm.sentence.user.username;
             });
+        }
+
+        function list() {
+            vm.isListFormVisible = true;
+            focusInput('#list-form-' + vm.sentence.id);
+        }
+
+        function toggleList(list) {
+            list.hasSentence = !list.hasSentence;
+            console.log(vm.sentence.id, list.id);
         }
     }
 

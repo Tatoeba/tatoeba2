@@ -140,7 +140,7 @@ class SentencesListsTable extends Table
      *
      * @return array
      */
-    public function getUserChoices($userId, $sentenceId)
+    public function getUserChoices($userId, $sentenceId, $forNewDesign = false)
     {
         $results = $this->find()
             ->where([
@@ -158,30 +158,34 @@ class SentencesListsTable extends Table
             ->select(['id', 'name', 'user_id'])
             ->order(['name']);
 
-        $listsOfUser = array();
-        $collaborativeLists = array();
-
-        $currentUserId = CurrentUser::get('id');
-        foreach ($results as $result) {
-            $listId = $result['id'];
-            $listName = $result['name'];
-            $userId = $result['user_id'];
-
-            if (empty($listName)) {
-                $listName = __('unnamed list');
+        if ($forNewDesign) {
+            return $results->toList();
+        } else {
+            $listsOfUser = array();
+            $collaborativeLists = array();
+    
+            $currentUserId = CurrentUser::get('id');
+            foreach ($results as $result) {
+                $listId = $result['id'];
+                $listName = $result['name'];
+                $userId = $result['user_id'];
+    
+                if (empty($listName)) {
+                    $listName = __('unnamed list');
+                }
+    
+                if ($currentUserId == $userId) {
+                    $listsOfUser[$listId] = $listName;
+                } else {
+                    $collaborativeLists[$listId] = $listName;
+                }
             }
+    
+            $lists['OfUser'] = $listsOfUser;
+            $lists['Collaborative'] = $collaborativeLists;
 
-            if ($currentUserId == $userId) {
-                $listsOfUser[$listId] = $listName;
-            } else {
-                $collaborativeLists[$listId] = $listName;
-            }
+            return $lists;
         }
-
-        $lists['OfUser'] = $listsOfUser;
-        $lists['Collaborative'] = $collaborativeLists;
-
-        return $lists;
     }
 
 

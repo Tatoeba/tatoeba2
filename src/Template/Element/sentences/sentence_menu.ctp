@@ -20,8 +20,9 @@ $isUnapproved = $sentence->correctness == -1;
             </md-button>
             <?php } ?>
 
-            <md-button class="md-icon-button" ng-disabled="true">
+            <md-button class="md-icon-button" ng-click="vm.list()">
                 <md-icon>list</md-icon>
+                <md-tooltip><?= __('Add sentence to list') ?></md-tooltip>
             </md-button>
 
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-click="vm.favorite()">
