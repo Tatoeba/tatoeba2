@@ -214,18 +214,18 @@ class AudiosTableTest extends TestCase {
 
     function testAssignAudioTo_incrementsCount() {
         $Languages = TableRegistry::getTableLocator()->get('Languages');
-        $before = $Languages->get(1)->audio; // eng audio
+        $before = $Languages->find()->where(['code' => 'eng'])->first()->audio;
         $result = $this->Audio->assignAudioTo(1, 'admin');
-        $after = $Languages->get(1)->audio;
+        $after= $Languages->find()->where(['code' => 'eng'])->first()->audio;
         $this->assertEquals(1, $after - $before);
     }
 
     function testDelete_decrementsCount() {
         $Languages = TableRegistry::getTableLocator()->get('Languages');
-        $before = $Languages->get(4)->audio; // fra audio
+        $before = $Languages->find()->where(['code' => 'fra'])->first()->audio;
         $audioToDelete = $this->Audio->get(2);
         $result = $this->Audio->delete($audioToDelete);
-        $after = $Languages->get(4)->audio;
+        $after = $Languages->find()->where(['code' => 'fra'])->first()->audio;
         $this->assertEquals(1, $before - $after);
     }
 
