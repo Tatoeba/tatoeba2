@@ -3,6 +3,7 @@ $statsUrl = $this->Url->build([
     'controller' => 'stats',
     'action' => 'sentences_by_language'
 ]);
+$numSentences = $sentencesToCount->count();
 ?>
 
 <div class="content" flex>

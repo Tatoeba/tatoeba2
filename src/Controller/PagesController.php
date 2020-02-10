@@ -104,8 +104,8 @@ class PagesController extends AppController
 
         // Stats
         $this->loadModel('Sentences');
-        $numSentences = $this->Sentences->find()->count();
-        $this->set('numSentences', $numSentences);
+        $sentencesToCount = $this->Sentences->find();
+        $this->set('sentencesToCount', $sentencesToCount);
 
         $this->loadModel('Contributions');
         $contribToday = $this->Contributions->getTodayContributions();
