@@ -55,6 +55,7 @@ class InitLanguagesTableShell extends Shell {
             },
             $codes
         );
+        $data[] = [ 'code' => null ];
         $entities = $this->Languages->newEntities($data);
         $this->Languages->saveMany($entities);
     }
