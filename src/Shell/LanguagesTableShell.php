@@ -24,7 +24,7 @@ use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
 
 
-class InitLanguagesTableShell extends Shell {
+class LanguagesTableShell extends Shell {
 
     public function initialize()
     {
@@ -39,8 +39,8 @@ class InitLanguagesTableShell extends Shell {
 
     private function die_usage($message = '') {
         $myself = basename(__FILE__, '.php');
-        die("$message\nInitialize the `languages` table with values.\n\n"
-           ."Usage: $myself\n");
+        die("$message\n\nReset or update the `languages` table with values.\n\n"
+           ."Usage: $myself (reset|update)\n");
     }
 
     private function removeStats() {
@@ -68,12 +68,17 @@ class InitLanguagesTableShell extends Shell {
     }
 
     private function run() {
-        if (count($this->args)) {
-            die_usage("Error: no parameters required.");
+        $op = $this->args[0] ?? '';
+        switch ($op) {
+            case 'reset':
+                $this->removeStats();
+                $this->insertLanguages();
+            case 'update':
+                $this->insertStats();
+                break;
+            default:
+                $this->die_usage("Error: please specify 'reset' or 'update' as first parameter.");
         }
-        $this->removeStats();
-        $this->insertLanguages();
-        $this->insertStats();
     }
 
     public function main() {
