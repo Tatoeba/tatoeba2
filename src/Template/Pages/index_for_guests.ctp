@@ -98,7 +98,7 @@ $registerUrl = $this->Url->build(
         <?= $this->element('stats/homepage_stats',
                 [ 'contribToday' => $contribToday,
                   'numberOfLanguages' => $numberOfLanguages,
-                  'sentencesToCount' => $sentencesToCount,
+                  'numSentences' => $numSentences,
                 ],
                 [ 'cache' => [
                     'time' => '+15 minutes',

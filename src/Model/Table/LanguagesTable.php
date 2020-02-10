@@ -209,4 +209,11 @@ class LanguagesTable extends Table
         }
 
     }
+
+    public function getTotalSentencesNumber()
+    {
+        $query = $this->find();
+        $query->select(['count' => $query->func()->sum('sentences')]);
+        return $query->first()->count;
+    }
 }

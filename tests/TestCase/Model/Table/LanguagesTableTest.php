@@ -69,4 +69,10 @@ class LanguagesTableTest extends TestCase {
             ->first();
         $this->assertEquals(-1, $after->sentences - $before->sentences);
     }
+
+    function testGetTotalSentencesNumber() {
+        $expected = 56;
+        $n = $this->Languages->getTotalSentencesNumber();
+        $this->assertEquals($expected, $n);
+    }
 }
