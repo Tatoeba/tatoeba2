@@ -77,21 +77,23 @@ use Cake\Core\Configure;
     $isHomepage = $controller == 'pages' && $action == 'index';
     if (CurrentUser::isMember() || !$isHomepage) {
         $session = $this->request->getSession();
-        $searchCriteriaEmpty =
-            is_null($session->read('search_from'))
-            && is_null($session->read('search_to'))
+        $selectedLanguageFrom = $session->read('search_from') ?? 'und';
+        $selectedLanguageTo = $session->read('search_to') ?? 'und';
+        $searchQuery = isset($query) ? $query : '';
+        if ($selectedLanguageFrom == 'und'
+            && $selectedLanguageTo == 'und'
             && empty($query)
-            && !$this->Languages->preferredLanguageFilter();
+            && !$this->Languages->preferredLanguageFilter()) {
+            $cache = [
+                'time' => '+1 day',
+                'key' => 'search_bar_'.Configure::read('Config.language'),
+            ];
+        } else {
+            $cache = null;
+        }
         echo $this->element('search_bar',
-            [ 'selectedLanguageFrom' => $session->read('search_from'),
-              'selectedLanguageTo' => $session->read('search_to'),
-              'searchQuery' => isset($query) ? $query : '',
-            ],
-            [ 'cache' => [
-                // Only use cache when search fields are not prefilled
-                'time' => $searchCriteriaEmpty ? '+1 day' : false,
-                'key' => 'search_bar_'.Configure::read('Config.language')
-            ]]
+            compact('selectedLanguageFrom', 'selectedLanguageTo', 'searchQuery'),
+            compact('cache')
         );
     } else {
         echo $this->element('short_description', [], [
