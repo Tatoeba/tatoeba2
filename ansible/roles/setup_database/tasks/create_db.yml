@@ -28,7 +28,7 @@
 - name: Fill languages table
   become: true
   become_user: vagrant
-  shell: "{{code_dir}}/bin/cake init_languages_table"
+  shell: "{{code_dir}}/bin/cake languages_table reset"
 
 - name: Install database triggers
 # This task requires mysql root for creating triggers
