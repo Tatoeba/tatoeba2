@@ -77,6 +77,10 @@ ngrams_create_mode: download
 ngrams_db_download_url: https://downloads.tatoeba.org/tatodetect/ngrams.db
 ngrams_db_file: /etc/ngrams.db
 
+# Variables for tatomecab
+# ------------------------
+build_tatomecab_dict: true
+tatomecab_dict_dir: /var/lib/mecab/dic/tatomecab
 
 # Variables for New Relic
 # -----------------------
