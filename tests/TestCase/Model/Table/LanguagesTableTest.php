@@ -36,12 +36,12 @@ class LanguagesTableTest extends TestCase {
 
     function testGetNativeSpeakersStatistics() {
         $result = $this->Languages->getNativeSpeakersStatistics();
-        $this->assertEquals(7, count($result));
+        $this->assertEquals(13, count($result));
     }
 
     function testGetUsersLanguagesStatistics() {
         $result = $this->Languages->getNativeSpeakersStatistics();
-        $this->assertEquals(7, count($result));
+        $this->assertEquals(13, count($result));
     }
 
     function testIncrementCountForLanguage() {
