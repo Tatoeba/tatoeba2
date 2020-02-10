@@ -12,7 +12,6 @@ class StatsControllerTest extends IntegrationTestCase
         'app.private_messages',
         'app.users',
         'app.languages',
-        'app.sentences',
         'app.users_languages',
     ];
 
