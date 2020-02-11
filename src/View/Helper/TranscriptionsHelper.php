@@ -136,12 +136,12 @@ class TranscriptionsHelper extends AppHelper
 
         $html = $this->transcriptionAsHTML($lang, $transcr);
         $log = '';
-        if (isset($transcr['User']['username'])) {
+        if (isset($transcr->user->username)) {
             $log = format(
                 /* @translators: refers to a transcription */
                 __('Last edited by {author} on {date}'),
                 array(
-                    'author' => $transcr['User']['username'],
+                    'author' => $transcr->user->username,
                     'date' => $this->Date->nice($transcr['modified']),
                 )
             );
