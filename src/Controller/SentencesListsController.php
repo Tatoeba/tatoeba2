@@ -371,28 +371,16 @@ class SentencesListsController extends AppController
      */
     public function set_option()
     {
-        $reload = false;
         $userId = CurrentUser::get('id');
-        $listId = $this->request->getData('listId');
-        $option = $this->request->getData('option');
-        $value = $this->request->getData('value');
-        if ($option == 'editable_by' &&
-            ($value == 'no_one' || $this->SentencesLists->get($listId)->editable_by == 'no_one')) {
-            $reload = true;
-        }
-
         $result = $this->SentencesLists->editOption(
-            $listId,
-            $option,
-            $value,
+            $this->request->getData('listId'),
+            $this->request->getData('option'),
+            $this->request->getData('value'),
             $userId
         );
-
+        
         $this->response->header('Content-Type: application/json');
-        if (empty($result['SentencesList'])) {
-            $reload = false;
-        }
-        $this->set('result', json_encode(array('reload' => $reload)));
+        $this->set('result', json_encode($result['SentencesList']));
     }
 
     /**
