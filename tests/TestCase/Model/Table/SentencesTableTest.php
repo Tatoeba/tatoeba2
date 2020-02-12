@@ -1151,21 +1151,32 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expectedHash, $storedHash);
     }
 
-    function testSaveNewSentence_doesntAddDuplicateWithExtraSpaces() {
-        // Duplicate ending with space
-        $sentence = $this->Sentence->saveNewSentence('What are you doing? ', 'eng', 1);
-        $this->assertEquals(27, $sentence->id);
-        $this->assertTrue($sentence->isDuplicate);
+    function duplicatesProvider() {
+        return [
+            'Duplicate ending with space' =>
+                [['What are you doing? ', 'eng', 1], 27],
+            'Duplicate beginning with space' =>
+                [[' What are you doing?', 'eng', 1], 27],
+            'Duplicate with extra spaces between words' =>
+                [['What  are you   doing?', 'eng', 1], 27],
+            'Tab at beginning, LINE FEED at end' =>
+                [["\u{9}Bana ne önerirsin?\u{a}", 'tur', 2], 41],
+            'NEXT LINE at beginning, NO-BREAK SPACE at end' =>
+                [["\u{85}Bana ne önerirsin?\u{a0}", 'tur', 2], 41],
+            'LINE SEPARATOR at beginning' =>
+                [["\u{2028}Bana ne önerirsin?", 'tur', 2], 41],
+            'IDEOGRAPHIC SPACE at end' =>
+                [["Bana ne önerirsin?\u{3000}", 'tur', 2], 41],
+        ];
+    }
 
-        // Duplicate beginning with space
-        $sentence = $this->Sentence->saveNewSentence(' What are you doing?', 'eng', 1);
-        $this->assertEquals(27, $sentence->id);
-        $this->assertTrue($sentence->isDuplicate);
-
-        // Duplicate with extra spaces between words
-        $sentence = $this->Sentence->saveNewSentence('What  are you   doing?', 'eng', 1);
-        $this->assertEquals(27, $sentence->id);
-        $this->assertTrue($sentence->isDuplicate);
+    /**
+     * @dataProvider duplicatesProvider
+     */
+    function testSaveNewSentence_doesntAddDuplicateWithExtraSpaces($sentence, $id) {
+        $saved = $this->Sentence->saveNewSentence(...$sentence);
+        $this->assertEquals($id, $saved->id);
+        $this->assertTrue($saved->isDuplicate);
     }
 
     function testEditSentence_recognizeDuplicateWithExtraSpaces() {
