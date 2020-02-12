@@ -72,4 +72,22 @@ class BootstrapTest extends TestCase {
         $this->assertEquals('a_v-b_v.', format('{a.k}-{b.k}.', $asArray));
         $this->assertEquals('b_v-a_v.', format('{b.k}-{a.k}.', $asArray));
     }
+
+    function testUnicodeTrim() {
+        $this->assertEquals('', unicode_trim(''));
+        $this->assertEquals('', unicode_trim("\u{2005}"));
+        $this->assertEquals('', unicode_trim('  '));
+        $this->assertEquals('', unicode_trim("\u{3000} \u{85}\u{2007}"));
+        $this->assertEquals('abcde', unicode_trim('abcde'));
+        $this->assertEquals('Это тест.', unicode_trim('Это тест.'));
+        $this->assertEquals('Это тест.', unicode_trim(' Это тест.'));
+        $this->assertEquals('Это тест.', unicode_trim("\u{9}\u{2028}Это тест."));
+        $this->assertEquals('Это тест.', unicode_trim("Это тест.\u{a0}"));
+        $this->assertEquals('Это тест.', unicode_trim("Это тест.\u{a}\u{2029}\u{2000}"));
+        $this->assertEquals('Это тест.', unicode_trim('Это тест.', 'abc'));
+        $this->assertEquals('Это тест.', unicode_trim('Это тест.', ''));
+        $this->assertEquals('Это тест.', unicode_trim("\u{234}Это тест.\u{234}", "\u{234}"));
+        $this->assertEquals('Это\u{2002}тест.', unicode_trim('Это\u{2002}тест.'));
+        $this->assertEquals('т', unicode_trim('Это', 'Эо'));
+    }
 }
