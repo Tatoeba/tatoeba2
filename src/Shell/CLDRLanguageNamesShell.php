@@ -50,18 +50,30 @@ class CLDRLanguageNamesShell extends Shell {
         return substr($filename, 0, strrpos($filename, '.'));
     }
 
+    private function add_po_file_or_dir($path) {
+        if (is_file($path)) {
+            $this->add_po_file($path);
+        } elseif(is_dir($path)) {
+            $this->add_po_files_from_dir($path);
+        } else {
+            echo "Can't open '$path'.\n";
+            $this->die_usage();
+        }
+    }
+
     private function add_po_file($filename) {
-        $code = $this->strip_extension($filename);
-        $code = substr($code, strrpos($code, '-') + 1);
-        $this->po_files[$code] = $filename;
+        if (pathinfo($filename, PATHINFO_BASENAME) == 'languages.po') {
+            $dir = pathinfo($filename, PATHINFO_DIRNAME);
+            $code = pathinfo($dir, PATHINFO_BASENAME);
+            $this->po_files[$code] = $filename;
+        }
     }
 
     private function add_po_files_from_dir($dir) {
         $files = scandir($dir);
         foreach($files as $filename) {
-            if (pathinfo($filename, PATHINFO_EXTENSION) == 'po') {
-                $this->add_po_file($dir.$filename);
-            }
+            if($filename[0] == '.') continue; // Ignore if special or hidden.
+            $this->add_po_file_or_dir($dir.'/'.$filename);
         }
     }
 
@@ -150,20 +162,13 @@ class CLDRLanguageNamesShell extends Shell {
     }
 
     private function die_usage() {
-        die("\nThis shell grabs language name translations from the CLDR project, and inserts them into some given .po file(s). The .po file should be named as default-XX.pl where XX is the locale id as CLDR name it. You can get a list of all the locale ids here: http://unicode.org/cldr/trac/browser/trunk/common/main/\n\n".
-'Usage: '.basename(__FILE__, '.php')." ( default-XX.po | /path/to/po/files/ )...\n");
+        die("\nThis shell grabs language name translations from the CLDR project, and inserts them into some given .po file(s). The .po file should have a path like XX/languages.po where XX is the locale id as the CLDR names it. You can get a list of all the locale ids here: https://www.unicode.org/cldr/charts/latest/summary/root.html\n\n".
+'Usage: '.basename(__FILE__, '.php')." ( XX/languages.po | /path/to/po/files/ )...\n");
     }
 
     private function parse_args() {
         foreach ($this->args as $arg) {
-            if (is_file($arg)) {
-                $this->add_po_file($arg);
-            } elseif(is_dir($arg)) {
-                $this->add_po_files_from_dir($arg);
-            } else {
-                echo "Can't open '$arg'.\n";
-                $this->die_usage();
-            }
+            $this->add_po_file_or_dir($arg);
         }
         if (!$this->po_files) {
             $this->die_usage();
