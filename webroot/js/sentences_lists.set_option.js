@@ -33,14 +33,13 @@
         $scope.editableChanged = function (oldSetting) {
             $(".is-editable.loader-container").show();
             var listId = $("input[name=editable_by]").attr('data-list-id');
-            var newSetting = $scope.editable;
             var rootUrl = get_tatoeba_root_url();
             $.post(
                 rootUrl + "/sentences_lists/set_option/",
-                { "listId": listId, "option": "editable_by", "value": newSetting },
-                function () {
+                { "listId": listId, "option": "editable_by", "value": $scope.editable },
+                function (response) {
                     $(".is-editable.loader-container").hide();
-                    if (newSetting === "no_one" || oldSetting === "no_one")
+                    if (response.editable_by === "no_one" || oldSetting === "no_one")
                         location.reload();
                 }
             );
