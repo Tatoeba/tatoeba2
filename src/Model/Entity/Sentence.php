@@ -45,7 +45,7 @@ class Sentence extends Entity
 
     private function _clean($text)
     {
-        $text = trim($text);
+        $text = unicode_trim($text);
         // Strip out any byte-order mark that might be present.
         $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
         // Replace any series of spaces, newlines, tabs, or other
