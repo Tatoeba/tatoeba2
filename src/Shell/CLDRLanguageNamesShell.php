@@ -18,7 +18,7 @@
  */
 namespace App\Shell;
 
-use App\View\Helper\Languages;
+use App\Lib\LanguagesLib;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
 
@@ -58,8 +58,7 @@ class CLDRLanguageNamesShell extends Shell {
 
     private function get_tatoeba_languages() {
         Configure::write('Config.language', 'eng');
-        $languagesHelper = new LanguagesHelper();
-        $this->tatoeba_languages = $languagesHelper->onlyLanguagesArray();
+        $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
     }
 
     private function get_ldml($locale_id) {
