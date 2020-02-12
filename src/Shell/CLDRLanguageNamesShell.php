@@ -21,20 +21,29 @@ namespace App\Shell;
 use App\Lib\LanguagesLib;
 use Cake\Console\Shell;
 use Cake\Core\Configure;
+use Locale;
 
 class CLDRLanguageNamesShell extends Shell {
 
     private $po_files = array();
     private $tatoeba_languages;
-    private $english_lang_to_locale_id;
+    private $english_translations;
 
-    private function list_english_lang_to_locale_id() {
-        $ldml_file = $this->get_ldml('en');
-        if (!$ldml_file) {
-            die("The english LDML file is required.\n");
+    private function list_english_translations() {
+        $english_translations = array();
+        foreach ($this->get_localized_translations('en') as $iso_code => $lang_in_english) {
+            $tatoeba_name = $this->tatoeba_languages[$iso_code];
+            if ($tatoeba_name != $lang_in_english) {
+                printf("ISO code \"%s\" is called \"%s\" by Tatoeba, but \"%s\" in the Unicode CLDR. Skipping translation.\n",
+                    $iso_code,
+                    $tatoeba_name,
+                    $lang_in_english);
+                continue;
+            }
+            $english_translations[$iso_code] = $lang_in_english;
         }
-        $localized_translations = $this->parse_ldml_file($ldml_file);
-        $this->english_lang_to_locale_id = array_flip($localized_translations);
+
+        $this->english_translations = $english_translations;
     }
 
     private function strip_extension($filename) {
@@ -59,6 +68,19 @@ class CLDRLanguageNamesShell extends Shell {
     private function get_tatoeba_languages() {
         Configure::write('Config.language', 'eng');
         $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
+    }
+
+    private function get_localized_translations($locale_id) {
+        $localized_translations = array();
+        foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
+            $translation = Locale::getDisplayLanguage($iso_code, $locale_id);
+            if($translation == $iso_code) {
+                // There's actually no name for this language in the CLDR.
+                continue;
+            }
+            $localized_translations[$iso_code] = $translation;
+        }
+        return $localized_translations;
     }
 
     private function get_ldml($locale_id) {
@@ -113,17 +135,12 @@ class CLDRLanguageNamesShell extends Shell {
         $this->write_po_header($fp);
 
         $nb_translations = 0;
-        foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
-            if (!isset($this->english_lang_to_locale_id[$lang_in_english])) {
-                continue;
-            }
-            $locale_id = $this->english_lang_to_locale_id[$lang_in_english];
-
-            if (!isset($translations[$locale_id])) {
+        foreach ($this->english_translations as $iso_code => $lang_in_english) {
+            if (!isset($translations[$iso_code])) {
                 continue;
             }
             fprintf($fp, "msgid \"%s\"\nmsgstr \"%s\"\n\n",
-                    $lang_in_english, $translations[$locale_id]);
+                    $lang_in_english, $translations[$iso_code]);
             $nb_translations++;
         }
 
@@ -191,15 +208,11 @@ exec("msgcat --use-first '$po_file' '$lang_po_file' -o '$merged_po_file'", $outp
         $this->check_prerequistes();
         $this->parse_args();
         $this->get_tatoeba_languages();
-        $this->list_english_lang_to_locale_id();
+        $this->list_english_translations();
 
         foreach($this->po_files as $locale_id => $po_file) {
             printf("======= Processing $po_file...\n");
-            $ldml_file = $this->get_ldml($locale_id);
-            if (!$ldml_file) {
-                continue;
-            }
-            $localized_translations = $this->parse_ldml_file($ldml_file);
+            $localized_translations = $this->get_localized_translations($locale_id);
             $lang_po_file = $this->generate_lang_po_file($po_file, $localized_translations);
             $this->merge_lang_po_file($po_file, $lang_po_file);
         }
