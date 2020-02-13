@@ -1158,7 +1158,7 @@ class SentencesTableTest extends TestCase {
             'Duplicate beginning with space' =>
                 [[' What are you doing?', 'eng', 1], 27],
             'Duplicate with extra spaces between words' =>
-                [['What  are you   doing?', 'eng', 1], 27],
+                [["What  are you\u{2004}\u{2003}doing?", 'eng', 1], 27],
             'Tab at beginning, LINE FEED at end' =>
                 [["\u{9}Bana ne önerirsin?\u{a}", 'tur', 2], 41],
             'NEXT LINE at beginning, NO-BREAK SPACE at end' =>
