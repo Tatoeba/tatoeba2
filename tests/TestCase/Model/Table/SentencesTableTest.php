@@ -1167,6 +1167,8 @@ class SentencesTableTest extends TestCase {
                 [["\u{2028}Bana ne önerirsin?", 'tur', 2], 41],
             'IDEOGRAPHIC SPACE at end' =>
                 [["Bana ne önerirsin?\u{3000}", 'tur', 2], 41],
+            'More than one whitespace character' =>
+                [["\u{85} Bana ne önerirsin?\u{a0}\u{2029}", 'tur', 2], 41],
         ];
     }
 

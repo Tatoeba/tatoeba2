@@ -45,12 +45,15 @@ class Sentence extends Entity
 
     private function _clean($text)
     {
-        $text = unicode_trim($text);
+        // Remove whitespace and control characters at the beginning
+        $text = preg_replace('/^[\p{Z}\p{Cc}]+/u', '', $text);
+        // Remove whitespace and control characters at the end
+        $text = preg_replace('/[\p{Z}\p{Cc}]+$/u', '', $text);
         // Strip out any byte-order mark that might be present.
         $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
-        // Replace any series of spaces, newlines, tabs, or other
-        // ASCII whitespace characters with a single space.
-        $text = preg_replace('/\s+/', ' ', $text);
+        // Replace any series of whitespace or control characters
+        // with a single space.
+        $text = preg_replace('/[\p{Z}\p{Cc}]{2,}/u', ' ', $text);
         // MySQL will truncate to a byte length of 1500, which may split
         // a multibyte character. To avoid this, we preemptively
         // truncate to a maximum byte length of 1500. If a multibyte
