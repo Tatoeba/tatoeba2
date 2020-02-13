@@ -346,10 +346,11 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function edit_sentence($type = 'html')
+    public function edit_sentence()
     {
+        $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->editSentence($this->request->data);
-        if ($type == 'json') {
+        if ($acceptsJson) {
             $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
             $this->set('result', $sentence);
             $this->viewBuilder()->setLayout('json');
@@ -373,13 +374,13 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function adopt($id, $type = 'html')
+    public function adopt($id)
     {
         $userId = $this->Auth->user('id');
 
         $this->Sentences->setOwner($id, $userId, CurrentUser::get('role'));
 
-        $this->renderAdopt($id, $type);
+        $this->renderAdopt($id);
     }
 
     /**
@@ -391,22 +392,23 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function let_go($id, $type = 'html')
+    public function let_go($id)
     {
         $userId = $this->Auth->user('id');
 
         $this->Sentences->unsetOwner($id, $userId);
 
-        $this->renderAdopt($id, $type);
+        $this->renderAdopt($id);
     }
 
-    private function renderAdopt($id, $type)
+    private function renderAdopt($id)
     {
+        $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->get($id, [
             'contain' => ['Users' => ['fields' => ['username']]]
         ]);
 
-        if ($type == 'json') {
+        if ($acceptsJson) {
             $this->set('sentence', $sentence);
             $this->viewBuilder()->setLayout('json');
         } else {
@@ -414,7 +416,7 @@ class SentencesController extends AppController
             $this->set('owner', $sentence->user);
             $this->viewBuilder()->setLayout('ajax');
         }
-        $this->set('type', $type);
+        $this->set('acceptsJson', $acceptsJson);
         $this->render('adopt');
     }
 
@@ -424,7 +426,7 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function save_translation($type = 'html')
+    public function save_translation()
     {
         $sentenceId = $this->request->getData('id');
         $translationLang = $this->request->getData('selectLang');
@@ -468,7 +470,8 @@ class SentencesController extends AppController
             }
         }
 
-        if ($type == 'json') {
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
             $this->set('result', $translation);
             $this->viewBuilder()->setLayout('json');
             $this->render('/Generic/json');

@@ -37,7 +37,7 @@
  * @link     https://tatoeba.org
  */
 
-if ($type === 'json') {
+if ($acceptsJson) {
     $result = $this->Sentences->getSentenceData($sentence);
     echo json_encode($result);
 } else {
