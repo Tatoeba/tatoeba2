@@ -85,11 +85,22 @@ class LanguageNamesShell extends Shell {
         $localized_translations = array();
 
         if ($source == 'cldr') {
+            $alt_codes = array(
+                'cmn' => 'zh-long',
+            );
             foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
                 $translation = Locale::getDisplayLanguage($iso_code, $locale_id);
-                if($translation == $iso_code) {
-                    // There's actually no name for this language in the CLDR.
-                    continue;
+                if ($translation == $iso_code) {
+                    // There's no name for this code in the CLDR.
+                    if (!array_key_exists($iso_code, $alt_codes)) {
+                        continue;
+                    } else {
+                        $alt_code = $alt_codes[$iso_code];
+                        $translation = Locale::getDisplayLanguage($alt_code, $locale_id);
+                        if ($translation == $alt_code) {
+                            continue;
+                        }
+                    }
                 }
                 $localized_translations[$iso_code] = $translation;
             }
