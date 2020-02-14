@@ -33,7 +33,7 @@ class SentencesListsTableTest extends TestCase {
         unset($this->SentencesList);
         parent::tearDown();
     }
-    
+
     function testGetListWithPermissions_listBelongsToCurrentUser() {
         $list = $this->SentencesList->getListWithPermissions(1, 7);
         $expected = array(
@@ -122,9 +122,9 @@ class SentencesListsTableTest extends TestCase {
 
     function testEditName_suceeds() {
         $listId = 1;
-        $newName = 'Very interesting French sentences';    
+        $newName = 'Very interesting French sentences';
         $list = $this->SentencesList->editName($listId, $newName, 7);
-        
+
         $expected = array(
             'id' => $listId,
             'name' => $newName
@@ -198,7 +198,33 @@ class SentencesListsTableTest extends TestCase {
         $after = $this->SentencesList->SentencesSentencesLists->find()
             ->where(['sentence_id' => 12, 'sentences_list_id' => 1])
             ->count();
-        
+
+        $this->assertFalse($result);
+        $this->assertEquals($after, $before);
+    }
+
+    function testAddSentenceToList_otherUserFailsBecauseEditableByNoOne() {
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->count();
+        $result = $this->SentencesList->addSentenceToList(12, 6, 4);
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->count();
+
+        $this->assertFalse($result);
+        $this->assertEquals($after, $before);
+    }
+
+    function testAddSentenceToList_ownerFailsBecauseEditableByNoOne() {
+        $before = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->count();
+        $result = $this->SentencesList->addSentenceToList(12, 6, 7);
+        $after = $this->SentencesList->SentencesSentencesLists->find()
+            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->count();
+
         $this->assertFalse($result);
         $this->assertEquals($after, $before);
     }
@@ -260,10 +286,10 @@ class SentencesListsTableTest extends TestCase {
         $text = 'This is a new shiny sentence.';
         $userId = 7;
         $data = $this->SentencesList->addNewSentenceToList($listId, $text, $lang, $userId);
-        
+
         $expected = [$lang, $text, $userId];
         $result = [$data->lang, $data->text, $data->user->id];
-        
+
         $this->assertEquals($expected, $result);
     }
 
@@ -317,6 +343,16 @@ class SentencesListsTableTest extends TestCase {
     function testRemoveSentenceFromList_failsBecauseUnknownListId() {
         $result = $this->SentencesList->removeSentenceFromList(4, 999999, 7);
 
+        $this->assertFalse($result);
+    }
+
+    function testRemoveSentenceFromList_otherUserFailsBecauseEditableByNoOne() {
+        $result = $this->SentencesList->removeSentenceFromList(20, 6, 4);
+        $this->assertFalse($result);
+    }
+
+    function testRemoveSentenceFromList_ownerFailsBecauseEditableByNoOne() {
+        $result = $this->SentencesList->removeSentenceFromList(20, 6, 7);
         $this->assertFalse($result);
     }
 
