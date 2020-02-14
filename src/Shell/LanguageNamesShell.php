@@ -23,18 +23,17 @@ use Cake\Console\Shell;
 use Cake\Core\Configure;
 use Locale;
 
-class CLDRLanguageNamesShell extends Shell {
+class LanguageNamesShell extends Shell {
 
     private $po_files = array();
     private $tatoeba_languages;
-    private $english_translations;
 
-    private function list_english_translations() {
+    private function list_english_translations($source) {
         $english_translations = array();
-        foreach ($this->get_localized_translations('en') as $iso_code => $lang_in_english) {
+        foreach ($this->get_localized_translations('en', $source) as $iso_code => $lang_in_english) {
             $tatoeba_name = $this->tatoeba_languages[$iso_code];
             if ($tatoeba_name != $lang_in_english) {
-                printf("ISO code \"%s\" is called \"%s\" by Tatoeba, but \"%s\" in the Unicode CLDR. Skipping translation.\n",
+                printf("ISO code \"%s\" is called \"%s\" by Tatoeba, but \"%s\" in $source. Skipping translation.\n",
                     $iso_code,
                     $tatoeba_name,
                     $lang_in_english);
@@ -43,7 +42,7 @@ class CLDRLanguageNamesShell extends Shell {
             $english_translations[$iso_code] = $lang_in_english;
         }
 
-        $this->english_translations = $english_translations;
+        return $english_translations;
     }
 
     private function strip_extension($filename) {
@@ -82,15 +81,48 @@ class CLDRLanguageNamesShell extends Shell {
         $this->tatoeba_languages = LanguagesLib::languagesInTatoeba();
     }
 
-    private function get_localized_translations($locale_id) {
+    private function get_localized_translations($locale_id, $source) {
         $localized_translations = array();
-        foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
-            $translation = Locale::getDisplayLanguage($iso_code, $locale_id);
-            if($translation == $iso_code) {
-                // There's actually no name for this language in the CLDR.
-                continue;
+
+        if ($source == 'cldr') {
+            foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
+                $translation = Locale::getDisplayLanguage($iso_code, $locale_id);
+                if($translation == $iso_code) {
+                    // There's actually no name for this language in the CLDR.
+                    continue;
+                }
+                $localized_translations[$iso_code] = $translation;
             }
-            $localized_translations[$iso_code] = $translation;
+        } elseif ($source == 'wikidata') {
+            $query = "
+                SELECT DISTINCT ?iso_code ?name
+                WHERE {
+                  ?language wdt:P220 ?iso_code;
+                            rdfs:label ?name;
+                  FILTER(lang(?name) = '$locale_id')
+                  VALUES ?iso_code {";
+            foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
+                $query .= "'$iso_code'";
+            }
+            $query .= "}}";
+            $query = http_build_query(array(
+                "query" => $query,
+                "format" => "json",
+            ));
+
+            // Wikidata likes to know who queries their endpoint
+            ini_set("user_agent", "LanguageTranslationBot/0.0 (created by yorwb4@gmail.com for use by https://tatoeba.org/)");
+
+            $bindings = json_decode(file_get_contents(
+                "https://query.wikidata.org/sparql?".$query
+            ))->results->bindings;
+
+            $localized_translations = array();
+            foreach ($bindings as $binding) {
+                $localized_translations[$binding->iso_code->value] = $binding->name->value;
+            }
+        } else {
+            die("Unknown translation source '$source'. Only 'cldr' and 'wikidata' are supported.\n");
         }
         return $localized_translations;
     }
@@ -137,7 +169,7 @@ class CLDRLanguageNamesShell extends Shell {
                 '"Content-Transfer-Encoding: 8bit\n"'."\n\n");
     }
 
-    private function generate_lang_po_file($existing_po_file, $translations) {
+    private function generate_lang_po_file($existing_po_file, $translation_pairs) {
         $po_file = TMP.basename($existing_po_file, '.po').'.langs.po';
         if (!($fp = fopen($po_file, 'w'))) {
             echo "Couldn’t write $po_file!\n";
@@ -147,12 +179,9 @@ class CLDRLanguageNamesShell extends Shell {
         $this->write_po_header($fp);
 
         $nb_translations = 0;
-        foreach ($this->english_translations as $iso_code => $lang_in_english) {
-            if (!isset($translations[$iso_code])) {
-                continue;
-            }
+        foreach ($translation_pairs as $iso_code => $translation_pair) {
             fprintf($fp, "msgid \"%s\"\nmsgstr \"%s\"\n\n",
-                    $lang_in_english, $translations[$iso_code]);
+                    $translation_pair[0], $translation_pair[1]);
             $nb_translations++;
         }
 
@@ -162,11 +191,12 @@ class CLDRLanguageNamesShell extends Shell {
     }
 
     private function die_usage() {
-        die("\nThis shell grabs language name translations from the CLDR project, and inserts them into some given .po file(s). The .po file should have a path like XX/languages.po where XX is the locale id as the CLDR names it. You can get a list of all the locale ids here: https://www.unicode.org/cldr/charts/latest/summary/root.html\n\n".
-'Usage: '.basename(__FILE__, '.php')." ( XX/languages.po | /path/to/po/files/ )...\n");
+        die("\nThis shell grabs language name translations from the CLDR project and/or Wikidata, and inserts them into some given .po file(s). The .po file should have a path like XX/languages.po where XX is the locale id. You can get a list of all the locale ids here:\n\tCLDR: https://www.unicode.org/cldr/charts/latest/summary/root.html\n\tWikidata: https://en.wikipedia.org/wiki/List_of_Wikipedias\n\n".
+'Usage: '.basename(__FILE__, '.php')." <comma-separated list of translation sources, e.g. 'wikidata,cldr'> ( XX/languages.po | /path/to/po/files/ )...\n");
     }
 
     private function parse_args() {
+        $this->sources = explode(',', array_shift($this->args));
         foreach ($this->args as $arg) {
             $this->add_po_file_or_dir($arg);
         }
@@ -209,16 +239,41 @@ exec("msgcat --use-first '$po_file' '$lang_po_file' -o '$merged_po_file'", $outp
         }
     }
 
+    /**
+     * Turn two arrays into an array of pairs. The result will only have keys
+     * shared by both arrays. This function differs from array_map in that it
+     * does not force keys to be sequential integers.
+     */
+    private function array_zip($array1, $array2) {
+        $result = array();
+        foreach ($array1 as $key => $value1) {
+            if (!isset($array2[$key])) continue;
+            $result[$key] = [$value1, $array2[$key]];
+        }
+        return $result;
+    }
+
     public function main() {
         $this->check_prerequistes();
         $this->parse_args();
         $this->get_tatoeba_languages();
-        $this->list_english_translations();
+        $english_translations = array();
+        foreach($this->sources as $source) {
+            $english_translations[$source] = $this->list_english_translations($source);
+        }
 
         foreach($this->po_files as $locale_id => $po_file) {
             printf("======= Processing $po_file...\n");
-            $localized_translations = $this->get_localized_translations($locale_id);
-            $lang_po_file = $this->generate_lang_po_file($po_file, $localized_translations);
+            $translation_pairs = array();
+            foreach($this->sources as $source) {
+                $translations = $this->get_localized_translations($locale_id, $source);
+                $translation_pairs = array_merge(
+                    $translation_pairs,
+                    $this->array_zip(
+                        $english_translations[$source],
+                        $translations));
+            }
+            $lang_po_file = $this->generate_lang_po_file($po_file, $translation_pairs);
             $this->merge_lang_po_file($po_file, $lang_po_file);
         }
     }
