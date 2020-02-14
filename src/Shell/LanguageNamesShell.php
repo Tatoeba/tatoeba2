@@ -111,7 +111,7 @@ class LanguageNamesShell extends Shell {
             ));
 
             // Wikidata likes to know who queries their endpoint
-            ini_set("user_agent", "LanguageTranslationBot/0.0 (created by yorwb4@gmail.com for use by https://tatoeba.org/)");
+            ini_set("user_agent", "LanguageTranslationBot/0.0 (Contact: https://tatoeba.org/contact)");
 
             $bindings = json_decode(file_get_contents(
                 "https://query.wikidata.org/sparql?".$query
