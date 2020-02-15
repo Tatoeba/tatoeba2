@@ -84,7 +84,8 @@ class LanguageNamesShell extends Shell {
     private function get_localized_translations($locale_id, $source) {
         $localized_translations = array();
 
-        if ($source == 'cldr') {
+        if (substr($source, 0, 4) == 'cldr') {
+            $alt_tag = substr($source, 4);
             $ldml_file = $this->get_ldml($locale_id);
             if (!$ldml_file) {
                 echo "Couldn't get the LDML file for $locale_id.\n";
@@ -95,13 +96,13 @@ class LanguageNamesShell extends Shell {
                 'cmn' => 'zh-long',
             );
             foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
-                $translation = $this->ldml_lookup($ldml_data, $iso_code);
+                $translation = $this->ldml_lookup($ldml_data, $iso_code.$alt_tag);
                 if (!isset($translation)) {
                     // There's no name for this code in the CLDR.
                     if (!array_key_exists($iso_code, $alt_codes)) {
                         continue;
                     } else {
-                        $alt_code = $alt_codes[$iso_code];
+                        $alt_code = $alt_codes[$iso_code].$alt_tag;
                         $translation = $this->ldml_lookup($ldml_data, $alt_code);
                         if (!isset($translation)) {
                             continue;
@@ -139,7 +140,7 @@ class LanguageNamesShell extends Shell {
                 $localized_translations[$binding->iso_code->value] = $binding->name->value;
             }
         } else {
-            die("Unknown translation source '$source'. Only 'cldr' and 'wikidata' are supported.\n");
+            die("Unknown translation source '$source'. Only 'cldr' (with optional suffixes) and 'wikidata' are supported.\n");
         }
         return $localized_translations;
     }
@@ -226,8 +227,8 @@ class LanguageNamesShell extends Shell {
     }
 
     private function die_usage() {
-        die("\nThis shell grabs language name translations from the CLDR project and/or Wikidata, and inserts them into some given .po file(s). The .po file should have a path like XX/languages.po where XX is the locale id. You can get a list of all the locale ids here:\n\tCLDR: https://www.unicode.org/cldr/charts/latest/summary/root.html\n\tWikidata: https://en.wikipedia.org/wiki/List_of_Wikipedias\n\n".
-'Usage: '.basename(__FILE__, '.php')." <comma-separated list of translation sources, e.g. 'wikidata,cldr'> ( XX/languages.po | /path/to/po/files/ )...\n");
+        die("\nThis shell grabs language name translations from the CLDR project and/or Wikidata, and inserts them into some given .po file(s). The .po file should have a path like XX/languages.po where XX is the locale id. You can get a list of all the locale ids here:\n\tCLDR: https://www.unicode.org/cldr/charts/latest/summary/root.html\n\tWikidata: https://en.wikipedia.org/wiki/List_of_Wikipedias\nWhen selecting CLDR as a translation source, any suffix attached to the 'cldr' will select the corresponding alternative names, e.g. 'cldr-long' for long names.\n".
+'Usage: '.basename(__FILE__, '.php')." <comma-separated list of translation sources, e.g. 'wikidata,cldr-long,cldr-menu,cldr'> ( XX/languages.po | /path/to/po/files/ )...\n");
     }
 
     private function parse_args() {
