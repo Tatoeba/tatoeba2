@@ -85,19 +85,25 @@ class LanguageNamesShell extends Shell {
         $localized_translations = array();
 
         if ($source == 'cldr') {
+            $ldml_file = $this->get_ldml($locale_id);
+            if (!$ldml_file) {
+                echo "Couldn't get the LDML file for $locale_id.\n";
+                return $localized_translations;
+            }
+            $ldml_data = $this->parse_ldml_file($ldml_file);
             $alt_codes = array(
                 'cmn' => 'zh-long',
             );
             foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
-                $translation = Locale::getDisplayLanguage($iso_code, $locale_id);
-                if ($translation == $iso_code) {
+                $translation = $this->ldml_lookup($ldml_data, $iso_code);
+                if (!isset($translation)) {
                     // There's no name for this code in the CLDR.
                     if (!array_key_exists($iso_code, $alt_codes)) {
                         continue;
                     } else {
                         $alt_code = $alt_codes[$iso_code];
-                        $translation = Locale::getDisplayLanguage($alt_code, $locale_id);
-                        if ($translation == $alt_code) {
+                        $translation = $this->ldml_lookup($ldml_data, $alt_code);
+                        if (!isset($translation)) {
                             continue;
                         }
                     }
@@ -144,7 +150,7 @@ class LanguageNamesShell extends Shell {
         if (file_exists($file)) {
             echo "Using cached file $file\n";
         } else {
-            $url = 'http://unicode.org/cldr/trac/export/HEAD/trunk/common/main/'.$filename;
+            $url = 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/main/'.$filename;
             echo "Downloading $url... ";
             $ldml = @file_get_contents($url);
             if (!$ldml) {
@@ -169,6 +175,20 @@ class LanguageNamesShell extends Shell {
             $lang_translations["$translated_into"] = "$lang_translation";
         }
         return $lang_translations;
+    }
+
+    private function ldml_lookup($ldml_data, $iso_code) {
+        if (isset($ldml_data[$iso_code])) {
+            return $ldml_data[$iso_code];
+        } else {
+            // Try removing extra tags from the code.
+            $dash_pos = strrpos($iso_code, '-');
+            if ($dash_pos !== false) {
+                $iso_code = substr($iso_code, 0, $dash_pos);
+                return $this->ldml_lookup($ldml_data, $iso_code);
+            }
+        }
+        return NULL;
     }
 
     private function write_po_header($fp) {
