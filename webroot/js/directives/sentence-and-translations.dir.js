@@ -61,11 +61,10 @@
                         $scope.lang = 'unknown';
                     }
                 },
-                template: `
-                    <img class="language-icon" width="30" heigth="20" 
-                      ng-attr-title="{{title ? title : lang}}"
-                      ng-src="/img/flags/{{lang}}.svg" />
-                `
+                template: 
+                    '<img class="language-icon" width="30" heigth="20" ' +
+                      'ng-attr-title="{{title ? title : lang}}"' +
+                      'ng-src="/img/flags/{{lang}}.svg" />'
             }
         });
 
@@ -263,7 +262,7 @@
         function initSentence(data) {
             data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
-            vm.sentence = Object.assign({}, data);
+            vm.sentence = angular.copy(data);
         }
     }
 

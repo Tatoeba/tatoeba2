@@ -48,7 +48,7 @@ $registerUrl = $this->Url->build(
         </div>
     </md-toolbar>
 
-    <section flex ng-cloak>
+    <section ng-cloak>
     <?php
     $sentence = $random;
     $translations = $random->translations;
@@ -75,7 +75,7 @@ $registerUrl = $this->Url->build(
                 <h2><?= __('Want to help?') ?></h2>
             </div>
         </md-toolbar>
-        <p flex>
+        <p>
         <?= __(
             'We are collecting sentences and their translations. '.
             'You can help us by translating or adding new sentences.', true
