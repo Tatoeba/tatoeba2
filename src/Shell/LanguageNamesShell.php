@@ -171,8 +171,12 @@ class LanguageNamesShell extends Shell {
         $ldml = simplexml_load_file($filename, 'SimpleXMLElement');
         foreach ($ldml->{'localeDisplayNames'}->{'languages'}->{'language'}
                  as $lang_translation) {
-            $translated_into = $lang_translation->attributes()->{'type'};
-            $lang_translations["$translated_into"] = "$lang_translation";
+            $iso_code = $lang_translation->attributes()->{'type'};
+            $alt_tag = $lang_translation->attributes()->{'alt'};
+            if (isset($alt_tag)) {
+                $iso_code .= "-$alt_tag";
+            }
+            $lang_translations["$iso_code"] = "$lang_translation";
         }
         return $lang_translations;
     }
