@@ -156,9 +156,12 @@ $(document).on('copy', function (e) {
 
     var sel = window.getSelection();
     if (sel.rangeCount > 0) {
-        e.preventDefault();
         $('rt').css('visibility', 'hidden');
-        e.originalEvent.clipboardData.setData('text', sel.toString());
+        var clipboardData = e.originalEvent.clipboardData;
+        if (clipboardData) { // not available in IE
+            e.preventDefault();
+            clipboardData.setData('text', sel.toString());
+        }
         $('rt').css('visibility', 'visible');
     }
 });
