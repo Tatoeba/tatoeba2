@@ -129,8 +129,6 @@ class SentencesController extends AppController
           'edit_sentence'
         ]);
 
-        $this->loadComponent('RequestHandler');
-
         return parent::beforeFilter($event);
     }
 
@@ -411,6 +409,7 @@ class SentencesController extends AppController
         ]);
 
         if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
             $this->set('user', $sentence->user);
             $this->set('_serialize', ['user']);
             $this->RequestHandler->renderAs($this, 'json');
