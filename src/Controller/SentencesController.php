@@ -129,6 +129,8 @@ class SentencesController extends AppController
           'edit_sentence'
         ]);
 
+        $this->loadComponent('RequestHandler');
+
         return parent::beforeFilter($event);
     }
 
@@ -409,15 +411,15 @@ class SentencesController extends AppController
         ]);
 
         if ($acceptsJson) {
-            $this->set('sentence', $sentence);
-            $this->viewBuilder()->setLayout('json');
+            $this->set('user', $sentence->user);
+            $this->set('_serialize', ['user']);
+            $this->RequestHandler->renderAs($this, 'json');
         } else {
             $this->set('sentenceId', $id);
             $this->set('owner', $sentence->user);
             $this->viewBuilder()->setLayout('ajax');
+            $this->render('adopt');
         }
-        $this->set('acceptsJson', $acceptsJson);
-        $this->render('adopt');
     }
 
 

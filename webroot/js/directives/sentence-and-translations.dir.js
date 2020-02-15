@@ -280,7 +280,8 @@
             var action = vm.sentence.isOwnedByCurrentUser ? 'let_go' : 'adopt';
             
             $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
-                vm.sentence = result.data;
+                vm.sentence.user = result.data.user;
+                vm.sentence.isOwnedByCurrentUser = vm.sentence.user && vm.sentence.user.username;
             });
         }
     }
