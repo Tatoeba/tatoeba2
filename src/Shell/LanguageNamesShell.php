@@ -92,9 +92,7 @@ class LanguageNamesShell extends Shell {
                 return $localized_translations;
             }
             $ldml_data = $this->parse_ldml_file($ldml_file);
-            $alt_codes = array(
-                'cmn' => 'zh-long',
-            );
+            $alt_codes = $this->parse_ldml_aliases();
             foreach ($this->tatoeba_languages as $iso_code => $lang_in_english) {
                 $translation = $this->ldml_lookup($ldml_data, $iso_code.$alt_tag);
                 if (!isset($translation)) {
@@ -147,11 +145,19 @@ class LanguageNamesShell extends Shell {
 
     private function get_ldml($locale_id) {
         $filename = $locale_id.'.xml';
+        return $this->get_ldml_file('main', $filename);
+    }
+
+    private function get_ldml_metadata() {
+        return $this->get_ldml_file('supplemental', 'supplementalMetadata.xml');
+    }
+
+    private function get_ldml_file($directory, $filename) {
         $file = TMP.$filename;
         if (file_exists($file)) {
             echo "Using cached file $file\n";
         } else {
-            $url = 'https://raw.githubusercontent.com/unicode-org/cldr/master/common/main/'.$filename;
+            $url = "https://raw.githubusercontent.com/unicode-org/cldr/master/common/$directory/$filename";
             echo "Downloading $url... ";
             $ldml = @file_get_contents($url);
             if (!$ldml) {
@@ -180,6 +186,18 @@ class LanguageNamesShell extends Shell {
             $lang_translations["$iso_code"] = "$lang_translation";
         }
         return $lang_translations;
+    }
+
+    private function parse_ldml_aliases() {
+        $file = $this->get_ldml_metadata();
+        $aliases = array();
+        $ldml = simplexml_load_file($file, 'SimpleXMLElement');
+        foreach ($ldml->{'metadata'}->{'alias'}->{'languageAlias'} as $alias) {
+            $iso_code = $alias->attributes()->{'type'};
+            $alt_code = $alias->attributes()->{'replacement'};
+            $aliases["$iso_code"] = "$alt_code";
+        }
+        return $aliases;
     }
 
     private function ldml_lookup($ldml_data, $iso_code) {
