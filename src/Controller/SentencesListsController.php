@@ -68,7 +68,8 @@ class SentencesListsController extends AppController
         $noCsrfActions = [
             'set_option',
             'save_name',
-            'add_new_sentence_to_list'
+            'add_new_sentence_to_list',
+            'add_sentence_to_new_list'
         ];
         if (in_array($params['action'], $noCsrfActions)) {
             $this->components()->unload('Csrf');
@@ -86,7 +87,8 @@ class SentencesListsController extends AppController
         $this->Security->config('unlockedActions', [
             'set_option',
             'save_name',
-            'add_new_sentence_to_list'
+            'add_new_sentence_to_list',
+            'add_sentence_to_new_list'
         ]);
 
         return parent::beforeFilter($event);
@@ -363,6 +365,28 @@ class SentencesListsController extends AppController
         }
 
         $this->set('sentence', $result);
+    }
+
+    public function add_sentence_to_new_list() {
+        $userId = $this->Auth->user('id');
+        $sentenceId = $this->request->getData('sentenceId');
+        $list = $this->SentencesLists->createList(
+            $this->request->getData('name'), 
+            $this->Auth->user('id')
+        );
+
+        if ($this->SentencesLists->addSentenceToList($sentenceId, $list->id, $userId)) {
+            $list->hasSentence = true;
+            $this->set('result', $list);
+            $this->Cookie->write('most_recent_list', $list->id, false, '+1 month');
+        } else {
+            $this->set('result', 'error');
+        }
+        
+        $this->loadComponent('RequestHandler');
+        $this->set('result', $list);
+        $this->set('_serialize', ['result']);
+        $this->RequestHandler->renderAs($this, 'json');
     }
 
     /**

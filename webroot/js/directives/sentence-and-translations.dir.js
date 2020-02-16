@@ -116,6 +116,7 @@
         vm.adopt = adopt;
         vm.list = list;
         vm.toggleList = toggleList;
+        vm.addToNewList = addToNewList;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -306,6 +307,17 @@
 
             $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
                 list.hasSentence = !list.hasSentence;
+            });
+        }
+
+        function addToNewList() {
+            var data = { 
+                name: vm.listSearch,
+                sentenceId: vm.sentence.id
+            };
+            $http.post(rootUrl + '/sentences_lists/add_sentence_to_new_list', data).then(function(result) {
+                vm.listSearch = '';
+                vm.lists.unshift(result.data.result);
             });
         }
     }
