@@ -11,7 +11,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
 ?>
 
 <form layout="column" style="border-top: 1px solid #f1f1f1; padding-top: 10px;"
-      ng-init="vm.initLists(<?= $listsJSON ?>)" ng-if="vm.isListFormVisible">
+      ng-init="vm.initLists(<?= $listsJSON ?>)" ng-show="vm.isListFormVisible">
     <div layout="column" layout-margin>
         <md-input-container>
             <label><?= __('Search list or enter new list name') ?></label>

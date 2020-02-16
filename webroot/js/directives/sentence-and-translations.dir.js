@@ -300,8 +300,11 @@
         }
 
         function toggleList(list) {
-            list.hasSentence = !list.hasSentence;
-            console.log(vm.sentence.id, list.id);
+            var action = list.hasSentence ? 'remove_sentence_from_list' : 'add_sentence_to_list';
+
+            $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
+                list.hasSentence = !list.hasSentence;
+            });
         }
     }
 
