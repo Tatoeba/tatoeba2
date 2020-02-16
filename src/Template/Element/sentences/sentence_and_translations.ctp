@@ -111,7 +111,7 @@ $sentenceUrl = $this->Url->build([
 
             <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
 
-            <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+            <md-button class="md-icon-button" ng-href="<?= $sentenceUrl ?>/{{vm.sentence.id}}">
                 <md-icon>info</md-icon>
             </md-button>
         </div>
