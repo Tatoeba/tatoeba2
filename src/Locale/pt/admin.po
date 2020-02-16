@@ -6,17 +6,17 @@
 # Translators:
 # صفا الفليج <safaalfulaij@hotmail.com>, 2018
 # fcba0459f182b79b2f7a2ccaff2ce639, 2018
-# Ricardo Vernaut Junior <rvj1444@gmail.com>, 2019
 # Alex Augusto Marcelo <alex.amarcelo@outlook.com>, 2020
+# Ricardo Vernaut Junior <rvj1444@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-02 16:15+0000\n"
+"POT-Creation-Date: 2020-02-09 20:55+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Alex Augusto Marcelo <alex.amarcelo@outlook.com>, 2020\n"
+"Last-Translator: Ricardo Vernaut Junior <rvj1444@gmail.com>, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/tatoeba/teams/28284/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +111,19 @@ msgstr "Importar"
 msgid "Enabled"
 msgstr "Habilitado"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
+msgid "Yes"
+msgstr "Sim"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+msgid "No"
+msgstr "Não"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
+msgid "Owner name"
+msgstr "Nome do usuário dono"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
