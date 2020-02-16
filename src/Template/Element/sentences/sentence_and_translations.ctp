@@ -4,18 +4,14 @@ use App\Model\CurrentUser;
 
 $this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom'));
 
+if (!isset($menuExpanded)) {
+    $menuExpanded = false;
+}
+
 list($directTranslations, $indirectTranslations) = $translations;
 $maxDisplayed = 5;
 $showExtra = '';
 $numExtra = count($directTranslations) + count($indirectTranslations) - $maxDisplayed;
-$sentenceLink = $this->Html->link(
-    '#'.$sentence->id,
-    array(
-        'controller' => 'sentences',
-        'action' => 'show',
-        $sentence->id
-    )
-);
 $sentenceUrl = $this->Url->build(array(
     'controller' => 'sentences',
     'action' => 'show',
@@ -27,7 +23,7 @@ $username = $user ? $user->username : null;
 $sentenceMenu = [
     'canEdit' => CurrentUser::canEditSentenceOfUser($username),
     'canReview' => CurrentUser::get('settings.users_collections_ratings'),
-    'canAdopt' => CurrentUser::isTrusted() && !$user,
+    'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
     'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
     'canLink' => CurrentUser::isTrusted(),
 ];
@@ -37,6 +33,15 @@ $userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
 $sentenceJSON = $this->Sentences->sentenceForAngular($sentence);
 $directTranslationsJSON = $this->Sentences->translationsForAngular($directTranslations);
 $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTranslations);
+
+$profileUrl = $this->Url->build([
+    'controller' => 'user',
+    'action' => 'profile'
+]);
+$sentenceUrl = $this->Url->build([
+    'controller' => 'sentences',
+    'action' => 'show'
+]);
 ?>
 <div ng-cloak
      sentence-and-translations
@@ -45,39 +50,35 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
     <div layout="column">
         <div layout="row" class="header">
             <md-subheader flex class="ellipsis">
-                <?php
-                if ($user) {
-                    $userLink = $this->Html->link(
-                        $user->username,
-                        array(
-                            'controller' => 'user',
-                            'action' => 'profile',
-                            $user->username
-                        )
-                    );
+                <span ng-if="vm.sentence.user && vm.sentence.user.username">
+                    <?php
                     echo format(
                         __('Sentence {number} — belongs to {username}'),
                         array(
-                            'number' => $sentenceLink,
-                            'username' => $userLink
+                            'number' => '<a ng-href="'.$sentenceUrl.'/{{vm.sentence.id}}">#{{vm.sentence.id}}</a>',
+                            'username' => '<a ng-href="'.$profileUrl.'/{{vm.sentence.user.username}}">{{vm.sentence.user.username}}</a>'
                         )
                     );
-                } else {
+                    ?>
+                </span>
+                <span ng-if="!vm.sentence.user || !vm.sentence.user.username">
+                    <?php
                     echo format(
                         __('Sentence {number}'),
                         array(
-                            'number' => $sentenceLink
+                            'number' => '<a ng-href="'.$sentenceUrl.'/{{vm.sentence.id}}">#{{vm.sentence.id}}</a>'
                         )
                     );
-                }
-                ?>
+                    ?>
+                </span>
             </md-subheader>
 
             <?php
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
                     'sentence' => $sentence,
-                    'menu' => $sentenceMenu
+                    'menu' => $sentenceMenu,
+                    'expanded' => $menuExpanded
                 ]);
             }
             ?>
@@ -110,7 +111,7 @@ $indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTr
 
             <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
 
-            <md-button class="md-icon-button" href="<?= $sentenceUrl ?>">
+            <md-button class="md-icon-button" ng-href="<?= $sentenceUrl ?>/{{vm.sentence.id}}">
                 <md-icon>info</md-icon>
             </md-button>
         </div>
