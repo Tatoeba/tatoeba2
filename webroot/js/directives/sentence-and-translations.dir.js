@@ -295,8 +295,10 @@
         }
 
         function list() {
-            vm.isListFormVisible = true;
-            focusInput('#list-form-' + vm.sentence.id);
+            vm.isListFormVisible = !vm.isListFormVisible;
+            if (vm.isListFormVisible) {
+                focusInput('#list-form-' + vm.sentence.id);
+            }            
         }
 
         function toggleList(list) {
