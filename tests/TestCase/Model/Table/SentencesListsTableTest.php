@@ -204,12 +204,15 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testAddSentenceToList_otherUserFailsBecauseEditableByNoOne() {
+        $sentenceId = 12;
+        $listId = 6;
+        $userId = 4;
         $before = $this->SentencesList->SentencesSentencesLists->find()
-            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->where(['sentence_id' => $sentenceId, 'sentences_list_id' => $listId])
             ->count();
-        $result = $this->SentencesList->addSentenceToList(12, 6, 4);
+        $result = $this->SentencesList->addSentenceToList($sentenceId, $listId, $userId);
         $after = $this->SentencesList->SentencesSentencesLists->find()
-            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->where(['sentence_id' => $sentenceId, 'sentences_list_id' => $listId])
             ->count();
 
         $this->assertFalse($result);
@@ -217,12 +220,15 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testAddSentenceToList_ownerFailsBecauseEditableByNoOne() {
+        $sentenceId = 12;
+        $listId = 6;
+        $ownerId = 7;
         $before = $this->SentencesList->SentencesSentencesLists->find()
-            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->where(['sentence_id' => $sentenceId, 'sentences_list_id' => $listId])
             ->count();
-        $result = $this->SentencesList->addSentenceToList(12, 6, 7);
+        $result = $this->SentencesList->addSentenceToList($sentenceId, $listId, $ownerId);
         $after = $this->SentencesList->SentencesSentencesLists->find()
-            ->where(['sentence_id' => 12, 'sentences_list_id' => 6])
+            ->where(['sentence_id' => $sentenceId, 'sentences_list_id' => $listId])
             ->count();
 
         $this->assertFalse($result);
@@ -347,12 +353,18 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testRemoveSentenceFromList_otherUserFailsBecauseEditableByNoOne() {
-        $result = $this->SentencesList->removeSentenceFromList(20, 6, 4);
+        $sentenceId = 20;
+        $listId = 6;
+        $userId = 4;
+        $result = $this->SentencesList->removeSentenceFromList($sentenceId, $listId, $userId);
         $this->assertFalse($result);
     }
 
     function testRemoveSentenceFromList_ownerFailsBecauseEditableByNoOne() {
-        $result = $this->SentencesList->removeSentenceFromList(20, 6, 7);
+        $sentenceId = 12;
+        $listId = 6;
+        $ownerId = 7;
+        $result = $this->SentencesList->removeSentenceFromList($sentenceId, $listId, $ownerId);
         $this->assertFalse($result);
     }
 
