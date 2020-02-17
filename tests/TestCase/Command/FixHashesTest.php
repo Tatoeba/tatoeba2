@@ -3,10 +3,8 @@ namespace App\Test\TestCase\Command;
 
 use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use Cake\TestSuite\Stub\ConsoleOutput;
 use Cake\ORM\TableRegistry;
 use Cake\Console\Command;
-use Cake\Console\ConsoleIo;
 
 class FixHashesCommandTest extends TestCase
 {
@@ -57,7 +55,6 @@ class FixHashesCommandTest extends TestCase
      * @dataProvider inputProvider
      **/
     public function testExecute_withInputOption($ids, $nbrOfChanges, $containsIgnored) {
-        $io = new ConsoleIo(new ConsoleOutput(), new ConsoleOutput());
         $path = stream_get_meta_data(tmpfile())['uri'];
         file_put_contents($path, implode("\n", $ids));
         $this->exec(format('fix_hashes -i {path} Sentences', ['path' => $path]));
