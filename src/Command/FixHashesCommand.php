@@ -111,6 +111,9 @@ class FixHashesCommand extends Command
         $input = $args->getOption('input');
         if ($input === 'stdin') {
             $input = 'php://stdin';
+        } elseif ($input && !file_exists($input)) {
+            $io->error(format('{path} does not exist!', ['path' => $input]));
+            $this->abort();
         }
 
         $tableArg = $args->getArgument('table');
@@ -145,17 +148,9 @@ class FixHashesCommand extends Command
         $this->log = [];
 
         if ($input) {
-            error_reporting(0);
-            $data = file($input, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            ini_restore('error_reporting');
-            if ($data === false) {
-                $io->error(format('{path} does not exist!', ['path' => $input]));
-                $this->abort();
-            } else {
-                $ids = collection($data)
-                       ->filter(function ($v) { return preg_match('/^\d+$/', $v); });
-                $total = $ids->count();
-            }
+            $ids = collection(file($input, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES))
+                   ->filter(function ($v) { return preg_match('/^\d+$/', $v); });
+            $total = $ids->count();
         } else {
             $query = $table->find()->select(['id' => $table->aliasField('id')]);
             $total = $query->count();
