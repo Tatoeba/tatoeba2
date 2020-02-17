@@ -74,4 +74,9 @@ class FixHashesCommandTest extends TestCase
             $this->assertErrorEmpty();
         }
     }
+
+    public function testExecute_withNonexistentFile() {
+        $this->exec('fix_hashes -i nonexistentfile Sentences');
+        $this->assertExitCode(Command::CODE_ERROR);
+    }
 }
