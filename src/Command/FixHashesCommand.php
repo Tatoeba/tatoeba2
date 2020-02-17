@@ -56,9 +56,9 @@ class FixHashesCommand extends Command
                 'boolean' => true
             ])
             ->addOption('input', [
-                'help' => 'Read a list of ids from stdin.',
+                'help' => 'Read a list of ids from the given file. ' .
+                          '("stdin" will read from standard input)',
                 'short' => 'i',
-                'boolean' => true
             ]);
         return $parser;
     }
@@ -109,6 +109,9 @@ class FixHashesCommand extends Command
         $this->batchOperationSize = $args->getOption('batch-size');
         $progressBar = $args->getOption('progress-bar');
         $input = $args->getOption('input');
+        if ($input === 'stdin') {
+            $input = 'php://stdin';
+        }
 
         $tableArg = $args->getArgument('table');
         $table = $this->getTable($tableArg);
@@ -142,7 +145,7 @@ class FixHashesCommand extends Command
         $this->log = [];
 
         if ($input) {
-            $ids = collection(file('php://stdin', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES))
+            $ids = collection(file($input, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES))
                    ->filter(function ($v) { return preg_match('/^\d+$/', $v); });
             $total = $ids->count();
         } else {
