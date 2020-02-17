@@ -99,6 +99,7 @@
         vm.newTranslation = {};
         vm.lists = [];
         vm.listSearch = '';
+        vm.lastSelectedList = null;
 
         vm.init = init;
         vm.initLists = initLists;
@@ -299,7 +300,8 @@
             vm.isListFormVisible = !vm.isListFormVisible;
             if (vm.isListFormVisible) {
                 focusInput('#list-form-' + vm.sentence.id);
-            }            
+                moveRecentListToTop();
+            }
         }
 
         function toggleList(list) {
@@ -307,6 +309,7 @@
 
             $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
                 list.hasSentence = !list.hasSentence;
+                $cookies.put('most_recent_list', list.id);
             });
         }
 
@@ -319,6 +322,21 @@
                 vm.listSearch = '';
                 vm.lists.unshift(result.data.result);
             });
+        }
+
+        function moveRecentListToTop() {
+            var i = vm.lists.findIndex(function(item) {
+                return item.id === parseInt($cookies.get('most_recent_list'));
+            });
+            if (vm.lastSelectedList) {
+                vm.lastSelectedList.isLastSelected = false;
+            }
+            if (i > -1) {
+                vm.lastSelectedList = vm.lists[i];
+                vm.lastSelectedList.isLastSelected = true;
+                vm.lists.splice(i, 1);
+                vm.lists.unshift(vm.lastSelectedList);
+            }
         }
     }
 

@@ -26,7 +26,8 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
             <md-checkbox
                 ng-model="list.hasSentence"
                 class="md-primary"></md-checkbox> 
-            <p>{{list.name}}</p>
+            <p flex>{{list.name}}</p>
+            <em ng-if="list.isLastSelected" style="color: grey"><?= __('(last selected)') ?></em>
         </md-list-item>
     </md-list>
     <md-button ng-click="vm.isListFormVisible = false"><?= __('Close') ?></md-button>
