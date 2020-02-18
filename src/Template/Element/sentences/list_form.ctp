@@ -15,7 +15,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
     <div layout="row" layout-margin>
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
-            <input id="list-form-<?= $sentenceId ?>" ng-model="vm.listSearch" ng-enter="vm.addToNewList()">
+            <input id="list-form-<?= $sentenceId ?>" ng-model="vm.listSearch" ng-enter="vm.addToNewList()" ng-escape="vm.hide('list_form')">
         </md-input-container>
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()"><?= __('Create') ?></md-button>
     </div>
