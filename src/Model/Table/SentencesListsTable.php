@@ -155,8 +155,14 @@ class SentencesListsTable extends Table
             ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
                 return $q->where(['SentencesSentencesLists.sentence_id' => $sentenceId]);
             })
-            ->select(['id', 'name', 'user_id'])
-            ->order(['name']);
+            ->select([
+                'id',
+                'name',
+                'user_id',
+                'is_mine' => 'IF(SentencesLists.user_id = '.$userId.', TRUE, FALSE)',
+                'is_collaborative' => 'IF(SentencesLists.editable_by = "anyone", TRUE, FALSE)',
+            ])
+            ->order(['is_mine DESC', 'name']);
 
         if ($forNewDesign) {
             return $results->toList();

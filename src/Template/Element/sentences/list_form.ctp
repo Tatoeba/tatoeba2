@@ -11,7 +11,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
 ?>
 
 <form layout="column" style="border-top: 1px solid #f1f1f1; padding-top: 10px;"
-      ng-init="vm.initLists(<?= $listsJSON ?>)" ng-show="vm.visibility.list_form">
+      ng-init="vm.initLists(<?= $listsJSON ?>, <?= CurrentUser::get('id') ?>)" ng-show="vm.visibility.list_form">
     <div layout="row" layout-margin>
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
@@ -22,13 +22,17 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
 
     <md-list style="height: 200px; overflow-y: scroll; border-top: 1px solid #f1f1f1">
         <md-subheader><?= __('Select list') ?></md-subheader>
-        <md-list-item ng-repeat="list in vm.lists | filter: { name: vm.listSearch }">
+        <md-list-item class="list" ng-repeat="list in vm.lists | filter: { name: vm.listSearch }">
             <md-checkbox
                 ng-change="vm.toggleList(list)"
                 ng-model="list.hasSentence"
                 class="md-primary"></md-checkbox> 
-            <p flex>{{list.name}}</p>
+            <p flex ng-class="{'is-mine': list.is_mine === '1'}">{{list.name}}</p>
             <em ng-if="list.isLastSelected" style="color: grey"><?= __('(last selected)') ?></em>
+            <md-icon ng-if="list.is_collaborative === '1'">
+                group
+                <md-tooltip><?= __('Collaborative list') ?></md-tooltip>
+            </md-icon>
         </md-list-item>
     </md-list>
     <md-button ng-click="vm.hide('list_form')"><?= __('Close') ?></md-button>
