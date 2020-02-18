@@ -155,10 +155,11 @@ $(document).on('copy', function (e) {
     if(e.target.tagName == 'TEXTAREA') return;
 
     var sel = window.getSelection();
-    if (sel.rangeCount > 0) {
-        e.preventDefault();
+    var clipboardData = e.originalEvent.clipboardData; // not available in IE
+    if (sel.rangeCount > 0 && clipboardData) {
         $('rt').css('visibility', 'hidden');
-        e.originalEvent.clipboardData.setData('text', sel.toString());
+        clipboardData.setData('text', sel.toString());
         $('rt').css('visibility', 'visible');
+        e.preventDefault();
     }
 });
