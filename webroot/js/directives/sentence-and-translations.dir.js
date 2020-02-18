@@ -88,9 +88,6 @@
         vm.inProgress = false;
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
-        vm.isTranslationFormVisible = false;
-        vm.isSentenceFormVisible = false;
-        vm.isListFormVisible = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
         vm.sentence = null;
@@ -100,6 +97,12 @@
         vm.lists = [];
         vm.listSearch = '';
         vm.lastSelectedList = null;
+        vm.visibility = {
+            'translations': true,
+            'translate_form': false,
+            'sentence_form': false,
+            'list_form': false
+        };
 
         vm.init = init;
         vm.initLists = initLists;
@@ -118,6 +121,8 @@
         vm.list = list;
         vm.toggleList = toggleList;
         vm.addToNewList = addToNewList;
+        vm.show = show;
+        vm.hide = hide;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -195,8 +200,7 @@
         }
 
         function translate(id) {
-            vm.isTranslationFormVisible = true;
-            vm.isSentenceFormVisible = false;
+            show('translation_form');
             
             if (vm.newTranslation.editable) {
                 vm.newTranslation = {};
@@ -217,7 +221,7 @@
                 vm.inProgress = true;
                 if (vm.newTranslation.editable) {
                     saveSentence(vm.newTranslation).then(function(result) {
-                        vm.isTranslationFormVisible = false;
+                        show('translations');
                         vm.inProgress = false;
                         vm.newTranslation = {};
                     });
@@ -232,7 +236,7 @@
                         result.data.parentId = sentenceId;
                         allDirectTranslations.unshift(result.data);
                         vm.newTranslation = {};
-                        vm.isTranslationFormVisible = false;
+                        show('translations');
                         vm.inProgress = false;
                         showFewerTranslations();
                     });
@@ -241,7 +245,7 @@
         }
 
         function editTranslation(translation) {
-            vm.isTranslationFormVisible = true;
+            show('translation_form');
             vm.newTranslation = translation;
             focusInput('#translation-form-' + translation.parentId);
         }
@@ -254,13 +258,12 @@
         }
 
         function edit() {
-            vm.isSentenceFormVisible = true;
-            vm.isTranslationFormVisible = false;
+            show('sentence_form');
             focusInput('#sentence-form-' + vm.sentence.id);
         }
         
         function cancelEdit() {
-            vm.isSentenceFormVisible = false;
+            hide('sentence_form');
             initSentence(oldSentence);
         }
 
@@ -268,7 +271,7 @@
             vm.inProgress = true;
 
             saveSentence(vm.sentence).then(function(result) {
-                vm.isSentenceFormVisible = false;
+                hide('sentence_form');
                 vm.inProgress = false;
                 initSentence(result.data);
             });
@@ -307,8 +310,10 @@
         }
 
         function list() {
-            vm.isListFormVisible = !vm.isListFormVisible;
-            if (vm.isListFormVisible) {
+            if (vm.visibility['list_form']) {
+                hide('list_form');
+            } else {
+                show('list_form');
                 focusInput('#list-form-' + vm.sentence.id);
                 moveRecentListToTop();
             }
@@ -347,6 +352,18 @@
                 vm.lists.splice(i, 1);
                 vm.lists.unshift(vm.lastSelectedList);
             }
+        }
+
+        function show(name) {
+            for (var i in vm.visibility) {
+                vm.visibility[i] = false;
+            }
+            vm.visibility[name] = true;
+        }
+
+        function hide(name) {
+            vm.visibility[name] = false;
+            vm.visibility['translations'] = true;
         }
     }
 

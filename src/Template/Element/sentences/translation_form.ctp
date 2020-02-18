@@ -1,4 +1,4 @@
-<div ng-if="vm.isTranslationFormVisible" style="background: #fafafa; border-top: 1px solid #f1f1f1">
+<div ng-if="vm.visibility.translation_form" style="background: #fafafa; border-top: 1px solid #f1f1f1">
 
 <?php if (!empty($langs)) { ?>
     <form layout="column" layout-margin style="padding-top: 10px">
@@ -26,7 +26,7 @@
         </div>
 
         <div layout="row" layout-align="end center">
-            <md-button class="md-raised" ng-click="vm.isTranslationFormVisible = false">
+            <md-button class="md-raised" ng-click="vm.hide('translation_form')">
                 <?= __('Cancel') ?>
             </md-button>
             <md-button class="md-raised md-primary" ng-click="vm.saveTranslation(<?= $sentenceId ?>)">

@@ -11,7 +11,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
 ?>
 
 <form layout="column" style="border-top: 1px solid #f1f1f1; padding-top: 10px;"
-      ng-init="vm.initLists(<?= $listsJSON ?>)" ng-show="vm.isListFormVisible">
+      ng-init="vm.initLists(<?= $listsJSON ?>)" ng-show="vm.visibility.list_form">
     <div layout="row" layout-margin>
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
@@ -30,5 +30,5 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
             <em ng-if="list.isLastSelected" style="color: grey"><?= __('(last selected)') ?></em>
         </md-list-item>
     </md-list>
-    <md-button ng-click="vm.isListFormVisible = false"><?= __('Close') ?></md-button>
+    <md-button ng-click="vm.hide('list_form')"><?= __('Close') ?></md-button>
 </form>
