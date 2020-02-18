@@ -76,7 +76,7 @@
         };
     }
 
-    function SentenceAndTranslationsController($http, $cookies) {
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -118,6 +118,16 @@
         vm.list = list;
         vm.toggleList = toggleList;
         vm.addToNewList = addToNewList;
+
+        /////////////////////////////////////////////////////////////////////////
+
+        $scope.$on('newListCreated', function(event, data, sentenceId) {
+            var list = angular.copy(data);
+            $cookies.put('most_recent_list', list.id);
+            list.hasSentence = vm.sentence.id === parseInt(sentenceId);
+            vm.lists.unshift(list);
+            moveRecentListToTop();
+        });
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -320,7 +330,7 @@
             };
             $http.post(rootUrl + '/sentences_lists/add_sentence_to_new_list', data).then(function(result) {
                 vm.listSearch = '';
-                vm.lists.unshift(result.data.result);
+                $rootScope.$broadcast('newListCreated', result.data.result, vm.sentence.id);
             });
         }
 
