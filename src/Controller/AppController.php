@@ -186,7 +186,7 @@ class AppController extends Controller
             $this->Cookie->write('CakeCookie.interfaceLanguage', $lang, false, "+1 month");
         }
         Configure::write('Config.language', $lang);
-        $locale = Locale::parseLocale($lang);
+        $locale = Locale::parseLocale(LanguagesLib::languageTag($lang));
         I18N::setLocale($locale['language']);
 
         // If the Router did not parse the URL, we don't know if the URL
