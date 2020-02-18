@@ -54,6 +54,8 @@ class Sentence extends Entity
         // Replace any series of whitespace or control characters
         // with a single space.
         $text = preg_replace('/[\p{Z}\p{Cc}]{2,}/u', ' ', $text);
+        // Normalize to NFC
+        $text = \Normalizer::normalize($text, \Normalizer::FORM_C);
         // MySQL will truncate to a byte length of 1500, which may split
         // a multibyte character. To avoid this, we preemptively
         // truncate to a maximum byte length of 1500. If a multibyte
