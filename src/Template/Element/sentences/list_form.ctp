@@ -22,8 +22,9 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
 
     <md-list style="height: 200px; overflow-y: scroll; border-top: 1px solid #f1f1f1">
         <md-subheader><?= __('Select list') ?></md-subheader>
-        <md-list-item ng-repeat="list in vm.lists | filter: { name: vm.listSearch }" ng-click="vm.toggleList(list)">
+        <md-list-item ng-repeat="list in vm.lists | filter: { name: vm.listSearch }">
             <md-checkbox
+                ng-change="vm.toggleList(list)"
                 ng-model="list.hasSentence"
                 class="md-primary"></md-checkbox> 
             <p flex>{{list.name}}</p>

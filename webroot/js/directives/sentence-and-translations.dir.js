@@ -320,10 +320,9 @@
         }
 
         function toggleList(list) {
-            var action = list.hasSentence ? 'remove_sentence_from_list' : 'add_sentence_to_list';
+            var action = list.hasSentence ? 'add_sentence_to_list' : 'remove_sentence_from_list';
 
             $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
-                list.hasSentence = !list.hasSentence;
                 $cookies.put('most_recent_list', list.id);
             });
         }
