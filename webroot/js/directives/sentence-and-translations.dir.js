@@ -76,7 +76,7 @@
         };
     }
 
-    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies) {
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -84,6 +84,9 @@
         var oldSentence = null;
         var allDirectTranslations = [];
         var allIndirectTranslations = [];
+        var allLists = [];
+        var lastSelectedList = null;
+        var timeout;
 
         vm.inProgress = false;
         vm.isExpanded = false;
@@ -96,7 +99,6 @@
         vm.newTranslation = {};
         vm.lists = [];
         vm.listSearch = '';
-        vm.lastSelectedList = null;
         vm.visibility = {
             'translations': true,
             'translate_form': false,
@@ -121,6 +123,8 @@
         vm.list = list;
         vm.toggleList = toggleList;
         vm.addToNewList = addToNewList;
+        vm.searchList = searchList;
+        vm.listType = 'of_user';
         vm.show = show;
         vm.hide = hide;
 
@@ -130,7 +134,9 @@
             var list = angular.copy(data);
             $cookies.put('most_recent_list', list.id);
             list.hasSentence = vm.sentence.id === parseInt(sentenceId);
-            vm.lists.unshift(list);
+            list.is_mine = '1';
+            allLists.unshift(list);
+            resetLists();
             moveRecentListToTop();
         });
 
@@ -145,7 +151,8 @@
         }
 
         function initLists(lists) {
-            vm.lists = lists;
+            allLists = lists;
+            resetLists();
         }
 
         function expandOrCollapse() {
@@ -315,7 +322,7 @@
             } else {
                 show('list_form');
                 focusInput('#list-form-' + vm.sentence.id);
-                moveRecentListToTop();
+                resetLists();
             }
         }
 
@@ -339,17 +346,17 @@
         }
 
         function moveRecentListToTop() {
-            var i = vm.lists.findIndex(function(item) {
+            var i = allLists.findIndex(function(item) {
                 return item.id === parseInt($cookies.get('most_recent_list'));
             });
-            if (vm.lastSelectedList) {
-                vm.lastSelectedList.isLastSelected = false;
+            if (lastSelectedList) {
+                lastSelectedList.isLastSelected = false;
             }
             if (i > -1) {
-                vm.lastSelectedList = vm.lists[i];
-                vm.lastSelectedList.isLastSelected = true;
-                vm.lists.splice(i, 1);
-                vm.lists.unshift(vm.lastSelectedList);
+                lastSelectedList = allLists[i];
+                lastSelectedList.isLastSelected = true;
+                allLists.splice(i, 1);
+                allLists.unshift(lastSelectedList);
             }
         }
 
@@ -363,6 +370,31 @@
         function hide(name) {
             vm.visibility[name] = false;
             vm.visibility['translations'] = true;
+        }
+
+        function searchList() {
+            if (timeout) {
+                $timeout.cancel(timeout);
+            }
+            timeout = $timeout(function() {
+                if (!vm.listSearch) {
+                    resetLists();
+                } else {
+                    vm.lists = allLists.filter(function(item) {
+                        var regexp = new RegExp(vm.listSearch, 'gi');
+                        return item.name.match(regexp);
+                    });
+                    vm.listType = 'search';
+                }
+            }, 500);
+        }
+
+        function resetLists() {
+            moveRecentListToTop();
+            vm.lists = allLists.filter(function(item) {
+                return item.is_mine === '1' || item.isLastSelected;
+            }).slice(0, 10);
+            vm.listType = 'of_user';
         }
     }
 

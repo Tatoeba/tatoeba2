@@ -161,12 +161,13 @@ class SentencesListsTable extends Table
                 'user_id',
                 'is_mine' => 'IF(SentencesLists.user_id = '.$userId.', TRUE, FALSE)',
                 'is_collaborative' => 'IF(SentencesLists.editable_by = "anyone", TRUE, FALSE)',
-            ])
-            ->order(['is_mine DESC', 'name']);
+            ]);
 
         if ($forNewDesign) {
+            $results->order(['is_mine DESC', 'modified DESC']);
             return $results->toList();
         } else {
+            $results->order(['name']);
             $listsOfUser = array();
             $collaborativeLists = array();
     
