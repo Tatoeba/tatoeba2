@@ -37,7 +37,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
             </md-icon>
         </md-list-item>
         <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'search'"><em><?= __('No list found.') ?></em></md-list-item>
-        <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'of_user'"><em><?= __('You have no lists yet.') ?></em></md-list-item>
+        <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'of_user'"><em><?= __('You have no lists which this sentence can be added to.') ?></em></md-list-item>
     </md-list>
     <md-button ng-click="vm.hide('list_form')"><?= __('Close') ?></md-button>
 </form>
