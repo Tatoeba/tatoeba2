@@ -192,6 +192,30 @@ class PinyinHelper extends AppHelper
     );
 
     /**
+     * Uppercase the first character in a UTF-8 string.
+     */
+    private function utf8_ucfirst($string) {
+        // Based on https://stackoverflow.com/a/2518021
+        // Licensed under CC BY-SA 4.0
+        $strlen = mb_strlen($string, 'UTF-8');
+        $firstChar = mb_substr($string, 0, 1, 'UTF-8');
+        $then = mb_substr($string, 1, $strlen - 1, 'UTF-8');
+        return mb_strtoupper($firstChar, 'UTF-8') . $then;
+    }
+
+    /**
+     * Wrapper for str_replace that optionally uppercases the first character
+     * of the search string, and also uppercases the first character of the
+     * replacement string in that case.
+     */
+    private function cased_str_replace($search, $replace, $subject) {
+        $utf8_ucfirst = function($string) { return $this->utf8_ucfirst($string); };
+        $search = array_merge($search, array_map($utf8_ucfirst, $search));
+        $replace = array_merge($replace, array_map($utf8_ucfirst, $replace));
+        return str_replace($search, $replace, $subject);
+    }
+
+    /**
      * Replace numeric pinyin by diacritical marks
      * Convert to php from a python script of Brian Vaughan
      * (http://brianvaughan.net)
@@ -203,26 +227,26 @@ class PinyinHelper extends AppHelper
 
     public function numeric2diacritic($text)
     {
-        $text = str_replace(
+        $text = $this->cased_str_replace(
             $this->_constTone2ToneConsti_search,
             $this->_constTone2ToneConsti_replace,
             $text
         );
 
-        $text = str_replace(
+        $text = $this->cased_str_replace(
             $this->_vowelVowelTone2VowelToneVowel_search,
             $this->_vowelVowelTone2VowelToneVowel_replace,
             $text
         );
 
-        $text = str_replace(
+        $text = $this->cased_str_replace(
             $this->_vowelTone2Unicode_search,
             $this->_vowelTone2Unicode_replace,
             $text
         );
 
 
-        $text = str_replace(
+        $text = $this->cased_str_replace(
             $this->_remove5thToneNumber_search,
             $this->_remove5thToneNumber_replace,
             $text
