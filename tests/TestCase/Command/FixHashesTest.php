@@ -5,6 +5,8 @@ use Cake\TestSuite\ConsoleIntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
 use Cake\Console\Command;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
 
 class FixHashesCommandTest extends TestCase
 {
@@ -18,6 +20,20 @@ class FixHashesCommandTest extends TestCase
         'app.tags',
         'app.tags_sentences'
     ];
+
+    const TESTDIR = TMP . 'fix_hashes_tests' . DS;
+
+    public static function setUpBeforeClass() {
+        $folder = new Folder(self::TESTDIR, true);
+        if ($folder->errors()) {
+            die("Couldn't create test directory '{self::TESTDIR}'");
+        }
+    }
+
+    public static function tearDownAfterClass() {
+        $folder = new Folder(self::TESTDIR);
+        $folder->delete();
+    }
 
     public function setUp() {
         parent::setUp();
@@ -55,8 +71,11 @@ class FixHashesCommandTest extends TestCase
      * @dataProvider inputProvider
      **/
     public function testExecute_withInputOption($ids, $nbrOfChanges, $containsIgnored) {
-        $path = stream_get_meta_data(tmpfile())['uri'];
-        file_put_contents($path, implode("\n", $ids));
+        $path = self::TESTDIR . 'input_test';
+        $file = new File($path);
+        $file->write(implode("\n", $ids));
+        $file->close();
+
         $this->exec(format('fix_hashes -i {path} Sentences', ['path' => $path]));
 
         $this->assertExitCode(Command::CODE_SUCCESS);
