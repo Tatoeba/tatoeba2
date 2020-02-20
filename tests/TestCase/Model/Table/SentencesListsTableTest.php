@@ -361,7 +361,7 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testRemoveSentenceFromList_ownerFailsBecauseEditableByNoOne() {
-        $sentenceId = 12;
+        $sentenceId = 20;
         $listId = 6;
         $ownerId = 7;
         $result = $this->SentencesList->removeSentenceFromList($sentenceId, $listId, $ownerId);
