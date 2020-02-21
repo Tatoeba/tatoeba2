@@ -384,7 +384,6 @@ class SentencesListsController extends AppController
         }
         
         $this->loadComponent('RequestHandler');
-        $this->set('result', $list);
         $this->set('_serialize', ['result']);
         $this->RequestHandler->renderAs($this, 'json');
     }
