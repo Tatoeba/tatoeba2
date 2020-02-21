@@ -29,7 +29,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
                 ng-change="vm.toggleList(list)"
                 ng-model="list.hasSentence"
                 class="md-primary"></md-checkbox> 
-            <p flex ng-class="{'is-mine': list.is_mine === '1'}">{{list.name}}</p>
+            <p flex>{{list.name}}</p>
             <em ng-if="list.isLastSelected" style="color: grey; padding: 0 5px"><?= __('(last selected)') ?></em>
             <md-icon ng-if="list.is_collaborative === '1'">
                 group
