@@ -117,7 +117,6 @@ $sentenceUrl = $this->Url->build([
         </div>
     </div>
 
-    <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
     <?php
     if (CurrentUser::isMember()) {
         echo $this->element('sentences/translation_form', [
@@ -136,6 +135,8 @@ $sentenceUrl = $this->Url->build([
         ]);
     }
     ?>
+
+    <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
 
     <div layout="column" class="direct translations" ng-if="vm.visibility.translations && vm.directTranslations.length > 0">
         <md-divider></md-divider>

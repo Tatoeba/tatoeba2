@@ -327,19 +327,23 @@
         }
 
         function toggleList(list) {
+            vm.inProgress = true;
             var action = list.hasSentence ? 'add_sentence_to_list' : 'remove_sentence_from_list';
 
             $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
+                vm.inProgress = false;
                 $cookies.put('most_recent_list', list.id);
             });
         }
 
         function addToNewList() {
+            vm.inProgress = true;
             var data = { 
                 name: vm.listSearch,
                 sentenceId: vm.sentence.id
             };
             $http.post(rootUrl + '/sentences_lists/add_sentence_to_new_list', data).then(function(result) {
+                vm.inProgress = false;
                 vm.listSearch = '';
                 $rootScope.$broadcast('newListCreated', result.data.result, vm.sentence.id);
             });
