@@ -16,7 +16,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
             <input id="list-form-<?= $sentenceId ?>" ng-model="vm.listSearch"
-                   ng-change="vm.searchList()" ng-enter="vm.addToNewList()" ng-escape="vm.hide('list_form')">
+                   ng-change="vm.searchList()" ng-enter="vm.addToNewList()" ng-escape="vm.closeList()">
         </md-input-container>
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()"><?= __('Create') ?></md-button>
     </div>
@@ -39,5 +39,5 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
         <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'search'"><em><?= __('No list found.') ?></em></md-list-item>
         <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'of_user'"><em><?= __('You have no lists which this sentence can be added to.') ?></em></md-list-item>
     </md-list>
-    <md-button ng-click="vm.hide('list_form')"><?= __('Close') ?></md-button>
+    <md-button ng-click="vm.closeList()"><?= __('Close') ?></md-button>
 </form>

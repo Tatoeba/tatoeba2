@@ -121,6 +121,7 @@
         vm.favorite = favorite;
         vm.adopt = adopt;
         vm.list = list;
+        vm.closeList = closeList;
         vm.toggleList = toggleList;
         vm.addToNewList = addToNewList;
         vm.searchList = searchList;
@@ -318,12 +319,17 @@
 
         function list() {
             if (vm.visibility['list_form']) {
-                hide('list_form');
+                closeList();
             } else {
                 show('list_form');
                 focusInput('#list-form-' + vm.sentence.id);
                 resetLists();
             }
+        }
+
+        function closeList() {
+            vm.hide('list_form');
+            vm.listSearch = '';
         }
 
         function toggleList(list) {
