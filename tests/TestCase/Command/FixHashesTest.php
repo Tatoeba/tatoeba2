@@ -24,10 +24,7 @@ class FixHashesCommandTest extends TestCase
     const TESTDIR = TMP . 'fix_hashes_tests' . DS;
 
     public static function setUpBeforeClass() {
-        $folder = new Folder(self::TESTDIR, true);
-        if ($folder->errors()) {
-            die("Couldn't create test directory '{self::TESTDIR}'");
-        }
+        mkdir(self::TESTDIR, 0755, true);
     }
 
     public static function tearDownAfterClass() {
