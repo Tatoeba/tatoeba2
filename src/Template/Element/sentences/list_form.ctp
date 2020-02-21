@@ -21,7 +21,7 @@ $listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()"><?= __('Create') ?></md-button>
     </div>
 
-    <md-list style="height: 200px; overflow-y: scroll; border-top: 1px solid #f1f1f1">
+    <md-list style="height: 310px; overflow-y: scroll; border-top: 1px solid #f1f1f1">
         <md-subheader ng-if="vm.listType === 'of_user'"><?= __('Your most recent lists') ?></md-subheader>
         <md-subheader ng-if="vm.listType === 'search'"><?= __('Search results') ?></md-subheader>
         <md-list-item class="list" ng-repeat="list in vm.lists">
