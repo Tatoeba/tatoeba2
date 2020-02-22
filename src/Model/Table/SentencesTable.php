@@ -379,10 +379,30 @@ class SentencesTable extends Table
                 $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
                 
                 $result['translations'] = [$directTranslations, $indirectTranslations];
+                $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
+                $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
 
                 return $result;
             });
         });
+    }
+
+    private function getextraTranslationsCount($sentence)
+    {
+        $maxDisplayed = 5;
+        $directTranslationCount = count($sentence->translations[0]);
+        $indirectTranslationCount = count($sentence->translations[1]);
+        return $directTranslationCount + $indirectTranslationCount - $maxDisplayed;
+    }
+
+    private function getExpandLabel($extraTranslationsCount)
+    {
+        return format(__n(
+            'Show 1 more translation',
+            'Show {number} more translations',
+            $extraTranslationsCount,
+            true
+        ), array('number' => $extraTranslationsCount));
     }
 
     public function findWithSphinx($query, $options)

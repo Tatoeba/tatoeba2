@@ -9,15 +9,6 @@ if (!isset($menuExpanded)) {
 }
 
 list($directTranslations, $indirectTranslations) = $translations;
-$maxDisplayed = 5;
-$showExtra = '';
-$numExtra = count($directTranslations) + count($indirectTranslations) - $maxDisplayed;
-$sentenceUrl = $this->Url->build(array(
-    'controller' => 'sentences',
-    'action' => 'show',
-    $sentence->id
-));
-$notReliable = $sentence->correctness == -1;
 
 $username = $user ? $user->username : null;
 $sentenceMenu = [
@@ -84,7 +75,7 @@ $sentenceUrl = $this->Url->build([
             ?>
         </div>
 
-        <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
+        <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}"
              layout="row" layout-align="start center" ng-if="!vm.visibility.sentence_form">
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
@@ -93,21 +84,21 @@ $sentenceUrl = $this->Url->build([
             <div class="text" flex dir="{{vm.sentence.dir}}" 
                  ng-bind-html="vm.sentence.highlightedText ? vm.sentence.highlightedText : vm.sentence.text"></div>
 
-            <?php if (!empty($user->is_native)) { ?>
+            <div class="indicator" ng-if="vm.sentence.user.is_native === '1'">
                 <md-icon>
                     star
                     <md-tooltip md-direction="top">
                         <?= __('This sentence belongs to a native speaker.') ?>
                     </md-tooltip>
                 </md-icon>
-            <?php } ?>
+            </div>
 
-            <?php if ($notReliable) { ?>
+            <div class="indicator" ng-if="vm.sentence.correctness === -1">
                 <md-icon class="md-warn">warning</md-icon>
                 <md-tooltip md-direction="top">
                     <?= __('This sentence is not reliable.') ?>
                 </md-tooltip>
-            <?php } ?>
+            </div>
 
             <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
 
@@ -149,7 +140,7 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="vm.visibility.translations && vm.indirectTranslations.length > 0"
+    <div layout="column" class="indirect translations" ng-if="vm.visibility.translations && vm.indirectTranslations.length > 0"
             ng-init="vm.initIndirectTranslations(<?= $this->Sentences->translationsForAngular($indirectTranslations) ?>)">
         <md-subheader><?= __('Translations of translations') ?></md-subheader>
 
@@ -160,25 +151,15 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-
-    <?php if ($numExtra > 1) { ?>
-        <div layout="column" ng-if="vm.visibility.translations">
-            <md-button ng-click="vm.expandOrCollapse()">
-                <md-icon>{{vm.expandableIcon}}</md-icon>
-                <span ng-if="!vm.isExpanded">
-                    <?php
-                    echo format(__n(
-                        'Show 1 more translation',
-                        'Show {number} more translations',
-                        $numExtra,
-                        true
-                    ), array('number' => $numExtra))
-                    ?>
-                </span>
-                <span ng-if="vm.isExpanded">
-                    <?php echo __('Fewer translations') ?>
-                </span>
-            </md-button>
-        </div>
-    <?php } ?>
+    <div layout="column" ng-if="vm.sentence.extraTranslationsCount > 1 && vm.visibility.translations">
+        <md-button ng-click="vm.expandOrCollapse()">
+            <md-icon>{{vm.expandableIcon}}</md-icon>
+            <span ng-if="!vm.isExpanded">
+                {{vm.sentence.expandLabel}}
+            </span>
+            <span ng-if="vm.isExpanded">
+                <?php echo __('Fewer translations') ?>
+            </span>
+        </md-button>
+    </div>
 </div>

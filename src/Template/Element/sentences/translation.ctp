@@ -19,7 +19,7 @@ $sentenceBaseUrl = $this->Url->build([
         {{translation.text}}
     </div>
     
-    <div ng-if="translation.correctness === -1">
+    <div class="indicator" ng-if="translation.correctness === -1">
         <md-icon class="md-warn" >warning</md-icon>
         <md-tooltip md-direction="top">
             <?= __('This sentence is not reliable.') ?>
