@@ -25,6 +25,7 @@
  * @link     https://tatoeba.org
  */
 use Cake\Core\Configure;
+use App\Model\CurrentUser;
 
 $this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations'));
 
@@ -83,15 +84,18 @@ $moreCommentsUrl = $this->Url->build([
 <div id="main_content">
     <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
         <section>
-            <?php echo $this->element('random_sentence_header'); ?>
-            <div class="random_sentences_set">
-                <md-progress-circular md-mode="indeterminate" class="block-loader" id="random-progress" style="display: none;"></md-progress-circular>
-                <div id="random_sentence_display" class="md-whiteframe-1dp">
-                    <?php
-                    $this->Sentences->displaySentencesGroup($random);
-                    ?>
-                </div>
-            </div>
+            <?php 
+            echo $this->element('random_sentence_header');
+            echo $this->element(
+                'sentences/sentence_and_translations',
+                array(
+                    'sentence' => $random,
+                    'translations' => $random->translations,
+                    'user' => $random->user,
+                    'menuDisabled' => true
+                )
+            );
+            ?>
      </section>
     <?php } ?>
 

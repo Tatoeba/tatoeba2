@@ -141,6 +141,17 @@
             moveRecentListToTop();
         });
 
+        $scope.$on('randomSentenceRequested', function() {
+            vm.inProgress = true;
+            $http.get(rootUrl + '/sentences/random').then(function(result) {
+                var sentence = result.data.random;
+                var directTranslations = sentence.translations[0];
+                var indirectTranslations = sentence.translations[1];
+                init(vm.userLanguages, sentence, directTranslations, indirectTranslations);
+                vm.inProgress = false;
+            });
+        });
+
         /////////////////////////////////////////////////////////////////////////
 
         function init(langs, sentence, directTranslations, indirectTranslations) {

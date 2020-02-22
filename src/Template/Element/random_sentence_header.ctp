@@ -25,8 +25,7 @@
  * @link     https://tatoeba.org
  */
 
-$this->Html->script(JS_PATH . 'sentences.show_another.js', array('block' => 'scriptBottom'));
-$this->Sentences->javascriptForAJAXSentencesGroup();
+$this->Html->script('sentences/random.ctrl.js', ['block' => 'scriptBottom']);
 
 $langArray = $this->Languages->languagesArrayAlone();
 $selectedLanguage = $this->request->getSession()->read('random_lang_selected');
@@ -38,7 +37,7 @@ if ($selectedLanguage == null) {
 ?>
 
 
-<md-toolbar class="md-hue-2">
+<md-toolbar class="md-hue-2" ng-controller="RandomSentenceController as vm">
     <div class="md-toolbar-tools">
         <h2 flex><?= __('Random sentence') ?></h2>
         <span>
@@ -57,7 +56,7 @@ if ($selectedLanguage == null) {
         ?>
         </span>
 
-        <md-button id="showRandom" onclick="return false;">
+        <md-button id="showRandom" ng-click="vm.showAnother()">
             <?= __('show another ') ?>
         </md-button>
     </div>

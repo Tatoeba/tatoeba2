@@ -883,6 +883,13 @@ class SentencesController extends AppController
 
         $this->request->getSession()->write('random_lang_selected', $lang);
         $this->set('random', $randomSentence);
+
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['random']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
 
