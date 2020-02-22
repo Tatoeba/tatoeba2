@@ -106,6 +106,7 @@
             'sentence_form': false,
             'list_form': false
         };
+        vm.selectedLangForRandom = null;
 
         vm.init = init;
         vm.initMenu = initMenu;
@@ -143,9 +144,13 @@
             moveRecentListToTop();
         });
 
-        $scope.$on('randomSentenceRequested', function() {
+        $scope.$on('randomSentenceRequested', function(event, lang) {
+            var url = rootUrl + '/sentences/random';
+            if (lang) {
+                url += '/' + lang;
+            }
             vm.inProgress = true;
-            $http.get(rootUrl + '/sentences/random').then(function(result) {
+            $http.get(url).then(function(result) {
                 var sentence = result.data.random;
                 var directTranslations = sentence.translations[0];
                 var indirectTranslations = sentence.translations[1];
