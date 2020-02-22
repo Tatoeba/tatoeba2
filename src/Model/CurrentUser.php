@@ -383,9 +383,9 @@ class CurrentUser
         return !self::isMember() || self::getSetting('new_terms_of_use');
     }
     
-    public static function canAdoptOrUnadoptSentenceOfUser($user)
+    public static function canAdoptOrUnadoptSentenceOfUser($userId)
     {
-        if (!$user || !$user->id || $user->id === self::get('id')) {
+        if ($userId === self::get('id')) {
             return self::isMember();
         } else {
             $userAccountDeactivated = isset($user->role) ?

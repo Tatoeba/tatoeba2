@@ -88,6 +88,7 @@
         var lastSelectedList = null;
         var timeout;
 
+        vm.menu = {};
         vm.inProgress = false;
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
@@ -107,6 +108,7 @@
         };
 
         vm.init = init;
+        vm.initMenu = initMenu;
         vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
@@ -148,6 +150,7 @@
                 var directTranslations = sentence.translations[0];
                 var indirectTranslations = sentence.translations[1];
                 init(vm.userLanguages, sentence, directTranslations, indirectTranslations);
+                initMenu(false, sentence.menu);
                 vm.inProgress = false;
             });
         });
@@ -160,6 +163,11 @@
             allDirectTranslations = directTranslations;
             allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
+        }
+
+        function initMenu(isExpanded, menu) {
+            vm.isExpanded = isExpanded;
+            vm.menu = menu;
         }
 
         function initLists(lists) {

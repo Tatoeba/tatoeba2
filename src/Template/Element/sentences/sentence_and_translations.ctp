@@ -10,14 +10,6 @@ if (!isset($menuExpanded)) {
 
 list($directTranslations, $indirectTranslations) = $translations;
 
-$username = $user ? $user->username : null;
-$sentenceMenu = [
-    'canEdit' => CurrentUser::canEditSentenceOfUser($username),
-    'canReview' => CurrentUser::get('settings.users_collections_ratings'),
-    'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
-    'canDelete' => CurrentUser::canRemoveSentence($sentence->id, null, $username),
-    'canLink' => CurrentUser::isTrusted(),
-];
 $langs = $this->Languages->profileLanguagesArray(false, false);
 
 $userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
@@ -68,7 +60,7 @@ $sentenceUrl = $this->Url->build([
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
                     'sentence' => $sentence,
-                    'menu' => $sentenceMenu,
+                    'menu' => $sentence->menu,
                     'expanded' => $menuExpanded
                 ]);
             }
@@ -118,9 +110,7 @@ $sentenceUrl = $this->Url->build([
         echo $this->element('sentences/list_form', [
             'sentenceId' => $sentence->id
         ]);
-    }
 
-    if ($sentenceMenu['canEdit']) {
         echo $this->element('sentences/sentence_form', [
             'sentence' => $sentence
         ]);

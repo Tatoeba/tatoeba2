@@ -381,6 +381,7 @@ class SentencesTable extends Table
                 $result['translations'] = [$directTranslations, $indirectTranslations];
                 $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
                 $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
+                $result['menu'] = $this->getMenu($result);
 
                 return $result;
             });
@@ -403,6 +404,19 @@ class SentencesTable extends Table
             $extraTranslationsCount,
             true
         ), array('number' => $extraTranslationsCount));
+    }
+
+    function getMenu($sentence)
+    {
+        $userId = $sentence->user_id;
+
+        return [
+            'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
+            'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
+            'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($userId),
+            'canDelete' => CurrentUser::canRemoveSentence($userId),
+            'canLink' => CurrentUser::isTrusted(),
+        ];
     }
 
     public function findWithSphinx($query, $options)
