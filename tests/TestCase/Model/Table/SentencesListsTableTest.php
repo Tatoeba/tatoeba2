@@ -351,6 +351,39 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals($expected, $result);
     }
 
+    function testGetUserChoices_withNewDesignAndSentenceNotInLists() {
+        CurrentUser::store(['id' => 7]);
+        $lists = $this->SentencesList->getUserChoices(7, 1, true);
+        $result = Hash::combine($lists, '{n}.id', '{n}.is_collaborative', '{n}.is_mine');
+        $expected = [
+            1 => [
+                '1' => 0, 
+                '2' => 0, 
+                '3' => 0,
+            ],
+            0 => [
+                '5' => 1
+            ]
+        ];
+        $this->assertEquals($expected, $result);
+    }
+
+    function testGetUserChoices_withNewDesignAndSentenceInOneList() {
+        CurrentUser::store(['id' => 7]);
+        $lists = $this->SentencesList->getUserChoices(7, 4, true);
+        $result = Hash::combine($lists, '{n}.id', '{n}.is_collaborative', '{n}.is_mine');
+        $expected = [
+            1 => [
+                '2' => 0,
+                '3' => 0,
+            ],
+            0 => [
+                '5' => 1
+            ]
+        ];
+        $this->assertEquals($expected, $result);
+    }
+
     function testGetSearchableLists_asGuests() {
         CurrentUser::store(['id' => null]);
         $lists = $this->SentencesList->getSearchableLists();
