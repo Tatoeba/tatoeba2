@@ -103,7 +103,6 @@ $sentenceUrl = $this->Url->build([
     <?php
     if (CurrentUser::isMember()) {
         echo $this->element('sentences/translation_form', [
-            'sentenceId' => $sentence->id,
             'langs' => $langs
         ]);
 
@@ -111,9 +110,7 @@ $sentenceUrl = $this->Url->build([
             'sentenceId' => $sentence->id
         ]);
 
-        echo $this->element('sentences/sentence_form', [
-            'sentence' => $sentence
-        ]);
+        echo $this->element('sentences/sentence_form');
     }
     ?>
 

@@ -4,8 +4,8 @@
     <form layout="column" layout-margin style="padding-top: 10px">
         <md-input-container>
             <label><?= __('Translation') ?></label>
-            <textarea id="translation-form-<?= $sentenceId ?>" ng-model="vm.newTranslation.text" 
-                      ng-enter="vm.saveTranslation(<?= $sentenceId ?>)"></textarea>
+            <textarea id="translation-form-{{vm.sentence.id}}" ng-model="vm.newTranslation.text" 
+                      ng-enter="vm.saveTranslation(vm.sentence.id)"></textarea>
         </md-input-container>
         
         <div layout="row" layout-align="start center">
@@ -29,7 +29,7 @@
             <md-button class="md-raised" ng-click="vm.hide('translation_form')">
                 <?= __('Cancel') ?>
             </md-button>
-            <md-button class="md-raised md-primary" ng-click="vm.saveTranslation(<?= $sentenceId ?>)">
+            <md-button class="md-raised md-primary" ng-click="vm.saveTranslation(vm.sentence.id)">
                 <span ng-if="!vm.newTranslation.editable">
                     <?= __('Submit translation') ?>
                 </span>
