@@ -163,6 +163,7 @@
             allDirectTranslations = directTranslations;
             allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
+            initLists(sentence.lists);
         }
 
         function initMenu(isExpanded, menu) {
@@ -378,6 +379,7 @@
             var i = allLists.findIndex(function(item) {
                 return item.id === parseInt($cookies.get('most_recent_list'));
             });
+            console.log(allLists, $cookies.get('most_recent_list'));
             if (lastSelectedList) {
                 lastSelectedList.isLastSelected = false;
             }

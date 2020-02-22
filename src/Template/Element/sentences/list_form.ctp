@@ -1,21 +1,9 @@
-<?php
-use App\Model\CurrentUser;
-use Cake\ORM\TableRegistry;
-
-$SentencesLists = TableRegistry::getTableLocator()->get('SentencesLists');
-$lists = $SentencesLists->getUserChoices(
-    CurrentUser::get('id'), $sentenceId, true
-);
-$mostRecentList = $this->request->getSession()->read('most_recent_list');
-$listsJSON = htmlspecialchars(json_encode($lists), ENT_QUOTES, 'UTF-8');
-?>
-
 <form layout="column" style="border-top: 1px solid #f1f1f1; padding-top: 10px;"
-      ng-init="vm.initLists(<?= $listsJSON ?>, <?= CurrentUser::get('id') ?>)" ng-show="vm.visibility.list_form">
+      ng-show="vm.visibility.list_form">
     <div layout="row" layout-margin>
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
-            <input id="list-form-<?= $sentenceId ?>" ng-model="vm.listSearch"
+            <input id="list-form-{{vm.sentence.id}}" ng-model="vm.listSearch"
                    ng-change="vm.searchList()" ng-enter="vm.addToNewList()" ng-escape="vm.closeList()">
         </md-input-container>
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()"><?= __('Create') ?></md-button>
