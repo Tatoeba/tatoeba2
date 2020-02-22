@@ -87,7 +87,7 @@ $sentenceUrl = $this->Url->build([
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
              layout="row" layout-align="start center" ng-if="!vm.visibility.sentence_form">
             <div class="lang">
-                <language-icon lang="vm.sentence.lang" title="vm.sentence.langName"></language-icon>
+                <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
             </div>
             
             <div class="text" flex dir="{{vm.sentence.dir}}" 

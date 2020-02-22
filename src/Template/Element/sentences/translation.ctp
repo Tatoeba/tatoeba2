@@ -12,7 +12,7 @@ $sentenceBaseUrl = $this->Url->build([
     <md-icon class="chevron">chevron_right</md-icon>
 
     <div class="lang">
-        <language-icon lang="translation.lang" title="translation.langName"></language-icon>
+        <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>
     </div>
 
     <div class="text" dir="{{translation.dir}}" flex>

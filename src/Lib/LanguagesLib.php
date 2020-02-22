@@ -676,4 +676,14 @@ class LanguagesLib
         $available = self::languagesInTatoeba();
         return isset($available[$code]);
     }
+
+    public static function getLanguageName($code) {
+        $languages = self::languagesInTatoeba();
+        if (isset($languages[$code])) {
+            return $languages[$code];
+        } else {
+            return __('unknown');
+        }
+        
+    }
 }

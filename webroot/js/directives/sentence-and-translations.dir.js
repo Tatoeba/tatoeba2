@@ -312,19 +312,19 @@
         }
 
         function favorite() {
-            var action = vm.sentence.isFavorite ? 'remove_favorite' : 'add_favorite';
+            var action = vm.sentence.is_favorite ? 'remove_favorite' : 'add_favorite';
             
             $http.get(rootUrl + '/favorites/' + action + '/' + vm.sentence.id).then(function(result) {
-                vm.sentence.isFavorite = !vm.sentence.isFavorite;
+                vm.sentence.is_favorite = !vm.sentence.is_favorite;
             });
         }
 
         function adopt() {
-            var action = vm.sentence.isOwnedByCurrentUser ? 'let_go' : 'adopt';
+            var action = vm.sentence.is_owned_by_current_user ? 'let_go' : 'adopt';
             
             $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
                 vm.sentence.user = result.data.user;
-                vm.sentence.isOwnedByCurrentUser = vm.sentence.user && vm.sentence.user.username;
+                vm.sentence.is_owned_by_current_user = vm.sentence.user && vm.sentence.user.username;
             });
         }
 

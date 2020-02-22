@@ -26,9 +26,9 @@ $isUnapproved = $sentence->correctness == -1;
             </md-button>
 
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-click="vm.favorite()">
-                <md-icon>{{vm.sentence.isFavorite ? 'favorite' : 'favorite_border'}}</md-icon>
-                <md-tooltip ng-if="!vm.sentence.isFavorite"><?= __('Add to favorites') ?></md-tooltip>
-                <md-tooltip ng-if="vm.sentence.isFavorite"><?= __('Remove from favorites') ?></md-tooltip>
+                <md-icon>{{vm.sentence.is_favorite ? 'favorite' : 'favorite_border'}}</md-icon>
+                <md-tooltip ng-if="!vm.sentence.is_favorite"><?= __('Add to favorites') ?></md-tooltip>
+                <md-tooltip ng-if="vm.sentence.is_favorite"><?= __('Remove from favorites') ?></md-tooltip>
             </md-button>
 
             <?php if ($canLink) { ?>
@@ -64,9 +64,9 @@ $isUnapproved = $sentence->correctness == -1;
         <div>
             <?php if ($canAdopt) { ?>
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded" ng-click="vm.adopt()">
-                <md-icon>{{vm.sentence.isOwnedByCurrentUser ? 'person' : 'person_outline'}}</md-icon>
-                <md-tooltip ng-if="!vm.sentence.isOwnedByCurrentUser"><?= __('Click to adopt') ?></md-tooltip>
-                <md-tooltip ng-if="vm.sentence.isOwnedByCurrentUser"><?= __('Click to unadopt') ?></md-tooltip>
+                <md-icon>{{vm.sentence.is_owned_by_current_user ? 'person' : 'person_outline'}}</md-icon>
+                <md-tooltip ng-if="!vm.sentence.is_owned_by_current_user"><?= __('Click to adopt') ?></md-tooltip>
+                <md-tooltip ng-if="vm.sentence.is_owned_by_current_user"><?= __('Click to unadopt') ?></md-tooltip>
             </md-button>
             <?php } ?>
 
