@@ -1562,6 +1562,20 @@ div.hideLink {
     margin: 20px;
 }
 
+.sortBy .desc, .sortBy .asc {
+/*    font-weight: bold; */
+}
+
+.sortBy .desc::after {
+    content: "\02B07";
+    vertical-align: middle;
+}
+
+.sortBy .asc::after {
+    content: "\02B06";
+    vertical-align: middle;
+}
+
 
 
 /*
