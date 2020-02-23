@@ -357,10 +357,10 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->editSentence($this->request->data);
         if ($acceptsJson) {
-            $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
+            // TODO How come we don't need to load the RequestHandler here?
             $this->set('result', $sentence);
-            $this->viewBuilder()->setLayout('json');
-            $this->render('/Generic/json');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         } else {
             if (empty($sentence)) {
                 // TODO Better error handling.
@@ -479,9 +479,10 @@ class SentencesController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
             $this->set('result', $translation);
-            $this->viewBuilder()->setLayout('json');
-            $this->render('/Generic/json');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 

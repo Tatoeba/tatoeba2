@@ -269,9 +269,10 @@
                         value: vm.newTranslation.text
                     };
                     $http.post(rootUrl + '/sentences/save_translation', data).then(function(result) {
-                        result.data.editable = true;
-                        result.data.parentId = sentenceId;
-                        allDirectTranslations.unshift(result.data);
+                        var translation = result.data.result;
+                        translation.editable = true;
+                        translation.parentId = sentenceId;
+                        allDirectTranslations.unshift(translation);
                         vm.newTranslation = {};
                         show('translations');
                         vm.inProgress = false;
