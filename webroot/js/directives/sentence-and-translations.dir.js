@@ -94,6 +94,7 @@
         vm.isMenuExpanded = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
+        vm.showAutoDetect = false;
         vm.sentence = null;
         vm.directTranslations = [];
         vm.indirectTranslations = [];
@@ -164,6 +165,7 @@
 
         function init(langs, sentence, directTranslations, indirectTranslations) {
             vm.userLanguages = langs;
+            vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
             allDirectTranslations = directTranslations ? directTranslations : [];
             allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
@@ -242,7 +244,7 @@
             if ($cookies.get('translationLang') && !vm.newTranslation.text) {
                 vm.newTranslation.lang = $cookies.get('translationLang');
             } else if (!vm.newTranslation.lang) {
-                vm.newTranslation.lang = vm.userLanguages.length > 1 ? 'auto' : Object.keys(vm.userLanguages)[0];
+                vm.newTranslation.lang = vm.showAutoDetect ? 'auto' : Object.keys(vm.userLanguages)[0];
             }
             focusInput('#translation-form-' + id);
         }

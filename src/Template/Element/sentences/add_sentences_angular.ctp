@@ -30,7 +30,7 @@ $defautLicense = CurrentUser::getSetting('default_license'); // TODO
                 <md-input-container flex="50">
                     <label><?= __('Language') ?></label>
                     <md-select ng-model="vm.newSentence.lang">
-                        <md-option value="auto" ng-if="vm.userLanguages.length > 1"><?= __('Auto detect') ?></md-option>
+                        <md-option value="auto" ng-if="vm.showAutoDetect"><?= __('Auto detect') ?></md-option>
                         <md-option ng-repeat="(code, name) in vm.userLanguages" ng-value="code">
                             {{name}}
                         </md-option>
@@ -38,7 +38,7 @@ $defautLicense = CurrentUser::getSetting('default_license'); // TODO
                 </md-input-container>
                 
                 <div style="padding: 10px 10px 0 10px" flex>
-                    <img ng-src="/img/flags/{{vm.newSentence.lang}}.svg"
+                    <img ng-src="/img/flags/{{vm.newSentence.lang}}.svg" ng-if="vm.newSentence.lang && vm.newSentence.lang !== 'auto'" 
                         width="30" height="20" class="language-icon"/>
                 </div>
 

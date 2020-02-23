@@ -11,6 +11,7 @@
         var vm = this;
 
         vm.userLanguages = [];
+        vm.showAutoDetect = false;
         vm.licenses = [];
         vm.newSentence = {};
         vm.sentences = [];
@@ -23,7 +24,8 @@
 
         function init(userLanguages, licenses) {
             vm.userLanguages = userLanguages;
-            if (userLanguages.length > 1) {
+            vm.showAutoDetect = Object.keys(userLanguages).length > 1;
+            if (vm.showAutoDetect) {
                 vm.newSentence.lang = $cookies.get('contribute_lang') ? $cookies.get('contribute_lang') : 'auto';
             } else {
                 vm.newSentence.lang = Object.keys(vm.userLanguages)[0];
@@ -34,6 +36,7 @@
         }
 
         function addSentence() {
+            $cookies.put('contribute_lang', vm.newSentence.lang);
             vm.inProgress = true;
             var data = {
                 'selectedLang': vm.newSentence.lang,
