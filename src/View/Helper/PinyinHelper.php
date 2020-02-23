@@ -89,7 +89,23 @@ class PinyinHelper extends AppHelper
         'ou1',
         'ou2',
         'ou3',
-        'ou4'
+        'ou4',
+        'Ai1',
+        'Ai2',
+        'Ai3',
+        'Ai4',
+        'Ao1',
+        'Ao2',
+        'Ao3',
+        'Ao4',
+        'Ei1',
+        'Ei2',
+        'Ei3',
+        'Ei4',
+        'Ou1',
+        'Ou2',
+        'Ou3',
+        'Ou4'
     );
 
     private $_vowelVowelTone2VowelToneVowel_replace = array(
@@ -108,7 +124,23 @@ class PinyinHelper extends AppHelper
         'o1u',
         'o2u',
         'o3u',
-        'o4u'
+        'o4u',
+        'A1i',
+        'A2i',
+        'A3i',
+        'A4i',
+        'A1o',
+        'A2o',
+        'A3o',
+        'A4o',
+        'E1i',
+        'E2i',
+        'E3i',
+        'E4i',
+        'O1u',
+        'O2u',
+        'O3u',
+        'O4u'
     );
 
     private $_vowelTone2Unicode_search = array(
@@ -135,7 +167,31 @@ class PinyinHelper extends AppHelper
         'v1',
         'v2',
         'v3',
-        'v4'
+        'v4',
+        'A1',
+        'A2',
+        'A3',
+        'A4',
+        'E1',
+        'E2',
+        'E3',
+        'E4',
+        'I1',
+        'I2',
+        'I3',
+        'I4',
+        'O1',
+        'O2',
+        'O3',
+        'O4',
+        'U1',
+        'U2',
+        'U3',
+        'U4',
+        'V1',
+        'V2',
+        'V3',
+        'V4'
     );
 
     private $_vowelTone2Unicode_replace = array(
@@ -162,7 +218,31 @@ class PinyinHelper extends AppHelper
         'ǖ',
         'ǘ',
         'ǚ',
-        'ǜ'
+        'ǜ',
+        'Ā',
+        'Á',
+        'Ǎ',
+        'À',
+        'Ē',
+        'É',
+        'Ě',
+        'È',
+        'Ī',
+        'Í',
+        'Ǐ',
+        'Ì',
+        'Ō',
+        'Ó',
+        'Ǒ',
+        'Ò',
+        'Ū',
+        'Ú',
+        'Ǔ',
+        'Ù',
+        'Ǖ',
+        'Ǘ',
+        'Ǚ',
+        'Ǜ'
     );
 
 
@@ -175,7 +255,16 @@ class PinyinHelper extends AppHelper
         'v5',
         'n5',
         'g5',
-        'r5'
+        'r5',
+        'A5',
+        'E5',
+        'I5',
+        'O5',
+        'U5',
+        'V5',
+        'N5',
+        'G5',
+        'R5'
     );
 
 
@@ -188,7 +277,16 @@ class PinyinHelper extends AppHelper
         'v',
         'n',
         'g',
-        'r'
+        'r',
+        'A',
+        'E',
+        'I',
+        'O',
+        'U',
+        'V',
+        'N',
+        'G',
+        'R'
     );
 
     /**
