@@ -165,8 +165,8 @@
         function init(langs, sentence, directTranslations, indirectTranslations) {
             vm.userLanguages = langs;
             initSentence(sentence);
-            allDirectTranslations = directTranslations;
-            allIndirectTranslations = indirectTranslations;
+            allDirectTranslations = directTranslations ? directTranslations : [];
+            allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
             showFewerTranslations();
             initLists(sentence.lists);
         }
@@ -384,7 +384,6 @@
             var i = allLists.findIndex(function(item) {
                 return item.id === parseInt($cookies.get('most_recent_list'));
             });
-            console.log(allLists, $cookies.get('most_recent_list'));
             if (lastSelectedList) {
                 lastSelectedList.isLastSelected = false;
             }

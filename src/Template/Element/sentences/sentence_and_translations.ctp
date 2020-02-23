@@ -1,4 +1,24 @@
 <?php
+/**
+ * This component is kind of a Frankenstein component that mixes data coming
+ * from PHP and data coming from Angular.
+ * 
+ * (1) Example for displaying a sentence with PHP variables:
+ * 
+ * $this->element('sentences/sentence_and_translation', [
+ *     'sentence' => $sentence,
+ *     'translations' => $translations
+ * ]);
+ * 
+ * (2) Example for displaying a sentence with Angular variables:
+ * 
+ * $this->element('sentences/sentence_and_translation', [
+ *     'sentenceData' => 'sentence',
+ *     'directTranslationsData' => 'sentence.translations[0]',
+ *     'indirectTranslationsData0' => 'sentence.translations[1]'
+ * ]);
+ */
+
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
@@ -8,14 +28,27 @@ if (!isset($menuExpanded)) {
     $menuExpanded = false;
 }
 
-list($directTranslations, $indirectTranslations) = $translations;
+if (isset($translations)) {
+    list($directTranslations, $indirectTranslations) = $translations;
+} else {
+    $directTranslations = $indirectTranslations = [];
+}
 
 $langs = $this->Languages->profileLanguagesArray(false, false);
 
-$userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
-$sentenceJSON = $this->Sentences->sentenceForAngular($sentence);
-$directTranslationsJSON = $this->Sentences->translationsForAngular($directTranslations);
-$indirectTranslationsJSON = $this->Sentences->translationsForAngular($indirectTranslations);
+if (!isset($userLanguagesData)) {
+    $userLanguagesData = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
+}
+if (!isset($sentenceData)) {
+    $sentenceData = $this->Sentences->sentenceForAngular($sentence);
+}
+if (!isset($directTranslationsData)) {
+    $directTranslationsData = $this->Sentences->translationsForAngular($directTranslations);
+}
+if (!isset($indirectTranslationsData)) {
+    $indirectTranslationsData = $this->Sentences->translationsForAngular($indirectTranslations);    
+}
+
 
 $profileUrl = $this->Url->build([
     'controller' => 'user',
@@ -28,7 +61,7 @@ $sentenceUrl = $this->Url->build([
 ?>
 <div ng-cloak
      sentence-and-translations
-     ng-init="vm.init(<?= $userLanguagesJSON ?>, <?= $sentenceJSON ?>, <?= $directTranslationsJSON ?>, <?= $indirectTranslationsJSON ?>)"
+     ng-init="vm.init(<?= $userLanguagesData ?>, <?= $sentenceData ?>, <?= $directTranslationsData ?>, <?= $indirectTranslationsData ?>)"
      class="sentence-and-translations md-whiteframe-1dp">
     <div layout="column">
         <div layout="row" class="header">
@@ -59,8 +92,6 @@ $sentenceUrl = $this->Url->build([
             <?php
             if (CurrentUser::isMember()) {
                 echo $this->element('sentences/sentence_menu', [
-                    'sentence' => $sentence,
-                    'menu' => $sentence->menu,
                     'expanded' => $menuExpanded
                 ]);
             }
@@ -106,9 +137,7 @@ $sentenceUrl = $this->Url->build([
             'langs' => $langs
         ]);
 
-        echo $this->element('sentences/list_form', [
-            'sentenceId' => $sentence->id
-        ]);
+        echo $this->element('sentences/list_form');
 
         echo $this->element('sentences/sentence_form');
     }
@@ -127,8 +156,7 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" class="indirect translations" ng-if="vm.visibility.translations && vm.indirectTranslations.length > 0"
-            ng-init="vm.initIndirectTranslations(<?= $this->Sentences->translationsForAngular($indirectTranslations) ?>)">
+    <div layout="column" class="indirect translations" ng-if="vm.visibility.translations && vm.indirectTranslations.length > 0">
         <md-subheader><?= __('Translations of translations') ?></md-subheader>
 
         <?php

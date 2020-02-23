@@ -1,14 +1,8 @@
-<?php
-extract($menu);
-$menuJSON = htmlspecialchars(json_encode($menu), ENT_QUOTES, 'UTF-8');
-$isUnapproved = $sentence->correctness == -1;
-?>
-
 <div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}" 
-     ng-init="vm.initMenu(<?= (int)$expanded ?>, <?= $menuJSON ?>)">
+     ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.menu)">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>
-            <md-button class="md-icon-button" ng-click="vm.translate(<?= $sentence->id ?>)" ng-disabled="vm.sentence.correctness === -1">
+            <md-button class="md-icon-button" ng-click="vm.translate(vm.sentence.id)" ng-disabled="vm.sentence.correctness === -1">
                 <md-icon>translate</md-icon>
                 <md-tooltip><?= __('Translate') ?></md-tooltip>
             </md-button>
@@ -35,7 +29,7 @@ $isUnapproved = $sentence->correctness == -1;
 
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && vm.menu.canDelete"
                        onclick="return confirm('<?= __('Are you sure?') ?>');"
-                       href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'delete', $sentence->id]) ?>">
+                       ng-href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'delete']) ?>/{{vm.sentence.id}}">
                 <md-icon>delete</md-icon>
                 <md-tooltip><?= __('Delete') ?></md-tooltip>
             </md-button>
