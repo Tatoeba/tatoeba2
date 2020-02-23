@@ -38,9 +38,7 @@ class ExportsTableTest extends TestCase
 
         $folder = new Folder($this->testExportDir);
         $folder->delete();
-        if (!$folder->create($this->testExportDir)) {
-            die("Couldn't create test directory '{$this->testExportDir}'");
-        }
+        $folder->create($this->testExportDir);
 
         $this->Exports = TableRegistry::get('Exports');
     }
