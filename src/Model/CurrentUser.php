@@ -385,7 +385,7 @@ class CurrentUser
     
     public static function canAdoptOrUnadoptSentenceOfUser($userId)
     {
-        if ($userId === self::get('id')) {
+        if (!$userId || $userId === self::get('id')) {
             return self::isMember();
         } else {
             $userAccountDeactivated = isset($user->role) ?

@@ -60,17 +60,13 @@ class ActivitiesController extends AppController
 
         $this->loadModel('Sentences');
         $this->paginate = array(
+            'finder' => ['filteredTranslations' => [
+                'translationLang' => 'none'
+            ]],
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
-            'contain' => array(
-                'Transcriptions' => array(
-                    'Users' => array('fields' => array('username')),
-                ),
-                'Audios' => array(
-                    'Users' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'sentence_id'),
-                ),
-            ),
+            'fields' => $this->Sentences->fields(),
+            'contain' => $this->Sentences->paginateContain(),
         );
         $results = $this->paginate('Sentences');
         $this->set('results', $results);
