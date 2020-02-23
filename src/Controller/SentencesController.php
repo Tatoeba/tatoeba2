@@ -339,6 +339,12 @@ class SentencesController extends AppController
             $this->set('sentence', $sentence);
         }
 
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['sentence']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
     /**
