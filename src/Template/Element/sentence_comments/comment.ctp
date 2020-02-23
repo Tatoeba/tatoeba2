@@ -121,7 +121,7 @@ if ($sentenceOwnerLink) {
 
         <?php foreach ($menu as $menuItem) {
             if ($menuItem['text'] == '#') {
-                $itemLabel = $replyIcon ? __('reply') : __('permalink');
+                $itemLabel = $replyIcon ? __('Reply') : __('Permalink');
             } else {
                 $itemLabel = $menuItem['text'];
             }

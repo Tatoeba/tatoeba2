@@ -577,6 +577,9 @@ class LanguagesLib
                 'ltg' => __d('languages', 'Latgalian'),
                 'emx' => __d('languages', 'Erromintxela'),
                 'gom' => __d('languages', 'Konkani (Goan)'),
+                'chg' => __d('languages', 'Chagatai'),
+                'xmf' => __d('languages', 'Mingrelian'),
+                'osp' => __d('languages', 'Old Spanish'),
             );
         }
         return $languages;
@@ -645,6 +648,7 @@ class LanguagesLib
         $autoLangs = array(
             "apc",
             "ota",
+            "chg",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {

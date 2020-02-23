@@ -261,7 +261,7 @@ class TagsHelper extends AppHelper
     private function _displayRemoveLink($tagId, $tagName, $sentenceId)
     {
         $removeTagFromSentenceAlt = format(
-            __("remove tag '{tagName}' from this sentence."),
+            __("Remove tag '{tagName}' from this sentence."),
             compact('tagName')
         );
         // X link to remove tag from sentence
@@ -296,7 +296,7 @@ class TagsHelper extends AppHelper
         ?>
         <span class="removeFromList">
         <?php
-        $removeFromListAlt = __("remove tag from sentence");
+        $removeFromListAlt = __("Remove tag from sentence");
         $removeTagFromSentenceImg =  $this->Html->image(
             IMG_PATH . 'close.png',
             array(

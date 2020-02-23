@@ -36,12 +36,12 @@ class LanguagesTableTest extends TestCase {
 
     function testGetNativeSpeakersStatistics() {
         $result = $this->Languages->getNativeSpeakersStatistics();
-        $this->assertEquals(7, count($result));
+        $this->assertEquals(13, count($result));
     }
 
     function testGetUsersLanguagesStatistics() {
         $result = $this->Languages->getNativeSpeakersStatistics();
-        $this->assertEquals(7, count($result));
+        $this->assertEquals(13, count($result));
     }
 
     function testIncrementCountForLanguage() {
@@ -68,5 +68,11 @@ class LanguagesTableTest extends TestCase {
             ->select(['sentences'])
             ->first();
         $this->assertEquals(-1, $after->sentences - $before->sentences);
+    }
+
+    function testGetTotalSentencesNumber() {
+        $expected = 56;
+        $n = $this->Languages->getTotalSentencesNumber();
+        $this->assertEquals($expected, $n);
     }
 }

@@ -872,15 +872,19 @@ class SentencesHelper extends AppHelper
         return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
     }
 
-    private function getSentenceData($sentence) {
+    public function getSentenceData($sentence) {
         return [
             'id' => $sentence->id,
             'text' => $sentence->text,
             'lang' => $sentence->lang,
+            'langName' => $this->Languages->codeToNameAlone($sentence->lang),
             'script' => $sentence->script,
             'dir' => LanguagesLib::getLanguageDirection($sentence->lang),
             'audios' => $sentence->audios,
-            'correctness' => $sentence->correctness
+            'correctness' => $sentence->correctness,
+            'isFavorite' => CurrentUser::hasFavorited($sentence->id),
+            'isOwnedByCurrentUser' => $sentence->user && $sentence->user->username === CurrentUser::get('username'),
+            'user' => $sentence->user
         ];
     }
 }

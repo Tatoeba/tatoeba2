@@ -42,15 +42,16 @@ $moreCommentsUrl = $this->Url->build([
 <div id="annexe_content">
     <div class="stats annexe-menu md-whiteframe-1dp" layout="column" flex>
         <md-subheader><?= __('Stats')?></md-subheader>
-        <?= $this->element('stats/homepage_stats', [
-            'contribToday' => $contribToday,
-            'numberOfLanguages' => $numberOfLanguages,
-            'numSentences' => $numSentences,
-            'cache' => array(
-                'time' => '+15 minutes',
-                'key' => Configure::read('Config.language')
-            )
-        ]); ?>
+        <?= $this->element('stats/homepage_stats',
+                [ 'contribToday' => $contribToday,
+                  'numberOfLanguages' => $numberOfLanguages,
+                  'numSentences,' => $numSentences,
+                ],
+                [ 'cache' => [
+                    'time' => '+15 minutes',
+                    'key' => 'homepage_stats_'.Configure::read('Config.language')
+                ]]
+        ); ?>
     </div>
         
     <md-list class="annexe-menu md-whiteframe-1dp">

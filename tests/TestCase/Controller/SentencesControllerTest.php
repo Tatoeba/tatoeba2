@@ -1,6 +1,7 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
+use App\Model\Entity\User;
 use App\Test\TestCase\Controller\TatoebaControllerTestTrait;
 use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
@@ -95,6 +96,27 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/jpn/sentences/get_neighbors_for_ajax/1/eng', null, true ],
             [ '/jpn/sentences/get_neighbors_for_ajax/1/eng', 'contributor', true ],
         ];
+    }
+
+    private function addSentencesOfUser($userId, $nbSentences) {
+        $newSentences = array();
+        for ($i = 1; $i <= $nbSentences; $i++) {
+            $newSentences[] = [
+                'lang' => 'eng',
+                'text' => "Ay ay ay $i.",
+                'user_id' => $userId,
+            ];
+            $newSentences[] = [
+                'lang' => 'eng',
+                'text' => "Oy oy oy $i.",
+                'user_id' => 1,
+            ];
+        }
+        $sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $entities = $sentences->newEntities($newSentences);
+        $sentences->saveMany($entities);
+
+        return $sentences->find()->where(['user_id' => $userId])->count();
     }
 
     /**
@@ -277,30 +299,31 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertRedirect('/jpn/sentences/show/1');
     }
 
-    public function testPaginateRedirectsPageOutOfBoundsToLastPage() {
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_asGuest() {
         $user = 'kazuki';
         $userId = 7;
-        $lastPage = 2;
+        $defaultNbPerPage = User::$defaultSettings['sentences_per_page'];
 
-        $newSentences = array();
-        for ($i = 1; $i <= 100; $i++) {
-            $newSentences[] = [
-                'lang' => 'eng',
-                'text' => "Ay ay ay $i.",
-                'user_id' => $userId,
-            ];
-            $newSentences[] = [
-                'lang' => 'eng',
-                'text' => "Oy oy oy $i.",
-                'user_id' => 1,
-            ];
-        }
-        $sentences = TableRegistry::get('Sentences');
-        $entities = $sentences->newEntities($newSentences);
-        $result = $sentences->saveMany($entities);
+        $nbSentences = $this->addSentencesOfUser($userId, $defaultNbPerPage + 1);
+
+        $lastPage = ceil($nbSentences / $defaultNbPerPage);
 
         $this->get("/eng/sentences/of_user/$user?page=9999999");
+        $this->assertRedirect("/eng/sentences/of_user/$user?page=$lastPage");
+    }
 
+    public function testPaginateRedirectsPageOutOfBoundsToLastPage_withUserSetting() {
+        $user = 'kazuki';
+        $userId = 7;
+        $users = TableRegistry::getTableLocator()->get('Users');
+        $nbPerPageSetting = $users->getSettings($userId)['settings']['sentences_per_page'];
+
+        $nbSentences = $this->addSentencesOfUser($userId, $nbPerPageSetting + 1);
+
+        $lastPage = ceil($nbSentences / $nbPerPageSetting);
+
+        $this->logInAs($user);
+        $this->get("/eng/sentences/of_user/$user?page=9999999");
         $this->assertRedirect("/eng/sentences/of_user/$user?page=$lastPage");
     }
 }

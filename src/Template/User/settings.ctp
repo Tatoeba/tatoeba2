@@ -60,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="sendNotifications = <?= $sendNotifications ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p> <?php echo __('Email notifications') ?></p>
+                <p> <?php echo __('Send email notifications') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->text(
@@ -109,7 +109,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
                 <p><?php echo __(
                 'Remember the last list to which you assigned' .
-                ' a sentence, and select it by default.'
+                ' a sentence, and select it by default'
                 ) ?> </p>
                 <div ng-hide="true">
                 <?php
@@ -135,7 +135,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
                 <p><?php echo __(
                 'Display a link to expand/collapse translations ' .
-                'when there are too many translations.'
+                'when there are too many translations'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
@@ -172,15 +172,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item>
-                <?php $hideRandomSentence = $userSettings->settings['hide_random_sentence']; ?>
+                <?php
+                    // The setting is "hide" but we display "show"
+                    $hideRandomSentence = $userSettings->settings['hide_random_sentence'];
+                ?>
                 <md-checkbox
-                    ng-false-value="0"
-                    ng-true-value="1"
+                    ng-false-value="1"
+                    ng-true-value="0"
                     ng-model="hideRandomSentence"
-                    ng-init="hideRandomSentence = <?= $hideRandomSentence ?>"
+                    ng-init="hideRandomSentence = <?= (int)$hideRandomSentence ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Hide random sentence on the homepage') ?> </p>
+                <p><?php echo __('Show random sentence on the homepage') ?> </p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -256,7 +259,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="collectionRatings = <?= $collectionRatings ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Activate the feature to rate sentences and build your collection of sentences.') ?></p>
+                <p><?php echo __('Activate the feature to review sentences') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -277,10 +280,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="nativeIndicator = <?= $nativeIndicator ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __(
-                'Display "(native)" next to username on sentences ' .
-                'when the owner indicated in their profile that they have a native '.
-                'level in the language of the sentence.'
+                <p><?php echo format(
+                    __(
+                        'Mark sentences when the owner indicated in their profile that ' .
+                        'they have a native level in the language of the sentence. In ' .
+                        'the old design "(native)" is displayed next to the username. In ' .
+                        'the new design a {star} is displayed next to the sentence.'
+                    ),
+                    ['star' => '<md-icon>star</md-icon>']
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
@@ -302,7 +309,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     ng-init="copyButton = <?= $copyButton ?>"
                     class="md-primary">
                 </md-checkbox>
-                <p><?php echo __('Display button to copy a sentence to the clipboard.') ?></p>
+                <p><?php echo __('Display button to copy a sentence to the clipboard') ?></p>
                 <div ng-hide="true">
                 <?php
                     echo $this->Form->input(
@@ -326,7 +333,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <p><?php echo __(
                     'Display sentences with the new design. '.
                     'Note that you will not have all the features '.
-                    'from the old design.'
+                    'from the old design'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php

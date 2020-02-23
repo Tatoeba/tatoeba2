@@ -28,6 +28,7 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Event\ContributionListener;
+use App\Event\UsersLanguagesListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
@@ -83,7 +84,7 @@ class SentencesTable extends Table
         $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
 
         $this->getEventManager()->on(new ContributionListener());
-        //$this->getEventManager()->attach(new UsersLanguagesListener());
+        $this->getEventManager()->on(new UsersLanguagesListener());
     }
 
     public function validationDefault(Validator $validator)
@@ -690,7 +691,10 @@ class SentencesTable extends Table
      */
     public function getSentenceWithId($id)
     {
-        $result = $this->find('filteredTranslations')
+        $result = $this->find(
+                'filteredTranslations',
+                ['nativeMarker' => CurrentUser::getSetting('native_indicator')]
+            )
             ->where(['Sentences.id' => $id])
             ->contain($this->contain())
             ->select($this->fields())

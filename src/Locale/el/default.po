@@ -8,16 +8,18 @@
 # glavkos <1>, 2015
 # Glavkos Xaon, 2015
 # Nikos Papadimoulis <glavkos@gmail.com>, 2015
+# Nikos Papadimoulis <glavkos@gmail.com>, 2015
 # gillux, 2014
+# Wasilis Mandratzis-Walz, 2015
 # Wasilis Mandratzis-Walz, 2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-19 15:43+0000\n"
-"PO-Revision-Date: 2020-01-13 00:50+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2020-02-09 20:55+0800\n"
+"PO-Revision-Date: 2020-02-10 00:11+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/tatoeba/tatoeba_website/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,9 +29,9 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ActivitiesController.php#L166
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L116
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L43
@@ -118,7 +120,7 @@ msgstr "Σφάλμα: η φράση #{id} δεν κατέστη δυνατόν �
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L515
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L516
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -127,41 +129,41 @@ msgstr ""
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L559
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L560
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L568
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L569
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L610
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L611
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr ""
 
 #. @translators: This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L620
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L656
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L657
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr ""
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L687
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L688
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
@@ -170,22 +172,22 @@ msgstr ""
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L725
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L726
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1092
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1097
 msgid "You are not allowed to change the license of this sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1098
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1103
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1108
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr ""
 
@@ -448,38 +450,38 @@ msgstr "κατάλογος χωρίς όνομα"
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L101
 msgid "This is not a valid license."
 msgstr ""
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L108
 msgid "This sentence is already under that license."
 msgstr ""
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L188
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L164
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr ""
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L172
 msgid "You're not the owner of this sentence."
 msgstr ""
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L203
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L179
 msgid "The owner of the sentence needs to be its original creator."
 msgstr ""
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L192
 msgid "You can only switch to a more permissive license."
 msgstr ""
 
@@ -812,8 +814,8 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L98
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L55
 msgid "(total {{count}})"
@@ -841,89 +843,17 @@ msgid "Attribution URL:"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L347
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L377
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L432
 msgid "Save"
 msgstr "Αποθήκευση"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L79
 msgid "{username} has not contributed any audio"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L30
-msgid "Sentences marked as \"OK\""
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L31
-msgid "Sentences marked as \"unsure\""
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L32
-msgid "Sentences marked as \"not OK\""
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L56
-msgid "All sentences"
-msgstr "Όλες οι φράσεις "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L34
-msgid "Outdated ratings"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L46
-msgid "{user}'s collection - {category}"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L60
-msgid "This feature is currently deactivated."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L63
-msgid ""
-"You can activate it in your settings: \"Activate the feature to rate "
-"sentences and build your collection...\""
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L73
-msgid "Filter"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L111
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L79
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L153
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L91
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L96
-msgid "Sort by:"
-msgstr "Ταξινόμηση κατά:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L111
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L119
-msgid "date modified"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L121
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L157
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L60
-msgid "date created"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L115
-msgid "sentence id"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Collections/of.ctp#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L93
-msgid "Sentence {id} has been deleted."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
@@ -1053,7 +983,7 @@ msgid "Owned by a self-identified native"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L179
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L137
 msgid "Translations"
 msgstr "Μεταφράσεις"
 
@@ -1300,6 +1230,7 @@ msgid "Forgot your password?"
 msgstr "Ξεχάσατε τον κωδικό σας;"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L11
 msgid "Close"
 msgstr "Κλείσιμο"
 
@@ -1351,8 +1282,11 @@ msgid "Folders"
 msgstr "Φάκελοι"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L7
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/show.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L201
 msgid "Reply"
 msgstr "Απάντηση"
 
@@ -1388,14 +1322,7 @@ msgstr "Αποστολή"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L124
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L201
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L166
-msgid "reply"
-msgstr "απάντηση"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L124
-msgid "permalink"
+msgid "Permalink"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L43
@@ -1437,20 +1364,17 @@ msgstr ""
 msgid "No results found for: {search}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L13
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L11
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L188
 msgid "Play audio"
 msgstr "Αναπαραγωγή ήχου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L16
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L191
 msgid "Play audio recorded by {author}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L200
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Δεν υπάρχει αρχείο ήχου γι΄αυτή τη φράση. Κάντε κλικ για να μάθετε πως θα συνεισφέρετε. "
@@ -1488,12 +1412,12 @@ msgid "{createdDate}, edited {modifiedDate}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L59
 msgid "Sentence {number} — belongs to {username}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L67
 msgid "Sentence {number}"
 msgstr ""
 
@@ -1507,7 +1431,8 @@ msgid ""
 msgstr "Το περιεχόμενο αυτού του μηνύματος στρέφεται ενάντια στους <a href=\"{}\">κανόνες μας</a> και γι'αυτό έχει αποκρυβεί. Εμφανίζεται μόνο στους διαχειριστές και στον συγγραφέα αυτού του μηνύματος. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L142
@@ -1560,43 +1485,38 @@ msgstr "Γλώσσα για προηγούμενες, επόμενες και τ
 msgid "Show sentence #: "
 msgstr "Εμφάνιση φράσης Νο : "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L101
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L26
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L99
+msgid "This sentence belongs to a native speaker."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L25
 msgid "This sentence is not reliable."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
 msgid "Translations of translations"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L165
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L209
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Εμφάνιση 1 περισσότερης μετάφρασης"
 msgstr[1] "Εμφάνιση {αριθμός} περισσότερων μεταφράσεων"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L173
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L241
 msgid "Fewer translations"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L13
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L87
-msgid "Translate"
-msgstr "Μετάφραση"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L7
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L475
+msgid "You cannot edit this sentence because it has audio."
+msgstr "Δεν μπορείτε να επεξεργαστείτε αυτή τη φράση επειδή έχει αρχείο ήχου."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L33
-msgid "Edit this translation"
-msgstr ""
-
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L13
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
-msgid "Translation"
-msgstr "Μετάφραση"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L57
@@ -1605,18 +1525,55 @@ msgstr "Μετάφραση"
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L22
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L21
+msgid "Other language"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L112
+msgid "Sentence"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L13
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L87
+msgid "Translate"
+msgstr "Μετάφραση"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L382
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L442
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L158
+msgid "Are you sure?"
+msgstr "Είστε βέβαιοι;"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L32
+msgid "Edit this translation"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L6
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
+msgid "Translation"
+msgstr "Μετάφραση"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L259
 msgid "Auto detect"
 msgstr "Αυτόματος εντοπισμός"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L403
 msgid "Submit translation"
 msgstr "Υποβολή μετάφρασης"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
 msgid "Edit translation"
 msgstr ""
 
@@ -1692,7 +1649,7 @@ msgid "My vocabulary"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L96
-msgid "My collection"
+msgid "My reviews"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L109
@@ -1818,7 +1775,7 @@ msgid "Vocabulary"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L56
-msgid "Collection"
+msgid "Reviews"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L64
@@ -1901,10 +1858,22 @@ msgid "show replies"
 msgstr "εμφάνιση απαντήσεων"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L30
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L137
 msgid "edit"
+msgstr "Επεξεργασία"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L210
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L145
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L480
+msgid "Edit"
 msgstr "Επεξεργασία"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L2
@@ -1950,6 +1919,11 @@ msgstr "{user}'s αγαπημένες φράσεις"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L51
 msgid "Favorite successfully removed."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L140
+msgid "Sentence {id} has been deleted."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L117
@@ -2276,7 +2250,7 @@ msgid "Sentence id"
 msgstr "Αναγνωριστικό Φράσης"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L131
-msgid "Rating"
+msgid "Review"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L132
@@ -2440,12 +2414,12 @@ msgid ""
 msgstr "Υποδεικνύει τα αυτο-αναφερόμενα επίπεδα εμπειρίας των μελών σε επιμέρους γλώσσες."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L511
-msgid "Users' sentence ratings"
+msgid "Users' sentence reviews"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L539
 msgid ""
-"Contains sentences rated by users. The value of the rating can be -1 "
+"Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
 msgstr ""
@@ -2675,17 +2649,6 @@ msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} ({n}&nbsp;μήνυμα)"
 msgstr[1] "{folderName} ({n}&nbsp;μηνύματα)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L120
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L382
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L108
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L398
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L442
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L175
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L158
-msgid "Are you sure?"
-msgstr "Είστε βέβαιοι;"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L77
 msgid "Empty trash"
 msgstr ""
@@ -2697,20 +2660,22 @@ msgstr "[χωρίς θέμα]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L169
-msgid "permanently delete"
-msgstr "μόνιμη διαγραφή"
+msgid "Permanently delete"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L430
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L440
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L179
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L151
-msgid "delete"
-msgstr "διαγραφή"
+msgid "Delete"
+msgstr "Διαγραφή"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L160
-msgid "restore"
-msgstr "επαναφορά"
+msgid "Restore"
+msgstr "Επαναφορά"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L28
@@ -2742,6 +2707,74 @@ msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "Έχετε στείλει ένα μήνυμα σήμερα."
 msgstr[1] "Έχετε στείλει {n}&nbsp;μηνύματα σήμερα."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L30
+msgid "Sentences marked as \"OK\""
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L31
+msgid "Sentences marked as \"unsure\""
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L32
+msgid "Sentences marked as \"not OK\""
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L56
+msgid "All sentences"
+msgstr "Όλες οι φράσεις "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L34
+msgid "Outdated reviews"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L46
+msgid "{user}'s reviews - {category}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L60
+msgid "This feature is currently deactivated."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L63
+msgid ""
+"You can activate it in your settings: \"Activate the feature to review "
+"sentences.\""
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L72
+msgid "Filter"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/all.ctp#L96
+msgid "Sort by:"
+msgstr "Ταξινόμηση κατά:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L119
+msgid "date modified"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/index.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/of_user.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L60
+msgid "date created"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L114
+msgid "sentence id"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/S/s.ctp#L41
 msgid ""
@@ -2819,11 +2852,6 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L78
 msgid "Add new sentences"
 msgstr "Προσθήκη νέων φράσεων"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L112
-msgid "Sentence"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L141
@@ -3100,18 +3128,6 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L44
 msgid "Options"
 msgstr "Επιλογές"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L129
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L155
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L157
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L210
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L212
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L385
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L387
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MembersHelper.php#L145
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L480
-msgid "Edit"
-msgstr "Επεξεργασία"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L130
 msgid "Edit name"
@@ -3433,7 +3449,7 @@ msgid "No description."
 msgstr "Χωρίς περιγραφή"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L307
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L219
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L222
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L46
 msgid "Languages"
 msgstr "Γλώσσες"
@@ -3450,45 +3466,39 @@ msgstr "ΣΥΜΒΟΥΛΗ:Σας ενθαρύνουμε να εμφανίσετε
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "ΣΥΜΒΟΥΛΗ:Ενθαρύνετε αυτόν το χρήστη να αποκαλύψει τις γλώσσες που γνωρίζει."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L395
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L430
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L440
-msgid "Delete"
-msgstr "Διαγραφή"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L53
 msgid "Main options"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L63
-msgid "Email notifications"
-msgstr "Ειδοποιήσεις μέσω email"
+msgid "Send email notifications"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L86
-msgid "Set your profile public?"
-msgstr "Κάντε το προφίλ σας δημόσιο"
+msgid "Set your profile public"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L111
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
-"default."
-msgstr "Θυμηθείτε την τελευταία λίστα στην οποία έχετε εκχωρήσει μια πρόταση, και επιλέξτε την ως προεπιλογή."
+"default"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L137
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
-"translations."
-msgstr "Εμφάνιση ενός σύνδεσμου για αναπτύξη μεταφράσεων/ κατάρρευσης, όταν υπάρχουν πάρα πολλές μεταφράσεις."
+"translations"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L161
 msgid "Always show transcriptions and alternative scripts"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L183
-msgid "Hide random sentence on the homepage"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L186
+msgid "Show random sentence on the homepage"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L209
 msgid ""
 "Enter <a href=\"{url}\">ISO 639-3 codes</a>, separated with a comma (e.g.: "
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
@@ -3496,66 +3506,65 @@ msgid ""
 " all languages."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L227
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L230
 msgid "Number of sentences per page"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Experimental options"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L245
 msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L259
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L262
+msgid "Activate the feature to review sentences"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L285
 msgid ""
-"Activate the feature to rate sentences and build your collection of "
-"sentences."
+"Mark sentences when the owner indicated in their profile that they have a "
+"native level in the language of the sentence. In the old design \"(native)\""
+" is displayed next to the username. In the new design a {star} is displayed "
+"next to the sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L281
-msgid ""
-"Display \"(native)\" next to username on sentences when the owner indicated "
-"in their profile that they have a native level in the language of the "
-"sentence."
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L312
+msgid "Display button to copy a sentence to the clipboard"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L305
-msgid "Display button to copy a sentence to the clipboard."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L334
 msgid ""
 "Display sentences with the new design. Note that you will not have all the "
-"features from the old design."
+"features from the old design"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L365
 msgid "Change email address"
 msgstr "Αλλαγή email"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L378
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L160
 msgid "Email address"
 msgstr "Email address"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L396
 msgid "Change password"
 msgstr "Αλλαγή  password"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L402
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L409
 msgid "Old password"
 msgstr "Παλιό συνθηματικό"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L410
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L417
 msgid "New password"
 msgstr "Νέο συνθηματικό"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L418
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L425
 msgid "New password again"
 msgstr "Νέο συνθηματικό  ξανά"
 
@@ -3612,9 +3621,12 @@ msgid "I accept the <a href=\"{}\">terms of use</a>"
 msgstr "Αποδέχομαι τους  <a href=\"{}\">όρους χρήσης</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L147
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L152
 msgid "unmask password"
 msgstr "αποκάλυψη κωδικού"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L152
+msgid "Unmask password"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L207
 msgid "Native language:"
@@ -3789,13 +3801,17 @@ msgid ""
 "license."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L80
-msgid "unhide"
-msgstr "φανέρωση"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
+msgid "Send message"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L83
-msgid "hide"
-msgstr "απόκρυψη"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L93
+msgid "Unhide"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L96
+msgid "Hide"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
@@ -4259,10 +4275,6 @@ msgstr "Προσθήκη στο συνεργατικό κατάλογο"
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Δεν μπορείτε να διαγράψετε αυτή τη φράση επειδή έχει αρχείο ήχου. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L475
-msgid "You cannot edit this sentence because it has audio."
-msgstr "Δεν μπορείτε να επεξεργαστείτε αυτή τη φράση επειδή έχει αρχείο ήχου."
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L511
 msgid "belongs to {user}"
 msgstr "ανήκει στο {user}"
@@ -4372,8 +4384,8 @@ msgid "{sender} wrote:"
 msgstr "{sender} έγραψε"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L190
-msgid "mark as unread"
-msgstr "επισήμανση ως μη αναγνωσμένο"
+msgid "Mark as unread"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -4440,12 +4452,12 @@ msgid "Added by {username}, {date}"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L264
-msgid "remove tag '{tagName}' from this sentence."
-msgstr "απομάκρυνση ετικέτας  '{tagName}' από αυτή την φράση."
+msgid "Remove tag '{tagName}' from this sentence."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L299
-msgid "remove tag from sentence"
-msgstr "απομάκρυνση ετικέτας από τη φράση"
+msgid "Remove tag from sentence"
+msgstr ""
 
 #. @translators: refers to a transcription
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L142
@@ -4513,3 +4525,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L70
 msgid "by {messageAuthor}"
 msgstr "από {messageAuthor}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L151
+msgid "delete"
+msgstr "διαγραφή"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L166
+msgid "reply"
+msgstr "απάντηση"

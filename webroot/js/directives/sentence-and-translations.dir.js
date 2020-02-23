@@ -48,6 +48,24 @@
                     }
                 });
             };
+        })
+        .directive('languageIcon', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                    lang: '=',
+                    title: '='
+                },
+                link: function($scope) {
+                    if (!$scope.lang) {
+                        $scope.lang = 'unknown';
+                    }
+                },
+                template: 
+                    '<img class="language-icon" width="30" heigth="20" ' +
+                      'ng-attr-title="{{title ? title : lang}}"' +
+                      'ng-src="/img/flags/{{lang}}.svg" />'
+            }
         });
 
     function sentenceAndTranslations() {
@@ -90,6 +108,8 @@
         vm.edit = edit;
         vm.cancelEdit = cancelEdit;
         vm.editSentence = editSentence;
+        vm.favorite = favorite;
+        vm.adopt = adopt;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -163,7 +183,7 @@
             if ($cookies.get('translationLang') && !vm.newTranslation.text) {
                 vm.newTranslation.lang = $cookies.get('translationLang');
             } else if (!vm.newTranslation.lang) {
-                vm.newTranslation.lang = 'auto';
+                vm.newTranslation.lang = vm.userLanguages.length > 1 ? 'auto' : Object.keys(vm.userLanguages)[0];
             }
             focusInput('#translation-form-' + id);
         }
@@ -185,7 +205,7 @@
                         selectLang: vm.newTranslation.lang,
                         value: vm.newTranslation.text
                     };
-                    $http.post(rootUrl + '/sentences/save_translation/json', data).then(function(result) {
+                    $http.post(rootUrl + '/sentences/save_translation', data).then(function(result) {
                         result.data.editable = true;
                         result.data.parentId = sentenceId;
                         allDirectTranslations.unshift(result.data);
@@ -238,13 +258,30 @@
                 id: [lang, sentence.id].join('_'),
                 value: sentence.text
             };
-            return $http.post(rootUrl + '/sentences/edit_sentence/json', data);
+            return $http.post(rootUrl + '/sentences/edit_sentence', data);
         }
 
         function initSentence(data) {
             data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
-            vm.sentence = Object.assign({}, data);
+            vm.sentence = angular.copy(data);
+        }
+
+        function favorite() {
+            var action = vm.sentence.isFavorite ? 'remove_favorite' : 'add_favorite';
+            
+            $http.get(rootUrl + '/favorites/' + action + '/' + vm.sentence.id).then(function(result) {
+                vm.sentence.isFavorite = !vm.sentence.isFavorite;
+            });
+        }
+
+        function adopt() {
+            var action = vm.sentence.isOwnedByCurrentUser ? 'let_go' : 'adopt';
+            
+            $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
+                vm.sentence.user = result.data.user;
+                vm.sentence.isOwnedByCurrentUser = vm.sentence.user && vm.sentence.user.username;
+            });
         }
     }
 

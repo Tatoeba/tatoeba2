@@ -133,10 +133,39 @@ class SentencesTableTest extends TestCase {
 		$this->assertTrue((bool)$returnValue);
 	}
 
-	function testSaveNewSentence_doesntAddDuplicate() {
-		$sentence = $this->Sentence->saveNewSentence('What are you doing?', 'eng', 1);
-		$this->assertEquals(27, $sentence->id);
-	}
+    function duplicatesProvider() {
+        return [
+            'Exact duplicate' =>
+                [['What are you doing?', 'eng', 1], 27],
+            'Duplicate ending with space' =>
+                [['What are you doing? ', 'eng', 1], 27],
+            'Duplicate beginning with space' =>
+                [[' What are you doing?', 'eng', 1], 27],
+            'Duplicate with extra spaces between words' =>
+                [["What  are you\u{2004}\u{2003}doing?", 'eng', 1], 27],
+            'Tab at beginning, LINE FEED at end' =>
+                [["\u{9}Bana ne önerirsin?\u{a}", 'tur', 2], 41],
+            'NEXT LINE at beginning, NO-BREAK SPACE at end' =>
+                [["\u{85}Bana ne önerirsin?\u{a0}", 'tur', 2], 41],
+            'LINE SEPARATOR at beginning' =>
+                [["\u{2028}Bana ne önerirsin?", 'tur', 2], 41],
+            'IDEOGRAPHIC SPACE at end' =>
+                [["Bana ne önerirsin?\u{3000}", 'tur', 2], 41],
+            'More than one whitespace character' =>
+                [["\u{85} Bana ne önerirsin?\u{a0}\u{2029}", 'tur', 2], 41],
+            'Decomposed e acute' =>
+                [["Elle donna une re\u{301}ponse e\u{301}vasive.", 'fra', 4], 17],
+        ];
+    }
+
+    /**
+     * @dataProvider duplicatesProvider
+     */
+    function testSaveNewSentence_doesntAddDuplicate($sentence, $id) {
+        $saved = $this->Sentence->saveNewSentence(...$sentence);
+        $this->assertEquals($id, $saved->id);
+        $this->assertTrue($saved->isDuplicate);
+    }
 
 	function testSaveTranslation_links() {
 		CurrentUser::store(['id' => 7]);
@@ -1036,14 +1065,6 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals($before, $after);
 	}
 
-	function testSave_doesntAddDuplicate() {
-		$sentence = $this->Sentence->saveNewSentence(
-			'This is a lonely sentence.', 'eng', 1
-		);
-		$this->assertEquals(7, $sentence->id);
-		$this->assertTrue($sentence->isDuplicate);
-	}
-
 	function testGetTranslationsOf() {
 		$results = $this->Sentence->getTranslationsOf(1);
 		$directTranslationsIds = Hash::extract($results[0], '{n}.id');
@@ -1151,22 +1172,6 @@ class SentencesTableTest extends TestCase {
         $this->assertEquals($expectedHash, $storedHash);
     }
 
-    function testSaveNewSentence_doesntAddDuplicateWithExtraSpaces() {
-        // Duplicate ending with space
-        $sentence = $this->Sentence->saveNewSentence('What are you doing? ', 'eng', 1);
-        $this->assertEquals(27, $sentence->id);
-        $this->assertTrue($sentence->isDuplicate);
-
-        // Duplicate beginning with space
-        $sentence = $this->Sentence->saveNewSentence(' What are you doing?', 'eng', 1);
-        $this->assertEquals(27, $sentence->id);
-        $this->assertTrue($sentence->isDuplicate);
-
-        // Duplicate with extra spaces between words
-        $sentence = $this->Sentence->saveNewSentence('What  are you   doing?', 'eng', 1);
-        $this->assertEquals(27, $sentence->id);
-        $this->assertTrue($sentence->isDuplicate);
-    }
 
     function testEditSentence_recognizeDuplicateWithExtraSpaces() {
         $user = $this->Sentence->Users->get(7);

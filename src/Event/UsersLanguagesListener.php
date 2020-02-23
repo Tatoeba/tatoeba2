@@ -18,15 +18,22 @@
  */
 namespace App\Event;
 
-use App\Event\EventListener;
-use App\Lib\Event\AppListener;
-use Cake\Event\EventListener;
+use Cake\Event\EventListenerInterface;
+use Cake\ORM\TableRegistry;
 
 
-class UsersLanguagesListener extends AppListener implements EventListener {
+class UsersLanguagesListener implements EventListenerInterface {
     public function implementedEvents() {
         return array(
             'Model.beforeFind' => 'reportNativeness',
         );
+    }
+
+    public function reportNativeness($event, $query, $options) {
+        $nativeMarker = $options['nativeMarker'] ?? false;
+        if ($nativeMarker) {
+            $UsersLanguages = TableRegistry::getTableLocator()->get('UsersLanguages');
+            $UsersLanguages->reportNativeness($query);
+        }
     }
 }

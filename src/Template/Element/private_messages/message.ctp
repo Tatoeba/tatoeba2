@@ -28,7 +28,7 @@ $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message
 
         <?php foreach ($menu as $menuItem) {
             if ($menuItem['text'] == '#') {
-                $itemLabel = $replyIcon ? __('reply') : __('permalink');
+                $itemLabel = $replyIcon ? __('Reply') : __('Permalink');
             } else {
                 $itemLabel = $menuItem['text'];
             }
@@ -47,7 +47,7 @@ $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message
             </md-button>
         <?php } ?>
     </md-card-header>
-    
+
     <md-card-content>
         <p class="content" dir="auto">
             <?= $this->Messages->formatContent($message->content) ?>

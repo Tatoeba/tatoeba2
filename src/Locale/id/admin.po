@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Leg Bail, 2018
+# Leg Bail, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-19 15:43+0000\n"
+"POT-Creation-Date: 2020-02-09 20:55+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
-"Last-Translator: Leg Bail, 2018\n"
+"Last-Translator: Leg Bail, 2020\n"
 "Language-Team: Indonesian (https://www.transifex.com/tatoeba/teams/28284/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +107,19 @@ msgstr "Impor"
 msgid "Enabled"
 msgstr "Aktif"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
+msgid "Yes"
+msgstr "Ya"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+msgid "No"
+msgstr "Tidak"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
+msgid "Owner name"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"

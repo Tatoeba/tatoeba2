@@ -27,15 +27,15 @@ $editUrl = $this->Url->build([
             </span>
         </md-card-header-text>
 
-        <md-button class="md-icon-button" aria-label="<?= __('edit') ?>" 
+        <md-button class="md-icon-button" aria-label="<?= __('edit') ?>"
                    ng-if="vm.savedReplies[<?= $parentId ?>].id"
                    ng-href="<?= $editUrl ?>/{{vm.savedReplies[<?= $parentId ?>].id}}">
             <md-icon>edit</md-icon>
-            <md-tooltip><?= __('edit') ?></md-tooltip>
+            <md-tooltip><?= __('Edit') ?></md-tooltip>
         </md-button>
     </md-card-header>
 
-    <md-progress-linear ng-if="vm.isSaving[<?= $parentId ?>]" 
+    <md-progress-linear ng-if="vm.isSaving[<?= $parentId ?>]"
                         md-mode="indeterminate"></md-progress-linear>
 
     <md-card-content class="content">

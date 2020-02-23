@@ -29,4 +29,4 @@ CREATE TABLE `sentences_lists` (
   `visibility` enum('private', 'unlisted', 'public') NOT NULL DEFAULT 'unlisted',
   `editable_by` enum('creator', 'anyone', 'no_one') NOT NULL DEFAULT 'creator',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3961 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

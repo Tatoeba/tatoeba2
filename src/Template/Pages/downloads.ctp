@@ -75,7 +75,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             ?>
         </p>
     </div>
-    
+
     <div class="section md-whiteframe-1dp">
     <h2><?php echo __('Creative commons'); ?></h2>
     <p><?php echo __('These files are released under CC BY 2.0 FR.'); ?></p>
@@ -128,7 +128,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         $field_struct_str = __('Fields and structure');
         $file_desc_str = __('File description');
         $sent_id_str = __('Sentence id');
-        $rating_str = __('Rating');
+        $review_str = __('Review');
         $text_str = __('Text');
         $lang_str = __('Lang');
         $username_str = __('Username');
@@ -190,16 +190,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
 
         <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-            <?php 
+            <?php
                 $iso_code_list = "http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes";
                 echo format(
                     __('Contains all the sentences. Each sentence is associated with a '.
                        'unique id and an <a href="{}">ISO 639-3</a> language code. ',
-                       true), $iso_code_list); 
+                       true), $iso_code_list);
                 __('The first file (sentences.tar.bz2) contains this information alone. '.
                 'The second file (sentences_detailed.tar.bz2) contains additional fields '.
                 'for those who would like to filter the sentences based on the contributor '.
-                'who owns the sentence, or the date when it was added or last modified.'); 
+                'who owns the sentence, or the date when it was added or last modified.');
             ?>
             </dd>
         </dl>
@@ -225,7 +225,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $date_last_mod_str; ?></span>
             </dd>
-            
+
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
             <?= __('Contains all the sentences available under CC0.') ?>
@@ -243,17 +243,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 http://downloads.tatoeba.org/exports/links.tar.bz2
                 </a>
             </dd>
-            
+
             <dt><?php echo $field_struct_str; ?></dt>
             <dd>
             <span class="param"><?php echo $sent_id_str; ?></span>
             <span class="symbol">[<?php echo $tab_str; ?>]</span>
             <span class="param"><?php echo $trans_id_str; ?></span>
             </dd>
-            
+
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-                <?php 
+                <?php
                 $sample_line = sprintf(
                     '<span class="param">1</span>'.
                     '<span class="symbol"> [%s] </span>'.
@@ -269,9 +269,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
 
                 echo format(
                     __('Contains the links between the sentences. {sampleLinkLine} '.
-                    'means that sentence #77 is the translation of sentence #1. '. 
+                    'means that sentence #77 is the translation of sentence #1. '.
                     'The reciprocal link is also present, so the file will '.
-                    'also contain a line that says {sampleLinkLineReversed}.', true), 
+                    'also contain a line that says {sampleLinkLineReversed}.', true),
                     array(
                         'sampleLinkLine' => $sample_line,
                         'sampleLinkLineReversed' => $sample_line_rev
@@ -292,14 +292,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 http://downloads.tatoeba.org/exports/tags.tar.bz2
                 </a>
             </dd>
-            
+
             <dt><?php echo $field_struct_str; ?></dt>
             <dd>
                 <span class="param"><?php echo $sent_id_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $tag_name_str; ?></span>
             </dd>
-            
+
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php
@@ -313,7 +313,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                     '<span class="param">proverb</span>',
                     $tab_str
                 );
-                echo format( 
+                echo format(
                     __('Contains the list of <a href="{url}">tags</a> associated with '.
                        'each sentence. {sampleTagLine} means that sentence #381279 has '.
                        'been assigned the "proverb" tag.', true),
@@ -348,7 +348,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $list_editable_by; ?></span>
             </dd>
-            
+
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php
@@ -356,7 +356,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                     'controller' => 'sentences_lists',
                     'action' => 'index'
                 ));
-                echo format(__('Contains the list of <a href="{}">sentence lists</a>.'), 
+                echo format(__('Contains the list of <a href="{}">sentence lists</a>.'),
                             $list_url);
                 ?>
             </dd>
@@ -365,21 +365,21 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
 
         <div  class="section md-whiteframe-1dp">
         <h2><?php echo __('Sentences in lists'); ?></h2>
-        <dl>       
-            <dt><?php echo $download_str; ?></dt>   
+        <dl>
+            <dt><?php echo $download_str; ?></dt>
             <dd>
                 <a href="http://downloads.tatoeba.org/exports/sentences_in_lists.tar.bz2">
                 http://downloads.tatoeba.org/exports/sentences_in_lists.tar.bz2
                 </a>
             </dd>
-            
+
             <dt><?php echo $field_struct_str; ?></dt>
             <dd>
                 <span class="param"><?php echo $list_id_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $sent_id_str; ?></span>
             </dd>
-            
+
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php
@@ -408,7 +408,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 http://downloads.tatoeba.org/exports/jpn_indices.tar.bz2
                 </a>
             </dd>
-            
+
 
             <dt><?php echo $field_struct_str; ?></dt>
             <dd>
@@ -418,13 +418,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $text_str; ?></span>
             </dd>
-            
+
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-                <?php 
-                $tanaka_url = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29"; 
+                <?php
+                $tanaka_url = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29";
                 echo format(
-                    __('Contains the equivalent of the "B lines" in the Tanaka Corpus '. 
+                    __('Contains the equivalent of the "B lines" in the Tanaka Corpus '.
                        'file distributed by Jim Breen. See <a href="{url}">this page</a> '.
                        'for the format. Each entry is associated with a pair of '.
                        'Japanese/English sentences. {sentenceId} refers to the id of the '.
@@ -461,19 +461,19 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             <span class="symbol">[<?php echo $tab_str; ?>]</span>
             <span class="param"><?php echo $attribution_url_str; ?></span>
             </dd>
-                    
+
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-            <?php 
+            <?php
             echo __(
                 'Contains the ids of the sentences, in all languages, for '.
                 'which audio is available. Other fields indicate who recorded '.
                 'the audio, its license and a URL to attribute the author. If '.
                 'the license field is empty, you may not reuse the audio '.
                 'outside the Tatoeba project.'
-            ); 
+            );
             ?>
-            </dd>  
+            </dd>
         </dl>
         </div>
 
@@ -502,13 +502,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
             <?php echo __('Indicates the self-reported skill levels of members in individual languages.'); ?>
-            </dd>  
+            </dd>
         </dl>
         </div>
 
-        <!-- Users' collections/ratings -->
+        <!-- Users' reviews -->
         <div  class="section md-whiteframe-1dp">
-        <h2><?php echo __('Users\' sentence ratings'); ?></h2>
+        <h2><?php echo __('Users\' sentence reviews'); ?></h2>
         <dl>
             <dt><?php echo $download_str; ?></dt>
             <dd>
@@ -525,7 +525,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $sent_id_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
-                <span class="param"><?php echo $rating_str; ?></span>
+                <span class="param"><?php echo $review_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $date_added_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
@@ -534,14 +534,14 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
 
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-            <?php 
+            <?php
             echo __(
-                'Contains sentences rated by users. The value of the rating ' .
+                'Contains sentences reviewed by users. The value of the review ' .
                 'can be -1 (sentence not OK), 0 (undecided or unsure), ' .
                 'or 1 (sentence OK). Warning: this data is still experimental.'
             );
             ?>
-            </dd>  
+            </dd>
         </dl>
         </div>
     </div>

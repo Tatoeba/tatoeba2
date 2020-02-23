@@ -285,7 +285,7 @@ class SentencesController extends AppController
                 __('The sentence #{id} has been deleted.'),
                 array('id' => $id)
             );
-            
+
         } else {
             $flashMessage = format(
                 __('Error: the sentence #{id} could not be deleted.'),
@@ -346,10 +346,11 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function edit_sentence($type = 'html')
+    public function edit_sentence()
     {
+        $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->editSentence($this->request->data);
-        if ($type == 'json') {
+        if ($acceptsJson) {
             $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
             $this->set('result', $sentence);
             $this->viewBuilder()->setLayout('json');
@@ -402,15 +403,22 @@ class SentencesController extends AppController
 
     private function renderAdopt($id)
     {
+        $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->get($id, [
-            'contain' => ['Users' => ['fields' => ['username']]],
-            'fields' => ['id'],
+            'contain' => ['Users' => ['fields' => ['username']]]
         ]);
 
-        $this->set('sentenceId', $id);
-        $this->set('owner', $sentence->user);
-        $this->viewBuilder()->setLayout('ajax');
-        $this->render('adopt');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('user', $sentence->user);
+            $this->set('_serialize', ['user']);
+            $this->RequestHandler->renderAs($this, 'json');
+        } else {
+            $this->set('sentenceId', $id);
+            $this->set('owner', $sentence->user);
+            $this->viewBuilder()->setLayout('ajax');
+            $this->render('adopt');
+        }
     }
 
 
@@ -419,7 +427,7 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function save_translation($type = 'html')
+    public function save_translation()
     {
         $sentenceId = $this->request->getData('id');
         $translationLang = $this->request->getData('selectLang');
@@ -463,7 +471,8 @@ class SentencesController extends AppController
             }
         }
 
-        if ($type == 'json') {
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
             $this->set('result', $translation);
             $this->viewBuilder()->setLayout('json');
             $this->render('/Generic/json');
@@ -746,7 +755,7 @@ class SentencesController extends AppController
         $limit = CurrentUser::getSetting('sentences_per_page');
         $sphinx['page'] = $this->request->query('page');
         $sphinx['limit'] = $limit;
-        
+
         $model = 'Sentences';
         if (CurrentUser::isMember()) {
             $contain = $this->Sentences->contain();
@@ -754,7 +763,10 @@ class SentencesController extends AppController
             $contain = $this->Sentences->minimalContain();
         }
         $pagination = [
-            'finder' => ['withSphinx' => ['translationLang' => $to]],
+            'finder' => ['withSphinx' => [
+                'translationLang' => $to,
+                'nativeMarker' => CurrentUser::getSetting('native_indicator')
+            ]],
             'fields' => $this->Sentences->fields(),
             'contain' => $contain,
             'limit' => CurrentUser::getSetting('sentences_per_page'),
@@ -819,7 +831,8 @@ class SentencesController extends AppController
 
         $pagination = [
             'finder' => ['filteredTranslations' => [
-                'translationLang' => $translationLang
+                'translationLang' => $translationLang,
+                'nativeMarker' => CurrentUser::getSetting('native_indicator')
             ]],
             'fields' => $this->Sentences->fields(),
             'contain' => $this->Sentences->paginateContain($translationLang),
@@ -845,7 +858,7 @@ class SentencesController extends AppController
         $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
         $this->render(null);
     }
-    
+
     /**
      * Show random sentence.
      *
@@ -915,7 +928,7 @@ class SentencesController extends AppController
                         'fields' => array('username')
                     )
                 ),
-                'limit' => 100,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => ['Sentences.modified' => 'DESC']
             )
         );

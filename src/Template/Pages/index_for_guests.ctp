@@ -48,7 +48,7 @@ $registerUrl = $this->Url->build(
         </div>
     </md-toolbar>
 
-    <section flex ng-cloak>
+    <section ng-cloak>
     <?php
     $sentence = $random;
     $translations = $random->translations;
@@ -75,7 +75,7 @@ $registerUrl = $this->Url->build(
                 <h2><?= __('Want to help?') ?></h2>
             </div>
         </md-toolbar>
-        <p flex>
+        <p>
         <?= __(
             'We are collecting sentences and their translations. '.
             'You can help us by translating or adding new sentences.', true
@@ -95,15 +95,16 @@ $registerUrl = $this->Url->build(
                 <h2><?= __('Stats')?></h2>
             </div>
         </md-toolbar>
-        <?= $this->element('stats/homepage_stats', [
-            'contribToday' => $contribToday,
-            'numberOfLanguages' => $numberOfLanguages,
-            'numSentences' => $numSentences,
-            'cache' => array(
-                'time' => '+15 minutes',
-                'key' => Configure::read('Config.language')
-            )
-        ]); ?>
+        <?= $this->element('stats/homepage_stats',
+                [ 'contribToday' => $contribToday,
+                  'numberOfLanguages' => $numberOfLanguages,
+                  'numSentences' => $numSentences,
+                ],
+                [ 'cache' => [
+                    'time' => '+15 minutes',
+                    'key' => 'homepage_stats_'.Configure::read('Config.language')
+                ]]
+        ); ?>
     </div>
 </div>
 

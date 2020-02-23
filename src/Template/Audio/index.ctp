@@ -30,13 +30,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
-    <?php echo $this->element('audio_stats', array(
-        'stats' => $stats,
-        'cache' => array(
-            'time'=> '+6 hours',
-            'key'=> Configure::read('Config.language')
-        )
-    )); ?>
+    <?= $this->element('audio_stats',
+            [ 'stats' => $stats ],
+            [ 'cache' => [
+                'time' => '+6 hours',
+                'key'  => 'audio_stats_'.Configure::read('Config.language')
+            ]]
+    ); ?>
 </div>
 
 <div id="main_content">
