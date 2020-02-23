@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Denis Tishchenko <deniko76@gmail.com>, 2020
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
 # older, 2016-2019
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
@@ -11,8 +12,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-09 20:55+0800\n"
-"PO-Revision-Date: 2020-02-10 00:11+0000\n"
-"Last-Translator: gillux\n"
+"PO-Revision-Date: 2020-02-18 12:39+0000\n"
+"Last-Translator: Denis Tishchenko <deniko76@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/tatoeba/tatoeba_website/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,7 +51,7 @@ msgstr "Tatoeba, новий пароль."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "Будь ласка, зачекайте, поки список не буде оновлено."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
@@ -191,7 +192,7 @@ msgstr "Ви не маєте дозволу для перегляду цього
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L405
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L437
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "Ви не маєте дозволу для завантаження цього списку."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L223
 msgid ""
@@ -301,7 +302,7 @@ msgstr "Для початку ми закликаємо вас зайти до �
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L350
 msgid "Please fix the form errors."
-msgstr ""
+msgstr "Будь ласка, виправте помилки форми."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L386
 msgid "Your new password has been sent to {email}."
@@ -325,7 +326,7 @@ msgstr "Не існує користувача з ідентифікатором
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L55
 msgid "This language has already been added to your profile."
-msgstr ""
+msgstr "Цю мову вже було додано до вашого профілю."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L67
 msgid "No language selected."
@@ -417,7 +418,7 @@ msgstr[3] "Наступні знаки не транскрибовано: {chars
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
-msgstr ""
+msgstr "Речення для зміни лінцензії на CC0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L119
 msgid "List {listName}"
@@ -503,7 +504,7 @@ msgstr "Ім’я користувача має бути не коротше д�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
-msgstr ""
+msgstr "Ім'я користувача може бути максимум 20 символів"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
@@ -2000,7 +2001,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L62
 msgid "Switch license"
-msgstr ""
+msgstr "Змінити ліцензію"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L64
 msgid ""
