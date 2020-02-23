@@ -417,7 +417,7 @@ class SentencesTable extends Table
             'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
             'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
             'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($userId),
-            'canDelete' => CurrentUser::canRemoveSentence($userId),
+            'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),
             'canLink' => CurrentUser::isTrusted(),
         ];
     }
