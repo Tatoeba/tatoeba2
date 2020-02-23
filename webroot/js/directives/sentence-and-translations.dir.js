@@ -241,10 +241,12 @@
                 vm.newTranslation = {};
             }
 
-            if ($cookies.get('translationLang') && !vm.newTranslation.text) {
-                vm.newTranslation.lang = $cookies.get('translationLang');
+            var preselectedLang = $cookies.get('translationLang');
+            var langCodes = Object.keys(vm.userLanguages);
+            if (langCodes.indexOf(preselectedLang) > -1 && !vm.newTranslation.text) {
+                vm.newTranslation.lang = preselectedLang;
             } else if (!vm.newTranslation.lang) {
-                vm.newTranslation.lang = vm.showAutoDetect ? 'auto' : Object.keys(vm.userLanguages)[0];
+                vm.newTranslation.lang = vm.showAutoDetect ? 'auto' : langCodes[0];
             }
             focusInput('#translation-form-' + id);
         }

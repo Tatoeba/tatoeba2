@@ -23,20 +23,20 @@
         ///////////////////////////////////////////////////////////////////////////
 
         function init(userLanguages, licenses) {
+            var langCodes = Object.keys(userLanguages);
+            var preselectedLang = $cookies.get('contribute_lang');
             vm.userLanguages = userLanguages;
-            vm.showAutoDetect = Object.keys(userLanguages).length > 1;
-            if (vm.showAutoDetect) {
-                vm.newSentence.lang = $cookies.get('contribute_lang') ? $cookies.get('contribute_lang') : 'auto';
+            vm.showAutoDetect = langCodes.length > 1;
+            if (langCodes.indexOf(preselectedLang) > -1) {
+                vm.newSentence.lang = preselectedLang;
             } else {
-                vm.newSentence.lang = Object.keys(vm.userLanguages)[0];
+                vm.newSentence.lang = vm.showAutoDetect ? 'auto' : langCodes[0];
             }
-
             vm.licenses = licenses;
             vm.newSentence.license = Object.keys(vm.licenses)[0];
         }
 
         function addSentence() {
-            $cookies.put('contribute_lang', vm.newSentence.lang);
             vm.inProgress = true;
             var data = {
                 'selectedLang': vm.newSentence.lang,
@@ -44,6 +44,7 @@
                 'sentenceLicense': vm.newSentence.license
             };
             $http.post(rootUrl + '/sentences/add_an_other_sentence', data).then(function(result) {
+                $cookies.put('contribute_lang', vm.newSentence.lang);
                 vm.newSentence.text = '';
                 vm.sentences.unshift(result.data.sentence);
                 vm.inProgress = false;
