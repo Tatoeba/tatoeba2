@@ -381,8 +381,10 @@ class SentencesTable extends Table
                 $result['translations'] = [$directTranslations, $indirectTranslations];
                 $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
                 $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
-                $result['menu'] = $this->getMenu($result);
-                $result['lists'] = $this->getLists($result->id);
+                if (CurrentUser::isMember()) {
+                    $result['menu'] = $this->getMenu($result);
+                    $result['lists'] = $this->getLists($result->id);
+                }
 
                 return $result;
             });
