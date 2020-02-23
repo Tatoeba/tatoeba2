@@ -3,7 +3,9 @@
 
     angular
         .module('app', ['ngMaterial', 'ngMessages', 'ngCookies', 'ngSanitize'])
-        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', function($mdThemingProvider, $mdIconProvider, $httpProvider) {
+        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$cookiesProvider', function(
+            $mdThemingProvider, $mdIconProvider, $httpProvider, $cookiesProvider
+        ) {
             $mdThemingProvider.theme('default')
                 .primaryPalette('green')
                 .accentPalette('grey')
@@ -20,6 +22,10 @@
                 'XMLHttpRequest';
             $httpProvider.defaults.xsrfHeaderName = 'X-CSRF-Token';
             $httpProvider.defaults.xsrfCookieName = 'csrfToken';
+
+            var date = new Date();
+            $cookiesProvider.defaults.path = '/';
+            $cookiesProvider.defaults.expires = new Date(date.setMonth(date.getMonth() + 1));
         }])
         .filter('urlEncode', function() {
             return function(input) {
