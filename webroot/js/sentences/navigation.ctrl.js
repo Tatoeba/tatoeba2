@@ -38,7 +38,7 @@
         ///////////////////////////////////////////////////////////////////////////
 
         $scope.$on('languageChange', function(event, data){
-            if (data.name === 'lang') {
+            if (data.dropdownName === 'lang') {
                 vm.lang = data.lang;
                 if (vm.currentId) {
                     updateNavigation(vm.currentId, vm.lang);
