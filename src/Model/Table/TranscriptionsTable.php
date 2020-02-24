@@ -90,42 +90,6 @@ class TranscriptionsTable extends Table
 
     public $actsAs = array('Containable');
 
-    public $validate = array(
-        'sentence_id' => array(
-            'validateType' => array(
-                'rule' => 'numeric',
-                'required' => true,
-                'on' => 'create',
-            ),
-        ),
-        'text' => array(
-            'onCreation' => array(
-                'rule' => 'notBlank',
-                'required' => true,
-                'on' => 'create',
-            ),
-            'onUpdate' => array(
-                'rule' => 'notBlank',
-                'on' => 'update',
-            ),
-        ),
-        'script' => array(
-            'rule' => 'notBlank',
-            'required' => true,
-            'on' => 'create',
-        ),
-        'user_id' => array(
-            'rule' => 'numeric',
-            'allowEmpty' => true,
-        ),
-        'created' => array(
-            'rule' => 'notBlank',
-        ),
-        'modified' => array(
-            'rule' => 'notBlank',
-        ),
-    );
-
     /* Transcription-specific validation error messages
        of the last transcription save operation */
     public $validationErrors = array();
@@ -149,8 +113,16 @@ class TranscriptionsTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
+            ->numeric('sentence_id')
+            ->requirePresence('sentence_id', 'create');
+
+        $validator
             ->notBlank('text')
             ->requirePresence('text', 'create');
+
+        $validator
+            ->notBlank('script')
+            ->requirePresence('script', 'create');
 
         $validator
             ->dateTime('created');
@@ -160,7 +132,7 @@ class TranscriptionsTable extends Table
 
         $validator
             ->numeric('user_id')
-            ->allowEmpty('user_id');
+            ->allowEmptyString('user_id');
         
         return $validator;
     }

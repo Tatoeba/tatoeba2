@@ -29,26 +29,6 @@ use Cake\Utility\Hash;
 
 class AudiosTable extends Table
 {
-    public $validate = array(
-        'sentence_id' => array(
-            'validateType' => array(
-                'rule' => 'numeric',
-                'required' => true,
-                'on' => 'create',
-            ),
-        ),
-        'user_id' => array(
-            'rule' => 'numeric',
-            'allowEmpty' => true,
-        ),
-        'created' => array(
-            'rule' => 'notBlank',
-        ),
-        'modified' => array(
-            'rule' => 'notBlank',
-        ),
-    );
-
     public $actsAs = array('Containable');
 
     protected function _initializeSchema(TableSchema $schema)
@@ -77,6 +57,10 @@ class AudiosTable extends Table
         $validator
             ->requirePresence('sentence_id', 'create')
             ->numeric('sentence_id');
+
+        $validator
+            ->numeric('user_id')
+            ->allowEmptyString('user_id');
 
         $validator
             ->dateTime('created');
