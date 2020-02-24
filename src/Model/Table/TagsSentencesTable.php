@@ -26,7 +26,6 @@ use Cake\Utility\Hash;
 class TagsSentencesTable extends Table
 {
     public $name = 'TagSentences';
-    public $useTable = 'tags_sentences';
 
     public function initialize(array $config)
     {

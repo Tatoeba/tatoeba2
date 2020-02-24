@@ -26,7 +26,6 @@ use Cake\Utility\Hash;
 class SentencesSentencesListsTable extends Table
 {
     public $name = 'SentencesSentencesLists';
-    public $useTable = 'sentences_sentences_lists';
 
     public function initialize(array $config)
     {
