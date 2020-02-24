@@ -74,13 +74,13 @@ ORDER BY c.datetime ASC
 INTO OUTFILE '/var/tmp/contributions.csv';
 
 -- Wall posts
-SELECT w.id, u.username, w.parent_id, w.date, w.content
+SELECT w.id, u.username, w.parent_id, w.date, REPLACE(w.content, "\r\n", " ")
 FROM wall w LEFT JOIN users u ON w.owner = u.id
 ORDER BY w.id ASC
 INTO OUTFILE '/var/tmp/wall_posts.csv';
 
 -- Sentence comments
-SELECT sc.id, sc.sentence_id, u.username, sc.created, sc.text 
+SELECT sc.id, sc.sentence_id, u.username, sc.created, REPLACE(sc.text, "\r\n", " ") 
 FROM sentence_comments sc LEFT JOIN users u ON sc.user_id = u.id
 ORDER BY sc.created ASC
 INTO OUTFILE '/var/tmp/sentence_comments.csv';
