@@ -4,10 +4,11 @@ set -e
 PATH=$PATH:/usr/local/mysql/bin
 ROOT='/var/www-prod'
 
-mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < /var/www-prod/docs/database/scripts/weekly_exports.sql
+mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < $ROOT/docs/database/scripts/weekly_exports.sql
 
 DL_DIR="/var/www-downloads/exports"
-mv /var/tmp/* "$DL_DIR"
+mkdir -p "$DL_DIR/single_language"
+mv /var/tmp/*csv "$DL_DIR"
 
 cd "$DL_DIR"
 tar -cjf sentences_detailed.tar.bz2 sentences_detailed.csv
@@ -27,3 +28,8 @@ tar -cjf sentences_with_audio.tar.bz2 sentences_with_audio.csv
 tar -cjf user_languages.tar.bz2 user_languages.csv
 tar -cjf tags_detailed.tar.bz2 tags_detailed.csv
 tar -cjf sentences_CC0.tar.bz2 sentences_CC0.csv
+
+# Split sentences_detailed.csv into single language files
+cd "$DL_DIR/single_language"
+awk -F"\t" '{print >> ($2 == "\\N" ? "unknown_sentences_detailed.tsv" : $2 "_sentences_detailed.tsv")}' ../sentences_detailed.csv
+bzip2 -f *_sentences_detailed.tsv
