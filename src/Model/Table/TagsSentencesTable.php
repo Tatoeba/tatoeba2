@@ -27,8 +27,6 @@ class TagsSentencesTable extends Table
 {
     public $name = 'TagSentences';
     public $useTable = 'tags_sentences';
-    public $actsAs = array('Containable');
-
 
     public $belongsTo = array(
         'User',

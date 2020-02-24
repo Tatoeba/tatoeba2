@@ -88,8 +88,6 @@ class TranscriptionsTable extends Table
         'type' => 'transcription',
     );
 
-    public $actsAs = array('Containable');
-
     /* Transcription-specific validation error messages
        of the last transcription save operation */
     public $validationErrors = array();

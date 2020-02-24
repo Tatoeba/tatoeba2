@@ -25,10 +25,6 @@ class FavoritesTable extends Table
 {
     public $name = 'Favorite';
 
-    public $actsAs = array(
-        'Containable'
-    );
-
     public function initialize(array $config)
     {
         $this->setTable('favorites_users');

@@ -29,8 +29,6 @@ use Cake\Utility\Hash;
 
 class AudiosTable extends Table
 {
-    public $actsAs = array('Containable');
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('external', 'json');

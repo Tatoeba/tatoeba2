@@ -27,7 +27,6 @@ class SentencesSentencesListsTable extends Table
 {
     public $name = 'SentencesSentencesLists';
     public $useTable = 'sentences_sentences_lists';
-    public $actsAs = array('Containable');
 
     public $belongsTo = array(
         'Sentence' => array('foreignKey' => 'sentence_id'),
