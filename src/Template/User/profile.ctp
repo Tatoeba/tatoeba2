@@ -37,6 +37,9 @@ use App\Model\CurrentUser;
  * @link     https://tatoeba.org
  */
 
+$this->Html->script('user/language.ctrl.js', ['block' => 'scriptBottom']);
+$this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom')); // TODO: this is just to get the languageIcon directive
+
 $dateFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::NONE];
 $userId = $user['id'];
 $realName = $user['name'];
@@ -302,23 +305,14 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         ?>
     </div>
 
-    <div ng-cloak class="section with-title-button md-whiteframe-1dp">
-        <div layout="row" layout-align="start center">
-            <h2 flex><?= __('Languages'); ?></h2>
-            <?php
-            if ($username == $currentMember) {
-                $addLangUrl = $this->Url->build(array(
-                    'controller' => 'user',
-                    'action' => 'language'
-                ));
-                ?>
-                <div layout="row" layout-align="end center">
-                    <md-button aria-label="<?= __('Add a language') ?>" class="md-primary md-raised" href="<?= $addLangUrl ?>">
-                        <?= __('Add a language') ?>
-                    </md-button>
-                </div>
-            <?php } ?>
-        </div>
+<?php
+$userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-8');
+?>
+    <div class="section md-whiteframe-1dp"
+         ng-cloak
+         ng-controller="LanguageController as vm"
+         ng-init="vm.init(<?= $userLanguages ?>)">
+        <h2><?= __('Languages'); ?></h2>
 
         <?php
         if (empty($userLanguages))
@@ -342,55 +336,43 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         {
             ?>
             <md-list>
-                <?php foreach($userLanguages as $languageInfo) {
-                    $langCode = $languageInfo->language_code;
-                    $level = $languageInfo->level;
-                    $details = $languageInfo->details;
-                    $editLangUrl = $this->Url->build(array(
+                <?php
+                    $editLangUrl = $this->Url->build([
                         'controller' => 'user',
-                        'action' => 'language',
-                        $langCode
-                    ));
+                        'action' => 'language'
+                    ]);
+                    $deleteUrl = $this->Url->build([
+                        'controller' => 'users_languages',
+                        'action' => 'delete'
+                    ]);
+                    $confirmation = __('Are you sure?');
                     ?>
-                    <md-list-item class="md-2-line">
-                        <?php
-                        // Icon
-                        echo $this->Languages->icon(
-                            $langCode,
-                            array(
-                                'class' => 'language-icon'
-                            )
-                        );
-                        ?>
+                    <md-list-item class="md-2-line" ng-repeat="lang in vm.langs">
+                        <language-icon lang="lang.language_code" title="lang.name"></language-icon>
                         <div class="md-list-item-text">
                             <h3 flex>
-                                <?= $this->Languages->codeToNameAlone($langCode) ?>
+                                {{lang.name}}
                             </h3>
-                            <?= $this->Members->displayLanguageLevel($level); ?>
+                            <div class="languageLevel">
+                                <?php $maxLanguageLevel = 5; ?>
+                                <md-icon ng-repeat="n in [].constructor(lang.level) track by $index" class="md-primary">star</md-icon><md-icon ng-repeat="n in [].constructor(<?= $maxLanguageLevel ?>-lang.level) track by $index">star_border</md-icon>
+                            </div>
                             <p>
-                                <?= $details ?>
+                                {{lang.details}}
                             </p>
                         </div>
                         <?php if ($username == $currentMember) {
-                            $deleteUrl = $this->Url->build(
-                                array(
-                                    'controller' => 'users_languages',
-                                    'action' => 'delete',
-                                    $languageInfo->id
-                                )
-                            );
-                            $confirmation = __('Are you sure?');
                             ?>
                             <md-button class="md-secondary md-icon-button"
                                        aria-label="<?= __('Edit') ?>"
-                                       href="<?= $editLangUrl ?>">
+                                       ng-href="<?= $editLangUrl.'/{{lang.language_code}}' ?>">
                                 <md-icon aria-label="<?= __('Edit') ?>">
                                     edit
                                 </md-icon>
                             </md-button>
 
                             <md-button type="submit" class="md-secondary md-icon-button"
-                                       href="<?= $deleteUrl; ?>"
+                                       ng-href="<?= $deleteUrl.'/{{lang.id}}'; ?>"
                                        onclick="return confirm('<?= $confirmation; ?>');">
                                 <md-icon aria-label="<?= __('Delete') ?>">
                                     delete
@@ -398,7 +380,6 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                             </md-button>
                         <?php } ?>
                     </md-list-item>
-                <?php } ?>
             </md-list>
             <?php
         }
