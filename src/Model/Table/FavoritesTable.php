@@ -23,8 +23,6 @@ use Cake\ORM\Table;
 
 class FavoritesTable extends Table
 {
-    public $name = 'Favorite';
-
     public function initialize(array $config)
     {
         $this->setTable('favorites_users');
