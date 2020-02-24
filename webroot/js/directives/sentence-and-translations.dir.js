@@ -179,8 +179,13 @@
         }
 
         function initLists(lists) {
-            allLists = lists;
-            resetLists();
+            if (lists) {
+                allLists = lists;
+                resetLists();
+            } else {
+                allLists = [];
+            }
+            
         }
 
         function expandOrCollapse() {
