@@ -186,6 +186,10 @@ class SentencesListsController extends AppController
         $this->set('user', $list->user);
         $this->set('permissions', $list['Permissions']);
         $this->set('sentencesInList', $sentencesInList);
+
+        if (CurrentUser::getSetting('use_new_design')) {
+            $this->render('show_angular');
+        }
     }
 
 

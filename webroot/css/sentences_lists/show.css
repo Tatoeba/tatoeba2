@@ -48,7 +48,10 @@
 /*
  * List
  */
-.sentence-and-translations,
+.sentence-and-translations {
+    margin: 20px 10px;
+}
+
 .sentenceInList {
     margin: 40px 0;
 }
