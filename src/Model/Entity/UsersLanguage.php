@@ -28,6 +28,10 @@ use Cake\ORM\Entity;
 
 class UsersLanguage extends Entity
 {
+    use LanguageNameTrait;
+
+    protected $_virtual = ['name'];
+
     protected function _getLanguageInfo() 
     {
         return [
@@ -48,5 +52,14 @@ class UsersLanguage extends Entity
                 'details' => $this->details
             ]
         ];
+    }
+
+    protected function _getName()
+    {
+        if ($this->has('language_code')) {
+            return $this->codeToNameAlone($this->language_code);
+        } else {
+            return null;
+        }
     }
 }

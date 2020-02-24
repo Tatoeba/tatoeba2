@@ -31,6 +31,7 @@ use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 use Cake\Core\Configure;
 use App\Model\Entity\Language;
+use App\Model\Entity\LanguageNameTrait;
 
 
 /**
@@ -44,24 +45,12 @@ use App\Model\Entity\Language;
  */
 class LanguagesHelper extends AppHelper
 {
+    use LanguageNameTrait;
+
     public $helpers = array('Html', 'Url', 'Number');
 
     /* Memoization of languages code and their localized names */
     private $__languages_alone;
-
-
-    private function langAsAlone($name)
-    {
-        return format(
-        /* @translators: this special string allows you to tweak how language
-           names are displayed when they are not used inside another string.
-           For instance, in language lists, on flag mouseover or on the stats
-           page. You may translate this string using a declension modifier,
-           for instance {language.alone} */
-            __('{language}'),
-            array('language' => $name)
-        );
-    }
 
     public function localizedAsort(&$array)
     {
@@ -200,22 +189,6 @@ class LanguagesHelper extends AppHelper
     }
 
     /**
-     * Return array of languages in Tatoeba + all languages, ready
-     * to be used inside a format() call. You MUST use the return
-     * value as a variable inside a format() call. If not,
-     * use languagesArrayAlone() instead.
-     *
-     * @return array
-     */
-    public function languagesArrayToFormat()
-    {
-        $languages = LanguagesLib::languagesInTatoeba();
-        $options = ['und' => __('All languages')];
-
-        return $options + $languages;
-    }
-
-    /**
      * Return array of languages in Tatoeba. + 'unknown language'
      *
      * @return array
@@ -323,38 +296,6 @@ class LanguagesHelper extends AppHelper
         $options = array('und' => __x('searchbar', 'Any language'));
         
         return $options + $languages;
-    }
-
-    /**
-     * Return name of the language from the ISO code, formatted
-     * like it's displayed when alone on the UI (on lists or flags).
-     *
-     * @param string $code ISO-639-3 code.
-     *
-     * @return string
-     */
-    public function codeToNameAlone($code) {
-        return $this->langAsAlone($this->codeToNameToFormat($code));
-    }
-
-    /**
-     * Return name of the language from the ISO code, ready to
-     * be used inside a format() call. You MUST use the return
-     * value as a variable inside a format() call. If not,
-     * use codeToNameAlone() instead.
-     *
-     * @param string $code ISO-639-3 code.
-     *
-     * @return string
-     */
-    public function codeToNameToFormat($code)
-    {
-        $languages = $this->languagesArrayToFormat();
-        if (isset($languages["$code"])) {
-            return $languages["$code"];
-        } else {
-            return __('unknown');
-        }
     }
 
     /**
