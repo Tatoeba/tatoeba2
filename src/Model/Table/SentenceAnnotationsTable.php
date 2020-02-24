@@ -25,8 +25,6 @@ use App\Model\CurrentUser;
 
 class SentenceAnnotationsTable extends Table
 {
-    public $belongsTo = array('Sentence', 'User');
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
