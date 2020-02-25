@@ -44,6 +44,9 @@
                 'sentenceLicense': vm.newSentence.license
             };
             $http.post(rootUrl + '/sentences/add_an_other_sentence', data).then(function(result) {
+                var sentence = result.data.sentence;
+                sentence.duplicate = result.data.duplicate;
+
                 $cookies.put('contribute_lang', vm.newSentence.lang);
                 vm.newSentence.text = '';
                 vm.sentences.unshift(result.data.sentence);

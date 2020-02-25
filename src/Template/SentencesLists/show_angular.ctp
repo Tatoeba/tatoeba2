@@ -159,7 +159,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <div ng-repeat="sentence in vm.sentences">
     <?php
     echo $this->element('sentences/sentence_and_translations', [
-        'sentenceData' => 'sentence'
+        'sentenceData' => 'sentence',
+        'duplicateWarning' => __('The sentence you tried to create already exists. The existing sentence was added to your list instead.')
     ]);
     ?>
     </div>

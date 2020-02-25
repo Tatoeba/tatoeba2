@@ -49,6 +49,10 @@ if (!isset($indirectTranslationsData)) {
     $indirectTranslationsData = $this->Sentences->translationsForAngular($indirectTranslations);    
 }
 
+if (!isset($duplicateWarning)) {
+    $duplicateWarning = __('Your sentence was not added because the following already exists.');
+}
+
 
 $profileUrl = $this->Url->build([
     'controller' => 'user',
@@ -63,6 +67,10 @@ $sentenceUrl = $this->Url->build([
      sentence-and-translations
      ng-init="vm.init(<?= $userLanguagesData ?>, <?= $sentenceData ?>, <?= $directTranslationsData ?>, <?= $indirectTranslationsData ?>)"
      class="sentence-and-translations md-whiteframe-1dp">
+    <div ng-if="vm.sentence.duplicate" layout="row" layout-padding style="border-bottom: 1px solid #f1f1f1">
+        <md-icon class="md-warn">warning</md-icon>
+        <div flex><?= $duplicateWarning ?></div>
+    </div>
     <div layout="column">
         <div layout="row" class="header">
             <md-subheader flex class="ellipsis">

@@ -52,6 +52,7 @@
             };
             $http.post(rootUrl + '/sentences/add_an_other_sentence', data).then(function(result) {
                 var sentence = result.data.sentence;
+                sentence.duplicate = result.data.duplicate;
                 $http.get(rootUrl + '/sentences_lists/add_sentence_to_list/' + sentence.id + '/' + vm.list.id).then(function() {
                     $cookies.put('contribute_lang', vm.newSentence.lang);
                     vm.newSentence.text = '';

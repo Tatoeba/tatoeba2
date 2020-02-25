@@ -342,7 +342,7 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['sentence']);
+            $this->set('_serialize', ['sentence', 'duplicate']);
             $this->RequestHandler->renderAs($this, 'json');
         }
     }
