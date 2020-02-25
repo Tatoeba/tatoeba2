@@ -7,9 +7,13 @@ if (!isset($ngRepeat)) {
 } else {
     $ngRepeat = 'ng-repeat="'.$ngRepeat.'"';
 }
+if (!isset($canRemove)) {
+    $canRemove = false;
+}
+$editableCss = $canRemove ? 'removeable' : '';
 ?>
 
-<div class="sentence-and-translations-wrapper" layout="row" layout-align="center start" 
+<div class="sentence-and-translations-wrapper <?= $editableCss ?>" layout="row" layout-align="center start" 
      ng-class="{'removed': vm.isRemoved[<?= $sentenceId ?>]}"
      <?= $ngRepeat ?>>
 
@@ -19,6 +23,7 @@ if (!isset($ngRepeat)) {
 
     <?= $this->element('sentences/sentence_and_translations', $sentenceAndTranslationsParams); ?>
 
+    <?php if ($canRemove) { ?>
     <div class="remove-from-list" ng-if="!vm.isRemoved[<?= $sentenceId ?>]">
         <md-button class="md-icon-button md-warn" ng-click="vm.removeSentence(<?= $sentenceId ?>)">
             <md-icon>remove_circle_outline
@@ -34,5 +39,5 @@ if (!isset($ngRepeat)) {
             </md-icon>
         </md-button>
     </div>
-
+    <?php } ?>
 </div>

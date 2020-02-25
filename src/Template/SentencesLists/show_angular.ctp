@@ -162,7 +162,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             'sentenceData' => 'sentence',
             'duplicateWarning' => __('The sentence you tried to create already exists. The existing sentence was added to your list instead.')
         ],
-        'ngRepeat' => 'sentence in vm.sentences'
+        'ngRepeat' => 'sentence in vm.sentences',
+        'canRemove' => $permissions['canRemoveSentences']
     ]);
 
     foreach ($sentencesInList as $item) {
@@ -173,7 +174,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 'translations' => $sentence->translations,
                 'user' => $sentence->user
             ],
-            'sentenceId' => $sentence->id
+            'sentenceId' => $sentence->id,
+            'canRemove' => $permissions['canRemoveSentences']
         ]);
     }
     ?>
