@@ -88,7 +88,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
 <div id="main_content">
 
-<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm">
+<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm" ng-init="vm.initList(<?= $listId ?>)">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
             <h2 flex><?= $listName ?></h2>

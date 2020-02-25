@@ -10,6 +10,7 @@
 
         var vm = this;
 
+        vm.list = {};
         vm.userLanguages = [];
         vm.showAutoDetect = false;
         vm.licenses = [];
@@ -19,6 +20,7 @@
         vm.showForm = false;
 
         vm.init = init;
+        vm.initList = initList;
         vm.addSentence = addSentence;
 
         ///////////////////////////////////////////////////////////////////////////
@@ -37,6 +39,10 @@
             vm.newSentence.license = Object.keys(vm.licenses)[0];
         }
 
+        function initList(listId) {
+            vm.list = { id: listId };
+        }
+
         function addSentence() {
             vm.inProgress = true;
             var data = {
@@ -45,10 +51,13 @@
                 'sentenceLicense': vm.newSentence.license
             };
             $http.post(rootUrl + '/sentences/add_an_other_sentence', data).then(function(result) {
-                $cookies.put('contribute_lang', vm.newSentence.lang);
-                vm.newSentence.text = '';
-                vm.sentences.unshift(result.data.sentence);
-                vm.inProgress = false;
+                var sentence = result.data.sentence;
+                $http.get(rootUrl + '/sentences_lists/add_sentence_to_list/' + sentence.id + '/' + vm.list.id).then(function() {
+                    $cookies.put('contribute_lang', vm.newSentence.lang);
+                    vm.newSentence.text = '';
+                    vm.sentences.unshift(sentence);
+                    vm.inProgress = false;
+                });
             });
         }
     }

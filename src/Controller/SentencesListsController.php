@@ -350,13 +350,16 @@ class SentencesListsController extends AppController
         $result = null;
         $listId = $this->request->getData('listId');
         $sentenceText = $this->request->getData('sentenceText');
+        $sentenceLang = $this->request->getData('sentenceLang');
 
         if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
-            $sentenceLang = $this->LanguageDetection->detectLang(
-                $sentenceText,
-                $userName
-            );
+            if ($sentenceLang == 'auto') {
+                $sentenceLang = $this->LanguageDetection->detectLang(
+                    $sentenceText,
+                    $userName
+                );
+            }
 
             $result = $this->SentencesLists->addNewSentenceToList(
                 $listId,
@@ -369,6 +372,13 @@ class SentencesListsController extends AppController
         }
 
         $this->set('sentence', $result);
+        
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['sentence']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
     public function add_sentence_to_new_list() {
