@@ -144,7 +144,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     
     <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
 
-    <md-content>
+    <md-content ng-cloak>
     <div class="sortBy" id="sortBy">
      <strong><?php echo __("Sort by:") ?> </strong>
             <?php
@@ -156,27 +156,25 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     
     <?php $this->Pagination->display(); ?>
 
-    <div ng-repeat="sentence in vm.sentences">
     <?php
-    echo $this->element('sentences/sentence_and_translations', [
-        'sentenceData' => 'sentence',
-        'duplicateWarning' => __('The sentence you tried to create already exists. The existing sentence was added to your list instead.')
+    echo $this->element('sentences_lists/sentence_in_list', [
+        'sentenceAndTranslationsParams' => [
+            'sentenceData' => 'sentence',
+            'duplicateWarning' => __('The sentence you tried to create already exists. The existing sentence was added to your list instead.')
+        ],
+        'ngRepeat' => 'sentence in vm.sentences'
     ]);
-    ?>
-    </div>
 
-    <?php
     foreach ($sentencesInList as $item) {
         $sentence = $item->sentence;
-
-        echo $this->element(
-            'sentences/sentence_and_translations',
-            array(
+        echo $this->element('sentences_lists/sentence_in_list', [
+            'sentenceAndTranslationsParams' => [
                 'sentence' => $sentence,
                 'translations' => $sentence->translations,
                 'user' => $sentence->user
-            )
-        );
+            ],
+            'sentenceId' => $sentence->id
+        ]);
     }
     ?>
     

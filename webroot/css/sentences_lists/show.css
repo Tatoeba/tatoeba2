@@ -48,8 +48,22 @@
 /*
  * List
  */
-.sentence-and-translations {
-    margin: 20px 10px;
+.sentence-and-translations-wrapper {
+    margin: 20px 0px 20px 10px;
+}
+
+.sentence-and-translations-wrapper .remove-from-list {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.sentence-and-translations-wrapper.removed .sentence-and-translations {
+    display: none;
+}
+
+.sentence-and-translations-wrapper .removed-confirmation {
+    background-color: #fff;
+    padding: 10px;
 }
 
 .sentenceInList {

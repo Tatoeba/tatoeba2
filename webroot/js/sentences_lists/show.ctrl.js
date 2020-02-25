@@ -18,10 +18,13 @@
         vm.sentences = [];
         vm.inProgress = false;
         vm.showForm = false;
+        vm.isRemoved = {};
 
         vm.init = init;
         vm.initList = initList;
         vm.addSentence = addSentence;
+        vm.removeSentence = removeSentence;
+        vm.undoRemoval = undoRemoval;
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -59,6 +62,18 @@
                     vm.sentences.unshift(sentence);
                     vm.inProgress = false;
                 });
+            });
+        }
+
+        function removeSentence(sentenceId) {
+            $http.get(rootUrl + '/sentences_lists/remove_sentence_from_list/' + sentenceId + '/' + vm.list.id).then(function(result) {
+                vm.isRemoved[sentenceId] = true;
+            });
+        }
+
+        function undoRemoval(sentenceId) {
+            $http.get(rootUrl + '/sentences_lists/add_sentence_to_list/' + sentenceId + '/' + vm.list.id).then(function() {
+                vm.isRemoved[sentenceId] = false;
             });
         }
     }

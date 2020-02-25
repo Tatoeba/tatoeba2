@@ -63,7 +63,7 @@ $sentenceUrl = $this->Url->build([
     'action' => 'show'
 ]);
 ?>
-<div ng-cloak
+<div ng-cloak flex
      sentence-and-translations
      ng-init="vm.init(<?= $userLanguagesData ?>, <?= $sentenceData ?>, <?= $directTranslationsData ?>, <?= $indirectTranslationsData ?>)"
      class="sentence-and-translations md-whiteframe-1dp">
