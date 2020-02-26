@@ -181,14 +181,16 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php $this->Pagination->display(); ?>
 
     <?php
-    echo $this->element('sentences_lists/sentence_in_list', [
-        'sentenceAndTranslationsParams' => [
-            'sentenceData' => 'sentence',
-            'duplicateWarning' => __('The sentence you tried to create already exists. The existing sentence was added to your list instead.')
-        ],
-        'ngRepeat' => 'sentence in vm.sentences',
-        'canRemove' => $permissions['canRemoveSentences']
-    ]);
+    if ($permissions['canAddSentences']) {
+        echo $this->element('sentences_lists/sentence_in_list', [
+            'sentenceAndTranslationsParams' => [
+                'sentenceData' => 'sentence',
+                'duplicateWarning' => __('The sentence you tried to create already exists. The existing sentence was added to your list instead.')
+            ],
+            'ngRepeat' => 'sentence in vm.sentences',
+            'canRemove' => $permissions['canRemoveSentences']
+        ]);
+    }
 
     foreach ($sentencesInList as $item) {
         $sentence = $item->sentence;
@@ -199,7 +201,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 'user' => $sentence->user
             ],
             'sentenceId' => $sentence->id,
-            'canRemove' => $permissions['canRemoveSentences']
+            'canRemove' => CurrentUser::isMember() && $permissions['canRemoveSentences']
         ]);
     }
     ?>
