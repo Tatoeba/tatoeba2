@@ -43,7 +43,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 class VocabularyController extends AppController
 {
     public $uses = array('UsersVocabulary', 'User', 'Sentence', 'Vocabulary');
-    public $components = array ('CommonSentence', 'Flash', 'Cookie');
+    public $components = array ('CommonSentence', 'Flash');
     public $helpers = array(
         'Vocabulary',
     );
