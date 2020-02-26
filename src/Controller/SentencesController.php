@@ -357,7 +357,7 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->editSentence($this->request->data);
         if ($acceptsJson) {
-            // TODO How come we don't need to load the RequestHandler here?
+            $this->loadComponent('RequestHandler');
             $this->set('result', $sentence);
             $this->set('_serialize', ['result']);
             $this->RequestHandler->renderAs($this, 'json');

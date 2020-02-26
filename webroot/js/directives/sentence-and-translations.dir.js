@@ -291,7 +291,7 @@
             saveSentence(vm.sentence).then(function(result) {
                 hide('sentence_form');
                 vm.inProgress = false;
-                initSentence(result.data);
+                initSentence(result.data.result);
             });
         }
 
