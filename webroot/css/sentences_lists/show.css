@@ -135,3 +135,11 @@
     display: inline-block;
     vertical-align: bottom;
 }
+
+#list-name-form {
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+#list-name-form .md-errors-spacer {
+    display: none;
+}

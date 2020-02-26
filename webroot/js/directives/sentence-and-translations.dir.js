@@ -24,31 +24,6 @@
             'sentenceAndTranslations',
             sentenceAndTranslations
         )
-        // https://stackoverflow.com/questions/28851893/angularjs-textaera-enter-key-submit-form-with-autocomplete
-        .directive('ngEnter', function() {
-            return function(scope, element, attrs) {
-                element.bind('keydown', function(e) {
-                    if(e.which === 13) {
-                        scope.$apply(function(){
-                            scope.$eval(attrs.ngEnter, {'e': e});
-                        });
-                        e.preventDefault();
-                    }
-                });
-            };
-        })
-        .directive('ngEscape', function() {
-            return function(scope, element, attrs) {
-                element.bind('keydown', function(e) {
-                    if(e.which === 27) {
-                        scope.$apply(function(){
-                            scope.$eval(attrs.ngEscape, {'e': e});
-                        });
-                        e.preventDefault();
-                    }
-                });
-            };
-        })
         .directive('languageIcon', function() {
             return {
                 restrict: 'E',

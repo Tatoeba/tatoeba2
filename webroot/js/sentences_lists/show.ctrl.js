@@ -19,12 +19,15 @@
         vm.inProgress = false;
         vm.showForm = false;
         vm.isRemoved = {};
+        vm.showEditNameForm = false;
 
         vm.init = init;
         vm.initList = initList;
         vm.addSentence = addSentence;
         vm.removeSentence = removeSentence;
         vm.undoRemoval = undoRemoval;
+        vm.editName = editName;
+        vm.saveListName = saveListName;
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -42,8 +45,9 @@
             vm.newSentence.license = Object.keys(vm.licenses)[0];
         }
 
-        function initList(listId) {
-            vm.list = { id: listId };
+        function initList(list) {
+            vm.list = list;
+            vm.list.currentName = list.name;
         }
 
         function addSentence() {
@@ -74,6 +78,25 @@
         function undoRemoval(sentenceId) {
             $http.get(rootUrl + '/sentences_lists/add_sentence_to_list/' + sentenceId + '/' + vm.list.id).then(function() {
                 vm.isRemoved[sentenceId] = false;
+            });
+        }
+
+        function editName() {
+            vm.showEditNameForm =  true;
+            setTimeout(function() {
+                var input = angular.element('#edit-name-input');
+                input.focus();
+            }, 100);
+        }
+
+        function saveListName() {
+            if (vm.list.currentName === vm.list.name) {
+                return;
+            }
+            
+            $http.post(rootUrl + '/sentences_lists/save_name', vm.list).then(function(result) {
+                vm.list.currentName = result.data.result;
+                vm.showEditNameForm = false;
             });
         }
     }

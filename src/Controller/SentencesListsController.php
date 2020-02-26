@@ -222,13 +222,27 @@ class SentencesListsController extends AppController
     public function save_name()
     {
         $userId = $this->Auth->user('id');
-        $listId = substr($this->request->getData('id'), 1);
-        $listName = $this->request->getData('value');
+
+        $acceptsJson = $this->request->accepts('application/json');
+
+        if ($acceptsJson) {
+            $listId = $this->request->getData('id');
+            $listName = $this->request->getData('name');
+        } else {
+            $listId = substr($this->request->getData('id'), 1);
+            $listName = $this->request->getData('value');
+        }
         
         if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
         } else {
             $this->set('result', 'error');
+        }
+
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 

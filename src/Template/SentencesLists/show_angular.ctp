@@ -9,6 +9,12 @@ $listId = $list['id'];
 $listVisibility = $list['visibility'];
 $listName = h($list['name']);
 
+$listData = [
+    'id' => $list['id'],
+    'name' => $list['name']
+];
+$listJSON = htmlspecialchars(json_encode($listData), ENT_QUOTES, 'UTF-8');
+
 $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 ?>
 
@@ -88,13 +94,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
 <div id="main_content">
 
-<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm" ng-init="vm.initList(<?= $listId ?>)">
+<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm" ng-init="vm.initList(<?= $listJSON ?>)">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2 flex><?= $listName ?></h2>
+            <h2 flex>{{vm.list.currentName}}</h2>
             
             <?php if ($permissions['canEdit']) { ?>
-            <md-button class="md-icon-button" ng-cloak>
+            <md-button class="md-icon-button" ng-cloak ng-click="vm.editName()">
                 <md-icon>edit
                     <md-tooltip><?= __('Edit name') ?></md-tooltip>
                 <md-icon>
@@ -110,6 +116,24 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             <?php } ?>
         </div>
     </md-toolbar>
+
+    <?php if ($permissions['canEdit']) { ?>
+        <form id="list-name-form" layout="column" ng-if="vm.showEditNameForm" ng-cloak>
+            <md-input-container>
+                <label><?= __('List name'); ?></label>
+                <input id="edit-name-input" ng-model="vm.list.name" ng-enter="vm.saveListName()" ng-escape="vm.showEditNameForm = false"></input>
+            </md-input-container>
+            
+            <div layout="row" layout-align="end">
+                <md-button class="md-raised" ng-click="vm.showEditNameForm = false">
+                    <?= __('Cancel') ?>
+                </md-button>
+                <md-button class="md-raised md-primary" ng-click="vm.saveListName()">
+                    <?= __('Save') ?>
+                </md-button>
+            </div>
+        </form>
+    <?php } ?>
 
     <?php
     if ($permissions['canAddSentences']) {
