@@ -104,7 +104,11 @@ $menuElements = array(
             __('Show activity timeline') => array(
                 "controller" => "contributions",
                 "action" => "activity_timeline"
-            )
+            ),
+            __('Add vocabulary request') => array(
+            "controller" => "vocabulary",
+            "action" => "add_sentences"
+             )   
         )
     ),
     __('Community') => array(

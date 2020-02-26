@@ -88,7 +88,14 @@ class CommonModulesHelper extends AppHelper
             if (isset($params[$maxNumberOfParams-1])) {
                 $lang  = $params[$maxNumberOfParams-1];
             }
-
+            
+            if ($this->request->params['controller'] == 'Vocabulary' && $this->request->params['action'] == 'add_sentences') {
+                $filteredLang = $this->request->getSession()->read('filter_by_language');
+                if ($filteredLang != null && $lang == 'und') {
+                    $lang = $filteredLang;
+                }
+            }
+            
             $langs = $this->Languages->languagesArrayAlone();
 
             // Avoid loosing the query parameters

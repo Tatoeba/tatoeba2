@@ -43,7 +43,7 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 class VocabularyController extends AppController
 {
     public $uses = array('UsersVocabulary', 'User', 'Sentence', 'Vocabulary');
-    public $components = array ('CommonSentence', 'Flash');
+    public $components = array ('CommonSentence', 'Flash', 'Cookie');
     public $helpers = array(
         'Vocabulary',
     );
@@ -87,7 +87,6 @@ class VocabularyController extends AppController
                   'action' => 'all')
             );
         }
-        
         $this->loadModel('UsersVocabulary');
         $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
             $userId,
@@ -117,7 +116,16 @@ class VocabularyController extends AppController
      * @param $lang string Language of the vocabulary items.
      */
     public function add_sentences($lang = null)
-    {
+    {   
+    
+        $filteredLang = $this->request->getSession()->read('filter_by_language');
+        if ($filteredLang == null && $lang != null) {
+            $this->request->getSession()->write('filter_by_language', $lang );
+        } else if ($filteredLang != null && $lang == null) {
+            $lang = $this->request->getSession()->read('filter_by_language');
+        } else if ($lang != null && $filteredLang != null && $lang != $filteredLang) {
+            $this->request->getSession()->write('filter_by_language', $lang);
+        }
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Languages';
