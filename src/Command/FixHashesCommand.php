@@ -6,6 +6,8 @@ use Cake\Console\ConsoleIo;
 use Cake\Console\ConsoleOptionParser;
 use Cake\Console\Command;
 use Cake\Datasource\ConnectionManager;
+use Cake\Collection\Collection;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Shell\BatchOperationTrait;
 
 class FixHashesCommand extends Command
@@ -52,6 +54,11 @@ class FixHashesCommand extends Command
                 'help' => 'Show a progress bar.',
                 'short' => 'p',
                 'boolean' => true
+            ])
+            ->addOption('input', [
+                'help' => 'Read a list of ids from the given file. ' .
+                          '("stdin" will read from standard input)',
+                'short' => 'i',
             ]);
         return $parser;
     }
@@ -67,17 +74,20 @@ class FixHashesCommand extends Command
         extract($options);
         foreach ($entities->extract('id') as $id) {
             $table->getConnection()->transactional(
-                function ($conn) use ($id, $table, $hashColumn, $sourceColumns, $dryRun) {
-                    $entity = $table->get($id);
-                    $storedHash = $entity->get($hashColumn);
-                    $columnValues = array_map(function ($col) use ($entity) {
-                        return $entity->get($col);
-                    }, $sourceColumns);
-                    $data = array_combine($sourceColumns, $columnValues);
-                    $correctHash = $table->newEntity($data)->get($hashColumn);
-                    if ($storedHash != $correctHash) {
-                        $this->log[] = [$id, $storedHash, $correctHash];
-                        $table->patchEntity($entity, [$hashColumn => $correctHash]);
+                function ($conn) use ($id, $table, $hashColumn, $sourceColumns, $dryRun, $io) {
+                    try {
+                        $entity = $table->get($id);
+                    } catch (RecordNotFoundException $e) {
+                        $io->error(format('{id} ignored: Record not found', ['id' => $id]));
+                        return false;
+                    }
+                    $allColumns = array_merge($sourceColumns, [$hashColumn]);
+                    $allStoredValues = $entity->extract($allColumns);
+                    $allNewValues = $table->newEntity($entity->extract($sourceColumns))
+                                    ->extract($allColumns);
+                    if (array_diff($allStoredValues, $allNewValues)) {
+                        $this->log[] = [$id, $entity->get($hashColumn), $allNewValues[$hashColumn]];
+                        $table->patchEntity($entity, $allNewValues);
                         $entity->setDirty('modified', true); // Don't update modified column
                         if (!$dryRun) {
                             return $table->save($entity);
@@ -98,6 +108,13 @@ class FixHashesCommand extends Command
         $machineReadable = $args->getOption('raw');
         $this->batchOperationSize = $args->getOption('batch-size');
         $progressBar = $args->getOption('progress-bar');
+        $input = $args->getOption('input');
+        if ($input === 'stdin') {
+            $input = 'php://stdin';
+        } elseif ($input && !file_exists($input)) {
+            $io->error(format('{path} does not exist!', ['path' => $input]));
+            $this->abort();
+        }
 
         $tableArg = $args->getArgument('table');
         $table = $this->getTable($tableArg);
@@ -129,21 +146,39 @@ class FixHashesCommand extends Command
         }
 
         $this->log = [];
-        $query = $table->find()->select(['id' => $table->aliasField('id')]);
+
+        if ($input) {
+            $ids = collection(file($input, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES))
+                   ->filter(function ($v) { return preg_match('/^\d+$/', $v); });
+            $total = $ids->count();
+        } else {
+            $query = $table->find()->select(['id' => $table->aliasField('id')]);
+            $total = $query->count();
+        }
+
         if ($progressBar) {
             $progressBar = $io->helper('Progress');
-            $progressBar->init(['total' => $query->count()]);
+            $progressBar->init(['total' => $total]);
             $progressBar->draw();
         }
-        $proceeded = $this->BatchOperationNewORM(
-            $query,
-            [$this, 'fixHash'],
-            compact('table', 'hashColumn', 'sourceColumns', 'dryRun', 'progressBar')
-        );
+
+        if ($input) {
+            $proceeded = $this->fixHash(
+                $ids->map(function ($v) { return ['id' => $v]; }),
+                compact('table', 'hashColumn', 'sourceColumns', 'dryRun', 'progressBar', 'io')
+            );
+        } else {
+            $proceeded = $this->BatchOperationNewORM(
+                $query,
+                [$this, 'fixHash'],
+                compact('table', 'hashColumn', 'sourceColumns', 'dryRun', 'progressBar', 'io')
+            );
+        }
 
         if ($progressBar) {
             $io->out("\n");
         }
+
         if ($machineReadable) {
             $noProblemFormat = '0/{total}';
             $headerFormat = '{changed}/{total}';
@@ -153,6 +188,7 @@ class FixHashesCommand extends Command
             $headerFormat = '{total} rows checked, {changed} rows changed:';
             $logFormat = 'id {id} - hash changed from "{old}" to "{new}"';
         }
+
         if (empty($this->log)) {
             $io->out(format($noProblemFormat, ['total' => $proceeded]));
         } else {

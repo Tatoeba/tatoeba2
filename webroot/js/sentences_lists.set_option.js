@@ -18,9 +18,8 @@
 
  (function(){
     angular.module('app').controller('optionsCtrl', function ($scope){
-        
+
         $scope.visibilityChanged = function () {
-            
             $(".is-public.loader-container").show();
             var listId = $("input[name=visibility]").attr('data-list-id');
             var rootUrl = get_tatoeba_root_url();
@@ -28,21 +27,23 @@
                 rootUrl + "/sentences_lists/set_option/",
                 { "listId": listId, "option": "visibility", "value": $scope.visibility },
                 function () {$(".is-public.loader-container").hide();}
-            ); 
-            
+            );
         };
-        
-        $scope.editableChanged = function () {
+
+        $scope.editableChanged = function (oldSetting) {
             $(".is-editable.loader-container").show();
             var listId = $("input[name=editable_by]").attr('data-list-id');
             var rootUrl = get_tatoeba_root_url();
             $.post(
                 rootUrl + "/sentences_lists/set_option/",
                 { "listId": listId, "option": "editable_by", "value": $scope.editable },
-                function () {$(".is-editable.loader-container").hide();}
-            ); 
-            
+                function (response) {
+                    $(".is-editable.loader-container").hide();
+                    if (response.editable_by === "no_one" || oldSetting === "no_one")
+                        location.reload();
+                }
+            );
         };
     });
-    
+
 })();

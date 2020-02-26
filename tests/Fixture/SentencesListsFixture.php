@@ -71,5 +71,15 @@ class SentencesListsFixture extends TestFixture {
 			'visibility' => 'public',
 			'editable_by' => 'anyone'
 		),
+		array(
+			'id' => '6',
+			'name' => 'Inactive list',
+			'user_id' => 7,
+			'numberOfSentences' => 1,
+			'created' => '2018-10-10 10:10:01',
+			'modified' => '2018-10-10 10:10:09',
+			'visibility' => 'public',
+			'editable_by' => 'no_one'
+		)
 	);
 }

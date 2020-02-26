@@ -29,7 +29,7 @@ class SentencesListsTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-        
+
         $this->belongsTo('Users');
         $this->hasMany('SentencesSentencesLists');
         $this->belongsToMany('Sentences');
@@ -82,7 +82,7 @@ class SentencesListsTable extends Table
             'canView' => $visibility != 'private' || $belongsToUser,
             'canEdit' => $belongsToUser,
             'canAddSentences' => $belongsToUser && $editableBy !== 'no_one',
-            'canRemoveSentences' => $belongsToUser || $editableBy == 'anyone',
+            'canRemoveSentences' => $editableBy == 'anyone' || $belongsToUser && $editableBy == 'creator',
         );
 
         return $permissions;
@@ -278,7 +278,7 @@ class SentencesListsTable extends Table
                                     'translation' => $translation->text
                                 ];
                             }
-                        }                        
+                        }
                     }
                     return $data;
                 })
@@ -505,7 +505,7 @@ class SentencesListsTable extends Table
         } catch (RecordNotFoundException $e) {
             return false;
         }
-        
+
         if (!$list->isEditableBy($currentUserId)) {
             return false;
         }
@@ -513,7 +513,7 @@ class SentencesListsTable extends Table
         try {
             $sentence = $this->Sentences->get($sentenceId);
         } catch (RecordNotFoundException $e) {
-            return false;    
+            return false;
         }
 
         $id = $sentence->id;
@@ -634,7 +634,7 @@ class SentencesListsTable extends Table
      *
      * @return Cake\ORM\Entity|false
      */
-    public function createList($name, $currentUserId) 
+    public function createList($name, $currentUserId)
     {
         $name = trim($name);
 
@@ -668,7 +668,7 @@ class SentencesListsTable extends Table
     /**
      * Delete list.
      */
-    public function deleteList($listId, $currentUserId) 
+    public function deleteList($listId, $currentUserId)
     {
         $list = $this->get($listId);
         if ($list->isEditableBy($currentUserId)) {

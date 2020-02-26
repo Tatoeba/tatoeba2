@@ -14,6 +14,7 @@
  */
 namespace App;
 
+use AssetCompress\Middleware\AssetCompressMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
@@ -64,6 +65,10 @@ class Application extends BaseApplication
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime')
             ]))
+
+            // Allow on-the-fly build of css/js files for developers
+            // as defined in config/asset_compress.ini
+            ->add(new AssetCompressMiddleware())
 
             // Add routing middleware.
             // Routes collection cache enabled by default, to disable route caching
