@@ -56,7 +56,7 @@ $langArray = $this->Languages->languagesArrayAlone();
 <?php if (!CurrentUser::getSetting('use_new_design')) { ?>
 <div class="md-whiteframe-1dp" layout-padding style="background: #fafafa" ng-if="vm.showNewDesignAnnouncement" ng-cloak>
     <p><?= __(
-        'We are starting to rollout the new design for the sentences. '.
+        'We are starting to roll out the new design for the sentences. '.
         'It is currently only used for the random sentence below. '.
         'You can enable it for other pages with the option '.
         '"Display sentences with the new design" in your Settings.'
