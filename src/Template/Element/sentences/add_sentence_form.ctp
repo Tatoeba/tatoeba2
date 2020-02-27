@@ -5,7 +5,7 @@ $langs = $this->Languages->profileLanguagesArray(false, false);
 $licencesOptions = $this->Sentences->License->getLicenseOptions();
 $userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
 $licensesOptionsJSON = htmlspecialchars(json_encode($licencesOptions), ENT_QUOTES, 'UTF-8');
-$defautLicense = CurrentUser::getSetting('default_license'); // TODO
+$defautLicense = CurrentUser::getSetting('default_license');
 
 if (!isset($withCloseButton)) {
     $withCloseButton = false;
@@ -38,7 +38,7 @@ if (empty($langs)) {
             <?php if (CurrentUser::getSetting('can_switch_license')) : ?>
             <md-input-container>
                 <label><?= __('License'); ?></label>
-                <md-select ng-model="vm.newSentence.license">
+                <md-select ng-model="vm.newSentence.license" ng-init="vm.newSentence.license = '<?= $defautLicense ?>'">
                     <md-option ng-repeat="(code, name) in vm.licenses" ng-value="code">
                         {{name}}
                     </md-option>
