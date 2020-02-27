@@ -22,10 +22,11 @@ $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
         <?= __('No sentences added yet.') ?>
     </div>
 
-    <div ng-repeat="sentence in vm.sentences" layout-margin>
+    <div ng-repeat="sentence in vm.sentences">
     <?php
     echo $this->element('sentences/sentence_and_translations', [
-        'sentenceData' => 'sentence'
+        'sentenceData' => 'sentence',
+        'translations' => 'sentence.translations'
     ]);
     ?>
     </div>
