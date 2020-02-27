@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+use App\Model\CurrentUser;
 
 $sentenceBaseUrl = $this->Url->build([
     'controller' => 'sentences',
@@ -33,6 +34,13 @@ $sentenceBaseUrl = $this->Url->build([
         </md-tooltip>
     </md-button>
 
+    <?php if (CurrentUser::getSetting('copy_button')) { ?>
+    <md-button class="md-icon-button" ng-disabled="true">
+        <md-icon>content_copy</md-icon>
+        <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
+    </md-button>
+    <?php } ?>
+    
     <?= $this->element('sentence_buttons/audio', ['angularVar' => 'translation']); ?>
     
     <md-button class="md-icon-button" href="<?= $sentenceBaseUrl ?>/{{translation.id}}">

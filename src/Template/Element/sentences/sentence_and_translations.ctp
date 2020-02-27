@@ -131,6 +131,13 @@ $sentenceUrl = $this->Url->build([
                 </md-tooltip>
             </div>
 
+            <?php if (CurrentUser::getSetting('copy_button')) { ?>
+            <md-button class="md-icon-button" ng-disabled="true">
+                <md-icon>content_copy</md-icon>
+                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
+            </md-button>
+            <?php } ?>
+
             <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
 
             <md-button class="md-icon-button" ng-href="<?= $sentenceUrl ?>/{{vm.sentence.id}}">

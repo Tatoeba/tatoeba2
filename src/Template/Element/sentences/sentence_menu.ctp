@@ -25,6 +25,7 @@
 
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && vm.menu.canLink" ng-disabled="true">
                 <md-icon>link</md-icon>
+                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
             </md-button>
 
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && vm.menu.canDelete"
@@ -38,12 +39,15 @@
         <div ng-if="vm.isMenuExpanded && vm.menu.canReview">
             <md-button class="md-icon-button" ng-disabled="true">
                 <md-icon>check_circle</md-icon>
+                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
             </md-button>
             <md-button class="md-icon-button" ng-disabled="true">
                 <md-icon>help</md-icon>
+                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
             </md-button>
             <md-button class="md-icon-button" ng-disabled="true">
                 <md-icon>error</md-icon>
+                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
             </md-button>
         </div>
 

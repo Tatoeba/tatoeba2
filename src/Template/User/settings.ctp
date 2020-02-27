@@ -332,8 +332,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
                 <p><?php echo __(
                     'Display sentences with the new design. '.
-                    'Note that you will not have all the features '.
-                    'from the old design'
+                    'Note that some features are not yet implemented in this new design but are coming soon.'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php
