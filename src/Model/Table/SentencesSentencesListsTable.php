@@ -25,18 +25,10 @@ use Cake\Utility\Hash;
 
 class SentencesSentencesListsTable extends Table
 {
-    public $name = 'SentencesSentencesLists';
-    public $useTable = 'sentences_sentences_lists';
-    public $actsAs = array('Containable');
-
-    public $belongsTo = array(
-        'Sentence' => array('foreignKey' => 'sentence_id'),
-        'SentencesList' => array('foreignKey' => 'sentences_list_id')
-    );
-
     public function initialize(array $config)
     {
         $this->belongsTo('Sentences');
+        $this->belongsTo('SentencesLists');
         
         $this->addBehavior('Timestamp');
         if (Configure::read('Search.enabled')) {
