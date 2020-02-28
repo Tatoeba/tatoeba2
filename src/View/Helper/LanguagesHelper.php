@@ -427,7 +427,7 @@ class LanguagesHelper extends AppHelper
     {
         if (!isset($__languagesLevels)) {
             $__languagesLevels = array(
-                -1 => __x('level', 'Unspecified'),
+                '' => __x('level', 'Unspecified'),
                 0 => __('0: Almost no knowledge'),
                 1 => __('1: Beginner'),
                 2 => __('2: Intermediate'),

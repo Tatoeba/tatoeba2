@@ -97,10 +97,11 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <!-- Level -->
         <div class="info">
             <?php
-            $selected = -1;
+            $selected = '';
             if ($userLanguage && $userLanguage->level) {
                 $selected = $userLanguage->level;
             }
+            $selected = htmlspecialchars(json_encode($selected), ENT_QUOTES, 'UTF-8');
 
             $radioLabels = $this->Languages->getLevelsLabels();
 
@@ -113,7 +114,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             <label><?= __('What is your level?') ?></label>
             <md-radio-group ng-model='userLanguage.level' ng-init="userLanguage.level = <?= $selected ?>">
                 <?php foreach($radioLabels as $key => $radioLabel) { ?>
-                    <md-radio-button value='<?= $key ?>' class='md-primary'>
+                    <md-radio-button ng-value='<?= $key ?>' class='md-primary'>
                         <?= $radioLabel ?>
                     </md-radio-button>
                 <?php } ?>
