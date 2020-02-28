@@ -106,3 +106,17 @@
     font-size: 13px;
     color: #AAAAAA;
 }
+
+.user-language-form textarea {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.user-language-form .info {
+    margin: 20px 0;
+}
+
+.user-language-form label {
+    padding-right: 20px;
+    font-weight: bold;
+}

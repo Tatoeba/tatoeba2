@@ -94,7 +94,11 @@
 
                 function onSelectedItemChange(item) {
                     if (vm.selectedItem) {
-                        $scope.$parent.$broadcast('languageChange', {dropdownName: dropdownName, lang: vm.selectedItem.code});
+                        $scope.$emit('languageChange', {
+                            langName: vm.selectedItem.name,
+                            dropdownName: dropdownName,
+                            lang: vm.selectedItem.code
+                        });
                     }            
                 }
 
@@ -102,7 +106,11 @@
                     vm.selectedItem = languages.find(function (item) {
                         return item.code === lang;
                     });
-                    $scope.$parent.$broadcast('languageChange', {dropdownName: dropdownName, lang: lang});
+                    $scope.$emit('languageChange', {
+                        langName: vm.selectedItem.name,
+                        dropdownName: dropdownName,
+                        lang: lang
+                    });
                 }
 
                 function onSearchTextChange() {

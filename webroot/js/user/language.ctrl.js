@@ -20,7 +20,7 @@
 
     angular
         .module('app')
-        .controller('LanguageController', LanguageController)
+        .controller('LanguageController', ['$scope', LanguageController])
         .directive('languageLevel', function() {
             return {
                 restrict: 'E',
@@ -48,10 +48,44 @@
         var vm = this;
 
         vm.init = init;
+        vm.addLangNextStep = addLangNextStep;
+        vm.addLangCancel = addLangCancel;
         vm.langs = [];
+        vm.addLangStep = ''; // can be '', 'selection', 'level' or 'details'
+        vm.selectedLang = null;
+
+        function addLangNextStep() {
+            switch (vm.addLangStep) {
+            case '':
+                vm.addLangStep = 'selection';
+                break;
+            case 'selection':
+                vm.addLangStep = 'level';
+                break;
+            case 'level':
+                vm.addLangStep = 'details';
+                break;
+            case 'details':
+                vm.addLangStep = '';
+                break;
+            }
+        }
+
+        $scope.$on('languageChange', function(event, data) {
+            vm.selectedLang = {
+               code: data.lang,
+               name: data.langName,
+               level: null
+            };
+        });
 
         function init(userLangs) {
             vm.langs = userLangs;
+        }
+
+        function addLangCancel() {
+            vm.addLangStep = '';
+            vm.selectedLang = null;
         }
     }
 })();
