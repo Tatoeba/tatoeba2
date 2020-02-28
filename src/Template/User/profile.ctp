@@ -353,10 +353,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                             <h3 flex>
                                 {{lang.name}}
                             </h3>
-                            <div class="languageLevel">
-                                <?php $maxLanguageLevel = 5; ?>
-                                <md-icon ng-repeat="n in [].constructor(lang.level) track by $index" class="md-primary">star</md-icon><md-icon ng-repeat="n in [].constructor(<?= $maxLanguageLevel ?>-lang.level) track by $index">star_border</md-icon>
-                            </div>
+                            <language-level level="lang.level"></language-level>
                             <p>
                                 {{lang.details}}
                             </p>

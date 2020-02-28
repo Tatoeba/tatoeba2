@@ -20,7 +20,29 @@
 
     angular
         .module('app')
-        .controller('LanguageController', LanguageController);
+        .controller('LanguageController', LanguageController)
+        .directive('languageLevel', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                    level: '=',
+                },
+                link: function($scope) {
+                    if ($scope.level === "") {
+                        $scope.level = null;
+                    }
+                    if ($scope.level != null) {
+                        $scope.level = parseInt($scope.level);
+                    }
+                },
+                template:
+                    // magic number 5 is the maximum possible level
+                    '<div ng-if="level != null" class="languageLevel">' +
+                      '<md-icon ng-repeat="n in [].constructor(level) track by $index" class="md-primary">star</md-icon>' +
+                      '<md-icon ng-repeat="n in [].constructor(5-level) track by $index">star_border</md-icon>' +
+                    '</div>'
+            }
+        });
 
     function LanguageController($scope) {
         var vm = this;
