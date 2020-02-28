@@ -98,7 +98,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <div class="info">
             <?php
             $selected = -1;
-            if ($userLanguage && $userLanguage->level) {
+            if ($userLanguage && !is_null($userLanguage->level)) {
                 $selected = $userLanguage->level;
             }
 
