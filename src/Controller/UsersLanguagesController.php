@@ -41,7 +41,7 @@ use App\Model\CurrentUser;
  */
 class UsersLanguagesController extends AppController
 {
-    public $uses = array('User', 'UsersLanguages');
+    public $uses = array('UsersLanguages');
     public $components = array('Flash');
 
     public function save()
