@@ -86,6 +86,10 @@ def getResourcesFiles(languagesTable, resourceSlug, resourceFilename, translatio
         os.system('cp "%s" "%s/%s.po"'%(languageFile,languagePath,resourceFilename))
         printAndLog('Compiling to %s.mo (%s)'%(language[1],resourceFilename))
         os.system('msgfmt "%s" -o "%s/%s.mo"'%(languageFile,languagePath,resourceFilename))
+        cacheFile = os.path.join(mainLocal, 'tmp', 'cache', 'persistent', 'myapp_cake_core_translations_'+resourceFilename+'_'+language[1])
+        if os.path.exists(cacheFile):
+           printAndLog('Removing cache file ' + cacheFile);
+           os.remove(cacheFile)
 
 def main():
     TMP_DIR=os.path.join('/','tmp','.fetch-translations-%s'%(datetime.datetime.now().strftime('%F-%T')))

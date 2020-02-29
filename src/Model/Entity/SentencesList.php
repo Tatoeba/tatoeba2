@@ -22,7 +22,7 @@ use Cake\ORM\Entity;
 
 class SentencesList extends Entity
 {
-    protected function _getOldFormat() 
+    protected function _getOldFormat()
     {
         return [
             'SentencesList' => [
@@ -37,7 +37,7 @@ class SentencesList extends Entity
     protected function _getSavedOldFormat()
     {
         $joinData = $this->sentences[0]->_joinData;
-        
+
         if ($joinData) {
             $result = [
                 'SentencesSentencesLists' => [
@@ -48,12 +48,13 @@ class SentencesList extends Entity
         } else {
             $result = [];
         }
-        
+
         return $result;
     }
 
     public function isEditableBy($userId)
     {
-        return $this->user_id == $userId || $this->editable_by == 'anyone';
+        return $this->editable_by == 'anyone' ||
+                $this->user_id == $userId && $this->editable_by == 'creator';
     }
 }

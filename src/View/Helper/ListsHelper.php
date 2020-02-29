@@ -371,7 +371,7 @@ class ListsHelper extends AppHelper
                 echo $this->Html->tag('dt', $title.$loader);
             ?>
             <input type="radio"  name="editable_by" data-list-id='<?= $listId ?>'  value="{{editable}}" checked hidden ng-init="editable = '<?= $value ?>';"/>
-            <md-radio-group ng-controller='optionsCtrl' ng-model='editable' ng-change='editableChanged()'>
+            <md-radio-group ng-controller='optionsCtrl' ng-model='editable' ng-change='editableChanged("{{editable}}")'>
                 <md-radio-button value='anyone' class='md-primary'>
                     <?=  __('Anyone') ?>
                 </md-radio-button>
@@ -567,7 +567,7 @@ class ListsHelper extends AppHelper
                 'type' => 'post',
             ]);
             ?>
-            
+
             <md-input-container layout="column">
                 <?php
                 echo $this->Form->control('name', [
@@ -602,7 +602,7 @@ class ListsHelper extends AppHelper
                 }
             }
             ?>
-            
+
             <md-input-container layout="column">
                 <?php
                 echo $this->Form->input('search', [
@@ -610,7 +610,7 @@ class ListsHelper extends AppHelper
                     'label' => false
                 ]);
                 ?>
-                
+
                 <md-button type="submit" class="md-raised">
                     <?= __('Search') ?>
                 </md-button>
@@ -628,7 +628,7 @@ class ListsHelper extends AppHelper
         ?>
         <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
             <md-subheader><?= __('Lists') ?></md-subheader>
-            
+
             <?php
             $url = $this->Url->build([
                 'controller' => 'sentences_lists',

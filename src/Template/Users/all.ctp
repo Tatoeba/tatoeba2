@@ -99,7 +99,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Members')));
             echo ' | ';
             echo $this->Paginator->sort('since', __('Member since'));
             echo ' | ';
-            echo $this->Paginator->sort('role', __('Member status'));
+            echo $this->Pagination->sortForRole();
             ?>
         </div>
 

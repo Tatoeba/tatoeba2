@@ -629,12 +629,12 @@ html[dir="rtl"] .comment-sentence .text {
     background: none;
 }
 
-.paging li.prev md-icon, 
+.paging li.prev md-icon,
 .paging li.next md-icon {
     color: #4caf50;
 }
 
-.paging li.prev a:hover md-icon, 
+.paging li.prev a:hover md-icon,
 .paging li.next a:hover md-icon {
     color: #DD8800;
 }
@@ -652,7 +652,7 @@ html[dir="rtl"] .comment-sentence .text {
  * --------------------------------------------------------------------
  */
 
- #private-message-form { 
+ #private-message-form {
     background: #fafafa;
 }
 
@@ -841,7 +841,7 @@ html[dir="rtl"] .comment-sentence .text {
 
 .sentence .copy.column {
     float: right;
-    height: 16px;
+    height: 21px;
 }
 .sentence .copy-btn {
     width: 16px;
@@ -873,11 +873,11 @@ html[dir="rtl"] .comment-sentence .text {
     color: gray;
     width: 24px;
     height: 24px;
-} 
+}
 
 .sentence .favorite-page.column svg:hover{
     color: black;
-} 
+}
 
 .translations .text {
     margin-top: 3px;
@@ -1234,6 +1234,7 @@ input.sentenceId {
     background: url("/img/warning-small.svg") no-repeat;
     padding-right: 25px;
     color: #EE0000;
+    overflow: hidden;
 }
 
 .mainSentence .correctnessNegative1 {
@@ -1561,6 +1562,20 @@ div.hideLink {
     margin: 20px;
 }
 
+.sortBy .desc, .sortBy .asc {
+/*    font-weight: bold; */
+}
+
+.sortBy .desc::after {
+    content: "\02B07";
+    vertical-align: middle;
+}
+
+.sortBy .asc::after {
+    content: "\02B06";
+    vertical-align: middle;
+}
+
 
 
 /*
@@ -1760,7 +1775,7 @@ div.hideLink {
 .loader-small {
     width: 11px;
     height: 11px;
-    border-width: 3px; 
+    border-width: 3px;
 }
 
 .sentence-loader {

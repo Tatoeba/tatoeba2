@@ -25,44 +25,44 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L264
 msgid "Invalid file “{file}” ignored."
-msgstr ""
+msgstr "無効なファイル “{file}” は無視されました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L274
 msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr ""
+msgstr "ファイル “{dir}” をインポートするためのディレクトリ “{file}” 作成に失敗しました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr ""
+msgstr "ファイル “{file}” のコピーに失敗しました。コピー先ディレクトリ名： “{dir}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L293
 msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
-msgstr ""
+msgstr "“{author}” にデータベース内の例文 {sentenceId} を割り当てることができません。有効なユーザー名か確認してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L302
 msgid ""
 "File “{file}” was successfully imported but could not be removed from the "
 "import directory."
-msgstr ""
+msgstr "ファイル “{file}” は正常にインポートが完了しましたが、インポートディレクトリからは削除できませんでした。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L20
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L25
 msgid "Import recordings"
-msgstr ""
+msgstr "音声をインポートする"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L28
 msgid "Import report"
-msgstr ""
+msgstr "インポート・レポート"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L59
 msgid "The following errors occurred during import."
-msgstr ""
+msgstr "インポート中にエラーが発生しました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L66
 msgid "Files detected"
-msgstr ""
+msgstr "検出されたファイル"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L84
 msgid "File name"
@@ -78,11 +78,11 @@ msgstr "言語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Already has audio"
-msgstr ""
+msgstr "音声は既に存在します。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "May be imported"
-msgstr ""
+msgstr "インポート可能"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
@@ -95,7 +95,7 @@ msgstr "無効"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L127
 msgid "No files have been detected inside the import directory."
-msgstr ""
+msgstr "インポートディレクトリ内にファイルが見つかりません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L133
 msgid "Import"
@@ -129,11 +129,11 @@ msgstr "正しさ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
 msgid "Change"
-msgstr ""
+msgstr "編集"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L28
 msgid "Import sentences"
-msgstr ""
+msgstr "例文のインポート"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L36
 msgid "Single sentences"
@@ -161,11 +161,11 @@ msgstr "インポート"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L75
 msgid "Sentences and translations"
-msgstr ""
+msgstr "例文と翻訳"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L94
 msgid "Language of the translations:"
-msgstr ""
+msgstr "翻訳先の言語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L47
 msgid "Delete"
@@ -173,7 +173,7 @@ msgstr "削除"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L54
 msgid "Are you sure you want to delete user #{number}?"
-msgstr ""
+msgstr "ユーザー #{number} を削除してもよろしいですか？"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
@@ -189,7 +189,7 @@ msgstr "ユーザー名の変更"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"
-msgstr ""
+msgstr "ID"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L86
 msgid "Username"
@@ -209,7 +209,7 @@ msgstr "ステータス"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L105
 msgid "Send notifications"
-msgstr ""
+msgstr "メッセージを送信する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
 msgid "unhide"

@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-09 20:55+0800\n"
-"PO-Revision-Date: 2020-02-16 09:04+0000\n"
+"PO-Revision-Date: 2020-02-22 20:52+0000\n"
 "Last-Translator: Koyuki <springcomes.ki@gmail.com>\n"
 "Language-Team: Japanese (http://www.transifex.com/tatoeba/tatoeba_website/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -356,7 +356,7 @@ msgstr "例文番号が不明です。"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
-msgstr[0] "{number} の例文"
+msgstr[0] "例文の数：{number} 件"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L200
 msgid "Message saved."
@@ -378,7 +378,7 @@ msgstr "この書き込みは存在しないか、もしくは削除されまし
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L280
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L358
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L212
 msgid "The following character lacks furigana: {charsEnumeration}."
@@ -398,17 +398,17 @@ msgstr "修正した内容はオリジナルの例文より短くなっていま
 msgid "The character “{kanji}” has more than one furigana: “{furiganas}”."
 msgid_plural ""
 "The characters “{kanji}” have more than {n} furiganas: ”{furiganas}”."
-msgstr[0] ""
+msgstr[0] "次の文字 “{kanji}” には {n} 個以上のフリガナが振られています： ”{furiganas}”"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L361
 msgid "The following character is not transcribed: {charsEnumeration}."
 msgid_plural ""
 "The following characters are not transcribed: {charsEnumeration}."
-msgstr[0] ""
+msgstr[0] "次の文字は書き換えることができません：\"{charsEnumeration}\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
-msgstr ""
+msgstr "CC0 へ変更する例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L119
 msgid "List {listName}"
@@ -416,7 +416,7 @@ msgstr "リスト {listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L120
 msgid "Sentence id [tab] Sentence text"
-msgstr ""
+msgstr "例文番号 [tab] 例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L78
 msgid "You cannot send an empty message."
@@ -424,7 +424,7 @@ msgstr "メッセージ欄が空のため送信できません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L84
 msgid "You must fill the \"To\" field."
-msgstr ""
+msgstr "宛先を入力してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L322
 msgid ""
@@ -450,32 +450,32 @@ msgstr "ライセンスが無効です。"
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L108
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "この例文は以下のライセンスが適用されています。"
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L164
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "例文はオリジナルでなければならい（翻訳から派生したものではないこと）。"
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L172
 msgid "You're not the owner of this sentence."
-msgstr ""
+msgstr "あなたはこの例文の所有者ではありません。"
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L179
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "例文の所有者はその例文を作成した人でなければならない。"
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L192
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "制限が緩和されたライセンスにのみ変更することができます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -527,12 +527,12 @@ msgstr "メッセージ欄が空のため保存できません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L70
 msgid "Result of license switch to CC0 1.0"
-msgstr ""
+msgstr "ライセンス CC0 1.0 への変更の結果"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L94
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
-msgstr ""
+msgstr "以下の理由により、例文番号 {id} は “{newLicense}” に変更できません："
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L121
 msgid "License switch started on {date} at {time} UTC."
@@ -541,7 +541,7 @@ msgstr "ライセンスの変更は {date} {time} UTC に適用されました�
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L126
 msgid "Successfully changed the license of {n} sentence."
 msgid_plural "Successfully changed the license of {n} sentences."
-msgstr[0] ""
+msgstr[0] "例文番号 {n} のライセンスは正常に変更されました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L133
 msgid "License switch completed on {date} at {time} UTC."
@@ -711,7 +711,7 @@ msgstr "いくつもの言い方ができると思う場合には、同じ言語
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "例文の翻訳をするには、プロフィールに２つ以上の言語を登録する必要がります。<a href=\"{}\">プロフィール</a>を完成させてから、再度お試しください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L107
 msgid "Search for untranslated sentences"
@@ -801,7 +801,7 @@ msgstr "音声つきの例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L49
 msgid "There are no sentences with audio"
-msgstr "音声付き例文はありません。"
+msgstr "音声つき例文はありません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L85
@@ -827,7 +827,7 @@ msgstr "ライセンス："
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L53
 msgid "Leave this field empty to use your profile page."
-msgstr ""
+msgstr "プロフィールページを利用するにはこのフィールドを空欄にしてください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L55
 msgid "Attribution URL:"
@@ -853,12 +853,12 @@ msgstr "活動タイムライン"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L43
 msgid "{month} {year}"
-msgstr "{year}{month}"
+msgstr "{year}年{month}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L111
 msgid "Daily Average: {n} sentence"
 msgid_plural "Daily Average: {n} sentences"
-msgstr[0] ""
+msgstr[0] "１日の平均：{n} 件"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
@@ -873,7 +873,7 @@ msgstr "{user} さんの更新履歴"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L75
 msgid "Only the last {n} log entries are displayed here."
-msgstr "ここには最新ログ {n} 件のみが表示されます。"
+msgstr "ここには最新ログ {n} 件が表示されます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L40
@@ -1018,7 +1018,7 @@ msgstr "ソート"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L307
 msgid "Relevance"
-msgstr ""
+msgstr "指定なし"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L333
 msgid "Reverse order"
@@ -1038,7 +1038,7 @@ msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>.\n"
 "        By closing this announcement, you agree with the new Terms of Use.\n"
 "        If you have any question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr ""
+msgstr "Tatoeba の<a href=\"{termsOfUse}\">利用規約</a>の一部を改定しました。このお知らせを閉じることにより、新しい利用規約に同意されるものとみなします。ご質問がある場合は<a href=\"{contact}\">こちら</a>へお気軽にお問い合わせください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L78
 msgid ""
@@ -1074,11 +1074,11 @@ msgstr[0] "過去{n}の更新をしたユーザー"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/currently_active_members.ctp#L61
 msgid "{n}&nbsp;sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
+msgstr[0] "{n}&nbsp;例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L32
 msgid "Need some help?"
-msgstr ""
+msgstr "Need some help?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L37
 msgid "Quick Start Guide"
@@ -1101,7 +1101,7 @@ msgstr "ヘルプ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L73
 msgid "Developers"
-msgstr ""
+msgstr "Developers"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L127
@@ -1114,11 +1114,11 @@ msgstr "GitHub"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L98
 msgid "Google group"
-msgstr ""
+msgstr "Google group"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L107
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L112
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L32
@@ -1134,7 +1134,7 @@ msgstr "お問い合わせ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L134
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L1
@@ -1157,7 +1157,7 @@ msgstr "Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L185
 msgid "Our data is released under various Creative Commons licenses."
-msgstr ""
+msgstr "Our data is released under various Creative Commons licenses."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L188
 msgid "More information"
@@ -1165,11 +1165,11 @@ msgstr "詳細情報"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L202
 msgid "If you love this content, please consider a <a href={}>donation</a>."
-msgstr ""
+msgstr "当プロジェクトにご関心のある皆さまからの寄付金の受付けを行っております。詳しくは<a href={}>こちら</a>をご覧ください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/header.ctp#L34
 msgid "Tatoeba"
-msgstr ""
+msgstr "Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L4
 msgid "Select a language"
@@ -1397,7 +1397,7 @@ msgstr "削除された文"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L12
 msgctxt "sentence comment"
 msgid "{createdDate}, edited {modifiedDate}"
-msgstr ""
+msgstr "{createdDate}, 更新日 {modifiedDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L59
@@ -1480,7 +1480,7 @@ msgstr "この例文はネイティブが所有しています。"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L25
 msgid "This sentence is not reliable."
-msgstr ""
+msgstr "この例文は信頼できません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
 msgid "Translations of translations"
@@ -1514,13 +1514,13 @@ msgstr "言語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L21
 msgid "Other language"
-msgstr ""
+msgstr "Other language"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L112
 msgid "Sentence"
-msgstr ""
+msgstr "例文を入力してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L13
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L78
@@ -1542,7 +1542,7 @@ msgstr "本当に削除しますか？"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L32
 msgid "Edit this translation"
-msgstr ""
+msgstr "この翻訳の編集"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
@@ -1562,7 +1562,7 @@ msgstr "投稿"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
 msgid "Edit translation"
-msgstr ""
+msgstr "翻訳の編集"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_statistics.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L47
@@ -1581,7 +1581,7 @@ msgstr "タイムアウトしました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/session_expired.ctp#L33
 msgid "Please <a href=\"{}\">log in again</a>."
-msgstr ""
+msgstr "再度<a href=\"{}\">ログイン</a>してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L34
 msgid "Tatoeba is a collection of sentences and translations."
@@ -1593,11 +1593,11 @@ msgstr "例文はすべて無料で公開しています。あなたも参加し
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L84
 msgid "Search sentences in {langFrom} translated into {langTo} containing:"
-msgstr ""
+msgstr "次の単語を含み {langFrom} から {langTo} へ翻訳された例文を検索する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L96
 msgid "Clear search"
-msgstr ""
+msgstr "検索条件クリア"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/advanced_search.ctp#L20
@@ -1608,13 +1608,13 @@ msgstr "詳細検索"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L138
 msgid "Tip: <em>=word</em> will search for an exact match on <em>word</em>"
-msgstr ""
+msgstr "ヒント：<em>=word</em> を指定すると <em>word</em> の完全一致検索が行えます。"
 
 #. @translators: links to a page with tips to perform
 #. searches, like search operators
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/short_description.ctp#L145
 msgid "More tips"
-msgstr ""
+msgstr "さらに詳しく"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L32
@@ -1678,16 +1678,16 @@ msgstr "ログアウト"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L11
 msgid "{number} contribution today"
 msgid_plural "{number} contributions today"
-msgstr[0] "本日の投稿数：{number} "
+msgstr[0] "本日の投稿数：{number} 件"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L21
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
-msgstr[0] "登録言語の数：{number} "
+msgstr[0] "登録言語の数：{number} 言語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
 msgid "stats per languages"
-msgstr ""
+msgstr "言語ごとの活動データ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L47
 msgid "Browse"
@@ -1728,7 +1728,7 @@ msgstr "例文について議論する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L104
 msgid "Show activity timeline"
-msgstr ""
+msgstr "活動データを表示する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L110
 msgid "Community"
@@ -1752,7 +1752,7 @@ msgstr "言語ごとのメンバー"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr ""
+msgstr "Native speakers"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L48
 msgid "Vocabulary"
@@ -1794,7 +1794,7 @@ msgstr "更新履歴"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L123
 msgid "Transcriptions"
-msgstr ""
+msgstr "トランスクリプション"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L135
 msgid "Translate {user}'s sentences"
@@ -1806,16 +1806,16 @@ msgstr "{user}さんにメッセージを送る"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L25
 msgid "Vocabulary items"
-msgstr ""
+msgstr "単語集"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L30
 msgid "My vocabulary items"
-msgstr ""
+msgstr "自分の単語集"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L31
 msgid "Add vocabulary items"
-msgstr ""
+msgstr "単語を追加"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L184
@@ -1831,7 +1831,7 @@ msgstr "投稿する "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L22
 msgctxt "wall message"
 msgid "{createdDate}, edited {modifiedDate}"
-msgstr ""
+msgstr "{createdDate}, 更新日 {modifiedDate}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L126
 msgid "hide replies"
@@ -1870,11 +1870,11 @@ msgstr "新しいパスワード ： "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L7
 msgid "My exports"
-msgstr ""
+msgstr "自分のエクスポートデータ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L8
 msgid "There are no exports."
-msgstr ""
+msgstr "利用可能なエクスポートデータはありません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L16
 msgctxt "button"
@@ -1883,15 +1883,15 @@ msgstr "ダウンロード"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L17
 msgid "Export in progress"
-msgstr ""
+msgstr "エクスポート中"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L20
 msgid "Export failed"
-msgstr ""
+msgstr "エクスポートに失敗しました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L27
 msgid "New export"
-msgstr ""
+msgstr "新規エクスポート"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L40
 msgid "Export list"
@@ -1903,12 +1903,12 @@ msgstr "{user}さんのお気に入り"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L51
 msgid "Favorite successfully removed."
-msgstr ""
+msgstr "お気に入りから削除されました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L140
 msgid "Sentence {id} has been deleted."
-msgstr "例文#{id}は削除されました。"
+msgstr "例文 {id} は削除されました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L117
 msgid "This user does not have any favorites."
@@ -1920,15 +1920,15 @@ msgstr "エラー"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Layout/error.ctp#L43
 msgid "Back"
-msgstr ""
+msgstr "戻る"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L20
 msgid "Switch my sentences' license"
-msgstr ""
+msgstr "自分の例文のライセンスを変更する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L26
 msgid "Switch my sentences to CC0"
-msgstr ""
+msgstr "自分の例文を CC0 に変更する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L29
 msgid ""
@@ -1941,33 +1941,33 @@ msgid ""
 "This page allows you to massively switch the license of your sentences to "
 "{CC0-link}. Among all your sentences, only the ones that meet the following "
 "conditions will be affected."
-msgstr ""
+msgstr "このページでは、例文のライセンスを一括で {CC0-link} に変更することができます。すべての例文のうち、次の条件を満たすものが対象となります。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L36
 msgid "The current license of the sentence must be CC BY 2.0 FR."
-msgstr ""
+msgstr "例文の現在のライセンスが CC BY 2.0 FR である。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L37
 msgid "You must be the original creator of the sentence."
-msgstr ""
+msgstr "あなたはこの例文のオリジナルを作成した者である。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L38
 msgid "The sentence must be original and not derived from translation."
-msgstr ""
+msgstr "この例文はオリジナルで他の例文を翻訳したものではない。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L53
 msgid ""
 "Press the following button to start or restart an analysis of which of your "
 "sentences can be switched to CC0."
-msgstr ""
+msgstr "次のボタンを押してください。CC0に変更できる例文かどうかの分析を開始または再開します。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L55
 msgid "Start analysis"
-msgstr ""
+msgstr "分析を開始する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L62
 msgid "Switch license"
-msgstr ""
+msgstr "ライセンスを変更する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L64
 msgid ""
@@ -1979,11 +1979,11 @@ msgstr "上記の例文のライセンス変更を行うには、次のボタン
 msgid ""
 "Be careful, this operation can not be undone. Switching from CC BY to CC0 is"
 " possible, but not the opposite."
-msgstr ""
+msgstr "この操作は元に戻すことができません。CC BY から CC0 への変更は可能ですが、その逆は行えません。ご注意ください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L72
 msgid "Switch license to CC0 1.0"
-msgstr ""
+msgstr "ライセンスを CC0 1.0 へ変更"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/delete.ctp#L4
@@ -2030,11 +2030,11 @@ msgstr "Tatoebaは、単語が文の中でどのように使われるのかを�
 msgid ""
 "The project was founded by Trang Ho in 2006, hosted on Sourceforge under the"
 " codename of <em>multilangdict</em>."
-msgstr ""
+msgstr "このプロジェクトは、2006年にTrang Hoによって開設され、Sourceforge上でプロジェクト名<em>multilangdict</em>としてホスティングされました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L73
 msgid "The video below, made in 2010, presents the core ideas of Tatoeba."
-msgstr ""
+msgstr "以下のビデオは、2010年に作成されたもので、Tatoebaプロジェクトのコンセプトを紹介しています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L48
 msgid ""
@@ -2068,14 +2068,14 @@ msgstr "<a href=\"{}\">掲示板</a>でもご意見を受け付けておりま�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L95
 msgid "Join our chatroom"
-msgstr ""
+msgstr "チャットルーム"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/contact.ctp#L100
 msgid ""
 "We have an <strong>XMPP room</strong>: <a "
 "href=\"{room}\">tatoeba@chat.tatoeba.org</a>.  You can join with your "
 "favorite XMPP client or <a href=\"{webclient}\">from your browser</a>."
-msgstr ""
+msgstr "Tatoebaには<strong>XMPPルーム</strong>: <a href=\"{room}\">tatoeba@chat.tatoeba.org</a>があります。お使いのXMPPクライアントまたは<a href=\"{webclient}\">ブラウザ</a>から参加できます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L28
 msgid "Donate"
@@ -2141,7 +2141,7 @@ msgstr "ダウンロード"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L33
 msgid "Note"
-msgstr ""
+msgstr "留意点"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L37
 msgid ""
@@ -2186,7 +2186,7 @@ msgstr "Tatoebaの例文の一部は CC0 1.0. に基づき利用できるもの�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L95
 msgid "Licenses covering audio"
-msgstr "音声保護のライセンスについて"
+msgstr "音声のライセンスについて"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L98
 msgid ""
@@ -2283,7 +2283,7 @@ msgstr "リスト名"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L142
 msgid "Editable by"
-msgstr ""
+msgstr "編集可能なユーザー"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L143
 msgid "Meaning id"
@@ -2420,7 +2420,7 @@ msgstr "Tatoebaについて分からないことがあれば、まず<a href=\"{
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to <a "
 "href=\"{}\">contact us</a>."
-msgstr ""
+msgstr "問題が解決しない場合やその他のご質問がある場合は、お気軽に<a href=\"{}\">こちら</a>にご連絡ください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L61
 msgid "Getting started"
@@ -2455,19 +2455,19 @@ msgstr "新しい文を追加する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L130
 msgid "There are two ways to add new sentences."
-msgstr "オリジナルの文を追加する場所は2つあります。"
+msgstr "オリジナルの例文は次の２つのページから追加できます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L136
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr "各ページの上部にある<a href=\"{}\">活動する</a>メニューから<strong>例文を追加する</strong>を選択してください。"
+msgstr "各ページの上部にあるメニューの「活動する」ー「<a href=\"{}\">例文を追加する</a>」のページ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L152
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr "<a href=\"{}\">リスト</a>の「編集」のページです。"
+msgstr "<a href=\"{}\">リスト</a>の「編集」のページ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L169
 msgid ""
@@ -2582,7 +2582,7 @@ msgstr "最近のコメント"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L75
 msgid "Want to help?"
-msgstr ""
+msgstr "Want to help?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L80
 msgid ""
@@ -2592,21 +2592,21 @@ msgstr "Tatoebaではさまざまな言語の例文を集めて、さまざま�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 msgid "Join the community"
-msgstr ""
+msgstr "コミュニティーに参加する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
-msgstr ""
+msgstr "ページは一時的に無効になっています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L47
 msgid ""
 "This page is currently disabled due to technical issues: it may be slowing "
 "down the website or is dysfunctional."
-msgstr ""
+msgstr "このページは現在利用できません：Webサイトに技術的な問題が発生しているか、または機能が停止しています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L52
 msgid "We are sorry for the inconvenience."
-msgstr ""
+msgstr "ご不便をおかけして申し訳ありません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L6
 msgid ""
@@ -2644,7 +2644,7 @@ msgstr "無題"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L169
 msgid "Permanently delete"
-msgstr ""
+msgstr "完全に削除"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L395
@@ -2683,7 +2683,7 @@ msgstr "次のメッセージを送信できるようになるまで、しばら
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                new users can send only 5 messages per day."
-msgstr "To help keep Tatoeba free of spam and other malicious messages\nnew users can send only 5 messages per day."
+msgstr "Tatoebaをスパム等から守るために、新しいユーザーが送れるプライベートメッセージは一日5件に制限されています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L75
 msgid "You have sent one message today."
@@ -2692,15 +2692,15 @@ msgstr[0] "本日送信したメッセージは{n}件です。 "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L30
 msgid "Sentences marked as \"OK\""
-msgstr ""
+msgstr "\"OK\" のマークあり"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L31
 msgid "Sentences marked as \"unsure\""
-msgstr "\"Unsure\" とマークされた例文"
+msgstr "\"Unsure\" のマークあり"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L32
 msgid "Sentences marked as \"not OK\""
-msgstr ""
+msgstr "\"not OK\" のマークあり"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L56
@@ -2709,11 +2709,11 @@ msgstr "すべての例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L34
 msgid "Outdated reviews"
-msgstr ""
+msgstr "Outdated reviews"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L46
 msgid "{user}'s reviews - {category}"
-msgstr "{user} がレビュー中の例文 -  {category}"
+msgstr "{user} さんがレビュー中の例文 -  {category}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L60
 msgid "This feature is currently deactivated."
@@ -2723,7 +2723,7 @@ msgstr "この機能は現在無効になっています。"
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr ""
+msgstr "この機能を利用するには、ユーザー設定の「例文をレビューするための機能を有効にする」にチェックを入れてください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L72
 msgid "Filter"
@@ -2762,7 +2762,7 @@ msgstr "例文番号"
 msgid ""
 "Click the top sentence to go to tatoeba.org to translate it or leave a "
 "comment."
-msgstr ""
+msgstr "上の例文をクリックしてTatoeba.orgにアクセスし、翻訳するかコメントを残してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L174
@@ -2877,7 +2877,7 @@ msgstr "{user} は例文を所有していません。"
 msgid ""
 "An error occurred while fetching the random sentence. If this persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "ランダム表示のデータ取得中にエラーが発生しました。しばらく時間をおいてから再度お試しください。それでも解決しない場合は、<a href=\"{}\">こちら</a>にご連絡ください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L32
 msgid "Sentences with: {keywords}"
@@ -2898,7 +2898,7 @@ msgstr "{language}の例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L49
 msgid "Sentences not translated into {language}"
-msgstr ""
+msgstr "{language} に翻訳されていない例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L52
 msgid "Sentences translated into {language}"
@@ -2915,7 +2915,7 @@ msgstr "検索オプション"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L105
 msgid "Search error"
-msgstr ""
+msgstr "検索エラー"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L96
 msgid ""
@@ -2927,7 +2927,7 @@ msgstr "クエリーが無効です。 詳細については<a href=\"{}\">テ�
 msgid ""
 "An error occurred while performing the search. If the problem persists, "
 "please <a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "検索実行中にエラーが発生しました。しばらく時間をおいてから再度お試しください。それでも解決しない場合は、<a href=\"{}\">こちら</a>にご連絡ください。"
 
 #. @translators: title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L125
@@ -2937,23 +2937,23 @@ msgstr "検索結果： {keywords}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L2
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L7
 msgid "Search disabled"
-msgstr ""
+msgstr "検索が無効です。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search_disabled.ctp#L10
 msgid ""
 "Due to technical reasons, the search feature is currently disabled. We are "
 "sorry for the inconvenience. Please try again later."
-msgstr ""
+msgstr "検索機のは現在利用できません。ご不便をおかけして申し訳ありません。しばらく時間をおいてから再度お試しください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L37
 msgid "{sentence} - {language} example sentence"
-msgstr ""
+msgstr "{sentence} - {language} の例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L45
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
-msgstr ""
+msgstr "翻訳された例文を表示します。このページには、翻訳と例文に関する情報が表示されます： {sentenceText}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L56
 msgid "Sentence does not exist: "
@@ -2961,11 +2961,11 @@ msgstr "例文が存在しません： "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L75
 msgid "Reviewed by"
-msgstr ""
+msgstr "レビューア"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L94
 msgid "(outdated)"
-msgstr ""
+msgstr "(outdated)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L164
 msgid "There is no log for this sentence"
@@ -2977,18 +2977,18 @@ msgstr "コメントはありません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L260
 msgid "Random Sentence"
-msgstr ""
+msgstr "ランダム表示"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L262
 msgid ""
 "The random sentence feature is currently disabled, please try again later."
-msgstr ""
+msgstr "ランダム表示は現在利用できません。しばらく時間をおいてから再度お試しください"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L264
 msgid ""
 "An error occurred while fetching random sentences. If this persists, please "
 "<a href=\"{}\">let us know</a>."
-msgstr ""
+msgstr "ランダム表示のデータ取得中にエラーが発生しました。しばらく時間をおいてから再度お試しください。それでも解決しない場合は、<a href=\"{}\">こちら</a>にご連絡ください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L62
 msgid "Only the last {n} sentences are displayed here."
@@ -3034,7 +3034,7 @@ msgstr "ダウンロードの準備をしています。しばらくお待ちく
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L140
 msgid "Failed to prepare download, please try again."
-msgstr ""
+msgstr "ダウンロードに失敗しました。もう一度やり直してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L150
 msgid "Fields will be written out in the following sequence:"
@@ -3112,11 +3112,11 @@ msgstr "オプション"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L130
 msgid "Edit name"
-msgstr ""
+msgstr "タイトルを編集"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L143
 msgid "Click to edit..."
-msgstr ""
+msgstr "編集するにはクリックしてください..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L155
 msgid "date added to list"
@@ -3124,24 +3124,24 @@ msgstr "リストに追加した日時"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L31
 msgid "Admins"
-msgstr ""
+msgstr "管理人"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L32
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "コーパス整備員"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L33
 msgid "Advanced contributors"
-msgstr ""
+msgstr "上級ユーザー"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L34
 msgid "Contributors"
-msgstr ""
+msgstr "一般ユーザー"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L34
 msgid "Legend"
-msgstr ""
+msgstr "マークの説明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/users_languages.ctp#L73
@@ -3172,7 +3172,7 @@ msgstr[0] "{tagName} ({n}の例文)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L64
 msgid "date of tag"
-msgstr ""
+msgstr "追加日時"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L28
 msgid "All existing tags"
@@ -3184,7 +3184,7 @@ msgstr "タグの検索"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L73
 msgid "All tags (total {{count}})"
-msgstr "全てのタグ（{{count}}件）"
+msgstr "すべてのタグ（{{count}}件）"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L77
 msgid "Tags containing: {search} (total {{count}})"
@@ -3201,30 +3201,30 @@ msgstr "タグ名"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L58
 msgid "Chinese traditional/simplified conversion"
-msgstr ""
+msgstr "中国語の繁体字と簡体字の相互変換"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L36
 msgid "Source code"
-msgstr ""
+msgstr "ソースコード"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L83
 msgid "Enter either traditional or simplified Chinese"
-msgstr ""
+msgstr "中国語の繁体字または簡体字で入力してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/conversion_simplified_traditional_chinese.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L106
 msgid "Convert"
-msgstr ""
+msgstr "変換する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L50
 msgid "Autogenerate furigana over Japanese"
-msgstr ""
+msgstr "日本語のフリガナ自動生成"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/furigana.ctp#L82
 msgid "Autogenerate furigana"
-msgstr ""
+msgstr "フリガナを自動生成する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L28
 msgid "Useful tools"
@@ -3236,11 +3236,11 @@ msgstr "ツール"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L38
 msgid "Furigana autogeneration"
-msgstr ""
+msgstr "フリガナの自動生成"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L45
 msgid "autogenerate furigana over Japanese."
-msgstr ""
+msgstr "日本語にフリガナを自動生成します。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/index.ctp#L51
 msgid "Chinese simplified/traditional conversion"
@@ -3263,7 +3263,7 @@ msgstr "上海語を発音記号に変換します。"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L67
 msgid "Convert Shanghainese into IPA"
-msgstr "Convert Shanghainese into IPA"
+msgstr "上海語をIPAに変換"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
@@ -3275,19 +3275,19 @@ msgid ""
 "with much more complete data files. If you're interested in his work, you "
 "can check his project page <a href='{1}'>here</a>. Without him, the "
 "Shanghainese sentences wouldn't have such a complete IPA."
-msgstr ""
+msgstr "多くの完成されたデータファイルを提供してくださった <a href='{0}'>Kellen Parker</a> 氏に心より感謝申し上げます。彼の作品に興味がある方は、<a href='{1}'>こちら</a>から彼のプロジェクトページをご覧いただけます。上海語の例文をこのよな完全な IPAでご提供できるのは、ひとえに彼のご支援の賜物と深く感謝しております。※IPA：International Phonetic Alphabet"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tools/shanghainese_to_ipa.ctp#L90
 msgid "Enter a text in shanghainese dialect"
-msgstr ""
+msgstr "上海語でテキストの入力してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L21
 msgid "Transcriptions of {username}"
-msgstr ""
+msgstr "{username} さんの翻訳"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L49
 msgid "{username} does not have any transcriptions"
-msgstr ""
+msgstr "{username} さんはまだ翻訳をしていません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/view.ctp#L22
 msgid "Please fix the following error or press the Cancel button."
@@ -3359,7 +3359,7 @@ msgstr "語学レベルを編集する"
 msgid ""
 "If your language is missing, please read our article on how to <a "
 "href=\"{}\">request a new language</a>."
-msgstr "追加したい言語が見当たらない場合は、次の新しい言語のリクエスト方法に関する記事をご覧ください。<a href=\"{}\">request a new language</a>"
+msgstr "追加したい言語が見当たらない場合は、<a href=\"{}\">新しい言語をリクエストする</a>ご覧ください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L113
 msgid "What is your level?"
@@ -3379,7 +3379,7 @@ msgstr "所有している例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L79
 msgid "Audio recordings"
-msgstr "所有している音声付き例文"
+msgstr "所有している音声つき例文"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L81
 msgid "Sentences favorited"
@@ -3421,11 +3421,11 @@ msgstr "登録日"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L231
 msgid "Contributions blocked"
-msgstr ""
+msgstr "投稿はブロックされました。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L284
 msgid "No description."
-msgstr "プロフィールが公開されていません。"
+msgstr "自己紹介文はまだ記載されていません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L307
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L222
@@ -3451,7 +3451,7 @@ msgstr "メインオプション"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L63
 msgid "Send email notifications"
-msgstr ""
+msgstr "メール通知をオンにする"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L86
 msgid "Set your profile public"
@@ -3461,13 +3461,13 @@ msgstr "プロフィールを公開する"
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr ""
+msgstr "例文に割り当てた最後のリスト名をデフォルトにする"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L137
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations"
-msgstr ""
+msgstr "翻訳の数が多いときにすべてを表示しない"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L161
 msgid "Always show transcriptions and alternative scripts"
@@ -3483,7 +3483,7 @@ msgid ""
 "jpn,epo,ara,deu). Tatoeba will then only display translations in the "
 "languages you indicated. You can leave this empty to display translations in"
 " all languages."
-msgstr "表示する言語を指定したい場合は、<a href=\"{url}\">ISO 639-3  コード</a>をカンマで区切って入力してください（例：jpn,epo,ara,deu）。空欄の場合は、全ての言語の翻訳が表示されます。"
+msgstr "表示する言語を指定したい場合は、<a href=\"{url}\">ISO 639-3  コード</a>をカンマで区切って入力してください（例：jpn,epo,ara,deu）。空欄の場合は、すべての言語の翻訳が表示されます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L230
 msgid "Number of sentences per page"
@@ -3498,7 +3498,7 @@ msgid ""
 "Options in this category are not fully functional, may not work for everyone"
 " and/or are in a phase of beta testing. They may change or be removed in the"
 " future."
-msgstr "このカテゴリのオプションは、現在テスト段階にあり、設定を行た全ての方に必ずしも有効的に機能するとは限りません。また、これらは将来、変更または削除される可能性があるのでご注意ください。"
+msgstr "このカテゴリのオプションは、現在テスト段階にあり、設定を行ったすべてのユーザーに必ずしも有効的に機能するとは限りません。また、これらは将来、変更または削除される可能性があるのでご注意ください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L262
 msgid "Activate the feature to review sentences"
@@ -3510,7 +3510,7 @@ msgid ""
 "native level in the language of the sentence. In the old design \"(native)\""
 " is displayed next to the username. In the new design a {star} is displayed "
 "next to the sentence."
-msgstr "ネイティブマークを表示する\nこのオプションを有効にすると、例文の所有者がプロフィールでネイティブレベルのスキルを持っていると自己申請している言語に対し、マークが表示されます。古いデザインでは、ユーザー名の横に（ネイティブ）、新しいデザインでは {star} マークが表示されます。"
+msgstr "ネイティブマークを表示する\n　※このオプションを有効にすると、例文の所有者がプロフィールでネイティブレベルのスキルを持っていると自己申請している言語に対し、マークが表示されます。古いデザインでは、ユーザー名の横に（ネイティブ）、新しいデザインでは {star} マークが表示されます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L312
 msgid "Display button to copy a sentence to the clipboard"
@@ -3565,11 +3565,11 @@ msgstr "ステータス"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Can switch license"
-msgstr ""
+msgstr "ライセンスの変更ができます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
-msgstr ""
+msgstr "メンバー： {lang}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L51
 msgid "Back to global stats"
@@ -3667,7 +3667,7 @@ msgstr "学習中の単語を追加してください。Tatoebaにその単語�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L90
 msgid "Vocabulary item"
-msgstr "単語アイテム"
+msgstr "追加したい単語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L102
 msgid "Add"
@@ -3675,11 +3675,11 @@ msgstr "追加"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L112
 msgid "Vocabulary items added"
-msgstr "単語アイテムが追加されました。"
+msgstr "追加された単語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add.ctp#L127
 msgid "You have already added this vocabulary item."
-msgstr "この単語アイテムは既に登録されています。"
+msgstr "この単語は既に登録されています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L31
 msgid "Vocabulary that needs sentences"
@@ -3700,7 +3700,7 @@ msgstr "送信"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/of.ctp#L33
 msgid "{username}'s vocabulary items ({number})"
-msgstr "{username} さんの単語アイテム ({number} 件)"
+msgstr "{username} さんの単語集 ({number} 件)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/edit.ctp#L28
 msgid "Edit message {number}"
@@ -3719,12 +3719,12 @@ msgstr "質問をする際は、必ずあらかじめ<a href=\"{}\">よくある
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
-msgstr "なお、Tatoebaは文明的な討論を行うために健全な雰囲気を維持することを目指しています。以下の悪質な行為に対するルールも併せてお読みください。\n<a href=\"{}\">rules against bad behavior</a>."
+msgstr "なお、Tatoebaは文明的な討論を行うために健全な雰囲気を維持することを目指しています。<a href=\"{}\">悪質な行為に対するルール</a>も併せてお読みください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L84
 msgid ""
 "You may write in any language you want. On Tatoeba, all languages are equal."
-msgstr "任意の言語で書いて大丈夫です。Tatoebaでは、全ての言語が同等です。"
+msgstr "任意の言語で書いて大丈夫です。Tatoebaでは、すべての言語が同等です。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
@@ -3892,15 +3892,15 @@ msgstr "{language}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L181
 msgid "Profile languages"
-msgstr ""
+msgstr "Profile languages"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L103
 msgid "Last used languages"
-msgstr ""
+msgstr "最近使用した言語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L107
 msgid "Other languages"
-msgstr ""
+msgstr "Other languages"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L174
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L294
@@ -4112,7 +4112,7 @@ msgstr "追加：{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by an unknown member"
-msgstr "追加：不明なユーザー"
+msgstr "追加：ユーザー不明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by {user}"
@@ -4120,7 +4120,7 @@ msgstr "リンク：{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by an unknown member"
-msgstr "リンク：不明なユーザー"
+msgstr "リンク：ユーザー不明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by {user}"
@@ -4128,7 +4128,7 @@ msgstr "ライセンス適用： {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by a unknown member"
-msgstr "ライセンス適用：不明なユーザー"
+msgstr "ライセンス適用：ユーザー不明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by {user}"
@@ -4136,7 +4136,7 @@ msgstr "編集：{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by an unknown member"
-msgstr "編集：不明なユーザー"
+msgstr "編集：ユーザー不明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
@@ -4144,7 +4144,7 @@ msgstr "ライセンス変更：{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by an unknown member"
-msgstr "ライセンス変更：不明なユーザー"
+msgstr "ライセンス変更：ユーザー不明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
@@ -4152,7 +4152,7 @@ msgstr "削除：{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by an unknown member"
-msgstr "削除：不明なユーザー"
+msgstr "削除：ユーザー不明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by {user}"
@@ -4160,7 +4160,7 @@ msgstr "リンク解除：{user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by an unknown member"
-msgstr "リンク解除：不明なユーザー"
+msgstr "リンク解除：ユーザー不明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
@@ -4235,7 +4235,7 @@ msgstr "リストに追加する"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L363
 msgid "Sentence already in all possible lists"
-msgstr ""
+msgstr "例文は既に利用可能なすべてのリストに含まれています。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L365
 msgid "Add to one of your lists"
@@ -4278,7 +4278,7 @@ msgid ""
 "Tatoeba can automatically enter the sentence ID when you have copied a "
 "sentence URL. To enable this, please allow your browser to read from the "
 "clipboard."
-msgstr ""
+msgstr "Tatoebaは、例文のURLをコピーすると例文番号を自動的に付与します。これを有効にするには、お使いのブラウザでクリップボードからの読み取りの許可を設定してください。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L199
 msgid "Notification from Tatoeba"

@@ -165,7 +165,7 @@ class SentencesListsController extends AppController
         }
 
         $this->loadModel('Sentences');
-        
+
         $contain = $this->Sentences->paginateContain();
         $contain['finder'] = ['filteredTranslations' => [
             'translationLang' => $translationsLang
@@ -195,10 +195,10 @@ class SentencesListsController extends AppController
     public function add()
     {
         $list = $this->SentencesLists->createList(
-            $this->request->getData('name'), 
+            $this->request->getData('name'),
             $this->Auth->user('id')
         );
-        
+
         if (isset($list->id)) {
             return $this->redirect(array('action' => 'show', $list['id']));
         } else {
@@ -218,7 +218,7 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         $listId = substr($this->request->getData('id'), 1);
         $listName = $this->request->getData('value');
-        
+
         if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
         } else {
@@ -247,7 +247,7 @@ class SentencesListsController extends AppController
                 $this->request->getSession()->delete('most_recent_list');
             }
         }
-        
+
         return $this->redirect(array('action' => 'index'));
     }
 
@@ -378,7 +378,7 @@ class SentencesListsController extends AppController
             $this->request->getData('value'),
             $userId
         );
-
+        
         $this->response->header('Content-Type: application/json');
         $this->set('result', json_encode($result['SentencesList']));
     }

@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Eunhee Cho <kunigundeskugel@gmail.com>, 2019
+# Eunhee Cho <kunigundeskugel@gmail.com>, 2019-2020
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-09 20:55+0800\n"
-"PO-Revision-Date: 2020-02-10 00:11+0000\n"
-"Last-Translator: gillux\n"
+"PO-Revision-Date: 2020-02-18 13:09+0000\n"
+"Last-Translator: Eunhee Cho <kunigundeskugel@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/tatoeba/tatoeba_website/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,7 +97,7 @@ msgstr "이 댓글을 편집할 권한이 없어요."
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "에러가 발생하여 이 메세지를 받으셨다면, {email}로 관리자에게 연락해주세요."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
@@ -125,7 +125,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L560
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr ""
+msgstr "\"주인이 없는 문장\", \"번역자\"가 사용자이름으로 되어있어요."
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
@@ -346,7 +346,7 @@ msgstr "이 언어를 지울 수 없어요."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L37
 msgid "Unknown number of sentences"
-msgstr ""
+msgstr "미확인 문장 수"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L31
@@ -409,7 +409,7 @@ msgstr "CC0로 전환할 문장들"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L119
 msgid "List {listName}"
-msgstr ""
+msgstr "리스트 {listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L120
 msgid "Sentence id [tab] Sentence text"
@@ -441,7 +441,7 @@ msgstr "이름이 없는 목록"
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L101
 msgid "This is not a valid license."
-msgstr ""
+msgstr "유효하지 않은 라이센스예요."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -828,7 +828,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L55
 msgid "Attribution URL:"
-msgstr ""
+msgstr "속성 URL:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L45
@@ -1174,7 +1174,7 @@ msgstr "언어를 선택하세요."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L35
 msgid "No language found."
-msgstr ""
+msgstr "찾는 언어가 없어요."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
@@ -1207,7 +1207,7 @@ msgstr "비밀번호 : "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L112
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L104
 msgid "Remember me"
-msgstr ""
+msgstr "기억하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L123
@@ -1492,12 +1492,12 @@ msgstr[0] "{number}개 번역 더 보이기"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L173
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L241
 msgid "Fewer translations"
-msgstr ""
+msgstr "적은 번역"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L475
 msgid "You cannot edit this sentence because it has audio."
-msgstr ""
+msgstr "오디오가 있는 문장이라 편집하실 수 없어요."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L19
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L13
@@ -1511,7 +1511,7 @@ msgstr "언어"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L21
 msgid "Other language"
-msgstr ""
+msgstr "다른 언어"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L139
@@ -1539,7 +1539,7 @@ msgstr "확실해요?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L32
 msgid "Edit this translation"
-msgstr ""
+msgstr "이 번역을 편집하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
@@ -1559,7 +1559,7 @@ msgstr "번역 등록하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
 msgid "Edit translation"
-msgstr ""
+msgstr "번역 편집하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_statistics.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L47
@@ -1633,7 +1633,7 @@ msgstr "내 단어장"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L96
 msgid "My reviews"
-msgstr ""
+msgstr "내 리뷰"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L664
@@ -1757,7 +1757,7 @@ msgstr "어휘"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L56
 msgid "Reviews"
-msgstr ""
+msgstr "리뷰"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L329
@@ -1960,11 +1960,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L55
 msgid "Start analysis"
-msgstr ""
+msgstr "분석 시작"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L62
 msgid "Switch license"
-msgstr ""
+msgstr "라이센스 변경하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L64
 msgid ""
@@ -1980,7 +1980,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L72
 msgid "Switch license to CC0 1.0"
-msgstr ""
+msgstr "라이센스를 CC0 1.0으로 변경하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/delete.ctp#L4
@@ -2005,7 +2005,7 @@ msgstr "링크하기"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Links/delete.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L157
 msgid "Make into direct translation."
-msgstr ""
+msgstr "직접 번역으로 변경하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/about.ctp#L42
 msgid ""
@@ -2080,7 +2080,7 @@ msgstr "기부하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L33
 msgid "Any question?"
-msgstr ""
+msgstr "질문이 있나요?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L37
 msgid ""
@@ -2096,25 +2096,25 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L60
 msgid "How to donate"
-msgstr ""
+msgstr "기부하는 방법"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L61
 msgid "You have two possible ways to make a donation:"
-msgstr ""
+msgstr "기부하는 방법은 두가지가 있어요."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L66
 msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr ""
+msgstr "<b>IBAN transfer.</b> 이 방법이 아마 가장 저렴한 기부 방법일 거예요. 타토에바의 은행은 프랑스에 위치해서 유럽국가출신이시라면 수수료가 없을 수 있어요."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L75
 msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
-msgstr ""
+msgstr "<b>PayPal.</b> IBAN으로 입금하실 수 없다면, PayPal로 기부를 하실 수 있어요. PayPal은 기부금액의 일정 부분을 수수료로 가져간다는 것을 숙지해주세요."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/donate.ctp#L85
 msgid "IBAN transfer"
@@ -2194,7 +2194,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L106
 msgid "Questions?"
-msgstr ""
+msgstr "질문이 있나요?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L110
 msgid ""
@@ -2232,7 +2232,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L131
 msgid "Review"
-msgstr ""
+msgstr "리뷰"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
@@ -2396,7 +2396,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L511
 msgid "Users' sentence reviews"
-msgstr ""
+msgstr "사용자의 문장 리뷰"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L539
 msgid ""
@@ -2444,7 +2444,7 @@ msgstr "말 나온 김에 다시, 타토에바에 환영해요! 이 프로젝트
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L107
 msgid "Important links"
-msgstr ""
+msgstr "중요한 링크"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L129
 msgid "Adding new sentences"
@@ -2655,7 +2655,7 @@ msgstr "삭제하기"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L160
 msgid "Restore"
-msgstr ""
+msgstr "복원"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L28
@@ -4013,7 +4013,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L283
 msgid "Download this list"
-msgstr ""
+msgstr "이 목록을 다운받기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L299
 msgid "Show translations :"
@@ -4053,7 +4053,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L403
 msgid "Delete this list"
-msgstr ""
+msgstr "이 목록을 지우기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L457
 msgid "Remove sentence {number} from list"
@@ -4216,7 +4216,7 @@ msgstr "취소하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L215
 msgid "Add to favorites"
-msgstr ""
+msgstr "좋아하는 문장에 추가하기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L270
 msgid "Link to another sentence"
@@ -4311,7 +4311,7 @@ msgstr "이 사용자의 프로필 보기"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L214
 msgid "all lists"
-msgstr ""
+msgstr "모든 목록"
 
 #. @translators: this formats the title at the top of every page
 #. that shows a list of sentences (search, browse by language,

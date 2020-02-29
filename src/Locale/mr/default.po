@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-09 20:55+0800\n"
-"PO-Revision-Date: 2020-02-10 00:11+0000\n"
-"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
+"PO-Revision-Date: 2020-02-20 15:02+0000\n"
+"Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/tatoeba/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1316,7 +1316,7 @@ msgstr "पाठवा"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L124
 msgid "Permalink"
-msgstr ""
+msgstr "पर्मालिंक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
@@ -1520,7 +1520,7 @@ msgstr "भाषा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L21
 msgid "Other language"
-msgstr ""
+msgstr "अन्य भाषा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L139
@@ -1548,7 +1548,7 @@ msgstr "नक्की का?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L32
 msgid "Edit this translation"
-msgstr ""
+msgstr "हे भाषांतर संपादित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L159
@@ -1568,7 +1568,7 @@ msgstr "भाषांतर सादर करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L37
 msgid "Edit translation"
-msgstr ""
+msgstr "भाषांतर संपादित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences_statistics.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L47
@@ -1696,7 +1696,7 @@ msgstr[1] "{number} समर्थित भाषा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
 msgid "stats per languages"
-msgstr ""
+msgstr "भाषांनुसार आकडेवारी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L47
 msgid "Browse"
@@ -2654,7 +2654,7 @@ msgstr "[विषय नाहीये]"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L169
 msgid "Permanently delete"
-msgstr ""
+msgstr "कायमचे हटवून टाका"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L395
@@ -3796,15 +3796,15 @@ msgstr "खालील ऑडिओ अभिलेखन हे {userName} य
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 msgid "Send message"
-msgstr ""
+msgstr "संदेश पाठवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L93
 msgid "Unhide"
-msgstr ""
+msgstr "दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L96
 msgid "Hide"
-msgstr ""
+msgstr "लपवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
@@ -3821,7 +3821,7 @@ msgstr "अज्ञात दिनांक"
 #. may want to add a preposition or an article.
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L135
 msgid "{date}"
-msgstr ""
+msgstr "{date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L140
 msgid "yesterday"
@@ -3892,7 +3892,7 @@ msgstr "डिसेंबर"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L264
 msgctxt "incomplete date"
 msgid "{month} {day}"
-msgstr ""
+msgstr "{day} {month}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DateHelper.php#L270
 msgctxt "incomplete date"

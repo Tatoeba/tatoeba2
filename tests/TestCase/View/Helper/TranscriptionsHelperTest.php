@@ -31,7 +31,7 @@ class TranscriptionsHelperTest extends TestCase {
     function setUp() {
         parent::setUp();
         $View = new View();
-    	$this->T = new TranscriptionsHelper($View);
+        $this->T = new TranscriptionsHelper($View);
     }
 
     function assertFurigana($internal, $editable, $ruby) {
@@ -70,6 +70,33 @@ class TranscriptionsHelperTest extends TestCase {
             '[行|い|]',
             '行｛い｜｝',
             '<ruby>行<rp>（</rp><rt>い</rt><rp>）</rp></ruby>'
+        );
+    }
+
+    function assertPinyin($numeric, $diacritic) {
+        $transcription = array(
+            'text' => $numeric,
+            'script' => 'Latn',
+        );
+        $expected =
+            '<span style="display:none" class="markup">'.$numeric.'</span>'.
+            $diacritic;
+        $result = $this->T->transcriptionAsHTML('cmn', $transcription);
+        $this->assertEquals($expected, $result);
+    }
+
+    function testTranscriptionAsHTML_cmn() {
+        $this->assertPinyin(
+            'Ni3hao3.',
+            'Nǐhǎo.'
+        );
+        $this->assertPinyin(
+            'Ta1 zai4 zher4!',
+            'Tā zài zhèr!'
+        );
+        $this->assertPinyin(
+            'A1er3ji2li4ya4 shi4 E2luo2si1 he2 Zhong1guo2 de5 qin1mi4 meng2you3.',
+            'Āěrjílìyà shì Éluósī hé Zhōngguó de qīnmì méngyǒu.'
         );
     }
 }

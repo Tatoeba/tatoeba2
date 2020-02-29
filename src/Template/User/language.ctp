@@ -54,7 +54,6 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             'url' => ['controller' => 'users_languages', 'action' => 'save']
         ]);
         echo $this->Form->hidden('id');
-        echo $this->Form->hidden('of_user_id', array('value' => $ofUserId));
         ?>
 
         <!-- Language -->
@@ -98,7 +97,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <div class="info">
             <?php
             $selected = '';
-            if ($userLanguage && $userLanguage->level) {
+            if ($userLanguage && !is_null($userLanguage->level)) {
                 $selected = $userLanguage->level;
             }
             $selected = htmlspecialchars(json_encode($selected), ENT_QUOTES, 'UTF-8');

@@ -28,9 +28,7 @@ class ExportsControllerTest extends IntegrationTestCase
 
         $folder = new Folder($this->testExportDir);
         $folder->delete();
-        if (!$folder->create($this->testExportDir)) {
-            die("Couldn't create test directory '{$this->testExportDir}'");
-        }
+        $folder->create($this->testExportDir);
     }
 
     public function tearDown() {
