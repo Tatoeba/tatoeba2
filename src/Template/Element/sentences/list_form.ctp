@@ -10,7 +10,7 @@ use Cake\ORM\TableRegistry;
             <input id="list-form-<?= $sentenceId ?>" ng-model="vm.listSearch"
                    ng-change="vm.searchList()" ng-enter="vm.addToNewList()" ng-escape="vm.closeList()">
         </md-input-container>
-        <md-button class="md-raised md-primary" ng-click="vm.addToNewList()"><?= __('Create') ?></md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.addToNewList()" ng-disabled="!vm.listSearch"><?= __('Create') ?></md-button>
     </div>
 
     <md-list style="height: 310px; overflow-y: scroll; border-top: 1px solid #f1f1f1">

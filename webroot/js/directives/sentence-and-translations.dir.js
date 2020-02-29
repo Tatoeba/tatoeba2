@@ -363,6 +363,10 @@
         }
 
         function addToNewList() {
+            if (!vm.listSearch) {
+                return;
+            }
+            
             vm.inProgress = true;
             var data = { 
                 name: vm.listSearch,
