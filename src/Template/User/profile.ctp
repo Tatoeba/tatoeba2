@@ -315,27 +315,21 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
          ng-init="vm.init(<?= $userLanguages ?>)">
         <h2><?= __('Languages'); ?></h2>
 
-        <?php
-        if (empty($userLanguages))
-        {
-            echo '<p>';
-            __('No language added.');
-            echo '</p>';
-
-            echo '<p>';
+        <p ng-if="vm.langs.length == 0">
+            <?= __('No language added.') ?>
+        </p>
+        <p ng-if="vm.langs.length == 0">
+            <?php
             if ($username == $currentMember) {
-                __('TIP: We encourage you to indicate the languages you know.');
+                echo __('TIP: We encourage you to indicate the languages you know.');
             } else {
-                __(
+                echo __(
                     'TIP: Encourage this user to indicate the languages '.
                     'he or she knows.'
                 );
             }
-            echo '</p>';
-        }
-        else
-        {
             ?>
+        </p>
             <md-list>
                 <?php
                     $editLangUrl = $this->Url->build([
@@ -380,7 +374,6 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     </md-list-item>
             </md-list>
             <?php
-        }
         if ($username == $currentMember) {
             ?>
             <md-button aria-label="<?= __('Add a language') ?>"
