@@ -330,50 +330,50 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
             }
             ?>
         </p>
-            <md-list>
-                <?php
-                    $editLangUrl = $this->Url->build([
-                        'controller' => 'user',
-                        'action' => 'language'
-                    ]);
-                    $deleteUrl = $this->Url->build([
-                        'controller' => 'users_languages',
-                        'action' => 'delete'
-                    ]);
-                    $confirmation = __('Are you sure?');
-                    ?>
-                    <md-list-item class="md-2-line" ng-repeat="lang in vm.langs">
-                        <language-icon lang="lang.language_code" title="lang.name"></language-icon>
-                        <div class="md-list-item-text">
-                            <h3 flex>
-                                {{lang.name}}
-                            </h3>
-                            <language-level level="lang.level"></language-level>
-                            <p>
-                                {{lang.details}}
-                            </p>
-                        </div>
-                        <?php if ($username == $currentMember) {
-                            ?>
-                            <md-button class="md-secondary md-icon-button"
-                                       aria-label="<?= __('Edit') ?>"
-                                       ng-href="<?= $editLangUrl.'/{{lang.language_code}}' ?>">
-                                <md-icon aria-label="<?= __('Edit') ?>">
-                                    edit
-                                </md-icon>
-                            </md-button>
-
-                            <md-button type="submit" class="md-secondary md-icon-button"
-                                       ng-href="<?= $deleteUrl.'/{{lang.id}}'; ?>"
-                                       onclick="return confirm('<?= $confirmation; ?>');">
-                                <md-icon aria-label="<?= __('Delete') ?>">
-                                    delete
-                                </md-icon>
-                            </md-button>
-                        <?php } ?>
-                    </md-list-item>
-            </md-list>
+        <md-list>
             <?php
+                $editLangUrl = $this->Url->build([
+                    'controller' => 'user',
+                    'action' => 'language'
+                ]);
+                $deleteUrl = $this->Url->build([
+                    'controller' => 'users_languages',
+                    'action' => 'delete'
+                ]);
+                $confirmation = __('Are you sure?');
+            ?>
+            <md-list-item class="md-2-line" ng-repeat="lang in vm.langs">
+                <language-icon lang="lang.language_code" title="lang.name"></language-icon>
+                <div class="md-list-item-text">
+                    <h3 flex>
+                        {{lang.name}}
+                    </h3>
+                    <language-level level="lang.level"></language-level>
+                    <p>
+                        {{lang.details}}
+                    </p>
+                </div>
+                <?php if ($username == $currentMember) {
+                    ?>
+                    <md-button class="md-secondary md-icon-button"
+                               aria-label="<?= __('Edit') ?>"
+                               ng-href="<?= $editLangUrl.'/{{lang.language_code}}' ?>">
+                        <md-icon aria-label="<?= __('Edit') ?>">
+                            edit
+                        </md-icon>
+                    </md-button>
+
+                    <md-button type="submit" class="md-secondary md-icon-button"
+                               ng-href="<?= $deleteUrl.'/{{lang.id}}'; ?>"
+                               onclick="return confirm('<?= $confirmation; ?>');">
+                        <md-icon aria-label="<?= __('Delete') ?>">
+                            delete
+                        </md-icon>
+                    </md-button>
+                <?php } ?>
+            </md-list-item>
+        </md-list>
+        <?php
         if ($username == $currentMember) {
             ?>
             <md-button aria-label="<?= __('Add a language') ?>"
