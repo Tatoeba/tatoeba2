@@ -142,7 +142,6 @@
             list.is_mine = '1';
             allLists.unshift(list);
             resetLists();
-            moveRecentListToTop();
         });
 
         /////////////////////////////////////////////////////////////////////////
@@ -425,7 +424,6 @@
 
         function resetLists() {
             moveRecentListToTop();
-            console.log(allLists);
             vm.lists = allLists.filter(function(item) {
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
