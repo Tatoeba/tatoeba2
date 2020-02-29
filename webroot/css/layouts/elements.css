@@ -1365,6 +1365,21 @@ div.hideLink {
     background: #f1f1f1;
 }
 
+.sentence-and-translations .list-form {
+    border-top: 1px solid #f1f1f1;
+    padding-top: 10px;
+}
+
+.sentence-and-translations .list-form md-list {
+    height: 310px;
+    overflow-y: scroll;
+    border-top: 1px solid #f1f1f1;
+}
+
+.sentence-and-translations .list-form .last-selected {
+    color: grey;
+    padding: 0 5px;
+}
 
 /*
  * --------------------------------------------------------------------

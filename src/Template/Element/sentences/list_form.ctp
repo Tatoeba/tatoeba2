@@ -3,7 +3,7 @@ use App\Model\CurrentUser;
 use Cake\ORM\TableRegistry;
 ?>
 
-<form layout="column" style="border-top: 1px solid #f1f1f1; padding-top: 10px;" ng-if="vm.visibility.list_form">
+<form layout="column" class="list-form" ng-if="vm.visibility.list_form">
     <div layout="row" layout-margin>
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
@@ -13,7 +13,7 @@ use Cake\ORM\TableRegistry;
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()" ng-disabled="!vm.listSearch"><?= __('Create') ?></md-button>
     </div>
 
-    <md-list style="height: 310px; overflow-y: scroll; border-top: 1px solid #f1f1f1">
+    <md-list>
         <md-subheader ng-if="vm.listType === 'of_user'"><?= __('Your last selected list (if any) and last updated lists') ?></md-subheader>
         <md-subheader ng-if="vm.listType === 'search'"><?= __('Search results') ?></md-subheader>
         <md-list-item class="list" ng-repeat="list in vm.lists">
@@ -22,7 +22,7 @@ use Cake\ORM\TableRegistry;
                 ng-model="list.hasSentence"
                 class="md-primary"></md-checkbox> 
             <p flex>{{list.name}}</p>
-            <em ng-if="list.isLastSelected" style="color: grey; padding: 0 5px"><?= __('(last selected)') ?></em>
+            <em class="last-selected" ng-if="list.isLastSelected"><?= __('(last selected)') ?></em>
             <md-icon ng-if="list.is_collaborative === '1'">
                 group
                 <md-tooltip><?= __('Collaborative list') ?></md-tooltip>
