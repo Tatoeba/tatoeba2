@@ -152,9 +152,6 @@ class SentencesListsTable extends Table
                     'editable_by' => 'no_one'
                 ]
             ])
-            ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
-                return $q->where(['SentencesSentencesLists.sentence_id' => $sentenceId]);
-            })
             ->select([
                 'id',
                 'name',
@@ -168,6 +165,9 @@ class SentencesListsTable extends Table
             return $results->toList();
         } else {
             $results->order(['name']);
+            $results->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
+                return $q->where(['SentencesSentencesLists.sentence_id' => $sentenceId]);
+            });
             $listsOfUser = array();
             $collaborativeLists = array();
     

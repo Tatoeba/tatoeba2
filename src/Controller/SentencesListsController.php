@@ -488,4 +488,15 @@ class SentencesListsController extends AppController
         $this->set("translationsLang", $translationsLang);
         $this->set("sentencesWithTranslation", $results);
     }
+
+    public function choices() {
+        $lists = $this->SentencesLists->getUserChoices(
+            CurrentUser::get('id'), 1, true
+        );
+
+        $this->set('lists', $lists);
+        $this->loadComponent('RequestHandler');
+        $this->set('_serialize', ['lists']);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 }

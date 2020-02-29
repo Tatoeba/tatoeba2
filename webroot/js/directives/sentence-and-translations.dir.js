@@ -66,6 +66,10 @@
                       'ng-attr-title="{{title ? title : lang}}"' +
                       'ng-src="/img/flags/{{lang}}.svg" />'
             }
+        })
+        .factory('listsDataService', listsDataService)
+        .run(function(listsDataService) {
+            listsDataService.init();
         });
 
     function sentenceAndTranslations() {
@@ -76,7 +80,7 @@
         };
     }
 
-    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout) {
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, listsDataService) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -151,9 +155,23 @@
             showFewerTranslations();
         }
 
-        function initLists(lists) {
-            allLists = lists;
-            resetLists();
+        function initLists(selectableLists, selectedLists) {
+            if (selectableLists) {
+                if (selectedLists) {
+                    allLists = selectableLists.map(function(selectableList) {
+                        var item = selectedLists.find(function(selectedList) {
+                            return selectedList.id === selectableList.id;
+                        });
+                        selectableList.hasSentence = item !== undefined;
+                        return selectableList;
+                    });   
+                } else {
+                    allLists = selectableLists;
+                }
+                resetLists();
+            } else {
+                allLists = [];
+            }
         }
 
         function expandOrCollapse() {
@@ -318,6 +336,8 @@
         }
 
         function list() {
+            initLists(listsDataService.getLists(), vm.sentence.sentences_lists);
+
             if (vm.visibility['list_form']) {
                 closeList();
             } else {
@@ -401,10 +421,36 @@
 
         function resetLists() {
             moveRecentListToTop();
+            console.log(allLists);
             vm.lists = allLists.filter(function(item) {
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
             vm.listType = 'of_user';
+        }
+    }
+    
+    function listsDataService($http) {
+        const rootUrl = get_tatoeba_root_url();
+        
+        var lists;
+
+        return {
+            init: init,
+            getLists: getLists
+        };
+
+        /////////////////////////////////////////////////////////////////////////
+
+        function init() {
+            if (!lists) {
+                $http.get(rootUrl + '/sentences_lists/choices').then(function(result) {
+                    lists = result.data.lists;
+                });
+            }
+        }
+
+        function getLists() {
+            return lists;
         }
     }
 

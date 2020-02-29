@@ -374,6 +374,7 @@ class SentencesListsTableTest extends TestCase {
         $result = Hash::combine($lists, '{n}.id', '{n}.is_collaborative', '{n}.is_mine');
         $expected = [
             1 => [
+                '1' => 0,
                 '2' => 0,
                 '3' => 0,
             ],
