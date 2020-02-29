@@ -54,7 +54,6 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             'url' => ['controller' => 'users_languages', 'action' => 'save']
         ]);
         echo $this->Form->hidden('id');
-        echo $this->Form->hidden('of_user_id', array('value' => $ofUserId));
         ?>
 
         <!-- Language -->
