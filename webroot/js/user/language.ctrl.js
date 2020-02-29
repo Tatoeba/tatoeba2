@@ -51,7 +51,7 @@
         vm.addLangNextStep = addLangNextStep;
         vm.addLangCancel = addLangCancel;
         vm.langs = [];
-        vm.addLangStep = ''; // can be '', 'selection', 'level', 'details', 'error'
+        vm.addLangStep = ''; // can be '', 'selection', 'level', 'details', 'loading', 'error'
         vm.selectedLang = null;
         vm.error = '';
 
@@ -73,6 +73,7 @@
 	            details:       vm.selectedLang.details
                 };
                 var url = get_tatoeba_root_url() + '/users_languages/save';
+                vm.addLangStep = 'loading';
                 $http.post(url, req)
                      .then(
                          function(response) {

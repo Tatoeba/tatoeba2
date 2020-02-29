@@ -463,6 +463,9 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     ?>
                 </div>
 
+                <!-- Spinner -->
+                <md-progress-circular ng-if="vm.addLangStep == 'loading'" md-mode="indeterminate" class="block-loader"></md-progress-circular>
+
                 <!-- Error message -->
                 <div ng-if="vm.addLangStep == 'error'">
                     <p>{{vm.error}}</p>
@@ -472,7 +475,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                 </div>
 
                 <!-- Form buttons -->
-                <div ng-if="vm.addLangStep != 'error'" layout="row">
+                <div ng-if="vm.addLangStep != 'error' && vm.addLangStep != 'loading'" layout="row">
                     <md-button class="md-raised" ng-click="vm.addLangCancel()">
                         <?= __('Cancel') ?>
                     </md-button>
