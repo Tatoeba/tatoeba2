@@ -66,10 +66,6 @@
                       'ng-attr-title="{{title ? title : lang}}"' +
                       'ng-src="/img/flags/{{lang}}.svg" />'
             }
-        })
-        .factory('listsDataService', listsDataService)
-        .run(function(listsDataService) {
-            listsDataService.init();
         });
 
     function sentenceAndTranslations() {
@@ -80,7 +76,7 @@
         };
     }
 
-    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, listsDataService) {
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -91,6 +87,7 @@
         var allLists = [];
         var lastSelectedList = null;
         var timeout;
+        var listsDataService;
 
         vm.inProgress = false;
         vm.isExpanded = false;
@@ -154,7 +151,12 @@
             showFewerTranslations();
         }
 
-        function initLists(selectableLists, selectedLists) {
+        function initLists(selectedLists) {
+            if (!listsDataService) {
+                listsDataService = $injector.get('listsDataService');
+            }
+            var selectableLists = listsDataService.getLists();
+
             if (selectableLists) {
                 if (selectedLists) {
                     allLists = selectableLists.map(function(selectableList) {
@@ -335,7 +337,7 @@
         }
 
         function list() {
-            initLists(listsDataService.getLists(), vm.sentence.sentences_lists);
+            initLists(vm.sentence.sentences_lists);
 
             if (vm.visibility['list_form']) {
                 closeList();
@@ -428,31 +430,6 @@
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
             vm.listType = 'of_user';
-        }
-    }
-    
-    function listsDataService($http) {
-        const rootUrl = get_tatoeba_root_url();
-        
-        var lists;
-
-        return {
-            init: init,
-            getLists: getLists
-        };
-
-        /////////////////////////////////////////////////////////////////////////
-
-        function init() {
-            if (!lists) {
-                $http.get(rootUrl + '/sentences_lists/choices').then(function(result) {
-                    lists = result.data.lists;
-                });
-            }
-        }
-
-        function getLists() {
-            return lists;
         }
     }
 
