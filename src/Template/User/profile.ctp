@@ -463,8 +463,16 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     ?>
                 </div>
 
+                <!-- Error message -->
+                <div ng-if="vm.addLangStep == 'error'">
+                    <p>{{vm.error}}</p>
+                    <md-button ng-click="vm.addLangNextStep()" class="md-raised">
+                        <?= __('OK') ?>
+                    </md-button>
+                </div>
+
                 <!-- Form buttons -->
-                <div layout="row">
+                <div ng-if="vm.addLangStep != 'error'" layout="row">
                     <md-button class="md-raised" ng-click="vm.addLangCancel()">
                         <?= __('Cancel') ?>
                     </md-button>

@@ -20,7 +20,7 @@
 
     angular
         .module('app')
-        .controller('LanguageController', ['$scope', LanguageController])
+        .controller('LanguageController', ['$scope', '$http', LanguageController])
         .directive('languageLevel', function() {
             return {
                 restrict: 'E',
@@ -44,15 +44,16 @@
             }
         });
 
-    function LanguageController($scope) {
+    function LanguageController($scope, $http) {
         var vm = this;
 
         vm.init = init;
         vm.addLangNextStep = addLangNextStep;
         vm.addLangCancel = addLangCancel;
         vm.langs = [];
-        vm.addLangStep = ''; // can be '', 'selection', 'level' or 'details'
+        vm.addLangStep = ''; // can be '', 'selection', 'level', 'details', 'error'
         vm.selectedLang = null;
+        vm.error = '';
 
         function addLangNextStep() {
             switch (vm.addLangStep) {
@@ -66,7 +67,26 @@
                 vm.addLangStep = 'details';
                 break;
             case 'details':
-                vm.addLangStep = '';
+                var req = {
+	            language_code: vm.selectedLang.code,
+	            level:         vm.selectedLang.level,
+	            details:       vm.selectedLang.details
+                };
+                var url = get_tatoeba_root_url() + '/users_languages/save';
+                $http.post(url, req)
+                     .then(
+                         function(response) {
+                             vm.langs = response.data.languages;
+                             vm.addLangStep = '';
+                         },
+                         function(response) {
+                             vm.error = response.data.message;
+                             vm.addLangStep = 'error';
+                         }
+                     );
+                break;
+            case 'error':
+                vm.addLangCancel();
                 break;
             }
         }
@@ -86,6 +106,7 @@
         function addLangCancel() {
             vm.addLangStep = '';
             vm.selectedLang = null;
+            vm.error = '';
         }
     }
 })();
