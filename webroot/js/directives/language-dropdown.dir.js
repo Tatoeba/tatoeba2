@@ -103,14 +103,17 @@
                 }
 
                 function setLang(lang) {
-                    vm.selectedItem = languages.find(function (item) {
+                    var newLang = languages.find(function (item) {
                         return item.code === lang;
                     });
-                    $scope.$emit('languageChange', {
-                        langName: vm.selectedItem.name,
-                        dropdownName: dropdownName,
-                        lang: lang
-                    });
+                    if (newLang) {
+                        vm.selectedItem = newLang;
+                        $scope.$emit('languageChange', {
+                            langName: newLang.name ,
+                            dropdownName: dropdownName,
+                            lang: lang
+                        });
+                    }
                 }
 
                 function onSearchTextChange() {
