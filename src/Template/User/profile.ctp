@@ -475,7 +475,8 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     </md-button>
 
                     <md-button type="submit" ng-disabled="!vm.selectedLang" ng-click="vm.addLangNextStep()" class="md-raised md-primary">
-                        <?= __('Confirm') ?>
+                        <span ng-if="vm.addLangStep != 'details'"><?= __('Next') ?></span>
+                        <span ng-if="vm.addLangStep == 'details'"><?= __('Add this language') ?></span>
                     </md-button>
                 </div>
             </div>
