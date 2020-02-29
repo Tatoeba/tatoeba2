@@ -49,11 +49,9 @@
 
         vm.init = init;
         vm.addLangNextStep = addLangNextStep;
-        vm.addLangCancel = addLangCancel;
+        vm.resetForm = resetForm;
         vm.langs = [];
-        vm.addLangStep = ''; // can be '', 'selection', 'level', 'details', 'loading', 'error'
-        vm.selectedLang = null;
-        vm.error = '';
+        resetForm();
 
         function addLangNextStep() {
             switch (vm.addLangStep) {
@@ -87,7 +85,7 @@
                      );
                 break;
             case 'error':
-                vm.addLangCancel();
+                vm.resetForm();
                 break;
             }
         }
@@ -104,8 +102,8 @@
             vm.langs = userLangs;
         }
 
-        function addLangCancel() {
-            vm.addLangStep = '';
+        function resetForm() {
+            vm.addLangStep = ''; // can be '', 'selection', 'level', 'details', 'loading', 'error'
             vm.selectedLang = null;
             vm.error = '';
         }

@@ -476,7 +476,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
 
                 <!-- Form buttons -->
                 <div ng-if="vm.addLangStep != 'error' && vm.addLangStep != 'loading'" layout="row">
-                    <md-button class="md-raised" ng-click="vm.addLangCancel()">
+                    <md-button class="md-raised" ng-click="vm.resetForm()">
                         <?= __('Cancel') ?>
                     </md-button>
 
