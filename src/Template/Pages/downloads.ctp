@@ -146,6 +146,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
         $license_str = __('License');
         $attribution_url_str = __('Attribution URL');
         $tab_str = __('tab');
+        $per_language_str = __('Per-language files are available at <a ' .
+            'href="https://downloads.tatoeba.org/exports/per_language/">' .
+            'https://downloads.tatoeba.org/exports/per_language</a>.');
     ?>
     <div>
         <h1><?php echo $downloads_str; ?></h1>
@@ -203,6 +206,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             ?>
             </dd>
         </dl>
+        <?= $per_language_str; ?>
         </div>
 
         <!-- Sentences -->
@@ -231,6 +235,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences'
             <?= __('Contains all the sentences available under CC0.') ?>
             </dd>
         </dl>
+        <?= $per_language_str; ?>
         </div>
 
         <!-- Links -->
