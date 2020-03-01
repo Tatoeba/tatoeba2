@@ -884,7 +884,8 @@ class SentencesHelper extends AppHelper
             'correctness' => $sentence->correctness,
             'isFavorite' => CurrentUser::hasFavorited($sentence->id),
             'isOwnedByCurrentUser' => $sentence->user && $sentence->user->username === CurrentUser::get('username'),
-            'user' => $sentence->user
+            'user' => $sentence->user,
+            'sentences_lists' => $sentence->sentences_lists
         ];
     }
 }

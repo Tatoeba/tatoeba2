@@ -68,7 +68,8 @@ class SentencesListsController extends AppController
         $noCsrfActions = [
             'set_option',
             'save_name',
-            'add_new_sentence_to_list'
+            'add_new_sentence_to_list',
+            'add_sentence_to_new_list'
         ];
         if (in_array($params['action'], $noCsrfActions)) {
             $this->components()->unload('Csrf');
@@ -86,7 +87,8 @@ class SentencesListsController extends AppController
         $this->Security->config('unlockedActions', [
             'set_option',
             'save_name',
-            'add_new_sentence_to_list'
+            'add_new_sentence_to_list',
+            'add_sentence_to_new_list'
         ]);
 
         return parent::beforeFilter($event);
@@ -365,6 +367,27 @@ class SentencesListsController extends AppController
         $this->set('sentence', $result);
     }
 
+    public function add_sentence_to_new_list() {
+        $userId = $this->Auth->user('id');
+        $listName = $this->request->getData('name');
+        $sentenceId = $this->request->getData('sentenceId');
+        $list = $this->SentencesLists->createList($listName, $userId);
+
+        $result = 'error';
+        if ($list) {
+            if ($this->SentencesLists->addSentenceToList($sentenceId, $list->id, $userId)) {
+                $list->hasSentence = true;
+                $result = $list;
+                $this->Cookie->write('most_recent_list', $list->id, false, '+1 month');
+            }
+        }
+
+        $this->set('result', $result);
+        $this->loadComponent('RequestHandler');
+        $this->set('_serialize', ['result']);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
+
     /**
      *
      * @return void
@@ -464,5 +487,16 @@ class SentencesListsController extends AppController
         $this->set("fieldsList", $fieldsList);
         $this->set("translationsLang", $translationsLang);
         $this->set("sentencesWithTranslation", $results);
+    }
+
+    public function choices() {
+        $lists = $this->SentencesLists->getUserChoices(
+            CurrentUser::get('id'), 1, true
+        );
+
+        $this->set('lists', $lists);
+        $this->loadComponent('RequestHandler');
+        $this->set('_serialize', ['lists']);
+        $this->RequestHandler->renderAs($this, 'json');
     }
 }

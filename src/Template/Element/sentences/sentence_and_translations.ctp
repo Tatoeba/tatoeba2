@@ -2,7 +2,10 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom'));
+$this->AssetCompress->script('sentence-component.js', ['block' => 'scriptBottom']);
+if (CurrentUser::isMember()) {
+    $this->Html->script('/js/services/list-data.srv.js', array('block' => 'scriptBottom'));
+}
 
 if (!isset($menuExpanded)) {
     $menuExpanded = false;
@@ -85,7 +88,7 @@ $sentenceUrl = $this->Url->build([
         </div>
 
         <div class="sentence <?= $notReliable ? 'not-reliable' : '' ?>"
-             layout="row" layout-align="start center" ng-if="!vm.isSentenceFormVisible">
+             layout="row" layout-align="start center" ng-if="!vm.visibility.sentence_form">
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.langName"></language-icon>
             </div>
@@ -117,12 +120,15 @@ $sentenceUrl = $this->Url->build([
         </div>
     </div>
 
-    <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
     <?php
     if (CurrentUser::isMember()) {
         echo $this->element('sentences/translation_form', [
             'sentenceId' => $sentence->id,
             'langs' => $langs
+        ]);
+
+        echo $this->element('sentences/list_form', [
+            'sentenceId' => $sentence->id
         ]);
     }
 
@@ -133,7 +139,9 @@ $sentenceUrl = $this->Url->build([
     }
     ?>
 
-    <div layout="column" class="direct translations" ng-if="!vm.isTranslationFormVisible && vm.directTranslations.length > 0">
+    <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
+
+    <div layout="column" class="direct translations" ng-if="vm.visibility.translations && vm.directTranslations.length > 0">
         <md-divider></md-divider>
         <md-subheader><?= __('Translations') ?></md-subheader>
 
@@ -144,7 +152,7 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="!vm.isTranslationFormVisible && vm.indirectTranslations.length > 0"
+    <div layout="column" <?= $showExtra ?> class="indirect translations" ng-if="vm.visibility.translations && vm.indirectTranslations.length > 0"
             ng-init="vm.initIndirectTranslations(<?= $this->Sentences->translationsForAngular($indirectTranslations) ?>)">
         <md-subheader><?= __('Translations of translations') ?></md-subheader>
 
@@ -157,7 +165,7 @@ $sentenceUrl = $this->Url->build([
 
 
     <?php if ($numExtra > 1) { ?>
-        <div layout="column" ng-if="!vm.isTranslationFormVisible">
+        <div layout="column" ng-if="vm.visibility.translations">
             <md-button ng-click="vm.expandOrCollapse()">
                 <md-icon>{{vm.expandableIcon}}</md-icon>
                 <span ng-if="!vm.isExpanded">

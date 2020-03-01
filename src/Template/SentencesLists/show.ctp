@@ -162,27 +162,12 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
          data-list-id="<?php echo $listId; ?>">
     <?php
     $this->Pagination->display();
-    if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
-        foreach ($sentencesInList as $item) {
-            $sentence = $item->sentence;
-            $translations = $sentence->translations;
-            echo $this->element(
-                'sentences/sentence_and_translations',
-                array(
-                    'sentence' => $sentence,
-                    'translations' => $translations,
-                    'user' => $sentence->user
-                )
-            );
-        }
-    } else {
-        $this->Sentences->javascriptForAJAXSentencesGroup();
-        foreach ($sentencesInList as $item) {
-            $sentence = $item->sentence;
-            $this->Lists->displaySentence(
-                $sentence, $permissions['canRemoveSentences']
-            );
-        }
+    $this->Sentences->javascriptForAJAXSentencesGroup();
+    foreach ($sentencesInList as $item) {
+        $sentence = $item->sentence;
+        $this->Lists->displaySentence(
+            $sentence, $permissions['canRemoveSentences']
+        );
     }
     ?>
     </div>

@@ -75,8 +75,9 @@
             controllerAs: 'vm'
         };
     }
-
-    function SentenceAndTranslationsController($http, $cookies) {
+    
+    SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -84,20 +85,31 @@
         var oldSentence = null;
         var allDirectTranslations = [];
         var allIndirectTranslations = [];
+        var allLists = [];
+        var lastSelectedList = null;
+        var timeout;
+        var listsDataService;
 
         vm.inProgress = false;
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
-        vm.isTranslationFormVisible = false;
-        vm.isSentenceFormVisible = false;
         vm.expandableIcon = 'expand_more';
         vm.userLanguages = [];
         vm.sentence = null;
         vm.directTranslations = [];
         vm.indirectTranslations = [];
         vm.newTranslation = {};
+        vm.lists = [];
+        vm.listSearch = '';
+        vm.visibility = {
+            'translations': true,
+            'translate_form': false,
+            'sentence_form': false,
+            'list_form': false
+        };
 
         vm.init = init;
+        vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
@@ -110,6 +122,29 @@
         vm.editSentence = editSentence;
         vm.favorite = favorite;
         vm.adopt = adopt;
+        vm.list = list;
+        vm.closeList = closeList;
+        vm.toggleList = toggleList;
+        vm.addToNewList = addToNewList;
+        vm.searchList = searchList;
+        vm.listType = 'of_user';
+        vm.show = show;
+        vm.hide = hide;
+
+        /////////////////////////////////////////////////////////////////////////
+
+        $scope.$on('newListCreated', function(event, data, sentenceId) {
+            if (data === 'error') {
+                resetLists();
+                return;
+            }
+            var list = angular.copy(data);
+            $cookies.put('most_recent_list', list.id);
+            list.hasSentence = vm.sentence.id === parseInt(sentenceId);
+            list.is_mine = '1';
+            allLists.unshift(list);
+            resetLists();
+        });
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -119,6 +154,30 @@
             allDirectTranslations = directTranslations;
             allIndirectTranslations = indirectTranslations;
             showFewerTranslations();
+        }
+
+        function initLists(selectedLists) {
+            if (!listsDataService) {
+                listsDataService = $injector.get('listsDataService');
+            }
+            var selectableLists = listsDataService.getLists();
+
+            if (selectableLists) {
+                if (selectedLists) {
+                    allLists = selectableLists.map(function(selectableList) {
+                        var item = selectedLists.find(function(selectedList) {
+                            return selectedList.id === selectableList.id;
+                        });
+                        selectableList.hasSentence = item !== undefined;
+                        return selectableList;
+                    });   
+                } else {
+                    allLists = selectableLists;
+                }
+                resetLists();
+            } else {
+                allLists = [];
+            }
         }
 
         function expandOrCollapse() {
@@ -173,8 +232,7 @@
         }
 
         function translate(id) {
-            vm.isTranslationFormVisible = true;
-            vm.isSentenceFormVisible = false;
+            show('translation_form');
             
             if (vm.newTranslation.editable) {
                 vm.newTranslation = {};
@@ -195,7 +253,7 @@
                 vm.inProgress = true;
                 if (vm.newTranslation.editable) {
                     saveSentence(vm.newTranslation).then(function(result) {
-                        vm.isTranslationFormVisible = false;
+                        show('translations');
                         vm.inProgress = false;
                         vm.newTranslation = {};
                     });
@@ -210,7 +268,7 @@
                         result.data.parentId = sentenceId;
                         allDirectTranslations.unshift(result.data);
                         vm.newTranslation = {};
-                        vm.isTranslationFormVisible = false;
+                        show('translations');
                         vm.inProgress = false;
                         showFewerTranslations();
                     });
@@ -219,7 +277,7 @@
         }
 
         function editTranslation(translation) {
-            vm.isTranslationFormVisible = true;
+            show('translation_form');
             vm.newTranslation = translation;
             focusInput('#translation-form-' + translation.parentId);
         }
@@ -232,13 +290,12 @@
         }
 
         function edit() {
-            vm.isSentenceFormVisible = true;
-            vm.isTranslationFormVisible = false;
+            show('sentence_form');
             focusInput('#sentence-form-' + vm.sentence.id);
         }
         
         function cancelEdit() {
-            vm.isSentenceFormVisible = false;
+            hide('sentence_form');
             initSentence(oldSentence);
         }
 
@@ -246,7 +303,7 @@
             vm.inProgress = true;
 
             saveSentence(vm.sentence).then(function(result) {
-                vm.isSentenceFormVisible = false;
+                hide('sentence_form');
                 vm.inProgress = false;
                 initSentence(result.data);
             });
@@ -282,6 +339,102 @@
                 vm.sentence.user = result.data.user;
                 vm.sentence.isOwnedByCurrentUser = vm.sentence.user && vm.sentence.user.username;
             });
+        }
+
+        function list() {
+            initLists(vm.sentence.sentences_lists);
+
+            if (vm.visibility['list_form']) {
+                closeList();
+            } else {
+                show('list_form');
+                focusInput('#list-form-' + vm.sentence.id);
+                resetLists();
+            }
+        }
+
+        function closeList() {
+            vm.hide('list_form');
+            vm.listSearch = '';
+        }
+
+        function toggleList(list) {
+            vm.inProgress = true;
+            var action = list.hasSentence ? 'add_sentence_to_list' : 'remove_sentence_from_list';
+
+            $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
+                vm.inProgress = false;
+                $cookies.put('most_recent_list', list.id);
+            });
+        }
+
+        function addToNewList() {
+            if (!vm.listSearch) {
+                return;
+            }
+            
+            vm.inProgress = true;
+            var data = { 
+                name: vm.listSearch,
+                sentenceId: vm.sentence.id
+            };
+            $http.post(rootUrl + '/sentences_lists/add_sentence_to_new_list', data).then(function(result) {
+                vm.inProgress = false;
+                vm.listSearch = '';
+                $rootScope.$broadcast('newListCreated', result.data.result, vm.sentence.id);
+            });
+        }
+
+        function moveRecentListToTop() {
+            var i = allLists.findIndex(function(item) {
+                return item.id === parseInt($cookies.get('most_recent_list'));
+            });
+            if (lastSelectedList) {
+                lastSelectedList.isLastSelected = false;
+            }
+            if (i > -1) {
+                lastSelectedList = allLists[i];
+                lastSelectedList.isLastSelected = true;
+                allLists.splice(i, 1);
+                allLists.unshift(lastSelectedList);
+            }
+        }
+
+        function show(name) {
+            for (var i in vm.visibility) {
+                vm.visibility[i] = false;
+            }
+            vm.visibility[name] = true;
+        }
+
+        function hide(name) {
+            vm.visibility[name] = false;
+            vm.visibility['translations'] = true;
+        }
+
+        function searchList() {
+            if (timeout) {
+                $timeout.cancel(timeout);
+            }
+            timeout = $timeout(function() {
+                if (!vm.listSearch) {
+                    resetLists();
+                } else {
+                    vm.lists = allLists.filter(function(item) {
+                        var regexp = new RegExp(vm.listSearch, 'gi');
+                        return item.name.match(regexp);
+                    });
+                    vm.listType = 'search';
+                }
+            }, 500);
+        }
+
+        function resetLists() {
+            moveRecentListToTop();
+            vm.lists = allLists.filter(function(item) {
+                return item.is_mine === '1' || item.isLastSelected;
+            }).slice(0, 10);
+            vm.listType = 'of_user';
         }
     }
 

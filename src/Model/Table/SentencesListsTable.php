@@ -140,10 +140,10 @@ class SentencesListsTable extends Table
      *
      * @return array
      */
-    public function getUserChoices($userId, $sentenceId)
+    public function getUserChoices($userId, $sentenceId, $forNewDesign = false)
     {
-        $results = $this->find()
-            ->where([
+        $query = $this->find();
+        $query->where([
                 'OR' => [
                     'user_id' => $userId,
                     'editable_by' => 'anyone'
@@ -152,36 +152,46 @@ class SentencesListsTable extends Table
                     'editable_by' => 'no_one'
                 ]
             ])
-            ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
-                return $q->where(['SentencesSentencesLists.sentence_id' => $sentenceId]);
-            })
-            ->select(['id', 'name', 'user_id'])
-            ->order(['name']);
+            ->select([
+                'id',
+                'name',
+                'user_id',
+                'is_mine' => $query->newExpr()->eq('SentencesLists.user_id', $userId),
+                'is_collaborative' => $query->newExpr()->eq('SentencesLists.editable_by', 'anyone'),
+            ]);
 
-        $listsOfUser = array();
-        $collaborativeLists = array();
-
-        $currentUserId = CurrentUser::get('id');
-        foreach ($results as $result) {
-            $listId = $result['id'];
-            $listName = $result['name'];
-            $userId = $result['user_id'];
-
-            if (empty($listName)) {
-                $listName = __('unnamed list');
+        if ($forNewDesign) {
+            $query->order(['is_mine DESC', 'modified DESC']);
+            return $query->toList();
+        } else {
+            $results = $query->order(['name'])
+                ->notMatching('SentencesSentencesLists', function ($q) use ($sentenceId) {
+                    return $q->where(['SentencesSentencesLists.sentence_id' => $sentenceId]);
+                });
+            $listsOfUser = array();
+            $collaborativeLists = array();
+    
+            foreach ($results as $result) {
+                $listId = $result['id'];
+                $listName = $result['name'];
+                $listUserId = $result['user_id'];
+    
+                if (empty($listName)) {
+                    $listName = __('unnamed list');
+                }
+    
+                if ($listUserId == $userId) {
+                    $listsOfUser[$listId] = $listName;
+                } else {
+                    $collaborativeLists[$listId] = $listName;
+                }
             }
+    
+            $lists['OfUser'] = $listsOfUser;
+            $lists['Collaborative'] = $collaborativeLists;
 
-            if ($currentUserId == $userId) {
-                $listsOfUser[$listId] = $listName;
-            } else {
-                $collaborativeLists[$listId] = $listName;
-            }
+            return $lists;
         }
-
-        $lists['OfUser'] = $listsOfUser;
-        $lists['Collaborative'] = $collaborativeLists;
-
-        return $lists;
     }
 
 

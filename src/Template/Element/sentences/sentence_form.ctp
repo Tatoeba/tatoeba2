@@ -1,13 +1,13 @@
 <?php 
 $hasAudio = count($sentence->audios) > 0;
 ?>
-<form layout="column" layout-margin style="padding-top: 10px" ng-if="vm.isSentenceFormVisible">
+<form layout="column" layout-margin style="padding-top: 10px" ng-if="vm.visibility.sentence_form">
 <?php if ($hasAudio) { ?>
 
     <p><?= __('You cannot edit this sentence because it has audio.'); ?>
 
     <div layout="row" layout-align="end center">
-        <md-button class="md-raised" ng-click="vm.isSentenceFormVisible = false">
+        <md-button class="md-raised" ng-click="vm.cancelEdit()">
             <?= __('Close') ?>
         </md-button>
     </div>
