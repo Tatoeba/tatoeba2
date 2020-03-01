@@ -369,8 +369,9 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testGetUserChoices_sentenceNotInLists() {
-        CurrentUser::store(['id' => 7]);
-        $result = $this->SentencesList->getUserChoices(7, 1);
+        $userId = 7;
+        $sentenceId = 1;
+        $result = $this->SentencesList->getUserChoices($userId, $sentenceId);
         $expected = [
             'OfUser' => [
                 '1' => 'Interesting French sentences',
@@ -385,8 +386,9 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testGetUserChoices_sentenceInOneList() {
-        CurrentUser::store(['id' => 7]);
-        $result = $this->SentencesList->getUserChoices(7, 4);
+        $userId = 7;
+        $sentenceId = 4;
+        $result = $this->SentencesList->getUserChoices($userId, $sentenceId);
         $expected = [
             'OfUser' => [
                 '2' => 'Public list',
@@ -400,8 +402,9 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testGetUserChoices_withNewDesignAndSentenceNotInLists() {
-        CurrentUser::store(['id' => 7]);
-        $lists = $this->SentencesList->getUserChoices(7, 1, true);
+        $userId = 7;
+        $sentenceId = 1;
+        $lists = $this->SentencesList->getUserChoices($userId, $sentenceId, true);
         $result = Hash::combine($lists, '{n}.id', '{n}.is_collaborative', '{n}.is_mine');
         $expected = [
             1 => [
@@ -417,8 +420,9 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testGetUserChoices_withNewDesignAndSentenceInOneList() {
-        CurrentUser::store(['id' => 7]);
-        $lists = $this->SentencesList->getUserChoices(7, 4, true);
+        $userId = 7;
+        $sentenceId = 4;
+        $lists = $this->SentencesList->getUserChoices($userId, $sentenceId, true);
         $result = Hash::combine($lists, '{n}.id', '{n}.is_collaborative', '{n}.is_mine');
         $expected = [
             1 => [
