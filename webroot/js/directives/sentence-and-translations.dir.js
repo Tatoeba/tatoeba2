@@ -134,6 +134,10 @@
         /////////////////////////////////////////////////////////////////////////
 
         $scope.$on('newListCreated', function(event, data, sentenceId) {
+            if (data === 'error') {
+                resetLists();
+                return;
+            }
             var list = angular.copy(data);
             $cookies.put('most_recent_list', list.id);
             list.hasSentence = vm.sentence.id === parseInt(sentenceId);
