@@ -31,6 +31,7 @@ use App\Model\CurrentUser;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use Cake\Core\Configure;
+use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
@@ -728,7 +729,24 @@ class SentencesController extends AppController
                     );
                     $native = '';
                 } else {
-                    $sphinx['filter'][] = array('user_id', $natives);
+                    $maxAttrValues = 4096; // Manticore limitation
+                    if (count($natives) <= $maxAttrValues) {
+                        $sphinx['filter'][] = array('user_id', $natives);
+                    } else {
+                        $nonNatives = $this->UsersLanguages->find()
+                            ->where(function (QueryExpression $exp) use ($from) {
+                                $isNonNative = $exp->or(['level is' => null])->notEq('level', 5);
+                                return $exp->add($isNonNative)
+                                           ->eq('language_code', $from);
+                            })
+                            ->select(['of_user_id'])
+                            ->toList();
+                        $nonNatives = Hash::extract($nonNatives, '{n}.of_user_id');
+                        while (count($nonNatives)) {
+                            $excludedIds = array_splice($nonNatives, 0, $maxAttrValues);
+                            $sphinx['filter'][] = array('user_id', $excludedIds, true);
+                        }
+                    }
                 }
             }
         }
