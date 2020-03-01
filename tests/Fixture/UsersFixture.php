@@ -263,6 +263,29 @@ class UsersFixture extends TestFixture
                 'audio_license' => NULL,
                 'audio_attribution_url' => NULL,
             ],
+            [
+                'id' => '10',
+                'username' => 'FixHashesCommand',
+                'password' => '0 $2a$10$C9HUn1u98XMMV/J2DP9F.eSPrJY0UiX7Z1PsDiWoGakXsSzwpUQ/e',
+                'email' => 'admin@example.net',
+                'role' => 'contributor',
+                'since' => '2015-04-12 12:34:56',
+                'last_time_active' => null,
+                'level' => '1',
+                'send_notifications' => 0,
+                'name' => '',
+                'birthday' => NULL,
+                'description' => '',
+                'settings' => [
+                    'is_public' => false,
+                    'lang' => null,
+                ],
+                'homepage' => '',
+                'image' => '',
+                'country_id' => NULL,
+                'audio_license' => NULL,
+                'audio_attribution_url' => NULL,
+            ],
         ];
         parent::init();
     }

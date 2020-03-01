@@ -9,12 +9,14 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Collection\Collection;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use App\Shell\BatchOperationTrait;
+use App\Model\CurrentUser;
 
 class FixHashesCommand extends Command
 {
     use BatchOperationTrait;
 
     protected $log;
+    const DEFAULT_USER = 'FixHashesCommand';
 
     protected function buildOptionParser(ConsoleOptionParser $parser) {
         $parser
@@ -59,6 +61,11 @@ class FixHashesCommand extends Command
                 'help' => 'Read a list of ids from the given file. ' .
                           '("stdin" will read from standard input)',
                 'short' => 'i',
+            ])
+            ->addOption('user', [
+                'help' => 'Do all the work as given user.',
+                'short' => 'u',
+                'default' => self::DEFAULT_USER
             ]);
         return $parser;
     }
@@ -135,7 +142,7 @@ class FixHashesCommand extends Command
                 "\n",
                 array_map(function ($column) use ($table) {
                     return format(
-                        'The table "{table}" does not have a column named {column}!',
+                        'The table "{table}" does not have a column named "{column}"!',
                         ['table' => $table->getTable(), 'column' => $column]);
                     },
                     $wrongColumns
@@ -143,6 +150,16 @@ class FixHashesCommand extends Command
             );
             $io->error($message);
             $this->abort();
+        }
+
+        $username = $args->getOption('user');
+        $this->loadModel('Users');
+        $userId = $this->Users->getIdFromUsername($username);
+        if (!$userId) {
+            $io->error(format('User "{user}" does not exist!', ['user' => $username]));
+            $this->abort();
+        } else {
+            CurrentUser::store(['id' => $userId]);
         }
 
         $this->log = [];
