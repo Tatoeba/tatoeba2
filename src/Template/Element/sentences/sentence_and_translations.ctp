@@ -2,7 +2,7 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 
-$this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom'));
+$this->AssetCompress->script('sentence-component.js', ['block' => 'scriptBottom']);
 if (CurrentUser::isMember()) {
     $this->Html->script('/js/services/list-data.srv.js', array('block' => 'scriptBottom'));
 }
