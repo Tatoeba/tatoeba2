@@ -479,19 +479,6 @@ class SentencesController extends AppController
         }
     }
 
-    private function _find_sphinx_markers($query)
-    {
-        // TODO take into account escaped sequences
-        $sphinx_markers = array('"', '/', '$', '^', '-', '|', '!');
-        $result = array();
-        foreach ($sphinx_markers as $marker) {
-            if (strpos($query, $marker) !== false) {
-                $result[] = $marker;
-            }
-        }
-        return $result;
-    }
-
     /**
      * Search sentences.
      *
@@ -775,15 +762,13 @@ class SentencesController extends AppController
         ];
 
         $this->paginate = $pagination;
+        $syntax_error = false;
         try {
             $results = $this->paginate($model);
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
         } catch (Exception $e) {
-            $sphinx_markers = $this->_find_sphinx_markers($query);
-            if (!empty($sphinx_markers)) {
-                $this->set(compact('sphinx_markers'));
-            }
+            $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $query);
@@ -793,7 +778,7 @@ class SentencesController extends AppController
         $this->set('vocabulary', $vocabulary);
         $this->set('searchableLists', $searchableLists);
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
-        $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
+        $this->set(compact('real_total', 'search_disabled', 'ignored', 'results', 'syntax_error'));
         $this->set(
             'is_advanced_search',
             !is_null($this->request->getQuery('trans_to'))
