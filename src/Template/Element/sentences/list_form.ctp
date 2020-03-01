@@ -1,8 +1,3 @@
-<?php
-use App\Model\CurrentUser;
-use Cake\ORM\TableRegistry;
-?>
-
 <form layout="column" class="list-form" ng-if="vm.visibility.list_form">
     <div layout="row" layout-margin>
         <md-input-container flex>
