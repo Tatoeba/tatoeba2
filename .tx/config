@@ -25,3 +25,9 @@ source_file = src/Locale/admin.pot
 source_lang = en
 type = PO
 file_filter = src/Locale/<lang>/admin.po
+
+[tatoeba-terms-of-use.terms-of-use]
+file_filter = src/Locale/<lang>/terms-of-use.html
+source_file = src/Locale/fr/terms-of-use.html
+source_lang = fr
+type = HTML
