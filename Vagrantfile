@@ -22,6 +22,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  if !Vagrant::Util::Platform.windows?
+    config.trigger.before :halt, :suspend do |trigger|
+      trigger.info = "Unmounting NFS directory `Tatoeba' if mounted..."
+      trigger.run = {inline: "sh -c 'mountpoint -q Tatoeba && umount Tatoeba || true'"}
+    end
+    config.trigger.after :up do |trigger|
+      trigger.info = "Mounting NFS directory `Tatoeba' if configured..."
+      trigger.run = {inline: "sh -c '[ -f Tatoeba/empty ] && grep -q \"^localhost:/home/vagrant/Tatoeba[[:space:]]\\+$PWD/Tatoeba\" /etc/fstab && mount Tatoeba || true'"}
+    end
+  end
+
   if ENV['BUILD'] == '1'
     config.vm.box = "debian/stretch64"
     config.vm.provision "install", :type => "ansible" do |ansible|
