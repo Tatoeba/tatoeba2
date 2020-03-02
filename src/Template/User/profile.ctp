@@ -382,8 +382,9 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                        ng-if="vm.addLangStep === ''">
                 <?= __('Add a language') ?>
             </md-button>
-            <div ng-if="vm.addLangStep != ''" class="section md-whiteframe-1dp user-language-form">
-                <h2><?= __('Add a language'); ?></h2>
+            <div ng-if="vm.addLangStep != ''" class="user-language-form">
+                <md-divider></md-divider>
+                <h3><?= __('Add a language'); ?></h3>
                 <md-list><md-list-item ng-if="vm.addLangStep != 'selection'" class="md-2-line">
                     <language-icon lang="vm.selectedLang.code" title="vm.selectedLang.name"></language-icon>
                     <div class="md-list-item-text">
