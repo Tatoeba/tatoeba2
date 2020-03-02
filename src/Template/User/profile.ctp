@@ -315,10 +315,10 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
          ng-init="vm.init(<?= $userLanguages ?>)">
         <h2><?= __('Languages'); ?></h2>
 
-        <p ng-if="vm.langs.length == 0">
+        <p ng-if="vm.langs.length === 0">
             <?= __('No language added.') ?>
         </p>
-        <p ng-if="vm.langs.length == 0">
+        <p ng-if="vm.langs.length === 0">
             <?php
             if ($username == $currentMember) {
                 echo __('TIP: We encourage you to indicate the languages you know.');
@@ -379,7 +379,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
             <md-button aria-label="<?= __('Add a language') ?>"
                        class="md-primary md-raised"
                        ng-click="vm.addLangNextStep()"
-                       ng-if="vm.addLangStep == ''">
+                       ng-if="vm.addLangStep === ''">
                 <?= __('Add a language') ?>
             </md-button>
             <div ng-if="vm.addLangStep != ''" class="section md-whiteframe-1dp user-language-form">
@@ -397,7 +397,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     </div>
                 </md-list-item></md-list>
 
-                <div ng-if="vm.addLangStep == 'selection'">
+                <div ng-if="vm.addLangStep === 'selection'">
                     <md-list-item class="md-2-line">
                         <div class="info" layout="row" layout-align="start center">
                             <?php
@@ -429,7 +429,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                 </div>
 
                 <!-- Level -->
-                <div ng-if="vm.addLangStep == 'level'" class="info">
+                <div ng-if="vm.addLangStep === 'level'" class="info">
                     <?php
                     $radioLabels = $this->Languages->getLevelsLabels();
                     ?>
@@ -444,7 +444,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                 </div>
 
                 <!-- Details -->
-                <div ng-if="vm.addLangStep == 'details'" class="info">
+                <div ng-if="vm.addLangStep === 'details'" class="info">
                     <?php
                     echo $this->Form->label(
                         'details',
@@ -458,10 +458,10 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                 </div>
 
                 <!-- Spinner -->
-                <md-progress-circular ng-if="vm.addLangStep == 'loading'" md-mode="indeterminate" class="block-loader"></md-progress-circular>
+                <md-progress-circular ng-if="vm.addLangStep === 'loading'" md-mode="indeterminate" class="block-loader"></md-progress-circular>
 
                 <!-- Error message -->
-                <div ng-if="vm.addLangStep == 'error'">
+                <div ng-if="vm.addLangStep === 'error'">
                     <p>{{vm.error}}</p>
                     <md-button ng-click="vm.addLangNextStep()" class="md-raised">
                         <?= __('OK') ?>
@@ -475,8 +475,8 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     </md-button>
 
                     <md-button type="submit" ng-disabled="!vm.selectedLang" ng-click="vm.addLangNextStep()" class="md-raised md-primary">
-                        <span ng-if="vm.addLangStep != 'details'"><?= __('Next') ?></span>
-                        <span ng-if="vm.addLangStep == 'details'"><?= __('Add this language') ?></span>
+                        <span ng-if="vm.addLangStep !== 'details'"><?= __('Next') ?></span>
+                        <span ng-if="vm.addLangStep === 'details'"><?= __('Add this language') ?></span>
                     </md-button>
                 </div>
             </div>

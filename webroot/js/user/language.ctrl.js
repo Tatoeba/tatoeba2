@@ -31,7 +31,7 @@
                     if ($scope.level === "") {
                         $scope.level = null;
                     }
-                    if ($scope.level != null) {
+                    if ($scope.level !== null) {
                         $scope.level = parseInt($scope.level);
                     }
                 },
