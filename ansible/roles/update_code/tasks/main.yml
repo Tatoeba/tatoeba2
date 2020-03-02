@@ -59,6 +59,7 @@
   - logs
   - tmp
 
-- name: Install gettext
+- name: Install command line tools
   apt:
-    name: gettext
+    name: [ 'gettext', 'transifex-client' ]
+  when: deploy_for == 'dev'
