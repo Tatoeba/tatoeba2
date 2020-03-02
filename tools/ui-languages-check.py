@@ -16,26 +16,17 @@ class UiLanguagesCheck(Project):
     def get_ui_langs(self):
         our_path = os.path.dirname(os.path.realpath(__file__))
         core_file = our_path + '/../app/Config/core.php'
-        php_script = ('class Cache {'
-                      '    function Config() {}'
-                      '}'
-                      'class Inflector {'
-                      '    function slug() {}'
-                      '}'
-                      'class Configure {'
-                      '    function write($var, $val) {'
-                      '        if ($var == "UI.languages") {'
-                      '            print json_encode(array_map('
-                      '                function($v) {'
-                      '                    return $v[0];'
-                      '                },'
-                      '                $val'
-                      '            ));'
-                      '        }'
-                      '    }'
-                      '}'
-                      'define("APP_DIR", "");'
-                      'include "' + core_file + '";')
+        php_script = ('define("WWW_ROOT", "");'
+                      'define("ROOT", "");'
+                      'define("DS", "");'
+                      'include("src/Lib/LanguagesLib.php");'
+                      '$conf = include("config/app_local.php");'
+                      'print json_encode(array_map('
+                      '    function($v) {'
+                      '        return \App\Lib\LanguagesLib::languageTag($v[0]);'
+                      '    },'
+                      '    $conf["UI"]["languages"]'
+                      '));')
         php_cmd = "php -r '" + php_script + "'"
         proc = subprocess.Popen(php_cmd, shell=True, stdout=subprocess.PIPE)
         return parse_json(proc.stdout.read())
@@ -60,12 +51,12 @@ class UiLanguagesCheck(Project):
         all_stats = self._get_stats_for_resource()
 
         stats_iter = sorted(all_stats.iteritems(), key=lambda (k,v): int(v['completed'][:-1]))
-        print("{:3s}      [{}]".format('lang', 'is included in core.php'))
+        print("{:3s}      [{}]".format('lang', 'is included in app_local.php'))
         for tx_code, lang_stats in stats_iter:
             try:
                 our_code = lang_map[tx_code]
             except KeyError:
-                continue
+                our_code = tx_code
             available = our_code in ui_langs
             print("{:3s}: {:>4s} [{}]".format(our_code, lang_stats['completed'], 'X' if available else ' '))
 
