@@ -50,7 +50,7 @@ class UiLanguagesCheck(Project):
         }
         all_stats = self._get_stats_for_resource()
 
-        stats_iter = sorted(all_stats.iteritems(), key=lambda (k,v): int(v['completed'][:-1]))
+        stats_iter = sorted(all_stats.items(), key=lambda kv: int(kv[1]['completed'][:-1]))
         print("{:3s}      [{}]".format('lang', 'is included in app_local.php'))
         for tx_code, lang_stats in stats_iter:
             try:
