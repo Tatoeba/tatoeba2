@@ -31,6 +31,7 @@ use App\Model\CurrentUser;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use Cake\Core\Configure;
+use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
 use Cake\Utility\Hash;
 use Cake\View\ViewBuilder;
@@ -486,19 +487,6 @@ class SentencesController extends AppController
         }
     }
 
-    private function _find_sphinx_markers($query)
-    {
-        // TODO take into account escaped sequences
-        $sphinx_markers = array('"', '/', '$', '^', '-', '|', '!');
-        $result = array();
-        foreach ($sphinx_markers as $marker) {
-            if (strpos($query, $marker) !== false) {
-                $result[] = $marker;
-            }
-        }
-        return $result;
-    }
-
     /**
      * Search sentences.
      *
@@ -748,7 +736,24 @@ class SentencesController extends AppController
                     );
                     $native = '';
                 } else {
-                    $sphinx['filter'][] = array('user_id', $natives);
+                    $maxAttrValues = 4096; // Manticore limitation
+                    if (count($natives) <= $maxAttrValues) {
+                        $sphinx['filter'][] = array('user_id', $natives);
+                    } else {
+                        $nonNatives = $this->UsersLanguages->find()
+                            ->where(function (QueryExpression $exp) use ($from) {
+                                $isNonNative = $exp->or(['level is' => null])->notEq('level', 5);
+                                return $exp->add($isNonNative)
+                                           ->eq('language_code', $from);
+                            })
+                            ->select(['of_user_id'])
+                            ->toList();
+                        $nonNatives = Hash::extract($nonNatives, '{n}.of_user_id');
+                        while (count($nonNatives)) {
+                            $excludedIds = array_splice($nonNatives, 0, $maxAttrValues);
+                            $sphinx['filter'][] = array('user_id', $excludedIds, true);
+                        }
+                    }
                 }
             }
         }
@@ -782,15 +787,13 @@ class SentencesController extends AppController
         ];
 
         $this->paginate = $pagination;
+        $syntax_error = false;
         try {
             $results = $this->paginate($model);
             $real_total = $this->Sentences->getRealTotal();
             $results = $this->Sentences->addHighlightMarkers($results);
         } catch (Exception $e) {
-            $sphinx_markers = $this->_find_sphinx_markers($query);
-            if (!empty($sphinx_markers)) {
-                $this->set(compact('sphinx_markers'));
-            }
+            $syntax_error = strpos($e->getMessage(), 'syntax error,') !== FALSE;
         }
 
         $strippedQuery = preg_replace('/"|=/', '', $query);
@@ -800,7 +803,7 @@ class SentencesController extends AppController
         $this->set('vocabulary', $vocabulary);
         $this->set('searchableLists', $searchableLists);
         $this->set(compact(array_keys($this->defaultSearchCriteria)));
-        $this->set(compact('real_total', 'search_disabled', 'ignored', 'results'));
+        $this->set(compact('real_total', 'search_disabled', 'ignored', 'results', 'syntax_error'));
         $this->set(
             'is_advanced_search',
             !is_null($this->request->getQuery('trans_to'))

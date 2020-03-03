@@ -50,8 +50,9 @@
             controllerAs: 'vm'
         };
     }
-
-    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout) {
+    
+    SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -62,6 +63,7 @@
         var allLists = [];
         var lastSelectedList = null;
         var timeout;
+        var listsDataService;
 
         vm.menu = {};
         vm.inProgress = false;
@@ -111,13 +113,16 @@
         /////////////////////////////////////////////////////////////////////////
 
         $scope.$on('newListCreated', function(event, data, sentenceId) {
+            if (data === 'error') {
+                resetLists();
+                return;
+            }
             var list = angular.copy(data);
             $cookies.put('most_recent_list', list.id);
             list.hasSentence = vm.sentence.id === parseInt(sentenceId);
             list.is_mine = '1';
             allLists.unshift(list);
             resetLists();
-            moveRecentListToTop();
         });
 
         $scope.$on('randomSentenceRequested', function(event, lang) {
@@ -153,14 +158,28 @@
             vm.menu = menu;
         }
 
-        function initLists(lists) {
-            if (lists) {
-                allLists = lists;
+        function initLists(selectedLists) {
+            if (!listsDataService) {
+                listsDataService = $injector.get('listsDataService');
+            }
+            var selectableLists = listsDataService.getLists();
+
+            if (selectableLists) {
+                if (selectedLists) {
+                    allLists = selectableLists.map(function(selectableList) {
+                        var item = selectedLists.find(function(selectedList) {
+                            return selectedList.id === selectableList.id;
+                        });
+                        selectableList.hasSentence = item !== undefined;
+                        return selectableList;
+                    });   
+                } else {
+                    allLists = selectableLists;
+                }
                 resetLists();
             } else {
                 allLists = [];
             }
-            
         }
 
         function expandOrCollapse() {
@@ -328,6 +347,8 @@
         }
 
         function list() {
+            initLists(vm.sentence.sentences_lists);
+
             if (vm.visibility['list_form']) {
                 closeList();
             } else {
@@ -353,6 +374,10 @@
         }
 
         function addToNewList() {
+            if (!vm.listSearch) {
+                return;
+            }
+            
             vm.inProgress = true;
             var data = { 
                 name: vm.listSearch,

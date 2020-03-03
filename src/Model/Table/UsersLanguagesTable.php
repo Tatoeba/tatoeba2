@@ -182,7 +182,7 @@ class UsersLanguagesTable extends Table
         if ($canSave) {
             $langInfo->of_user_id = $currentUserId;
             $langInfo->by_user_id = $currentUserId;
-            $langInfo->level = isset($data['level']) && $data['level'] >= 0 ? $data['level'] : null;
+            $langInfo->level = isset($data['level']) && is_numeric($data['level']) ? $data['level'] : null;
             $langInfo->details = isset($data['details']) ? $data['details'] : null;
             
             $result = $this->save($langInfo);

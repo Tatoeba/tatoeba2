@@ -87,7 +87,7 @@ if ($ignored) {
 <?php
 if (!isset($results)) {
     ?><div class="section"><?php
-    if (isset($sphinx_markers)) {
+    if ($syntax_error) {
     ?>
         <h2><?php echo __('Search error'); ?></h2>
         <p><?php

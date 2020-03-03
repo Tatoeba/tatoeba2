@@ -29,6 +29,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\CurrentUser;
+use Cake\Event\Event;
 
 /**
  * Controller for users languages.
@@ -41,47 +42,86 @@ use App\Model\CurrentUser;
  */
 class UsersLanguagesController extends AppController
 {
-    public $uses = array('User', 'UsersLanguages');
+    public $uses = array('UsersLanguages');
     public $components = array('Flash');
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Security->config('unlockedActions', [
+            'save',
+        ]);
+
+        return parent::beforeFilter($event);
+    }
+
+    private function respondError($message)
+    {
+        $this->setResponse($this->response->withStatus(400, 'Validation error'));
+        $this->set(compact('message'));
+        $this->set('_serialize', ['message']);
+    }
 
     public function save()
     {
+        $isAngular = $this->request->accepts('application/json');
+        if ($isAngular) {
+            $this->loadComponent('RequestHandler');
+            $this->RequestHandler->renderAs($this, 'json');
+        }
+
         try {
             $savedLanguage = $this->UsersLanguages->saveUserLanguage(
                 $this->request->getData(),
                 CurrentUser::get('id')
             );
         } catch (\PDOException $e) {
-            $this->Flash->set(__('This language has already been added to your profile.'));
-            return $this->redirect(
-                array(
-                    'controller' => 'user',
-                    'action' => 'language'
-                )
-             );
+            $message = __('This language has already been added to your profile.');
+            if ($isAngular) {
+                return $this->respondError($message);
+            } else {
+                $this->Flash->set($message);
+                return $this->redirect(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'language'
+                    )
+                 );
+            }
         }
 
         if (empty($savedLanguage)) {
             $lang = $this->request->getData('lang');
             if (empty($lang) || $lang == 'und') {
-                $this->Flash->set(__('No language selected.'));
+                $message = __('No language selected.');
             } else {
-                $this->Flash->set(__('You cannot save this language.'));
+                $message = __('You cannot save this language.');
             }
-            $this->redirect(
-                array(
-                    'controller' => 'user',
-                    'action' => 'language'
-                )
-            );
+            if ($isAngular) {
+                return $this->respondError($message);
+            } else {
+                $this->Flash->set($message);
+                $this->redirect(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'language'
+                    )
+                );
+            }
         } else {
-            $this->redirect(
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    CurrentUser::get('username')
-                )
-            );
+            if ($isAngular) {
+                $languages = $this->UsersLanguages->getLanguagesByUser(CurrentUser::get('id'));
+                $this->set(compact('languages'));
+                $this->set('_serialize', ['languages']);
+                $this->RequestHandler->renderAs($this, 'json');
+            } else {
+                $this->redirect(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'profile',
+                        CurrentUser::get('username')
+                    )
+                );
+            }
         }
     }
 

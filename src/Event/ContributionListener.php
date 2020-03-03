@@ -18,7 +18,6 @@
  */
 namespace App\Event;
 
-use App\Event\AppListener;
 use Cake\Event\EventListenerInterface;
 use Cake\ORM\TableRegistry;
 

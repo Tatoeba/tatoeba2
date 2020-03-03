@@ -31,8 +31,6 @@ use Cake\Datasource\Exception\RecordNotFoundException;
 
 class PrivateMessagesTable extends Table
 {
-    public $name = 'PrivateMessage';
-
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('date', 'string');

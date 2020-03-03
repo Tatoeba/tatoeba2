@@ -23,8 +23,6 @@ use \Cake\Database\Expression\QueryExpression;
 
 class LanguagesTable extends Table
 {
-    public $name = 'Language';
-
     /**
      * Return stats for number of sentences per language.
      *

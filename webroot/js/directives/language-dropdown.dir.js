@@ -32,7 +32,7 @@
             controller: ['$scope', function($scope) {
                 var vm = this;
                 var languages = [];
-                var name = '';
+                var dropdownName = '';
 
                 vm.previousSelectedItem = languages[0];
                 vm.selectedItem = null;
@@ -48,16 +48,16 @@
                 /////////////////////////////////////////////////////////////////////////
 
                 $scope.$on('setLang', function(event, data){
-                    if (data.name && data.name === name) {
+                    if (data.dropdownName && data.dropdownName === dropdownName) {
                         setLang(data.lang);
                     }
                 });
 
                 /////////////////////////////////////////////////////////////////////////
 
-                function init(data, selectedLang, dropdownName) {
+                function init(data, selectedLang, ourDropDownName) {
                     var isPriority;
-                    name = dropdownName;
+                    dropdownName = ourDropDownName;
                     
                     Object.keys(data).forEach(function (key1) {
                         if (typeof data[key1] === 'object'){
@@ -94,15 +94,26 @@
 
                 function onSelectedItemChange(item) {
                     if (vm.selectedItem) {
-                        $scope.$parent.$broadcast('languageChange', {name: name, lang: vm.selectedItem.code});
+                        $scope.$emit('languageChange', {
+                            langName: vm.selectedItem.name,
+                            dropdownName: dropdownName,
+                            lang: vm.selectedItem.code
+                        });
                     }            
                 }
 
                 function setLang(lang) {
-                    vm.selectedItem = languages.find(function (item) {
+                    var newLang = languages.find(function (item) {
                         return item.code === lang;
                     });
-                    $scope.$parent.$broadcast('languageChange', {name: name, lang: lang});
+                    if (newLang) {
+                        vm.selectedItem = newLang;
+                        $scope.$emit('languageChange', {
+                            langName: newLang.name ,
+                            dropdownName: dropdownName,
+                            lang: lang
+                        });
+                    }
                 }
 
                 function onSearchTextChange() {

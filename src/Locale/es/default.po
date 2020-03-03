@@ -23,8 +23,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-02-09 20:55+0800\n"
-"PO-Revision-Date: 2020-02-16 12:29+0000\n"
-"Last-Translator: Ricardo Vernaut Junior <rvj1444@gmail.com>\n"
+"PO-Revision-Date: 2020-02-26 18:51+0000\n"
+"Last-Translator: a rh <arh1001@yahoo.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/tatoeba/tatoeba_website/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,27 +58,27 @@ msgstr "Surgió un error al guardar. Por favor, inténtelo de nuevo o contácten
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L75
 msgid "Tatoeba, new password"
-msgstr "Tatoeba, nueva contraseña "
+msgstr "Tatoeba, nueva contraseña"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr "Por favor espere hasta que la liste esté actualizada."
+msgstr "Por favor, espere hasta que se actualice la lista."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr "Un cambio de licencia ya está en progreso."
+msgstr "Ya hay en marcha un cambio de licencia."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L101
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr "Las oraciones nº {firstNumber} y nº {secondNumber} ahora son traducciones directas la una de la otra."
+msgstr "Las oraciones nº {primernúmero} y nº {segundonúmero} ahora son traducciones directas entre sí."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L142
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr "Las oraciones nº {firstNumber} y nº {secondNumber} ya no son traducciones directas la una de la otra."
+msgstr "Las oraciones nº {primernúmero} y nº {segundo número} ya no son traducciones directas entre sí."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L150
 msgid ""
@@ -1328,7 +1328,7 @@ msgstr "Enviar"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/message.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L124
 msgid "Permalink"
-msgstr ""
+msgstr "Enlace permanente"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/random_sentence_header.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L53
@@ -1655,7 +1655,7 @@ msgstr "Mi vocabulario"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L96
 msgid "My reviews"
-msgstr ""
+msgstr "Mis revisiones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L664
@@ -1781,7 +1781,7 @@ msgstr "Vocabulario"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L56
 msgid "Reviews"
-msgstr ""
+msgstr "Revisiones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L329
@@ -2256,7 +2256,7 @@ msgstr "Id de la oración"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L131
 msgid "Review"
-msgstr ""
+msgstr "Revisión"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L132
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L157
@@ -2420,14 +2420,14 @@ msgstr "Indica los niveles de competencia que declaran tener los miembros en un 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L511
 msgid "Users' sentence reviews"
-msgstr ""
+msgstr "Revisiones de frases del usuario"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L539
 msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "Contiene frases revisadas por usuarios. El valor de la revisión puede ser -1 (frase no correcta), 0 (indeciso o inseguro), o 1 (frase correcta). Advertencia: esta información está en fase experimental."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L33
 msgid "Need more help?"
@@ -2736,7 +2736,7 @@ msgstr "Revisiones desactualizadas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L46
 msgid "{user}'s reviews - {category}"
-msgstr ""
+msgstr "revisiones de {usuario} - {categoría}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L60
 msgid "This feature is currently deactivated."
@@ -2746,7 +2746,7 @@ msgstr "Esta funcionalidad está actualmente desactivada."
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr ""
+msgstr "Puede activarlo en su configuración: \"Activar la opción de revisar frases.\""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L72
 msgid "Filter"
@@ -3487,13 +3487,13 @@ msgstr "Establezca su perfil público"
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr ""
+msgstr "Recordar la última lista a la que añadió una frase y seleccionarla por defecto."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L137
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations"
-msgstr ""
+msgstr "Mostrar un enlace para desplegar/restringir traducciones cuando haya demasiadas traducciones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L161
 msgid "Always show transcriptions and alternative scripts"
@@ -3501,7 +3501,7 @@ msgstr "Siempre mostrar transcripciones y escrituras alternativas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L186
 msgid "Show random sentence on the homepage"
-msgstr ""
+msgstr "Mostrar frases aleatorias en la página de inicio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L209
 msgid ""
@@ -3528,7 +3528,7 @@ msgstr "Las opciones en esta categoría no son completamente funcionales, puede 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L262
 msgid "Activate the feature to review sentences"
-msgstr ""
+msgstr "Activar la opción de revisar frases"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L285
 msgid ""
@@ -3540,13 +3540,13 @@ msgstr "Marcar oraciones cuando el propietario haya indicado en su perfil que ti
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L312
 msgid "Display button to copy a sentence to the clipboard"
-msgstr ""
+msgstr "Mostrar botón para copiar una frase en el portapapeles"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L334
 msgid ""
 "Display sentences with the new design. Note that you will not have all the "
 "features from the old design"
-msgstr ""
+msgstr "Mostrar frases con el nuevo diseño. Tenga en cuenta que no dispondrá de todas las características del diseño antiguo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L365
 msgid "Change email address"
@@ -3631,7 +3631,7 @@ msgstr "desenmascarar contraseña"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L152
 msgid "Unmask password"
-msgstr ""
+msgstr "Mostrar contraseña"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L207
 msgid "Native language:"
@@ -3812,11 +3812,11 @@ msgstr "Enviar mensaje"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L93
 msgid "Unhide"
-msgstr ""
+msgstr "Mostrar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L96
 msgid "Hide"
-msgstr ""
+msgstr "Ocultar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L65
 msgid "Filter by language"
@@ -4458,7 +4458,7 @@ msgstr "Añadido por {username}, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L264
 msgid "Remove tag '{tagName}' from this sentence."
-msgstr ""
+msgstr "Quitar la etiqueta '{nombre de etiqueta}' de esta frase."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L299
 msgid "Remove tag from sentence"

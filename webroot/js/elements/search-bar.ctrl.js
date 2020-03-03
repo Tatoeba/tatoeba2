@@ -32,10 +32,10 @@
             ///////////////////////////////////////////////////////////////////////////
 
             $scope.$on('languageChange', function(event, data){
-                if (data.name === 'from') {
+                if (data.dropdownName === 'from') {
                     vm.langFrom = data.lang;
                 }
-                if (data.name === 'to') {
+                if (data.dropdownName === 'to') {
                     vm.langTo = data.lang;
                 }
             });
@@ -54,8 +54,8 @@
             function swapLanguages() {
                 var newLangFrom = vm.langTo;
                 var newLangTo = vm.langFrom;
-                $scope.$broadcast('setLang', { name: 'from', lang: newLangFrom});
-                $scope.$broadcast('setLang', { name: 'to', lang: newLangTo});
+                $scope.$broadcast('setLang', { dropdownName: 'from', lang: newLangFrom});
+                $scope.$broadcast('setLang', { dropdownName: 'to', lang: newLangTo});
             }
         }]);
 })();

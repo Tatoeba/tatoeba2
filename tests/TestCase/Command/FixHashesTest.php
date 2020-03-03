@@ -18,7 +18,9 @@ class FixHashesCommandTest extends TestCase
         'app.transcriptions',
         'app.contributions',
         'app.tags',
-        'app.tags_sentences'
+        'app.tags_sentences',
+        'app.users',
+        'app.users_languages',
     ];
 
     const TESTDIR = TMP . 'fix_hashes_tests' . DS;
@@ -36,6 +38,7 @@ class FixHashesCommandTest extends TestCase
         parent::setUp();
         $this->UseCommandRunner();
         $this->Sentences = TableRegistry::getTableLocator()->get('Sentences');
+        $this->Contributions = TableRegistry::getTableLocator()->get('Contributions');
     }
 
     public function testExecute_completeDatabase() {
@@ -93,6 +96,35 @@ class FixHashesCommandTest extends TestCase
 
     public function testExecute_withNonexistentFile() {
         $this->exec('fix_hashes -i nonexistentfile Sentences');
+        $this->assertExitCode(Command::CODE_ERROR);
+    }
+
+    private function _getLatestContributor($sentence_id) {
+        return $this->Contributions->find()
+               ->select(['username' => 'Users.username'])
+               ->where(['sentence_id' => $sentence_id])
+               ->orderDesc('datetime')
+               ->contain('Users')
+               ->first()
+               ->username;
+    }
+
+    public function testExecute_asDefaultUser() {
+        $this->exec('fix_hashes Sentences');
+
+        $storedUser = $this->_getLatestContributor(11);
+        $this->assertEquals('FixHashesCommand', $storedUser);
+    }
+
+    public function testExecute_asProvidedUser() {
+        $this->exec('fix_hashes -u admin Sentences');
+
+        $storedUser = $this->_getLatestContributor(11);
+        $this->assertEquals('admin', $storedUser);
+    }
+
+    public function testExecute_asUnknownUser() {
+        $this->exec('fix_hashes -u unknown_user Sentences');
         $this->assertExitCode(Command::CODE_ERROR);
     }
 }

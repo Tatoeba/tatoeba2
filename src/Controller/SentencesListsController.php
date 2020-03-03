@@ -406,20 +406,20 @@ class SentencesListsController extends AppController
 
     public function add_sentence_to_new_list() {
         $userId = $this->Auth->user('id');
+        $listName = $this->request->getData('name');
         $sentenceId = $this->request->getData('sentenceId');
-        $list = $this->SentencesLists->createList(
-            $this->request->getData('name'), 
-            $this->Auth->user('id')
-        );
+        $list = $this->SentencesLists->createList($listName, $userId);
 
-        if ($this->SentencesLists->addSentenceToList($sentenceId, $list->id, $userId)) {
-            $list->hasSentence = true;
-            $this->set('result', $list);
-            $this->Cookie->write('most_recent_list', $list->id, false, '+1 month');
-        } else {
-            $this->set('result', 'error');
+        $result = 'error';
+        if ($list) {
+            if ($this->SentencesLists->addSentenceToList($sentenceId, $list->id, $userId)) {
+                $list->hasSentence = true;
+                $result = $list;
+                $this->Cookie->write('most_recent_list', $list->id, false, '+1 month');
+            }
         }
-        
+
+        $this->set('result', $result);
         $this->loadComponent('RequestHandler');
         $this->set('_serialize', ['result']);
         $this->RequestHandler->renderAs($this, 'json');
@@ -524,5 +524,16 @@ class SentencesListsController extends AppController
         $this->set("fieldsList", $fieldsList);
         $this->set("translationsLang", $translationsLang);
         $this->set("sentencesWithTranslation", $results);
+    }
+
+    public function choices() {
+        $lists = $this->SentencesLists->getUserChoices(
+            CurrentUser::get('id'), 1, true
+        );
+
+        $this->set('lists', $lists);
+        $this->loadComponent('RequestHandler');
+        $this->set('_serialize', ['lists']);
+        $this->RequestHandler->renderAs($this, 'json');
     }
 }

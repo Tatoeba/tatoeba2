@@ -8,9 +8,8 @@ POT_TMP=$(mktemp --suffix=.po)
 trap "rm -f $POT_TMP; exit" SIGHUP SIGINT SIGTERM
 
 list_source_files() {
-    find src/ -path src \
-        -o -iname '*.ctp' -print \
-        -o -iname '*.php' -print \
+    git ls-files src/ \
+        | grep '.\(ctp\|php\)$' \
         | LC_ALL=C sort
 }
 

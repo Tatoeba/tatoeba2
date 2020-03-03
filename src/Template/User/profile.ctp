@@ -37,6 +37,10 @@ use App\Model\CurrentUser;
  * @link     https://tatoeba.org
  */
 
+$this->Html->script('user/language.ctrl.js', ['block' => 'scriptBottom']);
+$this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom')); // TODO: this is just to get the languageIcon directive
+echo $this->Html->css('user/language.css');
+
 $dateFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::NONE];
 $userId = $user['id'];
 $realName = $user['name'];
@@ -302,106 +306,181 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         ?>
     </div>
 
-    <div ng-cloak class="section with-title-button md-whiteframe-1dp">
-        <div layout="row" layout-align="start center">
-            <h2 flex><?= __('Languages'); ?></h2>
+<?php
+$userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-8');
+?>
+    <div class="section md-whiteframe-1dp"
+         ng-cloak
+         ng-controller="LanguageController as vm"
+         ng-init="vm.init(<?= $userLanguages ?>)">
+        <h2><?= __('Languages'); ?></h2>
+
+        <p ng-if="vm.langs.length === 0">
+            <?= __('No language added.') ?>
+        </p>
+        <p ng-if="vm.langs.length === 0">
             <?php
             if ($username == $currentMember) {
-                $addLangUrl = $this->Url->build(array(
-                    'controller' => 'user',
-                    'action' => 'language'
-                ));
-                ?>
-                <div layout="row" layout-align="end center">
-                    <md-button aria-label="<?= __('Add a language') ?>" class="md-primary md-raised" href="<?= $addLangUrl ?>">
-                        <?= __('Add a language') ?>
-                    </md-button>
-                </div>
-            <?php } ?>
-        </div>
-
-        <?php
-        if (empty($userLanguages))
-        {
-            echo '<p>';
-            __('No language added.');
-            echo '</p>';
-
-            echo '<p>';
-            if ($username == $currentMember) {
-                __('TIP: We encourage you to indicate the languages you know.');
+                echo __('TIP: We encourage you to indicate the languages you know.');
             } else {
-                __(
+                echo __(
                     'TIP: Encourage this user to indicate the languages '.
                     'he or she knows.'
                 );
             }
-            echo '</p>';
-        }
-        else
-        {
             ?>
-            <md-list>
-                <?php foreach($userLanguages as $languageInfo) {
-                    $langCode = $languageInfo->language_code;
-                    $level = $languageInfo->level;
-                    $details = $languageInfo->details;
-                    $editLangUrl = $this->Url->build(array(
-                        'controller' => 'user',
-                        'action' => 'language',
-                        $langCode
-                    ));
-                    ?>
-                    <md-list-item class="md-2-line">
-                        <?php
-                        // Icon
-                        echo $this->Languages->icon(
-                            $langCode,
-                            array(
-                                'class' => 'language-icon'
-                            )
-                        );
-                        ?>
-                        <div class="md-list-item-text">
-                            <h3 flex>
-                                <?= $this->Languages->codeToNameAlone($langCode) ?>
-                            </h3>
-                            <?= $this->Members->displayLanguageLevel($level); ?>
-                            <p>
-                                <?= $details ?>
-                            </p>
-                        </div>
-                        <?php if ($username == $currentMember) {
-                            $deleteUrl = $this->Url->build(
-                                array(
-                                    'controller' => 'users_languages',
-                                    'action' => 'delete',
-                                    $languageInfo->id
-                                )
-                            );
-                            $confirmation = __('Are you sure?');
-                            ?>
-                            <md-button class="md-secondary md-icon-button"
-                                       aria-label="<?= __('Edit') ?>"
-                                       href="<?= $editLangUrl ?>">
-                                <md-icon aria-label="<?= __('Edit') ?>">
-                                    edit
-                                </md-icon>
-                            </md-button>
-
-                            <md-button type="submit" class="md-secondary md-icon-button"
-                                       href="<?= $deleteUrl; ?>"
-                                       onclick="return confirm('<?= $confirmation; ?>');">
-                                <md-icon aria-label="<?= __('Delete') ?>">
-                                    delete
-                                </md-icon>
-                            </md-button>
-                        <?php } ?>
-                    </md-list-item>
-                <?php } ?>
-            </md-list>
+        </p>
+        <md-list>
             <?php
-        }
-        ?>
+                $editLangUrl = $this->Url->build([
+                    'controller' => 'user',
+                    'action' => 'language'
+                ]);
+                $deleteUrl = $this->Url->build([
+                    'controller' => 'users_languages',
+                    'action' => 'delete'
+                ]);
+                $confirmation = __('Are you sure?');
+            ?>
+            <md-list-item class="md-2-line" ng-repeat="lang in vm.langs">
+                <language-icon lang="lang.language_code" title="lang.name"></language-icon>
+                <div class="md-list-item-text">
+                    <h3 flex>
+                        {{lang.name}}
+                    </h3>
+                    <language-level level="lang.level"></language-level>
+                    <p>
+                        {{lang.details}}
+                    </p>
+                </div>
+                <?php if ($username == $currentMember) {
+                    ?>
+                    <md-button class="md-secondary md-icon-button"
+                               aria-label="<?= __('Edit') ?>"
+                               ng-href="<?= $editLangUrl.'/{{lang.language_code}}' ?>">
+                        <md-icon aria-label="<?= __('Edit') ?>">
+                            edit
+                        </md-icon>
+                    </md-button>
+
+                    <md-button type="submit" class="md-secondary md-icon-button"
+                               ng-href="<?= $deleteUrl.'/{{lang.id}}'; ?>"
+                               onclick="return confirm('<?= $confirmation; ?>');">
+                        <md-icon aria-label="<?= __('Delete') ?>">
+                            delete
+                        </md-icon>
+                    </md-button>
+                <?php } ?>
+            </md-list-item>
+        </md-list>
+        <?php
+        if ($username == $currentMember) {
+            ?>
+            <md-button aria-label="<?= __('Add a language') ?>"
+                       class="md-primary md-raised"
+                       ng-click="vm.addLangNextStep()"
+                       ng-if="vm.addLangStep === ''">
+                <?= __('Add a language') ?>
+            </md-button>
+            <div ng-if="vm.addLangStep != ''" class="user-language-form">
+                <md-divider></md-divider>
+                <h3><?= __('Add a language'); ?></h3>
+                <md-list><md-list-item ng-if="vm.addLangStep != 'selection'" class="md-2-line">
+                    <language-icon lang="vm.selectedLang.code" title="vm.selectedLang.name"></language-icon>
+                    <div class="md-list-item-text">
+                        <h3 flex>
+                            {{vm.selectedLang.name}}
+                        </h3>
+                        <language-level level="vm.selectedLang.level"></language-level>
+                        <p>
+                            {{vm.selectedLang.details}}
+                        </p>
+                    </div>
+                </md-list-item></md-list>
+
+                <div ng-if="vm.addLangStep === 'selection'">
+                    <md-list-item class="md-2-line">
+                        <div class="info" layout="row" layout-align="start center">
+                            <?php
+                            $languagesList = $this->Languages->onlyLanguagesArray(false);
+
+                            echo $this->Html->tag(
+                                'label',
+                                __('Language:'),
+                                ['for' => 'language_code']
+                            );
+                            echo $this->element(
+                                'language_dropdown',
+                                [
+                                    'name' => 'language_code',
+                                    'languages' => $languagesList
+                                ]
+                            );
+                            ?>
+                        </div>
+                    </md-list-item>
+
+                    <?php
+                    $hintText = format(
+                        __('If your language is missing, please read our article on how to <a href="{}">request a new language</a>.'),
+                        'https://en.wiki.tatoeba.org/articles/show/new-language-request'
+                    );
+                    echo $this->Html->para('hint', $hintText);
+                    ?>
+                </div>
+
+                <!-- Level -->
+                <div ng-if="vm.addLangStep === 'level'" class="info">
+                    <?php
+                    $radioLabels = $this->Languages->getLevelsLabels();
+                    ?>
+                    <label><?= __('What is your level?') ?></label>
+                    <md-radio-group ng-model='vm.selectedLang.level'>
+                        <?php foreach($radioLabels as $key => $radioLabel) { ?>
+                            <md-radio-button ng-value='<?= $key ?>' class='md-primary'>
+                                <?= $radioLabel ?>
+                            </md-radio-button>
+                        <?php } ?>
+                    </md-radio-group>
+                </div>
+
+                <!-- Details -->
+                <div ng-if="vm.addLangStep === 'details'" class="info">
+                    <?php
+                    echo $this->Form->label(
+                        'details',
+                        __(
+                            'Details (optional). '.
+                            'For instance, which dialect or from which country.'
+                        )
+                    );
+                    echo $this->Form->textarea('details', ['ng-model' => 'vm.selectedLang.details']);
+                    ?>
+                </div>
+
+                <!-- Spinner -->
+                <md-progress-circular ng-if="vm.addLangStep === 'loading'" md-mode="indeterminate" class="block-loader"></md-progress-circular>
+
+                <!-- Error message -->
+                <div ng-if="vm.addLangStep === 'error'">
+                    <p>{{vm.error}}</p>
+                    <md-button ng-click="vm.addLangNextStep()" class="md-raised">
+                        <?= __('OK') ?>
+                    </md-button>
+                </div>
+
+                <!-- Form buttons -->
+                <div ng-if="vm.addLangStep != 'error' && vm.addLangStep != 'loading'" layout="row">
+                    <md-button class="md-raised" ng-click="vm.resetForm()">
+                        <?= __('Cancel') ?>
+                    </md-button>
+
+                    <md-button type="submit" ng-disabled="!vm.selectedLang" ng-click="vm.addLangNextStep()" class="md-raised md-primary">
+                        <span ng-if="vm.addLangStep !== 'details'"><?= __('Next') ?></span>
+                        <span ng-if="vm.addLangStep === 'details'"><?= __('Add this language') ?></span>
+                    </md-button>
+                </div>
+            </div>
+        <?php } ?>
     </div>
 </div>
