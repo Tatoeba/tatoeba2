@@ -281,12 +281,21 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
+        $acceptsJson = $this->request->accepts('application/json');
+
         $userId = $this->Auth->user('id');
         if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         } else {
             $this->set('result', 'error');
+            $this->set('error', __('The sentence could not be added to the list.'));
+        }
+
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result', 'error']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 

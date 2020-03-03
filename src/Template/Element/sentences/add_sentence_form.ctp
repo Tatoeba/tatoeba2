@@ -17,7 +17,7 @@ if (empty($langs)) {
 
 } else {
     ?>
-    <form layout="column" layout-margin ng-init="vm.init(<?= $userLanguagesJSON ?>, <?= $licensesOptionsJSON ?>)" ng-cloak>
+    <form name="sentenceForm" layout="column" layout-margin ng-init="vm.init(<?= $userLanguagesJSON ?>, <?= $licensesOptionsJSON ?>)" ng-cloak>
 
         <div layout="row" layout-align="start center">
             <md-input-container flex="50">
@@ -49,7 +49,11 @@ if (empty($langs)) {
 
         <md-input-container>
             <label><?= __('Sentence') ?></label>
-            <textarea ng-model="vm.newSentence.text" ng-enter="vm.addSentence()"></textarea>
+            <textarea name="text" ng-model="vm.newSentence.text" ng-enter="vm.addSentence(sentenceForm)"></textarea>
+            
+            <div ng-messages="sentenceForm['text'].$error" role="alert">
+                {{vm.newSentence.error}}
+            </div>
         </md-input-container>
 
         <div layout="row" layout-align="end center">
@@ -59,7 +63,7 @@ if (empty($langs)) {
             </md-button>
             <?php } ?>
 
-            <md-button class="md-raised md-primary" ng-click="vm.addSentence()">
+            <md-button class="md-raised md-primary" ng-click="vm.addSentence(sentenceForm)">
                 <?= __('Add sentence') ?>
             </md-button>
         </div>

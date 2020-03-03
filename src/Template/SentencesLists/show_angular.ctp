@@ -94,10 +94,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
 <div id="main_content">
 
-<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm" ng-init="vm.initList(<?= $listJSON ?>)">
+<section class="md-whiteframe-1dp" ng-controller="SentencesListsShowController as vm" ng-init="vm.initList(<?= $listJSON ?>, sentenceForm)">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2 flex>{{vm.list.currentName}}</h2>
+            <h2 ng-cloak flex>{{vm.list.currentName}}</h2>
             
             <?php if ($permissions['canEdit']) { ?>
             <md-button class="md-icon-button" ng-cloak ng-click="vm.editName()">

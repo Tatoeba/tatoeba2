@@ -5,10 +5,11 @@
         .module('app')
         .controller('SentencesListsShowController', SentencesListsShowController);
 
-    function SentencesListsShowController($cookies, $http) {
+    function SentencesListsShowController($scope, $cookies, $http) {
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
+        var sentenceForm;
 
         vm.list = {};
         vm.userLanguages = [];
@@ -31,6 +32,16 @@
 
         ///////////////////////////////////////////////////////////////////////////
 
+        $scope.$watch(angular.bind(this, function () {
+            return vm.newSentence.text;
+          }), function () {
+            if (sentenceForm) {
+                vm.newSentence.error = null;
+            }
+          });
+
+        ///////////////////////////////////////////////////////////////////////////
+
         function init(userLanguages, licenses) {
             var langCodes = Object.keys(userLanguages);
             var preselectedLang = $cookies.get('contribute_lang');
@@ -50,7 +61,8 @@
             vm.list.currentName = list.name;
         }
 
-        function addSentence() {
+        function addSentence(form) {
+            sentenceForm = form;
             vm.inProgress = true;
             var data = {
                 'selectedLang': vm.newSentence.lang,
@@ -60,10 +72,15 @@
             $http.post(rootUrl + '/sentences/add_an_other_sentence', data).then(function(result) {
                 var sentence = result.data.sentence;
                 sentence.duplicate = result.data.duplicate;
-                $http.get(rootUrl + '/sentences_lists/add_sentence_to_list/' + sentence.id + '/' + vm.list.id).then(function() {
-                    $cookies.put('contribute_lang', vm.newSentence.lang);
-                    vm.newSentence.text = '';
-                    vm.sentences.unshift(sentence);
+                $http.get(rootUrl + '/sentences_lists/add_sentence_to_list/' + sentence.id + '/' + vm.list.id).then(function(result) {
+                    var result = result.data;
+                    if (parseInt(result.result) === vm.list.id) {
+                        $cookies.put('contribute_lang', vm.newSentence.lang);
+                        vm.newSentence.text = '';
+                        vm.sentences.unshift(sentence);
+                    } else if (result.error) {
+                        vm.newSentence.error = result.error;
+                    }
                     vm.inProgress = false;
                 });
             });
