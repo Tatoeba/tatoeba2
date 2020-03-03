@@ -307,7 +307,7 @@ class TranscriptionsTable extends Table
             return false;
 
         $targetScript = $transcr['script'];
-        $langScript = $this->getSourceLangScript($sentence->old_format['Sentence']);
+        $langScript = $this->getSourceLangScript($sentence);
         if (!$langScript || !isset($this->availableTranscriptions[$langScript][$targetScript]))
             return false;
 

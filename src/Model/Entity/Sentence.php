@@ -64,26 +64,4 @@ class Sentence extends Entity
         $text = mb_strcut($text, 0, 1500, "UTF-8");
         return $text;
     }
-
-    protected function _getOldFormat() 
-    {
-        $result['Sentence'] = [
-            'id' => $this->id,
-            'lang' => $this->lang,
-            'text' => $this->text,
-            'hash' => $this->hash,
-            'script' => $this->script,
-            'user_id' => $this->user_id
-        ];
-        
-        if ($this->user) {
-            $result['User'] = [
-                'id' => $this->user->id,
-                'username' => $this->user->username,
-                'image' => $this->user->image
-            ];
-        }
-
-        return $result;
-    }
 }

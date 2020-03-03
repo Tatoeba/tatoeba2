@@ -181,8 +181,7 @@ class TranscriptionsTableTest extends TestCase {
     function testJapaneseCanBeTranscriptedToKanas() {
         $jpnSentence = $this->Transcription->Sentences->find()
             ->where(['lang' => 'jpn'])
-            ->first()
-            ->old_format;
+            ->first();
         $result = $this->Transcription->transcriptableToWhat($jpnSentence);
         $this->assertTrue(isset($result['Hrkt']));
     }
