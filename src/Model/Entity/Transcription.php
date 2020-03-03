@@ -22,6 +22,8 @@ use Cake\ORM\Entity;
 
 class Transcription extends Entity
 {
+    protected $_virtual = ['readonly', 'type'];
+
     private $scriptsByLang = array( /* ISO 15924 */
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
@@ -77,23 +79,6 @@ class Transcription extends Entity
         'readonly' => false,
         'type' => 'transcription',
     );
-
-    protected function _getOldFormat() 
-    {
-        return [
-            'Transcription' => [
-                'id' => $this->id,
-                'sentence_id' => $this->sentence_id,
-                'script' => $this->script,
-                'text' => $this->text,
-                'user_id' => $this->user_id,
-                'needsReview' => $this->needsReview,
-                'readonly' => $this->readonly,
-                'type' => $this->type,
-                'modified' => $this->modified,
-            ]
-        ];
-    }
 
     protected function _getReadonly()
     {
