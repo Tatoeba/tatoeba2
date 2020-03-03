@@ -43,32 +43,32 @@ $selectedMonth = format(
     __('{month} {year}'),
     array('month' => $monthName, 'year' => $year)
 );
- 
-$maxWidth = 400;
-$maxTotal = 0;
 
-foreach ($stats as $stat) {
-    if ($stat->sentences > $maxTotal) {
-        $maxTotal = $stat->sentences;
-    }
-}
+$maxWidth = 400;
+$maxTotal = max(array_column($stats, 'total'));
 ?>
 
 <div id="annexe_content">
-    <?php 
+    <?php
     echo $this->element(
-        'calendar', 
+        'calendar',
         array(
             'currentYear' => $year,
             'currentMonth' => $month
         )
-    ); 
+    );
     ?>
 </div>
 
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
     <h2><?php echo $selectedMonth; ?></h2>
+    <div id="timeline_legend" layout="row" layout-xs="column" layout-align="space-around">
+        <div class="added">Number of added sentences</div>
+        <div class="linked">Number of linked sentences</div>
+        <div class="unlinked">Number of unlinked sentences</div>
+        <div class="deleted">Number of deleted sentences</div>
+    </div>
 
     <?php
     echo '<table id="timeline">';
@@ -77,15 +77,33 @@ foreach ($stats as $stat) {
     $totalSentences = 0;
     $numberOfDays = 0;
 
-    foreach ($stats as $stat) {
-        
-        $numSentences = $stat->sentences;
-        $date = $stat->date;
-
-        $width = ($numSentences / $maxTotal) * 100;
-        $bar = $this->Html->div('logs_stats', null,
-            array('style' => 'width:'.$width.'%')
-        );
+    foreach ($stats as $date => $stat) {
+        $numSentences = $stat['total'];
+        $bar = '';
+        if(isset($stat['added'])){
+            $width = ($stat['added'] / $maxTotal) * 100;
+            $bar .= $this->Html->div('logs_stats added', $stat['added'],
+                array('style' => 'width:'.$width.'%')
+            );
+        }
+        if(isset($stat['linked'])){
+            $width = ($stat['linked'] / $maxTotal) * 100;
+            $bar .= $this->Html->div('logs_stats linked', $stat['linked'],
+                array('style' => 'width:'.$width.'%')
+            );
+        }
+        if(isset($stat['unlinked'])){
+            $width = ($stat['unlinked'] / $maxTotal) * 100;
+            $bar .= $this->Html->div('logs_stats unlinked', $stat['unlinked'],
+                array('style' => 'width:'.$width.'%')
+            );
+        }
+        if(isset($stat['deleted'])){
+            $width = ($stat['deleted'] / $maxTotal) * 100;
+            $bar .= $this->Html->div('logs_stats deleted', $stat['deleted'],
+                array('style' => 'width:'.$width.'%')
+            );
+        }
 
         $formattedDate = $this->Time->i18nFormat($date, [IntlDateFormatter::SHORT, IntlDateFormatter::NONE]);
         echo '<tr>';
@@ -97,13 +115,13 @@ foreach ($stats as $stat) {
         $totalSentences += $numSentences;
     }
     echo '</table>';
-    
+
     if( $month == date('m') && $year == date('Y')) {
         $numberOfDays = date('d');
     } else if (($year < date('Y')) || ($year == date('Y') && $month < date('m'))){
         $numberOfDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
     }
-    
+
     if($numberOfDays > 0){
         $dailyAverage = round($totalSentences / $numberOfDays,1);
         $averageString = format(
@@ -117,7 +135,7 @@ foreach ($stats as $stat) {
         );
         echo $this->Html->div("daily-average", $averageString);
     }
-    
+
     ?>
     </div>
 </div>

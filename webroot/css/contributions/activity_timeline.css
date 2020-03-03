@@ -6,7 +6,7 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -49,10 +49,35 @@
 }
 
 #timeline .logs_stats {
-    height: 10px;
+    height: auto;
     border-left: none;
-    background: #4caf50;
-    opacity: 0.4;
+    display: inline-block;
+    text-align: center;
+}
+
+#timeline .added,
+#timeline_legend .added {
+    background: #4caf5066;
+}
+
+#timeline .deleted,
+#timeline_legend .deleted {
+    background: #F4433666;
+}
+
+#timeline .linked,
+#timeline_legend .linked {
+    background: #03a9f466;
+}
+
+#timeline .unlinked,
+#timeline_legend .unlinked {
+    background: #ff980066;
+}
+
+#timeline_legend {
+    text-align: center;
+    margin-bottom:30px;
 }
 
 .daily-average {
