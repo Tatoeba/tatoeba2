@@ -142,25 +142,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             <?php echo $this->element('sentences/add_sentence_form', [
                 'withCloseButton' => true
             ]); ?>
-
-            <div class="hint" style="border-top: 1px solid #ccc; border-bottom: 1px solid #ccc; padding: 10px;">
-                <?php
-                echo format(
-                    __(
-                        'NOTE : You can also add existing sentences with this icon {addToListButton} '.
-                        '(while <a href="{url}">browsing</a> for instance).', true
-                    ),
-                    array(
-                        'addToListButton' => '<md-icon>list</md-icon>',
-                        'url' => $this->Url->build(array(
-                            'controller' => 'sentences',
-                            'action' => 'show',
-                            'random'
-                        ))
-                    )
-                );
-                ?>
-            </div>
         </div>
         <?php
     }
@@ -169,14 +150,49 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <md-progress-linear ng-if="vm.inProgress"></md-progress-linear>
 
     <md-content ng-cloak>
-    <div class="sortBy" id="sortBy">
-     <strong><?php echo __("Sort by:") ?> </strong>
-            <?php
-            echo $this->Paginator->sort('created', __('date added to list'));
-            echo ' | ';
-            echo $this->Paginator->sort('sentence_id', __('date created'));
+    <?php
+    if ($permissions['canAddSentences'] && count($sentencesInList) == 0) {
+        ?>
+        <div class="no-sentence-info" ng-if="!vm.showForm && vm.sentences.length === 0">
+            <p><?= __('There are no sentences yet.') ?></p>
+            <div class="hint">
+                <?php
+                echo format(
+                    __(
+                        'You can create new sentences directly in this list by clicking on the '.
+                        '{addSentenceButton} icon in the header of this section.', true
+                    ),
+                    ['addSentenceButton' => '<md-icon>add</md-icon>']
+                );
+                ?>
+            </div>
+            <div class="hint">
+                <?php
+                echo format(
+                    __(
+                        'You can also add existing sentences to this list, from other pages, by clicking on'.
+                        'the list icon {addToListButton} in the menu of the sentence.', true
+                    ),
+                    ['addToListButton' => '<md-icon>list</md-icon>']
+                );
+                ?>
+            </div>
+        </div>
+        <?php
+    } else {
+        ?>
+        <div class="sortBy" id="sortBy">
+        <strong><?php echo __("Sort by:") ?> </strong>
+        <?php
+        echo $this->Paginator->sort('created', __('date added to list'));
+        echo ' | ';
+        echo $this->Paginator->sort('sentence_id', __('date created'));
+        ?>
+        </div>
+        <?php
+    }
     ?>
-    </div>
+    
     
     <?php $this->Pagination->display(); ?>
 
