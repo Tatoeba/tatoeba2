@@ -141,6 +141,10 @@
             });
         });
 
+        $scope.$on('menuToggled', function(event, isMenuExpanded) {
+            vm.isMenuExpanded = isMenuExpanded;
+        });
+
         /////////////////////////////////////////////////////////////////////////
 
         function init(langs, sentence, directTranslations, indirectTranslations) {
@@ -154,7 +158,11 @@
         }
 
         function initMenu(isExpanded, menu) {
-            vm.isExpanded = isExpanded;
+            if (isExpanded) {
+                vm.isMenuExpanded = isExpanded;
+            } else {
+                vm.isMenuExpanded = $cookies.get('sentence_menu_expanded') === 'true';
+            }
             vm.menu = menu;
         }
 
@@ -210,6 +218,8 @@
 
         function toggleMenu() {
             vm.isMenuExpanded = !vm.isMenuExpanded;
+            $cookies.put('sentence_menu_expanded', vm.isMenuExpanded);
+            $rootScope.$broadcast('menuToggled', vm.isMenuExpanded);
         }
 
         function playAudio($event) {
