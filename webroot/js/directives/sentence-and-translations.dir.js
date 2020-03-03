@@ -150,7 +150,7 @@
             allDirectTranslations = directTranslations ? directTranslations : [];
             allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
             showFewerTranslations();
-            initLists(sentence.lists);
+            initLists(sentence.sentences_lists);
         }
 
         function initMenu(isExpanded, menu) {
