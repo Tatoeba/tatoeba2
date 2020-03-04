@@ -29,13 +29,13 @@
   - "{{manticore_log_dir}}"
   - "{{manticore_binlog_path}}"
 
-- name: Generate sphinx.conf
+- name: Generate manticore.conf
   become: false
   command: ./bin/cake sphinx_conf chdir={{code_dir}}
   register: sphinx_conf
 
-- name: Install sphinx.conf
-  copy: content="{{ sphinx_conf.stdout }}" dest="/etc/sphinxsearch/sphinx.conf"
+- name: Install manticore.conf
+  copy: content="{{ sphinx_conf.stdout }}" dest="/etc/manticoresearch/manticore.conf"
 
 - name: Create indexes
   become: true
