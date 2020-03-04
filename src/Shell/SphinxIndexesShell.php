@@ -147,7 +147,7 @@ class SphinxIndexesShell extends Shell {
                 $type = array_shift($this->args);
                 if ($type != 'main' && $type != 'delta') {
                     $this->die_usage("Invalid index type: $type\n"
-                                    ."Must be either main of index.\n");
+                                    ."Must be either main or delta.\n");
                 }
                 if (count($this->args)) {
                     $langs = $this->validate_langs($this->args);
