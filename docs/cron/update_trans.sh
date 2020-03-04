@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
 
-ROOT='/var/www-dev'
-"$ROOT""/docs/update-translations.py" -o $ROOT >/dev/null
+ROOT='/srv/tatoeba.org/www'
+cd "$ROOT"
+/tools/update-translations.sh -a
