@@ -315,6 +315,12 @@ class SentencesListsController extends AppController
             $sentenceId, $listId, $userId
         );
         $this->set('removed', $isRemoved);
+
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['removed']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
 

@@ -383,7 +383,6 @@ class SentencesTable extends Table
                 $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
                 if (CurrentUser::isMember()) {
                     $result['menu'] = $this->getMenu($result);
-                    $result['lists'] = $this->getLists($result->id);
                 }
 
                 return $result;
@@ -420,13 +419,6 @@ class SentencesTable extends Table
             'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),
             'canLink' => CurrentUser::isTrusted(),
         ];
-    }
-
-    private function getLists($sentenceId)
-    {
-        return $this->SentencesLists->getUserChoices(
-            CurrentUser::get('id'), $sentenceId, true
-        );
     }
 
     public function findWithSphinx($query, $options)

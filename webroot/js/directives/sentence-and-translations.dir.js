@@ -379,8 +379,27 @@
 
             $http.get(rootUrl + '/sentences_lists/' + action + '/' + vm.sentence.id + '/' + list.id).then(function(result) {
                 vm.inProgress = false;
+                updateSentenceLists(action, list, result);
                 $cookies.put('most_recent_list', list.id);
             });
+        }
+
+        function updateSentenceLists(action, list, result) {
+            var result = result.data;
+            if (action === 'add_sentence_to_list') {
+                var listId = parseInt(result.result);
+                if (listId === list.id) {
+                    vm.sentence.sentences_lists.push({id: list.id});
+                }
+            } else {
+                var removed = result.removed;
+                if (removed) {
+                    var index = vm.sentence.sentences_lists.findIndex(function(item) {
+                        return item.id === list.id;
+                    });
+                    vm.sentence.sentences_lists.splice(index, 1);
+                }
+            }
         }
 
         function addToNewList() {
