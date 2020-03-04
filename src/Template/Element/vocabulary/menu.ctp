@@ -1,6 +1,12 @@
 <?php
 use App\Model\CurrentUser;
 
+$filteredLanguage = $this->request->getSession()->read('vocabulary_requests_filtered_lang');
+
+if ($filteredLanguage == null) {
+    $filteredLanguage = 'und';
+}
+
 $addUrl = $this->Url->build(
     array(
         'controller' => 'vocabulary',
@@ -17,7 +23,8 @@ $indexUrl = $this->Url->build(
 $addSentencesUrl = $this->Url->build(
     array(
         'controller' => 'vocabulary',
-        'action' => 'add_sentences'
+        'action' => 'add_sentences', 
+        $filteredLanguage 
     )
 );
 ?>

@@ -118,14 +118,8 @@ class VocabularyController extends AppController
     public function add_sentences($lang = null)
     {   
     
-        $filteredLang = $this->request->getSession()->read('filter_by_language');
-        if ($filteredLang == null && $lang != null) {
-            $this->request->getSession()->write('filter_by_language', $lang );
-        } else if ($filteredLang != null && $lang == null) {
-            $lang = $this->request->getSession()->read('filter_by_language');
-        } else if ($lang != null && $filteredLang != null && $lang != $filteredLang) {
-            $this->request->getSession()->write('filter_by_language', $lang);
-        }
+        $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang );
+        
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Languages';

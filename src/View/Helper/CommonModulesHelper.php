@@ -90,7 +90,7 @@ class CommonModulesHelper extends AppHelper
             }
             
             if ($this->request->params['controller'] == 'Vocabulary' && $this->request->params['action'] == 'add_sentences') {
-                $filteredLang = $this->request->getSession()->read('filter_by_language');
+                $filteredLang = $this->request->getSession()->read('vocabulary_requests_filtered_lang');
                 if ($filteredLang != null && $lang == 'und') {
                     $lang = $filteredLang;
                 }
