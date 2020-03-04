@@ -137,6 +137,7 @@
                 var indirectTranslations = sentence.translations[1];
                 init(vm.userLanguages, sentence, directTranslations, indirectTranslations);
                 initMenu(false, sentence.menu);
+                initLists(sentence.sentences_lists);
                 vm.inProgress = false;
             });
         });
@@ -154,7 +155,6 @@
             allDirectTranslations = directTranslations ? directTranslations : [];
             allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
             showFewerTranslations();
-            initLists(sentence.sentences_lists);
         }
 
         function initMenu(isExpanded, menu) {
