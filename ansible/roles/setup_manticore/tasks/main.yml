@@ -12,7 +12,7 @@
 
 - name: Install Manticore package
   apt:
-    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/3.1.0/manticore_3.1.0-190716-445e806e-release.stretch_amd64-bin.deb
+    deb: https://github.com/manticoresoftware/manticoresearch/releases/download/3.3.0/manticore_3.3.0-200204-01fc8ad1-release.stretch_amd64-bin.deb
 
 - name: Work around bug that prevents enabling Manticore
   file:
