@@ -1,5 +1,10 @@
 ---
 
+- name: Install dependencies for building dictionary
+  apt:
+    name: libmecab-dev
+    state: present
+
 - name: Modify dictionary with warifuri (this takes a long time)
   become: false
   command: ./build.sh chdir=/tmp/tatomecab/warifuri
