@@ -33,10 +33,7 @@ $max = $stats[0]['sentences'];
 <div id="annexe_content">
     <?= $this->element('audio_stats',
         [ 'stats' => $audioStats ],
-        [ 'cache' => [
-            'time'=> '+6 hours',
-            'key'=> Configure::read('Config.language')
-        ]]
+        [ 'cache' => [ 'key' => Configure::read('Config.language') ]]
     ); ?>
 </div>
 

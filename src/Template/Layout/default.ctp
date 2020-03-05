@@ -84,10 +84,7 @@ use Cake\Core\Configure;
             && $selectedLanguageTo == 'und'
             && empty($query)
             && !$this->Languages->preferredLanguageFilter()) {
-            $cache = [
-                'time' => '+1 day',
-                'key' => 'search_bar_'.Configure::read('Config.language'),
-            ];
+            $cache = [ 'key' => 'search_bar_'.Configure::read('Config.language') ];
         } else {
             $cache = null;
         }
@@ -97,10 +94,7 @@ use Cake\Core\Configure;
         );
     } else {
         echo $this->element('short_description', [], [
-            'cache' => [
-                'time' => '+1 day',
-                'key' => 'short_description_'.Configure::read('Config.language')
-            ]
+            'cache' => [ 'key' => 'short_description_'.Configure::read('Config.language') ]
         ]);
     }
     ?>
