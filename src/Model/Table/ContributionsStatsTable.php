@@ -96,7 +96,6 @@ class ContributionsStatsTable extends Table
             foreach ($stats as $date => $stat) {
                 $stats[$date]['total'] = array_sum($stats[$date]);
             }
-
             return $stats;
         }
     }

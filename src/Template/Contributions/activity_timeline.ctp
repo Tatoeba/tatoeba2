@@ -134,8 +134,6 @@ if (!empty($stats)) {
         echo $this->Html->tag('td', $formattedDate, array('class' => 'date'));
         echo $this->Html->tag('td', $bar, array('class' => 'bar'));
         echo '</tr>';
-
-
     }
     echo '</table>';
 
