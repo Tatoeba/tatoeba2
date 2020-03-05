@@ -47,7 +47,10 @@ $moreCommentsUrl = $this->Url->build([
                   'numberOfLanguages' => $numberOfLanguages,
                   'numSentences,' => $numSentences,
                 ],
-                [ 'cache' => [ 'key' => 'homepage_stats_'.Configure::read('Config.language') ]]
+                [ 'cache' => [
+                    'config' => 'stats',
+                    'key' => 'homepage_stats_'.Configure::read('Config.language')
+                ]]
         ); ?>
     </div>
         
