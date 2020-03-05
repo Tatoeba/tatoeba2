@@ -90,10 +90,14 @@ class ContributionsStatsTable extends Table
             }
         }
 
-        foreach ($stats as $date => $stat) {
-            $stats[$date]['total'] = array_sum($stats[$date]);
-        }
+        if (!isset($stats)) {
+            return [];
+        } else {
+            foreach ($stats as $date => $stat) {
+                $stats[$date]['total'] = array_sum($stats[$date]);
+            }
 
-        return $stats;
+            return $stats;
+        }
     }
 }

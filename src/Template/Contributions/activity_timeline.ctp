@@ -45,7 +45,9 @@ $selectedMonth = format(
 );
 
 $maxWidth = 400;
-$maxTotal = max(array_column($stats, 'total'));
+if (!empty($stats)) {
+    $maxTotal = max(array_column($stats, 'total'));
+}
 ?>
 
 <div id="annexe_content">
