@@ -727,7 +727,7 @@ class UserController extends AppController
             $this->Auth->setUser($savedUser);
         }
 
-        $this->Flash->set('You have accepted the new terms of use.');
+        $this->Flash->set(__('You have accepted the new terms of use.'));
         return $this->redirect($this->referer());
     }
 }
