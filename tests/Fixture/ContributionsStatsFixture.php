@@ -521,6 +521,38 @@ class ContributionsStatsFixture extends TestFixture
                 'action' => 'insert',
                 'type' => 'sentence'
             ],
+            [
+                'id' => 3121,
+                'date' => '2016-11-01 00:00:00',
+                'lang' => null,
+                'sentences' => 5000,
+                'action' => 'insert',
+                'type' => 'link'
+            ],
+            [
+                'id' => 3122,
+                'date' => '2016-11-01 00:00:00',
+                'lang' => null,
+                'sentences' => 200,
+                'action' => 'delete',
+                'type' => 'link'
+            ],
+            [
+                'id' => 3123,
+                'date' => '2016-11-01 00:00:00',
+                'lang' => null,
+                'sentences' => 15,
+                'action' => 'delete',
+                'type' => 'sentence'
+            ],
+            [
+                'id' => 3124,
+                'date' => '2016-11-30 00:00:00',
+                'lang' => null,
+                'sentences' => 3000,
+                'action' => 'insert',
+                'type' => 'link'
+            ]
         ];
         parent::init();
     }
