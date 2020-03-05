@@ -33,15 +33,8 @@
 #timeline .date {
     text-align: right;
     color: #545454;
-    padding: 0 10px;
-}
-
-#timeline .number {
-    text-align: center;
-    padding: 0 10px;
-    color: #111;
     border-right: 1px solid #767676;
-    font-weight: bold;
+    padding: 0 10px;
 }
 
 #timeline .bar {
@@ -55,29 +48,30 @@
     text-align: center;
 }
 
-#timeline .added,
-#timeline_legend .added {
+#timeline .added {
     background: #4caf5066;
 }
 
-#timeline .deleted,
-#timeline_legend .deleted {
+#timeline .deleted {
     background: #F4433666;
 }
 
-#timeline .linked,
-#timeline_legend .linked {
+#timeline .linked {
     background: #03a9f466;
 }
 
-#timeline .unlinked,
-#timeline_legend .unlinked {
+#timeline .unlinked {
     background: #ff980066;
 }
 
-#timeline_legend {
+thead {
     text-align: center;
-    margin-bottom:30px;
+    border-bottom: 30px solid white;
+}
+
+thead .added, thead .deleted,
+thead .linked, thead .unlinked {
+    height: 33px;
 }
 
 .daily-average {
