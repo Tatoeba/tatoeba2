@@ -932,7 +932,7 @@ class SentencesTableTest extends TestCase {
 
 	function testDeleteSentence_succeedsBecauseIsAdmin()
 	{
-		$user = $this->Sentence->Users->get(2);
+		$user = $this->Sentence->Users->get(1);
 		CurrentUser::store($user);
 		$this->deleteSentenceWithSuccess(53);
 	}
