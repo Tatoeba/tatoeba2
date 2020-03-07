@@ -37,7 +37,7 @@ class SentencesTable extends Table
 {
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-    
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -75,7 +75,7 @@ class SentencesTable extends Table
         ]);
         $this->hasMany('SentenceComments');
         $this->hasMany('SentenceAnnotations');
-        
+
         $this->addBehavior('Duplicate');
         $this->addBehavior('Timestamp');
         if (Configure::read('AutoTranscriptions.enabled')) {
@@ -91,7 +91,7 @@ class SentencesTable extends Table
     {
         $validator
             ->notEmpty('text');
-            
+
         $validator
             ->add('license', [
                 'inList' => [
@@ -154,7 +154,7 @@ class SentencesTable extends Table
         if (CurrentUser::isAdmin()) {
             return true;
         }
-        
+
         $sentenceId = $context['data']['id'];
         $sentence = $this->get($sentenceId, ['fields' => ['based_on_id', 'user_id', 'license']]);
         $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;
@@ -207,7 +207,7 @@ class SentencesTable extends Table
             'data' => $entity
         ));
         $this->getEventManager()->dispatch($event);
-        
+
         $this->updateTags($entity);
         if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
@@ -341,12 +341,12 @@ class SentencesTable extends Table
         }
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
-                
+
                 $directTranslations = [];
                 $indirectTranslations = [];
                 $parentIds = [$result->id];
                 $indirectIds = [];
-                
+
                 foreach ($result->translations as $translation) {
                     $parentIds[] = $translation->id;
                     if ($translation->indirect_translations) {
@@ -368,14 +368,14 @@ class SentencesTable extends Table
                     $directTranslations = array_filter($directTranslations, $filter);
                     $indirectTranslations = array_filter($indirectTranslations, $filter);
                 }
-                
+
                 $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
                     return !in_array($item->id, $parentIds);
                 });
-        
+
                 $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
                 $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
-                
+
                 $result['translations'] = [$directTranslations, $indirectTranslations];
 
                 return $result;
@@ -777,7 +777,7 @@ class SentencesTable extends Table
             ->orderAsc('id')
             ->where(['id >' => $sourceId] + $langCondition)
             ->first();
-            
+
         $neighbors = [
             'prev' => $prev ? $prev->id : null,
             'next' => $next ? $next->id : null,
@@ -1001,7 +1001,7 @@ class SentencesTable extends Table
     public function getOwnerInfoOfSentence($sentenceId)
     {
         $sentence = $this->get($sentenceId, ['contain' => 'Users']);
-        
+
         return $sentence->user;
     }
 
@@ -1023,7 +1023,7 @@ class SentencesTable extends Table
         } catch (RecordNotFoundException $e) {
             return false;
         }
-        
+
         $ownerId = $sentence->user_id;
         $prevLang = $sentence->lang;
         $currentUserId = CurrentUser::get('id');
@@ -1107,12 +1107,12 @@ class SentencesTable extends Table
         if (empty($sentencesIds)) {
             return [];
         }
-        
+
         $result = $this->find('all')
         ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
         ->select(['lang', 'id'])
         ->toList();
-        
+
         return Hash::combine($result, '{n}.id', '{n}.lang');
     }
 
@@ -1157,11 +1157,11 @@ class SentencesTable extends Table
         } catch (RecordNotFoundException $e) {
             return array();
         }
-        
+
         if ($this->_cantEditSentence($sentence)) {
             return $sentence;
         }
-        
+
         if ($this->hasAudio($id)) {
             return $sentence;
         }
@@ -1259,7 +1259,16 @@ class SentencesTable extends Table
             return false;
         }
 
-        return $this->delete($sentence);
+        $listsContainingSentence = $this->loadInto($sentence, ['SentencesLists'])->sentences_lists;
+        $isDeleted = $this->delete($sentence);
+        if ($isDeleted) {
+            foreach ($listsContainingSentence as $list){
+                $list->numberOfSentences--;
+                $this->SentencesLists->save($list);
+            }
+        }
+
+        return $isDeleted;
     }
 
     private function orderby($expr, $order)
