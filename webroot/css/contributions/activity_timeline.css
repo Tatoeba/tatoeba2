@@ -26,7 +26,7 @@
 }
 
 #timeline td {
-    padding: 0;
+    padding-bottom: 2px;
     border: 1px solid #FFF;
 }
 
@@ -42,10 +42,10 @@
 }
 
 #timeline .logs_stats {
-    height: auto;
     border-left: none;
     display: inline-block;
     text-align: center;
+    min-width: 30px;
 }
 
 #timeline .added {
@@ -71,7 +71,7 @@ thead {
 
 thead .added, thead .deleted,
 thead .linked, thead .unlinked {
-    height: 33px;
+    min-height: 33px;
 }
 
 .daily-average {

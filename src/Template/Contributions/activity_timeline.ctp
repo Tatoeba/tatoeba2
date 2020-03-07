@@ -132,7 +132,8 @@ if (!empty($stats)) {
         $formattedDate = $this->Time->i18nFormat($date, [IntlDateFormatter::SHORT, IntlDateFormatter::NONE]);
         echo '<tr>';
         echo $this->Html->tag('td', $formattedDate, array('class' => 'date'));
-        echo $this->Html->tag('td', $bar, array('class' => 'bar'));
+        $contents = '<div layout="row">' . $bar . '</div>';
+        echo $this->Html->tag('td', $contents, array('class' => 'bar'));
         echo '</tr>';
     }
     echo '</table>';
