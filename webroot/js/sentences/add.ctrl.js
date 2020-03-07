@@ -37,6 +37,10 @@
         }
 
         function addSentence() {
+            if (!vm.newSentence.text) {
+                return;
+            }
+            
             vm.inProgress = true;
             var data = {
                 'selectedLang': vm.newSentence.lang,

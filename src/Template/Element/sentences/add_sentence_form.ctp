@@ -63,7 +63,7 @@ if (empty($langs)) {
             </md-button>
             <?php } ?>
 
-            <md-button class="md-raised md-primary" ng-click="vm.addSentence(sentenceForm)">
+            <md-button class="md-raised md-primary" ng-click="vm.addSentence(sentenceForm)" ng-disabled="vm.inProgress || !vm.newSentence.text">
                 <?= __('Add sentence') ?>
             </md-button>
         </div>

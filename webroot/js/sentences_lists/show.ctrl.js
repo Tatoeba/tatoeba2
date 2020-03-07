@@ -62,6 +62,10 @@
         }
 
         function addSentence(form) {
+            if (!vm.newSentence.text) {
+                return;
+            }
+            
             sentenceForm = form;
             vm.inProgress = true;
             var data = {
