@@ -26,6 +26,7 @@ use App\Lib\LanguagesLib;
 class Sentence extends Entity
 {
     use HashTrait;
+    use LanguageNameTrait;
 
     protected $_virtual = [
         'lang_name',
@@ -98,7 +99,7 @@ class Sentence extends Entity
 
     protected function _getLangName()
     {
-        return LanguagesLib::getLanguageName($this->lang);
+        return $this->codeToNameAlone($this->lang);
     }
 
     protected function _getDir()
