@@ -1,6 +1,6 @@
 <form layout="column" layout-margin style="padding-top: 10px" ng-if="vm.visibility.sentence_form">
 
-<div ng-if="vm.sentence.audios && vm.sentence.audios.lengh > 0">
+<div ng-if="vm.sentence.audios && vm.sentence.audios.length > 0">
     <p><?= __('You cannot edit this sentence because it has audio.'); ?>
 
     <div layout="row" layout-align="end center">
@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div layout="column" ng-if="!(vm.sentence.audios && vm.sentence.audios.lengh > 0)">
+<div layout="column" ng-if="!(vm.sentence.audios && vm.sentence.audios.length > 0)">
     <div layout="row" layout-align="start center">
         <md-input-container flex="50">
             <label><?= __('Language') ?></label>

@@ -15,7 +15,7 @@
  * $this->element('sentences/sentence_and_translation', [
  *     'sentenceData' => 'sentence',
  *     'directTranslationsData' => 'sentence.translations[0]',
- *     'indirectTranslationsData0' => 'sentence.translations[1]'
+ *     'indirectTranslationsData' => 'sentence.translations[1]'
  * ]);
  */
 
