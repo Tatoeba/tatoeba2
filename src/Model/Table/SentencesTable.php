@@ -403,8 +403,7 @@ class SentencesTable extends Table
         return format(__n(
             'Show 1 more translation',
             'Show {number} more translations',
-            $extraTranslationsCount,
-            true
+            $extraTranslationsCount
         ), array('number' => $extraTranslationsCount));
     }
 
