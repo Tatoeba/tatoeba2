@@ -4,7 +4,7 @@
     <form layout="column" layout-margin style="padding-top: 10px">
         <md-input-container>
             <label><?= __('Translation') ?></label>
-            <textarea id="translation-form-{{vm.sentence.id}}" ng-model="vm.newTranslation.text" 
+            <textarea ng-attr-id="translation-form-{{vm.sentence.id}}" ng-model="vm.newTranslation.text" 
                       ng-enter="vm.saveTranslation(vm.sentence.id)"></textarea>
         </md-input-container>
         

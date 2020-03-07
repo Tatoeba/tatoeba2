@@ -2,7 +2,7 @@
     <div layout="row" layout-margin>
         <md-input-container flex>
             <label><?= __('Search list or enter new list name') ?></label>
-            <input id="list-form-{{vm.sentence.id}}" ng-model="vm.listSearch"
+            <input ng-attr-id="list-form-{{vm.sentence.id}}" ng-model="vm.listSearch"
                    ng-change="vm.searchList()" ng-enter="vm.addToNewList()" ng-escape="vm.closeList()">
         </md-input-container>
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()" ng-disabled="!vm.listSearch"><?= __('Create') ?></md-button>

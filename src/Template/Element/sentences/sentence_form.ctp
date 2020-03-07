@@ -30,7 +30,7 @@
 
     <md-input-container>
         <label><?= __('Sentence') ?></label>
-        <textarea id="sentence-form-{{vm.sentence.id}}" ng-model="vm.sentence.text" 
+        <textarea ng-attr-id="sentence-form-{{vm.sentence.id}}" ng-model="vm.sentence.text" 
                   ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()"></textarea>
     </md-input-container>
 
