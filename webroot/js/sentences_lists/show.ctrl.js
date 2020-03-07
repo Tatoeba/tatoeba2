@@ -79,6 +79,7 @@
                 $http.get(rootUrl + '/sentences_lists/add_sentence_to_list/' + sentence.id + '/' + vm.list.id).then(function(result) {
                     var result = result.data;
                     if (parseInt(result.result) === vm.list.id) {
+                        sentence.sentences_lists.push({id: vm.list.id});
                         $cookies.put('contribute_lang', vm.newSentence.lang);
                         vm.newSentence.text = '';
                         vm.sentences.unshift(sentence);
