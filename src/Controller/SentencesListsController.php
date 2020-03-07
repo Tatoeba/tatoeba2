@@ -316,6 +316,7 @@ class SentencesListsController extends AppController
         );
         $this->set('removed', $isRemoved);
 
+        $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
             $this->set('_serialize', ['removed']);
