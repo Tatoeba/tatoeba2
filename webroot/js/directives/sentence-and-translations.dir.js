@@ -41,7 +41,27 @@
                       'ng-attr-title="{{title ? title : lang}}"' +
                       'ng-src="/img/flags/{{lang}}.svg" />'
             }
-        });
+        })
+        .directive('toggleAllMenus', ['$rootScope', '$cookies', function($rootScope, $cookies) {
+            return {
+                restrict: 'A',
+                controllerAs: 'menu',
+                controller: function() {
+                    var vm = this;
+
+                    vm.expanded = $cookies.get('sentence_menu_expanded') === 'true';
+                    vm.toggleAll = toggleAll;
+
+                    /////////////////////////////////////////////////////////////////////////
+
+                    function toggleAll() {
+                        vm.expanded = !vm.expanded;
+                        $rootScope.$broadcast('menuToggled', vm.expanded);
+                        $cookies.put('sentence_menu_expanded', vm.expanded);
+                    }
+                }
+            }
+        }]);
 
     function sentenceAndTranslations() {
         return {
@@ -224,8 +244,6 @@
 
         function toggleMenu() {
             vm.isMenuExpanded = !vm.isMenuExpanded;
-            $cookies.put('sentence_menu_expanded', vm.isMenuExpanded);
-            $rootScope.$broadcast('menuToggled', vm.isMenuExpanded);
         }
 
         function playAudio($event) {

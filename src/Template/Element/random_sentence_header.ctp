@@ -36,6 +36,10 @@ $langArray = $this->Languages->languagesArrayAlone();
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
         <h2 flex><?= __('Random sentence') ?></h2>
+
+        
+        <?= $this->element('sentences/expand_all_menus_button'); ?>
+        
         <span>
         <?php
         echo $this->Form->select('randomLangChoice', $langArray, [

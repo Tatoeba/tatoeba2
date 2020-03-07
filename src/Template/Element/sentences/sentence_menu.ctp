@@ -59,7 +59,10 @@
             </md-button>
 
             <md-button class="md-icon-button" ng-click="vm.toggleMenu()">
-                <md-icon>more_horiz</md-icon>
+                <md-icon ng-if="!vm.isMenuExpanded">unfold_more</md-icon>
+                <md-tooltip ng-if="!vm.isMenuExpanded"><?= __('Expand menu') ?></md-tooltip>
+                <md-icon ng-if="vm.isMenuExpanded">unfold_less</md-icon>
+                <md-tooltip ng-if="vm.isMenuExpanded"><?= __('Collapse menu') ?></md-tooltip>
             </md-button>
         </div>
     </div>

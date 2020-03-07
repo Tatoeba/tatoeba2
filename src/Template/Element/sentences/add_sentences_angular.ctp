@@ -12,7 +12,9 @@ $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
 
     <md-toolbar class="md-hue-1">
         <div class="md-toolbar-tools">
-            <h2><?php echo __('Sentences added'); ?></h2>
+            <h2 flex><?php echo __('Sentences added'); ?></h2>
+
+            <?= $this->element('sentences/expand_all_menus_button'); ?>
         </div>
     </md-toolbar>
 

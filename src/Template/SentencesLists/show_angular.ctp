@@ -98,6 +98,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
             <h2 ng-cloak flex>{{vm.list.currentName}}</h2>
+
+            <?= $this->element('sentences/expand_all_menus_button'); ?>
             
             <?php if ($permissions['canEdit']) { ?>
             <md-button class="md-icon-button" ng-cloak ng-click="vm.editName()">
