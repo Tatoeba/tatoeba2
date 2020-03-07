@@ -154,7 +154,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     if ($permissions['canAddSentences'] && count($sentencesInList) == 0) {
         ?>
         <div class="no-sentence-info" ng-if="!vm.showForm && vm.sentences.length === 0">
-            <p><?= __('There are no sentences yet.') ?></p>
+            <p><?= __('This list is empty.') ?></p>
             <div class="hint">
                 <?php
                 echo format(
@@ -170,8 +170,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                 <?php
                 echo format(
                     __(
-                        'You can also add existing sentences to this list, from other pages, by clicking on'.
-                        'the list icon {addToListButton} in the menu of the sentence.', true
+                        'You can also add existing sentences to this list, from other pages, by clicking on '.
+                        'the {addToListButton} icon in the menu of the sentence.', true
                     ),
                     ['addToListButton' => '<md-icon>list</md-icon>']
                 );
