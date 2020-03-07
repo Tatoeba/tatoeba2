@@ -382,7 +382,7 @@ class SentencesTable extends Table
                 $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
                 $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
                 if (CurrentUser::isMember()) {
-                    $result['menu'] = $this->getMenu($result);
+                    $result['permissions'] = $this->getPermissions($result);
                 }
 
                 return $result;
@@ -408,14 +408,15 @@ class SentencesTable extends Table
         ), array('number' => $extraTranslationsCount));
     }
 
-    private function getMenu($sentence)
+    private function getPermissions($sentence)
     {
-        $userId = $sentence->user_id;
+        $user = $sentence->user;
+        $userId = $user ? $user->id : null;
 
         return [
             'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
             'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
-            'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($userId),
+            'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
             'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),
             'canLink' => CurrentUser::isTrusted(),
         ];

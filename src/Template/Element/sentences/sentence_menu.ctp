@@ -1,5 +1,5 @@
 <div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}" 
-     ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.menu)">
+     ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.permissions)">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>
             <md-button class="md-icon-button" ng-click="vm.translate(vm.sentence.id)" ng-disabled="vm.sentence.correctness === -1">

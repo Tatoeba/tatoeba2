@@ -136,7 +136,7 @@
                 var directTranslations = sentence.translations[0];
                 var indirectTranslations = sentence.translations[1];
                 init(vm.userLanguages, sentence, directTranslations, indirectTranslations);
-                initMenu(false, sentence.menu);
+                initMenu(false, sentence.permissions);
                 initLists(sentence.sentences_lists);
                 vm.inProgress = false;
             });
