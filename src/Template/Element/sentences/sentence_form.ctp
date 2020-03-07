@@ -1,4 +1,4 @@
-<form layout="column" layout-margin style="padding-top: 10px" ng-if="vm.visibility.sentence_form">
+<form layout="column" layout-margin ng-if="vm.visibility.sentence_form">
 
 <div ng-if="vm.sentence.audios && vm.sentence.audios.length > 0">
     <p><?= __('You cannot edit this sentence because it has audio.'); ?>
@@ -22,7 +22,7 @@
             </md-select>
         </md-input-container>
         
-        <div style="padding: 10px 10px 0 10px">
+        <div class="language-icon-div">
             <img ng-src="/img/flags/{{vm.sentence.lang}}.svg"
                  width="30" height="20" class="language-icon"/>
         </div>

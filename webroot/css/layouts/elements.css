@@ -1391,6 +1391,24 @@ div.hideLink {
     padding: 0 5px;
 }
 
+.sentence-and-translations .duplicate-warning {
+    border-bottom: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .translation-form {
+    background: #fafafa; 
+    border-top: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .sentence-form,
+.sentence-and-translations .translation-form form {
+    padding-top: 10px;
+}
+
+form .language-icon-div {
+    padding: 10px 10px 0 10px;
+}
+
 /*
  * --------------------------------------------------------------------
  *

@@ -1,7 +1,7 @@
-<div ng-if="vm.visibility.translation_form" style="background: #fafafa; border-top: 1px solid #f1f1f1">
+<div ng-if="vm.visibility.translation_form" class="translation-form">
 
 <?php if (!empty($langs)) { ?>
-    <form layout="column" layout-margin style="padding-top: 10px">
+    <form layout="column" layout-margin>
         <md-input-container>
             <label><?= __('Translation') ?></label>
             <textarea ng-attr-id="translation-form-{{vm.sentence.id}}" ng-model="vm.newTranslation.text" 
@@ -19,7 +19,7 @@
                 </md-select>
             </md-input-container>
             
-            <div style="padding: 10px 10px 0 10px">
+            <div class="language-icon-div">
                 <img ng-src="/img/flags/{{vm.newTranslation.lang}}.svg" ng-if="vm.newTranslation.lang && vm.newTranslation.lang !== 'auto'" 
                      width="30" height="20" class="language-icon"/>
             </div>

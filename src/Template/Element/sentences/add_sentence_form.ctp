@@ -30,7 +30,7 @@ if (empty($langs)) {
                 </md-select>
             </md-input-container>
             
-            <div style="padding: 10px 10px 0 10px" flex>
+            <div class="language-icon-div" flex>
                 <img ng-src="/img/flags/{{vm.newSentence.lang}}.svg" ng-if="vm.newSentence.lang && vm.newSentence.lang !== 'auto'" 
                     width="30" height="20" class="language-icon"/>
             </div>
