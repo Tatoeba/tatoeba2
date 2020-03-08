@@ -203,6 +203,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         echo $this->element('sentences_lists/sentence_in_list', [
             'sentenceAndTranslationsParams' => [
                 'sentenceData' => 'sentence',
+                'directTranslationsData' => 'sentence.translations[0]',
+                'indirectTranslationsData' => 'sentence.translations[1]',
                 'duplicateWarning' => __('The sentence you tried to create already exists. The existing sentence was added to your list instead.')
             ],
             'ngRepeat' => 'sentence in vm.sentences',

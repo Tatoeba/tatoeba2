@@ -28,7 +28,8 @@ $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
     <?php
     echo $this->element('sentences/sentence_and_translations', [
         'sentenceData' => 'sentence',
-        'translations' => 'sentence.translations'
+        'directTranslationsData' => 'sentence.translations[0]',
+        'indirectTranslationsData' => 'sentence.translations[1]'
     ]);
     ?>
     </div>
