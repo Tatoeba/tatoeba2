@@ -16,15 +16,27 @@ class CorrectNumberOfSentencesCommand extends Command
 
     public function execute(Arguments $args, ConsoleIo $io)
     {
-        $query = $this->SentencesSentencesLists->find();
-        $query->select([
+        // Correct lists that appear in the sentences_sentences_lists table
+        $countQuery = $this->SentencesSentencesLists->find();
+        $countQuery->select([
             'sentences_list_id',
-            'count' => $query->func()->count('*')
+            'count' => $countQuery->func()->count('*')
         ])
         ->group('sentences_list_id');
-        foreach ($query as $listAndCount) {
+        foreach ($countQuery as $listAndCount) {
             $sentencesList = $this->SentencesLists->get($listAndCount->sentences_list_id);
             $sentencesList->numberOfSentences = $listAndCount->count;
+            $this->SentencesLists->save($sentencesList);
+        }
+
+        // The lists that do not appear have numberOfSentences set to 0
+        $subquery = $this->SentencesSentencesLists->find()->select('sentences_list_id');
+        $listsWithNoSentenceQuery = $this->SentencesLists->find('all', array(
+            'conditions' => array('id NOT IN' => $subquery)
+        ));
+
+        foreach($listsWithNoSentenceQuery as $sentencesList){
+            $sentencesList->numberOfSentences = 0;
             $this->SentencesLists->save($sentencesList);
         }
     }
