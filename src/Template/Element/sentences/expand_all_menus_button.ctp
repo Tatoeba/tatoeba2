@@ -2,11 +2,15 @@
 use App\Model\CurrentUser;
 
 if (CurrentUser::getSetting('use_new_design')) { ?>
-<md-button toggle-all-menus class="md-icon-button" ng-click="menu.toggleAll()" ng-cloak>
-    <md-icon ng-if="!menu.expanded">unfold_more</md-icon>
-    <md-tooltip ng-if="!menu.expanded"><?= __('Expand menu for all sentences') ?></md-tooltip>
+<span toggle-all-menus ng-cloak>
+    <md-button ng-if="!menu.expanded" class="md-icon-button" ng-click="menu.toggleAll()">
+        <md-icon>unfold_more</md-icon>
+        <md-tooltip><?= __('Expand menu for all sentences') ?></md-tooltip>
+    </md-button>
 
-    <md-icon ng-if="menu.expanded">unfold_less</md-icon>
-    <md-tooltip ng-if="menu.expanded"><?= __('Collapse menu for all sentences') ?></md-tooltip>
-</md-button>
+    <md-button ng-if="menu.expanded" class="md-icon-button" ng-click="menu.toggleAll()">
+        <md-icon>unfold_less</md-icon>
+        <md-tooltip><?= __('Collapse menu for all sentences') ?></md-tooltip>
+    </md-button>
+</span>
 <?php } ?>

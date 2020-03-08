@@ -58,11 +58,14 @@
                 <md-tooltip ng-if="vm.sentence.is_owned_by_current_user"><?= __('Click to unadopt') ?></md-tooltip>
             </md-button>
 
-            <md-button class="md-icon-button" ng-click="vm.toggleMenu()">
-                <md-icon ng-if="!vm.isMenuExpanded">unfold_more</md-icon>
-                <md-tooltip ng-if="!vm.isMenuExpanded"><?= __('Expand menu') ?></md-tooltip>
-                <md-icon ng-if="vm.isMenuExpanded">unfold_less</md-icon>
-                <md-tooltip ng-if="vm.isMenuExpanded"><?= __('Collapse menu') ?></md-tooltip>
+            <md-button ng-if="!vm.isMenuExpanded" class="md-icon-button" ng-click="vm.toggleMenu()">
+                <md-icon>unfold_more</md-icon>
+                <md-tooltip><?= __('Expand menu') ?></md-tooltip>
+            </md-button>
+
+            <md-button ng-if="vm.isMenuExpanded" class="md-icon-button" ng-click="vm.toggleMenu()">
+                <md-icon>unfold_less</md-icon>
+                <md-tooltip><?= __('Collapse menu') ?></md-tooltip>
             </md-button>
         </div>
     </div>
