@@ -27,12 +27,7 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
     }
 
     function testExecute_CorrectNumberIsWritten() {
-        $sentencesLists = $this->SentencesLists->find('all')->toList();
-        $originalListsAndCounts = array_combine(array_column($sentencesLists, 'id'), array_column($sentencesLists, 'numberOfSentences'));
-        foreach($sentencesLists as $sentencesList) {
-            $sentencesList->numberOfSentences = 99;
-            $this->SentencesLists->save($sentencesList);
-        }
+        $this->SentencesLists->updateAll(['numberOfSentences' => 99], []);
 
         $this->exec("correct_number_of_sentences");
 
