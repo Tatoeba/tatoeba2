@@ -968,10 +968,8 @@ class SentencesTableTest extends TestCase {
 
 	function testDeleteSentence_ListsNumberOfSentencesIsCorrect() {
 		$sentenceId = 8;
-		$sentence = $this->Sentence->get($sentenceId);
 		$sentencesLists = $this->Sentence->get($sentenceId, ['contain' => ['SentencesLists']])->sentences_lists;
 		$idsAndNumbers = array_combine(array_column($sentencesLists, 'id'), array_column($sentencesLists, 'numberOfSentences'));
-		debug($idsAndNumbers);
 
 		$user = $this->Sentence->Users->get(1); // Admin
 		CurrentUser::store($user);
