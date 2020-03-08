@@ -11,8 +11,6 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
     use ConsoleIntegrationTestTrait;
 
     public $fixtures = array(
-        'app.sentences',
-        'app.users',
         'app.sentences_lists',
         'app.sentences_sentences_lists',
     );
@@ -31,7 +29,6 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
     function testExecute_CorrectNumberIsWritten() {
         $sentencesLists = $this->SentencesLists->find('all')->toList();
         $originalListsAndCounts = array_combine(array_column($sentencesLists, 'id'), array_column($sentencesLists, 'numberOfSentences'));
-        debug($originalListsAndCounts);
         foreach($sentencesLists as $sentencesList) {
             $sentencesList->numberOfSentences = 99;
             $this->SentencesLists->save($sentencesList);
@@ -41,7 +38,6 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
 
         $sentencesLists = $this->SentencesLists->find('all')->toList();
         $newListsAndCounts = array_combine(array_column($sentencesLists, 'id'), array_column($sentencesLists, 'numberOfSentences'));
-        debug($newListsAndCounts);
         $this->assertEquals($newListsAndCounts[1], 3);
         $this->assertEquals($newListsAndCounts[2], 0);
         $this->assertEquals($newListsAndCounts[3], 1);
