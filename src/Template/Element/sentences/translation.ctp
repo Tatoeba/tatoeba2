@@ -34,12 +34,10 @@ $sentenceBaseUrl = $this->Url->build([
         </md-tooltip>
     </md-button>
 
-    <?php if (CurrentUser::getSetting('copy_button')) { ?>
-    <md-button class="md-icon-button" ng-disabled="true">
+    <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{translation.text}}">
         <md-icon>content_copy</md-icon>
-        <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
+        <md-tooltip><?= __('Copy sentence') ?></md-tooltip>
     </md-button>
-    <?php } ?>
     
     <?= $this->element('sentence_buttons/audio', ['angularVar' => 'translation']); ?>
     

@@ -63,6 +63,8 @@
             }
         }]);
 
+    angular.module('app').requires.push('ngclipboard');
+
     function sentenceAndTranslations() {
         return {
             scope: true,
