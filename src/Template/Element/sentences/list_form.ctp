@@ -26,5 +26,7 @@
         <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'search'"><em><?= __('No list found.') ?></em></md-list-item>
         <md-list-item ng-if="vm.lists.length === 0 && vm.listType === 'of_user'"><em><?= __('You have no lists which this sentence can be added to.') ?></em></md-list-item>
     </md-list>
-    <md-button ng-click="vm.closeList()"><?= __('Close') ?></md-button>
+    <md-button ng-click="vm.closeList()">
+        <md-icon>close</md-icon> <?= __('Close') ?>
+    </md-button>
 </form>
