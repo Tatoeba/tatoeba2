@@ -649,6 +649,7 @@ class LanguagesLib
             "apc",
             "ota",
             "chg",
+            "lad",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
