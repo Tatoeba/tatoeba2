@@ -7,9 +7,10 @@ $sentenceBaseUrl = $this->Url->build([
     'action' => 'show',
 ]);
 ?>
-<div ng-repeat="translation in <?= $translations ?>" layout="row" layout-align="start center"
+<div ng-repeat="translation in <?= $translations ?>"
      class="translation" ng-class="{'not-reliable' : translation.correctness === -1}">
     
+    <div layout="row" layout-align="start center" flex>
     <md-icon class="chevron">chevron_right</md-icon>
 
     <div class="lang">
@@ -45,4 +46,7 @@ $sentenceBaseUrl = $this->Url->build([
         <md-icon>info</md-icon>
         <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
     </md-button>
+    </div>
+
+    <?= $this->element('sentences/transcriptions', ['sentenceVar' => 'translation']); ?>
 </div>

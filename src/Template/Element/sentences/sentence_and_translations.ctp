@@ -109,8 +109,8 @@ $sentenceUrl = $this->Url->build([
             ?>
         </div>
 
-        <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}"
-             layout="row" layout-align="start center" ng-if="!vm.visibility.sentence_form">
+        <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}" ng-if="!vm.visibility.sentence_form">
+            <div layout="row" layout-align="start center" flex>
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
             </div>
@@ -147,6 +147,9 @@ $sentenceUrl = $this->Url->build([
                 <md-icon>info</md-icon>
                 <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
             </md-button>
+            </div>
+            
+            <?= $this->element('sentences/transcriptions'); ?>
         </div>
     </div>
 

@@ -19,10 +19,20 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use App\Model\Entity\PinyinTrait;
+use App\Model\Entity\FuriganaTrait;
 
 class Transcription extends Entity
 {
-    protected $_virtual = ['readonly', 'type'];
+    use PinyinTrait;
+    use FuriganaTrait;
+
+    protected $_virtual = [
+        'readonly',
+        'type',
+        'html',
+        'editing_format'
+    ];
 
     protected $_hidden = [
         'created',
@@ -139,5 +149,36 @@ class Transcription extends Entity
             }
         }
         return false;
+    }
+
+    protected function _getHtml() {
+        if (!$this->sentence) {
+            return;
+        }
+
+        $lang = $this->sentence['lang'];
+        $text = htmlentities($this->text);
+
+        if ($this->script == 'Hrkt') {
+            $text = $this->rubify($this->text);
+        } elseif ($lang == 'cmn' && $this->script == 'Latn') {
+            $text = $this->numeric2diacritic($text);
+        }
+
+        return $text;
+    }
+
+    protected function _getEditingFormat() {
+        if (!$this->sentence) {
+            return;
+        }
+
+        $lang = $this->sentence['lang'];
+        $text = htmlentities($this->text);
+        if ($this->script == 'Hrkt') {
+            $text = $this->bracketify($this->text);
+        }
+
+        return $text;
     }
 }
