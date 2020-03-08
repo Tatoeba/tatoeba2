@@ -45,5 +45,6 @@ $sentenceBaseUrl = $this->Url->build([
     
     <md-button class="md-icon-button" href="<?= $sentenceBaseUrl ?>/{{translation.id}}">
         <md-icon>info</md-icon>
+        <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
     </md-button>
 </div>
