@@ -20,7 +20,7 @@
 if (empty($options)): ?>
     <dd><?= __('There are no sentences available') ?></dd>
 <?php else: ?>
-    <dd ng-init="<?= $model ?> = '<?= $options[0]['url'] ?>'">
+    <dd ng-init="<?= $model ?> = '<?= $options[0]['url'] ?>'" ng-cloak>
         <p>
             <a ng-href="{{<?= $model ?>}}">{{<?= $model ?> | filename}}</a>
         </p>
