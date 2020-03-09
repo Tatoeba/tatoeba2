@@ -258,6 +258,15 @@ class TranscriptionsTable extends Table
         return $inNeed;
     }
 
+    private function getSourceScript($sourceLang) {
+        if (isset($this->scriptsByLang[$sourceLang])) {
+            if (count($this->scriptsByLang[$sourceLang]) == 1) {
+                return $this->scriptsByLang[$sourceLang][0];
+            }
+        }
+        return false;
+    }
+
     public function detectScript($lang, $text) {
         if (isset($this->scriptsByLang[$lang])
             && count($this->scriptsByLang[$lang]) > 1) {
