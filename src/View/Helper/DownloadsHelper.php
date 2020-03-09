@@ -25,7 +25,7 @@ class DownloadsHelper extends AppHelper
 {
     use LanguageNameTrait;
 
-    public $helpers = ['Languages'];
+    public $helpers = ['Html', 'Languages'];
 
     const PER_LANGUAGE_DIR = '/var/www-downloads/exports/per_language';
     const DOWNLOAD_URL = 'https://downloads.tatoeba.org/exports';
@@ -84,5 +84,28 @@ class DownloadsHelper extends AppHelper
         };
 
         return $options;
+    }
+
+    /**
+     * Create HTML for file format
+     *
+     * @param array $fields Array of field names
+     *
+     * @return string
+     **/
+    public function fileFormat($fields) {
+        if (empty($fields)) {
+            return '';
+        }
+        $tab = $this->Html->tag(
+            'span',
+            format('[{}]', __('tab')),
+            ['class' => 'symbol']
+        );
+        $fieldSpan = function ($field) {
+            return $this->Html->tag('span', $field, ['class' => 'param']);
+        };
+
+        return implode($tab, array_map($fieldSpan, $fields));
     }
 }

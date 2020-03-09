@@ -83,5 +83,26 @@ namespace App\Test\TestCase\View\Helper {
             $this->assertEquals(1, count($options));
             $this->assertEquals('All languages', $options[0]['language']);
         }
+
+        public function fileFormatProvider () {
+            return [
+                'empty fields' => [[], ''],
+                'one field' => [['id'], '<span class="param">id</span>'],
+                'two fields' => [
+                    ['id', 'lang'],
+                    '<span class="param">id</span>' .
+                    '<span class="symbol">[tab]</span>' .
+                    '<span class="param">lang</span>'
+                ]
+            ];
+        }
+
+        /**
+         * @dataProvider fileFormatProvider
+         **/
+        public function testFileFormat($fields, $expected) {
+            $result = $this->DownloadsHelper->fileFormat($fields);
+            $this->assertEquals($expected, $result);
+        }
     }
 }
