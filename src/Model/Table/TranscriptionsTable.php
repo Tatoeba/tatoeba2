@@ -47,7 +47,6 @@ class TranscriptionsTable extends Table
         'cmn-Hans' => array(
             'Hant' => array(
                 'type' => 'altscript',
-                'readonly' => true,
             ),
             'Latn' => array(
             ),
@@ -55,7 +54,6 @@ class TranscriptionsTable extends Table
         'cmn-Hant' => array(
             'Hans' => array(
                 'type' => 'altscript',
-                'readonly' => true,
             ),
             'Latn' => array(
             ),
