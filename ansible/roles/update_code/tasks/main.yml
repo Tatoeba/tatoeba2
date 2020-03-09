@@ -48,7 +48,7 @@
   - webroot/img/profiles_128
   - webroot/img/profiles_36
 
-- name: Allow www-data to write cache, logs and exports
+- name: Allow www-data to write cache, logs, sentence exports and audio imports
   file:
     path: "{{ code_dir }}/{{ item }}"
     state: directory
@@ -59,6 +59,8 @@
   - logs
   - tmp
   - exported_files
+  - webroot/files/audio
+  - webroot/files/audio_import
 
 - name: Install command line tools
   apt:
