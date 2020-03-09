@@ -84,10 +84,7 @@ use Cake\Core\Configure;
             && $selectedLanguageTo == 'und'
             && empty($query)
             && !$this->Languages->preferredLanguageFilter()) {
-            $cache = [
-                'time' => '+1 day',
-                'key' => 'search_bar_'.Configure::read('Config.language'),
-            ];
+            $cache = [ 'key' => 'search_bar_'.Configure::read('Config.language') ];
         } else {
             $cache = null;
         }
@@ -97,10 +94,7 @@ use Cake\Core\Configure;
         );
     } else {
         echo $this->element('short_description', [], [
-            'cache' => [
-                'time' => '+1 day',
-                'key' => 'short_description_'.Configure::read('Config.language')
-            ]
+            'cache' => [ 'key' => 'short_description_'.Configure::read('Config.language') ]
         ]);
     }
     ?>
@@ -131,11 +125,6 @@ use Cake\Core\Configure;
     echo $this->AssetCompress->script('layout.js');
 
     echo $this->fetch('scriptBottom');
-
-    if (CurrentUser::getSetting('copy_button')) {
-        echo $this->Html->script(JS_PATH . 'clipboard.min.js');
-        echo $this->Html->script(JS_PATH . 'sentences.copy.js');
-    }
 
     if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
         echo $this->Html->script(JS_PATH . 'jquery.cookie.js');

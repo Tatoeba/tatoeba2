@@ -28,6 +28,22 @@ class SphinxConfShell extends Shell {
 
     private $tatoeba_languages;
 
+    /**
+     * Languages with stemming support
+     *
+     * This list should be updated according to what the
+     * currently installed Snowball library supports.
+     * Here is a quick and dirty command to figure it out:
+     *
+     *   strings /usr/bin/searchd | grep UTF_8_stem$
+     *
+     * About the language codes, note that we use ISO 639-3
+     * while Snowball uses ISO 639-2, so the array goes like
+     *
+     *   '<iso3>' => 'libstemmer_<iso2>',
+     *
+     * See also https://github.com/snowballstem/snowball/blob/master/libstemmer/modules.txt
+     */
     public $morphology = array(
         'deu' => 'libstemmer_deu',
         'spa' => 'libstemmer_spa',
@@ -44,6 +60,15 @@ class SphinxConfShell extends Shell {
         'hun' => 'libstemmer_hun', # Hungarian
         'ron' => 'libstemmer_ron', # Romanian
         'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
+        'ell' => 'libstemmer_ell', # Greek
+        'tam' => 'libstemmer_tam', # Tamil
+        'eus' => 'libstemmer_eus', # Basque
+        'hin' => 'libstemmer_hin', # Hindi
+        'ara' => 'libstemmer_ara', # Arabic
+        'cat' => 'libstemmer_cat', # Catalan
+        'npi' => 'libstemmer_nep', # Nepali
+        'gle' => 'libstemmer_gle', # Irish
+        'lit' => 'libstemmer_lit', # Lithuanian
     );
 
     public $charsetTable = array(

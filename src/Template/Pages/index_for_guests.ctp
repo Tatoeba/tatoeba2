@@ -101,7 +101,7 @@ $registerUrl = $this->Url->build(
                   'numSentences' => $numSentences,
                 ],
                 [ 'cache' => [
-                    'time' => '+15 minutes',
+                    'config' => 'stats',
                     'key' => 'homepage_stats_'.Configure::read('Config.language')
                 ]]
         ); ?>

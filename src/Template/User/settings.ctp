@@ -301,27 +301,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $copyButton = $userSettings->settings['copy_button']; ?>
-                <md-checkbox
-                    ng-false-value="0"
-                    ng-true-value="1"
-                    ng-model="copyButton"
-                    ng-init="copyButton = <?= $copyButton ?>"
-                    class="md-primary">
-                </md-checkbox>
-                <p><?php echo __('Display button to copy a sentence to the clipboard') ?></p>
-                <div ng-hide="true">
-                <?php
-                    echo $this->Form->input(
-                        'settings.copy_button',
-                        array(
-                          'value' => '{{copyButton}}'
-                        )
-                    );
-                ?>
-                </div>
-            </md-list-item>
-            <md-list-item>
                 <?php $useNewDesign = $userSettings->settings['use_new_design']; ?>
                 <md-checkbox
                     ng-false-value="0"

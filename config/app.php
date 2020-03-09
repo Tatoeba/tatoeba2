@@ -93,6 +93,13 @@ return [
             'path' => CACHE,
             'url' => env('CACHE_DEFAULT_URL', null),
         ],
+        'stats' => [
+            'className' => 'Cake\Cache\Engine\FileEngine',
+            'path' => CACHE,
+            'prefix' => 'tatoeba_stats_',
+            'duration' => '+15 minutes',
+            'url' => env('CACHE_DEFAULT_URL', null),
+        ],
 
         /**
          * Configure the cache used for general framework caching.

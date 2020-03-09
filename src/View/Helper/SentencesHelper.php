@@ -531,11 +531,9 @@ class SentencesHelper extends AppHelper
         }
 
         // Copy
-        if (CurrentUser::getSetting('copy_button')) {
-            echo '<div class="copy column">';
-            $this->SentenceButtons->displayCopyButton($sentence->text);
-            echo '</div>';
-        }
+	echo '<div class="copy column">';
+	$this->SentenceButtons->displayCopyButton($sentence->text);
+	echo '</div>';
 
         // Sentence
         $hasAudio = isset($sentence->audios) && count($sentence->audios);
@@ -737,11 +735,8 @@ class SentencesHelper extends AppHelper
         $this->Html->script('jquery.jeditable.js', $options);
         $this->Html->script('transcriptions.js', $options);
         $this->Html->script('sentences.collapse.js', $options);
-        if (CurrentUser::getSetting('copy_button')) {
-            $this->Html->script('clipboard.min.js', $options);
-            $this->Html->script('sentences.copy.js', $options);
-        }
-
+        $this->Html->script('clipboard.min.js', $options);
+        $this->Html->script('sentences.copy.js', $options);
         $this->Html->script('sentences.play_audio.js', $options);
     }
 

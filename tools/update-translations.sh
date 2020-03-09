@@ -29,7 +29,15 @@ EOF
 pull_translations() {
   echo "Pulling translations from Transifex..."
 
-  tx_params="--no-interactive --parallel -f -a"
+  tx_params="-f -a"
+  tx_version=$(tx --version | cut -f1 -d, | tr -d .)
+  if [ $tx_version -ge 0133 ]; then
+    tx_params="--no-interactive $tx_params"
+  fi
+  if [ $tx_version -ge 0132 ]; then
+    tx_params="--parallel $tx_params"
+  fi
+
   if [ "$1" -eq 1 ]; then
     tx pull $tx_params
   else

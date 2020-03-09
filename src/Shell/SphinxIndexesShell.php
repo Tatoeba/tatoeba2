@@ -45,9 +45,10 @@ class SphinxIndexesShell extends Shell {
            ."Merges the (big and slow to refresh) main index with "
            ."the (small and quick to refresh) delta index of the given "
            ."language ISO codes, or all the languages if none provided.\n\n"
-           ."Usage:   $myself [-w] update ( main | delta )\n"
-           ."Example: $myself update delta\n"
-           ."Updates all the indexes of the given type.\n\n"
+           ."Usage:   $myself [-w] update (main|delta) [lang]...\n"
+           ."Example 1: $myself update delta\n"
+           ."Example 2: $myself update main epo lit swh\n"
+           ."Updates all indexes (or only the given ones) of type main or delta.\n\n"
            ."-w:      wait for running $myself to exit\n");
     }
 
@@ -68,18 +69,20 @@ class SphinxIndexesShell extends Shell {
         echo "ok\n";
     }
 
-    private function update_index($type) {
-        if ($type == 'delta') {
-            $this->loadModel('ReindexFlags');
-            $langs = $this->ReindexFlags
-                 ->find('list', ['valueField' => 'lang'])
-                 ->select(['lang'])
-                 ->where(['lang is not' => null])
-                 ->group('lang')
-                 ->all()
-                 ->toArray();
-        } else {
-            $langs = array_keys($this->tatoeba_languages);
+    private function update_index($type, $langs) {
+        if (!$langs) {
+            if ($type == 'delta') {
+                $this->loadModel('ReindexFlags');
+                $langs = $this->ReindexFlags
+                     ->find('list', ['valueField' => 'lang'])
+                     ->select(['lang'])
+                     ->where(['lang is not' => null])
+                     ->group('lang')
+                     ->all()
+                     ->toArray();
+            } else {
+                $langs = array_keys($this->tatoeba_languages);
+            }
         }
 
         if (empty($langs)) {
@@ -115,18 +118,25 @@ class SphinxIndexesShell extends Shell {
         return $parser;
     }
 
+    private function validate_langs($langs) {
+        foreach ($langs as $lang) {
+            if (!isset($this->tatoeba_languages[$lang])) {
+                $valids = implode(' ', array_keys($this->tatoeba_languages));
+                $this->die_usage("Presumably invalid ISO language code: $lang\n"
+                                ."Valid ones are: $valids.\n");
+            }
+        }
+        return $langs;
+    }
+
     private function process_args() {
         $command = array_shift($this->args);
         switch($command) {
             case 'merge':
-                $langs = count($this->args) ?
-                         $this->args : array_keys($this->tatoeba_languages);
-                foreach ($langs as $lang) {
-                    if (!isset($this->tatoeba_languages[$lang])) {
-                        $valids = implode(' ', array_keys($this->tatoeba_languages));
-                        $this->die_usage("Presumably invalid ISO language code: $lang\n"
-                                        ."Valid ones are: $valids.\n");
-                    }
+                if (count($this->args)) {
+                    $langs = $this->validate_langs($this->args);
+                } else {
+                    $langs = array_keys($this->tatoeba_languages);
                 }
                 foreach ($langs as $lang) {
                     $this->merge_index($lang);
@@ -134,12 +144,17 @@ class SphinxIndexesShell extends Shell {
                 break;
 
             case 'update':
-                $type = $this->args[0];
+                $type = array_shift($this->args);
                 if ($type != 'main' && $type != 'delta') {
                     $this->die_usage("Invalid index type: $type\n"
-                                    ."Must be either main of index.\n");
+                                    ."Must be either main or delta.\n");
                 }
-                $this->update_index($type);
+                if (count($this->args)) {
+                    $langs = $this->validate_langs($this->args);
+                } else {
+                    $langs = null;
+                }
+                $this->update_index($type, $langs);
                 break;
 
             default:

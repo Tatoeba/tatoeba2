@@ -32,7 +32,7 @@ class UsersLanguage extends Entity
 
     protected $_virtual = ['name'];
 
-    protected $_hidden = ['level_approval_status', 'by_user_id', 'of_user_id', 'created', 'modified'];
+    protected $_hidden = ['level_approval_status', 'by_user_id', 'created', 'modified'];
 
     protected function _getLanguageInfo() 
     {
