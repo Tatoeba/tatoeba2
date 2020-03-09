@@ -40,7 +40,8 @@ class DownloadsHelper extends AppHelper
      **/
     private function availableFiles($basename) {
         $command = 'find ' . self::PER_LANGUAGE_DIR . ' -type f ' .
-                   "-name '*$basename.tsv.bz2' -printf '%P\\n'";
+                   "-name '*$basename.tsv.bz2' -printf '%P\\n' " .
+                   '2> /dev/null';
         $stdout = trim(shell_exec($command));
         if (empty($stdout)) {
             return [];
