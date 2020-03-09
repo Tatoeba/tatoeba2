@@ -63,6 +63,11 @@ $link_sample = $this->Downloads->fileFormat(['1', '77']);
 $link_sample_reversed = $this->Downloads->fileFormat(['77', '1']);
 $tag_sample = $this->Downloads->fileFormat(['381279', 'proverb']);
 $list_sample = $this->Downloads->fileFormat(['13', '381279']);
+
+// Dropdown for selections
+$sentencesOptions = $this->Downloads->createOptions('sentences');
+$sentencesDetailedOptions = $this->Downloads->createOptions('sentences_detailed');
+$sentencesCC0Options = $this->Downloads->createOptions('sentences_CC0');
 ?>
 
 <div id="annexe_content">
@@ -154,15 +159,20 @@ $list_sample = $this->Downloads->fileFormat(['13', '381279']);
             <h2><?= __('Sentences') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>sentences.tar.bz2">sentences.tar.bz2</a>
-                </dd>
+                <?= $this->element(
+                    'per_language_files',
+                    [
+                        'model' => 'sentences',
+                        'options' => $sentencesOptions
+                    ]
+                ) ?>
                 <dt><?= $description ?></dt>
                 <dd>
                     <?= format(
                         __(
-                            'Contains all the sentences. Each sentence is associated with a '.
-                            'unique id and an <a href="{}">ISO 639-3</a> language code. '
+                            'Contains all the sentences in the selected language. '.
+                            'Each sentence is associated with a unique id and an '.
+                            '<a href="{}">ISO 639-3</a> language code.'
                         ),
                         $iso_code_url
                     ) ?>
@@ -177,11 +187,13 @@ $list_sample = $this->Downloads->fileFormat(['13', '381279']);
             <h2><?= __('Detailed Sentences') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>sentences_detailed.tar.bz2">
-                        sentences_detailed.tar.bz2
-                    </a>
-                </dd>
+                <?= $this->element(
+                    'per_language_files',
+                    [
+                        'model' => 'sentencesDetailed',
+                        'options' => $sentencesDetailedOptions
+                    ]
+                ) ?>
                 <dt><?= $description ?></dt>
                 <dd>
                     <?= format(
@@ -205,9 +217,13 @@ $list_sample = $this->Downloads->fileFormat(['13', '381279']);
             <h2><?= __('Sentences (CC0)') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
-                <dd>
-                    <a href="<?= $download_url ?>sentences_CC0.tar.bz2">sentences_CC0.tar.bz2</a>
-                </dd>
+                <?= $this->element(
+                    'per_language_files',
+                    [
+                        'model' => 'sentencesCC0',
+                        'options' => $sentencesCC0Options
+                    ]
+                ) ?>
                 <dt><?= $description ?></dt>
                 <dd>
                 <?= __('Contains all the sentences available under CC0.') ?>

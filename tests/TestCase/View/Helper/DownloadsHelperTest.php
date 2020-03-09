@@ -38,8 +38,7 @@ namespace App\Test\TestCase\View\Helper {
         public function testCreateOptions_InvalidBasename() {
             $options = $this->DownloadsHelper->createOptions('foobar');
 
-            $this->assertEquals(1, count($options));
-            $this->assertEquals('All languages', $options[0]['language']);
+            $this->assertTrue(empty($options));
         }
 
         public function filenameProvider () {
@@ -80,8 +79,7 @@ namespace App\Test\TestCase\View\Helper {
 
             $options = $this->DownloadsHelper->createOptions($basename);
 
-            $this->assertEquals(1, count($options));
-            $this->assertEquals('All languages', $options[0]['language']);
+            $this->assertTrue(empty($options));
         }
 
         public function fileFormatProvider () {

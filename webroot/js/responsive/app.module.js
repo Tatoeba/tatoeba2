@@ -35,6 +35,11 @@
                 return "";
             };
         })
+        .filter('filename', function() {
+            return function(input) {
+                return input.substring(input.lastIndexOf('/') + 1);
+            };
+        })
         // https://stackoverflow.com/questions/28851893/angularjs-textaera-enter-key-submit-form-with-autocomplete
         .directive('ngEnter', function() {
             return function(scope, element, attrs) {

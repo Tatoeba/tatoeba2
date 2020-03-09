@@ -41,8 +41,11 @@ class DownloadsHelper extends AppHelper
     private function availableFiles($basename) {
         $command = 'find ' . self::PER_LANGUAGE_DIR . ' -type f ' .
                    "-name '*$basename.tsv.bz2' -printf '%P\\n'";
-        $stdout = shell_exec($command);
-        $paths = explode("\n", $stdout, -1);
+        $stdout = trim(shell_exec($command));
+        if (empty($stdout)) {
+            return [];
+        }
+        $paths = explode("\n", $stdout);
 
         $map = [];
         foreach ($paths as $path) {
@@ -65,8 +68,12 @@ class DownloadsHelper extends AppHelper
      **/
     public function createOptions($basename) {
         $urls = $this->availableFiles($basename);
+        if (empty($urls)) {
+            return [];
+        }
         $languages = array_intersect_key(
-            $this->Languages->unknownLanguagesArray(),
+            $this->Languages->onlyLanguagesArray(false) +
+            ['unknown' => __x('dropdown-list', 'Unknown language')],
             $urls
         );
 
