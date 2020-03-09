@@ -149,54 +149,6 @@ class TranscriptionsTable extends Table
         }
     }
 
-    public function afterFind($event, $entity, $options) {
-        $this->setTranscriptionsFlags($results);
-        return $results;
-    }
-
-    private function setTranscriptionsFlags(&$results) {
-        $sentenceIds = array();
-        foreach ($results as $result) {
-            if (!isset($result['Transcription']['sentence_id']) ||
-                !isset($result['Transcription']['script']))
-                return;
-
-            $sentenceIds[ $result['Transcription']['sentence_id'] ] = true;
-        }
-        $sentenceIds = array_keys($sentenceIds);
-
-        // Calling find() inside afterFind() causes problems with the
-        // containable behavior, so let's avoid it
-        $query = array(
-            'conditions' => array('Sentence.id' => $sentenceIds),
-            'fields' => array('id', 'lang', 'script'),
-            'callbacks' => false,
-        );
-        $dbo = $this->Sentences->getDataSource();
-        $sentences = $dbo->read($this->Sentence, $query, -1);
-
-        $sentenceById = array();
-        foreach ($sentences as $sentence) {
-           $id = $sentence['Sentence']['id'];
-           $sentenceById[$id] = $sentence['Sentence'];
-        }
-        foreach ($results as &$result) {
-            $id = $result['Transcription']['sentence_id'];
-            if (isset($sentenceById[$id])) {
-                $to = $this->transcriptableToWhat($sentenceById[$id]);
-                $script = $result['Transcription']['script'];
-                if (isset($to[$script])) {
-                    $flags = array_intersect_key($to[$script], $this->defaultFlags);
-                    $result['Transcription'] = array_merge(
-                        $result['Transcription'],
-                        $this->defaultFlags,
-                        $flags
-                    );
-                }
-            }
-        }
-    }
-
     public function _isUnique($entity) {
         $script = $entity->script;
         if (!$script)
@@ -304,15 +256,6 @@ class TranscriptionsTable extends Table
                 $inNeed[] = $lang;
         }
         return $inNeed;
-    }
-
-    private function getSourceScript($sourceLang) {
-        if (isset($this->scriptsByLang[$sourceLang])) {
-            if (count($this->scriptsByLang[$sourceLang]) == 1) {
-                return $this->scriptsByLang[$sourceLang][0];
-            }
-        }
-        return false;
     }
 
     public function detectScript($lang, $text) {

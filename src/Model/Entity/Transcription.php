@@ -134,6 +134,8 @@ class Transcription extends Entity
                 }
             }
         }
+        $settings = array_intersect_key($settings, $this->defaultFlags);
+        $settings = array_merge($this->defaultFlags, $settings);
         return $settings;
     }
 
