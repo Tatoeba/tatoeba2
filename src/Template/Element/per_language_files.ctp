@@ -17,8 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (empty($options)): ?>
-    <dd><?= __('There are no sentences available') ?></dd>
+if (count($options) == 1): ?>
+    <dd>
+        <a href="<?= $options[0]['url'] ?>">
+            <?= basename($options[0]['url']) ?>
+        </a>
+    </dd>
 <?php else: ?>
     <dd ng-init="<?= $model ?> = '<?= $options[0]['url'] ?>'" ng-cloak>
         <p>

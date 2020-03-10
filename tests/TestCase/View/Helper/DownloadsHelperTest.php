@@ -38,7 +38,11 @@ namespace App\Test\TestCase\View\Helper {
         public function testCreateOptions_InvalidBasename() {
             $options = $this->DownloadsHelper->createOptions('foobar');
 
-            $this->assertTrue(empty($options));
+            $this->assertEquals(1, count($options));
+            $this->assertEquals(
+                $this->DownloadsHelper::DOWNLOAD_URL . "/foobar.tar.bz2",
+                $options[0]['url']
+            );
         }
 
         public function filenameProvider () {
@@ -79,7 +83,11 @@ namespace App\Test\TestCase\View\Helper {
 
             $options = $this->DownloadsHelper->createOptions($basename);
 
-            $this->assertTrue(empty($options));
+            $this->assertEquals(1, count($options));
+            $this->assertEquals(
+                $this->DownloadsHelper::DOWNLOAD_URL . "/$basename.tar.bz2",
+                $options[0]['url']
+            );
         }
 
         public function fileFormatProvider () {

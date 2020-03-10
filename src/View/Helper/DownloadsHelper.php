@@ -65,31 +65,33 @@ class DownloadsHelper extends AppHelper
      *                         (without extension)
      *
      * @return array           Each item is an array with keys 'language'
-     *                         and 'url'
+     *                         and 'url'.
+     *                         The array will always contain at least one item
+     *                         (for the all-languages file).
      **/
     public function createOptions($basename) {
-        $urls = $this->availableFiles($basename);
-        if (empty($urls)) {
-            return [];
-        }
-        $languages = array_intersect_key(
-            $this->Languages->onlyLanguagesArray(false) +
-            ['unknown' => __x('dropdown-list', 'Unknown language')],
-            $urls
-        );
-
         $urlForAll = self::DOWNLOAD_URL . DS . $basename . '.tar.bz2';
         $options[0] = [
             'language' => __('All languages'),
             'url' => $urlForAll
         ];
 
-        foreach($languages as $code => $name) {
-            $options[] = [
-                'language' => $name,
-                'url' => $urls[$code]
-            ];
-        };
+        $urls = $this->availableFiles($basename);
+        if (!empty($urls)) {
+            $languages = array_intersect_key(
+                $this->Languages->onlyLanguagesArray(false) +
+                ['unknown' => __x('dropdown-list', 'Unknown language')],
+                $urls
+            );
+
+
+            foreach($languages as $code => $name) {
+                $options[] = [
+                    'language' => $name,
+                    'url' => $urls[$code]
+                ];
+            };
+        }
 
         return $options;
     }
