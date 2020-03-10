@@ -20,6 +20,7 @@ if ($log->sentence_id) {
 }
 
 $sentenceText = $log->text;
+$sentenceScript = $log->script;
 
 $translationLink = null;
 if ($log->translation_id) {
@@ -35,7 +36,6 @@ if ($log->translation_id) {
 }
 
 $langCode = $log->sentence_lang;
-$langDir = LanguagesLib::getLanguageDirection($langCode);
 
 $action = $log->action;
 $username = $log->user ? $log->user->username : null;
@@ -44,13 +44,15 @@ $infoLabel = $this->Logs->getInfoLabel($type, $action, $username, $sentenceDate)
 
 ?>
 <div class="md-list-item-text" layout="column">
-    <div class="content" dir="<?= $langDir ?>">
+    <div class="content">
         <?php
         if ($type =='sentence') {
             if (isset($withSentenceLink)) {
                 echo $sentenceLink.' ';
             }
-            echo h($sentenceText);
+            echo $this->Languages->tagWithLang(
+                'span', $langCode, $sentenceText, [], $sentenceScript
+            );
         } elseif ($type == 'license') {
             if (isset($withSentenceLink)) {
                 echo $sentenceLink.' ';
