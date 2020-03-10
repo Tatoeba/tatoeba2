@@ -290,6 +290,10 @@ class CurrentUser
      */
     public static function hasFavorited($sentenceId)
     {
+        if (!self::isMember()) {
+            return false;
+        }
+
         $userId = self::get('id');
         $Favorite = TableRegistry::get('Favorites');
         return $Favorite->isSentenceFavoritedByUser($sentenceId, $userId);
@@ -305,6 +309,10 @@ class CurrentUser
      */
     public static function correctnessForSentence($sentenceId)
     {
+        if (!self::isMember()) {
+            return false;
+        }
+
         $userId = self::get('id');
         $UsersSentences = TableRegistry::get('UsersSentences');
         return $UsersSentences->correctnessForSentence($sentenceId, $userId);
