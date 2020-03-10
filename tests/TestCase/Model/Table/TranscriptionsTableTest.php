@@ -426,10 +426,10 @@ class TranscriptionsTableTest extends TestCase {
 
     function testCannotUpdateReadonlyTranscriptions() {
         $result = (bool)$this->Transcription->saveTranscription(array(
-            'id' => 2,
-            'sentence_id' => 2,
-            'script' => 'Hant',
-            'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
+            'id' => 4,
+            'sentence_id' => 58,
+            'script' => 'Latn',
+            'text' => 'Ishingni qqq!',
         ));
         $this->assertFalse($result);
     }
