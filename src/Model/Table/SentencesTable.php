@@ -81,7 +81,9 @@ class SentencesTable extends Table
         if (Configure::read('AutoTranscriptions.enabled')) {
             $this->addBehavior('Transcriptable');
         }
-        $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
+        if (Configure::read('Search.enabled')) {
+            $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
+        }
 
         $this->getEventManager()->on(new ContributionListener());
         $this->getEventManager()->on(new UsersLanguagesListener());
