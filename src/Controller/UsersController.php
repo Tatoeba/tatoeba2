@@ -484,7 +484,7 @@ class UsersController extends AppController
 
         $this->paginate = array(
             'limit' => 20,
-            'order' => array('role', 'id'),
+            'order' => array('role' => 'desc', 'id' => 'asc'),
             'fields' => array('id', 'username', 'since', 'image', 'role'),
             'sort' => $this->request->getQuery('sort', 'role'),
             'direction' => $this->request->getQuery('direction', 'asc'),
