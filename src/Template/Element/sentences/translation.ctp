@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+use App\Model\CurrentUser;
 
 $sentenceBaseUrl = $this->Url->build([
     'controller' => 'sentences',
@@ -12,14 +13,14 @@ $sentenceBaseUrl = $this->Url->build([
     <md-icon class="chevron">chevron_right</md-icon>
 
     <div class="lang">
-        <language-icon lang="translation.lang" title="translation.langName"></language-icon>
+        <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>
     </div>
 
     <div class="text" dir="{{translation.dir}}" flex>
         {{translation.text}}
     </div>
     
-    <div ng-if="translation.correctness === -1">
+    <div class="indicator" ng-if="translation.correctness === -1">
         <md-icon class="md-warn" >warning</md-icon>
         <md-tooltip md-direction="top">
             <?= __('This sentence is not reliable.') ?>
@@ -33,9 +34,15 @@ $sentenceBaseUrl = $this->Url->build([
         </md-tooltip>
     </md-button>
 
+    <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{translation.text}}">
+        <md-icon>content_copy</md-icon>
+        <md-tooltip><?= __('Copy sentence') ?></md-tooltip>
+    </md-button>
+    
     <?= $this->element('sentence_buttons/audio', ['angularVar' => 'translation']); ?>
     
     <md-button class="md-icon-button" href="<?= $sentenceBaseUrl ?>/{{translation.id}}">
         <md-icon>info</md-icon>
+        <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
     </md-button>
 </div>

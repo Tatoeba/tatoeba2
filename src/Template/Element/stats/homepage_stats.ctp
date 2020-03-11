@@ -40,6 +40,6 @@ $statsUrl = $this->Url->build([
 <div layout="row" layout-align="center center">
     <md-button class="md-primary" href="<?= $statsUrl ?>">
         <?= __('stats per languages') ?>
-        <md-icon>keyboard_arrow_right</md-icon>
+        <md-icon ng-cloak>keyboard_arrow_right</md-icon>
     </md-button>
 </div>

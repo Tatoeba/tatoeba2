@@ -130,7 +130,9 @@ if (!isset($results)) {
     ?>
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
-            <h2><?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?></h2>
+            <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
+
+            <?= $this->element('sentences/expand_all_menus_button'); ?>
         </div>
     </md-toolbar>
 

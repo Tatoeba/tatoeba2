@@ -1,9 +1,6 @@
-<?php 
-$hasAudio = count($sentence->audios) > 0;
-?>
-<form layout="column" layout-margin style="padding-top: 10px" ng-if="vm.visibility.sentence_form">
-<?php if ($hasAudio) { ?>
+<form layout="column" layout-margin ng-if="vm.visibility.sentence_form">
 
+<div ng-if="vm.sentence.audios && vm.sentence.audios.length > 0">
     <p><?= __('You cannot edit this sentence because it has audio.'); ?>
 
     <div layout="row" layout-align="end center">
@@ -11,9 +8,9 @@ $hasAudio = count($sentence->audios) > 0;
             <?= __('Close') ?>
         </md-button>
     </div>
+</div>
 
-<?php } else { ?>
-
+<div layout="column" ng-if="!(vm.sentence.audios && vm.sentence.audios.length > 0)">
     <div layout="row" layout-align="start center">
         <md-input-container flex="50">
             <label><?= __('Language') ?></label>
@@ -25,7 +22,7 @@ $hasAudio = count($sentence->audios) > 0;
             </md-select>
         </md-input-container>
         
-        <div style="padding: 10px 10px 0 10px">
+        <div class="language-icon-div">
             <img ng-src="/img/flags/{{vm.sentence.lang}}.svg"
                  width="30" height="20" class="language-icon"/>
         </div>
@@ -33,7 +30,7 @@ $hasAudio = count($sentence->audios) > 0;
 
     <md-input-container>
         <label><?= __('Sentence') ?></label>
-        <textarea id="sentence-form-<?= $sentence->id ?>" ng-model="vm.sentence.text" 
+        <textarea ng-attr-id="sentence-form-{{vm.sentence.id}}" ng-model="vm.sentence.text" 
                   ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()"></textarea>
     </md-input-container>
 
@@ -45,6 +42,6 @@ $hasAudio = count($sentence->audios) > 0;
             <?= __('Save') ?>
         </md-button>
     </div>
+</div>
 
-<?php } ?>
 </form>

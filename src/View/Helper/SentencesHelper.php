@@ -847,41 +847,17 @@ class SentencesHelper extends AppHelper
     }
 
     public function sentenceForAngular($sentence) {
-        $data = $this->getSentenceData($sentence);
-        
         if (isset($sentence->highlight)) {
             $sentenceText = h($sentence->text);
             $highlight = $sentence->highlight;
-            $data['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
+            $sentence['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
         }
 
-        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
+        return htmlspecialchars(json_encode($sentence), ENT_QUOTES, 'UTF-8');
     }
 
     public function translationsForAngular($translations) {
-        $data = [];
-        foreach($translations as $translation) {
-            $data[] = $this->getSentenceData($translation);
-        }
-
-        return htmlspecialchars(json_encode($data), ENT_QUOTES, 'UTF-8');
-    }
-
-    public function getSentenceData($sentence) {
-        return [
-            'id' => $sentence->id,
-            'text' => $sentence->text,
-            'lang' => $sentence->lang,
-            'langName' => $this->Languages->codeToNameAlone($sentence->lang),
-            'script' => $sentence->script,
-            'dir' => LanguagesLib::getLanguageDirection($sentence->lang),
-            'audios' => $sentence->audios,
-            'correctness' => $sentence->correctness,
-            'isFavorite' => CurrentUser::hasFavorited($sentence->id),
-            'isOwnedByCurrentUser' => $sentence->user && $sentence->user->username === CurrentUser::get('username'),
-            'user' => $sentence->user,
-            'sentences_lists' => $sentence->sentences_lists
-        ];
+        return htmlspecialchars(json_encode($translations), ENT_QUOTES, 'UTF-8');
     }
 }
 ?>

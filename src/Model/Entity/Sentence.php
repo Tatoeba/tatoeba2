@@ -20,10 +20,20 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use App\Model\Entity\HashTrait;
+use App\Model\CurrentUser;
+use App\Lib\LanguagesLib;
 
 class Sentence extends Entity
 {
     use HashTrait;
+    use LanguageNameTrait;
+
+    protected $_virtual = [
+        'lang_name',
+        'dir',
+        'is_favorite',
+        'is_owned_by_current_user'
+    ];
 
     public function __construct($properties = [], $options = []) {
         parent::__construct($properties, $options);
@@ -85,5 +95,25 @@ class Sentence extends Entity
         }
 
         return $result;
+    }
+
+    protected function _getLangName()
+    {
+        return $this->codeToNameAlone($this->lang);
+    }
+
+    protected function _getDir()
+    {
+        return LanguagesLib::getLanguageDirection($this->lang);
+    }
+
+    protected function _getIsFavorite()
+    {
+        CurrentUser::hasFavorited($this->id);
+    }
+
+    protected function _getIsOwnedByCurrentUser()
+    {
+        return $this->user_id === CurrentUser::get('id');
     }
 }

@@ -352,11 +352,13 @@ class SentencesTable extends Table
                     if ($translation->indirect_translations) {
                         foreach ($translation->indirect_translations as $indirectTranslation) {
                             if (!in_array($indirectTranslation->id, $indirectIds)) {
+                                $indirectTranslation = $this->newEntity($indirectTranslation->toArray());
                                 $indirectTranslations[] = $indirectTranslation;
                                 $indirectIds[] = $indirectTranslation->id;
                             }
                         }
                         unset($translation->indirect_translations);
+                        $translation = $this->newEntity($translation->toArray());
                         $directTranslations[] = $translation;
                     }
                 }
@@ -377,10 +379,46 @@ class SentencesTable extends Table
                 $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
                 
                 $result['translations'] = [$directTranslations, $indirectTranslations];
+                $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
+                $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
+                if (CurrentUser::isMember()) {
+                    $result['permissions'] = $this->getPermissions($result);
+                }
 
                 return $result;
             });
         });
+    }
+
+    private function getextraTranslationsCount($sentence)
+    {
+        $maxDisplayed = 5;
+        $directTranslationCount = count($sentence->translations[0]);
+        $indirectTranslationCount = count($sentence->translations[1]);
+        return $directTranslationCount + $indirectTranslationCount - $maxDisplayed;
+    }
+
+    private function getExpandLabel($extraTranslationsCount)
+    {
+        return format(__n(
+            'Show 1 more translation',
+            'Show {number} more translations',
+            $extraTranslationsCount
+        ), array('number' => $extraTranslationsCount));
+    }
+
+    private function getPermissions($sentence)
+    {
+        $user = $sentence->user;
+        $userId = $user ? $user->id : null;
+
+        return [
+            'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
+            'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
+            'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
+            'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),
+            'canLink' => CurrentUser::isTrusted(),
+        ];
     }
 
     public function findWithSphinx($query, $options)
