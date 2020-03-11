@@ -38,7 +38,7 @@ use App\Model\CurrentUser;
  */
 
 $this->Html->script('user/language.ctrl.js', ['block' => 'scriptBottom']);
-$this->Html->script('/js/directives/sentence-and-translations.dir.js', array('block' => 'scriptBottom')); // TODO: this is just to get the languageIcon directive
+$this->AssetCompress->script('sentence-component.js', ['block' => 'scriptBottom']); // TODO: this is just to get the languageIcon directive
 echo $this->Html->css('user/language.css');
 
 $dateFormat = [\IntlDateFormatter::LONG, \IntlDateFormatter::NONE];
