@@ -115,7 +115,7 @@ $sentenceUrl = $this->Url->build([
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
             </div>
             
-            <div class="text" flex dir="{{vm.sentence.dir}}" >
+            <div class="text" flex dir="{{vm.sentence.dir}}" lang="{{vm.sentence.lang_tag}}">
                 <span ng-if="vm.sentence.highlightedText" ng-bind-html="vm.sentence.highlightedText"></span>
                 <span ng-if="!vm.sentence.highlightedText">{{vm.sentence.text}}</span>
             </div>

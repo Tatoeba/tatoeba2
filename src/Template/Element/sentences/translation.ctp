@@ -16,7 +16,7 @@ $sentenceBaseUrl = $this->Url->build([
         <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>
     </div>
 
-    <div class="text" dir="{{translation.dir}}" flex>
+    <div class="text" dir="{{translation.dir}}" lang="{{translation.lang_tag}}" flex>
         {{translation.text}}
     </div>
     

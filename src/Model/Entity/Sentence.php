@@ -31,6 +31,7 @@ class Sentence extends Entity
     protected $_virtual = [
         'lang_name',
         'dir',
+        'lang_tag',
         'is_favorite',
         'is_owned_by_current_user'
     ];
@@ -105,6 +106,11 @@ class Sentence extends Entity
     protected function _getDir()
     {
         return LanguagesLib::getLanguageDirection($this->lang);
+    }
+
+    protected function _getLangTag()
+    {
+        return LanguagesLib::languageTag($this->lang, $this->script);
     }
 
     protected function _getIsFavorite()
