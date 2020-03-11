@@ -486,13 +486,9 @@ class UsersController extends AppController
             'limit' => 20,
             'order' => array('role', 'id'),
             'fields' => array('id', 'username', 'since', 'image', 'role'),
+            'sort' => $this->request->getQuery('sort', 'role'),
+            'direction' => $this->request->getQuery('direction', 'asc'),
         );
-
-        // We use two columns for ordering the results so in order to indicate the
-        // initial sorting direction we need to set the 'sort' key manually
-        if (empty($this->request->getQuery('sort'))) {
-            $this->paginate['sort'] = 'role';
-        }
 
         $query = $this->Users->find()->where(['Users.role IN' => User::ROLE_CONTRIBUTOR_OR_HIGHER]);
         try {
