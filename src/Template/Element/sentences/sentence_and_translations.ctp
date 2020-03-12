@@ -185,7 +185,7 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" ng-if="vm.sentence.extraTranslationsCount > 1 && vm.visibility.translations">
+    <div layout="column" ng-if="vm.sentence.extraTranslationsCount >= 1 && vm.visibility.translations">
         <md-button ng-click="vm.expandOrCollapse()">
             <md-icon>{{vm.expandableIcon}}</md-icon>
             <span ng-if="!vm.isExpanded">
