@@ -167,6 +167,8 @@
                 initLists(sentence.sentences_lists);
             }).finally(function() {
                 vm.inProgress = false;
+                vm.isExpanded = false;
+                vm.expandableIcon = 'expand_more';
             });
         });
 
