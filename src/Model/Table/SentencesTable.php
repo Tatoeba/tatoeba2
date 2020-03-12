@@ -354,13 +354,11 @@ class SentencesTable extends Table
                     if ($translation->indirect_translations) {
                         foreach ($translation->indirect_translations as $indirectTranslation) {
                             if (!in_array($indirectTranslation->id, $indirectIds)) {
-                                $indirectTranslation = $this->newEntity($indirectTranslation->toArray());
                                 $indirectTranslations[] = $indirectTranslation;
                                 $indirectIds[] = $indirectTranslation->id;
                             }
                         }
                         unset($translation->indirect_translations);
-                        $translation = $this->newEntity($translation->toArray());
                         $directTranslations[] = $translation;
                     }
                 }
