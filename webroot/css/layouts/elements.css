@@ -1324,8 +1324,11 @@ div.hideLink {
 }
 
 .sentence-and-translations .sentence {
-    font-size: 24px;
     padding: 10px;
+}
+
+.sentence-and-translations .sentence .text {
+    font-size: 24px;
 }
 
 .sentence-and-translations .translation {
@@ -1414,7 +1417,6 @@ form .language-icon-div {
 .sentence-and-translations .sentence .transcription .text {
     color: #A1A1A1;
     font-size: 24px;
-    margin-left: 7px;
 }
 
 .sentence-and-translations .translation .transcription .icon {
