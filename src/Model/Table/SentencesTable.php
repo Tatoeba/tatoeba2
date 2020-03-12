@@ -666,7 +666,12 @@ class SentencesTable extends Table
                 'fields' => array('id', 'username', 'role', 'level')
             ),
             'Translations' => array(
-                'IndirectTranslations' => array(),
+                'IndirectTranslations' => array(
+                    'Audios' => array(
+                        'Users' => array('fields' => array('username')),
+                        'fields' => array('user_id', 'external', 'sentence_id'),
+                    ),
+                ),
                 'Audios' => array(
                     'Users' => array('fields' => array('username')),
                     'fields' => array('user_id', 'external', 'sentence_id'),
