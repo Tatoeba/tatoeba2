@@ -66,7 +66,7 @@ class ActivitiesController extends AppController
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
             'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->paginateContain(),
+            'contain' => $this->Sentences->contain(),
         );
         $results = $this->paginate('Sentences');
         $this->set('results', $results);
@@ -184,7 +184,7 @@ class ActivitiesController extends AppController
             'finder' => 'filteredTranslations',
             'fields' => $this->Sentences->fields(),
             'conditions' => $conditions,
-            'contain' => $this->Sentences->paginateContain(),
+            'contain' => $this->Sentences->contain(['translations' => true]),
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => ['Sentences.created' => 'DESC'],
         ];

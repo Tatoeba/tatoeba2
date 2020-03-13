@@ -192,7 +192,8 @@ class TagsController extends AppController
 
         if ($tagExists) {
             $this->loadModel('Sentences');
-            $contain = $this->Sentences->paginateContain();
+            $contain = $this->Sentences->contain(['translations' => true]);
+            $contain['fields'] = $this->Sentences->fields();
             $contain['finder'] = 'filteredTranslations';
 
             $conditions = ['tag_id' => $tagId];

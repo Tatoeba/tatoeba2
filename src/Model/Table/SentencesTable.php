@@ -593,119 +593,92 @@ class SentencesTable extends Table
     }
 
     /**
-     * Returns the fields names typically needed to display a sentence.
+     * Returns the appropriate value for the fields() parameter
+     * to be used on the this model.
+     *
+     * @param array $what What to include in the fields. By default it contains
+     *                    the necessary to display a sentence block. Array keys:
+     *
+     *       sentenceDetails: include details for the sentence page
      */
-    public function fields()
+    public function fields($what = [])
     {
-        return array(
+        $fields = [
             'id',
             'text',
             'lang',
             'user_id',
             'correctness',
             'script',
-            'license',
-            'based_on_id',
-        );
-    }
+        ];
 
-    /**
-     * Returns the appropriate value for the 'contain' parameter
-     * of a typical ->find('all', ...). It makes it return everything
-     * we need to display typical sentence groups.
-     */
-    public function contain()
-    {
-        $contain = array(
-            'Favorites_users' => array(
-                'fields' => array()
-            ),
-            'Users' => array(
-                'fields' => array('id', 'username', 'role', 'level')
-            ),
-            'SentencesLists' => array(
-                'fields' => array('id', 'SentencesSentencesLists.sentence_id')
-            ),
-            'Transcriptions'   => array(
-                'Users' => array('fields' => array('username')),
-            ),
-            'Translations' => array(
-                'IndirectTranslations' => array(
-                    'Transcriptions' => array(
-                        'Users' => array('fields' => array('username')),
-                    ),
-                    'Audios' => array(
-                        'Users' => array('fields' => array('username')),
-                        'fields' => array('user_id', 'external', 'sentence_id'),
-                    ),
-                ),
-                'Transcriptions' => array(
-                    'Users' => array('fields' => array('username')),
-                ),
-                'Audios' => array(
-                    'Users' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'external', 'sentence_id'),
-                ),
-            ),
-            'Audios' => array(
-                'Users' => array('fields' => array(
-                    'username',
-                    'audio_license',
-                    'audio_attribution_url',
-                )),
-                'fields' => array('user_id', 'external', 'sentence_id'),
-            ),
-        );
-
-        return $contain;
-    }
-
-    /**
-     * Returns the appropriate value for the 'contain' parameter
-     * for the most basic display of the sentence groups.
-     */
-    public function minimalContain() {
-        $contain = array(
-            'Users' => array(
-                'fields' => array('id', 'username', 'role', 'level')
-            ),
-            'Translations' => array(
-                'IndirectTranslations' => array(
-                    'Audios' => array(
-                        'Users' => array('fields' => array('username')),
-                        'fields' => array('user_id', 'external', 'sentence_id'),
-                    ),
-                ),
-                'Audios' => array(
-                    'Users' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'external', 'sentence_id'),
-                ),
-            ),
-            'Audios' => array(
-                'Users' => array('fields' => array(
-                    'username',
-                    'audio_license',
-                    'audio_attribution_url',
-                )),
-                'fields' => array('user_id', 'external', 'sentence_id'),
-            ),
-        );
-
-        return $contain;
-    }
-
-    /**
-     * Returns the appropriate value for the 'contain' parameter
-     * of typical a pagination of sentences.
-     */
-    public function paginateContain()
-    {
-        if (CurrentUser::isMember()) {
-            $params = $this->contain();
-        } else {
-            $params = $this->minimalContain();
+        if (isset($what['sentenceDetails'])) {
+            $fields[] = 'license';
+            $fields[] = 'based_on_id';
         }
-        return $params;
+
+        return $fields;
+    }
+
+    /**
+     * Returns the appropriate value for the contain() parameter
+     * to be used on the this model.
+     *
+     * @param array $what What to include in the containment. By default it is
+     *                    what is needed to display a sentence block without
+     *                    translations. Array keys:
+     *
+     *       translations: include translations for sentence block
+     *       sentenceDetails: include details for the sentence page
+     */
+    public function contain($what = [])
+    {
+        $audioContainment = [
+           'Users' => ['fields' => ['username']],
+           'fields' => ['external', 'sentence_id'],
+        ];
+        $contain = [
+            'Users' => [
+                'fields' => ['id', 'username', 'role', 'level']
+            ],
+            'Audios' => $audioContainment,
+            'Transcriptions' => [
+                'Users' => ['fields' => ['username']],
+            ],
+        ];
+
+        if (CurrentUser::isMember()) {
+            $contain += [
+                'Favorites_users' => [
+                    'fields' => ['id', 'Favorites_users.favorite_id']
+                ],
+                'SentencesLists' => [
+                    'fields' => ['id', 'SentencesSentencesLists.sentence_id']
+                ],
+            ];
+        }
+
+        if (isset($what['translations'])) {
+            $translationFields = [
+                'id', 'text', 'lang', 'correctness', 'script',
+                'SentencesTranslations.sentence_id'
+            ];
+            $contain['Translations'] = [
+                'fields' => $translationFields,
+                'IndirectTranslations' => [
+                    'fields' => $translationFields,
+                    'Audios' => $audioContainment,
+                ],
+                'Audios' => $audioContainment,
+            ];
+        }
+
+        if (isset($what['sentenceDetails'])) {
+            $contain['Audios']['Users']['fields'][] = 'audio_license';
+            $contain['Audios']['Users']['fields'][] = 'audio_attribution_url';
+        }
+
+        return $contain;
     }
 
     /**
@@ -730,28 +703,23 @@ class SentencesTable extends Table
     }
 
     /**
-     * Get all the informations needed to display a sentences in show section.
+     * Get all the informations needed to display a sentence.
      *
-     * @param int $id Id of the sentence asked.
+     * @param int $id Id of the sentence.
+     * @param array $what parameter to $this->fields() and $this->contain().
      *
-     * @return array Information about the sentence.
+     * @return ResultSet Information about the sentence.
      */
-    public function getSentenceWithId($id)
+    public function getSentenceWith($id, $what = [])
     {
-        $result = $this->find(
+        return $this->find(
                 'filteredTranslations',
                 ['nativeMarker' => CurrentUser::getSetting('native_indicator')]
             )
             ->where(['Sentences.id' => $id])
-            ->contain($this->contain())
-            ->select($this->fields())
+            ->contain($this->contain($what))
+            ->select($this->fields($what))
             ->first();
-
-        if ($result == null) {
-            return;
-        }
-
-        return $result;
     }
 
     /**
