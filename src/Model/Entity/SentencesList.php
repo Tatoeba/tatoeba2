@@ -22,6 +22,11 @@ use Cake\ORM\Entity;
 
 class SentencesList extends Entity
 {
+    protected $_hidden = [
+        '_joinData',
+        'SentencesSentencesLists',
+    ];
+
     protected function _getOldFormat()
     {
         return [

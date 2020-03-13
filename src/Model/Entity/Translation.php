@@ -14,6 +14,11 @@ class Translation extends Entity
         'lang_tag',
     ];
 
+    protected $_hidden = [
+        '_joinData',
+        'SentencesTranslations',
+    ];
+
     protected function _getLangName()
     {
         return $this->codeToNameAlone($this->lang);

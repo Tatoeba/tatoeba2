@@ -20,6 +20,7 @@
 namespace App\Model\Table;
 
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Event\Event;
@@ -652,9 +653,10 @@ class SentencesTable extends Table
 
         if (CurrentUser::isMember()) {
             $contain += [
-                'Favorites_users' => [
-                    'fields' => ['id', 'Favorites_users.favorite_id']
-                ],
+                'Favorites_users' => function (Query $q) {
+                    return $q->select(['id', 'favorite_id'])
+                             ->where(['user_id' => CurrentUser::get('id')]);
+                },
                 'SentencesLists' => [
                     'fields' => ['id', 'SentencesSentencesLists.sentence_id']
                 ],
