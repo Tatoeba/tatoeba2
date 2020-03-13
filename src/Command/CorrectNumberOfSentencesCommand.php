@@ -31,13 +31,6 @@ class CorrectNumberOfSentencesCommand extends Command
 
         // The lists that do not appear have numberOfSentences set to 0
         $subquery = $this->SentencesSentencesLists->find()->select('sentences_list_id');
-        $listsWithNoSentenceQuery = $this->SentencesLists->find('all', array(
-            'conditions' => array('id NOT IN' => $subquery)
-        ));
-
-        foreach($listsWithNoSentenceQuery as $sentencesList){
-            $sentencesList->numberOfSentences = 0;
-            $this->SentencesLists->save($sentencesList);
-        }
+        $this->SentencesLists->updateAll(['numberOfSentences' => 0], ['id NOT IN' => $subquery]);
     }
 }
