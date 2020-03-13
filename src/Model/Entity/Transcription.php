@@ -77,6 +77,7 @@ class Transcription extends Entity
         'readonly' => false,
         'type' => 'transcription',
     );
+    private $settings;
 
     protected function _getOldFormat() 
     {
@@ -119,24 +120,26 @@ class Transcription extends Entity
 
     private function getSettings()
     {
-        $settings = [];
-        if ($this->sentence) {
-            $sourceScript = $this->sentence->script;
-            $sourceLang = $this->sentence->lang;
-            if (!$sourceScript) {
-                $sourceScript = $this->getSourceScript($sourceLang);
-            }
-            $langScript = $sourceLang . '-' . $sourceScript;
-            if (isset($this->availableTranscriptions[$langScript])) {
-                $transcription = $this->availableTranscriptions[$langScript];
-                if (isset($transcription[$this->script])) {
-                    $settings = $transcription[$this->script];
+        if (!isset($this->settings)) {
+            $this->settings = [];
+            if ($this->sentence) {
+                $sourceScript = $this->sentence->script;
+                $sourceLang = $this->sentence->lang;
+                if (!$sourceScript) {
+                    $sourceScript = $this->getSourceScript($sourceLang);
+                }
+                $langScript = $sourceLang . '-' . $sourceScript;
+                if (isset($this->availableTranscriptions[$langScript])) {
+                    $transcription = $this->availableTranscriptions[$langScript];
+                    if (isset($transcription[$this->script])) {
+                        $this->settings = $transcription[$this->script];
+                    }
                 }
             }
+            $this->settings = array_intersect_key($this->settings, $this->defaultFlags);
+            $this->settings = array_merge($this->defaultFlags, $this->settings);
         }
-        $settings = array_intersect_key($settings, $this->defaultFlags);
-        $settings = array_merge($this->defaultFlags, $settings);
-        return $settings;
+        return $this->settings;
     }
 
     private function getSourceScript($sourceLang) {
