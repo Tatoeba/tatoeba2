@@ -285,56 +285,6 @@ class SentencesListsTable extends Table
         }
     }
 
-
-    /**
-     * Returns value of $this->paginate, for paginating sentences of a list.
-     *
-     * @param int    $id               Id of the list.
-     * @param string $translationsLang Language of the translations.
-     * @param bool   $isEditable       'true' if the sentences are editable.
-     * @param int    $limit            Number of sentences per page.
-     *
-     * @return array
-     */
-    public function paramsForPaginate($id, $translationsLang, $isEditable, $limit)
-    {
-        $sentenceParams = array(
-            'Transcription',
-        );
-
-        if ($isEditable) {
-            $sentenceParams['User'] = array(
-                "fields" => array("id", "username")
-            );
-        }
-
-        if ($translationsLang != null) {
-            // All
-            $sentenceParams['Translation'] = array(
-                'Transcription',
-            );
-            // Specific language
-            if ($translationsLang != 'und') {
-                $sentenceParams['Translation']['conditions'] = array(
-                    "lang" => $translationsLang
-                );
-            }
-        }
-
-        $params = array(
-            'SentencesSentencesLists' => array(
-                'limit' => $limit,
-                'conditions' => array('sentences_list_id' => $id),
-                'contain' => array(
-                    'Sentence' => $sentenceParams
-                )
-            )
-        );
-
-        return $params;
-    }
-
-
     /**
      * Returns true if list belongs to current user OR is collaborative.
      *
@@ -685,7 +635,7 @@ class SentencesListsTable extends Table
         $list = $this->get($listId);
         if ($list->isEditableBy($currentUserId)) {
             $list->name = $newName;
-            return $this->save($list)->old_format;
+            return $this->save($list);
         } else {
             return false;
         }
@@ -702,9 +652,9 @@ class SentencesListsTable extends Table
 
         if ($belongsToUser && in_array($option, $allowedOptions)) {
             $list->{$option} = $value;
-            return $this->save($list)->old_format;
+            return $this->save($list);
         } else {
-            return array();
+            return false;
         }
     }
 }

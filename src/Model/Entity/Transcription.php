@@ -22,6 +22,8 @@ use Cake\ORM\Entity;
 
 class Transcription extends Entity
 {
+    protected $_virtual = ['readonly', 'type'];
+
     private $scriptsByLang = array( /* ISO 15924 */
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
@@ -77,23 +79,7 @@ class Transcription extends Entity
         'readonly' => false,
         'type' => 'transcription',
     );
-
-    protected function _getOldFormat() 
-    {
-        return [
-            'Transcription' => [
-                'id' => $this->id,
-                'sentence_id' => $this->sentence_id,
-                'script' => $this->script,
-                'text' => $this->text,
-                'user_id' => $this->user_id,
-                'needsReview' => $this->needsReview,
-                'readonly' => $this->readonly,
-                'type' => $this->type,
-                'modified' => $this->modified,
-            ]
-        ];
-    }
+    private $settings;
 
     protected function _getReadonly()
     {
@@ -119,22 +105,26 @@ class Transcription extends Entity
 
     private function getSettings()
     {
-        $settings = [];
-        if ($this->sentence) {
-            $sourceScript = $this->sentence->script;
-            $sourceLang = $this->sentence->lang;
-            if (!$sourceScript) {
-                $sourceScript = $this->getSourceScript($sourceLang);
-            }
-            $langScript = $sourceLang . '-' . $sourceScript;
-            if (isset($this->availableTranscriptions[$langScript])) {
-                $transcription = $this->availableTranscriptions[$langScript];
-                if (isset($transcription[$this->script])) {
-                    $settings = $transcription[$this->script];
+        if (!isset($this->settings)) {
+            $this->settings = [];
+            if ($this->sentence) {
+                $sourceScript = $this->sentence->script;
+                $sourceLang = $this->sentence->lang;
+                if (!$sourceScript) {
+                    $sourceScript = $this->getSourceScript($sourceLang);
+                }
+                $langScript = $sourceLang . '-' . $sourceScript;
+                if (isset($this->availableTranscriptions[$langScript])) {
+                    $transcription = $this->availableTranscriptions[$langScript];
+                    if (isset($transcription[$this->script])) {
+                        $this->settings = $transcription[$this->script];
+                    }
                 }
             }
+            $this->settings = array_intersect_key($this->settings, $this->defaultFlags);
+            $this->settings = array_merge($this->defaultFlags, $this->settings);
         }
-        return $settings;
+        return $this->settings;
     }
 
     private function getSourceScript($sourceLang) {

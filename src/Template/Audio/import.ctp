@@ -129,7 +129,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
 <?php endif; ?>
 <?php
 echo $this->Form->create();
-echo $this->Form->input('audioAuthor');
+echo $this->Form->input('audioAuthor', ['required' => true]);
 echo $this->Form->submit(__d('admin', 'Import'));
 echo $this->Form->end();
 ?>

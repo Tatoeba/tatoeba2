@@ -95,7 +95,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
 
     <div class="md-whiteframe-1dp">
         <md-subheader><?php echo __('Latest messages'); ?></md-subheader>
-        <md-list class="annexe-menu">
+        <md-list class="annexe-menu" ng-cloak>
         <?php
         $mesg = count($tenLastMessages);
 

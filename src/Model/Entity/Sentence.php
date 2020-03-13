@@ -20,10 +20,21 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 use App\Model\Entity\HashTrait;
+use App\Model\CurrentUser;
+use App\Lib\LanguagesLib;
 
 class Sentence extends Entity
 {
     use HashTrait;
+    use LanguageNameTrait;
+
+    protected $_virtual = [
+        'lang_name',
+        'dir',
+        'lang_tag',
+        'is_favorite',
+        'is_owned_by_current_user'
+    ];
 
     public function __construct($properties = [], $options = []) {
         parent::__construct($properties, $options);
@@ -65,25 +76,28 @@ class Sentence extends Entity
         return $text;
     }
 
-    protected function _getOldFormat() 
+    protected function _getLangName()
     {
-        $result['Sentence'] = [
-            'id' => $this->id,
-            'lang' => $this->lang,
-            'text' => $this->text,
-            'hash' => $this->hash,
-            'script' => $this->script,
-            'user_id' => $this->user_id
-        ];
-        
-        if ($this->user) {
-            $result['User'] = [
-                'id' => $this->user->id,
-                'username' => $this->user->username,
-                'image' => $this->user->image
-            ];
-        }
+        return $this->codeToNameAlone($this->lang);
+    }
 
-        return $result;
+    protected function _getDir()
+    {
+        return LanguagesLib::getLanguageDirection($this->lang);
+    }
+
+    protected function _getLangTag()
+    {
+        return LanguagesLib::languageTag($this->lang, $this->script);
+    }
+
+    protected function _getIsFavorite()
+    {
+        return CurrentUser::hasFavorited($this->id);
+    }
+
+    protected function _getIsOwnedByCurrentUser()
+    {
+        return $this->user_id === CurrentUser::get('id');
     }
 }

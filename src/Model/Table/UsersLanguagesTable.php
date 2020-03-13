@@ -88,7 +88,8 @@ class UsersLanguagesTable extends Table
     public function getLanguageInfo($id)
     {
         try  {
-            $result = $this->get($id)->language_info;
+            $result = $this->get($id)
+                ->extract(['language_code', 'by_user_id']);
         } catch (RecordNotFoundException $e) {
             $result = null;
         }
@@ -163,6 +164,14 @@ class UsersLanguagesTable extends Table
         return $query;
     }
 
+    /**
+     * Save a language for the user
+     *
+     * @param array   $data          The request data
+     * @param integer $currentUserId The user id
+     *
+     * @return Entity|false
+     **/
     public function saveUserLanguage($data, $currentUserId) 
     {
         if (empty($data['id'])) {
@@ -185,10 +194,9 @@ class UsersLanguagesTable extends Table
             $langInfo->level = isset($data['level']) && is_numeric($data['level']) ? $data['level'] : null;
             $langInfo->details = isset($data['details']) ? $data['details'] : null;
             
-            $result = $this->save($langInfo);
-            return $result->old_format;
+            return $this->save($langInfo);
         } else {
-            return array();
+            return false;
         }
     }
 

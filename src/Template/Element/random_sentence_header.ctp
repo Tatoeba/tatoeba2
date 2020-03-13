@@ -25,40 +25,51 @@
  * @link     https://tatoeba.org
  */
 
-$this->Html->script(JS_PATH . 'sentences.show_another.js', array('block' => 'scriptBottom'));
-$this->Sentences->javascriptForAJAXSentencesGroup();
+use App\Model\CurrentUser;
+
+$this->Html->script('sentences/random.ctrl.js', ['block' => 'scriptBottom']);
 
 $langArray = $this->Languages->languagesArrayAlone();
-$selectedLanguage = $this->request->getSession()->read('random_lang_selected');
-
-if ($selectedLanguage == null) {
-    $selectedLanguage == 'und';
-}
-
 ?>
 
-
+<div ng-controller="RandomSentenceController as vm" ng-init="vm.init()">
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
         <h2 flex><?= __('Random sentence') ?></h2>
+
+        
+        <?= $this->element('sentences/expand_all_menus_button'); ?>
+        
         <span>
         <?php
-        echo $this->Form->select(
-            "randomLangChoice",
-            $langArray,
-            array(
-                'id' => 'randomLangChoice',
-                'value' => $selectedLanguage,
-                'class' => 'language-selector',
-                "empty" => false
-            ),
-            false
-        );
+        echo $this->Form->select('randomLangChoice', $langArray, [
+            'id' => 'randomLangChoice',
+            'class' => 'language-selector',
+            'empty' => false,
+            'ng-model' => 'vm.lang'
+        ]);
         ?>
         </span>
 
-        <md-button id="showRandom" onclick="return false;">
+        <md-button id="showRandom" ng-click="vm.showAnother(vm.lang)">
             <?= __('show another ') ?>
         </md-button>
     </div>
 </md-toolbar>
+
+<?php if (!CurrentUser::getSetting('use_new_design')) { ?>
+<div class="md-whiteframe-1dp" layout-padding style="background: #fafafa" ng-if="vm.showNewDesignAnnouncement" ng-cloak>
+    <p><?= __(
+        'We are starting to roll out the new design for the sentences. '.
+        'It is currently only used for the random sentence below. '.
+        'You can enable it for other pages with the option '.
+        '"Display sentences with the new design" in your Settings.'
+    ) ?></p>
+    <div layout="row" layout-align="end center">
+        <md-button class="md-primary" href="/user/settings"><?= __('Go to settings') ?></md-button>
+        <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+    </div>
+</div>
+<?php } ?>
+
+</div>

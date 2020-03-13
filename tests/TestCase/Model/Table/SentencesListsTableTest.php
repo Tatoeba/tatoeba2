@@ -129,9 +129,9 @@ class SentencesListsTableTest extends TestCase {
             'id' => $listId,
             'name' => $newName
         );
-        $result = array_intersect_key($list['SentencesList'], $expected);
+        $result = $list->extract(['id', 'name']);
 
-        $this->assertEquals($result, $expected);
+        $this->assertEquals($expected, $result);
     }
 
     function testEditName_fails() {
@@ -146,9 +146,9 @@ class SentencesListsTableTest extends TestCase {
             'id' => 1,
             'editable_by' => 'everyone'
         );
-        $result = array_intersect_key($list['SentencesList'], $expected);
+        $result = $list->extract(['id', 'editable_by']);
 
-        $this->assertEquals($result, $expected);
+        $this->assertEquals($expected, $result);
     }
 
     function testEditOption_fails() {

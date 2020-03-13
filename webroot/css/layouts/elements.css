@@ -1301,6 +1301,10 @@ div.hideLink {
 /*
  *
  */
+.sentence-and-translations {
+    background-color: #fff;
+}
+
 .sentence-and-translations .header {
     background: #fafafa;
 }
@@ -1366,6 +1370,11 @@ div.hideLink {
     background: #f1f1f1;
 }
 
+.sentence-and-translations .indicator md-icon {
+    padding: 8px;
+    cursor: help;
+}
+
 .sentence-and-translations .list-form {
     border-top: 1px solid #f1f1f1;
     padding-top: 10px;
@@ -1380,6 +1389,24 @@ div.hideLink {
 .sentence-and-translations .list-form .last-selected {
     color: grey;
     padding: 0 5px;
+}
+
+.sentence-and-translations .duplicate-warning {
+    border-bottom: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .translation-form {
+    background: #fafafa; 
+    border-top: 1px solid #f1f1f1
+}
+
+.sentence-and-translations .sentence-form,
+.sentence-and-translations .translation-form form {
+    padding-top: 10px;
+}
+
+form .language-icon-div {
+    padding: 10px 10px 0 10px;
 }
 
 /*
