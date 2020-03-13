@@ -1157,6 +1157,17 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals($expected, $result);
 	}
 
+	function testGetSentenceWith_isHidingUnneededFieldsFromJson() {
+		$sentence = $this->Sentence->getSentenceWith(1, ['translations' => true]);
+		$sentence = json_decode(json_encode($sentence));
+		$this->assertFalse(isset($sentence->user_id));
+		$this->assertFalse(isset($sentence->user->id));
+		$this->assertFalse(isset($sentence->user->level));
+		$this->assertFalse(isset($sentence->user->role));
+		$translationAudio = $sentence->translations[0][1]->audios[0];
+		$this->assertFalse(isset($translationAudio->sentence_id));
+	}
+
     function testSaveNewSentence_correctDateUsingArabicLocale() {
         I18n::setLocale('ar');
         $added = $this->Sentence->saveNewSentence('test', 'eng', 1);
