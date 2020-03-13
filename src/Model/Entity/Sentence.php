@@ -38,6 +38,7 @@ class Sentence extends Entity
 
     protected $_hidden = [
         'favorites_users',
+        'highlight',
     ];
 
     public function __construct($properties = [], $options = []) {
