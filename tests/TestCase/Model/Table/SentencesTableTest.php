@@ -1137,20 +1137,20 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals(asort($expected), asort($languages));
 	}
 
-	function testGetSentenceWithId_translationsHaveAudioInfo() {
+	function testGetSentenceWith_translationsHaveAudioInfo() {
 		CurrentUser::store(null);
-		$sentence = $this->Sentence->getSentenceWithId(1);
+		$sentence = $this->Sentence->getSentenceWith(1, ['translations' => true]);
 		$result = [];
 		foreach($sentence->translations as $translationsGroup) {
 			foreach($translationsGroup as $translation) {
 				$audios = $translation->audios;
-				$result[$translation->id] = isset($audios[0]) ? $audios[0]->user_id : null;
+				$result[$translation->id] = isset($audios[0]) ? $audios[0]->author : null;
 			}
 		}
 		$expected = [
 			2 => null,
-			3 => 4,
-			4 => null,
+			3 => 'contributor',
+			4 => 'Philippe Petit',
 			5 => null,
 			6 => null,
 		];
