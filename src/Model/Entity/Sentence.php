@@ -36,6 +36,10 @@ class Sentence extends Entity
         'is_owned_by_current_user'
     ];
 
+    protected $_hidden = [
+        'favorites_users',
+    ];
+
     public function __construct($properties = [], $options = []) {
         parent::__construct($properties, $options);
         $hash = $properties['hash'] ?? null;
