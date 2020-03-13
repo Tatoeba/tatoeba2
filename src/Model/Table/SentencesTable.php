@@ -338,37 +338,40 @@ class SentencesTable extends Table
     private function sortOutTranslations($result, $translationLanguages) {
         $directTranslations = [];
         $indirectTranslations = [];
-        $parentIds = [$result->id];
-        $indirectIds = [];
 
-        foreach ($result->translations as $translation) {
-            $parentIds[] = $translation->id;
-            if ($translation->indirect_translations) {
-                foreach ($translation->indirect_translations as $indirectTranslation) {
-                    if (!in_array($indirectTranslation->id, $indirectIds)) {
-                        $indirectTranslations[] = $indirectTranslation;
-                        $indirectIds[] = $indirectTranslation->id;
+        if (isset($result->translations)) {
+            $parentIds = [$result->id];
+            $indirectIds = [];
+
+            foreach ($result->translations as $translation) {
+                $parentIds[] = $translation->id;
+                if ($translation->indirect_translations) {
+                    foreach ($translation->indirect_translations as $indirectTranslation) {
+                        if (!in_array($indirectTranslation->id, $indirectIds)) {
+                            $indirectTranslations[] = $indirectTranslation;
+                            $indirectIds[] = $indirectTranslation->id;
+                        }
                     }
+                    unset($translation->indirect_translations);
+                    $directTranslations[] = $translation;
                 }
-                unset($translation->indirect_translations);
-                $directTranslations[] = $translation;
             }
+
+            if (!empty($translationLanguages)) {
+                $filter = function ($item) use ($translationLanguages) {
+                    return in_array($item->lang, $translationLanguages);
+                };
+                $directTranslations = array_filter($directTranslations, $filter);
+                $indirectTranslations = array_filter($indirectTranslations, $filter);
+            }
+
+            $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
+                return !in_array($item->id, $parentIds);
+            });
+
+            $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
+            $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
         }
-
-        if (!empty($translationLanguages)) {
-            $filter = function ($item) use ($translationLanguages) {
-                return in_array($item->lang, $translationLanguages);
-            };
-            $directTranslations = array_filter($directTranslations, $filter);
-            $indirectTranslations = array_filter($indirectTranslations, $filter);
-        }
-
-        $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
-            return !in_array($item->id, $parentIds);
-        });
-
-        $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
-        $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
 
         return [$directTranslations, $indirectTranslations];
     }
