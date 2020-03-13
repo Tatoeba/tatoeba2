@@ -447,7 +447,13 @@ class SentencesListsController extends AppController
         );
         
         $this->response->header('Content-Type: application/json');
-        $this->set('result', json_encode($result['SentencesList']));
+        if ($result) {
+            $this->set('result', json_encode(
+                $result->extract(['id', 'name', 'user_id', 'editable_by'])
+            ));
+        } else {
+            $this->set('result', json_encode([], JSON_FORCE_OBJECT));
+        }
     }
 
     /**

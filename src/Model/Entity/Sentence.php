@@ -76,28 +76,6 @@ class Sentence extends Entity
         return $text;
     }
 
-    protected function _getOldFormat() 
-    {
-        $result['Sentence'] = [
-            'id' => $this->id,
-            'lang' => $this->lang,
-            'text' => $this->text,
-            'hash' => $this->hash,
-            'script' => $this->script,
-            'user_id' => $this->user_id
-        ];
-        
-        if ($this->user) {
-            $result['User'] = [
-                'id' => $this->user->id,
-                'username' => $this->user->username,
-                'image' => $this->user->image
-            ];
-        }
-
-        return $result;
-    }
-
     protected function _getLangName()
     {
         return $this->codeToNameAlone($this->lang);

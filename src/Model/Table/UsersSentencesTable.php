@@ -60,7 +60,7 @@ class UsersSentencesTable extends Table
             $userSentence->dirty = 0;
         }
 
-        return $this->save($userSentence)->old_format;
+        return $this->save($userSentence);
     }
 
     /**

@@ -635,7 +635,7 @@ class SentencesListsTable extends Table
         $list = $this->get($listId);
         if ($list->isEditableBy($currentUserId)) {
             $list->name = $newName;
-            return $this->save($list)->old_format;
+            return $this->save($list);
         } else {
             return false;
         }
@@ -652,9 +652,9 @@ class SentencesListsTable extends Table
 
         if ($belongsToUser && in_array($option, $allowedOptions)) {
             $list->{$option} = $value;
-            return $this->save($list)->old_format;
+            return $this->save($list);
         } else {
-            return array();
+            return false;
         }
     }
 }

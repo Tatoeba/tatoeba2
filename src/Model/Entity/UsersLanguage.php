@@ -34,28 +34,6 @@ class UsersLanguage extends Entity
 
     protected $_hidden = ['level_approval_status', 'by_user_id', 'created', 'modified'];
 
-    protected function _getLanguageInfo() 
-    {
-        return [
-            'language_code' => $this->language_code,
-            'by_user_id' => $this->by_user_id
-        ];
-    }
-
-    protected function _getOldFormat() 
-    {
-        return [
-            'UsersLanguages' => [
-                'id' => $this->id,
-                'language_code' => $this->language_code,
-                'level' => $this->level,
-                'of_user_id' => $this->of_user_id,
-                'by_user_id' => $this->by_user_id,
-                'details' => $this->details
-            ]
-        ];
-    }
-
     protected function _getName()
     {
         if ($this->has('language_code')) {

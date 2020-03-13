@@ -509,12 +509,12 @@ class SentencesTableTest extends TestCase {
 
 		$this->Sentence->delete($sentence);
 
-		$log = $this->Sentence->Contributions->find('all')
-			->where($conditions)
-			->select($fields)
-			->toList();
-		$result = array_intersect_key($log[0]->old_format['Contribution'], $expected);
-		$this->assertEquals($expected, $result);
+		$log = $this->Sentence->Contributions->find()
+                    ->where($conditions)
+                    ->select($fields)
+                    ->disableHydration()
+                    ->first();
+		$this->assertEquals($expected, $log);
 	}
 
 	function testLogsLinkDeletionOnDelete() {
