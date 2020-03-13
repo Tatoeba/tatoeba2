@@ -335,6 +335,44 @@ class SentencesTable extends Table
         return $results;
     }
 
+    private function sortOutTranslations($result, $translationsLanguages) {
+        $directTranslations = [];
+        $indirectTranslations = [];
+        $parentIds = [$result->id];
+        $indirectIds = [];
+
+        foreach ($result->translations as $translation) {
+            $parentIds[] = $translation->id;
+            if ($translation->indirect_translations) {
+                foreach ($translation->indirect_translations as $indirectTranslation) {
+                    if (!in_array($indirectTranslation->id, $indirectIds)) {
+                        $indirectTranslations[] = $indirectTranslation;
+                        $indirectIds[] = $indirectTranslation->id;
+                    }
+                }
+                unset($translation->indirect_translations);
+                $directTranslations[] = $translation;
+            }
+        }
+
+        if (!empty($translationLanguages)) {
+            $filter = function ($item) use ($translationLanguages) {
+                return in_array($item->lang, $translationLanguages);
+            };
+            $directTranslations = array_filter($directTranslations, $filter);
+            $indirectTranslations = array_filter($indirectTranslations, $filter);
+        }
+
+        $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
+            return !in_array($item->id, $parentIds);
+        });
+
+        $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
+        $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
+
+        return [$directTranslations, $indirectTranslations];
+    }
+
     public function findFilteredTranslations($query, $options) {
         if (!empty($options['translationLang']) && $options['translationLang'] != 'und') {
             $translationLanguages = [$options['translationLang']];
@@ -344,41 +382,7 @@ class SentencesTable extends Table
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
                 
-                $directTranslations = [];
-                $indirectTranslations = [];
-                $parentIds = [$result->id];
-                $indirectIds = [];
-                
-                foreach ($result->translations as $translation) {
-                    $parentIds[] = $translation->id;
-                    if ($translation->indirect_translations) {
-                        foreach ($translation->indirect_translations as $indirectTranslation) {
-                            if (!in_array($indirectTranslation->id, $indirectIds)) {
-                                $indirectTranslations[] = $indirectTranslation;
-                                $indirectIds[] = $indirectTranslation->id;
-                            }
-                        }
-                        unset($translation->indirect_translations);
-                        $directTranslations[] = $translation;
-                    }
-                }
-
-                if (!empty($translationLanguages)) {
-                    $filter = function ($item) use ($translationLanguages) {
-                        return in_array($item->lang, $translationLanguages);
-                    };
-                    $directTranslations = array_filter($directTranslations, $filter);
-                    $indirectTranslations = array_filter($indirectTranslations, $filter);
-                }
-                
-                $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
-                    return !in_array($item->id, $parentIds);
-                });
-        
-                $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
-                $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
-                
-                $result['translations'] = [$directTranslations, $indirectTranslations];
+                $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
                 $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
                 $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
                 if (CurrentUser::isMember()) {
