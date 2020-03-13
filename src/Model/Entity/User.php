@@ -7,6 +7,10 @@ use Cake\ORM\TableRegistry;
 
 class User extends Entity
 {
+    protected $_hidden = [
+        'password',
+    ];
+
     const ROLE_ADMIN = 'admin';
     const ROLE_CORPUS_MAINTAINER = 'corpus_maintainer';
     const ROLE_ADV_CONTRIBUTOR = 'advanced_contributor';
