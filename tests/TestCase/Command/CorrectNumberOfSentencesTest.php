@@ -6,6 +6,7 @@ use Cake\Console\Command;
 use App\Model\Table\SentencesListsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
+use Cake\Utility\Hash;
 
 class CorrectNumberOfSentencesCommandTest extends TestCase {
     use ConsoleIntegrationTestTrait;
@@ -32,12 +33,15 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
         $this->exec("correct_number_of_sentences");
 
         $sentencesLists = $this->SentencesLists->find('all')->toList();
-        $newListsAndCounts = array_combine(array_column($sentencesLists, 'id'), array_column($sentencesLists, 'numberOfSentences'));
-        $this->assertEquals($newListsAndCounts[1], 3);
-        $this->assertEquals($newListsAndCounts[2], 0);
-        $this->assertEquals($newListsAndCounts[3], 1);
-        $this->assertEquals($newListsAndCounts[4], 2);
-        $this->assertEquals($newListsAndCounts[5], 0);
-        $this->assertEquals($newListsAndCounts[6], 1);
+        $newListsAndCounts = Hash::combine($sentencesLists, '{n}.id', '{n}.numberOfSentences');
+        $expected = [
+            1 => 3,
+            2 =>0,
+            3 => 1,
+            4 => 2,
+            5 => 0,
+            6 => 1
+        ];
+        $this->assertEquals($expected, $newListsAndCounts);
     }
 }
