@@ -105,7 +105,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             <md-button class="md-icon-button" ng-cloak ng-click="vm.editName()">
                 <md-icon>edit
                     <md-tooltip><?= __('Edit name') ?></md-tooltip>
-                <md-icon>
+                </md-icon>
             </md-button>
             <?php } ?>
 
@@ -113,7 +113,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             <md-button class="md-icon-button" ng-click="vm.showForm = true" ng-cloak>
                 <md-icon>add
                     <md-tooltip><?= __('Add sentences'); ?></md-tooltip>
-                <md-icon>
+                </md-icon>
             </md-button>
             <?php } ?>
         </div>
