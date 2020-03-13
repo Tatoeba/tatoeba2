@@ -335,7 +335,7 @@ class SentencesTable extends Table
         return $results;
     }
 
-    private function sortOutTranslations($result, $translationsLanguages) {
+    private function sortOutTranslations($result, $translationLanguages) {
         $directTranslations = [];
         $indirectTranslations = [];
         $parentIds = [$result->id];
