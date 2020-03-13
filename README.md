@@ -31,6 +31,15 @@ cd imouto
    v.memory = 1024 # only allocate 1GB of RAM to the VM
 ```
 
+- If you set `v.memory` to less than 2GB, the system will likely start to swap and run slow. You can improve the situation by limiting which languages Manticore indexes using the following command. Re-run this command without `list-of-iso-codes` to make Manticore index all the languages again.
+
+```bash
+# Replace list-of-iso-codes with actual ISO codes separated by spaces.
+# For example: lad eng spa por
+cake sphinx_conf list-of-iso-codes | sudo tee /etc/manticoresearch/manticore.conf
+sudo systemctl restart manticore
+```
+
 - Run this command to download and start up the Tatoeba VM. Please be patient, it takes a while.
 
 ```bash
