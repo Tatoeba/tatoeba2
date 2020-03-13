@@ -35,15 +35,14 @@ class UsersSentencesTest extends TestCase {
 
         $userSentence = $this->UsersSentences->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        )->first()->old_format;
+        )->first()->extract(['user_id', 'sentence_id', 'correctness']);
         $expected = array(
             'user_id' => $userId,
             'sentence_id' => $sentenceId,
             'correctness' => $correctness,
         );
 
-        $result = array_intersect_key($userSentence['UsersSentences'], $expected);
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userSentence);
     }
 
     function testSaveSentence_editsDirtySentence() {
@@ -57,7 +56,7 @@ class UsersSentencesTest extends TestCase {
 
         $userSentence = $this->UsersSentences->findBySentenceIdAndUserId(
             $sentenceId, $userId
-        )->first()->old_format;
+        )->first()->extract(['user_id', 'sentence_id', 'correctness', 'dirty']);
         $expected = array(
             'user_id' => $userId,
             'sentence_id' => $sentenceId,
@@ -65,8 +64,7 @@ class UsersSentencesTest extends TestCase {
             'dirty' => false
         );
 
-        $result = array_intersect_key($userSentence['UsersSentences'], $expected);
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userSentence);
     }
 
     function testDeleteSentence_succeeds() {
