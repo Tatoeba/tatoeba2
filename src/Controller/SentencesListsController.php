@@ -171,7 +171,8 @@ class SentencesListsController extends AppController
         $contain = $this->Sentences->contain(['translations' => true]);
         $contain['fields'] = $this->Sentences->fields();
         $contain['finder'] = ['filteredTranslations' => [
-            'translationLang' => $translationsLang
+            'translationLang' => $translationsLang,
+            'hideFields' => $this->Sentences->hideFields(),
         ]];
         $pagination = [
             'contain' => ['Sentences' => $contain],

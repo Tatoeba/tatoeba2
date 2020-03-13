@@ -19,6 +19,7 @@
  */
 namespace App\Model\Table;
 
+use Cake\ORM\Entity;
 use Cake\ORM\Table;
 use Cake\ORM\Query;
 use Cake\Core\Configure;
@@ -334,6 +335,44 @@ class SentencesTable extends Table
             }
         }
         return $results;
+    }
+
+    private function applyHideFields($entity, $hide)
+    {
+        if (is_array($entity)) {
+            foreach ($entity as $e) {
+                $this->applyHideFields($e, $hide);
+            }
+        } elseif ($entity instanceof Entity) {
+            foreach ($hide as $key => $value) {
+                if ($key == 'fields') {
+                    $entity->setHidden($value, true);
+                } else {
+                    $contained = $entity->get($key);
+                    if (!is_null($contained)) {
+                        $this->applyHideFields($contained, $value);
+                    }
+                }
+            }
+        }
+        return $entity;
+    }
+
+    /**
+     * This allows to hide some extra fields
+     * in json in a similar fashion as contain().
+     */
+    public function beforeFind($event, $query, $options)
+    {
+        if (isset($options['hideFields'])) {
+            $hide = $options['hideFields'];
+            return $query->formatResults(function($results) use ($hide) {
+                return $results->map(function($result) use ($hide) {
+                    return $this->applyHideFields($result, $hide);
+                });
+            });
+        }
+        return $query;
     }
 
     private function sortOutTranslations($result, $translationLanguages) {
@@ -708,6 +747,21 @@ class SentencesTable extends Table
     }
 
     /**
+     * Value for the hideFields finder option.
+     * See beforeFind().
+     */
+    public function hideFields()
+    {
+        $hideAudio = ['fields' => ['user', 'external', 'sentence_id']];
+        return [
+            'fields' => ['user_id'],
+            'user' => ['fields' => ['id', 'role', 'level']],
+            'audios' => $hideAudio,
+            'translations' => ['audios' => $hideAudio],
+        ];
+    }
+
+    /**
      * Get all the informations needed to display a sentence.
      *
      * @param int $id Id of the sentence.
@@ -717,10 +771,10 @@ class SentencesTable extends Table
      */
     public function getSentenceWith($id, $what = [])
     {
-        return $this->find(
-                'filteredTranslations',
-                ['nativeMarker' => CurrentUser::getSetting('native_indicator')]
-            )
+        return $this->find('filteredTranslations', [
+                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
+                'hideFields' => $this->hideFields(),
+            ])
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
             ->select($this->fields($what))

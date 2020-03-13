@@ -194,7 +194,9 @@ class TagsController extends AppController
             $this->loadModel('Sentences');
             $contain = $this->Sentences->contain(['translations' => true]);
             $contain['fields'] = $this->Sentences->fields();
-            $contain['finder'] = 'filteredTranslations';
+            $contain['finder'] = ['filteredTranslations' => [
+                'hideFields' => $this->Sentences->hideFields(),
+            ]];
 
             $conditions = ['tag_id' => $tagId];
             if (!empty($lang) && $lang != 'und') {

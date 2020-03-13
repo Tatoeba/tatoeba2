@@ -61,7 +61,8 @@ class ActivitiesController extends AppController
         $this->loadModel('Sentences');
         $this->paginate = array(
             'finder' => ['filteredTranslations' => [
-                'translationLang' => 'none'
+                'translationLang' => 'none',
+                'hideFields' => $this->Sentences->hideFields(),
             ]],
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
@@ -181,7 +182,9 @@ class ActivitiesController extends AppController
         }
 
         $this->paginate = [
-            'finder' => 'filteredTranslations',
+            'finder' => ['filteredTranslations' => [
+                'hideFields' => $this->Sentences->hideFields(),
+            ]],
             'fields' => $this->Sentences->fields(),
             'conditions' => $conditions,
             'contain' => $this->Sentences->contain(['translations' => true]),
