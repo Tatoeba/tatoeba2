@@ -115,7 +115,9 @@ class Sentence extends Entity
 
     protected function _getIsFavorite()
     {
-        return CurrentUser::hasFavorited($this->id);
+        if ($this->has('favorites_users')) {
+            return count($this->favorites_users) > 0;
+        }
     }
 
     protected function _getIsOwnedByCurrentUser()
