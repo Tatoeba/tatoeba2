@@ -580,6 +580,7 @@ class LanguagesLib
                 'chg' => __d('languages', 'Chagatai'),
                 'xmf' => __d('languages', 'Mingrelian'),
                 'osp' => __d('languages', 'Old Spanish'),
+                'tmr' => __d('languages', 'Jewish Babylonian Aramaic'),
             );
         }
         return $languages;
@@ -643,6 +644,7 @@ class LanguagesLib
             "snd",
             "div",
             "otk",
+            "tmr",
         );
 
         $autoLangs = array(
