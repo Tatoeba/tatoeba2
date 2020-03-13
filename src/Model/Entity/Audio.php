@@ -5,6 +5,10 @@ use Cake\ORM\Entity;
 
 class Audio extends Entity
 {
+    protected $_virtual = [
+        'author',
+    ];
+
     public static $defaultExternal = array(
         'username' => null,
         'license' => null,
@@ -25,5 +29,13 @@ class Audio extends Entity
             $external = array_merge($existingExternal, $external);
         }
         return $external;
+    }
+
+    protected function _getAuthor() {
+        if ($this->user && $this->user->username) {
+            return $this->user->username;
+        } else {
+            return $this->external['username'];
+        }
     }
 }

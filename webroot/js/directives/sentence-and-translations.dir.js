@@ -262,13 +262,7 @@
         function getAudioAuthor(sentence) {
             var audio = sentence.audios ? sentence.audios[0] : null;
 
-            if (audio && audio.user) {
-                return audio.user.username;
-            } else if (audio && audio.external) {
-                return audio.external.username;
-            } else {
-                return null;
-            }
+            return audio.author;
         }
 
         function translate(id) {
