@@ -36,29 +36,6 @@ class SentencesSentencesListsTable extends Table
         }
     }
 
-    /**
-     * Returns value of $this->paginate, for paginating sentences of a list.
-     *
-     * @param int    $listId Id of the list.
-     * @param int    $limit  Number of sentences per page.
-     * @param string $translationsLang  Limit translations in that language
-     *
-     * @return array
-     */
-    public function getPaginatedSentencesInList($listId, $limit, $translationsLang)
-    {
-        $contain = ['Sentences' => $this->Sentences->paginateContain()];
-        
-        return [
-            'limit' => $limit,
-            'conditions' => ['sentences_list_id' => $listId],
-            'contain' => $contain,
-            'fields' => ['created', 'sentence_id'],
-            'order' => ['created' => 'DESC']
-        ];
-    }
-
-
     public function getListsForSentence($sentenceId)
     {
         return $this->find()
