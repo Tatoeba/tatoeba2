@@ -22,6 +22,11 @@ use Cake\ORM\Entity;
 
 class Transcription extends Entity
 {
+    protected $_hidden = [
+        'created',
+        'sentence',
+    ];
+
     private $scriptsByLang = array( /* ISO 15924 */
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
