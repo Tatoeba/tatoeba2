@@ -5,7 +5,7 @@ if (!isset($sentenceVar)) {
     $sentenceVar = 'vm.sentence';
 }
 
-$ngIf = 'ng-if="vm.isMenuExpanded || (!transcription.needsReview && !transcription.isReviewedFurigana)"';
+$ngIf = 'ng-if="vm.isMenuExpanded || (!transcription.needsReview && (!transcription.isReviewedFurigana || '.$sentenceVar.'.highlightedText))"';
 if (CurrentUser::getSetting('show_transcriptions')) {
     $ngIf = '';
 }
