@@ -359,6 +359,15 @@
             data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
             vm.sentence = angular.copy(data);
+
+            var transcriptions = vm.sentence.transcriptions;
+            if (data.lang === 'jpn' && transcriptions) {
+                var furigana = transcriptions.find(function(item) {
+                    item.isReviewedFurigana = !item.needsReview && item.type === 'altscript';
+                    return !item.needsReview && item.type === 'altscript';
+                });
+                vm.sentence.reviewedFurigana = furigana ? furigana.html : null;
+            }
         }
 
         function favorite() {

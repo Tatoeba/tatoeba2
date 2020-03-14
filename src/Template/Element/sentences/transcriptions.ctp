@@ -4,8 +4,13 @@ use App\Model\CurrentUser;
 if (!isset($sentenceVar)) {
     $sentenceVar = 'vm.sentence';
 }
+
+$ngIf = 'ng-if="vm.isMenuExpanded || !transcription.needsReview && !transcription.isReviewedFurigana"';
+if (CurrentUser::getSetting('show_transcriptions')) {
+    $ngIf = '';
+}
 ?>
-<div class="transcription" ng-repeat="transcription in <?= $sentenceVar ?>.transcriptions">
+<div class="transcription" ng-repeat="transcription in <?= $sentenceVar ?>.transcriptions" <?= $ngIf ?>>
     <div layout="row" layout-align="start center" ng-if="!transcription.showForm">
         <div class="icon">
             <md-icon>subdirectory_arrow_right</md-icon>

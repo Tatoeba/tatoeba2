@@ -117,7 +117,12 @@ $sentenceUrl = $this->Url->build([
             
             <div class="text" flex dir="{{vm.sentence.dir}}" lang="{{vm.sentence.lang_tag}}">
                 <span ng-if="vm.sentence.highlightedText" ng-bind-html="vm.sentence.highlightedText"></span>
-                <span ng-if="!vm.sentence.highlightedText">{{vm.sentence.text}}</span>
+                <?php if (CurrentUser::getSetting('show_transcriptions')) { ?>
+                    <span ng-if="!vm.sentence.highlightedText">{{vm.sentence.text}}</span>
+                <?php } else { ?>
+                    <span ng-if="!vm.sentence.highlightedText && vm.sentence.reviewedFurigana && !vm.isMenuExpanded" ng-bind-html="vm.sentence.reviewedFurigana"></span>
+                    <span ng-if="!vm.sentence.highlightedText && !vm.sentence.reviewedFurigana || vm.isMenuExpanded">{{vm.sentence.text}}</span>
+                <?php } ?>
             </div>
 
             <div class="indicator" ng-if="vm.sentence.user.is_native === '1'">
