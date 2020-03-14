@@ -19,7 +19,7 @@ if (!isset($sentenceVar)) {
             <md-tooltip>{{transcription.info_message}}</md-tooltip>
         </div>
 
-        <?php if (CurrentUser::isMember()) { ?>
+        <?php if (CurrentUser::isTrusted()) { ?>
         <md-button class="md-icon-button" ng-if="!transcription.showForm && transcription.needsReview">
             <md-icon>check_circle</md-icon>
             <md-tooltip><?= __('Mark as reviewed') ?></md-tooltip>
@@ -33,7 +33,7 @@ if (!isset($sentenceVar)) {
     </div>
 
     <?php
-    if (CurrentUser::isMember()) { 
+    if (CurrentUser::isTrusted()) { 
         echo $this->element('sentences/transcription_form');    
     }
     ?>
