@@ -185,7 +185,13 @@
             vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
             allDirectTranslations = directTranslations ? directTranslations : [];
+            allDirectTranslations.forEach(function(translation) {
+                initTranscriptions(translation);
+            });
             allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
+            allIndirectTranslations.forEach(function(translation) {
+                initTranscriptions(translation);
+            });
             showFewerTranslations();
         }
 
@@ -361,14 +367,17 @@
             data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
             vm.sentence = angular.copy(data);
+            initTranscriptions(vm.sentence);
+        }
 
-            var transcriptions = vm.sentence.transcriptions;
-            if (data.lang === 'jpn' && transcriptions) {
+        function initTranscriptions(sentence) {
+            var transcriptions = sentence.transcriptions;
+            if (sentence.lang === 'jpn' && transcriptions) {
                 var furigana = transcriptions.find(function(item) {
                     item.isReviewedFurigana = !item.needsReview && item.type === 'altscript';
                     return !item.needsReview && item.type === 'altscript';
                 });
-                vm.sentence.reviewedFurigana = furigana ? furigana.html : null;
+                sentence.reviewedFurigana = furigana ? furigana.html : null;
             }
         }
 
@@ -504,10 +513,10 @@
             vm.listType = 'of_user';
         }
 
-        function editTranscription(transcription, action) {
+        function editTranscription(transcription, sentence, action) {
             var lang = transcription.sentence.lang + '-' + transcription.script;
             var text = transcription.editing_format;
-            var url = rootUrl + '/transcriptions/' + action + '/' + vm.sentence.id + '/' + transcription.script;
+            var url = rootUrl + '/transcriptions/' + action + '/' + sentence.id + '/' + transcription.script;
             var data = {
                 value: markupToStored(lang, text)
             };
@@ -522,7 +531,7 @@
 
                 if (lang === 'jpn-Hrkt') {
                     transcription.isReviewedFurigana = !result.needsReview;
-                    vm.sentence.reviewedFurigana = result.needsReview ? null : transcription.html;
+                    sentence.reviewedFurigana = result.needsReview ? null : transcription.html;
                 }
             });
         }

@@ -5,7 +5,7 @@ if (!isset($sentenceVar)) {
     $sentenceVar = 'vm.sentence';
 }
 
-$ngIf = 'ng-if="vm.isMenuExpanded || !transcription.needsReview && !transcription.isReviewedFurigana"';
+$ngIf = 'ng-if="vm.isMenuExpanded || (!transcription.needsReview && !transcription.isReviewedFurigana)"';
 if (CurrentUser::getSetting('show_transcriptions')) {
     $ngIf = '';
 }
@@ -26,7 +26,7 @@ if (CurrentUser::getSetting('show_transcriptions')) {
 
         <?php if (CurrentUser::isTrusted()) { ?>
         <md-button class="md-icon-button" ng-if="!transcription.showForm && transcription.needsReview"
-                   ng-click="vm.editTranscription(transcription, 'save')">
+                   ng-click="vm.editTranscription(transcription, <?= $sentenceVar ?>, 'save')">
             <md-icon>check_circle</md-icon>
             <md-tooltip><?= __('Mark as reviewed') ?></md-tooltip>
         </md-button>
@@ -40,7 +40,9 @@ if (CurrentUser::getSetting('show_transcriptions')) {
 
     <?php
     if (CurrentUser::isTrusted()) { 
-        echo $this->element('sentences/transcription_form');    
+        echo $this->element('sentences/transcription_form', [
+            'sentenceVar' => $sentenceVar
+        ]);    
     }
     ?>
 </div>

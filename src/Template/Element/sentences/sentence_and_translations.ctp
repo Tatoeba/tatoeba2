@@ -121,7 +121,7 @@ $sentenceUrl = $this->Url->build([
                     <span ng-if="!vm.sentence.highlightedText">{{vm.sentence.text}}</span>
                 <?php } else { ?>
                     <span ng-if="!vm.sentence.highlightedText && vm.sentence.reviewedFurigana && !vm.isMenuExpanded" ng-bind-html="vm.sentence.reviewedFurigana"></span>
-                    <span ng-if="!vm.sentence.highlightedText && !vm.sentence.reviewedFurigana || vm.isMenuExpanded">{{vm.sentence.text}}</span>
+                    <span ng-if="!vm.sentence.highlightedText && (!vm.sentence.reviewedFurigana || vm.isMenuExpanded)">{{vm.sentence.text}}</span>
                 <?php } ?>
             </div>
 
