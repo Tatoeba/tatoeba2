@@ -88,8 +88,17 @@ class TranscriptionsController extends AppController
             return $this->response->withStatus(400, 'Bad transcription');
         }
 
-        $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
-        $this->render('view');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
+            $this->set('result', $transcription);
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
+        } else {
+            $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
+            $this->render('view');
+        }
     }
 
     public function save($sentenceId, $script) {
@@ -127,10 +136,20 @@ class TranscriptionsController extends AppController
             );
         }
 
-        $this->setViewVars(array_filter(array($saved)), $sentenceId);
-        $this->render('view');
         if (!$saved) {
             return $this->response->withStatus(400, 'Bad transcription');
+        }
+
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
+            $this->set('result', $transcription);
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
+        } else {
+            $this->setViewVars(array_filter(array($saved)), $sentenceId);
+            $this->render('view');
         }
     }
 

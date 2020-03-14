@@ -25,7 +25,8 @@ if (CurrentUser::getSetting('show_transcriptions')) {
         </div>
 
         <?php if (CurrentUser::isTrusted()) { ?>
-        <md-button class="md-icon-button" ng-if="!transcription.showForm && transcription.needsReview">
+        <md-button class="md-icon-button" ng-if="!transcription.showForm && transcription.needsReview"
+                   ng-click="vm.editTranscription(transcription, 'save')">
             <md-icon>check_circle</md-icon>
             <md-tooltip><?= __('Mark as reviewed') ?></md-tooltip>
         </md-button>

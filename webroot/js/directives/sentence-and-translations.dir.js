@@ -131,6 +131,8 @@
         vm.listType = 'of_user';
         vm.show = show;
         vm.hide = hide;
+        vm.editTranscription = editTranscription;
+        vm.cancelEditTranscription = cancelEditTranscription;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -500,6 +502,68 @@
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
             vm.listType = 'of_user';
+        }
+
+        function editTranscription(transcription, action) {
+            var lang = transcription.sentence.lang + '-' + transcription.script;
+            var text = transcription.editing_format;
+            var url = rootUrl + '/transcriptions/' + action + '/' + vm.sentence.id + '/' + transcription.script;
+            var data = {
+                value: markupToStored(lang, text)
+            };
+            $http.post(url, data).then(function(result) {
+                var result = result.data.result;
+                transcription.text = result.text;
+                transcription.editing_format = result.editing_format;
+                transcription.html = result.html;
+                transcription.needsReview = result.needsReview;
+                transcription.info_message = result.info_message;
+                transcription.showForm = false;
+
+                if (lang === 'jpn-Hrkt') {
+                    transcription.isReviewedFurigana = !result.needsReview;
+                    vm.sentence.reviewedFurigana = result.needsReview ? null : transcription.html;
+                }
+            });
+        }
+
+        function cancelEditTranscription(transcription) {
+            transcription.showForm = false;
+        }
+
+        function markupToStored(lang, text) {
+            if (lang === 'jpn-Hrkt') {
+                // Converts the kanji｛reading｝ notation into [kanji|reading]
+                var hiragana = 'ぁ-ゖーゝゞ'; // \p{Hiragana}
+                var katakana = 'ァ-ヺーヽヾ'; // \p{Katakana}
+                var punct = '　-〄〇-〠・'; // 。、「」etc.
+                punct += '！＂＃＇（），．／：；？［＼］＾｀～｟｠'; // fullwitdh forms
+                punct += ' '; // space
+                var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
+                text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
+                text = text.replace(uniRegExp('｜', 'g'),  '|');
+            }
+            return text;
+        }
+
+        function uniRegExp(regex, flags) {
+            return new RegExp(escapeUnicodeString(regex), flags);
+        }
+
+        function escapeUnicodeChar(c) {
+            var code = c.charCodeAt(0);
+            if (code >= 128) {
+               c = '\\u' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4);
+            }
+            return c;
+        }
+
+        function escapeUnicodeString(input) {
+            var output = '';
+            for (var i = 0, l = input.length; i < l; i++) {
+                output += escapeUnicodeChar(input.charAt(i));
+            }
+            return output;
         }
     }
 

@@ -6,18 +6,18 @@
         <md-input-container flex>
             <label><?= __('Transcription') ?></label>
             <textarea ng-attr-id="transcription-form-{{vm.sentence.id}}" ng-model="transcription.editing_format" 
-                    ng-enter="vm.editTranscription()" ng-escape="vm.cancelEditTranscription()"></textarea>
+                    ng-enter="vm.editTranscription(transcription, 'save')" ng-escape="vm.cancelEditTranscription(transcription)"></textarea>
         </md-input-container>
     </div>
 
     <div layout="row" layout-align="end center">
-        <md-button class="md-raised" ng-click="transcription.showForm = false">
+        <md-button class="md-raised" ng-click="vm.cancelEditTranscription(transcription)">
             <?= __('Cancel') ?>
         </md-button>
-        <md-button class="md-raised" ng-click="vm.resetTranscription()">
+        <md-button class="md-raised" ng-click="vm.editTranscription(transcription, 'reset')">
             <?= __('Reset') ?>
         </md-button>
-        <md-button class="md-raised md-primary" ng-click="vm.editTranscription()">
+        <md-button class="md-raised md-primary" ng-click="vm.editTranscription(transcription, 'save')">
             <?= __('Save') ?>
         </md-button>
     </div>
