@@ -111,6 +111,18 @@ class WallHelper extends AppHelper
         $messageId = $message['id'];
         $hidden = $message['hidden'];
 
+        if ($permissions['canPM']) {
+            $menu[] = array(
+                'text' => __('Send message'),
+                'icon' => 'mail',
+                'url' => array(
+                    'controller' => 'private_messages',
+                    'action' => 'write',
+                    $message->user->username
+                )
+            );
+        }
+
         if (CurrentUser::isAdmin()) {
             if ($hidden) {
                 $hiddenLinkText = __d('admin', 'unhide');
