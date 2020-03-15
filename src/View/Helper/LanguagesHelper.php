@@ -189,16 +189,18 @@ class LanguagesHelper extends AppHelper
     }
 
     /**
-     * Return array of languages in Tatoeba. + 'unknown language'
+     * Return array of languages in Tatoeba + 'Unknown language'
      *
+     * @param Boolean $split Whether the languages should be split into
+     *                       'Profile languages' and 'Other languages'.
      * @return array
      */
-    public function unknownLanguagesArray()
+    public function unknownLanguagesArray($split = true)
     {
-        $languages = $this->onlyLanguagesArray();
+        $languages = $this->onlyLanguagesArray($split);
         $options = ['unknown' => __x('dropdown-list', 'Unknown language')];
 
-        return $options + $languages;
+        return $languages + $options;
     }
 
 
