@@ -60,11 +60,11 @@ if (Configure::read('Announcement.enabled')) {
     $announcementId = 'coding-event-2020';
     $announcementText = $this->Html->tag('strong', __('Tatoeba coding event'));
     $announcementText .= $this->Html->tag('p', format(__(
-        'In order to get more developers involved in Tatoeba and make it fun at the same time, we got the idea of organizing a coding event. '.
+        'In order to get more developers involved in Tatoeba and have some fun at the same time, we are organizing a coding event. '.
         'If this sounds interesting, please fill up <a href="{}">our survey</a>.'
     ), 'https://forms.gle/wyLqhcyLZxkiqn1WA'));
     $announcementText .= $this->Html->tag('p', format(__(
-        'Until then, if you already wish to get involved, please read our <a href="{}">guide for contributing as a developer</a> '.
+        'Until then, if you wish to get involved, please read our <a href="{}">guide for contributing as a developer</a> '.
         'or just <a href="{}">contact us</a>. We are an open source project and we welcome everyone!'
     ), 'https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer', $this->Url->build(['controller' => 'pages', 'action' => 'contact'])));
 
