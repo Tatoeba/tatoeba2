@@ -1,114 +1,132 @@
 <?php
-/**
- * If the static property $files in the test class is set, we return its
- * value instead of calling shell_exec() in the private method
- * DownloadsHelper\availableFiles().
- **/
-namespace App\View\Helper {
+namespace App\Test\TestCase\View\Helper;
 
-    function shell_exec($command) {
-        return \App\Test\TestCase\View\Helper\DownloadsHelperTest::$files ?: \shell_exec($command);
+use App\View\Helper\DownloadsHelper;
+use Cake\TestSuite\TestCase;
+use Cake\View\View;
+use Cake\Filesystem\Folder;
+use Cake\Filesystem\File;
+use Cake\Core\Configure;
+
+class DownloadsHelperTest extends TestCase {
+
+    public $DownloadsHelper;
+
+    private static function createTempTree() {
+        $languages = ['eng', 'fra', 'jpn', 'unknown'];
+        $files = ['sentences.tsv.bz2', 'sentences_detailed.tsv.bz2', 'sentences_CC0.tsv.bz2'];
+        foreach ($languages as $lang) {
+            $path = Folder::addPathElement(TMP, ['exports', 'per_language', $lang]);
+            $subdir = new Folder($path, true);
+            foreach ($files as $file) {
+                $newFile = Folder::addPathElement($subdir->path, "${lang}_$file");
+                new File($newFile, true);
+            }
+        }
     }
-}
 
-namespace App\Test\TestCase\View\Helper {
+    public static function setUpBeforeClass() {
+        self::createTempTree();
+        Configure::write(
+            'Downloads.path',
+            Folder::addPathElement(TMP, 'exports/')
+        );
+    }
 
-    use App\View\Helper\DownloadsHelper;
-    use Cake\TestSuite\TestCase;
-    use Cake\View\View;
+    public function setUp() {
+        parent::setUp();
+        $View = new View();
+        $this->DownloadsHelper = new DownloadsHelper($View);
+    }
 
-    class DownloadsHelperTest extends TestCase {
+    public function tearDown() {
+        unset($this->DownloadsHelper);
+        parent::tearDown();
+    }
 
-        public $DownloadsHelper;
+    public static function tearDownAfterClass() {
+        $dir = new Folder(Folder::addPathElement(TMP, 'exports'));
+        $dir->delete();
+    }
 
-        public static $files = null;
+    public function testCreateOptions_InvalidBasename() {
+        $options = $this->DownloadsHelper->createOptions('foobar');
 
-        public function setUp() {
-            parent::setUp();
-            $View = new View();
-            $this->DownloadsHelper = new DownloadsHelper($View);
-        }
+        $this->assertEquals(1, count($options));
+        $this->assertEquals(
+            Folder::addPathElement(Configure::read('Downloads.url'), "foobar.tar.bz2"),
+            $options[0]['url']
+        );
+    }
 
-        public function tearDown() {
-            self::$files = null;
-            unset($this->DownloadsHelper);
-            parent::tearDown();
-        }
+    public function filenameProvider () {
+        return [
+            ['sentences'],
+            ['sentences_detailed'],
+            ['sentences_CC0']
+        ];
+    }
 
-        public function testCreateOptions_InvalidBasename() {
-            $options = $this->DownloadsHelper->createOptions('foobar');
+    /**
+     * @dataProvider filenameProvider
+     **/
+    public function testCreateOptions_ValidBasename($basename) {
+        $options = $this->DownloadsHelper->createOptions($basename);
 
-            $this->assertEquals(1, count($options));
-            $this->assertEquals(
-                $this->DownloadsHelper::DOWNLOAD_URL . "/foobar.tar.bz2",
-                $options[0]['url']
-            );
-        }
+        $this->assertEquals(5, count($options));
+        $this->assertEquals(
+            Folder::addPathElement(
+                Configure::read('Downloads.url'),
+                "$basename.tar.bz2"
+            ),
+            $options[0]['url']
+        );
+        $this->assertEquals(
+            Folder::addPathElement(
+                Configure::read('Downloads.url'),
+                ['per_language', 'eng', "eng_$basename.tsv.bz2"]
+            ),
+            $options[1]['url']
+        );
+        $this->assertEquals('Japanese', $options[3]['language']);
+    }
 
-        public function filenameProvider () {
-            return [
-                ['sentences'],
-                ['sentences_detailed'],
-                ['sentences_CC0']
-            ];
-        }
+    /**
+     * @dataProvider filenameProvider
+     **/
+    public function testCreateOptions_NoPerLanguageFilesAvailable($basename) {
+        Configure::write('Downloads.path', '/some/path');
 
-        /**
-         * @dataProvider filenameProvider
-         **/
-        public function testCreateOptions_ValidBasename($basename) {
-            self::$files = "eng/eng_$basename.tar.bz2\n" .
-                           "fra/fra_$basename.tar.bz2\n" .
-                           "jpn/jpn_$basename.tar.bz2\n";
+        $options = $this->DownloadsHelper->createOptions($basename);
 
-            $options = $this->DownloadsHelper->createOptions($basename);
+        $this->assertEquals(1, count($options));
+        $this->assertEquals(
+            Folder::addPathElement(
+                Configure::read('Downloads.url'),
+                "$basename.tar.bz2"
+            ),
+            $options[0]['url']
+        );
+    }
 
-            $this->assertEquals(4, count($options));
-            $this->assertEquals(
-                $this->DownloadsHelper::DOWNLOAD_URL . "/$basename.tar.bz2",
-                $options[0]['url']
-            );
-            $this->assertEquals(
-                $this->DownloadsHelper::DOWNLOAD_URL . "/per_language/eng/eng_$basename.tar.bz2",
-                $options[1]['url']
-            );
-            $this->assertEquals('Japanese', $options[3]['language']);
-        }
+    public function fileFormatProvider () {
+        return [
+            'empty fields' => [[], ''],
+            'one field' => [['id'], '<span class="param">id</span>'],
+            'two fields' => [
+                ['id', 'lang'],
+                '<span class="param">id</span>' .
+                '<span class="symbol">[tab]</span>' .
+                '<span class="param">lang</span>'
+            ]
+        ];
+    }
 
-        /**
-         * @dataProvider filenameProvider
-         **/
-        public function testCreateOptions_NoPerLanguageFilesAvailable($basename) {
-            self::$files = "\n";
-
-            $options = $this->DownloadsHelper->createOptions($basename);
-
-            $this->assertEquals(1, count($options));
-            $this->assertEquals(
-                $this->DownloadsHelper::DOWNLOAD_URL . "/$basename.tar.bz2",
-                $options[0]['url']
-            );
-        }
-
-        public function fileFormatProvider () {
-            return [
-                'empty fields' => [[], ''],
-                'one field' => [['id'], '<span class="param">id</span>'],
-                'two fields' => [
-                    ['id', 'lang'],
-                    '<span class="param">id</span>' .
-                    '<span class="symbol">[tab]</span>' .
-                    '<span class="param">lang</span>'
-                ]
-            ];
-        }
-
-        /**
-         * @dataProvider fileFormatProvider
-         **/
-        public function testFileFormat($fields, $expected) {
-            $result = $this->DownloadsHelper->fileFormat($fields);
-            $this->assertEquals($expected, $result);
-        }
+    /**
+     * @dataProvider fileFormatProvider
+     **/
+    public function testFileFormat($fields, $expected) {
+        $result = $this->DownloadsHelper->fileFormat($fields);
+        $this->assertEquals($expected, $result);
     }
 }

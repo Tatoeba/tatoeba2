@@ -21,6 +21,7 @@ namespace App\View\Helper;
 use App\View\Helper\AppHelper;
 use App\Model\Entity\LanguageNameTrait;
 use Cake\Core\Configure;
+use Cake\Filesystem\Folder;
 
 class DownloadsHelper extends AppHelper
 {
@@ -37,21 +38,22 @@ class DownloadsHelper extends AppHelper
      * @return array           A mapping of language code => URL for file
      **/
     private function availableFiles($basename) {
-        $perLanguageDir = Configure::read('Downloads.path') . 'per_language';
-        $perLanguageURL = Configure::read('Downloads.url') . 'per_language/';
-        $command = "find $perLanguageDir -type f " .
-                   "-name '*$basename.tsv.bz2' -printf '%P\\n' " .
-                   '2> /dev/null';
-        $stdout = trim(shell_exec($command));
-        if (empty($stdout)) {
-            return [];
-        }
-        $paths = explode("\n", $stdout);
+        $perLanguageDir = Folder::addPathElement(
+            Configure::read('Downloads.path'),
+            'per_language'
+        );
+        $perLanguageURL = Folder::addPathElement(
+            Configure::read('Downloads.url'),
+            'per_language'
+        );
 
+        $dir = new Folder($perLanguageDir);
+        $paths = $dir->findRecursive(".*$basename\.tsv\.bz2$");
         $map = [];
         foreach ($paths as $path) {
+            $path = substr($path, strlen($perLanguageDir) + 1);
             list($code, ) = preg_split('#/#', $path);
-            $url = $perLanguageURL . $path;
+            $url = Folder::addPathElement($perLanguageURL, $path);
             $map[$code] = $url;
         }
         return $map;
@@ -70,7 +72,10 @@ class DownloadsHelper extends AppHelper
      *                         (for the all-languages file).
      **/
     public function createOptions($basename) {
-        $urlForAll = Configure::read('Downloads.url') . $basename . '.tar.bz2';
+        $urlForAll = Folder::addPathElement(
+            Configure::read('Downloads.url'),
+            "$basename.tar.bz2"
+        );
         $options[0] = [
             'language' => __('All languages'),
             'url' => $urlForAll
