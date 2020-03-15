@@ -79,8 +79,7 @@ class DownloadsHelper extends AppHelper
         $urls = $this->availableFiles($basename);
         if (!empty($urls)) {
             $languages = array_intersect_key(
-                $this->Languages->onlyLanguagesArray(false) +
-                ['unknown' => __x('dropdown-list', 'Unknown language')],
+                $this->Languages->unknownLanguagesArray(false),
                 $urls
             );
 
