@@ -46,6 +46,6 @@ if (count($options) == 1): ?>
                     <?php endforeach; ?>
                 </md-select>
             </div>
-        <md-radio-group>
+        </md-radio-group>
     </dd>
 <?php endif; ?>
