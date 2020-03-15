@@ -209,7 +209,8 @@ class PermissionsComponent extends Component
         $rightsOnWallMessage = array(
             "canReply"  => false,
             "canDelete" => false,
-            "canEdit" => false
+            "canEdit" => false,
+            "canPM" => false
         );
         // TODO add functions to determine options
         if (empty($currentUserId)) {
@@ -228,6 +229,10 @@ class PermissionsComponent extends Component
             $rightsOnWallMessage['canEdit'] = true;
         } elseif (CurrentUser::isAdmin()) {
             $rightsOnWallMessage['canEdit'] = true;
+        }
+
+        if ($ownerId !== $currentUserId) {
+            $rightsOnWallMessage['canPM'] = true;
         }
 
         $rightsOnWallMessage['canReply'] = true;
