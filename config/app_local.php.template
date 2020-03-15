@@ -232,4 +232,12 @@ return [
     'Announcement' => [
         'enabled' => false,
     ],
+
+    /**
+     * Base path and base URL for the downloadable database exports.
+     */
+    'Downloads' => [
+        'path' => '/var/www-downloads/exports/',
+        'url' => 'https://downloads.tatoeba.org/exports/',
+    ],
 ];
