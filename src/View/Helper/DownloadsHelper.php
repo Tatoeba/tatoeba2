@@ -20,15 +20,13 @@ namespace App\View\Helper;
 
 use App\View\Helper\AppHelper;
 use App\Model\Entity\LanguageNameTrait;
+use Cake\Core\Configure;
 
 class DownloadsHelper extends AppHelper
 {
     use LanguageNameTrait;
 
     public $helpers = ['Html', 'Languages'];
-
-    const PER_LANGUAGE_DIR = '/var/www-downloads/exports/per_language';
-    const DOWNLOAD_URL = 'https://downloads.tatoeba.org/exports';
 
     /**
      * Get all available per-language files for the given file
@@ -39,7 +37,9 @@ class DownloadsHelper extends AppHelper
      * @return array           A mapping of language code => URL for file
      **/
     private function availableFiles($basename) {
-        $command = 'find ' . self::PER_LANGUAGE_DIR . ' -type f ' .
+        $perLanguageDir = Configure::read('Downloads.path') . 'per_language';
+        $perLanguageURL = Configure::read('Downloads.url') . 'per_language/';
+        $command = "find $perLanguageDir -type f " .
                    "-name '*$basename.tsv.bz2' -printf '%P\\n' " .
                    '2> /dev/null';
         $stdout = trim(shell_exec($command));
@@ -51,7 +51,7 @@ class DownloadsHelper extends AppHelper
         $map = [];
         foreach ($paths as $path) {
             list($code, ) = preg_split('#/#', $path);
-            $url = self::DOWNLOAD_URL . DS . 'per_language' . DS . $path;
+            $url = $perLanguageURL . $path;
             $map[$code] = $url;
         }
         return $map;
@@ -70,7 +70,7 @@ class DownloadsHelper extends AppHelper
      *                         (for the all-languages file).
      **/
     public function createOptions($basename) {
-        $urlForAll = self::DOWNLOAD_URL . DS . $basename . '.tar.bz2';
+        $urlForAll = Configure::read('Downloads.url') . $basename . '.tar.bz2';
         $options[0] = [
             'language' => __('All languages'),
             'url' => $urlForAll

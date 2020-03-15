@@ -6,7 +6,6 @@ ROOT='/var/www-prod'
 
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < $ROOT/docs/database/scripts/weekly_exports.sql
 
-DL_DIR="/var/www-downloads/exports"
 mv /var/tmp/*csv "$DL_DIR"
 
 cd "$DL_DIR"
@@ -49,5 +48,5 @@ split_file sentences_detailed.csv
 split_file sentences.csv
 split_file sentences_CC0.csv
 find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
-rm -rf $DL_DIR/per_language
+rm -rf ${DL_DIR}per_language
 mv -f $TEMP_DIR $DL_DIR

@@ -25,13 +25,15 @@
  * @link     https://tatoeba.org
  */
 
+use Cake\Core\Configure;
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Download sentences')));
 
 // URLs
 $iso_code_url = "http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes";
 $tanaka_url = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29";
 $tanaka_url2 = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus";
-$download_url = $this->Downloads::DOWNLOAD_URL . DS;
+$download_url = Configure::read('Downloads.url');
 
 // Section Headers
 $filename =  __('Filename');
