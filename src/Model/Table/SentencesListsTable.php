@@ -515,14 +515,12 @@ class SentencesListsTable extends Table
             return false;
         }
 
-        $id = $sentence->id;
-        $isDeleted = $this->Sentences->unlink($list, [$sentence]);
+        // numberOfSentences is decremented by SentencesSentencesList.afterDelete
+        return $this->Sentences->unlink($list, [$sentence]);
+    }
 
-        if ($isDeleted) {
-            $this->_decrementNumberOfSentencesToList($listId);
-        }
-
-        return $isDeleted;
+    public function decrementNumberOfSentencesOnAssociationDeletion($event) {
+        $this->_decrementNumberOfSentencesToList($event->getData('list_id'));
     }
 
 

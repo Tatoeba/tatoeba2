@@ -51,7 +51,8 @@ class SentencesTable extends Table
         $this->belongsTo('Languages');
         $this->belongsTo('TagsSentences');
         $this->belongsToMany('SentencesLists', [
-            'dependent' => true
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->belongsToMany('Tags', [
             'dependent' => true,
@@ -1259,16 +1260,7 @@ class SentencesTable extends Table
             return false;
         }
 
-        $listsContainingSentence = $this->loadInto($sentence, ['SentencesLists'])->sentences_lists;
-        $isDeleted = $this->delete($sentence);
-        if ($isDeleted) {
-            foreach ($listsContainingSentence as $list){
-                $list->numberOfSentences--;
-                $this->SentencesLists->save($list);
-            }
-        }
-
-        return $isDeleted;
+        return $this->delete($sentence);
     }
 
     private function orderby($expr, $order)
