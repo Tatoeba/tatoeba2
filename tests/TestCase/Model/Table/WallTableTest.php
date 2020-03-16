@@ -44,8 +44,10 @@ class WallTest extends TestCase {
         ];
 
         $before = $this->Wall->find()->count();
-        $saved = $this->Wall->save($newPost)->old_format;
-        $result = array_intersect_key($saved['Wall'], $expected);
+        $saved = $this->Wall->save($newPost);
+        $result = $saved->extract(
+            ['owner', 'content', 'parent_id', 'lft', 'rght', 'id']
+        );
         $after = $this->Wall->find()->count();
 
         $this->assertEquals(1, $after - $before);
@@ -178,10 +180,9 @@ class WallTest extends TestCase {
             'Model.Wall.postPosted',
             function (Event $event) use ($model, &$dispatched, $expectedPost) {
                 $this->assertSame($model, $event->getSubject());
-                $post = $event->getData('post')->old_format['Wall']; // $post
-                unset($post['id']);
-                unset($post['date']);
-                unset($post['modified']);
+                $post = $event->getData('post')->extract(
+                    ['owner', 'parent_id', 'content', 'lft', 'rght']
+                ); // $post
                 $this->assertEquals($expectedPost, $post);
                 $dispatched = true;
             }

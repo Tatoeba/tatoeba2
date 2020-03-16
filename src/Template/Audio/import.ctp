@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Cake\Core\Configure;
+
 $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import recordings')));
 
 ?>
@@ -110,6 +112,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
         $isValid = $file['valid'] ?
                    __('Yes') :
                    __('No');
+
+        if (isset($file['hasaudio']) && $file['hasaudio']) {
+            $path = Configure::read('Recordings.url')
+                .$file['lang'].'/'.$file['sentenceId'].'.mp3';
+            $hasaudio = $this->Html->Link($hasaudio, $path);
+        }
+
         echo $this->Html->tableCells(
             array(
                 $file['fileName'],
@@ -129,7 +138,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
 <?php endif; ?>
 <?php
 echo $this->Form->create();
-echo $this->Form->input('audioAuthor');
+echo $this->Form->input('audioAuthor', ['required' => true]);
 echo $this->Form->submit(__d('admin', 'Import'));
 echo $this->Form->end();
 ?>

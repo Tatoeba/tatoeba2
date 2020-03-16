@@ -32,7 +32,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 <div id="annexe_content">
     <?= $this->element('audio_stats',
             [ 'stats' => $stats ],
-            [ 'cache' => [ 'key'  => 'audio_stats_'.Configure::read('Config.language') ]]
+            [ 'cache' => [
+                'config' => 'stats',
+                'key' => 'audio_stats_'.Configure::read('Config.language'),
+            ]]
     ); ?>
 </div>
 

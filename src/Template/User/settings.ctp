@@ -301,27 +301,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </div>
             </md-list-item>
             <md-list-item>
-                <?php $copyButton = $userSettings->settings['copy_button']; ?>
-                <md-checkbox
-                    ng-false-value="0"
-                    ng-true-value="1"
-                    ng-model="copyButton"
-                    ng-init="copyButton = <?= $copyButton ?>"
-                    class="md-primary">
-                </md-checkbox>
-                <p><?php echo __('Display button to copy a sentence to the clipboard') ?></p>
-                <div ng-hide="true">
-                <?php
-                    echo $this->Form->input(
-                        'settings.copy_button',
-                        array(
-                          'value' => '{{copyButton}}'
-                        )
-                    );
-                ?>
-                </div>
-            </md-list-item>
-            <md-list-item>
                 <?php $useNewDesign = $userSettings->settings['use_new_design']; ?>
                 <md-checkbox
                     ng-false-value="0"
@@ -332,8 +311,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 </md-checkbox>
                 <p><?php echo __(
                     'Display sentences with the new design. '.
-                    'Note that you will not have all the features '.
-                    'from the old design'
+                    'Note that some features are not yet implemented in this new design but are coming soon.'
                 ) ?></p>
                 <div ng-hide="true">
                 <?php

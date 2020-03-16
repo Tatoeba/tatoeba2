@@ -150,34 +150,6 @@ class TagsTable extends Table
         );
     }
 
-    public function paramsForPaginate($tagId, $limit, $lang = null)
-    {
-        $conditions = ['Tags.id' => $tagId];
-        $contain = [
-            'Tags' => ['fields' => ['id']],
-            'Sentences' => $this->Sentences->paginateContain()
-        ];
-
-        if (!empty($lang) && $lang != 'und') {
-            $conditions['Sentences.lang'] = $lang;
-        }
-        $params = array(
-            'TagsSentences' => array(
-                'limit' => $limit,
-                'fields' => [
-                    'sentence_id' => 'DISTINCT(sentence_id)', 
-                    'user_id'
-                ],
-                'conditions' => $conditions,
-                'contain' => $contain
-            )
-        );
-
-        return $params;
-
-    }
-
-
     /**
      * Get tag id from tag internal name.
      *

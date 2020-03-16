@@ -252,7 +252,7 @@ if (!function_exists('format')) {
 if (!function_exists('__format_decompose_list')) {
     function __format_decompose_list($string) {
         $result = $string;
-        if ($string[0] == ';') {
+        if ($string !== '' && $string[0] == ';') {
             $list = explode(';', $string);
             $result = array();
             array_shift($list);

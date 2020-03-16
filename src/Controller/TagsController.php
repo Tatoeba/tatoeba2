@@ -105,14 +105,10 @@ class TagsController extends AppController
             'limit' => 50,
             'fields' => ['name', 'id', 'nbrOfSentences'],
             'order' => ['nbrOfSentences' => 'DESC', 'id' => 'ASC'],
-            'conditions' => $conditions
+            'conditions' => $conditions,
+            'sort' => $this->request->getQuery('sort', 'nbrOfSentences'),
+            'direction' => $this->request->getQuery('direction', 'desc'),
         ];
-
-        // We use two columns for ordering the results so in order to indicate the
-        // initial sorting direction we need to set the 'sort' key manually
-        if (empty($this->request->getQuery('sort'))) {
-            $this->paginate['sort'] = 'nbrOfSentences';
-        }
 
         $allTags = $this->paginate();
         $this->set("allTags", $allTags);

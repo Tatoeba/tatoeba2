@@ -24,6 +24,7 @@ class BootstrapTest extends TestCase {
         # Support named parameters
         $this->assertEquals('I love Tatoeba.', format('I {what} Tatoeba.', array('what' => 'love')));
         $this->assertEquals('I  Tatoeba.', format('I {what} Tatoeba.', array('what' => null)));
+        $this->assertEquals('I  Tatoeba.', format('I {what} Tatoeba.', array('what' => '')));
 
         # Support lists, fallback on first key
         $loveConjugation = '; first: love; third: loves';

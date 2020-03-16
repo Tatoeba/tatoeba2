@@ -51,7 +51,6 @@ class User extends Entity
         'sentences_per_page' => 10,
         'users_collections_ratings' => false,
         'native_indicator' => false,
-        'copy_button' => false,
         'hide_random_sentence' => false,
         'use_new_design' => false,
         'default_license' => 'CC BY 2.0 FR',

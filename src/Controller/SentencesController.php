@@ -340,6 +340,12 @@ class SentencesController extends AppController
             $this->set('sentence', $sentence);
         }
 
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['sentence', 'duplicate']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
     /**
@@ -352,10 +358,10 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->editSentence($this->request->data);
         if ($acceptsJson) {
-            $sentence->dir = LanguagesLib::getLanguageDirection($sentence->lang);
+            $this->loadComponent('RequestHandler');
             $this->set('result', $sentence);
-            $this->viewBuilder()->setLayout('json');
-            $this->render('/Generic/json');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         } else {
             if (empty($sentence)) {
                 // TODO Better error handling.
@@ -474,9 +480,10 @@ class SentencesController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
             $this->set('result', $translation);
-            $this->viewBuilder()->setLayout('json');
-            $this->render('/Generic/json');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 
@@ -886,6 +893,13 @@ class SentencesController extends AppController
 
         $this->request->getSession()->write('random_lang_selected', $lang);
         $this->set('random', $randomSentence);
+
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['random']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
 

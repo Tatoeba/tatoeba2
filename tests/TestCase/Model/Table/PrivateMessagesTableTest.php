@@ -53,8 +53,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => 'advanced_contributor',
         );
-        $pm = $this->PrivateMessage->get($id)->old_format;
-        $this->assertEquals($expectedPm, $pm['PrivateMessage']);
+        $pm = $this->PrivateMessage->get($id)->toArray();
+        $this->assertEquals($expectedPm, $pm);
     }
 
     public function testSaveDraft_editsExistingDraft() {
@@ -84,8 +84,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 1,
             'draft_recpts' => 'advanced_contributor',
         );
-        $pm = $this->PrivateMessage->get($draftId)->old_format;
-        $this->assertEquals($expectedPm, $pm['PrivateMessage']);
+        $pm = $this->PrivateMessage->get($draftId)->toArray();
+        $this->assertEquals($expectedPm, $pm);
     }
 
     public function testSave_failsIfEmptyContent() {
@@ -176,8 +176,8 @@ class PrivateMessageTest extends TestCase {
             'isnonread' => 0,
             'draft_recpts' => '',
         );
-        $sent = $this->PrivateMessage->get($sentId)->old_format;
-        $this->assertEquals($expectedSent, $sent['PrivateMessage']);
+        $sent = $this->PrivateMessage->get($sentId)->toArray();
+        $this->assertEquals($expectedSent, $sent);
 
         $receivedId = $sentId - 1;
         $expectedReceived = array(
@@ -194,8 +194,8 @@ class PrivateMessageTest extends TestCase {
             'draft_recpts' => '',
         );
         CurrentUser::store(['id' => $recpt]);
-        $received = $this->PrivateMessage->get($receivedId)->old_format;
-        $this->assertEquals($expectedReceived, $received['PrivateMessage']);
+        $received = $this->PrivateMessage->get($receivedId)->toArray();
+        $this->assertEquals($expectedReceived, $received);
     }
 
     public function testSend_limitExceeded() {
@@ -264,7 +264,7 @@ class PrivateMessageTest extends TestCase {
             'Model.PrivateMessage.messageSent',
             function (Event $event) use ($model, &$dispatched, $expectedMessage) {
                 $this->assertSame($model, $event->getSubject());
-                $message = $event->getData('message')->old_format['PrivateMessage']; // $message
+                $message = $event->getData('message')->toArray(); // $message
                 unset($message['id']);
                 $this->assertEquals($expectedMessage, $message);
                 $dispatched = true;

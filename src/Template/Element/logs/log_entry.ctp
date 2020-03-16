@@ -1,30 +1,6 @@
 <?php
-use App\Lib\LanguagesLib;
-
 $langCode = $log->sentence_lang;
 $sentenceId = $log->sentence_id;
-$sentenceLink = $this->Html->link(
-    '#'.$sentenceId,
-    array(
-        'controller' => 'sentences',
-        'action' => 'show',
-        $sentenceId
-    )
-);
-$translationId = null;
-if (isset($log->translation_id)) {
-    $translationId = $log->translation_id;
-    $translationLink = $this->Html->link(
-        '#'.$translationId,
-        array(
-            'controller' => 'sentences',
-            'action' => 'show',
-            $translationId
-        )
-    );
-}
-$sentenceText = $log->text;
-$sentenceDate = $log->datetime;
 $obsolete = false;
 if (isset($log->obsolete)) {
     $obsolete = $log->obsolete;
@@ -43,8 +19,6 @@ $sentenceUrl = $this->Url->build(array(
     'action' => 'show',
     $sentenceId
 ));
-$infoLabel = $this->Logs->getInfoLabel($type, $action, $username, $sentenceDate);
-$langDir = LanguagesLib::getLanguageDirection($langCode);
 ?>
 
 <md-list-item class="md-2-line <?= $type.'-'.$style ?>">
@@ -59,21 +33,8 @@ $langDir = LanguagesLib::getLanguageDirection($langCode);
             )
         );
     }
+    echo $this->element('logs/log_text', compact('log'));
     ?>
-    <div class="md-list-item-text" layout="column">
-        <div class="content" dir="<?= $langDir ?>">
-            <?php
-            if ($type =='sentence') {
-                echo h($sentenceText);
-            } elseif ($type == 'license') {
-                echo ' ➜ '.$this->Html->tag('span', $sentenceText, array('class' => 'license'));
-            } else { // link
-                echo $sentenceLink.' ➜ '.$translationLink;
-            }
-            ?>
-        </div>
-        <p><?= $infoLabel ?></p>
-    </div>
     <md-button ng-cloak class="md-secondary md-icon-button" href="<?= $sentenceUrl ?>">
         <md-icon>info</md-icon>
     </md-button>

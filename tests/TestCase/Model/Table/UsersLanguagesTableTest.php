@@ -57,10 +57,10 @@ class UsersLanguagesTableTest extends TestCase {
             'of_user_id' => $currentUserId,
             'by_user_id' =>  $currentUserId
         );
-        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId);
-        $result = array_intersect_key($userLanguage['UsersLanguages'], $expected);
+        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId)
+            ->extract(['language_code', 'level', 'details', 'of_user_id', 'by_user_id']);
 
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userLanguage);
     } 
 
     function testSaveUserLanguage_editsLanguage() {
@@ -78,10 +78,10 @@ class UsersLanguagesTableTest extends TestCase {
             'of_user_id' => $currentUserId,
             'by_user_id' =>  $currentUserId
         );
-        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId);
-        $result = array_intersect_key($userLanguage['UsersLanguages'], $expected);
+        $userLanguage = $this->UsersLanguages->saveUserLanguage($data, $currentUserId)
+            ->extract(['id', 'language_code', 'level', 'of_user_id', 'by_user_id']);
 
-        $this->assertEquals($expected, $result);
+        $this->assertEquals($expected, $userLanguage);
     } 
 
     
@@ -156,8 +156,7 @@ class UsersLanguagesTableTest extends TestCase {
             ['language_code' => 'npi', 'details' => ''],
             100
         );
-        $id = $added['UsersLanguages']['id'];
-        $returned = $this->UsersLanguages->get($id);
+        $returned = $this->UsersLanguages->get($added->id);
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
     }

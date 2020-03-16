@@ -48,7 +48,28 @@
 /*
  * List
  */
-.sentence-and-translations,
+.sentence-and-translations-wrapper {
+    margin: 20px 10px 20px 10px;
+}
+.sentence-and-translations-wrapper.removeable {
+    margin-right: 0px;
+}
+
+.sentence-and-translations-wrapper .remove-from-list {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.sentence-and-translations-wrapper.removed .sentence-and-translations {
+    display: none;
+}
+
+.sentence-and-translations-wrapper .removed-confirmation {
+    background-color: #fff;
+    padding: 0 5px 0 20px;
+    margin-right: 10px;
+}
+
 .sentenceInList {
     margin: 40px 0;
 }
@@ -114,4 +135,22 @@
 .loader-container {
     display: inline-block;
     vertical-align: bottom;
+}
+
+#list-name-form {
+    padding: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+#list-name-form .md-errors-spacer {
+    display: none;
+}
+
+.no-sentence-info p {
+    text-align: center;
+    font-size: 2em;
+    color: #666666;
+}
+
+.no-sentence-info .hint {
+    padding: 10px 20px;
 }

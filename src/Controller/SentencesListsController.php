@@ -186,6 +186,10 @@ class SentencesListsController extends AppController
         $this->set('user', $list->user);
         $this->set('permissions', $list['Permissions']);
         $this->set('sentencesInList', $sentencesInList);
+
+        if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+            $this->render('show_angular');
+        }
     }
 
 
@@ -218,13 +222,27 @@ class SentencesListsController extends AppController
     public function save_name()
     {
         $userId = $this->Auth->user('id');
-        $listId = substr($this->request->getData('id'), 1);
-        $listName = $this->request->getData('value');
+
+        $acceptsJson = $this->request->accepts('application/json');
+
+        if ($acceptsJson) {
+            $listId = $this->request->getData('id');
+            $listName = $this->request->getData('name');
+        } else {
+            $listId = substr($this->request->getData('id'), 1);
+            $listName = $this->request->getData('value');
+        }
 
         if ($this->SentencesLists->editName($listId, $listName, $userId)) {
             $this->set('result', $listName);
         } else {
             $this->set('result', 'error');
+        }
+
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 
@@ -263,12 +281,21 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
+        $acceptsJson = $this->request->accepts('application/json');
+
         $userId = $this->Auth->user('id');
         if ($this->SentencesLists->addSentenceToList($sentenceId, $listId, $userId)) {
             $this->set('result', $listId);
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         } else {
             $this->set('result', 'error');
+            $this->set('error', __('The sentence could not be added to the list.'));
+        }
+
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['result', 'error']);
+            $this->RequestHandler->renderAs($this, 'json');
         }
     }
 
@@ -288,6 +315,13 @@ class SentencesListsController extends AppController
             $sentenceId, $listId, $userId
         );
         $this->set('removed', $isRemoved);
+
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['removed']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
 
@@ -346,13 +380,16 @@ class SentencesListsController extends AppController
         $result = null;
         $listId = $this->request->getData('listId');
         $sentenceText = $this->request->getData('sentenceText');
+        $sentenceLang = $this->request->getData('sentenceLang');
 
         if (!is_null($listId) && !is_null($sentenceText)) {
             $userName = $this->Auth->user('username');
-            $sentenceLang = $this->LanguageDetection->detectLang(
-                $sentenceText,
-                $userName
-            );
+            if ($sentenceLang == 'auto') {
+                $sentenceLang = $this->LanguageDetection->detectLang(
+                    $sentenceText,
+                    $userName
+                );
+            }
 
             $result = $this->SentencesLists->addNewSentenceToList(
                 $listId,
@@ -365,6 +402,13 @@ class SentencesListsController extends AppController
         }
 
         $this->set('sentence', $result);
+        
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['sentence']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
     }
 
     public function add_sentence_to_new_list() {
@@ -403,7 +447,13 @@ class SentencesListsController extends AppController
         );
         
         $this->response->header('Content-Type: application/json');
-        $this->set('result', json_encode($result['SentencesList']));
+        if ($result) {
+            $this->set('result', json_encode(
+                $result->extract(['id', 'name', 'user_id', 'editable_by'])
+            ));
+        } else {
+            $this->set('result', json_encode([], JSON_FORCE_OBJECT));
+        }
     }
 
     /**
