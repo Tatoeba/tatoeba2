@@ -581,6 +581,7 @@ class LanguagesLib
                 'xmf' => __d('languages', 'Mingrelian'),
                 'osp' => __d('languages', 'Old Spanish'),
                 'tmr' => __d('languages', 'Jewish Babylonian Aramaic'),
+                'bis' => __d('languages', 'Bislama'),
             );
         }
         return $languages;
