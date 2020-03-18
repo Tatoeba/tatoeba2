@@ -152,7 +152,11 @@ if (!Array.prototype.find) {
 $(document).on('copy', function (e) {
     // ClipboardJS uses a textarea to implement copying in Firefox.
     // We shouldn't mess with that event.
-    if(e.target.tagName == 'TEXTAREA') return;
+    // Also in Firefox, selections in <input> tags may nondeterministically
+    // appear empty even if they are not, causing setData() to erroneously clear
+    // the clipboard. Ignoring those events works around that.
+    var tagName = e.target.tagName;
+    if(tagName == 'INPUT' || tagName == 'TEXTAREA') return;
 
     var sel = window.getSelection();
     var clipboardData = e.originalEvent.clipboardData; // not available in IE
