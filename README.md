@@ -138,6 +138,13 @@ sphinxql # runs the SphinxQL console
     ...
 ```
 
+### Generate exports
+
+```bash
+# This creates the files available on the Downloads page
+sudo ./docs/cron/runner.sh ./docs/cron/export.sh
+```
+
 ### Limiting the number of indexed languages
 
 To limit RAM usage, you can limit which languages Manticore indexes using the following command. Re-run this command without `list-of-iso-codes` to make Manticore index all the languages again.
