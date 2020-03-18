@@ -19,15 +19,17 @@ $(document).ready(function() {
 
     $('.announcement').each(function() {
         var announcementId = $(this).attr('data-announcement-id');
-        if ($.cookie(announcementId) === undefined) {
+        if (announcementId === undefined || $.cookie(announcementId) === undefined) {
             $(this).show();
         }
     });
 
     $('.announcement .close').click(function() {
         var announcementId = $(this).parent().attr('data-announcement-id');
-        $(this).parent().hide();
-        $.cookie(announcementId, 'done', {'expires' : 7, 'path' : '/'});
+        if (announcementId) {
+            $(this).parent().hide();
+            $.cookie(announcementId, 'done', {'expires' : 7, 'path' : '/'});
+        }
     });
 
 });

@@ -42,7 +42,6 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     ]);
     echo $this->Form->create('Users', [
         'class' => 'announcement',
-        'data-announcement-id' => 'new-terms-of-use',
         'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
     ]);
     echo $this->Form->hidden('settings.new_terms_of_use', ['value' => true]);
