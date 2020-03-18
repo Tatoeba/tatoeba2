@@ -85,7 +85,7 @@ class TranscriptionsController extends AppController
         }
 
         if (!$saved) {
-            return $this->response->withStatus(400, 'Bad transcription');
+            return $this->response->withStatus(400, __('The transcription could not be reset.'));
         }
 
         $acceptsJson = $this->request->accepts('application/json');
@@ -137,7 +137,7 @@ class TranscriptionsController extends AppController
         }
 
         if (!$saved) {
-            return $this->response->withStatus(400, 'Bad transcription');
+            return $this->response->withStatus(400, __('The transcription could not be saved.'));
         }
 
         $acceptsJson = $this->request->accepts('application/json');

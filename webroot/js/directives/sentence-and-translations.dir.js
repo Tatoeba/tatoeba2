@@ -520,6 +520,9 @@
             var data = {
                 value: markupToStored(lang, text)
             };
+            
+            transcription.error = null;
+
             $http.post(url, data).then(function(result) {
                 var result = result.data.result;
                 transcription.text = result.text;
@@ -533,6 +536,8 @@
                     transcription.isReviewedFurigana = !result.needsReview;
                     sentence.reviewedFurigana = result.needsReview ? null : transcription.html;
                 }
+            }, function(error) {
+                transcription.error = error.statusText;
             });
         }
 
