@@ -28,7 +28,10 @@
 use Cake\Core\Configure;
 use App\Model\CurrentUser;
 
+$isDisplayingAnnouncement = false;
+
 if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
+    $isDisplayingAnnouncement = true;
     $termsOfUseUrl = $this->Url->build([
         'controller' => 'pages', 
         'action' => 'terms_of_use'
@@ -57,6 +60,7 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
 
 
 if (Configure::read('Announcement.enabled')) {
+    $isDisplayingAnnouncement = true;
     $announcementId = 'coding-event-2020';
     $announcementText = $this->Html->tag('strong', __('Tatoeba coding event'));
     $announcementText .= $this->Html->tag('p', format(__(
@@ -81,6 +85,7 @@ if (Configure::read('Announcement.enabled')) {
 }
 
 if (Configure::read('Tatoeba.devStylesheet')) {
+    $isDisplayingAnnouncement = true;
     $content = __(
         'Warning: this website is for testing purposes. '.
         'Everything you submit will be definitely lost.', true
@@ -95,4 +100,8 @@ if (Configure::read('Tatoeba.devStylesheet')) {
     );
 }
 
+if ($isDisplayingAnnouncement) {
+    $this->Html->script(JS_PATH . 'jquery.cookie.js', ['block' => 'scriptBottom']);
+    $this->Html->script(JS_PATH . 'announcement.js',  ['block' => 'scriptBottom']);
+}
 ?>
