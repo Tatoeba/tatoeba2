@@ -6,7 +6,9 @@ ROOT='/var/www-prod'
 mkdir -p "$DL_DIR"
 
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < $ROOT/docs/database/scripts/weekly_exports.sql
+mv /var/tmp/*csv "$DL_DIR"
 
+mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < "$ROOT"/docs/database/scripts/wwwjdic.sql
 mv /var/tmp/*csv "$DL_DIR"
 
 cd "$DL_DIR"
