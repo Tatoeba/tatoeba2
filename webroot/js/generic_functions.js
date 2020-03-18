@@ -156,7 +156,8 @@ $(document).on('copy', function (e) {
 
     var sel = window.getSelection();
     var clipboardData = e.originalEvent.clipboardData; // not available in IE
-    if (sel.rangeCount > 0 && clipboardData) {
+    var setData = clipboardData && clipboardData.setData; // not available in iOS Safari
+    if (sel.rangeCount > 0 && setData) {
         $('rt').css('visibility', 'hidden');
         clipboardData.setData('text', sel.toString());
         $('rt').css('visibility', 'visible');
