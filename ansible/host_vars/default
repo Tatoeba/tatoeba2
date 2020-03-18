@@ -21,15 +21,15 @@ ansible_ssh_pipelining: yes
 # Variables for nginx configuration
 # ---------------------------------
 nginx_config_file: default
-main_server_name: localhost
+main_server_name: tato.test
 main_server_root: "{{code_dir}}/webroot"
-audio_server_name: audio.tatoeba.org
+audio_server_name: audio.{{main_server_name}}
 audio_server_root: /var/www-audio/
-downloads_server_name: downloads.tatoeba.org
+downloads_server_name: downloads.{{main_server_name}}
 downloads_server_root: /var/www-downloads/
-static_server_name: static.tatoeba.org
+static_server_name: static.{{main_server_name}}
 static_server_root: /var/media/www-static/
-xcache_server_name: xcache.tatoeba.org
+xcache_server_name: xcache.{{main_server_name}}
 xcache_server_root: /var/www-xcache/
 
 

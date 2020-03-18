@@ -1,5 +1,5 @@
 server {
-	listen	80;
+	listen	80 default_server;
 	server_name	{{main_server_name}};
 
 	root	{{main_server_root}};
