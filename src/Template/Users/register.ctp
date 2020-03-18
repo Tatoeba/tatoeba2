@@ -49,10 +49,9 @@ echo $this->Form->create($user, array(
     'ng-controller' => 'UsersRegisterController as ctrl'
 ));
 
-$lang = Configure::read('Config.language');
 $label = format(
     __('I accept the <a href="{}">terms of use</a>'),
-    $this->Url->build(array("controller"=>"pages", "action"=>"terms_of_use", "#"=>$lang))
+    $this->Url->build(array("controller"=>"pages", "action"=>"terms_of_use"))
 );
 ?>
 <h2><?= __('Register'); ?></h2>
