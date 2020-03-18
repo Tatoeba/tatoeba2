@@ -55,7 +55,7 @@ class User extends Entity
         'use_new_design' => false,
         'default_license' => 'CC BY 2.0 FR',
         'can_switch_license' => false,
-        'new_terms_of_use' => false,
+        'new_terms_of_use' => '1',
         'license_switch_list_id' => null,
     );
 

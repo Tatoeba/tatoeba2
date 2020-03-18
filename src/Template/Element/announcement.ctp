@@ -28,7 +28,10 @@
 use Cake\Core\Configure;
 use App\Model\CurrentUser;
 
+$isDisplayingAnnouncement = false;
+
 if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
+    $isDisplayingAnnouncement = true;
     $termsOfUseUrl = $this->Url->build([
         'controller' => 'pages', 
         'action' => 'terms_of_use'
@@ -39,7 +42,6 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     ]);
     echo $this->Form->create('Users', [
         'class' => 'announcement',
-        'data-announcement-id' => 'new-terms-of-use',
         'url' => ['controller' => 'user', 'action' => 'accept_new_terms_of_use']
     ]);
     echo $this->Form->hidden('settings.new_terms_of_use', ['value' => true]);
@@ -55,10 +57,19 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     echo $this->Form->end();
 }
 
-/*
+
 if (Configure::read('Announcement.enabled')) {
-    $announcementId = 'announcement-123';
-    $announcementText = 'Announcement text here.';
+    $isDisplayingAnnouncement = true;
+    $announcementId = 'coding-event-2020';
+    $announcementText = $this->Html->tag('strong', __('Tatoeba coding event'));
+    $announcementText .= $this->Html->tag('p', format(__(
+        'In order to get more developers involved in Tatoeba and have some fun at the same time, we are organizing a coding event. '.
+        'If this sounds interesting, please fill up <a href="{}">our survey</a>.'
+    ), 'https://forms.gle/wyLqhcyLZxkiqn1WA'));
+    $announcementText .= $this->Html->tag('p', format(__(
+        'Until then, if you wish to get involved, please read our <a href="{}">guide for contributing as a developer</a> '.
+        'or just <a href="{}">contact us</a>. We are an open source project and we welcome everyone!'
+    ), 'https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer', $this->Url->build(['controller' => 'pages', 'action' => 'contact'])));
 
     $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
     $content = $this->Html->div('content', $announcementText);
@@ -71,9 +82,9 @@ if (Configure::read('Announcement.enabled')) {
         )
     );
 }
-*/
 
 if (Configure::read('Tatoeba.devStylesheet')) {
+    $isDisplayingAnnouncement = true;
     $content = __(
         'Warning: this website is for testing purposes. '.
         'Everything you submit will be definitely lost.', true
@@ -88,4 +99,8 @@ if (Configure::read('Tatoeba.devStylesheet')) {
     );
 }
 
+if ($isDisplayingAnnouncement) {
+    $this->Html->script(JS_PATH . 'jquery.cookie.js', ['block' => 'scriptBottom']);
+    $this->Html->script(JS_PATH . 'announcement.js',  ['block' => 'scriptBottom']);
+}
 ?>

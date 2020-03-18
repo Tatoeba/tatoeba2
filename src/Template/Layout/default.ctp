@@ -126,11 +126,6 @@ use Cake\Core\Configure;
 
     echo $this->fetch('scriptBottom');
 
-    if (Configure::read('Announcement.enabled') || Configure::read('Tatoeba.devStylesheet')) {
-        echo $this->Html->script(JS_PATH . 'jquery.cookie.js');
-        echo $this->Html->script(JS_PATH . 'announcement.js');
-    }
-
     if (Configure::read('GoogleAnalytics.enabled')) {
         echo $this->element('google_analytics', [], [ 'cache' => true ]);
     }
