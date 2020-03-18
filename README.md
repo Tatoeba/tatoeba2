@@ -148,3 +148,13 @@ To limit RAM usage, you can limit which languages Manticore indexes using the fo
 cake sphinx_conf list-of-iso-codes | sudo tee /etc/manticoresearch/manticore.conf
 sudo systemctl restart manticore
 ```
+
+## Accessing subdomains (audio, downloads...)
+
+To access subdomains, you need to configure them in the [hosts file](https://en.wikipedia.org/wiki/Hosts_%28file%29) of your machine (not the VM, your actual computer). Add the following line to your hosts file:
+
+```
+127.0.0.1 tato.test audio.tato.test downloads.tato.test
+```
+
+Now you should be able to access http://downloads.tato.test:8080/ as well as http://tato.test:8080/ (which is the same as localhost).
