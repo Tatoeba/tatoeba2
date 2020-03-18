@@ -22,6 +22,8 @@ use Cake\ORM\Entity;
 use App\Model\Entity\PinyinTrait;
 use App\Model\Entity\FuriganaTrait;
 use Cake\I18n\Time;
+use App\Model\CurrentUser;
+
 
 class Transcription extends Entity
 {
@@ -175,10 +177,14 @@ class Transcription extends Entity
             return;
         }
 
-        $lang = $this->sentence['lang'];
-        $text = htmlentities($this->text);
-        if ($this->script == 'Hrkt') {
-            $text = $this->bracketify($this->text);
+        $text = null;
+        $editable = !$this->readonly && CurrentUser::canEditTranscription($this->user_id, $this->sentence->user_id);
+        if ($editable) {
+            $lang = $this->sentence['lang'];
+            $text = htmlentities($this->text);
+            if ($this->script == 'Hrkt') {
+                $text = $this->bracketify($this->text);
+            }
         }
 
         return $text;

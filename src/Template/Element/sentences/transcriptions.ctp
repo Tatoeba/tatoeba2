@@ -24,7 +24,8 @@ if (CurrentUser::getSetting('show_transcriptions')) {
             <md-tooltip>{{transcription.info_message}}</md-tooltip>
         </div>
 
-        <?php if (CurrentUser::isTrusted()) { ?>
+        <?php if (CurrentUser::isMember()) { ?>
+        <div ng-if="transcription.editing_format">
         <md-button class="md-icon-button" ng-if="!transcription.showForm && transcription.needsReview"
                    ng-click="vm.editTranscription(transcription, <?= $sentenceVar ?>, 'save')">
             <md-icon>check_circle</md-icon>
@@ -35,11 +36,12 @@ if (CurrentUser::getSetting('show_transcriptions')) {
             <md-icon>edit</md-icon>
             <md-tooltip><?= __('Edit transcription') ?></md-tooltip>
         </md-button>
+        </div>
         <?php } ?>
     </div>
 
     <?php
-    if (CurrentUser::isTrusted()) { 
+    if (CurrentUser::isMember()) { 
         echo $this->element('sentences/transcription_form', [
             'sentenceVar' => $sentenceVar
         ]);    

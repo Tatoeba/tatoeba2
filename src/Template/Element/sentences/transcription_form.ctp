@@ -3,7 +3,7 @@ if (!isset($sentenceVar)) {
     $sentenceVar = 'vm.sentence';
 }
 ?>
-<form layout="column" ng-if="transcription.showForm" flex>
+<form layout="column" ng-if="transcription.showForm && transcription.editing_format" flex>
     <div layout="row" layout-align="start center">
         <div class="icon">
             <md-icon>subdirectory_arrow_right</md-icon>
