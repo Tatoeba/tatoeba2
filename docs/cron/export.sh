@@ -52,5 +52,5 @@ split_file sentences_detailed.csv
 split_file sentences.csv
 split_file sentences_CC0.csv
 find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
-rm -rf ${DL_DIR}per_language
+rm -rf $DL_DIR/per_language
 mv -f $TEMP_DIR $DL_DIR
