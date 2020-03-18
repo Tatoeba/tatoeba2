@@ -102,27 +102,27 @@ if (!empty($stats)) {
     <?php
     foreach ($stats as $date => $stat) {
         $bar = '';
-        if(isset($stat['added'])){
+        if(isset($stat['added']) && $stat['added'] > 0){
             $width = ($stat['added'] / $maxTotal) * 100;
             $bar .= $this->Html->div('logs_stats added', '+' . $stat['added'],
                 array('style' => 'width:'.$width.'%')
             );
             $totalSentences += $stat['added'];
         }
-        if(isset($stat['linked'])){
+        if(isset($stat['linked']) && $stat['linked'] > 0){
             $width = ($stat['linked'] / $maxTotal) * 100;
             $bar .= $this->Html->div('logs_stats linked', '+' . $stat['linked'],
                 array('style' => 'width:'.$width.'%')
             );
             $totalLinks += $stat['linked'];
         }
-        if(isset($stat['unlinked'])){
+        if(isset($stat['unlinked']) && $stat['unlinked'] > 0){
             $width = ($stat['unlinked'] / $maxTotal) * 100;
             $bar .= $this->Html->div('logs_stats unlinked', '-' . $stat['unlinked'],
                 array('style' => 'width:'.$width.'%')
             );
         }
-        if(isset($stat['deleted'])){
+        if(isset($stat['deleted']) && $stat['deleted'] > 0){
             $width = ($stat['deleted'] / $maxTotal) * 100;
             $bar .= $this->Html->div('logs_stats deleted', '-' . $stat['deleted'],
                 array('style' => 'width:'.$width.'%')
