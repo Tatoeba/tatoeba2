@@ -35,7 +35,7 @@ if (count($options) == 1): ?>
             </md-radio-button>
             <div layout="row" layout-align="start center">
                 <md-radio-button class="file-selection" ng-value="<?= $model ?>Select" flex="none">
-                    Only sentences in
+                    <?= __('Only sentences in:') ?>
                 </md-radio-button>
                 <md-select class="file-selection" ng-model="<?= $model ?>Select"
                 ng-change="<?= $model ?> = <?= $model ?>Select" flex="initial">
