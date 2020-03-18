@@ -132,6 +132,7 @@
         vm.show = show;
         vm.hide = hide;
         vm.editTranscription = editTranscription;
+        vm.saveTranscription = saveTranscription;
         vm.cancelEditTranscription = cancelEditTranscription;
 
         /////////////////////////////////////////////////////////////////////////
@@ -513,7 +514,12 @@
             vm.listType = 'of_user';
         }
 
-        function editTranscription(transcription, sentence, action) {
+        function editTranscription(transcription) {
+            transcription.showForm = true;
+            transcription.original_editing_format = transcription.editing_format;
+        }
+
+        function saveTranscription(transcription, sentence, action) {
             var lang = transcription.sentence.lang + '-' + transcription.script;
             var text = transcription.editing_format;
             var url = rootUrl + '/transcriptions/' + action + '/' + sentence.id + '/' + transcription.script;
@@ -542,7 +548,9 @@
         }
 
         function cancelEditTranscription(transcription) {
+            transcription.error = null;
             transcription.showForm = false;
+            transcription.editing_format = transcription.original_editing_format;
         }
 
         function markupToStored(lang, text) {

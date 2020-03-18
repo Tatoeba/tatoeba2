@@ -11,7 +11,7 @@ if (!isset($sentenceVar)) {
         <md-input-container flex>
             <label><?= __('Transcription') ?></label>
             <textarea ng-attr-id="transcription-form-{{transcription.sentence.id}}" ng-model="transcription.editing_format" ng-change="transcription.error = null"
-                      ng-enter="vm.editTranscription(transcription, <?= $sentenceVar ?>, 'save')" ng-escape="vm.cancelEditTranscription(transcription)"></textarea>
+                      ng-enter="vm.saveTranscription(transcription, <?= $sentenceVar ?>, 'save')" ng-escape="vm.cancelEditTranscription(transcription)"></textarea>
 
             <div ng-messages="transcriptionForm.$error" role="alert">
                 {{transcription.error}}
@@ -23,10 +23,10 @@ if (!isset($sentenceVar)) {
         <md-button class="md-raised" ng-click="vm.cancelEditTranscription(transcription)">
             <?= __('Cancel') ?>
         </md-button>
-        <md-button class="md-raised" ng-click="vm.editTranscription(transcription, <?= $sentenceVar ?>, 'reset')">
+        <md-button class="md-raised" ng-click="vm.saveTranscription(transcription, <?= $sentenceVar ?>, 'reset')">
             <?= __('Reset') ?>
         </md-button>
-        <md-button class="md-raised md-primary" ng-click="vm.editTranscription(transcription, <?= $sentenceVar ?>, 'save')">
+        <md-button class="md-raised md-primary" ng-click="vm.saveTranscription(transcription, <?= $sentenceVar ?>, 'save')">
             <?= __('Save') ?>
         </md-button>
     </div>

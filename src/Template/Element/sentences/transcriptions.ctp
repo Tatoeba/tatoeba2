@@ -27,12 +27,12 @@ if (CurrentUser::getSetting('show_transcriptions')) {
         <?php if (CurrentUser::isMember()) { ?>
         <div ng-if="transcription.editing_format">
         <md-button class="md-icon-button" ng-if="!transcription.showForm && transcription.needsReview"
-                   ng-click="vm.editTranscription(transcription, <?= $sentenceVar ?>, 'save')">
+                   ng-click="vm.saveTranscription(transcription, <?= $sentenceVar ?>, 'save')">
             <md-icon>check_circle</md-icon>
             <md-tooltip><?= __('Mark as reviewed') ?></md-tooltip>
         </md-button>
 
-        <md-button class="md-icon-button" ng-if="!transcription.showForm" ng-click="transcription.showForm = true">
+        <md-button class="md-icon-button" ng-if="!transcription.showForm" ng-click="vm.editTranscription(transcription)">
             <md-icon>edit</md-icon>
             <md-tooltip><?= __('Edit transcription') ?></md-tooltip>
         </md-button>
