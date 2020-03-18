@@ -3,6 +3,7 @@ set -e
 
 ROOT='/var/www-prod'
 
+rm -f /var/tmp/*.csv
 mkdir -p "$DL_DIR"
 
 mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < $ROOT/docs/database/scripts/weekly_exports.sql
