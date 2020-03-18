@@ -238,6 +238,6 @@ return [
      */
     'Downloads' => [
         'path' => '/var/www-downloads/exports/',
-        'url' => 'https://downloads.tatoeba.org/exports/',
+        'url' => 'http://downloads.tato.test:8080/exports/',
     ],
 ];
