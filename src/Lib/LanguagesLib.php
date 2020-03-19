@@ -582,6 +582,7 @@ class LanguagesLib
                 'osp' => __d('languages', 'Old Spanish'),
                 'tmr' => __d('languages', 'Jewish Babylonian Aramaic'),
                 'ryu' => __d('languages', 'Okinawan'),
+                'evn' => __d('languages', 'Evenki'),
             );
         }
         return $languages;
