@@ -150,11 +150,10 @@ if (!Array.prototype.find) {
 // Fix for Chrome: prevent copy-pasting furigana when selecting a sentence
 // https://stackoverflow.com/questions/13438391
 $(document).on('copy', function (e) {
-    // ClipboardJS uses a textarea to implement copying in Firefox.
-    // We shouldn't mess with that event.
-    // Also in Firefox, selections in <input> tags may nondeterministically
-    // appear empty even if they are not, causing setData() to erroneously clear
-    // the clipboard. Ignoring those events works around that.
+    // "currently getSelection() doesn't work on the content of <textarea> and
+    // <input> elements in Firefox, Edge (not Chromium) and Internet Explorer"
+    // according to https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection
+    // Since those elements don't contain ruby tags, we can just ignore them.
     var tagName = e.target.tagName;
     if(tagName == 'INPUT' || tagName == 'TEXTAREA') return;
 
