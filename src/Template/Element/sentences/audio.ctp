@@ -72,12 +72,7 @@ if (CurrentUser::isAdmin()) {
 
     $ownerName = '';
     if ($hasaudio) {
-        $audio = $audios[0];
-        if ($audio->user_id && $audio->user->username) {
-            $ownerName = $audio->user->username;
-        } else {
-            $ownerName = $audios->external->username;
-        }
+        $ownerName = $audios[0]->author;
     }
     echo $this->Form->control("ownerName",
         array(

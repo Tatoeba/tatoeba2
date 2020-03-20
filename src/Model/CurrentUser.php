@@ -282,25 +282,6 @@ class CurrentUser
     }
 
     /**
-     * Indicates if sentence of given id has been favorited by current user.
-     *
-     * @param int $sentenceId Id of the sentence.
-     *
-     * @return bool
-     */
-    public static function hasFavorited($sentenceId)
-    {
-        if (!self::isMember()) {
-            return false;
-        }
-
-        $userId = self::get('id');
-        $Favorite = TableRegistry::get('Favorites');
-        return $Favorite->isSentenceFavoritedByUser($sentenceId, $userId);
-    }
-
-
-    /**
      * Retrieve correctness that the user has set for a certain sentence.
      *
      * @param int $sentenceId Id of the sentence.

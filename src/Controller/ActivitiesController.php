@@ -61,12 +61,13 @@ class ActivitiesController extends AppController
         $this->loadModel('Sentences');
         $this->paginate = array(
             'finder' => ['filteredTranslations' => [
-                'translationLang' => 'none'
+                'translationLang' => 'none',
+                'hideFields' => $this->Sentences->hideFields(),
             ]],
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
             'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->paginateContain(),
+            'contain' => $this->Sentences->contain(),
         );
         $results = $this->paginate('Sentences');
         $this->set('results', $results);
@@ -181,10 +182,12 @@ class ActivitiesController extends AppController
         }
 
         $this->paginate = [
-            'finder' => 'filteredTranslations',
+            'finder' => ['filteredTranslations' => [
+                'hideFields' => $this->Sentences->hideFields(),
+            ]],
             'fields' => $this->Sentences->fields(),
             'conditions' => $conditions,
-            'contain' => $this->Sentences->paginateContain(),
+            'contain' => $this->Sentences->contain(['translations' => true]),
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => ['Sentences.created' => 'DESC'],
         ];

@@ -22,6 +22,11 @@ use Cake\ORM\Entity;
 
 class SentencesList extends Entity
 {
+    protected $_hidden = [
+        '_joinData',
+        'SentencesSentencesLists',
+    ];
+
     public function isEditableBy($userId)
     {
         return $this->editable_by == 'anyone' ||

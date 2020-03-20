@@ -19,7 +19,9 @@
  */
 namespace App\Model\Table;
 
+use Cake\ORM\Entity;
 use Cake\ORM\Table;
+use Cake\ORM\Query;
 use Cake\Core\Configure;
 use Cake\Database\Schema\TableSchema;
 use Cake\Event\Event;
@@ -335,40 +337,81 @@ class SentencesTable extends Table
         return $results;
     }
 
+    private function applyHideFields($entity, $hide)
+    {
+        if (is_array($entity)) {
+            foreach ($entity as $e) {
+                $this->applyHideFields($e, $hide);
+            }
+        } elseif ($entity instanceof Entity) {
+            foreach ($hide as $key => $value) {
+                if ($key == 'fields') {
+                    $entity->setHidden($value, true);
+                } else {
+                    $contained = $entity->get($key);
+                    if (!is_null($contained)) {
+                        $this->applyHideFields($contained, $value);
+                    }
+                }
+            }
+        }
+        return $entity;
+    }
+
+    /**
+     * This allows to hide some extra fields
+     * in json in a similar fashion as contain().
+     */
+    public function beforeFind($event, $query, $options)
+    {
+        if (isset($options['hideFields'])) {
+            $hide = $options['hideFields'];
+            return $query->formatResults(function($results) use ($hide) {
+                return $results->map(function($result) use ($hide) {
+                    return $this->applyHideFields($result, $hide);
+                });
+            });
+        }
+        return $query;
+    }
+
     private function sortOutTranslations($result, $translationLanguages) {
         $directTranslations = [];
         $indirectTranslations = [];
-        $parentIds = [$result->id];
-        $indirectIds = [];
 
-        foreach ($result->translations as $translation) {
-            $parentIds[] = $translation->id;
-            if ($translation->indirect_translations) {
-                foreach ($translation->indirect_translations as $indirectTranslation) {
-                    if (!in_array($indirectTranslation->id, $indirectIds)) {
-                        $indirectTranslations[] = $indirectTranslation;
-                        $indirectIds[] = $indirectTranslation->id;
+        if (isset($result->translations)) {
+            $parentIds = [$result->id];
+            $indirectIds = [];
+
+            foreach ($result->translations as $translation) {
+                $parentIds[] = $translation->id;
+                if ($translation->indirect_translations) {
+                    foreach ($translation->indirect_translations as $indirectTranslation) {
+                        if (!in_array($indirectTranslation->id, $indirectIds)) {
+                            $indirectTranslations[] = $indirectTranslation;
+                            $indirectIds[] = $indirectTranslation->id;
+                        }
                     }
+                    unset($translation->indirect_translations);
+                    $directTranslations[] = $translation;
                 }
-                unset($translation->indirect_translations);
-                $directTranslations[] = $translation;
             }
+
+            if (!empty($translationLanguages)) {
+                $filter = function ($item) use ($translationLanguages) {
+                    return in_array($item->lang, $translationLanguages);
+                };
+                $directTranslations = array_filter($directTranslations, $filter);
+                $indirectTranslations = array_filter($indirectTranslations, $filter);
+            }
+
+            $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
+                return !in_array($item->id, $parentIds);
+            });
+
+            $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
+            $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
         }
-
-        if (!empty($translationLanguages)) {
-            $filter = function ($item) use ($translationLanguages) {
-                return in_array($item->lang, $translationLanguages);
-            };
-            $directTranslations = array_filter($directTranslations, $filter);
-            $indirectTranslations = array_filter($indirectTranslations, $filter);
-        }
-
-        $indirectTranslations = array_filter($indirectTranslations, function ($item) use ($parentIds) {
-            return !in_array($item->id, $parentIds);
-        });
-
-        $directTranslations = Hash::sort($directTranslations, '{n}.lang', 'asc');
-        $indirectTranslations = Hash::sort($indirectTranslations, '{n}.lang', 'asc');
 
         return [$directTranslations, $indirectTranslations];
     }
@@ -593,119 +636,93 @@ class SentencesTable extends Table
     }
 
     /**
-     * Returns the fields names typically needed to display a sentence.
+     * Returns the appropriate value for the fields() parameter
+     * to be used on the this model.
+     *
+     * @param array $what What to include in the fields. By default it contains
+     *                    the necessary to display a sentence block. Array keys:
+     *
+     *       sentenceDetails: include details for the sentence page
      */
-    public function fields()
+    public function fields($what = [])
     {
-        return array(
+        $fields = [
             'id',
             'text',
             'lang',
             'user_id',
             'correctness',
             'script',
-            'license',
-            'based_on_id',
-        );
-    }
+        ];
 
-    /**
-     * Returns the appropriate value for the 'contain' parameter
-     * of a typical ->find('all', ...). It makes it return everything
-     * we need to display typical sentence groups.
-     */
-    public function contain()
-    {
-        $contain = array(
-            'Favorites_users' => array(
-                'fields' => array()
-            ),
-            'Users' => array(
-                'fields' => array('id', 'username', 'role', 'level')
-            ),
-            'SentencesLists' => array(
-                'fields' => array('id', 'SentencesSentencesLists.sentence_id')
-            ),
-            'Transcriptions'   => array(
-                'Users' => array('fields' => array('username')),
-            ),
-            'Translations' => array(
-                'IndirectTranslations' => array(
-                    'Transcriptions' => array(
-                        'Users' => array('fields' => array('username')),
-                    ),
-                    'Audios' => array(
-                        'Users' => array('fields' => array('username')),
-                        'fields' => array('user_id', 'external', 'sentence_id'),
-                    ),
-                ),
-                'Transcriptions' => array(
-                    'Users' => array('fields' => array('username')),
-                ),
-                'Audios' => array(
-                    'Users' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'external', 'sentence_id'),
-                ),
-            ),
-            'Audios' => array(
-                'Users' => array('fields' => array(
-                    'username',
-                    'audio_license',
-                    'audio_attribution_url',
-                )),
-                'fields' => array('user_id', 'external', 'sentence_id'),
-            ),
-        );
-
-        return $contain;
-    }
-
-    /**
-     * Returns the appropriate value for the 'contain' parameter
-     * for the most basic display of the sentence groups.
-     */
-    public function minimalContain() {
-        $contain = array(
-            'Users' => array(
-                'fields' => array('id', 'username', 'role', 'level')
-            ),
-            'Translations' => array(
-                'IndirectTranslations' => array(
-                    'Audios' => array(
-                        'Users' => array('fields' => array('username')),
-                        'fields' => array('user_id', 'external', 'sentence_id'),
-                    ),
-                ),
-                'Audios' => array(
-                    'Users' => array('fields' => array('username')),
-                    'fields' => array('user_id', 'external', 'sentence_id'),
-                ),
-            ),
-            'Audios' => array(
-                'Users' => array('fields' => array(
-                    'username',
-                    'audio_license',
-                    'audio_attribution_url',
-                )),
-                'fields' => array('user_id', 'external', 'sentence_id'),
-            ),
-        );
-
-        return $contain;
-    }
-
-    /**
-     * Returns the appropriate value for the 'contain' parameter
-     * of typical a pagination of sentences.
-     */
-    public function paginateContain()
-    {
-        if (CurrentUser::isMember()) {
-            $params = $this->contain();
-        } else {
-            $params = $this->minimalContain();
+        if (isset($what['sentenceDetails'])) {
+            $fields[] = 'license';
+            $fields[] = 'based_on_id';
         }
-        return $params;
+
+        return $fields;
+    }
+
+    /**
+     * Returns the appropriate value for the contain() parameter
+     * to be used on the this model.
+     *
+     * @param array $what What to include in the containment. By default it is
+     *                    what is needed to display a sentence block without
+     *                    translations. Array keys:
+     *
+     *       translations: include translations for sentence block
+     *       sentenceDetails: include details for the sentence page
+     */
+    public function contain($what = [])
+    {
+        $audioContainment = [
+           'Users' => ['fields' => ['username']],
+           'fields' => ['external', 'sentence_id'],
+        ];
+        $contain = [
+            'Users' => [
+                'fields' => ['id', 'username', 'role', 'level']
+            ],
+            'Audios' => $audioContainment,
+            'Transcriptions' => [
+                'Users' => ['fields' => ['username']],
+            ],
+        ];
+
+        if (CurrentUser::isMember()) {
+            $contain += [
+                'Favorites_users' => function (Query $q) {
+                    return $q->select(['id', 'favorite_id'])
+                             ->where(['user_id' => CurrentUser::get('id')]);
+                },
+                'SentencesLists' => [
+                    'fields' => ['id', 'SentencesSentencesLists.sentence_id']
+                ],
+            ];
+        }
+
+        if (isset($what['translations'])) {
+            $translationFields = [
+                'id', 'text', 'lang', 'correctness', 'script',
+                'SentencesTranslations.sentence_id'
+            ];
+            $contain['Translations'] = [
+                'fields' => $translationFields,
+                'IndirectTranslations' => [
+                    'fields' => $translationFields,
+                    'Audios' => $audioContainment,
+                ],
+                'Audios' => $audioContainment,
+            ];
+        }
+
+        if (isset($what['sentenceDetails'])) {
+            $contain['Audios']['Users']['fields'][] = 'audio_license';
+            $contain['Audios']['Users']['fields'][] = 'audio_attribution_url';
+        }
+
+        return $contain;
     }
 
     /**
@@ -730,28 +747,38 @@ class SentencesTable extends Table
     }
 
     /**
-     * Get all the informations needed to display a sentences in show section.
-     *
-     * @param int $id Id of the sentence asked.
-     *
-     * @return array Information about the sentence.
+     * Value for the hideFields finder option.
+     * See beforeFind().
      */
-    public function getSentenceWithId($id)
+    public function hideFields()
     {
-        $result = $this->find(
-                'filteredTranslations',
-                ['nativeMarker' => CurrentUser::getSetting('native_indicator')]
-            )
+        $hideAudio = ['fields' => ['user', 'external', 'sentence_id']];
+        return [
+            'fields' => ['user_id'],
+            'user' => ['fields' => ['id', 'role', 'level']],
+            'audios' => $hideAudio,
+            'translations' => ['audios' => $hideAudio],
+        ];
+    }
+
+    /**
+     * Get all the informations needed to display a sentence.
+     *
+     * @param int $id Id of the sentence.
+     * @param array $what parameter to $this->fields() and $this->contain().
+     *
+     * @return ResultSet Information about the sentence.
+     */
+    public function getSentenceWith($id, $what = [])
+    {
+        return $this->find('filteredTranslations', [
+                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
+                'hideFields' => $this->hideFields(),
+            ])
             ->where(['Sentences.id' => $id])
-            ->contain($this->contain())
-            ->select($this->fields())
+            ->contain($this->contain($what))
+            ->select($this->fields($what))
             ->first();
-
-        if ($result == null) {
-            return;
-        }
-
-        return $result;
     }
 
     /**

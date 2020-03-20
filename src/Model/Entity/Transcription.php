@@ -24,6 +24,11 @@ class Transcription extends Entity
 {
     protected $_virtual = ['readonly', 'type'];
 
+    protected $_hidden = [
+        'created',
+        'sentence',
+    ];
+
     private $scriptsByLang = array( /* ISO 15924 */
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),

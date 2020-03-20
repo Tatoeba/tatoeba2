@@ -222,7 +222,10 @@ class PagesController extends AppController
         if (is_null($randomId)) {
             $this->set('searchProblem', true);
         } else {
-            $randomSentence = $this->Sentences->getSentenceWithId($randomId);
+            $randomSentence = $this->Sentences->getSentenceWith(
+                $randomId,
+                ['translations' => true]
+            );
             $this->set('random', $randomSentence);
         }
 

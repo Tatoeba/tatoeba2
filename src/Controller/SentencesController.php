@@ -185,7 +185,10 @@ class SentencesController extends AppController
             $this->set('contributions', $contributions);
 
             // And now we retrieve the sentence
-            $sentence = $this->Sentences->getSentenceWithId($id);
+            $sentence = $this->Sentences->getSentenceWith($id, [
+                'translations' => true,
+                'sentenceDetails' => true
+            ]);
 
             $canComment = CurrentUser::isMember()
                 && (!empty($contributions) || !empty($sentence));
@@ -335,7 +338,10 @@ class SentencesController extends AppController
 
         // saving
         if ($savedSentence) {
-            $sentence = $this->Sentences->getSentenceWithId($savedSentence->id);
+            $sentence = $this->Sentences->getSentenceWith(
+                $savedSentence->id,
+                ['translations' => true] // in case it's a duplicate
+            );
             $this->set('duplicate', $savedSentence->isDuplicate);
             $this->set('sentence', $sentence);
         }
@@ -769,18 +775,14 @@ class SentencesController extends AppController
         $sphinx['limit'] = $limit;
 
         $model = 'Sentences';
-        if (CurrentUser::isMember()) {
-            $contain = $this->Sentences->contain();
-        } else {
-            $contain = $this->Sentences->minimalContain();
-        }
         $pagination = [
             'finder' => ['withSphinx' => [
                 'translationLang' => $to,
-                'nativeMarker' => CurrentUser::getSetting('native_indicator')
+                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
+                'hideFields' => $this->Sentences->hideFields(),
             ]],
             'fields' => $this->Sentences->fields(),
-            'contain' => $contain,
+            'contain' => $this->Sentences->contain(['translations' => true]),
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'sphinx' => $sphinx,
             'search' => $query
@@ -842,10 +844,11 @@ class SentencesController extends AppController
         $pagination = [
             'finder' => ['filteredTranslations' => [
                 'translationLang' => $translationLang,
-                'nativeMarker' => CurrentUser::getSetting('native_indicator')
+                'nativeMarker' => CurrentUser::getSetting('native_indicator'),
+                'hideFields' => $this->Sentences->hideFields(),
             ]],
             'fields' => $this->Sentences->fields(),
-            'contain' => $this->Sentences->paginateContain($translationLang),
+            'contain' => $this->Sentences->contain(['translations' => true]),
             'conditions' => $conditions,
             'limit' => CurrentUser::getSetting('sentences_per_page'),
             'order' => ['Sentences.id' => 'DESC']
@@ -888,7 +891,10 @@ class SentencesController extends AppController
             $this->set('searchProblem', true);
             $randomSentence = null;
         } else {
-            $randomSentence = $this->Sentences->getSentenceWithId($randomId);
+            $randomSentence = $this->Sentences->getSentenceWith(
+                $randomId,
+                ['translations' => true]
+            );
         }
 
         $this->request->getSession()->write('random_lang_selected', $lang);

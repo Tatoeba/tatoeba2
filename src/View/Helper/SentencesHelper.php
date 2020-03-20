@@ -443,8 +443,10 @@ class SentencesHelper extends AppHelper
         $canTranslate = $sentence->correctness >= 0;
         $hasAudio = isset($sentence->audios) && count($sentence->audios);
         $script = $sentence->script;
+        $isFavorited = isset($sentence->favorites_users)
+                       && count($sentence->favorites_users);
         $this->Menu->displayMenu(
-            $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio
+            $sentenceId, $user, $script, $canTranslate, $langFilter, $hasAudio, $isFavorited
         );
 
         $ownerName = $user ? $user->username : null;

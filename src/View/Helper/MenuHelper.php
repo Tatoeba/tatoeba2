@@ -606,7 +606,8 @@ class MenuHelper extends AppHelper
         $chineseScript = null,
         $canTranslate,
         $langFilter = 'und',
-        $hasAudio = true
+        $hasAudio = true,
+        $isFavorited
     ) {
         ?>
         <ul class="menu">
@@ -627,7 +628,6 @@ class MenuHelper extends AppHelper
         }
 
         // Favorite
-        $isFavorited = CurrentUser::hasFavorited($sentenceId);
         $this->favoriteButton($sentenceId, $isFavorited, $isLogged);
 
         // Add to list
