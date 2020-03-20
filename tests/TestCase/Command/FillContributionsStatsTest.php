@@ -26,14 +26,38 @@ class FillContributionsStatsCommand extends TestCase {
         parent::tearDown();
     }
 
-    function testExecute_oldestDateIsCorrect() {
+    function testExecute_illFromParam_exceptionthrown() {
+        $this->exec("fill_contributions_stats -f okokoj -t 2016-12-11");
+        $this->assertExitCode(Command::CODE_ERROR);
+    }
+
+    function testExecute_illToParam_exceptionthrown() {
+        $this->exec("fill_contributions_stats -f 2016-12-11 -t korgkrog");
+        $this->assertExitCode(Command::CODE_ERROR);
+    }
+
+    function testExecute_defaultParams_oldestDateIsCorrect() {
         $this->exec("fill_contributions_stats");
 
         $contributionStats = $this->ContributionsStats->find('all')->toList();
         $this->assertEquals('2014-04-09', $contributionStats[0]->date);
     }
 
-    function testExecute_numberOfInsertedSentencesIsCorrect() {
+    function testExecute_paramsGiven_ContributionsAreRewritten() {
+        $this->exec("fill_contributions_stats -f 2016-06-19 -t 2016-12-16");
+
+        $firstContributionStats = $this->ContributionsStats->find()->order(['id' => 'DESC'])->first();
+        $this->assertEquals('2016-06-19', $firstContributionStats->date);
+    }
+
+    function testExecute_paramsGiven_statsNotInContributionsAreErased() {
+        $this->exec("fill_contributions_stats -f 2016-06-19 -t 2016-12-16");
+
+        $oldContributionStats = $this->ContributionsStats->find()->where(['date' => '2016-11-01']);
+        $this->assertEquals(0, $oldContributionStats->count());
+    }
+
+    function testExecute_defaultParams_numberOfInsertedSentencesIsCorrect() {
         $this->exec("fill_contributions_stats");
 
         $insertedSentences = $this->ContributionsStats->find()
@@ -43,7 +67,7 @@ class FillContributionsStatsCommand extends TestCase {
         $this->assertEquals(2, $insertedSentences->sentences);
     }
 
-    function testExecute_numberOfDeletedSentencesIsCorrect() {
+    function testExecute_defaultParams_numberOfDeletedSentencesIsCorrect() {
         $this->exec("fill_contributions_stats");
 
         $deletedSentences = $this->ContributionsStats->find()
@@ -53,7 +77,7 @@ class FillContributionsStatsCommand extends TestCase {
         $this->assertEquals(1, $deletedSentences->sentences);
     }
 
-    function testExecute_numberOfInsertedLinksIsCorrect() {
+    function testExecute_defaultParams_numberOfInsertedLinksIsCorrect() {
         $this->exec("fill_contributions_stats");
 
         $insertedLinks = $this->ContributionsStats->find()
@@ -62,7 +86,7 @@ class FillContributionsStatsCommand extends TestCase {
         $this->assertEquals(4, $insertedLinks->sentences);
     }
 
-    function testExecute_numberOfDeletedLinksIsCorrect() {
+    function testExecute_defaultParams_numberOfDeletedLinksIsCorrect() {
         $this->exec("fill_contributions_stats");
 
         $deletedLinks = $this->ContributionsStats->find()
@@ -71,7 +95,7 @@ class FillContributionsStatsCommand extends TestCase {
         $this->assertEquals(2, $deletedLinks->sentences);
     }
 
-    function testExecute_noDeletedLinksWhenNotInContributions() {
+    function testExecute_defaultParams_noDeletedLinksWhenNotInContributions() {
         $this->exec("fill_contributions_stats");
 
         $deletedLinks = $this->ContributionsStats->find()
@@ -79,7 +103,7 @@ class FillContributionsStatsCommand extends TestCase {
         $this->assertEquals(0, $deletedLinks->count());
     }
 
-    function testExecute_oneInsertDeleted_noInsertAndNoDelete() {
+    function testExecute_defaultParams_oneInsertDeleted_noInsertAndNoDelete() {
         $this->exec("fill_contributions_stats");
 
         $insertedSentences = $this->ContributionsStats->find()

@@ -4,8 +4,10 @@ namespace App\Command;
 use Cake\Console\Arguments;
 use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
+use Cake\Console\ConsoleOptionParser;
 use Cake\ORM\TableRegistry;
 use \Datetime;
+use \Exception;
 
 class FillContributionsStatsCommand extends Command
 {
@@ -16,13 +18,37 @@ class FillContributionsStatsCommand extends Command
         $this->loadModel('ContributionsStats');
     }
 
+    protected function buildOptionParser(ConsoleOptionParser $parser) {
+        $parser
+            ->setDescription('Rewrite records of the contributions_stats table ' .
+                             'corresponding to contributions between the two given dates.')
+            ->addOption('from', [
+                'help' => 'The date from which stats need to be rewritten.',
+                'default' => '2007-09-30',
+                'short' => 'f'
+            ])
+            ->addOption('to', [
+                'help' => 'The date until which stats need to be rewritten.',
+                'default' => (new DateTime('now'))->format('Y-m-d'),
+                'short' => 't'
+            ]);
+        return $parser;
+    }
+
     public function execute(Arguments $args, ConsoleIo $io)
     {
+        $from = $args->getOption('from');
+        $to = $args->getOption('to');
         // Initialize
-        $firstDay = new DateTime('2007-09-30');
-        $today = new DateTime('now');
+        try {
+            $firstDay = new DateTime($from);
+            $lastDay = new DateTime($to);
+        } catch (Exception $e) {
+            $io->error($e->getMessage());
+            $this->abort();
+        }
 
-        for ($day = $firstDay; $day <= $today; $day->modify('+1 day')) {
+        for ($day = $firstDay; $day <= $lastDay; $day->modify('+1 day')) {
             $date = $day->format('Y-m-d');
             $stats[$date] = [
                 ['sentence', 'insert', 0],
@@ -36,7 +62,8 @@ class FillContributionsStatsCommand extends Command
 
         // Fetch
         $contributions = $this->Contributions->find()
-                              ->where(["type !=" => "license", "action !=" => "update"])
+                              ->where(["type !=" => "license", "action !=" => "update",
+                                       "datetime >=" => $from, "datetime <=" => $to])
                               ->order(["datetime" => "ASC"]);
         $contributions->disableBufferedResults();
         foreach ($contributions as $contribution) {
@@ -61,7 +88,7 @@ class FillContributionsStatsCommand extends Command
 
         // Truncate table and Fill
         $contributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
-        $contributionsStats->deleteAll([]);
+        $contributionsStats->deleteAll(['date >=' => $from, 'date <=' => $to]);
         foreach ($stats as $date => $dailyStat) {
             foreach ($dailyStat as $unitRecord) {
                 if ($unitRecord[2] != 0) {
