@@ -70,8 +70,8 @@ if (!empty($stats)) {
         if ($month == date('m') && $year == date('Y')) {
             echo __('Statistics about the number of contributions over this month.');
         } else {
-            echo format(__('Statistics about the number of contributions over {$selectedMonth}.'),
-                        array('$selectedMonth' => $selectedMonth));
+            echo format(__('Statistics about the number of contributions over {month} {year}.'),
+                        array('month' => $monthName, 'year' => $year));
         }
     ?>
     </p>
