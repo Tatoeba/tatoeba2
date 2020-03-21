@@ -12,12 +12,12 @@ $sentenceBaseUrl = $this->Url->build([
     
     <div layout="row" layout-align="start center" flex>
     <?php if (CurrentUser::isTrusted()) { ?>
-        <md-button class="md-icon-button" ng-if="translation.isDirect" ng-click="vm.saveLink()">
-            <md-icon>link</md-icon>
+        <md-button class="md-icon-button" ng-if="translation.isDirect" ng-click="vm.saveLink('delete', translation)">
+            <md-icon>content_cut</md-icon>
             <md-tooltip><?= __('Unlink this translation.') ?></md-tooltip>
         </md-button>
-        <md-button class="md-icon-button" ng-if="!translation.isDirect" ng-click="vm.saveLink()">
-            <md-icon>content_cut</md-icon>
+        <md-button class="md-icon-button" ng-if="!translation.isDirect" ng-click="vm.saveLink('add', translation)">
+            <md-icon>link</md-icon>
             <md-tooltip><?= __('Make into direct translation.') ?></md-tooltip>
         </md-button>
     <?php } else { ?>

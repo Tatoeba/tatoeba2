@@ -134,6 +134,7 @@
         vm.show = show;
         vm.hide = hide;
         vm.saveTranscription = saveTranscription;
+        vm.saveLink = saveLink;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -612,6 +613,12 @@
         function getEditableTranscription(sentence) {
             return sentence.transcriptions.find(function(item) {
                 return item.markup;
+            });
+        }
+        
+        function saveLink(action, translation) {
+            $http.get(rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id).then(function() {
+                translation.isDirect = (action === 'add');
             });
         }
     }
