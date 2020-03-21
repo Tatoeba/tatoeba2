@@ -520,7 +520,7 @@
         }
 
         function saveTranscription(transcription, sentence, action) {
-            var lang = transcription.sentence.lang + '-' + transcription.script;
+            var lang = sentence.lang + '-' + transcription.script;
             var text = transcription.editing_format;
             var url = rootUrl + '/transcriptions/' + action + '/' + sentence.id + '/' + transcription.script;
             var data = {
