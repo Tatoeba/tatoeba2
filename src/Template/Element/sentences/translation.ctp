@@ -11,7 +11,19 @@ $sentenceBaseUrl = $this->Url->build([
      class="translation" ng-class="{'not-reliable' : translation.correctness === -1}">
     
     <div layout="row" layout-align="start center" flex>
-    <md-icon class="chevron">chevron_right</md-icon>
+    <?php if (CurrentUser::isTrusted()) { ?>
+        <md-button class="md-icon-button" ng-if="translation.isDirect" ng-click="vm.saveLink()">
+            <md-icon>link</md-icon>
+            <md-tooltip><?= __('Unlink this translation.') ?></md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" ng-if="!translation.isDirect" ng-click="vm.saveLink()">
+            <md-icon>content_cut</md-icon>
+            <md-tooltip><?= __('Make into direct translation.') ?></md-tooltip>
+        </md-button>
+    <?php } else { ?>
+        <md-icon class="chevron">chevron_right</md-icon>
+    <?php } ?>
+    
 
     <div class="lang">
         <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>

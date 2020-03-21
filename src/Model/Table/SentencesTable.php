@@ -394,6 +394,7 @@ class SentencesTable extends Table
                         }
                     }
                     unset($translation->indirect_translations);
+                    $translation->isDirect = true;
                     $directTranslations[] = $translation;
                 }
             }
