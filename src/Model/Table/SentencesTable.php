@@ -39,7 +39,7 @@ class SentencesTable extends Table
 {
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-    
+
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -53,7 +53,8 @@ class SentencesTable extends Table
         $this->belongsTo('Languages');
         $this->belongsTo('TagsSentences');
         $this->belongsToMany('SentencesLists', [
-            'dependent' => true
+            'dependent' => true,
+            'cascadeCallbacks' => true,
         ]);
         $this->belongsToMany('Tags', [
             'dependent' => true,
@@ -77,7 +78,7 @@ class SentencesTable extends Table
         ]);
         $this->hasMany('SentenceComments');
         $this->hasMany('SentenceAnnotations');
-        
+
         $this->addBehavior('Duplicate');
         $this->addBehavior('Timestamp');
         if (Configure::read('AutoTranscriptions.enabled')) {
@@ -95,7 +96,7 @@ class SentencesTable extends Table
     {
         $validator
             ->notEmpty('text');
-            
+
         $validator
             ->add('license', [
                 'inList' => [
@@ -158,7 +159,7 @@ class SentencesTable extends Table
         if (CurrentUser::isAdmin()) {
             return true;
         }
-        
+
         $sentenceId = $context['data']['id'];
         $sentence = $this->get($sentenceId, ['fields' => ['based_on_id', 'user_id', 'license']]);
         $isOriginal = !is_null($sentence->based_on_id) && $sentence->based_on_id == 0;
@@ -211,7 +212,7 @@ class SentencesTable extends Table
             'data' => $entity
         ));
         $this->getEventManager()->dispatch($event);
-        
+
         $this->updateTags($entity);
         if ($entity->isDirty('modified')) {
             $this->needsReindex($entity->id);
@@ -851,7 +852,7 @@ class SentencesTable extends Table
             ->orderAsc('id')
             ->where(['id >' => $sourceId] + $langCondition)
             ->first();
-            
+
         $neighbors = [
             'prev' => $prev ? $prev->id : null,
             'next' => $next ? $next->id : null,
@@ -1075,7 +1076,7 @@ class SentencesTable extends Table
     public function getOwnerInfoOfSentence($sentenceId)
     {
         $sentence = $this->get($sentenceId, ['contain' => 'Users']);
-        
+
         return $sentence->user;
     }
 
@@ -1097,7 +1098,7 @@ class SentencesTable extends Table
         } catch (RecordNotFoundException $e) {
             return false;
         }
-        
+
         $ownerId = $sentence->user_id;
         $prevLang = $sentence->lang;
         $currentUserId = CurrentUser::get('id');
@@ -1181,12 +1182,12 @@ class SentencesTable extends Table
         if (empty($sentencesIds)) {
             return [];
         }
-        
+
         $result = $this->find('all')
         ->where(['id' => $sentencesIds], ['id' => 'integer[]'])
         ->select(['lang', 'id'])
         ->toList();
-        
+
         return Hash::combine($result, '{n}.id', '{n}.lang');
     }
 
@@ -1231,11 +1232,11 @@ class SentencesTable extends Table
         } catch (RecordNotFoundException $e) {
             return array();
         }
-        
+
         if ($this->_cantEditSentence($sentence)) {
             return $sentence;
         }
-        
+
         if ($this->hasAudio($id)) {
             return $sentence;
         }

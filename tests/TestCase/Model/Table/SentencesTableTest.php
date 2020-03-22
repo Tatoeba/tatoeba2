@@ -51,7 +51,7 @@ class SentencesTableTest extends TestCase {
 		$autotranscription
 			->expects($this->any())
 			->method('jpn_Jpan_to_Hrkt_validate')
-			->will($this->returnValue(true));		
+			->will($this->returnValue(true));
 	}
 
 	function _installAutotranscriptionMock() {
@@ -62,7 +62,7 @@ class SentencesTableTest extends TestCase {
 				'jpn_Jpan_to_Hrkt_validate',
 			])
 			->getMock();
-		
+
 		$this->Sentence->Transcriptions->setAutotranscription($autotranscription);
 		return $autotranscription;
 	}
@@ -124,7 +124,7 @@ class SentencesTableTest extends TestCase {
 		$savedSentence = $this->Sentence->find('all')
 			->where(['text' => $text])
 			->first();
-		
+
 		$this->assertNull($savedSentence->lang);
 	}
 
@@ -177,11 +177,11 @@ class SentencesTableTest extends TestCase {
 		$this->Sentence->Links = $this->getMockBuilder(LinksTable::class)
 			->setMethods(['add', 'findDirectAndIndirectTranslationsIds'])
 			->getMock();
-			
+
 		$this->Sentence->Links
 			->expects($this->once())
 			->method('add')
-			->with($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng');	
+			->with($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng');
 
 		$translation = $this->Sentence->saveTranslation(
 			$translationFromSentenceId,
@@ -195,7 +195,7 @@ class SentencesTableTest extends TestCase {
 		$data = $this->Sentence->newEntity([
 			'text' => 'Hi there!',
 		]);
-		
+
 		$result = $this->Sentence->save($data);
 		$this->assertTrue((bool)$result);
 	}
@@ -396,7 +396,7 @@ class SentencesTableTest extends TestCase {
 
 		$nbTranscr = $this->Sentence->Transcriptions->find()
 			->where(['sentence_id' => $jpnSentenceId])
-			->count();			
+			->count();
 		$this->assertTrue($nbTranscr == 0);
 	}
 
@@ -780,7 +780,7 @@ class SentencesTableTest extends TestCase {
 		);
 		$entity = $this->Sentence->get($sentenceId);
 		$entity->user_id = null;
-		
+
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
 		$this->assertEquals($expectedAttributes, $attributes);
@@ -796,7 +796,7 @@ class SentencesTableTest extends TestCase {
 		);
 		$entity = $this->Sentence->get($sentenceId);
 		$entity->user_id = $ownerId;
-		
+
 		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA, $entity);
 
 		$this->assertEquals($expectedAttributes, $attributes);
@@ -882,7 +882,7 @@ class SentencesTableTest extends TestCase {
 		);
 		$expected = $this->Sentence->get(3);
 		$result = $this->Sentence->editSentence($data);
-		
+
 		$this->assertEquals($expected, $result);
 	}
 
@@ -906,13 +906,13 @@ class SentencesTableTest extends TestCase {
 	function testEditSentence_failsBecauseWrongId() {
 		$user = $this->Sentence->Users->get(4);
 		CurrentUser::store($user);
-		
+
 		$data = array(
 			'id' => '53_eng',
 			'value' => 'Edited sentence.'
 		);
 		$result = $this->Sentence->editSentence($data);
-		
+
 		$this->assertEmpty($result);
 	}
 
@@ -932,7 +932,7 @@ class SentencesTableTest extends TestCase {
 
 	function testDeleteSentence_succeedsBecauseIsAdmin()
 	{
-		$user = $this->Sentence->Users->get(2);
+		$user = $this->Sentence->Users->get(1);
 		CurrentUser::store($user);
 		$this->deleteSentenceWithSuccess(53);
 	}
@@ -965,6 +965,22 @@ class SentencesTableTest extends TestCase {
 		$count = $this->Sentence->find()->where(['id' => $id])->count();
 		$this->assertEquals(1, $count);
 	}
+
+	function testDeleteSentence_ListsNumberOfSentencesIsCorrect() {
+		$sentenceId = 8;
+		$sentencesLists = $this->Sentence->get($sentenceId, ['contain' => ['SentencesLists']])->sentences_lists;
+		$idsAndNumbers = array_combine(array_column($sentencesLists, 'id'), array_column($sentencesLists, 'numberOfSentences'));
+
+		$user = $this->Sentence->Users->get(1); // Admin
+		CurrentUser::store($user);
+		$this->Sentence->deleteSentence($sentenceId);
+
+		foreach ($idsAndNumbers as $id => $oldNumberOfSentences) {
+			$newNumberOfSentences = $this->Sentence->SentencesLists->get($id)->numberOfSentences;
+			$this->assertEquals($oldNumberOfSentences - 1, $newNumberOfSentences);
+		}
+	}
+
 
 	function testNumberOfSentencesOwnedBy() {
 		$result = $this->Sentence->numberOfSentencesOwnedBy(7);
@@ -1096,11 +1112,11 @@ class SentencesTableTest extends TestCase {
 			->where(['Sentences.id' => 1])
 			->contain($this->Sentence->contain())
 			->first();
-		
+
 		$expected = ['fra', 'deu'];
 		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
 		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
-		
+
 		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
 		$this->assertEquals(asort($expected), asort($languages));
 	}
@@ -1114,11 +1130,11 @@ class SentencesTableTest extends TestCase {
 			->where(['Sentences.id' => 1])
 			->contain($this->Sentence->contain())
 			->first();
-		
+
 		$expected = ['jpn'];
 		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
 		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
-		
+
 		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
 		$this->assertEquals(asort($expected), asort($languages));
 	}
@@ -1128,7 +1144,7 @@ class SentencesTableTest extends TestCase {
 			->where(['Sentences.id' => 1])
 			->contain($this->Sentence->contain())
 			->first();
-		
+
 		$expected = ['fra', 'spa', 'deu', 'cmn', 'jpn'];
 		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
 		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');

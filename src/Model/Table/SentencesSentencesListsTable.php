@@ -22,6 +22,8 @@ use App\Model\CurrentUser;
 use Cake\ORM\Table;
 use Cake\Core\Configure;
 use Cake\Utility\Hash;
+use Cake\Event\Event;
+use App\Event\SentencesListListener;
 
 class SentencesSentencesListsTable extends Table
 {
@@ -34,6 +36,8 @@ class SentencesSentencesListsTable extends Table
         if (Configure::read('Search.enabled')) {
             $this->addBehavior('Sphinx', ['alias' => $this->getAlias()]);
         }
+
+        $this->getEventManager()->on(new SentencesListListener());
     }
 
     public function getListsForSentence($sentenceId)
@@ -63,5 +67,19 @@ class SentencesSentencesListsTable extends Table
             ->toList();
         $listsId = Hash::extract($records, '{n}.sentences_list_id');
         $values = array($sentenceId => array($listsId));
+    }
+
+    /**
+     * Call after a deletion.
+     *
+     * @return void
+     */
+    public function afterDelete($event, $entity, $options)
+    {
+        $event = new Event('Model.SentencesSentencesList.deleted', $this, array(
+            'list_id' => $entity->sentences_list_id,
+            'data' => $entity
+        ));
+        $this->getEventManager()->dispatch($event);
     }
 }
