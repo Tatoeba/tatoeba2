@@ -44,4 +44,19 @@ class CorrectNumberOfSentencesCommandTest extends TestCase {
         ];
         $this->assertEquals($expected, $newListsAndCounts);
     }
+
+    function testExecute_DoesNotUpdateModifiedField()
+    {
+        $before = $this->SentencesLists
+            ->find('list', ['valueField' => 'modified'])
+            ->toArray();
+
+        $this->exec("correct_number_of_sentences");
+
+        $after = $this->SentencesLists
+            ->find('list', ['valueField' => 'modified'])
+            ->toArray();
+
+        $this->assertEquals($before, $after);
+    }
 }

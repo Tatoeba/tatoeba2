@@ -25,6 +25,7 @@ class CorrectNumberOfSentencesCommand extends Command
         ->group('sentences_list_id');
         foreach ($countQuery as $listAndCount) {
             $sentencesList = $this->SentencesLists->get($listAndCount->sentences_list_id);
+            $sentencesList->setDirty('modified', true);
             $sentencesList->numberOfSentences = $listAndCount->count;
             $this->SentencesLists->save($sentencesList);
         }
