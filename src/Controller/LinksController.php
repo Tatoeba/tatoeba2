@@ -85,11 +85,11 @@ class LinksController extends AppController
         $this->render('/Sentences/translations_group');
     }
 
-    private function _returnTranslations($sentenceId) {
+    private function _returnSentenceAndTranslations($sentenceId) {
         $this->loadModel('Sentences');
-        $translations = $this->Sentences->getTranslationsOf($sentenceId);
-        $this->set('translations', $translations);
-        $this->set('_serialize', ['translations']);
+        $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true]);
+        $this->set('sentence', $sentence);
+        $this->set('_serialize', ['sentence']);
         $this->RequestHandler->renderAs($this, 'json');
     }
 
@@ -126,7 +126,7 @@ class LinksController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $this->_returnTranslations($sentenceId);
+            $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
             if (isset($this->request->data['returnTranslations'])
                 && (bool)$this->request->data['returnTranslations'])
@@ -170,7 +170,7 @@ class LinksController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $this->_returnTranslations($sentenceId);
+            $this->_returnSentenceAndTranslations($sentenceId);
         } else if ($this->request->is('ajax')) {
             if (isset($this->request->data['returnTranslations'])
                 && (bool)$this->request->data['returnTranslations'])

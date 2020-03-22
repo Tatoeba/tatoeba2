@@ -321,8 +321,9 @@
                     };
                     $http.post(rootUrl + '/sentences/save_translation', data).then(function(result) {
                         var translation = result.data.translation;
-                        var translations = result.data.translations;
-                        refreshTranslations(translations);
+                        var sentence = result.data.sentence;
+                        initSentence(sentence);
+                        refreshTranslations(sentence.translations);
                         updateEditableTranslations(translation, sentenceId);
                         vm.newTranslation = {};
                         show('translations');
@@ -618,8 +619,9 @@
         
         function saveLink(action, translation) {
             $http.get(rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id).then(function(result) {
-                var translations = result.data.translations;
-                refreshTranslations(translations);
+                var sentence = result.data.sentence;
+                initSentence(sentence);
+                refreshTranslations(sentence.translations);
             });
         }
 
