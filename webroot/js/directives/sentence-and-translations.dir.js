@@ -321,7 +321,7 @@
                         selectLang: vm.newTranslation.lang,
                         value: vm.newTranslation.text
                     };
-                    var url = rootUrl + '/sentences/save_translation?translationLang=' + translationLang;
+                    var url = rootUrl + '/sentences/save_translation?translationLang=' + translationLang + '&numberOfTranslations=' + getNumberOfTranslations();
                     $http.post(url, data).then(function(result) {
                         var translation = result.data.translation;
                         var sentence = result.data.sentence;
@@ -656,6 +656,10 @@
                 item.editable = editableTranslations.indexOf(item.id) > -1;
                 item.parentId = sentenceId;
             });
+        }
+
+        function getNumberOfTranslations() {
+            return allDirectTranslations.length + allIndirectTranslations.length;
         }
     }
 

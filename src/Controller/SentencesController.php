@@ -489,8 +489,10 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $translationLangFilter = $this->request->getQuery('translationLang');
+            $numberOfTranslations = $this->request->getQuery('numberOfTranslations');
             $includeTranslations = $translationLangFilter == 'und';
             $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
+            $sentence->expandLabel = $this->Sentences->getExpandLabel($numberOfTranslations + 1);
 
             $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);

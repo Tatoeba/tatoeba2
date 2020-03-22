@@ -39,7 +39,8 @@ class SentencesTable extends Table
 {
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-
+    const MAX_TRANSLATIONS_DISPLAYED = 5;
+    
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -426,10 +427,9 @@ class SentencesTable extends Table
         }
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
-                
                 $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
-                $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
-                $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
+                $total = count($result->translations[0]) + count($result->translations[1]);
+                $result['expandLabel'] = $this->getExpandLabel($total);
                 if (CurrentUser::isMember()) {
                     $result['permissions'] = $this->getPermissions($result);
                 }
@@ -439,21 +439,18 @@ class SentencesTable extends Table
         });
     }
 
-    private function getextraTranslationsCount($sentence)
+    public function getExpandLabel($total)
     {
-        $maxDisplayed = 5;
-        $directTranslationCount = count($sentence->translations[0]);
-        $indirectTranslationCount = count($sentence->translations[1]);
-        return $directTranslationCount + $indirectTranslationCount - $maxDisplayed;
-    }
-
-    private function getExpandLabel($extraTranslationsCount)
-    {
-        return format(__n(
-            'Show 1 more translation',
-            'Show {number} more translations',
-            $extraTranslationsCount
-        ), array('number' => $extraTranslationsCount));
+        $extraTranslationsCount = $total - self::MAX_TRANSLATIONS_DISPLAYED;
+        if ($extraTranslationsCount > 0) {
+            return format(__n(
+                'Show 1 more translation',
+                'Show {number} more translations',
+                $extraTranslationsCount
+            ), array('number' => $extraTranslationsCount));
+        } else {
+            return null;
+        }
     }
 
     private function getPermissions($sentence)
