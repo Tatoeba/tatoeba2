@@ -86,6 +86,7 @@
         var lastSelectedList = null;
         var timeout;
         var listsDataService;
+        var editableTranslations = [];
 
         vm.menu = {};
         vm.inProgress = false;
@@ -319,14 +320,13 @@
                         value: vm.newTranslation.text
                     };
                     $http.post(rootUrl + '/sentences/save_translation', data).then(function(result) {
-                        var translation = result.data.result;
-                        translation.editable = true;
-                        translation.parentId = sentenceId;
-                        allDirectTranslations.unshift(translation);
+                        var translation = result.data.translation;
+                        var translations = result.data.translations;
+                        refreshTranslations(translations);
+                        updateEditableTranslations(translation, sentenceId);
                         vm.newTranslation = {};
                         show('translations');
                         vm.inProgress = false;
-                        showFewerTranslations();
                     });
                 }
             }
@@ -619,12 +619,26 @@
         function saveLink(action, translation) {
             $http.get(rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id).then(function(result) {
                 var translations = result.data.translations;
-                allDirectTranslations = translations[0];
-                allIndirectTranslations = translations[1];
-                
-                showAllTranslations();
-                vm.isExpanded = true;
-                vm.expandableIcon = 'expand_less';
+                refreshTranslations(translations);
+            });
+        }
+
+        function refreshTranslations(translations) {
+            allDirectTranslations = translations[0];
+            allIndirectTranslations = translations[1];
+            
+            showAllTranslations();
+            vm.isExpanded = true;
+            vm.expandableIcon = 'expand_less';
+        }
+
+        function updateEditableTranslations(translation, sentenceId) {
+            if (translation.is_owned_by_current_user && !translation.isDuplicate) {
+                editableTranslations.push(translation.id);
+            }
+            allDirectTranslations.forEach(function(item) {
+                item.editable = editableTranslations.indexOf(item.id) > -1;
+                item.parentId = sentenceId;
             });
         }
     }
