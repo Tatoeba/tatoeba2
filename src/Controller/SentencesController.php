@@ -480,6 +480,7 @@ class SentencesController extends AppController
             );
 
             if ($translation) {
+                $translation->isDirect = true;
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
             }
