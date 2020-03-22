@@ -617,8 +617,14 @@
         }
         
         function saveLink(action, translation) {
-            $http.get(rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id).then(function() {
-                translation.isDirect = (action === 'add');
+            $http.get(rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id).then(function(result) {
+                var translations = result.data.translations;
+                allDirectTranslations = translations[0];
+                allIndirectTranslations = translations[1];
+                
+                showAllTranslations();
+                vm.isExpanded = true;
+                vm.expandableIcon = 'expand_less';
             });
         }
     }

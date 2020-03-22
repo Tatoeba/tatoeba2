@@ -827,6 +827,7 @@ class SentencesTable extends Table
         $translations = $this->Translations->getTranslationsOf($id, $languages);
         $results = [0 => [], 1 => []];
         foreach($translations as $translation) {
+            $translation->isDirect = $translation->type == 0;
             $results[$translation->type][] = $translation;
         }
 

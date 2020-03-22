@@ -67,6 +67,8 @@ class LinksController extends AppController
             ]);
         }
 
+        $this->loadComponent('RequestHandler');
+
         return parent::beforeFilter($event);
     }
 
@@ -81,6 +83,14 @@ class LinksController extends AppController
         $this->set('message', $message);
         $this->set('langFilter', $langFilter);
         $this->render('/Sentences/translations_group');
+    }
+
+    private function _returnTranslations($sentenceId) {
+        $this->loadModel('Sentences');
+        $translations = $this->Sentences->getTranslationsOf($sentenceId);
+        $this->set('translations', $translations);
+        $this->set('_serialize', ['translations']);
+        $this->RequestHandler->renderAs($this, 'json');
     }
 
     /**
@@ -114,7 +124,10 @@ class LinksController extends AppController
 
         $this->set('saved', $saved);
 
-        if ($this->request->is('ajax')) {
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->_returnTranslations($sentenceId);
+        } else if ($this->request->is('ajax')) {
             if (isset($this->request->data['returnTranslations'])
                 && (bool)$this->request->data['returnTranslations'])
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
@@ -155,7 +168,10 @@ class LinksController extends AppController
 
         $this->set('saved', $saved);
 
-        if ($this->request->is('ajax')) {
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->_returnTranslations($sentenceId);
+        } else if ($this->request->is('ajax')) {
             if (isset($this->request->data['returnTranslations'])
                 && (bool)$this->request->data['returnTranslations'])
                 $this->_renderTranslationsOf($sentenceId, $flashMessage);
