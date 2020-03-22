@@ -23,11 +23,6 @@
                 <md-tooltip ng-if="vm.sentence.is_favorite"><?= __('Remove from favorites') ?></md-tooltip>
             </md-button>
 
-            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && vm.menu.canLink" ng-disabled="true">
-                <md-icon>link</md-icon>
-                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
-            </md-button>
-
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && vm.menu.canDelete"
                        onclick="return confirm('<?= __('Are you sure?') ?>');"
                        ng-href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'delete']) ?>/{{vm.sentence.id}}">
