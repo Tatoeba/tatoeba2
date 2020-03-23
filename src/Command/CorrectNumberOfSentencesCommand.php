@@ -24,10 +24,13 @@ class CorrectNumberOfSentencesCommand extends Command
         ])
         ->group('sentences_list_id');
         foreach ($countQuery as $listAndCount) {
-            $sentencesList = $this->SentencesLists->get($listAndCount->sentences_list_id);
-            $sentencesList->setDirty('modified', true);
-            $sentencesList->numberOfSentences = $listAndCount->count;
-            $this->SentencesLists->save($sentencesList);
+            try {
+                $sentencesList = $this->SentencesLists->get($listAndCount->sentences_list_id);
+                $sentencesList->setDirty('modified', true);
+                $sentencesList->numberOfSentences = $listAndCount->count;
+                $this->SentencesLists->save($sentencesList);
+            } catch (\Cake\Datasource\Exception\RecordNotFoundException $e) {
+            }
         }
 
         // The lists that do not appear have numberOfSentences set to 0
