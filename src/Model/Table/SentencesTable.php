@@ -680,14 +680,15 @@ class SentencesTable extends Table
            'Users' => ['fields' => ['username']],
            'fields' => ['external', 'sentence_id'],
         ];
+        $transcriptionsContainment =  [
+            'Users' => ['fields' => ['username']],
+        ];
         $contain = [
             'Users' => [
                 'fields' => ['id', 'username', 'role', 'level']
             ],
             'Audios' => $audioContainment,
-            'Transcriptions' => [
-                'Users' => ['fields' => ['username']],
-            ],
+            'Transcriptions' => $transcriptionsContainment,
         ];
 
         if (CurrentUser::isMember()) {
@@ -712,8 +713,10 @@ class SentencesTable extends Table
                 'IndirectTranslations' => [
                     'fields' => $translationFields,
                     'Audios' => $audioContainment,
+                    'Transcriptions' => $transcriptionsContainment,
                 ],
                 'Audios' => $audioContainment,
+                'Transcriptions' => $transcriptionsContainment,
             ];
         }
 
