@@ -47,22 +47,28 @@ if (isset($sentencesWithAudio)) {
                    'label' => __('License:'),
                    'options' => $this->Audio->License->getLicenseOptions()
                ));
+               $audioAttributionUrl = addcslashes(
+                   $audioSettings['audio_attribution_url'],
+                   '"{'
+               );
             ?>
             <md-input-container class="md-block">
-            <?php
-               $tip = __('Leave this field empty to use your profile page.');
-               echo $this->Form->input('audio_attribution_url', array(
-                   'label' => __('Attribution URL:'),
-                   'after' => '<div class="hint">'.$tip.'</div>',
-               ));
-            ?>
+                <label for='audio_attribution_url'><?= __('Attribution URL:') ?></label>
+                <input name='audio_attribution_url'
+                       id='audio_attribution_url'
+                       type='text'
+                       ng-init='url = "<?= h($audioAttributionUrl) ?>"'
+                       ng-model='url'>
+                <div class='hint'>
+                    <?=__('Leave this field empty to use your profile page.') ?>
+                </div>
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
-            <?= $this->Form->end(); ?>
+            <?= $this->Form->secure(['audio_license', 'audio_attribution_url']) ?>
         </div>
     <?php endif; ?>
     </div>

@@ -312,7 +312,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
     <div class="section md-whiteframe-1dp"
          ng-cloak
          ng-controller="LanguageController as vm"
-         ng-init="vm.init(<?= $userLanguages ?>)">
+         ng-init="vm.init(<?= str_replace('{{', '\{\{', $userLanguages) ?>)">
         <h2><?= __('Languages'); ?></h2>
 
         <p ng-if="vm.langs.length === 0">
