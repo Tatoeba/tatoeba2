@@ -39,10 +39,14 @@ echo $this->Html->div(
 <div class="section md-whiteframe-1dp">
 <?php
 if (empty($userId)) {
-    echo $this->Html->tag('h2', format(
-        __("There's no user called {username}"),
-        array('username' => $username)
-    ));
+    echo $this->Html->tag(
+        'h2',
+        format(
+            __("There's no user called {username}"),
+            array('username' => $username)
+        ),
+        ['ng-non-bindable' => '']
+    );
 } else if (isset($results)) {
     if (count($results) == 0) {
         echo $this->Html->tag('h2', format(

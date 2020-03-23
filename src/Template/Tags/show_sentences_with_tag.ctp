@@ -47,7 +47,7 @@ $tagsIndexUrl = $this->Url->build([
 
 <div id="main_content">
     <div class="section">
-        <h2><?php
+        <h2 ng-non-bindable><?php
         $n = $this->Paginator->param('count');
         echo format(
             __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),

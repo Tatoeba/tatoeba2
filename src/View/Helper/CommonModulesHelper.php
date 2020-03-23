@@ -128,7 +128,7 @@ class CommonModulesHelper extends AppHelper
      */
     public function displayNoSuchUser($username)
     {
-        echo '<h2>';
+        echo '<h2 ng-non-bindable>';
         echo format(
             __("There's no user called {username}"),
             compact('username')

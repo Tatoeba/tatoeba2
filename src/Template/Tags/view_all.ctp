@@ -82,7 +82,7 @@ $tagsIndexUrl = $this->Url->build([
 
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $title ?></h2>
+                <h2 ng-non-bindable><?= $title ?></h2>
             </div>
         </md-toolbar>
 

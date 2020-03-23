@@ -90,7 +90,7 @@ if (isset($sentencesWithAudio)) {
         $licenceMessage = $this->Audio->formatLicenceMessage(
             $audioSettings, $username
         );
-        echo $this->Html->tag('p', $licenceMessage);
+        echo $this->Html->tag('p', $licenceMessage, ['ng-non-bindable' => '']);
 
         $this->Pagination->display();
 
@@ -112,10 +112,14 @@ if (isset($sentencesWithAudio)) {
         $this->Pagination->display();
     }
 } else {
-    echo $this->Html->tag('h2', format(
-        __("There's no user called {username}"),
-        array('username' => $username)
-    ));
+    echo $this->Html->tag(
+        'h2',
+        format(
+            __("There's no user called {username}"),
+            array('username' => $username)
+        ),
+        ['ng-non-bindable' => '']
+    );
 }
 ?>
 </div>

@@ -141,6 +141,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         'data-submit'  => __('OK'),
         'data-cancel'  => __('Cancel'),
         'data-tooltip' => __('Click to edit...'),
+        'ng-non-bindable' => '',
     ]);
 
     if ($permissions['canAddSentences']) {
