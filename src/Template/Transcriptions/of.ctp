@@ -24,16 +24,16 @@ $title = format(
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
-<?php
-echo $this->Html->div(
-    null,
-    $this->element(
-        'users_menu',
-        array('username' => $username)
-    ),
-    array('id' => 'annexe_content')
-);
-?>
+<?php if (!empty($userId)) {
+    echo $this->Html->div(
+        null,
+        $this->element(
+            'users_menu',
+            array('username' => $username)
+        ),
+        array('id' => 'annexe_content')
+    );
+} ?>
 
 <div id="main_content">
 <div class="section md-whiteframe-1dp">
