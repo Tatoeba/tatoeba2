@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if !Vagrant::Util::Platform.windows?
     config.trigger.before :halt, :suspend do |trigger|
       trigger.info = "Unmounting NFS directory `Tatoeba' if mounted..."
-      trigger.run = {inline: "sh -c 'mountpoint -q Tatoeba && umount Tatoeba || true'"}
+      trigger.run = {inline: "sh -c 'mountpoint -q Tatoeba || exit 0 && umount Tatoeba'"}
     end
     config.trigger.after :up do |trigger|
       trigger.info = "Mounting NFS directory `Tatoeba' if configured..."
