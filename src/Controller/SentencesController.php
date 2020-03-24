@@ -364,6 +364,7 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         $sentence = $this->Sentences->editSentence($this->request->data);
         if ($acceptsJson) {
+            $sentence = $this->Sentences->getSentenceWith($sentence->id);
             $this->loadComponent('RequestHandler');
             $this->set('result', $sentence);
             $this->set('_serialize', ['result']);

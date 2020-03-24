@@ -131,9 +131,7 @@
         vm.listType = 'of_user';
         vm.show = show;
         vm.hide = hide;
-        vm.editTranscription = editTranscription;
         vm.saveTranscription = saveTranscription;
-        vm.cancelEditTranscription = cancelEditTranscription;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -346,13 +344,28 @@
         }
 
         function editSentence() {
-            vm.inProgress = true;
-
-            saveSentence(vm.sentence).then(function(result) {
-                hide('sentence_form');
-                vm.inProgress = false;
-                initSentence(result.data.result);
-            });
+            var sentenceChanged = oldSentence.text !== vm.sentence.text || oldSentence.lang !== vm.sentence.lang;
+            var transcriptionChanged = false;
+            if (vm.sentence.transcriptions) {
+                var oldTranscription = getEditableTranscription(oldSentence);
+                var transcription = getEditableTranscription(vm.sentence);
+                transcriptionChanged = oldTranscription.editing_format !== transcription.editing_format;
+            }
+            
+            if (sentenceChanged) {
+                vm.inProgress = true;
+                saveSentence(vm.sentence).then(function(result) {
+                    if (transcriptionChanged) {
+                        saveTranscription(transcription, result.data.result, 'save');
+                    } else {
+                        initSentence(result.data.result);
+                        hide('sentence_form');
+                        vm.inProgress = false;
+                    }
+                });
+            } else if (transcriptionChanged) {
+                saveTranscription(transcription, vm.sentence, 'save');
+            }
         }
 
         function saveSentence(sentence) {
@@ -514,11 +527,6 @@
             vm.listType = 'of_user';
         }
 
-        function editTranscription(transcription) {
-            transcription.showForm = true;
-            transcription.original_editing_format = transcription.editing_format;
-        }
-
         function saveTranscription(transcription, sentence, action) {
             var lang = sentence.lang + '-' + transcription.script;
             var text = transcription.editing_format;
@@ -526,31 +534,20 @@
             var data = {
                 value: markupToStored(lang, text)
             };
-            
-            transcription.error = null;
 
             $http.post(url, data).then(function(result) {
-                var result = result.data.result;
-                transcription.text = result.text;
-                transcription.editing_format = result.editing_format;
-                transcription.html = result.html;
-                transcription.needsReview = result.needsReview;
-                transcription.info_message = result.info_message;
-                transcription.showForm = false;
-
-                if (lang === 'jpn-Hrkt') {
-                    transcription.isReviewedFurigana = !result.needsReview;
-                    sentence.reviewedFurigana = result.needsReview ? null : transcription.html;
-                }
+                var i = sentence.transcriptions.findIndex(function(item) {
+                    return item.id === transcription.id;
+                });
+                sentence.transcriptions.splice(i, 1);
+                sentence.transcriptions.push(result.data.result);
+                hide('sentence_form');
             }, function(error) {
                 transcription.error = error.statusText;
+            }).finally(function() {
+                initSentence(sentence);
+                vm.inProgress = false;
             });
-        }
-
-        function cancelEditTranscription(transcription) {
-            transcription.error = null;
-            transcription.showForm = false;
-            transcription.editing_format = transcription.original_editing_format;
         }
 
         function markupToStored(lang, text) {
@@ -586,6 +583,12 @@
                 output += escapeUnicodeChar(input.charAt(i));
             }
             return output;
+        }
+
+        function getEditableTranscription(sentence) {
+            return sentence.transcriptions.find(function(item) {
+                return item.editing_format;
+            });
         }
     }
 
