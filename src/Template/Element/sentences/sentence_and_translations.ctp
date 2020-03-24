@@ -120,7 +120,9 @@ $sentenceUrl = $this->Url->build([
             <div class="text" flex dir="{{vm.sentence.dir}}" lang="{{vm.sentence.lang_tag}}">
                 <span ng-if="vm.sentence.highlightedText" ng-bind-html="vm.sentence.highlightedText"></span>
                 <span ng-if="!vm.sentence.highlightedText">
-                    <span ng-if="vm.sentence.furigana" ng-bind-html="vm.sentence.furigana.html"></span>
+                    <span ng-if="vm.sentence.furigana" ng-bind-html="vm.sentence.furigana.html">
+                        <md-tooltip>{{vm.sentence.furigana.info_message}}</md-tooltip>
+                    </span>
                     <span ng-if="!vm.sentence.furigana">{{vm.sentence.text}}</span>
                 </span>
             </div>
