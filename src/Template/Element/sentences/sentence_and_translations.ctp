@@ -51,6 +51,10 @@ if (!isset($directTranslationsData)) {
 if (!isset($indirectTranslationsData)) {
     $indirectTranslationsData = $this->Sentences->translationsForAngular($indirectTranslations);    
 }
+// Prevent interpolation by AngularJS
+$sentenceData = str_replace('{{', '\{\{', $sentenceData);
+$directTranslationsData = str_replace('{{', '\{\{', $directTranslationsData);
+$indirectTranslationsData = str_replace('{{', '\{\{', $indirectTranslationsData);
 
 if (!isset($duplicateWarning)) {
     $duplicateWarning = __('Your sentence was not added because the following already exists.');

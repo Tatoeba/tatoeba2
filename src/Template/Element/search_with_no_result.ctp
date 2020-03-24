@@ -31,7 +31,7 @@ if (empty($query)) {
 } else {
     $noResultLabel = format(
         __('No results found for: {search}'),
-        array('search' => $query)
+        array('search' => $this->App->safeForAngular($query))
     );
 }
-echo $this->Html->tag('h2', $noResultLabel, ['ng-non-bindable' => '']);
+echo $this->Html->tag('h2', $noResultLabel);
