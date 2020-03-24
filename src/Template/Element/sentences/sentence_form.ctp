@@ -11,7 +11,8 @@
 </div>
 
 <div name="sentenceForm" layout="column" ng-if="!(vm.sentence.audios && vm.sentence.audios.length > 0)">
-    <div layout="row" layout-align="start center">
+
+    <div layout="row" layout-align="start center" ng-if="vm.sentence.permissions.canEdit">
         <md-input-container flex="50">
             <label><?= __('Language') ?></label>
             <md-select ng-model="vm.sentence.lang">
@@ -28,7 +29,7 @@
         </div>
     </div>
 
-    <md-input-container>
+    <md-input-container ng-if="vm.sentence.permissions.canEdit">
         <label><?= __('Sentence') ?></label>
         <textarea ng-attr-id="sentence-form-{{vm.sentence.id}}" ng-model="vm.sentence.text" 
                   ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()"></textarea>

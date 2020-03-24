@@ -458,9 +458,13 @@ class SentencesTable extends Table
     {
         $user = $sentence->user;
         $userId = $user ? $user->id : null;
+        $editableTranscription = array_filter($sentence->transcriptions, function($transcription) {
+            return $transcription->editing_format;
+        });
 
         return [
             'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
+            'canTranscribe' => (bool)$editableTranscription,
             'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
             'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
             'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),

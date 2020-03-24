@@ -7,7 +7,7 @@
                 <md-tooltip><?= __('Translate') ?></md-tooltip>
             </md-button>
 
-            <md-button ng-if="vm.menu.canEdit" class="md-icon-button" ng-click="vm.edit()">
+            <md-button ng-if="vm.menu.canEdit || vm.menu.canTranscribe" class="md-icon-button" ng-click="vm.edit()">
                 <md-icon>edit</md-icon>
                 <md-tooltip><?= __('Edit') ?></md-tooltip>
             </md-button>
