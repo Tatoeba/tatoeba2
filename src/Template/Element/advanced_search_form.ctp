@@ -38,7 +38,11 @@ echo $this->Form->create('AdvancedSearch', [
                 <?php
                 echo $this->Form->input('query', array(
                     'label' => __('Words:'),
-                    'value' => $query,
+                    'ng-model' => 'query',
+                    'ng-init' => format(
+                        'query = "{}"',
+                        addcslashes($query, '"\'{')
+                    ),
                     'lang' => '',
                     'dir' => 'auto',
                 ));
@@ -132,7 +136,11 @@ echo $this->Form->create('AdvancedSearch', [
             <?php
             echo $this->Form->input('tags', array(
                 'label' => __('Tags:'),
-                'value' => $tags
+                'ng-model' => 'tags',
+                'ng-init' => format(
+                    'tags = "{}"',
+                    addcslashes($tags, '\'"{')
+                )
             ));
             ?>
             <div class="hint">

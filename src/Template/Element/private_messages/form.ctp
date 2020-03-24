@@ -42,7 +42,11 @@ if ($isReply) {
         <?php
         echo $this->Form->control('recipients', [
             'label' => __x('message', 'To'),
-            'default' => $recipients,
+            'ng-model' => 'recipients',
+            'ng-init' => format(
+                'recipients = "{}"',
+                addcslashes($recipients, '"\'{')
+            ),
             'maxlength' => 250,
             'class' => 'pmTo',
             'lang' => '',
@@ -53,11 +57,17 @@ if ($isReply) {
 
         <md-input-container>
         <?php
-        echo $this->Form->control('title', [
+        echo $this->Form->input('title', [
             'label' => __('Title'),
+            'ng-model' => 'title',
+            'ng-init' => format(
+                'title = "{}"',
+                addcslashes($pm->title, '"\'{')
+            ),
             'class' => 'pmTitle',
             'lang' => '',
             'dir' => 'auto',
+            'value' => '',
         ]);
         ?>
         </md-input-container>
@@ -71,7 +81,8 @@ if ($isReply) {
         echo $this->Form->textarea('content', [
             'lang' => '',
             'dir' => 'auto',
-            'value' => $content
+            'value' => $content,
+            'ng-non-bindable' => '',
         ]);
         ?>
         </div>

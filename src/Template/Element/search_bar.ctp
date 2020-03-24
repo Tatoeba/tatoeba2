@@ -27,7 +27,7 @@
 
 use Cake\Core\Configure;
 
-$searchQuery = h($searchQuery);
+$searchQuery = h(addcslashes($searchQuery, '"{\''));
 ?>
 
 <md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
@@ -79,10 +79,10 @@ echo $this->Form->create(
                    type="search"
                    name="query"
                    ng-model="ctrl.searchQuery"
+                   ng-init="ctrl.searchQuery = '<?= $searchQuery ?>'"
                    accesskey="4"
                    lang=""
                    dir="auto"
-                   data-query="<?= $searchQuery ?>"
                    flex>
             <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
         </div>

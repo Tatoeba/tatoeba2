@@ -53,12 +53,13 @@ if (isset($sentencesWithAudio)) {
                );
             ?>
             <md-input-container class="md-block">
-                <label for='audio_attribution_url'><?= __('Attribution URL:') ?></label>
-                <input name='audio_attribution_url'
-                       id='audio_attribution_url'
-                       type='text'
-                       ng-init='url = "<?= h($audioAttributionUrl) ?>"'
-                       ng-model='url'>
+            <?= $this->Form->input('audio_attribution_url', array(
+                   'label' => __('Attribution URL:'),
+                   'ng-init' => format('url = "{}"', h($audioAttributionUrl)),
+                   'ng-model' => 'url',
+                   'value' => '',
+               ))
+            ?>
                 <div class='hint'>
                     <?=__('Leave this field empty to use your profile page.') ?>
                 </div>
@@ -68,7 +69,7 @@ if (isset($sentencesWithAudio)) {
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
-            <?= $this->Form->secure(['audio_license', 'audio_attribution_url']) ?>
+            <?= $this->Form->end() ?>
         </div>
     <?php endif; ?>
     </div>

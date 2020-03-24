@@ -41,10 +41,16 @@ $tagsIndexUrl = $this->Url->build([
         ]);
         ?>
         <md-input-container layout="column">
-            <div class="input text">
-            <input name='search' id='search' type='text' ng-model='filter'
-                   ng-init='filter = "<?= h(addcslashes($filter, '{"')) ?>"'>
-</div>
+            <?php
+                echo $this->Form->input('search', [
+                    'label' => false,
+                    'ng-model' => 'search',
+                    'ng-init' => format(
+                        'search = "{}"',
+                        addcslashes($filter, '{"\'')
+                    )
+                ]);
+            ?>
             <md-button type="submit" class="md-raised md-default">
                 <?= __('Search') ?>
             </md-button>
@@ -56,7 +62,7 @@ $tagsIndexUrl = $this->Url->build([
             </md-button>
         <?php } ?>
         <?php
-        echo $this->Form->secure(['search']);
+        echo $this->Form->end();
         ?>
     </div>
 </div>
