@@ -107,11 +107,13 @@
             'list_form': false
         };
         vm.selectedLangForRandom = null;
+        vm.hasHiddenTranscriptions = false;
 
         vm.init = init;
         vm.initMenu = initMenu;
         vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
+        vm.expandTranslations = expandTranslations;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
         vm.getAudioAuthor = getAudioAuthor;
@@ -239,6 +241,12 @@
             }
         }
 
+        function expandTranslations() {
+            vm.isExpanded = true;
+            vm.expandableIcon = 'expand_less';
+            showAllTranslations();
+        }
+
         function showAllTranslations() {
             vm.directTranslations = allDirectTranslations;
             vm.indirectTranslations = allIndirectTranslations;
@@ -255,6 +263,9 @@
 
         function toggleMenu() {
             vm.isMenuExpanded = !vm.isMenuExpanded;
+            if (vm.isMenuExpanded) {
+                expandTranslations();
+            }
         }
 
         function playAudio($event) {
@@ -391,6 +402,11 @@
                     return !item.needsReview && item.type === 'altscript';
                 });
             }
+            transcriptions.forEach(function(item) {
+                if (item.needsReview) {
+                    vm.hasHiddenTranscriptions = true;
+                }
+            });
         }
 
         function favorite() {

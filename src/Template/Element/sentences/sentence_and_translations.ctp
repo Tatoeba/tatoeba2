@@ -105,6 +105,8 @@ $sentenceUrl = $this->Url->build([
                 echo $this->element('sentences/sentence_menu', [
                     'expanded' => $menuExpanded
                 ]);
+            } else {
+                echo $this->element('sentences/transcription_button');
             }
             ?>
         </div>
