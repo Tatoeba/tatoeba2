@@ -1412,7 +1412,7 @@ form .language-icon-div {
     padding: 10px 10px 0 10px;
 }
 .sentence-and-translations .sentence .transcription .icon {
-    margin-left: 20px;
+    margin: 0 8px 0 19px;
 }
 .sentence-and-translations .sentence .transcription .text {
     color: #A1A1A1;
@@ -1420,11 +1420,11 @@ form .language-icon-div {
 }
 
 .sentence-and-translations .translation .transcription .icon {
-    margin-left: 45px;
+    margin: 0 20px 0 40px;
 }
 .sentence-and-translations .translation .transcription .text {
     color: #A1A1A1;
-    margin-left: 5px;
+    padding: 0;
 }
 
 
