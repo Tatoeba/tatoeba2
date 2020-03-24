@@ -5,9 +5,10 @@ if (!isset($sentenceVar)) {
     $sentenceVar = 'vm.sentence';
 }
 
-$ngIf = 'ng-if="vm.isMenuExpanded || (!transcription.needsReview && (!transcription.isReviewedFurigana || '.$sentenceVar.'.highlightedText))"';
 if (CurrentUser::getSetting('show_transcriptions')) {
-    $ngIf = '';
+    $ngIf = 'ng-if="!'.$sentenceVar.'.furigana || '.$sentenceVar.'.highlightedText"';
+} else {
+    $ngIf = 'ng-if="(vm.isMenuExpanded || !transcription.needsReview) && (!'.$sentenceVar.'.furigana || '.$sentenceVar.'.highlightedText)"';
 }
 ?>
 <div class="transcription" ng-repeat="transcription in <?= $sentenceVar ?>.transcriptions" <?= $ngIf ?>>

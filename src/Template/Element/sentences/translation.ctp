@@ -18,12 +18,8 @@ $sentenceBaseUrl = $this->Url->build([
     </div>
 
     <div class="text" dir="{{translation.dir}}" lang="{{translation.lang_tag}}" flex>
-        <?php if (CurrentUser::getSetting('show_transcriptions')) { ?>
-            {{translation.text}}
-        <?php } else { ?>
-            <span ng-if="translation.reviewedFurigana && !vm.isMenuExpanded" ng-bind-html="translation.reviewedFurigana"></span>
-            <span ng-if="!translation.reviewedFurigana || vm.isMenuExpanded">{{translation.text}}</span>
-        <?php } ?>
+        <span ng-if="translation.furigana" ng-bind-html="translation.furigana.html"></span>
+        <span ng-if="!translation.furigana">{{translation.text}}</span>
     </div>
     
     <div class="indicator" ng-if="translation.correctness === -1">

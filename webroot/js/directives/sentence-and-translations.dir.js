@@ -387,11 +387,9 @@
         function initTranscriptions(sentence) {
             var transcriptions = sentence.transcriptions;
             if (sentence.lang === 'jpn' && transcriptions) {
-                var furigana = transcriptions.find(function(item) {
-                    item.isReviewedFurigana = !item.needsReview && item.type === 'altscript';
+                sentence.furigana = transcriptions.find(function(item) {
                     return !item.needsReview && item.type === 'altscript';
                 });
-                sentence.reviewedFurigana = furigana ? furigana.html : null;
             }
         }
 
