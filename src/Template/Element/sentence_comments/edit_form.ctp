@@ -46,11 +46,10 @@ $cancelUrl = $this->Url->build([
         
         <?php
         echo $this->Form->textarea('text', [
-            'value' => $text,
+            'value' => $this->App->safeForAngular($text),
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
-            'ng-non-bindable' => '',
         ]);
         ?>
 

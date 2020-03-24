@@ -43,12 +43,8 @@ $tagsIndexUrl = $this->Url->build([
         <md-input-container layout="column">
             <?php
                 echo $this->Form->input('search', [
+                    'value' => $this->App->safeForAngular($filter),
                     'label' => false,
-                    'ng-model' => 'search',
-                    'ng-init' => format(
-                        'search = "{}"',
-                        addcslashes($filter, '{"\'')
-                    )
                 ]);
             ?>
             <md-button type="submit" class="md-raised md-default">
@@ -104,7 +100,7 @@ $tagsIndexUrl = $this->Url->build([
 
         <md-list>
             <?php foreach( $allTags as $tag) {
-                $tagName = $tag->name;
+                $tagName = $this->App->safeForAngular($tag->name);
                 $tagUrl = $this->Url->build([
                     'controller' => 'tags',
                     'action' => 'show_sentences_with_tag',
