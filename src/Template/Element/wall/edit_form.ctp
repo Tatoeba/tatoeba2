@@ -37,7 +37,7 @@ $cancelUrl = $this->Url->build([
         <?php
         echo $this->Form->create($message);
 
-        echo $this->Form->textarea('content');
+        echo $this->Form->textarea('content', ['ng-non-bindable' => '']);
         ?>
 
         <div layout="row" layout-align="end center" layout-padding>

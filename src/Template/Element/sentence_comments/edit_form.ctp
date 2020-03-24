@@ -50,6 +50,7 @@ $cancelUrl = $this->Url->build([
             'label'=> '',
             'lang' => '',
             'dir' => 'auto',
+            'ng-non-bindable' => '',
         ]);
         ?>
 

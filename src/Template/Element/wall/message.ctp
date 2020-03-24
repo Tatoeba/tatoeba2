@@ -113,7 +113,7 @@ $canReply = false;
         <?php } ?>
 
         <?php if (!$messageHidden || $canViewContent) { ?>
-            <p class="content" dir="auto">
+            <p class="content" dir="auto" ng-non-bindable>
                 <?= $this->Messages->formatContent($messageText) ?>
             </p>
         <?php } ?>

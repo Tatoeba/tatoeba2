@@ -34,4 +34,4 @@ if (empty($query)) {
         array('search' => $query)
     );
 }
-echo $this->Html->tag('h2', $noResultLabel);
+echo $this->Html->tag('h2', $noResultLabel, ['ng-non-bindable' => '']);

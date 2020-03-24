@@ -49,7 +49,7 @@ $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message
     </md-card-header>
 
     <md-card-content>
-        <p class="content" dir="auto">
+        <p class="content" dir="auto" ng-non-bindable>
             <?= $this->Messages->formatContent($message->content) ?>
         </p>
     </md-card-content>

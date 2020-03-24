@@ -85,7 +85,7 @@ if ($sentenceOwnerLink) {
         ); ?>
     </div>
     <div layout="row" layout-align="start center">
-        <div class="text" dir="<?= $langDir ?>" flex>
+        <div class="text" dir="<?= $langDir ?>" flex ng-non-bindable>
             <?= $sentenceText ?>
         </div>
         <?php
@@ -163,7 +163,7 @@ if ($sentenceOwnerLink) {
         <?php } ?>
 
         <?php if (!$commentHidden || $canViewContent) { ?>
-            <p class="content" dir="auto">
+            <p class="content" dir="auto" ng-non-bindable>
                 <?= $this->Messages->formatContent($commentText) ?>
             </p>
         <?php } ?>
