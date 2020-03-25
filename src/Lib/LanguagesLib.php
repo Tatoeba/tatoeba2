@@ -583,6 +583,7 @@ class LanguagesLib
                 'tmr' => __d('languages', 'Jewish Babylonian Aramaic'),
                 'ryu' => __d('languages', 'Okinawan'),
                 'evn' => __d('languages', 'Evenki'),
+                'bis' => __d('languages', 'Bislama'),
             );
         }
         return $languages;
