@@ -584,6 +584,7 @@ class LanguagesLib
                 'ryu' => __d('languages', 'Okinawan'),
                 'evn' => __d('languages', 'Evenki'),
                 'bis' => __d('languages', 'Bislama'),
+                'stq' => __d('languages', 'Saterland Frisian'),
             );
         }
         return $languages;
