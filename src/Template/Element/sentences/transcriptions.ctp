@@ -22,7 +22,7 @@ if (CurrentUser::getSetting('show_transcriptions')) {
                 <md-icon class="md-warn">warning</md-icon>
             </div>
             <div class="text" ng-bind-html="transcription.html" flex></div>
-            <md-tooltip>{{transcription.info_message}}</md-tooltip>
+            <md-tooltip md-direction="top">{{transcription.info_message}}</md-tooltip>
         </div>
     </div>
 </div>

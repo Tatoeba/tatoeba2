@@ -121,7 +121,7 @@ $sentenceUrl = $this->Url->build([
                 <span ng-if="vm.sentence.highlightedText" ng-bind-html="vm.sentence.highlightedText"></span>
                 <span ng-if="!vm.sentence.highlightedText">
                     <span ng-if="vm.sentence.furigana" ng-bind-html="vm.sentence.furigana.html">
-                        <md-tooltip>{{vm.sentence.furigana.info_message}}</md-tooltip>
+                        <md-tooltip md-direction="top">{{vm.sentence.furigana.info_message}}</md-tooltip>
                     </span>
                     <span ng-if="!vm.sentence.furigana">{{vm.sentence.text}}</span>
                 </span>

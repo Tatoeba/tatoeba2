@@ -19,7 +19,7 @@ $sentenceBaseUrl = $this->Url->build([
 
     <div class="text" dir="{{translation.dir}}" lang="{{translation.lang_tag}}" flex>
         <span ng-if="translation.furigana" ng-bind-html="translation.furigana.html">
-            <md-tooltip>{{translation.furigana.info_message}}</md-tooltip>
+            <md-tooltip md-direction="top">{{translation.furigana.info_message}}</md-tooltip>
         </span>
         <span ng-if="!translation.furigana">{{translation.text}}</span>
     </div>
