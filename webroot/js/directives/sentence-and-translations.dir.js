@@ -549,15 +549,17 @@
                 value: markupToStored(lang, text)
             };
 
+            var i = sentence.transcriptions.findIndex(function(item) {
+                return item.id === transcription.id;
+            });
+            sentence.transcriptions.splice(i, 1);
+
             $http.post(url, data).then(function(result) {
-                var i = sentence.transcriptions.findIndex(function(item) {
-                    return item.id === transcription.id;
-                });
-                sentence.transcriptions.splice(i, 1);
                 sentence.transcriptions.push(result.data.result);
                 hide('sentence_form');
             }, function(error) {
                 transcription.error = error.statusText;
+                sentence.transcriptions.push(transcription);
             }).finally(function() {
                 initSentence(sentence);
                 vm.inProgress = false;
