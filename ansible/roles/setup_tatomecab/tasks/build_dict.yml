@@ -2,7 +2,7 @@
 
 - name: Install dependencies for building dictionary
   apt:
-    name: libmecab-dev
+    name: ['make', 'mecab-utils', 'libmecab-dev']
     state: present
 
 - name: Modify dictionary with warifuri (this takes a long time)
