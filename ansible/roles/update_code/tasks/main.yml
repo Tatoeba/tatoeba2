@@ -52,7 +52,7 @@
   file:
     path: "{{ code_dir }}/{{ item }}"
     state: directory
-    mode: 0775
+    mode: ug=rw,o=r,a-x+X  # -x+X: no executable files, but can enter directories
     group: www-data
     recurse: yes
   with_items:
