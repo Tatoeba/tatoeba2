@@ -39,6 +39,8 @@ if (isset($sentencesWithAudio)) {
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('My audio'); ?></h2>
             <?php
+               $audioSettings->audio_attribution_url =
+                   $this->App->safeForAngular($audioSettings->audio_attribution_url);
                echo $this->Form->create($audioSettings, array(
                    'url' => array('controller' => 'audio', 'action' => 'save_settings'),
                    'type' => 'post',
@@ -47,19 +49,11 @@ if (isset($sentencesWithAudio)) {
                    'label' => __('License:'),
                    'options' => $this->Audio->License->getLicenseOptions()
                ));
-               $audioAttributionUrl = addcslashes(
-                   $audioSettings['audio_attribution_url'],
-                   '"{'
-               );
             ?>
             <md-input-container class="md-block">
-            <?= $this->Form->input('audio_attribution_url', array(
-                   'label' => __('Attribution URL:'),
-                   'ng-init' => format('url = "{}"', h($audioAttributionUrl)),
-                   'ng-model' => 'url',
-                   'value' => '',
-               ))
-            ?>
+                <?= $this->Form->input('audio_attribution_url', array(
+                    'label' => __('Attribution URL:'),
+                )) ?>
                 <div class='hint'>
                     <?=__('Leave this field empty to use your profile page.') ?>
                 </div>
