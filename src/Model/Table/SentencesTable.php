@@ -459,7 +459,7 @@ class SentencesTable extends Table
         $user = $sentence->user;
         $userId = $user ? $user->id : null;
         $editableTranscription = array_filter($sentence->transcriptions, function($transcription) {
-            return $transcription->editing_format;
+            return $transcription->markup;
         });
 
         return [

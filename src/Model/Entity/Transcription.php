@@ -34,7 +34,7 @@ class Transcription extends Entity
         'readonly',
         'type',
         'html',
-        'editing_format',
+        'markup',
         'info_message'
     ];
 
@@ -172,7 +172,7 @@ class Transcription extends Entity
         return $text;
     }
 
-    protected function _getEditingFormat() {
+    protected function _getMarkup() {
         if (!$this->sentence || !$this->sentence->lang || !$this->script || !$this->text) {
             return;
         }

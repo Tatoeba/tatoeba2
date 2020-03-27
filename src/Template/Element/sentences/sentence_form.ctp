@@ -36,11 +36,11 @@
     </md-input-container>
 
 
-    <div layout="column" ng-if="transcription.editing_format" ng-repeat="transcription in vm.sentence.transcriptions">
+    <div layout="column" ng-if="transcription.markup" ng-repeat="transcription in vm.sentence.transcriptions">
         <div layout="row" layout-align="start center" flex>
             <md-input-container flex>
                 <label><?= __('Transcription') ?></label>
-                <textarea ng-attr-id="transcription-form-{{transcription.sentence.id}}" ng-model="transcription.editing_format"
+                <textarea ng-attr-id="transcription-form-{{transcription.sentence.id}}" ng-model="transcription.markup"
                           ng-change="transcription.error = null; transcription.needsReview = false;"
                           ng-enter="vm.saveTranscription(transcription, vm.sentence, 'save')" ng-escape="vm.cancelEdit()"></textarea>
                 

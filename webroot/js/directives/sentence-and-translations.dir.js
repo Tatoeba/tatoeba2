@@ -360,7 +360,7 @@
             if (vm.sentence.transcriptions) {
                 var oldTranscription = getEditableTranscription(oldSentence);
                 var transcription = getEditableTranscription(vm.sentence);
-                transcriptionChanged = oldTranscription.editing_format !== transcription.editing_format;
+                transcriptionChanged = oldTranscription.markup !== transcription.markup;
             }
             
             if (sentenceChanged) {
@@ -543,7 +543,7 @@
 
         function saveTranscription(transcription, sentence, action) {
             var lang = sentence.lang + '-' + transcription.script;
-            var text = transcription.editing_format;
+            var text = transcription.markup;
             var url = rootUrl + '/transcriptions/' + action + '/' + sentence.id + '/' + transcription.script;
             var data = {
                 value: markupToStored(lang, text)
@@ -603,7 +603,7 @@
 
         function getEditableTranscription(sentence) {
             return sentence.transcriptions.find(function(item) {
-                return item.editing_format;
+                return item.markup;
             });
         }
     }
