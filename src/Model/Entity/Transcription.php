@@ -156,11 +156,11 @@ class Transcription extends Entity
     }
 
     protected function _getHtml() {
-        if (!$this->sentence) {
+        if (!$this->sentence || !$this->sentence->lang || !$this->script || !$this->text) {
             return;
         }
 
-        $lang = $this->sentence['lang'];
+        $lang = $this->sentence->lang;
         $text = htmlentities($this->text);
 
         if ($this->script == 'Hrkt') {
@@ -173,14 +173,14 @@ class Transcription extends Entity
     }
 
     protected function _getEditingFormat() {
-        if (!$this->sentence) {
+        if (!$this->sentence || !$this->sentence->lang || !$this->script || !$this->text) {
             return;
         }
 
         $text = null;
         $editable = !$this->readonly && CurrentUser::canEditTranscription($this->user_id, $this->sentence->user_id);
         if ($editable) {
-            $lang = $this->sentence['lang'];
+            $lang = $this->sentence->lang;
             $text = htmlentities($this->text);
             if ($this->script == 'Hrkt') {
                 $text = $this->bracketify($this->text);
@@ -191,6 +191,10 @@ class Transcription extends Entity
     }
 
     protected function _getInfoMessage() {
+        if (!isset($this->type) || !isset($this->needsReview)) {
+            return;
+        }
+
         if ($this->needsReview) {
             if ($this->type == 'altscript') {
             $message = __(
@@ -207,7 +211,7 @@ class Transcription extends Entity
             }
         } else {
             if (isset($this->user->username)) {
-                if ($this->type == 'altscript' && $this->sentence->lang == 'jpn') {
+                if ($this->type == 'altscript' && isset($this->sentence->lang) && $this->sentence->lang == 'jpn') {
                     $message = __('The furigana was last edited by {author} on {date}.');
                 } else {
                     /* @translators: refers to a transcription */
