@@ -20,10 +20,13 @@ namespace App\View\Helper;
 
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
+use App\Model\Entity\FuriganaTrait;
 
 
 class TranscriptionsHelper extends AppHelper
 {
+    use FuriganaTrait;
+
     public $helpers = array(
         'Html',
         'Images',
@@ -32,51 +35,6 @@ class TranscriptionsHelper extends AppHelper
         'Search',
         'Date',
     );
-
-    /**
-     * Transforms "[kanji|reading]" to HTML <ruby> tags
-     */
-    private function _rubify($formatted) {
-        return preg_replace_callback(
-            '/\[([^|]*)\|([^\]]*)\]/',
-            function ($matches) {
-               $kanjis = preg_split('//u', $matches[1], null, PREG_SPLIT_NO_EMPTY);
-               $readings = explode('|',$matches[2]);
-               for ($i = 0; $i < count($readings); $i++) {
-                   if ($i > 0 && empty($readings[$i])) {
-                       if (array_key_exists($i, $kanjis)) {
-                           array_splice($kanjis, $i-1, 2, $kanjis[$i-1].$kanjis[$i]);
-                       }
-                       array_splice($readings, $i, 1);
-                       $i--;
-                   }
-               }
-               while (count($kanjis) > count($readings)) {
-                   $last = array_pop($kanjis);
-                   array_push($kanjis, array_pop($kanjis).$last);
-               }
-               $ruby = '';
-               for ($i = 0; $i < count($kanjis); $i++) {
-                   $kanji = htmlentities($kanjis[$i]);
-                   $reading = htmlentities($readings[$i]);
-                   $ruby .= "<ruby>$kanji<rp>（</rp><rt>$reading</rt><rp>）</rp></ruby>";
-               }
-               return $ruby;
-            },
-            $formatted);
-    }
-
-    /**
-     * Transforms "[kanji|reading]" into kanji｛reading｝
-     * and "[kanjikanji|reading|reading]" into kanjikanji｛reading｜reading｝
-     */
-    private function _bracketify($formatted) {
-        $formatted = preg_replace(
-            '/\[([^|]*)\|([^\]]*)\]/',
-            '$1｛$2｝',
-            $formatted);
-        return str_replace('|', '｜', $formatted);
-    }
 
     /**
      * Display transcriptions.
@@ -318,8 +276,8 @@ class TranscriptionsHelper extends AppHelper
             $text = $this->Search->highlightMatches($transcr['highlight'], $text);
         }
         if ($transcr['script'] == 'Hrkt') {
-            $ruby = $this->_rubify($transcr['text']);
-            $bracketed = $this->_bracketify($text);
+            $ruby = $this->rubify($transcr['text']);
+            $bracketed = $this->bracketify($text);
             $text = $this->Html->tag('span', $bracketed, array(
                 'style' => 'display:none',
                 'class' => 'markup',
