@@ -39,10 +39,6 @@
 $this->set('title_for_layout', $this->Pages->formatTitle(__("Activity timeline")));
 
 $monthName = $this->Date->monthName($month);
-$selectedMonth = format(
-    __('{month} {year}'),
-    array('month' => $monthName, 'year' => $year)
-);
 
 $maxWidth = 400;
 if (!empty($stats)) {
@@ -64,7 +60,10 @@ if (!empty($stats)) {
 
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
-    <h2><?php echo __('Activity timeline') . ' - ' . $selectedMonth; ?></h2>
+    <h2><?php
+        echo __('Activity timeline') . ' &#8212; ' .
+            format(__('{month} {year}'), array('month' => $monthName, 'year' => $year));
+    ?></h2>
     <p>
     <?php
         if ($month == date('m') && $year == date('Y')) {
