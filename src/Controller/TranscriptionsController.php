@@ -84,18 +84,13 @@ class TranscriptionsController extends AppController
             );
         }
 
-        if (!$saved) {
-            return $this->response->withStatus(400, __('The transcription could not be reset.'));
-        }
-
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
-            $this->set('result', $transcription);
-            $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            return $this->returnTranscriptionData($saved, $sentenceId, $script);
         } else {
+            if (!$saved) {
+                return $this->response->withStatus(400, 'Bad transcription');
+            }
             $this->setViewVars(array_filter(array($saved)), $sentenceId, $sentence);
             $this->render('view');
         }
@@ -136,20 +131,28 @@ class TranscriptionsController extends AppController
             );
         }
 
-        if (!$saved) {
-            return $this->response->withStatus(400, __('The transcription could not be saved.'));
-        }
-
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
+            return $this->returnTranscriptionData($saved, $sentenceId, $script);
+        } else {
+            $this->setViewVars(array_filter(array($saved)), $sentenceId);
+            $this->render('view');
+            if (!$saved) {
+                return $this->response->withStatus(400, 'Bad transcription');
+            }
+        }
+    }
+
+    private function returnTranscriptionData($saved, $sentenceId, $script) {
+        if ($saved) {
             $transcription = $this->Transcriptions->findTranscription($sentenceId, $script);
             $this->set('result', $transcription);
             $this->loadComponent('RequestHandler');
             $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->RequestHandler->renderAs($this, 'json');    
         } else {
-            $this->setViewVars(array_filter(array($saved)), $sentenceId);
-            $this->render('view');
+            $errors = json_encode($this->Transcriptions->validationErrors);
+            return $this->response->withStatus(400)->withStringBody($errors);
         }
     }
 
