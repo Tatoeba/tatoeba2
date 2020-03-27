@@ -6,12 +6,12 @@ if (!isset($sentenceVar)) {
 }
 
 if (CurrentUser::getSetting('show_transcriptions')) {
-    $ngIf = 'ng-if="!'.$sentenceVar.'.furigana || '.$sentenceVar.'.highlightedText"';
+    $ngIf = "!$sentenceVar.furigana || $sentenceVar.highlightedText";
 } else {
-    $ngIf = 'ng-if="(vm.isMenuExpanded || !transcription.needsReview) && (!'.$sentenceVar.'.furigana || '.$sentenceVar.'.highlightedText)"';
+    $ngIf = "(vm.isMenuExpanded || !transcription.needsReview) && (!$sentenceVar.furigana || $sentenceVar.highlightedText)";
 }
 ?>
-<div class="transcription" ng-repeat="transcription in <?= $sentenceVar ?>.transcriptions" <?= $ngIf ?>>
+<div class="transcription" ng-repeat="transcription in <?= $sentenceVar ?>.transcriptions" ng-if="<?= $ngIf ?>">
     <div layout="row" layout-align="start center" ng-if="!transcription.showForm">
         <div class="icon">
             <md-icon>subdirectory_arrow_right</md-icon>
