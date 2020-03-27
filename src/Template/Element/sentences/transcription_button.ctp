@@ -2,7 +2,7 @@
     <div class="menu" layout="row" layout-align="space-between center">
         <md-button ng-if="!vm.isMenuExpanded" class="md-icon-button" ng-click="vm.toggleMenu()">
             <md-icon>unfold_more</md-icon>
-            <md-tooltip><?= __('Show all transcriptions') ?></md-tooltip>
+            <md-tooltip><?= __('Show unreviewed transcriptions') ?></md-tooltip>
         </md-button>
 
         <md-button ng-if="vm.isMenuExpanded" class="md-icon-button" ng-click="vm.toggleMenu()">
