@@ -43,7 +43,21 @@ class FillContributionsStatsCommand extends TestCase {
         $this->assertEquals('2014-04-09', $contributionStats[0]->date);
     }
 
-    function testExecute_paramsGiven_ContributionsAreRewritten() {
+    function testExecute_paramsGiven_OneDayContributionsAreRewritten() {
+        $this->exec("fill_contributions_stats -f 2016-06-19 -t 2016-06-19");
+
+        $firstContributionStats = $this->ContributionsStats->find()->order(['id' => 'DESC'])->first();
+        $this->assertEquals('2016-06-19', $firstContributionStats->date);
+    }
+
+    function testExecute_paramsGiven_LastDayOfRewrittenContributionsIsCorrect() {
+        $this->exec("fill_contributions_stats -f 2016-06-19 -t 2016-12-26");
+
+        $firstContributionStats = $this->ContributionsStats->find()->order(['id' => 'DESC'])->first();
+        $this->assertEquals('2016-12-26', $firstContributionStats->date);
+    }
+
+    function testExecute_paramsGiven_FirstDayOfRewrittenContributionsIsCorrect() {
         $this->exec("fill_contributions_stats -f 2016-06-19 -t 2016-12-16");
 
         $firstContributionStats = $this->ContributionsStats->find()->order(['id' => 'DESC'])->first();

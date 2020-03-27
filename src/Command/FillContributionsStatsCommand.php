@@ -43,12 +43,13 @@ class FillContributionsStatsCommand extends Command
         try {
             $firstDay = new DateTime($from);
             $lastDay = new DateTime($to);
+            $lastDay->modify('+1 day');
         } catch (Exception $e) {
             $io->error($e->getMessage());
             $this->abort();
         }
 
-        for ($day = $firstDay; $day <= $lastDay; $day->modify('+1 day')) {
+        for ($day = new DateTime($from); $day < $lastDay; $day->modify('+1 day')) {
             $date = $day->format('Y-m-d');
             $stats[$date] = [
                 ['sentence', 'insert', 0],
@@ -63,7 +64,7 @@ class FillContributionsStatsCommand extends Command
         // Fetch
         $contributions = $this->Contributions->find()
                               ->where(["type !=" => "license", "action !=" => "update",
-                                       "datetime >=" => $from, "datetime <=" => $to])
+                                       "datetime >=" => $firstDay, "datetime <=" => $lastDay])
                               ->order(["datetime" => "ASC"]);
         $contributions->disableBufferedResults();
         foreach ($contributions as $contribution) {
@@ -88,7 +89,7 @@ class FillContributionsStatsCommand extends Command
 
         // Truncate table and Fill
         $contributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
-        $contributionsStats->deleteAll(['date >=' => $from, 'date <=' => $to]);
+        $contributionsStats->deleteAll(['date >=' => $from, 'date <=' => $lastDay->format('Y-m-d')]);
         foreach ($stats as $date => $dailyStat) {
             foreach ($dailyStat as $unitRecord) {
                 if ($unitRecord[2] != 0) {
