@@ -53,7 +53,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
 
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
-    <h2 ng-non-bindable><?php echo $listName; ?></h2>
+    <h2><?= $this->App->safeForAngular($listName) ?></h2>
 
     <h3><?php echo __('Download'); ?></h3>
 

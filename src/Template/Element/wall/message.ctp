@@ -8,7 +8,7 @@ $createdDate = $message->date;
 $modifiedDate = $message->modified;
 $messageId = $message->id;
 $authorId = $message->owner;
-$messageText = $message->content;
+$messageText = $this->App->safeForAngular($message->content);
 $messageHidden = $message->hidden;
 $sentence = null;
 $sentenceOwnerLink = null;
@@ -113,7 +113,7 @@ $canReply = false;
         <?php } ?>
 
         <?php if (!$messageHidden || $canViewContent) { ?>
-            <p class="content" dir="auto" ng-non-bindable>
+            <p class="content" dir="auto">
                 <?= $this->Messages->formatContent($messageText) ?>
             </p>
         <?php } ?>

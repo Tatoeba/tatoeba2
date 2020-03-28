@@ -43,9 +43,8 @@ if (empty($userId)) {
         'h2',
         format(
             __("There's no user called {username}"),
-            array('username' => $username)
-        ),
-        ['ng-non-bindable' => '']
+            array('username' => $this->App->safeForAngular($username))
+        )
     );
 } else if (isset($results)) {
     if (count($results) == 0) {

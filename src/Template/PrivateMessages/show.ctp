@@ -53,8 +53,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
     <md-content class="md-whiteframe-1dp" flex>
         <md-toolbar class="md-hue-1">
             <div class="md-toolbar-tools">
-                <h2 ng-non-bindable flex>
-                    <?= $message->title ?>
+                <h2 flex>
+                    <?= $this->App->safeForAngular($message->title) ?>
                 </h2>
             </div>
         </md-toolbar>
