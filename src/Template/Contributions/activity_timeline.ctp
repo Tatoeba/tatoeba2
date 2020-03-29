@@ -61,8 +61,7 @@ if (!empty($stats)) {
 <div id="main_content">
     <div class="section md-whiteframe-1dp">
     <h2><?php
-        echo __('Activity timeline') . ' &#8212; ' .
-            format(__('{month} {year}'), array('month' => $monthName, 'year' => $year));
+        echo format(__('Activity timeline — {month} {year}'), array('month' => $monthName, 'year' => $year));
     ?></h2>
     <p>
     <?php
