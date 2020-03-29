@@ -27,7 +27,7 @@
 
 use Cake\Core\Configure;
 
-$searchQuery = h(addcslashes($searchQuery, '"{\''));
+$searchQuery = h(str_replace('{{', '\{\{', $searchQuery));
 ?>
 
 <md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
