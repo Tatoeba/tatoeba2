@@ -569,7 +569,7 @@
             }).finally(function() {
                 sentence.transcriptions.splice(i, 1);
                 sentence.transcriptions.push(transcription);
-                initSentence(sentence);
+                initTranscriptions(sentence);
                 vm.inProgress = false;
             });
         }
