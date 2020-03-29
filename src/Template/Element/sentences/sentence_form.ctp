@@ -44,9 +44,7 @@
                           ng-change="transcription.error = null; transcription.needsReview = false;"
                           ng-enter="vm.saveTranscription(transcription, vm.sentence, 'save')" ng-escape="vm.cancelEdit()"></textarea>
                 
-                <div ng-messages="sentenceForm.$error" role="alert">
-                    {{transcription.error}}
-                </div>
+                <div ng-repeat="error in transcription.errors" ng-messages="sentenceForm.$error" role="alert" ng-bind-html="error"></div>
             </md-input-container>
             
             <md-button class="md-icon-button" ng-click="vm.saveTranscription(transcription, vm.sentence, 'reset')">

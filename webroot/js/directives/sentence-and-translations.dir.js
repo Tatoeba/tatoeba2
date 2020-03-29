@@ -557,7 +557,15 @@
                 transcription = result.data.result;
                 hide('sentence_form');
             }, function(error) {
-                transcription.error = error.data[0];
+                if (error.data) {
+                    if (error.status === 403) {
+                        transcription.errors = [error.data];
+                    } else {
+                        transcription.errors = error.data;
+                    }
+                } else {
+                    transcription.errors = [error.statusText];
+                }
             }).finally(function() {
                 sentence.transcriptions.splice(i, 1);
                 sentence.transcriptions.push(transcription);
