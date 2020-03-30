@@ -27,6 +27,7 @@ use Cake\Database\Schema\TableSchema;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
+use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Event\ContributionListener;
@@ -100,7 +101,7 @@ class SentencesTable extends Table
         $validator
             ->add('license', [
                 'inList' => [
-                    'rule' => ['inList', ['CC0 1.0', 'CC BY 2.0 FR']],
+                    'rule' => ['inList', Licenses::forSentences],
                     /* @translators: This string will be preceded by "Unable to
                     change the license to “{newLicense}” because:" */
                     'message' => __('This is not a valid license.')

@@ -53,7 +53,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
                     <?php
                     echo $this->Form->select(
                         'sentenceLicense',
-                        $this->Sentences->License->getLicenseOptions(),
+                        $this->SentenceLicense->getLicenseOptions(),
                         array(
                             'id' => 'sentenceLicense',
                             "value" => CurrentUser::getSetting('default_license'),

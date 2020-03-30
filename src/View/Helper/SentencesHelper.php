@@ -66,12 +66,7 @@ class SentencesHelper extends AppHelper
         'Images',
         'Transcriptions',
         'Search',
-        'License' => array(
-            'availableLicences' => array(
-                'CC0 1.0',
-                'CC BY 2.0 FR',
-            ),
-        ),
+        'SentenceLicense',
     );
 
 
