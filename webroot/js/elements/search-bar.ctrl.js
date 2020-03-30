@@ -22,7 +22,6 @@
         .controller('SearchBarController', ['$scope', function($scope) {
             var vm = this;
 
-            vm.searchQuery = angular.element('#SentenceQuery').data('query');
             vm.langFrom = '';
             vm.langTo = '';
             

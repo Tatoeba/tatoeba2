@@ -47,12 +47,18 @@ $tagsIndexUrl = $this->Url->build([
 
 <div id="main_content">
     <div class="section">
-        <h2><?php
-        $n = $this->Paginator->param('count');
-        echo format(
-            __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
-            array('tagName' => $tagName, 'n' => $this->Number->format($n))
-        ); ?></h2>
+        <h2>
+        <?php
+            $n = $this->Paginator->param('count');
+            echo format(
+                __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
+                array(
+                    'tagName' => $this->App->safeForAngular($tagName),
+                    'n' => $this->Number->format($n)
+                )
+            );
+        ?>
+        </h2>
 
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?></strong>

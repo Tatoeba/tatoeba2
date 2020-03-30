@@ -35,8 +35,8 @@ $cancelUrl = $this->Url->build([
 
     <md-card-content class="content">
         <?php
+        $message->content = $this->App->safeForAngular($message->content);
         echo $this->Form->create($message);
-
         echo $this->Form->textarea('content');
         ?>
 

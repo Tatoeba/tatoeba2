@@ -131,7 +131,7 @@ class CommonModulesHelper extends AppHelper
         echo '<h2>';
         echo format(
             __("There's no user called {username}"),
-            compact('username')
+            ['username' => $this->safeForAngular($username)]
         );
         echo '</h2>';
 

@@ -380,7 +380,8 @@ class MenuHelper extends AppHelper
                 'id' => 'listSelection'.$sentenceId,
                 "value" => $mostRecentList,
                 "class" => "listOfLists",
-                "empty" => false
+                "empty" => false,
+                "ng-non-bindable" => "",
             )
         );
 

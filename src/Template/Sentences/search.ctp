@@ -67,6 +67,7 @@ if ($ignored) {
     echo $this->Html->tag('div', $warn, array(
         'id' => 'flashMessage',
         'class' => 'message',
+        'ng-non-bindable' => '',
     ));
 }
 ?>

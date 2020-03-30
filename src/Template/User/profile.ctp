@@ -267,7 +267,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             ?>
             <md-divider></md-divider>
 
-            <div class="personal-info" layout-margin>
+            <div class="personal-info" layout-margin ng-non-bindable>
                 <?php foreach ($personalInfo as $label => $value) { ?>
                     <div layout="row">
                         <div flex="33" class="label"><?= $label ?></div>
@@ -312,7 +312,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
     <div class="section md-whiteframe-1dp"
          ng-cloak
          ng-controller="LanguageController as vm"
-         ng-init="vm.init(<?= $userLanguages ?>)">
+         ng-init="vm.init(<?= str_replace('{{', '\{\{', $userLanguages) ?>)">
         <h2><?= __('Languages'); ?></h2>
 
         <p ng-if="vm.langs.length === 0">

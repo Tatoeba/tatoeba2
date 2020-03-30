@@ -34,17 +34,16 @@ $categories = array(
     'outdated' => ['keyboard_arrow_right', __("Outdated reviews")]
 );
 
-if ($correctnessLabel) {
-    $category = $correctnessLabel;
+if (empty($correctnessLabel) || !in_array($correctnessLabel, $categories)) {
+    $category = $categories['all'][1];
 } else {
-    $category = 'all';
+    $category = $categories[$correctnessLabel][1];
 }
-
 
 if ($userExists) {
     $title = format(
         __("{user}'s reviews - {category}"),
-        array('user' => $username, 'category' => $categories[$category][1])
+        array('user' => $username, 'category' => $category)
     );
 } else {
     $title = format(__("There's no user called {username}"), array('username' => $username));
@@ -53,6 +52,7 @@ if ($userExists) {
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
 
+<?php if ($userExists) : ?>
 <div id="annexe_content" ng-cloak>
     <?php
     if (!CurrentUser::get('settings.users_collections_ratings')) {
@@ -87,6 +87,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         ?>
     </md-list>
 </div>
+<?php endif; ?>
 
 <div id="main_content">
     <section class="md-whiteframe-1dp correctness-info">

@@ -8,7 +8,7 @@ $createdDate = $comment->created;
 $modifiedDate = $comment->modified;
 $commentId = $comment->id;
 $authorId = $comment->user_id;
-$commentText = $comment->text;
+$commentText = $this->App->safeForAngular($comment->text);
 $commentHidden = $comment->hidden;
 $sentence = null;
 $sentenceOwnerLink = null;
@@ -37,7 +37,7 @@ $sentenceLink = $this->Html->link(
 );
 $sentenceText = '<em>'.__('sentence deleted').'</em>';
 if (isset($sentence['text'])) {
-    $sentenceText = h($sentence->text);
+    $sentenceText = $this->safeForAngular(h($sentence->text));
 }
 $sentenceLang = $sentence ? $sentence->lang : null;
 $sentenceOwner = null;
