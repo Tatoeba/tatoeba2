@@ -43,7 +43,7 @@ $tagsIndexUrl = $this->Url->build([
         <md-input-container layout="column">
             <?php
                 echo $this->Form->input('search', [
-                    'value' => $this->App->safeForAngular($filter),
+                    'value' => $this->safeForAngular($filter),
                     'label' => false,
                 ]);
             ?>
@@ -82,7 +82,7 @@ $tagsIndexUrl = $this->Url->build([
 
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $this->App->safeForAngular($title) ?></h2>
+                <h2><?= $this->safeForAngular($title) ?></h2>
             </div>
         </md-toolbar>
 
@@ -100,7 +100,7 @@ $tagsIndexUrl = $this->Url->build([
 
         <md-list>
             <?php foreach( $allTags as $tag) {
-                $tagName = $this->App->safeForAngular($tag->name);
+                $tagName = $this->safeForAngular($tag->name);
                 $tagUrl = $this->Url->build([
                     'controller' => 'tags',
                     'action' => 'show_sentences_with_tag',

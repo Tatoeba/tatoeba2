@@ -42,7 +42,7 @@ if ($isReply) {
         <?php
         echo $this->Form->control('recipients', [
             'label' => __x('message', 'To'),
-            'value' => $this->App->safeForAngular($recipients),
+            'value' => $this->safeForAngular($recipients),
             'maxlength' => 250,
             'class' => 'pmTo',
             'lang' => '',
@@ -55,7 +55,7 @@ if ($isReply) {
         <?php
         echo $this->Form->input('title', [
             'label' => __('Title'),
-            'value' => $this->App->safeForAngular($pm->title),
+            'value' => $this->safeForAngular($pm->title),
             'class' => 'pmTitle',
             'lang' => '',
             'dir' => 'auto',
@@ -72,7 +72,7 @@ if ($isReply) {
         echo $this->Form->textarea('content', [
             'lang' => '',
             'dir' => 'auto',
-            'value' => $this->App->safeForAngular($content),
+            'value' => $this->safeForAngular($content),
         ]);
         ?>
         </div>

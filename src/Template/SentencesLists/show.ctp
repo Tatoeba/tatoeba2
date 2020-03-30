@@ -137,7 +137,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 
     echo $this->Html->tag(
         'h2',
-        $this->App->safeForAngular($listName),
+        $this->safeForAngular($listName),
         [
             'id'    => "l$listId",
             'class' => $class,

@@ -43,7 +43,7 @@ if (empty($userId)) {
         'h2',
         format(
             __("There's no user called {username}"),
-            array('username' => $this->App->safeForAngular($username))
+            array('username' => $this->safeForAngular($username))
         )
     );
 } else if (isset($results)) {

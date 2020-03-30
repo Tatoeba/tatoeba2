@@ -53,7 +53,7 @@ $tagsIndexUrl = $this->Url->build([
             echo format(
                 __n('{tagName} ({n} sentence)', '{tagName} ({n} sentences)', $n),
                 array(
-                    'tagName' => $this->App->safeForAngular($tagName),
+                    'tagName' => $this->safeForAngular($tagName),
                     'n' => $this->Number->format($n)
                 )
             );

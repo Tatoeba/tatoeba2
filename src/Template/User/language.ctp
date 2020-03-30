@@ -49,7 +49,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
         <?php
         echo $this->Html->tag('h2', $title);
 
-        $userLanguage->details = $this->App->safeForAngular($userLanguage->details);
+        $userLanguage->details = $this->safeForAngular($userLanguage->details);
         echo $this->Form->create($userLanguage, [
             'ng-cloak' => true,
             'url' => ['controller' => 'users_languages', 'action' => 'save']

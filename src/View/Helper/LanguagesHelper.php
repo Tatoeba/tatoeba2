@@ -390,7 +390,7 @@ class LanguagesHelper extends AppHelper
             ),
             $options
         );
-        return $this->Html->tag($tag, $this->safeForAngular($text), $options);
+        return $this->Html->tag($tag, $this->_View->safeForAngular($text), $options);
     }
 
 

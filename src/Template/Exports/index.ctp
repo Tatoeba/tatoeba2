@@ -31,7 +31,7 @@
     echo $this->Form->input('list', array(
         'id' => 'listToExport',
         'ng-model' => 'selectedList',
-        'options' => $this->App->safeForAngular($listOptions),
+        'options' => $this->safeForAngular($listOptions),
     ));
 ?>
 <md-button ng-click="addListExport()"

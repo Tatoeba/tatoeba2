@@ -154,7 +154,7 @@ class ListsHelper extends AppHelper
             }
 
             echo $this->Html->link(
-                $this->safeForAngular($name),
+                $this->_View->safeForAngular($name),
                 array(
                     "controller" => "sentences_lists",
                     "action" => "show",
@@ -541,7 +541,7 @@ class ListsHelper extends AppHelper
                 }
                 echo '<li class="'.$class.'">';
                 echo $this->Html->link(
-                    $this->safeForAngular($list['name']),
+                    $this->_View->safeForAngular($list['name']),
                     array(
                         'controller' => 'sentences_lists',
                         'action' => 'show',
@@ -606,7 +606,7 @@ class ListsHelper extends AppHelper
             <md-input-container layout="column">
                 <?php
                 echo $this->Form->input('search', [
-                    'value' => $this->safeForAngular($search),
+                    'value' => $this->_View->safeForAngular($search),
                     'label' => false
                 ]);
                 ?>

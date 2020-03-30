@@ -38,7 +38,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <?php
                 echo $this->Form->input('query', array(
                     'label' => __('Words:'),
-                    'value' => $this->App->safeForAngular($query),
+                    'value' => $this->safeForAngular($query),
                     'lang' => '',
                     'dir' => 'auto',
                 ));
@@ -132,7 +132,7 @@ echo $this->Form->create('AdvancedSearch', [
             <?php
             echo $this->Form->input('tags', array(
                 'label' => __('Tags:'),
-                'value' => $this->App->safeForAngular($tags),
+                'value' => $this->safeForAngular($tags),
             ));
             ?>
             <div class="hint">
@@ -149,7 +149,7 @@ echo $this->Form->create('AdvancedSearch', [
                     'class' => 'list-select',
                     'label' => '',
                     'value' => $list,
-                    'options' => $this->App->safeForAngular($listOptions),
+                    'options' => $this->safeForAngular($listOptions),
                 ]);
                 ?>
                 </div>

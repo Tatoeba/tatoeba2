@@ -183,7 +183,7 @@ class SentenceButtonsHelper extends AppHelper
                      $sentenceAudios;
             $author = isset($audio->user['username']) ?
                       $audio->user['username'] :
-                      $this->safeForAngular($audio['external']['username']);
+                      $this->_View->safeForAngular($audio['external']['username']);
             if (empty($author)) {
                 $title = __('Play audio');
             } else {

@@ -146,7 +146,7 @@ class TagsHelper extends AppHelper
             );
         }
         echo $this->Html->link(
-            $this->safeForAngular($tagName),
+            $this->_View->safeForAngular($tagName),
             array(
                 "controller" => "tags",
                 "action" => "show_sentences_with_tag",

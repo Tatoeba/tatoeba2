@@ -40,7 +40,7 @@ if (isset($sentencesWithAudio)) {
             <h2><?php echo __('My audio'); ?></h2>
             <?php
                $audioSettings->audio_attribution_url =
-                   $this->App->safeForAngular($audioSettings->audio_attribution_url);
+                   $this->safeForAngular($audioSettings->audio_attribution_url);
                echo $this->Form->create($audioSettings, array(
                    'url' => array('controller' => 'audio', 'action' => 'save_settings'),
                    'type' => 'post',
@@ -93,7 +93,7 @@ if (isset($sentencesWithAudio)) {
         );
         echo $this->Html->tag(
             'p',
-            $this->App->safeForAngular($licenceMessage)
+            $this->safeForAngular($licenceMessage)
         );
 
         $this->Pagination->display();
@@ -120,7 +120,7 @@ if (isset($sentencesWithAudio)) {
         'h2',
         format(
             __("There's no user called {username}"),
-            array('username' => $this->App->safeForAngular($username))
+            array('username' => $this->safeForAngular($username))
         )
     );
 }

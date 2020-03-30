@@ -72,7 +72,7 @@ if (CurrentUser::isAdmin()) {
 
     $ownerName = '';
     if ($hasaudio) {
-        $ownerName = $this->App->safeForAngular($audios[0]->author);
+        $ownerName = $this->safeForAngular($audios[0]->author);
     }
     echo $this->Form->control("ownerName",
         array(
