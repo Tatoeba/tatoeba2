@@ -21,9 +21,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-19 17:54+0800\n"
-"PO-Revision-Date: 2020-03-19 22:30+0000\n"
-"Last-Translator: Robin van der Vliet <info@robinvandervliet.nl>\n"
+"POT-Creation-Date: 2020-03-26 18:06+0000\n"
+"PO-Revision-Date: 2020-03-29 10:32+0000\n"
+"Last-Translator: Marijn Kuiper <imarijn.kuiper@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/tatoeba/tatoeba_website/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ActivitiesController.php#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/ActivitiesController.php#L163
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Favorites/of_user.ctp#L35
@@ -114,17 +114,17 @@ msgstr "Als je dit bericht per vergissing hebt ontvangen, neem dan contact op me
 msgid "Changes to your comment have been saved."
 msgstr "De veranderingen in je opmerking zijn opgeslagen."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L286
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L289
 msgid "The sentence #{id} has been deleted."
 msgstr "De zin nr. {id} is verwijderd."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L295
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Fout: zin nr. {id} kon niet worden verwijderd."
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L520
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L526
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -133,41 +133,41 @@ msgstr "\"Eigendom van een moedertaalspreker (naar eigen zeggen)\", omdat de \"t
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L564
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L570
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "\"vertaling is een wees\", omdat het veld \"vertaling eigenaar\" is ingevuld met een gebruikersnaam"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L573
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L579
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr "\"vertaling eigenaar\", omdat \"{username}\" geen geldige gebruikersnaam is"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L615
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L621
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "\"zin is een wees\", omdat het veld \"zin eigenaar\" is ingevuld met een gebruikersnaam"
 
 #. @translators: This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L624
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L630
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr "\"zin eigenaar\", omdat \"{username}\" geen geldige gebruikersnaam is"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L661
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L667
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr "“gelabeld als {tagName} omdat het een ongeldige labelnaam is"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L692
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L698
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
@@ -176,22 +176,22 @@ msgstr "\"behoort tot lijstnummer {listId}\", omdat lijst {listId} privé is of 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L730
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L736
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr "\"Eigendom van een moedertaalspreker (naar eigen zeggen)\", omdat het criterium \"eigendom van: {username}\" is ingesteld, terwijl hij of zij naar eigen zeggen niet een moedertaalspreker is van de taal waarin je zoekt."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1123
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1129
 msgid "You are not allowed to change the license of this sentence."
 msgstr "Je mag de licentie van deze zin niet wijzigen. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1135
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "De licentie van de zin is gewijzigd in “{newLicense}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1134
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1140
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "Kan de licentie niet wijzigen in “{newLicense}”, omdat:"
 
@@ -199,16 +199,16 @@ msgstr "Kan de licentie niet wijzigen in “{newLicense}”, omdat:"
 msgid "You do not have permission to view this list."
 msgstr "Je hebt geen toestemming om deze lijst te bekijken."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L292
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L294
 msgid "The sentence could not be added to the list."
 msgstr "De zin kon niet aan de lijst worden toegevoegd"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L478
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L480
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L512
 msgid "You do not have permission to download this list."
 msgstr "Je mag deze zin niet downloaden."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L228
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
@@ -482,47 +482,47 @@ msgstr "naamloze lijst"
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L106
 msgid "This is not a valid license."
 msgstr "Dit is geen geldige licentie."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L113
 msgid "This sentence is already under that license."
 msgstr "Deze zin valt al onder die licentie."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L166
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L169
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
 msgstr "De zin moet origineel zijn (niet oorspronkelijk afkomstig van een vertaling)."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L177
 msgid "You're not the owner of this sentence."
 msgstr "Je bent niet de eigenaar van deze zin."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L184
 msgid "The owner of the sentence needs to be its original creator."
 msgstr "De eigenaar van deze zin moet de oorspronkelijke maker ervan zijn."
 
 #. @translators: This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L197
 msgid "You can only switch to a more permissive license."
 msgstr "Je kunt alleen overschakelen naar een meer tolerante licentie."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L452
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L209
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
-msgstr[0] "Toon {number} meer vertalingen"
-msgstr[1] "Toon meer {number} vertalingen"
+msgstr[0] "Toon nog 1 vertaling"
+msgstr[1] "Toon {number} meer vertalingen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -656,7 +656,7 @@ msgstr "Labels die je moet kennen"
 msgid ""
 "The community has come up with several \"utility tags\" to improve the "
 "quality and reliability of sentences."
-msgstr "De community heeft een aantal \"functionele labels\" verzonnen om de kwaliteit en betrouwbaarheid van zinnen te vergroten."
+msgstr "De gemeenschap heeft een aantal \"functionele labels\" verzonnen om de kwaliteit en betrouwbaarheid van zinnen te vergroten."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
@@ -1093,14 +1093,14 @@ msgstr "We hebben onze <a href=\"{termsOfUse}\">Gebruiksvoorwaarden</a> geüpdat
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L64
 msgid "Tatoeba coding event"
-msgstr ""
+msgstr "Tatoeba's coderingsevenement"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L66
 msgid ""
 "In order to get more developers involved in Tatoeba and have some fun at the"
 " same time, we are organizing a coding event. If this sounds interesting, "
 "please fill up <a href=\"{}\">our survey</a>."
-msgstr ""
+msgstr "Om meer ontwikkelaars bij Tatoeba te betrekken en tegelijkertijd plezier te hebben, organiseren we een coderingsevenement. Als dit interessant klinkt, vul dan<a href=\"{}\"> onze vragenlijst in</a>.\n \n "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L70
 msgid ""
@@ -1108,7 +1108,7 @@ msgid ""
 "href=\"{}\">guide for contributing as a developer</a> or just <a "
 "href=\"{}\">contact us</a>. We are an open source project and we welcome "
 "everyone!"
-msgstr ""
+msgstr "Tot dan, als je mee wilt doen, moet je onze<a href=\"{}\"> gids voor bijdragen als ontwikkelaar</a> lezen of <a href=\"{}\">contact met ons opnemen</a>. We zijn een open source project en we verwelkomen iedereen!\n \n "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L89
 msgid ""
@@ -1520,7 +1520,7 @@ msgstr "De inhoud van dit bericht is in strijd met <a href=\"{}\">onze regels</a
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L475
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L412
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L705
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L160
 msgid "Cancel"
 msgstr "Annuleren"
@@ -1586,7 +1586,7 @@ msgstr "Nog geen zinnen toegevoegd"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L497
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L389
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L92
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L704
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L706
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L159
 msgid "OK"
 msgstr "OK"
@@ -2521,24 +2521,24 @@ msgstr "Nog vragen?"
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>. In general, we answer quickly."
-msgstr ""
+msgstr "Als je vragen of verzoeken hebt, kun je <a href=\"{}\"> contact met ons opnemen</a>. In het algemeen geven we snel antwoord.\n \n "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L175
 msgid ""
 "Contains all the sentences in the selected language. Each sentence is "
 "associated with a unique id and an <a href=\"{}\">ISO 639-3</a> language "
 "code."
-msgstr ""
+msgstr "Bevat alle zinnen in de geselecteerde taal. Elke zin is gekoppeld aan een unieke id en een<a href=\"{}\"> ISO 639-3</a> taalcode."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L189
 msgid "Detailed Sentences"
-msgstr ""
+msgstr "Gedetailleerde zinnen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L203
 msgid ""
 "Contains additional fields for each sentence (owner name, date "
 "created/modified)."
-msgstr ""
+msgstr "Bevat extra velden voor elke zin (eigenaarsnaam, aanmaakdatum/wijziging)."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L219
 msgid "Sentences (CC0)"
@@ -2811,7 +2811,7 @@ msgstr "We verzamelen zinnen en hun vertalingen. Je kan ons helpen door te verta
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L86
 msgid "Join the community"
-msgstr "Word lid van de community"
+msgstr "Word lid van de gemeenschap"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L43
 msgid "Page temporarily disabled"
@@ -4590,15 +4590,15 @@ msgstr "Toon gedetaileerde informatie over de zin"
 msgid "Translation:"
 msgstr "Vertaling:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L826
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L828
 msgid "This sentence is original and was not derived from translation."
 msgstr "Deze zin is origineel en is geen vertaling van een andere."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L838
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L840
 msgid "This sentence was initially added as a translation of sentence #{n}."
 msgstr "Deze zin werd oorspronkelijk toegevoegd als vertaling van zin {n}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L843
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L845
 msgid ""
 "We cannot determine yet whether this sentence was initially derived from "
 "translation or not."
