@@ -513,8 +513,10 @@ class SentencesController extends AppController
         $ignored = array();
 
         /* Check if we got valid languages */
-        $to = LanguagesLib::languageExists($to) ? $to : 'und';
         $from = LanguagesLib::languageExists($from) ? $from : 'und';
+        if ($to != 'none') {
+            $to = LanguagesLib::languageExists($to) ? $to : 'und';
+        }
 
         /* Convert simple search to advanced search parameters */
         if (!is_null($this->request->getQuery('to'))
