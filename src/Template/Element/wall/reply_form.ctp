@@ -12,7 +12,7 @@ $editUrl = $this->Url->build([
 
 <a id="reply-form-<?= $parentId ?>"></a>
 <md-card id="form-<?= $parentId ?>" ng-hide="true"
-         class="wall comment form" ng-cloak>
+         class="wall form reply" ng-cloak>
 
     <md-card-header>
         <md-card-avatar>
