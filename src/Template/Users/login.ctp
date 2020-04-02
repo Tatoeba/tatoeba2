@@ -101,7 +101,7 @@ echo $this->Form->create(
         ng-false-value='0'
         ng-true-value='1' ng-init='rememberLogin = 0'
         class='md-primary'>
-        <label><?= __('Remember me') ?></label>
+        <?= __('Remember me') ?>
     </md-checkbox>
     <?php
     echo $this->Form->checkbox(
