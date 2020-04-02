@@ -139,6 +139,8 @@
         vm.hide = hide;
         vm.saveTranscription = saveTranscription;
         vm.saveLink = saveLink;
+        vm.setReview = setReview;
+        vm.resetReview = resetReview;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -681,6 +683,19 @@
 
         function getNumberOfTranslations() {
             return allDirectTranslations.length + allIndirectTranslations.length;
+        }
+        function setReview(value) {
+            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
+                vm.sentence.current_user_review =  parseInt(response.data.result.correctness);
+            });
+        }
+
+        function resetReview() {
+            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
+                if (response.data.result) {
+                    vm.sentence.current_user_review = null;
+                }
+            });
         }
     }
 
