@@ -435,7 +435,7 @@ class SentencesHelper extends AppHelper
     ) {
         $user = $sentence->user;
         $sentenceId = $sentence->id;
-        $canTranslate = $sentence->correctness >= 0;
+        $canTranslate = $sentence->correctness >= 0 && $sentence->license != '';
         $hasAudio = isset($sentence->audios) && count($sentence->audios);
         $script = $sentence->script;
         $isFavorited = isset($sentence->favorites_users)

@@ -2,7 +2,8 @@
      ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.permissions)">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>
-            <md-button class="md-icon-button" ng-click="vm.translate(vm.sentence.id)" ng-disabled="vm.sentence.correctness === -1">
+            <md-button class="md-icon-button" ng-click="vm.translate(vm.sentence.id)"
+                ng-disabled="vm.sentence.correctness === -1 || vm.sentence.license === ''">
                 <md-icon>translate</md-icon>
                 <md-tooltip><?= __('Translate') ?></md-tooltip>
             </md-button>
