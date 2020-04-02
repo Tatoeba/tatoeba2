@@ -66,11 +66,17 @@ class LicenseHelper extends AppHelper
     /**
      * Get the options for a selection control
      *
+     * @param boolean $admin  Whether to get the options for regular users
+     *                        or for an admin
+     *
      * @return array
      **/
-    public function getLicenseOptions() {
+    public function getLicenseOptions($admin = false) {
         foreach ($this->validLicenses as $license) {
-            $keyToName[$license] = $this->getLicenseName($license, false);
+            if (!isset($this->licenses[$license]['admin_only']) ||
+                ($this->licenses[$license]['admin_only'] && $admin)) {
+                $keyToName[$license] = $this->getLicenseName($license, false);
+            }
         }
         return $keyToName;
     }

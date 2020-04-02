@@ -37,10 +37,10 @@ class LicenseHelperTest extends TestCase
     public function getLicenseNameProvider() {
         return [
             // helper, license, link, expected
-            ['SentenceLicense', '', true, 'No license'],
+            ['SentenceLicense', '', true, 'Unknown'],
             ['SentenceLicense', 'CC0 1.0', false, 'CC0'],
             ['SentenceLicense', 'CC0 1.0', true, '<a'],
-            ['AudioLicense', '', true, 'No license'],
+            ['AudioLicense', '', true, 'Unknown'],
             ['AudioLicense', 'CC BY 4.0', false, 'CC BY 4.0'],
             ['AudioLicense', 'CC BY 4.0', true, '<a'],
         ];
@@ -57,17 +57,19 @@ class LicenseHelperTest extends TestCase
 
     public function getLicenseOptionsProvider() {
         return [
-            // helper, expected
-            ['SentenceLicense', 2],
-            ['AudioLicense', 5],
+            // helper, admin, expected
+            ['SentenceLicense', false, 2],
+            ['SentenceLicense', true, 3],
+            ['AudioLicense', false, 4],
+            ['AudioLicense', true, 5],
         ];
     }
 
     /**
      * @dataProvider getLicenseOptionsProvider
      */
-    public function testGetLicenseOptionsProvider($helper, $expected) {
-        $options = $this->$helper->getLicenseOptions();
+    public function testGetLicenseOptionsProvider($helper, $admin, $expected) {
+        $options = $this->$helper->getLicenseOptions($admin);
         $this->assertEquals($expected, count($options));
     }
 

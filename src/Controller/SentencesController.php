@@ -30,6 +30,7 @@ use App\Controller\AppController;
 use App\Model\CurrentUser;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
+use App\Lib\Licenses;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
@@ -1130,15 +1131,16 @@ class SentencesController extends AppController
         } else {
             $errors = $sentence->getError('license');
             $savedSentence = $this->Sentences->save($sentence);
+            $licenseName = Licenses::allLicenses()[$newLicense]['name'] ?? $newLicense;
             if ($savedSentence) {
                 $this->Flash->set(format(
-                    __('The license of the sentence has been changed to “{newLicense}”.'),
-                    compact('newLicense')
+                    __('The license of the sentence has been changed to “{licenseName}”.'),
+                    compact('licenseName')
                 ));
             } elseif (!empty($errors)) {
                 $message = format(
-                    __('Unable to change the license to “{newLicense}” because:'),
-                    compact('newLicense')
+                    __('Unable to change the license to “{licenseName}” because:'),
+                    compact('licenseName')
                 );
                 $params = compact('errors');
                 $this->Flash->set($message, compact('params'));

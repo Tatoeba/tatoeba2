@@ -20,7 +20,7 @@ namespace App\Lib;
 
 class Licenses {
 
-    const forSentences = ['CC0 1.0', 'CC BY 2.0 FR'];
+    const forSentences = ['', 'CC0 1.0', 'CC BY 2.0 FR'];
     const forAudio = ['', 'CC BY 4.0', 'CC BY-NC 4.0', 'CC BY-SA 4.0', 'CC BY-NC-ND 3.0'];
 
     public static function allLicenses() {
@@ -28,7 +28,10 @@ class Licenses {
 
         if (empty($licenses)) {
             $licenses = [
-                '' => ['name' => __('No license for offsite use')],
+                '' => [
+                    'name' => __('Unknown license'),
+                    'admin_only' => true,
+                ],
                 /* @translators: refers to the license used for sentence or audio recordings */
                 'Public domain' => ['name' => __('Public domain')],
                 'CC0 1.0' => [
