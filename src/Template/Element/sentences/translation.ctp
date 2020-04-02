@@ -43,6 +43,13 @@ $sentenceBaseUrl = $this->Url->build([
         </md-tooltip>
     </div>
 
+    <div class="indicator" ng-if="translation.isDuplicate">
+        <md-icon>warning</md-icon>
+        <md-tooltip>
+            <?= __('This translation is a duplicate of an existing sentence. Only the link was created.'); ?>
+        </md-tooltip>
+    </div>
+
     <md-button class="md-icon-button" ng-if="translation.editable" ng-click="vm.editTranslation(translation)">
         <md-icon>edit</md-icon>
         <md-tooltip>

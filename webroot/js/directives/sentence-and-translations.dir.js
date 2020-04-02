@@ -87,6 +87,7 @@
         var timeout;
         var listsDataService;
         var editableTranslations = [];
+        var duplicateTranslations = [];
         var translationLang;
 
         vm.menu = {};
@@ -328,7 +329,7 @@
                         initSentence(sentence);
                         if (translationLang === 'und') {
                             refreshTranslations(sentence.translations);
-                            updateEditableTranslations(translation, sentenceId);
+                            updateNewTranslationsInfo(translation, sentenceId);
                         } else {
                             allDirectTranslations.unshift(translation);
                             refreshTranslations();
@@ -648,12 +649,15 @@
             vm.expandableIcon = 'expand_less';
         }
 
-        function updateEditableTranslations(translation, sentenceId) {
-            if (translation.is_owned_by_current_user && !translation.isDuplicate) {
+        function updateNewTranslationsInfo(translation, sentenceId) {
+            if (translation.isDuplicate) {
+                duplicateTranslations.push(translation.id);
+            } else if (translation.is_owned_by_current_user) {
                 editableTranslations.push(translation.id);
             }
             allDirectTranslations.forEach(function(item) {
                 item.editable = editableTranslations.indexOf(item.id) > -1;
+                item.isDuplicate = duplicateTranslations.indexOf(item.id) > -1;;
                 item.parentId = sentenceId;
             });
         }
