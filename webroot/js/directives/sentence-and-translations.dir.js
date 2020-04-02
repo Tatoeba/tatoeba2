@@ -87,6 +87,7 @@
         var timeout;
         var listsDataService;
         var editableTranslations = [];
+        var translationLang;
 
         vm.menu = {};
         vm.inProgress = false;
@@ -183,7 +184,7 @@
 
         /////////////////////////////////////////////////////////////////////////
 
-        function init(langs, sentence, directTranslations, indirectTranslations) {
+        function init(langs, sentence, directTranslations, indirectTranslations, translationLanguage) {
             vm.userLanguages = langs;
             vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
@@ -196,6 +197,7 @@
                 initTranscriptions(translation);
             });
             showFewerTranslations();
+            translationLang = translationLanguage ? translationLanguage : 'und';
         }
 
         function initMenu(isExpanded, menu) {
@@ -319,12 +321,18 @@
                         selectLang: vm.newTranslation.lang,
                         value: vm.newTranslation.text
                     };
-                    $http.post(rootUrl + '/sentences/save_translation', data).then(function(result) {
+                    var url = rootUrl + '/sentences/save_translation?translationLang=' + translationLang;
+                    $http.post(url, data).then(function(result) {
                         var translation = result.data.translation;
                         var sentence = result.data.sentence;
                         initSentence(sentence);
-                        refreshTranslations(sentence.translations);
-                        updateEditableTranslations(translation, sentenceId);
+                        if (translationLang === 'und') {
+                            refreshTranslations(sentence.translations);
+                            updateEditableTranslations(translation, sentenceId);
+                        } else {
+                            allDirectTranslations.unshift(translation);
+                            refreshTranslations();
+                        }
                         vm.newTranslation = {};
                         show('translations');
                         vm.inProgress = false;
@@ -618,7 +626,11 @@
         }
         
         function saveLink(action, translation) {
-            $http.get(rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id).then(function(result) {
+            var url = rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id;
+            if (translationLang) {
+                url += '?translationLang=' + translationLang;
+            }
+            $http.get(url).then(function(result) {
                 var sentence = result.data.sentence;
                 initSentence(sentence);
                 refreshTranslations(sentence.translations);
@@ -626,8 +638,10 @@
         }
 
         function refreshTranslations(translations) {
-            allDirectTranslations = translations[0];
-            allIndirectTranslations = translations[1];
+            if (translations) {
+                allDirectTranslations = translations[0];
+                allIndirectTranslations = translations[1];
+            }
             
             showAllTranslations();
             vm.isExpanded = true;

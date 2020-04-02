@@ -87,7 +87,8 @@ class LinksController extends AppController
 
     private function _returnSentenceAndTranslations($sentenceId) {
         $this->loadModel('Sentences');
-        $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true]);
+        $translationLang = $this->request->getQuery('translationLang');
+        $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
         $this->set('sentence', $sentence);
         $this->set('_serialize', ['sentence']);
         $this->RequestHandler->renderAs($this, 'json');

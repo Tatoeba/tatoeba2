@@ -218,6 +218,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             'sentenceAndTranslationsParams' => [
                 'sentence' => $sentence,
                 'translations' => $sentence->translations,
+                'translationLang' => $translationsLang,
                 'user' => $sentence->user
             ],
             'sentenceId' => $sentence->id,

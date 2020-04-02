@@ -480,6 +480,7 @@ class SentencesController extends AppController
             );
 
             if ($translation) {
+                $translation->isDirect = true;
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
             }
@@ -487,7 +488,9 @@ class SentencesController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
-            $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true]);
+            $translationLangFilter = $this->request->getQuery('translationLang');
+            $includeTranslations = $translationLangFilter == 'und';
+            $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
 
             $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);

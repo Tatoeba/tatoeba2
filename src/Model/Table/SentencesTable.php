@@ -778,11 +778,12 @@ class SentencesTable extends Table
      *
      * @return ResultSet Information about the sentence.
      */
-    public function getSentenceWith($id, $what = [])
+    public function getSentenceWith($id, $what = [], $translationLang = null)
     {
         return $this->find('filteredTranslations', [
                 'nativeMarker' => CurrentUser::getSetting('native_indicator'),
                 'hideFields' => $this->hideFields(),
+                'translationLang' => $translationLang
             ])
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
