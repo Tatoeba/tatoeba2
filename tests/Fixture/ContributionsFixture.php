@@ -1768,5 +1768,61 @@ class ContributionsFixture extends TestFixture {
 			'type' => 'link',
 			'id' => '123'
 		),
+		array(
+			'sentence_id' => '55',
+			'sentence_lang' => NULL,
+			'translation_id' => '57',
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '',
+			'action' => 'delete',
+			'user_id' => '7',
+			'datetime' => '2018-04-12 12:13:19',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '124'
+		),
+		array(
+			'sentence_id' => '57',
+			'sentence_lang' => 'jpn',
+			'translation_id' => '55',
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '',
+			'action' => 'delete',
+			'user_id' => '7',
+			'datetime' => '2018-04-12 12:13:19',
+			'ip' => '127.0.0.1',
+			'type' => 'link',
+			'id' => '125'
+		),
+		array(
+			'sentence_id' => '56',
+			'sentence_lang' => 'jpn',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => '電話借りてもいい？',
+			'action' => 'delete',
+			'user_id' => '4',
+			'datetime' => '2018-04-12 12:23:19',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '126'
+		),
+		array(
+			'sentence_id' => '29',
+			'sentence_lang' => 'eng',
+			'translation_id' => NULL,
+			'translation_lang' => NULL,
+			'script' => NULL,
+			'text' => 'The log of this sentence shows two creation records.',
+			'action' => 'delete',
+			'user_id' => '4',
+			'datetime' => '2018-04-12 12:23:19',
+			'ip' => '127.0.0.1',
+			'type' => 'sentence',
+			'id' => '127'
+		),
 	);
 }

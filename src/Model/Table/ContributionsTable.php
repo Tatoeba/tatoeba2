@@ -208,7 +208,7 @@ class ContributionsTable extends Table
 
         $query = $this->excludeBots($query);
 
-        if ($lang == 'und'|| empty($lang)) {
+        if ($lang == 'und' || empty($lang)) {
             $this->setTable('last_contributions');
         } else {
             $query = $query->where(['sentence_lang' => $lang]);
