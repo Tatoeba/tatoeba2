@@ -35,18 +35,21 @@
             </md-button>
         </div>
 
-        <div ng-if="vm.isMenuExpanded && vm.menu.canReview">
-            <md-button class="md-icon-button" ng-disabled="true">
-                <md-icon>check_circle</md-icon>
-                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
+        <div ng-if="vm.isMenuExpanded && vm.menu.canReview" class="correctness-info">
+            <md-button class="md-icon-button">
+                <md-icon ng-class="{'ok': vm.sentence.current_user_review === 1}">check_circle</md-icon>
+                <md-tooltip ng-if="vm.sentence.current_user_review !== 1"><?= __('Mark as "OK"') ?></md-tooltip>
+                <md-tooltip ng-if="vm.sentence.current_user_review === 1"><?= __('Unmark sentence') ?></md-tooltip>
             </md-button>
-            <md-button class="md-icon-button" ng-disabled="true">
-                <md-icon>help</md-icon>
-                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
+            <md-button class="md-icon-button">
+                <md-icon ng-class="{'unsure': vm.sentence.current_user_review === 0}">help</md-icon>
+                <md-tooltip ng-if="vm.sentence.current_user_review !== 0"><?= __('Mark as "unsure"') ?></md-tooltip>
+                <md-tooltip ng-if="vm.sentence.current_user_review === 0"><?= __('Unmark sentence') ?></md-tooltip>
             </md-button>
-            <md-button class="md-icon-button" ng-disabled="true">
-                <md-icon>error</md-icon>
-                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
+            <md-button class="md-icon-button">
+                <md-icon ng-class="{'not-ok': vm.sentence.current_user_review === -1}">error</md-icon>
+                <md-tooltip ng-if="vm.sentence.current_user_review !== -1"><?= __('Mark as "not OK"') ?></md-tooltip>
+                <md-tooltip ng-if="vm.sentence.current_user_review === -1"><?= __('Unmark sentence') ?></md-tooltip>
             </md-button>
         </div>
 
