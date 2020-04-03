@@ -1134,13 +1134,13 @@ class SentencesController extends AppController
             $licenseName = Licenses::allLicenses()[$newLicense]['name'] ?? $newLicense;
             if ($savedSentence) {
                 $this->Flash->set(format(
-                    __('The license of the sentence has been changed to “{licenseName}”.'),
-                    compact('licenseName')
+                    __('The license of the sentence has been changed to “{newLicense}”.'),
+                    ['newLicense' => $licenseName]
                 ));
             } elseif (!empty($errors)) {
                 $message = format(
-                    __('Unable to change the license to “{licenseName}” because:'),
-                    compact('licenseName')
+                    __('Unable to change the license to “{newLicense}” because:'),
+                    ['newLicense' => $licenseName]
                 );
                 $params = compact('errors');
                 $this->Flash->set($message, compact('params'));
