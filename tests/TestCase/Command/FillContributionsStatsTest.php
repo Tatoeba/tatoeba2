@@ -71,6 +71,15 @@ class FillContributionsStatsCommand extends TestCase {
         $this->assertEquals(0, $oldContributionStats->count());
     }
 
+    function testExecute_paramsGiven_statsOutOfRangeAreNotErased() {
+        $before = $this->ContributionsStats->find()->where(['date' => '2016-12-17'])->count();
+
+        $this->exec("fill_contributions_stats -f 2016-06-19 -t 2016-12-16");
+
+        $after = $this->ContributionsStats->find()->where(['date' => '2016-12-17'])->count();
+        $this->assertEquals($before, $after);
+    }
+
     function testExecute_defaultParams_numberOfInsertedSentencesIsCorrect() {
         $this->exec("fill_contributions_stats");
 

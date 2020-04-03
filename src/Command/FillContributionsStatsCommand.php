@@ -89,7 +89,7 @@ class FillContributionsStatsCommand extends Command
 
         // Truncate table and Fill
         $contributionsStats = TableRegistry::getTableLocator()->get('ContributionsStats');
-        $contributionsStats->deleteAll(['date >=' => $from, 'date <=' => $lastDay->format('Y-m-d')]);
+        $contributionsStats->deleteAll(['date >=' => $from, 'date <' => $lastDay->format('Y-m-d')]);
         foreach ($stats as $date => $dailyStat) {
             foreach ($dailyStat as $unitRecord) {
                 if ($unitRecord[2] != 0) {
