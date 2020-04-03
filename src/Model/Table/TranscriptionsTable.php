@@ -424,6 +424,8 @@ class TranscriptionsTable extends Table
         return $this->find()->where([
             'Transcriptions.sentence_id' => $sentenceId,
             'Transcriptions.script' => $script
+        ])->contain([
+            'Users' => ['fields' => ['username']]
         ])->first();
     }
 

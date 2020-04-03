@@ -1324,8 +1324,11 @@ div.hideLink {
 }
 
 .sentence-and-translations .sentence {
-    font-size: 24px;
     padding: 10px;
+}
+
+.sentence-and-translations .sentence .text {
+    font-size: 24px;
 }
 
 .sentence-and-translations .translation {
@@ -1408,6 +1411,22 @@ div.hideLink {
 form .language-icon-div {
     padding: 10px 10px 0 10px;
 }
+.sentence-and-translations .sentence .transcription .icon {
+    margin: 0 8px 0 19px;
+}
+.sentence-and-translations .sentence .transcription .text {
+    color: #A1A1A1;
+    font-size: 24px;
+}
+
+.sentence-and-translations .translation .transcription .icon {
+    margin: 0 20px 0 40px;
+}
+.sentence-and-translations .translation .transcription .text {
+    color: #A1A1A1;
+    padding: 0;
+}
+
 
 /*
  * --------------------------------------------------------------------

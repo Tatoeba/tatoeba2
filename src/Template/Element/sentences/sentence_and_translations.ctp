@@ -105,19 +105,26 @@ $sentenceUrl = $this->Url->build([
                 echo $this->element('sentences/sentence_menu', [
                     'expanded' => $menuExpanded
                 ]);
+            } else {
+                echo $this->element('sentences/transcription_button');
             }
             ?>
         </div>
 
-        <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}"
-             layout="row" layout-align="start center" ng-if="!vm.visibility.sentence_form">
+        <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}" ng-if="!vm.visibility.sentence_form">
+            <div layout="row" layout-align="start center" flex>
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
             </div>
             
             <div class="text" flex dir="{{vm.sentence.dir}}" lang="{{vm.sentence.lang_tag}}">
                 <span ng-if="vm.sentence.highlightedText" ng-bind-html="vm.sentence.highlightedText"></span>
-                <span ng-if="!vm.sentence.highlightedText">{{vm.sentence.text}}</span>
+                <span ng-if="!vm.sentence.highlightedText">
+                    <span ng-if="vm.sentence.furigana" ng-bind-html="vm.sentence.furigana.html">
+                        <md-tooltip md-direction="top">{{vm.sentence.furigana.info_message}}</md-tooltip>
+                    </span>
+                    <span ng-if="!vm.sentence.furigana">{{vm.sentence.text}}</span>
+                </span>
             </div>
 
             <div class="indicator" ng-if="vm.sentence.user.is_native === '1'">
@@ -147,6 +154,9 @@ $sentenceUrl = $this->Url->build([
                 <md-icon>info</md-icon>
                 <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
             </md-button>
+            </div>
+            
+            <?= $this->element('sentences/transcriptions'); ?>
         </div>
     </div>
 

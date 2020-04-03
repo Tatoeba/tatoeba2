@@ -107,11 +107,13 @@
             'list_form': false
         };
         vm.selectedLangForRandom = null;
+        vm.hasHiddenTranscriptions = false;
 
         vm.init = init;
         vm.initMenu = initMenu;
         vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
+        vm.expandTranslations = expandTranslations;
         vm.toggleMenu = toggleMenu;
         vm.playAudio = playAudio;
         vm.getAudioAuthor = getAudioAuthor;
@@ -131,6 +133,7 @@
         vm.listType = 'of_user';
         vm.show = show;
         vm.hide = hide;
+        vm.saveTranscription = saveTranscription;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -183,7 +186,13 @@
             vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
             allDirectTranslations = directTranslations ? directTranslations : [];
+            allDirectTranslations.forEach(function(translation) {
+                initTranscriptions(translation);
+            });
             allIndirectTranslations = indirectTranslations ? indirectTranslations : [];
+            allIndirectTranslations.forEach(function(translation) {
+                initTranscriptions(translation);
+            });
             showFewerTranslations();
         }
 
@@ -232,6 +241,12 @@
             }
         }
 
+        function expandTranslations() {
+            vm.isExpanded = true;
+            vm.expandableIcon = 'expand_less';
+            showAllTranslations();
+        }
+
         function showAllTranslations() {
             vm.directTranslations = allDirectTranslations;
             vm.indirectTranslations = allIndirectTranslations;
@@ -248,6 +263,9 @@
 
         function toggleMenu() {
             vm.isMenuExpanded = !vm.isMenuExpanded;
+            if (vm.isMenuExpanded) {
+                expandTranslations();
+            }
         }
 
         function playAudio($event) {
@@ -337,13 +355,28 @@
         }
 
         function editSentence() {
-            vm.inProgress = true;
-
-            saveSentence(vm.sentence).then(function(result) {
-                hide('sentence_form');
-                vm.inProgress = false;
-                initSentence(result.data.result);
-            });
+            var sentenceChanged = oldSentence.text !== vm.sentence.text || oldSentence.lang !== vm.sentence.lang;
+            var transcriptionChanged = false;
+            if (vm.sentence.transcriptions) {
+                var oldTranscription = getEditableTranscription(oldSentence);
+                var transcription = getEditableTranscription(vm.sentence);
+                transcriptionChanged = oldTranscription.markup !== transcription.markup;
+            }
+            
+            if (sentenceChanged) {
+                vm.inProgress = true;
+                saveSentence(vm.sentence).then(function(result) {
+                    if (transcriptionChanged) {
+                        saveTranscription(transcription, result.data.result, 'save');
+                    } else {
+                        initSentence(result.data.result);
+                        hide('sentence_form');
+                        vm.inProgress = false;
+                    }
+                });
+            } else if (transcriptionChanged) {
+                saveTranscription(transcription, vm.sentence, 'save');
+            }
         }
 
         function saveSentence(sentence) {
@@ -359,6 +392,21 @@
             data.lang = data.lang ? data.lang : 'unknown';
             oldSentence = data;
             vm.sentence = angular.copy(data);
+            initTranscriptions(vm.sentence);
+        }
+
+        function initTranscriptions(sentence) {
+            var transcriptions = sentence.transcriptions;
+            if (sentence.lang === 'jpn' && transcriptions) {
+                sentence.furigana = transcriptions.find(function(item) {
+                    return !item.needsReview && item.type === 'altscript';
+                });
+            }
+            transcriptions.forEach(function(item) {
+                if (item.needsReview) {
+                    vm.hasHiddenTranscriptions = true;
+                }
+            });
         }
 
         function favorite() {
@@ -491,6 +539,80 @@
                 return item.is_mine === '1' || item.isLastSelected;
             }).slice(0, 10);
             vm.listType = 'of_user';
+        }
+
+        function saveTranscription(transcription, sentence, action) {
+            var lang = sentence.lang + '-' + transcription.script;
+            var text = transcription.markup;
+            var url = rootUrl + '/transcriptions/' + action + '/' + sentence.id + '/' + transcription.script;
+            var data = {
+                value: markupToStored(lang, text)
+            };
+            var i = sentence.transcriptions.findIndex(function(item) {
+                return item.id === transcription.id;
+            });
+
+            vm.inProgress = true;
+            $http.post(url, data).then(function(result) {
+                transcription = result.data.result;
+                hide('sentence_form');
+            }, function(error) {
+                if (error.data) {
+                    if (error.status === 403) {
+                        transcription.errors = [error.data];
+                    } else {
+                        transcription.errors = error.data;
+                    }
+                } else {
+                    transcription.errors = [error.statusText];
+                }
+            }).finally(function() {
+                sentence.transcriptions.splice(i, 1);
+                sentence.transcriptions.push(transcription);
+                initTranscriptions(sentence);
+                vm.inProgress = false;
+            });
+        }
+
+        function markupToStored(lang, text) {
+            if (lang === 'jpn-Hrkt') {
+                // Converts the kanji｛reading｝ notation into [kanji|reading]
+                var hiragana = 'ぁ-ゖーゝゞ'; // \p{Hiragana}
+                var katakana = 'ァ-ヺーヽヾ'; // \p{Katakana}
+                var punct = '　-〄〇-〠・'; // 。、「」etc.
+                punct += '！＂＃＇（），．／：；？［＼］＾｀～｟｠'; // fullwitdh forms
+                punct += ' '; // space
+                var regex = '([^｝' + hiragana + katakana + punct + ']*)｛([^｝]*)｝';
+                text = text.replace(uniRegExp(regex, 'g'), '[$1|$2]');
+                text = text.replace(uniRegExp('｜', 'g'),  '|');
+            }
+            return text;
+        }
+
+        function uniRegExp(regex, flags) {
+            return new RegExp(escapeUnicodeString(regex), flags);
+        }
+
+        function escapeUnicodeChar(c) {
+            var code = c.charCodeAt(0);
+            if (code >= 128) {
+               c = '\\u' + ('0000' + c.charCodeAt(0).toString(16)).slice(-4);
+            }
+            return c;
+        }
+
+        function escapeUnicodeString(input) {
+            var output = '';
+            for (var i = 0, l = input.length; i < l; i++) {
+                output += escapeUnicodeChar(input.charAt(i));
+            }
+            return output;
+        }
+
+        function getEditableTranscription(sentence) {
+            return sentence.transcriptions.find(function(item) {
+                return item.markup;
+            });
         }
     }
 

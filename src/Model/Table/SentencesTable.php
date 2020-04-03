@@ -459,9 +459,13 @@ class SentencesTable extends Table
     {
         $user = $sentence->user;
         $userId = $user ? $user->id : null;
+        $editableTranscription = array_filter($sentence->transcriptions, function($transcription) {
+            return $transcription->markup;
+        });
 
         return [
             'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
+            'canTranscribe' => (bool)$editableTranscription,
             'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
             'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
             'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),
@@ -681,14 +685,15 @@ class SentencesTable extends Table
            'Users' => ['fields' => ['username']],
            'fields' => ['external', 'sentence_id'],
         ];
+        $transcriptionsContainment =  [
+            'Users' => ['fields' => ['username']],
+        ];
         $contain = [
             'Users' => [
                 'fields' => ['id', 'username', 'role', 'level']
             ],
             'Audios' => $audioContainment,
-            'Transcriptions' => [
-                'Users' => ['fields' => ['username']],
-            ],
+            'Transcriptions' => $transcriptionsContainment,
         ];
 
         if (CurrentUser::isMember()) {
@@ -713,8 +718,10 @@ class SentencesTable extends Table
                 'IndirectTranslations' => [
                     'fields' => $translationFields,
                     'Audios' => $audioContainment,
+                    'Transcriptions' => $transcriptionsContainment,
                 ],
                 'Audios' => $audioContainment,
+                'Transcriptions' => $transcriptionsContainment,
             ];
         }
 
