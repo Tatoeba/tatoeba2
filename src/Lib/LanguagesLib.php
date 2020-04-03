@@ -551,15 +551,15 @@ class LanguagesLib
                 'kpv' => __d('languages', 'Komi-Zyrian'),
                 'cmo' => __d('languages', 'Central Mnong'),
                 'koi' => __d('languages', 'Komi-Permyak'),
-                'ike' => __d('languages', 'Inuktitut'), 
-                'kab' => __d('languages', 'Kabyle'), 
-                'run' => __d('languages', 'Kirundi'), 
+                'ike' => __d('languages', 'Inuktitut'),
+                'kab' => __d('languages', 'Kabyle'),
+                'run' => __d('languages', 'Kirundi'),
                 'aln' => __d('languages', 'Gheg Albanian'),
                 'akl' => __d('languages', 'Aklanon'),
-                'mnc' => __d('languages', 'Manchu'), 
+                'mnc' => __d('languages', 'Manchu'),
                 'kas' => __d('languages', 'Kashmiri'),
                 'otk' => __d('languages', 'Old Turkish'),
-                'aoz' => __d('languages', 'Uab Meto'), 
+                'aoz' => __d('languages', 'Uab Meto'),
                 'shy' => __d('languages', 'Tachawit'),
                 'fkv' => __d('languages', 'Kven Finnish'),
                 'rap' => __d('languages', 'Rapa Nui'),
@@ -586,6 +586,7 @@ class LanguagesLib
                 'bis' => __d('languages', 'Bislama'),
                 'stq' => __d('languages', 'Saterland Frisian'),
                 'fro' => __d('languages', 'Old French'),
+                'syc' => __d('languages', 'Syriac'),
             );
         }
         return $languages;
@@ -650,6 +651,7 @@ class LanguagesLib
             "div",
             "otk",
             "tmr",
+            "syc",
         );
 
         $autoLangs = array(
