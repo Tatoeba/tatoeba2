@@ -28,15 +28,12 @@ class LicenseHelper extends AppHelper
         'Html',
     );
 
-    /* Contains data for all licenses used on Tatoeba */
+    /**
+     * The licenses used in the current context (sentences or audio files)
+     *
+     * Should be set in SentenceLicenseHelper and AudioLicenseHelper
+     */
     protected $licenses = [];
-
-    /* The licenses used in the current context (sentences or audio files) */
-    protected $validLicenses = [];
-
-    public function initialize(array $config) {
-        $this->licenses = Licenses::allLicenses();
-    }
 
     /**
      * Get the displayable name for a license
@@ -48,12 +45,10 @@ class LicenseHelper extends AppHelper
      * @return string
      */
     public function getLicenseName($license, $link = true) {
-        if (empty($license) || !in_array($license, $this->validLicenses)) {
+        if (empty($license) || !isset($this->licenses[$license])) {
             $name = $this->licenses['']['name'];
-        } elseif (isset($this->licenses[$license]['name'])) {
-            $name = $this->licenses[$license]['name'];
         } else {
-            $name = $license;
+            $name = $this->licenses[$license]['name'] ?? $license;
         }
 
         if ($link && isset($this->licenses[$license]['url'])) {
@@ -72,10 +67,9 @@ class LicenseHelper extends AppHelper
      * @return array
      **/
     public function getLicenseOptions($admin = false) {
-        foreach ($this->validLicenses as $license) {
-            if (!isset($this->licenses[$license]['admin_only']) ||
-                ($this->licenses[$license]['admin_only'] && $admin)) {
-                $keyToName[$license] = $this->getLicenseName($license, false);
+        foreach ($this->licenses as $key => $license) {
+            if (!isset($license['admin_only']) || ($license['admin_only'] && $admin)) {
+                $keyToName[$key] = $this->getLicenseName($key, false);
             }
         }
         return $keyToName;

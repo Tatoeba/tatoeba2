@@ -37,10 +37,10 @@ class LicenseHelperTest extends TestCase
     public function getLicenseNameProvider() {
         return [
             // helper, license, link, expected
-            ['SentenceLicense', '', true, 'Unknown'],
+            ['SentenceLicense', '', true, 'Licensing'],
             ['SentenceLicense', 'CC0 1.0', false, 'CC0'],
             ['SentenceLicense', 'CC0 1.0', true, '<a'],
-            ['AudioLicense', '', true, 'Unknown'],
+            ['AudioLicense', '', true, 'No license'],
             ['AudioLicense', 'CC BY 4.0', false, 'CC BY 4.0'],
             ['AudioLicense', 'CC BY 4.0', true, '<a'],
         ];
@@ -60,7 +60,7 @@ class LicenseHelperTest extends TestCase
             // helper, admin, expected
             ['SentenceLicense', false, 2],
             ['SentenceLicense', true, 3],
-            ['AudioLicense', false, 4],
+            ['AudioLicense', false, 5],
             ['AudioLicense', true, 5],
         ];
     }
@@ -74,7 +74,7 @@ class LicenseHelperTest extends TestCase
     }
 
     public function testIsKnownLicense() {
-        $this->assertTrue($this->License->isKnownLicense('CC0 1.0'));
-        $this->assertFalse($this->License->isKnownLicense('ABC'));
+        $this->assertTrue($this->SentenceLicense->isKnownLicense('CC0 1.0'));
+        $this->assertFalse($this->SentenceLicense->isKnownLicense('ABC'));
     }
 }

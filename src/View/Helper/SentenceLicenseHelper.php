@@ -29,7 +29,6 @@ use App\Lib\Licenses;
 class SentenceLicenseHelper extends LicenseHelper
 {
     public function initialize(array $config) {
-        parent::initialize($config);
-        $this->validLicenses = Licenses::forSentences;
+        $this->licenses = Licenses::getSentenceLicenses();
     }
 }

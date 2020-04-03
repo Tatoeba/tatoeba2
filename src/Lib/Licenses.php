@@ -19,27 +19,17 @@
 namespace App\Lib;
 
 class Licenses {
-
-    const forSentences = ['', 'CC0 1.0', 'CC BY 2.0 FR'];
-    const forAudio = ['', 'CC BY 4.0', 'CC BY-NC 4.0', 'CC BY-SA 4.0', 'CC BY-NC-ND 3.0'];
-
-    public static function allLicenses() {
+    /**
+     * Return all valid audio licenses
+     *
+     * @return array
+     **/
+    public static function getAudioLicenses() {
         static $licenses = [];
 
         if (empty($licenses)) {
             $licenses = [
-                '' => [
-                    'name' => __('Unknown license'),
-                    'admin_only' => true,
-                ],
-                /* @translators: refers to the license used for sentence or audio recordings */
-                'Public domain' => ['name' => __('Public domain')],
-                'CC0 1.0' => [
-                    'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
-                ],
-                'CC BY 2.0 FR' => [
-                    'url' => 'https://creativecommons.org/licenses/by/2.0/fr/',
-                ],
+                '' => ['name' => __('No license for offsite use')],
                 'CC BY 4.0' => [
                     'url' => 'https://creativecommons.org/licenses/by/4.0/',
                 ],
@@ -54,6 +44,32 @@ class Licenses {
                 ],
             ];
         }
+        return $licenses;
+    }
+
+    /**
+     * Return all valid sentence licenses
+     *
+     * @return array
+     **/
+    public static function getSentenceLicenses() {
+        static $license = [];
+
+        if (empty($licenses)) {
+            $licenses = [
+                '' => [
+                    'name' => __('Licensing issue'),
+                    'admin_only' => true,
+                ],
+                'CC0 1.0' => [
+                    'url' => 'https://creativecommons.org/publicdomain/zero/1.0/',
+                ],
+                'CC BY 2.0 FR' => [
+                    'url' => 'https://creativecommons.org/licenses/by/2.0/fr/',
+                ],
+            ];
+        }
+
         return $licenses;
     }
 }

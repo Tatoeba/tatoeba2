@@ -1131,7 +1131,7 @@ class SentencesController extends AppController
         } else {
             $errors = $sentence->getError('license');
             $savedSentence = $this->Sentences->save($sentence);
-            $licenseName = Licenses::allLicenses()[$newLicense]['name'] ?? $newLicense;
+            $licenseName = Licenses::getSentenceLicenses()[$newLicense]['name'] ?? $newLicense;
             if ($savedSentence) {
                 $this->Flash->set(format(
                     __('The license of the sentence has been changed to “{newLicense}”.'),

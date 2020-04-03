@@ -98,10 +98,11 @@ class SentencesTable extends Table
         $validator
             ->notEmpty('text');
 
+        $sentenceLicenses = array_keys(Licenses::getSentenceLicenses());
         $validator
             ->add('license', [
                 'inList' => [
-                    'rule' => ['inList', Licenses::forSentences],
+                    'rule' => ['inList', $sentenceLicenses],
                     /* @translators: This string will be preceded by "Unable to
                     change the license to “{newLicense}” because:" */
                     'message' => __('This is not a valid license.')
