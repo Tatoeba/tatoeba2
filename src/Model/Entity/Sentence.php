@@ -67,9 +67,11 @@ class Sentence extends Entity
         $text = preg_replace('/[\p{Z}\p{Cc}]+$/u', '', $text);
         // Strip out any byte-order mark that might be present.
         $text = preg_replace("/\xEF\xBB\xBF/", '', $text);
-        // Replace any series of whitespace or control characters
+        // Replace all control characters and any series of whitespace
         // with a single space.
-        $text = preg_replace('/[\p{Z}\p{Cc}]{2,}/u', ' ', $text);
+        // The control characters must be replaced first, so that a possibly
+        // resulting series of whitespace is replaced too.
+        $text = preg_replace(['/\p{Cc}+/u', '/\p{Z}{2,}/u'], ' ', $text);
         // Normalize to NFC
         $text = \Normalizer::normalize($text, \Normalizer::FORM_C);
         // MySQL will truncate to a byte length of 1500, which may split
