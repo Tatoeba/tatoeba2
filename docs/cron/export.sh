@@ -30,6 +30,7 @@ tar -cjf sentences_with_audio.tar.bz2 sentences_with_audio.csv
 tar -cjf user_languages.tar.bz2 user_languages.csv
 tar -cjf tags_detailed.tar.bz2 tags_detailed.csv
 tar -cjf sentences_CC0.tar.bz2 sentences_CC0.csv
+tar -cjf transcriptions.tar.bz2 transcriptions.csv
 
 # Create per-language files for the different sentences files
 TEMP_DIR='/var/tmp/per_language'
@@ -51,6 +52,8 @@ split_file () {
 split_file sentences_detailed.csv
 split_file sentences.csv
 split_file sentences_CC0.csv
+split_file transcriptions.csv
 find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
 rm -rf $DL_DIR/per_language
+rm transcriptions.csv
 mv -f $TEMP_DIR $DL_DIR
