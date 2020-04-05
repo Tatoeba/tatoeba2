@@ -159,7 +159,7 @@ $menu = [
                 <p><?= $item['label'] ?></p>
             </md-list-item>
         <?php } else { ?>
-            <md-divider></md-divider>
+            <md-divider ng-show="expanded"></md-divider>
         <?php } ?>
     <?php } ?>
 </md-list>
