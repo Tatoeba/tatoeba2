@@ -203,6 +203,19 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertEquals($oldSentence->license, $newSentence->license);
     }
 
+    public function testEditLicense_cannotSwitchToAdminOnlyLicenseAsUser() {
+        $sentenceId = 48;
+        $sentences = TableRegistry::get('Sentences');
+        $oldSentence = $sentences->get($sentenceId);
+        $this->logInAs('contributor');
+        $this->post('/jpn/sentences/edit_license', [
+            'id' => $sentenceId,
+            'license' => '',
+        ]);
+        $newSentence = $sentences->get($sentenceId);
+        $this->assertEquals($oldSentence->license, $newSentence->license);
+    }
+
     public function testSaveTranslation_asGuest() {
         $this->ajaxPost('/jpn/sentences/save_translation', [
             'id' => '26',

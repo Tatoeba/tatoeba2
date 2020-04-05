@@ -119,7 +119,13 @@ class SentencesTable extends Table
                     'on' => 'update',
                 ]
             ])
-            ->allowEmpty('license');
+            ->allowEmptyString(
+                'license',
+                function ($context) {
+                    return $context['newRecord'] || CurrentUser::isAdmin();
+                },
+                __('This is not a valid license.')
+            );
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
