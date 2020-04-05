@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-26 18:06+0000\n"
-"PO-Revision-Date: 2020-03-25 08:59+0000\n"
+"POT-Creation-Date: 2020-04-03 02:58+0000\n"
+"PO-Revision-Date: 2020-04-04 00:44+0000\n"
 "Last-Translator: Ricardo Vernaut Jr <rvj1444@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/tatoeba/tatoeba_website/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -125,7 +125,7 @@ msgstr "Erro: a frase #{id} não pôde ser deletada."
 
 #. @translators: This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L526
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L527
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
@@ -134,41 +134,41 @@ msgstr "\"pertence a um usuário autodeclarado nativo\", pois \"idioma da frase\
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L570
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L571
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
 msgstr "\"a tradução está órfã\", pois \"responsável pela tradução\" corresponde a um nome de usuário"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L579
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L580
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr "\"proprietário da tradução\", pois \"{username}\" não é um nome de usuário válido"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L621
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L622
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr "\"a frase está órfã\", pois \"proprietário da frase\" corresponde a um nome de usuário"
 
 #. @translators: This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L630
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L631
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr "\"proprietário da frase\", porque \"{username}\" não é um nome de usuário válido"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L667
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L668
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr "\"etiquetada como {tagName}”, por se tratar de um nome de etiqueta inválido"
 
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L698
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L699
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
@@ -177,22 +177,22 @@ msgstr "\"pertence à lista {listId}”, uma vez que a lista {listId} é privada
 #. @translators: This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L736
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L737
 msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
 msgstr "\"pertence a um usuário autodeclarado nativo\", pois o critério \"pertence a {username}\" está habilitado enquanto este não é um usuário autodeclarado nativo no idioma em que você está fazendo a busca"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1129
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1130
 msgid "You are not allowed to change the license of this sentence."
 msgstr "Você não tem permissão para mudar a licença desta frase."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1135
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1136
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr "A licença da frase foi alterada para “{newLicense}”."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1140
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1141
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr "Não foi possível alterar a licença atual para “{newLicense}” porque:"
 
@@ -446,6 +446,40 @@ msgstr "Todos os idiomas"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L56
 msgid "unknown"
 msgstr "desconhecido"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L225
+msgid ""
+"This alternative script may contain errors because it has been generated by "
+"a piece of software that is not perfect."
+msgstr "Este sistema de escrita alternativo pode conter erros, pois ele foi gerado por um software que não é perfeito."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L207
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L232
+msgid ""
+"This transcription may contain errors because it has been generated by a "
+"piece of software that is not perfect."
+msgstr "Esta transcrição pode conter erros, pois ela foi gerada por um software que não é perfeito."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L215
+msgid "The furigana was last edited by {author} on {date}."
+msgstr "O furigana foi editado pela última vez por {author} em {date}."
+
+#. @translators: refers to a transcription
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L100
+msgid "Last edited by {author} on {date}"
+msgstr "Transcrição editada pela ultima vez por {author} em {date}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L226
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L108
+msgid "This alternative script was generated by a piece of software"
+msgstr "Este sistema de escrita alternativo foi gerada por um software"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L229
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L111
+msgid "This transcription was generated by a piece of software"
+msgstr "Esta transcrição foi gerada por um software"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
@@ -883,7 +917,7 @@ msgid "Attribution URL:"
 msgstr "URL de atribuição:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L62
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/edit_profile.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L33
@@ -901,15 +935,51 @@ msgstr "O usuário {username} não enviou nenhum áudio."
 msgid "Activity timeline"
 msgstr "Linha do tempo de atividade"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L43
-msgid "{month} {year}"
-msgstr "{mês} de {ano}"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L64
+msgid "Activity timeline — {month} {year}"
+msgstr "Linha do tempo das atividades {month} {year}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L111
-msgid "Daily Average: {n} sentence"
-msgid_plural "Daily Average: {n} sentences"
-msgstr[0] "Média Diária: {n} sentença"
-msgstr[1] "Média diária: {n} frases"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
+msgid "Statistics about the number of contributions over this month."
+msgstr "Estatísticas sobre o número de contribuições nesse mês."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
+msgid "Statistics about the number of contributions over {month} {year}."
+msgstr "Estatísticas sobre o número de contribuições em {month}de {year}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L88
+msgid "Day"
+msgstr "Dia"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L92
+msgid "Sentences added"
+msgstr "Frases adicionadas"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
+msgid "Links added"
+msgstr "Links adicionados"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L93
+msgid "Links removed"
+msgstr "Links removidos"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L94
+msgid "Sentences removed"
+msgstr "Frases removidas"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L149
+msgid "Daily Average: {n} sentence added"
+msgid_plural "Daily Average: {n} sentences added"
+msgstr[0] "Média diária: {n}frase adicionada"
+msgstr[1] "Média diária: {n} frases adicionadas"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L159
+msgid ", {n} link added"
+msgid_plural ", {n} links added"
+msgstr[0] ", {n}link adicionado"
+msgstr[1] ", {n} links adicionados"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/latest.ctp#L58
@@ -1025,7 +1095,7 @@ msgid "Owned by a self-identified native"
 msgstr "Pertence a um(a) falante autodeclarado(a) nativo(a)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L179
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L179
 msgid "Translations"
 msgstr "Traduções"
 
@@ -1511,7 +1581,7 @@ msgid ""
 msgstr "O conteúdo desta mensagem viola <a href=\"{}\">nossas regras</a> e por isso foi ocultado. Ele só é visível para os administradores e para o autor da mensagem."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/edit_form.ctp#L58
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L30
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/edit_form.ctp#L45
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L65
@@ -1522,7 +1592,7 @@ msgstr "O conteúdo desta mensagem viola <a href=\"{}\">nossas regras</a> e por 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L412
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L707
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L118
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1533,7 +1603,7 @@ msgstr "Salvar alterações"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L24
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L16
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L17
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation_form.ctp#L13
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/native_speakers.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Stats/sentences_by_language.ctp#L57
@@ -1558,7 +1628,7 @@ msgstr "Licença"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentence_form.ctp#L51
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L71
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L112
 msgid "Sentence"
 msgstr "Frase"
@@ -1572,11 +1642,6 @@ msgstr "Adicionar frase"
 msgid "Add new sentences"
 msgstr "Adicionar novas frases"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L92
-msgid "Sentences added"
-msgstr "Frases adicionadas"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L24
 msgid "No sentences added yet."
 msgstr "Nenhuma frase adicionada ainda."
@@ -1588,7 +1653,7 @@ msgstr "Nenhuma frase adicionada ainda."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L389
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/NavigationHelper.php#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L706
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L117
 msgid "OK"
 msgstr "OK"
 
@@ -1667,31 +1732,31 @@ msgstr "Mostrar a frase #: "
 msgid "Your sentence was not added because the following already exists."
 msgstr "A sua sentença não foi adicionada por a seguinte já existe:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L134
 msgid "This sentence belongs to a native speaker."
 msgstr "Esta frase pertence a um falante nativo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L135
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L26
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L30
 msgid "This sentence is not reliable."
 msgstr "Esta frase não é confiável."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L281
 msgid "Copy sentence"
 msgstr "Copiar frase"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L148
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L50
 msgid "Go to sentence page"
 msgstr "Ir para a página da frase"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L179
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L189
 msgid "Translations of translations"
 msgstr "Traduções das traduções"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L195
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L205
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L241
 msgid "Fewer translations"
 msgstr "Menos traduções"
@@ -1701,9 +1766,22 @@ msgstr "Menos traduções"
 msgid "You cannot edit this sentence because it has audio."
 msgstr "Você não pode editar esta frase porque ela contém áudio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L18
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L19
 msgid "Other language"
 msgstr "Outro idioma"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L42
+msgid "Transcription"
+msgstr "Transcrição"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L119
+msgid "Reset"
+msgstr "Restabelecer"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L57
+msgid "Mark as reviewed"
+msgstr "Marcar como revisada"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L7
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L78
@@ -1787,7 +1865,15 @@ msgstr "Expandir menu"
 msgid "Collapse menu"
 msgstr "Colapsar menu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
+msgid "Show unreviewed transcriptions"
+msgstr "Mostrar transcrições que não foram revisadas"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L10
+msgid "Hide unreviewed transcriptions"
+msgstr "Não mostrar transcrições que não foram revisadas"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L37
 msgid "Edit this translation"
 msgstr "Editar esta tradução"
 
@@ -4647,65 +4733,36 @@ msgstr "Remover a tag '{tagName}' dessa frase"
 msgid "Remove tag from sentence"
 msgstr "Remover tag da frase"
 
-#. @translators: refers to a transcription
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L142
-msgid "Last edited by {author} on {date}"
-msgstr "Transcrição editada pela ultima vez por {author} em {date}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L150
-msgid "This alternative script was generated by a piece of software"
-msgstr "Este sistema de escrita alternativo foi gerada por um software"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L153
-msgid "This transcription was generated by a piece of software"
-msgstr "Esta transcrição foi gerada por um software"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L161
-msgid "Reset"
-msgstr "Restabelecer"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L191
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L149
 msgid "Show alternative script"
 msgstr "Mostrar sistema de escrita alternativo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L193
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L151
 msgid "Show transcription"
 msgstr "Mostrar transcrição"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L236
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L194
 msgid "Edit alternative script"
 msgstr "Editar sistema de escrita alternativo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L238
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L196
 msgid "Edit transcription"
 msgstr "Editar transcrição"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L244
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L202
 msgid "You cannot edit this script."
 msgstr "Você não pode editar este sistema de escrita."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L246
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L204
 msgid "You cannot edit this transcription."
 msgstr "Você não pode editar esta transcrição."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L267
-msgid ""
-"This alternative script may contain errors because it has been generated by "
-"a piece of software that is not perfect."
-msgstr "Este sistema de escrita alternativo pode conter erros, pois ele foi gerado por um software que não é perfeito."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L274
-msgid ""
-"This transcription may contain errors because it has been generated by a "
-"piece of software that is not perfect."
-msgstr "Esta transcrição pode conter erros, pois ela foi gerada por um software que não é perfeito."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L246
 msgctxt "alternative script"
 msgid "Click to mark it as reviewed."
 msgstr "Clique para marcar como revisado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L294
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L252
 msgctxt "transcription"
 msgid "Click to mark it as reviewed."
 msgstr "Clique para marcar como revisado."
