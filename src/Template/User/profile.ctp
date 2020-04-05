@@ -73,6 +73,20 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
     );
     ?>
 
+    <md-list class="annexe-menu md-whiteframe-1dp">
+        <?php
+            $url = $this->Url->build([
+                'controller' => 'private_messages',
+                'action' => 'write',
+                $username,
+            ]);
+        ?>
+        <md-list-item href="<?= $url ?>">
+            <md-icon>email</md-icon>
+            <p><?= format(__('Contact {user}'), ['user' => $username]) ?></p>
+        </md-list-item>
+    </md-list>
+
     <div class="section md-whiteframe-1dp">
         <h2><?php echo __('Stats'); ?></h2>
         <dl>

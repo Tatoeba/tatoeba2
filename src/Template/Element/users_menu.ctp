@@ -139,15 +139,6 @@ $menu = [
             $username
         ]
     ],
-    [
-        'icon' => 'email',
-        'label' => format(__('Contact {user}'), ['user' => $username]),
-        'url' => [
-            'controller' => 'private_messages',
-            'action' => 'write',
-            $username
-        ]
-    ],
 ]
 ?>
 
@@ -172,5 +163,3 @@ $menu = [
         <?php } ?>
     <?php } ?>
 </md-list>
-
-<br>
