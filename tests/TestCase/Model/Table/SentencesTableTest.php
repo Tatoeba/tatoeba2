@@ -1223,4 +1223,12 @@ class SentencesTableTest extends TestCase {
         $new = $this->Sentence->get(1);
         $this->assertNotEquals($old->hash, $new->hash);
     }
+
+    function testSaveNewSentence_replaceControlCharactersWithSpace() {
+        $text = "Text\u{a}with\u{1}\u{7f}whitespace\u{a0}and\u{a0}\u{a} control\u{90}characters\u{2009}in between.";
+        $expected = "Text with whitespace\u{a0}and control characters\u{2009}in between.";
+        $sentence = $this->Sentence->saveNewSentence($text, 'eng', 1);
+        $stored = $this->Sentence->get($sentence->id)->text;
+        $this->assertEquals($expected, $stored);
+    }
 }
