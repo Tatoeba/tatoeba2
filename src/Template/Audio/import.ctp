@@ -60,7 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
     <?php if ($errors) : ?>
         <p><?php echo __d('admin', 'The following errors occurred during import.'); ?></p>
         <div id="import-report">
-            <?php echo join('<br/>', $errors); ?>
+            <?= $this->App->safeforAngular(join('<br/>', $errors)) ?>
         </div>
     <?php endif; ?>
 <?php endif; ?>
@@ -137,7 +137,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                       'inside the import directory.'); ?></p>
 <?php endif; ?>
 <?php
-echo $this->Form->create();
+echo $this->Form->create(null, ['ng-non-bindable' => '']);
 echo $this->Form->input('audioAuthor', ['required' => true]);
 echo $this->Form->submit(__d('admin', 'Import'));
 echo $this->Form->end();

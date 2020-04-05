@@ -100,6 +100,9 @@ $this->Languages->localizedAsort($countries);
     </div>
 
     <?php
+    $user->name = $this->safeForAngular($user->name);
+    $user->homepage = $this->safeForAngular($user->homepage);
+    $user->description = $this->safeForAngular($user->description);
     echo $this->Form->create($user, [
         'id' => 'profile-form',
         'url' => ['controller' => 'user', 'action' => 'save_basic']

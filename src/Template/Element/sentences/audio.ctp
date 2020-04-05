@@ -56,7 +56,7 @@ if (CurrentUser::isAdmin()) {
         "id",
         array("value" => $sentenceId)
     );
-    __d("admin", "Enabled");
+    echo __d("admin", "Enabled");
     echo $this->Form->control(
         "hasaudio",
         array(
@@ -72,7 +72,7 @@ if (CurrentUser::isAdmin()) {
 
     $ownerName = '';
     if ($hasaudio) {
-        $ownerName = $audios[0]->author;
+        $ownerName = $this->safeForAngular($audios[0]->author);
     }
     echo $this->Form->control("ownerName",
         array(

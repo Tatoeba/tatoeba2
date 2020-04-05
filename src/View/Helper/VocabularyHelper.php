@@ -31,7 +31,7 @@ class VocabularyHelper extends AppHelper
 
     public function vocabulary($vocab) {
         $lang = $vocab['lang'];
-        $text = $vocab['text'];
+        $text = $this->_View->safeForAngular($vocab['text']);
         $numSentences = $vocab['numSentences'];
         if (is_null($numSentences)) {
             $numSentencesLabel = __('Unknown number of sentences');

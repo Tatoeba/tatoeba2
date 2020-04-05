@@ -54,7 +54,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         <md-toolbar class="md-hue-1">
             <div class="md-toolbar-tools">
                 <h2 flex>
-                    <?= $message->title ?>
+                    <?= $this->safeForAngular($message->title) ?>
                 </h2>
             </div>
         </md-toolbar>

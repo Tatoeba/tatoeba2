@@ -9,6 +9,9 @@ $userProfileUrl = $this->Url->build(array(
 $dateLabel = $this->Date->ago($message->date);
 $fullDateLabel = $message->date;
 $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message->type);
+$messageContent = $this->safeForAngular(
+    $this->Messages->formatContent($message->content)
+);
 ?>
 
 <md-card class="comment">
@@ -49,8 +52,6 @@ $menu = $this->PrivateMessages->getMenu($message->folder, $message->id, $message
     </md-card-header>
 
     <md-card-content>
-        <p class="content" dir="auto">
-            <?= $this->Messages->formatContent($message->content) ?>
-        </p>
+        <p class="content" dir="auto"><?= $messageContent ?></p>
     </md-card-content>
 </md-card>

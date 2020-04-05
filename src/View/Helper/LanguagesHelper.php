@@ -387,11 +387,10 @@ class LanguagesHelper extends AppHelper
                 'lang' => LanguagesLib::languageTag($lang, $script),
                 'dir'  => $direction,
                 'escape' => true,
-                'ng-non-bindable' => ''
             ),
             $options
         );
-        return $this->Html->tag($tag, $text, $options);
+        return $this->Html->tag($tag, $this->_View->safeForAngular($text), $options);
     }
 
 

@@ -14,7 +14,7 @@ $listData = [
     'name' => $list['name']
 ];
 $listJSON = htmlspecialchars(json_encode($listData), ENT_QUOTES, 'UTF-8');
-
+$listJSON = str_replace('{{', '\{\{', $listJSON); // avoid interpolation by AngularJS
 $this->set('title_for_layout', $this->Pages->formatTitle($listName));
 ?>
 

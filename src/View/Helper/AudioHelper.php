@@ -55,6 +55,8 @@ class AudioHelper extends AppHelper
             $license   = $audio->external['license'];
             $attribUrl = $audio->external['attribution_url'];
         }
+        $username = $this->_View->safeForAngular($username);
+        $attribUrl = $this->_View->safeForAngular($attribUrl);
         if (!empty($attribUrl)) {
             $username = $this->Html->link($username, $attribUrl);
         }

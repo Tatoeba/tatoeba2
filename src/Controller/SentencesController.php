@@ -513,6 +513,12 @@ class SentencesController extends AppController
         extract($criteriaVars);
         $ignored = array();
 
+        /* Check if we got valid languages */
+        $from = LanguagesLib::languageExists($from) ? $from : 'und';
+        if ($to != 'none') {
+            $to = LanguagesLib::languageExists($to) ? $to : 'und';
+        }
+
         /* Convert simple search to advanced search parameters */
         if (!is_null($this->request->getQuery('to'))
             && is_null($this->request->getQuery('trans_to'))) {
@@ -579,7 +585,7 @@ class SentencesController extends AppController
                        “Warning: the following criteria have been ignored:” */
                     __("“translation owner”, because “{username}” is not ".
                        "a valid username", true),
-                    array('username' => $trans_user)
+                    array('username' => h($trans_user))
                 );
                 $trans_user = '';
             }
@@ -630,7 +636,7 @@ class SentencesController extends AppController
                        the following criteria have been ignored:” */
                     __("“sentence owner”, because “{username}” is not a ".
                        "valid username", true),
-                    array('username' => $user)
+                    array('username' => h($user))
                 );
                 $user = '';
             }
@@ -667,7 +673,7 @@ class SentencesController extends AppController
                            ignored:” */
                         __("“tagged as {tagName}”, because it's an invalid ".
                            "tag name", true),
-                        compact('tagName')
+                        array('tagName' => h($tagName))
                     );
                 }
             }

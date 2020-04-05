@@ -135,13 +135,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         );
     }
 
-    echo $this->Html->tag('h2', $listName, [
-        'id'    => "l$listId",
-        'class' => $class,
-        'data-submit'  => __('OK'),
-        'data-cancel'  => __('Cancel'),
-        'data-tooltip' => __('Click to edit...'),
-    ]);
+    echo $this->Html->tag(
+        'h2',
+        $this->safeForAngular($listName),
+        [
+            'id'    => "l$listId",
+            'class' => $class,
+            'data-submit'  => __('OK'),
+            'data-cancel'  => __('Cancel'),
+            'data-tooltip' => __('Click to edit...'),
+        ]
+    );
 
     if ($permissions['canAddSentences']) {
         echo $this->Html->div('edit-list-name', $editImage);

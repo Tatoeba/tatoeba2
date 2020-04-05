@@ -39,6 +39,8 @@ if (isset($sentencesWithAudio)) {
         <div class="section md-whiteframe-1dp">
             <h2><?php echo __('My audio'); ?></h2>
             <?php
+               $audioSettings->audio_attribution_url =
+                   $this->safeForAngular($audioSettings->audio_attribution_url);
                echo $this->Form->create($audioSettings, array(
                    'url' => array('controller' => 'audio', 'action' => 'save_settings'),
                    'type' => 'post',
@@ -49,20 +51,19 @@ if (isset($sentencesWithAudio)) {
                ));
             ?>
             <md-input-container class="md-block">
-            <?php
-               $tip = __('Leave this field empty to use your profile page.');
-               echo $this->Form->input('audio_attribution_url', array(
-                   'label' => __('Attribution URL:'),
-                   'after' => '<div class="hint">'.$tip.'</div>',
-               ));
-            ?>
+                <?= $this->Form->input('audio_attribution_url', array(
+                    'label' => __('Attribution URL:'),
+                )) ?>
+                <div class='hint'>
+                    <?=__('Leave this field empty to use your profile page.') ?>
+                </div>
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
-            <?= $this->Form->end(); ?>
+            <?= $this->Form->end() ?>
         </div>
     <?php endif; ?>
     </div>
@@ -90,7 +91,10 @@ if (isset($sentencesWithAudio)) {
         $licenceMessage = $this->Audio->formatLicenceMessage(
             $audioSettings, $username
         );
-        echo $this->Html->tag('p', $licenceMessage);
+        echo $this->Html->tag(
+            'p',
+            $this->safeForAngular($licenceMessage)
+        );
 
         $this->Pagination->display();
 
@@ -112,10 +116,13 @@ if (isset($sentencesWithAudio)) {
         $this->Pagination->display();
     }
 } else {
-    echo $this->Html->tag('h2', format(
-        __("There's no user called {username}"),
-        array('username' => $username)
-    ));
+    echo $this->Html->tag(
+        'h2',
+        format(
+            __("There's no user called {username}"),
+            array('username' => $this->safeForAngular($username))
+        )
+    );
 }
 ?>
 </div>
