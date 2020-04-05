@@ -267,11 +267,11 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
             ?>
             <md-divider></md-divider>
 
-            <div class="personal-info" layout-margin ng-non-bindable>
+            <div class="personal-info" layout-margin>
                 <?php foreach ($personalInfo as $label => $value) { ?>
                     <div layout="row">
                         <div flex="33" class="label"><?= $label ?></div>
-                        <div flex><?= $value ? $value : '-' ?></div>
+                        <div flex><span ng-non-bindable><?= $value ? $value : '-' ?></span></div>
                     </div>
                 <?php } ?>
             </div>
