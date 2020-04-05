@@ -24,16 +24,13 @@
  */
 namespace App\View\Helper;
 
-use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 
-
 /**
- * Helper for contributions.
+ * Helper for contributions stats.
  *
- * @category SentenceComments
+ * @category ContributionsStats
  * @package  Helpers
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
