@@ -1,20 +1,18 @@
 <?php
-namespace App\Test\TestCase\View\Helper;
+namespace App\Test\TestCase\View;
 
 use Cake\TestSuite\TestCase;
-use Cake\View\View;
-use App\View\Helper\AppHelper;
+use App\View\AppView;
 
-class AppHelperTest extends TestCase {
+class AppViewTest extends TestCase {
 
     public function setUp() {
         parent::setUp();
-        $View = new View();
-        $this->AppHelper = new AppHelper($View);
+        $this->AppView = new AppView();
     }
 
     public function tearDown() {
-        unset($this->AppHelper);
+        unset($this->AppView);
         parent::tearDown();
     }
 
@@ -39,7 +37,7 @@ class AppHelperTest extends TestCase {
      * @dataProvider safeForAngularProvider
      **/
     public function testSafeForAngular($string, $expected) {
-        $result = $this->AppHelper->safeForAngular($string);
+        $result = $this->AppView->safeForAngular($string);
         $this->assertEquals($expected, $result);
     }
 }
