@@ -100,32 +100,12 @@ if (!empty($stats)) {
     <?php
     foreach ($stats as $date => $stat) {
         $bar = '';
-        if(isset($stat['added']) && $stat['added'] > 0){
-            $width = ($stat['added'] / $maxTotal) * 100;
-            $bar .= $this->Html->div('logs_stats added', '+' . $stat['added'],
-                array('style' => 'width:'.$width.'%')
-            );
-            $totalSentences += $stat['added'];
-        }
-        if(isset($stat['linked']) && $stat['linked'] > 0){
-            $width = ($stat['linked'] / $maxTotal) * 100;
-            $bar .= $this->Html->div('logs_stats linked', '+' . $stat['linked'],
-                array('style' => 'width:'.$width.'%')
-            );
-            $totalLinks += $stat['linked'];
-        }
-        if(isset($stat['unlinked']) && $stat['unlinked'] > 0){
-            $width = ($stat['unlinked'] / $maxTotal) * 100;
-            $bar .= $this->Html->div('logs_stats unlinked', '-' . $stat['unlinked'],
-                array('style' => 'width:'.$width.'%')
-            );
-        }
-        if(isset($stat['deleted']) && $stat['deleted'] > 0){
-            $width = ($stat['deleted'] / $maxTotal) * 100;
-            $bar .= $this->Html->div('logs_stats deleted', '-' . $stat['deleted'],
-                array('style' => 'width:'.$width.'%')
-            );
-        }
+        $bar .= $this->ContributionsStats->statBar($stat, 'added', $maxTotal);
+        $bar .= $this->ContributionsStats->statBar($stat, 'linked', $maxTotal);
+        $bar .= $this->ContributionsStats->statBar($stat, 'unlinked', $maxTotal);
+        $bar .= $this->ContributionsStats->statBar($stat, 'deleted', $maxTotal);
+        $totalSentences += $stat['added'] ?? 0;
+        $totalLinks += $stat['linked'] ?? 0;
 
         $formattedDate = $this->Time->i18nFormat($date, [IntlDateFormatter::SHORT, IntlDateFormatter::NONE]);
         echo '<tr>';
