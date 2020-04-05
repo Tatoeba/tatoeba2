@@ -51,9 +51,12 @@ class ContributionsStatsHelper extends AppHelper
     {
         if(isset($stat[$category]) && $stat[$category] > 0){
             $width = ($stat[$category] / $maxTotal) * 100;
-            $minWidth = (mb_strwidth($stat[$category]) + 1) * 13;
-            return $this->Html->div('logs_stats '.$category, '+' . $stat[$category],
-                array('style' => 'width:'.$width.'%;min-width:'.$minWidth.'px')
+            $stringWidth = mb_strwidth($stat[$category]) + 1; // + 1 for the sign
+            $sign = '+';
+            if ($category == "unlinked" || $category == "deleted")
+                $sign = '-';
+            return $this->Html->div("logs_stats ${category}", $sign . $stat[$category],
+                array('style' => "width: ${width}%; min-width: calc(1em * ${stringWidth});")
             );
         }
     }
