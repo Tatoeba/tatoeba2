@@ -112,7 +112,7 @@ echo $this->Form->create('AdvancedSearch', [
                     <?= __('Unapproved sentences are likely to be incorrect.') ?>
                 </div>
             </div>
-            
+
             <div class="param" layout="row" layout-align="center">
                 <label for="has-audio" flex><?= __('Has audio:') ?></label>
                 <?php
@@ -155,13 +155,14 @@ echo $this->Form->create('AdvancedSearch', [
                 </div>
             </div>
 
-            <div class="param" layout="row" layout-align="center">
+            <div class="param" layout="row">
                 <md-checkbox
                     ng-false-value="0"
                     ng-true-value="1"
                     ng-model="native"
                     ng-init="native = <?= isset($native) && $native == 'yes' ? 1 : 0 ?>"
                     class="md-primary">
+                    <?= __('Owned by a self-identified native') ?>
                 </md-checkbox>
                 <div ng-hide="true">
                     <?php
@@ -170,7 +171,6 @@ echo $this->Form->create('AdvancedSearch', [
                     ]);
                     ?>
                 </div>
-                <label for="native" flex><?= __('Owned by a self-identified native') ?></label>
             </div>
         </div>
 
@@ -315,13 +315,14 @@ echo $this->Form->create('AdvancedSearch', [
                     ?>
                 </div>
 
-                <div class="param" layout="row" layout-align="center">
+                <div class="param" layout="row">
                     <md-checkbox
                         ng-false-value="0"
                         ng-true-value="1"
                         ng-model="sortReverse"
                         ng-init="sortReverse = <?= $sort_reverse == 'yes' ? 1 : 0 ?>"
                         class="md-primary">
+                        <?= __('Reverse order') ?>
                     </md-checkbox>
                     <div ng-hide="true">
                         <?php
@@ -330,7 +331,6 @@ echo $this->Form->create('AdvancedSearch', [
                         ]);
                         ?>
                     </div>
-                    <label for="sort-reverse" flex><?= __('Reverse order') ?></label>
                 </div>
             </div>
         </div>
