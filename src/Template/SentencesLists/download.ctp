@@ -60,23 +60,29 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <div id="SentencesListExportToCsvForm" ng-controller="SentencesListsDownloadCtrl">
     <table>
         <tr>
-            <td><?php echo __('Id (optional)'); ?></td>
+            <td><?php echo __('File format'); ?></td>
             <td>
-            <md-checkbox
-                ng-true-value='1'
-                ng-false-value='0'
-                ng-model='showid'
-                ng-init="showid = 0;"
-                class="md-primary">
-            </md-checkbox>
-            </td>
-            <td>
-            <?php echo __('If you check this box, the id of each sentence will be written to the output.');
+            <?php
+            $langArray = $this->Languages->languagesArrayWithNone();
+            echo $this->Form->select(
+                'FileFormat',
+                array(
+                    'txt' => __('Raw text file'),
+                    'tsv' => __('Tab-separated file'),
+                    'shtooka' => __('List for the Shtooka recorder'),
+                ),
+                array(
+                    'empty' => false,
+                    'ng-model' => 'format',
+                    'ng-init' => 'format = "txt"',
+                )
+            );
             ?>
             </td>
+            <td></td>
         </tr>
 
-        <tr>
+        <tr ng-show="format === 'txt' || format === 'tsv'">
             <td><?php echo __('Translation (optional)'); ?></td>
             <td>
             <?php
