@@ -179,7 +179,7 @@ class ExportsTable extends Table
 
     private function validateFormat($check)
     {
-        $availableFormats = ['tsv'];
+        $availableFormats = ['tsv', 'txt'];
         return in_array($check, $availableFormats);
     }
 
@@ -261,7 +261,7 @@ class ExportsTable extends Table
 
     private function newUniqueFilename($config)
     {
-        $filename = $config['type'].'_'.$config['export_id'].'.tsv';
+        $filename = $config['type'].'_'.$config['export_id'].'.'.$config['format'];
         return Configure::read('Exports.path').$filename;
     }
 
