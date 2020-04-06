@@ -79,13 +79,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     $this->Lists->displayTranslationsDropdown($listId, $translationsLang);
     ?>
-    <div layout="column" layout-align="end center">
-        <?php
-        if ($permissions['canEdit']) {
-            $this->Lists->displayDeleteButton($listId);
-        }
-        ?>
-    </div>
     </div>
 
 </div>
@@ -111,6 +104,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
                     <md-tooltip><?= __('Download this list') ?></md-tooltip>
                 </md-icon>
             </md-button>
+
+            <?php
+                if ($permissions['canEdit']) {
+                    $deleteUrl = $this->Url->build([
+                        'controller' => 'sentences_lists',
+                        'action' => 'delete',
+                    ]);
+                ?>
+                <md-button class="md-icon-button" ng-cloak
+                           ng-href="<?= $deleteUrl; ?>/{{vm.list.id}}"
+                           onclick="return confirm('<?= __('Are you sure?') ?>');">
+                    <md-icon>delete
+                        <md-tooltip><?= __('Delete this list') ?></md-tooltip>
+                    </md-icon>
+                </md-button>
+            <?php } ?>
 
             <?php if ($permissions['canEdit']) { ?>
             <md-button class="md-icon-button" ng-cloak ng-click="vm.editName()">
