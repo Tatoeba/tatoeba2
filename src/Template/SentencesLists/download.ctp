@@ -61,7 +61,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <table>
         <tr>
             <td><?php echo __('File format'); ?></td>
-            <td>
+            <td colspan="2">
             <?php
             $langArray = $this->Languages->languagesArrayWithNone();
             echo $this->Form->select(
@@ -80,6 +80,17 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
             ?>
             </td>
             <td></td>
+        </tr>
+
+        <tr ng-show="format === 'tsv'">
+            <td><?php echo __('Fields and structure'); ?></td>
+            <td colspan="2">
+                <span class="param"><?php echo __('Sentence id'); ?></span>
+                <span class="symbol">[<?php echo __('tab'); ?>]</span>
+                <span class="param"><?php echo __('Text'); ?></span>
+                <span class="symbol">[<?php echo __('tab'); ?>]</span>
+                <span class="param"><?php echo __('Translation'); ?></span>
+            </td>
         </tr>
 
         <tr ng-show="format === 'txt' || format === 'tsv'">
@@ -148,26 +159,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
         </tr>
     </table>
     </div>
-
-    <h3><?php echo __('Fields and structure'); ?></h3>
-    <p>
-    <?php
-        __(
-            'Fields will be written out in the following sequence:'
-        );
-    ?>
-    </p>
-    <p>
-    <span class="param"><em><?php echo __('Sentence id'); ?></em></span>
-    <span class="symbol"><em>[<?php echo __('tab'); ?>]</em></span>
-    <span class="param"><?php echo __('Text'); ?></span>
-    <span class="symbol"><em>[<?php echo __('tab'); ?>]</em></span>
-    <span class="param"><em><?php echo __('Translation'); ?></em></span>
-    </p>
-
-    <p>
-    <?php echo __("Optional fields that are not selected above will not be written to the output."); ?>
-    </p>
 
     </div>
 
