@@ -55,7 +55,12 @@ class ExportsTableTest extends TestCase
 
     private function options()
     {
-        return [ 'type' => 'list', 'list_id' => 2, 'fields' => ['id', 'lang', 'text'] ];
+        return [
+            'type' => 'list',
+            'list_id' => 2,
+            'fields' => ['id', 'lang', 'text'],
+            'format' => 'tsv',
+        ];
     }
 
     private function optionsWith($with)
@@ -173,6 +178,13 @@ class ExportsTableTest extends TestCase
     public function testCreateExport_failsIfFieldsIsNotAnArray()
     {
         $options = $this->optionsWith(['fields' => 123]);
+        $result = $this->Exports->createExport(4, $options);
+        $this->assertFalse($result);
+    }
+
+    public function testCreateExport_failsIfFormatUnsupported()
+    {
+        $options = $this->optionsWith(['format' => 'message-in-a-bottle']);
         $result = $this->Exports->createExport(4, $options);
         $this->assertFalse($result);
     }

@@ -104,6 +104,8 @@ class ExportsTable extends Table
             && isset($config['fields'])
             && is_array($config['fields'])
             && $this->validateFields($config['fields'])
+            && isset($config['format'])
+            && $this->validateFormat($config['format'])
             && (!isset($config['trans_lang'])
                 || LanguagesLib::languageExists($config['trans_lang']))) {
 
@@ -173,6 +175,12 @@ class ExportsTable extends Table
             }
         }
         return true;
+    }
+
+    private function validateFormat($check)
+    {
+        $availableFormats = ['tsv'];
+        return in_array($check, $availableFormats);
     }
 
     private function getCSVFields($fields, $entity)
