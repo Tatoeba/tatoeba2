@@ -253,7 +253,7 @@ class ExportsTable extends Table
 
     private function newUniqueFilename($config)
     {
-        $filename = $config['type'].'_'.$config['export_id'].'.csv';
+        $filename = $config['type'].'_'.$config['export_id'].'.tsv';
         return Configure::read('Exports.path').$filename;
     }
 
