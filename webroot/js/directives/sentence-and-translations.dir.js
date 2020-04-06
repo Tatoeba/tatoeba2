@@ -88,6 +88,7 @@
         var listsDataService;
         var editableTranslations = [];
         var duplicateTranslations = [];
+        var newTranslations = [];
         var translationLang;
 
         vm.menu = {};
@@ -650,6 +651,7 @@
         }
 
         function updateNewTranslationsInfo(translation, sentenceId) {
+            newTranslations.push(translation.id);
             if (translation.isDuplicate) {
                 duplicateTranslations.push(translation.id);
             } else if (translation.is_owned_by_current_user) {
@@ -659,6 +661,11 @@
                 item.editable = editableTranslations.indexOf(item.id) > -1;
                 item.isDuplicate = duplicateTranslations.indexOf(item.id) > -1;;
                 item.parentId = sentenceId;
+            });
+            allDirectTranslations.sort(function(a, b) {
+                var indexA = newTranslations.indexOf(a.id);
+                var indexB = newTranslations.indexOf(b.id);
+                return indexB - indexA;
             });
         }
 
