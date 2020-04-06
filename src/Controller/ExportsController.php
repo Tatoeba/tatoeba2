@@ -84,6 +84,7 @@ class ExportsController extends AppController
                         /* withFile() sets Content-Disposition, but we don't
                            need it since the URL has the filename at the end */
                         ->withoutHeader('Content-Disposition')
+                        ->withHeader('Content-Type', 'application/octet-stream')
                         ->withStringBody('')
                         ->withHeader('X-Accel-Redirect', $export->url);
         }

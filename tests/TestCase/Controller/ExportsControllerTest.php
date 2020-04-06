@@ -136,6 +136,7 @@ class ExportsControllerTest extends IntegrationTestCase
         $this->assertHeader('Content-Length', (string)$filesize);
         $this->assertHeader('Accept-Ranges', 'bytes');
         $this->assertNoHeader('Content-Disposition');
+        $this->assertHeader('Content-Type', 'application/octet-stream');
         $this->assertHeader('X-Accel-Redirect', "/export_tests/$filename");
         $this->assertResponseEquals('');
     }
