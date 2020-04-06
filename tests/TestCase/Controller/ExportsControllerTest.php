@@ -89,6 +89,7 @@ class ExportsControllerTest extends IntegrationTestCase
         $this->ajaxPost('/eng/exports/add', [
             'type' => 'list',
             'list_id' => 2,
+            'format' => 'tsv',
             'fields' => ['id', 'lang', 'text']
         ]);
     }
