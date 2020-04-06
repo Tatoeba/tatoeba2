@@ -92,11 +92,15 @@ class ExportsTable extends Table
            ->where(['user_id' => $userId]);
     }
 
-    private function createExportFromConfig($config, $userId)
+    private function createExportFromConfig(&$config, $userId)
     {
         $export = $this->newEntity();
         $export->status = 'queued';
         $export->user_id = $userId;
+
+        if (isset($config['format']) && $config['format'] == 'shtooka') {
+            $config['fields'] = ['id', 'text'];
+        }
 
         if (isset($config['type'])
             && $config['type'] == 'list'
@@ -179,7 +183,7 @@ class ExportsTable extends Table
 
     private function validateFormat($check)
     {
-        $availableFormats = ['tsv', 'txt'];
+        $availableFormats = ['tsv', 'txt', 'shtooka'];
         return in_array($check, $availableFormats);
     }
 
@@ -261,7 +265,9 @@ class ExportsTable extends Table
 
     private function newUniqueFilename($config)
     {
-        $filename = $config['type'].'_'.$config['export_id'].'.'.$config['format'];
+        $extMap = [ 'shtooka' => 'txt' ];
+        $ext = $extMap[ $config['format'] ] ?? $config['format'];
+        $filename = $config['type'].'_'.$config['export_id'].'.'.$ext;
         return Configure::read('Exports.path').$filename;
     }
 
@@ -310,7 +316,11 @@ class ExportsTable extends Table
         $results = $query->all();
         foreach ($results as $entity) {
             $fields = $this->getCSVFields($config['fields'], $entity);
-            $file->write(implode($fields, "\t")."\n");
+            if ($config['format'] == 'shtooka') {
+                $file->write(implode($fields, " - ")."\n");
+            } else {
+                $file->write(implode($fields, "\t")."\n");
+            }
         }
         $file->close();
 

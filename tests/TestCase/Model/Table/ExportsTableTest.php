@@ -345,7 +345,19 @@ class ExportsTableTest extends TestCase
         $firstExportId = $config['export_id'];
 
         $filename = $this->Exports->get($firstExportId)->filename;
-        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_1.txt', $filename);
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_as_raw_text.txt', $filename);
+    }
+
+    public function testRunExport_fileHasExpectedContents_asShtookaFormat()
+    {
+        $options = $this->optionsWith(['list_id' => 1, 'format' => 'shtooka']);
+        $export = $this->Exports->createExport(7, $options);
+        $config = (array)unserialize($this->Exports->QueuedJobs->find()->last()->data);
+        $this->Exports->runExport($config);
+        $firstExportId = $config['export_id'];
+
+        $filename = $this->Exports->get($firstExportId)->filename;
+        $this->assertFileEquals(TESTS . 'Fixture'.DS.'list_for_shtooka.txt', $filename);
     }
 
     public function testRunExport_failsIfExportDirNotWritable()
