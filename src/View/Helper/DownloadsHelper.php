@@ -120,6 +120,6 @@ class DownloadsHelper extends AppHelper
             return $this->Html->tag('span', $field, ['class' => 'param']);
         };
 
-        return implode($tab, array_map($fieldSpan, $fields));
+        return implode(" $tab ", array_map($fieldSpan, $fields));
     }
 }
