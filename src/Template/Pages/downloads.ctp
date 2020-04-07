@@ -447,7 +447,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Transcriptions -->
         <div class="section md-whiteframe-1dp">
-            <h2><?= __('Transcriptions and alternative scripts') ?></h2>
+            <h2><?= __('Transcriptions') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
                 <?= $this->element(
