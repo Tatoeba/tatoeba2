@@ -112,13 +112,8 @@ class DownloadsHelperTest extends TestCase {
     public function fileFormatProvider () {
         return [
             'empty fields' => [[], ''],
-            'one field' => [['id'], '<span class="param">id</span>'],
-            'two fields' => [
-                ['id', 'lang'],
-                '<span class="param">id</span>' .
-                '<span class="symbol">[tab]</span>' .
-                '<span class="param">lang</span>'
-            ]
+            'one field' => [['id'], '%sparam%sid%s'],
+            'two fields' => [['id', 'lang'], '%sparam%sid%ssymbol%sparam%slang%s'],
         ];
     }
 
@@ -127,6 +122,6 @@ class DownloadsHelperTest extends TestCase {
      **/
     public function testFileFormat($fields, $expected) {
         $result = $this->DownloadsHelper->fileFormat($fields);
-        $this->assertEquals($expected, $result);
+        $this->assertStringMatchesFormat($expected, $result);
     }
 }
