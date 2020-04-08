@@ -66,9 +66,7 @@ class LinksController extends AppController
                 'delete'
             ]);
         }
-
-        $this->loadComponent('RequestHandler');
-
+        
         return parent::beforeFilter($event);
     }
 
@@ -86,6 +84,7 @@ class LinksController extends AppController
     }
 
     private function _returnSentenceAndTranslations($sentenceId) {
+        $this->loadComponent('RequestHandler');
         $this->loadModel('Sentences');
         $translationLang = $this->request->getQuery('translationLang');
         $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
