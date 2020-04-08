@@ -155,7 +155,7 @@ $menuElements = array(
 
 ?>
 
-<div id="top_menu_container">
+<div id="top_menu_container" ng-controller="MenuController">
     <div id="top_menu">
         <ul id="navigation_menu">
         <?php
@@ -255,4 +255,59 @@ $menuElements = array(
         </div>
 
     </div>
+
+    <md-sidenav class="md-sidenav-left" md-component-id="menu" ng-cloak>
+        <md-content>
+            <?php
+            $name = __('Tatoeba');
+            
+            $logo = $this->Html->image(
+                IMG_PATH . 'tatoeba.svg',
+                array(
+                    'width' => 48,
+                    'height' => 48,
+                    'title' => $name
+
+                )
+            );
+            ?>
+            <div layout="row" layout-align="start center" layout-margin>
+                <span><?= $logo ?></span>
+                <span class="tatoeba-name"><?= $name ?></span>
+            </div>
+
+            <md-list>
+            <?php
+            foreach ($menuElements as $title => $data) {
+                $route = $data['route'];
+                
+                if (!empty($data['sub-menu'])) {
+                    ?>
+                    <md-subheader><?= $title ?></md-subheader>
+                    <?php
+                }
+                
+                // Sub-menu
+                if (!empty($data['sub-menu'])) {
+                    foreach ($data['sub-menu'] as $title2 => $route2) {
+                        ?>
+                        <md-list-item href="<?= $this->Url->build($route2) ?>">
+                            <p>
+                            <md-icon>chevron_right</md-icon>
+                            <?= $title2 ?>
+                            </p>
+                        </md-list-item>
+                        <?php
+                    }
+                    
+                }
+                
+            }
+            ?>
+            </md-list>
+        </md-content>
+
+    </md-sidenav>
 </div>
+
+

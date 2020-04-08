@@ -26,6 +26,11 @@
  */
 use Cake\Core\Configure;
 ?>
+<li class="hamburger-menu" ng-cloak>
+    <md-button class="md-icon-button" ng-click="openMenu()">
+        <md-icon>menu</md-icon>
+    </md-button>
+</li>
 <li id="logo">
     <?php
     if (Configure::read('Tatoeba.devStylesheet')) {

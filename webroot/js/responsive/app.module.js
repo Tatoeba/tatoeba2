@@ -68,5 +68,10 @@
                     }
                 });
             };
+        })
+        .controller('MenuController', function($scope, $mdSidenav) {
+            $scope.openMenu = function() {
+                $mdSidenav('menu').toggle();
+              };
         });
 })();
