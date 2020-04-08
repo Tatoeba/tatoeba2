@@ -559,26 +559,30 @@ rt {
  */
 #footer {
     padding-bottom: 10px;
+    max-width: 960px;
+    margin: auto;
 }
 
 #footer .category {
-    width: 30%;
-    display: inline-block;
-    vertical-align: top;
     padding: 10px;
-    font-size: 16px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 960px) {
+    #footer .category {
+        text-align: center;
+    }
 }
 
 #footer .category h3 {
     border-bottom: 1px solid #E2E2E2;
     font-size: inherit;
     font-weight: normal;
-    padding: 0 0 15px 0;
+    padding: 10px 5px;
 }
 
-
 #footer ul {
-    margin: 0;
+    margin: 5px;
     padding: 0;
 }
 #footer li {
@@ -589,7 +593,7 @@ rt {
 #footer .license {
     display: flex;
     font-size: 15px;
-    margin-top: 20px;
+    margin: 20px;
 }
 #footer .license .text,
 #footer .cc-by-icon {

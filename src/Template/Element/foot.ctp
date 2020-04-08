@@ -25,10 +25,10 @@
  * @link     https://tatoeba.org
  */
 ?>
-<div id="footer">
+<div id="footer" layout="column">
 
-    <div class="container">
-    <div class="category">
+    <div layout="row" layout-xs="column" layout-align="space-between start">
+    <div class="category" flex-gt-xs>
         <h3><?php echo __('Need some help?'); ?></h3>
         <ul>
             <li>
@@ -70,8 +70,8 @@
             </li>
         </ul>
     </div>
-
-    <div class="category">
+    
+    <div class="category" flex-gt-xs>
         <?php /* @translators: section name in the footer */ ?>
         <h3><?php echo __('Developers'); ?></h3>
         <ul>
@@ -108,8 +108,8 @@
             </li>
         </ul>
     </div>
-
-    <div class="category">
+    
+    <div class="category" flex-gt-xs>
         <?php /* @translators: section name in the footer */ ?>
         <h3><?php echo __('About'); ?></h3>
         <ul>
@@ -188,6 +188,7 @@
             </li>
         </ul>
     </div>
+    </div>
 
     <div layout="row" layout-align="start center" class="license">
         <img alt="Creative Commons License" src="/img/cc-logo.png" />
@@ -221,7 +222,5 @@
             );
             ?>
         </div>
-
-    </div>
     </div>
 </div>
