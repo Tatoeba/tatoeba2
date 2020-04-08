@@ -586,6 +586,7 @@ class LanguagesLib
                 'bis' => __d('languages', 'Bislama'),
                 'stq' => __d('languages', 'Saterland Frisian'),
                 'fro' => __d('languages', 'Old French'),
+                'nys' => __d('languages', 'Nyungar'),
             );
         }
         return $languages;
