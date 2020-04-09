@@ -1124,15 +1124,14 @@ class SentencesController extends AppController
         }
 
         $sentence = $this->Sentences->get($sentenceId);
-        $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
 
         if (!CurrentUser::canEditLicenseOfSentence($sentence)) {
             $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
         } else {
+            $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
             $errors = $sentence->getError('license');
-            $savedSentence = $this->Sentences->save($sentence);
             $licenseName = Licenses::getSentenceLicenses()[$newLicense]['name'] ?? $newLicense;
-            if ($savedSentence) {
+            if (empty($errors) && $this->Sentences->save($sentence)) {
                 $this->Flash->set(format(
                     __('The license of the sentence has been changed to “{newLicense}”.'),
                     ['newLicense' => $licenseName]

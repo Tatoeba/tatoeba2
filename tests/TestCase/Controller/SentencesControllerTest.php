@@ -185,6 +185,8 @@ class SentencesControllerTest extends IntegrationTestCase {
             [54, 'CC0 1.0', 'kazuki', 'assertEquals'],
             'cannot switch to "admin_only" license as user' =>
             [48, '', 'contributor', 'assertEquals'],
+            'cannot switch from "Licensing issue" as user' =>
+            [52, 'CC BY 2.0 FR', 'advanced_contributor', 'assertEquals'],
         ];
     }
 

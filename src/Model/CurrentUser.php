@@ -364,7 +364,8 @@ class CurrentUser
     {
         $isOwner = self::get('id') == $sentence->user_id;
         $canSwitchLicense = self::getSetting('can_switch_license');
-        return ($isOwner && $canSwitchLicense) || self::isAdmin();
+        $noIssues = $sentence->license != '';
+        return ($isOwner && $canSwitchLicense && $noIssues) || self::isAdmin();
     }
     
     public static function hasAcceptedNewTermsOfUse()
