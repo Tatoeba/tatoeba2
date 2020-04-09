@@ -177,43 +177,30 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseCode(400);
     }
 
-    public function testEditLicense_canEditAsUserWithPerm() {
-        $sentenceId = 48;
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_license', [
-            'id' => $sentenceId,
-            'license' => 'CC0 1.0',
-        ]);
-        $newSentence = $sentences->get($sentenceId);
-        $this->assertNotEquals($oldSentence->license, $newSentence->license);
+    public function editLicenseProvider() {
+        return [
+            'can edit as user with permissions' =>
+            [48, 'CC0 1.0', 'contributor', 'assertNotEquals'],
+            'cannot edit as user without permissions' =>
+            [54, 'CC0 1.0', 'kazuki', 'assertEquals'],
+            'cannot switch to "admin_only" license as user' =>
+            [48, '', 'contributor', 'assertEquals'],
+        ];
     }
 
-    public function testEditLicense_cannotEditAsUserWithoutPerm() {
-        $sentenceId = 54;
+    /**
+     * @dataProvider editLicenseProvider
+     */
+    public function testEditLicense_severalScenarios($sentenceId, $license, $username, $assertMethod) {
         $sentences = TableRegistry::get('Sentences');
         $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('kazuki');
+        $this->logInAs($username);
         $this->post('/jpn/sentences/edit_license', [
             'id' => $sentenceId,
-            'license' => 'CC0 1.0',
+            'license' => $license,
         ]);
         $newSentence = $sentences->get($sentenceId);
-        $this->assertEquals($oldSentence->license, $newSentence->license);
-    }
-
-    public function testEditLicense_cannotSwitchToAdminOnlyLicenseAsUser() {
-        $sentenceId = 48;
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_license', [
-            'id' => $sentenceId,
-            'license' => '',
-        ]);
-        $newSentence = $sentences->get($sentenceId);
-        $this->assertEquals($oldSentence->license, $newSentence->license);
+        $this->$assertMethod($oldSentence->license, $newSentence->license);
     }
 
     public function testSaveTranslation_asGuest() {
