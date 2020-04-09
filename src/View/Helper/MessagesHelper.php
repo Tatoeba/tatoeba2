@@ -91,26 +91,6 @@ class MessagesHelper extends AppHelper
     }
 
     /**
-     * Get the message header title.
-     *
-     * @param  int     $messageId
-     * @param  string  $content
-     * @param  string  $title
-     *
-     * @return string
-     */
-    public function getHeaderTitle($recipients, $messageId, $content, $title)
-    {
-        if ($this->isDraft($messageId)) {
-            return __('Message');
-        } else if ($this->isReply($recipients, $messageId, $content)) {
-            return __('Reply');
-        }
-
-        return __('New message');
-    }
-
-    /**
      * Message is a draft.
      *
      * @param  int  $messageId
