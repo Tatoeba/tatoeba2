@@ -12,15 +12,13 @@ if ($isReply) {
 }
 ?>
 
-<?php if (isset($headerTitle)) { ?>
-    <md-toolbar class="md-hue-1">
-        <div class="md-toolbar-tools">
-            <h2 flex>
-                <?= $headerTitle ?>
-            </h2>
-        </div>
-    </md-toolbar>
-<?php } ?>
+<md-toolbar class="md-hue-1">
+    <div class="md-toolbar-tools">
+        <h2 flex>
+            <?= $headerTitle ?>
+        </h2>
+    </div>
+</md-toolbar>
 
 <div id="private-message-form" class="section">
     <div>
