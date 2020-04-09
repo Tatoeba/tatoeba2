@@ -31,6 +31,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text in the side bar of the Languages of members page (noun) */ ?>
         <h2><?php echo __('Legend'); ?></h2>
         <ul class="usersLanguagesLegend">
             <?php
@@ -59,6 +60,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
         <table class="usersLanguagesStats">
             <tr>
                 <th></th>
+                <?php /* @translators: table header text in Languages of members page */ ?>
                 <th><?php echo __('Language'); ?></th>
                 <?php
                 for ($i = Language::MAX_LEVEL; $i >= 0; $i--) {
@@ -70,6 +72,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
                         <div class="unknownLevel">?</div>
                     </div>
                 </th>
+                <?php /* @translators: table header text in Languages of members page */ ?>
                 <th><?php echo __('Total'); ?></th>
             </tr>
             <?php

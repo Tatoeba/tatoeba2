@@ -21,15 +21,18 @@ $sentenceUrl = $this->Url->build([
         <md-button ng-href="<?= $sentenceUrl ?>/{{vm.prev}}" class="md-primary"
                    ng-disabled="!vm.prev">
             <md-icon>keyboard_arrow_left</md-icon>
+            <?php /* @translators: link to neighbour sentence on sentence page */ ?>
             <?= __('previous') ?>
         </md-button>
 
         <md-button ng-href="<?= $sentenceUrl ?>/{{vm.lang}}" class="md-primary">
+            <?php /* @translators: link to a random sentence on sentence page */ ?>
             <?= __('random') ?>
         </md-button>
 
         <md-button ng-href="<?= $sentenceUrl ?>/{{vm.next}}" class="md-primary"
                    ng-disabled="!vm.next">
+            <?php /* @translators: link to neighbour sentence on sentence page */ ?>
             <?= __('next') ?>
             <md-icon>keyboard_arrow_right</md-icon>
         </md-button>

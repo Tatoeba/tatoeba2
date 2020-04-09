@@ -37,6 +37,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <?php echo $this->element('vocabulary/menu'); ?>
 
     <div class="section md-whiteframe-1dp" layout="column">
+        <?php /* @translators: title of the help text on the Add vocabulary page */ ?>
         <h2><?= __('Tips'); ?></h2>
         <p><?= __(
             'Add vocabulary that you are learning. If your vocabulary does not '.
@@ -65,6 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         ]) ?>
             <div layout="row">
                 <div class="language" layout="column">
+                    <?php /* @translators: language field label in new vocabulary request form */ ?>
                     <label for="lang-select"><?= __('Language'); ?></label>
                     <?php
                     $langArray = $this->Languages->profileLanguagesArray(
@@ -99,6 +101,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary"
                            ng-disabled="ctrl.isAdding || !ctrl.data.text || !ctrl.data.lang">
+                    <?php /* @translators: button to add a vocabulary request */ ?>
                     <?= __('Add'); ?>
                 </md-button>
             </div>

@@ -247,7 +247,9 @@ class LanguagesHelper extends AppHelper
     {
         $languages = $this->onlyLanguagesArray();
         $options = [
+            /* @translators: option used in language selection dropdowns such as "Show translations in" */
             'none' => __('None'),
+            /* @translators: option used in language selection dropdowns such as "Show translations in" */
             'und' => __('All languages')
         ];
 
@@ -266,6 +268,7 @@ class LanguagesHelper extends AppHelper
         $languages = $this->onlyLanguagesArray();
         $options = [
             'none' => '—',
+            /* @translators: option used in language selection dropdowns such as "Not directly translated into" */
             'und' => __('Any language')
         ];
 
@@ -428,6 +431,7 @@ class LanguagesHelper extends AppHelper
     {
         if (!isset($__languagesLevels)) {
             $__languagesLevels = array(
+                /* @translators: language level */
                 '' => __x('level', 'Unspecified'),
                 0 => __('0: Almost no knowledge'),
                 1 => __('1: Beginner'),

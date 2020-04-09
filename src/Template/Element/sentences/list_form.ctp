@@ -5,6 +5,7 @@
             <input ng-attr-id="list-form-{{vm.sentence.id}}" ng-model="vm.listSearch"
                    ng-change="vm.searchList()" ng-enter="vm.addToNewList()" ng-escape="vm.closeList()">
         </md-input-container>
+        <?php /* @translators: button to create a new list directly from a sentence block */ ?>
         <md-button class="md-raised md-primary" ng-click="vm.addToNewList()" ng-disabled="!vm.listSearch"><?= __('Create') ?></md-button>
     </div>
 

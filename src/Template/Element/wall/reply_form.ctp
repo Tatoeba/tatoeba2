@@ -31,6 +31,7 @@ $editUrl = $this->Url->build([
                    ng-if="vm.savedReplies[<?= $parentId ?>].id"
                    ng-href="<?= $editUrl ?>/{{vm.savedReplies[<?= $parentId ?>].id}}">
             <md-icon>edit</md-icon>
+            <?php /* @translators: edit button on a just-posted reply of a wall post (verb) */ ?>
             <md-tooltip><?= __('Edit') ?></md-tooltip>
         </md-button>
     </md-card-header>
@@ -62,11 +63,13 @@ $editUrl = $this->Url->build([
 
         <div ng-cloak layout="row" layout-align="end center">
             <md-button class="md-raised" ng-click="vm.hideForm(<?= $parentId ?>)">
+                <?php /* @translators: button to cancel posting a reply on the Wall (verb) */ ?>
                 <?php echo __('Cancel'); ?>
             </md-button>
 
             <md-button type="submit" class="md-raised md-primary submit"
                        ng-disabled="vm.isSaving[<?= $parentId ?>]">
+                <?php /* @translators: button to post a reply on the Wall (verb) */ ?>
                 <?php echo __('Send'); ?>
             </md-button>
         </div>

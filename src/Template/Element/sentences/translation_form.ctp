@@ -3,6 +3,7 @@
 <?php if (!empty($langs)) { ?>
     <form layout="column" layout-margin>
         <md-input-container>
+            <?php /* @translators: translation field label on new translation addition form */ ?>
             <label><?= __('Translation') ?></label>
             <textarea ng-attr-id="translation-form-{{vm.sentence.id}}" ng-model="vm.newTranslation.text" 
                       ng-enter="vm.saveTranslation(vm.sentence.id)"></textarea>
@@ -10,6 +11,7 @@
         
         <div layout="row" layout-align="start center">
             <md-input-container flex="50">
+                <?php /* @translators: language field label on new translation addition form */ ?>
                 <label><?= __('Language') ?></label>
                 <md-select ng-model="vm.newTranslation.lang">
                     <md-option value="auto" ng-if="vm.showAutoDetect"><?= __('Auto detect') ?></md-option>
@@ -27,6 +29,7 @@
 
         <div layout="row" layout-align="end center">
             <md-button class="md-raised" ng-click="vm.hide('translation_form')">
+                <?php /* @translators: cancel button of translation addition/edition form (verb) */ ?>
                 <?= __('Cancel') ?>
             </md-button>
             <md-button class="md-raised md-primary" ng-click="vm.saveTranslation(vm.sentence.id)">

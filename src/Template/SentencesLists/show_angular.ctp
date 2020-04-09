@@ -58,6 +58,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     if ($permissions['canEdit']) {
         ?>
         <div class="section md-whiteframe-1dp">
+            <?php /* @translators: header text in the side bar of a list page (noun) */ ?>
             <h2><?php echo __('Options'); ?></h2>
             <ul class="sentencesListActions">
                 <?php
@@ -148,9 +149,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             
             <div layout="row" layout-align="end">
                 <md-button class="md-raised" ng-click="vm.showEditNameForm = false">
+                    <?php /* @translators: cancel button of list name edition form (verb) */ ?>
                     <?= __('Cancel') ?>
                 </md-button>
                 <md-button class="md-raised md-primary" ng-click="vm.saveListName()">
+                    <?php /* @translators: submit button of list name edition form (verb) */ ?>
                     <?= __('Save') ?>
                 </md-button>
             </div>
@@ -206,8 +209,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         <div class="sortBy" id="sortBy">
         <strong><?php echo __("Sort by:") ?> </strong>
         <?php
+        /* @translators: sort option in a list page */
         echo $this->Paginator->sort('created', __('date added to list'));
         echo ' | ';
+        /* @translators: sort option in a list page */
         echo $this->Paginator->sort('sentence_id', __('date created'));
         ?>
         </div>

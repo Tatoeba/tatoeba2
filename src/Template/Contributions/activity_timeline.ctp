@@ -85,6 +85,7 @@ if (!empty($stats)) {
 
     <thead>
         <tr>
+            <?php /* @translators: first column header on the Activity timeline page */ ?>
             <td class="date"><?= __('Day'); ?></td>
             <td>
                 <div layout="row">

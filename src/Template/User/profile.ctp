@@ -88,6 +88,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
     </md-list>
 
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text in side bar of profile pages (noun) */ ?>
         <h2><?php echo __('Stats'); ?></h2>
         <dl>
             <dt><?php echo __('Comments posted'); ?></dt>
@@ -120,6 +121,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
     if ($isDisplayed) {
         ?>
         <div class="section md-whiteframe-1dp">
+            <?php /* @translators: header text for settings on profile page */ ?>
             <h2><?php echo __('Settings'); ?></h2>
 
             <ul class="annexeMenu">
@@ -172,6 +174,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                     <md-button class="md-primary md-raised"
                                aria-label="<?= __('Edit') ?>"
                                href="<?= $editSettingsUrl ?>">
+                        <?php /* @translators: edit button for settings on profile page (verb) */ ?>
                         <?= __('Edit') ?>
                     </md-button>
                 </div>
@@ -227,6 +230,7 @@ $this->set('title_for_layout', h($this->Pages->formatTitle($title)));
                         <md-button class="md-primary md-raised"
                                    aria-label="<?= __('Edit') ?>"
                                    href="<?= $editUrl ?>">
+                            <?php /* @translators: profile edition button on profile page (verb) */ ?>
                             <?= __('Edit') ?>
                         </md-button>
                         <?php
@@ -327,6 +331,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
          ng-cloak
          ng-controller="LanguageController as vm"
          ng-init="vm.init(<?= str_replace('{{', '\{\{', $userLanguages) ?>)">
+        <?php /* @translators: header text on profile page */ ?>
         <h2><?= __('Languages'); ?></h2>
 
         <p ng-if="vm.langs.length === 0">
@@ -372,6 +377,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     <md-button class="md-secondary md-icon-button"
                                aria-label="<?= __('Edit') ?>"
                                ng-href="<?= $editLangUrl.'/{{lang.language_code}}' ?>">
+                        <?php /* @translators: user language edition button on profile page (verb) */ ?>
                         <md-icon aria-label="<?= __('Edit') ?>">
                             edit
                         </md-icon>
@@ -380,6 +386,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                     <md-button type="submit" class="md-secondary md-icon-button"
                                ng-href="<?= $deleteUrl.'/{{lang.id}}'; ?>"
                                onclick="return confirm('<?= $confirmation; ?>');">
+                        <?php /* @translators: user language deletion button on profile page (verb) */ ?>
                         <md-icon aria-label="<?= __('Delete') ?>">
                             delete
                         </md-icon>
@@ -479,6 +486,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                 <div ng-if="vm.addLangStep === 'error'">
                     <p>{{vm.error}}</p>
                     <md-button ng-click="vm.addLangNextStep()" class="md-raised">
+                        <?php /* @translators: closing button of error message on user language addition form */ ?>
                         <?= __('OK') ?>
                     </md-button>
                 </div>
@@ -486,6 +494,7 @@ $userLanguages = htmlspecialchars(json_encode($userLanguages), ENT_QUOTES, 'UTF-
                 <!-- Form buttons -->
                 <div ng-if="vm.addLangStep != 'error' && vm.addLangStep != 'loading'" layout="row">
                     <md-button class="md-raised" ng-click="vm.resetForm()">
+                        <?php /* @translators: cancel button of user language addition form (directly from profile page) (verb) */ ?>
                         <?= __('Cancel') ?>
                     </md-button>
 

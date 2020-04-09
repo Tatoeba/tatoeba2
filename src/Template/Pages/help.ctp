@@ -25,6 +25,7 @@
  * @link     https://tatoeba.org
  */
 
+/* @translators: title of the Help page (noun) */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Help')));
 ?>
 

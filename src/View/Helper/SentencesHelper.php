@@ -404,6 +404,7 @@ class SentencesHelper extends AppHelper
 
         // Cancel
         echo $this->Form->button(
+            /* @translators: cancel button of "add translation" form on a sentence (verb) */
             __('Cancel'),
             array(
                 'id' => '_'.$id.'_cancel',
@@ -698,7 +699,9 @@ class SentencesHelper extends AppHelper
                 array(
                     'class' => join(' ', $classes),
                     'id' => $sentenceLang.'_'.$sentenceId,
+                    /* @translators: submit button of sentence edition form */
                     'data-submit' => __('OK'),
+                    /* @translators: cancel button of sentence edition form (verb) */
                     'data-cancel' => __('Cancel'),
                     'escape' => !$sentenceEscaped,
                 ),

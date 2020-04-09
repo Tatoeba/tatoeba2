@@ -27,6 +27,7 @@
 use App\Model\CurrentUser;
 ?>
 <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text on sentence page */ ?>
     <h2><?php echo __('License') ?></h2>
 
 <?php

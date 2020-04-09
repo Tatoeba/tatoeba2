@@ -43,6 +43,7 @@ $avatar = $user['image'];
 
         <div ng-cloak layout="row" layout-align="end center">
             <md-button type="submit" class="md-raised md-primary submit">
+                <?php /* @translators: button to post a new message on the Wall (verb) */ ?>
                 <?php echo __('Send'); ?>
             </md-button>
         </div>

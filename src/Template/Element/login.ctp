@@ -44,6 +44,7 @@ use Cake\Controller\Component\AuthComponent;
     <li>
     <?php
     echo $this->Html->link(
+        /* @translators: link to the Register page in the top bar (verb) */
         __('Register'),
         array(
             'controller' => 'users',
@@ -59,6 +60,7 @@ use Cake\Controller\Component\AuthComponent;
     <li>
     <?php
     echo $this->Html->link(
+        /* @translators: link to open the Login box in the top bar (verb) */
         __('Log in'),
         array(
             'controller' => 'users',
@@ -126,6 +128,7 @@ echo $this->Html->link(
     )
 );
 echo $this->Html->link(
+    /* @translators: button to close the top-right login box (verb) */
     __('Close'),
     '#',
     array(

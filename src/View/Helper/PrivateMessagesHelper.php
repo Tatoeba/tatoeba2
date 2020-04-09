@@ -66,6 +66,7 @@ class PrivateMessagesHelper extends AppHelper
 
         if ($folder == 'Trash') {
             $menu[] = array(
+                /* @translators: button to restore a private message that has been put to trash (verb) */
                 'text' => __('Restore'),
                 'icon' => 'restore',
                 'url' => array(
@@ -75,6 +76,7 @@ class PrivateMessagesHelper extends AppHelper
             );
 
             $menu[] = array(
+                /* @translators: button to delete a private message that has already been put in the trash (verb) */
                 'text' => __('Permanently delete'),
                 'icon' => 'delete_forever',
                 'url' => array(
@@ -85,6 +87,7 @@ class PrivateMessagesHelper extends AppHelper
             );
         } else {
             $menu[] = array(
+                /* @translators: button to put a private message in the trash (verb) */
                 'text' => __('Delete'),
                 'icon' => 'delete',
                 'url' => array(
@@ -107,7 +110,8 @@ class PrivateMessagesHelper extends AppHelper
 
             if ($type == 'human') {
                 $menu[] = array(
-                    'text' => __('Reply'),
+                    /* @translators: button to reply to a private message (verb) */
+                    'text' => __x('button', 'Reply'),
                     'icon' => 'reply',
                     'url' => '#reply'
                 );

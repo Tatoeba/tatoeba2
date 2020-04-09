@@ -42,6 +42,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <?php $this->Lists->displayListsLinks(); ?>
 
     <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text in the side bar of the download list page */ ?>
     <h2><?php echo __('Actions'); ?></h2>
     <ul class="sentencesListActions">
     <?php
@@ -55,7 +56,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <div class="section md-whiteframe-1dp">
     <h2><?= $this->safeForAngular($listName) ?></h2>
 
-    <h3><?php echo __('Download'); ?></h3>
+    <?php /* @translators: subheader text in the download list page (noun) */ ?>
+    <h3><?php echo __x('header', 'Download'); ?></h3>
 
     <div id="SentencesListExportToCsvForm" ng-controller="SentencesListsDownloadCtrl">
     <table>
@@ -146,7 +148,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
                 <md-button ng-click="addListExport(<?= $listId ?>)"
                            ng-disabled="preparingDownload"
                            class="md-raised md-primary">
-                    <span><?php echo __('Download'); ?></span>
+                   <?php /* @translators: button to download on the download list page (verb) */ ?>
+                    <span><?php echo __x('button', 'Download'); ?></span>
                 </md-button>
                 <md-progress-circular md-diameter="16" ng-if="preparingDownload"/>
                 </md-progress-circular>

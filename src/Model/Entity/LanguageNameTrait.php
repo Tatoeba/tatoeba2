@@ -53,6 +53,7 @@ trait LanguageNameTrait
         if (isset($languages["$code"])) {
             return $languages["$code"];
         } else {
+            /* @translators: dropdown option for unknown language */
             return __('unknown');
         }
     }

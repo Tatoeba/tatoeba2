@@ -64,6 +64,7 @@ $langArray = $this->Languages->languagesArrayAlone();
     ) ?></p>
     <div layout="row" layout-align="end center">
         <md-button class="md-primary" href="/user/settings"><?= __('Go to settings') ?></md-button>
+        <?php /* @translators: button to close the announcement about the new design (verb) */ ?>
         <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
     </div>
 </div>

@@ -121,7 +121,11 @@ if ($sentenceOwnerLink) {
 
         <?php foreach ($menu as $menuItem) {
             if ($menuItem['text'] == '#') {
-                $itemLabel = $replyIcon ? __('Reply') : __('Permalink');
+                $itemLabel = $replyIcon ?
+                             /* @translators: tooltip of reply button on a comment (verb) */
+                             __x('button', 'Reply') :
+                             /* @translators: tooltip of permalink button on a comment (noun) */
+                             __('Permalink');
             } else {
                 $itemLabel = $menuItem['text'];
             }

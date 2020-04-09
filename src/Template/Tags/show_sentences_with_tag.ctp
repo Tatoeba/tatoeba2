@@ -63,10 +63,12 @@ $tagsIndexUrl = $this->Url->build([
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?></strong>
             <?php
+            /* @translators: sort option in the page that lists sentences having a certain tag */
             echo $this->Paginator->sort('sentence_id', __('date created'));
             ?>
             |
             <?php
+            /* @translators: sort option in the page that lists sentences having a certain tag */
             echo $this->Paginator->sort('added_time', __("date of tag"));
             ?>
         </div>

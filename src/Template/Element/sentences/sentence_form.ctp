@@ -14,6 +14,7 @@
 
     <div layout="row" layout-align="start center" ng-if="vm.sentence.permissions.canEdit">
         <md-input-container flex="50">
+            <?php /* @translators: language field label on sentence addition form */ ?>
             <label><?= __('Language') ?></label>
             <md-select ng-model="vm.sentence.lang">
                 <md-option value="unknown"><?= __('Other language') ?></md-option>
@@ -30,6 +31,7 @@
     </div>
 
     <md-input-container ng-if="vm.sentence.permissions.canEdit">
+        <?php /* @translators: sentence text field label on new sentence addition form */ ?>
         <label><?= __('Sentence') ?></label>
         <textarea ng-attr-id="sentence-form-{{vm.sentence.id}}" ng-model="vm.sentence.text" 
                   ng-enter="vm.editSentence()" ng-escape="vm.cancelEdit()"></textarea>
@@ -39,6 +41,7 @@
     <div layout="column" ng-if="transcription.markup" ng-repeat="transcription in vm.sentence.transcriptions">
         <div layout="row" layout-align="start center" flex>
             <md-input-container flex>
+                <?php /* @translators: label for transcription edition/addition form */ ?>
                 <label><?= __('Transcription') ?></label>
                 <textarea ng-attr-id="transcription-form-{{transcription.sentence.id}}" ng-model="transcription.markup"
                           ng-change="transcription.error = null; transcription.needsReview = false;"
@@ -49,6 +52,7 @@
             
             <md-button class="md-icon-button" ng-click="vm.saveTranscription(transcription, vm.sentence, 'reset')">
                 <md-icon>undo</md-icon>
+                <?php /* @translators: reset button of transcription edition form (verb) */ ?>
                 <md-tooltip><?= __('Reset') ?></md-tooltip>
             </md-button>
                         
@@ -61,9 +65,11 @@
 
     <div layout="row" layout-align="end center">
         <md-button class="md-raised" ng-click="vm.cancelEdit()">
+            <?php /* @translators: cancel button of sentence text edition form (verb) */ ?>
             <?= __('Cancel') ?>
         </md-button>
         <md-button class="md-raised md-primary" ng-click="vm.editSentence()">
+            <?php /* @translators: submit button of sentence text edition form (verb) */ ?>
             <?= __('Save') ?>
         </md-button>
     </div>

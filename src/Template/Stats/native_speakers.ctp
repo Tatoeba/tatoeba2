@@ -28,14 +28,19 @@
 $title = __('Native speakers');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 $membersIcons = array(
+    /* @translators: refer to user status, used on the Native speakers page */
     'status_admin' => __('Admins'),
+    /* @translators: refer to user status, used on the Native speakers page */
     'status_corpus_maintainer' => __('Corpus maintainers'),
+    /* @translators: refer to user status, used on the Native speakers page */
     'status_advanced_contributor' => __('Advanced contributors'),
+    /* @translators: refer to user status, used on the Native speakers page */
     'status_contributor' => __('Contributors')
 );
 ?>
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp usersLanguagesStats">
+        <?php /* @translators: header text in the side bar of the Native speakers page (noun) */ ?>
         <h2><?php echo __('Legend'); ?></h2>
         <?php
         foreach ($membersIcons as $iconClass => $tooltip) {
@@ -66,6 +71,7 @@ $membersIcons = array(
             <tr>
                 <th></th>
                 <th></th>
+                <?php /* @translators: table header text in Native speakers page */ ?>
                 <th><?php echo __('Language'); ?></th>
                 <?php
                 foreach ($membersIcons as $iconClass => $tooltip) {
@@ -80,6 +86,7 @@ $membersIcons = array(
                     echo $this->Html->tag('th', $icon, array('title' => $tooltip));
                 }
                 ?>
+                <?php /* @translators: table header text in Native speakers page */ ?>
                 <th><?php echo __('Total'); ?></th>
             </tr>
 
