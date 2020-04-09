@@ -107,3 +107,11 @@ SELECT s.id, s.lang, s.text, s.modified
 FROM sentences s
 WHERE correctness > -1 AND license = 'CC0 1.0'
 INTO OUTFILE '/var/tmp/sentences_CC0.csv';
+
+-- Transcriptions
+SELECT t.sentence_id, s.lang, t.script, IFNULL(u.username,''), t.text
+FROM transcriptions t
+JOIN sentences s ON s.id = t.sentence_id
+LEFT JOIN users u ON u.id = t.user_id
+WHERE s.correctness > -1
+INTO OUTFILE '/var/tmp/transcriptions.csv';
