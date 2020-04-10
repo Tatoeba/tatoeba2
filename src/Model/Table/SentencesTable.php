@@ -35,6 +35,7 @@ use App\Event\UsersLanguagesListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
+use Cake\ORM\RulesChecker;
 
 class SentencesTable extends Table
 {
@@ -141,6 +142,23 @@ class SentencesTable extends Table
         $validator->dateTime('modified');
 
         return $validator;
+    }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->addCreate(
+            function ($entity, $options) {
+                if ($entity->based_on_id != 0) {
+                    $baseSentence = $this->findById($entity->based_on_id)->first();
+                    return !empty($baseSentence->license);
+                } else {
+                    return true;
+                }
+            },
+            'licenseCheck'
+        );
+
+        return $rules;
     }
 
     public function beforeSave($event, $entity, $options)

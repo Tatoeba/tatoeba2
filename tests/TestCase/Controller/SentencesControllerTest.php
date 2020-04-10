@@ -224,6 +224,16 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseOk();
     }
 
+    public function testSaveTranslation_sentenceWithLicensingIssue() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/eng/sentences/save_translation', [
+            'id' => '52',
+            'selectLang' => 'rus',
+            'value' => 'translation text',
+        ]);
+        $this->assertResponseEmpty();
+    }
+
     public function testChangeLanguage_asGuest() {
         $this->ajaxPost('/jpn/sentences/change_language', [
             'id' => '9',
