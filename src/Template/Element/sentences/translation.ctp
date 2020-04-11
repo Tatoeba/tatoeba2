@@ -13,7 +13,7 @@ $sentenceBaseUrl = $this->Url->build([
     <div layout="row" layout-align="start center" flex>
     <?php if (CurrentUser::isTrusted()) { ?>
         <md-button class="md-icon-button" ng-if="translation.isDirect" ng-click="vm.saveLink('delete', translation)">
-            <md-icon>content_cut</md-icon>
+            <md-icon md-svg-src="/img/link_off.svg"></md-icon>
             <md-tooltip><?= __('Unlink this translation.') ?></md-tooltip>
         </md-button>
         <md-button class="md-icon-button" ng-if="!translation.isDirect" ng-click="vm.saveLink('add', translation)">
