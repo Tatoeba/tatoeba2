@@ -102,14 +102,14 @@ $menuElements = array(
                 "controller" => "sentence_comments",
                 "action" => "index"
             ),
-            __('Show activity timeline') => array(
-                "controller" => "contributions",
-                "action" => "activity_timeline"
-            ),
             __('Add vocabulary request') => array(
                 "controller" => "vocabulary",
                 "action" => "add_sentences",
                 $filteredLanguage
+            ),
+            __('Show activity timeline') => array(
+                "controller" => "contributions",
+                "action" => "activity_timeline"
             ),
         )
     ),
