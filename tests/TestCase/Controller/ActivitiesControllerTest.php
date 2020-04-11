@@ -26,7 +26,7 @@ class ActivitiesControllerTest extends IntegrationTestCase {
             // url; user; is accessible or redirection url
             [ '/eng/activities/adopt_sentences', null, '/eng/users/login?redirect=%2Feng%2Factivities%2Fadopt_sentences' ],
             [ '/eng/activities/adopt_sentences', 'contributor', true ],
-            [ '/eng/activities/adopt_sentences/jav', null, '/eng/users/login?redirect=%2Feng%2Factivities%2Fadopt_sentences' ],
+            [ '/eng/activities/adopt_sentences/jav', null, '/eng/users/login?redirect=%2Feng%2Factivities%2Fadopt_sentences%2Fjav' ],
             [ '/eng/activities/adopt_sentences/jav', 'contributor', true ],
             [ '/eng/activities/translate_sentences', null, '/eng/users/login?redirect=%2Feng%2Factivities%2Ftranslate_sentences' ],
             [ '/eng/activities/translate_sentences', 'contributor', true ],
