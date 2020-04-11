@@ -31,7 +31,7 @@
             </md-button>
             <md-button class="md-raised md-primary" ng-click="vm.saveTranslation(vm.sentence.id)">
                 <span ng-if="!vm.newTranslation.editable">
-                    <?= __('Submit translation') ?>
+                    <?= __('Add translation') ?>
                 </span>
                 <span ng-if="vm.newTranslation.editable">
                     <?= __('Edit translation') ?>

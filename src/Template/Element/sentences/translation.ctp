@@ -34,19 +34,18 @@ $sentenceBaseUrl = $this->Url->build([
             <md-tooltip md-direction="top">{{translation.furigana.info_message}}</md-tooltip>
         </span>
         <span ng-if="!translation.furigana">{{translation.text}}</span>
+        <md-tooltip ng-if="translation.isDuplicate">
+            <?= format(
+                __('Existing sentence #{number} has been added as a translation.'),
+                ['number' => '{{translation.id}}']
+            ) ?>
+        </md-tooltip>
     </div>
     
     <div class="indicator" ng-if="translation.correctness === -1">
         <md-icon class="md-warn" >warning</md-icon>
         <md-tooltip md-direction="top">
             <?= __('This sentence is not reliable.') ?>
-        </md-tooltip>
-    </div>
-
-    <div class="indicator" ng-if="translation.isDuplicate">
-        <md-icon>warning</md-icon>
-        <md-tooltip>
-            <?= __('This translation is a duplicate of an existing sentence. Only the link was created.'); ?>
         </md-tooltip>
     </div>
 
