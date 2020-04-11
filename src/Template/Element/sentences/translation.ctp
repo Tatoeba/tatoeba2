@@ -6,9 +6,10 @@ $sentenceBaseUrl = $this->Url->build([
     'controller' => 'sentences',
     'action' => 'show',
 ]);
+$css = CurrentUser::isTrusted() ? 'trusted-user' : '';
 ?>
 <div ng-repeat="translation in <?= $translations ?>"
-     class="translation" ng-class="{'not-reliable' : translation.correctness === -1}">
+     class="translation <?= $css ?>" ng-class="{'not-reliable' : translation.correctness === -1}">
     
     <div layout="row" layout-align="start center" flex>
     <?php if (CurrentUser::isTrusted()) { ?>
