@@ -329,12 +329,11 @@
                         var sentence = result.data.sentence;
                         initSentence(sentence);
                         if (translationLang === 'und') {
-                            refreshTranslations(sentence.translations);
-                            updateNewTranslationsInfo(translation, sentenceId);
+                            updateNewTranslationsInfo(translation, sentenceId, sentence.translations);
                         } else {
                             allDirectTranslations.unshift(translation);
-                            refreshTranslations();
                         }
+                        refreshTranslations();
                         vm.newTranslation = {};
                         show('translations');
                         vm.inProgress = false;
@@ -647,12 +646,17 @@
                 allIndirectTranslations = translations[1];
             }
             
-            showAllTranslations();
-            vm.isExpanded = true;
-            vm.expandableIcon = 'expand_less';
+            if (vm.isExpanded) {
+                showAllTranslations();
+            } else {
+                showFewerTranslations();
+            }
         }
 
-        function updateNewTranslationsInfo(translation, sentenceId) {
+        function updateNewTranslationsInfo(translation, sentenceId, translations) {
+            allDirectTranslations = translations[0];
+            allIndirectTranslations = translations[1];
+            
             newTranslations.push(translation.id);
             if (translation.isDuplicate) {
                 duplicateTranslations.push(translation.id);
