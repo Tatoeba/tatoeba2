@@ -31,12 +31,7 @@ use Cake\Core\Configure;
 $session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $showTranslationsInto = $session->read('show_translations_into_lang');
-
 $filteredLanguage = $session->read('vocabulary_requests_filtered_lang');
-
-if ($filteredLanguage == null) {
-    $filteredLanguage = 'und';
-}
 
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
