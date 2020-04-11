@@ -28,9 +28,15 @@ use App\Model\CurrentUser;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Add sentences')));
 
+$filteredLanguage = $this->request->getSession()->read('vocabulary_requests_filtered_lang');
+
+if ($filteredLanguage == null) {
+    $filteredLanguage = 'und';
+}
 $vocabularyUrl = $this->Url->build(array(
     'controller' => 'vocabulary',
-    'action' => 'add_sentences'
+    'action' => 'add_sentences',
+    $filteredLanguage
 ));
 ?>
 
