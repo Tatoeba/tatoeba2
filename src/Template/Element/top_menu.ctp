@@ -31,6 +31,7 @@ use Cake\Core\Configure;
 $session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $showTranslationsInto = $session->read('show_translations_into_lang');
+$filteredLanguage = $session->read('vocabulary_requests_filtered_lang');
 
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
@@ -101,10 +102,15 @@ $menuElements = array(
                 "controller" => "sentence_comments",
                 "action" => "index"
             ),
+            __('Add vocabulary request') => array(
+                "controller" => "vocabulary",
+                "action" => "add_sentences",
+                $filteredLanguage
+            ),
             __('Show activity timeline') => array(
                 "controller" => "contributions",
                 "action" => "activity_timeline"
-            )
+            ),
         )
     ),
     __('Community') => array(
