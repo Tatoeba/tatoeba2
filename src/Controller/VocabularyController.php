@@ -117,9 +117,8 @@ class VocabularyController extends AppController
      */
     public function add_sentences($lang = null)
     {   
-    
-        $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang );
-        
+        $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang);
+
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Languages';

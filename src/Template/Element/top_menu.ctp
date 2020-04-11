@@ -112,10 +112,10 @@ $menuElements = array(
                 "action" => "activity_timeline"
             ),
             __('Add vocabulary request') => array(
-            "controller" => "vocabulary",
-            "action" => "add_sentences",
+                "controller" => "vocabulary",
+                "action" => "add_sentences",
                 $filteredLanguage
-             )   
+            ),
         )
     ),
     __('Community') => array(
