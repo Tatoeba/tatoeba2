@@ -177,30 +177,32 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseCode(400);
     }
 
-    public function testEditLicense_canEditAsUserWithPerm() {
-        $sentenceId = 48;
-        $sentences = TableRegistry::get('Sentences');
-        $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('contributor');
-        $this->post('/jpn/sentences/edit_license', [
-            'id' => $sentenceId,
-            'license' => 'CC0 1.0',
-        ]);
-        $newSentence = $sentences->get($sentenceId);
-        $this->assertNotEquals($oldSentence->license, $newSentence->license);
+    public function editLicenseProvider() {
+        return [
+            'can edit as user with permissions' =>
+            [48, 'CC0 1.0', 'contributor', 'assertNotEquals'],
+            'cannot edit as user without permissions' =>
+            [54, 'CC0 1.0', 'kazuki', 'assertEquals'],
+            'cannot switch to "admin_only" license as user' =>
+            [48, '', 'contributor', 'assertEquals'],
+            'cannot switch from "Licensing issue" as user' =>
+            [52, 'CC BY 2.0 FR', 'advanced_contributor', 'assertEquals'],
+        ];
     }
 
-    public function testEditLicense_cannotEditAsUserWithoutPerm() {
-        $sentenceId = 54;
+    /**
+     * @dataProvider editLicenseProvider
+     */
+    public function testEditLicense_severalScenarios($sentenceId, $license, $username, $assertMethod) {
         $sentences = TableRegistry::get('Sentences');
         $oldSentence = $sentences->get($sentenceId);
-        $this->logInAs('kazuki');
+        $this->logInAs($username);
         $this->post('/jpn/sentences/edit_license', [
             'id' => $sentenceId,
-            'license' => 'CC0 1.0',
+            'license' => $license,
         ]);
         $newSentence = $sentences->get($sentenceId);
-        $this->assertEquals($oldSentence->license, $newSentence->license);
+        $this->$assertMethod($oldSentence->license, $newSentence->license);
     }
 
     public function testSaveTranslation_asGuest() {
@@ -220,6 +222,16 @@ class SentencesControllerTest extends IntegrationTestCase {
             'value' => 'Elle essaie toujours de faire ce qu\'elle pense.'
         ]);
         $this->assertResponseOk();
+    }
+
+    public function testSaveTranslation_sentenceWithLicensingIssue() {
+        $this->logInAs('contributor');
+        $this->ajaxPost('/eng/sentences/save_translation', [
+            'id' => '52',
+            'selectLang' => 'rus',
+            'value' => 'translation text',
+        ]);
+        $this->assertResponseEmpty();
     }
 
     public function testChangeLanguage_asGuest() {

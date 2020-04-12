@@ -24,12 +24,13 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
+use App\Model\CurrentUser;
 ?>
 <div class="section md-whiteframe-1dp">
     <h2><?php echo __('License') ?></h2>
 
 <?php
-echo $this->Sentences->License->getLicenseName($license);
+echo $this->SentenceLicense->getLicenseName($license);
 
 if ($canEdit) {
     echo "<hr>";
@@ -47,20 +48,12 @@ if ($canEdit) {
     );
     $options = array(
         'label' => __('License:'),
-        'options' => $this->Sentences->License->getLicenseOptions(),
+        'options' => $this->SentenceLicense->getLicenseOptions(CurrentUser::isAdmin()),
         'value' => $license,
     );
-    if (is_null($license)) {
-        $options['empty'] = true;
-    }
     echo $this->Form->control('license', $options);
     echo $this->Form->submit(__d('admin', 'Change'));
     echo $this->Form->end();
 }
-
-// Workaround for error:
-//    The "License" alias has already been loaded with the following config
-// Until someone finds a good way to refactor the involved helpers.
-$this->helpers()->unload('License');
 ?>
 </div>

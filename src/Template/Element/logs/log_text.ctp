@@ -57,7 +57,8 @@ $infoLabel = $this->Logs->getInfoLabel($type, $action, $username, $sentenceDate)
             if (isset($withSentenceLink)) {
                 echo $sentenceLink.' ';
             }
-            echo ' ➜ '.$this->Html->tag('span', $sentenceText, array('class' => 'license'));
+            $licenseName = $this->SentenceLicense->getLicenseName($log->text);
+            echo ' ➜ '.$this->Html->tag('span', $licenseName, array('class' => 'license'));
         } else { // link
             echo $sentenceLink.' ➜ '.$translationLink;
         }

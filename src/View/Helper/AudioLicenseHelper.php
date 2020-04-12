@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2020 Tatoeba Project
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,29 +15,20 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * PHP version 5
- *
- * @category PHP
- * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
- * @license  Affero General Public License
- * @link     https://tatoeba.org
  */
+namespace App\View\Helper;
 
-if (isset($translation)) {
-    $type = 'directTranslation';
-    $isEditable = true;
+use App\View\Helper\LicenseHelper;
+use App\Lib\Licenses;
 
-    $translation->audios = [];
-    
-    $this->Sentences->displayGenericSentence(
-        $translation,
-        $type, 
-        true,
-        $parentId,
-        $isEditable
-    );
-    
+/**
+ * AudioLicense helper
+ *
+ * Child class of LicenseHelper which defines all valid licenses for audio files.
+ */
+class AudioLicenseHelper extends LicenseHelper
+{
+    public function initialize(array $config) {
+        $this->licenses = Licenses::getAudioLicenses();
+    }
 }
-?>
