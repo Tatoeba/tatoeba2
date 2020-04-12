@@ -52,7 +52,6 @@ class UsersController extends AppController
         'Date',
         'Logs',
         'Sentences',
-        'Navigation',
         'Pagination'
     );
     public $components = array('Flash', 'Mailer', 'RememberMe');

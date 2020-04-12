@@ -47,7 +47,6 @@ class ContributionsController extends AppController
         'Form',
         'Sentences',
         'Logs',
-        'Navigation',
         'Date',
         'Languages',
         'CommonModules',

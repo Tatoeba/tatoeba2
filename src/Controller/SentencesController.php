@@ -64,7 +64,6 @@ class SentencesController extends AppController
         'Logs',
         'Pagination',
         'Comments',
-        'Navigation',
         'Languages',
         'CommonModules'
     );
