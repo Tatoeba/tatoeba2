@@ -316,10 +316,11 @@ class ExportsTable extends Table
         $results = $query->all();
         foreach ($results as $entity) {
             $fields = $this->getCSVFields($config['fields'], $entity);
+            $linefeed = "\r\n";
             if ($config['format'] == 'shtooka') {
-                $file->write(implode($fields, " - ")."\n");
+                $file->write(implode($fields, " - ").$linefeed);
             } else {
-                $file->write(implode($fields, "\t")."\n");
+                $file->write(implode($fields, "\t").$linefeed);
             }
         }
         $file->close();
