@@ -85,11 +85,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
         <tr ng-show="format === 'tsv'">
             <td><?php echo __('Fields and structure'); ?></td>
             <td colspan="2">
-                <span class="param"><?php echo __('Sentence id'); ?></span>
-                <span class="symbol">[<?php echo __('tab'); ?>]</span>
-                <span class="param"><?php echo __('Text'); ?></span>
-                <span class="symbol">[<?php echo __('tab'); ?>]</span>
-                <span class="param"><?php echo __('Translation'); ?></span>
+                <?= $this->Downloads->fileFormat([
+                    __('Sentence id'),
+                    __('Text'),
+                    __('Translation'),
+                ]) ?>
             </td>
         </tr>
 
