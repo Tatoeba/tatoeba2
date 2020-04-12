@@ -21,6 +21,10 @@ class LanguagesHelperTest extends TestCase {
 		CurrentUser::store(null);
 	}
 
+	function tearDown() {
+		I18N::setLocale('en');
+	}
+
 	function _beRegularUser() {
 		$admin = array(
 			'id' => 7,
