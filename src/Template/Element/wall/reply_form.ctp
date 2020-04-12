@@ -27,7 +27,7 @@ $editUrl = $this->Url->build([
             </span>
         </md-card-header-text>
 
-        <md-button class="md-icon-button" aria-label="<?= __('edit') ?>"
+        <md-button class="md-icon-button" aria-label="<?= __('Edit') ?>"
                    ng-if="vm.savedReplies[<?= $parentId ?>].id"
                    ng-href="<?= $editUrl ?>/{{vm.savedReplies[<?= $parentId ?>].id}}">
             <md-icon>edit</md-icon>
