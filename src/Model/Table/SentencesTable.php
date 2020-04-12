@@ -684,10 +684,10 @@ class SentencesTable extends Table
             'user_id',
             'correctness',
             'script',
+            'license',
         ];
 
         if (isset($what['sentenceDetails'])) {
-            $fields[] = 'license';
             $fields[] = 'based_on_id';
         }
 
