@@ -452,16 +452,19 @@ class LanguagesHelper extends AppHelper
 
     public function smallLevelBar($level)
     {
-        $opacity = $opacity = 0.5 + 0.5 * ($level / Language::MAX_LEVEL);
-        $size = ($level / Language::MAX_LEVEL) * 100;
-        $levelDiv = $this->Html->div(
-            null,
-            "",
-            array(
+        if ($level === '') {
+            $text = '?';
+            $options = ['class' => 'unknownLevel'];
+        } else {
+            $text = '';
+            $opacity = $opacity = 0.5 + 0.5 * ($level / Language::MAX_LEVEL);
+            $size = ($level / Language::MAX_LEVEL) * 100;
+            $options = [
+                'class' => 'level',
                 'style' => 'opacity:'.$opacity.'; width:'.$size.'%;',
-                'class' => 'level'
-            )
-        );
+            ];
+        }
+        $levelDiv = $this->Html->div(null, $text, $options);
         $levelDivContainer = $this->Html->div(
             'languageLevel',
             $levelDiv,

@@ -35,16 +35,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
         <h2><?php echo __('Legend'); ?></h2>
         <ul class="usersLanguagesLegend">
             <?php
-            for ($i = Language::MAX_LEVEL; $i >= 0; $i--) {
+            $levels = $this->Languages->getLevelsLabels();
+            uksort($levels, function($a, $b) {
+                $va = $a === '' ? -1 : $a;
+                $vb = $b === '' ? -1 : $b;
+                return $vb - $va;
+            });
+
+            foreach ($levels as $i => $level) {
                 $legend = $this->Html->tag('span', $this->Languages->getLevelsLabels($i));
                 echo $this->Html->tag('li', $this->Languages->smallLevelBar($i) . $legend);
             }
             ?>
-            <li>
-                <div class="languageLevel">
-                    <div class="unknownLevel key">?</div>
-                </div><span><?php echo __('Unspecified'); ?></span>
-            </li>
         </ul>
     </div>
 </div>
