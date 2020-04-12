@@ -45,65 +45,6 @@ class MembersHelper extends AppHelper
     public $helpers = array('Html');
 
     /**
-     * To display the names of the people listed in Team & Credits.
-     *
-     * @param string $username    Username of the member.
-     * @param string $realName    Real name of the member.
-     * @param string $description Description of the member's participation.
-     *
-     * @return void
-     */
-    public function creditsToUser($realName, $username = null, $description = null)
-    {
-        $realName = h($realName);
-        ?>
-        <div class="person">
-            <div class="realName">
-            <?php
-            echo $realName;
-            ?>
-            </div>
-
-            <div class="description">
-            <?php echo $description; ?>
-            </div>
-
-            <?php
-            if (!empty($username)) {
-                ?>
-                <div class="username">
-                <?php
-                $profileIcon = $this->Html->image(
-                    IMG_PATH . 'profile.png',
-                    array(
-                        "alt" => __('Profile'),
-                        "width" => 14,
-                        "height" => 14
-                    )
-                );
-                echo $this->Html->link(
-                    $profileIcon.' '.$username,
-                    array(
-                        'controller' => 'user',
-                        'action' => 'profile',
-                        $username
-                    ),
-                    array(
-                        'escape' => false
-                    )
-                );
-                ?>
-                </div>
-                <?php
-            }
-            ?>
-
-        </div>
-        <?php
-    }
-
-
-    /**
      *
      */
     public function image($username = null, $imageName = null, $options = array())
@@ -130,32 +71,6 @@ class MembersHelper extends AppHelper
             $options
         );
     }
-
-    /**
-     * Display "Edit" button in the profile.
-     *
-     * @param array  $linkPath Path to the edit page.
-     * @param String $label    Label of the button. If null, it displays "Edit".
-     *
-     * @return void
-     */
-    public function displayEditButton($linkPath, $label = null)
-    {
-        if (empty($label)) {
-            $label = __('Edit');
-        }
-        ?>
-        <div class="editOption">
-        <?php
-        echo $this->Html->link(
-            $label,
-            $linkPath
-        );
-        ?>
-        </div>
-        <?php
-    }
-
 
     /**
      * Gives i18n for a role name.
