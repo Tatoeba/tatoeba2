@@ -92,11 +92,15 @@ class ExportsTable extends Table
            ->where(['user_id' => $userId]);
     }
 
-    private function createExportFromConfig($config, $userId)
+    private function createExportFromConfig(&$config, $userId)
     {
         $export = $this->newEntity();
         $export->status = 'queued';
         $export->user_id = $userId;
+
+        if (isset($config['format']) && $config['format'] == 'shtooka') {
+            $config['fields'] = ['id', 'text'];
+        }
 
         if (isset($config['type'])
             && $config['type'] == 'list'
@@ -104,6 +108,8 @@ class ExportsTable extends Table
             && isset($config['fields'])
             && is_array($config['fields'])
             && $this->validateFields($config['fields'])
+            && isset($config['format'])
+            && $this->validateFormat($config['format'])
             && (!isset($config['trans_lang'])
                 || LanguagesLib::languageExists($config['trans_lang']))) {
 
@@ -173,6 +179,12 @@ class ExportsTable extends Table
             }
         }
         return true;
+    }
+
+    private function validateFormat($check)
+    {
+        $availableFormats = ['tsv', 'txt', 'shtooka'];
+        return in_array($check, $availableFormats);
     }
 
     private function getCSVFields($fields, $entity)
@@ -253,7 +265,9 @@ class ExportsTable extends Table
 
     private function newUniqueFilename($config)
     {
-        $filename = $config['type'].'_'.$config['export_id'].'.csv';
+        $extMap = [ 'shtooka' => 'txt' ];
+        $ext = $extMap[ $config['format'] ] ?? $config['format'];
+        $filename = $config['type'].'_'.$config['export_id'].'.'.$ext;
         return Configure::read('Exports.path').$filename;
     }
 
@@ -302,7 +316,12 @@ class ExportsTable extends Table
         $results = $query->all();
         foreach ($results as $entity) {
             $fields = $this->getCSVFields($config['fields'], $entity);
-            $file->write(implode($fields, "\t")."\n");
+            $linefeed = "\r\n";
+            if ($config['format'] == 'shtooka') {
+                $file->write(implode($fields, " - ").$linefeed);
+            } else {
+                $file->write(implode($fields, "\t").$linefeed);
+            }
         }
         $file->close();
 

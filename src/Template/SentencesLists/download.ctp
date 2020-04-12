@@ -60,23 +60,40 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
     <div id="SentencesListExportToCsvForm" ng-controller="SentencesListsDownloadCtrl">
     <table>
         <tr>
-            <td><?php echo __('Id (optional)'); ?></td>
-            <td>
-            <md-checkbox
-                ng-true-value='1'
-                ng-false-value='0'
-                ng-model='showid'
-                ng-init="showid = 0;"
-                class="md-primary">
-            </md-checkbox>
-            </td>
-            <td>
-            <?php echo __('If you check this box, the id of each sentence will be written to the output.');
+            <td><?php echo __('File format'); ?></td>
+            <td colspan="2">
+            <?php
+            $langArray = $this->Languages->languagesArrayWithNone();
+            echo $this->Form->select(
+                'FileFormat',
+                array(
+                    'txt' => __('Raw text file'),
+                    'tsv' => __('Tab-separated file'),
+                    'shtooka' => __('List for the Shtooka recorder'),
+                ),
+                array(
+                    'empty' => false,
+                    'ng-model' => 'format',
+                    'ng-init' => 'format = "txt"',
+                )
+            );
             ?>
+            </td>
+            <td></td>
+        </tr>
+
+        <tr ng-show="format === 'tsv'">
+            <td><?php echo __('Fields and structure'); ?></td>
+            <td colspan="2">
+                <span class="param"><?php echo __('Sentence id'); ?></span>
+                <span class="symbol">[<?php echo __('tab'); ?>]</span>
+                <span class="param"><?php echo __('Text'); ?></span>
+                <span class="symbol">[<?php echo __('tab'); ?>]</span>
+                <span class="param"><?php echo __('Translation'); ?></span>
             </td>
         </tr>
 
-        <tr>
+        <tr ng-show="format === 'txt' || format === 'tsv'">
             <td><?php echo __('Translation (optional)'); ?></td>
             <td>
             <?php
@@ -142,26 +159,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Download list: ') .
         </tr>
     </table>
     </div>
-
-    <h3><?php echo __('Fields and structure'); ?></h3>
-    <p>
-    <?php
-        __(
-            'Fields will be written out in the following sequence:'
-        );
-    ?>
-    </p>
-    <p>
-    <span class="param"><em><?php echo __('Sentence id'); ?></em></span>
-    <span class="symbol"><em>[<?php echo __('tab'); ?>]</em></span>
-    <span class="param"><?php echo __('Text'); ?></span>
-    <span class="symbol"><em>[<?php echo __('tab'); ?>]</em></span>
-    <span class="param"><em><?php echo __('Translation'); ?></em></span>
-    </p>
-
-    <p>
-    <?php echo __("Optional fields that are not selected above will not be written to the output."); ?>
-    </p>
 
     </div>
 
