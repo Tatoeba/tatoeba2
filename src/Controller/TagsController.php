@@ -69,15 +69,15 @@ class TagsController extends AppController
             $username = CurrentUser::get("username");
             $tag = $this->Tags->addTag($tagName, $userId, $sentenceId);
 
-            $isSaved = $tag && $tag->id;
+            $isSaved = $tag && $tag->link;
             $this->set('isSaved', $isSaved);
             if ($isSaved) {
-                $this->set('tagName', $tagName);
-                $this->set('tagId', $tag->tag_id);
+                $this->set('tagName', $tag->name);
+                $this->set('tagId', $tag->id);
                 $this->set('userId', $userId);
                 $this->set('username', $username);
                 $this->set('sentenceId', $sentenceId);
-                $this->set('date', date("Y-m-d H:i:s"));
+                $this->set('date', $tag->link->added_time);
                 $this->loadModel('Sentences');
                 $sentence = $this->Sentences->get($sentenceId, ['fields' => ['lang']]);
                 $this->set('sentenceLang', $sentence->lang);

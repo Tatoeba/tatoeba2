@@ -22,6 +22,7 @@ use App\Model\CurrentUser;
 use Cake\Database\Schema\TableSchema;
 use Cake\ORM\Table;
 use Cake\Event\Event;
+use Cake\Validation\Validator;
 
 class TagsTable extends Table
 {
@@ -55,6 +56,25 @@ class TagsTable extends Table
         $this->addBehavior('Timestamp');
     }
 
+    public function beforeMarshal($event, $data, $options)
+    {
+        if (isset($data['name'])) {
+            $name = ltrim($data['name']);
+            // Truncate to a maximum byte length of 50. If a multibyte
+            // character would be split, the entire character will be
+            // truncated.
+            $name = mb_strcut($name, 0, 50, "UTF-8");
+            $name = rtrim($name);
+            $data['name'] = $name;
+        }
+    }
+
+    public function validationDefault(Validator $validator)
+    {
+        $validator->allowEmptyString('name', false);
+        return $validator;
+    }
+
     /**
      * Add a tag (and optionally tag a sentence)
      *
@@ -66,15 +86,6 @@ class TagsTable extends Table
      */
     public function addTag($tagName, $userId, $sentenceId = null)
     {
-        $tagName = trim($tagName);
-        if ($tagName == '') {
-            return false;
-        }
-        // Truncate to a maximum byte length of 50. If a multibyte
-        // character would be split, the entire character will be
-        // truncated.
-        $tagName = mb_strcut($tagName, 0, 50, "UTF-8");
-
         // Special case: don't allow the owner of a sentence to give it an OK tag.
         if ($sentenceId && $tagName == 'OK') {
             $owner = $this->Sentences->getOwnerInfoOfSentence($sentenceId);
@@ -98,11 +109,11 @@ class TagsTable extends Table
         );
 
         if ($added) {
-            $event = new Event('Model.Tag.tagAdded', $this, compact('tagName'));
+            $event = new Event('Model.Tag.tagAdded', $this, ['tagName' => $added->name]);
             $this->getEventManager()->dispatch($event);
 
             if ($sentenceId != null) {
-                return $this->TagsSentences->tagSentence(
+                $added->link = $this->TagsSentences->tagSentence(
                     $sentenceId,
                     $added->id,
                     $userId

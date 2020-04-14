@@ -66,7 +66,7 @@ class TagsTableTest extends TestCase {
 
     public function testAddTag_tagAlreadyAdded() {
         $result = $this->Tag->addTag('OK', 1, 2);
-        $this->assertTrue($result->alreadyExists);
+        $this->assertTrue($result->link->alreadyExists);
     }
 
     public function testSentenceOwnerCannotTagOwnSentenceAsOK() {
@@ -172,5 +172,12 @@ class TagsTableTest extends TestCase {
     public function testAddTag_addEmptyTag() {
         $added = $this->Tag->addTag('', 1);
         $this->assertFalse($added);
+    }
+
+    public function testAddTag_noTrailingSpaceAfterCuttingTo50Bytes() {
+        $tagName = '1234567890123456789012345678901234567890123456789 content after 9 gets cut';
+        $added = $this->Tag->addTag($tagName, 4);
+        $storedId = $this->Tag->getIdFromName(substr($tagName, 0, 49));
+        $this->assertEquals($storedId, $added->id);
     }
 }
