@@ -54,19 +54,6 @@ class TagsTable extends Table
 
         $this->addBehavior('Timestamp');
     }
-    /**
-     * Cakephp callback before each saving operation
-     *
-     * @return bool True if the saving operation can continue
-     *              False if we have to abort it
-     */
-
-    public function beforeSave($event, $entity, $options = array())
-    {
-        $tagName = $entity->name;
-        $result = $this->getIdFromName($tagName);
-        return empty($result);
-    }
 
     /**
      * Add a tag (and optionally tag a sentence)
@@ -89,40 +76,40 @@ class TagsTable extends Table
         $tagName = mb_strcut($tagName, 0, 50, "UTF-8");
 
         // Special case: don't allow the owner of a sentence to give it an OK tag.
-        if ($tagName == 'OK') {
+        if ($sentenceId && $tagName == 'OK') {
             $owner = $this->Sentences->getOwnerInfoOfSentence($sentenceId);
             if ($owner && $userId == $owner['id']) {
                 return false;
             }
         }
 
-        $data = $this->newEntity([
+        $tag = $this->newEntity([
             'name' => $tagName,
             'user_id' => $userId,
         ]);
-        // try to add it as a new tag
-        $added = $this->save($data);
-        if ($added) {
-            $tagId = $added->id;
-        } else {
-            // This is mildly inefficient because the query has already
-            // been performed in beforeSave().
-            $tagId = $this->getIdFromName($tagName);
-            if ($tagId == null) {
-                return false;
-            }
+
+        if ($tag->hasErrors()) {
+            return false;
         }
 
-        $event = new Event('Model.Tag.tagAdded', $this, compact('tagName'));
-        $this->getEventManager()->dispatch($event);
+        $added = $this->findOrCreate(
+            ['name' => $tag->name],
+            function ($entity) use ($tag) { $entity = $tag; }
+        );
 
-        if ($sentenceId != null) {
-            $savedTag = $this->TagsSentences->tagSentence(
-                $sentenceId,
-                $tagId,
-                $userId
-            );
-            return $savedTag;
+        if ($added) {
+            $event = new Event('Model.Tag.tagAdded', $this, compact('tagName'));
+            $this->getEventManager()->dispatch($event);
+
+            if ($sentenceId != null) {
+                return $this->TagsSentences->tagSentence(
+                    $sentenceId,
+                    $added->id,
+                    $userId
+                );
+            }
+
+            return $added;
         }
 
         return false;

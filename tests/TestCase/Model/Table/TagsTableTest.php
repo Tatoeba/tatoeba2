@@ -163,4 +163,14 @@ class TagsTableTest extends TestCase {
         $returned = $this->Tag->get($added->id);
         $this->assertEquals($added->added_time, $returned->created);
     }
+
+    public function testAddTagWithoutSentenceId_NoDuplicateAdded() {
+        $added = $this->Tag->addTag('regional', 4);
+        $this->assertNotEquals($added->user_id, 4);
+    }
+
+    public function testAddTag_addEmptyTag() {
+        $added = $this->Tag->addTag('', 1);
+        $this->assertFalse($added);
+    }
 }
