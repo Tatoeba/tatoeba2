@@ -6,13 +6,12 @@ $sentenceBaseUrl = $this->Url->build([
     'controller' => 'sentences',
     'action' => 'show',
 ]);
-$css = CurrentUser::isTrusted() ? 'trusted-user' : '';
 ?>
 <div ng-repeat="translation in <?= $translations ?>"
-     class="translation <?= $css ?>" ng-class="{'not-reliable' : translation.correctness === -1, 'expanded': vm.isMenuExpanded}">
+     class="translation" ng-class="{'not-reliable' : translation.correctness === -1, 'expanded': vm.isMenuExpanded, 'trusted-user': vm.menu.canLink}">
     
     <div layout="row" layout-align="start center" flex>
-    <?php if (CurrentUser::isTrusted()) { ?>
+    <span ng-if="vm.menu.canLink">
         <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && translation.isDirect" ng-click="vm.saveLink('delete', translation)">
             <md-icon md-svg-src="/img/link_off.svg"></md-icon>
             <md-tooltip><?= __('Unlink this translation.') ?></md-tooltip>
@@ -21,11 +20,8 @@ $css = CurrentUser::isTrusted() ? 'trusted-user' : '';
             <md-icon>link</md-icon>
             <md-tooltip><?= __('Make into direct translation.') ?></md-tooltip>
         </md-button>
-        <md-icon class="chevron" ng-if="!vm.isMenuExpanded">chevron_right</md-icon>
-    <?php } else { ?>
-        <md-icon class="chevron">chevron_right</md-icon>
-    <?php } ?>
-    
+    </span>
+    <md-icon class="chevron" ng-if="!vm.isMenuExpanded || !vm.menu.canLink">chevron_right</md-icon>
 
     <div class="lang">
         <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>
