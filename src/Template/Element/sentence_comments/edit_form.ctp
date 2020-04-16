@@ -55,10 +55,12 @@ $cancelUrl = $this->Url->build([
 
         <div layout="row" layout-align="end center" layout-padding>
             <md-button class="md-raised" href="<?= $cancelUrl; ?>">
+                <?php /* @translators: cancel button of sentence comment edition form (verb) */ ?>
                 <?php echo __('Cancel'); ?>
             </md-button>
 
             <md-button type="submit" class="md-raised md-primary">
+                <?php /* @translators: save button of sentence comment edition form (verb) */ ?>
                 <?php echo __('Save changes'); ?>
             </md-button>
         </div>

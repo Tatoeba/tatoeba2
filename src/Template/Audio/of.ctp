@@ -60,6 +60,7 @@ if (isset($sentencesWithAudio)) {
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button for saving audio contribution settings (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>

@@ -39,6 +39,7 @@ $vocabularyUrl = $this->Url->build(array(
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text in side bar of the "Add sentences" page */ ?>
     <h2><?php echo __('Important'); ?></h2>
     <p>
     <?php

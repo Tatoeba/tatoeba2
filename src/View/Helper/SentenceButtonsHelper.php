@@ -95,6 +95,7 @@ class SentenceButtonsHelper extends AppHelper
         $image = $this->Images->svgIcon(
             'unlink',
             array(
+                /* @translators: alt text for unlink translation button (verb) */
                 "alt"=>__('Unlink'),
                 "width" => 16,
                 "height" => 16
@@ -136,6 +137,7 @@ class SentenceButtonsHelper extends AppHelper
         $image = $this->Images->svgIcon(
             'link',
             array(
+                /* @translators: alt text for link translation button (verb) */
                 "alt"=>__('Link'),
                 "width" => 16,
                 "height" => 16

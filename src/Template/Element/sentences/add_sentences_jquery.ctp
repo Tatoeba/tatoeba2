@@ -31,6 +31,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
         <div layout="column" layout-margin>
             <div layout="row">
                 <div class="language-select" layout="row" layout-align="start center" flex>
+                    <?php /* @translators: language field label on new sentence addition form */ ?>
                     <label><?= __('Language'); ?></label>
                     <?php
                     echo $this->Form->select(
@@ -49,6 +50,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
 
                 <?php if (CurrentUser::getSetting('can_switch_license')) : ?>
                 <div class="license-select" layout="row" layout-align="end center" flex>
+                    <?php /* @translators: licence field label on new sentence addition form */ ?>
                     <label><?= __('License'); ?></label>
                     <?php
                     echo $this->Form->select(
@@ -76,6 +78,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
 
             <div layout="row" layout-align="center center">
                 <md-button id="submitNewSentence" class="md-raised md-primary">
+                    <?php /* @translators: submit button of new sentence addition form */ ?>
                     <?= __('OK') ?>
                 </md-button>
             </div>

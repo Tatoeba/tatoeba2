@@ -140,6 +140,7 @@ echo $this->element('/sentences/navigation', [
     <div class="section md-whiteframe-1dp">
         <?php
         echo '<h2>';
+        /* @translators: header text in sentence page */
         echo __('Logs');
         echo '</h2>';
 
@@ -208,6 +209,7 @@ echo $this->element('/sentences/navigation', [
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
+                <?php /* @translators: header text in sentence page */ ?>
                 <h2><?= __('Comments'); ?></h2>
             </div>
         </md-toolbar>

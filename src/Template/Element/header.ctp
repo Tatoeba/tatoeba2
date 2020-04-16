@@ -31,6 +31,9 @@ use Cake\Core\Configure;
     if (Configure::read('Tatoeba.devStylesheet')) {
         $name = 'TatoDev';
     } else {
+        /* @translators: top-left site name written in big.
+           You shouldn't translate it unless speakers of your
+           language cannot read the Latin script. */
         $name = __('Tatoeba');
     }
 

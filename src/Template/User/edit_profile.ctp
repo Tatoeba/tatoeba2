@@ -67,6 +67,7 @@ $this->Languages->localizedAsort($countries);
         if (!empty($user->image)) {
             ?>
             <md-button type="submit" class="md-raised md-warn">
+                <?php /* @translators: button to remove profile picture */ ?>
                 <?php echo __('Remove'); ?>
             </md-button>
             <?php
@@ -92,6 +93,7 @@ $this->Languages->localizedAsort($countries);
         echo $this->Form->file('image');
         ?>
         <md-button type="submit" class="md-raised md-primary">
+                <?php /* @translators: button to upload a new profile picture */ ?>
             <?php echo __('Upload'); ?>
         </md-button>
         <?php
@@ -109,12 +111,14 @@ $this->Languages->localizedAsort($countries);
     ]);
 
     echo $this->Form->control('name', [
+        /* @translators: label for user name in profile page */
         'label' => __x('user', 'Name'),
         'lang' => '',
         'dir' => 'auto'
     ]);
 
     echo $this->Form->control('country_id', [
+        /* @translators: label for user's country in profile page */
         'label' => __('Country'),
         'options' => $countries,
         'empty' => true
@@ -125,6 +129,7 @@ $this->Languages->localizedAsort($countries);
     $year = !isset($birthday[0]) || $birthday[0] == '0000' ? '' : $birthday[0];
     $month = !isset($birthday[1]) || $birthday[1] == '00' ? '' : $birthday[1];
     $day = !isset($birthday[2]) || $birthday[2] == '00' ? '' : $birthday[2];
+    /* @translators: label for user's birthday in profile page */
     echo $this->Form->label('birthday', __('Birthday'));
     echo $this->Form->year('birthday', [
         'empty' => true,
@@ -142,11 +147,13 @@ $this->Languages->localizedAsort($countries);
     ]);
 
     echo $this->Form->control('homepage', [
+        /* @translators: label for user's homepage in profile page */
         'label' => __('Homepage'),
         'lang' => '',
         'dir' => 'ltr'
     ]);
 
+    /* @translators: label for user's description in profile page */
     echo $this->Form->label('description', __('Description'));
     echo $this->Form->textarea('description', [
         'lang' => '',
@@ -155,6 +162,7 @@ $this->Languages->localizedAsort($countries);
     ?>
     <div layout="row" layout-align="end center" layout-padding>
         <md-button type="submit" class="md-raised md-primary">
+            <?php /* @translators: submit button of profile edition form (verb) */ ?>
             <?php echo __('Save'); ?>
         </md-button>
     </div>

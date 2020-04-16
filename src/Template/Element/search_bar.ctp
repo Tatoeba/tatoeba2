@@ -73,7 +73,8 @@ echo $this->Form->create(
 
         <div layout="row">
             <label for="SentenceQuery">
-                <?php echo __('Search'); ?>
+                <?php /* @translators: keywords field label in top search bar (not displayed) */ ?>
+                <?php echo __x('label', 'Search'); ?>
             </label>
             <input id="SentenceQuery"
                    type="search"
@@ -90,6 +91,7 @@ echo $this->Form->create(
 
     <div layout="row" layout-align="center end">
         <div layout="column">
+            <?php /* @translators: search language field label in top search bar */ ?>
             <label for="SentenceFrom"><?= __('From') ?></label>
             <?php
             echo $this->element(
@@ -111,6 +113,7 @@ echo $this->Form->create(
 
         <div layout="column">
             <label for="SentenceTo">
+                <?php /* @translators: translation language field label in top search bar */ ?>
                 <?= __x('language', 'To') ?>
             </label>
             <?php

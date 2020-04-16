@@ -63,6 +63,7 @@ class TagsHelper extends AppHelper
         ?>
 
         <div class="section md-whiteframe-1dp">
+            <?php /* @translators: header text on a sentence page in the sidebar (noun) */ ?>
             <h2><?php echo __('Tags'); ?></h2>
 
             <div class="tagsListOnSentence" >

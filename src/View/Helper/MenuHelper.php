@@ -209,6 +209,7 @@ class MenuHelper extends AppHelper
             $type = 'add';
             if($withRemoveAndUndo){
                 $image = 'undo';
+                /* @translators: button after removing a favorite from the My favorites page (verb) */
                 $tooltip = __('Undo');
             } else {
                 $image = 'favorite-add';
@@ -286,6 +287,7 @@ class MenuHelper extends AppHelper
         ));
 
         echo $this->Form->button(
+            /* @translators: button to link translations (verb) */
             __('Link'),
             array(
                 'type' => 'button',
@@ -387,6 +389,7 @@ class MenuHelper extends AppHelper
 
         // ok button
         echo $this->Form->button(
+            /* @translators: submit button to add a sentence to a list from the sentence block */
             __('OK'),
             array(
                 'type' => 'button',
@@ -428,6 +431,7 @@ class MenuHelper extends AppHelper
 
         } else {
 
+            /* @translators: delete button on sentence menu (verb) */
             $title = __('Delete');
             $liContent = $this->Html->link(
                 $deleteImage,
@@ -478,6 +482,7 @@ class MenuHelper extends AppHelper
                 'a', $editImage, array('class' => 'disabled')
             );
         } else {
+            /* @translators: edit button on sentence menu (verb) */
             $title = __('Edit');
             $liContent = $editImage;
         }

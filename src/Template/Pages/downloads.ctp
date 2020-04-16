@@ -36,30 +36,53 @@ $tanaka_url2 = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus";
 $download_url = Configure::read('Downloads.url');
 
 // Section Headers
+/* @translators: header text on Downloads page */
 $filename =  __('Filename');
+/* @translators: header text on Downloads page */
 $format = __('Fields and structure');
+/* @translators: header text on Downloads page */
 $description = __('File description');
 
 // Field names
+/* @translators: field name in Fields and structure on Downloads page */
 $sentence_id = __('Sentence id');
+/* @translators: field name in Fields and structure on Downloads page (noun) */
 $review = __('Review');
+/* @translators: field name in Fields and structure on Downloads page (noun) */
 $text = __('Text');
+/* @translators: field name in Fields and structure on Downloads page */
 $lang = __('Lang');
+/* @translators: field name in Fields and structure on Downloads page */
 $username = __('Username');
+/* @translators: field name in Fields and structure on Downloads page */
 $date_added = __('Date added');
+/* @translators: field name in Fields and structure on Downloads page */
 $date_created = __('Date created');
+/* @translators: field name in Fields and structure on Downloads page */
 $date_modified = __('Date last modified');
+/* @translators: field name in Fields and structure on Downloads page */
 $translation_id = __('Translation id');
+/* @translators: field name in Fields and structure on Downloads page */
 $tag_name = __('Tag name');
+/* @translators: field name in Fields and structure on Downloads page */
 $list_id = __('List id');
+/* @translators: field name in Fields and structure on Downloads page */
 $list_name = __('List name');
+/* @translators: field name in Fields and structure on Downloads page */
 $list_editable_by = __('Editable by');
+/* @translators: field name in Fields and structure on Downloads page */
 $meaning_id = __('Meaning id');
+/* @translators: field name in Fields and structure on Downloads page */
 $skill_level = __('Skill level');
+/* @translators: field name in Fields and structure on Downloads page */
 $details = __('Details');
+/* @translators: field name in Fields and structure on Downloads page (noun) */
 $license = __('License');
+/* @translators: field name in Fields and structure on Downloads page */
 $attribution_url = __('Attribution URL');
+/* @translators: field name in Fields and structure on Downloads page */
 $script = __('Script name');
+/* @translators: field name in Fields and structure on Downloads page */
 $transcription = __('Transcription');
 
 // Examples in description
@@ -77,6 +100,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text in the Downloads page on the sidebar (noun) */ ?>
         <h2><?= __('Note') ?></h2>
         <p>
             <?= __(
@@ -117,6 +141,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
     </div>
 
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text in the Downloads page on the sidebar */ ?>
         <h2><?= __('Creative commons') ?></h2>
         <p><?= __('These files are released under CC BY 2.0 FR.') ?></p>
         <a rel="license" href="https://creativecommons.org/licenses/by/2.0/fr/">
@@ -131,6 +156,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
     </div>
 
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text in the Downloads page on the sidebar */ ?>
         <h2><?= __('Licenses covering audio') ?></h2>
         <p>
             <?= __(
@@ -142,6 +168,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
     </div>
 
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text in the Downloads page on the sidebar */ ?>
         <h2><?= __('Questions?') ?></h2>
         <p>
             <?= format(
@@ -157,10 +184,12 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
 <div id="main_content">
     <div>
+        <?php /* @translators: title of the Downloads page */ ?>
         <h1><?= __('Downloads') ?></h1>
 
         <!-- Sentences -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Sentences') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -189,6 +218,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Sentences detailed-->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Detailed Sentences') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -219,6 +249,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Sentences CC0 -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Sentences (CC0)') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -242,6 +273,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Links -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Links') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -268,6 +300,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Tags -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Tags') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -293,6 +326,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Lists -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Lists') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -316,6 +350,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
         </div>
 
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Sentences in lists') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -344,6 +379,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Indices -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Japanese indices') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -374,6 +410,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Sentences with audio -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Sentences with audio') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -403,6 +440,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- User skill level per language -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('User skill level per language') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -422,6 +460,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Users' reviews -->
         <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Users\' sentence reviews') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>
@@ -447,6 +486,7 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 
         <!-- Transcriptions -->
         <div class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
             <h2><?= __('Transcriptions') ?></h2>
             <dl>
                 <dt><?= $filename ?></dt>

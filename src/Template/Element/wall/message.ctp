@@ -38,7 +38,8 @@ if (isset($message['Permissions'])) {
     $menu = [];
 }
 $menu[] = [
-    'text' => 'permalink',
+    /* tooltip of permalink button on a wall post (noun) */
+    'text' => __('Permalink'),
     'icon' => 'link',
     'url' => [
         'controller' => 'wall',

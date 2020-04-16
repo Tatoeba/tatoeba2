@@ -114,6 +114,7 @@ class MessagesHelper extends AppHelper
             );
         } elseif ($this->_isDraftMessage($folder, $msg)) {
             $user = null;
+            /* @translators: private message type (noun) */
             $label = __('Draft');
         } elseif ($msg->type == 'machine') {
             $user = null;

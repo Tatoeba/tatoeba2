@@ -105,13 +105,13 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__d('admin', 'Import re
                       __d('admin', 'Invalid');
         $hasaudio = isset($file['hasaudio']) ? (
                         $file['hasaudio'] ?
-                        __('Yes') :
-                        __('No')
+                        __d('admin', 'Yes') :
+                        __d('admin', 'No')
                     ) :
                     __d('admin', 'N/A');
         $isValid = $file['valid'] ?
-                   __('Yes') :
-                   __('No');
+                   __d('admin', 'Yes') :
+                   __d('admin', 'No');
 
         if (isset($file['hasaudio']) && $file['hasaudio']) {
             $path = Configure::read('Recordings.url')

@@ -82,11 +82,17 @@ class MembersHelper extends AppHelper
     public function groupName($role)
     {
         switch ($role) {
+            /* @translators: one of the user status displayed on profile pages (noun) */
             case User::ROLE_ADMIN             : return __('admin');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_CORPUS_MAINTAINER : return __('corpus maintainer');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_ADV_CONTRIBUTOR   : return __('advanced contributor');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_CONTRIBUTOR       : return __('contributor');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_INACTIVE          : return __('inactive');
+            /* @translators: one of the user status displayed on profile pages */
             case User::ROLE_SPAMMER           : return __('suspended');
             default                           : return null;
         }

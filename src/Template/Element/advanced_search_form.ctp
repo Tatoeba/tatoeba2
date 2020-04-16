@@ -32,6 +32,7 @@ echo $this->Form->create('AdvancedSearch', [
 <div layout="column" ng-app="app" ng-cloak>
     <div layout="<?= $layout ?>">
         <div class="column-1" layout="column" flex>
+            <?php /* @translators: section title in advanced search form */ ?>
             <h3><?= __('Sentences'); ?></h3>
 
             <md-input-container>
@@ -80,8 +81,11 @@ echo $this->Form->create('AdvancedSearch', [
                     echo $this->Form->input('orphans', [
                         'label' => '',
                         'options' => [
+                            /* @translators: dropdown option of "Is orphan" field in search form */
                             '' => __x('orphan', 'Any'),
+                            /* @translators: part of Any/No/Yes dropdown options in search form */
                             'no' => __('No'),
+                            /* @translators: part of Any/No/Yes dropdown options in search form */
                             'yes' => __('Yes'),
                         ],
                         'value' => $orphans,
@@ -100,6 +104,7 @@ echo $this->Form->create('AdvancedSearch', [
                     echo $this->Form->input('unapproved', array(
                         'label' => '',
                         'options' => array(
+                            /* @translators: dropdown option of "Is unapproved" field in search form */
                             '' => __x('unapproved', 'Any'),
                             'no' => __('No'),
                             'yes' => __('Yes'),
@@ -119,6 +124,7 @@ echo $this->Form->create('AdvancedSearch', [
                 echo $this->Form->input('has_audio', array(
                     'label' => '',
                     'options' => array(
+                        /* @translators: dropdown option of "Has audio" field in search form */
                         '' => __x('audio', 'Any'),
                         'no' => __('No'),
                         'yes' => __('Yes'),
@@ -176,6 +182,7 @@ echo $this->Form->create('AdvancedSearch', [
 
         <div class="column-2" <?= isset($isSidebar) && $isSidebar ? '' : 'flex' ?>>
             <div layout="column">
+                <?php /* @translators: section title in advanced search form */ ?>
                 <h3><?php echo __('Translations'); ?></h3>
 
                 <div class="param">
@@ -220,8 +227,11 @@ echo $this->Form->create('AdvancedSearch', [
                     echo $this->Form->input('trans_link', array(
                         'label' => '',
                         'options' => array(
+                            /* @translators: dropdown option of "Link" field in search form */
                             '' => __x('link', 'Any'),
+                            /* @translators: dropdown option of "Link" field in search form (noun) */
                             'direct' => __('Direct'),
+                            /* @translators: dropdown option of "Link" field in search form (noun) */
                             'indirect' => __('Indirect'),
                         ),
                         'value' => $trans_link,
@@ -296,18 +306,22 @@ echo $this->Form->create('AdvancedSearch', [
             </div>
 
             <div layout="column">
+                <?php /* @translators: section title in search form (noun) */ ?>
                 <h3><?php echo __('Sort'); ?></h3>
 
                 <div class="param" layout="<?= $layout ?>" layout-align="center">
+                    <?php /* @translators: field name in search form (noun) */ ?>
                     <label for="sort" flex><?= __('Order:') ?></label>
                     <?php
                     echo $this->Form->input('sort', array(
                         'label' => '',
                         'options' => array(
+                            /* @translators: sort order dropdown option in search form */
                             'relevance' => __('Relevance'),
                             'words' => __('Fewest words first'),
                             'created' => __('Last created first'),
                             'modified' => __('Last modified first'),
+                            /* @translators: sort order dropdown option in advanced search form (noun) */
                             'random' => __('Random'),
                         ),
                         'value' => $sort,
@@ -338,6 +352,7 @@ echo $this->Form->create('AdvancedSearch', [
 
     <div class="buttons" layout="<?= $layout ?>">
         <md-button type="submit" class="md-primary md-raised">
+            <?php /* @translators: search form submit button (verb) */ ?>
             <?= __x('button', 'Search') ?>
         </md-button>
 

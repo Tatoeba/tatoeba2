@@ -53,6 +53,7 @@ use Cake\ORM\TableRegistry;
     <ul class='sub-menu'>
         <li class="item">
             <?php
+            /* @ŧranslators: top-right user menu item to open your profile page */
             echo $this->Html->link(
                 __('My profile'),
                 array(
@@ -67,6 +68,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your sentences */
                 __('My sentences'),
                 array(
                     'controller' => 'sentences',
@@ -80,6 +82,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your vocabulary */
                 __('My vocabulary'),
                 array(
                     'controller' => 'vocabulary',
@@ -93,6 +96,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your reviews */
                 __('My reviews'),
                 array(
                     'controller' => 'reviews',
@@ -106,6 +110,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your lists */
                 __('My lists'),
                 array(
                     'controller' => 'sentences_lists',
@@ -119,6 +124,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your favorites */
                 __('My favorites'),
                 array(
                     'controller' => 'favorites',
@@ -132,6 +138,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your comments */
                 __('My comments'),
                 array(
                     'controller' => 'sentence_comments',
@@ -145,6 +152,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list comments made on your sentences */
                 __("Comments on my sentences"),
                 array(
                     'controller' => 'sentence_comments',
@@ -158,6 +166,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your wall posts */
                 __('My Wall messages'),
                 array(
                     'controller' => 'wall',
@@ -171,6 +180,7 @@ use Cake\ORM\TableRegistry;
         <li class="item">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to list your contributions */
                 __('My sentence logs'),
                 array(
                     'controller' => 'contributions',
@@ -184,6 +194,7 @@ use Cake\ORM\TableRegistry;
         <li class="settings">
             <?php
             echo $this->Html->link(
+                /* @ŧranslators: top-right user menu item to open your settings */
                 __('Settings'),
                 array(
                     'controller' => 'user',

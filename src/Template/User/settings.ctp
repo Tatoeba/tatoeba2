@@ -26,6 +26,7 @@
  */
 use App\Model\CurrentUser;
 
+/* @translators: title of Settings page */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 ?>
 <div id="annexe_content">
@@ -219,6 +220,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                 <md-input-container class="md-block">
                     <?php
                     echo $this->Form->control('settings.lang', [
+                        /* @translators: option label on settings page */
                         'label' => __('Languages')
                     ]);
                     ?>
@@ -329,6 +331,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
 
         <div layout="row" layout-align="center center">
             <md-button type="submit" class="md-raised md-primary">
+                <?php /* @translators: submit button of settings edition form in settings page (verb) */ ?>
                 <?php echo __('Save'); ?>
             </md-button>
         </div>
@@ -359,6 +362,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button of email address edition form in settings page (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
@@ -407,6 +411,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-input-container>
             <div layout="row" layout-align="center center">
                 <md-button type="submit" class="md-raised md-primary">
+                    <?php /* @translators: submit button of password edition form in settings page (verb) */ ?>
                     <?php echo __('Save'); ?>
                 </md-button>
             </div>
