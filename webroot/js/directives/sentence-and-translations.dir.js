@@ -117,8 +117,8 @@
         vm.initMenu = initMenu;
         vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
-        vm.expandTranslations = expandTranslations;
         vm.toggleMenu = toggleMenu;
+        vm.toggleTranscriptions = toggleTranscriptions;
         vm.playAudio = playAudio;
         vm.getAudioAuthor = getAudioAuthor;
         vm.translate = translate;
@@ -235,16 +235,18 @@
             }
         }
 
-        function expandOrCollapse() {
-            vm.isExpanded = !vm.isExpanded;
-
-            if (vm.isExpanded) {
-                vm.expandableIcon = 'expand_less';
-                showAllTranslations();
+        function expandOrCollapse(isExpanded) {
+            if (isExpanded) {
+                expandTranslations();
             } else {
-                vm.expandableIcon = 'expand_more';
-                showFewerTranslations();
+                collapseTranslations();
             }
+        }
+
+        function collapseTranslations() {
+            vm.isExpanded = false;
+            vm.expandableIcon = 'expand_more';
+            showFewerTranslations();
         }
 
         function expandTranslations() {
@@ -269,9 +271,11 @@
 
         function toggleMenu() {
             vm.isMenuExpanded = !vm.isMenuExpanded;
-            if (vm.isMenuExpanded) {
-                expandTranslations();
-            }
+        }
+
+        function toggleTranscriptions() {
+            toggleMenu();
+            expandOrCollapse(vm.isMenuExpanded);
         }
 
         function playAudio($event) {
