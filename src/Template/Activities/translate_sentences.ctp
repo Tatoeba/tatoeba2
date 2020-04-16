@@ -164,7 +164,7 @@ $langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
                 </label>
                 <md-radio-group ng-model='sort'>
                     <md-radio-button value='random' class='md-primary'>
-                        <?php /* @translators: sort order dropdown option in Translate sentences page (noun) */ ?>
+                        <?php /* @translators: sort order radio option in Translate sentences page (noun) */ ?>
                         <?= __('Random') ?>
                     </md-radio-button>
                     <md-radio-button value='words' class='md-primary'>
