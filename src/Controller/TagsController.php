@@ -69,7 +69,7 @@ class TagsController extends AppController
             $username = CurrentUser::get("username");
             $tag = $this->Tags->addTag($tagName, $userId, $sentenceId);
 
-            $isSaved = $tag && $tag->link;
+            $isSaved = $tag && $tag->link && !$tag->link->alreadyExists;
             $this->set('isSaved', $isSaved);
             if ($isSaved) {
                 $this->set('tagName', $tag->name);

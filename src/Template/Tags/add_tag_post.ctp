@@ -24,9 +24,7 @@
  * @license  Affero General Public License
  * @link     https://tatoeba.org
  */
-
 if ($isSaved) {
     $this->Tags->displayTag($tagName, $tagId, $sentenceId, $userId, $username, $date, $sentenceLang);
 }
 ?>
-

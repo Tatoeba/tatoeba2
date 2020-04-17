@@ -85,6 +85,16 @@ class TagsControllerTest extends IntegrationTestCase {
         $this->assertResponseNotContains(' cut after 9');
     }
 
+    public function testAddTagPost_duplicateTagReturnsEmptyResponse ()
+    {
+        $this->logInAs('advanced_contributor');
+        $this->ajaxPost('/eng/tags/add_tag_post', [
+            'sentence_id' => 8,
+            'tag_name' => '@needs native check',
+        ]);
+        $this->assertResponseEmpty();
+    }
+
     public function testSearch_asGuest() {
         $this->enableCsrfToken();
         $this->enableSecurityToken();

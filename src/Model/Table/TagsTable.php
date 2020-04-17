@@ -94,36 +94,34 @@ class TagsTable extends Table
             }
         }
 
-        $tag = $this->newEntity([
+        $newTag = $this->newEntity([
             'name' => $tagName,
             'user_id' => $userId,
         ]);
 
-        if ($tag->hasErrors()) {
+        if ($newTag->hasErrors()) {
             return false;
         }
 
-        $added = $this->findOrCreate(
-            ['name' => $tag->name],
-            function ($entity) use ($tag) { $entity = $tag; }
+        $tag = $this->findOrCreate(
+            ['name' => $newTag->name],
+            function ($entity) use ($newTag) { return $newTag; }
         );
 
-        if ($added) {
-            $event = new Event('Model.Tag.tagAdded', $this, ['tagName' => $added->name]);
+        if ($tag && !isset($tag->nbrOfSentences)) {
+            $event = new Event('Model.Tag.tagAdded', $this, ['tagName' => $tag->name]);
             $this->getEventManager()->dispatch($event);
-
-            if ($sentenceId != null) {
-                $added->link = $this->TagsSentences->tagSentence(
-                    $sentenceId,
-                    $added->id,
-                    $userId
-                );
-            }
-
-            return $added;
         }
 
-        return false;
+        if ($tag && $sentenceId != null) {
+            $tag->link = $this->TagsSentences->tagSentence(
+                $sentenceId,
+                $tag->id,
+                $userId
+            );
+        }
+
+        return $tag;
     }
 
     public function removeTagFromSentence($tagId, $sentenceId) {
