@@ -16,7 +16,7 @@ How localization works
 1. Strings that translatable are put into specific functions in the source code (mainly `__()`, but there are [a few others](https://book.cakephp.org/3.0/en/core-libraries/internationalization-and-localization.html#using-translation-functions)).
 2. Whenever there are new strings or strings that have been modified, we run the script [generate_pot.sh](https://github.com/Tatoeba/tatoeba2/blob/dev/tools/generate_pot.sh). It extracts all the strings from the `*.php` and `*.ctp` files into `*.pot` files.
 3. We upload these `*.pot` files on a platform called [Transifex](https://en.wiki.tatoeba.org/articles/show/interface-translation), where people can translate the strings.
-4. We use the script [update-translations.py](https://github.com/Tatoeba/tatoeba2/blob/dev/docs/update-translations.py) to download the updated `.po` files from Transifex. 
+4. We use the script [update-translations.sh](https://github.com/Tatoeba/tatoeba2/blob/dev/tools/update-translations.sh) to download the updated `.po` files from Transifex.
 5. We will usually run these scripts and commit the files before updating the Tatoeba production website.
 
 
@@ -25,12 +25,17 @@ How to add a new UI language
 
 #### Step 1
 
-Update the `.tx/config`. In the `lang_map`, you need to
-add the Transifex code and the Tatoeba code. This
-allows to use the transifex command line tool `tx`.
+If the language code on Transifex does not contain an underscore,
+go to Step 2. Otherwise, if it does, such as zh\_CN, you need
+to update `.tx/config`. In the `lang_map`, you need to add the
+Transifex code, a colon, and the Transifex code without the part
+after the underscore. This is because we do not yet support
+per-country locales.
 
-> For instance for Italian, you would add `it:ita`.
+> For instance for Chinese, you would add `zh\_CN:zh`.
 
+The part after the colon should match the language directory
+under `src/Locale/`, so rename the directory if necessary.
 
 #### Step 2
 
@@ -46,4 +51,4 @@ that file for more information.
 
 Push your changes and create a pull request. The language will 
 be available for testing on our [dev website](https://dev.tatoeba.org)
-shortly after your pull requst is merged.
+shortly after your pull request is merged.
