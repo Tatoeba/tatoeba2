@@ -176,8 +176,9 @@ class TagsTableTest extends TestCase {
 
     public function testAddTag_noTrailingSpaceAfterCuttingTo50Bytes() {
         $tagName = '1234567890123456789012345678901234567890123456789 content after 9 gets cut';
+        $expectedName = '1234567890123456789012345678901234567890123456789';
         $added = $this->Tag->addTag($tagName, 4);
-        $storedId = $this->Tag->getIdFromName(substr($tagName, 0, 49));
-        $this->assertEquals($storedId, $added->id);
+        $storedName = $this->Tag->getNameFromId($added->id);
+        $this->assertEquals($expectedName, $storedName);
     }
 }
