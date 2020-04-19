@@ -66,7 +66,7 @@ class TagsTableTest extends TestCase {
 
     public function testAddTag_tagAlreadyAdded() {
         $result = $this->Tag->addTag('OK', 1, 2);
-        $this->assertTrue($result->alreadyExists);
+        $this->assertTrue($result->link->alreadyExists);
     }
 
     public function testSentenceOwnerCannotTagOwnSentenceAsOK() {
@@ -159,8 +159,26 @@ class TagsTableTest extends TestCase {
 
     public function testAddTag_correctDateUsingArabicLocale() {
         I18n::setLocale('ar');
-        $added = $this->Tag->addTag('arabic', 4, 1);
+        $added = $this->Tag->addTag('arabic', 4);
         $returned = $this->Tag->get($added->id);
-        $this->assertEquals($added->added_time, $returned->created);
+        $this->assertEquals($added->created, $returned->created);
+    }
+
+    public function testAddTagWithoutSentenceId_NoDuplicateAdded() {
+        $added = $this->Tag->addTag('regional', 4);
+        $this->assertNotEquals($added->user_id, 4);
+    }
+
+    public function testAddTag_addEmptyTag() {
+        $added = $this->Tag->addTag('', 1);
+        $this->assertFalse($added);
+    }
+
+    public function testAddTag_noTrailingSpaceAfterCuttingTo50Bytes() {
+        $tagName = '1234567890123456789012345678901234567890123456789 content after 9 gets cut';
+        $expectedName = '1234567890123456789012345678901234567890123456789';
+        $added = $this->Tag->addTag($tagName, 4);
+        $storedName = $this->Tag->getNameFromId($added->id);
+        $this->assertEquals($expectedName, $storedName);
     }
 }
