@@ -53,7 +53,7 @@ $menuElements = array(
         ),
         "sub-menu" => array(
             /* @translators: menu item on the top (verb) */
-            __('Random sentence') => array(
+            __('Show random sentence') => array(
                 "controller" => "sentences",
                 "action" => "show",
                 "random"

@@ -35,6 +35,7 @@ $langArray = $this->Languages->languagesArrayAlone();
 <div ng-controller="RandomSentenceController as vm" ng-init="vm.init()">
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
+        <?php /* @translators: random sentence block header on the home page for members */ ?>
         <h2 flex><?= __('Random sentence') ?></h2>
 
         <span>
