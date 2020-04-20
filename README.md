@@ -94,6 +94,9 @@ You can avoid this problem either by running `git config core.fileMode false`, o
 [core]
 	fileMode = false
 ```
+#### Warning after code update
+
+If you get the warning `failed to open stream: No such file or directory [ROOT/vendor/composer/ClassLoader.php, line 414]` after updating the code to the current version, you also need to update composer's autoloader by running `composer dump-autoload` from the base directory (`/home/vagrant/Tatoeba`).
 
 ## Development tools
 
