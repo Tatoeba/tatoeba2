@@ -42,6 +42,9 @@
 .usersLanguagesLegend .languageLevel .level {
     background-color: #06A;
     height: 100%;
+    font-size: 12px;
+    float: left;
+    position: relative;
 }
 
 .usersLanguagesStats .languageLevel .unknownLevel,
