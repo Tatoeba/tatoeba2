@@ -428,8 +428,6 @@ class SentencesTable extends Table
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
                 $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
-                $total = count($result->translations[0]) + count($result->translations[1]);
-                $result['expandLabel'] = $this->getExpandLabel($total);
                 if (CurrentUser::isMember()) {
                     $result['permissions'] = $this->getPermissions($result);
                 }
@@ -437,20 +435,6 @@ class SentencesTable extends Table
                 return $result;
             });
         });
-    }
-
-    public function getExpandLabel($total)
-    {
-        $extraTranslationsCount = $total - self::MAX_TRANSLATIONS_DISPLAYED;
-        if ($extraTranslationsCount > 0) {
-            return format(__n(
-                'Show 1 more translation',
-                'Show {number} more translations',
-                $extraTranslationsCount
-            ), array('number' => $extraTranslationsCount));
-        } else {
-            return null;
-        }
     }
 
     private function getPermissions($sentence)

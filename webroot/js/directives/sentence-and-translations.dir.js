@@ -162,12 +162,12 @@
             }
             vm.inProgress = true;
             $http.get(url).then(function(result) {
-                if (!result.data || !result.data.random) {
+                if (!result.data || !result.data.sentence) {
                     // TODO Show error
                     return;
                 }
 
-                var sentence = result.data.random;
+                var sentence = result.data.sentence;
                 var directTranslations = sentence.translations[0];
                 var indirectTranslations = sentence.translations[1];
                 init(vm.userLanguages, sentence, directTranslations, indirectTranslations);

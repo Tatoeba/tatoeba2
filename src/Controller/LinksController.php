@@ -90,7 +90,7 @@ class LinksController extends AppController
         $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => true], $translationLang);
         $this->set('sentence', $sentence);
         $this->set('_serialize', ['sentence']);
-        $this->RequestHandler->renderAs($this, 'json');
+        $this->RequestHandler->renderAs($this, 'sentences_json');
     }
 
     /**
