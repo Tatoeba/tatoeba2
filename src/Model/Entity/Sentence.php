@@ -33,7 +33,8 @@ class Sentence extends Entity
         'dir',
         'lang_tag',
         'is_favorite',
-        'is_owned_by_current_user'
+        'is_owned_by_current_user',
+        'permissions'
     ];
 
     protected $_hidden = [
@@ -108,5 +109,31 @@ class Sentence extends Entity
     protected function _getIsOwnedByCurrentUser()
     {
         return $this->user_id === CurrentUser::get('id');
+    }
+
+    protected function _getPermissions()
+    {
+        if (CurrentUser::isMember()) {
+            $user = $this->user;
+            $userId = $user ? $user->id : null;
+            if (!empty($this->transcriptions)) {
+                $editableTranscription = array_filter($this->transcriptions, function($transcription) {
+                    return $transcription->markup;
+                });    
+            } else {
+                $editableTranscription = false;
+            }
+    
+            return [
+                'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
+                'canTranscribe' => (bool)$editableTranscription,
+                'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
+                'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
+                'canDelete' => CurrentUser::canRemoveSentence($this->id, $userId),
+                'canLink' => CurrentUser::isTrusted(),
+            ];
+        } else {
+            return null;
+        }
     }
 }

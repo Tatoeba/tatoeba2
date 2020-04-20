@@ -428,31 +428,9 @@ class SentencesTable extends Table
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
                 $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
-                if (CurrentUser::isMember()) {
-                    $result['permissions'] = $this->getPermissions($result);
-                }
-
                 return $result;
             });
         });
-    }
-
-    private function getPermissions($sentence)
-    {
-        $user = $sentence->user;
-        $userId = $user ? $user->id : null;
-        $editableTranscription = array_filter($sentence->transcriptions, function($transcription) {
-            return $transcription->markup;
-        });
-
-        return [
-            'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
-            'canTranscribe' => (bool)$editableTranscription,
-            'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
-            'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
-            'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),
-            'canLink' => CurrentUser::isTrusted(),
-        ];
     }
 
     public function findWithSphinx($query, $options)
