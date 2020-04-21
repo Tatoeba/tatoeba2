@@ -3,16 +3,20 @@ $statsUrl = $this->Url->build([
     'controller' => 'stats',
     'action' => 'sentences_by_language'
 ]);
+$activityUrl = $this->Url->build([
+    'controller' => 'contributions',
+    'action' => 'activity_timeline'
+]);
 ?>
 
 <div class="content" flex>
     <div>
-    <?=  format(
-        __n('{number} contribution today',
-            '{number} contributions today',
-            $contribToday,
+    <?= format(
+        __n('{number} sentence',
+            '{number} sentences',
+            $numSentences,
             true),
-        ['number' => $this->Html->tag('strong', $this->Number->format($contribToday))]
+        ['number' => $this->Html->tag('strong', $this->Number->format($numSentences))]
     ) ?>
     </div>
 
@@ -26,20 +30,27 @@ $statsUrl = $this->Url->build([
     ) ?>
     </div>
 
+    <div layout="row" layout-align="center center">
+        <md-button class="md-primary" href="<?= $statsUrl ?>">
+            <?= __('Stats per languages') ?>
+            <md-icon ng-cloak>keyboard_arrow_right</md-icon>
+        </md-button>
+    </div>
+
     <div>
-    <?= format(
-        __n('{number} sentence',
-            '{number} sentences',
-            $numSentences,
+    <?=  format(
+        __n('{number} contribution today',
+            '{number} contributions today',
+            $contribToday,
             true),
-        ['number' => $this->Html->tag('strong', $this->Number->format($numSentences))]
+        ['number' => $this->Html->tag('strong', $this->Number->format($contribToday))]
     ) ?>
     </div>
-</div>
 
-<div layout="row" layout-align="center center">
-    <md-button class="md-primary" href="<?= $statsUrl ?>">
-        <?= __('stats per languages') ?>
-        <md-icon ng-cloak>keyboard_arrow_right</md-icon>
-    </md-button>
+    <div layout="row" layout-align="center center">
+        <md-button class="md-primary" href="<?= $activityUrl ?>">
+            <?= __('Activity timeline') ?>
+            <md-icon ng-cloak>keyboard_arrow_right</md-icon>
+        </md-button>
+    </div>
 </div>
