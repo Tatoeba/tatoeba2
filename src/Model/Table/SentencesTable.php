@@ -350,20 +350,6 @@ class SentencesTable extends Table
         $this->Languages->decrementCountForLanguage($sentenceLang);
     }
 
-    public function afterFind($results, $primary = false) {
-        foreach ($results as &$result) {
-            /* Work around afterFind() not being called by Containable */
-            if (isset($result['Translation'])) {
-                $result['Translation'] = $this->Behaviors->Transcriptable->afterFind(
-                    $this->Translation,
-                    $result['Translation'],
-                    false
-                );
-            }
-        }
-        return $results;
-    }
-
     private function applyHideFields($entity, $hide)
     {
         if (is_array($entity)) {
