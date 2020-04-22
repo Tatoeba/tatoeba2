@@ -459,10 +459,9 @@ class LanguagesHelper extends AppHelper
             $text = '';
             $opacity = $opacity = 0.5 + 0.5 * ($level / Language::MAX_LEVEL);
             $size = ($level / Language::MAX_LEVEL) * 100;
-            $padding = (100 - $size) / 2;
             $options = [
                 'class' => 'level',
-                'style' => "opacity: ${opacity}; width: ${size}%; left: ${padding}%;",
+                'style' => 'opacity:'.$opacity.'; width:'.$size.'%;',
             ];
         }
         $levelDiv = $this->Html->div(null, $text, $options);
