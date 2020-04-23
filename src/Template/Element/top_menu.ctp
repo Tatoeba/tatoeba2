@@ -120,11 +120,6 @@ $menuElements = array(
                 "action" => "add_sentences",
                 $filteredLanguage
             ),
-            /* @translators: menu item on the top (verb) */
-            __('Show activity timeline') => array(
-                "controller" => "contributions",
-                "action" => "activity_timeline"
-            ),
         )
     ),
     /* @translators: menu on the top (verb) */
