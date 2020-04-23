@@ -8,10 +8,20 @@ $sentenceBaseUrl = $this->Url->build([
 ]);
 ?>
 <div ng-repeat="translation in <?= $translations ?>"
-     class="translation" ng-class="{'not-reliable' : translation.correctness === -1}">
+     class="translation" ng-class="{'not-reliable' : translation.correctness === -1, 'expanded': vm.isMenuExpanded, 'trusted-user': vm.menu.canLink}">
     
     <div layout="row" layout-align="start center" flex>
-    <md-icon class="chevron">chevron_right</md-icon>
+    <span ng-if="vm.menu.canLink">
+        <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && translation.isDirect" ng-click="vm.saveLink('delete', translation)">
+            <md-icon md-svg-src="/img/link_off.svg"></md-icon>
+            <md-tooltip><?= __('Unlink this translation.') ?></md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" ng-if="vm.isMenuExpanded  && !translation.isDirect" ng-click="vm.saveLink('add', translation)">
+            <md-icon>link</md-icon>
+            <md-tooltip><?= __('Make into direct translation.') ?></md-tooltip>
+        </md-button>
+    </span>
+    <md-icon class="chevron" ng-if="!vm.isMenuExpanded || !vm.menu.canLink">chevron_right</md-icon>
 
     <div class="lang">
         <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>
@@ -22,6 +32,12 @@ $sentenceBaseUrl = $this->Url->build([
             <md-tooltip md-direction="top">{{translation.furigana.info_message}}</md-tooltip>
         </span>
         <span ng-if="!translation.furigana">{{translation.text}}</span>
+        <md-tooltip ng-if="translation.isDuplicate">
+            <?= format(
+                __('Existing sentence #{number} has been added as a translation.'),
+                ['number' => '{{translation.id}}']
+            ) ?>
+        </md-tooltip>
     </div>
     
     <div class="indicator" ng-if="translation.correctness === -1">

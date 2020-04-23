@@ -28,6 +28,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\CurrentUser;
+use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
 use App\Lib\Licenses;
@@ -350,7 +351,7 @@ class SentencesController extends AppController
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
             $this->set('_serialize', ['sentence', 'duplicate']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->RequestHandler->renderAs($this, 'sentences_json');
         }
     }
 
@@ -480,6 +481,7 @@ class SentencesController extends AppController
             );
 
             if ($translation) {
+                $translation->isDirect = true;
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
             }
@@ -487,10 +489,16 @@ class SentencesController extends AppController
 
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
+            $translationLangFilter = $this->request->getQuery('translationLang');
+            $numberOfTranslations = $this->request->getQuery('numberOfTranslations');
+            $includeTranslations = $translationLangFilter == 'und';
+            $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
+            $sentence->extraTranslationsCount = $numberOfTranslations + 1 - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+
             $this->loadComponent('RequestHandler');
-            $this->set('result', $translation);
-            $this->set('_serialize', ['result']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->set('sentence', $sentence);
+            $this->set('_serialize', ['translation', 'sentence']);
+            $this->RequestHandler->renderAs($this, 'sentences_json');
         }
     }
 
@@ -910,8 +918,9 @@ class SentencesController extends AppController
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
-            $this->set('_serialize', ['random']);
-            $this->RequestHandler->renderAs($this, 'json');
+            $this->set('sentence', $randomSentence);
+            $this->set('_serialize', ['sentence']);
+            $this->RequestHandler->renderAs($this, 'sentences_json');
         }
     }
 

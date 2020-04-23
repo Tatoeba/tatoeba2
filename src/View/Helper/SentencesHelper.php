@@ -30,6 +30,7 @@ use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 use Cake\Utility\Hash;
+use App\Model\Table\SentencesTable;
 
 
 /**
@@ -66,6 +67,7 @@ class SentencesHelper extends AppHelper
         'Images',
         'Transcriptions',
         'Search',
+        'Number',
         'SentenceLicense',
     );
 
@@ -852,12 +854,34 @@ class SentencesHelper extends AppHelper
             $highlight = $sentence->highlight;
             $sentence['highlightedText'] = $this->Search->highlightMatches($highlight, $sentenceText);
         }
+        $sentence->expandLabel = $this->getExpandLabel($sentence);
 
         return htmlspecialchars(json_encode($sentence), ENT_QUOTES, 'UTF-8');
     }
 
     public function translationsForAngular($translations) {
         return htmlspecialchars(json_encode($translations), ENT_QUOTES, 'UTF-8');
+    }
+
+    public function getExpandLabel($sentence)
+    {
+        $extraTranslationsCount = $this->getNumberOfExtraTranslations($sentence);
+        if ($extraTranslationsCount > 0) {
+            return format(__n(
+                'Show 1 more translation',
+                'Show {number} more translations',
+                $extraTranslationsCount
+            ), ['number' => $this->Number->format($extraTranslationsCount)]);
+        } else {
+            return null;
+        }
+    }
+
+    private function getNumberOfExtraTranslations($sentence)
+    {
+        $translations = $sentence->translations;
+        $total = count($translations[0]) + count($translations[1]);
+        return $total - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
     }
 }
 ?>

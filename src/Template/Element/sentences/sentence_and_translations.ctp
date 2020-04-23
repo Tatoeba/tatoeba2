@@ -39,6 +39,9 @@ if (isset($translations)) {
 
 $langs = $this->Languages->profileLanguagesArray(false, false);
 
+if (!isset($translationLang)) {
+    $translationLang = 'und';
+}
 if (!isset($userLanguagesData)) {
     $userLanguagesData = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
 }
@@ -72,7 +75,7 @@ $sentenceUrl = $this->Url->build([
 ?>
 <div ng-cloak flex
      sentence-and-translations
-     ng-init="vm.init(<?= $userLanguagesData ?>, <?= $sentenceData ?>, <?= $directTranslationsData ?>, <?= $indirectTranslationsData ?>)"
+     ng-init="vm.init(<?= $userLanguagesData ?>, <?= $sentenceData ?>, <?= $directTranslationsData ?>, <?= $indirectTranslationsData ?>, '<?= $translationLang ?>')"
      class="sentence-and-translations md-whiteframe-1dp">
     <div ng-if="vm.sentence.duplicate" layout="row" layout-padding class="duplicate-warning">
         <md-icon class="md-warn">warning</md-icon>
@@ -200,8 +203,8 @@ $sentenceUrl = $this->Url->build([
         ?>
     </div>
 
-    <div layout="column" ng-if="vm.sentence.extraTranslationsCount >= 1 && vm.visibility.translations">
-        <md-button ng-click="vm.expandOrCollapse()">
+    <div layout="column" ng-if="vm.sentence.expandLabel && vm.visibility.translations">
+        <md-button ng-click="vm.expandOrCollapse(!vm.isExpanded)">
             <md-icon>{{vm.expandableIcon}}</md-icon>
             <span ng-if="!vm.isExpanded">
                 {{vm.sentence.expandLabel}}

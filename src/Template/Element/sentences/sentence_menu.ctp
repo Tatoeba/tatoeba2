@@ -26,11 +26,6 @@
                 <md-tooltip ng-if="vm.sentence.is_favorite"><?= __('Remove from favorites') ?></md-tooltip>
             </md-button>
 
-            <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && vm.menu.canLink" ng-disabled="true">
-                <md-icon>link</md-icon>
-                <md-tooltip><?= __('This feature is not yet implemented.') ?></md-tooltip>
-            </md-button>
-
             <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && vm.menu.canDelete"
                        onclick="return confirm('<?= __('Are you sure?') ?>');"
                        ng-href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'delete']) ?>/{{vm.sentence.id}}">
@@ -64,12 +59,12 @@
 
             <md-button ng-if="!vm.isMenuExpanded" class="md-icon-button" ng-click="vm.toggleMenu()">
                 <md-icon>unfold_more</md-icon>
-                <md-tooltip><?= __('Expand menu') ?></md-tooltip>
+                <md-tooltip><?= __('Show more features') ?></md-tooltip>
             </md-button>
 
             <md-button ng-if="vm.isMenuExpanded" class="md-icon-button" ng-click="vm.toggleMenu()">
                 <md-icon>unfold_less</md-icon>
-                <md-tooltip><?= __('Collapse menu') ?></md-tooltip>
+                <md-tooltip><?= __('Show less features') ?></md-tooltip>
             </md-button>
         </div>
     </div>

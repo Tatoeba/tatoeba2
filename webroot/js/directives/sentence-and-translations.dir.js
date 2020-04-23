@@ -86,6 +86,10 @@
         var lastSelectedList = null;
         var timeout;
         var listsDataService;
+        var editableTranslations = [];
+        var duplicateTranslations = [];
+        var newTranslations = [];
+        var translationLang;
 
         vm.menu = {};
         vm.inProgress = false;
@@ -113,8 +117,8 @@
         vm.initMenu = initMenu;
         vm.initLists = initLists;
         vm.expandOrCollapse = expandOrCollapse;
-        vm.expandTranslations = expandTranslations;
         vm.toggleMenu = toggleMenu;
+        vm.toggleTranscriptions = toggleTranscriptions;
         vm.playAudio = playAudio;
         vm.getAudioAuthor = getAudioAuthor;
         vm.translate = translate;
@@ -134,6 +138,7 @@
         vm.show = show;
         vm.hide = hide;
         vm.saveTranscription = saveTranscription;
+        vm.saveLink = saveLink;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -157,12 +162,12 @@
             }
             vm.inProgress = true;
             $http.get(url).then(function(result) {
-                if (!result.data || !result.data.random) {
+                if (!result.data || !result.data.sentence) {
                     // TODO Show error
                     return;
                 }
 
-                var sentence = result.data.random;
+                var sentence = result.data.sentence;
                 var directTranslations = sentence.translations[0];
                 var indirectTranslations = sentence.translations[1];
                 init(vm.userLanguages, sentence, directTranslations, indirectTranslations);
@@ -181,7 +186,7 @@
 
         /////////////////////////////////////////////////////////////////////////
 
-        function init(langs, sentence, directTranslations, indirectTranslations) {
+        function init(langs, sentence, directTranslations, indirectTranslations, translationLanguage) {
             vm.userLanguages = langs;
             vm.showAutoDetect = Object.keys(langs).length > 1;
             initSentence(sentence);
@@ -194,6 +199,7 @@
                 initTranscriptions(translation);
             });
             showFewerTranslations();
+            translationLang = translationLanguage ? translationLanguage : 'und';
         }
 
         function initMenu(isExpanded, menu) {
@@ -229,16 +235,18 @@
             }
         }
 
-        function expandOrCollapse() {
-            vm.isExpanded = !vm.isExpanded;
-
-            if (vm.isExpanded) {
-                vm.expandableIcon = 'expand_less';
-                showAllTranslations();
+        function expandOrCollapse(isExpanded) {
+            if (isExpanded) {
+                expandTranslations();
             } else {
-                vm.expandableIcon = 'expand_more';
-                showFewerTranslations();
+                collapseTranslations();
             }
+        }
+
+        function collapseTranslations() {
+            vm.isExpanded = false;
+            vm.expandableIcon = 'expand_more';
+            showFewerTranslations();
         }
 
         function expandTranslations() {
@@ -263,9 +271,11 @@
 
         function toggleMenu() {
             vm.isMenuExpanded = !vm.isMenuExpanded;
-            if (vm.isMenuExpanded) {
-                expandTranslations();
-            }
+        }
+
+        function toggleTranscriptions() {
+            toggleMenu();
+            expandOrCollapse(vm.isMenuExpanded);
         }
 
         function playAudio($event) {
@@ -317,15 +327,20 @@
                         selectLang: vm.newTranslation.lang,
                         value: vm.newTranslation.text
                     };
-                    $http.post(rootUrl + '/sentences/save_translation', data).then(function(result) {
-                        var translation = result.data.result;
-                        translation.editable = true;
-                        translation.parentId = sentenceId;
-                        allDirectTranslations.unshift(translation);
+                    var url = rootUrl + '/sentences/save_translation?translationLang=' + translationLang + '&numberOfTranslations=' + getNumberOfTranslations();
+                    $http.post(url, data).then(function(result) {
+                        var translation = result.data.translation;
+                        var sentence = result.data.sentence;
+                        initSentence(sentence);
+                        if (translationLang === 'und') {
+                            updateNewTranslationsInfo(translation, sentenceId, sentence.translations);
+                        } else {
+                            allDirectTranslations.unshift(translation);
+                        }
+                        refreshTranslations();
                         vm.newTranslation = {};
                         show('translations');
                         vm.inProgress = false;
-                        showFewerTranslations();
                     });
                 }
             }
@@ -360,7 +375,9 @@
             if (vm.sentence.transcriptions.length > 0) {
                 var oldTranscription = getEditableTranscription(oldSentence);
                 var transcription = getEditableTranscription(vm.sentence);
-                transcriptionChanged = oldTranscription.markup !== transcription.markup;
+                var oldMarkup = oldTranscription ? oldTranscription.markup : null;
+                var newMarkup = transcription ? transcription.markup : null,
+                transcriptionChanged = oldMarkup !== newMarkup;
             }
             
             if (sentenceChanged) {
@@ -613,6 +630,57 @@
             return sentence.transcriptions.find(function(item) {
                 return item.markup;
             });
+        }
+        
+        function saveLink(action, translation) {
+            var url = rootUrl + '/links/' + action + '/' + vm.sentence.id + '/' + translation.id;
+            if (translationLang) {
+                url += '?translationLang=' + translationLang;
+            }
+            $http.get(url).then(function(result) {
+                var sentence = result.data.sentence;
+                initSentence(sentence);
+                refreshTranslations(sentence.translations);
+            });
+        }
+
+        function refreshTranslations(translations) {
+            if (translations) {
+                allDirectTranslations = translations[0];
+                allIndirectTranslations = translations[1];
+            }
+            
+            if (vm.isExpanded) {
+                showAllTranslations();
+            } else {
+                showFewerTranslations();
+            }
+        }
+
+        function updateNewTranslationsInfo(translation, sentenceId, translations) {
+            allDirectTranslations = translations[0];
+            allIndirectTranslations = translations[1];
+            
+            newTranslations.push(translation.id);
+            if (translation.isDuplicate) {
+                duplicateTranslations.push(translation.id);
+            } else if (translation.is_owned_by_current_user) {
+                editableTranslations.push(translation.id);
+            }
+            allDirectTranslations.forEach(function(item) {
+                item.editable = editableTranslations.indexOf(item.id) > -1;
+                item.isDuplicate = duplicateTranslations.indexOf(item.id) > -1;;
+                item.parentId = sentenceId;
+            });
+            allDirectTranslations.sort(function(a, b) {
+                var indexA = newTranslations.indexOf(a.id);
+                var indexB = newTranslations.indexOf(b.id);
+                return indexB - indexA;
+            });
+        }
+
+        function getNumberOfTranslations() {
+            return allDirectTranslations.length + allIndirectTranslations.length;
         }
     }
 

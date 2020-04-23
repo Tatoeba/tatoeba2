@@ -1422,6 +1422,9 @@ form .language-icon-div {
 .sentence-and-translations .translation .transcription .icon {
     margin: 0 20px 0 40px;
 }
+.sentence-and-translations .translation.trusted-user.expanded .transcription .icon {
+    margin: 0 20px 0 69px;
+}
 .sentence-and-translations .translation .transcription .text {
     color: #A1A1A1;
     padding: 0;

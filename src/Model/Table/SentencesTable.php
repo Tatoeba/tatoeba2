@@ -41,7 +41,8 @@ class SentencesTable extends Table
 {
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-
+    const MAX_TRANSLATIONS_DISPLAYED = 5;
+    
     protected function _initializeSchema(TableSchema $schema)
     {
         $schema->setColumnType('text', 'text');
@@ -406,6 +407,7 @@ class SentencesTable extends Table
                         }
                     }
                     unset($translation->indirect_translations);
+                    $translation->isDirect = true;
                     $directTranslations[] = $translation;
                 }
             }
@@ -437,52 +439,10 @@ class SentencesTable extends Table
         }
         return $query->formatResults(function($results) use ($translationLanguages) {
             return $results->map(function($result) use ($translationLanguages) {
-                
                 $result['translations'] = $this->sortOutTranslations($result, $translationLanguages);
-                $result['extraTranslationsCount'] = $this->getextraTranslationsCount($result);
-                $result['expandLabel'] = $this->getExpandLabel($result['extraTranslationsCount']);
-                if (CurrentUser::isMember()) {
-                    $result['permissions'] = $this->getPermissions($result);
-                }
-
                 return $result;
             });
         });
-    }
-
-    private function getextraTranslationsCount($sentence)
-    {
-        $maxDisplayed = 5;
-        $directTranslationCount = count($sentence->translations[0]);
-        $indirectTranslationCount = count($sentence->translations[1]);
-        return $directTranslationCount + $indirectTranslationCount - $maxDisplayed;
-    }
-
-    private function getExpandLabel($extraTranslationsCount)
-    {
-        return format(__n(
-            'Show 1 more translation',
-            'Show {number} more translations',
-            $extraTranslationsCount
-        ), array('number' => $extraTranslationsCount));
-    }
-
-    private function getPermissions($sentence)
-    {
-        $user = $sentence->user;
-        $userId = $user ? $user->id : null;
-        $editableTranscription = array_filter($sentence->transcriptions, function($transcription) {
-            return $transcription->markup;
-        });
-
-        return [
-            'canEdit' => CurrentUser::canEditSentenceOfUserId($userId),
-            'canTranscribe' => (bool)$editableTranscription,
-            'canReview' => (bool)CurrentUser::get('settings.users_collections_ratings'),
-            'canAdopt' => CurrentUser::canAdoptOrUnadoptSentenceOfUser($user),
-            'canDelete' => CurrentUser::canRemoveSentence($sentence->id, $userId),
-            'canLink' => CurrentUser::isTrusted(),
-        ];
     }
 
     public function findWithSphinx($query, $options)
@@ -789,11 +749,12 @@ class SentencesTable extends Table
      *
      * @return ResultSet Information about the sentence.
      */
-    public function getSentenceWith($id, $what = [])
+    public function getSentenceWith($id, $what = [], $translationLang = null)
     {
         return $this->find('filteredTranslations', [
                 'nativeMarker' => CurrentUser::getSetting('native_indicator'),
                 'hideFields' => $this->hideFields(),
+                'translationLang' => $translationLang
             ])
             ->where(['Sentences.id' => $id])
             ->contain($this->contain($what))
@@ -838,6 +799,7 @@ class SentencesTable extends Table
         $translations = $this->Translations->getTranslationsOf($id, $languages);
         $results = [0 => [], 1 => []];
         foreach($translations as $translation) {
+            $translation->isDirect = $translation->type == 0;
             $results[$translation->type][] = $translation;
         }
 
