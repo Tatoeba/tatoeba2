@@ -55,6 +55,8 @@ $this->Security->enableCSRFProtection();
 
     <div layout="column">
         <md-button type="submit" class="md-raised md-primary">
+            <?php /* @translators: button to send a new password by email
+                     because the password was forgotten (verb) */ ?>
             <?php echo __('Send'); ?>
         </md-button>
     </div>

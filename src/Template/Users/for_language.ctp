@@ -43,6 +43,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text on the side bar of "Members speaking x" page */ ?>
         <h2><?php echo __('Languages'); ?></h2>
 
         <p>

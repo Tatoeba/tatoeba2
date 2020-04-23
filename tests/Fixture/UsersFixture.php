@@ -114,6 +114,7 @@ class UsersFixture extends TestFixture
                 'settings' => [
                     'is_public' => false,
                     'lang' => null,
+                    'can_switch_license' => true,
                 ],
                 'homepage' => '',
                 'image' => '',

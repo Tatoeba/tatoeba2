@@ -54,6 +54,7 @@ $max = $stats[0]['sentences'];
         <th></th>
         <th></th>
         <th></th>
+        <?php /* @translators: table header text in "Number of sentences per language" page */ ?>
         <th><?php echo __('Language'); ?></th>
         <th><?php echo __('Sentences'); ?></th>
     </tr>

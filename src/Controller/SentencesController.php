@@ -31,6 +31,7 @@ use App\Model\CurrentUser;
 use App\Model\Table\SentencesTable;
 use App\Lib\LanguagesLib;
 use App\Lib\SphinxClient;
+use App\Lib\Licenses;
 use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\Event;
@@ -64,7 +65,6 @@ class SentencesController extends AppController
         'Logs',
         'Pagination',
         'Comments',
-        'Navigation',
         'Languages',
         'CommonModules'
     );
@@ -1139,22 +1139,22 @@ class SentencesController extends AppController
         }
 
         $sentence = $this->Sentences->get($sentenceId);
-        $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
 
         if (!CurrentUser::canEditLicenseOfSentence($sentence)) {
             $this->Flash->set(__('You are not allowed to change the license of this sentence.'));
         } else {
+            $sentence = $this->Sentences->patchEntity($sentence, ['license' => $newLicense]);
             $errors = $sentence->getError('license');
-            $savedSentence = $this->Sentences->save($sentence);
-            if ($savedSentence) {
+            $licenseName = Licenses::getSentenceLicenses()[$newLicense]['name'] ?? $newLicense;
+            if (empty($errors) && $this->Sentences->save($sentence)) {
                 $this->Flash->set(format(
                     __('The license of the sentence has been changed to “{newLicense}”.'),
-                    compact('newLicense')
+                    ['newLicense' => $licenseName]
                 ));
             } elseif (!empty($errors)) {
                 $message = format(
                     __('Unable to change the license to “{newLicense}” because:'),
-                    compact('newLicense')
+                    ['newLicense' => $licenseName]
                 );
                 $params = compact('errors');
                 $this->Flash->set($message, compact('params'));

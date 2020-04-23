@@ -183,6 +183,7 @@ $sentenceUrl = $this->Url->build([
 
     <div layout="column" class="direct translations" ng-if="vm.visibility.translations && vm.directTranslations.length > 0">
         <md-divider></md-divider>
+        <?php /* @translators: text divider between a sentence and its translations */ ?>
         <md-subheader><?= __('Translations') ?></md-subheader>
 
         <?php

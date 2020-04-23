@@ -45,7 +45,7 @@ class ExportsFixture extends TestFixture
                 'name' => 'Japanese-Russian sentence pairs',
                 'description' => 'Japanese sentence text [tab] Russian entence text',
                 'url' => null,
-                'filename' => TMP.'/export_tests/pairs_2.csv',
+                'filename' => TMP.'/export_tests/pairs_2.tsv',
                 'generated' => '2019-02-01 15:04:02',
                 'status' => 'queued',
                 'queued_job_id' => 2,

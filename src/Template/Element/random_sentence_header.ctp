@@ -35,6 +35,7 @@ $langArray = $this->Languages->languagesArrayAlone();
 <div ng-controller="RandomSentenceController as vm" ng-init="vm.init()">
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
+        <?php /* @translators: random sentence block header on the home page for members */ ?>
         <h2 flex><?= __('Random sentence') ?></h2>
 
         <span>
@@ -64,6 +65,7 @@ $langArray = $this->Languages->languagesArrayAlone();
     ) ?></p>
     <div layout="row" layout-align="end center">
         <md-button class="md-primary" href="/user/settings"><?= __('Go to settings') ?></md-button>
+        <?php /* @translators: button to close the announcement about the new design (verb) */ ?>
         <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
     </div>
 </div>

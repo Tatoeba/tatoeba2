@@ -126,6 +126,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         $editImage = $this->Images->svgIcon(
             'edit',
             array(
+                /* @translators: edit button for list name (verb) */
                 'alt'=> __('Edit'),
                 'title'=> __('Edit name'),
                 'width' => 15,
@@ -141,7 +142,9 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         [
             'id'    => "l$listId",
             'class' => $class,
+            /* @translators: submit button of list name edition form */
             'data-submit'  => __('OK'),
+            /* @translators: cancel button of list name edition form (verb) */
             'data-cancel'  => __('Cancel'),
             'data-tooltip' => __('Click to edit...'),
         ]

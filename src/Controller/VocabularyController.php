@@ -87,7 +87,6 @@ class VocabularyController extends AppController
                   'action' => 'all')
             );
         }
-        
         $this->loadModel('UsersVocabulary');
         $this->paginate = $this->UsersVocabulary->getPaginatedVocabularyOf(
             $userId,
@@ -117,7 +116,9 @@ class VocabularyController extends AppController
      * @param $lang string Language of the vocabulary items.
      */
     public function add_sentences($lang = null)
-    {
+    {   
+        $this->request->getSession()->write('vocabulary_requests_filtered_lang', $lang);
+
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Languages';

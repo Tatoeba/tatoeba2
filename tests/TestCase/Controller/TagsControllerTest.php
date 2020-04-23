@@ -76,6 +76,25 @@ class TagsControllerTest extends IntegrationTestCase {
         $this->assertResponseOk();
     }
 
+    public function testAddTagPost_getBackTruncatedName() {
+        $this->logInAs('advanced_contributor');
+        $this->ajaxPost('/eng/tags/add_tag_post', [
+            'sentence_id' => 18,
+            'tag_name' => '1234567890123456789012345678901234567890123456789 cut after 9',
+        ]);
+        $this->assertResponseNotContains(' cut after 9');
+    }
+
+    public function testAddTagPost_duplicateTagReturnsEmptyResponse ()
+    {
+        $this->logInAs('advanced_contributor');
+        $this->ajaxPost('/eng/tags/add_tag_post', [
+            'sentence_id' => 8,
+            'tag_name' => '@needs native check',
+        ]);
+        $this->assertResponseEmpty();
+    }
+
     public function testSearch_asGuest() {
         $this->enableCsrfToken();
         $this->enableSecurityToken();

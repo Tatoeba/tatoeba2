@@ -27,6 +27,7 @@ use Cake\Database\Schema\TableSchema;
 use Cake\Event\Event;
 use Cake\Validation\Validator;
 use App\Lib\LanguagesLib;
+use App\Lib\Licenses;
 use App\Model\CurrentUser;
 use App\Model\Entity\User;
 use App\Event\ContributionListener;
@@ -34,6 +35,7 @@ use App\Event\UsersLanguagesListener;
 use Cake\Utility\Hash;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Cache\Cache;
+use Cake\ORM\RulesChecker;
 
 class SentencesTable extends Table
 {
@@ -98,10 +100,11 @@ class SentencesTable extends Table
         $validator
             ->notEmpty('text');
 
+        $sentenceLicenses = array_keys(Licenses::getSentenceLicenses());
         $validator
             ->add('license', [
                 'inList' => [
-                    'rule' => ['inList', ['CC0 1.0', 'CC BY 2.0 FR']],
+                    'rule' => ['inList', $sentenceLicenses],
                     /* @translators: This string will be preceded by "Unable to
                     change the license to “{newLicense}” because:" */
                     'message' => __('This is not a valid license.')
@@ -118,7 +121,13 @@ class SentencesTable extends Table
                     'on' => 'update',
                 ]
             ])
-            ->allowEmpty('license');
+            ->allowEmptyString(
+                'license',
+                function ($context) {
+                    return $context['newRecord'] || CurrentUser::isAdmin();
+                },
+                __('This is not a valid license.')
+            );
 
         $languages = array_keys(LanguagesLib::languagesInTatoeba());
         $validator
@@ -134,6 +143,23 @@ class SentencesTable extends Table
         $validator->dateTime('modified');
 
         return $validator;
+    }
+
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->addCreate(
+            function ($entity, $options) {
+                if ($entity->based_on_id != 0) {
+                    $baseSentence = $this->findById($entity->based_on_id)->first();
+                    return !empty($baseSentence->license);
+                } else {
+                    return true;
+                }
+            },
+            'licenseCheck'
+        );
+
+        return $rules;
     }
 
     public function beforeSave($event, $entity, $options)
@@ -323,20 +349,6 @@ class SentencesTable extends Table
 
         // Decrement statistics
         $this->Languages->decrementCountForLanguage($sentenceLang);
-    }
-
-    public function afterFind($results, $primary = false) {
-        foreach ($results as &$result) {
-            /* Work around afterFind() not being called by Containable */
-            if (isset($result['Translation'])) {
-                $result['Translation'] = $this->Behaviors->Transcriptable->afterFind(
-                    $this->Translation,
-                    $result['Translation'],
-                    false
-                );
-            }
-        }
-        return $results;
     }
 
     private function applyHideFields($entity, $hide)
@@ -618,10 +630,10 @@ class SentencesTable extends Table
             'user_id',
             'correctness',
             'script',
+            'license',
         ];
 
         if (isset($what['sentenceDetails'])) {
-            $fields[] = 'license';
             $fields[] = 'based_on_id';
         }
 

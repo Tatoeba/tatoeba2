@@ -372,7 +372,7 @@
         function editSentence() {
             var sentenceChanged = oldSentence.text !== vm.sentence.text || oldSentence.lang !== vm.sentence.lang;
             var transcriptionChanged = false;
-            if (vm.sentence.transcriptions) {
+            if (vm.sentence.transcriptions.length > 0) {
                 var oldTranscription = getEditableTranscription(oldSentence);
                 var transcription = getEditableTranscription(vm.sentence);
                 var oldMarkup = oldTranscription ? oldTranscription.markup : null;

@@ -39,7 +39,7 @@
             $scope.preparingDownload = true;
             var fields = [];
             var options = {'type': 'list', 'list_id': listId};
-            if ($scope.showid) {
+            if ($scope.format === 'tsv') {
                 fields.push('id');
             }
             fields.push('text');
@@ -48,6 +48,7 @@
                 options['trans_lang'] = $scope.trans_lang;
             }
             options['fields'] = fields;
+            options['format'] = $scope.format;
             $http.post(rootUrl + "/exports/add", options)
                  .then(
                     function(response) {

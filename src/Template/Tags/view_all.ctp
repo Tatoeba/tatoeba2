@@ -48,7 +48,8 @@ $tagsIndexUrl = $this->Url->build([
                 ]);
             ?>
             <md-button type="submit" class="md-raised md-default">
-                <?= __('Search') ?>
+                <?php /* @translators: search button in All tags page (verb) */ ?>
+                <?= __x('button', 'Search') ?>
             </md-button>
         </md-input-container>
 
@@ -90,8 +91,10 @@ $tagsIndexUrl = $this->Url->build([
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?> </strong>
             <?php
+            /* @translators: sort option in the All tags page */
             echo $this->Paginator->sort('nbrOfSentences', __("count"));
             echo " | ";
+            /* @translators: sort option in the All tags page */
             echo $this->Paginator->sort('name', __("name"));
             ?>
         </div>

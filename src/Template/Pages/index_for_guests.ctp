@@ -44,6 +44,7 @@ $registerUrl = $this->Url->build(
 <div layout="column">
     <md-toolbar class="md-hue-2">
         <div class="md-toolbar-tools">
+            <?php /* @translators: random sentence block header on the home page for guests */ ?>
             <h2><?= __('Random sentence'); ?></h2>
         </div>
     </md-toolbar>

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 02:58+0000\n"
+"POT-Creation-Date: 2020-04-16 13:47+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>, 2020\n"
 "Language-Team: Marathi (https://www.transifex.com/tatoeba/teams/28284/mr/)\n"
@@ -24,15 +24,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L246
 msgid "Invalid file “{file}” ignored."
-msgstr "“{file}” ही अवैध फाईल दुर्लक्ष करण्यात आली."
+msgstr "“{file}” ही अवैध फाइल दुर्लक्ष करण्यात आली."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L256
 msgid "Failed to create directory “{dir}” to import file “{file}”."
-msgstr "“{file}” ही फाईल आयात करण्यास “{dir}” ही डिरेक्टरी बनवता आली नाही."
+msgstr "“{file}” ही फाइल आयात करण्यास “{dir}” ही डिरेक्टरी बनवता आली नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L266
 msgid "Failed to copy file “{file}” to directory “{dir}”."
-msgstr "“{file}” ही फाईल “{dir}” या डिरेक्टरीत कॉपी करता आली नाही."
+msgstr "“{file}” ही फाइल “{dir}” या डिरेक्टरीत कॉपी करता आली नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L275
 msgid ""
@@ -65,7 +65,7 @@ msgstr "आयात करताना खालील त्रुटी आ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L68
 msgid "Files detected"
-msgstr "फायली आढळल्या"
+msgstr "फाइली आढळल्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L86
 msgid "File name"
@@ -73,7 +73,7 @@ msgstr "फाइलचे नाव"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L87
 msgid "Sentence id"
-msgstr "वाक्य ओळख"
+msgstr "वाक्य आयडी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L88
 msgid "Language"
@@ -96,6 +96,18 @@ msgstr "लागू नाही"
 msgid "Invalid"
 msgstr "अवैध"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+msgid "Yes"
+msgstr "हो"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
+msgid "No"
+msgstr "नाही"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
 msgstr "आयात डिरेक्टरीच्या आत कोणत्याही फायली आढळल्या नाही."
@@ -104,23 +116,15 @@ msgstr "आयात डिरेक्टरीच्या आत कोणत
 msgid "Import"
 msgstr "आयात करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
 msgid "Enabled"
 msgstr "सक्षम"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
-msgid "Yes"
-msgstr "होय"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
-msgid "No"
-msgstr "नाही"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
 msgstr "मालकाचे नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
@@ -130,7 +134,7 @@ msgstr "सबमिट करा"
 msgid "Correctness"
 msgstr "अचूकपणा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
 msgstr "बदला"
 
@@ -155,7 +159,7 @@ msgstr "फाइल:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L106
 msgid "Numeric user id: "
-msgstr "संख्यात्मक प्रयोक्ता ओळख.:"
+msgstr "संख्यात्मक प्रयोक्ता आयडी:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/import.ctp#L111
@@ -180,15 +184,15 @@ msgstr "आपल्याला प्रयोक्ता क्र. {number}
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L62
 msgid "List Users"
-msgstr "वापरकर्त्यांची यादी बनवा"
+msgstr "प्रयोक्त्यांची यादी बनवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L66
 msgid "Profile"
-msgstr "प्रोफाइल"
+msgstr "रूपरेखा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L83
 msgid "Edit User"
-msgstr "सदस्य संपादित करा"
+msgstr "प्रयोक्ता संपादित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L85
 msgid "Id"

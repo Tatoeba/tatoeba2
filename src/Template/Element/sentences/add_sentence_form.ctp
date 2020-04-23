@@ -2,7 +2,7 @@
 use App\Model\CurrentUser;
 $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
 $langs = $this->Languages->profileLanguagesArray(false, false);
-$licencesOptions = $this->Sentences->License->getLicenseOptions();
+$licencesOptions = $this->SentenceLicense->getLicenseOptions();
 $userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
 $licensesOptionsJSON = htmlspecialchars(json_encode($licencesOptions), ENT_QUOTES, 'UTF-8');
 $defautLicense = CurrentUser::getSetting('default_license');
@@ -21,6 +21,7 @@ if (empty($langs)) {
 
         <div layout="row" layout-align="start center">
             <md-input-container flex="50">
+                <?php /* @translators: language field label on new sentence addition form */ ?>
                 <label><?= __('Language') ?></label>
                 <md-select ng-model="vm.newSentence.lang">
                     <md-option value="auto" ng-if="vm.showAutoDetect"><?= __('Auto detect') ?></md-option>
@@ -37,6 +38,7 @@ if (empty($langs)) {
 
             <?php if (CurrentUser::getSetting('can_switch_license')) : ?>
             <md-input-container>
+                <?php /* @translators: label for licence selection dropdown in sentence addition form */ ?>
                 <label><?= __('License'); ?></label>
                 <md-select ng-model="vm.newSentence.license" ng-init="vm.newSentence.license = '<?= $defautLicense ?>'">
                     <md-option ng-repeat="(code, name) in vm.licenses" ng-value="code">
@@ -48,6 +50,7 @@ if (empty($langs)) {
         </div>
 
         <md-input-container>
+            <?php /* @translators: label for sentence text in sentence addition form */ ?>
             <label><?= __('Sentence') ?></label>
             <textarea name="text" ng-model="vm.newSentence.text" ng-enter="vm.addSentence(sentenceForm)"></textarea>
             

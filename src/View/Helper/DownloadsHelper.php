@@ -113,6 +113,8 @@ class DownloadsHelper extends AppHelper
         }
         $tab = $this->Html->tag(
             'span',
+            /* @translators: tab character, used on the Downloads page,
+               see https://en.wikipedia.org/wiki/Tab_key (noun) */
             format('[{}]', __('tab')),
             ['class' => 'symbol']
         );
@@ -120,6 +122,6 @@ class DownloadsHelper extends AppHelper
             return $this->Html->tag('span', $field, ['class' => 'param']);
         };
 
-        return implode($tab, array_map($fieldSpan, $fields));
+        return implode(" $tab ", array_map($fieldSpan, $fields));
     }
 }

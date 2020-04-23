@@ -114,8 +114,11 @@ class TranscriptionsHelper extends AppHelper
         }
         $options = [
             'data-script' => $transcr['script'],
+            /* @translators: submit button of transcription edition form */
             'data-submit' => __('OK'),
+            /* @translators: cancel button of transcription edition form (verb) */
             'data-cancel' => __('Cancel'),
+            /* @translators: reset button of transcription edition form (verb) */
             'data-reset' => __('Reset'),
             'title' => $log,
             'class' => $class,

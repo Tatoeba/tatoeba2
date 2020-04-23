@@ -70,7 +70,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
         <?php
         if ($message->folder == 'Inbox' && $message->type == 'human') {
             echo $this->element('private_messages/form', [
-                'headerTitle' => __('Reply'),
                 'pm' => $message,
                 'recipients' => $author->username,
                 'isReply' => true

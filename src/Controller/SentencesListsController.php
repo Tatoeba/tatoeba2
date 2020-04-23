@@ -46,7 +46,6 @@ class SentencesListsController extends AppController
     public $name = 'SentencesLists';
     public $helpers = array(
         'Sentences',
-        'Navigation',
         'Csv',
         'CommonModules',
         'Html',

@@ -58,6 +58,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     if ($permissions['canEdit']) {
         ?>
         <div class="section md-whiteframe-1dp">
+            <?php /* @translators: header text in the side bar of a list page (noun) */ ?>
             <h2><?php echo __('Options'); ?></h2>
             <ul class="sentencesListActions">
                 <?php
@@ -79,15 +80,6 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
     <?php
     $this->Lists->displayTranslationsDropdown($listId, $translationsLang);
     ?>
-    <div layout="column" layout-align="end center">
-        <?php
-        if ($permissions['canEdit']) {
-            $this->Lists->displayDeleteButton($listId);
-        }
-
-        $this->Lists->displayDownloadLink($listId);
-        ?>
-    </div>
     </div>
 
 </div>
@@ -100,7 +92,36 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             <h2 ng-cloak flex>{{vm.list.currentName}}</h2>
 
             <?= $this->element('sentences/expand_all_menus_button'); ?>
-            
+
+            <?php
+                $downloadUrl = $this->Url->build([
+                    'controller' => 'sentences_lists',
+                    'action' => 'download',
+                ]);
+            ?>
+            <md-button class="md-icon-button" ng-cloak
+                       ng-href="<?= $downloadUrl ?>/{{vm.list.id}}">
+                <md-icon>get_app
+                    <md-tooltip><?= __('Download this list') ?></md-tooltip>
+                </md-icon>
+            </md-button>
+
+            <?php
+                if ($permissions['canEdit']) {
+                    $deleteUrl = $this->Url->build([
+                        'controller' => 'sentences_lists',
+                        'action' => 'delete',
+                    ]);
+                ?>
+                <md-button class="md-icon-button" ng-cloak
+                           ng-href="<?= $deleteUrl; ?>/{{vm.list.id}}"
+                           onclick="return confirm('<?= __('Are you sure?') ?>');">
+                    <md-icon>delete
+                        <md-tooltip><?= __('Delete this list') ?></md-tooltip>
+                    </md-icon>
+                </md-button>
+            <?php } ?>
+
             <?php if ($permissions['canEdit']) { ?>
             <md-button class="md-icon-button" ng-cloak ng-click="vm.editName()">
                 <md-icon>edit
@@ -128,9 +149,11 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
             
             <div layout="row" layout-align="end">
                 <md-button class="md-raised" ng-click="vm.showEditNameForm = false">
+                    <?php /* @translators: cancel button of list name edition form (verb) */ ?>
                     <?= __('Cancel') ?>
                 </md-button>
                 <md-button class="md-raised md-primary" ng-click="vm.saveListName()">
+                    <?php /* @translators: submit button of list name edition form (verb) */ ?>
                     <?= __('Save') ?>
                 </md-button>
             </div>
@@ -186,8 +209,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($listName));
         <div class="sortBy" id="sortBy">
         <strong><?php echo __("Sort by:") ?> </strong>
         <?php
+        /* @translators: sort option in a list page */
         echo $this->Paginator->sort('created', __('date added to list'));
         echo ' | ';
+        /* @translators: sort option in a list page */
         echo $this->Paginator->sort('sentence_id', __('date created'));
         ?>
         </div>

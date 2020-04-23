@@ -72,11 +72,13 @@ class ListsHelper extends AppHelper
                  <td></td>
                 <td class="date createdDate">
                      <?php
+                     /* @translators: sort option in list of lists */
                      echo __('created');
                      ?>
                 </td>
                 <td class="date lastUpdatedDate">
                     <?php
+                     /* @translators: sort option in list of lists */
                      echo __('last updated');
                      ?>
                 </td>
@@ -336,12 +338,15 @@ class ListsHelper extends AppHelper
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
                 <md-radio-button value='public' class='md-primary'>
+                    <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Public') ?>
                 </md-radio-button>
                 <md-radio-button value='unlisted' class='md-primary'>
+                    <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Unlisted') ?>
                 </md-radio-button>
                 <md-radio-button value='private' class='md-primary'>
+                    <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Private') ?>
                 </md-radio-button>
             </md-radio-group>
@@ -373,12 +378,15 @@ class ListsHelper extends AppHelper
             <input type="radio"  name="editable_by" data-list-id='<?= $listId ?>'  value="{{editable}}" checked hidden ng-init="editable = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='editable' ng-change='editableChanged("{{editable}}")'>
                 <md-radio-button value='anyone' class='md-primary'>
+                    <?php /* @translators: option when choosing who can edit a list */ ?>
                     <?=  __('Anyone') ?>
                 </md-radio-button>
                 <md-radio-button value='creator' class='md-primary'>
+                    <?php /* @translators: option when choosing who can edit a list */ ?>
                     <?= __('Only me') ?>
                 </md-radio-button>
                 <md-radio-button value='no_one' class='md-primary'>
+                    <?php /* @translators: option when choosing who can edit a list */ ?>
                     <?= __('No one (list inactive)') ?>
                 </md-radio-button>
             </md-radio-group>
@@ -494,6 +502,7 @@ class ListsHelper extends AppHelper
             )
         );
         echo $this->Form->button(
+            /* @translators: submit button of sentence addition form on list page */
             __('OK'),
             array(
                 'id' => 'submitNewSentenceToList',
@@ -530,6 +539,7 @@ class ListsHelper extends AppHelper
     {
         if (count($listsArray) > 0) {
             echo '<div class="section md-whiteframe-1dp">';
+            /* @translators: header text on the sidebar of a sentence page */
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
             foreach($listsArray as $list) {
@@ -571,11 +581,13 @@ class ListsHelper extends AppHelper
             <md-input-container layout="column">
                 <?php
                 echo $this->Form->control('name', [
+                    /* @translators: field for the name of a list to create (noun) */
                     'label' => __x('list', 'Name')
                 ]);
                 ?>
                 <md-button type="submit" class="md-raised md-primary">
-                    <?= __('create') ?>
+                    <?php /* @translators: button to create a new list from the lists of list page (verb) */ ?>
+                    <?= __('Create') ?>
                 </md-button>
             </md-input-container>
 
@@ -592,7 +604,8 @@ class ListsHelper extends AppHelper
         ?>
         <div class="section md-whiteframe-1dp">
             <?php
-            echo $this->Html->tag('h2', __('Search'));
+            /* @translators: header text in List of lists page (noun) */
+            echo $this->Html->tag('h2', __x('header', 'Search'));
 
             echo $this->Form->create('SentencesList', ['type' => 'get']);
 
@@ -612,7 +625,8 @@ class ListsHelper extends AppHelper
                 ?>
 
                 <md-button type="submit" class="md-raised">
-                    <?= __('Search') ?>
+                    <?php /* @translators: search form button in List of lists pages (verb) */ ?>
+                    <?= __x('button', 'Search') ?>
                 </md-button>
             </md-input-container>
 
@@ -627,6 +641,7 @@ class ListsHelper extends AppHelper
     {
         ?>
         <md-list class="annexe-menu md-whiteframe-1dp" ng-cloak>
+            <?php /* @translators: header text in sidebar on pages related to sentences lists */ ?>
             <md-subheader><?= __('Lists') ?></md-subheader>
 
             <?php
@@ -675,6 +690,7 @@ class ListsHelper extends AppHelper
      */
     public function listsAsSelectable($lists)
     {
+        /* @translators: dropdown option when no list is selected (used to filter by list in advanced search) */
         $unspecified = __x('list', 'Unspecified');
         if (CurrentUser::isMember()) {
             $sortedLists = array(0 => array(), 1 => array());

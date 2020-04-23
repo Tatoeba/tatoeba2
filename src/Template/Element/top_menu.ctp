@@ -31,6 +31,7 @@ use Cake\Core\Configure;
 $session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $showTranslationsInto = $session->read('show_translations_into_lang');
+$filteredLanguage = $session->read('vocabulary_requests_filtered_lang');
 
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
@@ -44,87 +45,106 @@ if (empty($showTranslationsInto)) {
 
 // array containing the elements of the menu : $title => $route
 $menuElements = array(
+    /* @translators: menu on the top (verb) */
     __('Browse') => array(
         "route" => array(
             "controller" => false,
             "action" => false
         ),
         "sub-menu" => array(
-            __('Random sentence') => array(
+            /* @translators: menu item on the top (verb) */
+            __('Show random sentence') => array(
                 "controller" => "sentences",
                 "action" => "show",
                 "random"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Browse by language') => array(
                 "controller" => "sentences",
                 "action" => "show_all_in",
                 $currentLanguage, $showTranslationsInto
             ),
+            /* @translators: menu item on the top (verb) */
             __('Browse by list') => array(
                 "controller" => "sentences_lists",
                 "action" => "index"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Browse by tag') => array(
                 "controller" => "tags",
                 "action" => "view_all"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Browse audio') => array(
                 "controller" => "audio",
                 "action" => "index"
             )
         )
     ),
+    /* @translators: menu on the top (verb) */
     __('Contribute') => array(
         "route" => array(
             "controller" => false,
             "action" => false
         ),
         "sub-menu" => array(
+            /* @translators: menu item on the top (verb) */
             __('Add sentences') => array(
                 "controller" => "sentences",
                 "action" => "add"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Translate sentences') => array(
                 "controller" => "activities",
                 "action" => "translate_sentences"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Adopt sentences') => array(
                 "controller" => "activities",
                 "action" => "adopt_sentences",
                 $currentLanguage
             ),
+            /* @translators: menu item on the top (verb) */
             __('Improve sentences') => array(
                 "controller" => "activities",
                 "action" => "improve_sentences"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Discuss sentences') => array(
                 "controller" => "sentence_comments",
                 "action" => "index"
             ),
-            __('Show activity timeline') => array(
-                "controller" => "contributions",
-                "action" => "activity_timeline"
-            )
+            /* @translators: menu item on the top (verb) */
+            __('Add vocabulary request') => array(
+                "controller" => "vocabulary",
+                "action" => "add_sentences",
+                $filteredLanguage
+            ),
         )
     ),
+    /* @translators: menu on the top (verb) */
     __('Community') => array(
         "route" => array(
             "controller" => false,
             "action" => false
         ),
         "sub-menu" => array(
+            /* @translators: menu item on the top (verb) */
             __('Wall') => array(
                 "controller" => "wall",
                 "action" => "index"
             ),
+            /* @translators: menu item on the top (verb) */
             __('List of all members') => array(
                 "controller" => "users",
                 "action" => "all"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Languages of members') => array(
                 "controller" => "stats",
                 "action" => "users_languages"
             ),
+            /* @translators: menu item on the top (verb) */
             __('Native speakers') => array(
                 "controller" => "stats",
                 "action" => "native_speakers"

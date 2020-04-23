@@ -34,6 +34,7 @@ if (!$shouldDisplayBlock) {
 
 ?>
 <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text in sentence page */ ?>
     <h2><?php echo __('Audio') ?></h2>
 <?php
 

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-03 02:58+0000\n"
+"POT-Creation-Date: 2020-04-16 13:47+0800\n"
 "PO-Revision-Date: 2018-05-16 13:53+0000\n"
 "Last-Translator: Ricardo Vernaut Jr <rvj1444@gmail.com>, 2020\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/tatoeba/teams/28284/pt_BR/)\n"
@@ -99,6 +99,18 @@ msgstr "N/A"
 msgid "Invalid"
 msgstr "Inválido"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
+msgid "Yes"
+msgstr "Sim"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L68
+msgid "No"
+msgstr "Não"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L136
 msgid "No files have been detected inside the import directory."
 msgstr "Nenhum arquivo foi detectado dentro do diretório de importação."
@@ -107,23 +119,15 @@ msgstr "Nenhum arquivo foi detectado dentro do diretório de importação."
 msgid "Import"
 msgstr "Importar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L60
 msgid "Enabled"
 msgstr "Habilitado"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L66
-msgid "Yes"
-msgstr "Sim"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L67
-msgid "No"
-msgstr "Não"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L80
 msgid "Owner name"
 msgstr "Nome do usuário dono"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/correctness.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L115
 msgid "Submit"
@@ -133,7 +137,7 @@ msgstr "Submeter"
 msgid "Correctness"
 msgstr "Exatidão"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L56
 msgid "Change"
 msgstr "Alterar"
 

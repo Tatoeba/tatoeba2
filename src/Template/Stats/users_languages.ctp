@@ -31,19 +31,22 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: header text in the side bar of the Languages of members page (noun) */ ?>
         <h2><?php echo __('Legend'); ?></h2>
         <ul class="usersLanguagesLegend">
             <?php
-            for ($i = Language::MAX_LEVEL; $i >= 0; $i--) {
+            $levels = $this->Languages->getLevelsLabels();
+            uksort($levels, function($a, $b) {
+                $va = $a === '' ? -1 : $a;
+                $vb = $b === '' ? -1 : $b;
+                return $vb - $va;
+            });
+
+            foreach ($levels as $i => $level) {
                 $legend = $this->Html->tag('span', $this->Languages->getLevelsLabels($i));
                 echo $this->Html->tag('li', $this->Languages->smallLevelBar($i) . $legend);
             }
             ?>
-            <li>
-                <div class="languageLevel">
-                    <div class="unknownLevel key">?</div>
-                </div><span><?php echo __('Unspecified'); ?></span>
-            </li>
         </ul>
     </div>
 </div>
@@ -59,6 +62,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
         <table class="usersLanguagesStats">
             <tr>
                 <th></th>
+                <?php /* @translators: table header text in Languages of members page */ ?>
                 <th><?php echo __('Language'); ?></th>
                 <?php
                 for ($i = Language::MAX_LEVEL; $i >= 0; $i--) {
@@ -70,6 +74,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Languages of member
                         <div class="unknownLevel">?</div>
                     </div>
                 </th>
+                <?php /* @translators: table header text in Languages of members page */ ?>
                 <th><?php echo __('Total'); ?></th>
             </tr>
             <?php

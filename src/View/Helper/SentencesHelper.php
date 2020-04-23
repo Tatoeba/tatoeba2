@@ -67,13 +67,8 @@ class SentencesHelper extends AppHelper
         'Images',
         'Transcriptions',
         'Search',
-        'License' => array(
-            'availableLicences' => array(
-                'CC0 1.0',
-                'CC BY 2.0 FR',
-            ),
-        ),
         'Number',
+        'SentenceLicense',
     );
 
 
@@ -411,6 +406,7 @@ class SentencesHelper extends AppHelper
 
         // Cancel
         echo $this->Form->button(
+            /* @translators: cancel button of "add translation" form on a sentence (verb) */
             __('Cancel'),
             array(
                 'id' => '_'.$id.'_cancel',
@@ -442,7 +438,7 @@ class SentencesHelper extends AppHelper
     ) {
         $user = $sentence->user;
         $sentenceId = $sentence->id;
-        $canTranslate = $sentence->correctness >= 0;
+        $canTranslate = $sentence->correctness >= 0 && $sentence->license != '';
         $hasAudio = isset($sentence->audios) && count($sentence->audios);
         $script = $sentence->script;
         $isFavorited = isset($sentence->favorites_users)
@@ -705,7 +701,9 @@ class SentencesHelper extends AppHelper
                 array(
                     'class' => join(' ', $classes),
                     'id' => $sentenceLang.'_'.$sentenceId,
+                    /* @translators: submit button of sentence edition form */
                     'data-submit' => __('OK'),
+                    /* @translators: cancel button of sentence edition form (verb) */
                     'data-cancel' => __('Cancel'),
                     'escape' => !$sentenceEscaped,
                 ),

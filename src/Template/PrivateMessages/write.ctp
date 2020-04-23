@@ -27,11 +27,6 @@
 
 $this->set('title_for_layout', __('New message') . __(' - Tatoeba'));
 
-if (!$pm->id) {
-    $headerTitle = __('New message');
-} else {
-    $headerTitle = __('Message');
-}
 ?>
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
@@ -86,7 +81,6 @@ if (!$pm->id) {
         <?php
         if ($canSend) {
             echo $this->element('private_messages/form', [
-                'headerTitle' => __('New message'),
                 'pm' => $pm,
                 'recipients' => $recipients
             ]);

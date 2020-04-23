@@ -28,14 +28,18 @@ use App\Model\CurrentUser;
 
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Add sentences')));
 
+$filteredLanguage = $this->request->getSession()->read('vocabulary_requests_filtered_lang');
+
 $vocabularyUrl = $this->Url->build(array(
     'controller' => 'vocabulary',
-    'action' => 'add_sentences'
+    'action' => 'add_sentences',
+    $filteredLanguage
 ));
 ?>
 
 <div id="annexe_content">
     <div class="section md-whiteframe-1dp">
+    <?php /* @translators: header text in side bar of the "Add sentences" page */ ?>
     <h2><?php echo __('Important'); ?></h2>
     <p>
     <?php

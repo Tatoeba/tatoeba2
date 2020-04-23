@@ -2,13 +2,16 @@
      ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.permissions)">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>
-            <md-button class="md-icon-button" ng-click="vm.translate(vm.sentence.id)" ng-disabled="vm.sentence.correctness === -1">
+            <md-button class="md-icon-button" ng-click="vm.translate(vm.sentence.id)"
+                ng-disabled="vm.sentence.correctness === -1 || vm.sentence.license === ''">
                 <md-icon>translate</md-icon>
+                <?php /* @translators: translate button on sentence menu (verb) */ ?>
                 <md-tooltip><?= __('Translate') ?></md-tooltip>
             </md-button>
 
             <md-button ng-if="vm.menu.canEdit || vm.menu.canTranscribe" class="md-icon-button" ng-click="vm.edit()">
                 <md-icon>edit</md-icon>
+                <?php /* @translators: edit button on sentence menu (verb) */ ?>
                 <md-tooltip><?= __('Edit') ?></md-tooltip>
             </md-button>
             
@@ -27,6 +30,7 @@
                        onclick="return confirm('<?= __('Are you sure?') ?>');"
                        ng-href="<?= $this->Url->build(['controller' => 'sentences', 'action' => 'delete']) ?>/{{vm.sentence.id}}">
                 <md-icon>delete</md-icon>
+                <?php /* @translators: delete button on sentence menu (verb) */ ?>
                 <md-tooltip><?= __('Delete') ?></md-tooltip>
             </md-button>
         </div>

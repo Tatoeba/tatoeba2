@@ -36,6 +36,7 @@ use Cake\Core\Configure;
  * @link     https://tatoeba.org
  */
 
+/* @translators: title of the Register page (verb) */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Register')));
 
 $this->Html->script('users/register.ctrl.js', ['block' => 'scriptBottom']);
@@ -247,6 +248,7 @@ $label = format(
         echo $this->Form->input(
             'quiz',
             array(
+                /* @translators: captcha field name in register form (noun) */
                 'label' => __('Answer'),
                 'ng-model' => 'registration.quizAnswer',
                 'required' => true,
@@ -295,6 +297,7 @@ $label = format(
 
 <div layout="column">
     <md-button type="submit" class="md-raised md-primary">
+        <?php /* @translators: button to submit registration form (verb) */ ?>
         <?php echo __('Register'); ?>
     </md-button>
 </div>

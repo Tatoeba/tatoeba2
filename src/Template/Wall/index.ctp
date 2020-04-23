@@ -35,6 +35,7 @@
  * @link     https://tatoeba.org
  */
 
+/* @translators: title of the Wall page */
 $this->set('title_for_layout', $this->Pages->formatTitle(__('Wall')));
 
 echo $this->Html->script('wall/wall.ctrl.js', ['block' => 'scriptBottom']);
@@ -51,6 +52,7 @@ echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount),
 
 <div id="annexe_content" >
     <div class="section md-whiteframe-1dp">
+        <?php /* @translators: title of the sidebar text on the Wall page */ ?>
         <h2><?php echo __('Tips'); ?></h2>
         <p>
         <?php

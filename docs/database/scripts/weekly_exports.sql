@@ -6,13 +6,13 @@ INTO OUTFILE '/var/tmp/jpn_indices.csv';
   
 -- Sentences
 SELECT id, lang, text FROM `sentences`
-WHERE correctness > -1
+WHERE correctness > -1 AND license != ''
 INTO OUTFILE '/var/tmp/sentences.csv';
 
 -- Sentences with more data
 SELECT s.id, s.lang, s.text, u.username, s.created, s.modified 
 FROM `sentences` s LEFT JOIN `users` u ON s.user_id = u.id
-WHERE correctness > -1
+WHERE correctness > -1 AND license != ''
 INTO OUTFILE '/var/tmp/sentences_detailed.csv';
 
 -- Links between sentences
@@ -107,3 +107,11 @@ SELECT s.id, s.lang, s.text, s.modified
 FROM sentences s
 WHERE correctness > -1 AND license = 'CC0 1.0'
 INTO OUTFILE '/var/tmp/sentences_CC0.csv';
+
+-- Transcriptions
+SELECT t.sentence_id, s.lang, t.script, IFNULL(u.username,''), t.text
+FROM transcriptions t
+JOIN sentences s ON s.id = t.sentence_id
+LEFT JOIN users u ON u.id = t.user_id
+WHERE s.correctness > -1
+INTO OUTFILE '/var/tmp/transcriptions.csv';

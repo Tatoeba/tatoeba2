@@ -37,6 +37,8 @@ if ($userExists) {
 
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
+$this->Html->script('/js/favorites.add.js', ['block' => 'scriptBottom']);
+
 // Sidebar menu
 if ($userExists) {
     echo $this->Html->div(

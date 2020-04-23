@@ -42,6 +42,7 @@ $moreCommentsUrl = $this->Url->build([
 ?>
 <div id="annexe_content">
     <div class="stats annexe-menu md-whiteframe-1dp" layout="column" flex>
+        <?php /* @translators: header text in the home page (noun) */ ?>
         <md-subheader><?= __('Stats')?></md-subheader>
         <?= $this->element('stats/homepage_stats',
                 [ 'contribToday' => $contribToday,

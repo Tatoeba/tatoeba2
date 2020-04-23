@@ -118,8 +118,10 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 );
                 $this->Paginator->options(array('url' => $urlOptions));
             }
+            /* @translators: sort option in the "Sentences of user" page */
             echo $this->Paginator->sort('modified', __('date modified'));
             echo " | ";
+            /* @translators: sort option in the "Sentences of user" page */
             echo $this->Paginator->sort('created', __('date created'));
             ?>
         </div>

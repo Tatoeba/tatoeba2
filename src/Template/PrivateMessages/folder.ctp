@@ -28,15 +28,20 @@
 $folderName = '';
 if ($folder == 'Inbox') {
     if ($status == 'unread') {
+        /* @translators: folder name in private messages (noun) */
         $folderName = __('Unread');
     } else {
+        /* @translators: folder name in private messages (noun) */
         $folderName = __('Inbox');
     }
 } elseif ($folder == 'Sent') {
+    /* @translators: folder name in private messages (noun) */
     $folderName = __('Sent');
 } elseif ($folder == 'Trash') {
+    /* @translators: folder name in private messages (noun) */
     $folderName = __('Trash');
 } elseif ($folder == 'Drafts') {
+    /* @translators: folder name in private messages (noun) */
     $folderName = __('Drafts');
 }
 
@@ -122,6 +127,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     $deleteIcon = 'delete_forever';
                 } else {
                     $deleteConfirmation = '';
+                    /* @translators: delete button on private message (verb) */
                     $deleteLabel = __('Delete');
                     $deleteIcon = 'delete';
                 }
@@ -148,6 +154,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     <?php if ($folder == 'Trash') { ?>
                     <md-button class="md-icon-button" href="<?= $restoreUrl ?>">
                         <md-icon>restore</md-icon>
+                        <?php /* @translators: button to restore a private message that has been put to trash (verb) */ ?>
                         <md-tooltip><?= __('Restore') ?></md-tooltip>
                     </md-button>
                     <?php } ?>

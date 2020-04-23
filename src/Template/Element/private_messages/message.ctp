@@ -30,11 +30,7 @@ $messageContent = $this->safeForAngular(
         </md-card-header-text>
 
         <?php foreach ($menu as $menuItem) {
-            if ($menuItem['text'] == '#') {
-                $itemLabel = $replyIcon ? __('Reply') : __('Permalink');
-            } else {
-                $itemLabel = $menuItem['text'];
-            }
+            $itemLabel = $menuItem['text'];
             $confirmation = '';
             if (isset($menuItem['confirm'])) {
                 $msg = $menuItem['confirm'];
