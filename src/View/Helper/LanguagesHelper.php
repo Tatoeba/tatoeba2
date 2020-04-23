@@ -289,6 +289,7 @@ class LanguagesHelper extends AppHelper
     public function getSearchableLanguagesArray($anyOption = null)
     {
         $languages = $this->onlyLanguagesArray();
+        /* @translators: option used in language selection dropdowns in other places */
         $anyOption = $anyOption ?? __('Any language');
         $options = array('und' => $anyOption);
         

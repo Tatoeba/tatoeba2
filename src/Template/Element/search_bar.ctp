@@ -100,6 +100,7 @@ echo $this->Form->create(
                     'id' => 'SentenceFrom',
                     'name' => 'from',
                     'selectedLanguage' => $selectedLanguageFrom,
+                    /* @translators: option used in language selection dropdowns in top search bar */
                     'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langFromApi'
                 )
@@ -123,6 +124,7 @@ echo $this->Form->create(
                     'id' => 'SentenceTo',
                     'name' => 'to',
                     'selectedLanguage' => $selectedLanguageTo,
+                    /* @translators: option used in language selection dropdowns in top search bar */
                     'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langToApi'
                 )
