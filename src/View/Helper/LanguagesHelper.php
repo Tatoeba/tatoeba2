@@ -140,38 +140,28 @@ class LanguagesHelper extends AppHelper
      * Returns array of languages set in the user's profile.
      *
      * @param bool   $withAutoDetection Set to true if "Auto detect" should be one of the options.
-     * @param bool   $withOther Set to true if "Other language" should be one of the options.
+     * @param array  $with Additional options
      *
      * @return array
      */
 
-    public function profileLanguagesArray($withAutoDetection, $withOther, $withNone = false, $withAny = false)
+    public function profileLanguagesArray($withAutoDetection = false, $with = [])
     {
         $languages = array_intersect_key(
             $this->onlyLanguagesArray(false),
             array_flip(CurrentUser::getProfileLanguages())
         );
 
-        $options = array();
         if (count($languages) > 1 && $withAutoDetection) {
-            $options['auto'] = __('Auto detect');
+            $with['auto'] = __('Auto detect');
         }
-        if ($withNone) {
-            $options['none'] = '—';
-        }
-        if ($withAny) {
-            $options['und'] = __('Any language');   
-        }
-        if ($withOther) {
-            $options[''] = __('other language');
-        }
-        if (!empty($options)) {
+        if (!empty($with)) {
             $languages = array(
                 __('Profile languages') => $languages
             );
         }
 
-        return $options + $languages;
+        return $with + $languages;
     }
 
     /**

@@ -12,7 +12,7 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
     </md-toolbar>
     
     <?php
-    $langArray = $this->Languages->profileLanguagesArray(true, false);
+    $langArray = $this->Languages->profileLanguagesArray(true);
     $currentUserLanguages = CurrentUser::getProfileLanguages();
     if (empty($currentUserLanguages)) {
 

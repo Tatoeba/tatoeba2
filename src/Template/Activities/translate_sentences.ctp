@@ -37,8 +37,11 @@ if (empty($currentLanguage)) {
 if (empty($notTranslatedInto)) {
     $notTranslatedInto = 'none';
 }
-$langsFrom = $this->Languages->profileLanguagesArray(false, false);
-$langsTo = $this->Languages->profileLanguagesArray(false, false, true, true);
+$langsFrom = $this->Languages->profileLanguagesArray();
+$langsTo = $this->Languages->profileLanguagesArray(false, [
+    'none' => '—',
+    'und'  => __('Any language'),
+]);
 ?>
 
 <div id="annexe_content">

@@ -1,7 +1,7 @@
 <?php
 use App\Model\CurrentUser;
 $this->Html->script('sentences/add.ctrl.js', ['block' => 'scriptBottom']);
-$langs = $this->Languages->profileLanguagesArray(false, false);
+$langs = $this->Languages->profileLanguagesArray();
 $licencesOptions = $this->SentenceLicense->getLicenseOptions();
 $userLanguagesJSON = htmlspecialchars(json_encode($langs), ENT_QUOTES, 'UTF-8');
 $licensesOptionsJSON = htmlspecialchars(json_encode($licencesOptions), ENT_QUOTES, 'UTF-8');

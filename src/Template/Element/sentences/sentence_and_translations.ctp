@@ -37,7 +37,7 @@ if (isset($translations)) {
     $directTranslations = $indirectTranslations = [];
 }
 
-$langs = $this->Languages->profileLanguagesArray(false, false);
+$langs = $this->Languages->profileLanguagesArray();
 
 if (!isset($translationLang)) {
     $translationLang = 'und';
