@@ -214,10 +214,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <div class="param" layout="<?= $layout ?>" layout-align="center">
                     <label for="trans-to" flex><?= __('Language:') ?></label>
                     <?php
-                    echo $this->Search->selectLang('trans_to', $trans_to, array(
-                        'label' => '',
-                        'options' => $this->Languages->getSearchableLanguagesArray(),
-                    ));
+                    echo $this->Search->selectLang('trans_to', $trans_to, ['label' => '']);
                     ?>
                 </div>
 
