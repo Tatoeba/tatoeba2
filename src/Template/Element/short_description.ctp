@@ -68,7 +68,7 @@
                     array(
                         'name' => 'from',
                         'selectedLanguage' => $selectedLanguageFrom,
-                        'languages' => $this->Search->getLangs()
+                        'languages' => $this->Languages->getSearchableLanguagesArray(),
                     )
                 );
 
@@ -77,7 +77,7 @@
                     array(
                         'name' => 'to',
                         'selectedLanguage' => $selectedLanguageTo,
-                        'languages' => $this->Search->getLangs()
+                        'languages' => $this->Languages->getSearchableLanguagesArray(),
                     )
                 );
                 echo format(

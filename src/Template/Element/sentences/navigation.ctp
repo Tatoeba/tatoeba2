@@ -47,7 +47,7 @@ $sentenceUrl = $this->Url->build([
             array(
                 'name' => 'lang',
                 'selectedLanguage' => $selectedLanguage,
-                'languages' => $this->Search->getLangs()
+                'languages' => $this->Languages->getSearchableLanguagesArray(),
             )
         );
         ?>
