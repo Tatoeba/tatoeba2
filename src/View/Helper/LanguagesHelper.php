@@ -283,12 +283,14 @@ class LanguagesHelper extends AppHelper
     /**
      * Return array of languages in which you can search.
      *
+     * @param string $anyOption String for option "Any language" (und)
      * @return array
      */
-    public function getSearchableLanguagesArray()
+    public function getSearchableLanguagesArray($anyOption = null)
     {
         $languages = $this->onlyLanguagesArray();
-        $options = array('und' => __x('searchbar', 'Any language'));
+        $anyOption = $anyOption ?? __('Any language');
+        $options = array('und' => $anyOption);
         
         return $options + $languages;
     }

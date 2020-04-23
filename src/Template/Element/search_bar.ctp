@@ -100,7 +100,7 @@ echo $this->Form->create(
                     'id' => 'SentenceFrom',
                     'name' => 'from',
                     'selectedLanguage' => $selectedLanguageFrom,
-                    'languages' => $this->Languages->getSearchableLanguagesArray(),
+                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langFromApi'
                 )
             );
@@ -123,7 +123,7 @@ echo $this->Form->create(
                     'id' => 'SentenceTo',
                     'name' => 'to',
                     'selectedLanguage' => $selectedLanguageTo,
-                    'languages' => $this->Languages->getSearchableLanguagesArray(),
+                    'languages' => $this->Languages->getSearchableLanguagesArray(__x('searchbar', 'Any language')),
                     'setLanguage' => 'ctrl.langToApi'
                 )
             );
