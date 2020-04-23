@@ -589,6 +589,7 @@ class LanguagesLib
                 'syc' => __d('languages', 'Syriac'),
                 'frr' => __d('languages', 'North Frisian'),
                 'nys' => __d('languages', 'Nyungar'),
+                'tts' => __d('languages', 'Isan'),
             );
         }
         return $languages;
