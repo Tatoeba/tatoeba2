@@ -153,6 +153,15 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertResponseOk();
     }
 
+    public function testAddSentence_UserWithoutProfileLanguage() {
+        $this->logInAs('advanced_contributor');
+        $this->ajaxPost('/eng/sentences/add_an_other_sentence', [
+            'value' => 'SPAM',
+            'selectedLang' => 'eng',
+        ]);
+        $this->assertResponseCode(403);
+    }
+
     public function testEditSentence_doesntWorkForUnknownSentence() {
         $this->logInAs('contributor');
         $this->ajaxPost('/jpn/sentences/edit_sentence', [

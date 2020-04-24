@@ -311,6 +311,11 @@ class SentencesController extends AppController
      */
     public function add_an_other_sentence()
     {
+        // Users without a profile language should not be able to add sentences
+        if (empty(CurrentUser::getProfileLanguages())) {
+            throw new \Cake\Http\Exception\ForbiddenException;
+        }
+
         $userId = $this->Auth->user('id');
         $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
         if ($userLevel < 0) {
