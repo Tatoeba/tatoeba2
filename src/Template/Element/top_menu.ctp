@@ -27,10 +27,9 @@
 
 use Cake\Core\Configure;
 
-// Detecting language for "browse by language"
+// Detecting language for "adopt sentences" page
 $session = $this->request->getSession();
 $currentLanguage = $session->read('browse_sentences_in_lang');
-$showTranslationsInto = $session->read('show_translations_into_lang');
 $filteredLanguage = $session->read('vocabulary_requests_filtered_lang');
 
 if (empty($currentLanguage)) {
@@ -38,9 +37,6 @@ if (empty($currentLanguage)) {
 }
 if (empty($currentLanguage) || $currentLanguage == 'und') {
     $currentLanguage = Configure::read('Config.language');
-}
-if (empty($showTranslationsInto)) {
-    $showTranslationsInto = 'none';
 }
 
 // array containing the elements of the menu : $title => $route

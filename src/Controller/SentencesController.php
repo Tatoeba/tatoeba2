@@ -868,7 +868,6 @@ class SentencesController extends AppController
         $this->set('totalLimit', $totalLimit);
 
         $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
-        $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
         $this->render(null);
     }
 
