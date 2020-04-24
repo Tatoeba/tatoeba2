@@ -133,19 +133,12 @@ class SentencesController extends AppController
         return parent::beforeFilter($event);
     }
 
-    /**
-     * Redirects to a random sentence.
-     *
-     * @return void
-     */
     public function index()
     {
-        $this->redirect(
-            array(
-                "action" => "show",
-                "random"
-            )
-        );
+        $this->loadModel('Languages');
+        $milestones = [ 100000, 10000, 1000, 100, 10, 1, 0 ];
+        $stats = $this->Languages->getMilestonedStatistics($milestones);
+        $this->set('stats', $stats);
     }
 
     /**

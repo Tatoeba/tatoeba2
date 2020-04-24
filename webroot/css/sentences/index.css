@@ -1,0 +1,57 @@
+
+/* List of all languages */
+
+.language-list {
+  column-width: 150px;
+  column-gap: 20px;
+  padding: 0 20px;
+}
+.language-list ul {
+  margin: 0;
+  padding: 0;
+  line-height: 1.8;
+}
+.language-list li {
+  display: block;
+}
+.language-list a {
+  display: table;
+}
+.language-list span {
+  display: table-cell;
+  vertical-align: top;
+}
+.language-list .language-icon {
+  display: table-cell;
+  vertical-align: top;
+  margin-top: 5px;
+}
+.language-list .lang-name {
+  vertical-align: middle;
+}
+
+.language-icon {
+  margin-right: 0.5em;
+}
+
+#content-container .header-with-hline {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin: 40px 0 30px 0;
+  line-height: 20px;
+}
+#content-container .hline {
+  display: block;
+  border-top: 1px solid #c8ccd1;
+  text-align: center;
+}
+#content-container h3 .hline {
+  margin: 0 20px;
+}
+#content-container .text {
+  background-color: #FFFFFF;
+  position: relative;
+  top: -11.2px;
+  padding: 0 1ex;
+}
