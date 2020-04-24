@@ -8,5 +8,5 @@
          ng-src="/img/flags/{{lang.code}}.svg" />
     <strong>{{lang.name}}</strong>
   </div>
-  <small>{{lang.sentences}}+ sentences</small>
+  <small>{{lang.sentences}}</small>
 </md-button>

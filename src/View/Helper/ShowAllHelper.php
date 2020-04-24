@@ -183,10 +183,15 @@ class ShowAllHelper extends AppHelper
     private function formatNumberOfSentences($lang)
     {
         $lang = clone $lang;
+        $n = $lang->sentences;
         $digits = strlen($lang->sentences);
         $digits = (int)($digits/2);
         $lang->sentences -= $lang->sentences % (10**$digits);
         $lang->sentences = $this->Number->format($lang->sentences);
+        $lang->sentences = format(
+          __n('{n}+ sentence', '{n}+ sentences', $n),
+          ['n' => $lang->sentences]
+        );
         return $lang;
     }
 
