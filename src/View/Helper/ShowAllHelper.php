@@ -26,6 +26,7 @@
  */
 namespace App\View\Helper;
 
+use App\Model\CurrentUser;
 use App\View\Helper\AppHelper;
 
 
@@ -179,6 +180,30 @@ class ShowAllHelper extends AppHelper
     <?php
     }
 
+    private function formatNumberOfSentences($lang)
+    {
+        $lang = clone $lang;
+        $digits = strlen($lang->sentences);
+        $digits = (int)($digits/2);
+        $lang->sentences -= $lang->sentences % (10**$digits);
+        $lang->sentences = $this->Number->format($lang->sentences);
+        return $lang;
+    }
+
+    public function extractLanguageProfiles($stats)
+    {
+        $profileLangs = [];
+        $profileLangCodes = CurrentUser::getProfileLanguages();
+        foreach ($stats as $milestone => $langs) {
+            foreach ($langs as $lang) {
+                if (in_array($lang->code, $profileLangCodes)) {
+                    $profileLangs[] = $this->formatNumberOfSentences($lang);
+                }
+            }
+        }
+        return $profileLangs;
+    }
+
     /**
      * Extract top ten from stats grouped by milestones
      *
@@ -186,15 +211,12 @@ class ShowAllHelper extends AppHelper
      *
      * @return array Top ten of languages with the most sentences
      */
-    public function computeTopTen($stats)
+    public function extractTopTen($stats)
     {
         $top10 = [];
         foreach ($stats as $milestone => $languages) {
             foreach ($languages as $language) {
-                $lang = $language;
-                $lang->sentences -= $lang->sentences%1000;
-                $lang->sentences = $this->Number->format($lang->sentences);
-                $top10[] = $lang;
+                $top10[] = $this->formatNumberOfSentences($language);
                 if (count($top10) >= 10) {
                     break;
                 }

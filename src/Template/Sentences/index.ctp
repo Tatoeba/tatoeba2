@@ -1,117 +1,83 @@
 <?php
+
+use App\Model\CurrentUser;
+
 $this->Html->script('/js/sentences/index.ctrl.js', ['block' => 'scriptBottom']);
 $title = __('Language index');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
+$n = count($stats, COUNT_RECURSIVE);
+$header = format(
+  __n(
+       'There is {n} language on Tatoeba',
+       'There are {n} languages on Tatoeba',
+       $n
+  ),
+  compact('n')
+);
+$top10 = $this->ShowAll->extractTopTen($stats);
+$top10 = h(json_encode($top10));
 ?>
 <div id="content-container">
-<section>
+<section ng-controller="SentencesIndexController as vm">
 
-<?php
-  $n = count($stats, COUNT_RECURSIVE);
-?>
-<h1>
-  <div>
-    <?= format(
-          __n(
-               'There is {n} language on Tatoeba',
-               'There are {n} languages on Tatoeba',
-               $n
-          ),
-          compact('n')
-    ) ?>
-  </div>
-  <img ng-cloak class="centered-logo" src="/img/tatoeba.svg" width="200px" />
-</h1>
+<h1><?= $header ?></h1>
 
-<?php
-  $top10 = $this->ShowAll->computeTopTen($stats);
-  $top10 = h(json_encode($top10));
-  $baseUrl = $this->Url->build(['action' => 'show_all_in']);
-?>
-
-<div ng-cloak class="languages-around-logo">
-  <div class="language-around-logo" ng-class="'lang'+($index+1)" ng-repeat="lang in <?= $top10 ?>">
-    <md-button class="md-primary lang-card" ng-href="<?= $baseUrl ?>/{{lang.code}}/none">
-      <div class="lang-name">
-        <img class="language-icon" width="30" height="20"
-             ng-attr-title="{{lang.name ? lang.name : lang.code}}"
-             ng-src="/img/flags/{{lang.code}}.svg" />
-        <strong>{{lang.name}}</strong>
-      </div>
-      <small>{{lang.sentences}}+ sentences</small>
-    </md-button>
-  </div>
-</div>
-
-<div id="language-search" ng-controller="SentencesIndexController as vm">
-  <?php
-      echo $this->element(
-          'language_dropdown',
-          array(
-              'name' => 'ShowAllIn',
-              'languages' => $this->Languages->unknownLanguagesArray(false),
-              'placeholder' => __('Search a language'),
-              'openOnFocus' => false,
-          )
-      );
-  ?>
-    <md-button class="md-raised md-primary"
-               ng-cloak
-               ng-if="vm.selectedLanguage"
-               ng-href="<?= $baseUrl ?>/{{vm.selectedLanguage.code}}/none">
-      <?= format(
-              __('Show all sentences in {language}'),
-              ['language' => '{{vm.selectedLanguage.name}}']
-          ) ?>
-    </md-button>
-</div>
-
-<h2 ng-cloak class="header-with-hline">
-  <span class="hline">
-    <span class="text">
-      <a ng-click="allShowed = !allShowed">
-        <?= format(
-              __('Show all languages {arrowIcon}'),
-              ['arrowIcon' =>
-                 '<md-icon ng-if="!allShowed">keyboard_arrow_down</md-icon>'.
-                 '<md-icon ng-if="allShowed" >keyboard_arrow_up</md-icon>'
-              ]
-        ) ?>
-      </a>
-    </span>
-  </span>
-</h2>
-
-<div ng-cloak ng-show="allShowed">
-  <?php foreach ($stats as $milestone => $languages): ?>
-    <h3 class="header-with-hline">
-      <span class="hline">
-        <span class="text">
-          <?= h(format(
-                  __n("{n}+ sentence", "{n}+ sentences", $milestone),
-                  ['n' => $this->Number->format($milestone)]
-              )) ?>
-        </span>
-      </span>
-    </h3>
-    <div class="language-list">
-      <ul>
+<?php if (CurrentUser::isMember()): ?>
+  <md-tabs md-dynamic-height md-center-tabs>
+    <md-tab label="<?= h(__('My profile languages')) ?>">
+      <md-content class="profile-languages">
         <?php
-          $l = h(json_encode($languages));
+          $profileLangs = $this->ShowAll->extractLanguageProfiles($stats);
+          $profileLangs = h(json_encode($profileLangs));
         ?>
-        
-        <li ng-repeat="lang in <?= $l ?>">
-          <a ng-href="<?= $baseUrl ?>/{{lang.code}}/none">
-            <img class="language-icon" width="30" height="20"
-                 ng-attr-title="{{lang.name ? lang.name : lang.code}}"
-                 ng-src="/img/flags/{{lang.code}}.svg" />
-            <span class="lang-name">{{lang.name}}</span>
+        <div class="profile-language lang-card" ng-repeat="lang in <?= $profileLangs ?>">
+          <?= $this->element('sentences/index/lang_card'); ?>
+        </div>
+
+        <?= $this->element('sentences/index/search') ?>
+      </md-content>
+    </md-tab>
+
+    <md-tab label="<?= h(__('Top ten')) ?>">
+      <md-content>
+        <?= $this->element('sentences/index/top10', compact('top10')) ?>
+      </md-content>
+    </md-tab>
+
+    <md-tab label="<?= h(__('All languages')) ?>">
+      <md-content>
+        <?= $this->element('sentences/index/all', compact('stats')) ?>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+
+<?php else: /* guests */ ?>
+
+  <?= $this->element('sentences/index/top10', compact('top10')) ?>
+
+  <?= $this->element('sentences/index/search') ?>
+
+  <h2 ng-cloak class="header-with-hline">
+    <span class="hline">
+      <span class="text">
+        <a ng-click="allShowed = !allShowed">
+          <?= format(
+                __('Show all languages {arrowIcon}'),
+                ['arrowIcon' =>
+                   '<md-icon ng-if="!allShowed">keyboard_arrow_down</md-icon>'.
+                   '<md-icon ng-if="allShowed" >keyboard_arrow_up</md-icon>'
+                ]
+          ) ?>
         </a>
-        </li>
-      </ul>
-    </div>
-  <?php endforeach; ?>
-</div>
+      </span>
+    </span>
+  </h2>
+
+  <div ng-cloak ng-show="allShowed">
+    <?= $this->element('sentences/index/all', compact('stats')) ?>
+  </div>
+
+<?php endif; ?>
 
 </section>
 </div>

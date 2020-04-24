@@ -1,19 +1,22 @@
 
+h1 {
+  text-align: center;
+}
+
 /* Logo surrounded by top 10 languages */
 
-#content-container h1 {
+#logo-container {
   position: relative;
   margin: 0 auto;
-  padding: 30px 0 0 0;
   width: 400px;
-  height: 45px;
+  height: 1px;
   text-align: center;
 }
 
 img.centered-logo {
   position: absolute;
   right: 100px;
-  top: 178px;
+  top: 103px;
 }
 
 .languages-around-logo {
@@ -25,28 +28,30 @@ img.centered-logo {
 
 .language-around-logo {
   position: absolute;
-  height: 45px;
+}
+.lang-card {
+  height: 70px;
   width: 180px;
   text-align: center;
 }
-.language-around-logo small {
+.lang-card small {
   color: initial;
 }
-.language-around-logo a {
+.lang-card a {
   display: block;
 }
 
-.languages-around-logo .lang-name {
+.lang-card .lang-name {
   display: table;
   margin: 0 auto;
   padding-bottom: 7px;
 }
-.languages-around-logo strong {
+.lang-card strong {
   display: table-cell;
   text-align: left;
   vertical-align: middle;
 }
-.language-around-logo .language-icon {
+.lang-card .language-icon {
   display: table-cell;
   vertical-align: middle;
 }
@@ -62,7 +67,7 @@ img.centered-logo {
 .lang9  { top: 80%; right: 60%; }
 .lang10 { top: 80%;  left: 60%; }
 
-.lang-card {
+.lang-button {
   text-transform: inherit;
   overflow: visible;
   letter-spacing: 0;
@@ -70,6 +75,18 @@ img.centered-logo {
   font-size: inherit;
   margin: 0;
   padding: 10px 0;
+}
+
+/* Profile languages */
+
+.profile-language.lang-card {
+  display: inline-block;
+  margin: 5px 10px;
+}
+.profile-languages {
+  width: 500px;
+  margin: 40px auto;
+  text-align: center;
 }
 
 /* Language search dropdown */
@@ -80,7 +97,7 @@ img.centered-logo {
 #language-search .language-dropdown-container {
   display: block;
   width: 300px;
-  margin: 0 auto;
+  margin: 15px auto;
 }
 
 /* List of all languages */
