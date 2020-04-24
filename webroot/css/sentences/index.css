@@ -1,4 +1,77 @@
 
+/* Logo surrounded by top 10 languages */
+
+#content-container h1 {
+  position: relative;
+  margin: 0 auto;
+  padding: 30px 0 0 0;
+  width: 400px;
+  height: 45px;
+  text-align: center;
+}
+
+img.centered-logo {
+  position: absolute;
+  right: 100px;
+  top: 178px;
+}
+
+.languages-around-logo {
+  position: relative;
+  margin: 30px auto 30px auto;
+  height: 350px;
+  width: 500px;
+}
+
+.language-around-logo {
+  position: absolute;
+  height: 45px;
+  width: 180px;
+  text-align: center;
+}
+.language-around-logo small {
+  color: initial;
+}
+.language-around-logo a {
+  display: block;
+}
+
+.languages-around-logo .lang-name {
+  display: table;
+  margin: 0 auto;
+  padding-bottom: 7px;
+}
+.languages-around-logo strong {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+}
+.language-around-logo .language-icon {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.lang1  { top: 0;   right: 60%; }
+.lang2  { top: 0;    left: 60%; }
+.lang3  { top: 20%; right: 70%; }
+.lang4  { top: 20%;  left: 70%; }
+.lang5  { top: 40%; right: 72%; }
+.lang6  { top: 40%;  left: 72%; }
+.lang7  { top: 60%; right: 70%; }
+.lang8  { top: 60%;  left: 70%; }
+.lang9  { top: 80%; right: 60%; }
+.lang10 { top: 80%;  left: 60%; }
+
+.lang-card {
+  text-transform: inherit;
+  overflow: visible;
+  letter-spacing: 0;
+  line-height: inherit;
+  font-size: inherit;
+  margin: 0;
+  padding: 10px 0;
+}
+
 /* List of all languages */
 
 .language-list {

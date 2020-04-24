@@ -46,6 +46,7 @@ class ShowAllHelper extends AppHelper
     public $helpers = array(
         'Languages',
         'Form',
+        'Number',
     );
 
     /**
@@ -176,6 +177,33 @@ class ShowAllHelper extends AppHelper
             </p>
         </div>
     <?php
+    }
+
+    /**
+     * Extract top ten from stats grouped by milestones
+     *
+     * @param array $stats array of array Stats grouped by milestones
+     *
+     * @return array Top ten of languages with the most sentences
+     */
+    public function computeTopTen($stats)
+    {
+        $top10 = [];
+        foreach ($stats as $milestone => $languages) {
+            foreach ($languages as $language) {
+                $lang = $language;
+                $lang->sentences -= $lang->sentences%1000;
+                $lang->sentences = $this->Number->format($lang->sentences);
+                $top10[] = $lang;
+                if (count($top10) >= 10) {
+                    break;
+                }
+            }
+            if (count($top10) >= 10) {
+                break;
+            }
+        }
+        return $top10;
     }
 }
 ?>
