@@ -61,8 +61,7 @@ $menuElements = array(
             /* @translators: menu item on the top (verb) */
             __('Browse by language') => array(
                 "controller" => "sentences",
-                "action" => "show_all_in",
-                $currentLanguage, $showTranslationsInto
+                "action" => "index"
             ),
             /* @translators: menu item on the top (verb) */
             __('Browse by list') => array(
