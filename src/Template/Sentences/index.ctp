@@ -1,4 +1,5 @@
 <?php
+$this->Html->script('/js/sentences/index.ctrl.js', ['block' => 'scriptBottom']);
 $title = __('Language index');
 $this->set('title_for_layout', $this->Pages->formatTitle($title));
 ?>
@@ -40,6 +41,29 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
       <small>{{lang.sentences}}+ sentences</small>
     </md-button>
   </div>
+</div>
+
+<div id="language-search" ng-controller="SentencesIndexController as vm">
+  <?php
+      echo $this->element(
+          'language_dropdown',
+          array(
+              'name' => 'ShowAllIn',
+              'languages' => $this->Languages->unknownLanguagesArray(false),
+              'placeholder' => __('Search a language'),
+              'openOnFocus' => false,
+          )
+      );
+  ?>
+    <md-button class="md-raised md-primary"
+               ng-cloak
+               ng-if="vm.selectedLanguage"
+               ng-href="<?= $baseUrl ?>/{{vm.selectedLanguage.code}}/none">
+      <?= format(
+              __('Show all sentences in {language}'),
+              ['language' => '{{vm.selectedLanguage.name}}']
+          ) ?>
+    </md-button>
 </div>
 
 <h2 ng-cloak class="header-with-hline">

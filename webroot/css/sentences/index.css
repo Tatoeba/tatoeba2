@@ -72,6 +72,17 @@ img.centered-logo {
   padding: 10px 0;
 }
 
+/* Language search dropdown */
+
+#language-search {
+  text-align: center;
+}
+#language-search .language-dropdown-container {
+  display: block;
+  width: 300px;
+  margin: 0 auto;
+}
+
 /* List of all languages */
 
 .language-list {
