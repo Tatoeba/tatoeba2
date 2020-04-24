@@ -64,7 +64,7 @@
             <fieldset class="input text languages" style="line-height: 40px">
                 <?php
                 /* @translators: option used in language selection of dropdowns on home page for guests */
-                $languages = $this->Languages->getSearchableLanguagesArray(__x('short_description', 'Any language')),
+                $languages = $this->Languages->getSearchableLanguagesArray(__x('short_description', 'Any language'));
                 $langFrom = $this->element(
                     'language_dropdown', 
                     array(
