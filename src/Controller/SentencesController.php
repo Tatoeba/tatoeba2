@@ -313,7 +313,7 @@ class SentencesController extends AppController
     {
         // Users without a profile language should not be able to add sentences
         if (empty(CurrentUser::getProfileLanguages())) {
-            throw new \Cake\Http\Exception\ForbiddenException;
+            return;
         }
 
         $userId = $this->Auth->user('id');
@@ -325,8 +325,7 @@ class SentencesController extends AppController
         $sentenceLang = $this->request->getData('selectedLang');
         $sentenceText = $this->request->getData('value');
 
-        if (is_null($sentenceText) || is_null($sentenceLang)) {
-            //TODO add error handling
+        if (empty($sentenceText) || empty($sentenceLang)) {
             return;
         }
 
