@@ -59,7 +59,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <?php
                 echo $this->Search->selectLang('to', $to, [
                     'label' => '',
-                    'options' => $this->Languages->languagesArrayForPositiveLists(),
+                    'options' => $this->Languages->languagesArrayShowTranslationsIn(),
                 ]);
                 ?>
             </div>
