@@ -247,25 +247,6 @@ class LanguagesHelper extends AppHelper
 
 
     /**
-    * Return array of languages, with "--" and "Any languages" options.
-    * Applies to a negative phrase (for example, "Not directly translated into").
-    *
-    * @return array
-    */
-    public function languagesArrayForNegativeLists()
-    {
-        $languages = $this->onlyLanguagesArray();
-        $options = [
-            'none' => '—',
-            /* @translators: option used in language selection dropdowns such as "Not directly translated into" */
-            'und' => __('Any language')
-        ];
-
-        return $options + $languages;
-    }
-
-
-    /**
      * Return array of languages with, "None" option.
      *
      * @return array
