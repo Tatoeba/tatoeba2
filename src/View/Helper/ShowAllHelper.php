@@ -223,11 +223,8 @@ class ShowAllHelper extends AppHelper
             foreach ($languages as $language) {
                 $top10[] = $this->formatNumberOfSentences($language);
                 if (count($top10) >= 10) {
-                    break;
+                    break 2;
                 }
-            }
-            if (count($top10) >= 10) {
-                break;
             }
         }
         return $top10;
