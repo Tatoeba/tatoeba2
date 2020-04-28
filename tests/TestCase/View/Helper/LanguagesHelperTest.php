@@ -96,13 +96,13 @@ class LanguagesHelperTest extends TestCase {
 	}
 
 	function testLanguagesArrayForLists_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->languagesArrayForPositiveLists();
+		$result = $this->Languages->languagesArrayShowTranslationsIn();
 		$this->assertEquals('Japanese', $result['jpn']);
 	}
 
 	function testLanguagesArrayForLists_returnsLocalizedLangagesNames() {
 		I18N::setLocale('ja');
-		$result = $this->Languages->languagesArrayForPositiveLists();
+		$result = $this->Languages->languagesArrayShowTranslationsIn();
 		$this->assertEquals('日本語', $result['jpn']);
 	}
 
