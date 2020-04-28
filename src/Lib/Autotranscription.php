@@ -515,4 +515,34 @@ class Autotranscription
         );
         return str_replace($needles, $replacements, $text);
     }
+
+    private function lfn_convert($way, $text) {
+        $latin = [
+          'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'l',
+          'm', 'n', 'o', 'p', 'r', 's', 't', 'u', 'v', 'x', 'z',
+          'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L',
+          'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'V', 'X', 'Z',
+        ];
+        $cyrillic = [
+          'а', 'б', 'к', 'д', 'е', 'ф', 'г', 'х', 'и', 'ж', 'л',
+          'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'в', 'ш', 'з',
+          'А', 'Б', 'К', 'Д', 'Е', 'Ф', 'Г', 'Х', 'И', 'Ж', 'Л',
+          'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'В', 'Ш', 'З',
+        ];
+        if ($way) {
+            return str_replace($latin, $cyrillic, $text);
+        } else {
+            return str_replace($cyrillic, $latin, $text);
+        }
+    }
+
+    public function lfn_Latn_to_Cyrl_generate($text, &$needsReview) {
+        $needsReview = false;
+        return $this->lfn_convert(1, $text);
+    }
+
+    public function lfn_Cyrl_to_Latn_generate($text, &$needsReview) {
+        $needsReview = false;
+        return $this->lfn_convert(0, $text);
+    }
 }

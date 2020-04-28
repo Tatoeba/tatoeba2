@@ -164,4 +164,67 @@ class AutotranscriptionTest extends TestCase {
 
         $this->assertEquals($furigana, $expectedFurigana);
     }
+
+    function lfnSentencesProvider() {
+        return [
+            [ 'Bon Pesah!',  'Бон Песах!' ],
+            [ 'Esther es un traduor.', 'Естхер ес ун традуор.' ],
+            [ 'Layla es un traduor.', 'Лаила ес ун традуор.' ],
+            [ 'Fode tu, merda.', 'Фоде ту, мерда.' ],
+            [ 'Fode tu, buco de culo.', 'Фоде ту, буко де куло.' ],
+            [ 'Me studia ancora franses.', 'Ме студиа анкора франсес.'],
+            [ 'Esce la cortina es pal?', 'Еске ла кортина ес пал?' ],
+            [ 'La tera covre la eras de la dotores medical.',
+              'Ла тера ковре ла ерас де ла доторес медикал.'
+            ],
+            [ 'Tom es un de la "icones" santa de Tatoeba. Donce, el es nonviolable.',
+              'Том ес ун де ла "иконес" санта де Татоеба. Донке, ел ес нонвиолабле.'
+            ],
+            [ '"Perce la esta ata? Car nos es nunca escutada," '.
+              'un portavose de CRAV ia informa jornalistes.',
+              '"Перке ла еста ата? Кар нос ес нунка ескутада," '.
+              'ун портавосе де КРАВ иа информа жорналистес.'
+            ],
+            [ 'A Mina, on ia erije un estende vasta de tendas blanca '.
+              'e secur contra foco, per casi plu ca 2,5 milion peregrinores.',
+              'А Мина, он иа ериже ун естенде васта де тендас бланка '.
+              'е секур контра фоко, пер каси плу ка 2,5 милион перегринорес.'
+            ],
+            [ 'La autor de la libro "La evolui – imajes de nosа jovenia", '.
+              'Emile de Cooman, meа frate, es gravor e pintor.',
+              'Ла аутор де ла либро "Ла еволуи – имажес де носа жовениа", '.
+              'Емиле Де Кооман, меа фрате, ес гравор е пинтор.'
+            ],
+            [ '"Perce la esta ata? Car nos es nunca escutada," un portavose de CRAV ia informa jornalistes.',
+              '"Перке ла еста ата? Кар нос ес нунка ескутада," ун портавосе де КРАВ иа информа жорналистес.'
+            ],
+            [ '"Me es triste," el ia dise. "Lo es un farsa grande, un menti grande, un pirotecnical grande. Lo cual aveni no depresa me, ma simple lo motiva me a apare e parla plu."',
+              '«Ме ес тристе,» ел иа дисе. «Ло ес ун фарса гранде, ун менти гранде, ун пиротекникал гранде. Ло куал авени но депреса ме, ма симпле ло мотива ме а апаре е парла плу.»'
+            ],
+            [ 'Astronomistes ia oserva sesdes-du lunas cual orbita Saturno.',
+              'Астрономистес иа осерва сесдес-ду лунас куал орбита Сатурно.'
+            ],
+            [ 'Chelsea es entre la distritos la plu modosa de Manhattan, e sua bares e restorantes es comun folida a finis de semana.',
+              'Chelsea ес ентре ла дистритос ла плу модоса де Manhattan, е суа барес е ресторантес ес комун фолида а финис де семана.'
+            ],
+            [ 'Christoph Schlütermann, un laboror per la Crus Roja, ia descrive el como "tan diferente de la otras – multe noncapas de ata sin aida".',
+              'Christoph Schlütermann, ун лаборор пер ла Крус Рожа, иа дескриве ел комо "тан диференте де ла отрас – мулте нонкапас де ата син аида".'
+            ],
+            [ 'Esperanto es un lingua cual on debe aprende, usa, recorda, parla, difusa, aseta, scribe, leje, transmete.',
+              'Есперанто ес ун лингуа куал он дебе апренде, уса, рекорда, парла, дифуса, асета, скрибе, деже, трансмете.'
+            ],
+            [ '"Nos ia ave no tempo," Kellner ia esplica, "donce me ia core pos el per cisa 15 metres o simil. Un de meа amis es ance un polisior, donce nos ia saisi la om. El ia atenta evade, donce nos ia teni plu forte el."',
+'"Нос иа аве но темпо," Кеllnеr иа есплика, "донке ме иа коре пос ел пер киса 15 метрес о симил. Ун де меа амис ес анке ун полисиор, донке нос иа саиси ла ом. Ел иа атента еваде, донке нoс иа тени плу форте ел."',
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider lfnSentencesProvider
+     */
+    function testLfnTranscription($latin, $cyrillic) {
+        $result = $this->AT->lfn_Latn_to_Cyrl_generate($latin, $needsReview);
+        $this->assertFalse($needsReview);
+        $this->assertEquals($cyrillic, $result);
+    }
 }
