@@ -22,6 +22,7 @@ throw_to_gettext() {
 }
 
 cosmetics() {
+    tr -d '\r' | \
     sed 's/#: \([^ ]\+\) \([^ ]\+\)/#: \1\n#: \2/g' | \
     sed 's/^#: \([^:]\+\):\([0-9]\+\)/#: github.com\/Tatoeba\/tatoeba2\/tree\/dev\/\1#L\2/' | \
     sed '/#\. @translators:/ {s/@translators: *//; :a; /^#[^.]/!{s,@translators: *,/ ,; n; ba;};}'
