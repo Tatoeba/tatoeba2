@@ -37,7 +37,7 @@
                     }
                 },
                 template: 
-                    '<img class="language-icon" width="30" heigth="20" ' +
+                    '<img class="language-icon" width="30" height="20" ' +
                       'ng-attr-title="{{title ? title : lang}}"' +
                       'ng-src="/img/flags/{{lang}}.svg" />'
             }
