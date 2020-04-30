@@ -14,6 +14,12 @@ class Search {
     private $sort;
     private $sortReversed;
 
+    private function parseBoolean($value, &$variable) {
+        if (in_array($value, ['yes', 'no'])) {
+            $variable = $value == 'yes';
+        }
+    }
+
     private function orderby($expr, $order) {
         return $expr . ($order ? ' ASC' : ' DESC');
     }
@@ -98,9 +104,7 @@ class Search {
     }
 
     public function filterByOwnership($hasOwner) {
-        if (in_array($hasOwner, ['yes', 'no'])) {
-            $this->hasOwner = $hasOwner == 'yes';
-        }
+        $this->parseBoolean($hasOwner, $this->hasOwner);
     }
 
     public function sort($sort) {
@@ -114,8 +118,6 @@ class Search {
     }
 
     public function filterByCorrectness($correctness) {
-        if (in_array($correctness, ['yes', 'no'])) {
-            $this->correctness = $correctness == 'yes';
-        }
+        $this->parseBoolean($correctness, $this->correctness);
     }
 }
