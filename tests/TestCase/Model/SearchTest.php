@@ -131,6 +131,38 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByCorrectness_yes() {
+        $this->Search->filterByCorrectness('yes');
+
+        $expected = ['index' => ['und_index'], 'filter' => [['ucorrectness', 127, false]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByCorrectness_no() {
+        $this->Search->filterByCorrectness('no');
+
+        $expected = ['index' => ['und_index'], 'filter' => [['ucorrectness', 127, true]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByCorrectness_invalid() {
+        $this->Search->filterByCorrectness('invalid value');
+
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByCorrectness_empty() {
+        $this->Search->filterByCorrectness('');
+
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     private function assertSortByRank($sort, $rank) {
         $expected = [
             'index' => ['und_index'],

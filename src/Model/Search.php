@@ -10,6 +10,7 @@ class Search {
     private $lang;
     private $ownerId;
     private $hasOwner;
+    private $correctness;
     private $sort;
     private $sortReversed;
 
@@ -37,6 +38,10 @@ class Search {
         }
         if (!is_null($this->hasOwner)) {
             $sphinx['filter'][] = ['user_id', 0, !$this->hasOwner];
+        }
+        if (!is_null($this->correctness)) {
+            // See the indexation SQL request for the value 127
+            $sphinx['filter'][] = ['ucorrectness', 127, !$this->correctness];
         }
         if ($this->sort) {
             if ($this->sort == 'random') {
@@ -106,5 +111,11 @@ class Search {
 
     public function reverseSort($reversed) {
         $this->sortReversed = $reversed;
+    }
+
+    public function filterByCorrectness($correctness) {
+        if (in_array($correctness, ['yes', 'no'])) {
+            $this->correctness = $correctness == 'yes';
+        }
     }
 }
