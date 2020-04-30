@@ -6,6 +6,10 @@ use Cake\TestSuite\TestCase;
 
 class SearchTest extends TestCase
 {
+    public $fixtures = [
+        'app.users',
+    ];
+
     public function setUp()
     {
         parent::setUp();
@@ -50,6 +54,29 @@ class SearchTest extends TestCase
 
         $result = $this->Search->asSphinx();
 
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByOwnerName_invalid() {
+        $result = $this->Search->filterByOwnerName('userdoesnotexists');
+        $this->assertFalse($result);
+    }
+
+    public function testfilterByOwnerName_valid() {
+        $result = $this->Search->filterByOwnerName('contributor');
+        $this->assertTrue($result);
+
+        $expected = ['index' => ['und_index'], 'filter' => [['user_id', 4]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByOwnerName_empty() {
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->filterByOwnerName('');
+        $this->assertTrue($result);
+
+        $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 }
