@@ -10,6 +10,12 @@ class Search {
     private $lang;
     private $ownerId;
     private $hasOwner;
+    private $sort;
+    private $sortReversed;
+
+    private function orderby($expr, $order) {
+        return $expr . ($order ? ' ASC' : ' DESC');
+    }
 
     private function asSphinxIndex($lang) {
         if ($lang) {
@@ -31,6 +37,34 @@ class Search {
         }
         if (!is_null($this->hasOwner)) {
             $sphinx['filter'][] = ['user_id', 0, !$this->hasOwner];
+        }
+        if ($this->sort) {
+            if ($this->sort == 'random') {
+                $sortOrder = '@random';
+            } elseif (empty($this->query)) {
+                // When the query is empty, Manticore does not perform any
+                // ranking, so we need to rely on ordering instead
+                if ($this->sort == 'created' || $this->sort == 'modified') {
+                    $sortOrder = $this->orderby($this->sort, $this->sortReversed);
+                } else {
+                    $sortOrder = $this->orderby('text_len', !$this->sortReversed);
+                }
+            } else {
+                // When there are keywords, Manticore will perform ranking
+                $sortOrder = $this->orderby('@rank', $this->sortReversed);
+                if ($this->sort == 'words') {
+                    $rankingExpr = '-text_len';
+                } elseif ($this->sort == 'relevance') {
+                    $rankingExpr = '-text_len+top(lcs+exact_order*100)*100';
+                } elseif ($this->sort == 'created' || $this->sort == 'modified') {
+                    $rankingExpr = $this->sort;
+                }
+            }
+            $sphinx['matchMode'] = SPH_MATCH_EXTENDED2;
+            $sphinx['sortMode'] = [SPH_SORT_EXTENDED => $sortOrder];
+            if (isset($rankingExpr)) {
+                $sphinx['rankingMode'] = [SPH_RANK_EXPR => $rankingExpr];
+            }
         }
         return $sphinx;
     }
@@ -62,5 +96,15 @@ class Search {
         if (in_array($hasOwner, ['yes', 'no'])) {
             $this->hasOwner = $hasOwner == 'yes';
         }
+    }
+
+    public function sort($sort) {
+        if (in_array($sort, ['relevance', 'words', 'created', 'modified', 'random'])) {
+            $this->sort = $sort;
+        }
+    }
+
+    public function reverseSort($reversed) {
+        $this->sortReversed = $reversed;
     }
 }
