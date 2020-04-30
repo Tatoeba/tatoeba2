@@ -126,31 +126,60 @@ class SentencesControllerTest extends IntegrationTestCase {
         $this->assertAjaxAccessUrlAs($url, $user, $response);
     }
 
-    public function testAddSentence_asGuest() {
-        $this->ajaxPost('/jpn/sentences/add_an_other_sentence', [
-            'value' => 'Here is another sentences for you!',
-            'selectedLang' => 'eng',
-        ]);
-        $this->assertResponseError();
+    public function addSentenceProvider () {
+        return [
+            'as guest' => [
+                null,
+                ['value' => 'test', 'selectedLang' => 'eng'],
+                'assertResponseError'
+            ],
+            'as member' => [
+                'contributor',
+                ['value' => 'test', 'selectedLang' => 'eng'],
+                'assertResponseOk'
+            ],
+            'with license' => [
+                'contributor',
+                ['value' => 'test', 'selectedLang' => 'eng', 'sentenceLicense' => 'CC BY 2.0 FR'],
+                'assertResponseOk'
+            ],
+            'user without profile language' => [
+                'advanced_contributor',
+                ['value' => 'SPAM', 'selectedLang' => 'eng'],
+                'assertResponseEmpty'
+            ],
+            'as member but no value' => [
+                'contributor',
+                ['selectedLang' => 'eng'],
+                'assertResponseEmpty'
+            ],
+            'as member but empty value' => [
+                'contributor',
+                ['value' => '', 'selectedLang' => 'eng'],
+                'assertResponseEmpty'
+            ],
+            'as member but no selectedLang' => [
+                'contributor',
+                ['value' => 'test'],
+                'assertResponseEmpty'
+            ],
+            'as member but empty selectedLang' => [
+                'contributor',
+                ['value' => 'test', 'selectedLang' => ''],
+                'assertResponseEmpty'
+            ],
+        ];
     }
 
-    public function testAddSentence_asMember() {
-        $this->logInAs('contributor');
-        $this->ajaxPost('/jpn/sentences/add_an_other_sentence', [
-            'value' => 'Here is another sentences for you!',
-            'selectedLang' => 'eng',
-        ]);
-        $this->assertResponseOk();
-    }
-
-    public function testAddSentence_WithLicense() {
-        $this->logInAs('contributor');
-        $this->ajaxPost('/jpn/sentences/add_an_other_sentence', [
-            'value' => 'Here is another sentences for you!',
-            'selectedLang' => 'eng',
-            'sentenceLicense' => 'CC BY 2.0 FR',
-        ]);
-        $this->assertResponseOk();
+    /**
+     * @dataProvider addSentenceProvider
+     */
+    public function testAddSentence($user, $data, $assertion) {
+        if ($user) {
+            $this->logInAs($user);
+        }
+        $this->ajaxPost('/jpn/sentences/add_an_other_sentence', $data);
+        $this->$assertion();
     }
 
     public function testEditSentence_doesntWorkForUnknownSentence() {
