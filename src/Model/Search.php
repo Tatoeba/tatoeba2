@@ -11,6 +11,7 @@ class Search {
     private $ownerId;
     private $hasOwner;
     private $correctness;
+    private $hasAudio;
     private $sort;
     private $sortReversed;
 
@@ -48,6 +49,9 @@ class Search {
         if (!is_null($this->correctness)) {
             // See the indexation SQL request for the value 127
             $sphinx['filter'][] = ['ucorrectness', 127, !$this->correctness];
+        }
+        if (!is_null($this->hasAudio)) {
+            $sphinx['filter'][] = array('has_audio', $this->hasAudio);
         }
         if ($this->sort) {
             if ($this->sort == 'random') {
@@ -119,5 +123,9 @@ class Search {
 
     public function filterByCorrectness($correctness) {
         $this->parseBoolean($correctness, $this->correctness);
+    }
+
+    public function filterByAudio($hasAudio) {
+        $this->parseBoolean($hasAudio, $this->hasAudio);
     }
 }

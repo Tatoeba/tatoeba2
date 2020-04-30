@@ -157,7 +157,34 @@ class SearchTest extends TestCase
 
     public function testfilterByCorrectness_empty() {
         $this->Search->filterByCorrectness('');
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
 
+    public function testfilterByAudio_yes() {
+        $this->Search->filterByAudio('yes');
+        $expected = ['index' => ['und_index'], 'filter' => [['has_audio', 1]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByAudio_no() {
+        $this->Search->filterByAudio('no');
+        $expected = ['index' => ['und_index'], 'filter' => [['has_audio', 0]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByAudio_invalid() {
+        $this->Search->filterByAudio('invalid value');
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByAudio_empty() {
+        $this->Search->filterByAudio('');
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
