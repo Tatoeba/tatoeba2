@@ -6,8 +6,10 @@ use App\Lib\LanguagesLib;
 class Search {
     use \Cake\Datasource\ModelAwareTrait;
 
+    private $query;
     private $lang;
     private $ownerId;
+    private $hasOwner;
 
     private function asSphinxIndex($lang) {
         if ($lang) {
@@ -21,10 +23,20 @@ class Search {
         $sphinx = [
             'index' => $this->asSphinxIndex($this->lang),
         ];
+        if (!is_null($this->query)) {
+            $sphinx['query'] = $this->query;
+        }
         if ($this->ownerId) {
             $sphinx['filter'][] = ['user_id', $this->ownerId];
         }
+        if (!is_null($this->hasOwner)) {
+            $sphinx['filter'][] = ['user_id', 0, !$this->hasOwner];
+        }
         return $sphinx;
+    }
+
+    public function filterByQuery($query) {
+        $this->query = $query;
     }
 
     public function filterByLanguage($lang) {
@@ -44,5 +56,11 @@ class Search {
             }
         }
         return true;
+    }
+
+    public function filterByOwnership($hasOwner) {
+        if (in_array($hasOwner, ['yes', 'no'])) {
+            $this->hasOwner = $hasOwner == 'yes';
+        }
     }
 }
