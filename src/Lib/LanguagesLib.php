@@ -591,6 +591,7 @@ class LanguagesLib
                 'nys' => __d('languages', 'Nyungar'),
                 'tts' => __d('languages', 'Isan'),
                 'toi' => __d('languages', 'Tonga (Zambezi)'),
+                'new' => __d('languages', 'Newari'),
             );
         }
         return $languages;
