@@ -54,21 +54,4 @@ $langArray = $this->Languages->languagesArrayAlone();
         </md-button>
     </div>
 </md-toolbar>
-
-<?php if (!CurrentUser::getSetting('use_new_design')) { ?>
-<div class="md-whiteframe-1dp" layout-padding style="background: #fafafa" ng-if="vm.showNewDesignAnnouncement" ng-cloak>
-    <p><?= __(
-        'We are starting to roll out the new design for the sentences. '.
-        'It is currently only used for the random sentence below. '.
-        'You can enable it for other pages with the option '.
-        '"Display sentences with the new design" in your Settings.'
-    ) ?></p>
-    <div layout="row" layout-align="end center">
-        <md-button class="md-primary" href="/user/settings"><?= __('Go to settings') ?></md-button>
-        <?php /* @translators: button to close the announcement about the new design (verb) */ ?>
-        <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
-    </div>
-</div>
-<?php } ?>
-
 </div>

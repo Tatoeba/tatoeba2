@@ -83,6 +83,28 @@ $moreCommentsUrl = $this->Url->build([
 </div>
 
 <div id="main_content">
+    <?php
+    if (!CurrentUser::getSetting('use_new_design')) {
+        $this->Html->script('directives/info-banner.dir.js', ['block' => 'scriptBottom']); 
+        ?>
+        <div info-banner ng-init="vm.init('hide_new_design_announcement')" ng-cloak>
+            <div class="md-whiteframe-1dp" layout-padding style="background: #fafafa" ng-if="vm.isInfoBannerVisible">
+                <p><?= __(
+                    'The new sentence design will soon completely replace the old one. Please try it out and let us know if you experience any issue. '.
+                    'You can enable it with the option '.
+                    '"Display sentences with the new design" in your Settings.'
+                ) ?></p>
+                <div layout="row" layout-align="end center">
+                    <md-button class="md-primary" href="/user/settings"><?= __('Go to settings') ?></md-button>
+                    <?php /* @translators: button to close the announcement about the new design (verb) */ ?>
+                    <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+                </div>
+            </div>
+        </div>
+        <?php 
+    } 
+    ?>
+
     <?php if(!isset($searchProblem) && !$hideRandomSentence) { ?>
         <section>
             <?php 
