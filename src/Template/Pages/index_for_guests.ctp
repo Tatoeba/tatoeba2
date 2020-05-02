@@ -70,7 +70,7 @@ $registerUrl = $this->Url->build(
 <?php } ?>
 
 <div layout="row" layout-margin>
-    <div class="join-us md-whiteframe-1dp" layout="column" flex>
+    <div class="join-us md-whiteframe-1dp" layout="column" layout-align="space-between" flex>
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= __('Want to help?') ?></h2>
@@ -85,7 +85,6 @@ $registerUrl = $this->Url->build(
         <div layout="row" layout-align="center center">
             <md-button class="md-primary" href="<?= $registerUrl; ?>">
                 <?php echo __('Join the community'); ?>
-                <md-icon>keyboard_arrow_right</md-icon>
             </md-button>
         </div>
     </div>
