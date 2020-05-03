@@ -62,7 +62,7 @@ if (Configure::read('Announcement.enabled')) {
     $isDisplayingAnnouncement = true;
     $announcementId = 'kodoeba';
     $announcementText = $this->Html->tag('div', format(__(
-        'Would you like help with the development of Tatoeba? Join our <a href="{}">coding event</a>!'
+        'Would you like to help with the development of Tatoeba? Join our <a href="{}">coding event</a>!'
     ), 'https://blog.tatoeba.org/2020/05/announcing-kodoeba-1.html'));
     
     $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
