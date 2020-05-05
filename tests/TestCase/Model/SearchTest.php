@@ -297,6 +297,34 @@ class SearchTest extends TestCase
         $this->testfilterByTranslation_limit();
     }
 
+    public function testfilterByTranslationOwnerName_valid() {
+        $this->Search->filterByTranslation('limit');
+        $result = $this->Search->filterByTranslationOwnerName('contributor');
+        $this->assertTrue($result);
+
+        $expected = [
+            'index' => ['und_index'],
+            'select' => '*, ANY(t.u=4 FOR t IN trans) as filter',
+            'filter' => [['filter', 1]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationOwnerName_invalid() {
+        $result = $this->Search->filterByTranslationOwnerName('userdoesnotexists');
+        $this->assertFalse($result);
+
+        $this->testfilterByTranslation_limit();
+    }
+
+    public function testfilterByTranslationOwnerName_empty() {
+        $result = $this->Search->filterByTranslationOwnerName('');
+        $this->assertTrue($result);
+
+        $this->testfilterByTranslation_limit();
+    }
+
     private function assertSortByRank($sort, $rank) {
         $expected = [
             'index' => ['und_index'],

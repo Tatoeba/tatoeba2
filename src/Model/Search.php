@@ -24,6 +24,7 @@ class Search {
             'hasAudio' => function($v) { return 't.a='.(int)$v; },
             'language' => function($v) { return "t.l='$v'"; },
             'link'     => function($v) { return 't.d='.($v == 'direct' ? 1 : 2); },
+            'ownerId'  => function($v) { return 't.u='.(int)$v; },
         ];
         foreach ($this->getTranslationFilters() as $filter => $value) {
             $transFilter[] = $sphinxMap[$filter]($value);
@@ -172,6 +173,19 @@ class Search {
         if (in_array($link, ['direct', 'indirect'])) {
             $this->translationFilters['link'] = $link;
         }
+    }
+
+    public function filterByTranslationOwnerName($owner) {
+        if (!empty($owner)) {
+            $this->loadModel('Users');
+            $result = $this->Users->findByUsername($owner, ['fields' => ['id']])->first();
+            if ($result) {
+                $this->translationFilters['ownerId'] = $result->id;
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function filterByTranslationAudio($filter) {
