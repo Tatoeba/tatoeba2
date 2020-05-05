@@ -225,4 +225,47 @@ class Search {
             function ($v) { return !is_null($v); }
         );
     }
+
+    public function getSearchableLists($listId, $byUserId) {
+        $this->loadModel('SentencesLists');
+        $searchableLists = $this->SentencesLists->find();
+        $searchableLists
+            ->select([
+                'additional' => $searchableLists->newExpr()->eq('id', $listId),
+                'id',
+                'name',
+                'user_id'
+            ])
+            ->where([
+                'OR' => [
+                    'user_id' => $byUserId,
+                    'visibility' => 'public',
+                ]
+            ]);
+
+        if (strlen($listId)) {
+            $additional = $this->SentencesLists->find()
+                ->where([
+                    'id' => $listId,
+                    'OR' => [
+                        'user_id' => $byUserId,
+                        'NOT' => ['visibility' => 'private']
+                    ]
+                ])
+                ->select(['additional' => 1, 'id', 'name', 'user_id'])
+                ->limit(1);
+            $searchableLists->union($additional);
+        }
+
+        $searchableLists = $this->SentencesLists->find()
+            ->select([
+                'id' => 'SentencesLists__id',
+                'name' => 'SentencesLists__name',
+                'user_id' => 'SentencesLists__user_id'
+            ])
+            ->from(['s' => $searchableLists])
+            ->order(['additional', 'name']);
+
+        return $searchableLists;
+    }
 }
