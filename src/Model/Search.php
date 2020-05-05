@@ -22,6 +22,7 @@ class Search {
         $transFilter = [];
         $sphinxMap = [
             'hasAudio' => function($v) { return 't.a='.(int)$v; },
+            'language' => function($v) { return "t.l='$v'"; },
         ];
         foreach ($this->getTranslationFilters() as $filter => $value) {
             $transFilter[] = $sphinxMap[$filter]($value);
@@ -157,6 +158,12 @@ class Search {
     public function filterByTranslation($filter) {
         if (in_array($filter, ['exclude', 'limit'])) {
             $this->translationFilter = $filter;
+        }
+    }
+
+    public function filterByTranslationLanguage($lang) {
+        if (LanguagesLib::languageExists($lang)) {
+            $this->translationFilters['language'] = $lang;
         }
     }
 

@@ -241,6 +241,28 @@ class SearchTest extends TestCase
         $this->testfilterByTranslation_limit();
     }
 
+    public function testfilterByTranslationLanguage_ainu() {
+        $this->Search->filterByTranslation('limit');
+        $this->Search->filterByTranslationLanguage('ain');
+        $expected = [
+            'index' => ['und_index'],
+            'select' => "*, ANY(t.l='ain' FOR t IN trans) as filter",
+            'filter' => [['filter', 1]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationLanguage_invalid() {
+        $this->Search->filterByTranslationLanguage('invalid value');
+        $this->testfilterByTranslation_limit();
+    }
+
+    public function testfilterByTranslationLanguage_empty() {
+        $this->Search->filterByTranslationLanguage('');
+        $this->testfilterByTranslation_limit();
+    }
+
     private function assertSortByRank($sort, $rank) {
         $expected = [
             'index' => ['und_index'],
