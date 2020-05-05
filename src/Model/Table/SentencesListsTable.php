@@ -116,13 +116,13 @@ class SentencesListsTable extends Table
      *
      * @return bool False if the list cannot be searched, the list otherwise.
      */
-    public function isSearchableList($listId)
+    public function isSearchableList($listId, $byUserId)
     {
         return $this->find()
             ->where([
                 'id' => $listId,
                 'OR' => [
-                    'user_id' => CurrentUser::get('id'),
+                    'user_id' => $byUserId,
                     'NOT' => ['visibility' => 'private']
                 ]
             ])

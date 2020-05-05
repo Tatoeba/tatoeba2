@@ -692,7 +692,7 @@ class SentencesController extends AppController
         $this->loadModel('SentencesLists');
         $searchableLists = $this->SentencesLists->getSearchableLists();
         if (!empty($list)) {
-            $isSearchable = $this->SentencesLists->isSearchableList($list);
+            $isSearchable = $this->SentencesLists->isSearchableList($list, CurrentUser::get('id'));
             if ($isSearchable) {
                 $sphinx['filter'][] = array('lists_id', $list);
                 $found = false;

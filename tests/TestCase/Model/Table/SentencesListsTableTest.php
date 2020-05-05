@@ -479,8 +479,8 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals(count($ids), count($translations));
     }
 
-    function testIsSearchableList_isSearchable() {
-        $result = $this->SentencesList->isSearchableList(1);
+    function testIsSearchableList_public_asGuest() {
+        $result = $this->SentencesList->isSearchableList(1, null);
         $expected = [
             'id' => 1,
             'user_id' => 7,
@@ -489,9 +489,18 @@ class SentencesListsTableTest extends TestCase {
         $this->assertEquals($expected, $result->toArray());
     }
 
-    function testIsSearchableList_isNotSearchable() {
-        CurrentUser::store(null);
-        $result = $this->SentencesList->isSearchableList(3);
+    function testIsSearchableList_private_asOwner() {
+        $result = $this->SentencesList->isSearchableList(3, 7);
+        $expected = [
+            'id' => 3,
+            'user_id' => 7,
+            'name' => 'Private list'
+        ];
+        $this->assertEquals($expected, $result->toArray());
+    }
+
+    function testIsSearchableList_private_asGuest() {
+        $result = $this->SentencesList->isSearchableList(3, null);
         $this->assertNull($result);
     }
 
