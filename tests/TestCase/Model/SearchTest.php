@@ -9,6 +9,7 @@ class SearchTest extends TestCase
 {
     public $fixtures = [
         'app.users',
+        'app.sentences_lists',
     ];
 
     public function setUp()
@@ -166,6 +167,72 @@ class SearchTest extends TestCase
 
     public function testfilterByAudio_empty() {
         $this->Search->filterByAudio('');
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByListId_invalid() {
+        $currentUserId = null;
+        $listId = 999999999999;
+        $result = $this->Search->filterByListId($listId, $currentUserId);
+        $this->assertFalse($result);
+
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByListId_public() {
+        $currentUserId = null;
+        $listId = 2;
+        $result = $this->Search->filterByListId($listId, $currentUserId);
+        $this->assertTrue($result);
+
+        $expected = ['index' => ['und_index'], 'filter' => [['lists_id', $listId]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByListId_unlisted() {
+        $currentUserId = null;
+        $listId = 1;
+        $result = $this->Search->filterByListId($listId, $currentUserId);
+        $this->assertTrue($result);
+
+        $expected = ['index' => ['und_index'], 'filter' => [['lists_id', $listId]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByListId_private_isNotOwner() {
+        $currentUserId = 1;
+        $listId = 3;
+        $result = $this->Search->filterByListId($listId, $currentUserId);
+        $this->assertFalse($result);
+
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByListId_private_isOwner() {
+        $currentUserId = 7;
+        $listId = 3;
+        $result = $this->Search->filterByListId($listId, $currentUserId);
+        $this->assertTrue($result);
+
+        $expected = ['index' => ['und_index'], 'filter' => [['lists_id', $listId]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByListId_empty() {
+        $currentUserId = null;
+        $listId = '';
+        $result = $this->Search->filterByListId($listId, $currentUserId);
+        $this->assertTrue($result);
+
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);

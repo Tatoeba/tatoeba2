@@ -12,6 +12,7 @@ class Search {
     private $hasOwner;
     private $correctness;
     private $hasAudio;
+    private $listId;
     private $sort;
     private $sortReversed;
 
@@ -71,6 +72,9 @@ class Search {
         }
         if (!is_null($this->hasAudio)) {
             $sphinx['filter'][] = array('has_audio', $this->hasAudio);
+        }
+        if (!is_null($this->listId)) {
+            $sphinx['filter'][] = array('lists_id', $this->listId);
         }
         if (!is_null($this->translationFilter)) {
             $transFilter = $this->getTranslationFiltersAsSphinx();
@@ -157,6 +161,19 @@ class Search {
 
     public function filterByAudio($hasAudio) {
         $this->parseBoolean($hasAudio, $this->hasAudio);
+    }
+
+    public function filterByListId($listId, $currentUserId) {
+        if (strlen($listId)) {
+            $this->loadModel('SentencesLists');
+            $list = $this->SentencesLists->isSearchableList($listId, $currentUserId);
+            if ($list) {
+                $this->listId = $list->id;
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
     public function filterByTranslation($filter) {
