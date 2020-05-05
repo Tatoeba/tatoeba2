@@ -23,6 +23,7 @@ class Search {
         $sphinxMap = [
             'hasAudio' => function($v) { return 't.a='.(int)$v; },
             'language' => function($v) { return "t.l='$v'"; },
+            'link'     => function($v) { return 't.d='.($v == 'direct' ? 1 : 2); },
         ];
         foreach ($this->getTranslationFilters() as $filter => $value) {
             $transFilter[] = $sphinxMap[$filter]($value);
@@ -164,6 +165,12 @@ class Search {
     public function filterByTranslationLanguage($lang) {
         if (LanguagesLib::languageExists($lang)) {
             $this->translationFilters['language'] = $lang;
+        }
+    }
+
+    public function filterByTranslationLink($link) {
+        if (in_array($link, ['direct', 'indirect'])) {
+            $this->translationFilters['link'] = $link;
         }
     }
 

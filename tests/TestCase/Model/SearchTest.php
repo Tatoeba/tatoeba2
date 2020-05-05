@@ -263,6 +263,40 @@ class SearchTest extends TestCase
         $this->testfilterByTranslation_limit();
     }
 
+    public function testfilterByTranslationLink_direct() {
+        $this->Search->filterByTranslation('limit');
+        $this->Search->filterByTranslationLink('direct');
+        $expected = [
+            'index' => ['und_index'],
+            'select' => '*, ANY(t.d=1 FOR t IN trans) as filter',
+            'filter' => [['filter', 1]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationLink_indirect() {
+        $this->Search->filterByTranslation('limit');
+        $this->Search->filterByTranslationLink('indirect');
+        $expected = [
+            'index' => ['und_index'],
+            'select' => '*, ANY(t.d=2 FOR t IN trans) as filter',
+            'filter' => [['filter', 1]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationLink_invalid() {
+        $this->Search->filterByTranslationLink('invalid value');
+        $this->testfilterByTranslation_limit();
+    }
+
+    public function testfilterByTranslationLink_empty() {
+        $this->Search->filterByTranslationLink('');
+        $this->testfilterByTranslation_limit();
+    }
+
     private function assertSortByRank($sort, $rank) {
         $expected = [
             'index' => ['und_index'],
