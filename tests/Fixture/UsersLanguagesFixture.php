@@ -30,6 +30,36 @@ class UsersLanguagesFixture extends TestFixture {
 			'details' => '',
 			'created' => '2018-10-31 00:00:00',
 			'modified' => '2018-10-31 00:00:00'
-		)
+		),
+		array(
+			'id' => 2,
+			'of_user_id' => 4,
+			'by_user_id' => 4,
+			'language_code' => 'fra',
+			'level' => 5,
+			'details' => '',
+			'created' => '2018-10-31 00:00:00',
+			'modified' => '2018-10-31 00:00:00'
+		),
+		array(
+			'id' => 3,
+			'of_user_id' => 7,
+			'by_user_id' => 7,
+			'language_code' => 'jpn',
+			'level' => 5,
+			'details' => '',
+			'created' => '2018-10-31 00:00:00',
+			'modified' => '2018-10-31 00:00:00'
+		),
+		array(
+			'id' => 4,
+			'of_user_id' => 3,
+			'by_user_id' => 3,
+			'language_code' => 'fra',
+			'level' => 5,
+			'details' => '',
+			'created' => '2018-10-31 00:00:00',
+			'modified' => '2018-10-31 00:00:00'
+		),
 	);
 }

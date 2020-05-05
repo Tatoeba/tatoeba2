@@ -10,6 +10,7 @@ class SearchTest extends TestCase
     public $fixtures = [
         'app.users',
         'app.sentences_lists',
+        'app.users_languages',
     ];
 
     public function setUp()
@@ -234,6 +235,33 @@ class SearchTest extends TestCase
         $this->assertTrue($result);
 
         $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByNativeSpeaker_fra() {
+        $this->Search->filterByLanguage('fra');
+        $this->Search->filterByNativeSpeaker('yes');
+        $expected = [
+            'index' => ['fra_main_index', 'fra_delta_index'],
+            'filter' => [['user_id', [4, 3]]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByNativeSpeaker_invalid() {
+        $this->Search->filterByLanguage('fra');
+        $this->Search->filterByNativeSpeaker('invalid value');
+        $expected = ['index' => ['fra_main_index', 'fra_delta_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByNativeSpeaker_empty() {
+        $this->Search->filterByLanguage('fra');
+        $this->Search->filterByNativeSpeaker('');
+        $expected = ['index' => ['fra_main_index', 'fra_delta_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }

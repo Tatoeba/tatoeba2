@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use App\Lib\LanguagesLib;
+use Cake\Utility\Hash;
 
 class Search {
     use \Cake\Datasource\ModelAwareTrait;
@@ -13,11 +14,26 @@ class Search {
     private $correctness;
     private $hasAudio;
     private $listId;
+    private $native;
     private $sort;
     private $sortReversed;
 
     private $translationFilter;
     private $translationFilters = [];
+
+    private function getNativeSpeakerFilterAsSphinx() {
+        $this->loadModel('UsersLanguages');
+        $natives = $this->UsersLanguages->find()
+            ->where([
+                'language_code' => $this->lang,
+                'level' => 5,
+            ])
+            ->select(['of_user_id'])
+            ->enableHydration(false)
+            ->toList();
+        $natives = Hash::extract($natives, '{n}.of_user_id');
+        return ['user_id', $natives];
+    }
 
     private function getTranslationFiltersAsSphinx() {
         $transFilter = [];
@@ -75,6 +91,9 @@ class Search {
         }
         if (!is_null($this->listId)) {
             $sphinx['filter'][] = array('lists_id', $this->listId);
+        }
+        if (!is_null($this->native)) {
+            $sphinx['filter'][] = $this->getNativeSpeakerFilterAsSphinx();
         }
         if (!is_null($this->translationFilter)) {
             $transFilter = $this->getTranslationFiltersAsSphinx();
@@ -174,6 +193,10 @@ class Search {
             }
         }
         return true;
+    }
+
+    public function filterByNativeSpeaker($filter) {
+        $this->parseBoolean($filter, $this->native);
     }
 
     public function filterByTranslation($filter) {
