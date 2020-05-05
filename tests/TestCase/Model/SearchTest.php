@@ -266,6 +266,18 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByNativeSpeaker_withLimit() {
+        $this->Search->filterByLanguage('fra');
+        $this->Search->filterByNativeSpeaker('yes');
+        $this->Search->setSphinxFilterArrayLimit(1);
+        $expected = [
+            'index' => ['fra_main_index', 'fra_delta_index'],
+            'filter' => [['user_id', [7], true]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByTranslation_limit() {
         $this->Search->filterByTranslation('limit');
         $expected = [

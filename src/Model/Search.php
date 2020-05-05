@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use App\Lib\LanguagesLib;
+use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
 
 class Search {
@@ -21,6 +22,8 @@ class Search {
     private $translationFilter;
     private $translationFilters = [];
 
+    private $sphinxFilterArrayLimit = 4096;
+
     private function getNativeSpeakerFilterAsSphinx() {
         $this->loadModel('UsersLanguages');
         $natives = $this->UsersLanguages->find()
@@ -32,7 +35,27 @@ class Search {
             ->enableHydration(false)
             ->toList();
         $natives = Hash::extract($natives, '{n}.of_user_id');
-        return ['user_id', $natives];
+
+        if (count($natives) <= $this->sphinxFilterArrayLimit) {
+            $filter = [['user_id', $natives]];
+        } else {
+            $nonNatives = $this->UsersLanguages->find()
+                ->where(function (QueryExpression $exp) {
+                    $isNonNative = $exp->or(['level is' => null])->notEq('level', 5);
+                    return $exp->add($isNonNative)
+                               ->eq('language_code', $this->lang);
+                })
+                ->select(['of_user_id'])
+                ->enableHydration(false)
+                ->toList();
+            $nonNatives = Hash::extract($nonNatives, '{n}.of_user_id');
+            $filter = [];
+            while (count($nonNatives)) {
+                $excludedIds = array_splice($nonNatives, 0, $this->sphinxFilterArrayLimit);
+                $filter[] = ['user_id', $excludedIds, true];
+            }
+        }
+        return $filter;
     }
 
     private function getTranslationFiltersAsSphinx() {
@@ -93,7 +116,8 @@ class Search {
             $sphinx['filter'][] = array('lists_id', $this->listId);
         }
         if (!is_null($this->native)) {
-            $sphinx['filter'][] = $this->getNativeSpeakerFilterAsSphinx();
+            $sphinx['filter'] = $sphinx['filter'] ?? [];
+            array_push($sphinx['filter'], ...$this->getNativeSpeakerFilterAsSphinx());
         }
         if (!is_null($this->translationFilter)) {
             $transFilter = $this->getTranslationFiltersAsSphinx();
@@ -240,6 +264,10 @@ class Search {
 
     public function filterByTranslationAudio($filter) {
         $this->parseBoolean($filter, $this->translationFilters['hasAudio']);
+    }
+
+    public function setSphinxFilterArrayLimit($limit) {
+        $this->sphinxFilterArrayLimit = $limit;
     }
 
     public function getTranslationFilters() {

@@ -61,5 +61,15 @@ class UsersLanguagesFixture extends TestFixture {
 			'created' => '2018-10-31 00:00:00',
 			'modified' => '2018-10-31 00:00:00'
 		),
+		array(
+			'id' => 5,
+			'of_user_id' => 7,
+			'by_user_id' => 7,
+			'language_code' => 'fra',
+			'level' => 2,
+			'details' => '',
+			'created' => '2018-10-31 00:00:00',
+			'modified' => '2018-10-31 00:00:00'
+		),
 	);
 }
