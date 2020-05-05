@@ -15,6 +15,20 @@ class Search {
     private $sort;
     private $sortReversed;
 
+    private $translationFilter;
+    private $translationFilters = [];
+
+    private function getTranslationFiltersAsSphinx() {
+        $transFilter = [];
+        $sphinxMap = [
+            'hasAudio' => function($v) { return 't.a='.(int)$v; },
+        ];
+        foreach ($this->getTranslationFilters() as $filter => $value) {
+            $transFilter[] = $sphinxMap[$filter]($value);
+        }
+        return $transFilter;
+    }
+
     private function parseBoolean($value, &$variable) {
         if (in_array($value, ['yes', 'no'])) {
             $variable = $value == 'yes';
@@ -52,6 +66,17 @@ class Search {
         }
         if (!is_null($this->hasAudio)) {
             $sphinx['filter'][] = array('has_audio', $this->hasAudio);
+        }
+        if (!is_null($this->translationFilter)) {
+            $transFilter = $this->getTranslationFiltersAsSphinx();
+            if (empty($transFilter)) {
+                $transFilter = [1];
+            }
+            $filter = implode(' & ', $transFilter);
+            $sphinx['select'] = "*, ANY($filter FOR t IN trans) as filter";
+
+            $filter = $this->translationFilter == 'limit' ? 1 : 0;
+            $sphinx['filter'][] = ['filter', $filter];
         }
         if ($this->sort) {
             if ($this->sort == 'random') {
@@ -127,5 +152,22 @@ class Search {
 
     public function filterByAudio($hasAudio) {
         $this->parseBoolean($hasAudio, $this->hasAudio);
+    }
+
+    public function filterByTranslation($filter) {
+        if (in_array($filter, ['exclude', 'limit'])) {
+            $this->translationFilter = $filter;
+        }
+    }
+
+    public function filterByTranslationAudio($filter) {
+        $this->parseBoolean($filter, $this->translationFilters['hasAudio']);
+    }
+
+    public function getTranslationFilters() {
+        return array_filter(
+            $this->translationFilters,
+            function ($v) { return !is_null($v); }
+        );
     }
 }

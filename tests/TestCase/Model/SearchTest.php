@@ -171,6 +171,76 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByTranslation_limit() {
+        $this->Search->filterByTranslation('limit');
+        $expected = [
+            'index' => ['und_index'],
+            'select' => '*, ANY(1 FOR t IN trans) as filter',
+            'filter' => [['filter', 1]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslation_exclude() {
+        $this->Search->filterByTranslation('exclude');
+        $expected = [
+            'index' => ['und_index'],
+            'select' => '*, ANY(1 FOR t IN trans) as filter',
+            'filter' => [['filter', 0]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslation_invalid() {
+        $this->Search->filterByTranslation('invalid value');
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslation_empty() {
+        $this->Search->filterByTranslation('');
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationAudio_yes() {
+        $this->Search->filterByTranslation('limit');
+        $this->Search->filterByTranslationAudio('yes');
+        $expected = [
+            'index' => ['und_index'],
+            'select' => '*, ANY(t.a=1 FOR t IN trans) as filter',
+            'filter' => [['filter', 1]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationAudio_no() {
+        $this->Search->filterByTranslation('limit');
+        $this->Search->filterByTranslationAudio('no');
+        $expected = [
+            'index' => ['und_index'],
+            'select' => '*, ANY(t.a=0 FOR t IN trans) as filter',
+            'filter' => [['filter', 1]],
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslationAudio_invalid() {
+        $this->Search->filterByTranslationAudio('invalid value');
+        $this->testfilterByTranslation_limit();
+    }
+
+    public function testfilterByTranslationAudio_empty() {
+        $this->Search->filterByTranslationAudio('');
+        $this->testfilterByTranslation_limit();
+    }
+
     private function assertSortByRank($sort, $rank) {
         $expected = [
             'index' => ['und_index'],
