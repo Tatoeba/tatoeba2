@@ -118,7 +118,7 @@ class UsersLanguagesTableTest extends TestCase {
     }
 
     function testDeleteUserLanguage_failsBecauseUnknownId() {
-        $result = $this->UsersLanguages->deleteUserLanguage(2, 4);
+        $result = $this->UsersLanguages->deleteUserLanguage(9999999, 4);
         $this->assertFalse($result);
     }
 
@@ -145,7 +145,7 @@ class UsersLanguagesTableTest extends TestCase {
 
     function testGetNumberOfUsersForEachLanguage() {
         $result = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
-        $this->assertEquals(1, count($result));
+        $this->assertEquals(2, count($result));
     }
 
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
