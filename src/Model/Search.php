@@ -26,6 +26,7 @@ class Search {
             'link'     => function($v) { return 't.d='.($v == 'direct' ? 1 : 2); },
             'ownerId'  => function($v) { return 't.u='.(int)$v; },
             'hasOwner' => function($v) { return 't.u'.($v ? '=' : '<>').'0'; },
+            'correctness' => function($v) { return 't.c='.(int)!$v; },
         ];
         foreach ($this->getTranslationFilters() as $filter => $value) {
             $transFilter[] = $sphinxMap[$filter]($value);
@@ -191,6 +192,10 @@ class Search {
 
     public function filterByTranslationOwnership($hasOwner) {
         $this->parseBoolean($hasOwner, $this->translationFilters['hasOwner']);
+    }
+
+    public function filterByTranslationCorrectness($correctness) {
+        $this->parseBoolean($correctness, $this->translationFilters['correctness']);
     }
 
     public function filterByTranslationAudio($filter) {
