@@ -326,6 +326,15 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByTags_sqlInjection() {
+        $result = $this->Search->filterByTags(["'"]);
+        $this->assertEmpty($result);
+
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
     public function testfilterByTranslation_limit() {
         $this->Search->filterByTranslation('limit');
         $expected = [

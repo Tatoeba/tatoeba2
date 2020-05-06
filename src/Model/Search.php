@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use App\Lib\LanguagesLib;
+use Cake\Database\Expression\FunctionExpression;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
 
@@ -227,10 +228,14 @@ class Search {
         $appliedTagsNames = [];
         if ($tags) {
             $this->loadModel('Tags');
+            $order = new FunctionExpression(
+                'FIND_IN_SET',
+                ['Tags.name' => 'literal', implode(',', $tags)]
+            );
             $result = $this->Tags->find()
                 ->where(['name IN' => $tags])
                 ->select(['id', 'name'])
-                ->order(['FIND_IN_SET(Tags.name, \'' . implode(',', $tags) . '\')'])
+                ->order($order)
                 ->enableHydration(false)
                 ->toList();
             $this->tagsIds = Hash::extract($result, '{n}.id');
