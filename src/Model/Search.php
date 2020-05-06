@@ -76,10 +76,19 @@ class Search {
         return $transFilter;
     }
 
+    private function parseYesNoEmpty($value) {
+        if (is_null($value)) {
+            return '';
+        } else {
+            return $value ? 'yes' : 'no';
+        }
+    }
+
     private function parseBoolean($value, &$variable) {
         if (in_array($value, ['yes', 'no'])) {
             $variable = $value == 'yes';
         }
+        return $this->parseYesNoEmpty($variable);
     }
 
     private function orderby($expr, $order) {
@@ -174,6 +183,7 @@ class Search {
         if (LanguagesLib::languageExists($lang)) {
             $this->lang = $lang;
         }
+        return $this->lang ?? 'und';
     }
 
     public function filterByOwnerName($owner) {
@@ -190,7 +200,7 @@ class Search {
     }
 
     public function filterByOwnership($hasOwner) {
-        $this->parseBoolean($hasOwner, $this->hasOwner);
+        return $this->parseBoolean($hasOwner, $this->hasOwner);
     }
 
     public function sort($sort) {
@@ -204,11 +214,11 @@ class Search {
     }
 
     public function filterByCorrectness($correctness) {
-        $this->parseBoolean($correctness, $this->correctness);
+        return $this->parseBoolean($correctness, $this->correctness);
     }
 
     public function filterByAudio($hasAudio) {
-        $this->parseBoolean($hasAudio, $this->hasAudio);
+        return $this->parseBoolean($hasAudio, $this->hasAudio);
     }
 
     public function filterByListId($listId, $currentUserId) {
@@ -245,25 +255,31 @@ class Search {
     }
 
     public function filterByNativeSpeaker($filter) {
-        $this->parseBoolean($filter, $this->native);
+        if ($filter == 'yes') {
+            $this->native = true;
+        }
+        return $this->parseYesNoEmpty($this->native);
     }
 
     public function filterByTranslation($filter) {
         if (in_array($filter, ['exclude', 'limit'])) {
             $this->translationFilter = $filter;
         }
+        return $this->translationFilter ?? '';
     }
 
     public function filterByTranslationLanguage($lang) {
         if (LanguagesLib::languageExists($lang)) {
             $this->translationFilters['language'] = $lang;
         }
+        return $this->translationFilters['language'] ?? 'und';
     }
 
     public function filterByTranslationLink($link) {
         if (in_array($link, ['direct', 'indirect'])) {
             $this->translationFilters['link'] = $link;
         }
+        return $this->translationFilters['link'] ?? '';
     }
 
     public function filterByTranslationOwnerName($owner) {
@@ -280,15 +296,15 @@ class Search {
     }
 
     public function filterByTranslationOwnership($hasOwner) {
-        $this->parseBoolean($hasOwner, $this->translationFilters['hasOwner']);
+        return $this->parseBoolean($hasOwner, $this->translationFilters['hasOwner']);
     }
 
     public function filterByTranslationCorrectness($correctness) {
-        $this->parseBoolean($correctness, $this->translationFilters['correctness']);
+        return $this->parseBoolean($correctness, $this->translationFilters['correctness']);
     }
 
     public function filterByTranslationAudio($filter) {
-        $this->parseBoolean($filter, $this->translationFilters['hasAudio']);
+        return $this->parseBoolean($filter, $this->translationFilters['hasAudio']);
     }
 
     public function setSphinxFilterArrayLimit($limit) {
