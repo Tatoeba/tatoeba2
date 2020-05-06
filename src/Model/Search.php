@@ -84,10 +84,8 @@ class Search {
         }
     }
 
-    private function parseBoolean($value, &$variable) {
-        if (in_array($value, ['yes', 'no'])) {
-            $variable = $value == 'yes';
-        }
+    private function parseBoolNull($value, &$variable) {
+        $variable = $value == 'yes' ? true : ($value == 'no' ? false : null);
         return $this->parseYesNoEmpty($variable);
     }
 
@@ -180,6 +178,7 @@ class Search {
     }
 
     public function filterByLanguage($lang) {
+        $this->lang = null;
         if (LanguagesLib::languageExists($lang)) {
             $this->lang = $lang;
         }
@@ -187,6 +186,7 @@ class Search {
     }
 
     public function filterByOwnerName($owner) {
+        $this->ownerId = null;
         if (!empty($owner)) {
             $this->loadModel('Users');
             $result = $this->Users->findByUsername($owner, ['fields' => ['id']])->first();
@@ -200,10 +200,11 @@ class Search {
     }
 
     public function filterByOwnership($hasOwner) {
-        return $this->parseBoolean($hasOwner, $this->hasOwner);
+        return $this->parseBoolNull($hasOwner, $this->hasOwner);
     }
 
     public function sort($sort) {
+        $this->sort = null;
         if (in_array($sort, ['relevance', 'words', 'created', 'modified', 'random'])) {
             $this->sort = $sort;
         }
@@ -211,6 +212,7 @@ class Search {
     }
 
     public function reverseSort($reversed) {
+        $this->sortReversed = null;
         if ($reversed == 'yes') {
             $this->sortReversed = true;
         }
@@ -218,14 +220,15 @@ class Search {
     }
 
     public function filterByCorrectness($correctness) {
-        return $this->parseBoolean($correctness, $this->correctness);
+        return $this->parseBoolNull($correctness, $this->correctness);
     }
 
     public function filterByAudio($hasAudio) {
-        return $this->parseBoolean($hasAudio, $this->hasAudio);
+        return $this->parseBoolNull($hasAudio, $this->hasAudio);
     }
 
     public function filterByListId($listId, $currentUserId) {
+        $this->listId = null;
         if (strlen($listId)) {
             $this->loadModel('SentencesLists');
             $list = $this->SentencesLists->isSearchableList($listId, $currentUserId);
@@ -240,6 +243,7 @@ class Search {
 
     public function filterByTags($tags) {
         $appliedTagsNames = [];
+        $this->tagsIds = [];
         if ($tags) {
             $this->loadModel('Tags');
             $order = new FunctionExpression(
@@ -259,6 +263,7 @@ class Search {
     }
 
     public function filterByNativeSpeaker($filter) {
+        $this->native = null;
         if ($filter == 'yes') {
             $this->native = true;
         }
@@ -266,6 +271,7 @@ class Search {
     }
 
     public function filterByTranslation($filter) {
+        $this->translationFilter = null;
         if (in_array($filter, ['exclude', 'limit'])) {
             $this->translationFilter = $filter;
         }
@@ -273,6 +279,7 @@ class Search {
     }
 
     public function filterByTranslationLanguage($lang) {
+        $this->translationFilters['language'] = null;
         if (LanguagesLib::languageExists($lang)) {
             $this->translationFilters['language'] = $lang;
         }
@@ -280,6 +287,7 @@ class Search {
     }
 
     public function filterByTranslationLink($link) {
+        $this->translationFilters['link'] = null;
         if (in_array($link, ['direct', 'indirect'])) {
             $this->translationFilters['link'] = $link;
         }
@@ -287,6 +295,7 @@ class Search {
     }
 
     public function filterByTranslationOwnerName($owner) {
+        $this->translationFilters['ownerId'] = null;
         if (!empty($owner)) {
             $this->loadModel('Users');
             $result = $this->Users->findByUsername($owner, ['fields' => ['id']])->first();
@@ -300,15 +309,15 @@ class Search {
     }
 
     public function filterByTranslationOwnership($hasOwner) {
-        return $this->parseBoolean($hasOwner, $this->translationFilters['hasOwner']);
+        return $this->parseBoolNull($hasOwner, $this->translationFilters['hasOwner']);
     }
 
     public function filterByTranslationCorrectness($correctness) {
-        return $this->parseBoolean($correctness, $this->translationFilters['correctness']);
+        return $this->parseBoolNull($correctness, $this->translationFilters['correctness']);
     }
 
     public function filterByTranslationAudio($filter) {
-        return $this->parseBoolean($filter, $this->translationFilters['hasAudio']);
+        return $this->parseBoolNull($filter, $this->translationFilters['hasAudio']);
     }
 
     public function setSphinxFilterArrayLimit($limit) {

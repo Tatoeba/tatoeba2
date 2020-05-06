@@ -75,6 +75,11 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByLanguage_resets() {
+        $this->testfilterByLanguage_validLang();
+        $this->testfilterByLanguage_und();
+    }
+
     public function testfilterByOwnerName_invalid() {
         $result = $this->Search->filterByOwnerName('userdoesnotexists');
         $this->assertFalse($result);
@@ -96,6 +101,11 @@ class SearchTest extends TestCase
 
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByOwnerName_resets() {
+        $this->testfilterByOwnerName_valid();
+        $this->testfilterByOwnerName_empty();
     }
 
     public function testfilterByOwnership_yes() {
@@ -272,6 +282,11 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByListId_resets() {
+        $this->testfilterByListId_public();
+        $this->testfilterByListId_empty();
+    }
+
     public function testfilterByNativeSpeaker_fra() {
         $this->Search->filterByLanguage('fra');
         $result = $this->Search->filterByNativeSpeaker('yes');
@@ -303,6 +318,11 @@ class SearchTest extends TestCase
         $expected = ['index' => ['fra_main_index', 'fra_delta_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByNativeSpeaker_resets() {
+        $this->testfilterByNativeSpeaker_fra();
+        $this->testfilterByNativeSpeaker_empty();
     }
 
     public function testfilterByNativeSpeaker_withLimit() {
@@ -364,6 +384,11 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
+    public function testfilterByTags_resets() {
+        $this->testfilterByTags_oneTag();
+        $this->testfilterByTags_empty();
+    }
+
     public function testfilterByTags_sqlInjection() {
         $result = $this->Search->filterByTags(["'"]);
         $this->assertEmpty($result);
@@ -415,6 +440,11 @@ class SearchTest extends TestCase
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTranslation_resets() {
+        $this->testfilterByTranslation_limit();
+        $this->testfilterByTranslation_empty();
     }
 
     public function testfilterByTranslationAudio_yes() {
@@ -487,6 +517,11 @@ class SearchTest extends TestCase
         $this->testfilterByTranslation_limit();
     }
 
+    public function testfilterByTranslationLanguage_resets() {
+        $this->testfilterByTranslationLanguage_ainu();
+        $this->testfilterByTranslationLanguage_empty();
+    }
+
     public function testfilterByTranslationLink_direct() {
         $this->Search->filterByTranslation('limit');
         $result = $this->Search->filterByTranslationLink('direct');
@@ -529,6 +564,11 @@ class SearchTest extends TestCase
         $this->testfilterByTranslation_limit();
     }
 
+    public function testfilterByTranslationLink_resets() {
+        $this->testfilterByTranslationLink_direct();
+        $this->testfilterByTranslationLink_empty();
+    }
+
     public function testfilterByTranslationOwnerName_valid() {
         $this->Search->filterByTranslation('limit');
         $result = $this->Search->filterByTranslationOwnerName('contributor');
@@ -555,6 +595,11 @@ class SearchTest extends TestCase
         $this->assertTrue($result);
 
         $this->testfilterByTranslation_limit();
+    }
+
+    public function testfilterByTranslationOwnerName_resets() {
+        $this->testfilterByTranslationOwnerName_valid();
+        $this->testfilterByTranslationOwnerName_empty();
     }
 
     public function testfilterByTranslationOwnership_yes() {
@@ -599,6 +644,11 @@ class SearchTest extends TestCase
         $this->testfilterByTranslation_limit();
     }
 
+    public function testfilterByTranslationOwnership_resets() {
+        $this->testfilterByTranslationOwnership_yes();
+        $this->testfilterByTranslationOwnership_empty();
+    }
+
     public function testfilterByTranslationCorrectness_yes() {
         $this->Search->filterByTranslation('limit');
         $result = $this->Search->filterByTranslationCorrectness('yes');
@@ -639,6 +689,11 @@ class SearchTest extends TestCase
         $this->assertEquals('', $result);
 
         $this->testfilterByTranslation_limit();
+    }
+
+    public function testfilterByTranslationCorrectness_resets() {
+        $this->testfilterByTranslationCorrectness_yes();
+        $this->testfilterByTranslationCorrectness_empty();
     }
 
     private function assertSortByRank($sort, $rank) {
@@ -790,6 +845,17 @@ class SearchTest extends TestCase
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
+    }
+
+    public function testSortBy_resets() {
+        $this->Search->sort('relevance');
+        $this->testSortByEmpty();
+    }
+
+    public function testReverseSort_resets() {
+        $this->Search->reverseSort('yes');
+        $this->assertEquals('', $this->Search->reverseSort(''));
+        $this->testSortByRelevance_withEmptyQuery();
     }
 
     public function testGetSearchableLists_asGuest() {
