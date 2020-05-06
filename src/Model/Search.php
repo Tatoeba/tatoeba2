@@ -174,7 +174,13 @@ class Search {
     }
 
     public function filterByQuery($query) {
+        $query = str_replace(
+            ['　', ' '],
+            ' ',
+            $query
+        );
         $this->query = $query;
+        return $this->query;
     }
 
     public function filterByLanguage($lang) {

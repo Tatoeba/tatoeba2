@@ -32,20 +32,29 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByQuery() {
-        $this->Search->filterByQuery('comme ci comme ça');
+    public function assertQuery($expectedQuery, $query) {
+        $result = $this->Search->filterByQuery($query);
+        $this->assertEquals($expectedQuery, $result);
 
-        $expected = ['index' => ['und_index'], 'query' => 'comme ci comme ça'];
+        $expected = ['index' => ['und_index'], 'query' => $expectedQuery];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByQuery_empty() {
-        $this->Search->filterByQuery('');
+    public function testfilterByQuery() {
+        $this->assertQuery('comme ci comme ça', 'comme ci comme ça');
+    }
 
-        $expected = ['index' => ['und_index'], 'query' => ''];
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
+    public function testfilterByQuery_empty() {
+        $this->assertQuery('', '');
+    }
+
+    public function testfilterByQuery_nonBreakableSpace() {
+        $this->assertQuery('ceci ; cela ; parce que', "ceci\u{a0}; cela\u{a0}; parce que");
+    }
+
+    public function testfilterByQuery_wideSpace() {
+        $this->assertQuery('散りぬるを 我が世誰ぞ', "散りぬるを　我が世誰ぞ");
     }
 
     public function testfilterByLanguage_validLang() {
