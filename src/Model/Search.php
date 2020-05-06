@@ -12,7 +12,7 @@ class Search {
     private $query;
     private $lang;
     private $ownerId;
-    private $hasOwner;
+    private $isOrphan;
     private $correctness;
     private $hasAudio;
     private $listId;
@@ -67,7 +67,7 @@ class Search {
             'language' => function($v) { return "t.l='$v'"; },
             'link'     => function($v) { return 't.d='.($v == 'direct' ? 1 : 2); },
             'ownerId'  => function($v) { return 't.u='.(int)$v; },
-            'hasOwner' => function($v) { return 't.u'.($v ? '=' : '<>').'0'; },
+            'isOrphan' => function($v) { return 't.u'.($v ? '=' : '<>').'0'; },
             'correctness' => function($v) { return 't.c='.(int)!$v; },
         ];
         foreach ($this->getTranslationFilters() as $filter => $value) {
@@ -111,8 +111,8 @@ class Search {
         if ($this->ownerId) {
             $sphinx['filter'][] = ['user_id', $this->ownerId];
         }
-        if (!is_null($this->hasOwner)) {
-            $sphinx['filter'][] = ['user_id', 0, !$this->hasOwner];
+        if (!is_null($this->isOrphan)) {
+            $sphinx['filter'][] = ['user_id', 0, !$this->isOrphan];
         }
         if (!is_null($this->correctness)) {
             // See the indexation SQL request for the value 127
@@ -175,7 +175,7 @@ class Search {
 
     public function filterByQuery($query) {
         $query = str_replace(
-            ['　', ' '],
+            ['　', "\u{a0}"],
             ' ',
             $query
         );
@@ -205,8 +205,8 @@ class Search {
         return true;
     }
 
-    public function filterByOwnership($hasOwner) {
-        return $this->parseBoolNull($hasOwner, $this->hasOwner);
+    public function filterByOrphanship($isOrphan) {
+        return $this->parseBoolNull($isOrphan, $this->isOrphan);
     }
 
     public function sort($sort) {
@@ -314,8 +314,8 @@ class Search {
         return true;
     }
 
-    public function filterByTranslationOwnership($hasOwner) {
-        return $this->parseBoolNull($hasOwner, $this->translationFilters['hasOwner']);
+    public function filterByTranslationOrphanship($isOrphan) {
+        return $this->parseBoolNull($isOrphan, $this->translationFilters['isOrphan']);
     }
 
     public function filterByTranslationCorrectness($correctness) {

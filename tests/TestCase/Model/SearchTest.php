@@ -117,8 +117,8 @@ class SearchTest extends TestCase
         $this->testfilterByOwnerName_empty();
     }
 
-    public function testfilterByOwnership_yes() {
-        $result = $this->Search->filterByOwnership('yes');
+    public function testfilterByOrphanship_yes() {
+        $result = $this->Search->filterByOrphanship('yes');
         $this->assertEquals('yes', $result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['user_id', 0, false]]];
@@ -126,8 +126,8 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnership_no() {
-        $result = $this->Search->filterByOwnership('no');
+    public function testfilterByOrphanship_no() {
+        $result = $this->Search->filterByOrphanship('no');
         $this->assertEquals('no', $result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['user_id', 0, true]]];
@@ -135,8 +135,8 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnership_invalid() {
-        $result = $this->Search->filterByOwnership('invalid value');
+    public function testfilterByOrphanship_invalid() {
+        $result = $this->Search->filterByOrphanship('invalid value');
         $this->assertEquals('', $result);
 
         $expected = ['index' => ['und_index']];
@@ -144,8 +144,8 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnership_empty() {
-        $result = $this->Search->filterByOwnership('');
+    public function testfilterByOrphanship_empty() {
+        $result = $this->Search->filterByOrphanship('');
         $this->assertEquals('', $result);
 
         $expected = ['index' => ['und_index']];
@@ -611,9 +611,9 @@ class SearchTest extends TestCase
         $this->testfilterByTranslationOwnerName_empty();
     }
 
-    public function testfilterByTranslationOwnership_yes() {
+    public function testfilterByTranslationOrphanship_yes() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOwnership('yes');
+        $result = $this->Search->filterByTranslationOrphanship('yes');
         $this->assertEquals('yes', $result);
 
         $expected = [
@@ -625,9 +625,9 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationOwnership_no() {
+    public function testfilterByTranslationOrphanship_no() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOwnership('no');
+        $result = $this->Search->filterByTranslationOrphanship('no');
         $this->assertEquals('no', $result);
 
         $expected = [
@@ -639,23 +639,23 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationOwnership_invalid() {
-        $result = $this->Search->filterByTranslationOwnership('invalid value');
+    public function testfilterByTranslationOrphanship_invalid() {
+        $result = $this->Search->filterByTranslationOrphanship('invalid value');
         $this->assertEquals('', $result);
 
         $this->testfilterByTranslation_limit();
     }
 
-    public function testfilterByTranslationOwnership_empty() {
-        $result = $this->Search->filterByTranslationOwnership('');
+    public function testfilterByTranslationOrphanship_empty() {
+        $result = $this->Search->filterByTranslationOrphanship('');
         $this->assertEquals('', $result);
 
         $this->testfilterByTranslation_limit();
     }
 
-    public function testfilterByTranslationOwnership_resets() {
-        $this->testfilterByTranslationOwnership_yes();
-        $this->testfilterByTranslationOwnership_empty();
+    public function testfilterByTranslationOrphanship_resets() {
+        $this->testfilterByTranslationOrphanship_yes();
+        $this->testfilterByTranslationOrphanship_empty();
     }
 
     public function testfilterByTranslationCorrectness_yes() {
