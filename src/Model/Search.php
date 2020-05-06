@@ -15,6 +15,7 @@ class Search {
     private $correctness;
     private $hasAudio;
     private $listId;
+    private $tagsIds = [];
     private $native;
     private $sort;
     private $sortReversed;
@@ -114,6 +115,9 @@ class Search {
         }
         if (!is_null($this->listId)) {
             $sphinx['filter'][] = array('lists_id', $this->listId);
+        }
+        foreach ($this->tagsIds as $id) {
+            $sphinx['filter'][] = ['tags_id', $id];
         }
         if (!is_null($this->native)) {
             $sphinx['filter'] = $sphinx['filter'] ?? [];
@@ -217,6 +221,22 @@ class Search {
             }
         }
         return true;
+    }
+
+    public function filterByTags($tags) {
+        $appliedTagsNames = [];
+        if ($tags) {
+            $this->loadModel('Tags');
+            $result = $this->Tags->find()
+                ->where(['name IN' => $tags])
+                ->select(['id', 'name'])
+                ->order(['FIND_IN_SET(Tags.name, \'' . implode(',', $tags) . '\')'])
+                ->enableHydration(false)
+                ->toList();
+            $this->tagsIds = Hash::extract($result, '{n}.id');
+            $appliedTagsNames = Hash::extract($result, '{n}.name');
+        }
+        return $appliedTagsNames;
     }
 
     public function filterByNativeSpeaker($filter) {

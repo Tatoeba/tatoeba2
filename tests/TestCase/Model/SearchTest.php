@@ -11,6 +11,7 @@ class SearchTest extends TestCase
         'app.users',
         'app.sentences_lists',
         'app.users_languages',
+        'app.tags',
     ];
 
     public function setUp()
@@ -274,6 +275,53 @@ class SearchTest extends TestCase
             'index' => ['fra_main_index', 'fra_delta_index'],
             'filter' => [['user_id', [7], true]],
         ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTags_oneTag() {
+        $result = $this->Search->filterByTags(['OK']);
+        $this->assertEquals(['OK'], $result);
+
+        $expected = ['index' => ['und_index'], 'filter' => [['tags_id', 2]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTags_twoTags() {
+        $result = $this->Search->filterByTags(['OK', '@needs native check']);
+        $this->assertEquals(['OK', '@needs native check'], $result);
+        $expected = [
+            'index' => ['und_index'],
+            'filter' => [['tags_id', 2], ['tags_id', 1]]
+        ];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTags_oneTag_oneInvalid() {
+        $result = $this->Search->filterByTags(['nonexsistenttag']);
+        $this->assertEmpty($result);
+
+        $expected = ['index' => ['und_index']];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTags_twoTags_oneInvalid() {
+        $result = $this->Search->filterByTags(['OK', 'nonexsistenttag']);
+        $this->assertEquals(['OK'], $result);
+
+        $expected = ['index' => ['und_index'], 'filter' => [['tags_id', 2]]];
+        $result = $this->Search->asSphinx();
+        $this->assertEquals($expected, $result);
+    }
+
+    public function testfilterByTags_empty() {
+        $result = $this->Search->filterByTags([]);
+        $this->assertEmpty($result);
+
+        $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
