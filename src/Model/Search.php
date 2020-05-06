@@ -207,10 +207,14 @@ class Search {
         if (in_array($sort, ['relevance', 'words', 'created', 'modified', 'random'])) {
             $this->sort = $sort;
         }
+        return $this->sort ?? '';
     }
 
     public function reverseSort($reversed) {
-        $this->sortReversed = $reversed;
+        if ($reversed == 'yes') {
+            $this->sortReversed = true;
+        }
+        return $this->parseYesNoEmpty($this->sortReversed);
     }
 
     public function filterByCorrectness($correctness) {
