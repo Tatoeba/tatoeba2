@@ -140,6 +140,9 @@ class Sentence extends Entity
     
     protected function _getCurrentUserReview()
     {
-        return CurrentUser::correctnessForSentence($this->id);
+        if (!empty($this->users_sentences)) {
+            return $this->users_sentences[0]->correctness;
+        }
+        return null;
     }
 }
