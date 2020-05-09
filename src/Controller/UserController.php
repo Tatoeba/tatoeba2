@@ -72,6 +72,27 @@ class UserController extends AppController
 
     public $components = array('Auth', 'Flash');
 
+
+    public function initialize() {
+        parent::initialize();
+        $params = $this->request->params;
+        $noCsrfActions = [
+            'save_banner_setting',
+        ];
+        if (in_array($params['action'], $noCsrfActions)) {
+            $this->components()->unload('Csrf');
+        }
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Security->config('unlockedActions', [
+            'save_banner_setting',
+        ]);
+
+        return parent::beforeFilter($event);
+    }
+
     /**
      * Display profile of given user.
      * If no username is given and no user is logged in,
@@ -717,17 +738,36 @@ class UserController extends AppController
 
     public function accept_new_terms_of_use()
     {
+        $this->saveSetting($this->request->getData('settings'));
+
+        $this->Flash->set(__('You have accepted the new terms of use.'));
+        return $this->redirect($this->referer());
+    }
+
+    public function save_banner_setting()
+    {
+        $savedUser = $this->saveSetting($this->request->getData());
+
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->set('saved', (bool)$savedUser);
+            $this->loadComponent('RequestHandler');
+            $this->set('_serialize', ['saved']);
+            $this->RequestHandler->renderAs($this, 'json');
+        }
+    }
+
+    private function saveSetting($data) {
         $this->loadModel('Users');
         $user = $this->Users->get(CurrentUser::get('id'));
         $this->Users->patchEntity($user, [
-            'settings' => $this->request->getData('settings')
+            'settings' => $data
         ]);
         $savedUser = $this->Users->save($user);
         if ($savedUser) {
             $this->Auth->setUser($savedUser);
         }
 
-        $this->Flash->set(__('You have accepted the new terms of use.'));
-        return $this->redirect($this->referer());
+        return $savedUser;
     }
 }

@@ -84,7 +84,7 @@ $moreCommentsUrl = $this->Url->build([
 
 <div id="main_content">
     <?php
-    if (!CurrentUser::getSetting('use_new_design')) {
+    if (!CurrentUser::getSetting('use_new_design') && !CurrentUser::getSetting('hide_new_design_announcement')) {
         $this->Html->script('directives/info-banner.dir.js', ['block' => 'scriptBottom']); 
         ?>
         <div info-banner ng-init="vm.init('hide_new_design_announcement')" ng-cloak>
@@ -97,7 +97,7 @@ $moreCommentsUrl = $this->Url->build([
                 <div layout="row" layout-align="end center">
                     <md-button class="md-primary" href="/user/settings"><?= __('Go to settings') ?></md-button>
                     <?php /* @translators: button to close the announcement about the new design (verb) */ ?>
-                    <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+                    <md-button class="md-primary" ng-click="vm.hideAnnouncement(true)"><?= __('Close') ?></md-button>
                 </div>
             </div>
         </div>
