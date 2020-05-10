@@ -5,14 +5,15 @@
 # Translators:
 # Elena Cristina <elenacristina654321@gmail.com>, 2020
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
+# gillux, 2020
 # Ricardo Vernaut Jr <rvj1444@gmail.com>, 2020
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-03 15:27+0000\n"
-"PO-Revision-Date: 2020-05-03 18:40+0000\n"
+"POT-Creation-Date: 2020-05-08 11:57+0800\n"
+"PO-Revision-Date: 2020-05-05 19:13+0000\n"
 "Last-Translator: Elena Cristina <elenacristina654321@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/tatoeba/tatoeba_website/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -286,7 +287,7 @@ msgstr "Acest cont a fost marcat ca inactiv. Nu vă mai puteți autentifica cu a
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr "Acest cont a fost marcat ca spamer. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un administrator dacă aceasta este o greșeală."
+msgstr "Acest cont a fost marcat ca spamer. Nu vă mai puteți autentifica cu acesta. Vă rugăm să contactați un admin dacă aceasta este o greșeală."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
@@ -307,7 +308,7 @@ msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
-msgstr "Pentru început, vă recomandăm să mergeți la <a href='{url}'>profilul</a> dumneavoastră ca să ne informați ce limbi vorbiți sau de care sunteți interesat."
+msgstr "Pentru început, vă recomandăm să mergeți la <a href='{url}'>profilul</a> dumneavoastră pentru a ne oferi informații despre limbile pe care le vorbiți sau de care sunteți interesat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L349
 msgid "Please fix the form errors."
@@ -323,7 +324,7 @@ msgstr "Este posibil să fie nevoie să verificați folderul de spam pentru a g�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L398
 msgid "There is no registered user with this email address: "
-msgstr "Nu există niciun utilizator înregistrat cu această parolă: "
+msgstr "Nu există niciun utilizator înregistrat cu această adresă de e-mail: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L420
 msgid "No user with this username: "
@@ -447,7 +448,7 @@ msgstr "Toate limbile"
 #. dropdown option for unknown language
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L57
 msgid "unknown"
-msgstr "necunoscut(ă)"
+msgstr "necunoscut"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L228
@@ -485,7 +486,7 @@ msgstr "Această transcriere a fost generată de o aplicație software"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
-msgstr "Licențe de propoziții ce trebuie schimate cu CC0"
+msgstr "Licențe de propoziții ce trebuie schimbate cu CC0"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L125
 msgid "List {listName}"

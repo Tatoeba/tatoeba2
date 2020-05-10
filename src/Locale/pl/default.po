@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Kamil Rosol <kamil.rosol@gmail.com>, 2020
 # Piotr Ćwiek <peterche@wp.pl>, 2014
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-03 15:27+0000\n"
-"PO-Revision-Date: 2020-05-03 16:23+0000\n"
-"Last-Translator: Trang\n"
+"POT-Creation-Date: 2020-05-08 11:57+0800\n"
+"PO-Revision-Date: 2020-05-08 07:12+0000\n"
+"Last-Translator: Kamil Rosol <kamil.rosol@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/tatoeba/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Brak użytkownika {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
 msgid "Your audio settings have been saved."
-msgstr ""
+msgstr "Twoje ustawienia dźwięku zostały zapisane."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
@@ -50,7 +51,7 @@ msgstr "Tatoeba - nowe hasło"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "Proszę czekać na aktualizację listy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
@@ -151,7 +152,7 @@ msgstr ""
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L686
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
-msgstr ""
+msgstr "“Otagowany jako {tagName}”, ponieważ jest to nieprawidłowy tag."
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -272,7 +273,7 @@ msgstr "Błąd hasła. Proszę spróbować ponownie."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L730
 msgid "You have accepted the new terms of use."
-msgstr ""
+msgstr "Zaakceptowałeś nowy regulamin."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L184
 msgid ""
@@ -298,7 +299,7 @@ msgstr "Zalogowanie nie powiodło się. Upewnij się, czy przypadkiem nie zosta�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L328
 msgid "Welcome to Tatoeba!"
-msgstr ""
+msgstr "Witamy na Tatoeba!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
 msgid ""
@@ -2880,7 +2881,7 @@ msgstr ""
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L277
 msgid "Links"
-msgstr ""
+msgstr "Linki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L286
 msgid ""
@@ -3172,7 +3173,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/temporarily_disabled.ctp#L52
 msgid "We are sorry for the inconvenience."
-msgstr ""
+msgstr "Przepraszamy za niedogodności."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/terms_of_use.ctp#L6
 msgid ""
@@ -3230,7 +3231,7 @@ msgstr " - Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L45
 msgid "You have reached your message limit for today"
-msgstr ""
+msgstr "Osiągnąłeś limit swoich wiadomości na dzisiaj."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L47
 msgid ""
@@ -3240,21 +3241,21 @@ msgstr "By chronić Tatoebę przed spamem i innymi niepożądanymi treściami, n
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L50
 msgid "Please wait until you can send more messages."
-msgstr ""
+msgstr "Odczekaj, aby móc wysłać więcej wiadomości."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L64
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                new users can send only 5 messages per day."
-msgstr ""
+msgstr "Aby zapobiegać spamowi oraz złośliwym i podejrzanym wiadomościom nowi użytkownicy mogą wysłać tylko 5 wiadomości dziennie. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L70
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Wysłałeś dzisiaj jedną wiadomość."
+msgstr[1] "Wysłałeś dzisiaj jedną wiadomość."
+msgstr[2] "Wysłałeś dzisiaj {n} wiadomości."
+msgstr[3] "Wysłałeś dzisiaj {n} wiadomości."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L30
 msgid "Sentences marked as \"OK\""
@@ -3294,7 +3295,7 @@ msgstr ""
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L73
 msgid "Filter"
-msgstr ""
+msgstr "Filtr"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L113
@@ -3313,7 +3314,7 @@ msgstr "Porządkuj według:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L122
 msgid "date modified"
-msgstr ""
+msgstr "data modyfikacji"
 
 #. sort option in the list of reviews
 #. / sort option in the "Sentences of user" page
@@ -3333,7 +3334,7 @@ msgstr "daty utworzenia"
 #. sort option in the list of reviews
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L119
 msgid "sentence id"
-msgstr ""
+msgstr "ID zdania"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/S/s.ctp#L41
 msgid ""
@@ -3411,11 +3412,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L86
 msgid "Check out the vocabulary for which we need sentences"
-msgstr ""
+msgstr "Sprawdź słownictwo dla którego poszukujemy zdań."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/add.ctp#L88
 msgid "Sentences wanted"
-msgstr ""
+msgstr "Zdania poszukiwane"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L38
 msgid "{user}'s sentences"
@@ -3427,7 +3428,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
-msgstr ""
+msgstr "Pokaż tylko pierwotne zdania"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L89
 msgid "{user} does not own any sentences in {language}"
@@ -3474,7 +3475,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L77
 msgid "More search criteria"
-msgstr ""
+msgstr "Więcej kryteriów wyszukiwania"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/search.ctp#L106
@@ -4763,7 +4764,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L706
 msgid "Other lists"
-msgstr ""
+msgstr "Inne listy"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by {user}"
@@ -4936,11 +4937,11 @@ msgstr "do {recipient}"
 #. private message type (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L118
 msgid "Draft"
-msgstr ""
+msgstr "Szkic"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L121
 msgid "notification from Tatoeba"
-msgstr ""
+msgstr "powiadomienie z Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L125
 msgid "from {sender}"
@@ -4977,7 +4978,7 @@ msgstr[3] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PagesHelper.php#L84
 msgid "Recently added sentences may not appear in search results."
-msgstr ""
+msgstr "Ostatnio dodane zdania mogą nie pojawić się w wynikach wyszukiwania."
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
@@ -5001,7 +5002,7 @@ msgstr "Użytkownik {sender} napisał:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L102
 msgid "Mark as unread"
-msgstr ""
+msgstr "Oznacz jako nieprzeczytane"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L77
 msgid "Show sentence's details"
@@ -5052,11 +5053,11 @@ msgstr "Dodane przez {username}, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
 msgid "Remove tag '{tagName}' from this sentence."
-msgstr ""
+msgstr "Usuń tag '{tagName}' z tego zdania."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
 msgid "Remove tag from sentence"
-msgstr ""
+msgstr "Usuń znacznik ze zdania"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L152
 msgid "Show alternative script"
