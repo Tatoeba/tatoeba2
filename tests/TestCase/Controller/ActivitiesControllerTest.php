@@ -18,7 +18,8 @@ class ActivitiesControllerTest extends IntegrationTestCase {
         'app.sentences_sentences_lists',
         'app.transcriptions',
         'app.users',
-        'app.users_languages'
+        'app.users_languages',
+        'app.users_sentences',
     );
 
     public function accessesProvider() {
