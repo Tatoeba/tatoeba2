@@ -3,9 +3,13 @@
 
     angular
         .module('app', ['ngMaterial', 'ngMessages', 'ngCookies', 'ngSanitize'])
-        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$cookiesProvider', function(
-            $mdThemingProvider, $mdIconProvider, $httpProvider, $cookiesProvider
+        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$cookiesProvider',
+                 '$compileProvider', function(
+            $mdThemingProvider, $mdIconProvider, $httpProvider, $cookiesProvider, $compileProvider
         ) {
+            $compileProvider.debugInfoEnabled(false);
+            $compileProvider.commentDirectivesEnabled(false);
+            $compileProvider.cssClassDirectivesEnabled(false);
             $mdThemingProvider.theme('default')
                 .primaryPalette('green')
                 .accentPalette('grey')
