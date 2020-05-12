@@ -1317,47 +1317,4 @@ class SentencesTable extends Table
 
         return $this->delete($sentence);
     }
-
-    private function orderby($expr, $order)
-    {
-        return $expr . ($order ? ' ASC' : ' DESC');
-    }
-
-    public function sphinxOptions($query, $from, $sort, $sort_reverse)
-    {
-        if ($sort == 'random') {
-            $sortOrder = '@random';
-        } elseif (empty($query)) {
-            // When the query is empty, Sphinx does not perform any
-            // ranking, so we need to rely on ordering instead
-            if ($sort == 'created' || $sort == 'modified') {
-                $sortOrder = $this->orderby($sort, $sort_reverse);
-            } else {
-                $sortOrder = $this->orderby('text_len', !$sort_reverse);
-            }
-        } else {
-            // When there are keywords, Sphinx will perform ranking
-            $sortOrder = $this->orderby('@rank', $sort_reverse);
-            if ($sort == 'words') {
-                $rankingExpr = '-text_len';
-            } elseif ($sort == 'relevance') {
-                $rankingExpr = '-text_len+top(lcs+exact_order*100)*100';
-            } elseif ($sort == 'created' || $sort == 'modified') {
-                $rankingExpr = $sort;
-            }
-        }
-        $index = $from == 'und' ?
-                 array('und_index') :
-                 array($from . '_main_index', $from . '_delta_index');
-        $sphinx = array(
-            'index' => $index,
-            'matchMode' => SPH_MATCH_EXTENDED2,
-            'sortMode' => array(SPH_SORT_EXTENDED => $sortOrder),
-        );
-        if (isset($rankingExpr)) {
-            $sphinx['rankingMode'] = array(SPH_RANK_EXPR => $rankingExpr);
-        };
-
-        return $sphinx;
-    }
 }

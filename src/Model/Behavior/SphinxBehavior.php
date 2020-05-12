@@ -121,7 +121,8 @@ class SphinxBehavior extends Behavior
 
         $indexes = !empty($options['sphinx']['index']) ? implode(',' , $options['sphinx']['index']) : '*';
 
-        $result = $sphinx->Query($options['search'], $indexes);
+        $search = $options['sphinx']['query'] ?? '';
+        $result = $sphinx->Query($search, $indexes);
 
         // avoid failing just because search operators are being misused
         if ($result === false) {
@@ -148,7 +149,7 @@ class SphinxBehavior extends Behavior
             $query['fields'] = 'ABS(' . $result['total'] . ') AS count';
         } else {*/
             $this->_cached_result = $result;
-            $this->_cached_query = $options['search'];
+            $this->_cached_query = $search;
             if (isset($result['matches'])) {
                 $ids = array_keys($result['matches']);
             } else {

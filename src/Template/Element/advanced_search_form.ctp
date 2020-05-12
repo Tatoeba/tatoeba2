@@ -150,7 +150,7 @@ echo $this->Form->create('AdvancedSearch', [
                 <label for="list" flex><?= __('Belongs to list:') ?></label>
                 <div flex>
                 <?php
-                $listOptions = $this->Lists->listsAsSelectable($searchableLists);
+                $listOptions = $this->Lists->listsAsSelectable($searchableLists->toList());
                 echo $this->Form->input('list', [
                     'class' => 'list-select',
                     'label' => '',
