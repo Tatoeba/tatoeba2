@@ -114,28 +114,6 @@ class LanguagesHelper extends AppHelper
         return $languages;
     }
 
-
-    /**
-     * Returns array of languages set in the user's options.
-     */
-    public function userLanguagesArray()
-    {
-        $languages = $this->onlyLanguagesArray();
-
-        if (CurrentUser::isMember()) {
-            $userLangs = CurrentUser::getLanguages();
-            if (!empty($userLangs)) {
-                $filteredLangs = array();
-                foreach($userLangs as $langCode) {
-                    $filteredLangs[$langCode] = $languages[$langCode];
-                }
-                $languages = $filteredLangs;
-            }
-        }
-
-        return $languages;
-    }
-
     /**
      * Returns array of languages set in the user's profile.
      *
@@ -207,23 +185,6 @@ class LanguagesHelper extends AppHelper
         $options = ['' => __('other language')];
 
         return $options + $languages;
-    }
-
-
-    /**
-     * Return array of language + "auto"
-     * used to know if the user want the language of a contribution
-     * to be manualy set or auto detect
-     *
-     * @return array
-     */
-
-    public function translationsArray()
-    {
-        $languages = $this->userLanguagesArray();
-        $options = ['auto' => __('Auto detect')];
-
-        return $languages;
     }
 
 

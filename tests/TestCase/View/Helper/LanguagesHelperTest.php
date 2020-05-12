@@ -36,32 +36,6 @@ class LanguagesHelperTest extends TestCase {
 		CurrentUser::store($admin);
 	}
 
-	function testUserLanguagesArray_returnsManyManyLanguages() {
-		$result = $this->Languages->userLanguagesArray();
-		$this->assertTrue(count($result) > 100);
-	}
-
-	function testUserLanguagesArray_returnsPreferredLanguagesIfAny() {
-		$this->_beRegularUser();
-		$expectedUserLanguages = array('jpn', 'epo', 'ara', 'deu');
-
-		$result = $this->Languages->userLanguagesArray();
-		$result = array_keys($result);
-
-		$this->assertEquals($expectedUserLanguages, $result);
-	}
-
-	function testTranslationsArray_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->translationsArray();
-		$this->assertEquals('Japanese', $result['jpn']);
-	}
-
-	function testTranslationsArray_returnsLocalizedLangagesNames() {
-		I18N::setLocale('ja');
-		$result = $this->Languages->translationsArray();
-		$this->assertEquals('日本語', $result['jpn']);
-	}
-
 	function testLanguagesArray_returnsUnlocalizedLangagesNames() {
 		$result = $this->Languages->languagesArrayAlone();
 		$this->assertEquals('Japanese', $result['jpn']);
