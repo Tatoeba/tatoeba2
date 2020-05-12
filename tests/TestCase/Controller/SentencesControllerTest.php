@@ -144,7 +144,7 @@ class SentencesControllerTest extends IntegrationTestCase {
                 'assertResponseOk'
             ],
             'user without profile language' => [
-                'advanced_contributor',
+                'admin',
                 ['value' => 'SPAM', 'selectedLang' => 'eng'],
                 'assertResponseEmpty'
             ],
