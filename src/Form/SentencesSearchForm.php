@@ -248,6 +248,9 @@ class SentencesSearchForm extends Form
             $data['trans_to'] = $data['to'];
         }
 
+        /* Remove unknown parameters */
+        $data = array_intersect_key($data, $this->defaultCriteria);
+
         /* Apply default criteria */
         $data = array_merge($this->defaultCriteria, $data);
 

@@ -52,6 +52,11 @@ class SentencesSearchFormTest extends TestCase
         $this->assertEquals($expected, $this->Form->getData());
     }
 
+    public function testUnknownParam() {
+        $this->Form->setData(['unknown_param' => 'super strange']);
+        $this->assertNull($this->Form->getData('unknown_param'));
+    }
+
     public function searchParamsProvider() {
         return [
             [ 'query',
