@@ -1,7 +1,7 @@
 <?php
 namespace App\Test\TestCase\Model;
 
-include(APP.'Lib/SphinxClient.php'); // needed to get the constants
+include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use App\Model\Search;
 use Cake\TestSuite\TestCase;
 

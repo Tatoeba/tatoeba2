@@ -1,7 +1,5 @@
 <?php
 
-include(APP.'Lib/SphinxClient.php'); // needed to get the constants
-
 use App\Form\SentencesSearchForm;
 use Cake\TestSuite\TestCase;
 
