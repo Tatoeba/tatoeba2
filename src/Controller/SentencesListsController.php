@@ -391,6 +391,12 @@ class SentencesListsController extends AppController
                 $user->level = -1;
                 $this->Users->save($user);
             }
+            $this->loadModel('SentencesLists');
+            $list = $this->SentencesLists->get($listId);
+            if ($list) {
+                $list->visibility = 'private';
+                $this->SentencesLists->save($list);
+            }
         }
 
         if (!is_null($listId) && !is_null($sentenceText)) {

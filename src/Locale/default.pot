@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-30 07:04+0800\n"
+"POT-Creation-Date: 2020-05-08 11:57+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,66 +102,66 @@ msgstr ""
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L541
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L545
 msgid "“owned by a self-identified native”, because “sentence language” is set to “any”"
 msgstr ""
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L585
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L589
 msgid "“translation is orphan”, because “translation owner” is set to a username"
 msgstr ""
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L594
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L598
 msgid "“translation owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L636
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L640
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
 msgstr ""
 
 #. This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L645
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L649
 msgid "“sentence owner”, because “{username}” is not a valid username"
 msgstr ""
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L682
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L686
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
 msgstr ""
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L713
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L717
 msgid "“belongs to list number {listId}”, because list {listId} is private or does not exist"
 msgstr ""
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L751
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L755
 msgid "“owned by a self-identified native”, because the criterion “owned by: {username}” is set whereas he or she is not a self-identified native in the language you're searching into"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1144
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1148
 msgid "You are not allowed to change the license of this sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1151
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1155
 msgid "The license of the sentence has been changed to “{newLicense}”."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1156
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L1160
 msgid "Unable to change the license to “{newLicense}” because:"
 msgstr ""
 
@@ -173,8 +173,8 @@ msgstr ""
 msgid "The sentence could not be added to the list."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L489
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L521
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L495
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L527
 msgid "You do not have permission to download this list."
 msgstr ""
 
@@ -325,7 +325,7 @@ msgid "Unknown number of sentences"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L152
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L15
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L42
 msgid "{number} sentence"
 msgid_plural "{number} sentences"
@@ -847,7 +847,7 @@ msgid "{username} has not contributed any audio"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
 msgid "Activity timeline"
 msgstr ""
 
@@ -1117,19 +1117,11 @@ msgid ""
 "        If you have any question, feel free to <a href=\"{contact}\">contact us</a>."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L64
-msgid "Tatoeba coding event"
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L65
+msgid "Would you like to help with the development of Tatoeba? Join our <a href=\"{}\">coding event</a>!"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L66
-msgid "In order to get more developers involved in Tatoeba and have some fun at the same time, we are organizing a coding event. If this sounds interesting, please fill up <a href=\"{}\">our survey</a>."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L70
-msgid "Until then, if you wish to get involved, please read our <a href=\"{}\">guide for contributing as a developer</a> or just <a href=\"{}\">contact us</a>. We are an open source project and we welcome everyone!"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L83
 msgid "Warning: this website is for testing purposes. Everything you submit will be definitely lost."
 msgstr ""
 
@@ -2072,7 +2064,7 @@ msgid_plural "{number} supported languages"
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L35
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
 msgid "Stats per languages"
 msgstr ""
 
@@ -2893,7 +2885,7 @@ msgstr ""
 #. header text in the home page (noun)
 #. / header text in side bar of profile pages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L46
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index_for_guests.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L92
 msgid "Stats"
 msgstr ""

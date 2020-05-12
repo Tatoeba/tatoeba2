@@ -523,7 +523,7 @@ class LanguagesLib
                 'afb' => __d('languages', 'Gulf Arabic'),
                 'min' => __d('languages', 'Minangkabau'),
                 'tmw' => __d('languages', 'Temuan'),
-                'cjy' => __d('languages', 'Chinese (Jin)'),
+                'cjy' => __d('languages', 'Jin Chinese'),
                 'mai' => __d('languages', 'Maithili'),
                 'mad' => __d('languages', 'Madurese'),
                 'bjn' => __d('languages', 'Banjar'),
@@ -591,6 +591,7 @@ class LanguagesLib
                 'nys' => __d('languages', 'Nyungar'),
                 'tts' => __d('languages', 'Isan'),
                 'toi' => __d('languages', 'Tonga (Zambezi)'),
+                'new' => __d('languages', 'Newari'),
             );
         }
         return $languages;

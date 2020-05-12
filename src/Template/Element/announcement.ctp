@@ -60,17 +60,11 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
 
 if (Configure::read('Announcement.enabled')) {
     $isDisplayingAnnouncement = true;
-    $announcementId = 'coding-event-2020';
-    $announcementText = $this->Html->tag('strong', __('Tatoeba coding event'));
-    $announcementText .= $this->Html->tag('p', format(__(
-        'In order to get more developers involved in Tatoeba and have some fun at the same time, we are organizing a coding event. '.
-        'If this sounds interesting, please fill up <a href="{}">our survey</a>.'
-    ), 'https://forms.gle/wyLqhcyLZxkiqn1WA'));
-    $announcementText .= $this->Html->tag('p', format(__(
-        'Until then, if you wish to get involved, please read our <a href="{}">guide for contributing as a developer</a> '.
-        'or just <a href="{}">contact us</a>. We are an open source project and we welcome everyone!'
-    ), 'https://github.com/Tatoeba/tatoeba2/wiki/Contributing-as-a-developer', $this->Url->build(['controller' => 'pages', 'action' => 'contact'])));
-
+    $announcementId = 'kodoeba';
+    $announcementText = $this->Html->tag('div', format(__(
+        'Would you like to help with the development of Tatoeba? Join our <a href="{}">coding event</a>!'
+    ), 'https://blog.tatoeba.org/2020/05/announcing-kodoeba-1.html'));
+    
     $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
     $content = $this->Html->div('content', $announcementText);
 

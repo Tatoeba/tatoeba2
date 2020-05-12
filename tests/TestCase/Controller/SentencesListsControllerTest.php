@@ -115,6 +115,9 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertEquals(-1, $user->level);
+        $lists = TableRegistry::get('SentencesLists');
+        $list = $lists->get(1);
+        $this->assertEquals('private', $list->visibility);
     }
 
     public function testAddSentenceToListAsNormalUser_doesNotBans() {
@@ -132,6 +135,9 @@ class SentencesListsControllerTest extends IntegrationTestCase
         $users = TableRegistry::get('Users');
         $user = $users->findByUsername($username)->first();
         $this->assertNotEquals(-1, $user->level);
+        $lists = TableRegistry::get('SentencesLists');
+        $list = $lists->get(1);
+        $this->assertNotEquals('private', $list->visibility);
     }
 
     public function save_name() {

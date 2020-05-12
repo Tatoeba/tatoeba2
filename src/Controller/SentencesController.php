@@ -290,6 +290,11 @@ class SentencesController extends AppController
      */
     public function add_an_other_sentence()
     {
+        // Users without a profile language should not be able to add sentences
+        if (empty(CurrentUser::getProfileLanguages())) {
+            return;
+        }
+
         $userId = $this->Auth->user('id');
         $userLevel = $this->Sentences->Users->getLevelOfUser($userId);
         if ($userLevel < 0) {
@@ -299,8 +304,7 @@ class SentencesController extends AppController
         $sentenceLang = $this->request->getData('selectedLang');
         $sentenceText = $this->request->getData('value');
 
-        if (is_null($sentenceText) || is_null($sentenceLang)) {
-            //TODO add error handling
+        if (empty($sentenceText) || empty($sentenceLang)) {
             return;
         }
 
