@@ -8,7 +8,6 @@ use Cake\TestSuite\TestCase;
 class SearchTest extends TestCase
 {
     public $fixtures = [
-        'app.users',
         'app.sentences_lists',
         'app.users_languages',
         'app.tags',
@@ -49,14 +48,6 @@ class SearchTest extends TestCase
         $this->assertQuery('', '');
     }
 
-    public function testfilterByQuery_nonBreakableSpace() {
-        $this->assertQuery('ceci ; cela ; parce que', "ceci\u{a0}; cela\u{a0}; parce que");
-    }
-
-    public function testfilterByQuery_wideSpace() {
-        $this->assertQuery('散りぬるを 我が世誰ぞ', "散りぬるを　我が世誰ぞ");
-    }
-
     public function testfilterByLanguage_validLang() {
         $result = $this->Search->filterByLanguage('por');
         $this->assertEquals('por', $result);
@@ -68,7 +59,7 @@ class SearchTest extends TestCase
 
     public function testfilterByLanguage_und() {
         $result = $this->Search->filterByLanguage('und');
-        $this->assertEquals('und', $result);
+        $this->assertNull($result);
 
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
@@ -77,7 +68,7 @@ class SearchTest extends TestCase
 
     public function testfilterByLanguage_invalidLang() {
         $result = $this->Search->filterByLanguage('1234567890');
-        $this->assertEquals('und', $result);
+        $this->assertNull($result);
 
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
@@ -89,136 +80,99 @@ class SearchTest extends TestCase
         $this->testfilterByLanguage_und();
     }
 
-    public function testfilterByOwnerName_invalid() {
-        $result = $this->Search->filterByOwnerName('userdoesnotexists');
-        $this->assertFalse($result);
-    }
-
-    public function testfilterByOwnerName_valid() {
-        $result = $this->Search->filterByOwnerName('contributor');
-        $this->assertTrue($result);
+    public function testfilterByOwnerId() {
+        $result = $this->Search->filterByOwnerId(4);
+        $this->assertEquals(4, $result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['user_id', 4]]];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnerName_empty() {
-        $expected = ['index' => ['und_index']];
-        $result = $this->Search->filterByOwnerName('');
-        $this->assertTrue($result);
+    public function testfilterByOwnerId_null() {
+        $result = $this->Search->filterByOwnerId(null);
+        $this->assertNull($result);
 
+        $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOwnerName_resets() {
-        $this->testfilterByOwnerName_valid();
-        $this->testfilterByOwnerName_empty();
-    }
-
-    public function testfilterByOrphanship_yes() {
-        $result = $this->Search->filterByOrphanship('yes');
-        $this->assertEquals('yes', $result);
+    public function testfilterByOrphanship_true() {
+        $result = $this->Search->filterByOrphanship(true);
+        $this->assertTrue($result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['user_id', 0, false]]];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOrphanship_no() {
-        $result = $this->Search->filterByOrphanship('no');
-        $this->assertEquals('no', $result);
+    public function testfilterByOrphanship_false() {
+        $result = $this->Search->filterByOrphanship(false);
+        $this->assertFalse($result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['user_id', 0, true]]];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOrphanship_invalid() {
-        $result = $this->Search->filterByOrphanship('invalid value');
-        $this->assertEquals('', $result);
+    public function testfilterByOrphanship_null() {
+        $result = $this->Search->filterByOrphanship(null);
+        $this->assertNull($result);
 
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByOrphanship_empty() {
-        $result = $this->Search->filterByOrphanship('');
-        $this->assertEquals('', $result);
-
-        $expected = ['index' => ['und_index']];
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByCorrectness_yes() {
-        $result = $this->Search->filterByCorrectness('yes');
-        $this->assertEquals('yes', $result);
+    public function testfilterByCorrectness_true() {
+        $result = $this->Search->filterByCorrectness(true);
+        $this->assertTrue($result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['ucorrectness', 127, false]]];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByCorrectness_no() {
-        $result = $this->Search->filterByCorrectness('no');
-        $this->assertEquals('no', $result);
+    public function testfilterByCorrectness_false() {
+        $result = $this->Search->filterByCorrectness(false);
+        $this->assertFalse($result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['ucorrectness', 127, true]]];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByCorrectness_invalid() {
-        $result = $this->Search->filterByCorrectness('invalid value');
-        $this->assertEquals('', $result);
+    public function testfilterByCorrectness_null() {
+        $result = $this->Search->filterByCorrectness(null);
+        $this->assertNull($result);
 
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByCorrectness_empty() {
-        $result = $this->Search->filterByCorrectness('');
-        $this->assertEquals('', $result);
-
-        $expected = ['index' => ['und_index']];
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByAudio_yes() {
-        $result = $this->Search->filterByAudio('yes');
-        $this->assertEquals('yes', $result);
+    public function testfilterByAudio_true() {
+        $result = $this->Search->filterByAudio(true);
+        $this->assertTrue($result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['has_audio', 1]]];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByAudio_no() {
-        $result = $this->Search->filterByAudio('no');
-        $this->assertEquals('no', $result);
+    public function testfilterByAudio_false() {
+        $result = $this->Search->filterByAudio(false);
+        $this->assertFalse($result);
 
         $expected = ['index' => ['und_index'], 'filter' => [['has_audio', 0]]];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByAudio_invalid() {
-        $result = $this->Search->filterByAudio('invalid value');
-        $this->assertEquals('', $result);
-
-        $expected = ['index' => ['und_index']];
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByAudio_empty() {
-        $result = $this->Search->filterByAudio('');
-        $this->assertEquals('', $result);
+    public function testfilterByAudio_null() {
+        $result = $this->Search->filterByAudio(null);
+        $this->assertNull($result);
 
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
@@ -298,8 +252,8 @@ class SearchTest extends TestCase
 
     public function testfilterByNativeSpeaker_fra() {
         $this->Search->filterByLanguage('fra');
-        $result = $this->Search->filterByNativeSpeaker('yes');
-        $this->assertEquals('yes', $result);
+        $result = $this->Search->filterByNativeSpeaker(true);
+        $this->assertTrue($result);
 
         $expected = [
             'index' => ['fra_main_index', 'fra_delta_index'],
@@ -309,20 +263,10 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByNativeSpeaker_invalid() {
+    public function testfilterByNativeSpeaker_null() {
         $this->Search->filterByLanguage('fra');
-        $result = $this->Search->filterByNativeSpeaker('invalid value');
-        $this->assertEquals('', $result);
-
-        $expected = ['index' => ['fra_main_index', 'fra_delta_index']];
-        $result = $this->Search->asSphinx();
-        $this->assertEquals($expected, $result);
-    }
-
-    public function testfilterByNativeSpeaker_empty() {
-        $this->Search->filterByLanguage('fra');
-        $result = $this->Search->filterByNativeSpeaker('');
-        $this->assertEquals('', $result);
+        $result = $this->Search->filterByNativeSpeaker(null);
+        $this->assertNull($result);
 
         $expected = ['index' => ['fra_main_index', 'fra_delta_index']];
         $result = $this->Search->asSphinx();
@@ -331,12 +275,12 @@ class SearchTest extends TestCase
 
     public function testfilterByNativeSpeaker_resets() {
         $this->testfilterByNativeSpeaker_fra();
-        $this->testfilterByNativeSpeaker_empty();
+        $this->testfilterByNativeSpeaker_null();
     }
 
     public function testfilterByNativeSpeaker_withLimit() {
         $this->Search->filterByLanguage('fra');
-        $this->Search->filterByNativeSpeaker('yes');
+        $this->Search->filterByNativeSpeaker(true);
         $this->Search->setSphinxFilterArrayLimit(1);
         $expected = [
             'index' => ['fra_main_index', 'fra_delta_index'],
@@ -435,16 +379,16 @@ class SearchTest extends TestCase
 
     public function testfilterByTranslation_invalid() {
         $result = $this->Search->filterByTranslation('invalid value');
-        $this->assertEquals('', $result);
+        $this->assertNull($result);
 
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslation_empty() {
-        $result = $this->Search->filterByTranslation('');
-        $this->assertEquals('', $result);
+    public function testfilterByTranslation_null() {
+        $result = $this->Search->filterByTranslation(null);
+        $this->assertNull($result);
 
         $expected = ['index' => ['und_index']];
         $result = $this->Search->asSphinx();
@@ -453,13 +397,13 @@ class SearchTest extends TestCase
 
     public function testfilterByTranslation_resets() {
         $this->testfilterByTranslation_limit();
-        $this->testfilterByTranslation_empty();
+        $this->testfilterByTranslation_null();
     }
 
-    public function testfilterByTranslationAudio_yes() {
+    public function testfilterByTranslationAudio_true() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationAudio('yes');
-        $this->assertEquals('yes', $result);
+        $result = $this->Search->filterByTranslationAudio(true);
+        $this->assertTrue($result);
 
         $expected = [
             'index' => ['und_index'],
@@ -470,10 +414,10 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationAudio_no() {
+    public function testfilterByTranslationAudio_false() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationAudio('no');
-        $this->assertEquals('no', $result);
+        $result = $this->Search->filterByTranslationAudio(false);
+        $this->assertFalse($result);
 
         $expected = [
             'index' => ['und_index'],
@@ -484,16 +428,9 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationAudio_invalid() {
-        $result = $this->Search->filterByTranslationAudio('invalid value');
-        $this->assertEquals('', $result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationAudio_empty() {
-        $result = $this->Search->filterByTranslationAudio('');
-        $this->assertEquals('', $result);
+    public function testfilterByTranslationAudio_null() {
+        $result = $this->Search->filterByTranslationAudio(null);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
@@ -514,21 +451,21 @@ class SearchTest extends TestCase
 
     public function testfilterByTranslationLanguage_invalid() {
         $result = $this->Search->filterByTranslationLanguage('invalid value');
-        $this->assertEquals('und', $result);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
 
-    public function testfilterByTranslationLanguage_empty() {
-        $result = $this->Search->filterByTranslationLanguage('');
-        $this->assertEquals('und', $result);
+    public function testfilterByTranslationLanguage_null() {
+        $result = $this->Search->filterByTranslationLanguage(null);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
 
     public function testfilterByTranslationLanguage_resets() {
         $this->testfilterByTranslationLanguage_ainu();
-        $this->testfilterByTranslationLanguage_empty();
+        $this->testfilterByTranslationLanguage_null();
     }
 
     public function testfilterByTranslationLink_direct() {
@@ -561,27 +498,27 @@ class SearchTest extends TestCase
 
     public function testfilterByTranslationLink_invalid() {
         $result = $this->Search->filterByTranslationLink('invalid value');
-        $this->assertEquals('', $result);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
 
-    public function testfilterByTranslationLink_empty() {
-        $result = $this->Search->filterByTranslationLink('');
-        $this->assertEquals('', $result);
+    public function testfilterByTranslationLink_null() {
+        $result = $this->Search->filterByTranslationLink(null);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
 
     public function testfilterByTranslationLink_resets() {
         $this->testfilterByTranslationLink_direct();
-        $this->testfilterByTranslationLink_empty();
+        $this->testfilterByTranslationLink_null();
     }
 
-    public function testfilterByTranslationOwnerName_valid() {
+    public function testfilterByTranslationOwnerId() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOwnerName('contributor');
-        $this->assertTrue($result);
+        $result = $this->Search->filterByTranslationOwnerId(4);
+        $this->assertEquals(4, $result);
 
         $expected = [
             'index' => ['und_index'],
@@ -592,29 +529,17 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationOwnerName_invalid() {
-        $result = $this->Search->filterByTranslationOwnerName('userdoesnotexists');
-        $this->assertFalse($result);
+    public function testfilterByTranslationOwnerId_null() {
+        $result = $this->Search->filterByTranslationOwnerId(null);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
 
-    public function testfilterByTranslationOwnerName_empty() {
-        $result = $this->Search->filterByTranslationOwnerName('');
-        $this->assertTrue($result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationOwnerName_resets() {
-        $this->testfilterByTranslationOwnerName_valid();
-        $this->testfilterByTranslationOwnerName_empty();
-    }
-
-    public function testfilterByTranslationOrphanship_yes() {
+    public function testfilterByTranslationOrphanship_true() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOrphanship('yes');
-        $this->assertEquals('yes', $result);
+        $result = $this->Search->filterByTranslationOrphanship(true);
+        $this->assertTrue($result);
 
         $expected = [
             'index' => ['und_index'],
@@ -625,10 +550,10 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationOrphanship_no() {
+    public function testfilterByTranslationOrphanship_false() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationOrphanship('no');
-        $this->assertEquals('no', $result);
+        $result = $this->Search->filterByTranslationOrphanship(false);
+        $this->assertFalse($result);
 
         $expected = [
             'index' => ['und_index'],
@@ -639,29 +564,22 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationOrphanship_invalid() {
-        $result = $this->Search->filterByTranslationOrphanship('invalid value');
-        $this->assertEquals('', $result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationOrphanship_empty() {
-        $result = $this->Search->filterByTranslationOrphanship('');
-        $this->assertEquals('', $result);
+    public function testfilterByTranslationOrphanship_null() {
+        $result = $this->Search->filterByTranslationOrphanship(null);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
 
     public function testfilterByTranslationOrphanship_resets() {
-        $this->testfilterByTranslationOrphanship_yes();
-        $this->testfilterByTranslationOrphanship_empty();
+        $this->testfilterByTranslationOrphanship_true();
+        $this->testfilterByTranslationOrphanship_null();
     }
 
-    public function testfilterByTranslationCorrectness_yes() {
+    public function testfilterByTranslationCorrectness_true() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationCorrectness('yes');
-        $this->assertEquals('yes', $result);
+        $result = $this->Search->filterByTranslationCorrectness(true);
+        $this->assertTrue($result);
 
         $expected = [
             'index' => ['und_index'],
@@ -672,10 +590,10 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationCorrectness_no() {
+    public function testfilterByTranslationCorrectness_false() {
         $this->Search->filterByTranslation('limit');
-        $result = $this->Search->filterByTranslationCorrectness('no');
-        $this->assertEquals('no', $result);
+        $result = $this->Search->filterByTranslationCorrectness(false);
+        $this->assertFalse($result);
 
         $expected = [
             'index' => ['und_index'],
@@ -686,23 +604,16 @@ class SearchTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    public function testfilterByTranslationCorrectness_invalid() {
-        $result = $this->Search->filterByTranslationCorrectness('invalid value');
-        $this->assertEquals('', $result);
-
-        $this->testfilterByTranslation_limit();
-    }
-
-    public function testfilterByTranslationCorrectness_empty() {
-        $result = $this->Search->filterByTranslationCorrectness('');
-        $this->assertEquals('', $result);
+    public function testfilterByTranslationCorrectness_null() {
+        $result = $this->Search->filterByTranslationCorrectness(null);
+        $this->assertNull($result);
 
         $this->testfilterByTranslation_limit();
     }
 
     public function testfilterByTranslationCorrectness_resets() {
-        $this->testfilterByTranslationCorrectness_yes();
-        $this->testfilterByTranslationCorrectness_empty();
+        $this->testfilterByTranslationCorrectness_true();
+        $this->testfilterByTranslationCorrectness_null();
     }
 
     private function assertSortByRank($sort, $rank) {
@@ -737,7 +648,7 @@ class SearchTest extends TestCase
     public function testSortByRelevance_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('relevance', $this->Search->sort('relevance'));
-        $this->assertEquals('yes',       $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortByRank('@rank ASC', '-text_len+top(lcs+exact_order*100)*100');
     }
 
@@ -750,7 +661,7 @@ class SearchTest extends TestCase
     public function testSortByRelevance_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('relevance', $this->Search->sort('relevance'));
-        $this->assertEquals('yes', $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortBy('text_len DESC');
     }
 
@@ -763,7 +674,7 @@ class SearchTest extends TestCase
     public function testSortByWords_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('words', $this->Search->sort('words'));
-        $this->assertEquals('yes',   $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortByRank('@rank ASC', '-text_len');
     }
 
@@ -776,7 +687,7 @@ class SearchTest extends TestCase
     public function testSortByWords_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('words', $this->Search->sort('words'));
-        $this->assertEquals('yes',   $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortBy('text_len DESC');
     }
 
@@ -789,7 +700,7 @@ class SearchTest extends TestCase
     public function testSortByCreated_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('created', $this->Search->sort('created'));
-        $this->assertEquals('yes',     $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortBy('created ASC');
     }
 
@@ -802,7 +713,7 @@ class SearchTest extends TestCase
     public function testSortByCreated_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('created', $this->Search->sort('created'));
-        $this->assertEquals('yes',     $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortByRank('@rank ASC', 'created');
     }
 
@@ -815,7 +726,7 @@ class SearchTest extends TestCase
     public function testSortByModified_withEmptyQuery_reversed() {
         $this->Search->filterByQuery('');
         $this->assertEquals('modified', $this->Search->sort('modified'));
-        $this->assertEquals('yes',      $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortBy('modified ASC');
     }
 
@@ -828,8 +739,18 @@ class SearchTest extends TestCase
     public function testSortByModified_withNonEmptyQuery_reversed() {
         $this->Search->filterByQuery('comme ci comme ça');
         $this->assertEquals('modified', $this->Search->sort('modified'));
-        $this->assertEquals('yes',      $this->Search->reverseSort('yes'));
+        $this->Search->reverseSort(true);
         $this->assertSortByRank('@rank ASC', 'modified');
+    }
+
+    public function testReverseSort_returnsTrue() {
+        $result = $this->Search->reverseSort(true);
+        $this->assertTrue($result);
+    }
+
+    public function testReverseSort_returnsFalse() {
+        $result = $this->Search->reverseSort(false);
+        $this->assertFalse($result);
     }
 
     public function testSortByRandom() {
@@ -859,12 +780,6 @@ class SearchTest extends TestCase
     public function testSortBy_resets() {
         $this->Search->sort('relevance');
         $this->testSortByEmpty();
-    }
-
-    public function testReverseSort_resets() {
-        $this->Search->reverseSort('yes');
-        $this->assertEquals('', $this->Search->reverseSort(''));
-        $this->testSortByRelevance_withEmptyQuery();
     }
 
     public function testGetSearchableLists_asGuest() {
