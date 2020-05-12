@@ -238,4 +238,60 @@ class SentencesSearchFormTest extends TestCase
         $this->Form->setData(['sort' => '']);
         $this->assertEquals('relevance', $this->Form->getData()['sort']);
     }
+
+    public function testGetSearchableLists_asGuest() {
+        $searcher = null;
+        $expected = [
+            ['id' => 5, 'user_id' => 1, 'name' => 'Collaborative list'],
+            ['id' => 6, 'user_id' => 7, 'name' => 'Inactive list'],
+            ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+        ];
+        $this->Form->setData(['list' => '']);
+        $result = $this->Form->getSearchableLists($searcher);
+
+        $this->assertEquals($expected, $result->enableHydration(false)->toArray());
+    }
+
+    public function testGetSearchableLists_asGuest_withUnlisted() {
+        $searcher = null;
+        $expected = [
+            ['id' => 5, 'user_id' => 1, 'name' => 'Collaborative list'],
+            ['id' => 6, 'user_id' => 7, 'name' => 'Inactive list'],
+            ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+            ['id' => 1, 'user_id' => 7, 'name' => 'Interesting French sentences'],
+        ];
+        $this->Form->setData(['list' => '1']);
+        $result = $this->Form->getSearchableLists($searcher);
+
+        $this->assertEquals($expected, $result->enableHydration(false)->toArray());
+    }
+
+    public function testGetSearchableLists_asUser() {
+        $searcher = 7;
+        $expected = [
+            ['id' => 5, 'user_id' => 1, 'name' => 'Collaborative list'],
+            ['id' => 6, 'user_id' => 7, 'name' => 'Inactive list'],
+            ['id' => 1, 'user_id' => 7, 'name' => 'Interesting French sentences'],
+            ['id' => 3, 'user_id' => 7, 'name' => 'Private list'],
+            ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+        ];
+        $this->Form->setData(['list' => '']);
+        $result = $this->Form->getSearchableLists($searcher);
+
+        $this->assertEquals($expected, $result->enableHydration(false)->toArray());
+    }
+
+    public function testGetSearchableLists_asUser_withUnlisted() {
+        $searcher = 3;
+        $expected = [
+            ['id' => 5, 'user_id' => 1, 'name' => 'Collaborative list'],
+            ['id' => 6, 'user_id' => 7, 'name' => 'Inactive list'],
+            ['id' => 2, 'user_id' => 7, 'name' => 'Public list'],
+            ['id' => 1, 'user_id' => 7, 'name' => 'Interesting French sentences'],
+        ];
+        $this->Form->setData(['list' => '1']);
+        $result = $this->Form->getSearchableLists($searcher);
+
+        $this->assertEquals($expected, $result->enableHydration(false)->toArray());
+    }
 }
