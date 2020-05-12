@@ -369,4 +369,17 @@ class SentencesSearchFormTest extends TestCase
         $this->assertCount(1, $this->Form->getIgnoredFields());
         $this->assertEquals('', $this->Form->getData()['native']);
     }
+
+    public function testAsSphinx() {
+        $search = $this->createMock(\App\Model\Search::class);
+        $this->Form->setSearch($search);
+        $stuff = [ 'sphinx result' ];
+        $search->expects($this->once())
+               ->method('asSphinx')
+               ->willReturn($stuff);
+
+        $result = $this->Form->asSphinx();
+
+        $this->assertEquals($stuff, $result);
+    }
 }

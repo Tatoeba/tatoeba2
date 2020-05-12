@@ -369,4 +369,8 @@ class SentencesSearchForm extends Form
 
         return $searchableLists;
     }
+
+    public function asSphinx() {
+        return $this->search->asSphinx();
+    }
 }
