@@ -235,6 +235,15 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
                     'label' => ''
                 )); ?>
             </md-list-item>
+            <?php if ($userSettings->settings['can_switch_license']) : ?>
+                <md-list-item>
+                    <p><?= __('Default license for original sentences'); ?></p>
+                    <?= $this->Form->input('settings.default_license', [
+                        'options' => $this->SentenceLicense->getLicenseOptions(),
+                        'label' => ''
+                    ]); ?>
+                </md-list-item>
+            <?php endif; ?>
         </md-list>
         <br>
 
