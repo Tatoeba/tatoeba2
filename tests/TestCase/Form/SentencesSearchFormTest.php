@@ -164,9 +164,17 @@ class SentencesSearchFormTest extends TestCase
                          ->method($method[0]);
         } elseif ($method) {
             $methodName = array_shift($method);
+            $with = array_map(
+                function ($expected) {
+                    return $this->callback(function($param) use ($expected) {
+                        return $expected === $param;
+                    });
+                },
+                $method
+            );
             $this->Search->expects($this->once())
                          ->method($methodName)
-                         ->with(...$method);
+                         ->with(...$with);
         }
         $this->Form->setData([$getParam => $getValue]);
         $this->assertEquals($getParamReturned, $this->Form->getData()[$getParam]);

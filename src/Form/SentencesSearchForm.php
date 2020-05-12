@@ -196,6 +196,7 @@ class SentencesSearchForm extends Form
 
     protected function setDataList(string $list) {
         $searcher = CurrentUser::get('id');
+        $list = is_numeric($list) ? (int)$list : null;
         if (!$this->search->filterByListId($list, $searcher)) {
             $this->ignored[] = format(
                 /* @translators: This string will be preceded by
@@ -211,7 +212,8 @@ class SentencesSearchForm extends Form
     }
 
     protected function setDataNative(string $native) {
-        $native = $this->search->filterByNativeSpeaker($native === 'yes');
+        $native = $native === 'yes' ? true : null;
+        $native = $this->search->filterByNativeSpeaker($native);
         return $native ? 'yes' : '';
     }
 
