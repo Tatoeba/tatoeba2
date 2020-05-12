@@ -8,6 +8,7 @@ use App\Lib\LanguagesLib;
 use Cake\Event\EventManager;
 use Cake\Form\Form;
 use Cake\Form\Schema;
+use Cake\Utility\Hash;
 use Cake\Utility\Inflector;
 
 class SentencesSearchForm extends Form
@@ -17,6 +18,8 @@ class SentencesSearchForm extends Form
     private $search;
 
     private $ignored = [];
+
+    private $ownerId;
 
     private $defaultCriteria = [
         'query' => '',
@@ -90,6 +93,7 @@ class SentencesSearchForm extends Form
             $result = $this->Users->findByUsername($user, ['fields' => ['id']])->first();
             if ($result) {
                 $this->search->filterByOwnerId($result->id);
+                $this->ownerId = $result->id;
             } else {
                 $this->ignored[] = format(
                     /* @translators: This string will be preceded by “Warning:
@@ -258,6 +262,67 @@ class SentencesSearchForm extends Form
             $keyCamel = Inflector::camelize($key);
             $setter = "setData$keyCamel";
             $this->_data[$key] = $this->$setter($value);
+        }
+    }
+
+    public function checkUnwantedCombinations() {
+        if ($this->_data['user'] && $this->_data['orphans'] === 'yes') {
+            $this->ignored[] = format(
+                /* @translators: This string will be preceded by
+                   “Warning: the following criteria have been
+                   ignored:” */
+                __("“sentence is orphan”, because “sentence ".
+                   "owner” is set to a username", true)
+            );
+            $this->_data['orphans'] = $this->setDataOrphans('');
+        }
+
+        if ($this->_data['trans_user'] && $this->_data['trans_orphan'] === 'yes') {
+            $this->ignored[] = format(
+                /* @translators: This string will be preceded by
+                   “Warning: the following criteria have been
+                   ignored:” */
+                __("“translation is orphan”, because “translation ".
+                   "owner” is set to a username", true)
+            );
+            $this->_data['trans_orphan'] = $this->setDataTransOrphan('');
+        }
+
+        if ($this->_data['native'] === 'yes' && $this->_data['from'] === 'und') {
+            $this->ignored[] = __(
+                /* @translators: This string will be preceded by “Warning: the
+                   following criteria have been ignored:” */
+                "“owned by a self-identified native”, because “sentence ".
+                "language” is set to “any”",
+                true
+            );
+            $this->_data['native'] = $this->setDataNative('');
+        }
+
+        if ($this->_data['native'] === 'yes' && $this->ownerId) {
+            $this->loadModel('UsersLanguages');
+            $natives = $this->UsersLanguages->find()
+                ->where([
+                    'language_code' => $this->_data['from'],
+                    'level' => 5,
+                ])
+                ->select(['of_user_id'])
+                ->toList();
+            $natives = Hash::extract($natives, '{n}.of_user_id');
+            if (!in_array($this->ownerId, $natives)) {
+                $this->ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been
+                       ignored:” */
+                    __("“owned by a self-identified native”, because the ".
+                       "criterion “owned by: {username}” is set whereas ".
+                       "he or she is not a self-identified native in the ".
+                       "language you're searching into",
+                       true),
+                    array('username' => $this->_data['user'])
+                );
+                $this->_data['native'] = $this->setDataNative('');
+            }
         }
     }
 

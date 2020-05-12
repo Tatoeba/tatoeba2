@@ -11,6 +11,7 @@ class SentencesSearchFormTest extends TestCase
         'app.users',
         'app.sentences_lists',
         'app.tags',
+        'app.users_languages',
     ];
 
     public function setUp() {
@@ -301,5 +302,71 @@ class SentencesSearchFormTest extends TestCase
         $result = $this->Form->getSearchableLists($searcher);
 
         $this->assertEquals($expected, $result->enableHydration(false)->toArray());
+    }
+
+    public function testCheckUnwantedCombinations_nop() {
+        $this->Form->setData([]);
+        $this->Form->checkUnwantedCombinations();
+        $this->assertCount(0, $this->Form->getIgnoredFields());
+    }
+
+    public function testCheckUnwantedCombinations_orphanWithUser() {
+        $this->assertMethodCalledWith(
+            $this->Search,
+            'filterByOrphanship',
+            [true, null]
+        );
+
+        $this->Form->setData(['user' => 'contributor', 'orphans' => 'yes']);
+        $this->Form->checkUnwantedCombinations();
+
+        $this->assertCount(1, $this->Form->getIgnoredFields());
+        $this->assertEquals('', $this->Form->getData()['orphans']);
+    }
+
+    public function testCheckUnwantedCombinations_transOrphanWithTransUser() {
+        $this->assertMethodCalledWith(
+            $this->Search,
+            'filterByTranslationOrphanship',
+            [true, null]
+        );
+
+        $this->Form->setData(['trans_user' => 'contributor', 'trans_orphan' => 'yes']);
+        $this->Form->checkUnwantedCombinations();
+
+        $this->assertCount(1, $this->Form->getIgnoredFields());
+        $this->assertEquals('', $this->Form->getData()['trans_orphan']);
+    }
+
+    public function testCheckUnwantedCombinations_nativeWithoutLanguage() {
+        $this->assertMethodCalledWith(
+            $this->Search,
+            'filterByNativeSpeaker',
+            [true, null]
+        );
+
+        $this->Form->setData(['from' => 'und', 'native' => 'yes']);
+        $this->Form->checkUnwantedCombinations();
+
+        $this->assertCount(1, $this->Form->getIgnoredFields());
+        $this->assertEquals('', $this->Form->getData()['native']);
+    }
+
+    public function testCheckUnwantedCombinations_userNotNative() {
+        $this->assertMethodCalledWith(
+            $this->Search,
+            'filterByNativeSpeaker',
+            [true, null]
+        );
+
+        $this->Form->setData([
+            'from' => 'eng',
+            'user' => 'contributor',
+            'native' => 'yes',
+        ]);
+        $this->Form->checkUnwantedCombinations();
+
+        $this->assertCount(1, $this->Form->getIgnoredFields());
+        $this->assertEquals('', $this->Form->getData()['native']);
     }
 }
