@@ -16,6 +16,8 @@ class SentencesSearchForm extends Form
 
     private $search;
 
+    private $ignored = [];
+
     private $defaultCriteria = [
         'query' => '',
         'from' => 'und',
@@ -45,6 +47,10 @@ class SentencesSearchForm extends Form
 
     public function setSearch(Search $search) {
         $this->search = $search;
+    }
+
+    public function getIgnoredFields() {
+        return $this->ignored;
     }
 
     protected function parseYesNoEmpty($value) {
@@ -85,6 +91,13 @@ class SentencesSearchForm extends Form
             if ($result) {
                 $this->search->filterByOwnerId($result->id);
             } else {
+                $this->ignored[] = format(
+                    /* @translators: This string will be preceded by “Warning:
+                       the following criteria have been ignored:” */
+                    __("“sentence owner”, because “{username}” is not a ".
+                       "valid username", true),
+                    array('username' => h($user))
+                );
                 $user = '';
             }
         }
@@ -118,6 +131,13 @@ class SentencesSearchForm extends Form
             if ($result) {
                 $this->search->filterByTranslationOwnerId($result->id);
             } else {
+                $this->ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been ignored:” */
+                    __("“translation owner”, because “{username}” is not ".
+                       "a valid username", true),
+                    ['username' => h($trans_user)]
+                );
                 $trans_user = '';
             }
         }
@@ -158,6 +178,18 @@ class SentencesSearchForm extends Form
             $tagsArray = array_map('trim', $tagsArray);
             $appliedTags = $this->search->filterByTags($tagsArray);
             $tags = implode(',', $appliedTags);
+
+            $ignoredTags = array_diff($tagsArray, $appliedTags);
+            foreach ($ignoredTags as $tagName) {
+                $this->ignored[] = format(
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been
+                       ignored:” */
+                    __("“tagged as {tagName}”, because it's an invalid ".
+                       "tag name", true),
+                    array('tagName' => h($tagName))
+                );
+            }
         }
         return $tags;
     }
@@ -165,6 +197,14 @@ class SentencesSearchForm extends Form
     protected function setDataList(string $list) {
         $searcher = CurrentUser::get('id');
         if (!$this->search->filterByListId($list, $searcher)) {
+            $this->ignored[] = format(
+                /* @translators: This string will be preceded by
+                   “Warning: the following criteria have been
+                   ignored:” */
+                __("“belongs to list number {listId}”, because list ".
+                   "{listId} is private or does not exist", true),
+                array('listId' => $list)
+            );
             $list = '';
         }
         return $list;

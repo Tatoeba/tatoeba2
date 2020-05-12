@@ -90,7 +90,7 @@ class SentencesSearchFormTest extends TestCase
             [ 'orphans', '',        ['filterByOrphanship', null],  ''    ],
 
             [ 'user', 'contributor', ['filterByOwnerId', 4], 'contributor' ],
-            [ 'user', 'invaliduser', ['filterByOwnerId'],    '' ],
+            [ 'user', 'invaliduser', ['filterByOwnerId'],    '', 1 ],
             [ 'user', '',            ['filterByOwnerId'],    '' ],
 
             [ 'has_audio', 'yes',     ['filterByAudio', true],  'yes' ],
@@ -98,14 +98,14 @@ class SentencesSearchFormTest extends TestCase
             [ 'has_audio', 'invalid', ['filterByAudio', null],  ''    ],
             [ 'has_audio', '',        ['filterByAudio', null],  ''    ],
 
-            [ 'tags', 'OK',          ['filterByTags', ['OK']],            'OK' ],
-            [ 'tags', 'invalid tag', ['filterByTags', ['invalid tag']],   ''   ],
-            [ 'tags', 'OK,invalid',  ['filterByTags', ['OK', 'invalid']], 'OK' ],
+            [ 'tags', 'OK',          ['filterByTags', ['OK']],            'OK'    ],
+            [ 'tags', 'invalid tag', ['filterByTags', ['invalid tag']],   '',   1 ],
+            [ 'tags', 'OK,invalid',  ['filterByTags', ['OK', 'invalid']], 'OK', 1 ],
 
-            [ 'list', '2',       ['filterByListId', 2, null],       '2' ],
-            [ 'list', '9999999', ['filterByListId', 9999999, null], ''  ],
-            [ 'list', '',        ['filterByListId', null, null],    ''  ],
-            [ 'list', '3',       ['filterByListId', 3, null],       ''  ],
+            [ 'list', '2',       ['filterByListId', 2, null],       '2'   ],
+            [ 'list', '9999999', ['filterByListId', 9999999, null], '', 1 ],
+            [ 'list', '',        ['filterByListId', null, null],    ''    ],
+            [ 'list', '3',       ['filterByListId', 3, null],       '', 1 ],
 
             [ 'native', 'yes',     ['filterByNativeSpeaker', true],  'yes' ],
             [ 'native', 'no',      ['filterByNativeSpeaker', null],  ''    ],
@@ -140,8 +140,8 @@ class SentencesSearchFormTest extends TestCase
             [ 'trans_orphan', '',        ['filterByTranslationOrphanship', null],  ''    ],
 
             [ 'trans_user', 'contributor', ['filterByTranslationOwnerId', 4], 'contributor' ],
-            [ 'trans_user', 'invaliduser', ['filterByTranslationOwnerId'],    '' ],
-            [ 'trans_user', '',            ['filterByTranslationOwnerId'],    '' ],
+            [ 'trans_user', 'invaliduser', ['filterByTranslationOwnerId'],    '', 1 ],
+            [ 'trans_user', '',            ['filterByTranslationOwnerId'],    ''    ],
 
             [ 'sort', 'relevance', ['sort', 'relevance'], 'relevance' ],
             [ 'sort', 'words',     ['sort', 'words'],     'words'     ],
@@ -158,7 +158,7 @@ class SentencesSearchFormTest extends TestCase
     /**
      * @dataProvider searchParamsProvider
      */
-    public function testSearchParams($getParam, $getValue, $method, $getParamReturned) {
+    public function testSearchParams($getParam, $getValue, $method, $getParamReturned, $ignored = 0) {
         if (count($method) == 1) {
             $this->Search->expects($this->never())
                          ->method($method[0]);
@@ -170,6 +170,8 @@ class SentencesSearchFormTest extends TestCase
         }
         $this->Form->setData([$getParam => $getValue]);
         $this->assertEquals($getParamReturned, $this->Form->getData()[$getParam]);
+
+        $this->assertCount($ignored, $this->Form->getIgnoredFields());
     }
 
     public function testSearchParamToIsCopiedToTransTo_fra() {
