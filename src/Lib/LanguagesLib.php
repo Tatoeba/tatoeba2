@@ -659,6 +659,7 @@ class LanguagesLib
             "otk",
             "tmr",
             "syc",
+            "phn",
         );
 
         $autoLangs = array(
