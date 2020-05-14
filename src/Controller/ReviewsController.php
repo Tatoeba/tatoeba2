@@ -48,6 +48,8 @@ class ReviewsController extends AppController
     {
         $this->loadModel('UsersSentences');
 
+        $this->loadComponent('RequestHandler');
+
         return parent::beforeFilter($event);
     }
 
@@ -59,13 +61,20 @@ class ReviewsController extends AppController
      */
     public function add_sentence($sentenceId, $correctness)
     {
-        $this->UsersSentences->saveSentence(
+        $result = $this->UsersSentences->saveSentence(
             $sentenceId, $correctness, CurrentUser::get('id')
         );
 
         $this->set('sentenceId', $sentenceId);
 
-        $this->render('add_delete');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->set('result', $result);
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
+        } else {
+            $this->render('add_delete');
+        }
     }
 
     /**
@@ -75,13 +84,20 @@ class ReviewsController extends AppController
      */
     public function delete_sentence($sentenceId)
     {
-        $this->UsersSentences->deleteSentence(
+        $result = $this->UsersSentences->deleteSentence(
             $sentenceId, CurrentUser::get('id')
         );
 
         $this->set('sentenceId', $sentenceId);
 
-        $this->render('add_delete');
+        $acceptsJson = $this->request->accepts('application/json');
+        if ($acceptsJson) {
+            $this->set('result', $result);
+            $this->set('_serialize', ['result']);
+            $this->RequestHandler->renderAs($this, 'json');
+        } else {
+            $this->render('add_delete');
+        }
     }
 
     /**

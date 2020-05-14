@@ -11,7 +11,7 @@ $sentenceBaseUrl = $this->Url->build([
      class="translation" ng-class="{'not-reliable' : translation.correctness === -1, 'expanded': vm.isMenuExpanded, 'trusted-user': vm.menu.canLink}">
     
     <div layout="row" layout-align="start center" flex>
-    <span ng-if="vm.menu.canLink">
+    <icon-with-progress is-loading="vm.iconsInProgress['link' + translation.id]" ng-if="vm.menu.canLink">
         <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && translation.isDirect" ng-click="vm.saveLink('delete', translation)">
             <md-icon md-svg-src="/img/link_off.svg"></md-icon>
             <md-tooltip><?= __('Unlink this translation') ?></md-tooltip>
@@ -20,7 +20,7 @@ $sentenceBaseUrl = $this->Url->build([
             <md-icon>link</md-icon>
             <md-tooltip><?= __('Make into direct translation') ?></md-tooltip>
         </md-button>
-    </span>
+    </icon-with-progress>
     <md-icon class="chevron" ng-if="!vm.isMenuExpanded || !vm.menu.canLink">chevron_right</md-icon>
 
     <div class="lang">

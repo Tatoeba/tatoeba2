@@ -677,6 +677,10 @@ class SentencesTable extends Table
                 'SentencesLists' => [
                     'fields' => ['id', 'SentencesSentencesLists.sentence_id']
                 ],
+                'UsersSentences' => function (Query $q) {
+                    return $q->select(['sentence_id', 'correctness'])
+                             ->where(['user_id' => CurrentUser::get('id')]);
+                },
             ];
         }
 

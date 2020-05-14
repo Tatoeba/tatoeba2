@@ -61,7 +61,21 @@
                     }
                 }
             }
-        }]);
+        }])
+        .directive('iconWithProgress', function() {
+            return {
+                restrict: 'E',
+                transclude: true,
+                scope: {
+                    isLoading: '=',
+                },
+                template: 
+                    '<span ng-if="!isLoading"><ng-transclude></ng-transclude></span>' +
+                    '<md-button class="md-icon-button" ng-if="isLoading">' +
+                        '<md-progress-circular md-diameter="24"></md-progress-circular>' +
+                    '</md-button>'
+            }
+        });
 
     angular.module('app').requires.push('ngclipboard');
 
@@ -93,6 +107,7 @@
 
         vm.menu = {};
         vm.inProgress = false;
+        vm.iconsInProgress = {};
         vm.isExpanded = false;
         vm.isMenuExpanded = false;
         vm.expandableIcon = 'expand_more';
@@ -139,6 +154,8 @@
         vm.hide = hide;
         vm.saveTranscription = saveTranscription;
         vm.saveLink = saveLink;
+        vm.setReview = setReview;
+        vm.resetReview = resetReview;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -428,18 +445,20 @@
 
         function favorite() {
             var action = vm.sentence.is_favorite ? 'remove_favorite' : 'add_favorite';
-            
+            vm.iconsInProgress.favorite = true;
             $http.get(rootUrl + '/favorites/' + action + '/' + vm.sentence.id).then(function(result) {
                 vm.sentence.is_favorite = !vm.sentence.is_favorite;
+                vm.iconsInProgress.favorite = false;
             });
         }
 
         function adopt() {
             var action = vm.sentence.is_owned_by_current_user ? 'let_go' : 'adopt';
-            
+            vm.iconsInProgress.adopt = true;
             $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
                 vm.sentence.user = result.data.user;
                 vm.sentence.is_owned_by_current_user = vm.sentence.user && vm.sentence.user.username;
+                vm.iconsInProgress.adopt = false;
             });
         }
 
@@ -637,10 +656,12 @@
             if (translationLang) {
                 url += '?translationLang=' + translationLang;
             }
+            vm.iconsInProgress['link' + translation.id] = true;
             $http.get(url).then(function(result) {
                 var sentence = result.data.sentence;
                 initSentence(sentence);
                 refreshTranslations(sentence.translations);
+                vm.iconsInProgress['link' + translation.id] = false;
             });
         }
 
@@ -681,6 +702,37 @@
 
         function getNumberOfTranslations() {
             return allDirectTranslations.length + allIndirectTranslations.length;
+        }
+
+        function setReview(value) {
+            var reviewType = getReviewType(value);
+            vm.iconsInProgress[reviewType] = true;
+            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
+                vm.sentence.current_user_review =  parseInt(response.data.result.correctness);
+                vm.iconsInProgress[reviewType] = false;
+            });
+        }
+
+        function resetReview() {
+            var reviewType = getReviewType(vm.sentence.current_user_review);
+            vm.iconsInProgress[reviewType] = true;
+            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
+                if (response.data.result) {
+                    vm.sentence.current_user_review = null;
+                    vm.iconsInProgress[reviewType] = false;
+                }
+            });
+        }
+
+        function getReviewType(correctness) {
+            if (correctness === 1) {
+                return 'reviewOk';
+            } else if (correctness === 0) {
+                return 'reviewUnsure';
+            } else if (correctness === -1) {
+                return 'reviewNotOk';
+            }
+            return null;
         }
     }
 

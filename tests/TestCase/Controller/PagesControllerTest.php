@@ -25,6 +25,7 @@ class PagesControllerTest extends IntegrationTestCase
         'app.Transcriptions',
         'app.Users',
         'app.UsersLanguages',
+        'app.UsersSentences',
         'app.Walls'
     ];
 

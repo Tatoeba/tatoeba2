@@ -34,7 +34,8 @@ class Sentence extends Entity
         'lang_tag',
         'is_favorite',
         'is_owned_by_current_user',
-        'permissions'
+        'permissions',
+        'current_user_review'
     ];
 
     protected $_hidden = [
@@ -135,5 +136,13 @@ class Sentence extends Entity
         } else {
             return null;
         }
+    }
+    
+    protected function _getCurrentUserReview()
+    {
+        if (!empty($this->users_sentences)) {
+            return $this->users_sentences[0]->correctness;
+        }
+        return null;
     }
 }
