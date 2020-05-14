@@ -10,7 +10,7 @@ if (CurrentUser::getSetting('use_new_design')) { ?>
 
     <md-button ng-if="menu.expanded" class="md-icon-button" ng-click="menu.toggleAll()">
         <md-icon>unfold_less</md-icon>
-        <md-tooltip><?= __('Show less features for all sentences') ?></md-tooltip>
+        <md-tooltip><?= __('Show fewer features for all sentences') ?></md-tooltip>
     </md-button>
 </span>
 <?php } ?>
