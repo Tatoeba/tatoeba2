@@ -88,7 +88,7 @@
 
             <md-button ng-if="vm.isMenuExpanded" class="md-icon-button" ng-click="vm.toggleMenu()">
                 <md-icon>unfold_less</md-icon>
-                <md-tooltip><?= __('Show less features') ?></md-tooltip>
+                <md-tooltip><?= __('Show fewer features') ?></md-tooltip>
             </md-button>
         </div>
     </div>
