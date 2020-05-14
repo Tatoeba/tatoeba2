@@ -256,6 +256,8 @@ class SphinxConfShell extends Shell {
         'U+118C0..U+118DF', 'U+118E0..U+118F2', 'U+118FF',
         # Mongolian (mon) and Manchu (mnc)
         'U+1810..U+1819', 'U+1820..U+1878', 'U+1880..U+18AA',
+        # Phoenician alphabet
+        'U+10900..U+1091B',
     );
 
     public $scriptsWithoutWordBoundaries = array(
