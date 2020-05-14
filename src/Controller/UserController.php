@@ -72,18 +72,6 @@ class UserController extends AppController
 
     public $components = array('Auth', 'Flash');
 
-
-    public function initialize() {
-        parent::initialize();
-        $params = $this->request->params;
-        $noCsrfActions = [
-            'save_banner_setting',
-        ];
-        if (in_array($params['action'], $noCsrfActions)) {
-            $this->components()->unload('Csrf');
-        }
-    }
-
     public function beforeFilter(Event $event)
     {
         $this->Security->config('unlockedActions', [
