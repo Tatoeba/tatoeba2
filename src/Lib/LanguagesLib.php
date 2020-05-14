@@ -593,6 +593,7 @@ class LanguagesLib
                 'toi' => __d('languages', 'Tonga (Zambezi)'),
                 'new' => __d('languages', 'Newari'),
                 'jpa' => __d('languages', 'Jewish Palestinian Aramaic'),
+                'phn' => __d('languages', 'Phoenician'),
             );
         }
         return $languages;
