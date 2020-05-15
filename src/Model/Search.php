@@ -2,6 +2,7 @@
 namespace App\Model;
 
 use App\Lib\LanguagesLib;
+include_once(APP.'Lib/SphinxClient.php'); // needed to get the constants
 use Cake\Database\Expression\FunctionExpression;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Utility\Hash;
