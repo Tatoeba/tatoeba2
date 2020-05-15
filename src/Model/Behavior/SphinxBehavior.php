@@ -63,7 +63,12 @@ class SphinxBehavior extends Behavior
      */
     function beforeFind($event, $query, $options, $primary)
     {
-        if (empty($options['sphinx'])) {
+        /* CakePHP's paginator makes two calls to the database: the first for the actual
+         * query and the second for the total count. But when we use the search engine
+         * we already get the total count with the first call. The 'withSphinx' finder
+         * from the model will use the cached count so we don't need to do anything
+         * when this callback gets called the second time. */
+        if (empty($options['sphinx']) || $this->_cached_result) {
             return true;
         }
 
