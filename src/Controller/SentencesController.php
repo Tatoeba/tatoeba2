@@ -509,6 +509,7 @@ class SentencesController extends AppController
         $this->addLastUsedLang($search->getData('to'));
 
         $limit = CurrentUser::getSetting('sentences_per_page');
+        $sphinx = $search->asSphinx();
         $sphinx['page'] = $this->request->query('page');
         $sphinx['limit'] = $limit;
 
@@ -522,7 +523,7 @@ class SentencesController extends AppController
             'fields' => $this->Sentences->fields(),
             'contain' => $this->Sentences->contain(['translations' => true]),
             'limit' => $limit,
-            'sphinx' => $search->asSphinx()
+            'sphinx' => $sphinx,
         ];
 
         $this->paginate = $pagination;
