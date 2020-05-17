@@ -831,8 +831,8 @@ class SentencesHelper extends AppHelper
         } elseif ($baseId > 0) {
             $msg = format(
                 __('This sentence was initially added as a '
-                  .'translation of sentence {numberWithNumberSign}.'),
-                array('numberWithNumberSign' => $this->ClickableLinks->buildSentenceLink($baseId))
+                  .'translation of sentence {sentenceIdWithIdSign}.'),
+                array('sentenceIdWithIdSign' => $this->ClickableLinks->buildSentenceLink($baseId))
             );
         } else {
             $msg = __('We cannot determine yet whether this sentence was '
