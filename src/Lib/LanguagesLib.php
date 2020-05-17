@@ -660,6 +660,7 @@ class LanguagesLib
             "tmr",
             "syc",
             "phn",
+            "jpa",
         );
 
         $autoLangs = array(
