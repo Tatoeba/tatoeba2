@@ -1430,6 +1430,25 @@ form .language-icon-div {
     padding: 0;
 }
 
+@media only screen and (max-width: 600px) {
+    .sentence-and-translations .buttons {
+        display: none;
+    }
+    .sentence-and-translations .chevron {
+        display: none;
+    }
+    .sentence-and-translations .sentence .text,
+    .sentence-and-translations .sentence .transcription .text {
+        font-size: 18px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .sentence-and-translations .menu-button {
+        display: none;
+    }
+}
+
 
 /*
  * --------------------------------------------------------------------

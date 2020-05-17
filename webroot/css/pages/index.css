@@ -59,6 +59,7 @@
  */
 .topContent .description {
     padding: 50px 10px;
+    text-align: center;
 }
 
 .topContent strong {
@@ -130,7 +131,7 @@
 }
 
 #new-search-bar .extra-links {
-    width: 850px;
+    max-width: 850px;
 }
 
 #new-search-bar .extra-links em {
@@ -156,6 +157,15 @@
     color: #cccccc;
 }
 
+@media only screen and (max-width: 960px) {
+    #langing-page-search {
+        display: none;
+    }
+
+    .layout-margin {
+        margin: 0;
+    }
+}
 
 /*
  *
