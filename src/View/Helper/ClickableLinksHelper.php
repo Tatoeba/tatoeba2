@@ -177,7 +177,6 @@ class ClickableLinksHelper extends AppHelper
      */
     public function buildSentenceLink($sentenceId, $sentenceText = null)
     {
-
         $linkText = format(
             __(
                 /* @translators: You can translate the sharp in the link to a sentence
