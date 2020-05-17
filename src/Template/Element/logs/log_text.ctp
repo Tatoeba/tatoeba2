@@ -9,14 +9,7 @@ if (isset($log->type)) {
 $sentenceLink = '';
 if ($log->sentence_id) {
     $sentenceId = $log->sentence_id;
-    $sentenceLink = $this->Html->link(
-        '#'.$sentenceId,
-        array(
-            'controller' => 'sentences',
-            'action' => 'show',
-            $sentenceId
-        )
-    );
+    $sentenceLink = $this->ClickableLinks->buildSentenceLink($sentenceId, $log->text);
 }
 
 $sentenceText = $log->text;
@@ -25,22 +18,15 @@ $sentenceScript = $log->script;
 $translationLink = null;
 if ($log->translation_id) {
     $translationId = $log->translation_id;
-    $translationLink = $this->Html->link(
-        '#'.$translationId,
-        array(
-            'controller' => 'sentences',
-            'action' => 'show',
-            $translationId
-        )
-    );
+    $translationLink = $this->ClickableLinks->buildSentenceLink($translationId);
 }
-
-$langCode = $log->sentence_lang;
 
 $action = $log->action;
 $username = $log->user ? $log->user->username : null;
 $sentenceDate = $log->datetime;
 $infoLabel = $this->Logs->getInfoLabel($type, $action, $username, $sentenceDate);
+
+$langCode = $log->sentence_lang;
 
 ?>
 <div class="md-list-item-text" layout="column">

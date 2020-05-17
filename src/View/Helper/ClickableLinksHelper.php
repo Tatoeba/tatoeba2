@@ -166,5 +166,35 @@ class ClickableLinksHelper extends AppHelper
         return false;
     }
 
+
+    /**
+     * Build #n links where n is a sentence ID.
+     *
+     * @param int $sentenceId the ID of the sentence linked
+     * @param string $sentenceText the text of the sentence linked
+     *
+     * @return string an HTML link whose title attribute is the text of the sentence
+     */
+    public function buildSentenceLink($sentenceId, $sentenceText = null)
+    {
+
+        $linkText = format(
+            __(
+                /* @translators: You can translate the sharp in the link to a sentence
+                that appears in logs to a more natural character  */
+                '#{sentenceId}'),
+            array('sentenceId' => $sentenceId));
+        $model = TableRegistry::getTableLocator()->get('Sentences');
+        return $this->Html->link(
+            $linkText,
+            array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ),
+            // $sentenceText could come as the empty string
+            array('title' => $sentenceText != null ? $sentenceText : $model->getSentenceTextForId($sentenceId))
+        );
+    }
 }
 ?>

@@ -69,6 +69,7 @@ class SentencesHelper extends AppHelper
         'Search',
         'Number',
         'SentenceLicense',
+        'ClickableLinks',
     );
 
 
@@ -828,18 +829,10 @@ class SentencesHelper extends AppHelper
             $msg = __('This sentence is original and '
                      .'was not derived from translation.');
         } elseif ($baseId > 0) {
-            $baseLink = $this->Html->link(
-                $baseId,
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $baseId
-                )
-            );
             $msg = format(
                 __('This sentence was initially added as a '
-                  .'translation of sentence #{n}.'),
-                array('n' => $baseLink)
+                  .'translation of sentence {numberWithNumberSign}.'),
+                array('numberWithNumberSign' => $this->ClickableLinks->buildSentenceLink($baseId))
             );
         } else {
             $msg = __('We cannot determine yet whether this sentence was '
