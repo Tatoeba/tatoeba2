@@ -257,22 +257,18 @@ class TagsController extends AppController
     {
         $this->helpers[] = 'Tags';
 
-        $conditions = [];
-        if (!empty($search)) {
-            $conditions = [
-                'name LIKE' => "$search%"
-            ];
-        }
-        $this->paginate = [
-            'limit' => 10,
-            'fields' => ['name', 'id', 'nbrOfSentences'],
-            'order' => ['nbrOfSentences' => 'DESC'],
-            'conditions' => $conditions
-        ];
+        $query = $this->Tags->find();
+        $query->select(['name', 'id', 'nbrOfSentences']);
 
-        $this->autoRender = false;
-        $this->response = $this->response->withType('json');
-        $allTags = $this->paginate();
-        echo json_encode($allTags);
+        if (!empty($search)) {
+            $query->where(['name LiKE' => "$search%"]);
+        }
+        $query->limit(10);
+        $allTags = $query->all();
+
+        $this->loadComponent('RequestHandler');
+        $this->set('allTags', $allTags);
+        $this->set('_serialize', ['allTags']);
+        $this->RequestHandler->renderAs($this, 'json');
     }
 }

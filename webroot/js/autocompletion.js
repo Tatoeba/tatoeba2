@@ -74,8 +74,7 @@ function suggestSelect(suggestionStr) {
 function suggestShowResults(suggestions) {
     // we remove the old one
     removeSuggestList();
-
-    if (suggestions.length == 0) {
+    if (suggestions.allTags.length == 0) {
         return;
     }
 
@@ -83,11 +82,9 @@ function suggestShowResults(suggestions) {
 
     var ul = document.createElement("ul");
     $("#autocompletionDiv").append(ul);
-    suggestions.forEach(function(suggestion, index) {
+    suggestions.allTags.forEach(function(suggestion, index) {
         var li = document.createElement("li");
-        li.innerHTML = `<a id='suggestedItem${index}' onclick='suggestSelect("${suggestion.name}")' style='color:black';>
-        ${suggestion.name} (${suggestion.nbrOfSentences})
-        </a>`;
+        li.innerHTML = "<a id='suggestedItem" + index + "' onclick='suggestSelect(" + '"' + suggestion.name + '"' + ")' style='color:black';>"+ suggestion.name + " (" + suggestion.nbrOfSentences + ")</a>"; 
         ul.appendChild(li);
     });
 }
