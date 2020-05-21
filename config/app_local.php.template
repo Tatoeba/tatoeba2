@@ -234,10 +234,14 @@ return [
      *   enabled: set to true to activate announcement, false otherwise.
      * hideAfter: set to a date time to make it automatically disappear at
      *            some point, comment out otherwise.
+     * shutdownWarning: used for scheduled maintenance. Set to true to
+     *                  replace the announcement by warning message starting
+     *                  from 10 minutes before 'hideAfter'.
      */
     'Announcement' => [
         'enabled' => false,
 #        'hideAfter' => '2020-05-21 18:20 UTC',
+        'shutdownWarning' => false,
     ],
 
     /**

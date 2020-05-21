@@ -58,22 +58,26 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
 }
 
 if ($this->Announcement->isDisplayed()) {
-    $isDisplayingAnnouncement = true;
-    $announcementId = 'kodoeba';
-    $announcementText = $this->Html->tag('div', format(__(
-        'Would you like to help with the development of Tatoeba? Join our <a href="{}">coding event</a>!'
-    ), 'https://blog.tatoeba.org/2020/05/announcing-kodoeba-1.html'));
-    
-    $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
-    $content = $this->Html->div('content', $announcementText);
+    if ($warning = $this->Announcement->shutdownWarning()) {
+        echo $this->Html->div('maintenance', $warning);
+    } else {
+        $isDisplayingAnnouncement = true;
+        $announcementId = 'kodoeba';
+        $announcementText = $this->Html->tag('div', format(__(
+            'Would you like to help with the development of Tatoeba? Join our <a href="{}">coding event</a>!'
+        ), 'https://blog.tatoeba.org/2020/05/announcing-kodoeba-1.html'));
 
-    echo $this->Html->div(
-        'announcement',
-        $closeButton . $content,
-        array(
-            'data-announcement-id' => $announcementId
-        )
-    );
+        $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
+        $content = $this->Html->div('content', $announcementText);
+
+        echo $this->Html->div(
+            'announcement',
+            $closeButton . $content,
+            array(
+                'data-announcement-id' => $announcementId
+            )
+        );
+    }
 }
 
 if (Configure::read('Tatoeba.devStylesheet')) {
