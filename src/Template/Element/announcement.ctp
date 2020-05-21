@@ -62,10 +62,10 @@ if ($this->Announcement->isDisplayed()) {
         echo $this->Html->div('maintenance', $warning);
     } else {
         $isDisplayingAnnouncement = true;
-        $announcementId = 'maintenance-2020-05-30';
+        $announcementId = 'maintenance-2020-06-07';
         $announcementText = $this->Html->tag('div', format(__(
-            'Tatoeba will be unavailable this Saturday (May 30) from 2am to 5am UTC for <a href="{}">maintenance</a>.'
-        ), 'https://blog.tatoeba.org/2020/05/tatoeba-scheduled-maintenance-May-30th.html'));
+            'Tatoeba will be unavailable this Sunday (June 7) from 2am to 5am UTC for <a href="{}">maintenance</a>.'
+        ), 'https://blog.tatoeba.org/2020/06/tatoeba-scheduled-maintenance.html'));
 
         $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
         $content = $this->Html->div('content', $announcementText);
