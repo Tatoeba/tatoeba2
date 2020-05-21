@@ -57,8 +57,7 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
     echo $this->Form->end();
 }
 
-
-if (Configure::read('Announcement.enabled')) {
+if ($this->Announcement->isDisplayed()) {
     $isDisplayingAnnouncement = true;
     $announcementId = 'kodoeba';
     $announcementText = $this->Html->tag('div', format(__(
