@@ -94,6 +94,7 @@ class SentencesController extends AppController
         if (in_array($params['action'], $noCsrfActions)) {
             $this->components()->unload('Csrf');
         }
+        $this->loadComponent('RequestHandler');
     }
 
     /**
@@ -196,8 +197,8 @@ class SentencesController extends AppController
             $this->loadModel('SentencesSentencesLists');
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
 
-            $this->set('sentence', $sentence);
-
+            $this->set(['sentence' => $sentence,
+                        '_serialize' => ['sentence']]);
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
 
@@ -607,7 +608,8 @@ class SentencesController extends AppController
 
         $this->set('lang', $lang);
         $this->set('translationLang', $translationLang);
-        $this->set('results', $allSentences);
+        $this->set(['results' => $allSentences,
+                    '_serialize' => ['results']]);
         $this->set('total', $total);
         $this->set('totalLimit', $totalLimit);
 

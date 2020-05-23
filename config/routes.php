@@ -62,6 +62,18 @@ Router::scope('/', function (RouteBuilder $routes) {
     }
     $interfaceLanguages = join('|', $iso3LangArray);
 
+    $routes->setExtensions(['json']);
+    $routes->resources('Sentences', [
+        'only' => ['view'],
+        'actions' => ['view' => 'show'],
+        'map' => [
+            'showAllIn' => [
+                'action' => 'showAllIn',
+                'method' => 'GET'
+            ]
+        ],
+    ]);
+
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
