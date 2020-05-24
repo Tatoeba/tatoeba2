@@ -45,13 +45,6 @@
   vars:
     force_install: no
 
-- name: Install and setup Suggestd
-  tags: suggestd, external_tools
-  import_role:
-    name: setup_suggestd
-  vars:
-    force_install: no
-
 - name: Install and setup Tatodetect
   tags: tatodetect, external_tools
   import_tasks: install.yml
