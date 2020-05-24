@@ -51,7 +51,7 @@ function sendToAutocomplete() {
     var rootUrl = get_tatoeba_root_url();
     if ( tag != previousText) {
         $.get(
-            rootUrl + "/autocompletions/request/" + tag,
+            rootUrl + "/tags/autocomplete/" + tag,
             function(data) {
                 suggestShowResults(data);
             }
@@ -69,35 +69,24 @@ function suggestSelect(suggestionStr) {
     return false;
 }
 /**
- * transform the xml result into html content
+ * transform the json result into html content
  */
-function suggestShowResults(xmlDocResults) {
+function suggestShowResults(suggestions) {
     // we remove the old one
     removeSuggestList();
-    suggestions = xmlDocResults.getElementsByTagName('item');
-
-    if (suggestions.length == 0) {
+    if (suggestions.allTags.length == 0) {
         return;
     }
-    suggestLength = suggestions.length;
+
+    isSuggestListActive = true;
 
     var ul = document.createElement("ul");
     $("#autocompletionDiv").append(ul);
-    isSuggestListActive = true;
-    for (var i in suggestions) {
-        // for some weird reason the last element in suggestion is the number
-        // of element in the array Oo
-        // and even a function oO wow we're leaving in a strange world .... 
-        if (!isNaN(parseInt(suggestions[i])) || $.isFunction(suggestions[i])) {
-            continue;
-        }
-        suggestion = suggestions[i].firstChild.data;
+    suggestions.allTags.forEach(function(suggestion, index) {
         var li = document.createElement("li");
-        li.innerHTML = "<a id='suggestItem" + i + "' onclick='suggestSelect(this.innerHTML)' style='color:black;'>"+
-            suggestion +
-        "</a>";
+        li.innerHTML = "<a id='suggestedItem" + index + "' onclick='suggestSelect(" + '"' + suggestion.name + '"' + ")' style='color:black';>"+ suggestion.name + " (" + suggestion.nbrOfSentences + ")</a>"; 
         ul.appendChild(li);
-    }
+    });
 }
 
 /**

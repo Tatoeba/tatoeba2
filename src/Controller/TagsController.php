@@ -245,4 +245,28 @@ class TagsController extends AppController
             $search
         ]);
     }
+
+    /**
+     * Display list of tags for autocompletion.
+     *
+     * @param String $filter Filters the tags list with only those that contain the
+     *                       search string.
+     */
+    public function autocomplete($search)
+    {
+        $this->helpers[] = 'Tags';
+
+        $query = $this->Tags->find();
+        $query->select(['name', 'id', 'nbrOfSentences']);
+        if (!empty($search)) {
+            $pattern = str_replace(['\\', '%', '_'], ['\\\\', '\%', '\_'], $search).'%';
+            $query->where(['name LIKE :search'])->bind(':search', $pattern, 'string');
+        }
+        $allTags = $query->order(['nbrOfSentences' => 'DESC'])->limit(10)->all();
+
+        $this->loadComponent('RequestHandler');
+        $this->set('allTags', $allTags);
+        $this->set('_serialize', ['allTags']);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 }
