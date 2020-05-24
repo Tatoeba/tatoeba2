@@ -78,6 +78,7 @@ function suggestShowResults(suggestions) {
         return;
     }
 
+    suggestLength = suggestions.allTags.length;
     isSuggestListActive = true;
 
     var ul = document.createElement("ul");
@@ -93,14 +94,16 @@ function suggestShowResults(suggestions) {
  *
  */
 function changeActiveSuggestion(offset) {
-    $("#suggestItem"+currentSuggestPosition % suggestLength).removeClass("selected");
-    currentSuggestPosition += offset;
+    $("#suggestedItem"+currentSuggestPosition).removeClass("selected");
+    currentSuggestPosition = (currentSuggestPosition + offset) % suggestLength;
     if (currentSuggestPosition < 0) {
         currentSuggestPosition = suggestLength - 1;
     }
-    var selectedItem = $("#suggestItem"+currentSuggestPosition % suggestLength);
-    selectedItem.addClass("selected");
-    suggestSelect(selectedItem[0].innerHTML);
+    var selectedItem = $("#suggestedItem"+currentSuggestPosition);
+    if (selectedItem.length > 0) {
+        selectedItem.addClass("selected");
+        suggestSelect(selectedItem[0].innerHTML);
+    }
 } 
 
 /**
@@ -132,12 +135,18 @@ $(document).ready(function()
     $("#TagTagName").keyup(function(e){
         switch(e.keyCode) {
             case 38: //up
-                changeActiveSuggestion(-1);
+                if (isSuggestListActive) {
+                    changeActiveSuggestion(-1);
+                }
                 break;
             case 40://down
-                changeActiveSuggestion(1);
+                if (isSuggestListActive) {
+                    changeActiveSuggestion(1);
+                }
                 break;
             case 27: //escape
+            case 37: //left
+            case 39: //right
                 removeSuggestList();
                 break;
             default: 
@@ -151,7 +160,7 @@ $(document).ready(function()
 
     $("#TagAddTagPostForm").submit(function(){
         if (isSuggestListActive) {
-            var text = $("#suggestItem"+currentSuggestPosition).html()
+            var text = $("#suggestedItem"+currentSuggestPosition).html()
             $("#TagTagName").val(text);
             removeSuggestList(); 
             return false;
