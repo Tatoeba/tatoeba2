@@ -71,9 +71,9 @@ $this->Html->script(JS_PATH . 'sentences.contribute.js', ['block' => 'scriptBott
 
             <md-input-container flex>
                 <label><?= __('Sentence'); ?></label>
-                <input id="SentenceText" type="text" ng-model="ctrl.data.text"
+                <textarea  id="SentenceText" type="text" ng-model="ctrl.data.text">
                         autocomplete="off"
-                        ng-disabled="ctrl.isAdding">
+                        ng-disabled="ctrl.isAdding"> </textarea>
             </md-input-container>
 
             <div layout="row" layout-align="center center">
