@@ -260,7 +260,7 @@ class TagsController extends AppController
         $query = $this->Tags->find();
         $query->select(['name', 'id', 'nbrOfSentences']);
         if (!empty($search)) {
-            $query->where(['name LIKE :search ESCAPE "_"'])->bind(':search', str_replace('%', '_', $search).'%', 'string');
+            $query->where(['name LIKE :search ESCAPE "|"'])->bind(':search', str_replace('%', '|', $search).'%', 'string');
         }
         $allTags = $query->order(['nbrOfSentences' => 'DESC'])->limit(10)->all();
 
