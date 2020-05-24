@@ -85,7 +85,9 @@ function suggestShowResults(suggestions) {
     $("#autocompletionDiv").append(ul);
     suggestions.allTags.forEach(function(suggestion, index) {
         var li = document.createElement("li");
-        li.innerHTML = "<a id='suggestedItem" + index + "' onclick='suggestSelect(" + '"' + suggestion.name + '"' + ")' style='color:black';>"+ suggestion.name + " (" + suggestion.nbrOfSentences + ")</a>"; 
+        li.innerHTML = "<a id='suggestedItem" + index + "' onclick='suggestSelect(this.dataset.tagName)' " +
+            "data-tag-name='" + suggestion.name + "' style='color:black';>" + suggestion.name +
+            " (" + suggestion.nbrOfSentences + ")</a>";
         ul.appendChild(li);
     });
 }
@@ -102,7 +104,7 @@ function changeActiveSuggestion(offset) {
     var selectedItem = $("#suggestedItem"+currentSuggestPosition);
     if (selectedItem.length > 0) {
         selectedItem.addClass("selected");
-        suggestSelect(selectedItem[0].innerHTML);
+        suggestSelect(selectedItem[0].dataset.tagName);
     }
 } 
 
