@@ -120,13 +120,6 @@ function removeSuggestList() {
 
 $(document).ready(function()
 {
-
-
-    // it desactivates browsers autocompletion
-    // TODO: it's not something in the standard, so if you 
-    // know a standard way to do this ...
-    $("#TagTagName").attr("autocomplete","off");
-
     $("#TagTagName").blur(function() {
         setTimeout(function() {
         removeSuggestList()},

@@ -206,6 +206,7 @@ class TagsHelper extends AppHelper
             'label' => '',
             'lang' => '',
             'dir' => 'auto',
+            'autocomplete' => 'off'
         ]);
         echo $this->Form->hidden('sentence_id', [
             'value' => $sentenceId
