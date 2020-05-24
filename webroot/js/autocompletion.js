@@ -152,14 +152,4 @@ $(document).ready(function()
         }
  
     });
-
-    $("#TagAddTagPostForm").submit(function(){
-        if (isSuggestListActive) {
-            var text = $("#suggestedItem"+currentSuggestPosition).html()
-            $("#TagTagName").val(text);
-            removeSuggestList(); 
-            return false;
-        }
-    });
-       
 });
