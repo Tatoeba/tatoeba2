@@ -6,7 +6,6 @@ $config = [
     'public_actions' => [
         'activities' => [ 'improve_sentences', 'translate_sentences_of' ],
         'audio' => [ 'of', 'index' ],
-        'autocompletions' => '*',
         'reviews' => [ 'of' ],
         'contributions' => '*',
         'pages' => '*',
