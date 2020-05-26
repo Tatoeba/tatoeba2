@@ -1,4 +1,4 @@
-<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}" 
+<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}" flex-order="{{vm.isMenuExpanded ? -1 : 1}}"
      ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.permissions)">
     <div class="menu" layout="row" layout-align="space-between center">
         <div>

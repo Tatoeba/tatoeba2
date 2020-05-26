@@ -82,8 +82,8 @@ $sentenceUrl = $this->Url->build([
         <div flex><?= $duplicateWarning ?></div>
     </div>
     <div layout="column">
-        <div layout="row" class="header">
-            <md-subheader flex class="ellipsis">
+        <div layout="{{vm.isMenuExpanded ? 'column' : 'row'}}" class="header">
+            <md-subheader flex class="ellipsis" flex-order="0">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
                     echo format(
