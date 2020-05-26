@@ -116,8 +116,6 @@ class ReviewsController extends AppController
         $this->loadModel('Users');
         $userId = $this->Users->getIdFromUsername($username);
 
-        $this->set('username', $username);
-
         if(empty($userId)) {
             $this->set('userExists', false);
             return;
@@ -128,9 +126,11 @@ class ReviewsController extends AppController
         );
         $corpus = $this->paginate('UsersSentences');
 
+        $this->set('username', $username);
         $this->set('corpus', $corpus);
         $this->set('userExists', true);
         $this->set('correctnessLabel', $correctnessLabel);
         $this->set('lang', $lang);
+        $this->set('userIsReviewer', $userId == $this->Auth->user('id'));
     }
 }
