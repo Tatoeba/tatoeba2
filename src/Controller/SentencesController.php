@@ -544,7 +544,7 @@ class SentencesController extends AppController
         $ignored = $search->getIgnoredFields();
 
         $this->set($search->getData());
-        $this->set(compact('real_total', 'search_disabled', 'ignored', 'results',
+        $this->set(compact('real_total', 'ignored', 'results',
                            'syntax_error', 'searchableLists', 'vocabulary'));
         $this->set(
             'is_advanced_search',
