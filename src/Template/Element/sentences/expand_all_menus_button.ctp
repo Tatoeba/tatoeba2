@@ -1,7 +1,7 @@
 <?php 
 use App\Model\CurrentUser;
 
-if (CurrentUser::getSetting('use_new_design')) { ?>
+if (!CurrentUser::getSetting('disable_new_design')) { ?>
 <span toggle-all-menus ng-cloak>
     <md-button ng-if="!menu.expanded" class="md-icon-button" ng-click="menu.toggleAll()">
         <md-icon>unfold_more</md-icon>

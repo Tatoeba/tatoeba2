@@ -178,7 +178,7 @@ echo $this->element('/sentences/navigation', [
 
         <?php
         if (isset($sentence)) {
-            if (CurrentUser::isMember() && !CurrentUser::getSetting('use_new_design')) {
+            if (CurrentUser::isMember() && !!CurrentUser::getSetting('disable_new_design')) {
                 ?><div class="section md-whiteframe-1dp"><?php
                 $this->Sentences->displaySentencesGroup($sentence);
                 ?></div><?php

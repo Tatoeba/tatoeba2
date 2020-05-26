@@ -74,7 +74,7 @@ $vocabularyUrl = $this->Url->build(array(
 <div id="main_content">
 
     <?php
-    if (CurrentUser::getSetting('use_new_design')) {
+    if (!CurrentUser::getSetting('disable_new_design')) {
         echo $this->element('sentences/add_sentences_angular');
     } else {
         echo $this->element('sentences/add_sentences_jquery');

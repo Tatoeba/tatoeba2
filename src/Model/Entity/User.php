@@ -62,7 +62,7 @@ class User extends Entity
         'can_switch_license' => false,
         'new_terms_of_use' => '1',
         'license_switch_list_id' => null,
-        'hide_new_design_announcement' => false,
+        'hide_new_design_announcement_2' => false,
     );
 
     private $settingsValidation = array(

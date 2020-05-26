@@ -70,7 +70,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
 
         $this->Pagination->display();
 
-        if (!CurrentUser::isMember() || CurrentUser::getSetting('use_new_design')) {
+        if (!CurrentUser::isMember() || !CurrentUser::getSetting('disable_new_design')) {
             foreach ($results as $sentence) {
                 echo $this->element(
                     'sentences/sentence_and_translations',
