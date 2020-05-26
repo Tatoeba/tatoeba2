@@ -57,6 +57,7 @@ class User extends Entity
         'native_indicator' => false,
         'hide_random_sentence' => false,
         'use_new_design' => false,
+        'disable_new_design' => false,
         'default_license' => 'CC BY 2.0 FR',
         'can_switch_license' => false,
         'new_terms_of_use' => '1',
