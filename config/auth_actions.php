@@ -38,7 +38,8 @@ $config = [
         'tags' => [
             'show_sentences_with_tag',
             'view_all',
-            'search'
+            'search',
+            'autocomplete'
         ],
         'tools' => '*',
         'transcriptions' => [ 'view', 'of' ],
