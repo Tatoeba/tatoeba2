@@ -35,7 +35,7 @@ echo $this->Form->create('AdvancedSearch', [
             <?php /* @translators: section title in advanced search form */ ?>
             <h3><?= __('Sentences'); ?></h3>
 
-            <md-input-container>
+            <md-input-container class="md-icon-right">
                 <?php
                 echo $this->Form->input('query', array(
                     'label' => __('Words:'),
@@ -44,6 +44,7 @@ echo $this->Form->create('AdvancedSearch', [
                     'dir' => 'auto',
                 ));
                 ?>
+                <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
                 <div class="hint"><?= __('Enter a word or a phrase') ?></div>
             </md-input-container>
 
@@ -64,13 +65,14 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
-            <md-input-container>
+            <md-input-container class="md-icon-right">
                 <?php
                 echo $this->Form->input('user', array(
                     'label' => __('Owner:'),
                     'value' => $user,
                 ));
                 ?>
+                <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
@@ -134,13 +136,14 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
-            <md-input-container>
+            <md-input-container class="md-icon-right">
             <?php
             echo $this->Form->input('tags', array(
                 'label' => __('Tags:'),
                 'value' => $this->safeForAngular($tags),
             ));
             ?>
+            <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
             <div class="hint">
                 <?= __('Separate tags with commas.') ?>
             </div>
@@ -236,13 +239,14 @@ echo $this->Form->create('AdvancedSearch', [
                     ?>
                 </div>
 
-                <md-input-container>
+                <md-input-container class="md-icon-right">
                     <?php
                     echo $this->Form->input('trans_user', array(
                         'label' => __('Owner:'),
                         'value' => $trans_user,
                     ));
                     ?>
+                    <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
                     <div class="hint"><?= __('Enter a username') ?></div>
                 </md-input-container>
 
