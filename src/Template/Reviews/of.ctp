@@ -28,7 +28,6 @@ use App\Model\CurrentUser;
 
 
 if (CurrentUser::isMember()) {
-    $this->Html->script('/js/services/list-data.srv.js', array('block' => 'scriptBottom'));
     $this->Html->script('/js/reviews/of.ctrl.js', ['block' => 'scriptBottom']);
 }
 

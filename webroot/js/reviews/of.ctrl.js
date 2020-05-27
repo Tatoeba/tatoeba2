@@ -50,14 +50,11 @@
         ///////////////////////////////////////////////////////////////////////////
 
         function initSentence(sentenceData, correctness) {
-            // console.log(sentenceData);
             vm.sentence = angular.copy(sentenceData);
             vm.correctness = correctness;
-            console.log(vm.correctness);
         }
 
         function setReview(value) {
-            console.log(value);
             var reviewType = getReviewType(value);
             vm.iconsInProgress[reviewType] = true;
             $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
@@ -67,10 +64,8 @@
         }
 
         function resetReview() {
-            console.log(vm.iconsInProgress);
             var reviewType = getReviewType(vm.correctness);
             vm.iconsInProgress[reviewType] = true;
-            console.log(vm.iconsInProgress);
             $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
                 if (response.data.result) {
                     vm.correctness = null;
