@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
     config.trigger.after :up do |trigger|
       trigger.info = "Mounting NFS directory `Tatoeba' if configured..."
-      trigger.run = {inline: "sh -c '[ -f Tatoeba/empty ] && grep -q \"^localhost:/home/vagrant/Tatoeba[[:space:]]\\+$PWD/Tatoeba\" /etc/fstab && mount Tatoeba || true'"}
+      trigger.run = {inline: "sh -c '[ -f Tatoeba/empty -a -f /etc/fstab ] && grep -q \"^localhost:/home/vagrant/Tatoeba[[:space:]]\\+$PWD/Tatoeba\" /etc/fstab && mount Tatoeba || true'"}
     end
   end
 
