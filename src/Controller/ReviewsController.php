@@ -131,6 +131,6 @@ class ReviewsController extends AppController
         $this->set('userExists', true);
         $this->set('correctnessLabel', $correctnessLabel);
         $this->set('lang', $lang);
-        $this->set('userIsReviewer', $userId == $this->Auth->user('id'));
+        $this->set('userIsReviewer', $userId == CurrentUser::get('id'));
     }
 }
