@@ -261,7 +261,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(__('Settings')));
             </md-list-item>
 
             <md-list-item ng-show="!disableNewDesign">
-                <p><?= __('Number of translations per sentence'); ?></p>
+                <p><?= __('Number of translations visible by default'); ?></p>
                 <?php echo $this->Form->input('settings.max_visible_translations', [
                     'options' => [5 => 5, 10 => 10, 20 => 20, 50 => 50],
                     'label' => ''
