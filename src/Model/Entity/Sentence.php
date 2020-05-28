@@ -33,6 +33,7 @@ class Sentence extends Entity
         'is_favorite',
         'is_owned_by_current_user',
         'permissions',
+        'max_visible_translations',
         'current_user_review'
     ];
 
@@ -134,5 +135,14 @@ class Sentence extends Entity
             return $this->users_sentences[0]->correctness;
         }
         return null;
+    }
+
+    protected function _getMaxVisibleTranslations()
+    {
+        if (CurrentUser::isMember() && (int)CurrentUser::getSetting('max_visible_translations') > 0) {
+            return CurrentUser::getSetting('max_visible_translations');
+        }
+
+        return User::DEFAULT_MAX_VISIBLE_TRANSLATION;
     }
 }

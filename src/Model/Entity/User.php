@@ -47,6 +47,7 @@ class User extends Entity
     const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
     public const TERMS_OF_USE_LATEST_VERSION = '2';
+    public const DEFAULT_MAX_VISIBLE_TRANSLATION = 5;
 
     public static $defaultSettings = array(
         'is_public' => false,
@@ -55,6 +56,7 @@ class User extends Entity
         'collapsible_translations' => false,
         'show_transcriptions' => false,
         'sentences_per_page' => 10,
+        'max_visible_translations' => self::DEFAULT_MAX_VISIBLE_TRANSLATION,
         'users_collections_ratings' => false,
         'native_indicator' => false,
         'hide_random_sentence' => false,
