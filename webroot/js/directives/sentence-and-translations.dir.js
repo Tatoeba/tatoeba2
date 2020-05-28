@@ -231,7 +231,7 @@
             if (!listsDataService) {
                 listsDataService = $injector.get('listsDataService');
             }
-            var selectableLists = listsDataService.getLists();
+            var selectableLists = angular.copy(listsDataService.getLists());
 
             if (selectableLists) {
                 if (selectedLists) {
