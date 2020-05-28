@@ -53,6 +53,7 @@ class User extends Entity
         'collapsible_translations' => false,
         'show_transcriptions' => false,
         'sentences_per_page' => 10,
+        'max_visible_translations' => 5,
         'users_collections_ratings' => false,
         'native_indicator' => false,
         'hide_random_sentence' => false,

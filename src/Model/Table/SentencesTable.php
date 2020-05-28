@@ -41,7 +41,6 @@ class SentencesTable extends Table
 {
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-    const MAX_TRANSLATIONS_DISPLAYED = 5;
     
     protected function _initializeSchema(TableSchema $schema)
     {

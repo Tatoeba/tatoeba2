@@ -89,7 +89,6 @@
     
     SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
     function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
-        const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
@@ -279,10 +278,10 @@
 
         function showFewerTranslations() {
             vm.directTranslations = allDirectTranslations.filter(function(item, index) {
-                return index <= MAX_TRANSLATIONS - 1;
+                return index <= vm.sentence.max_visible_translations - 1;
             });
             vm.indirectTranslations = allIndirectTranslations.filter(function(item, index) {
-                return index + allDirectTranslations.length <= MAX_TRANSLATIONS - 1;
+                return index + allDirectTranslations.length <= vm.sentence.max_visible_translations - 1;
             });
         }
 

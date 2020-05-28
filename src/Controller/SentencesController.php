@@ -476,7 +476,7 @@ class SentencesController extends AppController
             $numberOfTranslations = $this->request->getQuery('numberOfTranslations');
             $includeTranslations = $translationLangFilter == 'und';
             $sentence = $this->Sentences->getSentenceWith($sentenceId, ['translations' => $includeTranslations]);
-            $sentence->extraTranslationsCount = $numberOfTranslations + 1 - SentencesTable::MAX_TRANSLATIONS_DISPLAYED;
+            $sentence->extraTranslationsCount = $numberOfTranslations + 1 - $sentence->max_visible_translations;
 
             $this->loadComponent('RequestHandler');
             $this->set('sentence', $sentence);
