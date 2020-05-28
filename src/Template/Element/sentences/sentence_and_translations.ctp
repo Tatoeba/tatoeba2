@@ -72,6 +72,12 @@ $sentenceUrl = $this->Url->build([
     'controller' => 'sentences',
     'action' => 'show'
 ]);
+
+if (CurrentUser::isMember()) {
+    $headerLayout = "{{vm.isMenuExpanded ? 'column' : 'row'}}";
+} else {
+    $headerLayout = "row";
+}
 ?>
 <div ng-cloak flex
      sentence-and-translations
@@ -82,7 +88,7 @@ $sentenceUrl = $this->Url->build([
         <div flex><?= $duplicateWarning ?></div>
     </div>
     <div layout="column">
-        <div layout="{{vm.isMenuExpanded ? 'column' : 'row'}}" class="header">
+        <div layout="<?= $headerLayout ?>" class="header">
             <md-subheader flex class="ellipsis" flex-order="0">
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
