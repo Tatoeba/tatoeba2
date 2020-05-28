@@ -449,8 +449,10 @@
             var action = vm.sentence.is_owned_by_current_user ? 'let_go' : 'adopt';
             vm.iconsInProgress.adopt = true;
             $http.get(rootUrl + '/sentences/' + action + '/' + vm.sentence.id).then(function(result) {
-                vm.sentence.user = result.data.user;
-                vm.sentence.is_owned_by_current_user = vm.sentence.user && vm.sentence.user.username;
+                var sentence = result.data.sentence;
+                sentence.expandLabel = vm.sentence.expandLabel;
+                initSentence(sentence);
+                initMenu(!vm.isExpanded, sentence.permissions);
                 vm.iconsInProgress.adopt = false;
             });
         }
