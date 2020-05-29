@@ -51,7 +51,7 @@ class EditLicensesCommandTest extends TestCase
 
     public function testExecute_changesLicense() {
         $path = $this->create_test_file([1, 2]);
-        $this->exec("edit_licenses $path");
+        $this->exec("edit_licenses admin $path");
 
         $this->assertExitCode(Command::CODE_SUCCESS);
 
@@ -71,15 +71,15 @@ class EditLicensesCommandTest extends TestCase
         // username, license, ids, at least one change, ignored sentence
         return [
             'all ids changed to CC0 1.0' =>
-                ['', 'CC0 1.0', [23, 11, 9], true, false],
+                ['admin', 'CC0 1.0', [23, 11, 9], true, false],
             'some ids changed to CC BY 2.0 FR' =>
-                ['', 'CC BY 2.0 FR', [51, 52, 53], true, "53 ignored: License is already"],
+                ['admin', 'CC BY 2.0 FR', [51, 52, 53], true, "53 ignored: License is already"],
             'with wrong ids' =>
-                ['', 'CC0 1.0', [1, 99, 402, 5], true, "99 ignored: Record not found"],
-            'empty file' => ['', 'CC BY 2.0 FR', [], false, false],
+                ['admin', 'CC0 1.0', [1, 99, 402, 5], true, "99 ignored: Record not found"],
+            'empty file' => ['admin', 'CC BY 2.0 FR', [], false, false],
             'as non-admin' =>
                 ['contributor', 'CC0 1.0', [1, 2], false, "1 ignored: Cannot change license"],
-            'all ids changed to licensing issue' => ['', '', [1, 2, 3], true, false],
+            'all ids changed to licensing issue' => ['admin', '', [1, 2, 3], true, false],
         ];
     }
 
@@ -89,11 +89,7 @@ class EditLicensesCommandTest extends TestCase
     public function testExecute_severalScenarios($user, $newLicense, $ids, $hasOneChange, $containsIgnored) {
         $path = $this->create_test_file($ids);
 
-        if (empty($user)) {
-            $this->exec("edit_licenses $path '$newLicense'");
-        } else {
-            $this->exec("edit_licenses -u $user $path '$newLicense'");
-        }
+        $this->exec("edit_licenses $user $path '$newLicense'");
 
         $this->assertExitCode(Command::CODE_SUCCESS);
 
@@ -115,20 +111,28 @@ class EditLicensesCommandTest extends TestCase
         };
     }
 
+    public function testExecute_withoutRequiredArguments() {
+        $this->exec("edit_licenses");
+        $this->assertExitCode(Command::CODE_ERROR);
+
+        $this->exec("edit_licenses admin");
+        $this->assertExitCode(Command::CODE_ERROR);
+    }
+
     public function testExecute_withNonexistentFile() {
-        $this->exec('edit_licenses nonexistentfile');
+        $this->exec('edit_licenses admin nonexistentfile');
         $this->assertExitCode(Command::CODE_ERROR);
     }
 
     public function testExecute_withInvalidLicense() {
         $path = $this->create_test_file([1, 2, 3]);
-        $this->exec("edit_licenses $path 'invalid'");
+        $this->exec("edit_licenses admin $path 'invalid'");
         $this->assertExitCode(Command::CODE_ERROR);
     }
 
     public function testExecute_asUnknownUser() {
         $path = $this->create_test_file([1, 2, 3]);
-        $this->exec("edit_licenses -u unknown_user $path 'CC BY 2.0 FR'");
+        $this->exec("edit_licenses unknown_user $path 'CC BY 2.0 FR'");
         $this->assertExitCode(Command::CODE_ERROR);
     }
 
@@ -136,7 +140,7 @@ class EditLicensesCommandTest extends TestCase
         $path = $this->create_test_file([1]);
         $sentenceBefore = $this->Sentences->get(1);
         $contributionsBefore = $this->Contributions->find('all')->count();
-        $this->exec("edit_licenses -n $path");
+        $this->exec("edit_licenses -n admin $path");
         $sentenceAfter = $this->Sentences->get(1);
         $contributionsAfter = $this->Contributions->find('all')->count();
         $this->assertEquals($sentenceBefore, $sentenceAfter);

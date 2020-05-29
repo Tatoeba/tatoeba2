@@ -13,7 +13,6 @@ use App\Lib\Licenses;
 class EditLicensesCommand extends Command
 {
     protected $log;
-    const DEFAULT_USER = 'admin';
 
     public function initialize() {
         parent::initialize();
@@ -24,6 +23,10 @@ class EditLicensesCommand extends Command
     protected function buildOptionParser(ConsoleOptionParser $parser) {
         $parser
             ->setDescription('Change sentence licenses.')
+            ->addArgument('username', [
+                'help' => 'Do all the work as given user.',
+                'required' => true,
+            ])
             ->addArgument('file', [
                 'help' => 'Name of the file that contains the sentence ids whose ' .
                           'license should be changed. ("stdin" will read from ' .
@@ -38,11 +41,6 @@ class EditLicensesCommand extends Command
                 'help' => 'Do everything except saving any changes.',
                 'short' => 'n',
                 'boolean' => true
-            ])
-            ->addOption('user', [
-                'help' => 'Do all the work as given user.',
-                'short' => 'u',
-                'default' => self::DEFAULT_USER
             ]);
         return $parser;
     }
@@ -83,6 +81,15 @@ class EditLicensesCommand extends Command
     }
 
     public function execute(Arguments $args, ConsoleIo $io) {
+        $username = $args->getArgument('username');
+        $userId = $this->Users->getIdFromUsername($username);
+        if (!$userId) {
+            $io->error(format('User "{user}" does not exist!', ['user' => $username]));
+            $this->abort();
+        } else {
+            CurrentUser::store($this->Users->get($userId));
+        }
+
         $input = $args->getArgument('file');
         if ($input === 'stdin') {
             $input = 'php://stdin';
@@ -93,14 +100,6 @@ class EditLicensesCommand extends Command
 
         $newLicense = $args->getArgument('license') ?? '';
         $dryRun = $args->getOption('dry-run');
-        $username = $args->getOption('user');
-        $userId = $this->Users->getIdFromUsername($username);
-        if (!$userId) {
-            $io->error(format('User "{user}" does not exist!', ['user' => $username]));
-            $this->abort();
-        } else {
-            CurrentUser::store($this->Users->get($userId));
-        }
 
         $this->log = [];
 
