@@ -108,5 +108,19 @@
                     text_input.focus();
                 });
             };
+        })
+        .directive('iconWithProgress', function() {
+            return {
+                restrict: 'E',
+                transclude: true,
+                scope: {
+                    isLoading: '=',
+                },
+                template:
+                    '<span ng-if="!isLoading"><ng-transclude></ng-transclude></span>' +
+                    '<md-button class="md-icon-button" ng-if="isLoading">' +
+                        '<md-progress-circular md-diameter="24"></md-progress-circular>' +
+                    '</md-button>'
+            }
         });
 })();
