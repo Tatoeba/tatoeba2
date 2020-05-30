@@ -1,6 +1,8 @@
-<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}" 
+<div class="menu-wrapper" sentence-menu flex="{{vm.isMenuExpanded ? '100' : 'none'}}"
      ng-init="vm.initMenu(<?= (int)$expanded ?>, vm.sentence.permissions)">
-    <div class="menu" layout="row" layout-align="space-between center">
+    <div class="menu" layout="row" layout-align="space-between center"
+         ng-controller="ReviewsController as reviewCtrl"
+         ng-init="reviewCtrl.initSentence(<?= $sentenceData ?>)">
         <div>
             <md-button class="md-icon-button" ng-click="vm.translate(vm.sentence.id)"
                 ng-disabled="vm.sentence.correctness === -1 || vm.sentence.license === ''">
