@@ -19,7 +19,7 @@
 
     angular
         .module('app')
-        .controller('ReviewsOfController', ['$scope', '$http', ReviewsOfController])
+        .controller('ReviewsOfController', ['$scope', '$http', 'reviewsService', ReviewsOfController])
         .directive('iconWithProgress', function() {
             return {
                 restrict: 'E',
@@ -35,7 +35,7 @@
             }
         });
 
-    function ReviewsOfController($scope, $http) {
+    function ReviewsOfController($scope, $http, reviewsService) {
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
@@ -55,34 +55,23 @@
         }
 
         function setReview(value) {
-            var reviewType = getReviewType(value);
+            var reviewType = reviewsService.getReviewType(value);
             vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
+            reviewsService.setReview(value, vm.sentence.id).then(function(response) {
                 vm.correctness = parseInt(response.data.result.correctness);
                 vm.iconsInProgress[reviewType] = false;
             });
         }
 
         function resetReview() {
-            var reviewType = getReviewType(vm.correctness);
+            var reviewType = reviewsService.getReviewType(vm.correctness);
             vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
+            reviewsService.resetReview(vm.sentence.id).then(function(response) {
                 if (response.data.result) {
                     vm.correctness = null;
                     vm.iconsInProgress[reviewType] = false;
                 }
             });
-        }
-
-        function getReviewType(correctness) {
-            if (correctness === 1) {
-                return 'reviewOk';
-            } else if (correctness === 0) {
-                return 'reviewUnsure';
-            } else if (correctness === -1) {
-                return 'reviewNotOk';
-            }
-            return null;
         }
     }
 })();

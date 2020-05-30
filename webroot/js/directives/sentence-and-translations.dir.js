@@ -86,9 +86,9 @@
             controllerAs: 'vm'
         };
     }
-    
-    SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
-    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
+
+    SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector', 'reviewsService'];
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector, reviewsService) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -705,34 +705,23 @@
         }
 
         function setReview(value) {
-            var reviewType = getReviewType(value);
+            var reviewType = reviewsService.getReviewType(value);
             vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
+            reviewsService.setReview(value, vm.sentence.id).then(function(response) {
                 vm.sentence.current_user_review =  parseInt(response.data.result.correctness);
                 vm.iconsInProgress[reviewType] = false;
             });
         }
 
         function resetReview() {
-            var reviewType = getReviewType(vm.sentence.current_user_review);
+            var reviewType = reviewsService.getReviewType(vm.sentence.current_user_review);
             vm.iconsInProgress[reviewType] = true;
-            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
+            reviewsService.resetReview(vm.sentence.id).then(function(response) {
                 if (response.data.result) {
                     vm.sentence.current_user_review = null;
                     vm.iconsInProgress[reviewType] = false;
                 }
             });
-        }
-
-        function getReviewType(correctness) {
-            if (correctness === 1) {
-                return 'reviewOk';
-            } else if (correctness === 0) {
-                return 'reviewUnsure';
-            } else if (correctness === -1) {
-                return 'reviewNotOk';
-            }
-            return null;
         }
     }
 

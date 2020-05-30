@@ -25,6 +25,7 @@ use App\Model\CurrentUser;
 $this->AssetCompress->script('sentence-component.js', ['block' => 'scriptBottom']);
 if (CurrentUser::isMember()) {
     $this->Html->script('/js/services/list-data.srv.js', array('block' => 'scriptBottom'));
+    $this->Html->script('/js/services/reviews.srv.js', array('block' => 'scriptBottom'));
 }
 
 if (!isset($menuExpanded)) {

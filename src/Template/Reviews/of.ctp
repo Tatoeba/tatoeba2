@@ -29,6 +29,7 @@ use App\Model\CurrentUser;
 
 if (CurrentUser::isMember()) {
     $this->Html->script('/js/reviews/of.ctrl.js', ['block' => 'scriptBottom']);
+    $this->Html->script('/js/services/reviews.srv.js', array('block' => 'scriptBottom'));
 }
 
 $categories = array(
