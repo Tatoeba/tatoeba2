@@ -144,7 +144,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 $correctness = $item->correctness;
         ?>
                 <div ng-controller="ReviewsOfController as ctrl"
-                    ng-init="ctrl.initSentence(<?= $sentenceData ?>, <?= $correctness ?>)"
+                     ng-init="ctrl.initSentence(<?= $sentenceData ?>, <?= $correctness ?>)"
+                     ng-cloak
                      class="layout-row flex">
          <?php
                 if (empty($sentence->id)) {
