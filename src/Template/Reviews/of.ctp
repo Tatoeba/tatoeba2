@@ -29,7 +29,6 @@ use App\Model\CurrentUser;
 
 if (CurrentUser::isMember()) {
     $this->Html->script('/js/reviews/of.ctrl.js', ['block' => 'scriptBottom']);
-    $this->Html->script('/js/services/reviews.srv.js', array('block' => 'scriptBottom'));
 }
 
 $categories = array(
@@ -143,8 +142,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
                 $sentenceData = str_replace('{{', '\{\{', $sentenceData);
                 $correctness = $item->correctness;
         ?>
-                <div ng-controller="ReviewsOfController as ctrl"
-                     ng-init="ctrl.initSentence(<?= $sentenceData ?>, <?= $correctness ?>)"
+                <div ng-controller="ReviewsController as ctrl"
+                     ng-init="ctrl.initSentenceAndCorrectness(<?= $sentenceData ?>, <?= $correctness ?>)"
                      ng-cloak
                      class="layout-row flex">
          <?php

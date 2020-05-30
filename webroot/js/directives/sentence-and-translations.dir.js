@@ -73,8 +73,8 @@
         };
     }
 
-    SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector', 'reviewsService'];
-    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector, reviewsService) {
+    SentenceAndTranslationsController.$inject = ['$rootScope', '$scope', '$http', '$cookies', '$timeout', '$injector'];
+    function SentenceAndTranslationsController($rootScope, $scope, $http, $cookies, $timeout, $injector) {
         const MAX_TRANSLATIONS = 5;
         const rootUrl = get_tatoeba_root_url();
 
@@ -140,8 +140,6 @@
         vm.hide = hide;
         vm.saveTranscription = saveTranscription;
         vm.saveLink = saveLink;
-        vm.setReview = setReview;
-        vm.resetReview = resetReview;
 
         /////////////////////////////////////////////////////////////////////////
 
@@ -688,26 +686,6 @@
 
         function getNumberOfTranslations() {
             return allDirectTranslations.length + allIndirectTranslations.length;
-        }
-
-        function setReview(value) {
-            var reviewType = reviewsService.getReviewType(value);
-            vm.iconsInProgress[reviewType] = true;
-            reviewsService.setReview(value, vm.sentence.id).then(function(response) {
-                vm.sentence.current_user_review =  parseInt(response.data.result.correctness);
-                vm.iconsInProgress[reviewType] = false;
-            });
-        }
-
-        function resetReview() {
-            var reviewType = reviewsService.getReviewType(vm.sentence.current_user_review);
-            vm.iconsInProgress[reviewType] = true;
-            reviewsService.resetReview(vm.sentence.id).then(function(response) {
-                if (response.data.result) {
-                    vm.sentence.current_user_review = null;
-                    vm.iconsInProgress[reviewType] = false;
-                }
-            });
         }
     }
 

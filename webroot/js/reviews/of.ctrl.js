@@ -19,27 +19,14 @@
 
     angular
         .module('app')
-        .controller('ReviewsOfController', ['$scope', '$http', 'reviewsService', ReviewsOfController])
-        .directive('iconWithProgress', function() {
-            return {
-                restrict: 'E',
-                transclude: true,
-                scope: {
-                    isLoading: '=',
-                },
-                template:
-                    '<span ng-if="!isLoading"><ng-transclude></ng-transclude></span>' +
-                    '<md-button class="md-icon-button" ng-if="isLoading">' +
-                        '<md-progress-circular md-diameter="24"></md-progress-circular>' +
-                    '</md-button>'
-            }
-        });
+        .controller('ReviewsController', ['$scope', '$http', ReviewsController]);
 
-    function ReviewsOfController($scope, $http, reviewsService) {
+    function ReviewsController($scope, $http) {
         const rootUrl = get_tatoeba_root_url();
 
         var vm = this;
 
+        vm.initSentenceAndCorrectness = initSentenceAndCorrectness;
         vm.initSentence = initSentence;
         vm.iconsInProgress = {};
         vm.sentence = null;
@@ -49,29 +36,47 @@
 
         ///////////////////////////////////////////////////////////////////////////
 
-        function initSentence(sentenceData, correctness) {
+        // Used on the reviews page
+        function initSentenceAndCorrectness(sentenceData, correctness) {
             vm.sentence = angular.copy(sentenceData);
             vm.correctness = correctness;
         }
 
+        // Used when the entity has a UsersSentences association
+        function initSentence(sentenceData) {
+            vm.sentence = angular.copy(sentenceData);
+            vm.correctness = vm.sentence.current_user_review;
+        }
+
         function setReview(value) {
-            var reviewType = reviewsService.getReviewType(value);
+            var reviewType = getReviewType(value);
             vm.iconsInProgress[reviewType] = true;
-            reviewsService.setReview(value, vm.sentence.id).then(function(response) {
+            $http.get(rootUrl + '/reviews/add_sentence/' + vm.sentence.id + '/' + value).then(function(response) {
                 vm.correctness = parseInt(response.data.result.correctness);
                 vm.iconsInProgress[reviewType] = false;
             });
         }
 
         function resetReview() {
-            var reviewType = reviewsService.getReviewType(vm.correctness);
+            var reviewType = getReviewType(vm.correctness);
             vm.iconsInProgress[reviewType] = true;
-            reviewsService.resetReview(vm.sentence.id).then(function(response) {
+            $http.get(rootUrl + '/reviews/delete_sentence/' + vm.sentence.id).then(function(response) {
                 if (response.data.result) {
                     vm.correctness = null;
                     vm.iconsInProgress[reviewType] = false;
                 }
             });
+        }
+
+        function getReviewType(correctness) {
+            if (correctness === 1) {
+                return 'reviewOk';
+            } else if (correctness === 0) {
+                return 'reviewUnsure';
+            } else if (correctness === -1) {
+                return 'reviewNotOk';
+            }
+            return null;
         }
     }
 })();
