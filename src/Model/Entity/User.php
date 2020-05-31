@@ -68,6 +68,7 @@ class User extends Entity
 
     private $settingsValidation = array(
         'sentences_per_page' => array(10, 20, 50, 100),
+        'max_visible_translations' => array(5, 10, 20, 50),
     );
 
     protected function _setPassword($password) {
