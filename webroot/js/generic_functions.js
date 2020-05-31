@@ -49,19 +49,6 @@ function normalized_sentence(sentenceText) {
 }
 
 /**
- * Change the language of the interface.
- */
-function changeInterfaceLang(newLang) {
-    // Saving the cookie
-    var date = new Date();
-    date.setMonth(date.getMonth()+1);
-    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang
-        + '; path=/'
-        + '; expires=' + date.toGMTString();
-    location.reload();
-}
-
-/**
  * Traverses through paginated pages on Ctrl + Left/Right arrow
  * Only activated when focus is not on a textbox.
  */

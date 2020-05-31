@@ -69,9 +69,36 @@
                 });
             };
         })
-        .controller('MenuController', function($scope, $mdSidenav) {
+        .controller('MenuController', function($scope, $mdSidenav, $mdDialog) {
             $scope.openMenu = function() {
                 $mdSidenav('menu').toggle();
-              };
+            };
+
+            $scope.showInterfaceLanguageSelection = function() {
+                $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: get_tatoeba_root_url() + '/angular_templates/interface_language'
+                });
+            }
+
+            function DialogController($scope, $mdDialog) {
+                $scope.init = function (data) {
+                    $scope.languages = data;
+                }
+
+                $scope.close = function() {
+                    $mdDialog.cancel();
+                };
+
+                $scope.changeInterfaceLang = function(newLang) {
+                    // Saving the cookie
+                    var date = new Date();
+                    date.setMonth(date.getMonth()+1);
+                    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang
+                        + '; path=/'
+                        + '; expires=' + date.toGMTString();
+                    location.reload();
+                }
+            }
         });
 })();

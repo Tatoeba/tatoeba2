@@ -235,11 +235,13 @@ $menuElements = array(
         ?>
         </ul>
 
-        <div id="languageSelectionContainer">
-            <?php echo $this->element('interface_language'); ?>
+        <div id="languageSelectionContainer" ng-cloak>
+            <md-button class="md-icon-button" ng-click="showInterfaceLanguageSelection()">
+                <md-icon>language</md-icon>
+            </md-button>
         </div>
 
-        <div id="user_menu">
+        <div id="user_menu" ng-cloak>
             <?php
             // User menu
             if (!$session->read('Auth.User.id')) {
