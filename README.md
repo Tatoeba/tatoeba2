@@ -49,7 +49,9 @@ The source code is inside the VM. While you can edit it using `vagrant ssh` and 
 
 #### Using NFS (Unix/MacOS)
 
-If you’re using GNU/Linux or MacOS, we recommend NFS because it’s fast and allows you to run `git` without noticeable delay. The source code is served over NFS by the VM. Add the following line to your /etc/fstab:
+If you’re using GNU/Linux or MacOS, we recommend NFS because it’s fast and allows you to run `git` without noticeable delay. The source code is served over NFS by the VM.
+
+First, make sure the NFS client is installed (Debian/Ubuntu users need to install the `nfs-common` package). Then, add the following line to your /etc/fstab:
 
 ```
 # Change /your/path/to/imouto/Tatoeba/ to the actual path of Imouto
