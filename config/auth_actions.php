@@ -59,6 +59,7 @@ $config = [
             'check_username',
             'check_email',
             'for_language',
+            'login_dialog_template',
         ],
         'vocabulary' => [ 'of' ],
         'wall' => [

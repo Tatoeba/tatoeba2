@@ -557,4 +557,11 @@ class UsersController extends AppController
         $this->set('usersLanguages', $usersLanguages);
         $this->set('lang', $lang);
     }
+
+    public function login_dialog_template()
+    {
+        $redirectUrl = $this->request->query('redirect');
+        $this->set('redirectUrl', $redirectUrl);
+        $this->viewBuilder()->enableAutoLayout(false);
+    }
 }

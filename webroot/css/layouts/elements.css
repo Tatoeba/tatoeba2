@@ -1901,3 +1901,19 @@ form .language-icon-div {
 .annexe-menu md-icon {
     margin: auto 0;
 }
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Login dialog
+ *
+ * --------------------------------------------------------------------
+ */
+
+#login-dialog {
+    width: 300px;
+}
+
+#login-dialog md-dialog-content {
+    padding: 40px 20px 10px 20px;
+}
