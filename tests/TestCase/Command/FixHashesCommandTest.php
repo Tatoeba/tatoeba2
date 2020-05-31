@@ -26,7 +26,7 @@ class FixHashesCommandTest extends TestCase
     const TESTDIR = TMP . 'fix_hashes_tests' . DS;
 
     public static function setUpBeforeClass() {
-        mkdir(self::TESTDIR, 0755, true);
+        new Folder(self::TESTDIR, true, 0755);
     }
 
     public static function tearDownAfterClass() {
