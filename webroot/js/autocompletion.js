@@ -51,7 +51,7 @@ function sendToAutocomplete() {
     var rootUrl = get_tatoeba_root_url();
     if ( tag != previousText) {
         $.get(
-            rootUrl + "/tags/autocomplete/" + tag,
+            rootUrl + "/tags/autocomplete/" + encodeURIComponent(tag),
             function(data) {
                 suggestShowResults(data);
             }
