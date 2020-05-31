@@ -51,7 +51,7 @@ class FixHashesCommandTest extends TestCase
 
         $newSentence = $this->Sentences->get(3);
         $this->assertEquals("2hfhma4\0\0\0\0\0\0\0\0\0", $newSentence->hash);
-        $this->assertEquals($oldSentence->modified, $newSentence->modified);
+        $this->assertNotEquals($oldSentence->modified, $newSentence->modified);
     }
 
     public function inputProvider() {
