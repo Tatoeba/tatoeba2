@@ -1,4 +1,7 @@
 #!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 set -e
 
 ROOT='/var/www-prod'
@@ -53,6 +56,17 @@ split_file sentences_detailed.csv
 split_file sentences.csv
 split_file sentences_CC0.csv
 split_file transcriptions.csv
+
+python3 "$SCRIPT_DIR/split_files.py" \
+    user_languages.csv \
+    links.csv \
+    tags.csv \
+    sentences_in_lists.csv \
+    jpn_indices.csv \
+    sentences_with_audio.csv \
+    --indir "$DL_DIR" \
+    --outdir "$TEMP_DIR"
+
 find $TEMP_DIR -path '*tsv' -exec bzip2 -qf '{}' +
 rm -rf $DL_DIR/per_language
 rm transcriptions.csv
