@@ -72,4 +72,21 @@ class Licenses {
 
         return $licenses;
     }
+
+    /**
+     * Map license display names to keys
+     *
+     * @param array $licenses  Array as returned by getSentenceLicenses() or
+     *                         getAudioLicenses()
+     *
+     * @return array
+     **/
+    public static function nameToKeys($licenses) {
+        $map = [];
+        foreach($licenses as $key => $license) {
+            $name = $license['name'] ?? $key;
+            $map[$name] = $key;
+        }
+        return $map;
+    }
 }
