@@ -89,7 +89,7 @@ function suggestShowResults(suggestions) {
         var link = document.createElement("a");
         link.id = "suggestedItem" + index;
         link.dataset.tagName = suggestion.name;
-        link.onclick = "suggestSelect(this.dataset.tagName)";
+        link.setAttribute("onclick", "suggestSelect(this.dataset.tagName)");
         link.style = "color:black";
         link.appendChild(text);
 
