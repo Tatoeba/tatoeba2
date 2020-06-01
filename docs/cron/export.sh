@@ -62,7 +62,6 @@ python3 "$SCRIPT_DIR/split_files.py" \
     links.csv \
     tags.csv \
     sentences_in_lists.csv \
-    jpn_indices.csv \
     sentences_with_audio.csv \
     --indir "$DL_DIR" \
     --outdir "$TEMP_DIR"
