@@ -78,13 +78,16 @@ function suggestShowResults(suggestions) {
         return;
     }
 
+    suggestLength = suggestions.allTags.length;
     isSuggestListActive = true;
 
     var ul = document.createElement("ul");
     $("#autocompletionDiv").append(ul);
     suggestions.allTags.forEach(function(suggestion, index) {
         var li = document.createElement("li");
-        li.innerHTML = "<a id='suggestedItem" + index + "' onclick='suggestSelect(" + '"' + suggestion.name + '"' + ")' style='color:black';>"+ suggestion.name + " (" + suggestion.nbrOfSentences + ")</a>"; 
+        li.innerHTML = "<a id='suggestedItem" + index + "' onclick='suggestSelect(this.dataset.tagName)' " +
+            "data-tag-name='" + suggestion.name + "' style='color:black';>" + suggestion.name +
+            " (" + suggestion.nbrOfSentences + ")</a>";
         ul.appendChild(li);
     });
 }
@@ -93,14 +96,16 @@ function suggestShowResults(suggestions) {
  *
  */
 function changeActiveSuggestion(offset) {
-    $("#suggestItem"+currentSuggestPosition % suggestLength).removeClass("selected");
-    currentSuggestPosition += offset;
+    $("#suggestedItem"+currentSuggestPosition).removeClass("selected");
+    currentSuggestPosition = (currentSuggestPosition + offset) % suggestLength;
     if (currentSuggestPosition < 0) {
         currentSuggestPosition = suggestLength - 1;
     }
-    var selectedItem = $("#suggestItem"+currentSuggestPosition % suggestLength);
-    selectedItem.addClass("selected");
-    suggestSelect(selectedItem[0].innerHTML);
+    var selectedItem = $("#suggestedItem"+currentSuggestPosition);
+    if (selectedItem.length > 0) {
+        selectedItem.addClass("selected");
+        suggestSelect(selectedItem[0].dataset.tagName);
+    }
 } 
 
 /**
@@ -115,13 +120,6 @@ function removeSuggestList() {
 
 $(document).ready(function()
 {
-
-
-    // it desactivates browsers autocompletion
-    // TODO: it's not something in the standard, so if you 
-    // know a standard way to do this ...
-    $("#TagTagName").attr("autocomplete","off");
-
     $("#TagTagName").blur(function() {
         setTimeout(function() {
         removeSuggestList()},
@@ -132,12 +130,18 @@ $(document).ready(function()
     $("#TagTagName").keyup(function(e){
         switch(e.keyCode) {
             case 38: //up
-                changeActiveSuggestion(-1);
+                if (isSuggestListActive) {
+                    changeActiveSuggestion(-1);
+                }
                 break;
             case 40://down
-                changeActiveSuggestion(1);
+                if (isSuggestListActive) {
+                    changeActiveSuggestion(1);
+                }
                 break;
             case 27: //escape
+            case 37: //left
+            case 39: //right
                 removeSuggestList();
                 break;
             default: 
@@ -148,14 +152,4 @@ $(document).ready(function()
         }
  
     });
-
-    $("#TagAddTagPostForm").submit(function(){
-        if (isSuggestListActive) {
-            var text = $("#suggestItem"+currentSuggestPosition).html()
-            $("#TagTagName").val(text);
-            removeSuggestList(); 
-            return false;
-        }
-    });
-       
 });
