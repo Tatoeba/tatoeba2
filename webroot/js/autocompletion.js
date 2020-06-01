@@ -84,10 +84,18 @@ function suggestShowResults(suggestions) {
     var ul = document.createElement("ul");
     $("#autocompletionDiv").append(ul);
     suggestions.allTags.forEach(function(suggestion, index) {
+        var text = document.createTextNode(suggestion.name + " (" + suggestion.nbrOfSentences + ")");
+
+        var link = document.createElement("a");
+        link.id = "suggestedItem" + index;
+        link.dataset.tagName = suggestion.name;
+        link.onclick = "suggestSelect(this.dataset.tagName)";
+        link.style = "color:black";
+        link.appendChild(text);
+
         var li = document.createElement("li");
-        li.innerHTML = "<a id='suggestedItem" + index + "' onclick='suggestSelect(this.dataset.tagName)' " +
-            "data-tag-name='" + suggestion.name + "' style='color:black';>" + suggestion.name +
-            " (" + suggestion.nbrOfSentences + ")</a>";
+        li.appendChild(link);
+
         ul.appendChild(li);
     });
 }
