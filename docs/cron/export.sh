@@ -1,7 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
 set -e
 
 ROOT='/var/www-prod'
@@ -57,7 +55,7 @@ split_file sentences.csv
 split_file sentences_CC0.csv
 split_file transcriptions.csv
 
-python3 "$SCRIPT_DIR/split_files.py" \
+python3 "$ROOT/docs/cron/split_files.py" \
     user_languages.csv \
     links.csv \
     tags.csv \
