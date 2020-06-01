@@ -44,9 +44,8 @@ msgid ""
 "Unable to assign audio to “{author}” for sentence {sentenceId} inside the "
 "database. Make sure it's a valid username."
 msgstr ""
-"No se puede asignar el audio a “{author}” para la oración {sentenceId} "
-"dentro de la base de datos. Cerciórese de que es un nombre de usuario "
-"válido."
+"No se puede asignar la voz a “{author}” para la oración {sentenceId} dentro "
+"de la base de datos. Cerciórese de que es un nombre de usuario válido."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/AudiosTable.php#L284
 msgid ""
@@ -87,7 +86,7 @@ msgstr "Idioma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L89
 msgid "Already has audio"
-msgstr "Ya tiene audio"
+msgstr "Ya tiene voz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/import.ctp#L90
 msgid "May be imported"

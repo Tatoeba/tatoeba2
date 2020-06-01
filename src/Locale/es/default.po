@@ -26,8 +26,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-22 03:27+0800\n"
-"PO-Revision-Date: 2020-05-22 04:33+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-01 06:16+0000\n"
+"Last-Translator: gillux\n"
 "Language-Team: Spanish (http://www.transifex.com/tatoeba/tatoeba_website/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -873,17 +873,17 @@ msgstr "Traducir las oraciones que pertenecen a {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L23
 msgid "Sentences in {language} with audio"
-msgstr "Oraciones en {language} con audio"
+msgstr "Oraciones en {language} con voz"
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L414
 msgid "Sentences with audio"
-msgstr "Oraciones con audio"
+msgstr "Oraciones con voz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L49
 msgid "There are no sentences with audio"
-msgstr "No hay oraciones con audio"
+msgstr "No hay oraciones con voz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/index.ctp#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L87
@@ -896,11 +896,11 @@ msgstr "(total {{contar}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L22
 msgid "Audio contributed by {username}"
-msgstr "Audio contribuido por {usuario}"
+msgstr "Voz grabada por {usuario}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L40
 msgid "My audio"
-msgstr "Mi audio"
+msgstr "Mi sonido"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L51
@@ -936,7 +936,7 @@ msgstr "Guardar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L81
 msgid "{username} has not contributed any audio"
-msgstr "{username}  no ha contribuido con ningún audio"
+msgstr "{username}  no ha grabado ningún sonido"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L50
@@ -1104,7 +1104,7 @@ msgstr "Las oraciones reprobadas tienen mayor probabilidad de contener errores."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L290
 msgid "Has audio:"
-msgstr "Tiene audio:"
+msgstr "Tiene voz:"
 
 #. dropdown option of "Has audio" field in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L128
@@ -1215,7 +1215,7 @@ msgstr "Hemos actualizado nuestros <a href=\"{termsOfUse}\">Términos de Uso.</a
 msgid ""
 "Tatoeba will be unavailable this Sunday (June 7) from 2am to 5am UTC for <a "
 "href=\"{}\">maintenance</a>."
-msgstr ""
+msgstr "Tatoeba estará indisponible este domingo (junio 7) desde las 02:00h hasta las  05:00h UTC por <a href=\"{}\">mantenimiento</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L86
 msgid ""
@@ -1225,11 +1225,11 @@ msgstr "Aviso: este sitio web es una versión en fase de pruebas. Nada de lo que
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
-msgstr "Número de oraciones con audio por lengua"
+msgstr "Número de oraciones con voz por lengua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr "Navegar por las oraciones con audio en todas las lenguas"
+msgstr "Navegar por las oraciones con voz en todas las lenguas"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
@@ -1575,12 +1575,12 @@ msgstr "Reproducir sonido"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L15
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L193
 msgid "Play audio recorded by {author}"
-msgstr "Reproducir audio grabado por {author}"
+msgstr "Reproducir voz grabada por {author}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_buttons/audio.ctp#L25
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentenceButtonsHelper.php#L202
 msgid "No audio for this sentence. Click to learn how to contribute."
-msgstr "No se dispone del audio para esta oración. Haga clic para conocer cómo puede contribuir."
+msgstr "No se dispone de voz para esta oración. Haga clic para conocer cómo puede contribuir."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/add_form.ctp#L20
 msgid "Add a comment"
@@ -1764,7 +1764,7 @@ msgstr "Aceptar"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/audio.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L126
 msgid "Audio"
-msgstr "Audio"
+msgstr "Sonido"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L8
 msgid "Show more features for all sentences"
@@ -1772,7 +1772,7 @@ msgstr "Mostrar más características para todas las oraciones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/expand_all_menus_button.ctp#L13
 msgid "Show fewer features for all sentences"
-msgstr ""
+msgstr "Mostrar menos características para todas las oraciones"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L4
 msgid "Search list or enter new list name"
@@ -1869,7 +1869,7 @@ msgstr "Menos traducciones"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L4
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L480
 msgid "You cannot edit this sentence because it has audio."
-msgstr "No puedes editar esta oración porque tiene audio."
+msgstr "No puedes editar esta oración porque tiene voz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L20
 msgid "Other language"
@@ -2007,7 +2007,7 @@ msgstr "Mostrar más características"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L91
 msgid "Show fewer features"
-msgstr ""
+msgstr "Mostrar menos características"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/transcription_button.ctp#L5
 msgid "Show unreviewed transcriptions"
@@ -2212,7 +2212,7 @@ msgstr "Navegar por etiqueta"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L78
 msgid "Browse audio"
-msgstr "Navegar por oraciones con audio"
+msgstr "Navegar por oraciones con voz"
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L85
@@ -2827,14 +2827,14 @@ msgstr "Una parte de nuestras oraciones también están disponibles bajo licenci
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L160
 msgid "Licenses covering audio"
-msgstr "Licencias que cubren el audio"
+msgstr "Licencias que cubren la voz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L163
 msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr "La licencia que cubre un audio es elegida por el colaborador, y se indica en la página que enumera los audios que él o ella ha contribuido."
+msgstr "La licencia que cubre una voz es elegida por el colaborador, y se indica en la página que enumera las voces que él o ella ha grabado."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L172
@@ -2936,7 +2936,7 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr "Contiene los ids de las oraciones, en todos los idiomas, para los cuales el audio está disponible. Otros datos indican quién grabó el audio, su licencia y una URL para atribuir el autor. Si el espacio de licencia está vacío, no podrá reutilizar el audio fuera del proyecto Tatoeba."
+msgstr "Contiene la identidad de las oraciones, en todos los idiomas, para las cuales hay voz disponible. Otros datos indican quién grabó la voz, su licencia y una URL para atribuir el autor. Si el espacio de licencia está vacío, no podrá reutilizar la voz fuera del proyecto Tatoeba."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L444
@@ -3137,7 +3137,7 @@ msgid ""
 "The new sentence design will soon completely replace the old one. Please try"
 " it out and let us know if you experience any issue. You can enable it with "
 "the option \"Display sentences with the new design\" in your Settings."
-msgstr ""
+msgstr "El diseño nuevo de oraciones pronto substituirá completamente al anterior. Por favor, prúebelo y háganos saber si detecta alguna incidencia. Puede activarlo con la opción \"Mostrar oraciones con el diseño nuevo\" en sus Ajustes."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L98
 msgid "Go to settings"
@@ -4027,7 +4027,7 @@ msgstr "Oraciones propias"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L98
 msgid "Audio recordings"
-msgstr "Grabaciones de audio"
+msgstr "Grabaciones de voz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L100
 msgid "Sentences favorited"
@@ -4151,7 +4151,7 @@ msgstr "Número de oraciones por página"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Default license for original sentences"
-msgstr ""
+msgstr "Licencia por defecto para oraciones originales"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
 msgid "Experimental options"
@@ -4416,15 +4416,15 @@ msgstr "Volver al Muro"
 msgid "Tatoeba will temporarily shut down for maintenance in {n} minute."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} minutes."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tatoeba se desconectará, por mantenimiento, en {n} minuto."
+msgstr[1] "Tatoeba se desconectará, por mantenimiento, en {n} minutos."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AnnouncementHelper.php#L66
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tatoeba se desconectará, por mantenimiento, en {n} segundo."
+msgstr[1] "Tatoeba se desconectará, por mantenimiento, en {n} segundos."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"
@@ -4438,25 +4438,25 @@ msgstr "Licencia: {license}"
 msgid ""
 "You may not reuse the following audio recordings outside the Tatoeba project"
 " because {userName} has not chosen any license for them."
-msgstr "No puede reutilizar las siguientes grabaciones de audio fuera del proyecto Tatoeba porque {userName} no ha elegido ninguna licencia para ellas."
+msgstr "No puede reutilizar las siguientes grabaciones de voz fuera del proyecto Tatoeba porque {userName} no ha elegido ninguna licencia para ellas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L78
 msgid ""
 "The following audio recordings by {userName}, are licensed under the public "
 "domain."
-msgstr "Las siguientes grabaciones de audio de {userName}, están bajo licencia de dominio público."
+msgstr "Las siguientes grabaciones de voz de {userName}, se encuentran bajo licencia de dominio público."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L82
 msgid ""
 "The following audio recordings by {userName}, are licensed under the "
 "{licenseName} license."
-msgstr "Las siguientes grabaciones de audio de {userName}, se ofrecen sujetas a licencia {licenseName}."
+msgstr "Las siguientes grabaciones de voz de {userName}, se ofrecen sujetas a licencia {licenseName}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L86
 msgid ""
 "The following audio recordings by {userName}, are licensed under an unknown "
 "license."
-msgstr "Las siguientes grabaciones de audio de {userName}, se ofrecen sujetas a una licencia desconocida."
+msgstr "Las siguientes grabaciones de voz de {userName}, se ofrecen sujetas a una licencia desconocida."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommentsHelper.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L116
@@ -4900,7 +4900,7 @@ msgstr "Añadir a una lista colaborativa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L426
 msgid "You cannot delete this sentence because it has audio."
-msgstr "No puedes borrar esta oración porque tiene audio."
+msgstr "No puedes borrar esta oración porque tiene voz."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L517
 msgid "belongs to {user}"
