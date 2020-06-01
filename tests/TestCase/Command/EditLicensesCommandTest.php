@@ -51,7 +51,7 @@ class EditLicensesCommandTest extends TestCase
 
     public function testExecute_changesLicense() {
         $path = $this->create_test_file([1, 2]);
-        $this->exec("edit_licenses admin $path");
+        $this->exec("edit_licenses admin $path 'Licensing issue'");
 
         $this->assertExitCode(Command::CODE_SUCCESS);
 
@@ -79,7 +79,7 @@ class EditLicensesCommandTest extends TestCase
             'empty file' => ['admin', 'CC BY 2.0 FR', [], false, false],
             'as non-admin' =>
                 ['contributor', 'CC0 1.0', [1, 2], false, "1 ignored: Cannot change license"],
-            'all ids changed to licensing issue' => ['admin', '', [1, 2, 3], true, false],
+            'all ids changed to licensing issue' => ['admin', 'Licensing issue', [1, 2, 3], true, false],
         ];
     }
 
@@ -117,16 +117,22 @@ class EditLicensesCommandTest extends TestCase
 
         $this->exec("edit_licenses admin");
         $this->assertExitCode(Command::CODE_ERROR);
+
+        $path = $this->create_test_file([]);
+        $this->exec("edit_licenses admin $path");
+        $this->assertExitCode(Command::CODE_ERROR);
     }
 
     public function testExecute_withNonexistentFile() {
-        $this->exec('edit_licenses admin nonexistentfile');
+        $this->exec('edit_licenses admin nonexistentfile "CC0 1.0"');
         $this->assertExitCode(Command::CODE_ERROR);
     }
 
     public function testExecute_withInvalidLicense() {
         $path = $this->create_test_file([1, 2, 3]);
         $this->exec("edit_licenses admin $path 'invalid'");
+        $this->assertExitCode(Command::CODE_ERROR);
+        $this->exec("edit_licenses admin $path ''");
         $this->assertExitCode(Command::CODE_ERROR);
     }
 
@@ -140,7 +146,7 @@ class EditLicensesCommandTest extends TestCase
         $path = $this->create_test_file([1]);
         $sentenceBefore = $this->Sentences->get(1);
         $contributionsBefore = $this->Contributions->find('all')->count();
-        $this->exec("edit_licenses -n admin $path");
+        $this->exec("edit_licenses -n admin $path 'CC0 1.0'");
         $sentenceAfter = $this->Sentences->get(1);
         $contributionsAfter = $this->Contributions->find('all')->count();
         $this->assertEquals($sentenceBefore, $sentenceAfter);

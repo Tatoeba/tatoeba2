@@ -18,6 +18,7 @@ class EditLicensesCommand extends Command
         parent::initialize();
         $this->loadModel('Sentences');
         $this->loadModel('Users');
+        $this->licenses = Licenses::nameToKeys(Licenses::getSentenceLicenses());
     }
 
     protected function buildOptionParser(ConsoleOptionParser $parser) {
@@ -35,7 +36,8 @@ class EditLicensesCommand extends Command
             ])
             ->addArgument('license', [
                 'help' => 'New license.',
-                'choices' => array_keys(Licenses::getSentenceLicenses())
+                'choices' => array_keys($this->licenses),
+                'required' => true,
             ])
             ->addOption('dry-run', [
                 'help' => 'Do everything except saving any changes.',
@@ -98,7 +100,7 @@ class EditLicensesCommand extends Command
             $this->abort();
         }
 
-        $newLicense = $args->getArgument('license') ?? '';
+        $newLicense = $this->licenses[$args->getArgument('license')];
         $dryRun = $args->getOption('dry-run');
 
         $this->log = [];
@@ -117,11 +119,21 @@ class EditLicensesCommand extends Command
             $io->out('There was nothing to do.');
         } else {
             $io->out("$total rows proceeded:");
-            array_walk($this->log, function ($value, $index) use ($io) {
+            $displayNames = array_flip($this->licenses);
+            array_walk($this->log, function ($value, $index) use ($io, $displayNames) {
                 if (count($value) == 1) {
                     $io->out($value);
                 } else {
-                    $io->out("id $value[0] - license changed from $value[1] to $value[2]");
+                    $io->out(
+                        format(
+                            "id {id} - license changed from {old} to {new}",
+                            [
+                                'id' => $value[0],
+                                'old' => $displayNames[$value[1]],
+                                'new' => $displayNames[$value[2]],
+                            ]
+                        )
+                    );
                 }
             });
         }
