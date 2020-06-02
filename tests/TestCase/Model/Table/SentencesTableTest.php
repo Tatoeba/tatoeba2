@@ -373,6 +373,31 @@ class SentencesTableTest extends TestCase {
 		$this->assertNotEquals($transcrBefore, $transcrAfter);
 	}
 
+	function assertLinksLanguage($sentenceId, $prefix, $expectedLang) {
+		$expectedLink = ["${prefix}_lang" => $expectedLang];
+		$links = $this->Sentence->Links
+			->find()
+			->select(["${prefix}_lang"])
+			->where(["${prefix}_id" => $sentenceId])
+			->enableHydration(false)
+			->all();
+		foreach ($links as $link) {
+			$this->assertEquals($expectedLink, $link);
+		}
+	}
+
+	function testSentenceFlagEditionUpdatesFlagsInLinksTable() {
+		$user = $this->Sentence->Users->get(1);
+		CurrentUser::store($user);
+		$cmnSentenceId = 2;
+		$newLang = 'por';
+
+		$this->Sentence->changeLanguage($cmnSentenceId, $newLang);
+
+		$this->assertLinksLanguage($cmnSentenceId, 'sentence',    $newLang);
+		$this->assertLinksLanguage($cmnSentenceId, 'translation', $newLang);
+	}
+
 	function testSentenceFlagEditionGeneratesTranscriptions() {
 		$user = $this->Sentence->Users->get(1);
 		CurrentUser::store($user);
