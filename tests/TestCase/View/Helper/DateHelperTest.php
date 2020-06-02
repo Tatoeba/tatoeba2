@@ -94,19 +94,19 @@ class DateHelperTest extends TestCase {
             'created within 30 days eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-09-29 09:12:34', false, 'en', '25&nbsp;days ago'],
             'created within 30 days tooltip eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-09-09 09:12:34', true, 'en', 'September 9, 2018 at 9:12 AM'],
+            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-09-09 09:12:34', true, 'en', 'September 9, 2018 at 9:12 AM UTC'],
             'created and modified within 30 days eng' =>
             ['{createdDate}, edited {modifiedDate}', '2018-09-29 09:12:34', '2018-10-10 01:23:45', false, 'en', '25&nbsp;days ago, edited 14&nbsp;days ago'],
             'created and modified within 30 days tooltip eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-10-10 01:23:45', true, 'en', 'September 9, 2018 at 9:12 AM, edited October 10, 2018 at 1:23 AM'],
+            ['{createdDate}, edited {modifiedDate}', '2018-09-09 09:12:34', '2018-10-10 01:23:45', true, 'en', 'September 9, 2018 at 9:12 AM UTC, edited October 10, 2018 at 1:23 AM UTC'],
             'created eng' =>
             ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-09-29 09:12:34', false, 'en', 'September 29, 2017 at 9:12 AM'],
             'created tooltip eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2017-09-09 09:12:34', '2017-09-09 09:12:34', true, 'en', 'September 9, 2017 at 9:12 AM'],
+            ['{createdDate}, edited {modifiedDate}', '2017-09-09 09:12:34', '2017-09-09 09:12:34', true, 'en', 'September 9, 2017 at 9:12 AM UTC'],
             'created and modified eng' =>
             ['{createdDate}, edited {modifiedDate}', '2017-09-29 09:12:34', '2017-10-10 01:23:45', false, 'en', 'September 29, 2017 at 9:12 AM, edited October 10, 2017 at 1:23 AM'],
             'created and modified tooltip eng' =>
-            ['{createdDate}, edited {modifiedDate}', '2018-02-09 09:12:34', '2018-02-10 01:23:45', true, 'en', 'February 9, 2018 at 9:12 AM, edited February 10, 2018 at 1:23 AM'],
+            ['{createdDate}, edited {modifiedDate}', '2018-02-09 09:12:34', '2018-02-10 01:23:45', true, 'en', 'February 9, 2018 at 9:12 AM UTC, edited February 10, 2018 at 1:23 AM UTC'],
             'empty date eng' =>
             ['{createdDate}, edited {modifiedDate}', '0000-00-00 00:00:00', '0000-00-00 00:00:00', false, 'en', 'date unknown'],
             'empty date tooltip eng' =>
@@ -131,10 +131,10 @@ class DateHelperTest extends TestCase {
             'null' => [null, 'date unknown'],
             '0000-00-00 00:00:00' => ['0000-00-00 00:00:00', 'date unknown'],
             'CakePHP Time instance' =>
-                [new Time('1987-06-05 23:45:19'), 'June 5, 1987 at 11:45 PM'],
+                [new Time('1987-06-05 23:45:19'), 'June 5, 1987 at 11:45 PM UTC'],
             'CakePHP FrozenTime instance' =>
-                [new FrozenTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45 PM'],
-            'string' => ['2000-12-07 01:23:45', 'December 7, 2000 at 1:23 AM']
+                [new FrozenTime('1983-06-05 23:45:19'), 'June 5, 1983 at 11:45 PM UTC'],
+            'string' => ['2000-12-07 01:23:45', 'December 7, 2000 at 1:23 AM UTC']
         ];
     }
 

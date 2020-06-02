@@ -58,9 +58,9 @@ class DateHelper extends AppHelper
         if (empty($date) || $date == '0000-00-00 00:00:00') {
             return __('date unknown');
         } elseif ($date instanceof DateTimeInterface) {
-            return $date->nice();
+            return "{$date->nice()} UTC";
         } else {
-            return $this->Time->nice($date);
+            return "{$this->Time->nice($date)} UTC";
         }
     }
 
