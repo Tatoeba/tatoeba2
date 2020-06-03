@@ -1441,11 +1441,17 @@ form .language-icon-div {
     .sentence-and-translations .sentence .transcription .text {
         font-size: 18px;
     }
-}
 
-@media only screen and (min-width: 600px) {
-    .sentence-and-translations .menu-button {
-        display: none;
+    .sentence-and-translations .text,
+    .sentence-and-translations .lang {
+        padding: 0 5px;
+    }
+
+    .sentence-and-translations .sentence .transcription .icon {
+        margin: 0 5px 0 12px;
+    }
+    .sentence-and-translations .translation .transcription .icon {
+        margin: 0 10px 0 12px;
     }
 }
 

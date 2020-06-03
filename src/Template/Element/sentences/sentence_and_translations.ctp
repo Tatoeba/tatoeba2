@@ -120,6 +120,7 @@ $sentenceUrl = $this->Url->build([
 
         <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}" ng-if="!vm.visibility.sentence_form">
             <div layout="row" layout-align="start center" flex>
+            <div ng-click="translation.showActions = !translation.showActions" layout="row" layout-align="start center" flex>
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>
             </div>
@@ -142,25 +143,9 @@ $sentenceUrl = $this->Url->build([
                     </md-tooltip>
                 </md-icon>
             </div>
-
-            <div class="indicator" ng-if="vm.sentence.correctness === -1">
-                <md-icon class="md-warn">warning</md-icon>
-                <md-tooltip md-direction="top">
-                    <?= __('This sentence is not reliable.') ?>
-                </md-tooltip>
             </div>
 
-            <md-button class="md-icon-button" ngclipboard data-clipboard-text="{{vm.sentence.text}}">
-                <md-icon>content_copy</md-icon>
-                <md-tooltip><?= __('Copy sentence') ?></md-tooltip>
-            </md-button>
-
-            <?= $this->element('sentence_buttons/audio', ['angularVar' => 'vm.sentence']); ?>
-
-            <md-button class="md-icon-button" ng-href="<?= $sentenceUrl ?>/{{vm.sentence.id}}">
-                <md-icon>info</md-icon>
-                <md-tooltip><?= __('Go to sentence page') ?></md-tooltip>
-            </md-button>
+            <?= $this->element('sentences/sentence_icons', ['angularVar' => 'vm.sentence']); ?>
             </div>
             
             <?= $this->element('sentences/transcriptions'); ?>
