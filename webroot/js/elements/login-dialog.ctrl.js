@@ -15,7 +15,8 @@
                     controller: DialogController,
                     templateUrl: get_tatoeba_root_url() + '/users/login_dialog_template?redirect=' + url,
                     parent: angular.element(document.body),
-                    clickOutsideToClose:true
+                    clickOutsideToClose: true,
+                    fullscreen: true
                 });
             }
 
