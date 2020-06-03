@@ -103,8 +103,8 @@ echo $this->element('/sentences/navigation', [
     <?php
     if (isset($sentence)){
         $this->Tags->displayTagsModule($tagsArray, $sentenceId, $sentenceLang);
-
-        $this->Lists->displayListsModule($listsArray);
+        
+        $this->Lists->displayListsModuleWithRemove($listsArray, $sentence);
 
         echo $this->element(
             'sentences/license',

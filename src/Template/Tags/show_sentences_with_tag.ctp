@@ -67,7 +67,7 @@ $tagsIndexUrl = $this->Url->build([
     </md-toolbar>
 
     <md-content>
-
+        
         <div class="sortBy">
             <strong><?php echo __("Sort by:") ?></strong>
             <?php
@@ -80,7 +80,7 @@ $tagsIndexUrl = $this->Url->build([
             echo $this->Paginator->sort('added_time', __("date of tag"));
             ?>
         </div>
-
+        
         <?php $this->Pagination->display(); ?>
 
         <div class="sentencesList" id="sentencesList">
