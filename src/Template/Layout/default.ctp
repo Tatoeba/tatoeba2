@@ -65,8 +65,10 @@ use Cake\Core\Configure;
 
     <link rel="search" type="application/opensearchdescription+xml"
           href="/opensearch.xml" title="Tatoeba" />
-          
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <?php if ($controller === 'pages' && $action === 'index' && !CurrentUser::isMember()) { ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <?php } ?>
 </head>
 <body ng-app="app">
     <div id="audioPlayer"></div>
