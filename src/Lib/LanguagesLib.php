@@ -595,6 +595,7 @@ class LanguagesLib
                 'jpa' => __d('languages', 'Jewish Palestinian Aramaic'),
                 'phn' => __d('languages', 'Phoenician'),
                 'rel' => __d('languages', 'Rendille'),
+                'drt' => __d('languages', 'Drents'),
             );
         }
         return $languages;
