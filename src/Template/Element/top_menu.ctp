@@ -258,7 +258,7 @@ $menuElements = array(
 
     </div>
 
-    <md-sidenav class="md-sidenav-left" md-component-id="menu" ng-cloak>
+    <md-sidenav class="md-sidenav-left" md-component-id="menu" md-disable-scroll-target="body" ng-cloak>
         <md-content>
             <?php
             $name = __('Tatoeba');
@@ -275,7 +275,10 @@ $menuElements = array(
             ?>
             <div layout="row" layout-align="start center" layout-margin>
                 <span><?= $logo ?></span>
-                <span class="tatoeba-name"><?= $name ?></span>
+                <span class="tatoeba-name" flex><?= $name ?></span>
+                <md-button class="md-icon-button" ng-click="toggleMenu()">
+                    <md-icon>close</md-icon>
+                </md-button>
             </div>
 
             <md-list>

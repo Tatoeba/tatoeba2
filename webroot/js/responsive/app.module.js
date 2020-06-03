@@ -70,7 +70,7 @@
             };
         })
         .controller('MenuController', function($scope, $mdSidenav, $mdDialog) {
-            $scope.openMenu = function() {
+            $scope.toggleMenu = function() {
                 $mdSidenav('menu').toggle();
             };
 

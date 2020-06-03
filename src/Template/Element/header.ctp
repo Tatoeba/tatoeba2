@@ -27,7 +27,7 @@
 use Cake\Core\Configure;
 ?>
 <li class="hamburger-menu" ng-cloak>
-    <md-button class="md-icon-button" ng-click="openMenu()">
+    <md-button class="md-icon-button" ng-click="toggleMenu()">
         <md-icon>menu</md-icon>
     </md-button>
 </li>
