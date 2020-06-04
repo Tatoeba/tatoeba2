@@ -480,6 +480,43 @@ class ListsHelper extends AppHelper
         <?php
     }
 
+     /*
+     Function shows X behind the List to remove it 
+     */
+    private function _displayRemoveLink($listId, $sentenceId, $listName)
+    {
+        echo ' ';
+        $removeSentencesFromListeAlt = format(
+            __("Remove this sentences from '{listName}'."),
+                compact('listName')
+        );
+
+        $removeSentencesFromListImg =  $this->Html->image(
+            IMG_PATH . 'close.png',
+            array(
+                "class" => "removeFromListButton",
+                "id" => 'deleteFromListButton'.$listId,
+                "alt" => $removeSentencesFromListeAlt
+            )
+        );
+        // X link to remove tag from sentence
+        echo $this->Html->link(
+            $removeSentencesFromListImg,
+            array(
+                "controller" => "sentences_lists",
+                "action" => "remove_sentences_from_list",
+                $listId,
+                $sentenceId
+            ),
+            array(
+                "class" => "removeSentencesFromListButton",
+                "id" => 'deleteButton'.$listId.$sentenceId,
+                "title" => $removeSentencesFromListeAlt,
+                "escape" => false
+            ),
+            null
+        );        
+    }
     /**
      * Form to add a new sentence to a list.
      *
@@ -535,14 +572,21 @@ class ListsHelper extends AppHelper
     }
 
 
-    public function displayListsModule($listsArray)
+    public function displayListsModule($allListsArray, $sentences)
     {
-        if (count($listsArray) > 0) {
+         //check if sentences belongs to any own List if not return
+        if(empty($allListsArray))
+        {
+            return;
+        }
+        $sentenceId = (int)$sentences->id; 
+        
+        if (count($allListsArray) > 0) {
             echo '<div class="section md-whiteframe-1dp">';
             /* @translators: header text on the sidebar of a sentence page */
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
-            foreach($listsArray as $list) {
+            foreach($allListsArray as $list) {
                 $list = $list->sentences_list;
                 if ($list['visibility'] == 'public') {
                     $class = 'public-list';
@@ -550,7 +594,7 @@ class ListsHelper extends AppHelper
                     $class = 'personal-list';
                 }
                 echo '<li class="'.$class.'">';
-                echo $this->Html->link(
+                 echo $this->Html->link(
                     $this->_View->safeForAngular($list['name']),
                     array(
                         'controller' => 'sentences_lists',
@@ -558,9 +602,19 @@ class ListsHelper extends AppHelper
                         $list['id']
                     )
                 );
+                 if(CurrentUser::isMember())
+                 {
+                    echo $this->_displayRemoveLink($list['id'], $sentenceId, $list['name']);
+                 }
                 echo '</li>';
             }
             echo '</ul>';
+            echo '</div>';
+        } else 
+        {
+            echo '<div class="section md-whiteframe-1dp">';
+            /* @translators: header text on the sidebar of a sentence page */
+            echo $this->Html->tag('h2', __('Lists'));
             echo '</div>';
         }
     }

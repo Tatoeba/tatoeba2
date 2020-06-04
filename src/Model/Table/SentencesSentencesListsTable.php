@@ -56,6 +56,27 @@ class SentencesSentencesListsTable extends Table
             ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
             ->all();
     }
+    public function getOwnAndPublicListsForSentence($sentenceId)
+    {
+        return $this->find()
+            ->where([
+                'sentence_id' => $sentenceId,
+                'user_id' => CurrentUser::get('id')
+            ])
+            ->orwhere([
+                'sentence_id' => $sentenceId,
+                'visibility' => 'public'
+            ])
+            ->select(['created'])
+            ->contain([
+                'SentencesLists' => [
+                    'fields' => ['id', 'name', 'visibility']
+                ]
+            ])
+            ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
+            ->all();
+    }
+    
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA, $entity) {
         $sentenceId = $entity->sentence_id;

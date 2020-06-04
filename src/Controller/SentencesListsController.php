@@ -566,4 +566,27 @@ class SentencesListsController extends AppController
         $this->set('_serialize', ['lists']);
         $this->RequestHandler->renderAs($this, 'json');
     }
+        /**
+     * Remove a sentences from a list when on the sentence page
+     *
+     * @param int $listId      Id of the list to remove from the sentence from
+     * @param int $sentenceId Id of the sentence to remove the list from
+     *
+     * @return void
+     */
+
+    public function remove_sentences_from_list($listId, $sentenceId)
+    {
+        if (!empty($listId) && !empty($sentenceId)) 
+        {
+           $userId = CurrentUser::get("id");
+           $this->SentencesLists->removeSentenceFromList($sentenceId, $listId, $userId);
+        }
+        return $this->redirect([
+            'controller' => 'sentences',
+            'action' => 'show',
+            $sentenceId
+        ]);
+
+    }
 }

@@ -81,7 +81,7 @@ class TagsHelper extends AppHelper
                     $this->displayTag(
                         $tagName, $tagId, $sentenceId, $userId, $username, $date, $sentenceLang
                     );
-
+                    echo '<br>';
                 }
                 ?>
             </div>
