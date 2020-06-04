@@ -150,7 +150,7 @@ class UsersLanguagesTableTest extends TestCase {
 
     function testSaveUserLanguage_correctDateUsingArabicLocale() {
         I18n::setLocale('ar');
-        $now = Time::now();
+        $now = new Time('2020-01-02 03:04:05');
         Time::setTestNow($now);
         $added = $this->UsersLanguages->saveUserLanguage(
             ['language_code' => 'npi', 'details' => ''],
