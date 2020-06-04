@@ -370,7 +370,6 @@ class SentencesTableTest extends TestCase {
 			->where($conditions)
 			->first();
 
-		$this->assertEquals(count($transcrBefore), count($transcrAfter));
 		$this->assertNotEquals($transcrBefore, $transcrAfter);
 	}
 
