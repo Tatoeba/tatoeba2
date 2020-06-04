@@ -31,6 +31,11 @@
     dest: /home/{{ansible_ssh_user}}/.my.cnf
     mode: 0600
 
+- name: Install Tatoeba's MySQL config
+  copy:
+    src: tatoeba.cnf
+    dest: /etc/mysql/conf.d/tatoeba.cnf
+
 - name: Update mysql root password for all root accounts
   mysql_user:
     name: root
