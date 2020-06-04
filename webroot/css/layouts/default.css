@@ -345,6 +345,10 @@ html[dir="rtl"] #user-menu .dropdown-content {
  * search bar
  */
 
+ #search-bar {
+    display: none;
+}
+
 .search_bar {
     min-height: 92px;
     background-color: #4caf50; /* Material's green */

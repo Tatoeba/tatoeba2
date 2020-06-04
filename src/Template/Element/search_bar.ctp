@@ -28,10 +28,7 @@
 use Cake\Core\Configure;
 
 $searchQuery = h(str_replace('{{', '\{\{', json_encode($searchQuery)));
-?>
 
-<md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
-<?php
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }
@@ -39,6 +36,43 @@ if ($selectedLanguageFrom == null) {
 if ($selectedLanguageTo == null) {
     $selectedLanguageTo = 'und';
 }
+?>
+
+<md-toolbar id="search-bar" ng-cloak>
+    <div class="md-toolbar-tools">
+    <?php
+    echo $this->Form->create('Sentence', [
+        'layout' => 'column',
+        'url' => ['controller' => 'sentences', 'action' => 'search'],
+        'type' => 'get',
+        'flex' => '',
+        'ng-cloak' => '',
+        'ng-controller' => 'SidenavController'
+    ]);
+    ?>
+
+    <div layout="row" layout-align="center center" flex>
+        <md-input-container class="md-accent" flex md-no-float>
+            <md-icon>search</md-icon>
+            <input name="query" 
+                accesskey="4" 
+                dir="auto" 
+                ng-model="ctrl.searchQuery" 
+                ng-init="ctrl.searchQuery = <?= $searchQuery ?>"
+                placeholder="<?= __('Search') ?>"/>
+        </md-input-container>
+        <md-button class="md-icon-button" ng-click="toggle('advanced-search')">
+            <md-icon>more_vert</md-icon>
+        </md-button>
+    </div>
+    <?php
+    echo $this->Form->end();
+    ?>
+    </div>
+</md-toolbar>
+
+<md-toolbar ng-controller="SearchBarController as ctrl" class="search_bar md-whiteframe-1dp md-primary">
+<?php
 echo $this->Form->create(
     'Sentence',
     array(

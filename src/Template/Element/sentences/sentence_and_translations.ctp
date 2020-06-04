@@ -83,7 +83,7 @@ $sentenceUrl = $this->Url->build([
     </div>
     <div layout="column">
         <div layout="row" class="header">
-            <md-subheader flex class="ellipsis">
+            <md-subheader flex>
                 <span ng-if="vm.sentence.user && vm.sentence.user.username">
                     <?php
                     echo format(

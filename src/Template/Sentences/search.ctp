@@ -72,19 +72,17 @@ if ($ignored) {
 }
 ?>
 
-<div id="annexe_content">
-    <div class="md-whiteframe-1dp" ng-cloak>
-    <md-subheader><?php echo __('More search criteria'); ?></md-subheader>
-    <?php echo $this->element('advanced_search_form', array(
-                   'searchableLists' => $searchableLists,
-                   'isSidebar' => true
-          )); ?>
+<md-toolbar class="md-hue-2" ng-cloak>
+    <div class="md-toolbar-tools">
+        <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
+
+        <?= $this->element('sentences/expand_all_menus_button'); ?>
     </div>
-</div>
+</md-toolbar>
 
-<div id="main_content">
+<section layout="row" ng-cloak>
 
-<section class="md-whiteframe-1dp">   
+<md-content class="md-whiteframe-1dp" flex>
 <?php
 if (!isset($results)) {
     ?><div class="section"><?php
@@ -128,17 +126,6 @@ if (!isset($results)) {
         );
     }
 
-    ?>
-    <md-toolbar class="md-hue-2">
-        <div class="md-toolbar-tools">
-            <?= $this->Pages->formatTitleWithResultCount($this->Paginator, $title, $real_total); ?>
-
-            <?= $this->element('sentences/expand_all_menus_button'); ?>
-        </div>
-    </md-toolbar>
-
-    <md-content>
-    <?php
     //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
     
     $this->Pagination->display();
@@ -165,7 +152,6 @@ if (!isset($results)) {
     }
 
     $this->Pagination->display();
-    ?></md-content><?php
 
 } else {
     echo $this->element('search_with_no_result');
@@ -173,5 +159,17 @@ if (!isset($results)) {
     //echo $this->Pages->sentencesMayNotAppear($vocabulary, $real_total);
 }
 ?>
+</md-content>
+
+<md-sidenav class="md-sidenav-right md-whiteframe-1dp"
+            md-component-id="advanced-search"
+            md-disable-scroll-target="body"
+            md-is-locked-open="$mdMedia('gt-sm')">
+    <md-subheader><?php echo __('More search criteria'); ?></md-subheader>
+    <?php echo $this->element('advanced_search_form', [
+        'searchableLists' => $searchableLists,
+        'isSidebar' => true
+    ]); ?>
+</md-sidenav>
+
 </section>
-</div>
