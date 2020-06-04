@@ -111,7 +111,8 @@ class UsersSentencesTest extends TestCase {
 
     function testSaveSentence_correctDateUsingArabicLocale() {
         I18n::setLocale('ar');
-        $now = Time::now();
+
+        $now = new Time('2020-01-02 03:04:05');
         Time::setTestNow($now);
         $this->UsersSentences->saveSentence(1, 1, 4);
         $returned = $this->UsersSentences->findBySentenceIdAndUserId(1, 4)->first();
