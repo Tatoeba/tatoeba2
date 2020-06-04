@@ -69,7 +69,7 @@
                 });
             };
         })
-        .controller('MenuController', function($scope, $mdSidenav, $mdDialog) {
+        .controller('MenuController', ['$scope', '$mdSidenav', '$mdDialog', function($scope, $mdSidenav, $mdDialog) {
             $scope.toggleMenu = function() {
                 $mdSidenav('menu').toggle();
             };
@@ -100,5 +100,5 @@
                     location.reload();
                 }
             }
-        });
+        }]);
 })();
