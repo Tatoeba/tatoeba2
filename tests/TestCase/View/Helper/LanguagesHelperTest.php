@@ -13,16 +13,18 @@ class LanguagesHelperTest extends TestCase {
 		'app.users_languages'
 	);
 
+	private $prevLocale;
+
 	function setUp() {
 		parent::setUp();
         $View = new View();
 		$this->Languages = new LanguagesHelper($View);
-		I18N::setLocale('en');
+		$this->prevLocale = I18n::getLocale();
 		CurrentUser::store(null);
 	}
 
 	function tearDown() {
-		I18N::setLocale('en');
+		I18n::setLocale($this->prevLocale);
 	}
 
 	function _beRegularUser() {
