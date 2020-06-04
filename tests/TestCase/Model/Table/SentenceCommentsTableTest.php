@@ -129,7 +129,9 @@ class SentenceCommentTest extends TestCase {
     }
 
     public function testSave_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $comment = $this->SentenceComment->newEntity([
             'sentence_id' => 1,
             'text' => 'test',
@@ -139,5 +141,7 @@ class SentenceCommentTest extends TestCase {
         $returned = $this->SentenceComment->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 }

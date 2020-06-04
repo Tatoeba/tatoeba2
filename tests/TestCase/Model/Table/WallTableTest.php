@@ -267,11 +267,15 @@ class WallTest extends TestCase {
     }
 
     public function testSave_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $post = $this->Wall->newEntity(['content' => 'test', 'owner' => 1]);
         $added = $this->Wall->save($post);
         $returned = $this->Wall->get($added->id);
         $this->assertEquals($added->date, $returned->date);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 }

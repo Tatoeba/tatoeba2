@@ -57,9 +57,13 @@ class VocabularyTableTest extends TestCase
     }
 
     public function testAddItem_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->Vocabulary->addItem('eng', 'test');
         $returned = $this->Vocabulary->get($added->id);
         $this->assertEquals($added->created, $returned->created);
+
+        I18n::setLocale($prevLocale);
     }
 }

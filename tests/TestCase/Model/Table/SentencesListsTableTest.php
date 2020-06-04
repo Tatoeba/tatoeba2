@@ -505,10 +505,14 @@ class SentencesListsTableTest extends TestCase {
     }
 
     function testCreateList_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->SentencesList->createList('arabic', 1);
         $returned = $this->SentencesList->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 }

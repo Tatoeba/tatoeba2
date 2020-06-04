@@ -1209,11 +1209,15 @@ class SentencesTableTest extends TestCase {
 	}
 
     function testSaveNewSentence_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->Sentence->saveNewSentence('test', 'eng', 1);
         $returned = $this->Sentence->get($added->id);
         $this->assertEquals($added->created, $returned->created);
         $this->assertEquals($added->modified, $returned->modified);
+
+        I18n::setLocale($prevLocale);
     }
 
     function testSaveNewSentence_correctHashStored() {

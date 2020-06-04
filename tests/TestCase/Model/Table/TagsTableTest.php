@@ -160,10 +160,14 @@ class TagsTableTest extends TestCase {
     }
 
     public function testAddTag_correctDateUsingArabicLocale() {
+        $prevLocale = I18n::getLocale();
         I18n::setLocale('ar');
+
         $added = $this->Tag->addTag('arabic', 4);
         $returned = $this->Tag->get($added->id);
         $this->assertEquals($added->created, $returned->created);
+
+        I18n::setLocale($prevLocale);
     }
 
     public function testAddTagWithoutSentenceId_NoDuplicateAdded() {
