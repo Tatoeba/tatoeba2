@@ -81,6 +81,7 @@
                 });
             }
 
+            DialogController.$inject = ['$scope', '$mdDialog'];
             function DialogController($scope, $mdDialog) {
                 $scope.init = function (data) {
                     $scope.languages = data;
