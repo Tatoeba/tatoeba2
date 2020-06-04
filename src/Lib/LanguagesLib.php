@@ -596,6 +596,7 @@ class LanguagesLib
                 'phn' => __d('languages', 'Phoenician'),
                 'rel' => __d('languages', 'Rendille'),
                 'iii' => __d('languages', 'Nuosu'),
+                'drt' => __d('languages', 'Drents'),
             );
         }
         return $languages;
