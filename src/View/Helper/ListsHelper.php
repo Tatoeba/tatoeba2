@@ -580,13 +580,6 @@ class ListsHelper extends AppHelper
 
     public function displayListsModule($allListsArray, $sentences)
     {
-         //check if sentences belongs to any own List if not return
-        if(empty($allListsArray))
-        {
-            return;
-        }
-        $sentenceId = (int)$sentences->id; 
-        
         if (count($allListsArray) > 0) {
             echo '<div class="section md-whiteframe-1dp">';
             /* @translators: header text on the sidebar of a sentence page */
