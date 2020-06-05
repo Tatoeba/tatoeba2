@@ -44,7 +44,7 @@ echo $this->Form->create('AdvancedSearch', [
                     'dir' => 'auto',
                 ));
                 ?>
-                <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
+                <md-icon reset-button>clear</md-icon>
                 <div class="hint"><?= __('Enter a word or a phrase') ?></div>
             </md-input-container>
 
@@ -72,7 +72,7 @@ echo $this->Form->create('AdvancedSearch', [
                     'value' => $user,
                 ));
                 ?>
-                <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
+                <md-icon reset-button>clear</md-icon>
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
@@ -143,7 +143,7 @@ echo $this->Form->create('AdvancedSearch', [
                 'value' => $this->safeForAngular($tags),
             ));
             ?>
-            <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
+            <md-icon reset-button>clear</md-icon>
             <div class="hint">
                 <?= __('Separate tags with commas.') ?>
             </div>
@@ -246,7 +246,7 @@ echo $this->Form->create('AdvancedSearch', [
                         'value' => $trans_user,
                     ));
                     ?>
-                    <md-icon id="clearSearch" tabindex="-1" ng-click="ctrl.clearSearch()">clear</md-icon>
+                    <md-icon reset-button>clear</md-icon>
                     <div class="hint"><?= __('Enter a username') ?></div>
                 </md-input-container>
 

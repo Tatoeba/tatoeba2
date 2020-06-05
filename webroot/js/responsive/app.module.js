@@ -68,5 +68,14 @@
                     }
                 });
             };
+        })
+        .directive('resetButton', function(){
+            return function(scope, element, attrs) {
+                element.bind('click', function(e) {
+                    var text_input = this.previousElementSibling.childNodes[1];
+                    text_input.value = '';
+                    text_input.focus();
+                });
+            };
         });
 })();
