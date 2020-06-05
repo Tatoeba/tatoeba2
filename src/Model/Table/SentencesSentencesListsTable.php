@@ -65,7 +65,7 @@ class SentencesSentencesListsTable extends Table
             ])
             ->orwhere([
                 'sentence_id' => $sentenceId,
-                'visibility' => 'public'
+                'visibility' => 'public+'
             ])
             ->select(['created'])
             ->contain([
