@@ -25,7 +25,11 @@
  * @link     https://tatoeba.org
  */
 ?>
-<div id="footer" layout="column">
+<div id="footer" layout="column" ng-cloak>
+
+    <div layout="row" layout-align="center center" flex layout-margin ng-controller="MenuController">
+        <?= $this->element('ui_language_button'); ?>
+    </div>
 
     <div layout="row" layout-xs="column" layout-align="space-between start">
     <div class="category" flex-gt-xs>
@@ -190,7 +194,7 @@
     </div>
     </div>
 
-    <div layout="row" layout-align="start center" class="license">
+    <div layout="row" layout-align="center center" class="license">
         <img alt="Creative Commons License" src="/img/cc-logo.png" />
         <div class="text">
             <?php

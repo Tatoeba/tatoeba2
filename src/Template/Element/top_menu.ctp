@@ -250,9 +250,9 @@ $menuElements = array(
             ?>
         </div>
 
-        <md-button class="ui-lang-select md-icon-button" ng-click="showInterfaceLanguageSelection()">
-            <md-icon>language</md-icon>
-        </md-button>
+        <?= $this->element('ui_language_button', [
+            'displayOption' => 'hide-xs'
+        ]); ?>
     </div>
 
     <md-sidenav class="md-sidenav-left" md-component-id="menu" md-disable-scroll-target="body" ng-cloak>
