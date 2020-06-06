@@ -1430,7 +1430,12 @@ form .language-icon-div {
     padding: 0;
 }
 
-@media only screen and (max-width: 600px) {
+.sentence-and-translations div:focus {
+    outline: none;
+    border: 0;
+ }
+
+@media only screen and (max-width: 600px) {    
     .sentence-and-translations .buttons {
         display: none;
     }
