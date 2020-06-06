@@ -165,7 +165,15 @@ if (!isset($results)) {
             md-component-id="advanced-search"
             md-disable-scroll-target="body"
             md-is-locked-open="$mdMedia('gt-sm')">
-    <md-subheader><?php echo __('More search criteria'); ?></md-subheader>
+    <md-toolbar>
+        <div class="md-toolbar-tools" ng-controller="SidenavController">
+            <h2 flex><?= __('Search criteria'); ?></h2>
+            <md-button class="close md-icon-button" ng-click="toggle('advanced-search')">
+                <md-icon>close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    
     <?php echo $this->element('advanced_search_form', [
         'searchableLists' => $searchableLists,
         'isSidebar' => true

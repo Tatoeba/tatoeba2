@@ -32,9 +32,11 @@ echo $this->Form->create('AdvancedSearch', [
 <div layout="column" ng-app="app" ng-cloak>
     <div layout="<?= $layout ?>">
         <div class="column-1" layout="column" flex>
-            <?php /* @translators: section title in advanced search form */ ?>
-            <h3><?= __('Sentences'); ?></h3>
+        <?php /* @translators: section title in advanced search form */ ?>
+        <md-subheader><?= __('Sentences'); ?></md-subheader>
 
+            
+        <div layout="column">
             <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('query', array(
@@ -191,12 +193,15 @@ echo $this->Form->create('AdvancedSearch', [
                 </div>
             </div>
         </div>
+        </div>
+
+        <md-divider></md-divider>
 
         <div class="column-2" <?= isset($isSidebar) && $isSidebar ? '' : 'flex' ?>>
-            <div layout="column">
-                <?php /* @translators: section title in advanced search form */ ?>
-                <h3><?php echo __('Translations'); ?></h3>
+            <?php /* @translators: section title in advanced search form */ ?>
+            <md-subheader><?php echo __('Translations'); ?></md-subheader>
 
+            <div layout="column">
                 <div class="param">
                 <?php
                 $filterOption = $this->Form->select(
@@ -318,10 +323,12 @@ echo $this->Form->create('AdvancedSearch', [
                 </div>
             </div>
 
-            <div layout="column">
-                <?php /* @translators: section title in search form (noun) */ ?>
-                <h3><?php echo __('Sort'); ?></h3>
+            <md-divider></md-divider>
 
+            <?php /* @translators: section title in search form (noun) */ ?>
+            <md-subheader><?php echo __('Sort'); ?></md-subheader>
+
+            <div layout="column">
                 <div class="param" layout="<?= $layout ?>" layout-align="center">
                     <?php /* @translators: field name in search form (noun) */ ?>
                     <label for="sort" flex><?= __('Order:') ?></label>
@@ -362,6 +369,8 @@ echo $this->Form->create('AdvancedSearch', [
             </div>
         </div>
     </div>
+
+    <md-divider></md-divider>
 
     <div class="buttons" layout="<?= $layout ?>">
         <md-button type="submit" class="md-primary md-raised">

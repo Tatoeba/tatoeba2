@@ -42,6 +42,12 @@
     }
 }
 
+@media only screen and (min-width: 960px) {
+    .md-sidenav-right .close {
+        display: none;
+    }
+}
+
 /*
  * Search results
  */
@@ -58,10 +64,6 @@
 /*
  * Advanced search form
  */
-#advanced-search {
-    margin: 0 20px;    
-}
-
 #advanced-search .param {
     margin: 10px 0;
 }
@@ -76,4 +78,15 @@
 
 #advanced-search .buttons {
     margin: 20px 0;
+}
+
+#advanced-search .column-1 > .layout-column,
+#advanced-search .column-2 > .layout-column,
+#advanced-search .buttons {
+    padding: 0 20px;
+}
+
+#advanced-search .md-subheader {
+    color: #111;
+    font-weight: bold;
 }
