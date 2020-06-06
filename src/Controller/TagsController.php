@@ -203,7 +203,7 @@ class TagsController extends AppController
                 'contain' => ['Sentences' => $contain],
                 'conditions' => $conditions,
                 'limit' => CurrentUser::getSetting('sentences_per_page'),
-                'order' => ['sentence_id' => 'DESC']
+                'order' => ['added_time' => 'DESC']
             ];
             $this->paginate = $pagination;
 
