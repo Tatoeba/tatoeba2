@@ -119,7 +119,7 @@ $sentenceUrl = $this->Url->build([
         </div>
 
         <div class="sentence" ng-class="{'not-reliable' : vm.sentence.correctness === -1}" ng-if="!vm.visibility.sentence_form">
-            <div layout="row" layout-align="start center" flex>
+            <div layout="row" layout-align="stretch" flex>
             <div ng-click="translation.showActions = !translation.showActions" layout="row" layout-align="start center" flex>
             <div class="lang">
                 <language-icon lang="vm.sentence.lang" title="vm.sentence.lang_name"></language-icon>

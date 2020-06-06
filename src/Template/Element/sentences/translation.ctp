@@ -1,7 +1,7 @@
 <div ng-repeat="translation in <?= $translations ?>"
      class="translation" ng-class="{'not-reliable' : translation.correctness === -1, 'expanded': vm.isMenuExpanded, 'trusted-user': vm.menu.canLink}">
     
-    <div layout="row" layout-align="start center" flex>
+    <div layout="row" layout-align="stretch" flex>
     <div ng-click="translation.showActions = !translation.showActions" layout="row" layout-align="start center" flex>
     <icon-with-progress is-loading="vm.iconsInProgress['link' + translation.id]" ng-if="vm.menu.canLink">
         <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && translation.isDirect" ng-click="vm.saveLink('delete', translation)">
