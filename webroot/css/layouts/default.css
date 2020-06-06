@@ -677,39 +677,35 @@ html[dir="rtl"] .search-bar-extra a:before {
 /*
  *
  */
+.announcement-container {
+    background-color: #fff;
+    padding: 1px;
+}
 .maintenance {
-    margin: 0 auto;
-    width: 80%;
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     color: #ffffff;
     background: #d11;
-    border-radius: 5px;
     font-size: 20px;
 }
 .announcement {
-    display: none;
-    margin: 20px;
-    padding: 20px;
+    max-width: 960px;
+    margin: auto;
+    padding: 5px;
     background: #06A;
     color: #ffffff;
-    border-radius: 5px;
-    font-size: 20px;
+    margin-bottom: 10px;
 }
-.announcement .close.button {
-    float: right;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    margin-left: 10px;
-    background: transparent;
-    border: none;
-    color: white;
-    padding: 0;
+
+.announcement p,
+.announcement md-icon {
+    margin: 10px 10px 0px 10px;
 }
-.announcement a {
+
+.announcement a,
+.announcement md-icon,
+.announcement .md-button.md-primary {
     color: #FFD800;
-    border-radius: 2px;
 }
 
 /*

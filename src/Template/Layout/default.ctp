@@ -107,11 +107,14 @@ $htmlDir = LanguagesLib::getLanguageDirection($lang);
     }
     ?>
 
+    <div class="announcement-container">
+        <?= $this->element('announcement'); ?>
+    </div>
+
     <!--  CONTENT -->
     <div id="content">
         <div class="container">
         <?php
-        echo $this->element('announcement');
         echo $this->Flash->render('flash', array('element' => 'flash_message'));
 
         echo $this->fetch('content');

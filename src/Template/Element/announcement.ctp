@@ -60,44 +60,44 @@ if (!CurrentUser::hasAcceptedNewTermsOfUse()) {
 if ($this->Announcement->isDisplayed()) {
     if ($warning = $this->Announcement->shutdownWarning()) {
         echo $this->Html->div('maintenance', $warning);
-    } else {
-        $isDisplayingAnnouncement = true;
-        $announcementId = 'maintenance-2020-06-07';
-        $announcementText = $this->Html->tag('div', format(__(
-            'Tatoeba will be unavailable this Sunday (June 7) from 2am to 5am UTC for <a href="{}">maintenance</a>.'
-        ), 'https://blog.tatoeba.org/2020/06/tatoeba-scheduled-maintenance.html'));
-
-        $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
-        $content = $this->Html->div('content', $announcementText);
-
-        echo $this->Html->div(
-            'announcement',
-            $closeButton . $content,
-            array(
-                'data-announcement-id' => $announcementId
-            )
-        );
-    }
+    } 
+    
+    $isDisplayingAnnouncement = true;
+    ?>
+    <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_announcement')" ng-cloak>
+        <p>
+        Announcement text here.
+        </p>
+        <div layout="row" layout-align="end center">
+            <?php /* @translators: button to close the blue announcement banner */ ?>
+            <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+        </div>
+    </div>
+    <?php
 }
 
 if (Configure::read('Tatoeba.devStylesheet')) {
     $isDisplayingAnnouncement = true;
-    $content = __(
-        'Warning: this website is for testing purposes. '.
-        'Everything you submit will be definitely lost.', true
-    );
-    $closeButton = $this->Html->div('close button', $this->Images->svgIcon('close'));
-    echo $this->Html->div(
-        'announcement',
-        $closeButton . $content,
-        array(
-            'data-announcement-id' => 'dev-warning5'
-        )
-    );
+    ?>
+    <div class="announcement md-whiteframe-1dp" info-banner ng-init="vm.init('hide_dev_warning')" ng-cloak>
+        <div layout="row">
+            <md-icon>warning</md-icon>
+            <p>
+                <?= __(
+                'Warning: this website is for testing purposes. '.
+                'Everything you submit will be definitely lost.', true
+                ); ?>
+            </p>
+        </div>
+        <div layout="row" layout-align="end center">
+            <?php /* @translators: button to close the blue announcement banner */ ?>
+            <md-button class="md-primary" ng-click="vm.hideAnnouncement()"><?= __('Close') ?></md-button>
+        </div>
+    </div>
+    <?php
 }
 
 if ($isDisplayingAnnouncement) {
-    $this->Html->script(JS_PATH . 'jquery.cookie.js', ['block' => 'scriptBottom']);
-    $this->Html->script(JS_PATH . 'announcement.js',  ['block' => 'scriptBottom']);
+    $this->Html->script(JS_PATH . 'directives/info-banner.dir.js', ['block' => 'scriptBottom']);
 }
 ?>
