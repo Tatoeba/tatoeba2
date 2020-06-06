@@ -156,11 +156,11 @@ $menuElements = array(
 ?>
 
 <div id="top_menu_container" ng-controller="MenuController">
-    <div id="top_menu">
-        <ul id="navigation_menu">
+    <div id="top_menu" layout="column" layout-gt-xs="row" layout-align-gt-xs="start center" flex ng-cloak>
+        <?= $this->element('header'); ?>
+        
+        <ul id="navigation_menu" flex>
         <?php
-        echo $this->element('header');
-
         // currenot path param
         $pass = $this->request->getParam('pass');
         $param = '';
@@ -235,12 +235,6 @@ $menuElements = array(
         ?>
         </ul>
 
-        <div id="languageSelectionContainer" ng-cloak>
-            <md-button class="md-icon-button" ng-click="showInterfaceLanguageSelection()">
-                <md-icon>language</md-icon>
-            </md-button>
-        </div>
-
         <div id="user_menu" ng-cloak>
             <?php
             // User menu
@@ -256,6 +250,9 @@ $menuElements = array(
             ?>
         </div>
 
+        <md-button class="ui-lang-select md-icon-button" ng-click="showInterfaceLanguageSelection()">
+            <md-icon>language</md-icon>
+        </md-button>
     </div>
 
     <md-sidenav class="md-sidenav-left" md-component-id="menu" md-disable-scroll-target="body" ng-cloak>
@@ -266,19 +263,21 @@ $menuElements = array(
             $logo = $this->Html->image(
                 IMG_PATH . 'tatoeba.svg',
                 array(
-                    'width' => 48,
-                    'height' => 48,
+                    'width' => 32,
+                    'height' => 32,
                     'title' => $name
 
                 )
             );
             ?>
-            <div layout="row" layout-align="start center" layout-margin>
-                <span><?= $logo ?></span>
-                <span class="tatoeba-name" flex><?= $name ?></span>
+            <div layout="row" layout-align="start center" layout-padding>
                 <md-button class="md-icon-button" ng-click="toggleMenu()">
-                    <md-icon>close</md-icon>
+                    <md-icon>menu</md-icon>
                 </md-button>
+                <div layout="row" layout-align="center center">
+                    <span><?= $logo ?></span>
+                    <span class="tatoeba-name"><?= $name ?></span>
+                </div>
             </div>
 
             <md-list>

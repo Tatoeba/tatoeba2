@@ -35,7 +35,7 @@ $registerUrl = $this->Url->build([
 ]);
 ?>
 
-<div ng-controller="LoginDialogController as vm">
+<div ng-controller="LoginDialogController as vm" layout="row" layout-align="center center" flex>
     <md-button href="<?= $registerUrl ?>">
     <?php
     /* @translators: link to the Register page in the top bar (verb) */

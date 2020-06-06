@@ -199,19 +199,41 @@ rt {
 
 /* User Menu : Main Menu */
 
+#top_menu .hamburger-menu {
+    display: none;
+}
+
+.tatoeba-name {
+    font-size: 24px;
+    padding: 0 10px;
+}
+
+#top_menu .ui-lang-select-mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    #top_menu .ui-lang-select {
+        display: none;
+    }
+    #top_menu .ui-lang-select-mobile {
+        display: inline;
+    }
+}
+
 @media only screen and (max-width: 960px) {
     #top_menu .menuItem {
         display: none;
     }
-
-    #top_menu li.hamburger-menu {
-        display: inline-block;
-    }
-
-    #top_menu li.hamburger-menu md-icon {
+    
+    #top_menu .hamburger-menu {
+        display: inline;
         color: #fff;
     }
 
+    #top_menu_container .md-sidenav-left md-content {
+        margin-bottom: 20px;
+    }
     #top_menu_container .md-sidenav-left, 
     #top_menu_container .md-sidenav-left md-list, 
     #top_menu_container .md-sidenav-left md-content,
@@ -219,30 +241,21 @@ rt {
         background-color: #414141;
         color: #fff;
     }
-
     #top_menu_container .md-sidenav-left .md-subheader {
         color: #ccc;
     }
-
-    .tatoeba-name {
-        font-size: 24px;
-    }
-}
-
-#top_menu .hamburger-menu {
-    display: none;
 }
 
 #top_menu_container {
     background-color: #414141;
     border-bottom: 1px solid #000000;
+    min-height: 66px;
 }
 
 #top_menu {
     max-width: 960px;
     margin: auto;
     overflow: hidden;
-    padding: 10px;
 }
 
 #top_menu a,
@@ -336,20 +349,9 @@ rt {
     margin-left: 2px;
 }
 
-
-/*
- * Interface Language Selector
- */
-
-#languageSelection {
-    margin-left: 10px;
-    margin-top: 2px;
-}
-
 /*
  * User Menu
  */
-#languageSelectionContainer,
 #user_menu {
     line-height: 48px;
     float: right;

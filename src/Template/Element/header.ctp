@@ -26,12 +26,12 @@
  */
 use Cake\Core\Configure;
 ?>
-<li class="hamburger-menu" ng-cloak>
-    <md-button class="md-icon-button" ng-click="toggleMenu()">
+
+<div layout="row" layout-align="space-between center" flex-xs layout-padding>
+    <md-button class="hamburger-menu md-icon-button" ng-click="toggleMenu()">
         <md-icon>menu</md-icon>
     </md-button>
-</li>
-<li id="logo">
+
     <?php
     if (Configure::read('Tatoeba.devStylesheet')) {
         $name = 'TatoDev';
@@ -49,8 +49,8 @@ use Cake\Core\Configure;
     $logo = $this->Html->image(
         IMG_PATH . 'tatoeba.svg',
         array(
-            'width' => 48,
-            'height' => 48,
+            'width' => 32,
+            'height' => 32,
             'title' => $name
 
         )
@@ -58,7 +58,14 @@ use Cake\Core\Configure;
     echo $this->Html->link(
         $logo . $this->Html->div('tatoeba-name', $name),
         $path,
-        array('escape' => false)
+        [
+            'escape' => false,
+            'layout' => 'row'
+        ]
     );
     ?>
-</li>
+
+    <md-button class="ui-lang-select-mobile md-icon-button" ng-click="showInterfaceLanguageSelection()">
+        <md-icon>language</md-icon>
+    </md-button>
+</div>
