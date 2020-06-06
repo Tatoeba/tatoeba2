@@ -35,16 +35,19 @@ echo $this->Form->create('AdvancedSearch', [
             <?php /* @translators: section title in advanced search form */ ?>
             <h3><?= __('Sentences'); ?></h3>
 
-            <md-input-container class="md-icon-right">
+            <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('query', array(
                     'label' => __('Words:'),
                     'value' => $this->safeForAngular($query),
                     'lang' => '',
                     'dir' => 'auto',
+                    'id' => 'WordSearch'
                 ));
                 ?>
-                <md-icon reset-button>clear</md-icon>
+                <md-button reset-button target="WordSearch">
+                    <md-icon>clear</md-icon>
+                </md-button>
                 <div class="hint"><?= __('Enter a word or a phrase') ?></div>
             </md-input-container>
 
@@ -65,14 +68,17 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
-            <md-input-container class="md-icon-right">
+            <md-input-container class="md-button-right">
                 <?php
                 echo $this->Form->input('user', array(
                     'label' => __('Owner:'),
                     'value' => $user,
+                    'id' => 'OwnerSearch'
                 ));
                 ?>
-                <md-icon reset-button>clear</md-icon>
+                <md-button reset-button target="OwnerSearch">
+                    <md-icon>clear</md-icon>
+                </md-button>
                 <div class="hint"><?= __('Enter a username') ?></div>
             </md-input-container>
 
@@ -136,14 +142,17 @@ echo $this->Form->create('AdvancedSearch', [
                 ?>
             </div>
 
-            <md-input-container class="md-icon-right">
+            <md-input-container class="md-button-right">
             <?php
             echo $this->Form->input('tags', array(
                 'label' => __('Tags:'),
                 'value' => $this->safeForAngular($tags),
+                'id' => 'TagSearch'
             ));
             ?>
-            <md-icon reset-button>clear</md-icon>
+            <md-button reset-button target="TagSearch">
+                <md-icon>clear</md-icon>
+            </md-button>
             <div class="hint">
                 <?= __('Separate tags with commas.') ?>
             </div>
@@ -239,14 +248,17 @@ echo $this->Form->create('AdvancedSearch', [
                     ?>
                 </div>
 
-                <md-input-container class="md-icon-right">
+                <md-input-container class="md-button-right">
                     <?php
                     echo $this->Form->input('trans_user', array(
                         'label' => __('Owner:'),
                         'value' => $trans_user,
+                        'id' => 'TranslatorSearch'
                     ));
                     ?>
-                    <md-icon reset-button>clear</md-icon>
+                    <md-button reset-button target="TranslatorSearch">
+                        <md-icon>clear</md-icon>
+                    </md-button>
                     <div class="hint"><?= __('Enter a username') ?></div>
                 </md-input-container>
 
