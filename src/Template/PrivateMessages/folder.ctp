@@ -66,7 +66,7 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                 <h2 flex>
                     <?php
                     $n = $this->Paginator->param('count');
-                    echo format(__n('{folderName} ({n}&nbsp;message)',
+                    echo $this->Number->format($__n('{folderName} ({n}&nbsp;message)',
                                     '{folderName} ({n}&nbsp;messages)',
                                     $n, true),
                                 compact('folderName', 'n'));
