@@ -1183,6 +1183,12 @@ class SentencesTableTest extends TestCase {
 		$this->assertFalse(isset($translationAudio->sentence_id));
 	}
 
+	function testGetSentenceWith_noTranslations() {
+		$sentence = $this->Sentence->getSentenceWith(1, ['translations' => false]);
+		$expected = [0 => [], 1 => []];
+		$this->assertEquals($expected, $sentence->translations);
+	}
+
     function testSaveNewSentence_correctDateUsingArabicLocale() {
         I18n::setLocale('ar');
         $added = $this->Sentence->saveNewSentence('test', 'eng', 1);

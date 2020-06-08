@@ -684,7 +684,7 @@ class SentencesTable extends Table
             ];
         }
 
-        if (isset($what['translations'])) {
+        if (isset($what['translations']) && $what['translations']) {
             $translationFields = [
                 'id', 'text', 'lang', 'correctness', 'script',
                 'SentencesTranslations.sentence_id'
