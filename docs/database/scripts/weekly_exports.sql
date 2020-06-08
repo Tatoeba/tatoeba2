@@ -1,16 +1,16 @@
 -- Files that are exported every week on Saturday, at 9AM.
 
 -- WWWJDIC indices (also called "B lines")
-SELECT sentence_id, meaning_id, text FROM `sentence_annotations` 
+SELECT sentence_id, meaning_id, text FROM `sentence_annotations`
 INTO OUTFILE '/var/tmp/jpn_indices.csv';
-  
+
 -- Sentences
 SELECT id, lang, text FROM `sentences`
 WHERE correctness > -1 AND license != ''
 INTO OUTFILE '/var/tmp/sentences.csv';
 
 -- Sentences with more data
-SELECT s.id, s.lang, s.text, u.username, s.created, s.modified 
+SELECT s.id, s.lang, s.text, u.username, s.created, s.modified
 FROM `sentences` s LEFT JOIN `users` u ON s.user_id = u.id
 WHERE correctness > -1 AND license != ''
 INTO OUTFILE '/var/tmp/sentences_detailed.csv';
@@ -68,7 +68,7 @@ INTO OUTFILE '/var/tmp/tags_detailed.csv';
 
 -- Contributions
 SELECT u.username, c.datetime, c.action, c.type, c.sentence_id,
-       c.sentence_lang, c.translation_id, c.text       
+       c.sentence_lang, c.translation_id, c.text
 FROM contributions c LEFT JOIN users u ON c.user_id = u.id
 ORDER BY c.datetime ASC
 INTO OUTFILE '/var/tmp/contributions.csv';
@@ -80,7 +80,7 @@ ORDER BY w.id ASC
 INTO OUTFILE '/var/tmp/wall_posts.csv';
 
 -- Sentence comments
-SELECT sc.id, sc.sentence_id, u.username, sc.created, sc.text 
+SELECT sc.id, sc.sentence_id, u.username, sc.created, sc.text
 FROM sentence_comments sc LEFT JOIN users u ON sc.user_id = u.id
 ORDER BY sc.created ASC
 INTO OUTFILE '/var/tmp/sentence_comments.csv';
