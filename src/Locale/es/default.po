@@ -25,9 +25,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-22 03:27+0800\n"
-"PO-Revision-Date: 2020-06-01 06:16+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2020-06-04 23:48+0800\n"
+"PO-Revision-Date: 2020-06-06 14:13+0000\n"
+"Last-Translator: a rh\n"
 "Language-Team: Spanish (http://www.transifex.com/tatoeba/tatoeba_website/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -88,7 +88,7 @@ msgstr "Las oraciones nº {primernúmero} y nº {segundo número} ya no son trad
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "Ocurrió un error al romper el enlace. Inténtelo de nuevo o contacte con nosotros para informar del fallo."
+msgstr "Ocurrió un error al desenlazar. Inténtelo de nuevo o contacte con nosotros para informar del fallo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
@@ -760,7 +760,7 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr "Una vez resueltas las incidencias surgidas con una oración problemática, etiquétela como {tagOK}. En general, puede navegar y comprobar las oraciones de otros y etiquetarlas con {tagOK}. Pero haga esto solo cuando esté completamente seguro de que son correctas, y no use nunca la etiqueta en sus propias oraciones."
+msgstr "Una vez resueltas las incidencias surgidas con una oración problemática, etiquétela como {tagOK}. En general, puede navegar y comprobar las oraciones de otros y etiquetarlas con {tagOK}. Pero haga esto sólo cuando esté completamente seguro de que son correctas, y no use nunca la etiqueta en sus propias oraciones."
 
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L29
@@ -962,7 +962,7 @@ msgstr "Día"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_angular.ctp#L15
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L96
 msgid "Sentences added"
 msgstr "Oraciónes agregadas"
 
@@ -1645,7 +1645,7 @@ msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr "El contenido de este mensaje va en contra de  <a href=\"{}\"> nuestras normas</ a> y por lo tanto se ha ocultado. Se muestra solo a los administradores y al autor del mensaje."
+msgstr "El contenido de este mensaje va en contra de  <a href=\"{}\"> nuestras normas</ a> y por lo tanto se ha ocultado. Se muestra sólo a los administradores y al autor del mensaje."
 
 #. cancel button of sentence comment edition form (verb)
 #. / cancel button of sentence text edition form (verb)
@@ -1749,7 +1749,7 @@ msgstr "Aún no se han añadido oraciones."
 #. / submit button to add a sentence to a list from the sentence block
 #. / submit button of sentence edition form
 #. / submit button of transcription edition form
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/add_sentences_jquery.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L490
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L506
@@ -1835,7 +1835,7 @@ msgstr "Mostrar oración nº : "
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L118
 msgid "Your sentence was not added because the following already exists."
-msgstr "Su oración no fue agregada porque lo siguiente ya existe."
+msgstr "Su oración no fue añadida porque la siguiente ya existe."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L141
 msgid "This sentence belongs to a native speaker."
@@ -3063,7 +3063,7 @@ msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr "Solo puede corregir errores en las oraciones que le pertenezcan. Si ve un error en una oración de otra persona, puede escribir un comentario para informar sobre el error."
+msgstr "Sólo puede corregir errores en las oraciones que le pertenezcan. Si ve un error en una oración de otra persona, puede escribir un comentario para informar sobre el error."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L218
 msgid ""
@@ -3081,7 +3081,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr "Cuando agrega una oración, esta oración le \"pertenece\", es decir, solo usted puede editarla. Sin embargo, la gran mayoría de las oraciones en Tatoeba provienen de un corpus Japonés-Inglés llamado Tanaka Corpus. Estas oraciones no tienen dueño, ya que fueron importadas desde afuera de Tatoeba."
+msgstr "Cuando añade una oración, esta oración le \"pertenece\"; es decir, sólo usted puede editarla. Sin embargo, la gran mayoría de las oraciones en Tatoeba provienen de un corpus Japonés-Inglés llamado Tanaka Corpus. Estas oraciones no tienen dueño, ya que fueron importadas desde fuera de Tatoeba."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L243
 msgid ""
@@ -3106,7 +3106,7 @@ msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr "Puedes crear listas de oraciones en Tatoeba. Por defecto la lista es <strong>privada</strong>, lo que significa que solo puede ser editada por quien la creó (sin embargo, todos los usuarios podrán verla.)"
+msgstr "Puedes crear listas de oraciones en Tatoeba. Por defecto la lista es <strong>privada</strong>, lo que significa que sólo puede ser editada por quien la creó (sin embargo, todos los usuarios podrán verla.)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L285
 msgid ""
@@ -3242,7 +3242,7 @@ msgstr "Ha alcanzado el límite de mensajes para hoy"
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr "Para ayudar a mantener Tatoeba libre de spam y otros mensajes maliciosos, los nuevos usuarios pueden enviar solo 5 mensajes diarios."
+msgstr "Para ayudar a mantener Tatoeba libre de correo basura y otros mensajes maliciosos, los nuevos usuarios pueden enviar sólo 5 mensajes diarios."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L50
 msgid "Please wait until you can send more messages."
@@ -3560,7 +3560,7 @@ msgstr "Ocurrió un error mientras se recuperaba oraciones al azar. Si el proble
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show_all_in.ctp#L64
 msgid "Only the last {n} sentences are displayed here."
-msgstr "Aquí solo se muestran las últimas {n} oraciones."
+msgstr "Aquí sólo se muestran las últimas {n} oraciones."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/add_new_sentence_to_list.ctp#L39
 msgid "Problem while saving"
@@ -4059,7 +4059,7 @@ msgstr "El acceso a este perfil es PÚBLICO. Toda la información puede ser vist
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
-msgstr "El aceso a este perfil está RESTRINGIDO. Solo los miembros de Tatoeba pueden ver la información personal y la descripción."
+msgstr "El aceso a este perfil está RESTRINGIDO. Sólo los miembros de Tatoeba pueden ver la información personal y la descripción."
 
 #. sort option in the All members page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L244
@@ -5032,11 +5032,11 @@ msgstr "Ver todas las etiquetas"
 msgid "Added by {username}, {date}"
 msgstr "Añadido por {username}, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L266
 msgid "Remove tag '{tagName}' from this sentence."
 msgstr "Quitar la etiqueta '{nombre de etiqueta}' de esta frase."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L300
+#: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TagsHelper.php#L301
 msgid "Remove tag from sentence"
 msgstr "Eliminar tag de la oración"
 
