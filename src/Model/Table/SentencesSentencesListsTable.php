@@ -70,7 +70,7 @@ class SentencesSentencesListsTable extends Table
             ->select(['created'])
             ->contain([
                 'SentencesLists' => [
-                    'fields' => ['id', 'name', 'visibility']
+                    'fields' => ['id', 'name', 'visibility', 'user_id', 'editable_by']
                 ]
             ])
             ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])

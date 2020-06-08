@@ -306,10 +306,11 @@ class SentencesListsController extends AppController
      *
      * @param int $sentenceId Id of sentence to be removed from list.
      * @param int $listId     Id of list that contains the sentence.
+     * @param int $origin     From where the function is called from list page (default 1) or from Sentence page.
      *
      * @return void
      */
-    public function remove_sentence_from_list($sentenceId, $listId)
+    public function remove_sentence_from_list($sentenceId, $listId, $origin = 1 )
     {
         $userId = $this->Auth->user('id');
         $isRemoved = $this->SentencesLists->removeSentenceFromList(
@@ -323,9 +324,18 @@ class SentencesListsController extends AppController
             $this->set('_serialize', ['removed']);
             $this->RequestHandler->renderAs($this, 'json');
         }
+                
+        if($origin == 0)
+        {
+            return $this->redirect([
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ]);
+        }
     }
-
-
+    
+    
     /**
      * Displays the lists of a specific user.
      *
@@ -566,27 +576,5 @@ class SentencesListsController extends AppController
         $this->set('_serialize', ['lists']);
         $this->RequestHandler->renderAs($this, 'json');
     }
-        /**
-     * Remove a sentences from a list when on the sentence page
-     *
-     * @param int $listId      Id of the list to remove from the sentence from
-     * @param int $sentenceId Id of the sentence to remove the list from
-     *
-     * @return void
-     */
 
-    public function remove_sentences_from_list($listId, $sentenceId)
-    {
-        if (!empty($listId) && !empty($sentenceId)) 
-        {
-           $userId = CurrentUser::get("id");
-           $this->SentencesLists->removeSentenceFromList($sentenceId, $listId, $userId);
-        }
-        return $this->redirect([
-            'controller' => 'sentences',
-            'action' => 'show',
-            $sentenceId
-        ]);
-
-    }
 }

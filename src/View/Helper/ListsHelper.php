@@ -486,41 +486,41 @@ class ListsHelper extends AppHelper
         <?php
     }
 
-     /*
-     Function shows X behind the List to remove it 
-     */
+     /**
+      * Function shows X behind the List to remove it 
+      */
     private function _displayRemoveLink($listId, $sentenceId, $listName)
     {
         echo ' ';
-        $removeSentencesFromListeAlt = format(
-            __("Remove this sentences from '{listName}'."),
+        $removeSentenceFromListAlt = format(
+            __("Remove this sentence from '{listName}'."),
                 compact('listName')
         );
 
-        $removeSentencesFromListImg =  $this->Html->image(
+        $removeSentenceFromListImg =  $this->Html->image(
             IMG_PATH . 'close.png',
             array(
                 "class" => "removeFromListButton",
                 "id" => 'deleteFromListButton'.$listId,
-                "alt" => $removeSentencesFromListeAlt
+                "alt" => $removeSentenceFromListAlt
             )
         );
         // X link to remove tag from sentence
         echo $this->Html->link(
-            $removeSentencesFromListImg,
+            $removeSentenceFromListImg,
             array(
                 "controller" => "sentences_lists",
-                "action" => "remove_sentences_from_list",
+                "action" => "remove_sentence_from_list",                
+                $sentenceId,
                 $listId,
-                $sentenceId
+                0
             ),
             array(
-                "class" => "removeSentencesFromListButton",
+                "class" => "removeSentenceFromListButton",
                 "id" => 'deleteButton'.$listId.$sentenceId,
-                "title" => $removeSentencesFromListeAlt,
+                "title" => $removeSentenceFromListAlt,
                 "escape" => false
-            ),
-            null
+            )
         );        
     }
     /**
@@ -580,7 +580,8 @@ class ListsHelper extends AppHelper
 
     public function displayListsModule($allListsArray, $sentences)
     {
-        $sentenceId = (int)$sentences->id; 
+        $sentenceId = $sentences->id; 
+        $currentUserId = CurrentUser::get('id');
         
         if (count($allListsArray) > 0) {
             echo '<div class="section md-whiteframe-1dp">';
@@ -595,7 +596,7 @@ class ListsHelper extends AppHelper
                     $class = 'personal-list';
                 }
                 echo '<li class="'.$class.'">';
-                 echo $this->Html->link(
+                echo $this->Html->link(
                     $this->_View->safeForAngular($list['name']),
                     array(
                         'controller' => 'sentences_lists',
@@ -603,7 +604,7 @@ class ListsHelper extends AppHelper
                         $list['id']
                     )
                 );
-                 if(CurrentUser::isMember())
+                 if($list['user_id'] == $currentUserId || $list['editable_by'] == 'anyone')
                  {
                     echo $this->_displayRemoveLink($list['id'], $sentenceId, $list['name']);
                  }
@@ -611,8 +612,7 @@ class ListsHelper extends AppHelper
             }
             echo '</ul>';
             echo '</div>';
-        } else 
-        {
+        } else {
             echo '<div class="section md-whiteframe-1dp">';
             /* @translators: header text on the sidebar of a sentence page */
             echo $this->Html->tag('h2', __('Lists'));
