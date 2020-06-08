@@ -1,5 +1,7 @@
 -- Files that are exported every week on Saturday, at 9AM.
 
+-- Test comment to test a vscode pull request against the tatoeba repo
+
 -- WWWJDIC indices (also called "B lines")
 SELECT sentence_id, meaning_id, text FROM `sentence_annotations`
 INTO OUTFILE '/var/tmp/jpn_indices.csv';
