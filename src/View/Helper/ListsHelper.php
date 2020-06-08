@@ -491,7 +491,6 @@ class ListsHelper extends AppHelper
       */
     private function _displayRemoveLink($listId, $sentenceId, $listName)
     {
-        echo ' ';
         $removeSentenceFromListAlt = format(
             __("Remove this sentence from '{listName}'."),
                 compact('listName')
