@@ -26,6 +26,7 @@
  */
 
 use Cake\Core\Configure;
+use App\Model\CurrentUser;
 
 // Detecting language for "browse by language"
 $session = $this->request->getSession();
@@ -47,10 +48,6 @@ if (empty($showTranslationsInto)) {
 $menuElements = array(
     /* @translators: menu on the top (verb) */
     __('Browse') => array(
-        "route" => array(
-            "controller" => false,
-            "action" => false
-        ),
         "sub-menu" => array(
             /* @translators: menu item on the top (verb) */
             __('Show random sentence') => array(
@@ -83,10 +80,7 @@ $menuElements = array(
     ),
     /* @translators: menu on the top (verb) */
     __('Contribute') => array(
-        "route" => array(
-            "controller" => false,
-            "action" => false
-        ),
+        'hidden' => !CurrentUser::isMember(),
         "sub-menu" => array(
             /* @translators: menu item on the top (verb) */
             __('Add sentences') => array(
@@ -124,10 +118,6 @@ $menuElements = array(
     ),
     /* @translators: menu on the top (verb) */
     __('Community') => array(
-        "route" => array(
-            "controller" => false,
-            "action" => false
-        ),
         "sub-menu" => array(
             /* @translators: menu item on the top (verb) */
             __('Wall') => array(
@@ -156,89 +146,42 @@ $menuElements = array(
 ?>
 
 <div id="top_menu_container" ng-controller="MenuController">
-    <div id="top_menu" layout="column" layout-gt-xs="row" layout-align-gt-xs="start center" flex ng-cloak>
+    <md-toolbar id="top_menu" md-colors="{background: 'grey-800'}" layout="column" layout-gt-xs="row" layout-align-gt-xs="start center" flex ng-cloak>
         <?= $this->element('header'); ?>
         
-        <ul id="navigation_menu" flex>
+        <div flex hide-xs hide-sm>
         <?php
-        // currenot path param
-        $pass = $this->request->getParam('pass');
-        $param = '';
-        if (!empty($pass)) {
-            $param = $pass[0];
-        };
-        
-        // current path action
-        $action = $this->request->getParam('action');
-        if ($action == 'display') {
-            $action = $param;
-        }
-        
-        // current path controller
-        $controller = $this->request->getParam('controller');
-        
         foreach ($menuElements as $title => $data) {
-            
-            $route = $data['route'];
-            $cssClass = 'menuSection ';
-            
-            // General case
-            if ($controller === $route['controller'] && $action === $route['action']) {
-                $cssClass .= 'show';
+            if (isset($data['hidden']) && $data['hidden']) {
+                continue;
             }
-            
-            // displaying <li> element
             ?>
-            <li class='menuItem'>
-                <?php
-                if (!empty($data['sub-menu'])) {
-                    $title .= $this->Html->image(
-                        IMG_PATH . 'arrow_down.svg',
-                        array(
-                            "height" => 12,
-                            "width" => 12
-                        )
-                    );
-                }
-                
-                if ($route['controller'] === false) {
-                    echo '<a class="'.$cssClass.'">'.$title.'</a>';
-                } else {
-                    echo $this->Html->link(
-                        $title, 
-                        $route, 
-                        array(
-                            "class" => $cssClass,
-                            "escape" => false
-                        )
-                    );
-                }
-                
-                // Sub-menu
-                if (!empty($data['sub-menu'])) {
-                    echo "<ul class='sub-menu'>";
-                    foreach ($data['sub-menu'] as $title2 => $route2) {
-                        $newTab = array();
-                        if (!is_array($route2)) {
-                            $newTab = array('onclick' => "window.open(this.href,'_blank');return false;");
-                        }
-                        echo '<li>';
-                        echo $this->Html->link($title2, $route2, $newTab);
-                        echo '</li>';
-                    }
-                    echo "</ul>";
-                }
-                ?>
-            </li>
+            <md-menu md-offset="0 52">
+                <md-button class="md-primary" ng-click="$mdOpenMenu($event)">
+                    <?= $title ?>
+                </md-button>
+
+                <md-menu-content class="top-menu-content" md-colors="::{background: 'grey-800'}">
+                <?php foreach ($data['sub-menu'] as $title2 => $route) { ?>
+                    <md-menu-item md-colors="::{color: 'grey-50'}">
+                        <md-button href="<?= $this->Url->build($route) ?>">
+                            <span><?= $title2 ?>
+                            </span>
+                        </md-button>
+                    </md-menu-item>
+                <?php } ?>
+            </md-menu>
             <?php
         }
         ?>
-        </ul>
+        </div>
 
         <div id="user_menu" ng-cloak>
             <?php
             // User menu
             if (!$session->read('Auth.User.id')) {
+                $action = $this->request->getParam('action');
+                $controller = $this->request->getParam('controller');
                 $isOnLoginPage = ($controller == 'Users' && $action == 'login');
 
                 if (!$isOnLoginPage) {
@@ -249,11 +192,15 @@ $menuElements = array(
             }
             ?>
         </div>
-
-        <?= $this->element('ui_language_button', [
-            'displayOption' => 'hide-xs'
-        ]); ?>
-    </div>
+        
+        <?php 
+        if (!CurrentUser::isMember()) {
+            echo $this->element('ui_language_button', [
+                'displayOption' => 'hide-xs'
+            ]);
+        }
+        ?>
+    </md-toolbar>
 
     <md-sidenav class="md-sidenav-left" md-component-id="menu" md-disable-scroll-target="body" ng-cloak>
         <md-content>
@@ -283,14 +230,12 @@ $menuElements = array(
             <md-list>
             <?php
             foreach ($menuElements as $title => $data) {
-                $route = $data['route'];
-                
-                if (!empty($data['sub-menu'])) {
-                    ?>
-                    <md-subheader><?= $title ?></md-subheader>
-                    <?php
+                if (isset($data['hidden']) && $data['hidden']) {
+                    continue;
                 }
-                
+                ?>
+                <md-subheader><?= $title ?></md-subheader>
+                <?php
                 // Sub-menu
                 if (!empty($data['sub-menu'])) {
                     foreach ($data['sub-menu'] as $title2 => $route2) {

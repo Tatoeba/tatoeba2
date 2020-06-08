@@ -198,25 +198,12 @@ rt {
 }
 
 /* User Menu : Main Menu */
-
-#top_menu .hamburger-menu {
-    display: none;
-}
-
 .tatoeba-name {
     font-size: 24px;
     padding: 0 10px;
 }
 
 @media only screen and (max-width: 960px) {
-    #top_menu .menuItem {
-        display: none;
-    }
-    
-    #top_menu .hamburger-menu {
-        display: inline;
-    }
-
     #top_menu_container .md-sidenav-left md-content {
         margin-bottom: 20px;
     }
@@ -244,125 +231,41 @@ rt {
     overflow: hidden;
 }
 
+#top_menu .private-messages {
+    position: relative;
+}
+#top_menu .unread {
+    display: inline-block;
+    background: #d32f2f;
+    color: #fff;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 9px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+}
+
 #top_menu a,
 #top_menu .md-button, 
 #top_menu md-icon,
+#top_menu md-menu-item md-icon,
 .md-sidenav-left .md-icon-button md-icon {
     color: #FFFFFF;
-}
-
-#top_menu a:hover {
-    color: #FB6B10;
-}
-
-
-/*
- * Menu (Home, Browse, etc)
- */
-#top_menu ul {
-    display: inline-block;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#top_menu li {
-    display: inline-block;
-    padding: 0;
-}
-
-#top_menu .menuSection{
-    display:block;
-    line-height:30px;
-    margin:0;
-    padding:0 10px;
-    text-align:center;
-    text-decoration:none;
-}
-
-#top_menu li a:hover, #top_menu ul li:hover a{
-    text-decoration:none;
-}
-
-#top_menu li ul{
-    background:#414141;
-    display:none;
-    height:auto;
-    padding: 20px 0 0 0;
-    margin:0;
-    border:0;
-    position:absolute;
-    width:225px;
-    z-index:200;
-}
-
-#top_menu li:hover ul{
-    display:block;
-}
-
-#top_menu li li {
-    border-top: 1px solid #555;
-    display:block;
-    float:none;
-    margin:0;
-    padding:0;
-    width:225px;
-    line-height: 24px;
-}
-
-#top_menu li:hover li a {
-    background:none;
-}
-
-#top_menu li ul a {
-    display:block;
-    margin:0;
-    padding:7px 10px;
-    text-align:left;
-}
-
-#top_menu li ul a:hover, #top_menu li ul li:hover a {
-    border:0;
-    text-decoration:none;
-}
-
-#top_menu .show {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.menuItem img {
-    margin-left: 2px;
 }
 
 /*
  * User Menu
  */
-#user_menu {
-    line-height: 48px;
-    float: right;
+.user-menu-button span,
+.user-menu-button img {
+    margin: 0 5px;
+    text-transform: none;
 }
-
-#profile img {
-    position: relative;
-    top: 2px;
-    margin-right: 2px;
-}
-
-#log_out img {
-    position: relative;
-    top: 2px;
-}
-
-#inbox img {
-    position: relative;
-    top: 3px;
-}
-
-.newMessage {
-    font-weight: bold;
-}
-
 
 /*
  * Container

@@ -27,8 +27,8 @@
 use Cake\Core\Configure;
 ?>
 
-<div layout="row" layout-align="space-between center" flex-xs layout-padding>
-    <md-button class="hamburger-menu md-icon-button" ng-click="toggleMenu()">
+<div layout="row" layout-align="start center" flex-xs flex-sm layout-padding>
+    <md-button hide-gt-sm class="hamburger-menu md-icon-button" ng-click="toggleMenu()">
         <md-icon>menu</md-icon>
     </md-button>
 
@@ -52,7 +52,6 @@ use Cake\Core\Configure;
             'width' => 32,
             'height' => 32,
             'title' => $name
-
         )
     );
     echo $this->Html->link(
@@ -60,7 +59,8 @@ use Cake\Core\Configure;
         $path,
         [
             'escape' => false,
-            'layout' => 'row'
+            'layout' => 'row',
+            'flex-xs' => ''
         ]
     );
     ?>
