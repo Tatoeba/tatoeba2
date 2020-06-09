@@ -511,8 +511,7 @@ class ListsHelper extends AppHelper
                 "controller" => "sentences_lists",
                 "action" => "remove_sentence_from_list",                
                 $sentenceId,
-                $listId,
-                0
+                $listId
             ),
             array(
                 "class" => "removeSentenceFromListButton",
@@ -603,7 +602,7 @@ class ListsHelper extends AppHelper
                         $list['id']
                     )
                 );
-                 if($list['user_id'] == $currentUserId || $list['editable_by'] == 'anyone')
+                 if(($list['user_id'] == $currentUserId && $list['editable_by'] != 'no_one') || $list['editable_by'] == 'anyone')
                  {
                     echo $this->_displayRemoveLink($list['id'], $sentenceId, $list['name']);
                  }

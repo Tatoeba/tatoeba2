@@ -310,14 +310,18 @@ class SentencesListsController extends AppController
      *
      * @return void
      */
-    public function remove_sentence_from_list($sentenceId, $listId, $origin = 1 )
+    public function remove_sentence_from_list($sentenceId, $listId )
     {
         $userId = $this->Auth->user('id');
         $isRemoved = $this->SentencesLists->removeSentenceFromList(
             $sentenceId, $listId, $userId
         );
         $this->set('removed', $isRemoved);
-
+        
+        if (strpos($this->referer(), 'sentences/show')) {
+           return $this->redirect($this->referer());
+        }
+        
         $acceptsJson = $this->request->accepts('application/json');
         if ($acceptsJson) {
             $this->loadComponent('RequestHandler');
@@ -325,14 +329,7 @@ class SentencesListsController extends AppController
             $this->RequestHandler->renderAs($this, 'json');
         }
                 
-        if($origin == 0)
-        {
-            return $this->redirect([
-                'controller' => 'sentences',
-                'action' => 'show',
-                $sentenceId
-            ]);
-        }
+        
     }
     
     
