@@ -343,9 +343,11 @@ class ListsHelper extends AppHelper
                     echo $this->Html->image(IMG_PATH .'new1.png');
                     ?>
                 </md-radio-button>
-                <md-radio-button value='public' class='md-primary'>
+                <md-radio-button value='public' class='md-primary' title='The list can be found only over Browse -> Browse by list, not at the sentence page'>
                     <?php /* @translators: visibility option of a list */ ?>
-                    <?=  __('Public') ?>
+                    <?=  __('Public');
+                    echo $this->Html->image(IMG_PATH .'old1.png');
+                    ?>
                 </md-radio-button>
                 <md-radio-button value='unlisted' class='md-primary'>
                     <?php /* @translators: visibility option of a list */ ?>
