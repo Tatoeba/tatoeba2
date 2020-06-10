@@ -114,8 +114,11 @@ class SphinxConfShell extends Shell {
         # Combining Diacritical Marks
         'U+300..U+36F',
         # Arabic
-        'U+621..U+63a', 'U+640..U+64a',
-        'U+66e..U+66f', 'U+671..U+6d3', 'U+6d5', 'U+6e5..U+6e6', 'U+6ee..U+6ef', 'U+6fa..U+6fc', 'U+6ff',
+        'U+620->U+64a', 'U+621', 'U+622->U+627', 'U+623->U+627', 'U+624', 'U+625->U+627', 'U+626..U+628', 'U+629->U+647', 'U+62a..U+63a',
+        'U+641..U+648', 'U+649->U+64a', 'U+64a',
+        'U+660..U+669', 'U+66e', 'U+66f', 'U+671..U+6a8', 'U+6a9->U+643', 'U+6aa..U+6bf',
+        'U+6c0->U+647', 'U+6c1->U+647', 'U+6c2..U+6d3', 'U+6d5', 'U+6e5', 'U+6e6', 'U+6ee', 'U+6ef',
+        'U+6f0..U+6f9->U+660..U+669', 'U+6fa..U+6fc', 'U+6ff',
         # Greek and Coptic
         'U+370..U+373/2', 'U+374->U+2B9', 'U+376..U+377/2', 'U+37A->U+3B9', 'U+37B..U+37D', 'U+37F->U+3F3', 'U+384->U+301',
         'U+386->U+3AC', 'U+388..U+38A->U+3AD..U+3af', 'U+38C->U+3CC', 'U+38E..U+38F->U+3CD..U+3ce', 'U+390', 'U+391..U+3a1->U+3b1..U+3c1',
@@ -455,6 +458,19 @@ class SphinxConfShell extends Shell {
             "
         regexp_filter = \[[^|]*\| =>";
 
+        /* Arabic vowel marks are optional, so it's easier to search if they are
+         * ignored. The common ignore_chars setting accomplishes that, but it's
+         * redundant with the Arabic stemmer. By adding them as regular
+         * characters, it becomes possible to use them with the "exact match"
+         * operator. We only ignore soft hyphen. */
+        $this->indexExtraOptions['ara'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array('U+640', 'U+64b..U+65f', 'U+670', 'U+6dc'),
+            $this->charsetTable
+        ))."
+        ignore_chars = U+AD\n";
+
         foreach ($this->morphology as $lang => $morphology) {
             if (!isset($this->indexExtraOptions[$lang])) {
                 $this->indexExtraOptions[$lang] = "";
@@ -470,6 +486,9 @@ class SphinxConfShell extends Shell {
     // ignore_chars are Hebrew/Yiddish vowels, which should be ignored in
     // searches. No other language uses them, so ignoring them for all
     // languages should be safe.
+    // The characters U+640, U+64b..U+65f, U+670, U+6dc are Arabic diacritics,
+    // which should be ignored. For a language with a stemmer that removes them
+    // (e.g. Arabic) they can be re-enabled to allow searching for exact matches.
     private function conf_beginning() {
         $charset_table_opt = implode(", ", $this->charsetTable);
         $ngram_chars_opt = implode(', ', $this->scriptsWithoutWordBoundaries);
@@ -496,7 +515,7 @@ source default
 index common_index
 {
     index_field_lengths     = 1
-    ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7
+    ignore_chars            = U+AD, U+5B0..U+5C5, U+5C7, U+640, U+64b..U+65f, U+670, U+6dc
 $regexp_filter
     charset_table           = $charset_table_opt
     min_infix_len           = 3
