@@ -721,10 +721,32 @@ EOT;
         return $conf;
     }
 
+    /**
+     * Manticore has an internal buffer limit of 8192 bytes:
+     * https://github.com/manticoresoftware/manticoresearch/blob/69c389347d44f136cd93b899640d7f4f4a6ce750/src/sphinxutils.cpp#L1201
+     * To ensure that the configuration stays below the limit, we need to add
+     * a backslash-escaped newline into overly long lines.
+     */
+    public function escape_long_lines($conf, $limit = 8192) {
+        $limit -= 3; // we need enough room for the escape characters + \0
+        $lines = explode("\n", $conf);
+        $conf = "";
+        foreach ($lines as $line) {
+            for ($i = 0; $i < strlen($line); $i += $limit) {
+                $conf .= substr($line, $i, $limit);
+                if ($i + $limit < strlen($line)) {
+                    $conf .= "\\\n";
+                }
+            }
+            $conf .= "\n";
+        }
+        return $conf;
+    }
+
     public function main() {
         $this->dbConfig = ConnectionManager::get('default')->config();
         $this->sphinxConfig = Configure::read('Sphinx');
         
-        echo $this->conf($this->args);
+        echo $this->escape_long_lines($this->conf($this->args));
     }
 }
