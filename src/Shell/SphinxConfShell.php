@@ -471,6 +471,16 @@ class SphinxConfShell extends Shell {
         ))."
         ignore_chars = U+AD\n";
 
+        /* In Ottoman Turkish, a few characters have rarely used variants:
+         * U+6ad as a variant of U+643 and U+647 as a variant of U+6d5.
+         */
+        $this->indexExtraOptions['ota'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array('U+6ad->U+643', 'U+647->U+6d5'),
+            $this->charsetTable
+        ))."\n";
+
         foreach ($this->morphology as $lang => $morphology) {
             if (!isset($this->indexExtraOptions[$lang])) {
                 $this->indexExtraOptions[$lang] = "";
