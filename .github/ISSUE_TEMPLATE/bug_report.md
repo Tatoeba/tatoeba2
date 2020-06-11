@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Title**
+For the title, please write a clear and concise description of what the bug is.
 *Example: I cannot add a tag when clicking on its name.*
 
 **To Reproduce**
