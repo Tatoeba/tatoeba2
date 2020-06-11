@@ -35,7 +35,7 @@ class SphinxConfShell extends Shell {
      * currently installed Snowball library supports.
      * Here is a quick and dirty command to figure it out:
      *
-     *   strings /usr/bin/searchd | grep UTF_8_stem$
+     *   strings /usr/bin/searchd | grep UTF_8_stem$ | sort
      *
      * About the language codes, note that we use ISO 639-3
      * while Snowball uses ISO 639-2, so the array goes like
@@ -45,30 +45,30 @@ class SphinxConfShell extends Shell {
      * See also https://github.com/snowballstem/snowball/blob/master/libstemmer/modules.txt
      */
     public $morphology = array(
-        'deu' => 'libstemmer_deu',
-        'spa' => 'libstemmer_spa',
-        'fra' => 'libstemmer_fra',
-        'nld' => 'libstemmer_nld',
-        'por' => 'libstemmer_por',
-        'rus' => 'libstemmer_rus',
-        'fin' => 'libstemmer_fin',
-        'ita' => 'libstemmer_ita',
-        'tur' => 'libstemmer_tur',
-        'swe' => 'libstemmer_swe',
-        'eng' => 'libstemmer_eng',
-        'dan' => 'libstemmer_dan', # Danish
-        'hun' => 'libstemmer_hun', # Hungarian
-        'ron' => 'libstemmer_ron', # Romanian
-        'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
-        'ell' => 'libstemmer_ell', # Greek
-        'tam' => 'libstemmer_tam', # Tamil
-        'eus' => 'libstemmer_eus', # Basque
-        'hin' => 'libstemmer_hin', # Hindi
         'ara' => 'libstemmer_ara', # Arabic
+        'eus' => 'libstemmer_eus', # Basque
         'cat' => 'libstemmer_cat', # Catalan
-        'npi' => 'libstemmer_nep', # Nepali
+        'dan' => 'libstemmer_dan', # Danish
+        'nld' => 'libstemmer_nld', # Dutch
+        'eng' => 'libstemmer_eng', # English
+        'fin' => 'libstemmer_fin', # Finnish
+        'fra' => 'libstemmer_fra', # French
+        'deu' => 'libstemmer_deu', # German
+        'ell' => 'libstemmer_ell', # Greek
+        'hin' => 'libstemmer_hin', # Hindi
+        'hun' => 'libstemmer_hun', # Hungarian
         'gle' => 'libstemmer_gle', # Irish
+        'ita' => 'libstemmer_ita', # Italian
         'lit' => 'libstemmer_lit', # Lithuanian
+        'npi' => 'libstemmer_nep', # Nepali
+        'nob' => 'libstemmer_nor', # Norwegian (Bokmål)
+        'por' => 'libstemmer_por', # Portuguese
+        'ron' => 'libstemmer_ron', # Romanian
+        'rus' => 'libstemmer_rus', # Russian
+        'spa' => 'libstemmer_spa', # Spanish
+        'swe' => 'libstemmer_swe', # Swedish
+        'tam' => 'libstemmer_tam', # Tamil
+        'tur' => 'libstemmer_tur', # Turkish
     );
 
     public $charsetTable = array(
