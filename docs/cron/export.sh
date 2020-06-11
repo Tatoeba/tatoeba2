@@ -64,8 +64,8 @@ mysql --skip-column-names --batch tatoeba -e \
       translation_id
      FROM sentences_translations" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      src_lg = ($1 == "\N" ? "unknown" : $1);
-      tgt_lg = ($2 == "\N" ? "unknown" : $2);
+      src_lg = ($1 == "\\N" ? "unknown" : $1);
+      tgt_lg = ($2 == "\\N" ? "unknown" : $2);
       fpath = dir "/" src_lg "/" src_lg "-" tgt_lg "_links.tsv";
       print $3, $4 >> fpath;
       close(fpath)
@@ -82,7 +82,7 @@ mysql --skip-column-names --batch tatoeba -e \
        LEFT JOIN users u ON ul.of_user_id = u.id
      ORDER BY ul.language_code ASC, ul.level DESC, u.username ASC" | \
   awk -F"\t" -v dir=$TEMP_DIR '{
-      lg = ($1 == "\N" ? "unknown" : $1);      
+      lg = ($1 == "\\N" ? "unknown" : $1);      
       fpath = dir "/" lg "/" lg "_user_languages.tsv";
       print >> fpath
   }'
@@ -97,7 +97,7 @@ mysql --skip-column-names --batch tatoeba -e \
        JOIN `tags_sentences` ts ON t.id = ts.tag_id
        JOIN `sentences` s ON t.id = s.id" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lg = ($1 == "\N" ? "unknown" : $1);
+      lg = ($1 == "\\N" ? "unknown" : $1);
       fpath = dir "/" lg "/" lg "_tags.tsv";
       print $2, $3 >> fpath
   }'
@@ -114,7 +114,7 @@ mysql --skip-column-names --batch tatoeba -e \
      WHERE sl.visibility != 'private'
      ORDER BY sl.id ASC, s_sl.sentence_id" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lg = ($1 == "\N" ? "unknown" : $1);
+      lg = ($1 == "\\N" ? "unknown" : $1);
       fpath = dir "/" lg "/" lg "_sentences_in_lists.tsv";
       print $2, $3 >> fpath
   }'      
@@ -132,7 +132,7 @@ mysql --skip-column-names --batch tatoeba -e \
        JOIN sentences s ON a.sentence_id = s.id
      ORDER BY sentence_id ASC" | \
   awk -F"\t" -v dir=$TEMP_DIR 'BEGIN {OFS = "\t"} {
-      lg = ($1 == "\N" ? "unknown" : $1);
+      lg = ($1 == "\\N" ? "unknown" : $1);
       fpath = dir "/" lg "/" lg "_sentences_with_audio.tsv";
       print $2, $3, $4, $5 >> fpath
   }'    
