@@ -22,4 +22,4 @@ Describe your idea. If possible, include images so that it's easier for us to pi
 
 **Title**
 Finally, please *focus on the problem* that your feature request is solving. What’s wrong with how things are now? Wrap it up into one sentence and use it as title for the issue.
-*Example:* Can't subscribe to a discussion without posting an unnecessary comment
+*Example: Can't subscribe to a discussion without posting an unnecessary comment*
