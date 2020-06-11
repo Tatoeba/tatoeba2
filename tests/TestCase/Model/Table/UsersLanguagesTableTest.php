@@ -162,6 +162,7 @@ class UsersLanguagesTableTest extends TestCase {
         $this->assertEquals($now, $returned->created);
         $this->assertEquals($now, $returned->modified);
 
+        Time::setTestNow();
         I18n::setLocale($prevLocale);
     }
 }

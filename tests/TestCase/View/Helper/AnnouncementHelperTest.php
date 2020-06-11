@@ -137,5 +137,7 @@ class AnnouncementHelperTest extends TestCase
         } else {
             $this->assertContains($warning, $helper->shutdownWarning());
         }
+
+        Time::setTestNow();
     }
 }
