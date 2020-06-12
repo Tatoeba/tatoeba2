@@ -23,6 +23,6 @@ class AddPublicplus extends AbstractMigration
             'unlisted', 
             'public', 
             'public+'] 
-        ])->save();        
+        ])->update();        
     }
 }

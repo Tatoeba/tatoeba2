@@ -608,9 +608,9 @@ class ListsHelper extends AppHelper
                     if(($list['user_id'] == $currentUserId && $list['editable_by'] != 'no_one') || $list['editable_by'] == 'anyone')
                     {
                        echo $this->_displayRemoveLink($list['id'], $sentenceId, $list['name']);
-                    }
-                   echo '</li>';
+                    }                   
                 }
+                echo '</li>';
             }
             echo '</ul>';
             echo '</div>';

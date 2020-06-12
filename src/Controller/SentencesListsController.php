@@ -306,7 +306,6 @@ class SentencesListsController extends AppController
      *
      * @param int $sentenceId Id of sentence to be removed from list.
      * @param int $listId     Id of list that contains the sentence.
-     * @param int $origin     From where the function is called from list page (default 1) or from Sentence page.
      *
      * @return void
      */
