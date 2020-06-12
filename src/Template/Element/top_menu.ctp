@@ -143,6 +143,11 @@ $menuElements = array(
     )
 );
 
+if (!isset($htmlDir)) {
+    $htmlDir = null;
+}
+$menuPositionMode = $htmlDir == 'rtl' ? 'target-right target' : 'target target';
+$sidenavPosition = $htmlDir == 'rtl' ? 'md-sidenav-right' : 'md-sidenav-left';
 ?>
 
 <div id="top_menu_container" ng-controller="MenuController">
@@ -156,7 +161,7 @@ $menuElements = array(
                 continue;
             }
             ?>
-            <md-menu md-offset="0 52">
+            <md-menu md-offset="0 52" md-position-mode="<?= $menuPositionMode ?>">
                 <md-button class="md-primary" ng-click="$mdOpenMenu($event)">
                     <?= $title ?>
                 </md-button>
@@ -188,7 +193,7 @@ $menuElements = array(
                     echo $this->element('login');
                 }
             } else {
-                echo $this->element('space');
+                echo $this->element('space', ['htmlDir' => $htmlDir]);
             }
             ?>
         </div>
@@ -202,7 +207,7 @@ $menuElements = array(
         ?>
     </md-toolbar>
 
-    <md-sidenav class="md-sidenav-left" md-component-id="menu" md-disable-scroll-target="body" ng-cloak>
+    <md-sidenav class="sidenav-menu <?= $sidenavPosition ?>" md-component-id="menu" md-disable-scroll-target="body" ng-cloak>
         <md-content>
             <?php
             $name = __('Tatoeba');

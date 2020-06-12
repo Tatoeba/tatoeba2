@@ -26,9 +26,13 @@
 use App\Lib\LanguagesLib;
 use App\Model\CurrentUser;
 use Cake\Core\Configure;
+
+$lang = Configure::read('Config.language');
+$htmlLang = LanguagesLib::languageTag($lang);
+$htmlDir = LanguagesLib::getLanguageDirection($lang);
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo LanguagesLib::languageTag(Configure::read('Config.language')); ?>">
+<html lang="<?= $htmlLang ?>" dir="<?= $htmlDir ?>">
 <head>
     <?php echo $this->Html->charset(); ?>
     <title>
@@ -74,7 +78,7 @@ use Cake\Core\Configure;
     <div id="audioPlayer"></div>
 
     <!--  TOP  -->
-    <?php echo $this->element('top_menu'); ?>
+    <?php echo $this->element('top_menu', ['htmlDir' => $htmlDir]); ?>
 
     <!--  SEARCH BAR  -->
     <?php
@@ -88,7 +92,7 @@ use Cake\Core\Configure;
             && $selectedLanguageTo == 'und'
             && empty($query)
             && !$this->Languages->preferredLanguageFilter()) {
-            $cache = [ 'key' => 'search_bar_'.Configure::read('Config.language') ];
+            $cache = [ 'key' => 'search_bar_'.$lang ];
         } else {
             $cache = null;
         }
@@ -98,7 +102,7 @@ use Cake\Core\Configure;
         );
     } else {
         echo $this->element('short_description', [], [
-            'cache' => [ 'key' => 'short_description_'.Configure::read('Config.language') ]
+            'cache' => [ 'key' => 'short_description_'.$lang ]
         ]);
     }
     ?>

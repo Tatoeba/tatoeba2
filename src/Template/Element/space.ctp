@@ -36,7 +36,10 @@ $newMessages = TableRegistry::get('PrivateMessages')->numberOfUnreadMessages(
 );
 $emailIcon = $newMessages > 0 ? 'email' : 'mail_outline';
 $uiLanguage = $this->Languages->getInterfaceLanguage();
-
+if (!isset($htmlDir)) {
+    $htmlDir = null;
+}
+$menuPositionMode = $htmlDir == 'rtl' ? 'target target' : 'target-right target';
 ?>
 
 <div layout="row" layout-align="center center">
@@ -52,7 +55,7 @@ $uiLanguage = $this->Languages->getInterfaceLanguage();
         <?php } ?>
     </div>
 
-    <md-menu md-offset="0 52" md-position-mode="target-right target">
+    <md-menu md-offset="0 52" md-position-mode="<?= $menuPositionMode ?>">
         <md-button class="user-menu-button" ng-click="$mdOpenMenu($event)" layout="row" layout-align="start center">
             <?= $this->Members->image(null, $avatar, ['width' => 24, 'height' => 24]); ?>
             <span><?= $username ?></span>

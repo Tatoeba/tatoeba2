@@ -3,6 +3,7 @@
     
     <div layout="row" layout-align="stretch" flex>
     <div ng-click="translation.showActions = !translation.showActions" layout="row" layout-align="start center" role="switch" flex>
+    <div>
     <icon-with-progress is-loading="vm.iconsInProgress['link' + translation.id]" ng-if="vm.menu.canLink">
         <md-button class="md-icon-button" ng-if="vm.isMenuExpanded && translation.isDirect" ng-click="vm.saveLink('delete', translation)">
             <md-icon md-svg-src="/img/link_off.svg"></md-icon>
@@ -14,12 +15,13 @@
         </md-button>
     </icon-with-progress>
     <md-icon class="chevron" ng-if="!vm.isMenuExpanded || !vm.menu.canLink">chevron_right</md-icon>
+    </div>
 
     <div class="lang">
         <language-icon lang="translation.lang" title="translation.lang_name"></language-icon>
     </div>
 
-    <div class="text" dir="{{translation.dir}}" lang="{{translation.lang_tag}}" flex>
+    <div class="text" dir="{{translation.dir}}" lang="{{translation.lang_tag}}">
         <span ng-if="translation.furigana" ng-bind-html="translation.furigana.html">
             <md-tooltip md-direction="top">{{translation.furigana.info_message}}</md-tooltip>
         </span>
