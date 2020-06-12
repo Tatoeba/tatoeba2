@@ -71,5 +71,15 @@ class UsersLanguagesFixture extends TestFixture {
 			'created' => '2018-10-31 00:00:00',
 			'modified' => '2018-10-31 00:00:00'
 		),
+		array(
+			'id' => 6,
+			'of_user_id' => 2,
+			'by_user_id' => 2,
+			'language_code' => 'jpn',
+			'level' => 3,
+			'details' => '',
+			'created' => '2017-10-31 00:00:00',
+			'modified' => '2017-10-31 00:00:00'
+		),
 	);
 }
