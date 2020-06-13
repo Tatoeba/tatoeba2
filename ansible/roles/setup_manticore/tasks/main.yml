@@ -22,6 +22,11 @@
 - name: Enable Manticore
   command: systemctl enable manticore
 
+- name: Make sure Manticore is stopped
+  service:
+    name: manticore
+    state: stopped
+
 - name: Create directories for manticore
   file: path={{item}} state=directory mode=0755 owner=manticore group=manticore
   with_items:
