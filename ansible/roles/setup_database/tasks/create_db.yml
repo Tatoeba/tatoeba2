@@ -33,3 +33,11 @@
 - name: Install database triggers
 # This task requires mysql root for creating triggers
   shell: cat {{code_dir}}/docs/database/triggers/*.sql | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
+
+- name: Install database procedures
+  shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < {{code_dir}}/docs/database/procedures/{{item}}
+  with_items:
+  - add_new_language.sql
+  - clean_up_tag_sentence_count.sql
+  - create_nbr_sentences_of_list.sql
+  - revert_sentence_delete.sql
