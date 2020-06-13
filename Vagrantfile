@@ -79,9 +79,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             options = {}
             options[:provision_types] = [ :db_restore ]
             machine.action(:provision, options)
+            env.ui.warn("Removing #{path}...")
+            File.unlink(path)
           end
-          env.ui.warn("Removing #{path}...")
-          File.unlink(path)
         end
       end
     end
