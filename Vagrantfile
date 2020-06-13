@@ -42,5 +42,48 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "strip", :type => "shell", :path => "reduce_box_size.sh"
   else
     config.vm.box = "tatoeba/tatoeba"
+
+    # Set these as :run => "never" because they are manually executed from triggers
+    config.vm.provision "db_backup", :type => "ansible", :run => "never" do |ansible|
+      ansible.playbook = "ansible/db_backup.yml"
+    end
+    config.vm.provision "db_restore", :type => "ansible", :run => "never" do |ansible|
+      ansible.playbook = "ansible/db_restore.yml"
+    end
+
+    config.trigger.before :destroy do |trigger|
+      trigger.ruby do |env,machine|
+        env.ui.warn("Warning: you are about to destroy the virtual machine.\n" +
+                    "Make sure to commit and push any ongoing work first.\n" +
+                    "Also note that the database will be deleted.")
+        answer = env.ui.ask("Would you like to backup the database before destroying the machine? [n/Y] ")
+        answer = answer.strip.downcase
+        answer = "y" if answer.to_s.empty?
+        if answer != "n"
+          options = {}
+          options[:provision_types] = [ :db_backup ]
+          machine.action(:provision, options)
+        end
+      end
+    end
+
+    config.trigger.after :up do |trigger|
+      trigger.ruby do |env,machine|
+        path = File.join(env.cwd, "ansible", "databases.sql.gz")
+        if File.exist?(path)
+          env.ui.warn("A database backup file was found: #{path}")
+          answer = env.ui.ask("Would you like to restore that backup into the virtual machine? [n/Y]: ")
+          answer = answer.strip.downcase
+          answer = "y" if answer.to_s.empty?
+          if answer != "n"
+            options = {}
+            options[:provision_types] = [ :db_restore ]
+            machine.action(:provision, options)
+          end
+          env.ui.warn("Removing #{path}...")
+          File.unlink(path)
+        end
+      end
+    end
   end
 end

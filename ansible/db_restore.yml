@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Copy databases backup file to guest
+      copy:
+        src: "{{mysqldump_backup_file}}"
+        dest: /tmp/dump.sql.gz
+
+    - name: Restore databases
+      mysql_db:
+        name: all
+        state: import
+        target: /tmp/dump.sql.gz
+
+    - name: Remove backup file from guest
+      file:
+        path: /tmp/dump.sql.gz
+        state: absent
