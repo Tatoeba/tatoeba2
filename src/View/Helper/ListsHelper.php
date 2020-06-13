@@ -337,16 +337,16 @@ class ListsHelper extends AppHelper
             ?>
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
-                <md-radio-button value='public+' class='md-primary' title='The list will be shown on the sentences page'>
+                <md-radio-button value='public' class='md-primary' title=
+                                 '<?=h(__("The list will be shown on the sentences page"))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
-                    <?=  __('Public+'); 
-                    echo $this->Html->image(IMG_PATH .'new1.png');
+                    <?=  __('Public'); 
                     ?>
                 </md-radio-button>
-                <md-radio-button value='public' class='md-primary' title='The list can be found only over Browse -> Browse by list, not at the sentence page'>
+                <md-radio-button value='listed' class='md-primary' title=
+                                 '<?= h(__("The list can be found over Browse -> Browse by list, not at the sentence page"))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
-                    <?=  __('Public');
-                    echo $this->Html->image(IMG_PATH .'old1.png');
+                    <?=  __('Listed');
                     ?>
                 </md-radio-button>
                 <md-radio-button value='unlisted' class='md-primary'>
