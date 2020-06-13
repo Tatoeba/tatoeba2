@@ -11,7 +11,7 @@
 
 - name: Install dependencies for tatomecab
   apt:
-    name: python-mecab
+    name: ['python-mecab', 'python-setuptools']
     state: present
 
 - name: Install tatomecab
