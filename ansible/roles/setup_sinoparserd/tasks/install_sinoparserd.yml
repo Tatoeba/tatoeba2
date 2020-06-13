@@ -1,6 +1,6 @@
 ---
 
-- name: Stop nihongoparserd daemon if started
+- name: Stop sinoparserd daemon if started
   command: service sinoparserd stop
   when: install_state is success and force_install == true
   ignore_errors: yes
