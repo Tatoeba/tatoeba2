@@ -156,7 +156,7 @@ class SentencesTable extends Table
                     return true;
                 }
             },
-            'licenseCheck'
+            'isTranslatable'
         );
 
         return $rules;
