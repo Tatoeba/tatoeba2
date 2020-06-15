@@ -1,6 +1,10 @@
 -- Files that are exported every week on Saturday, at 9AM.
 
--- Test comment to test a vscode pull request against the tatoeba repo
+-- Sentences with based_on_id issue 2325
+SELECT s.id, s.based_on_id
+FROM sentences s
+WHERE correctness > -1 AND license != ''
+INTO OUTFILE '/var/tmp/sentences_based_on_id.csv';
 
 -- WWWJDIC indices (also called "B lines")
 SELECT sentence_id, meaning_id, text FROM `sentence_annotations`
