@@ -4,7 +4,7 @@
 # 
 # Translators:
 # Muḥend Belqasem <belkacem77@gmail.com>, 2019-2020
-# Muḥend Belqasem <belkacem77@gmail.com>, 2018-2019
+# Muḥend Belqasem <belkacem77@gmail.com>, 2018-2020
 # samir_t <samir_t7@yahoo.fr>, 2020
 # Slimane Selyan AMIRI <selyan.kab@gmail.com>, 2019-2020
 # Slimane AMIRI, 2018
@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-04 23:48+0800\n"
-"PO-Revision-Date: 2020-05-27 18:45+0000\n"
-"Last-Translator: samir_t <samir_t7@yahoo.fr>\n"
+"PO-Revision-Date: 2020-06-09 11:32+0000\n"
+"Last-Translator: Slimane Selyan AMIRI <selyan.kab@gmail.com>\n"
 "Language-Team: Kabyle (http://www.transifex.com/tatoeba/tatoeba_website/language/kab/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,7 +190,7 @@ msgstr "Azem n tlalit d yir azemz . Ttxil-k fren wayed."
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr "Azeme n tlalit ur yemmid ara. Izmaz ilaqen: azemz ummid, ayyur d wass, aseggas d waggur, aseggas kan."
+msgstr "Azemz n tlalit ur yemmid ara. Izmaz ilaqen: azemz ummid, ayyur d wass, aseggas d waggur, aseggas kan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
 msgid "Your settings have been saved."
@@ -3772,7 +3772,7 @@ msgstr "Amḍan n tefyar s tutlayt"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/view_all.ctp#L114
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] "Yiwet n tefyir"
+msgstr[0] "Yiwet n tefyirt"
 msgstr[1] "{n}&nbsp;n tefyar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Tags/show_sentences_with_tag.ctp#L30
@@ -4414,8 +4414,8 @@ msgstr[1] ""
 msgid "Tatoeba will temporarily shut down for maintenance in {n} second."
 msgid_plural ""
 "Tatoeba will temporarily shut down for maintenance in {n} seconds."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ad yens Tatoeba deg {n} n tsenat i kra n wakud i uqaεed."
+msgstr[1] "Ad yens Tatoeba deg {n} n tsenatin i kra n wakud i uqaεed."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/AudioHelper.php#L60
 msgid "Recorded by: {username}"

@@ -5,13 +5,14 @@
 # Translators:
 # lone wolfie <despajoy@gmail.com>, 2020
 # lone wolfie <despajoy@gmail.com>, 2020
+# Muhammed shamoon <muhammedshamoon@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-04 23:48+0800\n"
-"PO-Revision-Date: 2020-05-28 08:58+0000\n"
-"Last-Translator: lone wolfie <despajoy@gmail.com>\n"
+"PO-Revision-Date: 2020-06-14 13:43+0000\n"
+"Last-Translator: Muhammed shamoon <muhammedshamoon@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/tatoeba/tatoeba_website/language/ml/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,25 +55,25 @@ msgstr "ലിസ്റ്റ് പുതുക്കുകയാണ്. ദയ
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "ഒരു ലൈസൻസ് സ്വിച്ച് ഇതിനകം പുരോഗതിയിലാണ്"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr ""
+msgstr "വാക്യങ്ങൾ # {firstNumber}, # {secondNumber} എന്നിവ ഇപ്പോൾ പരസ്പരം നേരിട്ടുള്ള വിവർത്തനങ്ങളാണ്"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr ""
+msgstr "വാക്യങ്ങൾ # {firstNumber}, # {secondNumber} എന്നിവ പരസ്പരം നേരിട്ടുള്ള വിവർത്തനങ്ങളല്ല"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "അൺലിങ്കു ചെയ്യുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു. ഇത് വീണ്ടും റിപ്പോർട്ട് ചെയ്യാൻ ദയവായി ഞങ്ങളെ ബന്ധപ്പെടുക."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
@@ -81,7 +82,7 @@ msgstr "\"{name}\" എന്ന ഫോള്‍ഡര്‍ ഒഴിച്ച�
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
-msgstr ""
+msgstr "ഐഡി {number}  ഉള്ള ഒരു വാക്യവുമില്ല"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
@@ -97,7 +98,7 @@ msgstr "ഈ കമന്റില്‍ മാറ്റം വരുത്തു
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "നിങ്ങൾക്ക് ഈ സന്ദേശം തെറ്റായി ലഭിച്ചിട്ടുണ്ടെങ്കിൽ, അഡ്മിനിസ്ട്രേറ്റർമാരെ{email} ൽ ബന്ധപ്പെടുക."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
@@ -105,11 +106,11 @@ msgstr "നിങ്ങളുടെ കമന്റ്റിലെ മാറ്�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L269
 msgid "The sentence #{id} has been deleted."
-msgstr ""
+msgstr "#{id}വാക്യം ഇല്ലാതാക്കി"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L275
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr ""
+msgstr "പിശക്: #{id}വാക്യം ഇല്ലാതാക്കാൻ കഴിഞ്ഞില്ല"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L873
 msgid "You are not allowed to change the license of this sentence."
@@ -117,11 +118,11 @@ msgstr "ഈ വാക്യത്തിന്‍റെ ലൈസന്‍സ് 
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L880
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "വാക്യത്തിന്റെ ലൈസൻസ് “{newLicense}” ലേക്ക് മാറ്റി."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L885
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "ലൈസൻസ് “{newLicense}” ലേക്ക് മാറ്റാൻ കഴിയില്ല കാരണം:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L163
 msgid "You do not have permission to view this list."
@@ -203,7 +204,7 @@ msgstr "പുതിയ പാസ്സ്‌വേര്‍ഡ്‌ സേവ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L626
 msgid "An error occurred while saving."
-msgstr ""
+msgstr "സംരക്ഷിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L631
 msgid "Password error. Please try again."
@@ -244,11 +245,11 @@ msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
-msgstr ""
+msgstr "കാര്യങ്ങൾ ആരംഭിക്കുന്നതിന്, നിങ്ങളുടെ <a href='{url}'>profile</a> ലേക്ക് പോകാൻ ഞങ്ങൾ നിങ്ങളെ പ്രോത്സാഹിപ്പിക്കുകയും നിങ്ങൾ സംസാരിക്കുന്ന അല്ലെങ്കിൽ താൽപ്പര്യമുള്ള ഭാഷകൾ ഞങ്ങളെ അറിയിക്കുകയും ചെയ്യുക."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L349
 msgid "Please fix the form errors."
-msgstr ""
+msgstr "ദയവായി ഫോം പിശകുകൾ പരിഹരിക്കുക."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L385
 msgid "Your new password has been sent to {email}."
@@ -268,7 +269,7 @@ msgstr "ഈ പേരുള്ള യുസേര്‍സ് ആരും ഇ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L460
 msgid "No user with this ID: {id}"
-msgstr ""
+msgstr "ഈ id: {id} ഉള്ള ഉപയോക്താവില്ല:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersLanguagesController.php#L78
 msgid "This language has already been added to your profile."
@@ -293,7 +294,7 @@ msgstr "ഈ ഭാഷ ഡിലീറ്റ് ചെയ്യാന്‍ ക�
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/VocabularyHelper.php#L37
 msgid "Unknown number of sentences"
-msgstr ""
+msgstr "വാക്യങ്ങളുടെ എണ്ണം അജ്ഞാതമാണ്"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L152
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L16
@@ -313,26 +314,26 @@ msgstr "തങ്ങള്‍ക്ക് ഈ മെസ്സേജ് തിര
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L274
 msgid "The message you are trying to view does not exist or has been deleted."
-msgstr ""
+msgstr "നിങ്ങൾ കാണാൻ ശ്രമിക്കുന്ന സന്ദേശം നിലവിലില്ല അല്ലെങ്കിൽ ഇല്ലാതാക്കി"
 
 #. This string will be preceded by “Warning:
 #. the following criteria have been ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L101
 msgid "“sentence owner”, because “{username}” is not a valid username"
-msgstr ""
+msgstr "\"വാക്യ ഉടമ\", കാരണം “{username}” സാധുവായ ഉപയോക്തൃനാമമല്ല"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L141
 msgid "“translation owner”, because “{username}” is not a valid username"
-msgstr ""
+msgstr "“വിവർത്തന ഉടമ”, കാരണം “{username}” സാധുവായ ഉപയോക്തൃനാമമല്ല"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L192
 msgid "“tagged as {tagName}”, because it's an invalid tag name"
-msgstr ""
+msgstr "{tagName} എന്ന് ടാഗുചെയ്‌തതു, കാരണം ഇത് അസാധുവായ ടാഗ് നാമമാണ്"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -341,14 +342,14 @@ msgstr ""
 msgid ""
 "“belongs to list number {listId}”, because list {listId} is private or does "
 "not exist"
-msgstr ""
+msgstr "“ലിസ്റ്റ് നമ്പർ {listId} ൽ ഉൾപ്പെടുന്നു\", കാരണം പട്ടിക {listId} സ്വകാര്യമാണ് അല്ലെങ്കിൽ നിലവിലില്ല"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
 #. ignored:”
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L277
 msgid "“sentence is orphan”, because “sentence owner” is set to a username"
-msgstr ""
+msgstr "“വാക്യം അനാഥനാണ്”, കാരണം “വാക്യ ഉടമ” ഒരു ഉപയോക്തൃനാമമായി സജ്ജീകരിച്ചിരിക്കുന്നു"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -356,7 +357,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Form/SentencesSearchForm.php#L288
 msgid ""
 "“translation is orphan”, because “translation owner” is set to a username"
-msgstr ""
+msgstr "“വിവർത്തനം അനാഥമാണ്”, കാരണം “വിവർത്തന ഉടമ” ഒരു ഉപയോക്തൃനാമമായി സജ്ജീകരിച്ചിരിക്കുന്നു"
 
 #. This string will be preceded by “Warning: the
 #. following criteria have been ignored:”
@@ -364,7 +365,7 @@ msgstr ""
 msgid ""
 "“owned by a self-identified native”, because “sentence language” is set to "
 "“any”"
-msgstr ""
+msgstr "“സ്വയം തിരിച്ചറിഞ്ഞ സ്വദേശിയുടെ ഉടമസ്ഥതയിലുള്ളത്”, കാരണം “വാക്യ ഭാഷ” “ഏതെങ്കിലും” ആയി സജ്ജമാക്കിയിരിക്കുന്നു"
 
 #. This string will be preceded by
 #. “Warning: the following criteria have been
@@ -374,7 +375,7 @@ msgid ""
 "“owned by a self-identified native”, because the criterion “owned by: "
 "{username}” is set whereas he or she is not a self-identified native in the "
 "language you're searching into"
-msgstr ""
+msgstr "“സ്വയം തിരിച്ചറിഞ്ഞ ഒരു സ്വദേശിയുടെ ഉടമസ്ഥതയിലുള്ളത്”, കാരണം “ഉടമസ്ഥതയിലുള്ളത്: {username}” എന്ന മാനദണ്ഡം സജ്ജമാക്കിയിരിക്കെ, നിങ്ങൾ തിരയുന്ന ഭാഷയിൽ അവൻ അല്ലെങ്കിൽ അവൾ സ്വയം തിരിച്ചറിഞ്ഞ സ്വദേശിയല്ല."
 
 #. This string is used to create an enumeration by
 #. joining each item with it. For instance, if you translate this

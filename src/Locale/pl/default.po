@@ -6,6 +6,7 @@
 # ittavittah, 2020
 # ittavittah, 2020
 # Kamil Rosol <kamil.rosol@gmail.com>, 2020
+# Karol Łacina <karoleklacina@gmail.com>, 2020
 # Maria Łysik <maria_lysik@tlen.pl>, 2020
 # Marta Malara <martakapella92@gmail.com>, 2020
 # Słońce Lettner <michalkolpanowicz@gmail.com>, 2020
@@ -16,8 +17,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-04 23:48+0800\n"
-"PO-Revision-Date: 2020-05-22 04:33+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-10 21:40+0000\n"
+"Last-Translator: Karol Łacina <karoleklacina@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/tatoeba/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2179,10 +2180,10 @@ msgstr "Wyloguj"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L25
 msgid "{number} supported language"
 msgid_plural "{number} supported languages"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{number} wspierany język"
+msgstr[1] "{number} wspierane języki"
+msgstr[2] "{number} wspieranych języków"
+msgstr[3] "{number} wspieranego języka"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
 msgid "Stats per languages"
@@ -2767,7 +2768,7 @@ msgstr ""
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L74
 msgid "Meaning id"
-msgstr ""
+msgstr "ID znaczenia"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L76
@@ -2897,7 +2898,7 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "Zawiera łącza zdań. {sampleLinkLine} oznacza, że zdanie #77 jest tłumaczeniem zdania #1. Odwrotne łącze też jest obecne, więc w pliku będzie się znajdować linijka {sampleLinkLineReversed}. "
 
 #. section title in the Downloads page
 #. / header text on a sentence page in the sidebar (noun)
@@ -2911,11 +2912,11 @@ msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr ""
+msgstr "Zawiera listę <a href=\"{url}\">tagów</a> powiązanych z każdym zdaniem. {sampleTagLine}oznacza, że do zdania #381279 przypisano tag \"proverb\"."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L339
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
-msgstr ""
+msgstr "Zawiera listę <a href=\"{}\">list zdań</a>."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L354
@@ -3443,7 +3444,7 @@ msgstr "Zdania użytkownika {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L41
 msgid "{user}'s sentences in {language}"
-msgstr ""
+msgstr "Zdania użytkownika {user} w języku {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L70
 msgid "Only show original sentences"
@@ -3617,7 +3618,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L99
 msgid "Translation (optional)"
-msgstr ""
+msgstr "Tłumaczenie (opcjonalne)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L134
 msgid ""
@@ -3723,7 +3724,7 @@ msgstr "Kliknij, aby edytować..."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show.ctp#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L213
 msgid "date added to list"
-msgstr ""
+msgstr "daty dodania do listy"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/ListsHelper.php#L285
