@@ -341,7 +341,13 @@ class ListsHelper extends AppHelper
                                  '<?=h(__("The list will be shown on the sentences page"))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Public'); 
+                    /* @translators: visibility option of a list *                  
+                    /*should be removed after 2020*/
+                    echo '<span style="color:red">' . __('new');                    
+                    /* @translators: notice of new visibility feature of a list */
+                    
                     ?>
+                    </span>
                 </md-radio-button>
                 <md-radio-button value='listed' class='md-primary' title=
                                  '<?= h(__("The list can be found over Browse -> Browse by list, not at the sentence page"))?>'>
