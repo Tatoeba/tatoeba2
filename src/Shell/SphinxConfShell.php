@@ -258,6 +258,8 @@ class SphinxConfShell extends Shell {
         'U+1810..U+1819', 'U+1820..U+1878', 'U+1880..U+18AA',
         # Phoenician alphabet
         'U+10900..U+1091B',
+        # Tagalog (tgl)
+        'U+1700..U+1714',
     );
 
     public $scriptsWithoutWordBoundaries = array(
