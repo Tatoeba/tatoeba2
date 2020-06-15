@@ -343,7 +343,7 @@ class ListsHelper extends AppHelper
                     <?=  __('Public'); 
                     /* @translators: visibility option of a list *                  
                     /*should be removed after 2020*/
-                    echo '<span style="color:red">' . __('new');                    
+                    echo '<span style="color:red">' . __(' new');                    
                     /* @translators: notice of new visibility feature of a list */
                     
                     ?>
@@ -596,7 +596,7 @@ class ListsHelper extends AppHelper
             echo '<ul class="sentence-lists">';
             foreach($allListsArray as $list) {
                 $list = $list->sentences_list;
-                if ($list['visibility'] == 'public' || $list['visibility'] == 'public+') {
+                if ($list['visibility'] == 'public') {
                     $class = 'public-list';
                 } else {
                     $class = 'personal-list';
