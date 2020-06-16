@@ -62,6 +62,18 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
                 <h2><?= $this->safeForAngular($title) ?></h2>
+
+                <md-button class="md-icon-button" aria-label="Sort by">
+                    <!-- <p>Sort</p> -->
+                    <md-icon md-svg-src="img/list.svg"> <!-- tries to load http://localhost:8080/eng/sentences_lists/img/list.svg -->
+                    <!-- <md-icon md-svg-src="img/sort-24px.svg"></md-icon> -->
+                    <!-- check if pre-existing class allows right alignment of button, otherwise these allow just right alignment
+                        position: absolute;
+                        margin-right: 1em !important;
+                        right: 0px;
+                     -->
+                </md-button>
+
             </div>
         </md-toolbar>
 
