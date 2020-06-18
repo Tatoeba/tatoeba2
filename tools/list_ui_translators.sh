@@ -72,13 +72,19 @@ display_stats() {
 
   for locale in "${locales[@]}"; do
     read code name <<<"$locale"
+    have_contributors=
     for resource in "${resources[@]}"; do
       read pot slug <<<"$resource"
       contributors=$(get_translations_info "$code" "$slug" | extract_authors "$from_date" "$to_date")
       if [ -n "$contributors" ]; then
         printf " [%13s] %s (%s): %s\n" "$pot" "$name" "$code" "$contributors"
+        have_contributors=1
       fi
     done
+
+    if [ -z "$have_contributors" ]; then
+      printf " [%13s] %s (%s): %s\n" "(all POTs)" "$name" "$code" "NOTHING"
+    fi
   done
 }
 
