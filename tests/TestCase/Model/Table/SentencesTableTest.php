@@ -1127,55 +1127,40 @@ class SentencesTableTest extends TestCase {
 		$this->assertEquals($expected, $result);
 	}
 
-	function testFindFilteredTranslations_withLangSettings() {
-		$Users = TableRegistry::getTableLocator()->get('Users');
-		$user = $Users->get(4)->toArray();
-		CurrentUser::store($user);
+    function findFilteredTranslationsProvider () {
+        // userId, find options, expected result (in alphabetic order)
+        return [
+            'with lang settings but without translation lang' =>
+            [4, [], ['deu', 'fra']],
+            'with lang settings and translation lang' =>
+            [4, ['translationLang' => 'jpn'], ['jpn']],
+            'without lang settings and translation lang' =>
+            [null, [], ['cmn', 'deu', 'fra', 'jpn', 'spa']],
+            'without lang settings but with translation lang' =>
+            [null, ['translationLang' => 'spa'], ['spa']],
+        ];
+    }
 
-		$result = $this->Sentence->find('filteredTranslations')
-			->where(['Sentences.id' => 1])
-			->contain($this->Sentence->contain())
-			->first();
+    /**
+     * @dataProvider findFilteredTranslationsProvider
+     */
+    function testFindFilteredTranslations($userId, $findOptions, $expected) {
+        if ($userId) {
+            $Users = TableRegistry::getTableLocator()->get('Users');
+            CurrentUser::store($Users->get($userId));
+        } else {
+            CurrentUser::store(null);
+        }
 
-		$expected = ['fra', 'deu'];
-		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
-		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
+        $result = $this->Sentence->find('filteredTranslations', $findOptions)
+            ->where(['Sentences.id' => 1])
+            ->contain($this->Sentence->contain(['translations' => true]))
+            ->first();
 
-		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
-		$this->assertEquals(asort($expected), asort($languages));
-	}
-
-	function testFindFilteredTranslations_withLangSettingsAndTranslationLang() {
-		$Users = TableRegistry::getTableLocator()->get('Users');
-		$user = $Users->get(4)->toArray();
-		CurrentUser::store($user);
-
-		$result = $this->Sentence->find('filteredTranslations', ['translationLang' => 'jpn'])
-			->where(['Sentences.id' => 1])
-			->contain($this->Sentence->contain())
-			->first();
-
-		$expected = ['jpn'];
-		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
-		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
-
-		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
-		$this->assertEquals(asort($expected), asort($languages));
-	}
-
-	function testFindFilteredTranslations_withoutLangSettings() {
-		$result = $this->Sentence->find('filteredTranslations')
-			->where(['Sentences.id' => 1])
-			->contain($this->Sentence->contain())
-			->first();
-
-		$expected = ['fra', 'spa', 'deu', 'cmn', 'jpn'];
-		$directTranslationsLangs = Hash::extract($result->translations[0], '{n}.lang');
-		$indirectTranslationsLangs = Hash::extract($result->translations[1], '{n}.lang');
-
-		$languages = array_unique(array_merge($directTranslationsLangs, $indirectTranslationsLangs));
-		$this->assertEquals(asort($expected), asort($languages));
-	}
+        $languages = array_unique(Hash::extract($result, 'translations.{n}.{n}.lang'));
+        sort($languages);
+        $this->assertEquals($expected, $languages);
+    }
 
 	function testGetSentenceWith_translationsHaveAudioInfo() {
 		CurrentUser::store(null);
