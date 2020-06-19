@@ -153,8 +153,6 @@ class SentencesHelper extends AppHelper
         <div id="_<?php echo $id; ?>_translations" class="translations">
 
             <?php
-            $this->Html->script('sentences.collapse.js', array('block' => 'scriptBottom'));
-
             $totalDirectTranslations = count(array_keys($translations));
             $totalIndirectTranslations = count(array_keys($indirectTranslations));
 
@@ -689,10 +687,7 @@ class SentencesHelper extends AppHelper
 
         if ($isEditable) {
             $classes[] = 'editableSentence';
-
-            $this->Html->script('jquery.jeditable.js', array('block' => 'scriptBottom'));
-            $this->Html->script('sentences.edit_in_place.js', array('block' => 'scriptBottom'));
-
+            
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
@@ -734,9 +729,6 @@ class SentencesHelper extends AppHelper
 
         // defined in config/asset_compress.ini
         $this->AssetCompress->script('sentences-block-for-members.js', $options);
-        $this->Html->script('jquery.jeditable.js', $options);
-        $this->Html->script('transcriptions.js', $options);
-        $this->Html->script('sentences.collapse.js', $options);
         $this->Html->script('clipboard.min.js', $options);
         $this->Html->script('sentences.copy.js', $options);
         $this->Html->script('sentences.play_audio.js', $options);

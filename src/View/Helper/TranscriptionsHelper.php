@@ -65,8 +65,6 @@ class TranscriptionsHelper extends AppHelper
         $lang,
         $sentenceOwnerId
     ) {
-        $this->Html->script('transcriptions.js', ['block' => 'scriptBottom']);
-
         $canEdit = CurrentUser::canEditTranscription(
             $transcr['user_id'], $sentenceOwnerId
         );
@@ -188,7 +186,6 @@ class TranscriptionsHelper extends AppHelper
             return $this->Html->tag('li', '', array('class' => 'option'));
         }
 
-        $this->Html->script('jquery.jeditable.js', ['block' => 'scriptBottom']);
         $editImage = $this->Images->svgIcon('edit', array(
             'width'  => 16,
             'height' => 16,
