@@ -109,11 +109,11 @@ check_transifex_rc() {
   if [ ! -f "$TRANSIFEX_RC" ]; then
     echo "Creating $TRANSIFEX_RC..."
     cat > "$TRANSIFEX_RC" <<EOF
-  [https://www.transifex.com]
-  api_hostname = https://api.transifex.com
-  hostname = https://www.transifex.com
-  username = 
-  password = 
+[https://www.transifex.com]
+api_hostname = https://api.transifex.com
+hostname = https://www.transifex.com
+username = 
+password = 
 EOF
   fi
 
