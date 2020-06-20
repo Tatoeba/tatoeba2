@@ -46,6 +46,8 @@ $description = __('File description');
 // Field names
 /* @translators: field name in Fields and structure on Downloads page */
 $sentence_id = __('Sentence id');
+/* @translators: field name in Fields and structure on Downloads page */
+$sentence_based_on_id = __('Sentence Id of base sentence');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
 $review = __('Review');
 /* @translators: field name in Fields and structure on Downloads page (noun) */
@@ -94,6 +96,7 @@ $list_sample = $this->Downloads->fileFormat(['13', '381279']);
 // Dropdown for selections
 $sentencesOptions = $this->Downloads->createOptions('sentences');
 $sentencesDetailedOptions = $this->Downloads->createOptions('sentences_detailed');
+$sentencesBasedOnIdOptions = $this->Downloads->createOptions('sentences_based_on_id');
 $sentencesCC0Options = $this->Downloads->createOptions('sentences_CC0');
 $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
 ?>
@@ -244,6 +247,34 @@ $transcriptionsOptions = $this->Downloads->createOptions('transcriptions');
                         [$sentence_id, $lang, $text, $username, $date_added, $date_modified]
                     ) ?>
                 </dd>
+            </dl>
+        </div>
+
+        <!-- Sentences based on id  -->
+        <div  class="section md-whiteframe-1dp">
+            <?php /* @translators: section title in the Downloads page */ ?>
+            <h2><?= __('Sentences Based On ID') ?></h2>
+            <dl>
+                <dt><?= $filename ?></dt>
+                <?= $this->element(
+                    'per_language_files',
+                    [
+                        'model' => 'sentences',
+                        'options' => $sentencesBasedOnIdOptions
+                    ]
+                ) ?>
+                <dt><?= $description ?></dt>
+                <dd>
+                    <?= format(
+                        __(
+                            'Contains all the sentences in the selected language. '.
+                            'Each sentence is associated with a unique id and the id'.
+                            ' of the sentence it is based on.'
+                        )
+                    ) ?>
+                </dd>
+                <dt><?= $format ?></dt>
+                <dd><?= $this->Downloads->fileFormat([$sentence_id, $sentence_based_on_id]) ?></dd>
             </dl>
         </div>
 
