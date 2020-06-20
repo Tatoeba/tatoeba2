@@ -175,6 +175,7 @@ $sidenavPosition = $htmlDir == 'rtl' ? 'md-sidenav-right' : 'md-sidenav-left';
                         </md-button>
                     </md-menu-item>
                 <?php } ?>
+                </md-menu-content>
             </md-menu>
             <?php
         }
