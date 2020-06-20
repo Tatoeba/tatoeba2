@@ -55,10 +55,9 @@ class VocabularyController extends AppController
      */
     public function beforeFilter(Event $event)
     {
-        if($this->request->is('ajax')) {
-          $this->Security->unlockedActions = array('save', 'save_sentence');
-        }
-
+        $this->Security->config('unlockedActions', [
+            'save', 'save_sentence'
+        ]);
         return parent::beforeFilter($event);
     }
 

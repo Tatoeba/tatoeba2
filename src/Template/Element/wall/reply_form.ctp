@@ -11,7 +11,7 @@ $editUrl = $this->Url->build([
 ?>
 
 <a id="reply-form-<?= $parentId ?>"></a>
-<md-card id="form-<?= $parentId ?>" ng-hide="true"
+<md-card id="form-<?= $parentId ?>" ng-if="vm.visibleForms[<?= $parentId ?>]"
          class="wall form reply" ng-cloak>
 
     <md-card-header>
@@ -39,7 +39,7 @@ $editUrl = $this->Url->build([
     <md-progress-linear ng-if="vm.isSaving[<?= $parentId ?>]"
                         md-mode="indeterminate"></md-progress-linear>
 
-    <md-card-content class="content">
+    <md-card-content class="content" ng-if="!vm.savedReplies[<?= $parentId ?>]">
         <?php
         echo $this->Form->create('', [
             'ng-submit' => 'vm.saveReply('.$parentId.')',
@@ -78,5 +78,5 @@ $editUrl = $this->Url->build([
         ?>
     </md-card-content>
 
-    <md-card-content class="reply-saved" ng-hide="true">{{vm.savedReplies[<?= $parentId ?>].content}}</md-card-content>
+    <md-card-content class="reply-saved" ng-if="vm.savedReplies[<?= $parentId ?>]">{{vm.savedReplies[<?= $parentId ?>].content}}</md-card-content>
 </md-card>

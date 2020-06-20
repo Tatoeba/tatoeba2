@@ -3,9 +3,9 @@
 
     angular
         .module('app', ['ngMaterial', 'ngMessages', 'ngCookies', 'ngSanitize'])
-        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$cookiesProvider',
+        .config(['$mdThemingProvider', '$mdIconProvider', '$httpProvider', '$httpParamSerializerJQLikeProvider', '$cookiesProvider',
                  '$compileProvider', function(
-            $mdThemingProvider, $mdIconProvider, $httpProvider, $cookiesProvider, $compileProvider
+            $mdThemingProvider, $mdIconProvider, $httpProvider, $httpParamSerializerJQLikeProvider, $cookiesProvider, $compileProvider
         ) {
             $compileProvider.debugInfoEnabled(false);
             $compileProvider.commentDirectivesEnabled(false);
@@ -14,12 +14,8 @@
                 .primaryPalette('green')
                 .accentPalette('grey')
                 .warnPalette('red',  {'default': '700'});
-            $httpProvider.defaults.transformRequest = function(data) {
-                if (data === undefined) {
-                    return data;
-                }
-                return $.param(data);
-            };
+            // https://stackoverflow.com/questions/12190166/angularjs-any-way-for-http-post-to-send-request-parameters-instead-of-json
+            $httpProvider.defaults.transformRequest.unshift($httpParamSerializerJQLikeProvider.$get());
             $httpProvider.defaults.headers.post['Content-Type'] =
                 'application/x-www-form-urlencoded; charset=UTF-8';
             $httpProvider.defaults.headers.common['X-Requested-With'] =
