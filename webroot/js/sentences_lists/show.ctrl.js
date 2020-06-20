@@ -106,7 +106,7 @@
         function editName() {
             vm.showEditNameForm =  true;
             setTimeout(function() {
-                var input = angular.element('#edit-name-input');
+                var input = angular.element(document.querySelector('#edit-name-input'));
                 input.focus();
             }, 100);
         }
