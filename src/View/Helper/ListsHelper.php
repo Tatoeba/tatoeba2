@@ -338,22 +338,20 @@ class ListsHelper extends AppHelper
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
                 <md-radio-button value='public' class='md-primary' title=
-                                 '<?=h(__("The list will be shown on the sentences page"))?>'>
+                                 '<?=h(__("The list will be shown on the sentences page"))?>'>                  
                     <?php /* @translators: visibility option of a list */ ?>
-                    <?=  __('Public'); 
-                    /* @translators: visibility option of a list *                  
-                    /*should be removed after 2020*/
-                    echo '<span style="color:red">' . __(' new');                    
-                    /* @translators: notice of new visibility feature of a list */
+                    <?=  __('Public');?>      
                     
-                    ?>
+                    <?php
+                    /*should be removed after 2020*/
+                    /* @translators: notice of new visibility feature of a list */?>
+                    <span style="color:red"><?= __('new')?>
                     </span>
                 </md-radio-button>
                 <md-radio-button value='listed' class='md-primary' title=
                                  '<?= h(__("The list can be found over Browse -> Browse by list, not at the sentence page"))?>'>
                     <?php /* @translators: visibility option of a list */ ?>
-                    <?=  __('Listed');
-                    ?>
+                    <?=  __('Listed');?>
                 </md-radio-button>
                 <md-radio-button value='unlisted' class='md-primary'>
                     <?php /* @translators: visibility option of a list */ ?>
@@ -584,17 +582,17 @@ class ListsHelper extends AppHelper
     }
 
 
-    public function displayListsModule($allListsArray, $sentences)
+    public function displayListsModule($listsArray, $sentences)
     {
         $sentenceId = $sentences->id; 
         $currentUserId = CurrentUser::get('id');
         
-        if (count($allListsArray) > 0) {
+        if (count($listsArray) > 0) {
             echo '<div class="section md-whiteframe-1dp">';
             /* @translators: header text on the sidebar of a sentence page */
             echo $this->Html->tag('h2', __('Lists'));
             echo '<ul class="sentence-lists">';
-            foreach($allListsArray as $list) {
+            foreach($listsArray as $list) {
                 $list = $list->sentences_list;
                 if ($list['visibility'] == 'public') {
                     $class = 'public-list';

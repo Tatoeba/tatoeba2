@@ -39,33 +39,15 @@ class SentencesSentencesListsTable extends Table
 
         $this->getEventManager()->on(new SentencesListListener());
     }
-
     public function getListsForSentence($sentenceId)
     {
         return $this->find()
             ->where([
                 'sentence_id' => $sentenceId,
-                'user_id' => CurrentUser::get('id')
-            ])
-            ->select(['created'])
-            ->contain([
-                'SentencesLists' => [
-                    'fields' => ['id', 'name', 'visibility']
+                'OR' => [                   
+                    'user_id' => CurrentUser::get('id'),
+                    'visibility' => 'public',
                 ]
-            ])
-            ->order(['visibility', 'SentencesSentencesLists.created' => 'DESC'])
-            ->all();
-    }
-    public function getOwnAndPublicListsForSentence($sentenceId)
-    {
-        return $this->find()
-            ->where([
-                'sentence_id' => $sentenceId,
-                'user_id' => CurrentUser::get('id')
-            ])
-            ->orwhere([
-                'sentence_id' => $sentenceId,
-                'visibility' => 'public'
             ])
             ->select(['created'])
             ->contain([

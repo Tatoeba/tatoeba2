@@ -344,6 +344,9 @@ class SentencesSearchForm extends Form
                 'OR' => [
                     'user_id' => $byUserId,
                     'visibility' => 'public',
+                    'OR' => [
+                        'visibility' => 'listed',
+                    ]
                 ]
             ]);
 

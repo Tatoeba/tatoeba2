@@ -103,6 +103,10 @@ class SentencesListsTable extends Table
                 'OR' => [
                     'user_id' => CurrentUser::get('id'),
                     'visibility' => 'public',
+                    'OR' =>[
+                        'visibility'=> 'listed',
+                    ]
+                    
                 ]
             ])
             ->select(['id', 'name', 'user_id'])

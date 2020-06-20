@@ -195,12 +195,10 @@ class SentencesController extends AppController
             $tagsArray = $this->Sentences->getAllTagsOnSentence($id);
             $this->loadModel('SentencesSentencesLists');
             $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
-            $allListsArray = $this->SentencesSentencesLists->getOwnAndPublicListsForSentence($id);
             
             $this->set('sentence', $sentence);
             $this->set('tagsArray', $tagsArray);
             $this->set('listsArray', $listsArray);
-            $this->set('allListsArray', $allListsArray);
 
         } else {
             // ----- if we want a random sentence in a specific language -----

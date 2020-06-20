@@ -104,7 +104,7 @@ echo $this->element('/sentences/navigation', [
     if (isset($sentence)){
         $this->Tags->displayTagsModule($tagsArray, $sentenceId, $sentenceLang);
 
-        $this->Lists->displayListsModule($allListsArray, $sentence);
+        $this->Lists->displayListsModule($listsArray, $sentence);
 
         echo $this->element(
             'sentences/license',
