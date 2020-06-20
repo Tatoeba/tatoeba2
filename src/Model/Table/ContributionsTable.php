@@ -84,7 +84,6 @@ class ContributionsTable extends Table
                 'sentence_id' => $sentenceId,
                 'user_id' => CurrentUser::get('id'),
                 'datetime' => date("Y-m-d H:i:s"),
-                'ip' => CurrentUser::getIp(),
                 'action' => $created ? 'insert' : 'update',
                 'type' => 'license',
                 'text' => $data['license'],
@@ -274,7 +273,6 @@ class ContributionsTable extends Table
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),
-            'ip' => CurrentUser::getIp(),
             'type' => 'sentence',
             'action' => $action
         ]);
@@ -300,7 +298,6 @@ class ContributionsTable extends Table
             'translation_id' => $translationId,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),
-            'ip' => CurrentUser::getIp(),
             'type' => 'link',
             'action' => $action
         ]);
@@ -317,18 +314,6 @@ class ContributionsTable extends Table
 
         return $query;
     }
-
-    public function getLastContributionOf($userId)
-    {
-        return $this->find()
-            ->select(['ip', 'count' => 'count(*)'])
-            ->where(['user_id' => $userId])
-            ->group(['group' => 'ip'])
-            ->orderDesc('count')
-            ->limit(10)
-            ->all();
-    }
-
 
     public function getOriginalCreatorOf($sentenceId)
     {

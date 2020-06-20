@@ -18,12 +18,3 @@ if ($isSuspended) {
         "$adminProfile has changed the level of $userProfile (id=$userId) to -1."
     );
 }
-
-echo $this->Html->tag('p', "The IP(s) under which $user has contributed are:");
-echo '<ul>';
-foreach($ips as $ip) {
-    echo $this->Html->tag('li',
-        $ip['Contribution']['ip'] . ' ('. $ip[0]['count'] .' contributions)'
-    );
-}
-echo '</ul>';
