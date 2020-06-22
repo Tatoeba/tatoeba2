@@ -95,6 +95,8 @@ class SentencesControllerTest extends IntegrationTestCase {
             [ '/jpn/sentences/random/fra', 'contributor', true ],
             [ '/jpn/sentences/get_neighbors_for_ajax/1/eng', null, true ],
             [ '/jpn/sentences/get_neighbors_for_ajax/1/eng', 'contributor', true ],
+            [ '/jpn/sentences/add_an_other_sentence', null, false ],
+            [ '/jpn/sentences/add_an_other_sentence', 'contributor', true],
         ];
     }
 
@@ -180,6 +182,83 @@ class SentencesControllerTest extends IntegrationTestCase {
         }
         $this->ajaxPost('/jpn/sentences/add_an_other_sentence', $data);
         $this->$assertion();
+    }
+
+    public function addSentenceWithLicenseProvider() {
+        return [
+            'user cannot choose license, submits no license' =>
+            [
+                'corpus_maintainer',
+                ['value' => 'test', 'selectedLang' => 'jpn'],
+                'CC BY 2.0 FR'
+            ],
+            'user cannot choose license, submits wrong license' =>
+            [
+                'corpus_maintainer',
+                ['value' => 'test', 'selectedLang' => 'jpn', 'sentenceLicense' => 'CC0 1.0'],
+                null
+            ],
+            'user cannot choose license, submits invalid license' =>
+            [
+                'corpus_maintainer',
+                ['value' => 'test', 'selectedLang' => 'jpn', 'sentenceLicense' => 'xyz'],
+                null
+            ],
+            'user cannot choose license, submits empty license' =>
+            [
+                'corpus_maintainer',
+                ['value' => 'test', 'selectedLang' => 'jpn', 'sentenceLicense' => ''],
+                'CC BY 2.0 FR'
+            ],
+            'user cannot choose license, submits default license' =>
+            [
+                'corpus_maintainer',
+                ['value' => 'test', 'selectedLang' => 'jpn', 'sentenceLicense' => 'CC BY 2.0 FR'],
+                'CC BY 2.0 FR'
+            ],
+            'user can choose license, submits no license' =>
+            [
+                'contributor',
+                ['value' => 'test', 'selectedLang' => 'fra'],
+                'CC BY 2.0 FR'
+            ],
+            'user can choose license, submits invalid license' =>
+            [
+                'contributor',
+                ['value' => 'test', 'selectedLang' => 'fra', 'sentenceLicense' => 'xyz'],
+                null
+            ],
+            'user can choose license, submits empty license' =>
+            [
+                'contributor',
+                ['value' => 'test', 'selectedLang' => 'fra', 'sentenceLicense' => ''],
+                'CC BY 2.0 FR'
+            ],
+            'user can choose license, submits valid license' =>
+            [
+                'contributor',
+                ['value' => 'test', 'selectedLang' => 'fra', 'sentenceLicense' => 'CC0 1.0'],
+                'CC0 1.0'
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider addSentenceWithLicenseProvider
+     */
+    public function testAddSentence_WithLicense($user, $data, $expectedLicense) {
+        $this->logInAs($user);
+        $this->addHeader('Accept', 'application/json');
+        $this->ajaxPost('/jpn/sentences/add_an_other_sentence', $data);
+
+        $response = json_decode($this->_response->getBody());
+        if ($expectedLicense) {
+            $sentences = TableRegistry::getTableLocator()->get('Sentences');
+            $license = $sentences->get($response->sentence->id)->license;
+            $this->assertEquals($expectedLicense, $license);
+        } else {
+            $this->assertEmpty($response);
+        }
     }
 
     public function testEditSentence_doesntWorkForUnknownSentence() {

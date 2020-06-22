@@ -159,6 +159,18 @@ class SentencesTable extends Table
             'isTranslatable'
         );
 
+        $rules->addCreate(
+            function ($entity, $options) {
+                if (!empty($entity->license)) {
+                    return CurrentUser::getSetting('can_switch_license') ||
+                           $entity->license == CurrentUser::getSetting('default_license');
+                } else {
+                    return true;
+                }
+            },
+            'hasCorrectLicense'
+        );
+
         return $rules;
     }
 
