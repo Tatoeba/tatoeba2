@@ -370,7 +370,8 @@ class SphinxConfShell extends Shell {
                     $v != 'U+D8..U+DE->U+F8..U+FE' &&
                     $v != 'U+E0..U+F6' &&
                     $v != 'U+F8..U+FF' &&
-                    $v != 'U+100..U+177/2' &&
+                    $v != 'U+100..U+137/2' &&
+                    $v != 'U+14A..U+177/2' &&
                     $v != 'U+1DE..U+1EF/2' &&
                     $v != 'U+300..U+36F'
                 ; }
@@ -431,7 +432,7 @@ class SphinxConfShell extends Shell {
                 'C->c', 'c',
                 'U+C7->U+E7', 'U+E7', # case-folding: c-cedilla
                 'D..H->d..h', 'd..h',
-                'I->U+131', 'U+CE->U+131', 'U+EE->U+131', 'U+131', # case-folding: dotless i
+                'I->U+131', 'U+131', # case-folding: dotless i
                 'U+CE->U+131', 'U+EE->U+131', # strip circumflex from I,i and map to dotless i
                 'U+130->i', 'i', # case-folding: dotted i
                 'J..N->j..n', 'j..n',
@@ -441,8 +442,7 @@ class SphinxConfShell extends Shell {
                 'U->u', 'U+DB->u', 'U+FB->u', 'u', # case-folding: u with/without circumflex
                 'U+DC->U+FC', 'U+FC',   # case-folding: u-umlaut
                 'V..Z->v..z', 'v..z',
-                'U+11E->U+11F', 'U+11F', # case-folding: g-breve
-                'U+15E->U+15F', 'U+15F' # case-folding: s-cedilla
+                'U+100..U+129/2', 'U+132..U+137/2',
             ),
             array_filter(
                 $this->charsetTable,
@@ -450,7 +450,7 @@ class SphinxConfShell extends Shell {
                     return $v != 'A..Z->a..z' && $v != 'a..z'
                     && $v != 'U+C0..U+D6->U+E0..U+F6' && $v != 'U+E0..U+F6' # Latin-1 supplement
                     && $v != 'U+D8..U+DE->U+F8..U+FE' && $v != 'U+F8..U+FF' # Latin-1 supplement
-                    && $v != 'U+100..U+177/2' # A-macron to y-circumflex
+                    && $v != 'U+100..U+137/2' # A-macron to k-cedilla
                     && $v != 'U+300..U+36F'   # combining characters
                 ; }
             )
@@ -482,8 +482,16 @@ class SphinxConfShell extends Shell {
         $this->indexExtraOptions['ota'] =
             "
         charset_table = ".implode(', ', array_merge(
-            array('U+6ad->U+643', 'U+647->U+6d5'),
-            $this->charsetTable
+            array(
+                'U+641..U+646', 'U+647->U+6d5', 'U+648',
+                'U+6aa..U+6ac', 'U+6ad->U+643', 'U+6ae..U+6bf',
+            ),
+            array_filter(
+                $this->charsetTable,
+                function($v) {
+                    return $v != 'U+641..U+648' and $v != 'U+6aa..U+6bf'
+                ; }
+            )
         ))."\n";
 
         foreach ($this->morphology as $lang => $morphology) {
