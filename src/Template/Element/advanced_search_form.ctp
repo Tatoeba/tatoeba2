@@ -45,7 +45,7 @@ echo $this->Form->create('AdvancedSearch', [
                     'id' => 'WordSearch'
                 ));
                 ?>
-                <md-button reset-button target="WordSearch">
+                <md-button class="md-icon-button" reset-button target="WordSearch">
                     <md-icon>clear</md-icon>
                 </md-button>
                 <div class="hint"><?= __('Enter a word or a phrase') ?></div>
@@ -76,7 +76,7 @@ echo $this->Form->create('AdvancedSearch', [
                     'id' => 'OwnerSearch'
                 ));
                 ?>
-                <md-button reset-button target="OwnerSearch">
+                <md-button class="md-icon-button" reset-button target="OwnerSearch">
                     <md-icon>clear</md-icon>
                 </md-button>
                 <div class="hint"><?= __('Enter a username') ?></div>
@@ -150,7 +150,7 @@ echo $this->Form->create('AdvancedSearch', [
                 'id' => 'TagSearch'
             ));
             ?>
-            <md-button reset-button target="TagSearch">
+            <md-button class="md-icon-button" reset-button target="TagSearch">
                 <md-icon>clear</md-icon>
             </md-button>
             <div class="hint">
@@ -256,7 +256,7 @@ echo $this->Form->create('AdvancedSearch', [
                         'id' => 'TranslatorSearch'
                     ));
                     ?>
-                    <md-button reset-button target="TranslatorSearch">
+                    <md-button class="md-icon-button" reset-button target="TranslatorSearch">
                         <md-icon>clear</md-icon>
                     </md-button>
                     <div class="hint"><?= __('Enter a username') ?></div>
