@@ -69,7 +69,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                     echo format(__n('{folderName} ({n}&nbsp;message)',
                                     '{folderName} ({n}&nbsp;messages)',
                                     $n, true),
-                                compact('folderName', 'n'));
+                                ['folderName'=> $folderName, 'n'=> $this->Number->format($n)]
+                                );
                     ?>
                 </h2>
 
