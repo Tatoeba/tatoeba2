@@ -4,14 +4,15 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
+# Keegi . <keegi@spamcop.net>, 2020
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-04 23:48+0800\n"
-"PO-Revision-Date: 2020-05-22 04:33+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"PO-Revision-Date: 2020-06-21 11:59+0000\n"
+"Last-Translator: Keegi . <keegi@spamcop.net>\n"
 "Language-Team: Estonian (http://www.transifex.com/tatoeba/tatoeba_website/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,11 +31,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/messages_of_user.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/CommonModulesHelper.php#L133
 msgid "There's no user called {username}"
-msgstr ""
+msgstr "Kasutajat {username}ei leitud"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L120
 msgid "Your audio settings have been saved."
-msgstr ""
+msgstr "Audio seaded salvestatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/AudioController.php#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L119
@@ -42,7 +43,7 @@ msgstr ""
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "Salvestamine ebaõnnestus. Palun proovi uuesti või anna sellest meile teada."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/Component/MailerComponent.php#L75
 msgid "Tatoeba, new password"
@@ -50,46 +51,46 @@ msgstr "Tatoeba, uus salasõna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L89
 msgid "Please wait until the list is updated."
-msgstr ""
+msgstr "Palun oota, nimekirja värskendatakse."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr ""
+msgstr "Litsentsi muudatus on juba käimas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr ""
+msgstr "Laused #{firstNumber} ja #{secondNumber} on nüüd üksteise vahetud tõlked."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L155
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr ""
+msgstr "Laused #{firstNumber} ja #{secondNumber} ei ole nüüd üksteise vahetud tõlked."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L163
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "Lahti seostamine ebaõnnestus. Palun proovi uuesti või anna sellest meile teada."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/PrivateMessagesController.php#L172
 msgid "Folder \"{name}\" emptied."
-msgstr ""
+msgstr "Kataloog \"{name}\" tühjendatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SController.php#L67
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L199
 msgid "There is no sentence with id {number}"
-msgstr ""
+msgstr "Lause {number} ei eksisteeri."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L186
 msgid "Your comment has been saved."
-msgstr "Teie kommentaar on salvestatud."
+msgstr "Kommentaar salvestatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L227
 msgid "You do not have permission to edit this comment. "
-msgstr ""
+msgstr "Puuduvad õigused kommentaari muutmiseks."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L231
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/WallController.php#L221
@@ -97,147 +98,147 @@ msgstr ""
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " {email}."
-msgstr ""
+msgstr "Kui said selle teate eksklikult, palun võta ühendust administraatoritega aadressil {email}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentenceCommentsController.php#L252
 msgid "Changes to your comment have been saved."
-msgstr ""
+msgstr "Kommentaari muudatused salvestatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L269
 msgid "The sentence #{id} has been deleted."
-msgstr ""
+msgstr "Lause #{id} kustutatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L275
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr ""
+msgstr "Viga: lause #{id} kustutamine ebaõnnestus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L873
 msgid "You are not allowed to change the license of this sentence."
-msgstr ""
+msgstr "Puuduvad õigused selle lause litsentsi muutmiseks."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L880
 msgid "The license of the sentence has been changed to “{newLicense}”."
-msgstr ""
+msgstr "Selle lause litsents on nüüd “{newLicense}”."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesController.php#L885
 msgid "Unable to change the license to “{newLicense}” because:"
-msgstr ""
+msgstr "Litsentsi muutmine “{newLicense}” ebaõnnestus:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L163
 msgid "You do not have permission to view this list."
-msgstr ""
+msgstr "Puuduvad õigused nimekirja vaatamiseks."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L293
 msgid "The sentence could not be added to the list."
-msgstr ""
+msgstr "Lause lisamine nimekirja ebaõnnestus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L495
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/SentencesListsController.php#L527
 msgid "You do not have permission to download this list."
-msgstr ""
+msgstr "Puuduvad õigused nimekirja allalaadimiseks."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/TagsController.php#L228
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr ""
+msgstr "Selle sildiga laused puuduvad. Silt kas puudub või see on kustutatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/VocabularyController.php#L82
 msgid "No user with this username: {username}"
-msgstr ""
+msgstr "Sellise nimega kasutaja puudub: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L165
 msgid "Failed to upload image"
-msgstr ""
+msgstr "Pildi üleslaadimine ebaõnnestus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L174
 msgid "Please choose an image that does not exceed 1 MB."
-msgstr ""
+msgstr "Pildifaili maksimaalne suurus on 1MB."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L185
 msgid "Please choose GIF, JPEG or PNG image format."
-msgstr "Palun valima JPG, GIF või PNG pildiformaat."
+msgstr "Palun kasutage pildiformaati JPG, GIF või PNG."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L215
 msgid "Error while saving."
-msgstr ""
+msgstr "Salvestamine ebaõnnestus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L324
 msgid "Profile saved."
-msgstr ""
+msgstr "Profiil salvestatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L335
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr ""
+msgstr "E-maili muutmine ebaõnnestus. Kontrollige e-maili korrektsust."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L376
 msgid "That email address already exists. Please try another."
-msgstr ""
+msgstr "Selline e-mail on juba kasutusel. Palun proovige uuesti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L425
 msgid "The entered birthday is an invalid date. Please try again."
-msgstr ""
+msgstr "Sünnipäevaks on märgitud vigane kuupäev. Palun proovige uuesti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L474
 msgid ""
 "The entered birthday is incomplete. Accepted birthdays: full date, month and"
 " day, year and month, only year."
-msgstr ""
+msgstr "Sünnipäev ei ole täielikult sisestatud. Lubatud variandid: täielik kuupäev, ainult kuu ja päev, ainult aasta ja kuu, ainult aasta."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L545
 msgid "Your settings have been saved."
-msgstr ""
+msgstr "Seaded salvestatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L614
 msgid "New password cannot be empty."
-msgstr ""
+msgstr "Uus parool ei tohi olla tühi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L617
 msgid "New passwords do not match."
-msgstr ""
+msgstr "Uue parooli sisestused on erinevad."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L624
 msgid "New password has been saved."
-msgstr ""
+msgstr "Uus parool salvestatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L626
 msgid "An error occurred while saving."
-msgstr ""
+msgstr "Salvestamine ebaõnnestus."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L631
 msgid "Password error. Please try again."
-msgstr ""
+msgstr "Parooli viga. Palun proovi uuesti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UserController.php#L731
 msgid "You have accepted the new terms of use."
-msgstr ""
+msgstr "Nõustusid uute kasutajatingimustega."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L184
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "See kasutajakonto on märgitud mitteaktiivseks ja sellega ei saa enam sisse logida. Kui see on eksitus, palun võta ühendust administraatoriga."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L194
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "See kasutajakonto on märgitud spämmeriks ja sellega ei saa enam sisse logida. Kui see on eksitus, palun võta ühendust administraatoriga."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L208
 msgid "You must fill in your username and password."
-msgstr ""
+msgstr "Kasutajanimi ja parool peavad mõlemad olema sisestatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L216
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
-msgstr ""
+msgstr "Sisselogimine ebaõnnestus. Palun kontrolli et Caps Lock ja Num Lock ei oleks kogemata sisse lülitatud. Paroolis eristatakse suur- ja väiketähti."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L328
 msgid "Welcome to Tatoeba!"
-msgstr ""
+msgstr "Tere tulemast Tatoeba'sse!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/UsersController.php#L332
 msgid ""
@@ -384,13 +385,13 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L280
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L358
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L212
 msgid "The following character lacks furigana: {charsEnumeration}."
 msgid_plural "The following characters lack furigana: {charsEnumeration}."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sellel sümbolil puudub furigana: {charsEnumeration}."
+msgstr[1] "Järgmistel sümbolitel puudub furigana: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Autotranscription.php#L237
 msgid ""
@@ -417,11 +418,11 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
-msgstr ""
+msgstr "Litsents ei luba asukohavälist kasutust."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L61
 msgid "Licensing issue"
-msgstr ""
+msgstr "Litsenseerimise viga."
 
 #. this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -430,18 +431,18 @@ msgstr ""
 #. for instance {language.alone}
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L19
 msgid "{language}"
-msgstr ""
+msgstr "{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L35
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/DownloadsHelper.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L154
 msgid "All languages"
-msgstr ""
+msgstr "Kõik keeled"
 
 #. dropdown option for unknown language
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/LanguageNameTrait.php#L57
 msgid "unknown"
-msgstr ""
+msgstr "tundmatu keel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Entity/Transcription.php#L201
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/TranscriptionsHelper.php#L228
@@ -483,7 +484,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L125
 msgid "List {listName}"
-msgstr ""
+msgstr "Nimekiri {listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L126
 msgid "Sentence id [tab] Sentence text"
@@ -501,7 +502,7 @@ msgstr ""
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
-msgstr "Kasutaja {username} mida soovie saata selle sõnumi ei ole olemas. Palun proovige teine kasutajanimega."
+msgstr "Kasutajat {username}, kellele soovite saata sõnumit, ei ole olemas. Palun proovige teist kasutajanime."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentenceCommentsTable.php#L61
 msgid "Comments cannot be empty."
@@ -509,45 +510,45 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesListsTable.php#L180
 msgid "unnamed list"
-msgstr "tiitlita nimekirja"
+msgstr "nimekiri ilma tiitlita"
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L129
 msgid "This is not a valid license."
-msgstr ""
+msgstr "See ei ole kehtiv litsents."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L117
 msgid "This sentence is already under that license."
-msgstr ""
+msgstr "Selle lause litsents on juba selline."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L196
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "Lause peab olema originaallause (mitte pärit tõlgitud lausest)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L204
 msgid "You're not the owner of this sentence."
-msgstr ""
+msgstr "Sa ei ole selle lause omanik."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L211
 msgid "The owner of the sentence needs to be its original creator."
-msgstr ""
+msgstr "Lause omanik peab olema lause algne looja."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L224
 msgid "You can only switch to a more permissive license."
-msgstr ""
+msgstr "Litsentsi saab muuta ainult selliseks, mis muudab selle kasutamist vabamaks."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L88
@@ -562,40 +563,40 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L94
 msgid "Username must be at least two characters long"
-msgstr "Gutxienez bi letra behar ditu erabiltzaile izenak"
+msgstr "Kasutajanimi peab olema vähemalt 2 sümbolit."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L79
 msgid "Username must be at most 20 characters long"
-msgstr ""
+msgstr "Kasutajanime maksimaalne pikkus on 20 sümbolit."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L97
 msgid "Username can only contain letters, numbers, or underscore"
-msgstr ""
+msgstr "Kasutajanimi võib sisaldada ainult tähti, numbreid ja allkriipsu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L140
 msgid "Password must be at least 6 characters long"
-msgstr ""
+msgstr "Parool peab olema vähemalt 6 sümbolit."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L190
 msgid "Invalid email address"
-msgstr ""
+msgstr "Vigane e-mail."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L100
 msgid "Username already taken."
-msgstr ""
+msgstr "Kasutajanimi on juba hõivatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/UsersTable.php#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L193
 msgid "Email address already used."
-msgstr ""
+msgstr "E-mail on juba kasutatud."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/WallTable.php#L72
 msgid "You cannot save an empty message."
-msgstr ""
+msgstr "Tühja sõnumit ei saa salvestada."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L70
 msgid "Result of license switch to CC0 1.0"
@@ -604,11 +605,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L94
 msgid ""
 "Unable to change the license of sentence {id} to “{newLicense}” because:"
-msgstr ""
+msgstr "Lause {id} litsentsi muutmine “{newLicense}” ebaõnnestus:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L121
 msgid "License switch started on {date} at {time} UTC."
-msgstr ""
+msgstr "Litsentsi muutmine alustati {date}  {time} UTC."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Shell/Task/QueueSwitchSentencesLicenseTask.php#L126
 msgid "Successfully changed the license of {n} sentence."
@@ -626,7 +627,7 @@ msgstr "Omanikuta lauseid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L33
 msgid "Orphan sentences in {language}"
-msgstr "Omanikuta lauseid {language} keeles"
+msgstr "Omanikuta laused {language} keeles"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/adopt_sentences.ctp#L44
 msgid "About adoption"
@@ -667,7 +668,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L108
 msgid "Improve sentences"
-msgstr "Parandada laused"
+msgstr "Paranda lauseid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/improve_sentences.ctp#L61
 msgid "Related links"
@@ -751,7 +752,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L97
 msgid "Translate sentences"
-msgstr "Tõlgi laused"
+msgstr "Tõlgi lauseid"
 
 #. option used in language selection dropdown
 #. for "Not directly translated into", on Translate sentences page
@@ -772,7 +773,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L66
 msgid "About translations"
-msgstr "Teave tõlked"
+msgstr "Tõlgete teave"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L68
 msgid "Good translations"
@@ -784,7 +785,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L74
 msgid "Multiple translations"
-msgstr "Mitmekordne tõlked"
+msgstr "Mitu tõlget"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L78
 msgid ""
@@ -819,33 +820,33 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L311
 msgid "Order:"
-msgstr ""
+msgstr "Järjestus:"
 
 #. sort order radio option in Translate sentences page (noun)
 #. / sort order dropdown option in advanced search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L173
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L322
 msgid "Random"
-msgstr ""
+msgstr "juhuslik"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L176
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L318
 msgid "Fewest words first"
-msgstr ""
+msgstr "vähemate sõnade arvuga laused eespool"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L179
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L320
 msgid "Last modified first"
-msgstr ""
+msgstr "viimati muudetud eespool"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L182
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L319
 msgid "Last created first"
-msgstr ""
+msgstr "viimati lisatud eespool"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L190
 msgid "show sentences"
-msgstr ""
+msgstr "näita lauseid"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences_of.ctp#L33
 msgid "Translate {language} sentences that belong to {user}"
@@ -876,7 +877,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/of_user.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Transcriptions/of.ctp#L58
 msgid "(total {{count}})"
-msgstr ""
+msgstr "(kokku {{count}})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L22
 msgid "Audio contributed by {username}"
@@ -889,7 +890,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/license.ctp#L51
 msgid "License:"
-msgstr ""
+msgstr "Litsents:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L55
 msgid "Attribution URL:"
@@ -916,7 +917,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L375
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L424
 msgid "Save"
-msgstr ""
+msgstr "Salvesta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Audio/of.ctp#L81
 msgid "{username} has not contributed any audio"
@@ -1041,7 +1042,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L256
 msgctxt "orphan"
 msgid "Any"
-msgstr ""
+msgstr "kõik"
 
 #. part of Any/No/Yes dropdown options in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L87
@@ -1051,7 +1052,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L277
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L296
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #. part of Any/No/Yes dropdown options in search form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L89
@@ -1061,7 +1062,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L278
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L297
 msgid "Yes"
-msgstr ""
+msgstr "Jah"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L265
@@ -1078,7 +1079,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L276
 msgctxt "unapproved"
 msgid "Any"
-msgstr ""
+msgstr "kõik"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L285
@@ -1095,7 +1096,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L295
 msgctxt "audio"
 msgid "Any"
-msgstr ""
+msgstr "kõik"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L140
 msgid "Tags:"
@@ -1146,7 +1147,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L228
 msgctxt "link"
 msgid "Any"
-msgstr ""
+msgstr "kõik"
 
 #. dropdown option of "Link" field in search form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/advanced_search_form.ctp#L230
@@ -1209,11 +1210,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
-msgstr "Arv helid keel järgi"
+msgstr "Heliga lausete arv keelte kaupa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr "Sirvi heli kõigile keele."
+msgstr "Sirvi helisid kõigis keeltes"
 
 #. used in the calendar on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/calendar.ctp#L45
@@ -1340,7 +1341,7 @@ msgstr ""
 #. link text (in the footer) to the section 6 of the Terms of use page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L201
 msgid "More information"
-msgstr ""
+msgstr "Lisateave"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L215
 msgid "If you love this content, please consider a <a href={}>donation</a>."
@@ -1355,7 +1356,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L4
 msgid "Select a language"
-msgstr ""
+msgstr "Vali keel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/language_dropdown.ctp#L35
 msgid "No language found."
@@ -1375,7 +1376,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L301
 msgid "Register"
-msgstr ""
+msgstr "Loo kasutaja"
 
 #. link to open the Login box in the top bar (verb)
 #. / button to submit login form (verb)
@@ -1385,25 +1386,25 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L77
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L120
 msgid "Log in"
-msgstr ""
+msgstr "Logi sisse"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L99
 msgid "Username: "
-msgstr ""
+msgstr "Kasutajanimi:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L107
 msgid "Password: "
-msgstr ""
+msgstr "Parool:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L104
 msgid "Remember me"
-msgstr ""
+msgstr "Jäta mind meelde"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/login.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L124
 msgid "Forgot your password?"
-msgstr ""
+msgstr "Unustasid parooli?"
 
 #. button to close the top-right login box (verb)
 #. / button to close the announcement about the new design (verb)
@@ -1413,7 +1414,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_form.ctp#L8
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/index.ctp#L100
 msgid "Close"
-msgstr ""
+msgstr "Sulge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/per_language_files.ctp#L38
 msgid "Only sentences in:"
@@ -1430,67 +1431,67 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L228
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L35
 msgid "Inbox"
-msgstr ""
+msgstr "Sissetulnud sõnumid"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L32
 msgid "Unread"
-msgstr ""
+msgstr "Lugemata"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L45
 msgid "Drafts"
-msgstr ""
+msgstr "Mustandid"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L39
 msgid "Sent"
-msgstr ""
+msgstr "Saadetud"
 
 #. folder name in private messages (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/pmmenu.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/folder.ctp#L42
 msgid "Trash"
-msgstr ""
+msgstr "Kustutatud"
 
 #. title of section containing a reply
 #. form to a private message (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L9
 msgctxt "header"
 msgid "Reply"
-msgstr ""
+msgstr "Vastus"
 
 #. title of section containing a form for
 #. a new private message (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L13
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/PrivateMessages/write.ctp#L28
 msgid "New message"
-msgstr ""
+msgstr "Uus sõnum"
 
 #. title of section containing a form for
 #. a private message previously saved as draft (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L17
 msgid "Message"
-msgstr ""
+msgstr "Sõnum"
 
 #. recipient field label in private message form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L49
 msgctxt "message"
 msgid "To"
-msgstr ""
+msgstr "Saaja:"
 
 #. title field label in private message form
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L63
 msgid "Title"
-msgstr ""
+msgstr "Teema"
 
 #. button to save a private message as draft
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/private_messages/form.ctp#L89
 msgid "Save as draft"
-msgstr ""
+msgstr "Salvesta mustand"
 
 #. button to send a private message (verb)
 #. / button to post a new message on the Wall (verb)
@@ -1502,7 +1503,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/reply_form.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/new_password.ctp#L60
 msgid "Send"
-msgstr ""
+msgstr "Saada"
 
 #. random sentence block header on the home page for members
 #. / random sentence block header on the home page for guests
@@ -1541,7 +1542,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_bar.ctp#L118
 msgctxt "language"
 msgid "To"
-msgstr ""
+msgstr "tõlge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/search_with_no_result.ctp#L30
 msgid "No results found."
@@ -1615,7 +1616,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L181
 msgctxt "button"
 msgid "Reply"
-msgstr ""
+msgstr "Vasta"
 
 #. tooltip of permalink button on a comment (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L128
@@ -1814,7 +1815,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/navigation.ctp#L71
 msgid "Show sentence #: "
-msgstr "Erakutsi esaldi zkia.: "
+msgstr "Näita lauset #: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/SentencesHelper.php#L118
@@ -1951,7 +1952,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/PrivateMessagesHelper.php#L91
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/WallHelper.php#L165
 msgid "Delete"
-msgstr ""
+msgstr "Kustuta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_menu.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L554
@@ -2095,7 +2096,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L39
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/users_menu.ctp#L33
 msgid "Profile"
-msgstr ""
+msgstr "Profiil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/space.ctp#L58
 msgid "My profile"
@@ -2359,7 +2360,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Email/html/new_password.ctp#L3
 msgid "Your new password: "
-msgstr "Teie uus salasõna : "
+msgstr "Uus salasõna: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Exports/index.ctp#L7
 msgid "My exports"
@@ -2668,7 +2669,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L48
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/download.ctp#L91
 msgid "Sentence id"
-msgstr ""
+msgstr "Lause ID"
 
 #. field name in Fields and structure on Downloads page (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L50
@@ -2684,7 +2685,7 @@ msgstr ""
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L54
 msgid "Lang"
-msgstr ""
+msgstr "Keel"
 
 #. field name in Fields and structure on Downloads page
 #. / sort option in the All members page
@@ -2693,7 +2694,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/login.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L63
 msgid "Username"
-msgstr ""
+msgstr "Kasutajanimi"
 
 #. field name in Fields and structure on Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L58
@@ -3332,7 +3333,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceAnnotations/show.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Sentences/show.ctp#L175
 msgid "Sentence #{number}"
-msgstr "Esaldi {number} zk."
+msgstr "Lause #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentenceComments/edit.ctp#L20
 msgid "Edit Comment"
@@ -4262,7 +4263,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L243
 msgid "What are the first five characters of your email address?"
-msgstr "Zeintzuk dira zure e-posta helbideko lehen bost letrak?"
+msgstr "Mis on su e-maili 5 esimest sümbolit?"
 
 #. captcha field name in register form (noun)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L252
@@ -4277,7 +4278,7 @@ msgstr "Vale vastus sellele küsimusele."
 msgid ""
 "For instance, if your email address is a.b.cd@example.com, type a.b.c into "
 "the box."
-msgstr "Esaterako, zure e-posta helbidea a.b.cd@adibidea.com baldin bada, erantzuna \"a.b.c\" izango da; zure e-posta helbideko lehen 5 karaktereak, hain zuzen."
+msgstr "Näiteks kui su e-mail on a.b.cd@example.com, sisesta a.b.c vastusesse."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/register.ctp#L293
 msgid "You did not accept the terms of use."
@@ -4344,7 +4345,7 @@ msgstr ""
 #. button to submit new sentence from wanted vocabulary requests page (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L127
 msgid "Submit"
-msgstr ""
+msgstr "Salvesta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/of.ctp#L33
 msgid "{username}'s vocabulary items ({number})"
@@ -4590,7 +4591,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L203
 msgctxt "show-translations-in"
 msgid "All languages"
-msgstr ""
+msgstr "Kõik keeled"
 
 #. option used in language selection dropdowns in other places
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LanguagesHelper.php#L234

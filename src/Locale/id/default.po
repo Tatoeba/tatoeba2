@@ -5,19 +5,21 @@
 # Translators:
 # Leg Bail, 2016
 # Leg Bail, 2015
+# Aldrian Obaja <aldrianobaja.m@gmail.com>, 2020
 # menyo <biyanto.rebin@gmail.com>, 2015,2020
 # Delta Orionis <deltaorion17@gmail.com>, 2020
 # dunia bahasa <dbahasa@yahoo.com>, 2020
 # Leg Bail, 2015-2016,2018
 # Leg Bail, 2018
 # menyo <biyanto.rebin@gmail.com>, 2015
+# Rizki Muhammad Said <rizkiwolnen@gmail.com>, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-04 23:48+0800\n"
-"PO-Revision-Date: 2020-06-06 10:03+0000\n"
-"Last-Translator: Delta Orionis <deltaorion17@gmail.com>\n"
+"PO-Revision-Date: 2020-06-21 11:45+0000\n"
+"Last-Translator: Aldrian Obaja <aldrianobaja.m@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/tatoeba/tatoeba_website/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +62,7 @@ msgstr "Harap tunggu hingga daftar diperbaharui."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LicensingController.php#L93
 msgid "A license switch is already in progress."
-msgstr "Pergantian lisensi sedang diproses."
+msgstr "Sudah ada pergantian lisensi yang sedang diproses."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Controller/LinksController.php#L111
 msgid ""
@@ -419,7 +421,7 @@ msgstr[0] "Karakter berikut belum disalin: {charsEnumeration}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L32
 msgid "No license for offsite use"
-msgstr ""
+msgstr "Tidak ada lisensi untuk penggunaan situs luar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Lib/Licenses.php#L61
 msgid "Licensing issue"
@@ -489,7 +491,7 @@ msgstr "Daftar {listName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L126
 msgid "Sentence id [tab] Sentence text"
-msgstr ""
+msgstr "Id kalimat [tab] Isi kalimat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/PrivateMessagesTable.php#L76
 msgid "You cannot send an empty message."
@@ -797,7 +799,7 @@ msgstr "Bila Anda merasa bahwa suatu kalimat bisa diterjemahkan menjadi beberapa
 msgid ""
 "Translating sentences implies that you know at least two languages. Please "
 "complete <a href=\"{}\">your profile</a> to indicate at least two languages."
-msgstr ""
+msgstr "Menerjemahkan kalimat berarti menyatakan bahwa Anda tahu setidaknya dua bahasa. Mohon lengkapi <a href=\"{}\">profil Anda</a> dengan setidaknya dua bahasa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Activities/translate_sentences.ctp#L112
 msgid "Search for untranslated sentences"
@@ -934,11 +936,11 @@ msgstr "Linimasa kegiatan — {month} {year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr ""
+msgstr "Statistik tentang jumlah kontribusi bulan ini"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr ""
+msgstr "Statistik tentang banyaknya kontribusi selama {month} {year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
@@ -986,7 +988,7 @@ msgstr "Kontribusi terbaru dari {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} log entries are displayed here."
-msgstr ""
+msgstr "Hanya {n}entri terakhir yang ditampilkan di sini."
 
 #. section title in advanced search form
 #. / link to the user's sentences on profile page sidebar
@@ -1192,7 +1194,7 @@ msgid ""
 "We have updated our <a href=\"{termsOfUse}\">Terms of Use</a>.\n"
 "        By closing this announcement, you agree with the new Terms of Use.\n"
 "        If you have any question, feel free to <a href=\"{contact}\">contact us</a>."
-msgstr ""
+msgstr "Kami memperbaharui <a href=\"{termsOfUse}\">Syarat Penggunaan</a>\nDengan menutup pengumuman ini, Anda menyatakan Anda setuju dengan Syarat Penggunaan yang baru.\nJika Anda mempunya pertanyaan, silakan <a href=\"{contact}\">hubungi kami</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/announcement.ctp#L67
 msgid ""
@@ -1360,7 +1362,7 @@ msgstr "Bahasa tidak ditemukan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
-msgstr ""
+msgstr "Daftar kalimat yang terpengaruh (total {{count}})"
 
 #. link to the Register page in the top bar (verb)
 #. / link to the Register page in the login page (verb)
@@ -1618,7 +1620,7 @@ msgstr "Balas"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L128
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L42
 msgid "Permalink"
-msgstr ""
+msgstr "Permalink"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentence_comments/comment.ctp#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/wall/message.ctp#L104
@@ -1768,7 +1770,7 @@ msgstr "Buat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L13
 msgid "Your last selected list (if any) and last updated lists"
-msgstr ""
+msgstr "Daftar yang terakhir Anda pilih (jika ada) dan daftar yang terakhir diperbaharui."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/list_form.ctp#L14
 msgid "Search results"
@@ -2434,7 +2436,7 @@ msgid ""
 "This page allows you to massively switch the license of your sentences to "
 "{CC0-link}. Among all your sentences, only the ones that meet the following "
 "conditions will be affected."
-msgstr ""
+msgstr "Halaman ini adalah untuk mengganti lisensi kalimat-kalimat Anda secara masal ke {CC0-link}. Di antara semua kalimat Anda, hanya yang memenuhi kriteria yang akan terpengaruh."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L36
 msgid "The current license of the sentence must be CC BY 2.0 FR."
@@ -2466,13 +2468,13 @@ msgstr "Ubah lisensi"
 msgid ""
 "Press the following button to initiate the license switch of the above-"
 "listed sentences."
-msgstr ""
+msgstr "Tekan tombol berikut untuk memulai pergantian lisensi kalimat-kalimat yang tertulis di atas."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L68
 msgid ""
 "Be careful, this operation can not be undone. Switching from CC BY to CC0 is"
 " possible, but not the opposite."
-msgstr ""
+msgstr "Hati-hati, operasi ini tidak bisa dibatalkan. Mengganti lisensi dari CC BY ke CC0 itu mungkin, tapi tidak sebaliknya."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L72
 msgid "Switch license to CC0 1.0"
@@ -2813,7 +2815,7 @@ msgid ""
 "The license covering an audio file is chosen by the contributor, and is "
 "indicated on the page that lists the audio files that he or she has "
 "contributed."
-msgstr ""
+msgstr "Lisensi yang mencakup file audio dipilih oleh kontributor, dan ditandai di halaman yang mendaftarkan file audio yang disumbangkan."
 
 #. header text in the Downloads page on the sidebar
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L172
@@ -2831,7 +2833,7 @@ msgid ""
 "Contains all the sentences in the selected language. Each sentence is "
 "associated with a unique id and an <a href=\"{}\">ISO 639-3</a> language "
 "code."
-msgstr ""
+msgstr "Memuat semua kalimat di bahasa yang dipilih. Tiap kalimat diasosiasikan dengan id khusus dan kode bahasa <a href=\"{}\">ISO 639-3</a>."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L222
@@ -2842,7 +2844,7 @@ msgstr "Kalimat Rinci"
 msgid ""
 "Contains additional fields for each sentence (owner name, date "
 "created/modified)."
-msgstr ""
+msgstr "Memuat kolom tambahan untuk tiap kalimat (nama pemilik, tanggal dibuat/diubah)."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L253
@@ -2851,7 +2853,7 @@ msgstr "Kalimat (CC0)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L265
 msgid "Contains all the sentences available under CC0."
-msgstr ""
+msgstr "Memuat semua kalimat yang tersedia dalam CC0."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L277
@@ -2915,7 +2917,7 @@ msgid ""
 "available. Other fields indicate who recorded the audio, its license and a "
 "URL to attribute the author. If the license field is empty, you may not "
 "reuse the audio outside the Tatoeba project."
-msgstr ""
+msgstr "Memuat Id dari kalimat-kalimat, di semua bahasa, yang memiliki audio. Kolom yang lain menyatakan siapa yang merekam audio, lisensinya, dan pranala untuk atribusi ke pencipta. Jika kolom lisensi dikosongkan, Anda tidak diperkenankan untuk mempergunakan audio ini di luar proyek Tatoeba."
 
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L444
@@ -2937,7 +2939,7 @@ msgid ""
 "Contains sentences reviewed by users. The value of the review can be -1 "
 "(sentence not OK), 0 (undecided or unsure), or 1 (sentence OK). Warning: "
 "this data is still experimental."
-msgstr ""
+msgstr "Memuat kalimat-kaimat yang dicek oleh pengguna. Nilai yang mungkin adalah -1 (kalimat tidak OK), 0 (belum diputuskan atau tidak yakin), atau 1 (kalimat OK). Peringatan: data ini masih dalam percobaan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L503
 msgid ""
@@ -2946,7 +2948,7 @@ msgid ""
 "possibly modified it. A transcription without a username has not been marked"
 " as reviewed. The script name is defined according to the ISO 15924 "
 "standard."
-msgstr ""
+msgstr "Memuat semua transkripsi dalam aksara yang lain. Nama pengguna yang diasosiasikan dengan sebuah transkripsi menandakan pengguna yang terakhir mengecek dan mungkin menyuntingnya. Transkripsi yang tidak mengandung nama pengguna belum ditandai sebagai telah dicek. Nama aksara didefinisikan sesuai dengan standar ISO 15924."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L34
 msgid "Need more help?"
@@ -2971,7 +2973,7 @@ msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{wall}\">Wall</a>, or join our <a "
 "href=\"{chatroom}\">chatroom</a>. We will give you a purpose. :)"
-msgstr ""
+msgstr "Jika Anda tidak tahu apa yang perlu dilakukan setelah registrasi, Anda bisa memperkenalkan diri Anda di <a href=\"{wall}\">Tembok</a>, atau mengikuti <a href=\"{chatroom}\">chatroom</a>. Kami akan memberikan Anda sebuah tujuan. :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L85
 msgid ""
@@ -3001,7 +3003,7 @@ msgstr "Ada dua cara untuk menambah kalimat baru."
 msgid ""
 "Choose <a href=\"{}\">Add sentences</a> from the <strong>Contribute</strong>"
 " menu at the top of each page."
-msgstr ""
+msgstr "Pilih <a href=\"{}\">Tambahkan kalimat</a>dari menu <strong>Buat Kontribusi</strong>di bagian atas halaman."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/help.ctp#L153
 msgid ""
@@ -3270,7 +3272,7 @@ msgstr "Ftur ini saat ini dinonaktifkan."
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr ""
+msgstr "Anda bisa mengaktifasikannya di pengaturan: \"Aktifkan fitur untuk mengecek kalimat.\""
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L73
@@ -3701,7 +3703,7 @@ msgstr "Daftar kosong."
 msgid ""
 "You can create new sentences directly in this list by clicking on the "
 "{addSentenceButton} icon in the header of this section."
-msgstr ""
+msgstr "Anda juga dapat membuat kalimat baru langsung di daftar ini dengan mengklik ikon {addSentenceButton}di tajuk bab ini."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/SentencesLists/show_angular.ctp#L198
 msgid ""
@@ -3974,7 +3976,7 @@ msgstr "Edit bahasa"
 msgid ""
 "If your language is missing, please read our article on how to <a "
 "href=\"{}\">request a new language</a>."
-msgstr ""
+msgstr "Jika bahasa Anda tidak ada di daftar ini, silakan baca artikel tentang bagaimana <a href=\"{}\">memohon bahasa baru</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/language.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/profile.ctp#L458
@@ -4094,13 +4096,13 @@ msgstr "Ubah profil Anda menjadi publik"
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default"
-msgstr ""
+msgstr "Ingat-ingat daftar yang terakhir kali Anda pilih saat Anda menandai sebuah kalimat, dan jadikan sebagai pengaturan standar."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L138
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations"
-msgstr ""
+msgstr "Tampilkan penanda untuk membuka/menutup terjemahan ketika ada terlalu banyak terjemahan."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L162
 msgid "Always show transcriptions and alternative scripts"
@@ -4124,7 +4126,7 @@ msgstr "Jumlah kalimat per halaman"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L240
 msgid "Default license for original sentences"
-msgstr ""
+msgstr "Lisensi standar untuk kalimat asli."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/User/settings.ctp#L251
 msgid "Experimental options"
@@ -4194,7 +4196,7 @@ msgstr "Anggota (total {number})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/edit.ctp#L110
 msgid "Can switch license"
-msgstr ""
+msgstr "Dapat mengganti lisensi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Users/for_language.ctp#L38
 msgid "Members: {lang}"
@@ -4323,7 +4325,7 @@ msgstr "Kosakata yang belum digunakan"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L53
 msgid ""
 "Only vocabulary items that match fewer than 10 sentences are displayed here."
-msgstr ""
+msgstr "Hanya daftar kosakata yang memuat kurang dari 10 kalimat saja yang ditampilkan di sini."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Vocabulary/add_sentences.ctp#L87
 msgid "This sentence already exists."
@@ -4355,7 +4357,7 @@ msgstr "Sebelum mengajukan sebuah pertanyaan, pastikan Anda membaca daftar <a hr
 msgid ""
 "We aim to maintain a healthy atmosphere for civilized discussions. Please "
 "read our <a href=\"{}\">rules against bad behavior</a>."
-msgstr ""
+msgstr "Kami berusaha untuk menjaga lingkungan yang sehat untuk diskusi bersahaja. Silakan baca <a href=\"{}\">aturan kami mengenai perilaku buruk</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Wall/index.ctp#L86
 msgid ""
@@ -4741,7 +4743,7 @@ msgstr "ditambahkan oleh {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L121
 msgid "added by an unknown member"
-msgstr ""
+msgstr "ditambahkan oleh anggota tak dikenal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by {user}"
@@ -4749,7 +4751,7 @@ msgstr "ditautkan oleh {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L123
 msgid "linked by an unknown member"
-msgstr ""
+msgstr "ditautkan oleh anggota tak dikenal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by {user}"
@@ -4757,7 +4759,7 @@ msgstr "lisensi dipilih oleh {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L125
 msgid "license chosen by a unknown member"
-msgstr ""
+msgstr "lisensi dipilih oleh anggota tak dikenal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by {user}"
@@ -4765,7 +4767,7 @@ msgstr "diedit oleh {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L130
 msgid "edited by an unknown member"
-msgstr ""
+msgstr "diedit oleh anggota tak dikenal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by {user}"
@@ -4773,7 +4775,7 @@ msgstr "lisensi diubah oleh {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L132
 msgid "license changed by an unknown member"
-msgstr ""
+msgstr "lisensi diubah oleh anggota tak dikenal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L137
 msgid "deleted by {user}"
@@ -4789,7 +4791,7 @@ msgstr "Tautan dilepas oleh {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L139
 msgid "unlinked by an unknown member"
-msgstr ""
+msgstr "tautan dilepas oleh anggota tak dikenal"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/LogsHelper.php#L149
 msgid "{info}, {date}"
@@ -4854,7 +4856,7 @@ msgstr "Tambahkan ke daftar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L365
 msgid "Sentence already in all possible lists"
-msgstr ""
+msgstr "Kalimat ini sudah ada di semua daftar yang mungkin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MenuHelper.php#L367
 msgid "Add to one of your lists"
@@ -4881,7 +4883,7 @@ msgid ""
 "Tatoeba can automatically enter the sentence ID when you have copied a "
 "sentence URL. To enable this, please allow your browser to read from the "
 "clipboard."
-msgstr ""
+msgstr "Tatoeba dapat secara otomatis memasukkan ID kalimat ketika Anda menyalin pranala sebuah kalimat. Untuk menyalakan fitur ini, mohon izinkan browser Anda untuk membaca dari clipboard."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/View/Helper/MessagesHelper.php#L112
 msgid "to {recipient}"

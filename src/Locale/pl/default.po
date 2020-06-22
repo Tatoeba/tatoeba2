@@ -11,14 +11,15 @@
 # Marta Malara <martakapella92@gmail.com>, 2020
 # Słońce Lettner <michalkolpanowicz@gmail.com>, 2020
 # Piotr Ćwiek <peterche@wp.pl>, 2014
+# Syl Max, 2020
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-04 23:48+0800\n"
-"PO-Revision-Date: 2020-06-10 21:40+0000\n"
-"Last-Translator: Karol Łacina <karoleklacina@gmail.com>\n"
+"PO-Revision-Date: 2020-06-21 17:55+0000\n"
+"Last-Translator: Syl Max\n"
 "Language-Team: Polish (http://www.transifex.com/tatoeba/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -494,7 +495,7 @@ msgstr "Ta transkrypcja została stworzona maszynowo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Licensing.php#L11
 msgid "Sentences to switch to CC0"
-msgstr ""
+msgstr "Zdania do zmiany na licencję CC0."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/ExportsTable.php#L125
 msgid "List {listName}"
@@ -544,7 +545,7 @@ msgstr "To zdanie już posiada tę licencję."
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Model/Table/SentencesTable.php#L196
 msgid ""
 "The sentence needs to be original (not initially derived from translation)."
-msgstr ""
+msgstr "To zdanie musi być oryginalne (nie pochodzić z tłumaczenia)."
 
 #. This string will be preceded by "Unable to
 #. change the license to “{newLicense}” because:"
@@ -950,11 +951,11 @@ msgstr "Wykres aktywności - {month}{year}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L69
 msgid "Statistics about the number of contributions over this month."
-msgstr ""
+msgstr "Statystyki dotyczące ilości dodań w tym miesiącu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L71
 msgid "Statistics about the number of contributions over {month} {year}."
-msgstr ""
+msgstr "Statystyki dotyczące ilości dodań w {month}{year}."
 
 #. first column header on the Activity timeline page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/activity_timeline.ctp#L89
@@ -1008,7 +1009,7 @@ msgstr "Ostatnio dodane przez {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Contributions/of_user.ctp#L69
 msgid "Only the last {n} log entries are displayed here."
-msgstr ""
+msgstr "Tutaj są pokazane tylko ostatnie {n} dodania/dodań."
 
 #. section title in advanced search form
 #. / link to the user's sentences on profile page sidebar
@@ -1369,7 +1370,7 @@ msgstr "Więcej informacji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/foot.ctp#L215
 msgid "If you love this content, please consider a <a href={}>donation</a>."
-msgstr ""
+msgstr "Jeśli podoba ci się to, co widzisz, pomyśl o <a href={}>wsparciu</a>."
 
 #. top-left site name written in big.
 #. You shouldn't translate it unless speakers of your
@@ -1388,7 +1389,7 @@ msgstr "Nie znaleziono języka."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/licensing/list.ctp#L4
 msgid "List of affected sentences (total {{count}})"
-msgstr ""
+msgstr "Lista "
 
 #. link to the Register page in the top bar (verb)
 #. / link to the Register page in the login page (verb)
@@ -1864,7 +1865,7 @@ msgstr "Kopiuj zdanie"
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L162
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L66
 msgid "Go to sentence page"
-msgstr ""
+msgstr "Idź do strony zdania."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/sentence_and_translations.ctp#L197
 msgid "Translations of translations"
@@ -2032,7 +2033,7 @@ msgstr "Odłącz to tłumaczenie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L21
 msgid "Make into direct translation"
-msgstr ""
+msgstr "Zrób bezpośrednie tłumaczenie."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/sentences/translation.ctp#L37
 msgid "Existing sentence #{number} has been added as a translation."
@@ -2187,7 +2188,7 @@ msgstr[3] "{number} wspieranego języka"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L34
 msgid "Stats per languages"
-msgstr ""
+msgstr "Statystyki według języka."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/stats/homepage_stats.ctp#L42
 msgid "{number} contribution today"
@@ -2252,7 +2253,7 @@ msgstr "Dyskutuj o zdaniach"
 #. menu item on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L118
 msgid "Add vocabulary request"
-msgstr ""
+msgstr "Dodaj prośbę o słowo."
 
 #. menu on the top (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/top_menu.ctp#L126
@@ -2349,15 +2350,15 @@ msgstr "Tłumacz zdania członka {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L28
 msgid "Vocabulary requests"
-msgstr ""
+msgstr "Prośby o słowa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L33
 msgid "My vocabulary requests"
-msgstr ""
+msgstr "Moje prośby o słowa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L39
 msgid "Add vocabulary requests"
-msgstr ""
+msgstr "Dodaj prośby o słowa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Element/vocabulary/menu.ctp#L45
 msgid "Existing vocabulary requests"
@@ -2455,7 +2456,7 @@ msgstr "Zmień licencję moich zdań"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L26
 msgid "Switch my sentences to CC0"
-msgstr ""
+msgstr "Zmień moje zdania na licencję CC0."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L29
 msgid ""
@@ -2476,7 +2477,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L37
 msgid "You must be the original creator of the sentence."
-msgstr ""
+msgstr "Musisz być autorem tego zdania."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Licensing/switch_my_sentences.ctp#L38
 msgid "The sentence must be original and not derived from translation."
@@ -2964,7 +2965,7 @@ msgstr ""
 #. section title in the Downloads page
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L464
 msgid "Users' sentence reviews"
-msgstr ""
+msgstr "Sprawdzenia zdań użytkownika."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Pages/downloads.ctp#L473
 msgid ""
@@ -3310,7 +3311,7 @@ msgstr "Funkcja obecnie nie jest włączona."
 msgid ""
 "You can activate it in your settings: \"Activate the feature to review "
 "sentences.\""
-msgstr ""
+msgstr "Możesz uaktywnić to w swoich ustawieniach: \"Uaktywnij opcję do sprawdzania zdań\""
 
 #. header text in the sidebar of a list of reviews (verb)
 #: github.com/Tatoeba/tatoeba2/tree/dev/src/Template/Reviews/of.ctp#L73
