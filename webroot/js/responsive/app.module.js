@@ -72,7 +72,7 @@
         .directive('resetButton', function(){
             return function(scope, element, attrs) {
                 element.bind('click', function(e) {
-                    var target = this.getAttribute('target');
+                    var target = attrs.target;
                     var text_input = document.getElementById(target);
                     text_input.value = '';
                     text_input.focus();
