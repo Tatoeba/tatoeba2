@@ -61,18 +61,26 @@ $this->set('title_for_layout', $this->Pages->formatTitle($title));
     <section class="md-whiteframe-1dp">
         <md-toolbar class="md-hue-2">
             <div class="md-toolbar-tools">
-                <h2><?= $this->safeForAngular($title) ?></h2>
+                <h2 flex>
+                    <?= $this->safeForAngular($title) ?>
 
-                <md-button class="md-icon-button" aria-label="Sort by">
-                    <!-- <p>Sort</p> -->
-                    <md-icon md-svg-src="img/list.svg"> <!-- tries to load http://localhost:8080/eng/sentences_lists/img/list.svg -->
-                    <!-- <md-icon md-svg-src="img/sort-24px.svg"></md-icon> -->
-                    <!-- check if pre-existing class allows right alignment of button, otherwise these allow just right alignment
-                        position: absolute;
-                        margin-right: 1em !important;
-                        right: 0px;
-                     -->
-                </md-button>
+                    <md-menu md-offset="5 50" md-position-mode="target-right target">
+                        <md-button ng-click="$mdOpenMenu($event)">
+                            <md-icon>sort</md-icon> Sort by
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item ng-repeat="item in ['list', 2, 22223, 9324, 02934, 12]">
+                                <md-button>
+                                    <md-icon>{{ $index === 1 ? 'check' : 'blank'}}</md-icon>
+                                    <span style="padding-right: 12px">Option {{item}}</span>
+                                </md-button>
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+
+                </h2>
+
+                
 
             </div>
         </md-toolbar>
