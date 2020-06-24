@@ -343,10 +343,7 @@ class SentencesSearchForm extends Form
             ->where([
                 'OR' => [
                     'user_id' => $byUserId,
-                    'visibility' => 'public',
-                    'OR' => [
-                        'visibility' => 'listed',
-                    ]
+                    'visibility IN' => ['public', 'listed']
                 ]
             ]);
 

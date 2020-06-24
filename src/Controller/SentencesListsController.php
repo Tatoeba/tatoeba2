@@ -107,7 +107,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, 'public'
+            $filter, null, ['public', 'listed']
         );
         $allLists = $this->paginate();
 
@@ -124,7 +124,7 @@ class SentencesListsController extends AppController
         }
 
         $this->paginate = $this->SentencesLists->getPaginatedLists(
-            $filter, null, 'public', 'anyone'
+            $filter, null, ['public', 'listed'], 'anyone'
         );
         $allLists = $this->paginate();
 
@@ -359,7 +359,7 @@ class SentencesListsController extends AppController
 
         $visibility = null;
         if ($username != CurrentUser::get('username')) {
-            $visibility = 'public';
+            $visibility = ['public', 'listed'];
         }
         $this->paginate = $this->SentencesLists->getPaginatedLists(
             $filter, $username, $visibility

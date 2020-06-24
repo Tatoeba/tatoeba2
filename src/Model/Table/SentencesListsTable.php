@@ -102,11 +102,7 @@ class SentencesListsTable extends Table
             ->where([
                 'OR' => [
                     'user_id' => CurrentUser::get('id'),
-                    'visibility' => 'public',
-                    'OR' =>[
-                        'visibility'=> 'listed',
-                    ]
-                    
+                    'visibility IN' => ['public', 'listed']               
                 ]
             ])
             ->select(['id', 'name', 'user_id'])
@@ -218,7 +214,7 @@ class SentencesListsTable extends Table
             $conditions['SentencesLists.user_id'] = $userId;
         }
         if (!empty($visibility)) {
-            $conditions['SentencesLists.visibility'] = $visibility;
+            $conditions['SentencesLists.visibility IN'] = $visibility;
         }
         if (!empty($editableBy)) {
             $conditions['SentencesLists.editable_by'] = $editableBy;

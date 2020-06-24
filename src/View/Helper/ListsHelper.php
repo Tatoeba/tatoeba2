@@ -338,7 +338,7 @@ class ListsHelper extends AppHelper
             <input type="radio"  name="visibility" data-list-id='<?= $listId ?>'  value="{{visibility}}" checked hidden ng-init="visibility = '<?= $value ?>';"/>
             <md-radio-group ng-controller='optionsCtrl' ng-model='visibility' ng-change='visibilityChanged()'>
                 <md-radio-button value='public' class='md-primary' title=
-                                 '<?=h(__("The list will be shown on the sentences page"))?>'>                  
+                                 '<?=h(__("The list is displayed everywhere for everyone"))?>'>                  
                     <?php /* @translators: visibility option of a list */ ?>
                     <?=  __('Public');?>      
                     
